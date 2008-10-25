@@ -1,0 +1,1476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vm:xmlvm xmlns:vm="http://xmlvm.org" xmlns:clr="http://xmlvm.org/clr">
+  <vm:class name="Calculator" extends="System.Windows.Forms.Form">
+    <vm:field isPrivate="true" name="display" type="System.Windows.Forms.Label" />
+    <vm:field isPrivate="true" name="gridSizeX" type="int" />
+    <vm:field isPrivate="true" name="gridSizeY" type="int" />
+    <vm:field isPrivate="true" name="buttonCount" type="int" />
+    <vm:field isPrivate="true" name="maxLength" type="int" />
+    <vm:field isPrivate="true" name="output" type="System.String" />
+    <vm:field isPrivate="true" name="dec" type="boolean" />
+    <vm:field isPrivate="true" name="result" type="double" />
+    <vm:field isPrivate="true" name="operation" type="System.String" />
+    <vm:field isPrivate="true" name="newNumber" type="boolean" />
+    <vm:field isPrivate="true" name="finished" type="boolean" />
+    <vm:field isPrivate="true" name="memory" type="boolean" />
+    <vm:field isPrivate="true" name="memoryValue" type="double" />
+    <vm:method name="&lt;init&gt;" isPublic="true" stack="74" locals="4">
+      <vm:signature>
+        <vm:return type="void" />
+      </vm:signature>
+      <vm:code>
+        <clr:var id="0" isValueType="true" type="System.Drawing.Size" />
+        <clr:var id="1" isValueType="true" type="System.Drawing.Point" />
+        <clr:var id="2" isValueType="true" type="System.Drawing.Size" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="30" />
+        <clr:stfld class-type="Calculator" type="int" field="gridSizeX" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="30" />
+        <clr:stfld class-type="Calculator" type="int" field="gridSizeY" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="20" />
+        <clr:stfld class-type="Calculator" type="int" field="maxLength" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="0" />
+        <clr:stfld class-type="Calculator" type="System.String" field="output" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="" />
+        <clr:stfld class-type="Calculator" type="System.String" field="operation" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="1" />
+        <clr:stfld class-type="Calculator" type="boolean" field="newNumber" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="System.Windows.Forms.Form" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="Calculator" />
+        <clr:callvirt has-this="true" class-type="System.Windows.Forms.Control" method="set_Text">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:ldarg index="0" />
+        <clr:ldloca index="0" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="int" field="gridSizeX" />
+        <clr:ldc type="int" value="5" />
+        <clr:mul />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="int" field="gridSizeY" />
+        <clr:ldc type="int" value="6" />
+        <clr:mul />
+        <clr:call has-this="true" class-type="System.Drawing.Size" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="int" />
+            <vm:parameter type="int" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldloc index="0" />
+        <clr:call has-this="true" class-type="System.Windows.Forms.Form" method="set_ClientSize">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter isValueType="true" type="System.Drawing.Size" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:newobj type="System.Windows.Forms.Label">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:newobj>
+        <clr:stfld class-type="Calculator" type="System.Windows.Forms.Label" field="display" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.Windows.Forms.Label" field="display" />
+        <clr:ldloca index="1" />
+        <clr:ldc type="int" value="0" />
+        <clr:ldc type="int" value="0" />
+        <clr:call has-this="true" class-type="System.Drawing.Point" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="int" />
+            <vm:parameter type="int" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldloc index="1" />
+        <clr:callvirt has-this="true" class-type="System.Windows.Forms.Control" method="set_Location">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter isValueType="true" type="System.Drawing.Point" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.Windows.Forms.Label" field="display" />
+        <clr:ldloca index="2" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="int" field="gridSizeX" />
+        <clr:ldc type="int" value="5" />
+        <clr:mul />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="int" field="gridSizeY" />
+        <clr:call has-this="true" class-type="System.Drawing.Size" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="int" />
+            <vm:parameter type="int" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldloc index="2" />
+        <clr:callvirt has-this="true" class-type="System.Windows.Forms.Control" method="set_Size">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter isValueType="true" type="System.Drawing.Size" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.Windows.Forms.Label" field="display" />
+        <clr:ldc type="System.String" value="0" />
+        <clr:callvirt has-this="true" class-type="System.Windows.Forms.Control" method="set_Text">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="System.Windows.Forms.Control" method="get_Controls">
+          <vm:signature>
+            <vm:return type="System.Windows.Forms.Control$ControlCollection" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.Windows.Forms.Label" field="display" />
+        <clr:callvirt has-this="true" class-type="System.Windows.Forms.Control$ControlCollection" method="Add">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.Windows.Forms.Control" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="0" />
+        <clr:stfld class-type="Calculator" type="int" field="buttonCount" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="+/-" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="AC" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="M+" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="7" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="8" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="9" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="/" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="M-" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="4" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="5" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="6" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="x" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="MR" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="1" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="2" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="3" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="-" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="MC" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="0" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="." />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="=" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="+" />
+        <clr:call has-this="true" class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="addButton" isPrivate="true" stack="20" locals="7">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="System.String" />
+      </vm:signature>
+      <vm:code>
+        <clr:var id="0" type="System.Windows.Forms.Button" />
+        <clr:var id="1" type="int" />
+        <clr:var id="2" type="int" />
+        <clr:var id="3" isValueType="true" type="System.Drawing.Size" />
+        <clr:var id="4" isValueType="true" type="System.Drawing.Point" />
+        <clr:newobj type="System.Windows.Forms.Button">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:newobj>
+        <clr:stloc index="0" />
+        <clr:ldloc index="0" />
+        <clr:ldarg index="1" />
+        <clr:callvirt has-this="true" class-type="System.Windows.Forms.Control" method="set_Text">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:ldloc index="0" />
+        <clr:ldloca index="3" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="int" field="gridSizeX" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="int" field="gridSizeY" />
+        <clr:call has-this="true" class-type="System.Drawing.Size" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="int" />
+            <vm:parameter type="int" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldloc index="3" />
+        <clr:callvirt has-this="true" class-type="System.Windows.Forms.Control" method="set_Size">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter isValueType="true" type="System.Drawing.Size" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="int" field="buttonCount" />
+        <clr:ldc type="int" value="5" />
+        <clr:rem />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="int" field="gridSizeX" />
+        <clr:mul />
+        <clr:stloc index="1" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="int" field="buttonCount" />
+        <clr:ldc type="int" value="5" />
+        <clr:div />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="int" field="gridSizeY" />
+        <clr:mul />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="int" field="gridSizeY" />
+        <clr:add />
+        <clr:stloc index="2" />
+        <clr:ldloc index="0" />
+        <clr:ldloca index="4" />
+        <clr:ldloc index="1" />
+        <clr:ldloc index="2" />
+        <clr:call has-this="true" class-type="System.Drawing.Point" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="int" />
+            <vm:parameter type="int" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldloc index="4" />
+        <clr:callvirt has-this="true" class-type="System.Windows.Forms.Control" method="set_Location">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter isValueType="true" type="System.Drawing.Point" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:ldloc index="0" />
+        <clr:ldarg index="0" />
+        <clr:ldftn class-type="Calculator" method="HandleClick">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.Object" />
+            <vm:parameter type="System.EventArgs" />
+          </vm:signature>
+        </clr:ldftn>
+        <clr:newobj type="System.EventHandler">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.Object" />
+            <vm:parameter type="int" />
+          </vm:signature>
+        </clr:newobj>
+        <clr:callvirt has-this="true" class-type="System.Windows.Forms.Control" method="add_Click">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.EventHandler" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="System.Windows.Forms.Control" method="get_Controls">
+          <vm:signature>
+            <vm:return type="System.Windows.Forms.Control$ControlCollection" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldloc index="0" />
+        <clr:callvirt has-this="true" class-type="System.Windows.Forms.Control$ControlCollection" method="Add">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.Windows.Forms.Control" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:ldarg index="0" />
+        <clr:dup />
+        <clr:ldfld class-type="Calculator" type="int" field="buttonCount" />
+        <clr:ldc type="int" value="1" />
+        <clr:add />
+        <clr:stfld class-type="Calculator" type="int" field="buttonCount" />
+        <clr:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="HandleClick" isPublic="true" stack="88" locals="5">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="System.Object" />
+        <vm:parameter type="System.EventArgs" />
+      </vm:signature>
+      <vm:code>
+        <clr:var id="0" type="System.String" />
+        <clr:var id="1" type="double" />
+        <clr:ldarg index="1" />
+        <clr:castclass type="System.Windows.Forms.Button" />
+        <clr:callvirt has-this="true" class-type="System.Windows.Forms.Control" method="get_Text">
+          <vm:signature>
+            <vm:return type="System.String" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:stloc index="0" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="AC" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="0" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="double" value="0.0" />
+        <clr:stfld class-type="Calculator" type="double" field="result" />
+        <clr:ldarg index="0" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="double" field="result" />
+        <clr:call has-this="false" class-type="System.Convert" method="ToString">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="double" />
+          </vm:signature>
+        </clr:call>
+        <clr:stfld class-type="Calculator" type="System.String" field="output" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="" />
+        <clr:stfld class-type="Calculator" type="System.String" field="operation" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="1" />
+        <clr:stfld class-type="Calculator" type="boolean" field="newNumber" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="0" />
+        <clr:stfld class-type="Calculator" type="boolean" field="dec" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="1" />
+        <clr:stfld class-type="Calculator" type="boolean" field="finished" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="0" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="+/-" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="1" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:call has-this="false" class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:stloc index="1" />
+        <clr:ldloc index="1" />
+        <clr:ldc type="double" value="-1.0" />
+        <clr:mul />
+        <clr:stloc index="1" />
+        <clr:ldarg index="0" />
+        <clr:ldloc index="1" />
+        <clr:call has-this="false" class-type="System.Convert" method="ToString">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="double" />
+          </vm:signature>
+        </clr:call>
+        <clr:stfld class-type="Calculator" type="System.String" field="output" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="1" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="1" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="2" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="1" />
+        <clr:call has-this="true" class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="2" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="2" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="3" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="2" />
+        <clr:call has-this="true" class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="3" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="3" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="4" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="3" />
+        <clr:call has-this="true" class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="4" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="4" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="5" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="4" />
+        <clr:call has-this="true" class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="5" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="5" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="6" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="5" />
+        <clr:call has-this="true" class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="6" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="6" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="7" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="6" />
+        <clr:call has-this="true" class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="7" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="7" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="8" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="7" />
+        <clr:call has-this="true" class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="8" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="8" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="9" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="8" />
+        <clr:call has-this="true" class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="9" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="9" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="10" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="9" />
+        <clr:call has-this="true" class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="10" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="0" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="11" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:callvirt has-this="true" class-type="System.String" method="get_Length">
+          <vm:signature>
+            <vm:return type="int" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:brfalse label="11" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="0" />
+        <clr:call has-this="true" class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="11" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="." />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="13" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:callvirt has-this="true" class-type="System.String" method="get_Length">
+          <vm:signature>
+            <vm:return type="int" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="int" field="maxLength" />
+        <clr:bge label="13" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="boolean" field="dec" />
+        <clr:brtrue label="13" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="1" />
+        <clr:stfld class-type="Calculator" type="boolean" field="dec" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:callvirt has-this="true" class-type="System.String" method="get_Length">
+          <vm:signature>
+            <vm:return type="int" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:brfalse label="16" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="boolean" field="newNumber" />
+        <clr:brfalse label="17" />
+        <clr:label id="16" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="0." />
+        <clr:stfld class-type="Calculator" type="System.String" field="output" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="0" />
+        <clr:stfld class-type="Calculator" type="boolean" field="newNumber" />
+        <clr:br label="18" />
+        <clr:label id="17" />
+        <clr:ldarg index="0" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:ldc type="System.String" value="." />
+        <clr:call has-this="false" class-type="System.String" method="Concat">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:stfld class-type="Calculator" type="System.String" field="output" />
+        <clr:label id="18" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="13" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="=" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="19" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="key_equals">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="19" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="+" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="20" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="evaluate">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="plus" />
+        <clr:stfld class-type="Calculator" type="System.String" field="operation" />
+        <clr:label id="20" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="-" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="21" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="evaluate">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="minus" />
+        <clr:stfld class-type="Calculator" type="System.String" field="operation" />
+        <clr:label id="21" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="x" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="22" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="evaluate">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="times" />
+        <clr:stfld class-type="Calculator" type="System.String" field="operation" />
+        <clr:label id="22" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="/" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="23" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="evaluate">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="div" />
+        <clr:stfld class-type="Calculator" type="System.String" field="operation" />
+        <clr:label id="23" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="M+" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="24" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="1" />
+        <clr:stfld class-type="Calculator" type="boolean" field="memory" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="key_equals">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:dup />
+        <clr:ldfld class-type="Calculator" type="double" field="memoryValue" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:call has-this="false" class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:add />
+        <clr:stfld class-type="Calculator" type="double" field="memoryValue" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="24" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="M-" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="25" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="1" />
+        <clr:stfld class-type="Calculator" type="boolean" field="memory" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="key_equals">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:dup />
+        <clr:ldfld class-type="Calculator" type="double" field="memoryValue" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:call has-this="false" class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:sub />
+        <clr:stfld class-type="Calculator" type="double" field="memoryValue" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="25" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="MR" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="26" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="boolean" field="memory" />
+        <clr:brfalse label="26" />
+        <clr:ldarg index="0" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="double" field="memoryValue" />
+        <clr:call has-this="false" class-type="System.Convert" method="ToString">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="double" />
+          </vm:signature>
+        </clr:call>
+        <clr:stfld class-type="Calculator" type="System.String" field="output" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="26" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="MC" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="28" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="0" />
+        <clr:stfld class-type="Calculator" type="boolean" field="memory" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="double" value="0.0" />
+        <clr:stfld class-type="Calculator" type="double" field="memoryValue" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="28" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:ldc type="System.String" value="" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="29" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="0" />
+        <clr:stfld class-type="Calculator" type="System.String" field="output" />
+        <clr:label id="29" />
+        <clr:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="updateDisplay" isPublic="true" stack="8" locals="3">
+      <vm:signature>
+        <vm:return type="void" />
+      </vm:signature>
+      <vm:code>
+        <clr:var id="0" type="System.String" />
+        <clr:var id="1" type="int" />
+        <clr:ldc type="System.String" value="" />
+        <clr:stloc index="0" />
+        <clr:ldc type="int" value="1" />
+        <clr:stloc index="1" />
+        <clr:br label="0" />
+        <clr:label id="4" />
+        <clr:ldloc index="1" />
+        <clr:ldc type="int" value="1" />
+        <clr:bne_un label="1" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="boolean" field="memory" />
+        <clr:brfalse label="1" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="M" />
+        <clr:call has-this="false" class-type="System.String" method="Concat">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:stloc index="0" />
+        <clr:br label="3" />
+        <clr:label id="1" />
+        <clr:ldloc index="0" />
+        <clr:ldc type="System.String" value="_" />
+        <clr:call has-this="false" class-type="System.String" method="Concat">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:stloc index="0" />
+        <clr:label id="3" />
+        <clr:ldloc index="1" />
+        <clr:ldc type="int" value="1" />
+        <clr:add />
+        <clr:stloc index="1" />
+        <clr:label id="0" />
+        <clr:ldloc index="1" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="int" field="maxLength" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:callvirt has-this="true" class-type="System.String" method="get_Length">
+          <vm:signature>
+            <vm:return type="int" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:sub />
+        <clr:ble label="4" />
+        <clr:ldloc index="0" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:call has-this="false" class-type="System.String" method="Concat">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:stloc index="0" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.Windows.Forms.Label" field="display" />
+        <clr:ldloc index="0" />
+        <clr:callvirt has-this="true" class-type="System.Windows.Forms.Control" method="set_Text">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="appendDigit" isPublic="true" stack="10" locals="2">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="System.String" />
+      </vm:signature>
+      <vm:code>
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:ldc type="System.String" value="0" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="0" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="" />
+        <clr:stfld class-type="Calculator" type="System.String" field="output" />
+        <clr:label id="0" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:callvirt has-this="true" class-type="System.String" method="get_Length">
+          <vm:signature>
+            <vm:return type="int" />
+          </vm:signature>
+        </clr:callvirt>
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="int" field="maxLength" />
+        <clr:bge label="1" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="boolean" field="newNumber" />
+        <clr:brfalse label="2" />
+        <clr:ldarg index="0" />
+        <clr:ldarg index="1" />
+        <clr:stfld class-type="Calculator" type="System.String" field="output" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="0" />
+        <clr:stfld class-type="Calculator" type="boolean" field="newNumber" />
+        <clr:br label="3" />
+        <clr:label id="2" />
+        <clr:ldarg index="0" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:ldarg index="1" />
+        <clr:call has-this="false" class-type="System.String" method="Concat">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:stfld class-type="Calculator" type="System.String" field="output" />
+        <clr:label id="3" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:label id="1" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="boolean" field="finished" />
+        <clr:brtrue label="4" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="operation" />
+        <clr:ldc type="System.String" value="" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="5" />
+        <clr:label id="4" />
+        <clr:ldarg index="0" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:call has-this="false" class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:stfld class-type="Calculator" type="double" field="result" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="0" />
+        <clr:stfld class-type="Calculator" type="boolean" field="finished" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="" />
+        <clr:stfld class-type="Calculator" type="System.String" field="operation" />
+        <clr:label id="5" />
+        <clr:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="key_equals" isPublic="true" stack="4" locals="1">
+      <vm:signature>
+        <vm:return type="void" />
+      </vm:signature>
+      <vm:code>
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="evaluate">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="System.String" value="" />
+        <clr:stfld class-type="Calculator" type="System.String" field="operation" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="1" />
+        <clr:stfld class-type="Calculator" type="boolean" field="newNumber" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="0" />
+        <clr:stfld class-type="Calculator" type="boolean" field="dec" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="1" />
+        <clr:stfld class-type="Calculator" type="boolean" field="finished" />
+        <clr:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="evaluate" isPublic="true" stack="14" locals="1">
+      <vm:signature>
+        <vm:return type="void" />
+      </vm:signature>
+      <vm:code>
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="operation" />
+        <clr:ldc type="System.String" value="plus" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="0" />
+        <clr:ldarg index="0" />
+        <clr:dup />
+        <clr:ldfld class-type="Calculator" type="double" field="result" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:call has-this="false" class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:add />
+        <clr:stfld class-type="Calculator" type="double" field="result" />
+        <clr:br label="1" />
+        <clr:label id="0" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="operation" />
+        <clr:ldc type="System.String" value="minus" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="2" />
+        <clr:ldarg index="0" />
+        <clr:dup />
+        <clr:ldfld class-type="Calculator" type="double" field="result" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:call has-this="false" class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:sub />
+        <clr:stfld class-type="Calculator" type="double" field="result" />
+        <clr:br label="1" />
+        <clr:label id="2" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="operation" />
+        <clr:ldc type="System.String" value="times" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="4" />
+        <clr:ldarg index="0" />
+        <clr:dup />
+        <clr:ldfld class-type="Calculator" type="double" field="result" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:call has-this="false" class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:mul />
+        <clr:stfld class-type="Calculator" type="double" field="result" />
+        <clr:br label="1" />
+        <clr:label id="4" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="operation" />
+        <clr:ldc type="System.String" value="div" />
+        <clr:call has-this="false" class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:brfalse label="6" />
+        <clr:ldarg index="0" />
+        <clr:dup />
+        <clr:ldfld class-type="Calculator" type="double" field="result" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:call has-this="false" class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:div />
+        <clr:stfld class-type="Calculator" type="double" field="result" />
+        <clr:br label="1" />
+        <clr:label id="6" />
+        <clr:ldarg index="0" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="System.String" field="output" />
+        <clr:call has-this="false" class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </clr:call>
+        <clr:stfld class-type="Calculator" type="double" field="result" />
+        <clr:label id="1" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="boolean" field="finished" />
+        <clr:brfalse label="8" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="0" />
+        <clr:stfld class-type="Calculator" type="boolean" field="finished" />
+        <clr:label id="8" />
+        <clr:ldarg index="0" />
+        <clr:ldarg index="0" />
+        <clr:ldfld class-type="Calculator" type="double" field="result" />
+        <clr:call has-this="false" class-type="System.Convert" method="ToString">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="double" />
+          </vm:signature>
+        </clr:call>
+        <clr:stfld class-type="Calculator" type="System.String" field="output" />
+        <clr:ldarg index="0" />
+        <clr:call has-this="true" class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:call>
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="1" />
+        <clr:stfld class-type="Calculator" type="boolean" field="newNumber" />
+        <clr:ldarg index="0" />
+        <clr:ldc type="int" value="0" />
+        <clr:stfld class-type="Calculator" type="boolean" field="dec" />
+        <clr:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="Main" isStatic="true" isPublic="true" stack="8" locals="0">
+      <vm:signature>
+        <vm:return type="void" />
+      </vm:signature>
+      <vm:code>
+        <clr:newobj type="Calculator">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </clr:newobj>
+        <clr:call has-this="false" class-type="System.Windows.Forms.Application" method="Run">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.Windows.Forms.Form" />
+          </vm:signature>
+        </clr:call>
+        <clr:return />
+      </vm:code>
+    </vm:method>
+  </vm:class>
+</vm:xmlvm>

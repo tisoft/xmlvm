@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/xmlvm"/>
+	<classpathentry kind="src" path="src/xmlvm2cpp"/>
+	<classpathentry kind="src" path="src/xmlvm2js"/>
+	<classpathentry kind="src" path="src/clr2jvm/xsl"/>
+	<classpathentry kind="src" path="src/test/cs"/>
+	<classpathentry kind="src" path="src/clr2jvm/compat-lib/Java"/>
+	<classpathentry kind="src" path="src/clr2jvm/compat-lib/c_sharp"/>
+	<classpathentry kind="src" path="src/jvm2clr/xsl"/>
+	<classpathentry kind="src" path="src/jvm2clr/compat-lib/cs"/>
+	<classpathentry kind="src" path="src/xmlvm2objc/xsl"/>
+	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/objc"/>
+	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/java"/>
+	<classpathentry kind="src" path="src/test/iphone"/>
+	<classpathentry kind="lib" path="lib/bcel.jar"/>
+	<classpathentry kind="lib" path="lib/jakarta-regexp.jar"/>
+	<classpathentry kind="lib" path="lib/jdom.jar"/>
+	<classpathentry kind="lib" path="lib/mbel.jar"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/czlUtil.jar"/>
+	<classpathentry kind="lib" path="lib/yuicompressor-2.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/EventBinaries.jar"/>
+	<classpathentry kind="lib" path="lib/saxon9.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

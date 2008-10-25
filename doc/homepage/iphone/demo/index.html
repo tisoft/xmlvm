@@ -1,0 +1,28 @@
+<html>
+<head>
+  <title>XMLVM: iPhone Simulator</title>
+  <style>
+    body {
+      font-size:11px;
+      font-family:Arial,Verdana;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>iPhone Simulator</h1>
+
+This page features a demo of the Java-to-Objective-C cross-compiler. The demo below
+implements a simple fireworks application. The application is written in Java and
+can be cross-compiled to run as a native application on the iPhone. Using a
+compatibility library to simulate Cocoa, the same application can also be run as a Java applet
+which is shown below. The three scroll-bars simulate the iPhone's accelerometer.
+The fireworks demo is implemented such that the sparks will always follow gravity,
+independent of the orientation of the iPhone.
+
+<applet code="org/xmlvm/iphone/internal/SimulatorApplet.class" appl="org.xmlvm.test.iphone.ifireworks.Main" width="580" height="750">
+Your browser does not support the applet tag.
+</applet>
+</body>
+</html>

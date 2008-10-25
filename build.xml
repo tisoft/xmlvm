@@ -1,0 +1,140 @@
+
+<project name="xmlvm" default="jar" basedir=".">
+
+    <property file="xmlvm.properties" />
+    <property name="debug" value="yes" />
+	<property name="doc.dir" value="doc" />
+    <property name="classes.dir" value="bin" />
+    <property name="classes.awt.dir" value="bin-awt" />
+    <property name="awt.js.dir" value="awt-js" />
+	<property name="tmp.dir" value="${classes.dir}" />
+	<property name="cscCompiler" value="C:/WINDOWS/Microsoft.NET/Framework/v2.0.50727/csc.exe" />
+
+
+	
+    <path id="classpath.compile">
+        <pathelement location="lib/bcel.jar" />
+        <pathelement location="lib/jdom.jar" />
+        <pathelement location="lib/mbel.jar" />
+    	<pathelement location="lib/yuicompressor-2.1.2.jar" />
+    	<pathelement location="lib/czlUtil.jar" />
+    	<pathelement location="lib/saxon9.jar" />
+    </path>
+
+    <path id="classpath.run">
+        <pathelement location="${classes.dir}" />
+    	<pathelement location="src/xmlvm2js" />
+        <pathelement location="lib/bcel.jar" />
+        <pathelement location="lib/mbel.jar" />
+        <pathelement location="lib/jdom.jar" />
+        <pathelement location="lib/jakarta-regexp.jar" /> 
+    	<pathelement location="lib/saxon9.jar" />
+    	<pathelement location="lib/xercesImpl.jar"/>
+    </path>
+
+	<target name="jar" depends="build-xmlvm">
+		<jar destfile="${xmlvm.jar}">
+			<fileset dir="bin" />
+			<!-- fileset dir="${awt.js.dir}" / -->
+			<fileset dir="src/xmlvm2js" />
+			<fileset dir="src/clr2jvm/xsl" />
+			<fileset dir="src/avm2jvm" />
+	    </jar>
+	</target>
+
+    <target name="build-xmlvm">
+        <mkdir dir="${classes.dir}" />
+    	<echo message="Compiling XMLVM"/>
+        <javac srcdir="src/xmlvm"
+               destdir="${classes.dir}"
+               debug="${debug}">
+            <classpath refid="classpath.compile" />
+            <include name="**/*.java" />
+        </javac>
+    	
+    	
+    	  <copy todir="${classes.dir}">
+    		<fileset dir="src/xmlvm2js" />
+    		<fileset dir="src/clr2jvm/xsl" />
+    	  </copy>
+      <copy todir="${classes.dir}/lib">
+  		<fileset dir="lib" />
+   	  </copy>
+
+    	
+    	<echo message="Compiling event handler for compat lib"/>
+    	<exec executable="${cscCompiler}">
+    	   <arg value="/out:${tmp.dir}/EventBinaries.exe"/>
+    	   <arg value="/warn:0"/>
+    	   <arg value="/nologo"/>
+    	   <arg value="src\clr2jvm\compat-lib\c_sharp\eventHandler\DummyMain.cs"/>
+    	   <arg value="src\clr2jvm\compat-lib\c_sharp\eventHandler\EventArgs.cs"/>
+    	   <arg value="src\clr2jvm\compat-lib\c_sharp\eventHandler\EventHandler.cs"/>
+    	</exec>
+    	<echo message="Cross compiling event handler for compat lib"/>
+        <java classname="org.xmlvm.Main">
+        	<arg value="--java"/>
+        	<arg value="--out=${classes.dir}"/>
+        	<arg value="${tmp.dir}/EventBinaries.exe" />
+            <classpath refid="classpath.run" />
+        </java>
+    	<echo message="Compiling compat lib"/>
+        <javac srcdir="src/clr2jvm/compat-lib/Java"
+               destdir="${classes.dir}"
+               debug="${debug}">
+            <classpath refid="classpath.compile" />
+            <include name="**/*.java" />
+        </javac>
+	    
+    	<delete file="${tmp.dir}/EventBinaries.exe" />
+        <delete file="${classes.dir}/DummyMain.class" />
+    </target>
+
+    <target name="build-awt">
+    	<mkdir dir="${classes.awt.dir}" />
+        <javac srcdir="src/awt"
+               destdir="${classes.awt.dir}"
+               debug="${debug}">
+            <classpath refid="classpath.compile" />
+            <include name="**/*.java" />
+        </javac>
+    </target>
+	
+    <target name="cross-compile-awt" depends="build-awt">
+        <mkdir dir="${awt.js.dir}" />
+        <java classname="org.xmlvm.Main">
+        	<arg value="--js"/>
+        	<arg value="--out=${awt.js.dir}"/>
+        	<arg value="${classes.awt.dir}/*.class" />
+            <classpath refid="classpath.run" />
+        </java>
+    </target>
+
+    <target name="clean" description="Remove all build files">
+        <delete dir="${classes.dir}" />
+        <delete dir="${classes.awt.dir}" />
+        <delete dir="${awt.js.dir}" />
+        <delete dir="tmp" />
+    </target>
+
+	<target name="homepage"
+		    depends="_createDirTree"
+			description="Copies all document files from the XMLVM source tree to xml11.org/xmlvm homepage">
+		
+		<copy todir="${homepage.dir}/htdocs/xmlvm">
+			<fileset dir="${doc.dir}/homepage">
+				<exclude name="**/CVS/*"/>
+			</fileset>
+		</copy>
+		
+	</target>
+	
+	<target name="_createDirTree">
+		<mkdir dir="${homepage.dir}"/>
+		<mkdir dir="${homepage.dir}/htdocs"/>
+		<mkdir dir="${homepage.dir}/htdocs/xmlvm"/>
+		<mkdir dir="${homepage.dir}/htdocs/xmlvm/download"/>
+		<mkdir dir="${homepage.dir}/htdocs/xmlvm/download/dist"/>
+	</target>
+
+</project>

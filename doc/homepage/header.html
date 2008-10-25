@@ -1,0 +1,35 @@
+<?php
+function print_code($code) {
+  echo(nl2br(str_replace(" ", "&nbsp;", htmlentities($code))));
+}
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <title>xmlvm</title>
+    <link rel="stylesheet" type="text/css" href="../styles.css" />
+  </head>
+  <body>
+    <div><map name="main_menu" id="main_menu">
+      <area 
+          href="../overview" alt="Overview" title="Overview"
+          shape="rect" coords="466,66,554,89" />
+      <area 
+          href="../toolchain" alt="Details" title="Details"
+          shape="rect" coords="554,66,626,89" />
+      <area 
+          href="../showcase" alt="Showcase" title="Showcase"
+          shape="rect" coords="626,66,721,89" />
+      <area 
+          href="../download" alt="Download" title="Download"
+          shape="rect" coords="721,66,817,89" />
+      <area 
+          href="../contact" alt="Contact" title="Contact"
+          shape="rect" coords="817,66,900,89" />
+    </map></div>
+    <table id="main_table" cellspacing="0" cellpadding="0">
+      <tr>
+        <td style="height:89px;">
+          <img src="../header_menu.jpg" alt="Header" usemap="#main_menu"/>
+        </td>
+      </tr>

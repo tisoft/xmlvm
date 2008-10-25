@@ -1,0 +1,2207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vm:xmlvm xmlns:vm="http://xmlvm.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clr="http://xmlvm.org/clr" xmlns:jvm="http://xmlvm.org/jvm" xmlns:dfa="http://xmlvm.org/dfa">
+  <vm:class xmlns:exsl="http://exslt.org/common" name="Calculator" extends="System.Windows.Forms.Form">
+    <vm:field isPrivate="true" name="display" type="System.Windows.Forms.Label" />
+    <vm:field isPrivate="true" name="gridSizeX" type="int" />
+    <vm:field isPrivate="true" name="gridSizeY" type="int" />
+    <vm:field isPrivate="true" name="buttonCount" type="int" />
+    <vm:field isPrivate="true" name="maxLength" type="int" />
+    <vm:field isPrivate="true" name="output" type="System.String" />
+    <vm:field isPrivate="true" name="dec" type="boolean" />
+    <vm:field isPrivate="true" name="result" type="double" />
+    <vm:field isPrivate="true" name="operation" type="System.String" />
+    <vm:field isPrivate="true" name="newNumber" type="boolean" />
+    <vm:field isPrivate="true" name="finished" type="boolean" />
+    <vm:field isPrivate="true" name="memory" type="boolean" />
+    <vm:field isPrivate="true" name="memoryValue" type="double" />
+    <vm:method name="&lt;init&gt;" isPublic="true" stack="74" locals="4">
+      <vm:signature>
+        <vm:return type="void" />
+      </vm:signature>
+      <vm:code>
+        <jvm:var id="0" name="this" type="Calculator" />
+        <jvm:var id="1" type="System.Drawing.Size" />
+        <jvm:new type="System.Drawing.Size" />
+        <jvm:dup />
+        <jvm:invokespecial method="&lt;init&gt;" class-type="System.Drawing.Size">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:astore index="1" />
+        <jvm:var id="2" type="System.Drawing.Point" />
+        <jvm:new type="System.Drawing.Point" />
+        <jvm:dup />
+        <jvm:invokespecial method="&lt;init&gt;" class-type="System.Drawing.Point">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:astore index="2" />
+        <jvm:var id="3" type="System.Drawing.Size" />
+        <jvm:new type="System.Drawing.Size" />
+        <jvm:dup />
+        <jvm:invokespecial method="&lt;init&gt;" class-type="System.Drawing.Size">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:astore index="3" />
+        <jvm:aload index="0" oid="4" type="Calculator" />
+        <jvm:ldc type="int" value="30" oid="5" />
+        <jvm:putfield class-type="Calculator" type="int" field="gridSizeX" oid="6" />
+        <jvm:aload index="0" oid="7" type="Calculator" />
+        <jvm:ldc type="int" value="30" oid="8" />
+        <jvm:putfield class-type="Calculator" type="int" field="gridSizeY" oid="9" />
+        <jvm:aload index="0" oid="10" type="Calculator" />
+        <jvm:ldc type="int" value="20" oid="11" />
+        <jvm:putfield class-type="Calculator" type="int" field="maxLength" oid="12" />
+        <jvm:aload index="0" oid="13" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="0" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:putfield class-type="Calculator" type="System.String" field="output" oid="15" />
+        <jvm:aload index="0" oid="16" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:putfield class-type="Calculator" type="System.String" field="operation" oid="18" />
+        <jvm:aload index="0" oid="19" type="Calculator" />
+        <jvm:ldc type="int" value="1" oid="20" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="newNumber" oid="21" />
+        <jvm:aload index="0" oid="22" type="Calculator" />
+        <jvm:invokespecial has-this="true" class-type="System.Windows.Forms.Form" method="&lt;init&gt;" oid="23">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:aload index="0" oid="24" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="Calculator" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="System.Windows.Forms.Control" method="set_Text">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="27" type="Calculator" />
+        <jvm:aload type="System.Drawing.Size" index="1" />
+        <jvm:aload index="0" oid="29" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="int" field="gridSizeX" oid="30" />
+        <jvm:ldc type="int" value="5" oid="31" />
+        <jvm:imul />
+        <jvm:aload index="0" oid="33" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="int" field="gridSizeY" oid="34" />
+        <jvm:ldc type="int" value="6" oid="35" />
+        <jvm:imul />
+        <jvm:invokevirtual method="__CONSTRUCTOR" class-type="System.Drawing.Size">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="int" />
+            <vm:parameter type="int" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload type="System.Drawing.Size" index="1" />
+        <jvm:invokevirtual class-type="System.Windows.Forms.Form" method="set_ClientSize">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter isValueType="true" type="System.Drawing.Size" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="40" type="Calculator" />
+        <jvm:new type="System.Windows.Forms.Label" />
+        <jvm:dup />
+        <jvm:invokespecial method="&lt;init&gt;" class-type="System.Windows.Forms.Label">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:putfield class-type="Calculator" type="System.Windows.Forms.Label" field="display" oid="42" />
+        <jvm:aload index="0" oid="43" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.Windows.Forms.Label" field="display" oid="44" />
+        <jvm:aload type="System.Drawing.Point" index="2" />
+        <jvm:ldc type="int" value="0" oid="46" />
+        <jvm:ldc type="int" value="0" oid="47" />
+        <jvm:invokevirtual method="__CONSTRUCTOR" class-type="System.Drawing.Point">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="int" />
+            <vm:parameter type="int" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload type="System.Drawing.Point" index="2" />
+        <jvm:invokevirtual class-type="System.Windows.Forms.Control" method="set_Location">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter isValueType="true" type="System.Drawing.Point" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="51" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.Windows.Forms.Label" field="display" oid="52" />
+        <jvm:aload type="System.Drawing.Size" index="3" />
+        <jvm:aload index="0" oid="54" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="int" field="gridSizeX" oid="55" />
+        <jvm:ldc type="int" value="5" oid="56" />
+        <jvm:imul />
+        <jvm:aload index="0" oid="58" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="int" field="gridSizeY" oid="59" />
+        <jvm:invokevirtual method="__CONSTRUCTOR" class-type="System.Drawing.Size">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="int" />
+            <vm:parameter type="int" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload type="System.Drawing.Size" index="3" />
+        <jvm:invokevirtual class-type="System.Windows.Forms.Control" method="set_Size">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter isValueType="true" type="System.Drawing.Size" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="63" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.Windows.Forms.Label" field="display" oid="64" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="0" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="System.Windows.Forms.Control" method="set_Text">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="67" type="Calculator" />
+        <jvm:invokevirtual class-type="System.Windows.Forms.Control" method="get_Controls">
+          <vm:signature>
+            <vm:return type="System.Windows.Forms.Control$ControlCollection" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="69" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.Windows.Forms.Label" field="display" oid="70" />
+        <jvm:invokevirtual class-type="System.Windows.Forms.Control$ControlCollection" method="Add">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.Windows.Forms.Control" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="72" type="Calculator" />
+        <jvm:ldc type="int" value="0" oid="73" />
+        <jvm:putfield class-type="Calculator" type="int" field="buttonCount" oid="74" />
+        <jvm:aload index="0" oid="75" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="+/-" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="78" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="81" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="84" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="87" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="AC" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="90" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="M+" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="93" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="7" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="96" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="8" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="99" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="9" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="102" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="/" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="105" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="M-" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="108" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="4" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="111" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="5" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="114" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="6" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="117" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="x" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="120" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="MR" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="123" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="1" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="126" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="2" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="129" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="3" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="132" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="-" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="135" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="MC" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="138" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="0" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="141" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="." />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="144" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="=" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="147" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="+" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="addButton">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="150" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="addButton" isPrivate="true" stack="20" locals="7">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="System.String" />
+      </vm:signature>
+      <vm:code>
+        <jvm:var id="0" name="this" type="Calculator" />
+        <jvm:var id="1" type="System.String" />
+        <jvm:var id="2" type="System.Windows.Forms.Button" />
+        <jvm:var id="3" type="int" />
+        <jvm:var id="4" type="int" />
+        <jvm:var id="5" type="System.Drawing.Size" />
+        <jvm:new type="System.Drawing.Size" />
+        <jvm:dup />
+        <jvm:invokespecial method="&lt;init&gt;" class-type="System.Drawing.Size">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:astore index="5" />
+        <jvm:var id="6" type="System.Drawing.Point" />
+        <jvm:new type="System.Drawing.Point" />
+        <jvm:dup />
+        <jvm:invokespecial method="&lt;init&gt;" class-type="System.Drawing.Point">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:astore index="6" />
+        <jvm:new type="System.Windows.Forms.Button" />
+        <jvm:dup />
+        <jvm:invokespecial method="&lt;init&gt;" class-type="System.Windows.Forms.Button">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:astore index="2" />
+        <jvm:aload type="System.Windows.Forms.Button" index="2" />
+        <jvm:aload index="1" oid="9" type="System.String" />
+        <jvm:invokevirtual class-type="System.Windows.Forms.Control" method="set_Text">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload type="System.Windows.Forms.Button" index="2" />
+        <jvm:aload type="System.Drawing.Size" index="5" />
+        <jvm:aload index="0" oid="13" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="int" field="gridSizeX" oid="14" />
+        <jvm:aload index="0" oid="15" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="int" field="gridSizeY" oid="16" />
+        <jvm:invokevirtual method="__CONSTRUCTOR" class-type="System.Drawing.Size">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="int" />
+            <vm:parameter type="int" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload type="System.Drawing.Size" index="5" />
+        <jvm:invokevirtual class-type="System.Windows.Forms.Control" method="set_Size">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter isValueType="true" type="System.Drawing.Size" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="20" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="int" field="buttonCount" oid="21" />
+        <jvm:ldc type="int" value="5" oid="22" />
+        <jvm:irem />
+        <jvm:aload index="0" oid="24" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="int" field="gridSizeX" oid="25" />
+        <jvm:imul />
+        <jvm:istore index="3" />
+        <jvm:aload index="0" oid="28" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="int" field="buttonCount" oid="29" />
+        <jvm:ldc type="int" value="5" oid="30" />
+        <jvm:idiv />
+        <jvm:aload index="0" oid="32" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="int" field="gridSizeY" oid="33" />
+        <jvm:imul />
+        <jvm:aload index="0" oid="35" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="int" field="gridSizeY" oid="36" />
+        <jvm:iadd />
+        <jvm:istore index="4" />
+        <jvm:aload type="System.Windows.Forms.Button" index="2" />
+        <jvm:aload type="System.Drawing.Point" index="6" />
+        <jvm:iload index="3" />
+        <jvm:iload index="4" />
+        <jvm:invokevirtual method="__CONSTRUCTOR" class-type="System.Drawing.Point">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="int" />
+            <vm:parameter type="int" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload type="System.Drawing.Point" index="6" />
+        <jvm:invokevirtual class-type="System.Windows.Forms.Control" method="set_Location">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter isValueType="true" type="System.Drawing.Point" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload type="System.Windows.Forms.Button" index="2" />
+        <jvm:aload index="0" oid="47" type="Calculator" />
+        <jvm:ldc type="java.lang.String" value="Calculator" />
+        <jvm:ldc type="java.lang.String" value="HandleClick" />
+        <jvm:ldc type="java.lang.String" value="void;System.Object;System.EventArgs" />
+        <jvm:invokestatic class-type="org.xmlvm.clr.DelegateManager" method="registerFunctionPtr">
+          <vm:signature>
+            <vm:return type="int" />
+            <vm:parameter type="java.lang.String" />
+            <vm:parameter type="java.lang.String" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:invokestatic method="__NEW" class-type="System.EventHandler">
+          <vm:signature>
+            <vm:return type="System.EventHandler" />
+            <vm:parameter type="System.Object" />
+            <vm:parameter type="int" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:invokevirtual class-type="System.Windows.Forms.Control" method="add_Click">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.EventHandler" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="51" type="Calculator" />
+        <jvm:invokevirtual class-type="System.Windows.Forms.Control" method="get_Controls">
+          <vm:signature>
+            <vm:return type="System.Windows.Forms.Control$ControlCollection" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload type="System.Windows.Forms.Button" index="2" />
+        <jvm:invokevirtual class-type="System.Windows.Forms.Control$ControlCollection" method="Add">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.Windows.Forms.Control" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="55" type="Calculator" />
+        <jvm:dup />
+        <jvm:getfield class-type="Calculator" type="int" field="buttonCount" oid="57" />
+        <jvm:ldc type="int" value="1" oid="58" />
+        <jvm:iadd />
+        <jvm:putfield class-type="Calculator" type="int" field="buttonCount" oid="60" />
+        <jvm:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="HandleClick" isPublic="true" stack="88" locals="5">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="System.Object" />
+        <vm:parameter type="System.EventArgs" />
+      </vm:signature>
+      <vm:code>
+        <jvm:var id="0" name="this" type="Calculator" />
+        <jvm:var id="1" type="System.Object" />
+        <jvm:var id="2" type="System.EventArgs" />
+        <jvm:var id="3" type="System.String" />
+        <jvm:var id="4" type="double" />
+        <jvm:aload index="1" oid="3" type="System.Object" />
+        <jvm:checkcast type="System.Windows.Forms.Button" oid="4" />
+        <jvm:invokevirtual class-type="System.Windows.Forms.Control" method="get_Text">
+          <vm:signature>
+            <vm:return type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:astore index="3" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="AC" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="0" oid="10" />
+        <jvm:aload index="0" oid="11" type="Calculator" />
+        <jvm:ldc type="double" value="0.0" oid="12" />
+        <jvm:putfield class-type="Calculator" type="double" field="result" oid="13" />
+        <jvm:aload index="0" oid="14" type="Calculator" />
+        <jvm:aload index="0" oid="15" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="double" field="result" oid="16" />
+        <jvm:invokestatic class-type="System.Convert" method="ToString">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="double" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:putfield class-type="Calculator" type="System.String" field="output" oid="18" />
+        <jvm:aload index="0" oid="19" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:putfield class-type="Calculator" type="System.String" field="operation" oid="21" />
+        <jvm:aload index="0" oid="22" type="Calculator" />
+        <jvm:ldc type="int" value="1" oid="23" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="newNumber" oid="24" />
+        <jvm:aload index="0" oid="25" type="Calculator" />
+        <jvm:ldc type="int" value="0" oid="26" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="dec" oid="27" />
+        <jvm:aload index="0" oid="28" type="Calculator" />
+        <jvm:ldc type="int" value="1" oid="29" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="finished" oid="30" />
+        <jvm:aload index="0" oid="31" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="0" oid="33" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="+/-" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="1" oid="37" />
+        <jvm:aload index="0" oid="38" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="39" />
+        <jvm:invokestatic class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:dstore index="4" />
+        <jvm:dload index="4" />
+        <jvm:ldc type="double" value="-1.0" oid="43" />
+        <jvm:dmul />
+        <jvm:dstore index="4" />
+        <jvm:aload index="0" oid="46" type="Calculator" />
+        <jvm:dload index="4" />
+        <jvm:invokestatic class-type="System.Convert" method="ToString">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="double" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:putfield class-type="Calculator" type="System.String" field="output" oid="49" />
+        <jvm:aload index="0" oid="50" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="1" oid="52" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="1" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="2" oid="56" />
+        <jvm:aload index="0" oid="57" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="1" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="2" oid="60" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="2" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="3" oid="64" />
+        <jvm:aload index="0" oid="65" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="2" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="3" oid="68" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="3" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="4" oid="72" />
+        <jvm:aload index="0" oid="73" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="3" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="4" oid="76" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="4" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="5" oid="80" />
+        <jvm:aload index="0" oid="81" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="4" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="5" oid="84" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="5" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="6" oid="88" />
+        <jvm:aload index="0" oid="89" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="5" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="6" oid="92" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="6" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="7" oid="96" />
+        <jvm:aload index="0" oid="97" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="6" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="7" oid="100" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="7" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="8" oid="104" />
+        <jvm:aload index="0" oid="105" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="7" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="8" oid="108" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="8" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="9" oid="112" />
+        <jvm:aload index="0" oid="113" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="8" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="9" oid="116" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="9" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="10" oid="120" />
+        <jvm:aload index="0" oid="121" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="9" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="10" oid="124" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="0" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="11" oid="128" />
+        <jvm:aload index="0" oid="129" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="130" />
+        <jvm:invokevirtual class-type="System.String" method="get_Length">
+          <vm:signature>
+            <vm:return type="int" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:ifeq label="11" oid="132" />
+        <jvm:aload index="0" oid="133" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="0" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokevirtual class-type="Calculator" method="appendDigit">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="11" oid="136" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="." />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="13" oid="140" />
+        <jvm:aload index="0" oid="141" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="142" />
+        <jvm:invokevirtual class-type="System.String" method="get_Length">
+          <vm:signature>
+            <vm:return type="int" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="144" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="int" field="maxLength" oid="145" />
+        <jvm:if_icmpge label="13" oid="146" />
+        <jvm:aload index="0" oid="147" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="boolean" field="dec" oid="148" />
+        <jvm:ifne label="13" oid="149" />
+        <jvm:aload index="0" oid="150" type="Calculator" />
+        <jvm:ldc type="int" value="1" oid="151" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="dec" oid="152" />
+        <jvm:aload index="0" oid="153" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="154" />
+        <jvm:invokevirtual class-type="System.String" method="get_Length">
+          <vm:signature>
+            <vm:return type="int" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:ifeq label="16" oid="156" />
+        <jvm:aload index="0" oid="157" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="boolean" field="newNumber" oid="158" />
+        <jvm:ifeq label="17" oid="159" />
+        <jvm:label id="16" oid="160" />
+        <jvm:aload index="0" oid="161" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="0." />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:putfield class-type="Calculator" type="System.String" field="output" oid="163" />
+        <jvm:aload index="0" oid="164" type="Calculator" />
+        <jvm:ldc type="int" value="0" oid="165" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="newNumber" oid="166" />
+        <jvm:goto label="18" oid="167" />
+        <jvm:label id="17" oid="168" />
+        <jvm:aload index="0" oid="169" type="Calculator" />
+        <jvm:aload index="0" oid="170" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="171" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="." />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="Concat">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:putfield class-type="Calculator" type="System.String" field="output" oid="174" />
+        <jvm:label id="18" oid="175" />
+        <jvm:aload index="0" oid="176" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="13" oid="178" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="=" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="19" oid="182" />
+        <jvm:aload index="0" oid="183" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="key_equals">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="19" oid="185" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="+" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="20" oid="189" />
+        <jvm:aload index="0" oid="190" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="evaluate">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="192" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="plus" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:putfield class-type="Calculator" type="System.String" field="operation" oid="194" />
+        <jvm:label id="20" oid="195" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="-" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="21" oid="199" />
+        <jvm:aload index="0" oid="200" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="evaluate">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="202" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="minus" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:putfield class-type="Calculator" type="System.String" field="operation" oid="204" />
+        <jvm:label id="21" oid="205" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="x" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="22" oid="209" />
+        <jvm:aload index="0" oid="210" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="evaluate">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="212" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="times" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:putfield class-type="Calculator" type="System.String" field="operation" oid="214" />
+        <jvm:label id="22" oid="215" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="/" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="23" oid="219" />
+        <jvm:aload index="0" oid="220" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="evaluate">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="222" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="div" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:putfield class-type="Calculator" type="System.String" field="operation" oid="224" />
+        <jvm:label id="23" oid="225" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="M+" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="24" oid="229" />
+        <jvm:aload index="0" oid="230" type="Calculator" />
+        <jvm:ldc type="int" value="1" oid="231" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="memory" oid="232" />
+        <jvm:aload index="0" oid="233" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="key_equals">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="235" type="Calculator" />
+        <jvm:dup />
+        <jvm:getfield class-type="Calculator" type="double" field="memoryValue" oid="237" />
+        <jvm:aload index="0" oid="238" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="239" />
+        <jvm:invokestatic class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:dadd />
+        <jvm:putfield class-type="Calculator" type="double" field="memoryValue" oid="242" />
+        <jvm:aload index="0" oid="243" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="24" oid="245" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="M-" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="25" oid="249" />
+        <jvm:aload index="0" oid="250" type="Calculator" />
+        <jvm:ldc type="int" value="1" oid="251" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="memory" oid="252" />
+        <jvm:aload index="0" oid="253" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="key_equals">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="255" type="Calculator" />
+        <jvm:dup />
+        <jvm:getfield class-type="Calculator" type="double" field="memoryValue" oid="257" />
+        <jvm:aload index="0" oid="258" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="259" />
+        <jvm:invokestatic class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:dsub />
+        <jvm:putfield class-type="Calculator" type="double" field="memoryValue" oid="262" />
+        <jvm:aload index="0" oid="263" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="25" oid="265" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="MR" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="26" oid="269" />
+        <jvm:aload index="0" oid="270" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="boolean" field="memory" oid="271" />
+        <jvm:ifeq label="26" oid="272" />
+        <jvm:aload index="0" oid="273" type="Calculator" />
+        <jvm:aload index="0" oid="274" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="double" field="memoryValue" oid="275" />
+        <jvm:invokestatic class-type="System.Convert" method="ToString">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="double" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:putfield class-type="Calculator" type="System.String" field="output" oid="277" />
+        <jvm:aload index="0" oid="278" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="26" oid="280" />
+        <jvm:aload type="System.String" index="3" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="MC" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="28" oid="284" />
+        <jvm:aload index="0" oid="285" type="Calculator" />
+        <jvm:ldc type="int" value="0" oid="286" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="memory" oid="287" />
+        <jvm:aload index="0" oid="288" type="Calculator" />
+        <jvm:ldc type="double" value="0.0" oid="289" />
+        <jvm:putfield class-type="Calculator" type="double" field="memoryValue" oid="290" />
+        <jvm:aload index="0" oid="291" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="28" oid="293" />
+        <jvm:aload index="0" oid="294" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="295" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="29" oid="298" />
+        <jvm:aload index="0" oid="299" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="0" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:putfield class-type="Calculator" type="System.String" field="output" oid="301" />
+        <jvm:label id="29" oid="302" />
+        <jvm:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="updateDisplay" isPublic="true" stack="8" locals="3">
+      <vm:signature>
+        <vm:return type="void" />
+      </vm:signature>
+      <vm:code>
+        <jvm:var id="0" name="this" type="Calculator" />
+        <jvm:var id="1" type="System.String" />
+        <jvm:var id="2" type="int" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:astore index="1" />
+        <jvm:ldc type="int" value="1" oid="5" />
+        <jvm:istore index="2" />
+        <jvm:goto label="0" oid="7" />
+        <jvm:label id="4" oid="8" />
+        <jvm:iload index="2" />
+        <jvm:ldc type="int" value="1" oid="10" />
+        <jvm:if_icmpne label="1" oid="11" />
+        <jvm:aload index="0" oid="12" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="boolean" field="memory" oid="13" />
+        <jvm:ifeq label="1" oid="14" />
+        <jvm:aload type="System.String" index="1" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="M" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="Concat">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:astore index="1" />
+        <jvm:goto label="3" oid="19" />
+        <jvm:label id="1" oid="20" />
+        <jvm:aload type="System.String" index="1" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="_" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="Concat">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:astore index="1" />
+        <jvm:label id="3" oid="25" />
+        <jvm:iload index="2" />
+        <jvm:ldc type="int" value="1" oid="27" />
+        <jvm:iadd />
+        <jvm:istore index="2" />
+        <jvm:label id="0" oid="30" />
+        <jvm:iload index="2" />
+        <jvm:aload index="0" oid="32" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="int" field="maxLength" oid="33" />
+        <jvm:aload index="0" oid="34" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="35" />
+        <jvm:invokevirtual class-type="System.String" method="get_Length">
+          <vm:signature>
+            <vm:return type="int" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:isub />
+        <jvm:if_icmple label="4" oid="38" />
+        <jvm:aload type="System.String" index="1" />
+        <jvm:aload index="0" oid="40" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="41" />
+        <jvm:invokestatic class-type="System.String" method="Concat">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:astore index="1" />
+        <jvm:aload index="0" oid="44" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.Windows.Forms.Label" field="display" oid="45" />
+        <jvm:aload type="System.String" index="1" />
+        <jvm:invokevirtual class-type="System.Windows.Forms.Control" method="set_Text">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="appendDigit" isPublic="true" stack="10" locals="2">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="System.String" />
+      </vm:signature>
+      <vm:code>
+        <jvm:var id="0" name="this" type="Calculator" />
+        <jvm:var id="1" type="System.String" />
+        <jvm:aload index="0" oid="1" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="2" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="0" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="0" oid="5" />
+        <jvm:aload index="0" oid="6" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:putfield class-type="Calculator" type="System.String" field="output" oid="8" />
+        <jvm:label id="0" oid="9" />
+        <jvm:aload index="0" oid="10" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="11" />
+        <jvm:invokevirtual class-type="System.String" method="get_Length">
+          <vm:signature>
+            <vm:return type="int" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="13" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="int" field="maxLength" oid="14" />
+        <jvm:if_icmpge label="1" oid="15" />
+        <jvm:aload index="0" oid="16" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="boolean" field="newNumber" oid="17" />
+        <jvm:ifeq label="2" oid="18" />
+        <jvm:aload index="0" oid="19" type="Calculator" />
+        <jvm:aload index="1" oid="20" type="System.String" />
+        <jvm:putfield class-type="Calculator" type="System.String" field="output" oid="21" />
+        <jvm:aload index="0" oid="22" type="Calculator" />
+        <jvm:ldc type="int" value="0" oid="23" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="newNumber" oid="24" />
+        <jvm:goto label="3" oid="25" />
+        <jvm:label id="2" oid="26" />
+        <jvm:aload index="0" oid="27" type="Calculator" />
+        <jvm:aload index="0" oid="28" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="29" />
+        <jvm:aload index="1" oid="30" type="System.String" />
+        <jvm:invokestatic class-type="System.String" method="Concat">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:putfield class-type="Calculator" type="System.String" field="output" oid="32" />
+        <jvm:label id="3" oid="33" />
+        <jvm:aload index="0" oid="34" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:label id="1" oid="36" />
+        <jvm:aload index="0" oid="37" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="boolean" field="finished" oid="38" />
+        <jvm:ifne label="4" oid="39" />
+        <jvm:aload index="0" oid="40" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="operation" oid="41" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="5" oid="44" />
+        <jvm:label id="4" oid="45" />
+        <jvm:aload index="0" oid="46" type="Calculator" />
+        <jvm:aload index="0" oid="47" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="48" />
+        <jvm:invokestatic class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:putfield class-type="Calculator" type="double" field="result" oid="50" />
+        <jvm:aload index="0" oid="51" type="Calculator" />
+        <jvm:ldc type="int" value="0" oid="52" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="finished" oid="53" />
+        <jvm:aload index="0" oid="54" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:putfield class-type="Calculator" type="System.String" field="operation" oid="56" />
+        <jvm:label id="5" oid="57" />
+        <jvm:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="key_equals" isPublic="true" stack="4" locals="1">
+      <vm:signature>
+        <vm:return type="void" />
+      </vm:signature>
+      <vm:code>
+        <jvm:var id="0" name="this" type="Calculator" />
+        <jvm:aload index="0" oid="1" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="evaluate">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="3" type="Calculator" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:putfield class-type="Calculator" type="System.String" field="operation" oid="5" />
+        <jvm:aload index="0" oid="6" type="Calculator" />
+        <jvm:ldc type="int" value="1" oid="7" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="newNumber" oid="8" />
+        <jvm:aload index="0" oid="9" type="Calculator" />
+        <jvm:ldc type="int" value="0" oid="10" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="dec" oid="11" />
+        <jvm:aload index="0" oid="12" type="Calculator" />
+        <jvm:ldc type="int" value="1" oid="13" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="finished" oid="14" />
+        <jvm:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="evaluate" isPublic="true" stack="14" locals="1">
+      <vm:signature>
+        <vm:return type="void" />
+      </vm:signature>
+      <vm:code>
+        <jvm:var id="0" name="this" type="Calculator" />
+        <jvm:aload index="0" oid="1" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="operation" oid="2" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="plus" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="0" oid="5" />
+        <jvm:aload index="0" oid="6" type="Calculator" />
+        <jvm:dup />
+        <jvm:getfield class-type="Calculator" type="double" field="result" oid="8" />
+        <jvm:aload index="0" oid="9" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="10" />
+        <jvm:invokestatic class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:dadd />
+        <jvm:putfield class-type="Calculator" type="double" field="result" oid="13" />
+        <jvm:goto label="1" oid="14" />
+        <jvm:label id="0" oid="15" />
+        <jvm:aload index="0" oid="16" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="operation" oid="17" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="minus" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="2" oid="20" />
+        <jvm:aload index="0" oid="21" type="Calculator" />
+        <jvm:dup />
+        <jvm:getfield class-type="Calculator" type="double" field="result" oid="23" />
+        <jvm:aload index="0" oid="24" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="25" />
+        <jvm:invokestatic class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:dsub />
+        <jvm:putfield class-type="Calculator" type="double" field="result" oid="28" />
+        <jvm:goto label="1" oid="29" />
+        <jvm:label id="2" oid="30" />
+        <jvm:aload index="0" oid="31" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="operation" oid="32" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="times" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="4" oid="35" />
+        <jvm:aload index="0" oid="36" type="Calculator" />
+        <jvm:dup />
+        <jvm:getfield class-type="Calculator" type="double" field="result" oid="38" />
+        <jvm:aload index="0" oid="39" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="40" />
+        <jvm:invokestatic class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:dmul />
+        <jvm:putfield class-type="Calculator" type="double" field="result" oid="43" />
+        <jvm:goto label="1" oid="44" />
+        <jvm:label id="4" oid="45" />
+        <jvm:aload index="0" oid="46" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="operation" oid="47" />
+        <jvm:new type="System.String" />
+        <jvm:dup />
+        <jvm:ldc type="java.lang.String" value="div" />
+        <jvm:invokespecial class-type="System.String" method="&lt;init&gt;">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="java.lang.String" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.String" method="op_Equality">
+          <vm:signature>
+            <vm:return type="boolean" />
+            <vm:parameter type="System.String" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ifeq label="6" oid="50" />
+        <jvm:aload index="0" oid="51" type="Calculator" />
+        <jvm:dup />
+        <jvm:getfield class-type="Calculator" type="double" field="result" oid="53" />
+        <jvm:aload index="0" oid="54" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="55" />
+        <jvm:invokestatic class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:ddiv />
+        <jvm:putfield class-type="Calculator" type="double" field="result" oid="58" />
+        <jvm:goto label="1" oid="59" />
+        <jvm:label id="6" oid="60" />
+        <jvm:aload index="0" oid="61" type="Calculator" />
+        <jvm:aload index="0" oid="62" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="System.String" field="output" oid="63" />
+        <jvm:invokestatic class-type="System.Convert" method="ToDouble">
+          <vm:signature>
+            <vm:return type="double" />
+            <vm:parameter type="System.String" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:putfield class-type="Calculator" type="double" field="result" oid="65" />
+        <jvm:label id="1" oid="66" />
+        <jvm:aload index="0" oid="67" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="boolean" field="finished" oid="68" />
+        <jvm:ifeq label="8" oid="69" />
+        <jvm:aload index="0" oid="70" type="Calculator" />
+        <jvm:ldc type="int" value="0" oid="71" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="finished" oid="72" />
+        <jvm:label id="8" oid="73" />
+        <jvm:aload index="0" oid="74" type="Calculator" />
+        <jvm:aload index="0" oid="75" type="Calculator" />
+        <jvm:getfield class-type="Calculator" type="double" field="result" oid="76" />
+        <jvm:invokestatic class-type="System.Convert" method="ToString">
+          <vm:signature>
+            <vm:return type="System.String" />
+            <vm:parameter type="double" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:putfield class-type="Calculator" type="System.String" field="output" oid="78" />
+        <jvm:aload index="0" oid="79" type="Calculator" />
+        <jvm:invokevirtual class-type="Calculator" method="updateDisplay">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokevirtual>
+        <jvm:aload index="0" oid="81" type="Calculator" />
+        <jvm:ldc type="int" value="1" oid="82" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="newNumber" oid="83" />
+        <jvm:aload index="0" oid="84" type="Calculator" />
+        <jvm:ldc type="int" value="0" oid="85" />
+        <jvm:putfield class-type="Calculator" type="boolean" field="dec" oid="86" />
+        <jvm:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="Main" isStatic="true" isPublic="true" stack="8" locals="0">
+      <vm:signature>
+        <vm:return type="void" />
+      </vm:signature>
+      <vm:code>
+        <jvm:new type="Calculator" />
+        <jvm:dup />
+        <jvm:invokespecial method="&lt;init&gt;" class-type="Calculator">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokespecial>
+        <jvm:invokestatic class-type="System.Windows.Forms.Application" method="Run">
+          <vm:signature>
+            <vm:return type="void" />
+            <vm:parameter type="System.Windows.Forms.Form" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:return />
+      </vm:code>
+    </vm:method>
+    <vm:method name="main" stack="0" locals="1" isStatic="true" isPublic="true">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.lang.String[]" />
+      </vm:signature>
+      <vm:code>
+        <jvm:invokestatic method="Main" class-type="Calculator">
+          <vm:signature>
+            <vm:return type="void" />
+          </vm:signature>
+        </jvm:invokestatic>
+        <jvm:return />
+      </vm:code>
+    </vm:method>
+  </vm:class>
+</vm:xmlvm>

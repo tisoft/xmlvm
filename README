@@ -1,0 +1,56 @@
+
+XMLVM
+=====
+
+XMLVM translates a Java class file to XML. This means that the content
+of an arbitrary class file is represented as XML. This XML file can
+then be translated via an XSLT stylesheet to other representations. As
+an example, this package includes an XSLT that translates the XML to
+C++. This effectively translates Java programs to C++ program.
+
+The following link contains the official specification of the Java
+Virtual Machine:
+http://java.sun.com/docs/books/vmspec/2nd-edition/html/VMSpecTOC.doc.html
+
+
+Prerequisits:
+-------------
+
+- JDK 1.4
+- g++
+- Download: http://www.jdom.org/dist/binary/jdom-b10.tar.gz
+  Extract jdom.jar and make sure that this jar file is
+  included in your CLASSPATH
+- Download: BCEL 5.1 from:
+  http://jakarta.apache.org/site/binindex.cgi
+  Extract bcel-5.1.jar and make sure that it is included in
+  your CLASSPATH
+- http://ant-contrib.sourceforge.net (not mandatory)
+
+
+Running:
+--------
+
+- cd xmlvm/src/java2xmlvm
+- export CLASSPATH=<path>/jdom.jar:<path>/bcel-5.1.jar:`pwd`:.
+- javac org/xmlvm/Main.java
+- cd ../../test
+- Now you can select any one of the tests, e.g.,
+  cd 1
+  javac HelloWorld.java
+- after compiling, you can run HelloWorld:
+  java HelloWorld
+- in particular notice, that the current directory containts
+  the file HelloWorld.class
+- The next command creates an XML version of this class file:
+  java org.xmlvm.Main HelloWorld.class
+- Take a look at the content of the file HelloWorld.xmlvm
+- Now you can apply an XSLT stylesheet to translate the .xmlvm file
+  to C++:
+  xsltproc ../../src/xmlvm2cpp/xmlvm2cpp.xsl HelloWorld.xmlvm > HelloWorld.cpp
+- Look at the content of file HelloWorld.cpp
+- You can compile this file via:
+- g++ -I../../src/xmlvm2cpp -o HelloWorld HelloWorld.cpp \
+      ../../src/xmlvm2cpp/xmlvm.cpp
+- Now you should have a binary called HelloWorld that you can run:
+  ./HelloWorld
