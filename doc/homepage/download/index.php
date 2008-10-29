@@ -4,14 +4,13 @@
 ?>
 <h1>Download</h1>
 <p>
-XMLVM is currently part of the <a href="http://www.xml11.org">XML11</a> project
-hosted at SourceForge. Please visit XML11's
-<a href="https://sourceforge.net/projects/xml11">project pages</a>
+XMLVM is currently hosted at SourceForge. Please visit XMLVM's
+<a href="http://sourceforge.net/projects/xmlvm">project pages</a>
 at SourceForge. We do not provide downloadable tar-balls. The only way to
 download the source code is via
-<a href="https://sourceforge.net/cvs/?group_id=152977">anonymous CVS</a>. We use Eclipse
+<a href="http://sourceforge.net/svn/?group_id=200328">Subversion</a>. We use Eclipse
 for development and suggest to use Eclipse to check out the module called
-"<tt>xmlvm</tt>" from the CVS code repository. The sources
+"<tt>xmlvm</tt>" from the Subversion code repository. The sources
 contain all necessary libraries required to compile and use XMLVM.
 </p>
 
