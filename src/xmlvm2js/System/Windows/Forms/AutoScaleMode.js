@@ -1,6 +1,3 @@
-checkClass("System.Enum");
-
-
 qx.Class.define("System_Windows_Forms_AutoScaleMode", {
 	extend: System_Enum,
 	construct: function(in_val)

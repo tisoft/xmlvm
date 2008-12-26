@@ -1,48 +1,46 @@
-checkClass("java.lang.String");
-
 qx.Class.define("java_io_PrintStream",  {
 	extend: java_lang_Object,
 	construct: function() {
 	},
 	members: 
 	{
-		_println___java_lang_String: function(s) {
-			if (s._str == undefined){
-    			this._print___java_lang_String(s + "\n");
+		$println___java_lang_String: function(s) {
+			if (s.$str == undefined){
+    			this.$print___java_lang_String(s + "\n");
 			}else{
-				this._print___java_lang_String(s._str + "\n");
+				this.$print___java_lang_String(s.$str + "\n");
 			}
 		},
-		_println___char: function(c){
-			this._println___java_lang_String(String.fromCharCode(c));
+		$println___char: function(c){
+			this.$println___java_lang_String(String.fromCharCode(c));
 		},
-		_println___int: function(i){
-			this._println___java_lang_String(i);
+		$println___int: function(i){
+			this.$println___java_lang_String(i);
 		},
-		_println___double: function(d){
-			this._println___java_lang_String(d);
+		$println___double: function(d){
+			this.$println___java_lang_String(d);
 		},
-		_println___float: function(f){
-			this._println___java_lang_String(f);
+		$println___float: function(f){
+			this.$println___java_lang_String(f);
 		},
-		_println___long: function(l){
-			this._println___java_lang_String(l);
+		$println___long: function(l){
+			this.$println___java_lang_String(l);
 		},
-		_println___boolean: function(b){
+		$println___boolean: function(b){
 			if(b  == true)
-				this._println___java_lang_String("true");
+				this.$println___java_lang_String("true");
 			else
-				this._println___java_lang_String("false");
+				this.$println___java_lang_String("false");
 		},
-		_println___java_lang_Object: function(obj) {
-			this._println___java_lang_String(obj + "\n");
+		$println___java_lang_Object: function(obj) {
+			this.$println___java_lang_String(obj + "\n");
 		},
 		
-		_print___java_lang_String: function(s) {
+		$print___java_lang_String: function(s) {
 			  // To be able to use this class unchanged for testing
 		      // If there is an element with id "sysout", we use it for output
 		    	var sysoutTextarea = document.getElementById("sysout");
-		    	if (s._str == undefined){
+		    	if (s.$str == undefined){
 		        	if(sysoutTextarea != null){
 		            	  sysoutTextarea.value +=  s;
 		        	}else{
@@ -50,32 +48,32 @@ qx.Class.define("java_io_PrintStream",  {
 		            }
 		    	}else{
 			        if(sysoutTextarea != null){
-			              document.getElementById("sysout").value += s._str;
+			              document.getElementById("sysout").value += s.$str;
 			        }else{
-			              alert("println(): " + s._str);
+			              alert("println(): " + s.$str);
 			        }
 		        }
 		},
-		_print___char: function(c){
-			this._print___java_lang_String(String.fromCharCode(c));
+		$print___char: function(c){
+			this.$print___java_lang_String(String.fromCharCode(c));
 		},
-		_print___int: function(i){
-			this._print___java_lang_String(i);
+		$print___int: function(i){
+			this.$print___java_lang_String(i);
 		},
-		_print___double: function(d){
-			this._print___java_lang_String(d);
+		$print___double: function(d){
+			this.$print___java_lang_String(d);
 		},
-		_print___float: function(f){
-			this._print___java_lang_String(f);
+		$print___float: function(f){
+			this.$print___java_lang_String(f);
 		},
-		_print___long: function(l){
-			this._print___java_lang_String(l);
+		$print___long: function(l){
+			this.$print___java_lang_String(l);
 		},
-		_print___boolean: function(b){
+		$print___boolean: function(b){
 			if(b  == true)
-				this._print___java_lang_String("true");
+				this.$print___java_lang_String("true");
 			else
-				this._print___java_lang_String("false");
+				this.$print___java_lang_String("false");
 		}
 	}
 });

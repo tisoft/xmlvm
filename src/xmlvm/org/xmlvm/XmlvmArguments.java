@@ -21,7 +21,36 @@
 
 package org.xmlvm;
 
+/**
+ * This class parses the arguments given in a string array and makes them easily
+ * accessible for the application to use.
+ * 
+ * TODO(shaeberling): Look at other open source argument parsing libraries to
+ * replace this.
+ * 
+ * @author Sascha Haeberling
+ * 
+ */
 public class XmlvmArguments {
+  // The arguments that are given by the user on the command line.
+  public static final String ARG_JS = "--js";
+  public static final String ARG_CPP = "--cpp";
+  public static final String ARG_OBJC = "--objc";
+  public static final String ARG_OBJC_HEADER = "--objc-header=";
+  public static final String ARG_PYTHON = "--python";
+  public static final String ARG_DFA = "--dfa";
+  public static final String ARG_JVM = "--jvm";
+  public static final String ARG_CLR = "--clr";
+  public static final String ARG_EXE = "--exe";
+  public static final String ARG_API = "--api";
+  public static final String ARG_JAVA = "--java";
+  public static final String ARG_CONSOLE = "--console";
+  public static final String ARG_OUT = "--out=";
+  public static final String ARG_IMPORT = "--import";
+  public static final String ARG_RECURSIVE = "--recursive";
+  public static final String ARG_FILE = "--file=";
+
+  // The parsed values will be stored here.
   private boolean option_js = false;
   private boolean option_cpp = false;
   private boolean option_objc = false;
@@ -38,115 +67,91 @@ public class XmlvmArguments {
   private boolean option_import = false;
   private boolean option_recursive = false;
   private String option_class = null;
-  private boolean option_pack = false;
-  
-  private static void usage(String error)
-  {
-      String[] msg = {
-          "Usage: xmlvm [--js|--cpp] [--import] [--recursive] [--console|--out=<file>] <class>",
-          "  --js            : Generate JavaScript",
-          "  --createassembly: Create assembly file",
-          "  --compress      : Compress JavaScript assembly file",
-          "  --cpp           : Generate C++",
-          "  --import        : Generate import list of referenced externals",
-          "  --console       : Output is to be written to the console.",
-          "  --out           : Output directory.",
-          "  --recursive     : Recursivley scan through the referenced externals",
-          "  <class>         : Byte code to be translated. If <class> ends on '.exe',",
-          "                    the bytecode is assumed to the a .NET executable file",
-          "                    with the same name. If <class> ends on '.class', the",
-          "                    bytecode is assumed to be of JVM format in a file with",
-          "                    the same name. Otherwise, <class> is looked up via CLASSPATH.",
-          "  If neither --js nor --cpp is specified, the output will be XMLVM.",
-          "  If the option --console is not given, the output will be written to a",
-          "  file with the same name as <class> and suffix one of .xmlvm, .js, or .cpp"};
 
-      System.err.println("Error: " + error);
-      for (int i = 0; i < msg.length; i++)
-          System.err.println(msg[i]);
-      System.exit(-1);
+  /**
+   * Prints usage information and exits the applications.
+   * 
+   * @param error
+   *          An additional error message to be printed before the usage table
+   *          is printed.
+   */
+  private static void usage(String error) {
+    String[] msg = {
+        "Usage: xmlvm [--js|--cpp] [--import] [--recursive] [--console|--out=<file>] --file <inputfile>",
+        "  --js            : Generate JavaScript",
+        "  --cpp           : Generate C++",
+        "  --import        : Generate import list of referenced externals",
+        "  --console       : Output is to be written to the console.",
+        "  --out           : Output directory.",
+        "  --recursive     : Recursivley scan through the referenced externals",
+        "  --file          : Input file",
+        "  <file>          : Byte code to be translated. If <class> ends on '.exe',",
+        "                    the bytecode is assumed to the a .NET executable file",
+        "                    with the same name. If <class> ends on '.class', the",
+        "                    bytecode is assumed to be of JVM format in a file with",
+        "                    the same name. Otherwise, <class> is looked up via CLASSPATH.",
+        "  If neither --js nor --cpp is specified, the output will be XMLVM.",
+        "  If the option --console is not given, the output will be written to a",
+        "  file with the same name as <class> and suffix one of .xmlvm, .js, or .cpp" };
+
+    System.err.println("Error: " + error);
+    for (int i = 0; i < msg.length; i++) {
+      System.err.println(msg[i]);
+    }
   }
 
+  /**
+   * Creates a new instance that will parse the arguments of the given array.
+   */
   public XmlvmArguments(String[] argv) {
     // Read command line arguments
     for (int i = 0; i < argv.length; i++) {
-        String arg = argv[i];
-        if (arg.equals("--js")) {
-            option_js = true;
-            continue;
-        }
-        if (arg.equals("--cpp")) {
-            option_cpp = true;
-            continue;
-        }
-        if (arg.equals("--objc")) {
-            option_objc = true;
-            continue;
-        }
-        if (arg.startsWith("--objc-header=")) {
-            option_objc_header = arg.substring(14);
-            continue;
-        }
-        if (arg.equals("--python")) {
-            option_python = true;
-            continue;
-        }
-        if (arg.equals("--dfa")) {
-            option_dfa = true;
-            continue;
-        }
-        if (arg.equals("--jvm")) {
-            option_jvm = true;
-            continue;
-        }
-        if (arg.equals("--clr")) {
-            option_clr = true;
-            continue;
-        }
-        if (arg.equals("--exe")) {
-            option_exe = true;
-            continue;
-        }
-        if (arg.equals("--api")) {
-            option_api = true;
-            continue;
-        }
-        if (arg.equals("--java")) {
-            option_java = true;
-            continue;
-        }
-        if (arg.equals("--console")) {
-            option_console = true;
-            continue;
-        }
-        if (arg.startsWith("--out=")) {
-            option_out = arg.substring(6);
-            continue;
-        }
-        if (arg.equals("--import")) {
-            option_import = true;
-            continue;
-        }
-        if (arg.equals("--recursive")) {
-            option_recursive = true;
-            continue;
-        }
-        if (arg.equals("--pack")) {
-            option_pack = true;
-            return;
-        }
-        if (option_class != null)
-            usage("Unknown parameter: " + arg);
-        option_class = arg;
+      String arg = argv[i];
+      if (arg.startsWith(ARG_JS)) {
+        option_js = true;
+      } else if (arg.startsWith(ARG_CPP)) {
+        option_cpp = true;
+      } else if (arg.startsWith(ARG_OBJC)) {
+        option_objc = true;
+      } else if (arg.startsWith(ARG_OBJC_HEADER)) {
+        option_objc_header = arg.substring(ARG_OBJC_HEADER.length());
+      } else if (arg.equals(ARG_PYTHON)) {
+        option_python = true;
+      } else if (arg.equals(ARG_DFA)) {
+        option_dfa = true;
+      } else if (arg.equals(ARG_JVM)) {
+        option_jvm = true;
+      } else if (arg.equals(ARG_CLR)) {
+        option_clr = true;
+      } else if (arg.equals(ARG_EXE)) {
+        option_exe = true;
+      } else if (arg.equals(ARG_API)) {
+        option_api = true;
+      } else if (arg.equals(ARG_JAVA)) {
+        option_java = true;
+      } else if (arg.equals(ARG_CONSOLE)) {
+        option_console = true;
+      } else if (arg.startsWith(ARG_OUT)) {
+        option_out = arg.substring(ARG_OUT.length());
+      } else if (arg.equals(ARG_IMPORT)) {
+        option_import = true;
+      } else if (arg.equals(ARG_RECURSIVE)) {
+        option_recursive = true;
+      } else if (arg.startsWith(ARG_FILE)) {
+        option_class = arg.substring(ARG_FILE.length());
+      } else {
+        usage("Unknown parameter: " + arg);
+        System.exit(-1);
+      }
     }
 
-    // Check command line arguments
+    // Sanity check command line arguments
     if (option_js && option_cpp)
-        usage("Cannot specify --js and --cpp at the same time");
+      usage("Cannot specify --js and --cpp at the same time");
     if (option_class == null)
-        usage("No class file specified");
+      usage("No input file specified");
     if (option_java && option_console)
-        usage("Cannot output class file to console.  Must specify --out=<file>");
+      usage("Cannot output class file to console.  Must specify --out=<file>");
   }
 
   public boolean js() {
@@ -215,9 +220,5 @@ public class XmlvmArguments {
 
   public String option_class() {
     return option_class;
-  }
-
-  public boolean option_pack() {
-    return option_pack;
   }
 }

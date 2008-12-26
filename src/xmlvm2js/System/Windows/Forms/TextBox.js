@@ -1,22 +1,22 @@
-checkClass("System.Windows.Forms.TextBoxBase");
-
 qx.Class.define("System_Windows_Forms_TextBox", {
   extend: System_Windows_Forms_TextBoxBase,
   members:
   {
-  	 __init_: function()
+  	 $$init_: function()
   	 {
-  	 	this._component = new qx.ui.form.TextArea();
+  	 	this.component = new qx.ui.form.TextArea();
   	 },
-   	 _set_Text___System_String: function(text)
+   	 $set_Text___System_String: function(text)
   	 {
-  	 	this._component.setValue(text._str);
+  	 	this.component.setValue(text.str);
   	 },
-  	 _get_Text: function()
+  	 $get_Text: function()
   	 {
-  	 	return new System_String(this._component.getValue());
+  		 var s = new System_String();
+  		 s.str = this.component.getValue();
+  		 return s;
   	 },
-  	 _set_ScrollBars___System_Windows_Forms_ScrollBars: function(sb)
+  	 $set_ScrollBars___System_Windows_Forms_ScrollBars: function(sb)
   	 {
   	 }
   }

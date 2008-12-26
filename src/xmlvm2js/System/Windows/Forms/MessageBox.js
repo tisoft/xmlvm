@@ -1,5 +1,3 @@
-checkClass("System.Object");
-
 qx.Class.define("System_Windows_Forms_MessageBox", {
     extend: System_Object,
     statics:

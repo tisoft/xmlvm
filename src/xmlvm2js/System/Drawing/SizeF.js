@@ -1,5 +1,3 @@
-checkClass("System.ValueType");
-
 qx.Class.define("System_Drawing_SizeF", {
   extend: System_ValueType,
   members:

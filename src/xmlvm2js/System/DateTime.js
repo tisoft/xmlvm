@@ -1,5 +1,3 @@
-checkClass("System.ValueType");
-
 qx.Class.define("System_DateTime", {
   extend: System_ValueType,
   construct: function()
@@ -20,7 +18,6 @@ qx.Class.define("System_DateTime", {
 	_ToString___System_String: function(format)
 	{
 		// TODO we ignore the format string for now
-		checkClass("System.String");
 		return new System_String(this.date + "");
 	}  	
   }

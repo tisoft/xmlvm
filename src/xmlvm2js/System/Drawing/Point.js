@@ -1,27 +1,25 @@
-checkClass("System.ValueType");
-
 qx.Class.define("System_Drawing_Point", {
   extend: System_ValueType,
   members:
   {
-  	 _x: 0,
-  	 _y: 0,
-  	 __init_: function()
+  	 x: 0,
+  	 y: 0,
+  	 $$init_: function()
   	 {
-  	 	this._x = 0;
-  	 	this._y = 0;
+  	 	this.x = 0;
+  	 	this.y = 0;
   	 },
-  	 ___CONSTRUCTOR___int_int: function(x, y)
+  	 $__CONSTRUCTOR___int_int: function(_x, _y)
   	 {
-  	 	this._x = x;
-  	 	this._y = y;
+  	 	this.x = _x;
+  	 	this.y = _y;
   	 }
   },
    statics:
   {
-  	___NEW___int_int: function(x, y)
+  	$__NEW___int_int: function(_x, _y)
   	{
-  		return new System_Drawing_Point(x, y);
+  		return new System_Drawing_Point(_x, _y);
   	}
   }
 });

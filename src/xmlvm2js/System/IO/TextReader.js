@@ -1,5 +1,3 @@
-checkClass("System.Object");
-
 qx.Class.define("System_IO_TextReader", {
   extend: System_Object, 
   members:
@@ -14,8 +12,5 @@ qx.Class.define("System_IO_TextReader", {
 	 _Close:function()
 	 {
 	 }
-	 
   }
-  
-  
 });

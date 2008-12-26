@@ -1,5 +1,3 @@
-checkClass("System.Object");
-
 qx.Class.define("System_Windows_Forms_ListBox$ObjectCollection", {
   extend: System_Object,
   construct: function(listView)

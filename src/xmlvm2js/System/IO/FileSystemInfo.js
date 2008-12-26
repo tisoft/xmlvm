@@ -1,6 +1,3 @@
-
-checkClass("System.Object");
-
 qx.Class.define("System_IO_FileSystemInfo", {
   extend: System_Object,
   members:

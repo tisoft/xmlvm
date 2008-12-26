@@ -1,43 +1,44 @@
-checkClass("java.awt.Component");
 qx.Class.define("java_awt_TextArea", {
 	extend: java_awt_Component,
 	construct: function() {
 		//var date = new Date();
 		//this._ID = date.getTime() + "$" + date.getMilliseconds();
-		this.qxTextArea = new qx.ui.form.TextArea();
+		this.qxComponent = new qx.ui.form.TextArea();
 	},
 	members:
 	{
-		qxTextArea: 0,
-		__init____java_lang_String_int_int_int: function(text, rows, cols, scrollbars) {
-			this.qxTextArea.setValue(text._str);
+		$$init____int_int: function(rows, cols) {
 			//TODO: How can we support the other parameters?
 		},
-		__init____java_lang_String: function(text) {
-			this.qxTextArea.setValue(text._str);
+		$$init____java_lang_String_int_int_int: function(text, rows, cols, scrollbars) {
+			this.qxComponent.setValue(text.$str);
+			//TODO: How can we support the other parameters?
 		},
-		_getText: function() {
-			return new java_lang_String(this.qxTextArea.getComputedValue());
+		$$init____java_lang_String: function(text) {
+			this.qxComponent.setValue(text.$str);
 		},
-		getQx: function() {
-			return this.qxTextArea;
+		$getText: function() {
+			return new java_lang_String(this.qxComponent.getValue());
 		},
-		_setBounds___int_int_int_int : function(x, y, width, height) {
-			this.qxTextArea.setLocation(x, y);
-			this.qxTextArea.setDimension(width, height);
-		},
-		_setEditable___boolean: function(editable) {
+		$setEditable___boolean: function(editable) {
 			if(editable == 0)
 				editable = false;
 			else
 				editable = true;
 
-			this.qxTextArea.setReadOnly(!editable);
+			this.qxComponent.setReadOnly(!editable);
 		},
-		_setText___java_lang_String: function(text) {
-			this.qxTextArea.setValue(text._str);
+		$setFocusable___boolean: function(focusable)
+		{
+			// TODO
 		},
-		_setCaretPosition___int: function(index) {
+		$setText___java_lang_String: function(text) {
+			this.qxComponent.setValue(text.$str);
+		},
+		$append___java_lang_String: function(text) {
+			this.qxComponent.setValue(this.qxComponent.getValue() + text.$str);
+		},
+		$setCaretPosition___int: function(index) {
 			//TODO
 			console.log("TODO: TextArea.setCaretPosition");
 		}

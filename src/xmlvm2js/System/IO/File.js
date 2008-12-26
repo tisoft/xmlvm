@@ -1,5 +1,3 @@
-checkClass("System.Object");
-
 qx.Class.define("System_IO_File", {
   extend: System_Object,
   statics:

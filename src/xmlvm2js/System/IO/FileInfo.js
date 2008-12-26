@@ -1,5 +1,3 @@
-checkClass("System.IO.FileSystemInfo");
-
 qx.Class.define("System_IO_FileInfo", {
   extend: System_IO_FileSystemInfo,
   statics:

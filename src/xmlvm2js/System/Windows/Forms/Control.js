@@ -1,102 +1,97 @@
-checkClass("System.Object");
-
 qx.Class.define("System_Windows_Forms_Control", {
   extend: System_Object,
   members:
   {
-  	 _component: 0,
-  	 _controlCollection: 0,
-  	 _styles: 0,
+  	 component: 0,
+  	 controlCollection: 0,
+  	 styles: 0,
   	 
-  	 _x: 0,
-  	 _y: 0,
-  	 _width: 0,
-  	 _height: 0,
+  	 x: 0,
+  	 y: 0,
+  	 width: 0,
+  	 height: 0,
   	 
-  	 __init_: function()
+  	 $$init_: function()
   	 {
-  	 	this._x = 0;
-  	 	this._y = 0;
-  	 	this._width = 0;
-  	 	this._height = 0;
+  	 	this.x = 0;
+  	 	this.y = 0;
+  	 	this.width = 0;
+  	 	this.height = 0;
   	 },
-  	 _set_Text___System_String: function(text)
+  	 $set_Text___System_String: function(text)
   	 {
   	 	// Abstract method
   	 },
-  	 _set_Location___System_Drawing_Point: function(point)
+  	 $set_Location___System_Drawing_Point: function(point)
   	 {
   	 	
-  	 	this.setLocation(point._x, point._y);
+  	 	this.setLocation(point.x, point.y);
   	 },
-  	 _set_Size___System_Drawing_Size: function(size)
+  	 $set_Size___System_Drawing_Size: function(size)
   	 {
-  	 	this.setSize(size._x, size._y);
+  	 	this.setSize(size.x, size.y);
 	 },
-  	 setLocation: function(x, y)
+  	 setLocation: function(_x, _y)
   	 {
-  	 	this._x = x;
-  	 	this._y = y;
-  	 	this._component.setLocation(x, y);
+  	 	this.x = _x;
+  	 	this.y = _y;
+  	 	this.component.setUserBounds(_x, _y, this.width, this.height);
   	 },
-  	 setSize: function(width, height)
+  	 setSize: function(_width, _height)
   	 {
-  	 	this._width = width;
-  	 	this._height = height;
-  	 	this._component.setWidth(width);
-		this._component.setHeight(height);
+  	 	this.width = _width;
+  	 	this.height = _height;
+  	 	this.component.setUserBounds(this.x, this.y, _width, _height);
 	 },
-	 _set_TabIndex___int: function(idx)
+	 $set_TabIndex___int: function(idx)
 	 {
 	 	// TODO not implemented
 	 },
-	 _set_Anchor___System_Windows_Forms_AnchorStyles: function(styles)
+	 $set_Anchor___System_Windows_Forms_AnchorStyles: function(_styles)
 	 {
-	 	this._styles = styles;
+	 	this.styles = _styles;
 	 },
-	 _SuspendLayout: function()
+	 $SuspendLayout: function()
 	 {
 		console.log("UnImp: SuspendLayout");
 	 },
-	 _ResumeLayout___boolean: function(boolSomething)
+	 $ResumeLayout___boolean: function(boolSomething)
 	 {
 		console.log("UnImp: ResumeLayout" + boolSomething);
 	 },
-	 _set_BackColor___System_Drawing_Color:function(color)
+	 $set_BackColor___System_Drawing_Color:function(c)
 	 {
-	 	this._component.setBackgroundColor(color._color);
+	 	this.component.setBackgroundColor(c.color);
 	 },
-	 _SetBounds___int_int_int_int:function(x, y, width, height)
+	 $SetBounds___int_int_int_int:function(_x, _y, _width, _height)
 	 {
-	 this.setLocation(x,y);
-	 this.setSize(width,height);
+	 this.setLocation(_x, _y);
+	 this.setSize(_width,_height);
 	 },
-	 _get_Controls: function()
+	 $get_Controls: function()
 	 {
-  	 	checkClass("System.Windows.Forms.Control$ControlCollection");
-  	 	if (this._controlCollection == 0)
-	  	 	this._controlCollection = new System_Windows_Forms_Control$ControlCollection(this);
-	 	return this._controlCollection;
+  	 	if (this.controlCollection == 0)
+	  	 	this.controlCollection = new System_Windows_Forms_Control$ControlCollection(this);
+	 	return this.controlCollection;
 	 },
-	 _set_Name___System_String:function(name)
+	 $set_Name___System_String:function(name)
 	 {
 	 	console.log("UnImp: set_Name");
 	 },
-	 _set_Width___int: function(w)
+	 $set_Width___int: function(w)
 	 {
-	    this.setSize(w,this._height);
+	    this.setSize(w,this.height);
 	 },
-	 _set_Height___int: function(h)
+	 $set_Height___int: function(h)
 	 {
-	    this.setSize(this._width,h);
+	    this.setSize(this.width,h);
 	 },
-	 _add_Click___System_EventHandler: function(handler)
+	 $add_Click___System_EventHandler: function(handler)
 	 {
 	 	handler.senderObj = this;
-	 	checkClass("org.xmlvm.clr.EventManager");
 	 	org_xmlvm_clr_EventManager.registerClickEventHandler(handler);
 	 	var _this = this;
-		this._component.addEventListener("execute", function(e) {
+		this.component.addListener("execute", function(e) {
 		  	org_xmlvm_clr_EventManager.raiseClickEvent(_this);
 		});
 	 }

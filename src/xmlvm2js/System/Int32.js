@@ -1,5 +1,3 @@
-checkClass("System.Object");
-
 qx.Class.define("System_Int32", {
   extend: System_Object,
   construct: function(value)
@@ -18,7 +16,6 @@ qx.Class.define("System_Int32", {
   	 _value: 0,
   	 _ToString: function()
   	 {
-  	 	checkClass("System.String");
   	 	return new System_String("" + this._value);
   	 }
   }

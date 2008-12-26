@@ -1,5 +1,3 @@
-checkClass("System.MarshalByRefObject");
-
 qx.Class.define("System_Drawing_Image", {
   extend: System_MarshalByRefObject,
   construct: function(fn)

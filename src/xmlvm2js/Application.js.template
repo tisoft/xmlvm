@@ -1,0 +1,31 @@
+/* ************************************************************************
+
+#asset(temp_qx_app/*)
+
+************************************************************************ */
+
+/**
+ * This is the main application class of your custom application "temp_qx_app"
+ */
+qx.Class.define("{{XMLVM_TEMP_PROJECT_NAME}}.Application",
+{
+  extend : qx.application.Standalone,
+  members :
+  {
+    main : function()
+    {
+      // Call super class
+      this.base(arguments);
+
+      // Enable logging in debug variant
+      if (qx.core.Variant.isSet("qx.debug", "on"))
+      {
+        // support native logging capabilities, e.g. Firebug for Firefox
+        qx.log.appender.Native;
+        // support additional cross-browser console. Press F7 to toggle visibility
+        qx.log.appender.Console;
+      }
+      {{XMLVM_MAIN_METHOD_CALL}}
+    }
+  }
+});

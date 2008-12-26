@@ -1,30 +1,29 @@
-checkClass("java.lang.Object");
 qx.Class.define("java_lang_StringBuffer", {
   extend: java_lang_Object,
   members:
   {
-  	_str: "",
-  	__init____java_lang_StringBuffer: function(s) {
+  	$str: "",
+  	$$init____java_lang_StringBuffer: function(s) {
 	  	if (s)
-	        this._str = s._str;
+	        this.$str = s.$str;
 	    else
-	        this._str = "";	
+	        this.$str = "";	
   	},
-  	__init____java_lang_String: function(s) {
-  		this._str = s._str;
+  	$$init____java_lang_String: function(s) {
+  		this.$str = s.$str;
   	},
-  	_toString: function() {
-  		return new java_lang_String(this._str);
+  	$toString: function() {
+  		return new java_lang_String(this.$str);
   	},
-  	_append___java_lang_String: function(s) {
-  		if (s._str == undefined)
-    		this._str = "" + s;
+  	$append___java_lang_String: function(s) {
+  		if (s.$str == undefined)
+    		this.$str = "" + s;
     	else
-	    	this._str += s._str;
+	    	this.$str += s.$str;
         return this;	
   	},
-  	_append___char: function(charCode) {
-  	 	this._str += String.fromCharCode(charCode);
+  	$append___char: function(charCode) {
+  	 	this.$str += String.fromCharCode(charCode);
   	 	return this;
   	 }
   }

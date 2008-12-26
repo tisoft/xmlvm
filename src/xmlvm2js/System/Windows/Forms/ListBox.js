@@ -1,5 +1,3 @@
-checkClass("System.Windows.Forms.ListControl");
-
 qx.Class.define("System_Windows_Forms_ListBox", {
   extend: System_Windows_Forms_ListControl,
   members:
@@ -54,12 +52,10 @@ qx.Class.define("System_Windows_Forms_ListBox", {
 		if(selectedItem == undefined)
 			return null;
 		var strValue = selectedItem.name.text;
-  	 	checkClass("System.String");
 		return new System_String(strValue);
   	 },
   	 _get_Items: function()
   	 {
-  	    checkClass("System.Windows.Forms.ListBox$ObjectCollection");
   	 	return new System_Windows_Forms_ListBox$ObjectCollection(this);
   	 }
   }

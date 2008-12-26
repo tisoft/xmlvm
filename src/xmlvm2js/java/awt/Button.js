@@ -1,45 +1,38 @@
-checkClass("java.awt.Component");
-checkClass("java.awt.event.ActionEvent");
 qx.Class.define("java_awt_Button", {
 	extend: java_awt_Component,
 	construct: function() {
-		this.qxButton = new qx.ui.form.Button("Button");
+		this.qxComponent = new qx.ui.form.Button("Button");
 		this.actionListeners = new Array();
 	},
 	members:
 	{
-		qxButton: 0,
 		actionListeners: 0,
-		__init____java_lang_String: function(value) {
-			this.qxButton.setLabel(value._str);
+		$$init____java_lang_String: function(value) {
+			this.qxComponent.setLabel(value.$str);
 		},
-		_addActionListener___java_awt_event_ActionListener: function(listener) {
-			this.qxButton.addEventListener("execute", function(e) {
+		$addActionListener___java_awt_event_ActionListener: function(listener) {
+			var this_ = this;
+			this.qxComponent.addListener("execute", function(e) {
 				var actionEvent = new java_awt_event_ActionEvent();
 		  		actionEvent.setQxEvent(e);
-		  		listener._actionPerformed___java_awt_event_ActionEvent(actionEvent);
+		  		actionEvent.$setActionCommand(new java_lang_String(this_.qxComponent.getLabel()));
+		  		actionEvent.$setSource(this_);
+		  		listener.$actionPerformed___java_awt_event_ActionEvent(actionEvent);
 			});
 			this.actionListeners.push(listener);
 		},
-		getQx: function() {
-			return this.qxButton;
-		},
-		_setBounds___int_int_int_int : function(x, y, width, height) {
-			this.qxButton.setLocation(x, y);
-			this.qxButton.setDimension(width, height);
-		},
-		_setEnabled___boolean: function(enabled) {
+		$setEnabled___boolean: function(enabled) {
 			enabled = (enabled == 0 ? false : true);
-			this.qxButton.setEnabled(enabled);
+			this.qxComponent.setEnabled(enabled);
 		},
-		_setLabel___java_lang_String: function(value) {
-			this.qxButton.setLabel(value._str);
+		$setLabel___java_lang_String: function(value) {
+			this.qxComponent.setLabel(value.$str);
 		},
-		_getLabel: function() {
-			return new java_lang_String(this.qxButton.getLabel());
+		$getLabel: function() {
+			return new java_lang_String(this.qxComponent.getLabel());
 		},
-		_setVisible___boolean: function(visible) {
-		    this.qxButton.setDisplay(visible ? true : false);
+		$setVisible___boolean: function(visible) {
+		    this.qxComponent.setDisplay(visible ? true : false);
 		}
 	}
 });

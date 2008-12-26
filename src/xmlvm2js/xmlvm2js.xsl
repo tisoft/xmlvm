@@ -58,7 +58,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     }</xsl:text>
     <xsl:for-each select="vm:field[count(@isStatic)=1 and @isStatic='true']">
 			<xsl:text>,
-    _</xsl:text>
+    $</xsl:text>
 			<xsl:value-of select="@name" /><xsl:text>: 0</xsl:text>
 	</xsl:for-each>
 	<xsl:for-each select="vm:method[count(@isStatic)=1 and @isStatic='true']">
@@ -76,7 +76,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 				<xsl:text>,</xsl:text>
 			</xsl:if>
 			<xsl:text>
-    _</xsl:text>
+    $</xsl:text>
 			<xsl:value-of select="@name" /><xsl:text>: 0</xsl:text>
 	</xsl:for-each>
     <xsl:for-each select="vm:method[count(@isStatic)=0 or @isStatic='false']">
@@ -305,7 +305,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 <xsl:template match="jvm:getfield">
     <xsl:text>
             __op1 = __stack[--__sp];
-            __stack[__sp++] = __op1._</xsl:text>
+            __stack[__sp++] = __op1.$</xsl:text>
     <xsl:value-of select="@field"/>
     <xsl:text>;</xsl:text>
 </xsl:template>
@@ -319,14 +319,13 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:call-template name="checkClass">
     <xsl:with-param name="string" select="@class-type"/>
   </xsl:call-template>
-  
   <xsl:text>
             __stack[__sp++] = </xsl:text>
 <!-- <xsl:value-of select="replace(replace(@class-type, 'java.lang.System', 'java.lang.SystemX'), 'java.lang.String', 'java.lang.String')" /> -->
   <xsl:call-template name="emitScopedName">
     <xsl:with-param name="string" select="@class-type"/>
   </xsl:call-template>
-  <xsl:text>._</xsl:text>
+  <xsl:text>.$</xsl:text>
   <xsl:value-of select="@field"/>
   <xsl:text>;</xsl:text>
 </xsl:template>
@@ -381,12 +380,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>
             __op2 = __stack[--__sp];
             __op1 = __stack[--__sp];
-            if((__op1._str != undefined) &amp;&amp; (__op2._str != undefined))
-            {
-	            if (__op1._str == __op2._str) { __next_label = </xsl:text>
-            
+            if (__op1 === __op2) { __next_label = </xsl:text>
   <xsl:value-of select="@label"/>
-  <xsl:text>; break }}else ERROR("No support of object == object comparison yet");</xsl:text>
+  <xsl:text>; break }</xsl:text>
 </xsl:template>
 
 
@@ -465,12 +461,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>
             __op2 = __stack[--__sp];
             __op1 = __stack[--__sp];
-            if((__op2._str != undefined) &amp;&amp; (__op2._str != undefined))
-            {
-	            if (__op1._str != __op2._str) { __next_label = </xsl:text>
-            
+            if (__op1 !== __op2) { __next_label = </xsl:text>
   <xsl:value-of select="@label"/>
-  <xsl:text>; break }}else ERROR("No support of object != object comparison yet");</xsl:text>
+  <xsl:text>; break }</xsl:text>
 </xsl:template>
 
 
@@ -675,7 +668,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     if (!(__objectref instanceof </xsl:text>  <xsl:call-template name="emitScopedName">
       <xsl:with-param name="string" select="@type"/>
   </xsl:call-template>
-    <xsl:text>)) {throw (new java_lang_ClassCastException).__init_java_lang_ClassCastException___java_lang_String("ClassCastException");}</xsl:text>
+    <xsl:text>)) {throw (new java_lang_ClassCastException).$$init_java_lang_ClassCastException___java_lang_String("ClassCastException");}</xsl:text>
 </xsl:template>
 
 <!-- arraylength -->
@@ -961,7 +954,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     <xsl:text>
             __op2 = __stack[--__sp];
             __op1 = __stack[--__sp];
-            __op1._</xsl:text>
+            __op1.$</xsl:text>
     <xsl:value-of select="@field"/>
     <xsl:text> = __op2;</xsl:text>
 </xsl:template>
@@ -980,7 +973,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:call-template name="emitScopedName">
     <xsl:with-param name="string" select="@class-type"/>
   </xsl:call-template>
-  <xsl:text>._</xsl:text>
+  <xsl:text>.$</xsl:text>
   <xsl:value-of select="@field"/>
   <xsl:text> = __stack[--__sp];</xsl:text>
 </xsl:template>
@@ -1016,13 +1009,11 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 <xsl:template name="checkClass">
   <xsl:param name="string" />
   <xsl:text>
-             checkClass("</xsl:text>
-				<!-- <xsl:call-template name="emitScopedName">
-			      <xsl:with-param name="string" select="$string"/>
-			    </xsl:call-template> -->
-			    <xsl:value-of select="$string" />
-			 <xsl:text>");
-</xsl:text>
+  if (</xsl:text><xsl:call-template name="emitScopedName"><xsl:with-param name="string" select="$string"/></xsl:call-template><xsl:text>.initialized == undefined &amp;&amp; </xsl:text>
+  <xsl:call-template name="emitScopedName"><xsl:with-param name="string" select="$string"/></xsl:call-template><xsl:text>.$$clinit_ != undefined) {</xsl:text>
+  <xsl:call-template name="emitScopedName"><xsl:with-param name="string" select="$string"/></xsl:call-template><xsl:text>.initialized = 1;</xsl:text>
+  <xsl:call-template name="emitScopedName"><xsl:with-param name="string" select="$string"/></xsl:call-template><xsl:text>.$$clinit_();</xsl:text>
+  <xsl:call-template name="emitScopedName"><xsl:with-param name="string" select="$string"/></xsl:call-template><xsl:text>.$$clinit_ = undefined; }</xsl:text>
 </xsl:template>
 
 
@@ -1098,7 +1089,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
    emitMethodName
    ==============
    Called whenever a method name has to be written. If the method happens
-   to be a constructor, this function will generate __init_() instead.
+   to be a constructor, this function will generate $$init_() instead.
    Input: 'name': the name of the method to write.
 -->
 <xsl:template name="emitMethodName">
@@ -1108,7 +1099,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
   <xsl:choose>
     <xsl:when test="$name = '&lt;init&gt;'">
-      <xsl:text>__init_</xsl:text>
+      <xsl:text>$$init_</xsl:text>
        <xsl:call-template name="emitScopedName">
           <xsl:with-param name="string" select="$class-type"/>
       </xsl:call-template>
@@ -1118,24 +1109,20 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
       </xsl:call-template>
     </xsl:when>
     <xsl:when test="$name = '&lt;clinit&gt;'">
-      <xsl:text>__clinit_</xsl:text>
+      <xsl:text>$$clinit_</xsl:text>
       <xsl:call-template name="emitScopedName">
           <xsl:with-param name="string" select="$class-type"/>
       </xsl:call-template>
     </xsl:when>
     
     <xsl:when test="$name = '.cctor'">
-      <xsl:text>__cctor</xsl:text>
+      <xsl:text>$$cctor</xsl:text>
       <xsl:call-template name="emitScopedName">
           <xsl:with-param name="string" select="$class-type"/>
       </xsl:call-template>
     </xsl:when>
-    
-    <xsl:when test="$name = 'length'">
-      <xsl:text>_length</xsl:text>
-    </xsl:when>
     <xsl:otherwise>
-      <xsl:text>_</xsl:text><xsl:value-of select="$name"/>
+      <xsl:text>$</xsl:text><xsl:value-of select="$name"/>
       <!-- Append signature to method name -->
       <xsl:call-template name="appendSignature">
         <xsl:with-param name="signature" select="vm:signature" />

@@ -1,5 +1,3 @@
-checkClass("System.Windows.Forms.CommonDialog");
-
 qx.Class.define("System_Windows_Forms_FileDialog", {
   extend: System_Windows_Forms_CommonDialog,
   members:

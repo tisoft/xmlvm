@@ -1,12 +1,7 @@
-
-
-checkClass("System.Windows.Forms.Control");
-
 qx.Class.define("System_Windows_Forms_ToolStrip", {
   extend: System_Windows_Forms_Control,
   members:
   {
-
   	 __init_: function()
   	 {
   	 	// Construct
@@ -20,6 +15,5 @@ qx.Class.define("System_Windows_Forms_ToolStrip", {
 	 _get_Items:function()
 	 {
 	 }
-	 
   }
 });

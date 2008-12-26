@@ -1,5 +1,3 @@
-checkClass("System.Object");
-
 qx.Class.define("System_EventHandler", {
   extend: System_Object,
   construct: function(targetObj, signatureIndex)
@@ -10,7 +8,7 @@ qx.Class.define("System_EventHandler", {
   },
   statics:
   {
-  	___NEW___System_Object_int: function(targetObj, signatureIndex)
+  	$__NEW___System_Object_int: function(targetObj, signatureIndex)
   	{
   		return new System_EventHandler(targetObj, signatureIndex);
   	}

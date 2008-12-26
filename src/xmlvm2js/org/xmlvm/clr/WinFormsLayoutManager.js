@@ -1,5 +1,3 @@
-checkClass("System.Windows.Forms.AnchorStyles");
-
 qx.Class.define("org_xmlvm_clr_WinFormsLayoutManager", {
   extend: qx.core.Object,
   construct: function(form)

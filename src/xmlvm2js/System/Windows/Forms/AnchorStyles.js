@@ -1,5 +1,3 @@
-checkClass("System.Enum");
-
 qx.Class.define("System_Windows_Forms_AnchorStyles", {
   extend: System_Enum,
   construct: function(styles)

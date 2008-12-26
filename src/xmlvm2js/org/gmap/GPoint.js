@@ -1,11 +1,10 @@
-checkClass("java.lang.Object");
 qx.Class.define("org_gmap_GPoint", {
 	extend: java_lang_Object,
 	members:
 	{
 		x: 0,
 		y: 0,
-		__init____double_double: function(x, y) {
+		$$init____double_double: function(x, y) {
 			this.x = x;
 			this.y = y;
 		},

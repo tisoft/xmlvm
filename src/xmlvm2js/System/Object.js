@@ -1,13 +1,19 @@
-checkClass("java.lang.Object");
+
 qx.Class.define("System_Object", {
   extend: java_lang_Object,
+  construct: function() {
+  	this.base(arguments);
+  },
+
   members:
   {
-    __init_: function() {
-      // alert("System.Object initialized");
+    $$init_ : function()
+    {
     },
-    _ToString: function() {
+    $ToString : function()
+    {
     	return new System_String("" + this);
     }
-  }
-});
+  } //members
+}); //qx.Class.define
+

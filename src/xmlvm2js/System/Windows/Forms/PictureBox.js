@@ -1,5 +1,3 @@
-checkClass("System.Windows.Forms.Control");
-
 qx.Class.define("System_Windows_Forms_PictureBox", {
   extend: System_Windows_Forms_Control,
 	members:

@@ -1,11 +1,7 @@
-
-checkClass("System.Object");
-
 qx.Class.define("System_Windows_Forms_ToolStripItem", {
   extend: System_Object,
   members:
   {
-  	
   	 __init_: function()
   	 {
   	 	// Construct
@@ -23,7 +19,6 @@ qx.Class.define("System_Windows_Forms_ToolStripItem", {
 	 
   	 _add_Click___System_EventHandler: function(handler)
   	 {
-
 	 },
 	 _get_Text: function(size)
 	 {

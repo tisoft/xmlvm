@@ -1,109 +1,101 @@
-checkClass("java.lang.Object");
 qx.Class.define("java_lang_String", {
   extend: java_lang_Object,
   construct: function(str) {
-  	this._str = str;
+  	this.$str = str;
   },
   statics:
   {
-  	_valueOf___java_lang_Object: function(val) {
-  		//alert("Error: String.valueOf(Object) not supported yet");
-  		return val._toString();
-		/*if(Clazz.instanceOf(val, java_lang_String))
-			// val is already a string
-			return val;
-		else
-			return new java_lang_String(val);*/
+  	$valueOf___java_lang_Object: function(val) {
+  		return val.$toString();
 	 },
-	 _valueOf___int: function(val) {
+	 $valueOf___int: function(val) {
 	 	return new java_lang_String(""+val);
 	 },
-	 _valueOf___long: function(val) {
+	 $valueOf___long: function(val) {
 	 	return new java_lang_String(""+val);
 	 },
-	 _valueOf___double: function(val) {
-        var _tempValue = "" + val;
+	 $valueOf___double: function(val) {
+        var tempValue = "" + val;
         if((val % 1) == 0)
-          _tempValue += ".0";
-        return new java_lang_String("" + _tempValue);
+          tempValue += ".0";
+        return new java_lang_String("" + tempValue);
 	 },
-	 _valueOf___boolean: function(val) {
+	 $valueOf___boolean: function(val) {
         if(val == true)
           return new java_lang_String("true");
         else
           return new java_lang_String("false");
 	 }
-	 
   },
   members:
   {
-  	_str: 0,
-  	_equals___java_lang_Object: function(o) {
+  	$str: 0,
+  	$equals___java_lang_Object: function(o) {
         var toCompare;
 
-        if (o._str == undefined)
+        if (o.$str == undefined)
           toCompare = o; 
         else
-          toCompare = o._str;
+          toCompare = o.$str;
         
-        if(this._str == toCompare)
+        if(this.$str == toCompare)
             return true;
         else
             return false;
 	 },
-	 _charAt___int: function(i) {
-	 	return this._str.charCodeAt(i);
+	 $charAt___int: function(i) {
+	 	return this.$str.charCodeAt(i);
 	 },
-  	 _length: function() {
-  		return this._str.length;
+  	 $length: function() {
+  		return this.$str.length;
   	 },
-  	 _toString: function() {
+  	 $toString: function() {
   	 	return this;
   	 },
-  	 _replace___char_char: function(replace, by) {
+  	 $replace___char_char: function(replace, by) {
   	 	//TODO:
   	 	console.log("TODO: replace(char, char)");
-  	 	//return new java_lang_String(this._str.replace(replace, by));
+  	 	//return new java_lang_String(this.$str.replace(replace, by));
   	 	return this;
   	 },
-  	 _toLowerCase: function() {
-  	 	return new java_lang_String(this._str.toLowerCase());
+  	 $toLowerCase: function() {
+  	 	return new java_lang_String(this.$str.toLowerCase());
   	 },
-  	 _toUpperCase: function() {
-  	 	return new java_lang_String(this._str.toUpperCase());
+  	 $toUpperCase: function() {
+  	 	return new java_lang_String(this.$str.toUpperCase());
   	 },
-  	 _indexOf___java_lang_String: function(text) {
-  	 	return this._str.indexOf(text._str);
+  	 $indexOf___java_lang_String: function(text) {
+  	 	return this.$str.indexOf(text.$str);
   	 },
-  	 _lastIndexOf___java_lang_String: function(text) {
-  	 	return this._str.lastIndexOf(text._str);
+  	 $lastIndexOf___java_lang_String: function(text) {
+  	 	return this.$str.lastIndexOf(text.$str);
   	 },
-  	 _split___java_lang_String: function(regex) {
-  	 	var s = this._str.split(regex._str);
+  	 $split___java_lang_String: function(regex) {
+  	 	var s = this.$str.split(regex.$str);
   	 	var result = new Array();
   	 	for(i=0; i<s.length; ++i) {
   	 		result.push(new java_lang_String(s[i]));
   	 	}
   	 	return result;
   	 },
-  	 _endsWith___java_lang_String: function(pattern) {
+  	 $endsWith___java_lang_String: function(pattern) {
   	    // Implementation from Prototype framework.
-  	    var d = this._str.length - pattern._str.length;
-        return d >= 0 && this._str.lastIndexOf(pattern._str) === d;
+  	    var d = this.$str.length - pattern.$str.length;
+        return d >= 0 && this.$str.lastIndexOf(pattern.$str) === d;
   	 },
-  	 _replace___java_lang_CharSequence_java_lang_CharSequence: function(replace, by) {
-  	 	var toEval = "var result = this._str.replace(/"+replace._str+"/g, \"" + by._str +"\");";
+  	 $replace___java_lang_CharSequence_java_lang_CharSequence: function(replace, by) {
+  	 	var toEval = "var result = this.$str.replace(/"+replace.$str+"/g, \"" + by.$str +"\");";
   	 	eval(toEval);
   	 	return new java_lang_String(result);
   	 },
-  	 _substring___int_int: function(from, to) {
-  	 	return new java_lang_String(this._str.substring(from, to));
+  	 $substring___int_int: function(from, to) {
+  	 	return new java_lang_String(this.$str.substring(from, to));
   	 },
-  	 _substring___int: function(from) {
-  	 	return new java_lang_String(this._str.substring(from));
+  	 $substring___int: function(from) {
+  	 	return new java_lang_String(this.$str.substring(from));
   	 },
-  	 _startsWith___java_lang_String: function(text) {
-  	   return (this._str.indexOf(text._str) == 0);
+  	 $startsWith___java_lang_String: function(text) {
+  	   return (this.$str.indexOf(text.$str) == 0);
   	 }
   }
 });

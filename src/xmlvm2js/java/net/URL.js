@@ -1,17 +1,13 @@
-checkClass("java.lang.Object");
 qx.Class.define("java_net_URL", {
   extend: java_lang_Object,
   members:
   {
-  
   	url: 0,
-  	__init____java_lang_String: function(url) {
+  	$$init____java_lang_String: function(url) {
   		this.url = url._str;
   	},
-  	_openStream: function() {
-  		checkClass("java.io.InputStream");
+  	$openStream: function() {
   		var result = new java_io_InputStream();
-  		
   		var response = XHRFunc.getURL(this.url, "", "", "", [['Content-Type','text/plain']]);
     	if (response.status == 200) {
     		result.setTextContent(response.responseText);
@@ -23,7 +19,6 @@ qx.Class.define("java_net_URL", {
     	}
     	//console.log("XHR Response - status:" + response.status + " repsonseText.length:" + response.responseText.length);
     	return result;
-    		
   	}
   }
 });

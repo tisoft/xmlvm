@@ -1,6 +1,3 @@
-checkClass("System.Object");
-checkClass("java.lang.String");
-
 qx.Class.define("org_xmlvm_clr_Delegate", {
   extend: System_Object,
   construct: function(classType, method, signature)

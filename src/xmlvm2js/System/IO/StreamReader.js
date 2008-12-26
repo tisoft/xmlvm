@@ -1,8 +1,3 @@
-
-
-
-checkClass("System.IO.TextReader");
-
 qx.Class.define("System_IO_StreamReader", {
   extend: System_IO_TextReader,
   statics:

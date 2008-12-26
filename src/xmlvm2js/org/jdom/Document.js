@@ -1,4 +1,3 @@
-checkClass("java.lang.Object");
 qx.Class.define("org_jdom_Document", {
 	extend: java_lang_Object,
 	statics:
@@ -15,7 +14,7 @@ qx.Class.define("org_jdom_Document", {
 	members:
 	{
 		xmlDocument: 0,
-		__init_: function() {
+		$$init_: function() {
 			this.xmlDocument = qx.xml.Document.create();
 		},
 		//Not part of the official API
@@ -26,13 +25,12 @@ qx.Class.define("org_jdom_Document", {
 		getXmlDocument: function() {
 			return this.xmlDocument;
 		},
-		_getRootElement: function() {
-			checkClass("org.jdom.Element");
+		$getRootElement: function() {
 			var result = new org_jdom_Element();
 			result.setXmlElement(this.xmlDocument.documentElement);
 			return result;
 		},
-		_setRootElement___org_jdom_Element: function(element) {
+		$setRootElement___org_jdom_Element: function(element) {
 			//TODO: Carefully try this on every browser
 			this.xmlDocument = qx.xml.Document.create();
 			this.xmlDocument.appendChild(element.getXmlElement());

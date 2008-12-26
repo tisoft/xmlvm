@@ -1,17 +1,16 @@
-checkClass("java.lang.Object");
 qx.Class.define("java_lang_Float", {
   extend: java_lang_Object,
   construct: function() {
-  	this._float = null;
+  	this.$float = null;
   },
   statics:
   {
-  	_valueOf___java_lang_String: function(s) {
+  	$valueOf___java_lang_String: function(s) {
   		var f = new java_lang_Float();
-  		f._float = s._str * 1; // Make sure we convert the string to a number
+  		f.$float = s.$str * 1; // Make sure we convert the string to a number
       	return f;	
   	},
-  	_toString___float: function(f) {
+  	$toString___float: function(f) {
 	  	// By concatenating "" we make sure we get a string
 	  	var s = f + "";
 	  	if (s.indexOf(".") < 0)
@@ -22,12 +21,12 @@ qx.Class.define("java_lang_Float", {
   },
   members:
   {
-  	_float: 0,
-  	__init____float: function(f) {
-  		_float = f;
+  	$float: 0,
+  	$$init____float: function(f) {
+  		$float = f;
   	},
-  	_floatValue: function() {
-  		return this._float;
+  	$floatValue: function() {
+  		return this.$float;
   	}
   }
 });

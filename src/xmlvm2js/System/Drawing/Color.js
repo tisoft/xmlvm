@@ -1,5 +1,3 @@
-checkClass("System.Object");
-
 qx.Class.define("System_Drawing_Color", {
   extend: System_Object,
   members:
