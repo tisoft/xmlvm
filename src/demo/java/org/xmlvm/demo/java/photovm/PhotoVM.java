@@ -1,53 +1,55 @@
+/*
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ * 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
+ * Ave, Cambridge, MA 02139, USA.
+ * 
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ */
+
 package org.xmlvm.demo.java.photovm;
+
+import org.xmlvm.demo.java.photovm.ui.MainPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Frame;
-import java.awt.GridLayout;
-import java.awt.Panel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
 
-import org.xmlvm.demo.java.photovm.data.Photo;
-import org.xmlvm.demo.java.photovm.net.PicasaRequest;
-import org.xmlvm.demo.java.photovm.ui.ImagePanel;
-
+/**
+ * Main class of the application with some basic wiring.
+ * 
+ * @author haeberling@google.com (Sascha Haeberling)
+ * 
+ */
 public class PhotoVM extends Frame {
   private static final long serialVersionUID = 1L;
 
-  public static void main(String[] args) throws MalformedURLException {
+  public static void main(String[] args) {
     new PhotoVM();
   }
 
-  public PhotoVM() throws MalformedURLException {
+  public PhotoVM() {
     setTitle("PhotoVM");
     setBackground(Color.BLACK);
     setSize(1000, 600);
-    BorderLayout layout = new BorderLayout();
-    setLayout(layout);
-    ImagePanel logo = new ImagePanel("doc/photovm/photovm_logo.png");
-    System.out.println("#9");
-    add(logo, BorderLayout.NORTH);
-    System.out.println("#9.1");
-    Panel thumbnailGrid = new Panel();
-    System.out.println("#9.2");
-    thumbnailGrid.setLayout(new GridLayout(0,5));
-    System.out.println("#9.3");
-    add(thumbnailGrid, BorderLayout.SOUTH);
-    System.out.println("#9.5");
-    List<Photo> photos= PicasaRequest.requestPhotos(PicasaRequest.TEST_USER_ID,
-        PicasaRequest.TEST_ALBUM_ID);
-    System.out.println("#10");
-    for (Photo photo : photos) {
-      ImagePanel thumbnail = new ImagePanel(new URL(photo.getThumbnailUrl()));
-      thumbnailGrid.add(thumbnail);
-    }
+    setLayout(new BorderLayout());
+    add(new MainPanel(), BorderLayout.CENTER);
     this.addWindowListener(new WindowAdapter() {
       @Override
-      public void windowClosed(WindowEvent e) {
+      public void windowClosing(WindowEvent e) {
         System.exit(0);
       }
     });

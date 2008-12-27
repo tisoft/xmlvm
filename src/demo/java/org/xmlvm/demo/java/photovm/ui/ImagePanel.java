@@ -1,6 +1,5 @@
 /*
- * XML11 --- An Abstract Windowing Protocol Copyright (c) 2004-2005 by The XML11
- * Team
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
  * 
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -16,7 +15,7 @@
  * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
  * Ave, Cambridge, MA 02139, USA.
  * 
- * For more information, visit the XML11 Home Page at http://www.xml11.org/
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
 package org.xmlvm.demo.java.photovm.ui;
