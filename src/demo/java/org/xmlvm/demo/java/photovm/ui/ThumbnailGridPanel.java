@@ -40,7 +40,8 @@ import java.util.List;
  * @author haeberling@google.com (Sascha Haeberling)
  * 
  */
-public class ThumbnailGridPanel extends ScrollPane implements UpdatePhotosListener {
+public class ThumbnailGridPanel extends ScrollPane implements
+    UpdatePhotosListener {
   private Panel contentWrapperPanel = new Panel();
   private Panel contentPanel = new Panel();
   private final GridLayout layout = new GridLayout(0, 5);
@@ -73,7 +74,9 @@ public class ThumbnailGridPanel extends ScrollPane implements UpdatePhotosListen
               .getThumbnailWidth() : thumbnailWidth;
       ImagePanel thumbnail;
       try {
-        thumbnail = new ImagePanel(new URL(photo.getThumbnailUrl()));
+        thumbnail =
+            new ImagePanel(new URL(photo.getThumbnailUrl()), photo
+                .getThumbnailWidth(), photo.getThumbnailHeight());
         thumbnail.setPreferredSize(new Dimension(photo.getThumbnailWidth(),
             photo.getThumbnailHeight()));
         contentPanel.add(thumbnail);

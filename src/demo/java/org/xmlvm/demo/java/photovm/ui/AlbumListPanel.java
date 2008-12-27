@@ -79,7 +79,9 @@ public class AlbumListPanel extends ScrollPane implements UpdateAlbumsListener {
       lblTitle.setAlignment(Label.CENTER);
       add(lblTitle, BorderLayout.NORTH);
       try {
-        ImagePanel imagePanel = new ImagePanel(new URL(album.getCoverUrl()));
+        ImagePanel imagePanel =
+            new ImagePanel(new URL(album.getCoverUrl()), album.getCoverWidth(),
+                album.getCoverHeight());
         imagePanel.addMouseListener(new MouseAdapter() {
           @Override
           public void mouseClicked(MouseEvent arg0) {

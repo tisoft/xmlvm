@@ -21,6 +21,7 @@
 package org.xmlvm.demo.java.photovm.ui;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Panel;
 import java.awt.Rectangle;
 import java.net.URL;
@@ -29,10 +30,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class ImagePanel extends Panel {
-  private JLabel backgroundLabel;
+  private JLabel backgroundLabel = new JLabel("...");
 
-  public ImagePanel(URL url) {
-    init(new ImageIcon(url));
+  public ImagePanel(final URL url, int width, int height) {
+    add(backgroundLabel, 0);
+    backgroundLabel.setSize(width, height);
+    setSize(width, height);
+    setPreferredSize(new Dimension(width, height));
+    Runnable r = new Runnable() {
+      public void run() {
+        init(new ImageIcon(url));
+      }
+    };
+    (new Thread(r)).start();
   }
 
   public ImagePanel(String fileName) {
@@ -40,10 +50,12 @@ public class ImagePanel extends Panel {
   }
 
   private void init(ImageIcon backgroundIcon) {
+    removeAll();
     backgroundLabel = new JLabel(backgroundIcon);
     backgroundLabel.setBounds(0, 0, backgroundIcon.getIconWidth(),
         backgroundIcon.getIconHeight());
     this.add(backgroundLabel, 0);
+    validate();
   }
 
   @Override

@@ -24,11 +24,13 @@ package org.xmlvm.demo.java.photovm.data;
  * Data about a Picasa we album entry.
  * 
  * @author haeberling@google.com (Sascha Haeberling)
- *
+ * 
  */
 public class Album {
   private String title;
   private String coverUrl;
+  private int coverWidth;
+  private int coverHeight;
   private String photoRequestUrl;
 
   public String getTitle() {
@@ -53,5 +55,21 @@ public class Album {
 
   public void setPhotoRequestUrl(String photoRequestUrl) {
     this.photoRequestUrl = photoRequestUrl;
+  }
+
+  public int getCoverHeight() {
+    return coverHeight;
+  }
+
+  public void setCoverHeight(String coverHeight) {
+    this.coverHeight = Integer.parseInt(coverHeight);
+  }
+
+  public int getCoverWidth() {
+    return coverWidth;
+  }
+
+  public void setCoverWidth(String coverWidth) {
+    this.coverWidth = Integer.parseInt(coverWidth);
   }
 }

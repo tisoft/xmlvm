@@ -109,6 +109,8 @@ public class PicasaRequest {
     result.setCoverUrl(thumbnail.getAttributeValue("url"));
     List<Element> links = album.getChildren("link", ATOM_NAMESPACE);
     result.setPhotoRequestUrl(links.get(0).getAttributeValue("href"));
+    result.setCoverWidth(thumbnail.getAttributeValue("width"));
+    result.setCoverHeight(thumbnail.getAttributeValue("height"));
     return result;
   }
 
