@@ -41,7 +41,7 @@ import java.util.List;
 /**
  * This panel shows a list of all albums available. When clicking on an entry, a
  * request is made and the listener will be given the resulting photos from that
- * requestt.
+ * request.
  * 
  * @author haeberling@google.com (Sascha Haeberling)
  */
@@ -61,7 +61,8 @@ public class AlbumListPanel extends ScrollPane implements UpdateAlbumsListener {
       contentPanel.add(new AlbumEntry(album));
     }
     add(contentPanel);
-    
+    doLayout();
+    validate();
   }
 
   /**

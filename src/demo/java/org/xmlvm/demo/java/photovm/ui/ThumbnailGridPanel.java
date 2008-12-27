@@ -83,6 +83,6 @@ public class ThumbnailGridPanel extends ScrollPane implements UpdatePhotosListen
     }
     contentWrapperPanel.add(contentPanel, BorderLayout.NORTH);
     doLayout();
-    contentPanel.repaint();
+    validate();
   }
 }
