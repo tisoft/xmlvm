@@ -76,8 +76,8 @@ public class XmlvmBuilder {
    * The absolute path to the script that is used to create the qooxdoo
    * application skeleton.
    */
-  public static final String QX_CREATOR_SCRIPT = QX_PATH
-      + "/tool/bin/create-application.py";
+  public static final String QX_CREATOR_SCRIPT =
+      QX_PATH + "/tool/bin/create-application.py";
   /**
    * The name of the temporary qooxdoo app that is used during the process.
    */
@@ -86,8 +86,8 @@ public class XmlvmBuilder {
    * The path to the XMLVM emulation library.
    */
   public static final String JS_EMULATION_LIB_PATH = "./src/xmlvm2js";
-  public static final String APPLICATION_JS_PATH = JS_EMULATION_LIB_PATH
-      + "/Application.js.template";
+  public static final String APPLICATION_JS_PATH =
+      JS_EMULATION_LIB_PATH + "/Application.js.template";
 
   protected String applicationName;
   // protected String indexFileName;
@@ -103,7 +103,8 @@ public class XmlvmBuilder {
   protected String tempDestination;
   protected List<LocationEntry> javaClasspaths = new ArrayList<LocationEntry>();
   protected List<LocationEntry> exePaths = new ArrayList<LocationEntry>();
-  protected List<LocationEntry> javaScriptResources = new ArrayList<LocationEntry>();
+  protected List<LocationEntry> javaScriptResources =
+      new ArrayList<LocationEntry>();
   protected List<LocationEntry> resources = new ArrayList<LocationEntry>();
   protected String mainMethod;
 
@@ -162,8 +163,8 @@ public class XmlvmBuilder {
   private void newBuild() throws XmlvmBuilderException {
     // This is the path, where the source for the temporary qooxdoo project will
     // be allocated.
-    String tempQxSourcePath = tempDestination + "/" + QX_TEMP_APP_NAME
-        + "/source/class";
+    String tempQxSourcePath =
+        tempDestination + "/" + QX_TEMP_APP_NAME + "/source/class";
     // STEP 0: Sanity checks the environment.
     System.out.println("Sanity checks ... ");
     peformSanityChecks();
@@ -196,7 +197,7 @@ public class XmlvmBuilder {
     System.out.println("> STEP 4/7: Copying compatibility library ...");
     // The path where qooxdoo expects all source to be in the temporary project.
     prepareJsEmulationLibrary(new File(JS_EMULATION_LIB_PATH), new File(
-            tempQxSourcePath));
+        tempQxSourcePath));
 
     // STEP 5: Replace generated Application.js with our own, which will execute
     // the main method to start the application.
@@ -222,10 +223,10 @@ public class XmlvmBuilder {
     String applicationJs = readFileAsString(new File(APPLICATION_JS_PATH));
 
     // We replace the variables in the template with the requires values.
-    applicationJs = applicationJs.replace("{{XMLVM_TEMP_PROJECT_NAME}}",
-        QX_TEMP_APP_NAME);
-    applicationJs = applicationJs.replace("{{XMLVM_MAIN_METHOD_CALL}}",
-        generateMainCall());
+    applicationJs =
+        applicationJs.replace("{{XMLVM_TEMP_PROJECT_NAME}}", QX_TEMP_APP_NAME);
+    applicationJs =
+        applicationJs.replace("{{XMLVM_MAIN_METHOD_CALL}}", generateMainCall());
     String filename = jsClassPath + "/" + QX_TEMP_APP_NAME + "/Application.js";
     try {
       FileWriter writer = new FileWriter(filename);
@@ -261,8 +262,9 @@ public class XmlvmBuilder {
     String buildType = qxSourceBuild ? " source" : " build";
     System.out.println("QX '" + buildType + " '");
     try {
-      Process process = createPythonProcess(tempDestination + "/"
-          + QX_TEMP_APP_NAME + "/" + QX_GENERATOR_SCRIPT_NAME + buildType);
+      Process process =
+          createPythonProcess(tempDestination + "/" + QX_TEMP_APP_NAME + "/"
+              + QX_GENERATOR_SCRIPT_NAME + buildType);
       printOutputOfProcess(process, "GENERATOR");
       int exitCode = process.waitFor();
       if (exitCode != 0) {
@@ -296,12 +298,9 @@ public class XmlvmBuilder {
    * found, rename file to match to internal class-name (required by qooxdoo),
    * and copy files into destination directory.
    * 
-   * @param absoluteBasePath
-   *          The root of the emulation library.
-   * @param basePath
-   *          The path where to search for JS files.
-   * @param destination
-   *          The path where the renamed JS files should be copied to.
+   * @param absoluteBasePath The root of the emulation library.
+   * @param basePath The path where to search for JS files.
+   * @param destination The path where the renamed JS files should be copied to.
    */
   private void renameAndCopyJsFiles(File absoluteBasePath, File basePath,
       File destination) throws XmlvmBuilderException {
@@ -341,8 +340,9 @@ public class XmlvmBuilder {
   private void renameAndCopyJsFile(File absoluteBasePath, File jsFile,
       File destination) throws XmlvmBuilderException {
     // +1 to remove trailing slash.
-    String cutPath = jsFile.getAbsolutePath().substring(
-        (int) absoluteBasePath.getAbsolutePath().length() + 1);
+    String cutPath =
+        jsFile.getAbsolutePath().substring(
+            (int) absoluteBasePath.getAbsolutePath().length() + 1);
     String outputFileName = cutPath.replace(File.separatorChar, '_');
     try {
       UtilCopy uc = new UtilCopy();
@@ -395,8 +395,9 @@ public class XmlvmBuilder {
     // If the destination directory exists and has content, we check whether
     // there is already a valid QX project. If not, something is wrong.
     if (isDestinationNotEmpty()) {
-      String generateScript = tempDestination + "/" + QX_TEMP_APP_NAME + "/"
-          + QX_GENERATOR_SCRIPT_NAME;
+      String generateScript =
+          tempDestination + "/" + QX_TEMP_APP_NAME + "/"
+              + QX_GENERATOR_SCRIPT_NAME;
       File generateScriptFile = new File(generateScript);
       if (!generateScriptFile.isFile()) {
         throw new XmlvmBuilderException(
@@ -414,8 +415,8 @@ public class XmlvmBuilder {
     try {
       Process process;
       process = Runtime.getRuntime().exec("python --version");
-      BufferedReader input = new BufferedReader(new InputStreamReader(process
-          .getErrorStream()));
+      BufferedReader input =
+          new BufferedReader(new InputStreamReader(process.getErrorStream()));
       line = input.readLine();
       process.destroy();
     } catch (IOException e) {
@@ -436,8 +437,9 @@ public class XmlvmBuilder {
    */
   private void initQxSkeleton() throws XmlvmBuilderException {
     try {
-      Process process = createPythonProcess(QX_CREATOR_SCRIPT + " --name "
-          + QX_TEMP_APP_NAME + " --out " + tempDestination);
+      Process process =
+          createPythonProcess(QX_CREATOR_SCRIPT + " --name " + QX_TEMP_APP_NAME
+              + " --out " + tempDestination);
       printOutputOfProcess(process, "CREATOR");
       int exitCode = process.waitFor();
       if (exitCode != 0) {
@@ -454,8 +456,7 @@ public class XmlvmBuilder {
   /**
    * Creates a Python process.
    * 
-   * @param Arguments
-   *          arguments to the python process.
+   * @param Arguments arguments to the python process.
    * @return A process object to monitor.
    * @throws IOException
    */
@@ -468,19 +469,18 @@ public class XmlvmBuilder {
    * Takes a process and reads it output till the end. The output is prefixed
    * with the given line prefix.
    * 
-   * @param process
-   *          The process to take the output from.
-   * @param linePrefix
-   *          The line prefix to mark the output.
+   * @param process The process to take the output from.
+   * @param linePrefix The line prefix to mark the output.
    * @throws IOException
    */
   private static void printOutputOfProcess(final Process process,
       final String linePrefix) throws IOException {
 
-    InpuReaderThread inputThread = new InpuReaderThread(process
-        .getInputStream(), System.out, linePrefix);
-    InpuReaderThread errorThread = new InpuReaderThread(process
-        .getErrorStream(), System.err, "(ERROR) " + linePrefix);
+    InpuReaderThread inputThread =
+        new InpuReaderThread(process.getInputStream(), System.out, linePrefix);
+    InpuReaderThread errorThread =
+        new InpuReaderThread(process.getErrorStream(), System.err, "(ERROR) "
+            + linePrefix);
     inputThread.start();
     errorThread.start();
   }
@@ -491,10 +491,8 @@ public class XmlvmBuilder {
    * 
    * This uses Main to filter files and translate them.
    * 
-   * @param locations
-   *          Directories in which the source files are found.
-   * @param filePattern
-   *          The pattern of the files to be translated.
+   * @param locations Directories in which the source files are found.
+   * @param filePattern The pattern of the files to be translated.
    * @throws XmlvmBuilderException
    */
   private void compileToJS(List<LocationEntry> locations, String filePattern,
@@ -510,8 +508,9 @@ public class XmlvmBuilder {
         }
         // Build main arguments for compiling all files with given pattern in
         // the given locations to JavaScript.
-        String mainArgs[] = { "--js", "--out=" + compileDestination,
-            "--file=" + loc.getLocation() + filePattern };
+        String mainArgs[] =
+            {"--js", "--out=" + compileDestination,
+                loc.getLocation() + filePattern};
         System.out.print("Exec: ");
         for (String i : mainArgs) {
           System.out.print(i + " ");
@@ -539,7 +538,7 @@ public class XmlvmBuilder {
   private void prepareDestination() throws XmlvmBuilderException {
     // Create destination and temporary destination directories, if they do not
     // already exist. If they do exist, remove their contents.
-    for (String directory : new String[] { destination, tempDestination }) {
+    for (String directory : new String[] {destination, tempDestination}) {
       File dir = new File(directory);
       if (dir.exists()) {
         if (!deleteDirectory(dir)) {
@@ -577,8 +576,8 @@ public class XmlvmBuilder {
       if (loc.getType().equals("dir")) {
         if (!loc.getLocation().endsWith(File.separator))
           loc.setLocation(loc.getLocation() + File.separator);
-        String mainArgs[] = { "--js", "--out=" + destinationDir,
-            loc.getLocation() + "*.class" };
+        String mainArgs[] =
+            {"--js", "--out=" + destinationDir, loc.getLocation() + "*.class"};
         System.out.print("Exec: ");
         for (String i : mainArgs) {
           System.out.print(i + " ");
@@ -602,8 +601,8 @@ public class XmlvmBuilder {
       if (loc.getType().equals("dir")) {
         if (!loc.getLocation().endsWith(File.separator))
           loc.setLocation(loc.getLocation() + File.separator);
-        String mainArgs[] = { "--js", "--out=" + destinationDir,
-            loc.getLocation() + "*.exe" };
+        String mainArgs[] =
+            {"--js", "--out=" + destinationDir, loc.getLocation() + "*.exe"};
 
         System.out.print("Exec: ");
         for (String i : mainArgs) {
@@ -674,8 +673,7 @@ public class XmlvmBuilder {
      * 
      * System.out.println( userFile.getClassName() + " Depends on library");
      * 
-     * for(String s : userFile.getAllDependencies()) { System.out.println(s); }
-     * }
+     * for(String s : userFile.getAllDependencies()) { System.out.println(s); } }
      */
 
     // Find what set of the library we need to add
@@ -943,8 +941,7 @@ public class XmlvmBuilder {
   static private boolean copyDirectory(String from, String to) {
     UtilCopy uc = new UtilCopy();
     try {
-      if (!to.endsWith(File.separator))
-        to += File.separator;
+      if (!to.endsWith(File.separator)) to += File.separator;
       uc.xCopy(to + (new File(from)).getName(), from);
       return true;
     } catch (FileNotFoundException e) {
@@ -959,12 +956,10 @@ public class XmlvmBuilder {
   static private boolean copyFile(String from, String to) {
     UtilCopy uc = new UtilCopy();
     File f = new File(from);
-    if (!f.isFile())
-      return false;
+    if (!f.isFile()) return false;
 
     String fileName = f.getName();
-    if (!to.endsWith(File.separator))
-      to += File.separator;
+    if (!to.endsWith(File.separator)) to += File.separator;
 
     try {
       uc.binCopy(to + fileName, from);
@@ -1143,10 +1138,12 @@ public class XmlvmBuilder {
 
       // Check if we find a class definition within the file
       if ((classDefinePosition = fileContent.indexOf(QX_CLASS_DEFINE)) != -1) {
-        int defineEnd = fileContent.indexOf("\"", classDefinePosition
-            + QX_CLASS_DEFINE.length() + 1);
-        this.className = fileContent.substring(classDefinePosition
-            + QX_CLASS_DEFINE.length(), defineEnd);
+        int defineEnd =
+            fileContent.indexOf("\"", classDefinePosition
+                + QX_CLASS_DEFINE.length() + 1);
+        this.className =
+            fileContent.substring(classDefinePosition
+                + QX_CLASS_DEFINE.length(), defineEnd);
       } else {
         // If there is no class definition, we don't have a qooxdoo
         // class in this file
@@ -1154,8 +1151,9 @@ public class XmlvmBuilder {
         return;
       }
       HashSet<String> depends = new HashSet<String>();
-      Matcher m = Pattern.compile(".*checkClass\\(\\\"(.*)\\\"\\)").matcher(
-          fileContent);
+      Matcher m =
+          Pattern.compile(".*checkClass\\(\\\"(.*)\\\"\\)")
+              .matcher(fileContent);
       while (m.find()) {
         if (m.start(0) > classDefinePosition) {
           if (!depends.contains(m.group(1))) {
@@ -1212,6 +1210,7 @@ public class XmlvmBuilder {
   // }
 }
 
+
 class LocationEntry {
   private String type = "dir";
   private String kind;
@@ -1224,8 +1223,7 @@ class LocationEntry {
    * Create a new Location Entry
    * 
    * @param location
-   * @param dir
-   *          true: location points to directory. false to a file
+   * @param dir true: location points to directory. false to a file
    */
   public LocationEntry(String location, boolean dir) {
     this.type = (dir ? "dir" : "file");
@@ -1287,6 +1285,7 @@ class LocationEntry {
   }
 }
 
+
 /**
  * Used to indicates error during the building process.
  * 
@@ -1304,6 +1303,7 @@ class XmlvmBuilderException extends Exception {
 
   private static final long serialVersionUID = 1L;
 }
+
 
 /**
  * Takes the input of an InputStream and writes it to the given output stream.
