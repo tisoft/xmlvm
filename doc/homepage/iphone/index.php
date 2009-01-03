@@ -1,13 +1,10 @@
-<?php<<
-  include("../header.html");
+<?php
+include("../header.html");
 ?>
-<tr>
-  <td>
-    <div id="content_top">
-      <a href="../toolchain">Toolchain</a> | <a href="../frontend">Frontend</a> | <a href="../clr2jvm">CLR to JVM</a> | <a href="../javascript">JavaScript</a> | <b>iPhone/Objective-C</b>
-    </div>
-  </td>
-</tr>
+<?php
+include("../nav.html");
+?>	
+
 <tr>
   <td id="main_content_td">
     <div id="main_content">

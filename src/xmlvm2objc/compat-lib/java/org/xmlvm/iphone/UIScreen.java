@@ -4,7 +4,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.iphone.internal.Simulator;
 
 
-public class UIHardware
+public class UIScreen
 {
 
     public static CGRect fullScreenApplicationContentRect()

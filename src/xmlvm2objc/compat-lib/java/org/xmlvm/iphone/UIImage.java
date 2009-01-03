@@ -2,7 +2,6 @@
 package org.xmlvm.iphone;
 
 import java.awt.Image;
-import java.awt.Toolkit;
 
 import org.xmlvm.iphone.internal.ImageLoader;
 import org.xmlvm.iphone.internal.Simulator;
@@ -26,7 +25,7 @@ public class UIImage
 
     public static UIImage imageAtPath(String filename)
     {
-        return new UIImage("var/iphone" + filename);
+   		return new UIImage(filename);
     }
 
 

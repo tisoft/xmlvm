@@ -15,8 +15,9 @@
      
 <li> <a href="../iphone/demo">iPhone Simulator</a>: a Java-only version of the
      Cocoa library can be run as a Java applet.
-     
+	
 </ul>
+
 
 <?php
   include("../footer.html");

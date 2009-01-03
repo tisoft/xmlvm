@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004-2008 XMLVM --- An XML-based Programming Language
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
  * 
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -15,8 +15,7 @@
  * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
  * Ave, Cambridge, MA 02139, USA.
  * 
- * For more information, visit the XMLVM Home Page at
- * http://www.xmlvm.org
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
 package org.xmlvm;
@@ -37,6 +36,8 @@ public class XmlvmArguments {
   public static final String ARG_CPP = "--cpp";
   public static final String ARG_OBJC = "--objc";
   public static final String ARG_OBJC_HEADER = "--objc-header=";
+  public static final String ARG_IPHONE_APP = "--iphone-app=";
+  public static final String ARG_ANDROID_TO_IPHONE = "--android2iphone=";
   public static final String ARG_PYTHON = "--python";
   public static final String ARG_DFA = "--dfa";
   public static final String ARG_JVM = "--jvm";
@@ -55,6 +56,8 @@ public class XmlvmArguments {
   private boolean option_cpp = false;
   private boolean option_objc = false;
   private String option_objc_header = null;
+  private String option_iphone_app = null;
+  private boolean option_android2iphone = false;
   private boolean option_python = false;
   private boolean option_dfa = false;
   private boolean option_jvm = false;
@@ -71,28 +74,28 @@ public class XmlvmArguments {
   /**
    * Prints usage information and exits the applications.
    * 
-   * @param error
-   *          An additional error message to be printed before the usage table
-   *          is printed.
+   * @param error An additional error message to be printed before the usage
+   *        table is printed.
    */
   private static void usage(String error) {
-    String[] msg = {
-        "Usage: xmlvm [--js|--cpp] [--import] [--recursive] [--console|--out=<file>] --file <inputfile>",
-        "  --js            : Generate JavaScript",
-        "  --cpp           : Generate C++",
-        "  --import        : Generate import list of referenced externals",
-        "  --console       : Output is to be written to the console.",
-        "  --out           : Output directory.",
-        "  --recursive     : Recursivley scan through the referenced externals",
-        "  --file          : Input file",
-        "  <file>          : Byte code to be translated. If <class> ends on '.exe',",
-        "                    the bytecode is assumed to the a .NET executable file",
-        "                    with the same name. If <class> ends on '.class', the",
-        "                    bytecode is assumed to be of JVM format in a file with",
-        "                    the same name. Otherwise, <class> is looked up via CLASSPATH.",
-        "  If neither --js nor --cpp is specified, the output will be XMLVM.",
-        "  If the option --console is not given, the output will be written to a",
-        "  file with the same name as <class> and suffix one of .xmlvm, .js, or .cpp" };
+    String[] msg =
+        {
+            "Usage: xmlvm [--js|--cpp] [--import] [--recursive] [--console|--out=<file>] --file <inputfile>",
+            "  --js            : Generate JavaScript",
+            "  --cpp           : Generate C++",
+            "  --import        : Generate import list of referenced externals",
+            "  --console       : Output is to be written to the console.",
+            "  --out           : Output directory.",
+            "  --recursive     : Recursivley scan through the referenced externals",
+            "  --file          : Input file",
+            "  <file>          : Byte code to be translated. If <class> ends on '.exe',",
+            "                    the bytecode is assumed to the a .NET executable file",
+            "                    with the same name. If <class> ends on '.class', the",
+            "                    bytecode is assumed to be of JVM format in a file with",
+            "                    the same name. Otherwise, <class> is looked up via CLASSPATH.",
+            "  If neither --js nor --cpp is specified, the output will be XMLVM.",
+            "  If the option --console is not given, the output will be written to a",
+            "  file with the same name as <class> and suffix one of .xmlvm, .js, or .cpp"};
 
     System.err.println("Error: " + error);
     for (int i = 0; i < msg.length; i++) {
@@ -115,6 +118,13 @@ public class XmlvmArguments {
         option_objc = true;
       } else if (arg.startsWith(ARG_OBJC_HEADER)) {
         option_objc_header = arg.substring(ARG_OBJC_HEADER.length());
+      } else if (arg.startsWith(ARG_IPHONE_APP)) {
+        option_objc = true;
+        option_iphone_app = arg.substring(ARG_IPHONE_APP.length());
+      } else if (arg.startsWith(ARG_ANDROID_TO_IPHONE)) {
+        option_objc = true;
+        option_iphone_app = arg.substring(ARG_ANDROID_TO_IPHONE.length());
+        option_android2iphone = true;
       } else if (arg.equals(ARG_PYTHON)) {
         option_python = true;
       } else if (arg.equals(ARG_DFA)) {
@@ -148,8 +158,7 @@ public class XmlvmArguments {
     // Sanity check command line arguments
     if (option_js && option_cpp)
       usage("Cannot specify --js and --cpp at the same time");
-    if (option_class == null)
-      usage("No input file specified");
+    if (option_class == null) usage("No input file specified");
     if (option_java && option_console)
       usage("Cannot output class file to console.  Must specify --out=<file>");
   }
@@ -172,6 +181,14 @@ public class XmlvmArguments {
 
   public String option_objc_header() {
     return option_objc_header;
+  }
+
+  public String option_iphone_app() {
+    return option_iphone_app;
+  }
+
+  public boolean option_android2iphone() {
+    return option_android2iphone;
   }
 
   public boolean option_python() {

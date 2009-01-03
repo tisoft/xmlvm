@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004-2008 XMLVM --- An XML-based Programming Language
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
  * 
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -21,26 +21,11 @@
 
 package org.xmlvm;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.StringReader;
-import java.util.List;
-
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
+import edu.arizona.cs.mbel.mbel.ClassParser;
+import edu.arizona.cs.mbel.mbel.Module;
 
 import org.apache.bcel.classfile.JavaClass;
+import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.Namespace;
@@ -52,9 +37,35 @@ import org.jdom.transform.JDOMSource;
 import org.xmlvm.dep.Import;
 import org.xmlvm.dep.Recursion;
 import org.xmlvm.util.FileSet;
+import org.xmlvm.util.JarUtil;
 
-import edu.arizona.cs.mbel.mbel.ClassParser;
-import edu.arizona.cs.mbel.mbel.Module;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.StringReader;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.URIResolver;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 public class Main {
   private JavaClass jvm_class;
@@ -63,18 +74,18 @@ public class Main {
   private boolean _isXMLVM = false;
 
   public Main() {
-      jvm_class = null;
-      cil_class = null;
-      class_name = null;
-      setSaxonEngine();
-    }
+    jvm_class = null;
+    cil_class = null;
+    class_name = null;
+    setSaxonEngine();
+  }
 
   public Main(JavaClass clazz) {
-      jvm_class = clazz;
-      cil_class = null;
-      class_name = null;
-      setSaxonEngine();
-    }
+    jvm_class = clazz;
+    cil_class = null;
+    class_name = null;
+    setSaxonEngine();
+  }
 
   public Main(File inputFile) {
     jvm_class = null;
@@ -90,8 +101,8 @@ public class Main {
         class_name = inputFile.getName();
         class_name = class_name.substring(0, class_name.length() - 4);
       } else if (inputFileName.endsWith(".class")) {
-        org.apache.bcel.classfile.ClassParser parser = new org.apache.bcel.classfile.ClassParser(
-            inputFileName);
+        org.apache.bcel.classfile.ClassParser parser =
+            new org.apache.bcel.classfile.ClassParser(inputFileName);
         jvm_class = parser.parse();
         // new BCELifier(jvm_class, System.out).start();
         // System.exit(0);
@@ -118,9 +129,18 @@ public class Main {
    * Returns an output stream created based on the given options.
    * 
    */
-  public OutputStream getOutputStream(XmlvmArguments args)/*boolean option_console,
-      String option_out, boolean option_js, boolean option_cpp,
-      boolean option_objc, boolean option_python, boolean option_exe*/ {
+  public OutputStream getOutputStream(XmlvmArguments args)/*
+                                                           * boolean
+                                                           * option_console,
+                                                           * String option_out,
+                                                           * boolean option_js,
+                                                           * boolean option_cpp,
+                                                           * boolean
+                                                           * option_objc,
+                                                           * boolean
+                                                           * option_python,
+                                                           * boolean option_exe
+                                                           */{
     OutputStream out = null;
     try {
       if (args.option_console()) {
@@ -137,8 +157,8 @@ public class Main {
         System.out.println("Generate JS " + outputFileName);
       } else {
         int index = class_name.lastIndexOf('.');
-        String path = class_name.substring(0, index + 1).replace('.',
-            File.separatorChar);
+        String path =
+            class_name.substring(0, index + 1).replace('.', File.separatorChar);
         if (args.option_out() != null) {
           path = args.option_out() + File.separatorChar + path;
         }
@@ -148,14 +168,10 @@ public class Main {
           f.mkdirs();
         }
         String suffix = ".xmlvm";
-        if (args.option_js())
-          suffix = ".js";
-        if (args.option_cpp())
-          suffix = ".cpp";
-        if (args.option_objc())
-          suffix = ".m";
-        if (args.option_python())
-          suffix = ".py";
+        if (args.option_js()) suffix = ".js";
+        if (args.option_cpp()) suffix = ".cpp";
+        if (args.option_objc()) suffix = ".m";
+        if (args.option_python()) suffix = ".py";
         out = new FileOutputStream(path + class_name + suffix);
         System.out.println("Generate " + path + class_name + suffix);
       }
@@ -167,8 +183,7 @@ public class Main {
   }
 
   public Document genXMLVM() {
-    if (jvm_class != null)
-      return new ParseJVM(jvm_class).genXMLVM();
+    if (jvm_class != null) return new ParseJVM(jvm_class).genXMLVM();
     return new ParseCIL(cil_class).genXMLVM();
   }
 
@@ -176,10 +191,9 @@ public class Main {
    * Generates a JavaScript file from the given Document. The JavaScript file is
    * created based on the given OutputStream.
    * 
-   * @param doc
-   *          The XML document from which to generate a JavaScript file.
-   * @param out
-   *          The output stream to use for the creation of the JavaScript file.
+   * @param doc The XML document from which to generate a JavaScript file.
+   * @param out The output stream to use for the creation of the JavaScript
+   *        file.
    */
   public void genJS(Document doc, OutputStream out) {
     Document jvmDoc = null;
@@ -195,12 +209,11 @@ public class Main {
       }
     }
     InputStream xslt = this.getClass().getResourceAsStream("/xmlvm2js.xsl");
-    runXSLT(xslt, jvmDoc, out);
+    runXSLT("xmlvm2js.xsl", jvmDoc, out);
   }
 
   public void genCPP(Document doc, OutputStream out) {
-    InputStream xslt = this.getClass().getResourceAsStream("/xmlvm2cpp.xsl");
-    runXSLT(xslt, doc, out, null);
+    runXSLT("xmlvm2cpp.xsl", doc, out, null);
   }
 
   public void genObjC(Document doc, String path, String headerFileName,
@@ -208,31 +221,57 @@ public class Main {
     try {
       // The filename will be the name of the first class
       Namespace nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
-      String className = doc.getRootElement().getChild("class", nsXMLVM)
-          .getAttributeValue("name");
+      String namespaceName =
+          doc.getRootElement().getChild("class", nsXMLVM).getAttributeValue(
+              "package");
+      String inheritsFrom =
+          doc.getRootElement().getChild("class", nsXMLVM).getAttributeValue(
+              "extends").replace('.', '_');
+      String className =
+          doc.getRootElement().getChild("class", nsXMLVM).getAttributeValue(
+              "name").replace('$', '_');
       if (headerFileName == null)
-        headerFileName = className + ".h";
-      String final_path = path + File.separatorChar + className;
+        headerFileName =
+            (namespaceName + "." + className).replace('.', '_') + ".h";
+      String final_path =
+          path + File.separatorChar
+              + (namespaceName + "." + className).replace('.', '_');
       OutputStream header;
-      header = option_console ? System.out : new FileOutputStream(final_path
-          + ".h");
-      System.out.println("Creating Objective-C header: " + final_path + ".h");
-      InputStream xslt = this.getClass().getResourceAsStream("/xmlvm2objc.xsl");
-      runXSLT(xslt, doc, header, new String[][] { { "pass", "emitHeader" },
-          { "header", headerFileName } });
-      if (!option_console)
-        header.close();
-      OutputStream impl = option_console ? System.out : new FileOutputStream(
-          final_path + ".m");
-      System.out.println("Creating Objective-C implementation: " + final_path
-          + ".m");
-      xslt = this.getClass().getResourceAsStream("/xmlvm2objc.xsl");
-      if (headerFileName == null)
-        headerFileName = className + ".h";
-      runXSLT(xslt, doc, impl, new String[][] {
-          { "pass", "emitImplementation" }, { "header", headerFileName } });
-      if (!option_console)
-        impl.close();
+      header =
+          option_console ? System.out : new FileOutputStream(final_path + ".h");
+
+      PrintStream p = new PrintStream(header);
+      p.println("#import \"xmlvm.h\"");
+      for (String i : getTypesForHeader(doc)) {
+        if (i.equals(inheritsFrom)) {
+          p.println("#import \"" + i + ".h\"");
+        }
+      }
+      p.println();
+      p.println("// For circular include:");
+      p.println();
+      for (String i : getTypesForHeader(doc)) {
+        p.println("@class " + i + ";");
+
+      }
+      p.flush();
+      System.out.println("Create: " + new File(final_path + ".h").getName());
+      runXSLT("xmlvm2objc.xsl", doc, header, new String[][] {
+          {"pass", "emitHeader"}, {"header", headerFileName}});
+      if (!option_console) header.close();
+      OutputStream impl =
+          option_console ? System.out : new FileOutputStream(final_path + ".m");
+
+      p = new PrintStream(impl);
+      for (String i : getTypesForHeader(doc)) {
+        if (!i.equals(inheritsFrom)) {
+          p.println("#import \"" + i + ".h\"");
+        }
+      }
+      System.out.println("Create: " + new File(final_path + ".m").getName());
+      runXSLT("xmlvm2objc.xsl", doc, impl, new String[][] {
+          {"pass", "emitImplementation"}, {"header", headerFileName}});
+      if (!option_console) impl.close();
     } catch (FileNotFoundException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -242,22 +281,55 @@ public class Main {
     }
   }
 
+  private List<String> getTypesForHeader(Document doc) {
+    HashSet<String> seen = new HashSet<String>();
+    Iterator i = doc.getDescendants();
+    while (i.hasNext()) {
+      Object cur = i.next();
+      if (cur instanceof Element) {
+        Attribute a = ((Element) cur).getAttribute("type");
+        if (a != null) {
+          seen.add(a.getValue());
+        }
+        a = ((Element) cur).getAttribute("extends");
+        if (a != null) {
+          seen.add(a.getValue());
+        }
+        a = ((Element) cur).getAttribute("class-type");
+        if (a != null) {
+          seen.add(a.getValue());
+        }
+      } else {
+        System.out.println(cur);
+      }
+    }
+    HashSet<String> bad = new HashSet<String>();
+    for (String t : new String[] {"float", "double", "int", "void", "boolean",
+        "short", "byte", "float", "long"}) {
+      bad.add(t);
+    }
+    List<String> toRet = new ArrayList<String>();
+    for (String t : seen) {
+      if (!bad.contains(t) && t.indexOf("[]") == -1) {
+        toRet.add(t.replace('.', '_').replace('$', '_'));
+      }
+    }
+    return toRet;
+  }
+
   public void genObjC(Document doc, OutputStream out) {
-    InputStream xslt = this.getClass().getResourceAsStream("/xmlvm2objc.xsl");
-    runXSLT(xslt, doc, out);
+    runXSLT("xmlvm2objc.xsl", doc, out);
   }
 
   public void genPython(Document doc, OutputStream out) {
-    InputStream xslt = this.getClass().getResourceAsStream("/xmlvm2py.xsl");
-    runXSLT(xslt, doc, out, null);
+    runXSLT("xmlvm2py.xsl", doc, out, null);
   }
 
   /**
    * Performs a DFA (Data Flow Analysis) of the given XMLVM(CLR) document and
    * returns an XMLVM(CLR-DFA) document.
    * 
-   * @param doc
-   *          An XMLVM(CLR) document.
+   * @param doc An XMLVM(CLR) document.
    * @return An XMLVM(CLR-DFA) document created from the given XMLVM(DFA)
    *         document.
    */
@@ -276,20 +348,24 @@ public class Main {
       stageTwoResourceName = "stageTwo4avm.xsl";
     }
     System.out.println("Preparing dfa...");
-    Transformer stage1 = transFactory.newTransformer(myResolver.resolve(
-        stageOneResourceName, ""));
+    Transformer stage1 =
+        transFactory.newTransformer(myResolver
+            .resolve(stageOneResourceName, ""));
 
     stage1.transform(in, out);
-    in = iterateTransform(new JDOMSource(out.getDocument()), myResolver,
-        transFactory);
+    in =
+        iterateTransform(new JDOMSource(out.getDocument()), myResolver,
+            transFactory);
 
     System.out.println("Preparing boxing...");
-    Transformer stage2 = transFactory.newTransformer(myResolver.resolve(
-        stageTwoResourceName, ""));
+    Transformer stage2 =
+        transFactory.newTransformer(myResolver
+            .resolve(stageTwoResourceName, ""));
 
     stage2.transform(in, out);
-    in = iterateTransform(new JDOMSource(out.getDocument()), myResolver,
-        transFactory);
+    in =
+        iterateTransform(new JDOMSource(out.getDocument()), myResolver,
+            transFactory);
     return in.getDocument();
 
     // TODO: Eventually this pipeline path will only go through
@@ -316,8 +392,8 @@ public class Main {
       iterateFileName = "iterateUntilNoChange4avm.xsl";
     }
 
-    Transformer iter = transFactory.newTransformer(myResolver.resolve(
-        iterateFileName, ""));
+    Transformer iter =
+        transFactory.newTransformer(myResolver.resolve(iterateFileName, ""));
 
     System.out.println("Applying transform until no change");
     int x = 0;
@@ -345,11 +421,11 @@ public class Main {
    * use. The streams come out of java resources (eg things in jars) rather than
    * off the file system.
    */
-  class CustomUriResolver implements javax.xml.transform.URIResolver {
+  class CustomUriResolver implements URIResolver {
     public Source resolve(String href, String base) throws TransformerException {
       // System.out.println("href " + href + " base " + base);
-      StreamSource ss = new StreamSource(this.getClass().getResourceAsStream(
-          "/" + href));
+      StreamSource ss =
+          new StreamSource(this.getClass().getResourceAsStream("/" + href));
       return ss;
     }
   }
@@ -357,27 +433,22 @@ public class Main {
   /**
    * Returns an XMLVM(JVM) document based on the given XMLVM(CLR).
    * 
-   * @param doc
-   *          An XMLVM(CLR) document.
+   * @param doc An XMLVM(CLR) document.
    * @return An XMLVM(JVM) document created from the given XMLVM(CLR) document.
    */
   public Document genJVM(Document doc) {
     Document jvmDoc = null;
     try {
       Document dfaDoc = genDFA(doc);
-
       // TODO: Eventually this pipeline path will only go through
       // the avm2jvm xslt documents. Adjust build.xml so that
       // only avm2jvm is used (not clr2jvm)
       // Then the resourceName should always be "/avm2jvm.xsl"
-      String resourceName = "/clr2jvm.xsl";
-
+      String resourceName = "clr2jvm.xsl";
       if (_isXMLVM) {
-        resourceName = "/avm2jvm.xsl";
+        resourceName = "avm2jvm.xsl";
       }
-
-      InputStream xsltJVM = this.getClass().getResourceAsStream(resourceName);
-      jvmDoc = runXSLT(xsltJVM, dfaDoc);
+      jvmDoc = runXSLT(resourceName, dfaDoc);
     } catch (Exception ex) {
       System.err.println(ex);
       System.exit(-1);
@@ -388,24 +459,19 @@ public class Main {
   /**
    * Returns an XMLVM(CLR) document based on the given XMLVM(JVM).
    * 
-   * @param doc
-   *          An XMLVM(JVM) document.
+   * @param doc An XMLVM(JVM) document.
    * @return An XMLVM(CLR) document created from the given XMLVM(JVM) document.
    */
   public Document genCLR(Document doc) {
     Document clrDoc = null;
     Document clrAPIDoc = null;
-
     try {
-      InputStream xslt = this.getClass().getResourceAsStream("/jvm2clr.xsl");
-      clrDoc = runXSLT(xslt, doc);
-      xslt = this.getClass().getResourceAsStream("/clr-api.xsl");
-      clrAPIDoc = runXSLT(xslt, clrDoc);
+      clrDoc = runXSLT("jvm2clr.xsl", doc);
+      clrAPIDoc = runXSLT("clr-api.xsl", clrDoc);
     } catch (Exception ex) {
       System.err.println(ex);
       System.exit(-1);
     }
-
     return clrAPIDoc;
   }
 
@@ -421,7 +487,6 @@ public class Main {
 
   public Document genAPI(Document doc) {
     Document apiDoc = null;
-
     try {
       Document jvmDoc = genJVM(doc);
 
@@ -430,13 +495,12 @@ public class Main {
       // only avm2jvm is used (not clr2jvm)
       // Then the resourceName should always be "/api.xsl"
       // The file in src/avm2jvm/api4avm.xsl should be renamed to api.xsl
-      String resourceName = "/api.xsl";
+      String resourceName = "api.xsl";
 
       if (_isXMLVM) {
-        resourceName = "/api4avm.xsl";
+        resourceName = "api4avm.xsl";
       }
-      InputStream xsltJVM = this.getClass().getResourceAsStream(resourceName);
-      apiDoc = runXSLT(xsltJVM, jvmDoc);
+      apiDoc = runXSLT(resourceName, jvmDoc);
     } catch (Exception ex) {
       System.err.println(ex);
       System.exit(-1);
@@ -448,10 +512,9 @@ public class Main {
    * Generates Java class files based on the given XMLVM(CLR) document. The root
    * for the generated class files is determined by the given string path.
    * 
-   * @param doc
-   *          An XMLVM(CLR) document.
-   * @param path
-   *          The root path for the Java class files. Can be the empty string.
+   * @param doc An XMLVM(CLR) document.
+   * @param path The root path for the Java class files. Can be the empty
+   *        string.
    */
   public void genJava(Document doc, String path) {
     try {
@@ -466,12 +529,10 @@ public class Main {
   /**
    * Generates an XML document.
    * 
-   * @param doc
-   *          A jdom document from which we want to output an actual XML
-   *          document.
-   * @param out
-   *          The output stream specifying the location of the generated XML
-   *          document.
+   * @param doc A jdom document from which we want to output an actual XML
+   *        document.
+   * @param out The output stream specifying the location of the generated XML
+   *        document.
    */
   public void genXML(Document doc, OutputStream out) {
     try {
@@ -482,12 +543,18 @@ public class Main {
     }
   }
 
-  private void runXSLT(InputStream xsltFile, Document doc, OutputStream out) {
-    runXSLT(xsltFile, doc, out, null);
+  private void runXSLT(String xsltFileName, Document doc, OutputStream out) {
+    runXSLT(xsltFileName, doc, out, null);
   }
 
-  private void runXSLT(InputStream xsltFile, Document doc, OutputStream out,
+  private void runXSLT(String xsltFileName, Document doc, OutputStream out,
       String[][] xsltParams) {
+    InputStream xsltFile = null;
+    xsltFile = this.getClass().getResourceAsStream("/" + xsltFileName);
+    if (xsltFile == null) {
+      System.out.println("Error could not find: " + xsltFileName);
+      return;
+    }
     try {
       OutputStream xmlvm_out = new ByteArrayOutputStream();
       XMLOutputter outputter = new XMLOutputter();
@@ -516,13 +583,12 @@ public class Main {
    * 'xsltFile' for the transform rules. Returns the resulting transformed
    * document
    * 
-   * @param xsltFile
-   *          The xslt file with rules for the transformation
-   * @param doc
-   *          A document representing an xml file to be transformed
+   * @param xsltFile The xslt file with rules for the transformation
+   * @param doc A document representing an xml file to be transformed
    * @return The resulting transformed document.
    */
-  private Document runXSLT(InputStream xsltFile, Document doc) {
+  private Document runXSLT(String xsltFileName, Document doc) {
+    InputStream xsltFile = this.getClass().getResourceAsStream(xsltFileName);
     Document returnDoc = null;
     try {
       JDOMResult out = new JDOMResult();
@@ -537,6 +603,50 @@ public class Main {
       ex.printStackTrace(System.err);
     }
     return returnDoc;
+  }
+
+  private static void createXcodeProject(XmlvmArguments args)
+      throws FileNotFoundException, Exception {
+    // Copy compatibility library
+    String to = args.option_out();
+    if (!to.endsWith(File.separator)) to += File.separator;
+    JarUtil.copy("/iphone/compat-lib.jar", to);
+
+    // Check if we need to copy the Android compat libs (--android2iphone)
+    if (args.option_android2iphone()) {
+      JarUtil.copy("/iphone/android-compat-lib.jar", to);
+    }
+    // Create MakeVars
+    Writer makeVars = new BufferedWriter(new FileWriter(to + "MakeVars"));
+    makeVars.write("PRODUCT_NAME=" + args.option_iphone_app() + "\n\n");
+    makeVars.write("SOURCES=");
+    FileSet fs = new FileSet(to + "*.m");
+    for (File f : fs) {
+      makeVars.write(" \\\n" + f.getName());
+    }
+    makeVars.write("\n");
+    makeVars.close();
+
+    // Create Info.plist
+    BufferedReader infoIn = JarUtil.getFile("/iphone/Info.plist");
+    BufferedWriter infoOut =
+        new BufferedWriter(new FileWriter(to + "Info.plist"));
+    String line = null;
+    while ((line = infoIn.readLine()) != null) {
+      line = line.replaceAll("XMLVM_APP", args.option_iphone_app());
+      infoOut.write(line + "\n");
+    }
+    infoIn.close();
+    infoOut.close();
+
+    // Copy Makefile
+    infoIn = JarUtil.getFile("/iphone/Makefile");
+    infoOut = new BufferedWriter(new FileWriter(to + "Makefile"));
+    while ((line = infoIn.readLine()) != null) {
+      infoOut.write(line + "\n");
+    }
+    infoIn.close();
+    infoOut.close();
   }
 
   public static void main(String[] argv) throws Exception {
@@ -585,15 +695,17 @@ public class Main {
         // This chunk of code generates 1 JS file per class so we can maintain 1
         // class per file
         // which makes dependency resolution easier.
-//        out.close(); // Don't use this...
-        List<Element> clazzes = doc.getRootElement().getChildren("class",
-            Namespace.getNamespace("vm", "http://xmlvm.org"));
+        // out.close(); // Don't use this...
+        List<Element> clazzes =
+            doc.getRootElement().getChildren("class",
+                Namespace.getNamespace("vm", "http://xmlvm.org"));
         for (Element clazz : clazzes) {
-          //main.class_name = clazz.getAttributeValue("name");
+          // main.class_name = clazz.getAttributeValue("name");
           out = main.getOutputStream(args);
           Document newDoc = new Document();
-          Element newRoot = new Element(doc.getRootElement().getName(), doc
-              .getRootElement().getNamespace());
+          Element newRoot =
+              new Element(doc.getRootElement().getName(), doc.getRootElement()
+                  .getNamespace());
 
           for (Namespace ns : (List<Namespace>) doc.getRootElement()
               .getAdditionalNamespaces()) {
@@ -611,8 +723,7 @@ public class Main {
         main.genCPP(doc, out);
       } else if (args.option_objc()) {
         String path = "";
-        if (args.option_out() != null)
-          path = args.option_out();
+        if (args.option_out() != null) path = args.option_out();
         main.genObjC(doc, path, args.option_objc_header(), args
             .option_console());
       } else if (args.option_python()) {
@@ -628,8 +739,7 @@ public class Main {
         main.genXML(apiDoc, out);
       } else if (args.option_java()) {
         String path = "";
-        if (args.option_out() != null)
-          path = args.option_out();
+        if (args.option_out() != null) path = args.option_out();
         main.genJava(doc, path);
       } else if (args.option_clr()) {
         Document clrDoc = main.genCLR(doc);

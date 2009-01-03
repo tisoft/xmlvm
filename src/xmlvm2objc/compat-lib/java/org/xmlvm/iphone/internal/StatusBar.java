@@ -14,7 +14,7 @@ public class StatusBar
     public StatusBar(CGRect rect)
     {
         super(rect);
-        UIImage image = UIImage.imageAtPath("/statusbar.png");
+        UIImage image = UIImage.imageAtPath("statusbar.png");
         this.setImage(image);
     }
 

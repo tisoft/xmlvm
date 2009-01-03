@@ -1,140 +1,357 @@
+<project name="xmlvm" default="all" basedir=".">
 
-<project name="xmlvm" default="jar" basedir=".">
 
-    <property file="xmlvm.properties" />
-    <property name="debug" value="yes" />
+	<property name="homepage.dir" value="../XML11HomePage" />
+
+	<property name="xmlvm.jar" value="./dist/xmlvm.jar" />
+	<property name="xmlvm.libjars" value="./dist/lib/" />
+	<property name="xmlvm.dist" value="./dist" />
+
+	<property name="xmlvm.demo" value="./dist/demo" />
+
+	<property name="xmlvm.build" value="build/base" />
+	<property name="xmlvm.build.main" value="${xmlvm.build}/main" />
+	<property name="xmlvm.build.lib" value="${xmlvm.build}/lib" />
+	<property name="xmlvm.bin" value="build/bin" />
+
+	<property name="xmlvm.objc-compat-lib" value="build/compat-lib/iphone" />
+	
+	<property name="xmlvm.android-compat-lib" value="build/compat-lib/android" />
+	<property name="xmlvm.android-compat-lib.java" value="${xmlvm.android-compat-lib}/java" />
+	<property name="xmlvm.android-compat-lib.objc" value="${xmlvm.android-compat-lib}/objc" />
+
+	<property name="xmlvm.ifireworks" value="build/ifireworks" />
+	<property name="xmlvm.ihelloworld" value="build/ihelloworld" />
+
+	<property name="xmlvm.afireworks" value="build/androidfireworks" />
+
+
+
+	<property name="debug" value="yes" />
 	<property name="doc.dir" value="doc" />
-    <property name="classes.dir" value="bin" />
-    <property name="classes.awt.dir" value="bin-awt" />
-    <property name="awt.js.dir" value="awt-js" />
-	<property name="tmp.dir" value="${classes.dir}" />
+
+
+	<property name="tmp.dir" value="${xmlvm.main}" />
 	<property name="cscCompiler" value="C:/WINDOWS/Microsoft.NET/Framework/v2.0.50727/csc.exe" />
 
 
-	
-    <path id="classpath.compile">
-        <pathelement location="lib/bcel.jar" />
-        <pathelement location="lib/jdom.jar" />
-        <pathelement location="lib/mbel.jar" />
-    	<pathelement location="lib/yuicompressor-2.1.2.jar" />
-    	<pathelement location="lib/czlUtil.jar" />
-    	<pathelement location="lib/saxon9.jar" />
-    </path>
 
-    <path id="classpath.run">
-        <pathelement location="${classes.dir}" />
-    	<pathelement location="src/xmlvm2js" />
-        <pathelement location="lib/bcel.jar" />
-        <pathelement location="lib/mbel.jar" />
-        <pathelement location="lib/jdom.jar" />
-        <pathelement location="lib/jakarta-regexp.jar" /> 
-    	<pathelement location="lib/saxon9.jar" />
-    	<pathelement location="lib/xercesImpl.jar"/>
-    </path>
+	<target name="all" depends="xmlvmjar,build-objc-compat-lib,build-iphoneDemo">
 
-	<target name="jar" depends="build-xmlvm">
-		<jar destfile="${xmlvm.jar}">
-			<fileset dir="bin" />
-			<!-- fileset dir="${awt.js.dir}" / -->
-			<fileset dir="src/xmlvm2js" />
-			<fileset dir="src/clr2jvm/xsl" />
-			<fileset dir="src/avm2jvm" />
-	    </jar>
+	</target>
+	<path id="classpath.compile">
+		<pathelement location="lib/bcel.jar" />
+		<pathelement location="lib/jdom.jar" />
+		<pathelement location="lib/mbel.jar" />
+		<pathelement location="lib/yuicompressor-2.1.2.jar" />
+		<pathelement location="lib/czlUtil.jar" />
+		<pathelement location="lib/saxon9.jar" />
+	</path>
+
+	<path id="classpath.run">
+		<pathelement location="${xmlvm.bin}" />
+		<pathelement location="src/xmlvm2objc/xsl" />
+		<pathelement location="lib/bcel.jar" />
+		<pathelement location="lib/mbel.jar" />
+		<pathelement location="lib/jdom.jar" />
+		<pathelement location="lib/jakarta-regexp.jar" />
+		<pathelement location="lib/saxon9.jar" />
+		<pathelement location="lib/xercesImpl.jar" />
+	</path>
+
+
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${xmlvm.demo}" />
+		<mkdir dir="${xmlvm.libjars}" />
+		<mkdir dir="${xmlvm.build}" />
+		<mkdir dir="${xmlvm.build.main}" />
+		<mkdir dir="${xmlvm.build.lib}" />
+		<mkdir dir="${xmlvm.bin}" />
+		<mkdir dir="${xmlvm.bin}/iphone" />
 	</target>
 
-    <target name="build-xmlvm">
-        <mkdir dir="${classes.dir}" />
-    	<echo message="Compiling XMLVM"/>
-        <javac srcdir="src/xmlvm"
-               destdir="${classes.dir}"
-               debug="${debug}">
-            <classpath refid="classpath.compile" />
-            <include name="**/*.java" />
-        </javac>
-    	
-    	
-    	  <copy todir="${classes.dir}">
-    		<fileset dir="src/xmlvm2js" />
-    		<fileset dir="src/clr2jvm/xsl" />
-    	  </copy>
-      <copy todir="${classes.dir}/lib">
-  		<fileset dir="lib" />
-   	  </copy>
+	<target name="build-objc-compat-lib" depends="init">
+		<echo message="Generating objc-compat.jar" />
+		<mkdir dir="${xmlvm.objc-compat-lib}" />
+		<javac srcdir="src/xmlvm2objc/compat-lib" destdir="${xmlvm.objc-compat-lib}" debug="${debug}">
+			<classpath refid="classpath.compile" />
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.libjars}/objc-compat.jar">
+			<fileset dir="${xmlvm.objc-compat-lib}" />
+		</jar>
+	</target>
 
-    	
-    	<echo message="Compiling event handler for compat lib"/>
-    	<exec executable="${cscCompiler}">
-    	   <arg value="/out:${tmp.dir}/EventBinaries.exe"/>
-    	   <arg value="/warn:0"/>
-    	   <arg value="/nologo"/>
-    	   <arg value="src\clr2jvm\compat-lib\c_sharp\eventHandler\DummyMain.cs"/>
-    	   <arg value="src\clr2jvm\compat-lib\c_sharp\eventHandler\EventArgs.cs"/>
-    	   <arg value="src\clr2jvm\compat-lib\c_sharp\eventHandler\EventHandler.cs"/>
-    	</exec>
-    	<echo message="Cross compiling event handler for compat lib"/>
-        <java classname="org.xmlvm.Main">
-        	<arg value="--java"/>
-        	<arg value="--out=${classes.dir}"/>
-        	<arg value="${tmp.dir}/EventBinaries.exe" />
-            <classpath refid="classpath.run" />
-        </java>
-    	<echo message="Compiling compat lib"/>
-        <javac srcdir="src/clr2jvm/compat-lib/Java"
-               destdir="${classes.dir}"
-               debug="${debug}">
-            <classpath refid="classpath.compile" />
-            <include name="**/*.java" />
-        </javac>
-	    
-    	<delete file="${tmp.dir}/EventBinaries.exe" />
-        <delete file="${classes.dir}/DummyMain.class" />
-    </target>
+	<target name="build-android-compat-lib" depends="build-objc-compat-lib">
+		<mkdir dir="${xmlvm.android-compat-lib.java}" />
+		<javac srcdir="./src/android2iphone" destdir="${xmlvm.android-compat-lib.java}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.libjars}/android-compat.jar">
+			<fileset dir="${xmlvm.android-compat-lib.java}" />
+		</jar>
+	</target>
 
-    <target name="build-awt">
-    	<mkdir dir="${classes.awt.dir}" />
-        <javac srcdir="src/awt"
-               destdir="${classes.awt.dir}"
-               debug="${debug}">
-            <classpath refid="classpath.compile" />
-            <include name="**/*.java" />
-        </javac>
-    </target>
-	
-    <target name="cross-compile-awt" depends="build-awt">
-        <mkdir dir="${awt.js.dir}" />
-        <java classname="org.xmlvm.Main">
-        	<arg value="--js"/>
-        	<arg value="--out=${awt.js.dir}"/>
-        	<arg value="${classes.awt.dir}/*.class" />
-            <classpath refid="classpath.run" />
-        </java>
-    </target>
+	<target name="cc-android-compat-lib" depends="build-android-compat-lib,build-xmlvm">
+		<mkdir dir="${xmlvm.android-compat-lib.objc}" />
+		<java classname="org.xmlvm.Main">
+			<arg value="--out=${xmlvm.android-compat-lib.objc}" />
+			<arg value="--objc" />
+			<arg value="${xmlvm.android-compat-lib.java}/*.class" />
+			<classpath refid="classpath.run" />
+		</java>
+	</target>
 
-    <target name="clean" description="Remove all build files">
-        <delete dir="${classes.dir}" />
-        <delete dir="${classes.awt.dir}" />
-        <delete dir="${awt.js.dir}" />
-        <delete dir="tmp" />
-    </target>
+	<target name="build-xmlvm" depends="init">
+		<mkdir dir="${xmlvm.build.main}" />
+		<echo message="Compiling XMLVM" />
+		<javac srcdir="src/xmlvm" destdir="${xmlvm.bin}" debug="${debug}">
+			<classpath refid="classpath.compile" />
+			<include name="**/*.java" />
+		</javac>
+	</target>
 
-	<target name="homepage"
-		    depends="_createDirTree"
-			description="Copies all document files from the XMLVM source tree to xml11.org/xmlvm homepage">
-		
-		<copy todir="${homepage.dir}/htdocs/xmlvm">
-			<fileset dir="${doc.dir}/homepage">
-				<exclude name="**/CVS/*"/>
+	<target name="xmlvmjar" depends="cc-android-compat-lib">
+
+		<copy todir="${xmlvm.build.lib}">
+			<fileset dir="lib">
+				<include name="**/*.jar/" />
+				<exclude name="one-jar-boot.jar" />
 			</fileset>
 		</copy>
-		
+
+		<unjar src="lib/one-jar-boot.jar" dest="${xmlvm.build}">
+			<patternset>
+				<include name="**/*.class" />
+				<exclude name="OneJar.class" />
+			</patternset>
+		</unjar>
+
+		<copy todir="${xmlvm.bin}" flatten="true">
+			<fileset dir="src">
+				<include name="**/*.xsl" />
+			</fileset>
+		</copy>
+
+		<jar destfile="${xmlvm.bin}/iphone/compat-lib.jar">
+			<fileset dir="src/xmlvm2objc/compat-lib/objc/" />
+		</jar>
+
+		<jar destfile="${xmlvm.bin}/iphone/android-compat-lib.jar">
+			<fileset dir="${xmlvm.android-compat-lib.objc}" />
+		</jar>
+
+		<copy todir="${xmlvm.bin}/iphone">
+			<fileset file="var/iphone/Makefile" />
+			<fileset file="var/iphone/Info.plist" />
+		</copy>
+
+		<jar destfile="${xmlvm.build.main}/main.jar" basedir="${xmlvm.bin}">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Implementation-Vendor" value="xmlvm.org" />
+				<attribute name="Implementation-Title" value="XMLVM" />
+				<attribute name="Implementation-Version" value="alpha" />
+				<attribute name="Main-Class" value="com.simontuffs.onejar.Boot" />
+				<attribute name="One-Jar-Main-Class" value="org.xmlvm.Main" />
+			</manifest>
+		</jar>
+
+		<jar destfile="${xmlvm.jar}">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Implementation-Vendor" value="xmlvm.org" />
+				<attribute name="Implementation-Title" value="XMLVM" />
+				<attribute name="Implementation-Version" value="alpha" />
+				<attribute name="Main-Class" value="com.simontuffs.onejar.Boot" />
+				<attribute name="One-Jar-Main-Class" value="org.xmlvm.Main" />
+			</manifest>
+			<fileset dir="${xmlvm.build}" />
+		</jar>
 	</target>
-	
+
+
+	<target name="build-iphoneDemo" depends="build-ifireworks,build-ihelloworld,cc-ifireworks,cc-ihelloworld,build-android-compat-lib,cc-android-compat-lib,sim-androidfw-jar,cc-sim-androidfw">
+
+	</target>
+
+	<target name="build-ihelloworld" depends="build-objc-compat-lib">
+		<mkdir dir="${xmlvm.ihelloworld}" />
+		<javac srcdir="src/test/iphone/org/xmlvm/test/iphone/ihelloworld" destdir="${xmlvm.ihelloworld}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<mkdir dir="${xmlvm.demo}/ihelloworld/java"/>
+		<jar destfile="${xmlvm.demo}/ihelloworld/java/ihelloworld.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Implementation-Vendor" value="xmlvm.org" />
+				<attribute name="Main-Class" value="org.xmlvm.test.iphone.ihelloworld.HelloWorld" />
+				<attribute name="Class-Path" value="../../../lib/objc-compat.jar" />
+			</manifest>
+			<fileset dir="${xmlvm.ihelloworld}" />
+			<fileset dir="var/iphone">
+				<include name="*.png/" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="cc-ihelloworld" depends="xmlvmjar">
+		<mkdir dir="${xmlvm.demo}/ihelloworld/iphone/iphone" />
+		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
+			<arg value="--out=${xmlvm.demo}/ihelloworld/iphone" />
+			<arg value="--iphone-app=iHelloWorld" />
+			<arg value="${xmlvm.ihelloworld}/*.class" />
+		</java>
+	</target>
+
+	<target name="build-ifireworks" depends="build-objc-compat-lib">
+		<mkdir dir="${xmlvm.ifireworks}" />
+		<javac srcdir="src/test/iphone/org/xmlvm/test/iphone/ifireworks" destdir="${xmlvm.ifireworks}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<mkdir dir="${xmlvm.demo}/ifireworks/java" />
+		<jar destfile="${xmlvm.demo}/ifireworks/java/ifireworks.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Implementation-Vendor" value="xmlvm.org" />
+				<attribute name="Main-Class" value="org.xmlvm.test.iphone.ifireworks.Main" />
+				<attribute name="Class-Path" value="../../../lib/objc-compat.jar" />
+			</manifest>
+			<fileset dir="${xmlvm.ifireworks}" />
+			<fileset dir="var/iphone">
+				<include name="*.png/" />
+			</fileset>
+			<fileset dir="var/iphone/Applications/iFireworks.app">
+				<include name="*.png" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="cc-ifireworks" depends="xmlvmjar">
+		<mkdir dir="${xmlvm.demo}/ifireworks/iphone" />
+		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
+			<arg value="--out=${xmlvm.demo}/ifireworks/iphone" />
+			<arg value="--iphone-app=iFireworks" />
+			<arg value="${xmlvm.ifireworks}/*.class" />
+		</java>
+
+		<copy todir="${xmlvm.demo}/ifireworks/iphone">
+			<fileset dir="var/iphone/Applications/iFireworks.app">
+				<include name="*.png" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="cc-sim-androidfw" depends="sim-androidfw">
+		<mkdir dir="${xmlvm.demo}/androidfireworks/iphone" />
+
+		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
+			<arg value="--out=${xmlvm.demo}/androidfireworks/iphone" />
+			<arg value="--android2iphone=androidfireworks" />
+			<arg value="${xmlvm.afireworks}/*.class" />
+		</java>
+
+		<copy todir="${xmlvm.demo}/androidfireworks/iphone">
+			<fileset dir="var/iphone">
+				<include name="star*.png/" />
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="sim-androidfw-jar" depends="sim-androidfw">
+		<mkdir dir="${xmlvm.demo}/androidfireworks/" />
+		<copy todir="${xmlvm.demo}/androidfireworks/">
+			<fileset dir="var/iphone">
+				<include name="*.png/" />
+			</fileset>
+		</copy>
+		<jar destfile="${xmlvm.demo}/androidfireworks/androidfireworks.jar">
+			<manifest>
+				<!-- Who is building this jar? -->
+				<attribute name="Built-By" value="${user.name}" />
+				<!-- Information about the program itself -->
+				<attribute name="Implementation-Vendor" value="xmlvm.org" />
+				<attribute name="Main-Class" value="org.xmlvm.AndroidFireworks.AndroidFireworks" />
+				<attribute name="Class-Path" value="../../lib/objc-compat.jar ../../lib/android-compat.jar" />
+			</manifest>
+			<fileset dir="${xmlvm.afireworks}" />
+		</jar>
+	</target>
+
+	<target name="sim-androidfw" depends="build-android-compat-lib">
+		<mkdir dir="${xmlvm.afireworks}" />
+		<javac srcdir="./src/demo/AndroidFireworks" destdir="${xmlvm.afireworks}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+				<pathelement location="${xmlvm.libjars}/android-compat.jar" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+	</target>
+
+	<target name="eventHandlerCompatLib" depends="build-xmlvm">
+		<echo message="Compiling event handler for compat lib" />
+		<exec executable="${cscCompiler}">
+			<arg value="/out:${tmp.dir}/EventBinaries.exe" />
+			<arg value="/warn:0" />
+			<arg value="/nologo" />
+			<arg value="src/clr2jvm/compat-lib/c_sharp/eventHandler/DummyMain.cs" />
+			<arg value="src/clr2jvm/compat-lib/c_sharp/eventHandler/EventArgs.cs" />
+			<arg value="src/clr2jvm/compat-lib/c_sharp/eventHandler/EventHandler.cs" />
+		</exec>
+		<echo message="Cross compiling event handler for compat lib" />
+		<java classname="org.xmlvm.Main">
+			<arg value="--java" />
+			<arg value="--out=${xmlvm.main}" />
+			<arg value="${tmp.dir}/EventBinaries.exe" />
+			<classpath refid="classpath.run" />
+		</java>
+		<echo message="Compiling compat lib" />
+		<javac srcdir="src/clr2jvm/compat-lib/Java" destdir="${xmlvm.main}" debug="${debug}">
+			<classpath refid="classpath.compile" />
+			<include name="**/*.java" />
+		</javac>
+
+		<delete file="${tmp.dir}/EventBinaries.exe" />
+		<delete file="${xmlvm.main}/DummyMain.class" />
+	</target>
+
+
+
+	<target name="clean" description="Remove all build files">
+		<delete dir="dist" />
+		<delete dir="build" />
+	</target>
+
+	<target name="homepage" depends="_createDirTree" description="Copies all document files from the XMLVM source tree to xml11.org/xmlvm homepage">
+
+		<copy todir="${homepage.dir}/htdocs/xmlvm">
+			<fileset dir="${doc.dir}/homepage">
+				<exclude name="**/CVS/*" />
+			</fileset>
+		</copy>
+
+	</target>
+
 	<target name="_createDirTree">
-		<mkdir dir="${homepage.dir}"/>
-		<mkdir dir="${homepage.dir}/htdocs"/>
-		<mkdir dir="${homepage.dir}/htdocs/xmlvm"/>
-		<mkdir dir="${homepage.dir}/htdocs/xmlvm/download"/>
-		<mkdir dir="${homepage.dir}/htdocs/xmlvm/download/dist"/>
+		<mkdir dir="${homepage.dir}" />
+		<mkdir dir="${homepage.dir}/htdocs" />
+		<mkdir dir="${homepage.dir}/htdocs/xmlvm" />
+		<mkdir dir="${homepage.dir}/htdocs/xmlvm/download" />
+		<mkdir dir="${homepage.dir}/htdocs/xmlvm/download/dist" />
 	</target>
 
 </project>

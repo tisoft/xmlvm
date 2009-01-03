@@ -14,6 +14,8 @@
 	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/objc"/>
 	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/java"/>
 	<classpathentry kind="src" path="src/test/iphone"/>
+	<classpathentry kind="src" path="android2iphone"/>
+	<classpathentry kind="src" path="AndroidFireworks"/>
 	<classpathentry kind="lib" path="lib/bcel.jar"/>
 	<classpathentry kind="lib" path="lib/jakarta-regexp.jar"/>
 	<classpathentry kind="lib" path="lib/jdom.jar"/>

@@ -8,13 +8,8 @@ import org.xmlvm.iphone.*;
 public class FireworksView
     extends UIView
 {
-
     Bomb    bombs[];
-
     boolean timerActive;
-
-
-
     FireworksView(CGRect windowRect)
     {
         super(windowRect);

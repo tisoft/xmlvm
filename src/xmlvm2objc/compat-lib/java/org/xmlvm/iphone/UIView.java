@@ -85,6 +85,10 @@ public class UIView
 
 
 
+    public void setNeedsDisplay()
+    {
+    	setNeedsDisplayInRect(getDisplayRect());
+    }
     protected void setNeedsDisplayInRect(CGRect rect)
     {
         CGRect displayRect = getDisplayRect();

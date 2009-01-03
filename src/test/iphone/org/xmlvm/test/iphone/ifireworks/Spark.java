@@ -22,19 +22,19 @@ public class Spark
         double rand = (Math.random() * 4);
         if (rand < 1) {
             image = UIImage
-                    .imageAtPath("/Applications/iFireworks.app/star1.png");
+                    .imageAtPath("star1.png");
         }
         else if (rand < 2) {
             image = UIImage
-                    .imageAtPath("/Applications/iFireworks.app/star2.png");
+                    .imageAtPath("star2.png");
         }
         else if (rand < 3) {
             image = UIImage
-                    .imageAtPath("/Applications/iFireworks.app/star3.png");
+                    .imageAtPath("star3.png");
         }
         else {
             image = UIImage
-                    .imageAtPath("/Applications/iFireworks.app/star4.png");
+                    .imageAtPath("star4.png");
         }
         vx = (float) (Math.random() * Const.MAX2V) - (Const.MAX2V / 2);
         vy = (float) (Math.random() * Const.MAX2V) - (Const.MAX2V / 2);

@@ -91,7 +91,7 @@ public class SimulatorGUI
 
     private void addChassis()
     {
-        Image image = imageLoader.loadImage("var/iphone/chassis.png");
+        Image image = imageLoader.loadImage("chassis.png");
         ImageIcon chassisIcon = new ImageIcon(image);
         JLabel chassis = new JLabel(chassisIcon);
         chassis.setBounds(simulatorPositionX - 35, simulatorPositionY - 110,

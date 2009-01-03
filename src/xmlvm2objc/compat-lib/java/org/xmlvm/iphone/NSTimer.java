@@ -14,6 +14,7 @@ public class NSTimer
     private String method;
     private Object userInfo;
 
+    private boolean repeats;
     private Thread thread;
     private long   milliInterval;
 
@@ -25,6 +26,7 @@ public class NSTimer
         this.target = target;
         this.method = method;
         this.userInfo = userInfo;
+        this.repeats = repeats;
         this.milliInterval = (long) (timerInterval * 1000);
         thread = new Thread(this);
         thread.start();
@@ -43,6 +45,10 @@ public class NSTimer
                 e.printStackTrace();
             }
             timerTick();
+            if(!repeats)
+            {
+            	break;
+            }
         }
     }
 

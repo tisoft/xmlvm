@@ -12,7 +12,10 @@ public class FileImageLoader
 
     public Image loadImage(String imageName)
     {
-        return Toolkit.getDefaultToolkit().getImage(imageName);
+    	Image toRet;
+    	toRet = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/" + imageName));
+    	return toRet;
+    	
     }
 
 }

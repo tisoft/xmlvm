@@ -1,5 +1,5 @@
 
-package org.xmlvm.test.iphone;
+package org.xmlvm.test.iphone.ihelloworld;
 
 import org.xmlvm.iphone.*;
 
@@ -11,7 +11,7 @@ public class HelloWorld
 
     public void applicationDidFinishLaunching(NSNotification aNotification)
     {
-        CGRect rect = UIHardware.fullScreenApplicationContentRect();
+        CGRect rect = UIScreen.fullScreenApplicationContentRect();
 
         /* Initialize the main window */
         UIWindow window = new UIWindow(rect);
@@ -29,6 +29,8 @@ public class HelloWorld
         _title.setText("Hello World!");
         _title.setCentersHorizontally(true);
         mainView.addSubview(_title);
+        
+  
     }
 
 
@@ -42,3 +44,5 @@ public class HelloWorld
     }
 
 }
+
+

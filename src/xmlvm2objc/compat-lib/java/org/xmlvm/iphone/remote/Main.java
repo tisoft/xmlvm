@@ -16,7 +16,7 @@ public class Main
     public void applicationDidFinishLaunching(NSNotification aNotification)
     {
         settings = null;
-        CGRect rect = UIHardware.fullScreenApplicationContentRect();
+        CGRect rect = UIScreen.fullScreenApplicationContentRect();
 
         /* Initialize the main window */
         UIWindow window = new UIWindow(rect);

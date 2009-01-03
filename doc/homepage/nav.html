@@ -1,0 +1,28 @@
+<?php 
+function printLink($dir, $title, $last = false) {
+  if(stripos($_SERVER['REQUEST_URI'], $dir))
+  {
+	  echo("<b>$title</b>");
+  }
+  else
+  {
+    echo("<a href=../$dir>$title</a>");
+  }
+  if(!$last) {
+    echo(" |");
+  }
+}
+?>
+
+<tr>
+  <td>
+    <div id="content_top">
+      <?php printLink("toolchain","Toolchain") ?>
+      <?php printLink("frontend","Frontend") ?>
+      <?php printLink("clr2jvm","CLR to JVM") ?>
+      <?php printLink("javascript","JavaScript") ?>
+      <?php printLink("iphone","iPhone/Objective-C") ?>
+      <?php printLink("android","Android to iPhone", true) ?>
+    </div>
+  </td>
+</tr>
