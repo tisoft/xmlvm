@@ -23,7 +23,7 @@
 	<property name="xmlvm.ifireworks" value="build/ifireworks" />
 	<property name="xmlvm.ihelloworld" value="build/ihelloworld" />
 
-	<property name="xmlvm.afireworks" value="build/androidfireworks" />
+	<property name="xmlvm.afireworks" value="build/afireworks" />
 
 
 
@@ -177,7 +177,7 @@
 	</target>
 
 
-	<target name="build-iphoneDemo" depends="build-ifireworks,build-ihelloworld,cc-ifireworks,cc-ihelloworld,build-android-compat-lib,cc-android-compat-lib,sim-androidfw-jar,cc-sim-androidfw">
+	<target name="build-iphoneDemo" depends="build-ifireworks,build-ihelloworld,cc-ifireworks,cc-ihelloworld,build-android-compat-lib,cc-android-compat-lib,sim-afireworks-jar,cc-sim-afireworks">
 
 	</target>
 
@@ -254,44 +254,7 @@
 		</copy>
 	</target>
 
-	<target name="cc-sim-androidfw" depends="sim-androidfw">
-		<mkdir dir="${xmlvm.demo}/androidfireworks/iphone" />
-
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/androidfireworks/iphone" />
-			<arg value="--android2iphone=androidfireworks" />
-			<arg value="${xmlvm.afireworks}/*.class" />
-		</java>
-
-		<copy todir="${xmlvm.demo}/androidfireworks/iphone">
-			<fileset dir="var/iphone">
-				<include name="star*.png/" />
-			</fileset>
-		</copy>
-
-	</target>
-
-	<target name="sim-androidfw-jar" depends="sim-androidfw">
-		<mkdir dir="${xmlvm.demo}/androidfireworks/" />
-		<copy todir="${xmlvm.demo}/androidfireworks/">
-			<fileset dir="var/iphone">
-				<include name="*.png/" />
-			</fileset>
-		</copy>
-		<jar destfile="${xmlvm.demo}/androidfireworks/androidfireworks.jar">
-			<manifest>
-				<!-- Who is building this jar? -->
-				<attribute name="Built-By" value="${user.name}" />
-				<!-- Information about the program itself -->
-				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.AndroidFireworks.AndroidFireworks" />
-				<attribute name="Class-Path" value="../../lib/objc-compat.jar ../../lib/android-compat.jar" />
-			</manifest>
-			<fileset dir="${xmlvm.afireworks}" />
-		</jar>
-	</target>
-
-	<target name="sim-androidfw" depends="build-android-compat-lib">
+	<target name="sim-afireworks" depends="build-android-compat-lib">
 		<mkdir dir="${xmlvm.afireworks}" />
 		<javac srcdir="./src/demo/AndroidFireworks" destdir="${xmlvm.afireworks}" debug="${debug}">
 			<classpath>
@@ -300,6 +263,40 @@
 			</classpath>
 			<include name="**/*.java" />
 		</javac>
+	</target>
+
+	<target name="sim-afireworks-jar" depends="sim-afireworks">
+		<mkdir dir="${xmlvm.demo}/afireworks/java" />
+		<jar destfile="${xmlvm.demo}/afireworks/java/afireworks.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Implementation-Vendor" value="xmlvm.org" />
+				<attribute name="Main-Class" value="org.xmlvm.AndroidFireworks.AndroidFireworks" />
+				<attribute name="Class-Path" value="../../../lib/objc-compat.jar ../../../lib/android-compat.jar" />
+			</manifest>
+			<fileset dir="${xmlvm.afireworks}" />
+			<fileset dir="var/iphone">
+				<include name="*.png/" />
+			</fileset>
+			<fileset dir="var/iphone/Applications/iFireworks.app">
+				<include name="*.png" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="cc-sim-afireworks" depends="sim-afireworks">
+		<mkdir dir="${xmlvm.demo}/afireworks/iphone" />
+
+		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
+			<arg value="--out=${xmlvm.demo}/afireworks/iphone" />
+			<arg value="--android2iphone=aFireworks" />
+			<arg value="${xmlvm.afireworks}/*.class" />
+		</java>
+		<copy todir="${xmlvm.demo}/aFireworks/iphone">
+			<fileset dir="var/iphone/Applications/iFireworks.app">
+				<include name="*.png" />
+			</fileset>
+		</copy>
 	</target>
 
 	<target name="eventHandlerCompatLib" depends="build-xmlvm">
