@@ -759,5 +759,8 @@ public class Main {
         }
       }
     }
+    if (args.option_iphone_app() != null) {
+      createXcodeProject(args);
+    }
   }
 }

@@ -49,7 +49,7 @@ public class XmlvmArguments {
   public static final String ARG_OUT = "--out=";
   public static final String ARG_IMPORT = "--import";
   public static final String ARG_RECURSIVE = "--recursive";
-  public static final String ARG_FILE = "--file=";
+  //public static final String ARG_FILE = "--file=";
 
   // The parsed values will be stored here.
   private boolean option_js = false;
@@ -147,11 +147,11 @@ public class XmlvmArguments {
         option_import = true;
       } else if (arg.equals(ARG_RECURSIVE)) {
         option_recursive = true;
-      } else if (arg.startsWith(ARG_FILE)) {
-        option_class = arg.substring(ARG_FILE.length());
-      } else {
+      } else if (option_class != null) {
         usage("Unknown parameter: " + arg);
         System.exit(-1);
+      } else {
+    	option_class = arg;
       }
     }
 
