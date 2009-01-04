@@ -15,8 +15,7 @@
  * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
  * Ave, Cambridge, MA 02139, USA.
  * 
- * For more information, visit the XMLVM Home Page at
- * http://www.xmlvm.org
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
 package org.xmlvm;
@@ -33,6 +32,7 @@ package org.xmlvm;
  */
 public class XmlvmBuilderArguments {
   // The arguments that are given by the user on the command line.
+  public static final String ARG_JSBUILD = "--jsbuild";
   public static final String ARG_DESTINATION = "--destination=";
   public static final String ARG_CLASSPATH = "--classpath=";
   public static final String ARG_EXEPATH = "--exepath=";
@@ -54,25 +54,40 @@ public class XmlvmBuilderArguments {
    * Prints out usage information for XmlvmBuilder's parameters and exit the
    * application.
    * 
-   * @param error
-   *          An optional error message that is printed along with the usage
-   *          information.
+   * @param error An optional error message that is printed along with the usage
+   *        information.
    */
   private static void usage(String error) {
     System.err.println(error + '\n');
     // TODO(haeberling): Complete.
-    String[] msg = {
-        "Usage: XmlvmBuilder ..... TODO",
-        "  --destination=        : Destination path",
-        "  --classpath=          : Path where class files are picked up",
-        "  --exepath=            : Path where exe files are picked up",
-        "  --javascriptresource= : TODO                 ",
-        "  --includeresource=    : TODO                 ",
-        "  --main=               : <(package.)ClassName>.[main|Main]",
-        "  --qxsourcebuild       : Creates a 'source' instead of a 'build' package.", };
+    String[] msg =
+        {
+            "Usage: XmlvmBuilder ..... TODO",
+            "  --destination=        : Destination path",
+            "  --classpath=          : Path where class files are picked up",
+            "  --exepath=            : Path where exe files are picked up",
+            "  --javascriptresource= : TODO                 ",
+            "  --includeresource=    : TODO                 ",
+            "  --main=               : <(package.)ClassName>.[main|Main]",
+            "  --qxsourcebuild       : Creates a 'source' instead of a 'build' package.",};
     for (int i = 0; i < msg.length; i++) {
       System.err.println(msg[i]);
     }
+  }
+
+  /**
+   * Returns whether the XmlvmBuilder should be called, based on the arguments
+   * given by the user.
+   * 
+   * @param argv The argument vector.
+   */
+  public static boolean shoulCallXmlvmBuilder(String argv[]) {
+    for (String argument : argv) {
+      if (argument.equals(ARG_JSBUILD)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
@@ -96,6 +111,8 @@ public class XmlvmBuilderArguments {
         option_main = arg.substring(ARG_MAIN.length());
       } else if (arg.startsWith(ARG_QXSOURCEBUILD)) {
         option_qxsourcebuild = true;
+      } else if (arg.startsWith(ARG_JSBUILD)) {
+        // Ignore.
       } else {
         usage("Unknown parameter: " + arg);
         System.exit(-1);

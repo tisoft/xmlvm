@@ -20,12 +20,17 @@
 
 package org.xmlvm;
 
+import com.crazilec.util.UtilCopy;
+import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
+
+import org.mozilla.javascript.ErrorReporter;
+import org.mozilla.javascript.EvaluatorException;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -41,14 +46,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.jdom.Document;
-import org.jdom.input.SAXBuilder;
-import org.mozilla.javascript.ErrorReporter;
-import org.mozilla.javascript.EvaluatorException;
-
-import com.crazilec.util.UtilCopy;
-import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
 
 public class XmlvmBuilder {
   /**
@@ -156,9 +153,8 @@ public class XmlvmBuilder {
   }
 
   /**
-   * A new build that will eventually replace the old one.
+   * A new build method that will eventually replace the old one.
    * 
-   * @return Whether the building process was successful.
    */
   private void newBuild() throws XmlvmBuilderException {
     // This is the path, where the source for the temporary qooxdoo project will
@@ -213,6 +209,9 @@ public class XmlvmBuilder {
     // TODO(haeberling)
   }
 
+  /**
+   * Returns whether the destination directory is not empty.
+   */
   private boolean isDestinationNotEmpty() {
     File outputDir = new File(destination);
     return outputDir.isDirectory() && (outputDir.list().length != 0);
@@ -342,7 +341,7 @@ public class XmlvmBuilder {
     // +1 to remove trailing slash.
     String cutPath =
         jsFile.getAbsolutePath().substring(
-            (int) absoluteBasePath.getAbsolutePath().length() + 1);
+            absoluteBasePath.getAbsolutePath().length() + 1);
     String outputFileName = cutPath.replace(File.separatorChar, '_');
     try {
       UtilCopy uc = new UtilCopy();
@@ -363,6 +362,10 @@ public class XmlvmBuilder {
    */
   private void peformSanityChecks() throws XmlvmBuilderException {
     // Check whether qooxdoo-path exists.
+    if (QX_PATH == null) {
+      throw new XmlvmBuilderException("QX directory is not defined. "
+          + "Please define it using XMLVM_QOOXDOO_PATH");
+    }
     if (!(new File(QX_PATH)).isDirectory()) {
       throw new XmlvmBuilderException("QX directory cannot be found: "
           + QX_PATH);
@@ -456,7 +459,7 @@ public class XmlvmBuilder {
   /**
    * Creates a Python process.
    * 
-   * @param Arguments arguments to the python process.
+   * @param arguments Arguments to the python process.
    * @return A process object to monitor.
    * @throws IOException
    */
@@ -471,15 +474,13 @@ public class XmlvmBuilder {
    * 
    * @param process The process to take the output from.
    * @param linePrefix The line prefix to mark the output.
-   * @throws IOException
    */
   private static void printOutputOfProcess(final Process process,
-      final String linePrefix) throws IOException {
-
-    InpuReaderThread inputThread =
-        new InpuReaderThread(process.getInputStream(), System.out, linePrefix);
-    InpuReaderThread errorThread =
-        new InpuReaderThread(process.getErrorStream(), System.err, "(ERROR) "
+      final String linePrefix) {
+    InputReaderThread inputThread =
+        new InputReaderThread(process.getInputStream(), System.out, linePrefix);
+    InputReaderThread errorThread =
+        new InputReaderThread(process.getErrorStream(), System.err, "(ERROR) "
             + linePrefix);
     inputThread.start();
     errorThread.start();
@@ -875,11 +876,11 @@ public class XmlvmBuilder {
   }
 
   /**
-   * Compresses the given JavaScript code and return the deflated result or
-   * null, if an error occurred
+   * Compresses the given JavaScript code and returns the deflated result or
+   * null, if an error occurred.
    * 
-   * @param code
-   * @return
+   * @param code The JavaScript code to be compressed.
+   * @return The compressed output or null.
    */
   public String compress(String code) {
     Reader in = new StringReader(code);
@@ -1070,29 +1071,27 @@ public class XmlvmBuilder {
   }
 
   /**
-   * Recursively get a list of all JS-Files in the given base path
+   * // * Recursively get a list of all JS-Files in the given base path // * // *
    * 
-   * @param base
-   * @return
+   * @param base // *
+   * @return //
    */
-  private static List<JsFile> getJsFilesRecursive(File base) {
-    List<JsFile> result = new ArrayList<JsFile>();
-    File children[] = base.listFiles();
-    for (File child : children) {
-      if (child.isFile() && child.getName().toLowerCase().endsWith(".js")) {
-        result.add(new JsFile(child));
-      } else if (child.isDirectory()) {
-        result.addAll(getJsFilesRecursive(child));
-      }
-    }
-    return result;
-  }
-
+  // private static List<JsFile> getJsFilesRecursive(File base) {
+  // List<JsFile> result = new ArrayList<JsFile>();
+  // File children[] = base.listFiles();
+  // for (File child : children) {
+  // if (child.isFile() && child.getName().toLowerCase().endsWith(".js")) {
+  // result.add(new JsFile(child));
+  // } else if (child.isDirectory()) {
+  // result.addAll(getJsFilesRecursive(child));
+  // }
+  // }
+  // return result;
+  // }
   /**
    * Get the content of a file.
    * 
    * @param file
-   * @return
    */
   public static String readFileAsString(File file) {
     final int READ_BUFFER = 4096;
@@ -1125,7 +1124,7 @@ public class XmlvmBuilder {
    */
   static class JsFile {
     private static final String QX_CLASS_DEFINE = "qx.Class.define(\"";
-    private static final String CHECKCLASS = "checkClass(\"";
+    // private static final String CHECKCLASS = "checkClass(\"";
     private String className = null;
     private String fileContent;
     private List<String> dependsOnAll = new ArrayList<String>();
@@ -1312,18 +1311,19 @@ class XmlvmBuilderException extends Exception {
  * @author Sascha Haeberling
  * 
  */
-class InpuReaderThread extends Thread {
+class InputReaderThread extends Thread {
   private BufferedReader in;
   private PrintStream out;
   private String prefix;
 
-  public InpuReaderThread(InputStream inputStream, PrintStream outStream,
+  public InputReaderThread(InputStream inputStream, PrintStream outStream,
       String linePrefix) {
     in = new BufferedReader(new InputStreamReader(inputStream));
     out = outStream;
     prefix = linePrefix;
   }
 
+  @Override
   public void run() {
     String line;
     try {
@@ -1334,4 +1334,4 @@ class InpuReaderThread extends Thread {
       e.printStackTrace();
     }
   }
-};
+}

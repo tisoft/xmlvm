@@ -15,8 +15,7 @@
  * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
  * Ave, Cambridge, MA 02139, USA.
  * 
- * For more information, visit the XMLVM Home Page at
- * http://www.xmlvm.org
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
 package org.xmlvm;
@@ -61,7 +60,6 @@ import java.util.List;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.URIResolver;
 import javax.xml.transform.stream.StreamResult;
@@ -283,6 +281,7 @@ public class Main {
 
   private List<String> getTypesForHeader(Document doc) {
     HashSet<String> seen = new HashSet<String>();
+    @SuppressWarnings("unchecked")
     Iterator i = doc.getDescendants();
     while (i.hasNext()) {
       Object cur = i.next();
@@ -422,7 +421,7 @@ public class Main {
    * off the file system.
    */
   class CustomUriResolver implements URIResolver {
-    public Source resolve(String href, String base) throws TransformerException {
+    public Source resolve(String href, String base) {
       // System.out.println("href " + href + " base " + base);
       StreamSource ss =
           new StreamSource(this.getClass().getResourceAsStream("/" + href));
@@ -583,8 +582,8 @@ public class Main {
    * 'xsltFile' for the transform rules. Returns the resulting transformed
    * document
    * 
-   * @param xsltFile The xslt file with rules for the transformation
-   * @param doc A document representing an xml file to be transformed
+   * @param xsltFileName Name of the XSLT file with rules for the transformation
+   * @param doc A document representing an XML file to be transformed
    * @return The resulting transformed document.
    */
   private Document runXSLT(String xsltFileName, Document doc) {
@@ -649,7 +648,16 @@ public class Main {
     infoOut.close();
   }
 
+  @SuppressWarnings("unchecked")
   public static void main(String[] argv) throws Exception {
+    // Based on the arguments we decide, whether the XmlvmBuilder should be
+    // invoked, or Main is used to the process.
+    // (TODO(shaeberling): This will change soon and made more modular and more
+    // flexible.
+    if (XmlvmBuilderArguments.shoulCallXmlvmBuilder(argv)) {
+      XmlvmBuilder.main(argv);
+      return;
+    }
     XmlvmArguments args = new XmlvmArguments(argv);
     if (args.option_class() == null) {
       System.out.println("Opt class : " + args.option_class());
