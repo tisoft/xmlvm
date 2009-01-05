@@ -9,6 +9,8 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
+
+
 public class ImageView extends View {
 
 	public void setImageResource(int resId)
@@ -60,7 +62,20 @@ extends UIImageView
 	{
 		super(windowRect);
 	    
-		_img = UIImage.imageAtPath("star1.png");
+		//TODO A little kludge until Joshua cleans up resource mapping
+		double rand = (Math.random() * 4);
+        if (rand < 1) {
+            _img = UIImage.imageAtPath("star1.png");
+        }
+        else if (rand < 2) {
+            _img = UIImage.imageAtPath("star2.png");
+        }
+        else if (rand < 3) {
+            _img = UIImage.imageAtPath("star3.png");
+        }
+        else {
+            _img = UIImage.imageAtPath("star4.png");
+        }
 		
 	    setImage(_img);
 	}
