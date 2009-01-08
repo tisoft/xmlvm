@@ -23,7 +23,19 @@ package org.xmlvm;
 import edu.arizona.cs.mbel.mbel.ClassParser;
 import edu.arizona.cs.mbel.mbel.Module;
 
+import  org.apache.bcel.Constants;
+
 import org.apache.bcel.classfile.JavaClass;
+import org.apache.bcel.generic.ASTORE;
+import org.apache.bcel.generic.ALOAD;
+import org.apache.bcel.generic.ARETURN;
+import org.apache.bcel.generic.InstructionConstants;
+import org.apache.bcel.generic.InstructionFactory;
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.ClassGen;
+
+import org.apache.bcel.generic.LocalVariableGen;
+
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -56,6 +68,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+
+
 
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
@@ -214,7 +228,7 @@ public class Main {
     runXSLT("xmlvm2cpp.xsl", doc, out, null);
   }
 
-  public void genObjC(Document doc, String path, String headerFileName,
+public void genObjC(Document doc, String path, String headerFileName,
       boolean option_console) {
     try {
       // The filename will be the name of the first class
@@ -266,10 +280,22 @@ public class Main {
           p.println("#import \"" + i + ".h\"");
         }
       }
+
       System.out.println("Create: " + new File(final_path + ".m").getName());
       runXSLT("xmlvm2objc.xsl", doc, impl, new String[][] {
           {"pass", "emitImplementation"}, {"header", headerFileName}});
       if (!option_console) impl.close();
+      
+      
+      if(inheritsFrom.equals("android_app_Activity"))
+      { 	
+      generateIphoneEntryPoint(path, headerFileName, option_console,
+			namespaceName, inheritsFrom, className);
+	  
+      }
+      
+
+      
     } catch (FileNotFoundException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -278,6 +304,82 @@ public class Main {
       e.printStackTrace();
     }
   }
+
+private void generateIphoneEntryPoint(String path, String headerFileName,
+		boolean option_console, String namespaceName, String inheritsFrom,
+		String className){
+		
+	System.out.println("Generating entry point for " + className + " because it inheirts from " + inheritsFrom); 
+  
+
+	  
+	  org.apache.bcel.generic.Type actImpl =
+		  org.apache.bcel.generic.Type.getType("Landroid/app/ActivityImpl;");
+	  
+	  ClassGen entryPoint = new ClassGen("org.xmlvm.IphoneEntry","java.lang.Object","<generated>",
+			  Constants.ACC_PUBLIC | Constants.ACC_SUPER, null);
+	  
+	  ConstantPoolGen cp = entryPoint.getConstantPool(); // cg creates constant pool
+	  org.apache.bcel.generic.InstructionList il = new org.apache.bcel.generic.InstructionList();
+	  
+	  org.apache.bcel.generic.MethodGen mg = new org.apache.bcel.generic.MethodGen(
+			  Constants.ACC_STATIC | Constants.ACC_PUBLIC, // access flags
+			  actImpl,               // return type
+              new org.apache.bcel.generic.Type[] {actImpl},
+              new String[] {"me"}, // arg names
+              "__xmlvm_iphone_entrypoint", "IphoneEntryPoint",    // method, class
+              il, 
+              cp);
+	  
+	  InstructionFactory factory = new InstructionFactory(entryPoint);
+
+	  
+	  String loadClassStr = namespaceName + "." + className;
+	  loadClassStr = "L" + loadClassStr.replace('_', '/') + ";";  
+	  org.apache.bcel.generic.Type loadClass = org.apache.bcel.generic.Type.getType(loadClassStr);
+	  
+	  System.out.println("Load class is " + loadClassStr  + " : " + loadClass.toString());
+	  
+	  
+	 
+	  il.append(factory.createNew(loadClass.toString()));
+	  il.append(InstructionConstants.DUP);
+	  
+	  il.append(factory.createInvoke(loadClass.toString(), "<init>",
+			  org.apache.bcel.generic.Type.VOID, new org.apache.bcel.generic.Type[] {},
+              Constants.INVOKESPECIAL));
+	  
+	  LocalVariableGen lgFw = mg.addLocalVariable("fw", loadClass, null, null);
+	  
+	  int in = lgFw.getIndex();
+	  lgFw.setStart(il.append(new ASTORE(in))); // "lgfw" valid from here
+
+	  il.append(new ALOAD(0));
+	  il.append(factory.createPutStatic("android.app.ActivityImpl", "rootApp", actImpl));
+	  
+	  il.append(new ALOAD(0));
+	  il.append(new ALOAD(in));
+	  
+	  il.append(factory.createPutField("android.app.ActivityImpl", "parent", actImpl));
+
+	  il.append(new ALOAD(in));
+	  il.append(new ALOAD(0));
+	  
+	  il.append(factory.createPutField(loadClass.toString(), "myIphoneWrapper", loadClass));
+	 
+	  il.append(new ALOAD(0));
+	  il.append(new ARETURN());
+	  
+	  
+	  mg.setMaxStack();
+	  entryPoint.addMethod(mg.getMethod());
+	  il.dispose();
+	  entryPoint.addEmptyConstructor(Constants.ACC_PUBLIC);
+	  
+	  Document asXml = new ParseJVM(entryPoint.getJavaClass()).genXMLVM();
+	  
+	  genObjC(asXml,path,headerFileName,option_console);
+}
 
   private List<String> getTypesForHeader(Document doc) {
     HashSet<String> seen = new HashSet<String>();

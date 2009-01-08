@@ -3,6 +3,7 @@ package org.xmlvm.iphone.internal;
 
 import javax.swing.JPanel;
 
+import org.xmlvm.iphone.IAccelerated;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
@@ -102,7 +103,12 @@ public class Simulator
 
     static public void setAccelerated(float xAxis, float yAxis, float zAxis)
     {
-        UIApplication.theApplication.accelerated(xAxis, yAxis, zAxis);
-        simulatorGUI.setAccelerated(xAxis, yAxis, zAxis);
+   
+    	if(UIApplication.theApplication instanceof IAccelerated  )
+    	{
+    	 	IAccelerated accel = (IAccelerated) UIApplication.theApplication;
+        	accel.OnAccelerate(xAxis, yAxis, zAxis);
+        	simulatorGUI.setAccelerated(xAxis, yAxis, zAxis);
+    	}
     }
 }

@@ -28,12 +28,6 @@ public abstract class UIApplication
 
 
 
-    public void accelerated(float xAxis, float yAxis, float zAxis)
-    {
-        // Do nothing
-    }
-
-
 
     protected void setStatusBarModeAndDuration(int mode, int duration)
     {

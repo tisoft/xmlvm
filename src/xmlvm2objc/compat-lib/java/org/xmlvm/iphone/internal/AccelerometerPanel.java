@@ -13,6 +13,7 @@ import javax.swing.JScrollBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import org.xmlvm.iphone.IAccelerated;
 import org.xmlvm.iphone.UIApplication;
 
 
@@ -97,7 +98,11 @@ public class AccelerometerPanel
         float x = computeAcceleratedValue(xAxisControl);
         float y = computeAcceleratedValue(yAxisControl);
         float z = computeAcceleratedValue(zAxisControl);
-        UIApplication.theApplication.accelerated(x, y, z);
+        if(UIApplication.theApplication instanceof IAccelerated)
+        {
+        	IAccelerated accel = (IAccelerated) UIApplication.theApplication;
+        	accel.OnAccelerate(x, y, z);
+        }
     }
 
 
