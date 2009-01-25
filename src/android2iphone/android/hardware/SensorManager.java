@@ -23,13 +23,11 @@ package android.hardware;
 import org.xmlvm.iphone.IAccelerated;
 import org.xmlvm.iphone.UIAccelerometer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SensorManager implements IAccelerated {
   public static final int SENSOR_ACCELEROMETER = 0x00000002;
-  private List<RegisteredListener> listeners =
-      new ArrayList<RegisteredListener>();
+  // TODO: support list on iPhone
+  private RegisteredListener[] listeners = new RegisteredListener[20];
+  int numListeners;
 
   private UIAccelerometer accel;
 
@@ -40,11 +38,13 @@ public class SensorManager implements IAccelerated {
   }
 
   public void registerListener(SensorListener listener, int sensors) {
-    listeners.add(new RegisteredListener(listener, sensors));
+	  listeners[numListeners++] = new RegisteredListener(listener, sensors); 
   }
 
   public void OnAccelerate(float x, float y, float z) {
-    for (RegisteredListener listener : listeners) {
+  	for(int i=0; i<numListeners; i++)
+  	{
+  		RegisteredListener listener = listeners[i];
       if ((listener.sensors & SENSOR_ACCELEROMETER) != 0) {
         // For some reason Android (HTC Dream) gives the values twice in a
         // 6-element array.
@@ -55,13 +55,14 @@ public class SensorManager implements IAccelerated {
     }
   }
 
-  class RegisteredListener {
-    SensorListener listener = null;
-    int sensors = 0;
+}
 
-    public RegisteredListener(SensorListener listener, int sensors) {
-      this.listener = listener;
-      this.sensors = sensors;
-    }
+class RegisteredListener {
+  SensorListener listener = null;
+  int sensors = 0;
+
+  public RegisteredListener(SensorListener listener, int sensors) {
+    this.listener = listener;
+    this.sensors = sensors;
   }
 }

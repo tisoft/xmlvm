@@ -42,15 +42,6 @@ public class AndroidFireworks extends Activity {
     }
   };
   
-  public static ActivityImpl __xmlvm_iphone_entrypoint(ActivityImpl me)
-  {
-      // Iphone entry point. 
-      AndroidFireworks fw = new AndroidFireworks();
-      ActivityImpl.rootApp = me;
-      me.parent = fw;
-      fw.myIphoneWrapper = me;
-      return me;
-  }
   
   public static void main(String [] args)
   {

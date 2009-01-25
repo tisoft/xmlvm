@@ -20,8 +20,6 @@
 
 package org.xmlvm.demo.java.photovm.ui;
 
-import com.apple.crypto.provider.KeychainStore;
-
 import org.xmlvm.demo.java.photovm.event.UpdateAlbumsListener;
 import org.xmlvm.demo.java.photovm.net.PicasaRequest;
 

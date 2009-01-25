@@ -76,17 +76,36 @@
 <xsl:template name="emitMainMethodForAndroid2Iphone">
   <xsl:text>
   
-void iphone_entry(android_app_ActivityImpl *a)
+  
+// This thing constructs the android app to be run, then sets up
+// the activityimpl class to run the app.  The class to be run and the iphone app 
+// (activity impl) are statically linked parent and myIphoneWrapper.
+void iphone_entry(android_app_ActivityImpl *me)
 {
-	[</xsl:text>
+	</xsl:text>
+	
     <xsl:variable name="cl" as="node()" select="vm:class/vm:method[@name = 'main']/.."/>
     <xsl:value-of select="vm:fixname($cl/@package)"/>
     <xsl:text>_</xsl:text>
     <xsl:value-of select="$cl/@name"/>
-    <xsl:text> __xmlvm_iphone_entrypoint___android_app_ActivityImpl: a];
+    
+    <xsl:text> *fw = [[[ </xsl:text>
+    
+     <xsl:variable name="cl" as="node()" select="vm:class/vm:method[@name = 'main']/.."/>
+    <xsl:value-of select="vm:fixname($cl/@package)"/>
+    <xsl:text>_</xsl:text>
+    <xsl:value-of select="$cl/@name"/>
+    
+    <xsl:text> alloc] init] autorelease];
+    
+    [android_app_ActivityImpl _PUT_STATIC_android_app_ActivityImpl_rootApp: me];
+    me->parent = fw;
+	fw->myIphoneWrapper = me;
+    
 }
 
-  
+// Entry works by nvoking ActivityImpl.  ActivityImpl calls back into iphone_entry
+// witch sets up the app to run.  
 int main(int argc, char* argv[])
 {
   	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
