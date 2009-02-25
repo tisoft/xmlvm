@@ -20,24 +20,20 @@
 
 package org.xmlvm.AndroidFireworks;
 
+import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
 
 public class Spark {
-  AndroidFireworks parent;
-  ImageView image;
-  float x;
-  float y;
-  float vx;
-  float vy;
-  boolean outOfSight;
+  private AndroidFireworks parent;
+  private ImageView image;
+  private float x;
+  private float y;
+  private float vx;
+  private float vy;
+  private boolean outOfSight;
 
   public Spark(AndroidFireworks parent) {
     this.parent = parent;
-  }
-
-  void resetWithX(int x, int y) {
-    this.x = x;
-    this.y = y;
     this.image = new ImageView(parent);
     parent.layout.addView(this.image);
     double rand = (Math.random() * 4);
@@ -50,27 +46,67 @@ public class Spark {
     } else {
       image.setImageResource(R.drawable.star4);
     }
+    AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
+        AbsoluteLayout.LayoutParams.WRAP_CONTENT,
+        AbsoluteLayout.LayoutParams.WRAP_CONTENT, -100, -100);
+    image.setLayoutParams(p);
+  }
+
+  void reset(int x, int y) {
+    this.x = x;
+    this.y = y;
     vx = (float) (Math.random() * Const.MAX2V) - (Const.MAX2V / 2);
     vy = (float) (Math.random() * Const.MAX2V) - (Const.MAX2V / 2);
-
-    // NSLog(@"Vx:%f Vy:%f", vx, vy);
     outOfSight = false;
   }
 
-  void nextStep() {
+  public float getX() {
+    return x;
+  }
+
+  public void setX(float x) {
+    this.x = x;
+  }
+
+  public float getY() {
+    return y;
+  }
+
+  public void setY(float y) {
+    this.y = y;
+  }
+
+  public boolean isOutOfSight() {
+    return outOfSight;
+  }
+
+  public void setOutOfSight(boolean outOfSight) {
+    this.outOfSight = outOfSight;
+  }
+
+  public void nextStep() {
     if (outOfSight) {
       return;
     }
-    if (x < -Const.IMAGE_SIZE || x > Const.WIDTH || y < -Const.IMAGE_SIZE
-        || y > Const.HEIGHT) {
+    if (x < -Const.IMAGE_SIZE || x > parent.environment.windowWidth || y < -Const.IMAGE_SIZE
+        || y > parent.environment.windowHeight) {
       // This spark is out of reach
       outOfSight = true;
       return;
     }
     // Gravity
-    vx += (Const.DV * (parent.getRotation().y / 10f));
-    vy += (Const.DV * (-parent.getRotation().x / 10f));
+    vx += (Const.DV * (parent.getRotation().rotY / 10f));
+    vy += (Const.DV * (-parent.getRotation().rotX / 10f));
     x += (Const.T * vx);
     y += (Const.T * vy);
+    updateImage();
+  }
+
+  private void updateImage() {
+    AbsoluteLayout.LayoutParams p = (AbsoluteLayout.LayoutParams) image
+        .getLayoutParams();
+    p.x = (int) this.x;
+    p.y = (int) this.y;
+    image.setLayoutParams(p);
   }
 }

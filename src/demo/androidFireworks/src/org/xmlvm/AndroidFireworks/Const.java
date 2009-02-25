@@ -20,29 +20,14 @@
 
 package org.xmlvm.AndroidFireworks;
 
-public class Bomb {
-  Spark sparks[];
+public class Const {
+  final static int BOMB_COUNT = 4;
+  final static int SPARKS_PER_BOMB = 10;
 
-  public Bomb(AndroidFireworks parent) {
-    sparks = new Spark[Const.SPARKS_PER_BOMB];
-    for (int i = 0; i < Const.SPARKS_PER_BOMB; i++)
-      sparks[i] = new Spark(parent);
-  }
+  final static int IMAGE_SIZE = 15;
 
-  void resetWithX(int x, int y) {
-    int i;
-    for (i = 0; i < Const.SPARKS_PER_BOMB; ++i) {
-      sparks[i].resetWithX(x, y);
-    }
-  }
-
-  boolean allOutOfSight() {
-    int i, count = 0;
-    for (i = 0; i < Const.SPARKS_PER_BOMB; ++i) {
-      if (sparks[i].outOfSight) {
-        count++;
-      }
-    }
-    return count == Const.SPARKS_PER_BOMB;
-  }
+  final static float MAX2V = 70.0f;
+  final static float T = 0.3f;
+  final static float G = 9.81f;
+  final static float DV = T * G;
 }

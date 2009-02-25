@@ -21,19 +21,30 @@
 package org.xmlvm.AndroidFireworks;
 
 import android.app.Activity;
-import android.app.ActivityImpl;
+import android.content.Intent;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.Display;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.AbsoluteLayout;
 
 public class AndroidFireworks extends Activity {
-  public static final int UPDATE = 1337;
-  Handler updater = new Handler();
+  public static final String VISIT_XMLVM = "Visit Project XMLVM.org";
+  public static final String WATCH_YOUTUBE = "Watch Google TechTalk";
+  public static final String XMLVM_URL = "http://www.xmlvm.org";
+  public static final String YOUTUBE_XMLVM_URL = "http://www.youtube.com/watch?v=s8nMpi5-P-I";
+
   public AbsoluteLayout layout;
   public Fireworks f;
-  private Rotation rotation = new Rotation();
+  public Environment environment = new Environment();
+
+  private Handler updater = new Handler();
   private Runnable updateFw = new Runnable() {
     public void run() {
       f.doUpdate();
@@ -41,16 +52,32 @@ public class AndroidFireworks extends Activity {
       layout.invalidate();
     }
   };
-  
-  
-  public static void main(String [] args)
-  {
-      // simulator entry point
-      Activity toRun = new AndroidFireworks();
-      // launch point for java land
-      ActivityImpl implementaton = new ActivityImpl(toRun);
-      toRun.myIphoneWrapper = implementaton;
-      implementaton.applicationDidFinishLaunching(null);
+
+  @Override
+  public void onContentChanged() {
+    WindowManager w = getWindowManager();
+    Display d = w.getDefaultDisplay();
+    environment.windowWidth = d.getWidth();
+    environment.windowHeight = d.getHeight();
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    menu.add(VISIT_XMLVM).setIcon(R.drawable.xmlvm);
+    menu.add(WATCH_YOUTUBE).setIcon(R.drawable.youtube);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    if (item.getTitle().equals(VISIT_XMLVM)) {
+      viewUri(Uri.parse(XMLVM_URL));
+      return true;
+    } else if (item.getTitle().equals(WATCH_YOUTUBE)) {
+      viewUri(Uri.parse(YOUTUBE_XMLVM_URL));
+      return true;
+    }
+    return false;
   }
 
   @Override
@@ -58,33 +85,38 @@ public class AndroidFireworks extends Activity {
     super.onCreate(savedInstanceState);
     layout = new AbsoluteLayout(this);
     setContentView(layout);
-    SensorManager sensorManager =
-        (SensorManager) this.getSystemService(SENSOR_SERVICE);
+    SensorManager sensorManager = (SensorManager) this
+        .getSystemService(SENSOR_SERVICE);
     sensorManager.registerListener(new SensorListener() {
       public void onSensorChanged(int sensor, float[] values) {
-        rotation.x = values[1];
-        rotation.y = values[0];
+        environment.rotX = values[1];
+        environment.rotY = values[0];
       }
 
       public void onAccuracyChanged(int sensor, int accuracy) {
       }
-      
     }, SensorManager.SENSOR_ACCELEROMETER);
-
     f = new Fireworks(this);
     updater.postDelayed(updateFw, 100);
   }
-  
-  public Rotation getRotation() {
-    return this.rotation;
+
+  private void viewUri(Uri uri) {
+    Intent intent = new Intent(Intent.ACTION_VIEW);
+    intent.setData(uri);
+    startActivity(intent);
   }
-  
-  class Rotation {
-    float x = 0;
-    float y = 0;
+
+  public Environment getRotation() {
+    return this.environment;
+  }
+
+  static class Environment {
+    public float rotX = 0;
+    public float rotY = 0;
+    public int windowHeight = 10;
+    public int windowWidth = 10;
   }
 }
-
 
 class Fireworks {
   Bomb[] bombs;
@@ -95,29 +127,24 @@ class Fireworks {
     bombs = new Bomb[Const.BOMB_COUNT];
     for (int j = 0; j < Const.BOMB_COUNT; ++j) {
       bombs[j] = new Bomb(form);
-      bombs[j].resetWithX((int) (Math.random() * (Const.WIDTH - 60)) + 30,
-          (int) (Math.random() * (Const.HEIGHT - 60)) + 30);
+      bombs[j].reset(
+          (int) (Math.random() * (form.environment.windowWidth - 60)) + 30,
+          (int) (Math.random() * (form.environment.windowHeight - 60)) + 30);
     }
   }
 
   public void doUpdate() {
     for (int j = 0; j < Const.BOMB_COUNT; ++j) {
       Bomb bomb = bombs[j];
+      // Log.d("doUpdate()", "Height: " + form.environment.windowHeight);
       if (bomb.allOutOfSight()) {
-        bomb.resetWithX((int) (Math.random() * Const.WIDTH), (int) (Math
-            .random() * Const.HEIGHT));
+        bomb.reset((int) (Math.random() * form.environment.windowWidth),
+            (int) (Math.random() * form.environment.windowHeight));
       }
       for (int i = 0; i < Const.SPARKS_PER_BOMB; ++i) {
         // Update the position
         Spark spark = bomb.sparks[i];
         spark.nextStep();
-        AbsoluteLayout.LayoutParams p =
-            new AbsoluteLayout.LayoutParams(
-                AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                AbsoluteLayout.LayoutParams.WRAP_CONTENT, (int) spark.x,
-                (int) spark.y);
-
-        spark.image.setLayoutParams(p);
       }
     }
   }
