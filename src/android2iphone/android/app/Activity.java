@@ -36,7 +36,8 @@ public class Activity extends ContextThemeWrapper {
   public UIWindow window;
   public CGRect rect;
   public ActivityImpl myIphoneWrapper;
-
+  public View mainView;
+  
   protected void onCreate(Bundle savedInstanceState) {
     rect = UIScreen.fullScreenApplicationContentRect();
 
@@ -45,9 +46,8 @@ public class Activity extends ContextThemeWrapper {
     window.orderFront(this.myIphoneWrapper);
     window.makeKey(this.myIphoneWrapper);
     window._setHidden(false);
+    onContentChanged();
   }
-
-  public View mainView;
 
   public void setContentView(View view) {
     mainView = view;
