@@ -18,23 +18,13 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.app;
+package android.view;
 
-import org.xmlvm.iphone.NSNotification;
-import org.xmlvm.iphone.UIApplication;
-
-public class ActivityImpl extends UIApplication {
-  public static ActivityImpl rootApp;
-  public Activity parent;
-
-  public ActivityImpl(Activity parent) {
-    this.parent = parent;
-  }
-
-  public void applicationDidFinishLaunching(NSNotification aNotification) {
-    parent.onCreate(null);
-  }
-
-  public ActivityImpl() {
+public class WindowManager {
+  /**
+   * TODO: Implement for real.
+   */
+  public Display getDefaultDisplay() {
+    return new Display();
   }
 }

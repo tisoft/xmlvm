@@ -18,23 +18,22 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.app;
+package android.content;
 
-import org.xmlvm.iphone.NSNotification;
-import org.xmlvm.iphone.UIApplication;
+import android.net.Uri;
 
-public class ActivityImpl extends UIApplication {
-  public static ActivityImpl rootApp;
-  public Activity parent;
+public class Intent {
+  public static final String ACTION_VIEW = "android.intent.action.VIEW";
 
-  public ActivityImpl(Activity parent) {
-    this.parent = parent;
+  /**
+   * @TODO Implement for real.
+   */
+  public Intent(String name) {
   }
 
-  public void applicationDidFinishLaunching(NSNotification aNotification) {
-    parent.onCreate(null);
-  }
-
-  public ActivityImpl() {
+  /**
+   * @TODO Implement for real.
+   */
+  public void setData(Uri uri) {
   }
 }

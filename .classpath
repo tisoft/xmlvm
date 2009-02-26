@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/xmlvm"/>
-	<classpathentry kind="src" path="src/demo/androidFireworks"/>
+	<classpathentry kind="src" path="src/demo/androidFireworks/src"/>
 	<classpathentry kind="src" path="src/android2iphone"/>
 	<classpathentry kind="src" path="src/demo/java"/>
 	<classpathentry kind="src" path="src/xmlvm2cpp"/>

@@ -18,23 +18,22 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.app;
+package android.view;
 
-import org.xmlvm.iphone.NSNotification;
-import org.xmlvm.iphone.UIApplication;
-
-public class ActivityImpl extends UIApplication {
-  public static ActivityImpl rootApp;
-  public Activity parent;
-
-  public ActivityImpl(Activity parent) {
-    this.parent = parent;
+public class Display {
+  /**
+   * Return the current width of the screen
+   * TODO: Implement for real. This is only a dummy.
+   */
+  public int getWidth() {
+    return 320;
   }
-
-  public void applicationDidFinishLaunching(NSNotification aNotification) {
-    parent.onCreate(null);
-  }
-
-  public ActivityImpl() {
+  
+  /**
+   * Return the current height of the screen
+   * TODO: Implement for real. This is only a dummy.
+   */
+  public int getHeight() {
+    return 480;
   }
 }

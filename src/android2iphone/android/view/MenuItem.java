@@ -18,23 +18,25 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.app;
+package android.view;
 
-import org.xmlvm.iphone.NSNotification;
-import org.xmlvm.iphone.UIApplication;
+public class MenuItem {
+  private String title = "";
 
-public class ActivityImpl extends UIApplication {
-  public static ActivityImpl rootApp;
-  public Activity parent;
-
-  public ActivityImpl(Activity parent) {
-    this.parent = parent;
+  /**
+   * TODO: Does this constructor exist in the real API?
+   */
+  public MenuItem(String title) {
+    this.title = title;
   }
 
-  public void applicationDidFinishLaunching(NSNotification aNotification) {
-    parent.onCreate(null);
+  /**
+   * TODO: Implement for real.
+   */
+  public void setIcon(int rId) {
   }
 
-  public ActivityImpl() {
+  public String getTitle() {
+    return title;
   }
 }
