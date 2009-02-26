@@ -40,7 +40,7 @@ options, and then writes out one or more destination files.
   does not exist, \xmlvm will create it. If the \texttt{--out}
   parameter is omitted, the current directory is the default.
 
-\item[\texttt{--target=$[$xmlvm|jvm|clr|dfa|class|exe|js|cpp|python|objc$]$}]
+\item[\texttt{--target=$[$xmlvm|jvm|clr|dfa|class|exe|js|cpp|python|objc|iphone$]$}]
   $ $
 
   This option defines the output format of the target. These
@@ -79,22 +79,24 @@ options, and then writes out one or more destination files.
 
 \item[\texttt{objc}:] The input files are cross-compiled to
   Objective-C.
+
+\item[\texttt{iphone}:] Cross-compiles an application to the iPhone.
+  The output directory specified by \texttt{--out} will contain a
+  ready to compile iPhone application.  The resulting iPhone
+  application can be compiled via ``make'' using Apple's SDK for the
+  iPhone. This option requires the option \texttt{--iphone-app}.
 \end{description}
 
 \item[\texttt{--iphone-app=$<$app\_name$>$}] $ $
 
-  Cross-compiles an application to an iPhone application. The output
-  directory specified by \texttt{--out} will contain a ready to
-  compile iPhone application. The application will be called
-  \texttt{$<$app\_name$>$}. This option implies
-  \texttt{--target=objc}.
+  This option can only be used in conjunction with option
+  \texttt{--target=iphone}. It specifies the name of the iPhone
+  application whose name will be \texttt{$<$app\_name$>$}.
 
-\item[\texttt{--android2iphone=$<$app\_name$>$}] $ $
+\item[\texttt{--android2iphone}] $ $
 
-  Cross-compiles an Android application to the iPhone. The output
-  directory specified by \texttt{--out} will contain a ready to
-  compile iPhone application.  The application will be called
-  \texttt{$<$app\_name$>$}. This option implies \texttt{--iphone-app}.
+  Cross-compiles an Android application to the iPhone. This option
+  requires \texttt{--target=iphone}..
 
 \item[\texttt{--qx-app=$<$app\_name$>$}] $ $
 
@@ -170,17 +172,16 @@ options, and then writes out one or more destination files.
   XMLVM$_{JVM}$ files, Java \texttt{*.class} files that can be
   executed by a Java virtual machine will be generated.
 
-\item[\texttt{xmlvm --in=/foo --iphone-app=TheApplication}] $ $
+\item[\texttt{xmlvm --in=/foo --target=iphone --iphone-app=TheApplication}] $ $
 
   Same as the previous example, however instead of creating Java
   \texttt{*.class} files, an iPhone application will be generated.
-  This option implies \texttt{--target=objc}. The output directory
-  will contain the ready to compile Objective-C source code including
-  all necessary auxiliary files such as \texttt{Info.plist} and a
-  \texttt{Makefile}. The iPhone application will be called
-  \texttt{TheApplication} using a default icon.
+  The output directory will contain the ready to compile Objective-C
+  source code including all necessary auxiliary files such as
+  \texttt{Info.plist} and a \texttt{Makefile}. The iPhone application
+  will be called \texttt{TheApplication} using a default icon.
 
-\item[\texttt{xmlvm --in=/foo --android2iphone=TheApplication}] $ $
+\item[\texttt{xmlvm --in=/foo --target=iphone --android2iphone --iphone-app=TheApplication}] $ $
 
   Same as the previous example, but will also copy the Android
   compatibility libraries to the output directory. This effectively
