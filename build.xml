@@ -177,7 +177,7 @@
 	</target>
 
 
-	<target name="build-iphoneDemo" depends="build-ifireworks,build-ihelloworld,cc-ifireworks,cc-ihelloworld,build-android-compat-lib,cc-android-compat-lib,sim-afireworks-jar,cc-sim-afireworks">
+	<target name="build-iphoneDemo" depends="build-ifireworks,build-ihelloworld,cc-ifireworks,cc-ihelloworld,build-android-compat-lib,cc-android-compat-lib">
 
 	</target>
 
