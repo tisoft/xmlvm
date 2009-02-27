@@ -20,8 +20,10 @@
 
 package org.xmlvm.iphone.internal;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import org.xmlvm.iphone.UIApplication;
 
 /**
  * Wiring code for launching an Android Activity inside the iPhone simulator
@@ -49,9 +51,13 @@ public class AndroidAppLauncher {
       mainActivity = args[0];
     }
     System.out.println("MAIN ACTIVITY: " + mainActivity);
-    Class<?> androidImplClazz = Class.forName("android.app.ActivityImpl");
-    Class<?>[] intArgsClass = new Class<?>[] { String.class };
-    Constructor<?> constructor = androidImplClazz.getConstructor(intArgsClass);
-    Object androidActivity = constructor.newInstance(mainActivity);
+    Class<?> androidActivityClazz = Class.forName(mainActivity);
+    Object theAndroidActivity = androidActivityClazz.newInstance();
+    Class<?> androidImplClazz = Class.forName("android.app.ActivityWrapper");
+    Class<?> activityClazz = Class.forName("android.app.Activity");
+    Class<?>[] intArgsClass = new Class<?>[] { activityClazz };
+    Method m = androidImplClazz.getMethod("setActivity", intArgsClass);
+    m.invoke(null, theAndroidActivity);
+    UIApplication.main(args, androidImplClazz);
   }
 }

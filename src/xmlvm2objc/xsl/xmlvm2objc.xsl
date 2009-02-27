@@ -57,63 +57,35 @@
 
 
 
-<xsl:template name="emitIphoneEntryPoint">
-  <xsl:text>  
- 
-// First callback from iphone os hits here, we setup framework and build
-// classes.
-- (void) init 
-{
-	extern void iphone_entry(android_app_ActivityImpl *a);
-	[super init];
-	iphone_entry(self);  
-}
- 
-</xsl:text>
-</xsl:template>
-
-
 <xsl:template name="emitMainMethodForAndroid2Iphone">
   <xsl:text>
-  
-  
-// This thing constructs the android app to be run, then sets up
-// the activityimpl class to run the app.  The class to be run and the iphone app 
-// (activity impl) are statically linked parent and myIphoneWrapper.
-void iphone_entry(android_app_ActivityImpl *me)
+int main(int argc, char* argv[])
 {
-	</xsl:text>
-	
-    <xsl:variable name="cl" as="node()" select="vm:class/vm:method[@name = 'main']/.."/>
+  	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    </xsl:text>
+    <xsl:variable name="cl" as="node()" select="vm:class[@extends = 'android.app.Activity']"/>
     <xsl:value-of select="vm:fixname($cl/@package)"/>
     <xsl:text>_</xsl:text>
     <xsl:value-of select="$cl/@name"/>
     
-    <xsl:text> *fw = [[[ </xsl:text>
+    <xsl:text> *activity = [[[ </xsl:text>
     
-     <xsl:variable name="cl" as="node()" select="vm:class/vm:method[@name = 'main']/.."/>
     <xsl:value-of select="vm:fixname($cl/@package)"/>
     <xsl:text>_</xsl:text>
     <xsl:value-of select="$cl/@name"/>
     
     <xsl:text> alloc] init] autorelease];
-    
-    [android_app_ActivityImpl _PUT_STATIC_android_app_ActivityImpl_rootApp: me];
-    me->parent = fw;
-	fw->myIphoneWrapper = me;
-    
-}
-
-// Entry works by nvoking ActivityImpl.  ActivityImpl calls back into iphone_entry
-// witch sets up the app to run.  
-int main(int argc, char* argv[])
-{
-  	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [activity __init_</xsl:text>
+    <xsl:value-of select="vm:fixname($cl/@package)"/>
+    <xsl:text>_</xsl:text>
+    <xsl:value-of select="$cl/@name"/>
+    <xsl:text>];
+    [android_app_ActivityWrapper setActivity___android_app_Activity: activity];
     UIApplicationMain(
      argc, 
      argv,
-     @"android_app_ActivityImpl",
-     @"android_app_ActivityImpl");
+     @"android_app_ActivityWrapper",
+     @"android_app_ActivityWrapper");
 	[pool release];
 	return 0;					 
   }
@@ -306,19 +278,13 @@ int main(int argc, char* argv[])
 
 </xsl:text>
     </xsl:for-each>
+    
     <xsl:for-each select="vm:method">
       <xsl:call-template name="emitMethodSignature"/>
   <xsl:text>
 </xsl:text>
       <xsl:apply-templates/>
     </xsl:for-each>
-    
-    
-      
-      <xsl:if test="@name = 'ActivityImpl'">
-        <xsl:call-template name="emitIphoneEntryPoint"/>
-      </xsl:if>
-      
       
     <xsl:text>
 @end
@@ -425,7 +391,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="jvm:ldc|jvm:ldc2_w">
+<xsl:template match="jvm:ldc|jvm:ldc_w|jvm:ldc2_w">
   <xsl:text>    _stack[_sp++]</xsl:text>
   <xsl:choose>
     <xsl:when test="@type = 'float'">
@@ -450,8 +416,8 @@ int main(int argc, char* argv[])
       <xsl:text>"</xsl:text>
     </xsl:when>
     <!-- Quick hack so we catch other missing @type -->
-    <xsl:when test="@type = 'org.xmlvm.test.iphone.HelloWorld'">
-      <xsl:text>.o = [org_xmlvm_test_iphone_HelloWorld class]</xsl:text>
+    <xsl:when test="@type = 'org.xmlvm.test.iphone.ihelloworld.HelloWorld'">
+      <xsl:text>.o = [org_xmlvm_test_iphone_ihelloworld_HelloWorld class]</xsl:text>
     </xsl:when>
     <!-- Quick hack so we catch other missing @type -->
     <xsl:when test="@type = 'org.xmlvm.test.iphone.ifireworks.Main'">
@@ -638,6 +604,13 @@ int main(int argc, char* argv[])
   <xsl:value-of select="@incr"/>
   <xsl:text>;
 </xsl:text>
+</xsl:template>
+
+
+<xsl:template match="jvm:iand">
+  <xsl:text>    _op2.i = _stack[--_sp].i;
+    _op1.i = _stack[--_sp].i;
+    _stack[_sp++].i = _op1.i &amp; _op2.i;</xsl:text>
 </xsl:template>
 
 
@@ -1158,6 +1131,11 @@ _sp--;
     _op3.o = _stack[--_sp].o;
     [_op3.o replaceObjectAtIndex: _op2.i withObject: [NSNumber numberWithFloat: _op1.f]];
 </xsl:text>
+</xsl:template>
+
+
+<xsl:template match="jvm:checkcast">
+  <!-- TODO should do a runtime type check -->
 </xsl:template>
 
 

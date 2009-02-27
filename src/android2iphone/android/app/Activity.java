@@ -35,7 +35,7 @@ import android.view.WindowManager;
 public class Activity extends ContextThemeWrapper {
   public UIWindow window;
   public CGRect rect;
-  public ActivityImpl myIphoneWrapper;
+  public ActivityWrapper myIphoneWrapper;
   public View mainView;
   
   protected void onCreate(Bundle savedInstanceState) {

@@ -23,27 +23,14 @@ package android.app;
 import org.xmlvm.iphone.NSNotification;
 import org.xmlvm.iphone.UIApplication;
 
-public class ActivityImpl extends UIApplication {
-  public static ActivityImpl rootApp;
-  public Activity parent;
+public class ActivityWrapper extends UIApplication {
+  private static Activity theActivity;
 
-  public ActivityImpl(String activityClassName) {
-    try {
-      Class<?> appClass = Class.forName(activityClassName);
-      Activity theApp = (Activity) appClass.newInstance();
-      theApp.myIphoneWrapper = this;
-      parent = theApp;
-      applicationDidFinishLaunching(null);
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } catch (InstantiationException e) {
-      e.printStackTrace();
-    } catch (IllegalAccessException e) {
-      e.printStackTrace();
-    }
+  public static void setActivity(Activity activity) {
+	  theActivity = activity;
   }
 
   public void applicationDidFinishLaunching(NSNotification aNotification) {
-    parent.onCreate(null);
+    theActivity.onCreate(null);
   }
 }

@@ -41,6 +41,14 @@
     return self;
 }
 
+- (int) equals___java_lang_Object: (java_lang_Object*) o
+{
+    if ([o isKindOfClass: [NSMutableString class]] == NO) {
+        return 0;
+    }
+    return [self compare: (NSString*) o] == 0;
+}
+
 - (NSMutableString*) toString
 {
     return self;
