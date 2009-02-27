@@ -21,7 +21,6 @@
 package org.xmlvm.AndroidFireworks;
 
 import android.app.Activity;
-import android.app.ActivityImpl;
 import android.content.Intent;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
@@ -44,16 +43,6 @@ public class AndroidFireworks extends Activity {
   public Fireworks f;
   public Environment environment = new Environment();
   
-  public static void main(String [] args)
-  {
-      // simulator entry point
-      Activity toRun = new AndroidFireworks();
-      // launch point for java land
-      ActivityImpl implementaton = new ActivityImpl(toRun);
-      toRun.myIphoneWrapper = implementaton;
-      implementaton.applicationDidFinishLaunching(null);
-  }
-
   private Handler updater = new Handler();
   private Runnable updateFw = new Runnable() {
     public void run() {

@@ -27,14 +27,23 @@ public class ActivityImpl extends UIApplication {
   public static ActivityImpl rootApp;
   public Activity parent;
 
-  public ActivityImpl(Activity parent) {
-    this.parent = parent;
+  public ActivityImpl(String activityClassName) {
+    try {
+      Class<?> appClass = Class.forName(activityClassName);
+      Activity theApp = (Activity) appClass.newInstance();
+      theApp.myIphoneWrapper = this;
+      parent = theApp;
+      applicationDidFinishLaunching(null);
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (InstantiationException e) {
+      e.printStackTrace();
+    } catch (IllegalAccessException e) {
+      e.printStackTrace();
+    }
   }
 
   public void applicationDidFinishLaunching(NSNotification aNotification) {
     parent.onCreate(null);
-  }
-
-  public ActivityImpl() {
   }
 }
