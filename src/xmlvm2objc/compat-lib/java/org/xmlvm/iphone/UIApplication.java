@@ -8,14 +8,13 @@ import org.xmlvm.iphone.internal.SimulatorDesktop;
 
 public abstract class UIApplication
 {
-
-    static public UIApplication theApplication = null;
+//    static public UIApplication theApplication = null;
 
 
 
     public UIApplication()
     {
-        theApplication = this;
+//        theApplication = this;
         if (!Simulator.initialized)
             // We run on the desktop
             new SimulatorDesktop();

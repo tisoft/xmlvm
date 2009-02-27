@@ -9,15 +9,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.IOException;
 
+import org.xmlvm.iphone.UIAccelerometer;
+
 
 
 public class MicroHTTPServer
     implements Runnable
 {
-
-    static private MicroHTTPServer theServer = null;
-
-
 
     private MicroHTTPServer()
     {
@@ -29,7 +27,7 @@ public class MicroHTTPServer
 
     static public void start()
     {
-        theServer = new MicroHTTPServer();
+        new MicroHTTPServer();
     }
 
 
@@ -88,7 +86,7 @@ public class MicroHTTPServer
             float xAxis = Float.parseFloat(args[2]);
             float yAxis = Float.parseFloat(args[3]);
             float zAxis = Float.parseFloat(args[4]);
-            Simulator.setAccelerated(xAxis, yAxis, zAxis);
+            UIAccelerometer.setAcceleratedInternal(xAxis, yAxis, zAxis);
         }
     }
 
