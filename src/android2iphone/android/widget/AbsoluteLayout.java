@@ -33,7 +33,7 @@ public class AbsoluteLayout extends ViewGroup {
     CGRect rect = UIScreen.fullScreenApplicationContentRect();
     /* Initialize the main view */
     rect.origin.x = rect.origin.y = 0;
-    mainView = new AbsView(rect);
+    setMainView(new AbsView(rect));
   }
 
   public static class LayoutParams extends ViewGroup.LayoutParams {

@@ -22,9 +22,18 @@ package android.view;
 
 import org.xmlvm.iphone.UIView;
 
+/**
+ * iPhone implementation of Android's View class.
+ * 
+ * @see http://developer.android.com/reference/android/view/View.html
+ */
 public class View {
-  public UIView mainView;
-  public ViewGroup.LayoutParams curLayout;
+  private UIView mainView;
+  private ViewGroup.LayoutParams curLayout;
+
+  public ViewGroup.LayoutParams getCurLayout() {
+    return curLayout;
+  }
 
   public void invalidate() {
     mainView.setNeedsDisplay();
@@ -32,5 +41,19 @@ public class View {
 
   public void setLayoutParams(ViewGroup.LayoutParams l) {
     curLayout = l;
+  }
+
+  /**
+   * Internal. Not part of Android API
+   */
+  public UIView getMainView() {
+    return mainView;
+  }
+
+  /**
+   * Internal. Not part of Android API
+   */
+  public void setMainView(UIView view) {
+    mainView = view;
   }
 }

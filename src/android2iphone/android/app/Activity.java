@@ -20,38 +20,31 @@
 
 package android.app;
 
-import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIScreen;
-import org.xmlvm.iphone.UIWindow;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 
+/**
+ * IPhone implementation of Android's Activity class.
+ * 
+ * @see http://developer.android.com/reference/android/app/Activity.html}
+ */
 public class Activity extends ContextThemeWrapper {
-  public UIWindow window;
-  public CGRect rect;
-  public ActivityWrapper myIphoneWrapper;
-  public View mainView;
-  
-  protected void onCreate(Bundle savedInstanceState) {
-    rect = UIScreen.fullScreenApplicationContentRect();
+  private ActivityWrapper myIphoneWrapper;
+  private Window window;
 
-    /* Initialize the main window */
-    window = new UIWindow(rect);
-    window.orderFront(this.myIphoneWrapper);
-    window.makeKey(this.myIphoneWrapper);
-    window._setHidden(false);
+  protected void onCreate(Bundle savedInstanceState) {
+    window = new Window(this);
     onContentChanged();
   }
 
   public void setContentView(View view) {
-    mainView = view;
-    window.setContentView(view.mainView);
+    window.setContentView(view);
   }
 
   /**
@@ -80,10 +73,42 @@ public class Activity extends ContextThemeWrapper {
   public boolean onOptionsItemSelected(MenuItem item) {
     return true;
   }
-  
+
   /**
    * TODO: Implement for real.
    */
   public void startActivity(Intent intent) {
+  }
+
+  public void requestWindowFeature(int feature) {
+    switch (feature) {
+    case Window.FEATURE_NO_TITLE:
+      // TODO: This will remove the title bar, but not get rid of the
+      // status bar. On the iPhone we don't have a title, but maybe we should
+      // implement this as a compatibility feature. Once we have it, this is the
+      // place to disable it.
+      break;
+    }
+  }
+
+  /**
+   * Retrieve the current {@link Window} for the activity.
+   */
+  public Window getWindow() {
+    return window;
+  }
+
+  /**
+   * Internal. Not part of Android API.
+   */
+  public void setMyIphoneWrapper(ActivityWrapper myIphoneWrapper) {
+    this.myIphoneWrapper = myIphoneWrapper;
+  }
+
+  /**
+   * Internal. Not part of Android API.
+   */
+  public ActivityWrapper getMyIphoneWrapper() {
+    return myIphoneWrapper;
   }
 }

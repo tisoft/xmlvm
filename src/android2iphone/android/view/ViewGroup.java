@@ -20,12 +20,17 @@
 
 package android.view;
 
+/**
+ * iPhone implementation of Android's ViewGroup class.
+ * 
+ * @see http://developer.android.com/reference/android/view/ViewGroup.html
+ */
 public class ViewGroup extends View {
   public static class LayoutParams {
     public static final int WRAP_CONTENT = 1;
   }
 
   public void addView(View child) {
-    this.mainView.addSubview(child.mainView);
+    this.getMainView().addSubview(child.getMainView());
   }
 }

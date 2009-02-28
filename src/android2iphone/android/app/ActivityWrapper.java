@@ -31,6 +31,7 @@ public class ActivityWrapper extends UIApplication {
   }
 
   public void applicationDidFinishLaunching(NSNotification aNotification) {
+    theActivity.setMyIphoneWrapper(this);
     theActivity.onCreate(null);
   }
 }

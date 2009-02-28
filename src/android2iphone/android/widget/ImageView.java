@@ -31,10 +31,10 @@ import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
 
 public class ImageView extends View {
+  protected OneImageView myImage;
+
   public void setImageResource(int resId) {
   }
-
-  protected OneImageView myImage;
 
   public void setLayoutParams(ViewGroup.LayoutParams l) {
     super.setLayoutParams(l);
@@ -54,12 +54,12 @@ public class ImageView extends View {
   }
 
   public ImageView(Context c) {
-    myImage = new OneImageView(((Activity) c).rect);
-    this.mainView = myImage;
+    myImage = new OneImageView(((Activity) c).getWindow().getCGRect());
+    this.setMainView(myImage);
   }
-  
+
   public AbsoluteLayout.LayoutParams getLayoutParams() {
-    return ( AbsoluteLayout.LayoutParams)curLayout;
+    return (AbsoluteLayout.LayoutParams) getCurLayout();
   }
 }
 

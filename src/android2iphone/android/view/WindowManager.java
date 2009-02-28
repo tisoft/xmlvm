@@ -27,4 +27,8 @@ public class WindowManager {
   public Display getDefaultDisplay() {
     return new Display();
   }
+  
+  public static class LayoutParams {
+    public static final int FLAG_FULLSCREEN = 1024;
+  }
 }
