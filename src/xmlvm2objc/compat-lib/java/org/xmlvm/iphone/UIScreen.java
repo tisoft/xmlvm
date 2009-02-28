@@ -12,12 +12,4 @@ public class UIScreen
         float offset = Simulator.getStatusBarHeight();
         return new CGRect(0.0f, offset, 320.0f, 480.0f - offset);
     }
-
-
-
-    public static void _setStatusBarHeight(float height)
-    {
-        Simulator.setStatusBarHeight(height);
-    }
-
 }

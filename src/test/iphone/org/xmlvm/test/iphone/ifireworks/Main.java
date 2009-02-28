@@ -16,9 +16,7 @@ public class Main
     UIAccelerometer accel;
     public void applicationDidFinishLaunching(NSNotification aNotification)
     {
-
-        UIScreen._setStatusBarHeight(0.0f);
-        this.setStatusBarModeAndDuration(2, 0);
+        this.setStatusBarHidden(true);
 
         CGRect rect = UIScreen.fullScreenApplicationContentRect();
         window = new UIWindow(rect);

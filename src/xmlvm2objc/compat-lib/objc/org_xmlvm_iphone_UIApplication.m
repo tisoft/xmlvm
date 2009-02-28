@@ -21,9 +21,9 @@
     // Never called since overriden in application
 }
 
-- (void) setStatusBarModeAndDuration___int_int: (int) mode :(int) duration
+- (void) setStatusBarHidden___boolean:(bool) flag
 {
-    [self setStatusBarMode: mode duration: duration];
+    [self setStatusBarHidden: flag];
 }
 
 - (void) OnAccelerate___float_float_float :(float)x :(float)y :(float)z

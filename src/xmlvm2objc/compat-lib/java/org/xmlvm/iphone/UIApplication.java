@@ -28,10 +28,9 @@ public abstract class UIApplication
 
 
 
-    protected void setStatusBarModeAndDuration(int mode, int duration)
+    protected void setStatusBarHidden(boolean flag)
     {
-        // TODO Auto-generated method stub
-
+    	Simulator.setStatusBarHidden(flag);
     }
 
 

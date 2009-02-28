@@ -11,11 +11,16 @@ public class StatusBar
     extends UIImageView
 {
 
+	private boolean isHidden;
+	private float fullHeight;
+	
     public StatusBar(CGRect rect)
     {
         super(rect);
         UIImage image = UIImage.imageAtPath("statusbar.png");
         this.setImage(image);
+        isHidden = false;
+        fullHeight = viewRect.size.height;
     }
 
 
@@ -28,9 +33,10 @@ public class StatusBar
 
 
 
-    public void setStatusBarHeight(float newHeight)
+    public void setStatusBarHidden(boolean flag)
     {
-        viewRect.size.height = newHeight;
+    	isHidden = flag;
+        viewRect.size.height = isHidden ? 0.0f : fullHeight;
     }
 
 

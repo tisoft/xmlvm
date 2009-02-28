@@ -80,16 +80,16 @@ public class Simulator
 
 
 
-    static public void setStatusBarHeight(float newHeight)
+    static public float getStatusBarHeight()
     {
-        simulatorGUI.setStatusBarHeight(newHeight);
+        return simulatorGUI.statusBar.getStatusBarHeight();
     }
 
 
 
-    static public float getStatusBarHeight()
+    static public void setStatusBarHidden(boolean flag)
     {
-        return simulatorGUI.statusBar.getStatusBarHeight();
+        simulatorGUI.statusBar.setStatusBarHidden(flag);
     }
 
 

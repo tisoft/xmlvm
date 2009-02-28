@@ -123,14 +123,6 @@ public class SimulatorGUI
 
 
 
-    public void setStatusBarHeight(float newHeight)
-    {
-        statusBar.setStatusBarHeight(newHeight);
-        display.invalidate();
-    }
-
-
-
     public float getStatusBarHeight()
     {
         return statusBar.getStatusBarHeight();
