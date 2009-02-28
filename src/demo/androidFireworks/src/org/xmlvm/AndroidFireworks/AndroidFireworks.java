@@ -30,6 +30,7 @@ import android.os.Handler;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AbsoluteLayout;
 
@@ -42,7 +43,7 @@ public class AndroidFireworks extends Activity {
   public AbsoluteLayout layout;
   public Fireworks f;
   public Environment environment = new Environment();
-  
+
   private Handler updater = new Handler();
   private Runnable updateFw = new Runnable() {
     public void run() {
@@ -82,6 +83,11 @@ public class AndroidFireworks extends Activity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    // No title bar.
+    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+    // Switch to fullscreen view, getting rid of the status bar as well.
+    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        WindowManager.LayoutParams.FLAG_FULLSCREEN);
     layout = new AbsoluteLayout(this);
     setContentView(layout);
     SensorManager sensorManager = (SensorManager) this
