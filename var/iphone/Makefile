@@ -21,7 +21,7 @@ CC=gcc-4.0
 
 CFLAGS=-x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 \
        -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type \
-       -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=20000 \
+       -D__IPHONE_OS_VERSION_MIN_REQUIRED=20000 \
        -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.2.sdk \
        -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 \
        -I.
