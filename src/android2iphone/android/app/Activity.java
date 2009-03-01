@@ -73,7 +73,7 @@ public class Activity extends ContextThemeWrapper {
   public boolean onOptionsItemSelected(MenuItem item) {
     return true;
   }
-
+  
   /**
    * TODO: Implement for real.
    */
@@ -81,7 +81,10 @@ public class Activity extends ContextThemeWrapper {
   }
 
   public void requestWindowFeature(int feature) {
+    /* TODO: can't handle jvm:lookupswitch
+
     switch (feature) {
+     
     case Window.FEATURE_NO_TITLE:
       // TODO: This will remove the title bar, but not get rid of the
       // status bar. On the iPhone we don't have a title, but maybe we should
@@ -89,6 +92,7 @@ public class Activity extends ContextThemeWrapper {
       // place to disable it.
       break;
     }
+    */
   }
 
   /**

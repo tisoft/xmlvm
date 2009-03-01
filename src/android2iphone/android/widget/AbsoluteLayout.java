@@ -30,8 +30,8 @@ import android.view.ViewGroup;
 
 public class AbsoluteLayout extends ViewGroup {
   public AbsoluteLayout(Context c) {
-    CGRect rect = UIScreen.fullScreenApplicationContentRect();
-    /* Initialize the main view */
+    UIScreen screen = UIScreen.mainScreen();
+    CGRect rect = screen.applicationFrame();
     rect.origin.x = rect.origin.y = 0;
     setMainView(new AbsView(rect));
   }
@@ -60,6 +60,7 @@ class AbsView extends UIView {
     // Todo is this foobar on iphone?
     float black[] = { 0, 0, 0, 1 };
     CGContext ctx = CGContext.UICurrentContext();
+    //CGRect displayRect = getDisplayRect();
     ctx.setFillColor(black);
     ctx.fillRect(rect);
     super.drawRect(rect);

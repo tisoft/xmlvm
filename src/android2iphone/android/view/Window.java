@@ -33,28 +33,26 @@ import android.app.Activity;
  */
 public class Window {
   public static final int FEATURE_NO_TITLE = 1;
-  private View mainView;
+  private Activity activity;
   private UIWindow iWindow;
   private CGRect rect;
 
   public Window(Activity parent) {
-    rect = UIScreen.fullScreenApplicationContentRect();
-    // Initialize the main iPhone window
+	this.activity = parent;
+    UIScreen screen = UIScreen.mainScreen();
+    rect = screen.bounds();
     iWindow = new UIWindow(rect);
-    iWindow.orderFront(parent.getMyIphoneWrapper());
-    iWindow.makeKey(parent.getMyIphoneWrapper());
-    iWindow._setHidden(false);
   }
 
   public void setContentView(View view) {
-    mainView = view;
-    iWindow.setContentView(view.getMainView());
+    iWindow.addSubview(view.getMainView());
+    iWindow.makeKeyAndVisible();
   }
 
   public void setFlags(int flags, int mask) {
     int maskedFlags = (flags & mask);
     if ((maskedFlags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0) {
-      // TODO: Implement fullscreen mode.
+      this.activity.getMyIphoneWrapper().setStatusBarHidden(true);
     }
   }
 

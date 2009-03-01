@@ -28,7 +28,7 @@ public abstract class UIApplication
 
 
 
-    protected void setStatusBarHidden(boolean flag)
+    public void setStatusBarHidden(boolean flag)
     {
     	Simulator.setStatusBarHidden(flag);
     }

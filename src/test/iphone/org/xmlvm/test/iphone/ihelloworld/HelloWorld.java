@@ -11,26 +11,21 @@ public class HelloWorld
 
     public void applicationDidFinishLaunching(NSNotification aNotification)
     {
-        CGRect rect = UIScreen.fullScreenApplicationContentRect();
-
-        /* Initialize the main window */
+        UIScreen screen = UIScreen.mainScreen();
+        CGRect rect = screen.applicationFrame();
         UIWindow window = new UIWindow(rect);
-        window.orderFront(this);
-        window.makeKey(this);
-        window._setHidden(false);
 
-        /* Initialize the main view */
         rect.origin.x = rect.origin.y = 0;
         UIView mainView = new UIView(rect);
-        window.setContentView(mainView);
+        window.addSubview(mainView);
 
         /* Initialize a text label with static, uneditable text */
         UITextLabel _title = new UITextLabel(rect);
         _title.setText("Hello World!");
         _title.setCentersHorizontally(true);
         mainView.addSubview(_title);
-        
-  
+
+        window.makeKeyAndVisible();
     }
 
 

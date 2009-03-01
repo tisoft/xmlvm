@@ -31,6 +31,6 @@ public class ViewGroup extends View {
   }
 
   public void addView(View child) {
-    this.getMainView().addSubview(child.getMainView());
+	this.getMainView().addSubview(child.getMainView());
   }
 }

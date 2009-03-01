@@ -11,24 +11,21 @@ public class Main
 
     UIWindow window;
     UIView   mainView;
-
-
     UIAccelerometer accel;
+
+    
+    
     public void applicationDidFinishLaunching(NSNotification aNotification)
     {
         this.setStatusBarHidden(true);
 
-        CGRect rect = UIScreen.fullScreenApplicationContentRect();
-        window = new UIWindow(rect);
+        UIScreen screen = UIScreen.mainScreen();
+        window = new UIWindow(screen.applicationFrame());
 
-        rect.origin.x = rect.origin.y = 0.0f;
+        mainView = new FireworksView(screen.applicationFrame());
 
-        mainView = new FireworksView(rect);
-
-        window.setContentView(mainView);
-        window.orderFront(this);
-        window.makeKey(this);
-        window._setHidden(false);
+        window.addSubview(mainView);
+        window.makeKeyAndVisible();
         
         accel = new UIAccelerometer();
         accel.setUpdateInterval(1.0/40);

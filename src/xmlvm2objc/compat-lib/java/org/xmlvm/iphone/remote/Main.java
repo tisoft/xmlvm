@@ -16,19 +16,16 @@ public class Main
     public void applicationDidFinishLaunching(NSNotification aNotification)
     {
         settings = null;
-        CGRect rect = UIScreen.fullScreenApplicationContentRect();
-
-        /* Initialize the main window */
+        UIScreen screen = UIScreen.mainScreen();
+        CGRect rect = screen.applicationFrame();
         UIWindow window = new UIWindow(rect);
-        window.orderFront(this);
-        window.makeKey(this);
-        window._setHidden(false);
 
-        /* Initialize the main view */
         rect.origin.x = rect.origin.y = 0;
         MainView mainView = new MainView(rect);
         settings = mainView.getSettings();
-        window.setContentView(mainView);
+
+        window.addSubview(mainView);
+        window.makeKeyAndVisible();
     }
 
 
