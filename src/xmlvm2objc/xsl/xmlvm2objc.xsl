@@ -1042,20 +1042,20 @@ _sp--;
   </xsl:if>
   <xsl:text>[((</xsl:text>
   
-  <xsl:variable name = "secondClass">
-  <xsl:value-of select="../../../@extends"/>
+  <xsl:variable name="baseClass">
+    <xsl:value-of select="../../../@extends"/>
   </xsl:variable>
   <xsl:choose>
- 	<xsl:when test="compare(@class-type,$secondClass) != 0">
+ 	<xsl:when test="name() = 'jvm:invokevirtual' or compare(@class-type,$baseClass) != 0">
 		  <xsl:call-template name="emitType">
 		    <xsl:with-param name="type" select="@class-type"/>
   			</xsl:call-template>
   		<xsl:text>) _stack[_sp].o) </xsl:text>
   	</xsl:when>
-  <xsl:otherwise>
-	<xsl:text>super)) </xsl:text>
-  </xsl:otherwise>
-</xsl:choose>
+    <xsl:otherwise>
+	  <xsl:text>super)) </xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 
   <xsl:call-template name="emitMethodName">
     <xsl:with-param name="name" select="@method"/>
