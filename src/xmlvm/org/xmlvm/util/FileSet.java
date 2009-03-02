@@ -34,10 +34,12 @@ public class FileSet implements Iterable<File>, Iterator<File> {
 
   public FileSet(String filePattern) {
     File f = new File(filePattern);
+    if (f.isDirectory())
+    	f = new File(filePattern + File.separator + "*");
     File path = f.getParentFile() == null ? new File(".") : f.getParentFile();
     paths.push(path);
     String regex = "";
-    recurseFolders = false;
+    recurseFolders = true;
     String fname = f.getName();
     for (int i = 0; i < fname.length(); i++) {
       switch (fname.charAt(i)) {
