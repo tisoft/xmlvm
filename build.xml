@@ -21,6 +21,7 @@
 	<property name="xmlvm.android-compat-lib.objc" value="${xmlvm.android-compat-lib}/objc" />
 
 	<property name="xmlvm.ifireworks" value="build/ifireworks" />
+	<property name="xmlvm.iremote" value="build/iremote" />
 	<property name="xmlvm.ihelloworld" value="build/ihelloworld" />
 
 	<property name="xmlvm.afireworks" value="build/afireworks" />
@@ -177,8 +178,7 @@
 	</target>
 
 
-<target name="build-iphoneDemo" depends="build-ifireworks,build-ihelloworld,cc-ifireworks,cc-ihelloworld,build-android-compat-lib,cc-android-compat-lib,sim-afireworks-jar,cc-sim-afireworks">
-
+	<target name="build-iphoneDemo" depends="build-ifireworks,build-ihelloworld,cc-ifireworks,cc-ihelloworld,build-android-compat-lib,cc-android-compat-lib,sim-afireworks-jar,cc-sim-afireworks,build-iremote">
 	</target>
 
 	<target name="build-ihelloworld" depends="build-objc-compat-lib">
@@ -297,6 +297,29 @@
 				<include name="*.png" />
 			</fileset>
 		</copy>
+	</target>
+
+	<target name="build-iremote" depends="build-objc-compat-lib">
+		<mkdir dir="${xmlvm.iremote}" />
+		<javac srcdir="src/xmlvm2objc/compat-lib/java/org/xmlvm/iphone/remote" destdir="${xmlvm.iremote}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<mkdir dir="${xmlvm.demo}/iremote/java" />
+		<jar destfile="${xmlvm.demo}/iremote/java/iremote.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Implementation-Vendor" value="xmlvm.org" />
+				<attribute name="Main-Class" value="org.xmlvm.iphone.remote.Main" />
+				<attribute name="Class-Path" value="../../../lib/objc-compat.jar" />
+			</manifest>
+			<fileset dir="${xmlvm.iremote}" />
+			<fileset dir="var/iphone">
+				<include name="*.png/" />
+			</fileset>
+		</jar>
 	</target>
 
 	<target name="eventHandlerCompatLib" depends="build-xmlvm">

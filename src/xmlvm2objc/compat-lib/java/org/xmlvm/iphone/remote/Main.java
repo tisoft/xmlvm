@@ -7,10 +7,11 @@ import org.xmlvm.iphone.*;
 
 public class Main
     extends UIApplication
+    implements IAccelerated
 {
 
     private Settings settings;
-
+    private UIAccelerometer accel;
 
 
     public void applicationDidFinishLaunching(NSNotification aNotification)
@@ -26,11 +27,15 @@ public class Main
 
         window.addSubview(mainView);
         window.makeKeyAndVisible();
+        
+        accel = new UIAccelerometer();
+        accel.setUpdateInterval(1.0/40);
+        accel.setDelegate(this);
     }
 
 
 
-    public void accelerated(float xAxis, float yAxis, float zAxis)
+    public void OnAccelerate(float xAxis, float yAxis, float zAxis)
     {
         if (settings == null)
             return;
