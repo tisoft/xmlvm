@@ -3,6 +3,8 @@ package org.xmlvm.iphone;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xmlvm.iphone.internal.Simulator;
+
 public class UIAccelerometer {
   public static List<UIAccelerometer> accelerometers = new ArrayList<UIAccelerometer>();
   private IAccelerated toNotify;
@@ -12,6 +14,7 @@ public class UIAccelerometer {
   }
 
   public static void setAcceleratedInternal(float x, float y, float z) {
+	Simulator.setAccelerated(x, y, z);
     for (UIAccelerometer accelerometer : accelerometers) {
       accelerometer.Accelerated(x, y, z);
     }

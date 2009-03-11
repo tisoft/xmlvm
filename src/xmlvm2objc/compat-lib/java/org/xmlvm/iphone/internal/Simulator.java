@@ -101,14 +101,8 @@ public class Simulator
 
 
 
-//    static public void setAccelerated(float xAxis, float yAxis, float zAxis)
-//    {
-//   
-//    	if(UIApplication.theApplication instanceof IAccelerated  )
-//    	{
-//    	 	IAccelerated accel = (IAccelerated) UIApplication.theApplication;
-//        	accel.OnAccelerate(xAxis, yAxis, zAxis);
-//        	simulatorGUI.setAccelerated(xAxis, yAxis, zAxis);
-//    	}
-//    }
+    static public void setAccelerated(float xAxis, float yAxis, float zAxis)
+    {
+       	simulatorGUI.setAccelerated(xAxis, yAxis, zAxis);
+    }
 }
