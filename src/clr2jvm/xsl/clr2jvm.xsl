@@ -48,6 +48,18 @@
 </xsl:template>
 
 
+<!-- We add 4 to the stack size of every method. The way some CLR instructions are
+     mapped to the JVM require additional stack-space (e.g., clr:ldftn). We accommodate
+     for this by adding 4. It would probably be cleaner to do a full DFA again on the
+     resulting JVM code to compute the required stack size. -->
+<xsl:template match="vm:method">
+  <vm:method>
+    <xsl:copy-of select="@*"/>
+    <xsl:attribute name="stack" select="@stack + 4"/>
+    <xsl:apply-templates/>
+  </vm:method>
+</xsl:template>
+
 
 <xsl:template match="vm:class[@extends='System.MulticastDelegate' and @extends!='System.Enum']">
   <!-- If the class is in a package, then we need to prepend
