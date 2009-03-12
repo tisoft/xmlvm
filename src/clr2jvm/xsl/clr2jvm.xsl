@@ -413,8 +413,19 @@
 
 
 
+
 <xsl:template match="clr:box">
-  <!-- Do nothing -->
+  <jvm:invokestatic method="__BOX">
+    <xsl:attribute name="class-type" select="dfa:stack-post/dfa:elem[last()]/@type"/>
+    <vm:signature>
+      <vm:return>
+        <xsl:attribute name="type" select="dfa:stack-post/dfa:elem[last()]/@type"/>
+      </vm:return>
+      <vm:parameter>
+        <xsl:attribute name="type" select="dfa:stack-pre/dfa:elem[last()]/@type"/>
+      </vm:parameter>
+    </vm:signature>
+  </jvm:invokestatic>
 </xsl:template>
 
 
@@ -716,7 +727,7 @@ result of the compare and zero
 <xsl:template match = "clr:stelem">
   <jvm:aastore>
     <xsl:copy-of select="@*"/>
-    <xsl:attribute name="type" select="dfa:stack-post/dfa:elem[last()]/@type"/>
+    <xsl:attribute name="type" select="dfa:stack-pre/dfa:elem[last()]/@type"/>
   </jvm:aastore>	
 </xsl:template>
 
@@ -862,10 +873,20 @@ JVM land -->
 
 
 <xsl:template match="clr:ldarg">
-  <jvm:aload>
-    <xsl:copy-of select="@*"/>
-    <xsl:attribute name="type" select="dfa:stack-post/dfa:elem[last()]/@type"/>
-  </jvm:aload>
+  <xsl:variable name="type" select="dfa:stack-post/dfa:elem[last()]/@type"/>
+  <xsl:choose>
+    <xsl:when test="$type = 'int'">
+      <jvm:iload type="int">
+        <xsl:copy-of select="@*"/>
+      </jvm:iload>
+    </xsl:when>
+    <xsl:otherwise>
+      <jvm:aload>
+        <xsl:copy-of select="@*"/>
+        <xsl:attribute name="type" select="$type"/>
+      </jvm:aload>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 

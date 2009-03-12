@@ -114,7 +114,11 @@
       <xsl:copy-of select="preceding-sibling::*[1]/dfa:stack-post/*"/>
     </dfa:stack-pre>
     <dfa:stack-post>
-      <xsl:copy-of select="preceding-sibling::*[1]/dfa:stack-post/*"/>
+      <xsl:copy-of select="preceding-sibling::*[1]/dfa:stack-post/*[position() &lt; last()]"/>
+      <dfa:elem>
+        <xsl:attribute name="type" select="@type"/>
+        <xsl:attribute name="pushed-by" select="@oid"/>
+      </dfa:elem>
     </dfa:stack-post>
   </clr:box>
 </xsl:template>

@@ -44,7 +44,18 @@ public class String
     }
 
 
+    
+    static public String Concat(Object[] objs)
+    {
+    	java.lang.String str = "";
+    	for (int i = 0; i < objs.length; i++) {
+    		str += objs[i].ToString().value;
+    	}
+    	return new String(str);
+    }
 
+    
+    
     static public boolean op_Equality(java.lang.String s1, java.lang.String s2)
     {
         return s1.equals(s2);

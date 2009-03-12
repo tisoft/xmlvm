@@ -748,7 +748,10 @@ public class ParseCIL
     {
         Element xml = new Element("box", nsCLR);
         AbstractTypeReference tr = inst.getValueType();
-        xml.setAttribute("type", ((TypeRef) tr).getName());
+        String ns = ((TypeRef) tr).getNamespace();
+        if (!ns.equals(""))
+        	ns += ".";
+        xml.setAttribute("type", ns + ((TypeRef) tr).getName());
         return xml;
     }
 
