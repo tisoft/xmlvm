@@ -606,16 +606,15 @@ public void genObjC(Document doc, String path, String headerFileName,
    * @return The resulting transformed document.
    */
   private Document runXSLT(String xsltFileName, Document doc) {
-    InputStream xsltFile = this.getClass().getResourceAsStream(xsltFileName);
     Document returnDoc = null;
     try {
+      CustomUriResolver myResolver = new CustomUriResolver();
       JDOMResult out = new JDOMResult();
       JDOMSource in = new JDOMSource(doc);
-      Source xsltSource = new StreamSource(xsltFile);
       TransformerFactory transFactory = TransformerFactory.newInstance();
-      Transformer trans = transFactory.newTransformer(xsltSource);
+      transFactory.setURIResolver(myResolver);
+      Transformer trans = transFactory.newTransformer(myResolver.resolve(xsltFileName, ""));
       trans.transform(in, out);
-
       returnDoc = out.getDocument();
     } catch (Exception ex) {
       ex.printStackTrace(System.err);
