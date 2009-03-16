@@ -1,11 +1,11 @@
-#import "org_xmlvm_iphone_UITextLabel.h"
+#import "org_xmlvm_iphone_UILabel.h"
 
 
-// UITextLabel
+// UILabel
 //----------------------------------------------------------------------------
-@implementation UILabel (cat_org_xmlvm_iphone_UITextLabel);
+@implementation UILabel (cat_org_xmlvm_iphone_UILabel);
 
-- (void) __init_org_xmlvm_iphone_UITextLabel___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1
+- (void) __init_org_xmlvm_iphone_UILabel___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1
 {
 	[self initWithFrame: [n1 getCGRect]];
 }

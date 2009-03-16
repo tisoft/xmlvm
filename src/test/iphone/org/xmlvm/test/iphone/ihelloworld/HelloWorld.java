@@ -20,7 +20,7 @@ public class HelloWorld
         window.addSubview(mainView);
 
         /* Initialize a text label with static, uneditable text */
-        UITextLabel _title = new UITextLabel(rect);
+        UILabel _title = new UILabel(rect);
         _title.setText("Hello World!");
         _title.setCentersHorizontally(true);
         mainView.addSubview(_title);

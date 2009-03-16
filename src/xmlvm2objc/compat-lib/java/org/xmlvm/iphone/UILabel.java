@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 
 
 
-public class UITextLabel
+public class UILabel
     extends UIView
 {
 
@@ -15,7 +15,7 @@ public class UITextLabel
 
 
 
-    public UITextLabel(CGRect rect)
+    public UILabel(CGRect rect)
     {
         super(rect);
     }
