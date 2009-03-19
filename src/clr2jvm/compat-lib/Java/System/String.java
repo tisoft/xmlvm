@@ -8,6 +8,7 @@ public class String
 
     public java.lang.String value;
 
+    public static String Empty = new String("");
 
 
     public String(java.lang.String value)

@@ -58,6 +58,22 @@
     <xsl:attribute name="stack" select="@stack + 4"/>
     <xsl:apply-templates/>
   </vm:method>
+  <xsl:if test="@name = '&lt;init&gt;'">
+    <xsl:variable name="classtype">
+      <xsl:choose>
+    	  <xsl:when test="../@package">
+  	      <xsl:value-of select="concat(../@package, '.', ../@name)"/>
+  	    </xsl:when>
+  	    <xsl:otherwise>
+  	      <xsl:value-of select="../@name"/>
+  	    </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:call-template name="createNew">
+      <xsl:with-param name="classtype" select="$classtype"/>
+      <xsl:with-param name="signature" select="vm:signature"/>
+    </xsl:call-template>
+  </xsl:if>
 </xsl:template>
 
 
@@ -85,6 +101,13 @@
 	</xsl:call-template>
 	<xsl:call-template name="createNew">
 		<xsl:with-param name="classtype" select="$fullClassName"/>
+		<xsl:with-param name="signature" as="node()">
+		  <vm:signature>
+		    <vm:return type="void"/>
+		    <vm:parameter type="System.Object"/>
+		    <vm:parameter type="int"/>
+		  </vm:signature>
+		</xsl:with-param>
 	</xsl:call-template>
 	<!-- Gather the necessary info to create the Invoke method -->
 	<xsl:variable name="parameters">
@@ -137,37 +160,41 @@
 </xsl:template>
 
 
-<!-- Creates the "new" method for the delegate -->
-<xsl:template name ="createNew">
-	<xsl:param name="classtype"/>
-    <vm:method name="__NEW" isPublic="true" isStatic="true" stack="4" locals="2">
-      <vm:signature class-type="{$classtype}">
-        <vm:return type="{$classtype}"/>
-        <vm:parameter type="System.Object"/>
-        <vm:parameter type="int"/>
-      </vm:signature>
-      <vm:code>
-        <jvm:var id="0" type="System.Object"/>
-        <jvm:var id="1" type="int"/>
-        <jvm:var name="arg0" id="0" type="System.Object"/>
-        <jvm:var name="arg1" id="1" type="int"/>
-        <jvm:label id="0"/>
-        <jvm:new type="{$classtype}"/>
-        <jvm:dup/>
-        <jvm:aload type="java.lang.Object" index="0"/>
-        <jvm:iload type="int" index="1"/>
-        <jvm:invokespecial class-type="{$classtype}" method="&lt;init&gt;">
-          <vm:signature>
-            <vm:return type="void"/>
-            <vm:parameter type="System.Object"/>
-            <vm:parameter type="int"/>
-          </vm:signature>
-        </jvm:invokespecial>
-        <jvm:label id="1"/>
-        <jvm:areturn/>
-      </vm:code>
-    </vm:method>
+<!-- Creates the "__NEW" method for delegates (as well as regular classes) -->
+<xsl:template name="createNew">
+  <xsl:param name="classtype"/>
+  <xsl:param name="signature"/>
+  <vm:method name="__NEW" isStatic="true" isPublic="true">
+    <xsl:attribute name="locals" select="count($signature/vm:parameter)"/>
+    <xsl:attribute name="stack" select="count($signature/vm:parameter) + 2"/>
+    <vm:signature>
+      <vm:return type="{$classtype}"/>
+      <xsl:copy-of select="$signature/vm:parameter"/>
+    </vm:signature>
+    <vm:code>
+      <xsl:for-each select="$signature/vm:parameter">
+        <vm:var name="{concat('arg', position())}" id="{position() - 1}" type="{@type}"/>
+      </xsl:for-each>
+      <jvm:new type="{$classtype}"/>
+      <jvm:dup/>
+      <xsl:for-each select="$signature/vm:parameter">
+        <xsl:choose>
+          <xsl:when test="@type = 'int'">
+            <jvm:iload index="{position() - 1}" type="int"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <jvm:aload index="{position() - 1}" type="{@type}"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+      <jvm:invokespecial class-type="{$classtype}" method="&lt;init&gt;">
+        <xsl:copy-of select="$signature"/>
+      </jvm:invokespecial>
+      <jvm:areturn type="{$classtype}"/>
+    </vm:code>
+  </vm:method>
 </xsl:template>
+
 
 
 <!-- Creates the invoke method necessary for the delegate -->
@@ -427,17 +454,21 @@
 
 
 <xsl:template match="clr:box">
-  <jvm:invokestatic method="__BOX">
-    <xsl:attribute name="class-type" select="dfa:stack-post/dfa:elem[last()]/@type"/>
-    <vm:signature>
-      <vm:return>
-        <xsl:attribute name="type" select="dfa:stack-post/dfa:elem[last()]/@type"/>
-      </vm:return>
-      <vm:parameter>
-        <xsl:attribute name="type" select="dfa:stack-pre/dfa:elem[last()]/@type"/>
-      </vm:parameter>
-    </vm:signature>
-  </jvm:invokestatic>
+  <xsl:variable name="fromType" select="dfa:stack-pre/dfa:elem[last()]/@type"/>
+  <xsl:variable name="toType" select="dfa:stack-post/dfa:elem[last()]/@type"/>
+  <xsl:if test="$toType != $fromType">
+    <jvm:invokestatic method="__BOX">
+      <xsl:attribute name="class-type" select="$toType"/>
+      <vm:signature>
+        <vm:return>
+          <xsl:attribute name="type" select="$toType"/>
+        </vm:return>
+        <vm:parameter>
+          <xsl:attribute name="type" select="$fromType"/>
+        </vm:parameter>
+      </vm:signature>
+    </jvm:invokestatic>
+  </xsl:if>
 </xsl:template>
 
 

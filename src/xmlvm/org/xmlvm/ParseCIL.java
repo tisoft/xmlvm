@@ -747,11 +747,25 @@ public class ParseCIL
     private Element visitInstructionBOX(BOX inst)
     {
         Element xml = new Element("box", nsCLR);
-        AbstractTypeReference tr = inst.getValueType();
-        String ns = ((TypeRef) tr).getNamespace();
-        if (!ns.equals(""))
-        	ns += ".";
-        xml.setAttribute("type", ns + ((TypeRef) tr).getName());
+        AbstractTypeReference pt = inst.getValueType();
+        TypeRef tr = (TypeRef) pt;
+        String name = tr.getNamespace();
+
+        // If this class is in our nested class list,
+        // then we need to get its true namespace
+        if (this._nestedClassNamespaceMap.containsKey(tr.getName()))
+        {
+        	name = this._nestedClassNamespaceMap.get(tr.getName());
+        }
+        else
+        {
+        	name = tr.getNamespace();
+        }
+        
+        if (!name.equals(""))
+            name += ".";
+        name += tr.getName();
+        xml.setAttribute("type", name);
         return xml;
     }
 
