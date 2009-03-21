@@ -10,17 +10,17 @@ import org.xmlvm.iphone.internal.*;
 
 
 
-public class UISwitchControl
+public class UISwitch
     extends UIView
     implements GestureListener
 {
 
-    private float     value = 0;
+    private boolean   isOn = false;
     final private int INSET = 5;
 
 
 
-    public UISwitchControl(CGRect rect)
+    public UISwitch(CGRect rect)
     {
         super(rect);
         rect.size.width = 80;
@@ -31,16 +31,16 @@ public class UISwitchControl
 
 
 
-    public void setValue(float value)
+    public void setOn(boolean on)
     {
-        this.value = value;
+    	this.isOn = on;
     }
-
-
-
-    public float getValue()
+    
+    
+    
+    public boolean isOn()
     {
-        return value;
+    	return isOn;
     }
 
 
@@ -70,7 +70,7 @@ public class UISwitchControl
                 0,
                 (int) (displayRect.origin.y + displayRect.size.height),
                 Color.LIGHT_GRAY);
-        g.setPaint(value > 0.5f ? blueGradient : whiteGradient);
+        g.setPaint(isOn ? blueGradient : whiteGradient);
         g.fillRoundRect((int) displayRect.origin.x, (int) displayRect.origin.y,
                 (int) displayRect.size.width, (int) displayRect.size.height,
                 INSET, INSET);
@@ -81,7 +81,7 @@ public class UISwitchControl
         CGRect knob = new CGRect(displayRect);
         float halfWidth = knob.size.width / 2;
         knob.size.width = halfWidth;
-        if (value > 0.5f)
+        if (isOn)
             knob.origin.x += halfWidth;
         g.setPaint(grayGradient);
         g.fillRoundRect((int) knob.origin.x, (int) knob.origin.y,
@@ -89,7 +89,7 @@ public class UISwitchControl
         String label = "ON";
         knob.origin.x = displayRect.origin.x;
         g.setColor(Color.WHITE);
-        if (value <= 0.5f) {
+        if (isOn) {
             knob.origin.x += halfWidth;
             g.setColor(Color.GRAY);
             label = "OFF";
@@ -108,10 +108,10 @@ public class UISwitchControl
         int inY = y - (int) rect.origin.y;
         if (inX >= 0 && inX < viewRect.size.width / 2 && inY >= 0
                 && inY < viewRect.size.height)
-            setValue(1);
+            setOn(true);
         if (inX > viewRect.size.width / 2 && inX < viewRect.size.width
                 && inY >= 0 && inY < viewRect.size.height)
-            setValue(0);
+            setOn(false);
         Simulator.redrawDisplay();
     }
 

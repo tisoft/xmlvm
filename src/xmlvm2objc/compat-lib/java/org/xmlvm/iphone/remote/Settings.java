@@ -12,7 +12,7 @@ public class Settings
     private UIPreferencesTableCell     settingsGroup;
     private UIPreferencesTextTableCell ipAddressCell;
     private UIPreferencesTableCell     useAccelerometerCell;
-    private UISwitchControl            useAccelerometerControl;
+    private UISwitch            useAccelerometerControl;
 
 
 
@@ -28,9 +28,9 @@ public class Settings
         useAccelerometerCell = new UIPreferencesTableCell();
         useAccelerometerCell.setTitle("Accelerometer");
         useAccelerometerCell.setEnabled(true);
-        useAccelerometerControl = new UISwitchControl(new CGRect(170, 5, 120,
+        useAccelerometerControl = new UISwitch(new CGRect(170, 5, 120,
                                                                  30));
-        useAccelerometerControl.setValue(0.0f);
+        useAccelerometerControl.setOn(false);
         useAccelerometerCell.addSubview(useAccelerometerControl);
     }
 
@@ -52,7 +52,7 @@ public class Settings
 
     public float getAccelerometerSetting()
     {
-        return useAccelerometerControl.getValue();
+        return useAccelerometerControl.isOn() ? 1 : 0;
     }
 
 

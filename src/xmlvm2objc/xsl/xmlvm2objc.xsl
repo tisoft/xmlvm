@@ -439,6 +439,10 @@ int main(int argc, char* argv[])
     <xsl:when test="@type = 'org.xmlvm.iphone.remote.Main'">
       <xsl:text>.o = [org_xmlvm_iphone_remote_Main class]</xsl:text>
     </xsl:when>
+    <!-- Quick hack so we catch other missing @type -->
+    <xsl:when test="@type = 'org.xmlvm.iphone.iremote.Main'">
+      <xsl:text>.o = [org_xmlvm_iphone_iremote_Main class]</xsl:text>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:message select="'Unknown type in jvm:ldc'"/>
       <xsl:message select="@type"/>

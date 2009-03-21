@@ -10,6 +10,11 @@
     [self setString: str];
 }
 
+- (void) __init_java_lang_StringBuilder
+{
+    [self setString: @""];
+}
+
 - (void) __init_java_lang_StringBuilder___java_lang_String: (java_lang_String*) str
 {
     [self setString: str];

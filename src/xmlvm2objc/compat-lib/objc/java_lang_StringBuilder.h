@@ -1,3 +1,3 @@
-#import "xmlvm.h"
+#import "java_lang_String.h"
 
-typedef NSMutableString java_lang_StringBuilder;
+typedef java_lang_String java_lang_StringBuilder;

@@ -13,7 +13,8 @@
 #import <UIKit/UIImageView.h>
 #import <UIKit/UiScreen.h>
 #import <CoreGraphics/CoreGraphics.h>
-#import <UiKit/UILabel.h>
+#import <UIKit/UILabel.h>
+#import <UIKit/UITextField.h>
 #import <UIKit/UISwitch.h>
 #import <math.h>
 
