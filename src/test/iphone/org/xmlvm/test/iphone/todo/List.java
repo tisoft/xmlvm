@@ -6,7 +6,7 @@ import org.xmlvm.iphone.*;
 
 
 public class List
-    extends UITable
+    extends UITableView
 {
 
     private ListDataSource source;
@@ -16,6 +16,9 @@ public class List
     public List(CGRect rect)
     {
         super(rect);
+        /*
+         * TODO fix
+         *
         UITableColumn col = new UITableColumn("Column 1", "column1",
                                               rect.size.width);
         this.addTableColumn(col);
@@ -23,5 +26,6 @@ public class List
         this.setDataSource(source);
         this.setSeparatorStyle(1);
         this.reloadData();
+        */
     }
 }

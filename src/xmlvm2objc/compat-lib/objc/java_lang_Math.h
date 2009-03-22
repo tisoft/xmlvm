@@ -8,5 +8,6 @@
 + (double) random;
 + (double) sqrt___double: (double) x;
 + (double) asin___double: (double) x;
++ (float) abs___float: (float) f;
 @end
 

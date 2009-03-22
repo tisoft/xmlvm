@@ -40,6 +40,18 @@
     return [NSMutableString stringWithString: @"Unkown type in valueOf___java_lang_Object"];
 }
 
+- (unichar) charAt___int: (int) idx
+{
+	return [self characterAtIndex: idx];
+}
+
+- (int) endsWith___java_lang_String: (java_lang_String*) s
+{
+	return [self hasSuffix: s] == YES ? 1 : 0;
+}
+
+
+
 - (NSMutableString*) append___java_lang_String: (java_lang_String*) str
 {
     [self appendString: str];

@@ -11,6 +11,14 @@
 	return toRet;
 }
 
+- (org_xmlvm_iphone_CGSize*) getSize
+{
+    org_xmlvm_iphone_CGSize* s = [[[org_xmlvm_iphone_CGSize alloc] init] autorelease];
+    s->width = [self size].width;
+    s->height = [self size].height;
+    return s;
+}
+
 - (void) draw1PartImageInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect
 {
     CGRect r = [rect getCGRect];

@@ -30,6 +30,7 @@ import android.os.Handler;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AbsoluteLayout;
@@ -40,7 +41,7 @@ public class AndroidFireworks extends Activity {
   public static final String XMLVM_URL = "http://www.xmlvm.org";
   public static final String YOUTUBE_XMLVM_URL = "http://www.youtube.com/watch?v=s8nMpi5-P-I";
 
-  public AbsoluteLayout layout;
+  public ViewGroup layout;
   public Fireworks f;
   public Environment environment = new Environment();
 

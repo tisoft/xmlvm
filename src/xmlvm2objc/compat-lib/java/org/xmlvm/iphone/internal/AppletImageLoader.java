@@ -2,13 +2,14 @@
 package org.xmlvm.iphone.internal;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JApplet;
 
 
 
 public class AppletImageLoader
-    implements ImageLoader
+    extends ImageLoader
 {
 
     private JApplet theApplet;
@@ -22,9 +23,9 @@ public class AppletImageLoader
 
 
 
-    public Image loadImage(String imageName)
+    public BufferedImage loadImage(String imageName)
     {
-        return theApplet.getImage(theApplet.getDocumentBase(), imageName);
+        return toBufferedImage(theApplet.getImage(theApplet.getDocumentBase(), imageName));
     }
 
 }

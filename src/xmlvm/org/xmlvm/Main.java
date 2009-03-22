@@ -322,7 +322,7 @@ public void genObjC(Document doc, String path, String headerFileName,
       }
     }
     HashSet<String> bad = new HashSet<String>();
-    for (String t : new String[] {"float", "double", "int", "void", "boolean",
+    for (String t : new String[] {"char", "float", "double", "int", "void", "boolean",
         "short", "byte", "float", "long"}) {
       bad.add(t);
     }

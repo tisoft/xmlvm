@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 
 
 
-public class UITableCell
+public class UITableViewCell
     extends UIView
 {
 
@@ -16,13 +16,14 @@ public class UITableCell
 
     protected void drawCellBackground(Graphics2D g, CGRect displayRect)
     {
+    	/*
         g.setBackground(selected ? Color.blue : Color.WHITE);
         g.clearRect((int) displayRect.origin.x, (int) displayRect.origin.y,
                 (int) displayRect.size.width, (int) displayRect.size.height);
         int sepY = (int) displayRect.origin.y + (int) displayRect.size.height
                 - 1;
         g.setColor(Color.LIGHT_GRAY);
-        switch (((UITable) parent).getSeparatorStyle()) {
+        switch (((UITableView) parent).getSeparatorStyle()) {
             case 1:
                 // 1px gray
                 g.drawLine(0, sepY, (int) displayRect.size.width, sepY);
@@ -37,6 +38,7 @@ public class UITableCell
                 break;
         }
         g.setColor(selected ? Color.WHITE : Color.BLACK);
+        */
     }
 
 

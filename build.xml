@@ -25,6 +25,7 @@
 	<property name="xmlvm.ihelloworld" value="build/ihelloworld" />
 
 	<property name="xmlvm.afireworks" value="build/afireworks" />
+	<property name="xmlvm.asokoban" value="build/asokoban" />
 
 
 
@@ -294,6 +295,51 @@
 		</java>
 		<copy todir="${xmlvm.demo}/aFireworks/iphone">
 			<fileset dir="var/iphone/Applications/iFireworks.app">
+				<include name="*.png" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="sim-asokoban" depends="build-android-compat-lib">
+		<mkdir dir="${xmlvm.asokoban}" />
+		<javac srcdir="./src/demo/AndroidSokoban" destdir="${xmlvm.asokoban}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+				<pathelement location="${xmlvm.libjars}/android-compat.jar" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+	</target>
+
+	<target name="sim-asokoban-jar" depends="sim-asokoban">
+		<mkdir dir="${xmlvm.demo}/asokoban/java" />
+		<jar destfile="${xmlvm.demo}/asokoban/java/asokoban.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Implementation-Vendor" value="xmlvm.org" />
+				<attribute name="Main-Class" value="org.xmlvm.iphone.internal.AndroidAppLauncher" />
+				<attribute name="Class-Path" value="../../../lib/objc-compat.jar ../../../lib/android-compat.jar" />
+			</manifest>
+			<fileset dir="${xmlvm.asokoban}" />
+			<fileset dir="var/iphone">
+				<include name="*.png/" />
+			</fileset>
+			<fileset dir="src/demo/AndroidSokoban/res/drawable">
+				<include name="*.png" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="cc-sim-asokoban" depends="sim-asokoban">
+		<mkdir dir="${xmlvm.demo}/asokoban/iphone" />
+
+		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
+			<arg value="--out=${xmlvm.demo}/asokoban/iphone" />
+			<arg value="--android2iphone=aSokoban" />
+			<arg value="${xmlvm.asokoban}/*.class" />
+		</java>
+		<copy todir="${xmlvm.demo}/asokoban/iphone">
+			<fileset dir="src/demo/AndroidSokoban/res/drawable">
 				<include name="*.png" />
 			</fileset>
 		</copy>

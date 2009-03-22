@@ -34,6 +34,7 @@ public class ImageView extends View {
   protected OneImageView myImage;
 
   public void setImageResource(int resId) {
+	  this.myImage.loadImage(resId);
   }
 
   public void setLayoutParams(ViewGroup.LayoutParams l) {
@@ -43,54 +44,95 @@ public class ImageView extends View {
     int height = a.height;
 
     if (width == LayoutParams.WRAP_CONTENT) {
-      width = 15;
+      width = myImage.getWidth();
     }
     if (height == LayoutParams.WRAP_CONTENT) {
-      height = 15;
+      height = myImage.getHeight();
     }
-    myImage.SetBounds(new CGRect(a.x, a.y, width, height));
+    myImage.setBounds(new CGRect(a.x, a.y, width, height));
     myImage.setFrame(new CGRect(a.x, a.y, width, height));
-
   }
 
   public ImageView(Context c) {
-    myImage = new OneImageView(((Activity) c).getWindow().getCGRect());
-    this.setMainView(myImage);
+      myImage = new OneImageView(((Activity) c).getWindow().getCGRect());
+	  this.setMainView(myImage);
   }
 
   public AbsoluteLayout.LayoutParams getLayoutParams() {
     return (AbsoluteLayout.LayoutParams) getCurLayout();
   }
+
+  public void bringToFront() {
+	// TODO Auto-generated method stub
+  }
 }
 
 class OneImageView extends UIImageView {
+  
+  UIImage _img;
+
   void setNeedsUpdate() {
     this.setNeedsDisplayInRect(myLoc);
   }
 
-  UIImage _img;
+  public int getHeight() {
+	return (int) _img.getSize().height;
+  }
+
+  public int getWidth() {
+	return (int) _img.getSize().width;
+  }
+
+  public void loadImage(int resId) {
+	    if (resId == 0x7f020000)
+	    	_img = UIImage.imageAtPath("ball.png");
+	    else if (resId == 0x7f020001)
+	    	_img = UIImage.imageAtPath("goal.png");
+	    else if (resId == 0x7f020003)
+	    	_img = UIImage.imageAtPath("man.png");
+	    else 
+	    	_img = UIImage.imageAtPath("wall.png");
+	    /*
+	    switch (resId) {
+	    case 0x7f020000:
+	    	_img = UIImage.imageAtPath("ball.png");
+	    	break;
+	    case 0x7f020001:
+	    	_img = UIImage.imageAtPath("goal.png");
+	    	break;
+	    case 0x7f020003:
+	    	_img = UIImage.imageAtPath("man.png");
+	    	break;
+	    case 0x7f020004:
+	    	_img = UIImage.imageAtPath("wall.png");
+	    	break;
+	    }
+	    */
+	    // TODO A little kludge until Joshua cleans up resource mapping
+	    /*
+	    double rand = (Math.random() * 4);
+	    if (rand < 1) {
+	      _img = UIImage.imageAtPath("star1.png");
+	    } else if (rand < 2) {
+	      _img = UIImage.imageAtPath("star2.png");
+	    } else if (rand < 3) {
+	      _img = UIImage.imageAtPath("star3.png");
+	    } else {
+	      _img = UIImage.imageAtPath("star4.png");
+	    }
+	    */
+	    setImage(_img);
+    }
 
   OneImageView(CGRect windowRect) {
     super(windowRect);
-    // TODO A little kludge until Joshua cleans up resource mapping
-    double rand = (Math.random() * 4);
-    if (rand < 1) {
-      _img = UIImage.imageAtPath("star1.png");
-    } else if (rand < 2) {
-      _img = UIImage.imageAtPath("star2.png");
-    } else if (rand < 3) {
-      _img = UIImage.imageAtPath("star3.png");
-    } else {
-      _img = UIImage.imageAtPath("star4.png");
-    }
-    setImage(_img);
   }
 
-  void SetBounds(CGRect bounds) {
+  void setBounds(CGRect bounds) {
     this.myLoc = bounds;
   }
 
-  private CGRect myLoc = new CGRect(20, 20, 15, 15);
+  private CGRect myLoc = new CGRect(0, 0, 0, 0);
 
   public void drawRect(CGRect rect) {
     CGRect toDraw = myLoc;

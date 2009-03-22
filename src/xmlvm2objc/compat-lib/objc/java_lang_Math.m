@@ -21,4 +21,9 @@
     return asin(x);
 }
 
++ (float) abs___float: (float) f
+{
+    return f < 0.0 ? f * -1.0 : f;
+}
+
 @end

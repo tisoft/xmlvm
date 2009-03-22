@@ -20,6 +20,7 @@
 
 package org.xmlvm.AndroidFireworks;
 
+import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
 
@@ -47,8 +48,8 @@ public class Spark {
       image.setImageResource(R.drawable.star4);
     }
     AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
-        AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-        AbsoluteLayout.LayoutParams.WRAP_CONTENT, -100, -100);
+        ViewGroup.LayoutParams.WRAP_CONTENT,
+        ViewGroup.LayoutParams.WRAP_CONTENT, -100, -100);
     image.setLayoutParams(p);
   }
 

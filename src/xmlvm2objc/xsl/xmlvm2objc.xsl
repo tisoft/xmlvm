@@ -667,6 +667,12 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="jvm:idiv">
+  <xsl:text>    _op2.i = _stack[--_sp].i;
+  _op1.i = _stack[--_sp].i;
+  _stack[_sp++].i = _op1.i / _op2.i;</xsl:text>
+</xsl:template>
+
 <xsl:template match="jvm:fdiv">
   <xsl:text>    _op2.f = _stack[--_sp].f;
   _op1.f = _stack[--_sp].f;
@@ -832,6 +838,29 @@ _sp--;
 </xsl:template>
 
 
+<xsl:template match="jvm:lookupswitch">
+  <xsl:text>    _op1.i = _stack[--_sp].i;
+    switch (_op1.i) {</xsl:text>
+  <xsl:for-each select="jvm:case">
+    <xsl:text>
+        case </xsl:text>
+    <xsl:value-of select="@key"/>
+    <xsl:text>: goto label</xsl:text>
+    <xsl:value-of select="@label"/>
+    <xsl:text>;</xsl:text>
+  </xsl:for-each>
+  <xsl:if test="jvm:default">
+    <xsl:text>
+        default: goto label</xsl:text>
+    <xsl:value-of select="jvm:default/@label"/>
+    <xsl:text>;</xsl:text>
+  </xsl:if>
+  <xsl:text>
+    }
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="jvm:bipush|jvm:sipush">
   <xsl:text>    _stack[_sp++].i = </xsl:text>
   <xsl:value-of select="@value"/>
@@ -932,10 +961,30 @@ _sp--;
 </xsl:template>
 
 
+<xsl:template match="jvm:if_icmple">
+  <xsl:text>    _op2.i = _stack[--_sp].i;
+    _op1.i = _stack[--_sp].i;
+    if (_op1.i &lt;= _op2.i) goto label</xsl:text>
+  <xsl:value-of select="@label"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="jvm:if_icmpne">
   <xsl:text>    _op2.i = _stack[--_sp].i;
     _op1.i = _stack[--_sp].i;
     if (_op1.i != _op2.i) goto label</xsl:text>
+  <xsl:value-of select="@label"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="jvm:if_icmpeq">
+  <xsl:text>    _op2.i = _stack[--_sp].i;
+    _op1.i = _stack[--_sp].i;
+    if (_op1.i == _op2.i) goto label</xsl:text>
   <xsl:value-of select="@label"/>
   <xsl:text>;
 </xsl:text>
@@ -1112,6 +1161,14 @@ _sp--;
 </xsl:template>
 
 
+<xsl:template match="jvm:caload">
+  <xsl:text>    _op1.i = _stack[--_sp].i;
+    _op2.o = _stack[--_sp].o;
+    _stack[_sp++].i = [[_op2.o objectAtIndex: _op1.i] intValue];
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="jvm:faload">
   <xsl:text>    _op1.i = _stack[--_sp].i;
     _op2.o = _stack[--_sp].o;
@@ -1125,6 +1182,15 @@ _sp--;
     _op2.i = _stack[--_sp].i;
     _op3.o = _stack[--_sp].o;
     [_op3.o replaceObjectAtIndex: _op2.i withObject: _op1.o];
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="jvm:castore">
+  <xsl:text>    _op1.i = _stack[--_sp].i;
+    _op2.i = _stack[--_sp].i;
+    _op3.o = _stack[--_sp].o;
+    [_op3.o replaceObjectAtIndex: _op2.i withObject: [NSNumber numberWithInt: _op1.i]];
 </xsl:text>
 </xsl:template>
 

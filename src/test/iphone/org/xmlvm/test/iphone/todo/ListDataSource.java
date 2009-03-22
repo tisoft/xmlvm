@@ -1,27 +1,36 @@
 
 package org.xmlvm.test.iphone.todo;
 
-import org.xmlvm.iphone.UISimpleTableCell;
-import org.xmlvm.iphone.UITable;
-import org.xmlvm.iphone.UITableCell;
-import org.xmlvm.iphone.UITableColumn;
-import org.xmlvm.iphone.UITableDataSource;
+import org.xmlvm.iphone.NSIndexPath;
+import org.xmlvm.iphone.UITableView;
+import org.xmlvm.iphone.UITableViewCell;
+import org.xmlvm.iphone.UITableViewDataSource;
 
 
 
 public class ListDataSource
-    extends UITableDataSource
+    extends UITableViewDataSource
 {
 
-    public int numberOfRowsInTable(UITable table)
+    public int numberOfRowsInTable(UITableView table)
     {
         return 40;
     }
 
 
 
-    public UITableCell rowForCell(UITable table, int row, UITableColumn col)
-    {
-        return new UISimpleTableCell(String.valueOf(row));
-    }
+	@Override
+	public UITableViewCell cellForRowAtIndexPath(UITableView table,
+			NSIndexPath idx) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public int numberOfRowsInSection(UITableView table) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

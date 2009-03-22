@@ -2,6 +2,8 @@
 package org.xmlvm.iphone;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 
 import org.xmlvm.iphone.internal.ImageLoader;
 import org.xmlvm.iphone.internal.Simulator;
@@ -11,7 +13,7 @@ import org.xmlvm.iphone.internal.Simulator;
 public class UIImage
 {
 
-    public Image image;
+    public BufferedImage image;
 
 
 
@@ -36,5 +38,14 @@ public class UIImage
                 (int) position.origin.x, (int) position.origin.y,
                 (int) position.size.width, (int) position.size.height,
                 Simulator.getDisplay());
+    }
+    
+    
+    
+    public CGSize getSize()
+    {
+    	int width = image.getWidth();
+    	int height = image.getHeight();
+    	return new CGSize(width, height);
     }
 }
