@@ -391,16 +391,16 @@ public class ParseJVM
                 if (ex.getStartPC().equals(ih)) {
                     ObjectType caught = ex.getCatchType();
                     Element nested_xml_code;
+                    nested_xml_code = new Element("catch", nsJVM);
                     if (caught == null) {
-                        nested_xml_code = new Element("catch-finally", nsJVM);
+                        nested_xml_code.setAttribute("type", "java.lang.Exception");
                     }
                     else {
-                        nested_xml_code = new Element("catch", nsJVM);
                         nested_xml_code.setAttribute("type", caught
                                 .getClassName());
                     }
                     nested_xml_code.setAttribute("using",
-                            get(ex.getHandlerPC()), nsJVM);
+                            get(ex.getHandlerPC()));
                     xml_code.addContent(nested_xml_code);
                     xml_code = nested_xml_code;
                 }

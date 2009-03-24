@@ -337,6 +337,29 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="jvm:catch">
+  <xsl:text>    @try {
+</xsl:text>
+    <xsl:apply-templates/>
+    <xsl:text>    } @catch (</xsl:text>
+    <xsl:value-of select="vm:fixname(@type)"/>
+    <xsl:text>* _ex) {
+        _stack[_sp++].o = _ex;
+        goto label</xsl:text>
+    <xsl:value-of select="@using"/>
+    <xsl:text>;
+    }
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="jvm:athrow">
+  <xsl:text>    _op1.o = _stack[--_sp].o;
+    @throw _op1.o;
+</xsl:text>
+</xsl:template>
+
+    
 <xsl:template match="jvm:aload">
   <xsl:text>    _stack[_sp++].o = _locals[</xsl:text>
   <xsl:value-of select="@index"/>
