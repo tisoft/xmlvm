@@ -20,6 +20,13 @@ public class Main
         CGRect rect = screen.applicationFrame();
         UIWindow window = new UIWindow(rect);
 
+        rect.origin.x = rect.origin.y = 0;
+        UITableView table = new UITableView(rect, UITableViewStyle.UITableViewStyleGrouped);
+        window.addSubview(table);
+        UITableViewDataSource ds = new SettingsTableDataSource();
+        table.setDataSource(ds);
+        
+        /*
         CGRect ipAddressRect = new CGRect(0,50,100,20);
         ipAddress = new UITextField(ipAddressRect);
         ipAddress.setText("127.0.0.1");
@@ -29,12 +36,14 @@ public class Main
         CGRect useAccelerometerRect = new CGRect(0, 150, 100, 20);
         useAccelerometer = new UISwitch(useAccelerometerRect);
         window.addSubview(useAccelerometer);
+        */
         
         window.makeKeyAndVisible();
-        OnAccelerate(0.5f,0.5f,0.5f);
+/*
         accel = new UIAccelerometer();
         accel.setUpdateInterval(1.0/40);
         accel.setDelegate(this);
+        */
     }
 
 

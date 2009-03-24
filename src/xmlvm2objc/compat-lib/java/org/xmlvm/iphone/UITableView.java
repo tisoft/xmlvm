@@ -25,12 +25,24 @@ public class UITableView
     public UITableView(CGRect rect)
     {
         super(rect);
+        init(UITableViewStyle.UITableViewStylePlain);
+    }
+
+
+    public UITableView(CGRect rect, int style)
+    {
+    	super(rect);
+    	init(style);
+    }
+
+    
+    private void init(int style)
+    {
         dataSource = null;
         groupFrames = new ArrayList<CGRect>();
     }
 
-
-
+    
     public void setDataSource(UITableViewDataSource dataSource)
     {
         this.dataSource = dataSource;
