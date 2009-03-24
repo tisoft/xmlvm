@@ -167,19 +167,11 @@ int main(int argc, char* argv[])
         <xsl:with-param name="type" select="@type"/>
       </xsl:call-template>
       <xsl:text>) _GET_STATIC_</xsl:text>
-      <xsl:value-of select="vm:fixname(../@package)"/>
-      <xsl:text>_</xsl:text>
-      <xsl:value-of select="vm:fixname(../@name)"/>
-      <xsl:text>_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>;
 </xsl:text>
       <!-- Emit setter -->
       <xsl:text>+ (void) _PUT_STATIC_</xsl:text>
-      <xsl:value-of select="vm:fixname(../@package)"/>
-      <xsl:text>_</xsl:text>
-      <xsl:value-of select="vm:fixname(../@name)"/>
-      <xsl:text>_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>: (</xsl:text>
       <xsl:call-template name="emitType">
@@ -200,22 +192,6 @@ int main(int argc, char* argv[])
 @end
 
 </xsl:text>
-
-
-    <!-- Emit global variable declaration for all static fields -->
-    <xsl:for-each select="vm:field[@isStatic = 'true']">
-      <xsl:call-template name="emitType">
-        <xsl:with-param name="type" select="@type"/>
-      </xsl:call-template>
-      <xsl:text> _STATIC_</xsl:text>
-      <xsl:value-of select="vm:fixname(../@package)"/>
-      <xsl:text>_</xsl:text>
-      <xsl:value-of select="vm:fixname(../@name)"/>
-      <xsl:text>_</xsl:text>
-      <xsl:value-of select="vm:fixname(@name)"/>
-      <xsl:text>;
-</xsl:text>
-    </xsl:for-each>
   </xsl:for-each>
   
 </xsl:template>
@@ -268,8 +244,8 @@ int main(int argc, char* argv[])
       <xsl:call-template name="emitType">
         <xsl:with-param name="type" select="@type"/>
       </xsl:call-template>
-      <xsl:text>) _GET</xsl:text>
-      <xsl:value-of select="$field"/>
+      <xsl:text>) _GET_STATIC_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>
 {
     return </xsl:text>
@@ -279,8 +255,8 @@ int main(int argc, char* argv[])
 
 </xsl:text>
       <!-- Emit setter -->
-      <xsl:text>+ (void) _PUT</xsl:text>
-      <xsl:value-of select="$field"/>
+      <xsl:text>+ (void) _PUT_STATIC_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>: (</xsl:text>
       <xsl:call-template name="emitType">
         <xsl:with-param name="type" select="@type"/>
@@ -487,8 +463,6 @@ int main(int argc, char* argv[])
   <xsl:text> = [</xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text> _GET_STATIC_</xsl:text>
-  <xsl:value-of select="vm:fixname(@class-type)"/>
-  <xsl:text>_</xsl:text>
   <xsl:value-of select="@field"/>
   <xsl:text>];
     _stack[_sp++]</xsl:text>
@@ -514,8 +488,6 @@ int main(int argc, char* argv[])
     [</xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text> _PUT_STATIC_</xsl:text>
-  <xsl:value-of select="vm:fixname(@class-type)"/>
-  <xsl:text>_</xsl:text>
   <xsl:value-of select="@field"/>
   <xsl:text>: _op1</xsl:text>
   <xsl:value-of select="$typedAccess"/>

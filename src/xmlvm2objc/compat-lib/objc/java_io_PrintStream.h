@@ -10,5 +10,3 @@
 - (void) println___java_lang_String: (NSString*) s;
 
 @end
-
-java_io_PrintStream* _STATIC_java_lang_System_out;

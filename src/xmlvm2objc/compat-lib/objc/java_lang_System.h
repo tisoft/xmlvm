@@ -5,7 +5,7 @@
 @interface java_lang_System : java_lang_Object
 
 + (void) initialize;
-+ (java_io_PrintStream*) _GET_STATIC_java_lang_System_out;
-+ (void) _PUT_STATIC_java_lang_System_out: (java_io_PrintStream*) v;
++ (java_io_PrintStream*) _GET_STATIC_out;
++ (void) _PUT_STATIC_out: (java_io_PrintStream*) v;
 
 @end
