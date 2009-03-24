@@ -130,6 +130,10 @@ public class ParseJVM
         f.setAttribute("name", field.getName());
         Type t = field.getType();
         f.setAttribute("type", t.toString());
+        ConstantValue val = field.getConstantValue();
+        if (val != null) {
+        	f.setAttribute("value", val.toString());
+        }
     }
 
 

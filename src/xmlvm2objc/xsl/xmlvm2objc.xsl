@@ -202,7 +202,7 @@ int main(int argc, char* argv[])
 </xsl:text>
 
 
-    <!-- Emit global variables for all static fields -->
+    <!-- Emit global variable declaration for all static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
       <xsl:call-template name="emitType">
         <xsl:with-param name="type" select="@type"/>
@@ -223,6 +223,29 @@ int main(int argc, char* argv[])
 
 <xsl:template name="emitImplementation">
   <xsl:for-each select="vm:class">
+    <!-- Emit global variable definition for all static fields -->
+    <xsl:for-each select="vm:field[@isStatic = 'true']">
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="@type"/>
+      </xsl:call-template>
+      <xsl:text> _STATIC_</xsl:text>
+      <xsl:value-of select="vm:fixname(../@package)"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(../@name)"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:if test="@value">
+        <xsl:text> = </xsl:text>
+        <!-- TODO String values need to be surrounded by quotes and escaped properly. -->
+        <xsl:if test="@type = 'java.lang.String'">
+          <xsl:text>@</xsl:text>
+        </xsl:if>
+        <xsl:value-of select="@value"/>
+      </xsl:if>
+      <xsl:text>;
+</xsl:text>
+    </xsl:for-each>
+
     <xsl:text>
 @implementation </xsl:text>
     <xsl:value-of select="vm:fixname(@package)"/>
