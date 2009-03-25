@@ -8,5 +8,5 @@ abstract public class UITableViewDataSource {
 		return 1;
 	}
 
-	abstract public int numberOfRowsInSection(UITableView table);
+	abstract public int numberOfRowsInSection(UITableView table, int section);
 }

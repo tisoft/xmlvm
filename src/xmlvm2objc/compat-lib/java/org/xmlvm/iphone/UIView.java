@@ -63,6 +63,19 @@ public class UIView
 
 
 
+    public void layoutSubviews()
+    {
+    }
+
+
+    
+    public CGRect getBounds()
+    {
+    	return null;
+    }
+    
+    
+    
     public CGRect getDisplayRect()
     {
         CGRect rect = new CGRect(viewRect);

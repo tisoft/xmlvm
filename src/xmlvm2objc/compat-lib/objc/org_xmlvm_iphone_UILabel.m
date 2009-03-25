@@ -5,6 +5,11 @@
 //----------------------------------------------------------------------------
 @implementation UILabel (cat_org_xmlvm_iphone_UILabel);
 
+- (void) __init_org_xmlvm_iphone_UILabel
+{
+	[self initWithFrame: CGRectZero];
+}
+
 - (void) __init_org_xmlvm_iphone_UILabel___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1
 {
 	[self initWithFrame: [n1 getCGRect]];

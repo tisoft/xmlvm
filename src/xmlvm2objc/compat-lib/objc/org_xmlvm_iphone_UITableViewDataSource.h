@@ -15,7 +15,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 
 
-- (org_xmlvm_iphone_UITableViewCell*) cellForRowAtIndexPath___org_xmlvm_iphone_UITableView___org_xmlvm_iphone_NSIndexPath
+- (org_xmlvm_iphone_UITableViewCell*) cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath
       :(UITableView*) table
       :(org_xmlvm_iphone_NSIndexPath*) idx;
 - (int) numberOfRowsInSection___org_xmlvm_iphone_UITableView_int :(UITableView*) table :(int) section;

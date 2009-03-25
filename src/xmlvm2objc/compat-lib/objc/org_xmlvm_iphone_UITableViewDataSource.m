@@ -11,7 +11,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return [self cellForRowAtIndexPath___org_xmlvm_iphone_UITableView___org_xmlvm_iphone_NSIndexPath :tableView :indexPath];
+	return [self cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :tableView :indexPath];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -26,7 +26,7 @@
 
 
 // Will be over-ridden in derived class
-- (org_xmlvm_iphone_UITableViewCell*) cellForRowAtIndexPath___org_xmlvm_iphone_UITableView___org_xmlvm_iphone_NSIndexPath
+- (org_xmlvm_iphone_UITableViewCell*) cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath
       :(UITableView*) table
       :(org_xmlvm_iphone_NSIndexPath*) idx
 {

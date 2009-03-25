@@ -15,6 +15,13 @@ public class UILabel
 
 
 
+    public UILabel()
+    {
+        super(new CGRect(0, 0, 0, 0));
+    }
+
+
+
     public UILabel(CGRect rect)
     {
         super(rect);

@@ -29,7 +29,7 @@ public class ListDataSource
 
 
 	@Override
-	public int numberOfRowsInSection(UITableView table) {
+	public int numberOfRowsInSection(UITableView table, int section) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

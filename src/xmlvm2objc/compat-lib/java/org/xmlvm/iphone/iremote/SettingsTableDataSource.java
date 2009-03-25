@@ -1,6 +1,9 @@
 package org.xmlvm.iphone.iremote;
 
+import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.CGRectNull;
 import org.xmlvm.iphone.NSIndexPath;
+import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UITableView;
 import org.xmlvm.iphone.UITableViewCell;
 import org.xmlvm.iphone.UITableViewDataSource;
@@ -10,8 +13,9 @@ public class SettingsTableDataSource extends UITableViewDataSource {
 	@Override
 	public UITableViewCell cellForRowAtIndexPath(UITableView table,
 			NSIndexPath idx) {
-		// TODO Auto-generated method stub
-		return null;
+		SettingTableCell cell = new SettingTableCell();
+		cell.setLabelText("Hello World");
+		return cell;
 	}
 
 	@Override
@@ -21,9 +25,8 @@ public class SettingsTableDataSource extends UITableViewDataSource {
 
 
 	@Override
-	public int numberOfRowsInSection(UITableView table) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int numberOfRowsInSection(UITableView table, int section) {
+		return 1;
 	}
 
 }
