@@ -10,10 +10,16 @@ public class UITableViewCell extends UIView {
 
 	public UITableViewCell() {
 		super(new CGRect(0, 0, 0, 0));
+		init();
 	}
 
 	public UITableViewCell(CGRect rect) {
 		super(rect);
+		init();
+	}
+
+	private void init() {
+		this.contentView = new UIView();
 	}
 
 	protected void drawCellBackground(Graphics2D g, CGRect displayRect) {
@@ -41,6 +47,6 @@ public class UITableViewCell extends UIView {
 	}
 
 	public UIView getContentView() {
-		return null;
+		return this;//this.contentView;
 	}
 }

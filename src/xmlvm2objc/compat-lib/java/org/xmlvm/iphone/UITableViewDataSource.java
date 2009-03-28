@@ -9,4 +9,8 @@ abstract public class UITableViewDataSource {
 	}
 
 	abstract public int numberOfRowsInSection(UITableView table, int section);
+
+	public String titleForHeaderInSection(UITableView table, int section) {
+		return null;
+	}
 }

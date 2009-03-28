@@ -24,6 +24,11 @@
 	return [self numberOfSectionsInTableView___org_xmlvm_iphone_UITableView: tableView];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	return [self titleForHeaderInSection___org_xmlvm_iphone_UITableView_int :tableView :(int) section];
+}
+
 
 // Will be over-ridden in derived class
 - (org_xmlvm_iphone_UITableViewCell*) cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath
@@ -42,6 +47,13 @@
 - (int)numberOfSectionsInTableView___org_xmlvm_iphone_UITableView :(UITableView *)tableView
 {
 	return 1;
+}
+
+// Might be over-ridden in derived class
+- (java_lang_String *) titleForHeaderInSection___org_xmlvm_iphone_UITableView_int :(UITableView*) tableView
+                                                                                  :(int) section
+{
+	return nil;
 }
 
 @end

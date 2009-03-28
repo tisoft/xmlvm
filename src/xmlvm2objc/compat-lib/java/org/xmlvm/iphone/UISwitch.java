@@ -2,6 +2,7 @@
 package org.xmlvm.iphone;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
@@ -15,23 +16,37 @@ public class UISwitch
     implements GestureListener
 {
 
-    private boolean   isOn = false;
-    final private int INSET = 5;
+    private boolean   isOn;
+    final private int INSET = 8;
+    private Font font;
+
+
+
+    public UISwitch()
+    {
+        super(new CGRect(0, 0, 0, 0));
+        init();
+	}
 
 
 
     public UISwitch(CGRect rect)
     {
         super(rect);
-        rect.size.width = 80;
-        rect.size.height = 20;
-        setFrame(rect);
-        Simulator.addGestureListener(this);
+        init();
     }
 
 
 
-    public void setOn(boolean on)
+	private void init() {
+        Simulator.addGestureListener(this);
+		// Set a default font
+		font = new Font("Arial", Font.BOLD, 16);
+		this.setOn(false);
+	}
+
+
+	public void setOn(boolean on)
     {
     	this.isOn = on;
     }
@@ -48,55 +63,62 @@ public class UISwitch
     public void drawRect(CGRect rect)
     {
         Graphics2D g = CGContext.theContext.graphicsContext;
+        g.setFont(font);
         CGRect displayRect = getDisplayRect();
+        int x = (int) displayRect.origin.x;
+        int y = (int) displayRect.origin.y;
+        int w = (int) displayRect.size.width;
+        int h = (int) displayRect.size.height;
         GradientPaint blueGradient = new GradientPaint(
                 0,
-                (int) displayRect.origin.y,
+                y,
                 new Color(61, 89, 171),
                 0,
-                (int) (displayRect.origin.y + displayRect.size.height),
+                y + h,
                 new Color(100, 149, 237));
         GradientPaint whiteGradient = new GradientPaint(
                 0,
-                (int) displayRect.origin.y,
-                Color.LIGHT_GRAY,
+                y,
+                new Color(220, 220, 220),
                 0,
-                (int) (displayRect.origin.y + displayRect.size.height),
+                y + h,
                 Color.WHITE);
         GradientPaint grayGradient = new GradientPaint(
                 0,
-                (int) displayRect.origin.y,
-                Color.GRAY,
+                y,
+                Color.LIGHT_GRAY,
                 0,
-                (int) (displayRect.origin.y + displayRect.size.height),
-                Color.LIGHT_GRAY);
+                y + h,
+                Color.WHITE);
         g.setPaint(isOn ? blueGradient : whiteGradient);
-        g.fillRoundRect((int) displayRect.origin.x, (int) displayRect.origin.y,
-                (int) displayRect.size.width, (int) displayRect.size.height,
+        g.fillRoundRect(x, y,
+                w, h,
                 INSET, INSET);
         g.setColor(Color.LIGHT_GRAY);
-        g.drawRoundRect((int) displayRect.origin.x, (int) displayRect.origin.y,
-                (int) displayRect.size.width, (int) displayRect.size.height,
+        g.drawRoundRect(x, y,
+                w, h,
                 INSET, INSET);
         CGRect knob = new CGRect(displayRect);
-        float halfWidth = knob.size.width / 2;
+        float halfWidth = w / 2;
         knob.size.width = halfWidth;
         if (isOn)
             knob.origin.x += halfWidth;
+        g.drawRoundRect((int) knob.origin.x, (int) knob.origin.y,
+                (int) knob.size.width, (int) knob.size.height, INSET, INSET);
         g.setPaint(grayGradient);
         g.fillRoundRect((int) knob.origin.x, (int) knob.origin.y,
                 (int) knob.size.width, (int) knob.size.height, INSET, INSET);
         String label = "ON";
-        knob.origin.x = displayRect.origin.x;
+        knob.origin.x = x;
         g.setColor(Color.WHITE);
-        if (isOn) {
+        if (!isOn) {
             knob.origin.x += halfWidth;
             g.setColor(Color.GRAY);
             label = "OFF";
         }
         FontMetrics fm = g.getFontMetrics();
         g.drawString(label, knob.origin.x + INSET, knob.origin.y
-                + knob.size.height - fm.getLeading() - fm.getDescent());
+                + (h - fm.getHeight()) / 2 + fm.getHeight() - fm.getDescent());
     }
 
 
@@ -106,11 +128,11 @@ public class UISwitch
         CGRect rect = getDisplayRect();
         int inX = x - (int) rect.origin.x;
         int inY = y - (int) rect.origin.y;
-        if (inX >= 0 && inX < viewRect.size.width / 2 && inY >= 0
-                && inY < viewRect.size.height)
+        if (inX >= 0 && inX < frame.size.width / 2 && inY >= 0
+                && inY < frame.size.height)
             setOn(true);
-        if (inX > viewRect.size.width / 2 && inX < viewRect.size.width
-                && inY >= 0 && inY < viewRect.size.height)
+        if (inX > frame.size.width / 2 && inX < frame.size.width
+                && inY >= 0 && inY < frame.size.height)
             setOn(false);
         Simulator.redrawDisplay();
     }

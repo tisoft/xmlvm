@@ -7,8 +7,6 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.xmlvm.iphone.internal.GestureListener;
-import org.xmlvm.iphone.internal.Simulator;
 
 
 
@@ -17,8 +15,11 @@ public class UITableView
 {
 
     private UITableViewDataSource dataSource;
-    private List<CGRect>                 groupFrames;
-    final static int                     INSET = 15;
+    private UITableViewDelegate   delegate;
+    private List<CGRect>          sectionFrames;
+    private List<CGRect>          horizontalDividers;
+    final static int              INSET = 15;
+    final static int              SECTION_VSPACE = 20;
 
 
 
@@ -39,53 +40,71 @@ public class UITableView
     private void init(int style)
     {
         dataSource = null;
-        groupFrames = new ArrayList<CGRect>();
+        delegate = null;
+        sectionFrames = new ArrayList<CGRect>();
+        horizontalDividers = new ArrayList<CGRect>();
     }
 
     
     public void setDataSource(UITableViewDataSource dataSource)
     {
         this.dataSource = dataSource;
+        reloadData();
+    }
+
+
+
+    public void setDelegate(UITableViewDelegate delegate)
+    {
+    	this.delegate = delegate;
+    	reloadData();
     }
 
 
 
     public void reloadData()
     {
-    	/*
         subViews.clear();
-        groupFrames.clear();
-        float width = viewRect.size.width * 0.9f;
-        float x = viewRect.origin.x + viewRect.size.width * 0.05f;
-        int numOfGroups = dataSource.numberOfSectionsInTableView(this);
+        sectionFrames.clear();
+        horizontalDividers.clear();
+        float width = frame.size.width * 0.9f;
+        float leftEdge = frame.origin.x + frame.size.width * 0.05f;
+        int numOfSections = dataSource.numberOfSectionsInTableView(this);
         int y = 0;
         NSIndexPath idx = new NSIndexPath();
-        for (int g = 0; g < numOfGroups; g++) {
-        	idx.section = g;
-            UITableViewCell group = dataSource.cellForGroup(this, g);
-            float proposedHeight = dataSource.heightForRow(this, -1, g, 40);
-            CGRect rect = new CGRect(x, y, width, proposedHeight);
-            y += proposedHeight;
-            group.setFrame(rect);
-            group.isGroupCell(true);
-            addSubview(group);
-            if (dataSource.isLabelGroup(this, g))
-                continue;
-            int numRows = dataSource.numberOfRowsInGroup(this, g);
-            CGRect groupRect = new CGRect(x, y, width, 0);
-            for (int r = 0; r < numRows; r++) {
-                y += 5;
-                UIPreferencesTableCell cell = dataSource.cellForRow(this, r, g);
-                proposedHeight = dataSource.heightForRow(this, r, g, 40);
-                rect = new CGRect(x, y, width, proposedHeight);
-                y += proposedHeight;
-                cell.setFrame(rect);
-                addSubview(cell);
-            }
-            groupRect.size.height = y - groupRect.origin.y;
-            groupFrames.add(groupRect);
+        for (int section = 0; section < numOfSections; section++) {
+        	y += SECTION_VSPACE;
+        	String header = dataSource.titleForHeaderInSection(this, section);
+        	if (header != null) {
+                Font font = new Font("Arial", Font.BOLD, 16);
+                CGRect headerRect = new CGRect(leftEdge + INSET, y, width - INSET, 15);
+        		UILabel headerLabel = new UILabel(headerRect);
+        		headerLabel.setText(header);
+        		headerLabel.setFont(font);
+        		headerLabel.setFontColor(Color.DARK_GRAY);
+        		addSubview(headerLabel);
+        		y += 25;
+        	}
+        	idx.setSection(section);
+        	int numOfRowsInSection = dataSource.numberOfRowsInSection(this, section);
+            CGRect sectionRect = new CGRect(leftEdge, y, width, 0);
+        	for (int row = 0; row < numOfRowsInSection; row++) {
+        		idx.setRow(row);
+        		UITableViewCell cell = dataSource.cellForRowAtIndexPath(this, idx);
+        		float preferredHeight = delegate == null ? 50.0f : delegate.heightForRowAtIndexPath(this, idx);
+        		CGRect rect = new CGRect(leftEdge, y, width, preferredHeight);
+        		cell.setFrame(rect);
+        		cell.layoutSubviews();
+        		addSubview(cell);
+        		y += preferredHeight;
+        		if (row != numOfRowsInSection - 1) {
+        			horizontalDividers.add(new CGRect(leftEdge, y, width + INSET, y));
+        			y++;
+        		}
+        	}
+            sectionRect.size.height = y - sectionRect.origin.y;
+            sectionFrames.add(sectionRect);
         }
-*/
     }
 
 
@@ -94,29 +113,32 @@ public class UITableView
     {
         Graphics2D g = CGContext.theContext.graphicsContext;
         CGRect displayRect = getDisplayRect();
+        int x = (int) displayRect.origin.x;
+        int y = (int) displayRect.origin.y;
+        int w = (int) displayRect.size.width;
+        int h = (int) displayRect.size.height;
         g.setBackground(new Color(220, 220, 220));
-        g.clearRect((int) displayRect.origin.x, (int) displayRect.origin.y,
-                (int) displayRect.size.width, (int) displayRect.size.height);
+        g.clearRect(x, y, w, h);
         g.setColor(new Color(230, 230, 230));
-        for (int i = 0; i < viewRect.size.width; i += 10) {
-            g.drawLine((int) displayRect.origin.x + i,
-                    (int) displayRect.origin.y, (int) displayRect.origin.x + i,
-                    (int) (displayRect.origin.y + displayRect.size.height));
+        for (int i = 0; i < frame.size.width; i += 10) {
+            g.drawLine(x + i, y, x + i, y + h);
         }
-        for (CGRect groupRect : groupFrames) {
+        for (CGRect sectionRect : sectionFrames) {
             g.setColor(Color.WHITE);
-            g.fillRoundRect((int) (displayRect.origin.x + groupRect.origin.x),
-                    (int) (displayRect.origin.y + groupRect.origin.y),
-                    (int) groupRect.size.width, (int) groupRect.size.height,
+            g.fillRoundRect(x + (int) sectionRect.origin.x,
+                    y + (int) sectionRect.origin.y,
+                    (int) sectionRect.size.width, (int) sectionRect.size.height,
                     INSET, INSET);
             g.setColor(Color.LIGHT_GRAY);
-            g.drawRoundRect((int) (displayRect.origin.x + groupRect.origin.x),
-                    (int) (displayRect.origin.y + groupRect.origin.y),
-                    (int) groupRect.size.width, (int) groupRect.size.height,
+            g.drawRoundRect(x + (int) sectionRect.origin.x,
+                    y + (int) sectionRect.origin.y,
+                    (int) sectionRect.size.width, (int) sectionRect.size.height,
                     INSET, INSET);
         }
-        g.setColor(Color.BLACK);
-        Font f = new Font("sansserif", Font.BOLD, 16);
+        for (CGRect div : horizontalDividers) {
+        	g.drawLine((int) div.origin.x, (int) (y + div.origin.y),
+        			(int) div.size.width, (int) (y + div.origin.y));
+        }
         super.drawRect(rect);
     }
 }

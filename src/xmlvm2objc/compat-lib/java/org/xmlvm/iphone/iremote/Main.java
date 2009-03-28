@@ -10,10 +10,11 @@ public class Main
     implements IAccelerated
 {
 
-    private UIAccelerometer accel;
-    private UITextField ipAddress = null;
-    private UISwitch useAccelerometer = null;
+	private SettingsTableDataSource settings = null;
+	private UIAccelerometer accel = null;
 
+	
+	
     public void applicationDidFinishLaunching(NSNotification aNotification)
     {
         UIScreen screen = UIScreen.mainScreen();
@@ -23,38 +24,27 @@ public class Main
         rect.origin.x = rect.origin.y = 0;
         UITableView table = new UITableView(rect, UITableViewStyle.UITableViewStyleGrouped);
         window.addSubview(table);
-        UITableViewDataSource ds = new SettingsTableDataSource();
-        table.setDataSource(ds);
-        
-        /*
-        CGRect ipAddressRect = new CGRect(0,50,100,20);
-        ipAddress = new UITextField(ipAddressRect);
-        ipAddress.setText("127.0.0.1");
-        ipAddress.setTextColor(UIColor.whiteColor());
-        window.addSubview(ipAddress);
-
-        CGRect useAccelerometerRect = new CGRect(0, 150, 100, 20);
-        useAccelerometer = new UISwitch(useAccelerometerRect);
-        window.addSubview(useAccelerometer);
-        */
+        settings = new SettingsTableDataSource();
+        table.setDataSource(settings);
+        UITableViewDelegate dg = new SettingsTableDelegate();
+        table.setDelegate(dg);
         
         window.makeKeyAndVisible();
-/*
+
         accel = new UIAccelerometer();
         accel.setUpdateInterval(1.0/40);
         accel.setDelegate(this);
-        */
     }
 
 
 
     public void OnAccelerate(float xAxis, float yAxis, float zAxis)
     {
-        if (ipAddress == null || useAccelerometer == null)
+        if (settings == null)
             return;
-        if (useAccelerometer.isOn())
+        if (!settings.accelerometer.isOn())
             return;
-        String ip = ipAddress.getText();
+        String ip = settings.ipAddress.getText();
         if (ip.equals(""))
         	return;
         String server = new String("http://" + ip + ":8080/ACC/");

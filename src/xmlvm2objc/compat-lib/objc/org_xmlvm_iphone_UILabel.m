@@ -22,8 +22,20 @@
 }
 
 
-- (void) setCentersHorizontally___boolean :(int)n1
+- (void) setTextAlignment___int :(int) alignment
 {
-    [self setCentersHorizontally: (n1 ? true : false)];
+	UITextAlignment a;
+	switch (alignment) {
+	case 0:
+		a = UITextAlignmentLeft;
+		break;
+	case 1:
+		a = UITextAlignmentCenter;
+		break;
+	case 2:
+		a = UITextAlignmentRight;
+		break;
+	}
+    self.textAlignment = a;
 }
 @end

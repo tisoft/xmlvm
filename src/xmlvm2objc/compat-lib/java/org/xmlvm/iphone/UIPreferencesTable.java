@@ -43,8 +43,8 @@ public class UIPreferencesTable
     {
         subViews.clear();
         groupFrames.clear();
-        float width = viewRect.size.width * 0.9f;
-        float x = viewRect.origin.x + viewRect.size.width * 0.05f;
+        float width = frame.size.width * 0.9f;
+        float x = frame.origin.x + frame.size.width * 0.05f;
         int numOfGroups = dataSource.numberOfGroupsInPreferencesTable(this);
         int y = 0;
         for (int g = 0; g < numOfGroups; g++) {
@@ -84,7 +84,7 @@ public class UIPreferencesTable
         g.clearRect((int) displayRect.origin.x, (int) displayRect.origin.y,
                 (int) displayRect.size.width, (int) displayRect.size.height);
         g.setColor(new Color(230, 230, 230));
-        for (int i = 0; i < viewRect.size.width; i += 10) {
+        for (int i = 0; i < frame.size.width; i += 10) {
             g.drawLine((int) displayRect.origin.x + i,
                     (int) displayRect.origin.y, (int) displayRect.origin.x + i,
                     (int) (displayRect.origin.y + displayRect.size.height));

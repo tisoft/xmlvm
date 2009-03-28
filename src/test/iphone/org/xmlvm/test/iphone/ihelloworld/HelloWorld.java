@@ -22,7 +22,7 @@ public class HelloWorld
         /* Initialize a text label with static, uneditable text */
         UILabel _title = new UILabel(rect);
         _title.setText("Hello World!");
-        _title.setCentersHorizontally(true);
+        _title.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
         mainView.addSubview(_title);
 
         window.makeKeyAndVisible();

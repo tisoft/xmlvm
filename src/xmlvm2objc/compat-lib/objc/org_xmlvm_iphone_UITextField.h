@@ -10,4 +10,5 @@ typedef UITextField org_xmlvm_iphone_UITextField;
 - (void) setText___java_lang_String :(NSString*)n1;
 - (NSString*) getText;
 - (void) setTextColor___org_xmlvm_iphone_UIColor: (org_xmlvm_iphone_UIColor*) color;
+- (void) setBorderStyle___int :(int) style;
 @end

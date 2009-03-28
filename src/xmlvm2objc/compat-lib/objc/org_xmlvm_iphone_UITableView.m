@@ -19,4 +19,9 @@
 	[self setDataSource: source];
 }
 
+- (void) setDelegate___org_xmlvm_iphone_UITableViewDelegate :(org_xmlvm_iphone_UITableViewDelegate*) delegate
+{
+	[self setDelegate: delegate];
+}
+
 @end

@@ -48,7 +48,7 @@ public class UIPreferencesTableCell
         FontMetrics fm = g.getFontMetrics();
         int x = (int) displayRect.origin.x + INSET;
         int y = (int) displayRect.origin.y
-                + ((int) viewRect.size.height + fm.getHeight()) / 2
+                + ((int) frame.size.height + fm.getHeight()) / 2
                 - fm.getDescent();
         g.drawString(title, x, y);
         super.drawRect(rect);

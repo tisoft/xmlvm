@@ -2,6 +2,7 @@
 package org.xmlvm.iphone;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 
@@ -12,12 +13,15 @@ public class UILabel
 {
 
     private String text;
-
+    private Font font;
+    private Color fontColor;
+    private int textAlignment;
 
 
     public UILabel()
     {
         super(new CGRect(0, 0, 0, 0));
+        init();
     }
 
 
@@ -25,8 +29,18 @@ public class UILabel
     public UILabel(CGRect rect)
     {
         super(rect);
+        init();
     }
 
+
+    private void init()
+    {
+        // Set a default font
+        setFont(new Font("Arial", Font.PLAIN, 16));
+        setFontColor(Color.BLACK);
+        setTextAlignment(UITextAlignment.UITextAlignmentLeft);
+        setText("");
+    }
 
 
     public void setText(String text)
@@ -36,10 +50,24 @@ public class UILabel
 
 
 
-    public void setCentersHorizontally(boolean b)
+	public void setFont(Font font)
+	{
+		this.font = font;
+	}
+
+	
+	
+	// TODO should be called setTextColor
+	public void setFontColor(Color fontColor)
+	{
+		this.fontColor = fontColor;
+	}
+
+	
+	
+	public void setTextAlignment(int alignment)
     {
-        // label.setHorizontalAlignment(b ? SwingConstants.CENTER
-        // : SwingConstants.LEFT);
+		this.textAlignment = alignment;
     }
 
 
@@ -48,18 +76,29 @@ public class UILabel
     {
         Graphics2D g = CGContext.theContext.graphicsContext;
         CGRect displayRect = getDisplayRect();
+        /*
         g.setBackground(Color.WHITE);
         g.clearRect((int) displayRect.origin.x, (int) displayRect.origin.y,
                 (int) displayRect.size.width, (int) displayRect.size.height);
-        g.setColor(Color.BLACK);
+        */
+        g.setColor(fontColor);
+        g.setFont(font);
         FontMetrics fm = g.getFontMetrics();
         int width = fm.stringWidth(text);
         int height = fm.getHeight();
+        int descent = fm.getDescent();
         // TODO Centering hard coded for now
         int x = (int) displayRect.origin.x;
         int y = (int) displayRect.origin.y;
-        x += ((int) viewRect.size.width - width) / 2;
-        y += ((int) viewRect.size.height - height) / 2;
+        switch (textAlignment) {
+        case UITextAlignment.UITextAlignmentLeft:
+        	// Do nothing
+        	break;
+        case UITextAlignment.UITextAlignmentCenter:
+        	x += ((int) frame.size.width - width) / 2;
+        	break;
+        }
+        y += ((int) frame.size.height - height) / 2 + height - descent;
         g.drawString(text, x, y);
     }
 }

@@ -80,13 +80,12 @@ public class Display
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         
-        // Set a default font
-        Font f = new Font("Arial", Font.BOLD, 16);
-        g2d.setFont(f);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         CGContext.setGraphicsContext(g2d);
         Rectangle r = g.getClipBounds();
+        g2d.setBackground(Color.WHITE);
+        g2d.clearRect(r.x, r.y, r.width, r.height);
         CGRect rect = new CGRect(r.x, r.y, r.width, r.height);
         for (UIView v : views) {
             v.drawRect(rect);

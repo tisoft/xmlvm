@@ -41,7 +41,7 @@ public class UIImageView
         CGRect displayRect = getDisplayRect();
         // fill the rect
         g.fillRect((int) displayRect.origin.x, (int) displayRect.origin.y,
-                (int) viewRect.size.width, (int) viewRect.size.height);
+                (int) frame.size.width, (int) frame.size.height);
 
         // draw the image using the AffineTransform
         AffineTransform trans = new AffineTransform();

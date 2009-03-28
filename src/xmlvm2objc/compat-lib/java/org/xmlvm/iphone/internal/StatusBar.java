@@ -20,14 +20,14 @@ public class StatusBar
         UIImage image = UIImage.imageAtPath("statusbar.png");
         this.setImage(image);
         isHidden = false;
-        fullHeight = viewRect.size.height;
+        fullHeight = frame.size.height;
     }
 
 
 
     public void drawRect(CGRect rect)
     {
-        if (viewRect.size.height != 0)
+        if (frame.size.height != 0)
             super.drawRect(rect);
     }
 
@@ -36,13 +36,13 @@ public class StatusBar
     public void setStatusBarHidden(boolean flag)
     {
     	isHidden = flag;
-        viewRect.size.height = isHidden ? 0.0f : fullHeight;
+        frame.size.height = isHidden ? 0.0f : fullHeight;
     }
 
 
 
     public float getStatusBarHeight()
     {
-        return viewRect.size.height;
+        return frame.size.height;
     }
 }

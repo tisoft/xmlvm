@@ -14,7 +14,8 @@ public class UIView
 
     protected AffineTransform affineTransform;
 
-    protected CGRect          viewRect;
+    protected CGRect          frame;
+    protected CGRect          bounds;
     protected List<UIView>    subViews;
     protected UIView          parent;
 
@@ -22,7 +23,8 @@ public class UIView
 
     public UIView()
     {
-        this.viewRect = null;
+        this.frame = null;
+        this.bounds = null;
         this.affineTransform = new AffineTransform();
         subViews = new ArrayList<UIView>();
         parent = null;
@@ -33,10 +35,10 @@ public class UIView
 
     public UIView(CGRect rect)
     {
-        this.viewRect = new CGRect(rect);
         this.affineTransform = new AffineTransform();
         subViews = new ArrayList<UIView>();
         parent = null;
+        setFrame(rect);
     }
 
 
@@ -50,7 +52,11 @@ public class UIView
 
     public void setFrame(CGRect rect)
     {
-        viewRect = new CGRect(rect);
+    	boolean needsLayouting = frame != null;
+        frame = new CGRect(rect);
+        bounds = new CGRect(rect);
+        bounds.origin.x = bounds.origin.y = 0;
+        if (needsLayouting) layoutSubviews();
     }
 
 
@@ -71,14 +77,14 @@ public class UIView
     
     public CGRect getBounds()
     {
-    	return null;
+    	return this.bounds;
     }
     
     
     
     public CGRect getDisplayRect()
     {
-        CGRect rect = new CGRect(viewRect);
+        CGRect rect = new CGRect(frame);
         if (parent == null)
             return rect;
         CGRect parentRect = parent.getDisplayRect();
@@ -102,6 +108,9 @@ public class UIView
     {
     	setNeedsDisplayInRect(getDisplayRect());
     }
+    
+    
+    
     protected void setNeedsDisplayInRect(CGRect rect)
     {
         CGRect displayRect = getDisplayRect();
@@ -119,8 +128,8 @@ public class UIView
         switch (trans.type) {
             case 0:
                 // Rotate
-                affineTransform.rotate(trans.alpha, viewRect.size.width / 2,
-                        viewRect.size.height / 2);
+                affineTransform.rotate(trans.alpha, frame.size.width / 2,
+                        frame.size.height / 2);
         }
         Simulator.redrawDisplay();
         // TODO the following clip rect doesn't work properly when rotating

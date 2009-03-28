@@ -27,4 +27,24 @@
 	[self setTextColor: color];
 }
 
+- (void) setBorderStyle___int :(int) style
+{
+	UITextBorderStyle s;
+	switch (style) {
+		case 0:
+			s = UITextBorderStyleNone;
+			break;
+		case 1:
+			s = UITextBorderStyleLine;
+			break;
+		case 2:
+			s = UITextBorderStyleBezel;
+			break;
+		case 3:
+			s = UITextBorderStyleRoundedRect;
+			break;
+	}
+	self.borderStyle = s;
+}
+		
 @end

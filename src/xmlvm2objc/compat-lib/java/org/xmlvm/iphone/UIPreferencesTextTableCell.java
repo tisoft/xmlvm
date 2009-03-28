@@ -57,9 +57,9 @@ public class UIPreferencesTextTableCell
         CGRect displayRect = getDisplayRect();
         g.setColor(Color.BLACK);
         FontMetrics fm = g.getFontMetrics();
-        int x = (int) (displayRect.origin.x + viewRect.size.width / 2);
+        int x = (int) (displayRect.origin.x + frame.size.width / 2);
         int y = (int) displayRect.origin.y
-                + ((int) viewRect.size.height + fm.getHeight()) / 2
+                + ((int) frame.size.height + fm.getHeight()) / 2
                 - fm.getDescent();
         g.drawString(text, x, y);
         x += fm.stringWidth(text);
