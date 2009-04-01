@@ -6,7 +6,7 @@ import org.xmlvm.iphone.*;
 
 
 public class Main
-    extends UIApplication implements IAccelerated
+    extends UIApplication implements UIAccelerometerDelegate
 {
 
     UIWindow window;
@@ -27,20 +27,18 @@ public class Main
         window.addSubview(mainView);
         window.makeKeyAndVisible();
         
-        accel = new UIAccelerometer();
+        accel = UIAccelerometer.getSharedAccelerometer();
         accel.setUpdateInterval(1.0/40);
         accel.setDelegate(this);
     }
 
 
 
-    public void OnAccelerate (float xAxis, float yAxis, float zAxis)
-    {
+	public void accelerometerDidAccelerate(UIAccelerometer accelerometer,
+			UIAcceleration acceleration) {
         // NSLog(@"X:%f Y:%f Z:%f", xAxis, yAxis, zAxis);
-        Gravity.xGV = xAxis * 2;
-        Gravity.yGV = -yAxis * 2;
-        xAxis *= 100;
-        yAxis *= 100;
+        Gravity.xGV = acceleration.x() * 2;
+        Gravity.yGV = -acceleration.y() * 2;
     }
 
 

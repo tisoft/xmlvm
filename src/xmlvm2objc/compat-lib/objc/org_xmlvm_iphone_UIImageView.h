@@ -12,5 +12,5 @@ typedef UIImageView org_xmlvm_iphone_UIImageView;
 - (void) setImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image;
 - (void) setTransform___org_xmlvm_iphone_CGAffineTransform :(org_xmlvm_iphone_CGAffineTransform*)transform;
 - (void) setFrame___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*)n1;
-
+- (void) setNeedsDisplayInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect;
 @end

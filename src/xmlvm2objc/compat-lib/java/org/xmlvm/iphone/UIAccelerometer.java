@@ -1,35 +1,34 @@
 package org.xmlvm.iphone;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.xmlvm.iphone.internal.Simulator;
 
 public class UIAccelerometer {
-  public static List<UIAccelerometer> accelerometers = new ArrayList<UIAccelerometer>();
-  private IAccelerated toNotify;
-  
-  public UIAccelerometer() {
-    accelerometers.add(this);
-  }
 
-  public static void setAcceleratedInternal(float x, float y, float z) {
-	Simulator.setAccelerated(x, y, z);
-    for (UIAccelerometer accelerometer : accelerometers) {
-      accelerometer.Accelerated(x, y, z);
-    }
-  }
+	private static UIAccelerometer sharedAccelerometer = new UIAccelerometer();
 
-  public void setUpdateInterval(double i) {
+	private UIAccelerometerDelegate delegate = null;
 
-  }
+	private UIAccelerometer() {
+	}
 
-  public void setDelegate(IAccelerated app) {
-    this.toNotify = app;
-  }
+	public static UIAccelerometer getSharedAccelerometer() {
+		return sharedAccelerometer;
+	}
 
-  public void Accelerated(float x, float y, float z) {
-    this.toNotify.OnAccelerate(x, y, z);
-  }
+	public static void setAcceleratedInternal(double x, double y, double z) {
+		Simulator.setAccelerated(x, y, z);
+		if (sharedAccelerometer.delegate != null) {
+			UIAcceleration acceleration = new UIAcceleration(x, y, z);
+			sharedAccelerometer.delegate.accelerometerDidAccelerate(
+					sharedAccelerometer, acceleration);
+		}
+	}
 
+	public void setUpdateInterval(double i) {
+
+	}
+
+	public void setDelegate(UIAccelerometerDelegate delegate) {
+		this.delegate = delegate;
+	}
 }

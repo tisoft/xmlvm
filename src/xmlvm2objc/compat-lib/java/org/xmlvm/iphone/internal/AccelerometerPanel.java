@@ -131,18 +131,18 @@ public class AccelerometerPanel
 
 
 
-    public void setAccelerated(float xAxis, float yAxis, float zAxis)
+    public void setAccelerated(double x, double y, double z)
     {
-        setAcceleratedValue(xAxisControl, xAxis);
-        setAcceleratedValue(yAxisControl, yAxis);
-        setAcceleratedValue(zAxisControl, zAxis);
+        setAcceleratedValue(xAxisControl, x);
+        setAcceleratedValue(yAxisControl, y);
+        setAcceleratedValue(zAxisControl, z);
     }
 
 
 
-    private void setAcceleratedValue(JScrollBar control, float value)
+    private void setAcceleratedValue(JScrollBar control, double x)
     {
-        int pos = (int) ((value + 0.5f) * (100 - control.getVisibleAmount()));
+        int pos = (int) ((x + 0.5f) * (100 - control.getVisibleAmount()));
         control.setValue(pos);
     }
 

@@ -1,36 +1,50 @@
 #import "org_xmlvm_iphone_UIAccelerometer.h"
 
 
+@implementation UIAccelerometerDelegateWrapper;
 
-
-// UIApplication
-//----------------------------------------------------------------------------
-@implementation org_xmlvm_iphone_UIAccelerometer;
-
-- (void) __init_org_xmlvm_iphone_UIAccelerometer
+- (id) initWithDelegate: (id<org_xmlvm_iphone_UIAccelerometerDelegate>) del
 {
-   
+	[super init];
+	delegate = del;
+	return self;
 }
 
-// UIAccelerometerDelegate method, called when the device accelerates.
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
- {
-	
-	 [app OnAccelerate___float_float_float :(float)acceleration.x :(float)acceleration.y :(float)acceleration.z];
+- (void) dealloc
+{
+	[delegate release];
+	[super dealloc];
 }
 
+- (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+{
+	[delegate accelerometerDidAccelerate___org_xmlvm_iphone_UIAccelerometer_org_xmlvm_iphone_UIAcceleration
+	    : accelerometer
+	    : acceleration];
+}
+
+@end
+
+
+
+// UIAccelerometer
+//----------------------------------------------------------------------------
+@implementation UIAccelerometer (cat_org_xmlvm_iphone_UIAccelerometer)
+
++ (UIAccelerometer*) getSharedAccelerometer
+{
+	return [UIAccelerometer sharedAccelerometer];
+}
 
 - (void) setUpdateInterval___double: (double)interval
 {
-    [[UIAccelerometer sharedAccelerometer] setUpdateInterval:interval];
-
+    [self setUpdateInterval:interval];
 }
 
-- (void) setDelegate___org_xmlvm_iphone_IAccelerated :(org_xmlvm_iphone_UIApplication*)accelApp; 
-{ 
- app = accelApp;
- [[UIAccelerometer sharedAccelerometer] setDelegate:self];
-
+- (void) setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate :(id<org_xmlvm_iphone_UIAccelerometerDelegate>) delegate
+{
+	UIAccelerometerDelegateWrapper* wrapper = [[UIAccelerometerDelegateWrapper alloc] initWithDelegate: delegate];
+	[self setDelegate: wrapper];
 }
 
 @end

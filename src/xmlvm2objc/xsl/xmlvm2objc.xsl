@@ -59,6 +59,9 @@
 
 <xsl:template name="emitMainMethodForAndroid2Iphone">
   <xsl:text>
+
+#import "android_app_ActivityWrapper.h"
+
 int main(int argc, char* argv[])
 {
   	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -137,28 +140,40 @@ int main(int argc, char* argv[])
   <xsl:template name="emitInterfaces">
   <xsl:for-each select="vm:class">
     <xsl:text>
-@interface </xsl:text>
+</xsl:text>
+    <xsl:value-of select="if (@isInterface = 'true') then '@protocol ' else '@interface '"/>
     <xsl:value-of select="vm:fixname(@package)"/>
     <xsl:text>_</xsl:text>
     <xsl:value-of select="vm:fixname(@name)"/>
-    <xsl:text> : </xsl:text>
-    <xsl:value-of select="vm:fixname(@extends)"/>
-    <xsl:text> {
-</xsl:text>
-    <!-- Emit declarations for all non-static fields -->
-    <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
-      <xsl:text>@public </xsl:text>
-      <xsl:call-template name="emitType">
-        <xsl:with-param name="type" select="@type"/>
-      </xsl:call-template>
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="@name"/>
-      <xsl:text>;
-</xsl:text>
-    </xsl:for-each>
+    <xsl:if test="not(@isInterface = 'true')">
+      <xsl:text> : </xsl:text>
+      <xsl:value-of select="vm:fixname(@extends)"/>
+    </xsl:if>
+    <xsl:if test="@interfaces">
+      <xsl:text> &lt;</xsl:text>
+      <xsl:value-of select="vm:fixname(@interfaces)"/>
+      <xsl:text>&gt;</xsl:text>
+    </xsl:if>
     <xsl:text>
+</xsl:text>
+    <xsl:if test="not(@isInterface = 'true')">
+      <xsl:text>{
+</xsl:text>
+      <!-- Emit declarations for all non-static fields -->
+      <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
+        <xsl:text>@public </xsl:text>
+        <xsl:call-template name="emitType">
+          <xsl:with-param name="type" select="@type"/>
+        </xsl:call-template>
+        <xsl:text> </xsl:text>
+        <xsl:value-of select="@name"/>
+        <xsl:text>;
+</xsl:text>
+      </xsl:for-each>
+      <xsl:text>
 }
 </xsl:text>
+    </xsl:if>
     <!-- Emit declarations for getter and setter methods (as class methods) for all static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
       <!-- Emit getter -->
@@ -198,7 +213,7 @@ int main(int argc, char* argv[])
 
 
 <xsl:template name="emitImplementation">
-  <xsl:for-each select="vm:class">
+  <xsl:for-each select="vm:class[not(@isInterface = 'true')]">
     <!-- Emit global variable definition for all static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
       <xsl:call-template name="emitType">
@@ -282,7 +297,17 @@ int main(int argc, char* argv[])
       <xsl:call-template name="emitMethodSignature"/>
   <xsl:text>
 </xsl:text>
-      <xsl:apply-templates/>
+      <xsl:choose>
+        <xsl:when test="../.[@isInterface = 'true']">
+        <xsl:text>{
+}
+
+</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:for-each>
       
     <xsl:text>
@@ -583,6 +608,13 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="jvm:dneg">
+  <xsl:text>    _op1.d = _stack[--_sp].d;
+    _stack[_sp++].d = -_op1.d;
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="jvm:iload">
   <xsl:text>    _op1.i = _locals[</xsl:text>
   <xsl:value-of select="@index"/>
@@ -647,6 +679,13 @@ int main(int argc, char* argv[])
   <xsl:text>    _op2.f = _stack[--_sp].f;
     _op1.f = _stack[--_sp].f;
     _stack[_sp++].f = _op1.f + _op2.f;</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="jvm:dadd">
+  <xsl:text>    _op2.d = _stack[--_sp].d;
+    _op1.d = _stack[--_sp].d;
+    _stack[_sp++].d = _op1.d + _op2.d;</xsl:text>
 </xsl:template>
 
 

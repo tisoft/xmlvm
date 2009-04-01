@@ -35,5 +35,10 @@
     [self setTransform: trans->transform];
 }
 
+- (void) setNeedsDisplayInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect
+{
+	[self setNeedsDisplayInRect: [rect getCGRect]];
+}
+
 @end
 

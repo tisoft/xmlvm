@@ -7,7 +7,7 @@ import org.xmlvm.iphone.*;
 
 public class Main
     extends UIApplication
-    implements IAccelerated
+    implements UIAccelerometerDelegate
 {
 
 	private SettingsTableDataSource settings = null;
@@ -31,15 +31,15 @@ public class Main
         
         window.makeKeyAndVisible();
 
-        accel = new UIAccelerometer();
+        accel = UIAccelerometer.getSharedAccelerometer();
         accel.setUpdateInterval(1.0/40);
         accel.setDelegate(this);
     }
 
 
 
-    public void OnAccelerate(float xAxis, float yAxis, float zAxis)
-    {
+	public void accelerometerDidAccelerate(UIAccelerometer accelerometer,
+			UIAcceleration acceleration) {
         if (settings == null)
             return;
         if (!settings.accelerometer.isOn())
@@ -48,11 +48,11 @@ public class Main
         if (ip.equals(""))
         	return;
         String server = new String("http://" + ip + ":8080/ACC/");
-        server += String.valueOf(xAxis);
+        server += String.valueOf(acceleration.x());
         server += "/";
-        server += String.valueOf(yAxis);
+        server += String.valueOf(acceleration.y());
         server += "/";
-        server += String.valueOf(zAxis);
+        server += String.valueOf(acceleration.z());
         NSURL url = NSURL.URLWithString(server);
         NSMutableURLRequest request = new NSMutableURLRequest(url);
 

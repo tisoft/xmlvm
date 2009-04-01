@@ -11,6 +11,7 @@ typedef NSMutableString java_lang_String;
 - (void) __init_java_lang_StringBuilder___java_lang_String: (java_lang_String*) str;
 + (NSMutableString*) valueOf___int: (int) i;
 + (NSMutableString*) valueOf___float: (float) f;
++ (NSMutableString*) valueOf___double: (double) d;
 + (NSMutableString*) valueOf___java_lang_Object: (java_lang_Object*) o;
 - (char) charAt___int: (int) idx;
 - (int) endsWith___java_lang_String: (java_lang_String*) s;

@@ -20,10 +20,11 @@
 
 package android.hardware;
 
-import org.xmlvm.iphone.IAccelerated;
+import org.xmlvm.iphone.UIAcceleration;
+import org.xmlvm.iphone.UIAccelerometerDelegate;
 import org.xmlvm.iphone.UIAccelerometer;
 
-public class SensorManager implements IAccelerated {
+public class SensorManager implements UIAccelerometerDelegate {
   public static final float GRAVITY_EARTH = 9.80665f;
   public static final int SENSOR_ACCELEROMETER = 0x00000002;
   // TODO: support list on iPhone
@@ -33,7 +34,7 @@ public class SensorManager implements IAccelerated {
   private UIAccelerometer accel;
 
   public SensorManager() {
-    accel = new UIAccelerometer();
+    accel = UIAccelerometer.getSharedAccelerometer();
     accel.setUpdateInterval(1.0 / 40);
     accel.setDelegate(this);
   }
@@ -42,13 +43,14 @@ public class SensorManager implements IAccelerated {
     listeners[numListeners++] = new RegisteredListener(listener, sensors);
   }
 
-  public void OnAccelerate(float x, float y, float z) {
+  public void accelerometerDidAccelerate(UIAccelerometer accelerometer,
+			UIAcceleration acceleration) {
     // This is to adapt the iPhone value range to the Android one. iPhone/iPod
     // touch has a range of -0.5 to 0.5 whereas the Android phone delivers the
     // actual g-force value.
-    x = 2 * x * GRAVITY_EARTH;
-    y = 2 * y * GRAVITY_EARTH;
-    z = 2 * z * GRAVITY_EARTH;
+    float x = (float) (2 * acceleration.x() * GRAVITY_EARTH);
+    float y = (float) (2 * acceleration.y() * GRAVITY_EARTH);
+    float z = (float) (2 * acceleration.z() * GRAVITY_EARTH);
     for (int i = 0; i < numListeners; i++) {
       RegisteredListener listener = listeners[i];
       if ((listener.sensors & SENSOR_ACCELEROMETER) != 0) {

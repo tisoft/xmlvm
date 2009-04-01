@@ -32,6 +32,12 @@
     return [NSMutableString stringWithString: [n stringValue]];
 }
 
++ (NSMutableString*) valueOf___double: (double) d
+{
+    NSNumber* n = [NSNumber numberWithDouble: d];
+    return [NSMutableString stringWithString: [n stringValue]];
+}
+
 + (NSMutableString*) valueOf___java_lang_Object: (java_lang_Object*) o
 {
     if ([o isKindOfClass: [NSMutableString class]] == YES) {

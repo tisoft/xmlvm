@@ -3,7 +3,7 @@ package org.xmlvm.iphone.internal;
 
 import javax.swing.JPanel;
 
-import org.xmlvm.iphone.IAccelerated;
+import org.xmlvm.iphone.UIAccelerometerDelegate;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
@@ -101,8 +101,8 @@ public class Simulator
 
 
 
-    static public void setAccelerated(float xAxis, float yAxis, float zAxis)
+    static public void setAccelerated(double x, double y, double z)
     {
-       	simulatorGUI.setAccelerated(xAxis, yAxis, zAxis);
+       	simulatorGUI.setAccelerated(x, y, z);
     }
 }

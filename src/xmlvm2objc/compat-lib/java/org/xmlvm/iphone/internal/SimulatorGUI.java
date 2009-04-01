@@ -137,8 +137,8 @@ public class SimulatorGUI
 
 
 
-    public void setAccelerated(float xAxis, float yAxis, float zAxis)
+    public void setAccelerated(double x, double y, double z)
     {
-        accelerometer.setAccelerated(xAxis, yAxis, zAxis);
+        accelerometer.setAccelerated(x, y, z);
     }
 }

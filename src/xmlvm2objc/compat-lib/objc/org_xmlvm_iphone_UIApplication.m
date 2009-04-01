@@ -26,11 +26,6 @@
     [self setStatusBarHidden: flag];
 }
 
-- (void) OnAccelerate___float_float_float :(float)x :(float)y :(float)z
-{
-    // Nothing to do. Will be overloaded in derived class.
-}
-
 + (void) main___java_lang_String_ARRAYTYPE_java_lang_Class :(NSMutableArray*)n1 :(id)n2
 {
     // TODO: change args array to argc, argc

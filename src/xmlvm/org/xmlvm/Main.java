@@ -233,15 +233,10 @@ public void genObjC(Document doc, String path, String headerFileName,
     try {
       // The filename will be the name of the first class
       Namespace nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
-      String namespaceName =
-          doc.getRootElement().getChild("class", nsXMLVM).getAttributeValue(
-              "package");
-      String inheritsFrom =
-          doc.getRootElement().getChild("class", nsXMLVM).getAttributeValue(
-              "extends").replace('.', '_');
-      String className =
-          doc.getRootElement().getChild("class", nsXMLVM).getAttributeValue(
-              "name").replace('$', '_');
+      Element clazz = doc.getRootElement().getChild("class", nsXMLVM);
+      String namespaceName = clazz.getAttributeValue("package");
+      String inheritsFrom = clazz.getAttributeValue("extends").replace('.', '_');
+      String className = clazz.getAttributeValue("name").replace('$', '_');
       if (headerFileName == null)
         headerFileName =
             (namespaceName + "." + className).replace('.', '_') + ".h";
@@ -257,6 +252,13 @@ public void genObjC(Document doc, String path, String headerFileName,
       for (String i : getTypesForHeader(doc)) {
         if (i.equals(inheritsFrom)) {
           p.println("#import \"" + i + ".h\"");
+        }
+      }
+      
+      String interfaces = clazz.getAttributeValue("interfaces");
+      if (interfaces != null) {
+      for (String i : interfaces.split(",")) {
+    	    p.println("#import \"" + i.replace('.', '_') + ".h\"");
         }
       }
       p.println();
@@ -312,6 +314,12 @@ public void genObjC(Document doc, String path, String headerFileName,
         a = ((Element) cur).getAttribute("extends");
         if (a != null) {
           seen.add(a.getValue());
+        }
+        a = ((Element) cur).getAttribute("interfaces");
+        if (a != null) {
+          for (String iface : a.getValue().split(",")) {
+            seen.add(iface);
+          }
         }
         a = ((Element) cur).getAttribute("class-type");
         if (a != null) {
