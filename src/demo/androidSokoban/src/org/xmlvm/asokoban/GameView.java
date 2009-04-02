@@ -2,17 +2,16 @@ package org.xmlvm.asokoban;
 
 import android.app.Activity;
 import android.view.Display;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AbsoluteLayout;
 
 public class GameView {
 
 	private Activity activity;
-	private ViewGroup layout;
+	private AbsoluteLayout layout;
 	private GameController gameController;
+	private GamePieceMover mover;
 	private Board board;
-	private int moving;
 	private int pieceWidth;
 	private int pieceHeight;
 	private int displayWidth;
@@ -24,7 +23,6 @@ public class GameView {
 		this.activity = activity;
 		layout = new AbsoluteLayout(activity);
 		activity.setContentView(layout);
-		moving = 0;
 		pieceWidth = 20;// piece.getWidth();
 		pieceHeight = 20;// piece.getHeight();
 		WindowManager w = activity.getWindowManager();
@@ -33,6 +31,7 @@ public class GameView {
 		displayHeight = d.getHeight();
 		board = new Board(level);
 		gameController = new GameController(board);
+		mover = new GamePieceMover();
 		loadGame(level);
 	}
 
@@ -44,7 +43,7 @@ public class GameView {
 		return this.activity;
 	}
 
-	public ViewGroup getLayout() {
+	public AbsoluteLayout getLayout() {
 		return this.layout;
 	}
 
@@ -56,15 +55,12 @@ public class GameView {
 		return this.offsetTop;
 	}
 
-	public synchronized void setMoving(boolean isMoving) {
-		if (isMoving)
-			this.moving++;
-		else
-			this.moving--;
+	public GamePieceMover getMover() {
+		return this.mover;
 	}
 
-	public synchronized boolean isMoving() {
-		return this.moving != 0;
+	public boolean isMoving() {
+		return mover.isMoving();
 	}
 
 	private void loadGame(int level) {
@@ -72,43 +68,35 @@ public class GameView {
 		int height = board.getHeight();
 		offsetTop = (displayHeight - (height * pieceHeight)) / 2;
 		offsetLeft = (displayWidth - (width * pieceWidth)) / 2;
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
-				switch (board.getBoardPiece(x, y)) {
-				/*
-				case Board.BALL:
-					Ball ball = new Ball(this, x, y);
-					gameController.addBall(ball);
-					break;
-				case Board.MAN:
-					Man man = new Man(this, x, y);
-					gameController.setMan(man);
-					break;
-					*/
-				case Board.GOAL:
-					Goal goal = new Goal(this, x, y);
-					gameController.addGoal(goal);
-					break;
-				case Board.WALL:
-					new Wall(this, x, y);
-					break;
-				}
-			}
-		}
-		// TODO this next for-loop should be merged with the one above.
-		// this is intended as a quick hack to make sure that BALL and
-		// MAN images are on top.
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
-				switch (board.getBoardPiece(x, y)) {
-				case Board.BALL:
-					Ball ball = new Ball(this, x, y);
-					gameController.addBall(ball);
-					break;
-				case Board.MAN:
-					Man man = new Man(this, x, y);
-					gameController.setMan(man);
-					break;
+		/*
+		 * for (int x = 0; x < width; x++) { for (int y = 0; y < height; y++) {
+		 * // TODO Can't deal with <jvm:tableswitch> for now switch
+		 * (board.getBoardPiece(x, y)) { case Board.BALL: Ball ball = new
+		 * Ball(this, x, y); gameController.addBall(ball); break; case
+		 * Board.GOAL: Goal goal = new Goal(this, x, y);
+		 * gameController.addGoal(goal); break; case Board.MAN: Man man = new
+		 * Man(this, x, y); gameController.setMan(man); break; case Board.WALL:
+		 * new Wall(this, x, y); break; } }
+		 */
+
+		// TODO we make two passes over the game board in order to force
+		// a certain Z-order in which the game pieces are later rendered.
+		for (int pass = 0; pass < 2; pass++) {
+			for (int x = 0; x < width; x++) {
+				for (int y = 0; y < height; y++) {
+					int p = board.getBoardPiece(x, y);
+					if (p == Board.BALL && pass == 1) {
+						Ball ball = new Ball(this, x, y);
+						gameController.addBall(ball);
+					} else if (p == Board.GOAL && pass == 0) {
+						Goal goal = new Goal(this, x, y);
+						gameController.addGoal(goal);
+					} else if (p == Board.MAN & pass == 1) {
+						Man man = new Man(this, x, y);
+						gameController.setMan(man);
+					} else if (p == Board.WALL && pass == 0) {
+						new Wall(this, x, y);
+					}
 				}
 			}
 		}

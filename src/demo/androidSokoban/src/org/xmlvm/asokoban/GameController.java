@@ -65,12 +65,12 @@ public class GameController
         // Move man only
         _moveCount++;
         if (adjacentBall == null) {
-            _man.move(dx, dy);
+            _man.startMoving(dx, dy);
         }
         // Move man and ball
         else {
-            adjacentBall.move(dx, dy);
-            _man.move(dx, dy);
+            adjacentBall.startMoving(dx, dy);
+            _man.startMoving(dx, dy);
         }
         return;
     }

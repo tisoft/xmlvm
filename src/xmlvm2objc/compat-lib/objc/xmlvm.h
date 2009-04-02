@@ -21,10 +21,19 @@
 
 
 typedef union {
-    id     o;
-    int    i;
-    float  f;
-    double d;
-	long l;
+    id      o;
+    int     i;
+    float   f;
+    double  d;
+    long    l;
 } XMLVMElem;
 
+
+// java.lang.null
+//----------------------------------------------------------------------------
+@interface java_lang_null : NSObject
+
++ (void) initialize;
++ (NSObject*) _GET_NULL;
+
+@end

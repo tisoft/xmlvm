@@ -1,6 +1,5 @@
 package org.xmlvm.asokoban;
 
-import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
 
@@ -32,8 +31,8 @@ public abstract class GamePiece {
 
 	protected void updatePosition() {
 		AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
-				ViewGroup.LayoutParams.WRAP_CONTENT,
-				ViewGroup.LayoutParams.WRAP_CONTENT, view.getOffsetLeft()
+				AbsoluteLayout.LayoutParams.WRAP_CONTENT,
+				AbsoluteLayout.LayoutParams.WRAP_CONTENT, view.getOffsetLeft()
 						+ x * pieceWidth + px, view.getOffsetTop() + y
 						* pieceHeight + py);
 		image.setLayoutParams(p);

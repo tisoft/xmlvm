@@ -337,7 +337,7 @@ int main(int argc, char* argv[])
     int _i;
     for (_i = 0; _i &lt;</xsl:text>
   <xsl:value-of select="../@locals"/>
-  <xsl:text>; _i++) _locals[_i].o = nil;
+  <xsl:text>; _i++) _locals[_i].o = [java_lang_null _GET_NULL];
     NSAutoreleasePool* _pool = [[NSAutoreleasePool alloc] init];
 </xsl:text>
   <xsl:call-template name="initLocals"/>
@@ -545,7 +545,7 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="jvm:aconst_null">
-  <xsl:text>    _stack[_sp++].o = nil;
+  <xsl:text>    _stack[_sp++].o = [java_lang_null _GET_NULL];
 </xsl:text>
 </xsl:template>
 
@@ -779,6 +779,11 @@ int main(int argc, char* argv[])
     _stack[_sp++].f = (float) _op1.i;</xsl:text>
 </xsl:template>
   
+<xsl:template match="jvm:i2l">
+  <xsl:text>    _op1.i = _stack[--_sp].i;
+    _stack[_sp++].l = (long) _op1.i;</xsl:text>
+</xsl:template>
+  
 <xsl:template match="jvm:l2f">
   <xsl:text>    _op1.l = _stack[--_sp].l;
   _stack[_sp++].f = (float) _op1.l;</xsl:text>
@@ -982,7 +987,7 @@ _sp--;
 
 <xsl:template match="jvm:ifnull">
   <xsl:text>    _op1.o = _stack[--_sp].o;
-    if (_op1.o == nil) goto label</xsl:text>
+    if (_op1.o == [java_lang_null _GET_NULL]) goto label</xsl:text>
   <xsl:value-of select="@label"/>
   <xsl:text>;
 </xsl:text>
@@ -991,7 +996,7 @@ _sp--;
 
 <xsl:template match="jvm:ifnonnull">
   <xsl:text>    _op1.o = _stack[--_sp].o;
-    if (_op1.o != nil) goto label</xsl:text>
+    if (_op1.o != [java_lang_null _GET_NULL]) goto label</xsl:text>
   <xsl:value-of select="@label"/>
   <xsl:text>;
 </xsl:text>
@@ -1272,6 +1277,9 @@ _sp--;
     <xsl:when test="$type = 'void'">
       <xsl:text>void</xsl:text>
     </xsl:when>
+    <xsl:when test="$type = 'char'">
+      <xsl:text>int</xsl:text>
+    </xsl:when>
     <xsl:when test="$type = 'int'">
       <xsl:text>int</xsl:text>
     </xsl:when>
@@ -1394,6 +1402,9 @@ _sp--;
   
   <xsl:text>.</xsl:text>
   <xsl:choose>
+    <xsl:when test="$type = 'char'">
+      <xsl:text>i</xsl:text>
+    </xsl:when>
     <xsl:when test="$type = 'int' or $type = 'boolean'">
       <xsl:text>i</xsl:text>
     </xsl:when>

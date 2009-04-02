@@ -20,15 +20,7 @@
 
 package android.hardware;
 
-// This thing should be an interface, but the cross compiler isn't liking it now.
-public class SensorListener {
-  public void onSensorChanged(int sensor, float[] values)
-  {
-  
-  }
-
-  public void onAccuracyChanged(int sensor, int accuracy)
-  {
-  	
-  }
+public interface SensorListener {
+  public void onSensorChanged(int sensor, float[] values);
+  public void onAccuracyChanged(int sensor, int accuracy);
 }
