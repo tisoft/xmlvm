@@ -8,8 +8,15 @@
 <ul>
     <li><div id="arno">Arno Puder</div></li>
     <li><div id="sascha">Sascha H&auml;berling</div></li>
-	<li><div id="joshua">Joshua Melcon</div></li>
+	  <li><div id="frusty">Wolfgang Korn</div></li>
 </ul>
+
+<h2>Contributors:</h2>
+<ul>
+  <li><div id="leigh">Leigh Jin</div></li>
+	<li><div id="joshua">Joshua Melcon (Developer)</div></li>
+</ul>
+
 
 <script type="text/javascript">
 <!--
@@ -20,15 +27,19 @@
   var sascha = 'Sascha Haeberling &lt;mail<b>';
   sascha += '&#64;</b>sascha-haeberling&#46';
   sascha += 'com&gt; (Developer)';
-
-  var josh = 'Joshua Melcon &lt;xmlvm<b>';
-  josh += '&#64;</b>melcon&#46';
-  josh += 'us&gt; (Developer)';
-
-
+  
+  var frusty = 'Wolfgang Korn &lt;wolfgang.korn<b>';
+  frusty += '&#64;</b>gmx&#46';
+  frusty += ';&#100;e&gt; (Developer)';
+  
+  var leigh = 'Leigh Jin &lt;leigh.jin<b>';
+  leigh += '&#64;</b>gmail&#46';
+  leigh += 'com&gt; (Business Development)';
+  
   document.getElementById('arno').innerHTML = arno;
   document.getElementById('sascha').innerHTML = sascha;
-  document.getElementById('joshua').innerHTML = josh;
+  document.getElementById('leigh').innerHTML = leigh;
+  document.getElementById('frusty').innerHTML = frusty;
 
 //-->
 </script>
