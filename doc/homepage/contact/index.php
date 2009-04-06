@@ -14,6 +14,7 @@
 <h2>Contributors:</h2>
 <ul>
   <li><div id="leigh">Leigh Jin</div></li>
+  <li><div id="jessica">Jessica Lee</div></li>  
 	<li><div id="joshua">Joshua Melcon (Developer)</div></li>
 </ul>
 
@@ -36,10 +37,20 @@
   leigh += '&#64;</b>gmail&#46';
   leigh += 'com&gt; (Business Development)';
   
+  var jessica = 'Jessica Lee &lt;jeslucas<b>';
+  jessica += '&#64;</b>hotmail&#46';
+  jessica += 'com&gt; (Developer)';
+  
+  var joshua = 'Joshua Melcon &lt;xmlvm<b>';
+  joshua += '&#64;</b>melcon&#46';
+  joshua += 'us&gt; (Developer)';
+  
   document.getElementById('arno').innerHTML = arno;
   document.getElementById('sascha').innerHTML = sascha;
   document.getElementById('leigh').innerHTML = leigh;
   document.getElementById('frusty').innerHTML = frusty;
+  document.getElementById('jessica').innerHTML = jessica;
+  document.getElementById('joshua').innerHTML = joshua;
 
 //-->
 </script>
