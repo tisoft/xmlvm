@@ -101,7 +101,7 @@ public class AndroidFireworks extends Activity {
 
       public void onAccuracyChanged(int sensor, int accuracy) {
       }
-    }, SensorManager.SENSOR_ACCELEROMETER);
+    }, SensorManager.SENSOR_ACCELEROMETER, SensorManager.SENSOR_DELAY_FASTEST);
     f = new Fireworks(this);
     updater.postDelayed(updateFw, 100);
   }

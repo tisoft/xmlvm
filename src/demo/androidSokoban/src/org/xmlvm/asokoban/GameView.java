@@ -12,8 +12,7 @@ public class GameView {
 	private GameController gameController;
 	private GamePieceMover mover;
 	private Board board;
-	private int pieceWidth;
-	private int pieceHeight;
+	private int tileSize;
 	private int displayWidth;
 	private int displayHeight;
 	private int offsetTop;
@@ -23,8 +22,7 @@ public class GameView {
 		this.activity = activity;
 		layout = new AbsoluteLayout(activity);
 		activity.setContentView(layout);
-		pieceWidth = 20;// piece.getWidth();
-		pieceHeight = 20;// piece.getHeight();
+		tileSize = 20;// piece.getWidth();
 		WindowManager w = activity.getWindowManager();
 		Display d = w.getDefaultDisplay();
 		displayWidth = d.getWidth();
@@ -66,8 +64,8 @@ public class GameView {
 	private void loadGame(int level) {
 		int width = board.getWidth();
 		int height = board.getHeight();
-		offsetTop = (displayHeight - (height * pieceHeight)) / 2;
-		offsetLeft = (displayWidth - (width * pieceWidth)) / 2;
+		offsetTop = (displayHeight - (height * tileSize)) / 2;
+		offsetLeft = (displayWidth - (width * tileSize)) / 2;
 		/*
 		 * for (int x = 0; x < width; x++) { for (int y = 0; y < height; y++) {
 		 * // TODO Can't deal with <jvm:tableswitch> for now switch

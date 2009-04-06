@@ -5,8 +5,7 @@ import android.widget.ImageView;
 
 public abstract class GamePiece {
 
-	protected static int pieceHeight = 20;
-	protected static int pieceWidth = 20;
+	protected static int tileSize = 20;
 
 	protected int x;
 	protected int y;
@@ -33,8 +32,8 @@ public abstract class GamePiece {
 		AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
 				AbsoluteLayout.LayoutParams.WRAP_CONTENT,
 				AbsoluteLayout.LayoutParams.WRAP_CONTENT, view.getOffsetLeft()
-						+ x * pieceWidth + px, view.getOffsetTop() + y
-						* pieceHeight + py);
+						+ x * tileSize + px, view.getOffsetTop() + y
+						* tileSize + py);
 		image.setLayoutParams(p);
 		view.getLayout().invalidate();
 	}

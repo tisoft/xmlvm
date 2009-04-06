@@ -14,7 +14,7 @@ public class GamePieceMover {
 			updater.postDelayed(updateAnimation, animationDelay);
 			for (int i = 0; i < maxPiecesMoving; i++) {
 				if (gamePiecesToBeMoved[i] != null) {
-					boolean done = gamePiecesToBeMoved[i].moveOnePixel();
+					boolean done = gamePiecesToBeMoved[i].moveOneStep();
 					if (done)
 						gamePiecesToBeMoved[i] = null;
 				}

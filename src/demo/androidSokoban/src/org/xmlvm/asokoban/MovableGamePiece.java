@@ -16,10 +16,10 @@ public class MovableGamePiece extends GamePiece {
 		this.dy = dy;
 		px = 0;
 		py = 0;
-		counter = pieceWidth / 2;
+		counter = tileSize / 2;
 	}
 
-	public boolean moveOnePixel() {
+	public boolean moveOneStep() {
 		px += dx * 2;
 		py += dy * 2;
 		updatePosition();

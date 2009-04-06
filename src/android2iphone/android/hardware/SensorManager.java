@@ -27,6 +27,7 @@ import org.xmlvm.iphone.UIAccelerometer;
 public class SensorManager implements UIAccelerometerDelegate {
   public static final float GRAVITY_EARTH = 9.80665f;
   public static final int SENSOR_ACCELEROMETER = 0x00000002;
+  public static final int SENSOR_DELAY_FASTEST = 0x00000000;
   // TODO: support list on iPhone
   private RegisteredListener[] listeners = new RegisteredListener[20];
   int numListeners;
@@ -39,7 +40,7 @@ public class SensorManager implements UIAccelerometerDelegate {
     accel.setDelegate(this);
   }
 
-  public void registerListener(SensorListener listener, int sensors) {
+  public void registerListener(SensorListener listener, int sensors, int rate) {
     listeners[numListeners++] = new RegisteredListener(listener, sensors);
   }
 

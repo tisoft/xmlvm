@@ -15,19 +15,6 @@ public class Board
     private static final int    BOARD_WIDTH  = 50;
     private static final int    BOARD_HEIGHT = 50;
 
-    private static final String LEVEL1       = "    #####\n" + "    #   #\n"
-                                                     + "    #$  #\n"
-                                                     + "  ###  $##\n"
-                                                     + "  #  $ $ #\n"
-                                                     + "### # ## #   ######\n"
-                                                     + "#   # ## #####  ..#\n"
-                                                     + "# $  $          ..#\n"
-                                                     + "##### ### #@##  ..#\n"
-                                                     + "    #     #########\n"
-                                                     + "    #######\n";
-
-
-
     private CharField           _board       = null;
     private int                 _width       = 0;
     private int                 _height      = 0;
@@ -45,7 +32,7 @@ public class Board
             }
         }
 
-        parseDescription(LEVEL1);
+        parseDescription(Levels.getLevel(level));
     }
 
 

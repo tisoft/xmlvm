@@ -3,8 +3,11 @@ package org.xmlvm.asokoban;
 //import org.openintents.hardware.SensorManagerSimulator;
 //import org.openintents.provider.Hardware;
 
+
 import android.app.Activity;
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 //import android.os.Build;
@@ -19,6 +22,7 @@ public class ASokoban extends Activity implements SensorListener {
   
   private GameView gameView;
   private SensorManager sensorManager;
+  private int currentLevel;
 
   /** Called when the activity is first created. */
   @Override
@@ -29,7 +33,8 @@ public class ASokoban extends Activity implements SensorListener {
     // Switch to fullscreen view, getting rid of the status bar as well.
     this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
         WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    gameView = new GameView(this, 1);
+    currentLevel = 0;
+    loadLevel();
     SensorManager sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
 
     // ----------------------------------------------------------------------------------
@@ -49,11 +54,29 @@ public class ASokoban extends Activity implements SensorListener {
     */
     // ---------------------------------------------------------------------
 
-    sensorManager.registerListener(this, SensorManager.SENSOR_ACCELEROMETER);//,SensorManager.SENSOR_DELAY_FASTEST);
+    sensorManager.registerListener(this, SensorManager.SENSOR_ACCELEROMETER,SensorManager.SENSOR_DELAY_FASTEST);
 
   }
 
+  public void loadLevel() {
+	  showDialog(0);
+      gameView = new GameView(this, currentLevel);
+  }
+  
+  @Override
+  protected Dialog onCreateDialog(int id) {
+          return new AlertDialog.Builder(ASokoban.this)
+              .setTitle("Level: " + (currentLevel + 1))
+              .setPositiveButton("OK", null)
+              .create();
+  }
+  
   public void onSensorChanged(int sensor, float[] values) {
+	if (gameView.getGameController().levelFinished()) {
+		currentLevel++;
+		loadLevel();
+		return;
+	}
     float X = values[0];
     float Y = -values[1];
     gameView.getMover().setMovingSpeed(X, Y);

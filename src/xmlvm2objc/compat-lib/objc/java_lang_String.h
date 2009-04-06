@@ -16,6 +16,7 @@ typedef NSMutableString java_lang_String;
 - (unichar) charAt___int: (int) idx;
 - (int) endsWith___java_lang_String: (java_lang_String*) s;
 - (NSMutableString*) append___java_lang_String: (java_lang_String*) str;
+- (NSMutableString*) append___int: (int) i;
 - (int) equals___java_lang_Object: (java_lang_Object*) o;
 - (NSMutableString*) toString;
 @end

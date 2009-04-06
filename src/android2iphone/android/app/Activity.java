@@ -60,6 +60,16 @@ public class Activity extends ContextThemeWrapper {
   public void onContentChanged() {
   }
 
+  public void showDialog(int id) {
+	  Dialog dialog = onCreateDialog(id);
+	  if (dialog != null)
+		  dialog.show();
+  }
+  
+  protected Dialog onCreateDialog(int id) {
+	  return null;
+  }
+  
   /**
    * Can be overridden by subclasses that want to create a menu.
    */

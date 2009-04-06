@@ -64,6 +64,13 @@
     return self;
 }
 
+- (NSMutableString*) append___int: (int) i
+{
+	NSNumber* n = [NSNumber numberWithInt: i];
+	[self appendString: [n stringValue]];
+	return self;
+}
+
 - (int) equals___java_lang_Object: (java_lang_Object*) o
 {
     if ([o isKindOfClass: [NSMutableString class]] == NO) {
