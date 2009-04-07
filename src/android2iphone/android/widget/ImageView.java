@@ -26,6 +26,7 @@ import org.xmlvm.iphone.UIImageView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.internal.ResourceMapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
@@ -84,7 +85,7 @@ class OneImageView extends UIImageView {
   }
 
   public void loadImage(int resId) {
-    _img = UIImage.imageAtPath(ImageResource.getFileNameById(resId));
+    _img = UIImage.imageAtPath(ResourceMapper.getFileNameById(resId));
     setImage(_img);
     }
 

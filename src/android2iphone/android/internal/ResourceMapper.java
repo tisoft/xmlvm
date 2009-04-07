@@ -19,25 +19,24 @@
  */
 
 
-package android.widget;
+package android.internal;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.xmlvm.iphone.internal.AndroidAppLauncher;
 
 
 
-class ImageResource
+public class ResourceMapper
 {
     /** A map holding the mapping from resourceId to filename. */
-    private static Map<Integer, String> _resourceTable = new HashMap<Integer, String>();
+//    private static Map<Integer, String> _resourceTable = new HashMap<Integer, String>();
 
 
 
     public static String getFileNameById(int resourceId)
     {
+        /*
         String fileName = _resourceTable.get(new Integer(resourceId));
         
         if (fileName == null) {
@@ -45,6 +44,9 @@ class ImageResource
         }
         
         return fileName + ".png";
+        */
+        
+        return findVariableById(resourceId) + ".png";
     }
 
 
@@ -61,8 +63,8 @@ class ImageResource
             for (i = 0; i < fields.length
                     && fields[i].getInt(rClazz) != resourceId; i++);
 
-            if (i < fields.length && fields[i].getInt(rClazz) == resourceId) {
-                _resourceTable.put(new Integer(resourceId), fields[i].getName());
+            if (i < fields.length) {
+//                _resourceTable.put(new Integer(resourceId), fields[i].getName());
                 return fields[i].getName();
             }
             
