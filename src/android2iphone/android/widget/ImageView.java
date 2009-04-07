@@ -84,44 +84,8 @@ class OneImageView extends UIImageView {
   }
 
   public void loadImage(int resId) {
-	    if (resId == 0x7f020000)
-	    	_img = UIImage.imageAtPath("ball.png");
-	    else if (resId == 0x7f020001)
-	    	_img = UIImage.imageAtPath("goal.png");
-	    else if (resId == 0x7f020003)
-	    	_img = UIImage.imageAtPath("man.png");
-	    else 
-	    	_img = UIImage.imageAtPath("wall.png");
-	    /*
-	    switch (resId) {
-	    case 0x7f020000:
-	    	_img = UIImage.imageAtPath("ball.png");
-	    	break;
-	    case 0x7f020001:
-	    	_img = UIImage.imageAtPath("goal.png");
-	    	break;
-	    case 0x7f020003:
-	    	_img = UIImage.imageAtPath("man.png");
-	    	break;
-	    case 0x7f020004:
-	    	_img = UIImage.imageAtPath("wall.png");
-	    	break;
-	    }
-	    */
-	    // TODO A little kludge until Joshua cleans up resource mapping
-	    /*
-	    double rand = (Math.random() * 4);
-	    if (rand < 1) {
-	      _img = UIImage.imageAtPath("star1.png");
-	    } else if (rand < 2) {
-	      _img = UIImage.imageAtPath("star2.png");
-	    } else if (rand < 3) {
-	      _img = UIImage.imageAtPath("star3.png");
-	    } else {
-	      _img = UIImage.imageAtPath("star4.png");
-	    }
-	    */
-	    setImage(_img);
+    _img = UIImage.imageAtPath(ImageResource.getFileNameById(resId));
+    setImage(_img);
     }
 
   OneImageView(CGRect windowRect) {

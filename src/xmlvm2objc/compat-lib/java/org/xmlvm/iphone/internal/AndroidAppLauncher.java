@@ -25,39 +25,64 @@ import java.lang.reflect.Method;
 
 import org.xmlvm.iphone.UIApplication;
 
+
+
 /**
  * Wiring code for launching an Android Activity inside the iPhone simulator
  */
-public class AndroidAppLauncher {
-  /**
-   * @TODO: How can we specify this class in build.xml?
-   */
-  public static final String ANDROID_FIREWORKS_CLASS = "org.xmlvm.AndroidFireworks.AndroidFireworks";
+public class AndroidAppLauncher
+{
 
-  public static void main(String[] args) throws ClassNotFoundException,
-      SecurityException, NoSuchMethodException, IllegalArgumentException,
-      InstantiationException, IllegalAccessException, InvocationTargetException {
-    String mainActivity = ANDROID_FIREWORKS_CLASS;
-    if (args.length != 1) {
-      System.err
-          .println("----------------------------------------------------------------");
-      System.err
-          .println("Usage: AndroidAppLauncher <full android activity classname>.");
-      System.err.println("WARNING. Using default class: "
-          + ANDROID_FIREWORKS_CLASS);
-      System.err
-          .println("----------------------------------------------------------------");
-    } else {
-      mainActivity = args[0];
+    /** The application package's name. */
+    private static String      _appPackageName         = null;
+
+
+    /**
+     * @TODO: How can we specify this class in build.xml?
+     */
+    public static final String ANDROID_FIREWORKS_CLASS = "org.xmlvm.AndroidFireworks.AndroidFireworks";
+
+
+
+    public static void main(String[] args)
+        throws ClassNotFoundException, SecurityException,
+        NoSuchMethodException, IllegalArgumentException,
+        InstantiationException, IllegalAccessException,
+        InvocationTargetException
+    {
+        String mainActivity = ANDROID_FIREWORKS_CLASS;
+        if (args.length != 1) {
+            System.err
+                    .println("----------------------------------------------------------------");
+            System.err
+                    .println("Usage: AndroidAppLauncher <full android activity classname>.");
+            System.err.println("WARNING. Using default class: "
+                    + ANDROID_FIREWORKS_CLASS);
+            System.err
+                    .println("----------------------------------------------------------------");
+        }
+        else {
+            mainActivity = args[0];
+        }
+
+        _appPackageName = mainActivity.substring(0, mainActivity.lastIndexOf('.'));
+        
+        System.out.println("MAIN ACTIVITY: " + mainActivity);
+        Class<?> androidActivityClazz = Class.forName(mainActivity);
+        Object theAndroidActivity = androidActivityClazz.newInstance();
+        Class<?> androidImplClazz = Class
+                .forName("android.app.ActivityWrapper");
+        Class<?> activityClazz = Class.forName("android.app.Activity");
+        Class<?>[] intArgsClass = new Class<?>[] {activityClazz};
+        Method m = androidImplClazz.getMethod("setActivity", intArgsClass);
+        m.invoke(null, theAndroidActivity);
+        UIApplication.main(args, androidImplClazz);
     }
-    System.out.println("MAIN ACTIVITY: " + mainActivity);
-    Class<?> androidActivityClazz = Class.forName(mainActivity);
-    Object theAndroidActivity = androidActivityClazz.newInstance();
-    Class<?> androidImplClazz = Class.forName("android.app.ActivityWrapper");
-    Class<?> activityClazz = Class.forName("android.app.Activity");
-    Class<?>[] intArgsClass = new Class<?>[] { activityClazz };
-    Method m = androidImplClazz.getMethod("setActivity", intArgsClass);
-    m.invoke(null, theAndroidActivity);
-    UIApplication.main(args, androidImplClazz);
-  }
+
+
+
+    public static String getAppPackageName()
+    {
+        return _appPackageName;
+    }
 }
