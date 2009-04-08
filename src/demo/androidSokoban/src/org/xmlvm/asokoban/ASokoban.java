@@ -69,23 +69,23 @@ public class ASokoban extends Activity implements SensorListener {
             loadLevel();
             return;
         }
-        float X = values[0];
-        float Y = -values[1];
-        gameView.getMover().setMovingSpeed(X, Y);
+        float x = -values[1];
+        float y = -values[0];
+        gameView.getMover().setMovingSpeed(x, y);
         if (gameView.isMoving()) {
             return;
         }
         int dx = 0;
         int dy = 0;
-        if (Math.abs(X) > Math.abs(Y)) {
-            if (X > movingThreshold)
+        if (Math.abs(x) > Math.abs(y)) {
+            if (x > movingThreshold)
                 dx = 1;
-            if (X < -movingThreshold)
+            if (x < -movingThreshold)
                 dx = -1;
         } else {
-            if (Y > movingThreshold)
+            if (y > movingThreshold)
                 dy = 1;
-            if (Y < -movingThreshold)
+            if (y < -movingThreshold)
                 dy = -1;
         }
         if (Math.abs(dx) > 0 || Math.abs(dy) > 0) {
