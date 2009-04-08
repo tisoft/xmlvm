@@ -4,24 +4,24 @@ public class GamePieceList {
 
     private static int  MAX_SIZE = 255;
 
-    private int         _size    = 0;
-    private GamePiece[] _buf     = null;
+    private int         size    = 0;
+    private GamePiece[] buf     = null;
 
     public GamePieceList() {
-        _buf = new GamePiece[MAX_SIZE];
+        buf = new GamePiece[MAX_SIZE];
     }
 
     public void add(GamePiece piece) {
-        if (_size < MAX_SIZE) {
-            _buf[_size++] = piece;
+        if (size < MAX_SIZE) {
+            buf[size++] = piece;
         }
     }
 
     public GamePiece get(int i) {
-        return i < _size ? _buf[i] : null;
+        return i < size ? buf[i] : null;
     }
 
     public int size() {
-        return _size;
+        return size;
     }
 }

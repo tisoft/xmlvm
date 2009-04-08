@@ -10,17 +10,17 @@ public class Board {
     private static final int BOARD_WIDTH  = 50;
     private static final int BOARD_HEIGHT = 50;
 
-    private CharField        _board       = null;
-    private int              _width       = 0;
-    private int              _height      = 0;
+    private CharField        charField    = null;
+    private int              width        = 0;
+    private int              height       = 0;
 
     public Board(int level) {
-        _board = new CharField(BOARD_HEIGHT, BOARD_WIDTH);
+        charField = new CharField(BOARD_HEIGHT, BOARD_WIDTH);
 
         // Init with space
         for (int i = 0; i < BOARD_HEIGHT; i++) {
             for (int j = 0; j < BOARD_WIDTH; j++) {
-                _board.setChar(i, j, ' ');
+                charField.setChar(i, j, ' ');
             }
         }
 
@@ -28,15 +28,15 @@ public class Board {
     }
 
     public int getWidth() {
-        return shouldRotate() ? _height : _width;
+        return width;
     }
 
     public int getHeight() {
-        return shouldRotate() ? _width : _height;
+        return height;
     }
 
     public int getBoardPiece(int x, int y) {
-        char c = shouldRotate() ? _board.getChar(x, y) : _board.getChar(y, x);
+        char c = charField.getChar(height - y - 1, x);
         return getPiece(c);
     }
 
@@ -46,17 +46,17 @@ public class Board {
 
         for (int i = 0; i < boardDesc.length(); i++) {
             if (boardDesc.charAt(i) != '\n') {
-                _board.setChar(y, x, boardDesc.charAt(i));
+                charField.setChar(y, x, boardDesc.charAt(i));
                 x++;
             } else {
-                _width = x > _width ? x : _width;
+                width = x > width ? x : width;
 
                 x = 0;
                 y++;
             }
         }
 
-        _height = boardDesc.endsWith("\n") ? y : y + 1;
+        height = boardDesc.endsWith("\n") ? y : y + 1;
     }
 
     private int getPiece(char c) {
@@ -79,9 +79,5 @@ public class Board {
         default:
             return SPACE;
         }
-    }
-
-    private boolean shouldRotate() {
-        return _width > _height;
     }
 }

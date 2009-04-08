@@ -6,6 +6,7 @@ package org.xmlvm.asokoban;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.pm.ActivityInfo;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ public class ASokoban extends Activity implements SensorListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set the orientation to landscape programmatically.
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         // No title bar.
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         // Switch to fullscreen view, getting rid of the status bar as well.
