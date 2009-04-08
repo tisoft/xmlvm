@@ -51,6 +51,16 @@
 	return [self characterAtIndex: idx];
 }
 
+- (int) lastIndexOf___int: (int) ch
+{
+	int i;
+	for (i = [self length] - 1; i >= 0; i--) {
+		if ([self characterAtIndex: i] == ch)
+			break;
+	}
+	return i;
+}
+
 - (int) endsWith___java_lang_String: (java_lang_String*) s
 {
 	return [self hasSuffix: s] == YES ? 1 : 0;
@@ -69,6 +79,14 @@
 	NSNumber* n = [NSNumber numberWithInt: i];
 	[self appendString: [n stringValue]];
 	return self;
+}
+
+- (NSMutableString*) substring___int_int: (int) from :(int) to
+{
+	NSRange range;
+	range.location = from;
+	range.length = to - from;
+	return [self substringWithRange: range];
 }
 
 - (int) equals___java_lang_Object: (java_lang_Object*) o

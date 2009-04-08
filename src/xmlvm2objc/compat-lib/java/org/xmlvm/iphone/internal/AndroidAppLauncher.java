@@ -33,10 +33,6 @@ import org.xmlvm.iphone.UIApplication;
 public class AndroidAppLauncher
 {
 
-    /** The application package's name. */
-    private static String      _appPackageName         = null;
-
-
     /**
      * @TODO: How can we specify this class in build.xml?
      */
@@ -65,8 +61,6 @@ public class AndroidAppLauncher
             mainActivity = args[0];
         }
 
-        _appPackageName = mainActivity.substring(0, mainActivity.lastIndexOf('.'));
-        
         System.out.println("MAIN ACTIVITY: " + mainActivity);
         Class<?> androidActivityClazz = Class.forName(mainActivity);
         Object theAndroidActivity = androidActivityClazz.newInstance();
@@ -77,12 +71,5 @@ public class AndroidAppLauncher
         Method m = androidImplClazz.getMethod("setActivity", intArgsClass);
         m.invoke(null, theAndroidActivity);
         UIApplication.main(args, androidImplClazz);
-    }
-
-
-
-    public static String getAppPackageName()
-    {
-        return _appPackageName;
     }
 }

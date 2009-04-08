@@ -22,8 +22,7 @@
 package android.internal;
 
 import java.lang.reflect.Field;
-
-import org.xmlvm.iphone.internal.AndroidAppLauncher;
+import android.app.ActivityWrapper;
 
 
 
@@ -54,12 +53,15 @@ public class ResourceMapper
     private static String findVariableById(int resourceId)
     {
         try {
-            String rClassName = AndroidAppLauncher.getAppPackageName()
-                    + ".R$drawable";
+            int i;
+            String activityPackageName = ActivityWrapper.getActivity().getClass().getName();
+            i = activityPackageName.lastIndexOf('.');
+            activityPackageName = activityPackageName.substring(0, i);
+            
+            String rClassName = activityPackageName + ".R$drawable";
             Class<?> rClazz = Class.forName(rClassName);
             Field[] fields = rClazz.getDeclaredFields();
 
-            int i;
             for (i = 0; i < fields.length
                     && fields[i].getInt(rClazz) != resourceId; i++);
 

@@ -1,5 +1,5 @@
 
-#include "java_lang_Exception.h"
+#import "java_lang_Exception.h"
 
 // java.lang.Exception
 //----------------------------------------------------------------------------
