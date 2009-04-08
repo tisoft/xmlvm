@@ -21,6 +21,7 @@
 package android.app;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.Menu;
@@ -35,94 +36,107 @@ import android.view.WindowManager;
  * @see http://developer.android.com/reference/android/app/Activity.html}
  */
 public class Activity extends ContextThemeWrapper {
-  private ActivityWrapper myIphoneWrapper;
-  private Window window;
+    private ActivityWrapper myIphoneWrapper;
+    private Window          window;
 
-  protected void onCreate(Bundle savedInstanceState) {
-    window = new Window(this);
-    onContentChanged();
-  }
-
-  public void setContentView(View view) {
-    window.setContentView(view);
-  }
-
-  /**
-   * TODO: Implement for real.
-   */
-  public WindowManager getWindowManager() {
-    return new WindowManager();
-  }
-
-  /**
-   * Can be overridden by subclasses.
-   */
-  public void onContentChanged() {
-  }
-
-  public void showDialog(int id) {
-	  Dialog dialog = onCreateDialog(id);
-	  if (dialog != null)
-		  dialog.show();
-  }
-  
-  protected Dialog onCreateDialog(int id) {
-	  return null;
-  }
-  
-  /**
-   * Can be overridden by subclasses that want to create a menu.
-   */
-  public boolean onCreateOptionsMenu(Menu menu) {
-    return true;
-  }
-
-  /**
-   * Can be overridden by subclasses that want to handle menu button presses.
-   */
-  public boolean onOptionsItemSelected(MenuItem item) {
-    return true;
-  }
-  
-  /**
-   * TODO: Implement for real.
-   */
-  public void startActivity(Intent intent) {
-  }
-
-  public void requestWindowFeature(int feature) {
-    /* TODO: can't handle jvm:lookupswitch
-
-    switch (feature) {
-     
-    case Window.FEATURE_NO_TITLE:
-      // TODO: This will remove the title bar, but not get rid of the
-      // status bar. On the iPhone we don't have a title, but maybe we should
-      // implement this as a compatibility feature. Once we have it, this is the
-      // place to disable it.
-      break;
+    protected void onCreate(Bundle savedInstanceState) {
+        window = new Window(this);
+        onContentChanged();
     }
-    */
-  }
 
-  /**
-   * Retrieve the current {@link Window} for the activity.
-   */
-  public Window getWindow() {
-    return window;
-  }
+    public void setContentView(View view) {
+        window.setContentView(view);
+    }
 
-  /**
-   * Internal. Not part of Android API.
-   */
-  public void setMyIphoneWrapper(ActivityWrapper myIphoneWrapper) {
-    this.myIphoneWrapper = myIphoneWrapper;
-  }
+    /**
+     * TODO: Implement for real.
+     */
+    public WindowManager getWindowManager() {
+        return new WindowManager();
+    }
 
-  /**
-   * Internal. Not part of Android API.
-   */
-  public ActivityWrapper getMyIphoneWrapper() {
-    return myIphoneWrapper;
-  }
+    /**
+     * Can be overridden by subclasses.
+     */
+    public void onContentChanged() {
+    }
+
+    public void showDialog(int id) {
+        Dialog dialog = onCreateDialog(id);
+        if (dialog != null)
+            dialog.show();
+    }
+
+    protected Dialog onCreateDialog(int id) {
+        return null;
+    }
+
+    /**
+     * Can be overridden by subclasses that want to create a menu.
+     */
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
+
+    /**
+     * Can be overridden by subclasses that want to handle menu button presses.
+     */
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return true;
+    }
+
+    /**
+     * TODO: Implement for real.
+     */
+    public void startActivity(Intent intent) {
+    }
+
+    public void requestWindowFeature(int feature) {
+        /*
+         * TODO: can't handle jvm:lookupswitch
+         * 
+         * switch (feature) {
+         * 
+         * case Window.FEATURE_NO_TITLE: // TODO: This will remove the title
+         * bar, but not get rid of the // status bar. On the iPhone we don't
+         * have a title, but maybe we should // implement this as a
+         * compatibility feature. Once we have it, this is the // place to
+         * disable it. break; }
+         */
+    }
+
+    /**
+     * Retrieve the current {@link Window} for the activity.
+     */
+    public Window getWindow() {
+        return window;
+    }
+
+    /**
+     * Internal. Not part of Android API.
+     */
+    public void setMyIphoneWrapper(ActivityWrapper myIphoneWrapper) {
+        this.myIphoneWrapper = myIphoneWrapper;
+    }
+
+    /**
+     * Internal. Not part of Android API.
+     */
+    public ActivityWrapper getMyIphoneWrapper() {
+        return myIphoneWrapper;
+    }
+
+    /**
+     * Change the desired orientation of this activity.
+     * <p>
+     * TODO: Implement for real!
+     */
+    public void setRequestedOrientation(int requestedOrientation) {
+        switch(requestedOrientation) {
+        case ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE:
+            break;
+        case ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:
+            break;
+        }
+    }
 }
