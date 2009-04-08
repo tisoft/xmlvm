@@ -1,6 +1,8 @@
 
 package org.xmlvm.iphone;
 
+import javax.swing.SwingUtilities;
+
 import org.xmlvm.iphone.internal.Simulator;
 import org.xmlvm.iphone.internal.SimulatorDesktop;
 
@@ -38,8 +40,15 @@ public abstract class UIApplication
     public static void main(String[] args, Class appClass)
     {
         try {
-            UIApplication theApp = (UIApplication) appClass.newInstance();
-            theApp.applicationDidFinishLaunching(null);
+            final UIApplication theApp = (UIApplication) appClass.newInstance();
+            Runnable r = new Runnable() {
+
+                public void run() {
+                    theApp.applicationDidFinishLaunching(null);
+                } 
+            };
+            
+            SwingUtilities.invokeLater(r);
         }
         catch (InstantiationException e) {
             // TODO Auto-generated catch block
