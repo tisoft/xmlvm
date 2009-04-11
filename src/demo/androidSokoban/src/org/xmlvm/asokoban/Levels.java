@@ -1,5 +1,9 @@
 package org.xmlvm.asokoban;
 
+/**
+ * As long as we don't support reading and writing of files, we store the
+ * string-representations of the levels in this class.
+ */
 public class Levels {
 	private static final String[] levels = {
 			"    #####\n    #   #\n    #$  #\n  ###  $##\n  #  $ $ #\n### # ## #   ######\n#   # ## #####  ..#\n# $  $          ..#\n##### ### #@##  ..#\n    #     #########\n    #######",
@@ -55,7 +59,14 @@ public class Levels {
 
 	};
 
-	public static String getLevel(int level) {
-		return levels[level];
-	}
+	/**
+     * Returns the given level encoded as a string.
+     * 
+     * @param level
+     *            Which level to return.
+     * @return The string-representation of the level.
+     */
+    public static String getLevel(int level) {
+        return levels[level];
+    }
 }

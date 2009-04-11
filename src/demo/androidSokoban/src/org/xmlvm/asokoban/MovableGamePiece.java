@@ -1,5 +1,11 @@
 package org.xmlvm.asokoban;
 
+import android.sax.StartElementListener;
+
+/**
+ * A MovableGamePiece is a special kind of {@link GamePiece} that can be moved
+ * on the screen.
+ */
 public class MovableGamePiece extends GamePiece {
     private int counter;
     private int dx;
@@ -9,6 +15,14 @@ public class MovableGamePiece extends GamePiece {
         super(view, resourceID, x, y);
     }
 
+    /**
+     * Initiates a movement in the given direction.
+     * 
+     * @param dx
+     *            How many pixels to move horizontally.
+     * @param dy
+     *            How many pixels to move vertically.
+     */
     public void startMoving(int dx, int dy) {
         view.getMover().moveGamePiece(this);
         this.dx = dx;
@@ -18,6 +32,12 @@ public class MovableGamePiece extends GamePiece {
         counter = tileSize / 2;
     }
 
+    /**
+     * Moves the game piece on step in the direction given to
+     * {@link #startMoving(int, int)}.
+     * 
+     * @return TODO
+     */
     public boolean moveOneStep() {
         px += dx * 2;
         py += dy * 2;

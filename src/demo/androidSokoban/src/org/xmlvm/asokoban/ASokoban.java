@@ -13,6 +13,10 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+/**
+ * The main controller class of the Sokoban game, implemented as an Android
+ * {@link Activity}.
+ */
 public class ASokoban extends Activity implements SensorListener {
     private static final float movingThreshold = 1.7f;
 
