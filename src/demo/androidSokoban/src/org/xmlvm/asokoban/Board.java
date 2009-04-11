@@ -8,48 +8,46 @@ public class Board {
     /**
      * An empty game tile.
      */
-    public static final int  SPACE        = 0;
+    public static final int SPACE        = 0;
     /**
      * A wall section, where the man can not go through.
      */
-    public static final int  WALL         = 1;
+    public static final int WALL         = 1;
     /**
      * A ball, which has to be pushed by the man.
      */
-    public static final int  BALL         = 2;
+    public static final int BALL         = 2;
     /**
      * A goal onto which a ball must be placed
      */
-    public static final int  GOAL         = 3;
+    public static final int GOAL         = 3;
     /**
      * The man is controlled by the user to push the balls into the goals.
      */
-    public static final int  MAN          = 4;
+    public static final int MAN          = 4;
+    /**
+     * The width of every board.
+     */
+    public static final int BOARD_WIDTH  = 50;
+    /**
+     * The height of every board.
+     */
+    public static final int BOARD_HEIGHT = 50;
 
-    private static final int BOARD_WIDTH  = 50;
-    private static final int BOARD_HEIGHT = 50;
-
-    private CharField        charField    = null;
-    private int              width        = 0;
-    private int              height       = 0;
+    private CharField       charField    = null;
+    private int             width        = 0;
+    private int             height       = 0;
 
     /**
      * Initializes a board with the given level.
      * 
-     * @param level
-     *            The level to load.
+     * @param charField
+     *            The CharField that is the source for this board.
      */
-    public Board(int level) {
-        charField = new CharField(BOARD_HEIGHT, BOARD_WIDTH);
-
-        // Init with space
-        for (int i = 0; i < BOARD_HEIGHT; i++) {
-            for (int j = 0; j < BOARD_WIDTH; j++) {
-                charField.setChar(i, j, ' ');
-            }
-        }
-
-        parseDescription(Levels.getLevel(level));
+    public Board(CharField charField) {
+        this.charField = charField;
+        width = charField.getBoardWidth();
+        height = charField.getBoardHeight();
     }
 
     /**
@@ -86,30 +84,6 @@ public class Board {
     }
 
     /**
-     * Parses the string representation of the the game board.
-     * 
-     * @param boardDesc
-     */
-    private void parseDescription(String boardDesc) {
-        int x = 0;
-        int y = 0;
-
-        for (int i = 0; i < boardDesc.length(); i++) {
-            if (boardDesc.charAt(i) != '\n') {
-                charField.setChar(y, x, boardDesc.charAt(i));
-                x++;
-            } else {
-                width = x > width ? x : width;
-
-                x = 0;
-                y++;
-            }
-        }
-
-        height = boardDesc.endsWith("\n") ? y : y + 1;
-    }
-
-    /**
      * For a given character in the game piece, return the type id of the
      * represented tile.
      * 
@@ -143,6 +117,6 @@ public class Board {
      * Returns whether the board should be rotated.
      */
     private boolean shouldRotate() {
-        return width > height;
+        return height > width;
     }
 }

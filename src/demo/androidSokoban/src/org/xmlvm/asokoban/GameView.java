@@ -27,7 +27,8 @@ public class GameView {
         Display d = w.getDefaultDisplay();
         displayWidth = d.getWidth();
         displayHeight = d.getHeight();
-        board = new Board(level);
+        board = new Board(new CharField(Levels.getLevel(level), Board.BOARD_WIDTH,
+                Board.BOARD_HEIGHT));
         gameController = new GameController(board);
         mover = new GamePieceMover();
         loadGame(level);

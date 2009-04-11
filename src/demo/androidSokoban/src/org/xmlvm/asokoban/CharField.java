@@ -1,26 +1,66 @@
 package org.xmlvm.asokoban;
 
+import android.util.Log;
+
 /**
  * A CharField represents a string-encoded board.
  */
 public class CharField {
+    /**
+     * The character used to initialize a field in the CharField.
+     */
+    public static final char EMPTY_CHAR  = ' ';
 
-    private int    width  = 0;
-    private int    height = 0;
-    private char[] buf    = null;
+    private int              width       = 0;
+    private int              height      = 0;
+    private int              boardWidth  = 0;
+    private int              boardHeight = 0;
+    private char[]           buf         = null;
 
     /**
      * Initializes a new CharField with the given dimensions.
      * 
+     * @param boardDesc
+     *            The string-encoded level.
      * @param height
      *            The height of the field (in tiles).
      * @param width
      *            The width of the field (in tiles).
      */
-    public CharField(int height, int width) {
+    public CharField(String boardDesc, int height, int width) {
         this.width = width;
         this.height = height;
         this.buf = new char[width * height];
+        // Initialize with spaces.
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                setChar(i, j, EMPTY_CHAR);
+            }
+        }
+        parseDescription(boardDesc);
+    }
+
+    /**
+     * Parses the string representation of the the game board.
+     * 
+     * @param boardDesc
+     *            The string-representation of the level.
+     */
+    private void parseDescription(String boardDesc) {
+        int x = 0;
+        int y = 0;
+        for (int i = 0; i < boardDesc.length(); i++) {
+            if (boardDesc.charAt(i) != '\n') {
+                setChar(y, x, boardDesc.charAt(i));
+                x++;
+            } else {
+                boardWidth = x > boardWidth ? x : boardWidth;
+
+                x = 0;
+                y++;
+            }
+        }
+        boardHeight = boardDesc.endsWith("\n") ? y : y + 1;
     }
 
     /**
@@ -48,6 +88,7 @@ public class CharField {
      * @return The character.
      */
     public char getChar(int y, int x) {
+        Log.d("GETCHAR", "X:" + x + "  Y:" + y);
         return buf[calculateIndex(y, x)];
     }
 
@@ -72,5 +113,19 @@ public class CharField {
      */
     public int getHeight() {
         return height;
+    }
+
+    /**
+     * Returns the width of the board.
+     */
+    public int getBoardWidth() {
+        return boardWidth;
+    }
+
+    /**
+     * Returns the height of the board.
+     */
+    public int getBoardHeight() {
+        return boardHeight;
     }
 }
