@@ -88,7 +88,6 @@ public class CharField {
      * @return The character.
      */
     public char getChar(int y, int x) {
-        Log.d("GETCHAR", "X:" + x + "  Y:" + y);
         return buf[calculateIndex(y, x)];
     }
 
