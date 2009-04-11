@@ -1,6 +1,5 @@
 package org.xmlvm.asokoban;
 
-import android.sax.StartElementListener;
 
 /**
  * A MovableGamePiece is a special kind of {@link GamePiece} that can be moved
