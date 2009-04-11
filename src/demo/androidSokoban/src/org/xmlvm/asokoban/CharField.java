@@ -1,6 +1,5 @@
 package org.xmlvm.asokoban;
 
-import android.util.Log;
 
 /**
  * A CharField represents a string-encoded board.
