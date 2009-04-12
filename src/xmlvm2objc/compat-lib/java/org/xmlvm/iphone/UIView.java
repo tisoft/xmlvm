@@ -61,6 +61,7 @@ public class UIView {
     public void addSubview(UIView subView) {
         subView.parent = this;
         subViews.add(subView);
+        Simulator.redrawDisplay();
     }
 
     public void layoutSubviews() {
