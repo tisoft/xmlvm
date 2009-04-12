@@ -7,4 +7,5 @@
 @public CGAffineTransform transform;
 }
 + (org_xmlvm_iphone_CGAffineTransform*) makeRotation___float: (float) alpha;
+- (void) translate___float_float :(float) tx :(float) ty;
 @end

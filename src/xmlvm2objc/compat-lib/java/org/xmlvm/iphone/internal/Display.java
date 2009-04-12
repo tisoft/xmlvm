@@ -84,7 +84,7 @@ public class Display
                 RenderingHints.VALUE_ANTIALIAS_ON);
         CGContext.setGraphicsContext(g2d);
         Rectangle r = g.getClipBounds();
-        g2d.setBackground(Color.WHITE);
+        g2d.setBackground(Color.BLACK);
         g2d.clearRect(r.x, r.y, r.width, r.height);
         CGRect rect = new CGRect(r.x, r.y, r.width, r.height);
         for (UIView v : views) {

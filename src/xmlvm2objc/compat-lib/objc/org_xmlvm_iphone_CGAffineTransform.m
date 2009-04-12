@@ -12,4 +12,10 @@
     t->transform = CGAffineTransformMakeRotation(alpha);
     return t;
 }
+
+- (void) translate___float_float :(float) tx :(float) ty
+{
+	transform = CGAffineTransformTranslate(transform, tx, ty);
+}
+
 @end

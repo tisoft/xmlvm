@@ -42,6 +42,10 @@ public class UIView {
     }
 
     public void setFrame(CGRect rect) {
+        // TODO The docs specify that the frame has no meaning when
+        // a transform other than the identity function has been set.
+        // We don't care in our Java implementation, but apparently
+        // Cocoa is quite sensitive about this.
         boolean needsLayouting = frame != null;
         frame = new CGRect(rect);
         bounds = new CGRect(rect);
@@ -118,7 +122,7 @@ public class UIView {
     public void setTransform(CGAffineTransform trans) {
         affineTransform = new AffineTransform();
 
-        do {
+        while (trans != null) {
             switch (trans.type) {
             case CGAffineTransform.ROTATE:
                 // Rotate
@@ -130,7 +134,7 @@ public class UIView {
                 break;
             }
             trans = trans.next;
-        } while (trans != null);
+        }
 
         Simulator.redrawDisplay();
         // TODO the following clip rect doesn't work properly when rotating

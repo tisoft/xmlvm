@@ -8,5 +8,6 @@
 - (void) applicationDidFinishLaunching: (id) app;
 - (void) applicationDidFinishLaunching___org_xmlvm_iphone_NSNotification :(org_xmlvm_iphone_NSNotification*)n1;
 - (void) setStatusBarHidden___boolean:(bool) flag;
+- (void) setStatusBarOrientation___int: (int) orientation;
 + (void) main___java_lang_String_ARRAYTYPE_java_lang_Class :(NSMutableArray*)n1 :(id)n2;
 @end

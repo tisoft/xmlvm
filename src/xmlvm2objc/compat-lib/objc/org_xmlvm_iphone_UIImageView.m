@@ -30,11 +30,6 @@
     [self setImage: image];
 }
 
-- (void) setTransform___org_xmlvm_iphone_CGAffineTransform :(org_xmlvm_iphone_CGAffineTransform*)trans
-{
-    [self setTransform: trans->transform];
-}
-
 - (void) setNeedsDisplayInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect
 {
 	[self setNeedsDisplayInRect: [rect getCGRect]];

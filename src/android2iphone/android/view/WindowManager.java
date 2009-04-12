@@ -20,15 +20,24 @@
 
 package android.view;
 
+import android.app.Activity;
+
 public class WindowManager {
-  /**
-   * TODO: Implement for real.
-   */
-  public Display getDefaultDisplay() {
-    return new Display();
-  }
-  
-  public static class LayoutParams {
-    public static final int FLAG_FULLSCREEN = 1024;
-  }
+
+    Activity activity;
+
+    public WindowManager(Activity activity) {
+        this.activity = activity;
+    }
+
+    /**
+     * TODO: Implement for real.
+     */
+    public Display getDefaultDisplay() {
+        return new Display(activity);
+    }
+
+    public static class LayoutParams {
+        public static final int FLAG_FULLSCREEN = 1024;
+    }
 }

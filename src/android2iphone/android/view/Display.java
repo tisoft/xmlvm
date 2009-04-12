@@ -20,20 +20,29 @@
 
 package android.view;
 
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
+
 public class Display {
-  /**
-   * Return the current width of the screen
-   * TODO: Implement for real. This is only a dummy.
-   */
-  public int getWidth() {
-    return 320;
-  }
-  
-  /**
-   * Return the current height of the screen
-   * TODO: Implement for real. This is only a dummy.
-   */
-  public int getHeight() {
-    return 480;
-  }
+    private Activity activity;
+
+    public Display(Activity activity) {
+        this.activity = activity;
+    }
+
+    /**
+     * Return the current width of the screen TODO: Implement for real. This is
+     * only a dummy.
+     */
+    public int getWidth() {
+        return activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? 480 : 320;
+    }
+
+    /**
+     * Return the current height of the screen TODO: Implement for real. This is
+     * only a dummy.
+     */
+    public int getHeight() {
+        return activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? 320 : 480;
+    }
 }

@@ -26,6 +26,11 @@
     [self setStatusBarHidden: flag];
 }
 
+- (void) setStatusBarOrientation___int: (int) orientation
+{
+	[self setStatusBarOrientation: orientation];
+}
+
 + (void) main___java_lang_String_ARRAYTYPE_java_lang_Class :(NSMutableArray*)n1 :(id)n2
 {
     // TODO: change args array to argc, argc

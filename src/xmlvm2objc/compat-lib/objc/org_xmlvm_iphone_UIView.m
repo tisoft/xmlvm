@@ -1,6 +1,5 @@
 #import "org_xmlvm_iphone_UIView.h"
 
-
 // UIView
 //----------------------------------------------------------------------------
 
@@ -49,6 +48,14 @@
 - (void) addSubview___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*)view
 {
     [self addSubview: view];
+}
+
+- (void) setTransform___org_xmlvm_iphone_CGAffineTransform :(org_xmlvm_iphone_CGAffineTransform*)trans
+{
+	if (trans == [java_lang_null _GET_NULL])
+ 		[self setTransform: CGAffineTransformIdentity];
+ 	else
+    	[self setTransform: trans->transform];
 }
 
 - (void) setNeedsDisplayInRect___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)rect

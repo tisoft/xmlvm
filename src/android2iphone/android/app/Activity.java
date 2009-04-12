@@ -20,6 +20,8 @@
 
 package android.app;
 
+import org.xmlvm.iphone.UIInterfaceOrientation;
+
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -38,6 +40,7 @@ import android.view.WindowManager;
 public class Activity extends ContextThemeWrapper {
     private ActivityWrapper myIphoneWrapper;
     private Window          window;
+    private int             screenOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
 
     protected void onCreate(Bundle savedInstanceState) {
         window = new Window(this);
@@ -52,7 +55,7 @@ public class Activity extends ContextThemeWrapper {
      * TODO: Implement for real.
      */
     public WindowManager getWindowManager() {
-        return new WindowManager();
+        return new WindowManager(this);
     }
 
     /**
@@ -128,15 +131,23 @@ public class Activity extends ContextThemeWrapper {
 
     /**
      * Change the desired orientation of this activity.
-     * <p>
-     * TODO: Implement for real!
      */
     public void setRequestedOrientation(int requestedOrientation) {
-        switch(requestedOrientation) {
+        screenOrientation = requestedOrientation;
+        switch (requestedOrientation) {
         case ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE:
+            myIphoneWrapper
+                    .setStatusBarOrientation(UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft);
             break;
         case ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:
+            myIphoneWrapper
+                    .setStatusBarOrientation(UIInterfaceOrientation.UIInterfaceOrientationPortrait);
             break;
         }
+        window.adjustFrameSize();
+    }
+
+    public int getRequestedOrientation() {
+        return screenOrientation;
     }
 }

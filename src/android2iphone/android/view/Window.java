@@ -20,11 +20,14 @@
 
 package android.view;
 
+import org.xmlvm.iphone.CGAffineTransform;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIScreen;
+import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 
 /**
  * iPhone Implementation of Android's Window class.
@@ -32,34 +35,63 @@ import android.app.Activity;
  * @see http://developer.android.com/reference/android/view/Window.html
  */
 public class Window {
-  public static final int FEATURE_NO_TITLE = 1;
-  private Activity activity;
-  private UIWindow iWindow;
-  private CGRect rect;
+    public static final int FEATURE_NO_TITLE = 1;
+    private Activity        activity;
+    private UIWindow        iWindow;
+    private CGRect          rect;
 
-  public Window(Activity parent) {
-	this.activity = parent;
-    UIScreen screen = UIScreen.mainScreen();
-    rect = screen.bounds();
-    iWindow = new UIWindow(rect);
-  }
-
-  public void setContentView(View view) {
-    iWindow.addSubview(view.getMainView());
-    iWindow.makeKeyAndVisible();
-  }
-
-  public void setFlags(int flags, int mask) {
-    int maskedFlags = (flags & mask);
-    if ((maskedFlags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0) {
-      this.activity.getMyIphoneWrapper().setStatusBarHidden(true);
+    public Window(Activity parent) {
+        this.activity = parent;
+        UIScreen screen = UIScreen.mainScreen();
+        rect = screen.applicationFrame();
+        iWindow = new UIWindow(rect);
     }
-  }
 
-  /**
-   * Internal. Not part of Android API.
-   */
-  public CGRect getCGRect() {
-    return rect;
-  }
+    public void setContentView(View view) {
+        adjustFrameSize();
+        CGRect viewRect = new CGRect(rect);
+        viewRect.origin.x = viewRect.origin.y = 0;
+        UIView iview = view.getMainView();
+        iview.setFrame(viewRect);
+        iWindow.addSubview(iview);
+        iWindow.makeKeyAndVisible();
+    }
+
+    public void setFlags(int flags, int mask) {
+        int maskedFlags = (flags & mask);
+        if ((maskedFlags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0) {
+            this.activity.getMyIphoneWrapper().setStatusBarHidden(true);
+            adjustFrameSize();
+        }
+    }
+
+    /**
+     * Internal. Not part of Android API. Called whenever the size or
+     * orientation of the top-level window has changed (e.g., when the status
+     * bar is made invisible).
+     */
+    public void adjustFrameSize() {
+        UIScreen screen = UIScreen.mainScreen();
+        rect = screen.applicationFrame();
+        iWindow.setTransform(null);
+        iWindow.setFrame(rect);
+        if (activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+            float t = rect.size.height;
+            rect.size.height = rect.size.width;
+            rect.size.width = t;
+            iWindow.setFrame(rect);
+            CGAffineTransform trans = CGAffineTransform
+                    .makeRotation((float) ((Math.PI / 180) * 90));
+            // TODO Translate should be 90, 90 for visible status bar (i.e., non-fullscreen)
+            trans.translate(80, 80);
+            iWindow.setTransform(trans);
+        }
+    }
+
+    /**
+     * Internal. Not part of Android API.
+     */
+    public CGRect getCGRect() {
+        return rect;
+    }
 }
