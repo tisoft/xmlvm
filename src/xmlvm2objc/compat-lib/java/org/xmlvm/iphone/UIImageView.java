@@ -22,7 +22,7 @@ public class UIImageView extends UIView {
         CGRect displayRect = getDisplayRect();
         // draw the image using the AffineTransform
         AffineTransform trans = new AffineTransform();
-        trans.translate(displayRect.origin.x, displayRect.origin.y);
+        trans.translate(frame.origin.x, frame.origin.y);//displayRect.origin.x, displayRect.origin.y);
         trans.concatenate(affineTransform);
         g.drawImage(image.image, trans, Simulator.getDisplay());
     }
