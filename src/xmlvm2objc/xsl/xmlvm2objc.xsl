@@ -462,37 +462,10 @@ int main(int argc, char* argv[])
       <xsl:value-of select="@value"/>
       <xsl:text>"</xsl:text>
     </xsl:when>
-    <!-- Quick hack so we catch other missing @type -->
-    <xsl:when test="@type = 'org.xmlvm.test.iphone.ihelloworld.HelloWorld'">
-      <xsl:text>.o = [org_xmlvm_test_iphone_ihelloworld_HelloWorld class]</xsl:text>
-    </xsl:when>
-    <!-- Quick hack so we catch other missing @type -->
-    <xsl:when test="@type = 'org.xmlvm.test.iphone.ifireworks.Main'">
-      <xsl:text>.o = [org_xmlvm_test_iphone_ifireworks_Main class]</xsl:text>
-    </xsl:when>
-    <!-- Quick hack so we catch other missing @type -->
-    <xsl:when test="@type = 'org.xmlvm.test.iphone.Android'">
-      <xsl:text>.o = [org_xmlvm_test_iphone_Android class]</xsl:text>
-    </xsl:when>
-    <!-- Quick hack so we catch other missing @type -->
-    <xsl:when test="@type = 'org.xmlvm.test.iphone.todo.Main'">
-      <xsl:text>.o = [org_xmlvm_test_iphone_todo_Main class]</xsl:text>
-    </xsl:when>
-    <!-- Quick hack so we catch other missing @type -->
-    <xsl:when test="@type = 'org.xmlvm.iphone.internal.RemoteUI'">
-      <xsl:text>.o = [org_xmlvm_iphone_internal_RemoteUI class]</xsl:text>
-    </xsl:when>
-    <!-- Quick hack so we catch other missing @type -->
-    <xsl:when test="@type = 'org.xmlvm.iphone.remote.Main'">
-      <xsl:text>.o = [org_xmlvm_iphone_remote_Main class]</xsl:text>
-    </xsl:when>
-    <!-- Quick hack so we catch other missing @type -->
-    <xsl:when test="@type = 'org.xmlvm.iphone.iremote.Main'">
-      <xsl:text>.o = [org_xmlvm_iphone_iremote_Main class]</xsl:text>
-    </xsl:when>
     <xsl:otherwise>
-      <xsl:message select="'Unknown type in jvm:ldc'"/>
-      <xsl:message select="@type"/>
+      <xsl:text>.o = [</xsl:text>
+      <xsl:value-of select="vm:fixname(@type)"/>
+      <xsl:text> class]</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
   <xsl:text>;
