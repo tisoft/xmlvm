@@ -60,6 +60,7 @@ public class AccelerometerPanel
                         .createEmptyBorder(5, 5, 5, 5))));
         this.setSize(120, 160);
         addControls();
+        setAccelerated(0, 0, 0);
     }
 
 
@@ -126,7 +127,8 @@ public class AccelerometerPanel
         int value = control.getValue();
         if (value == control.getMaximum())
             return 1;
-        return (((float) value / (float) (100 - control.getVisibleAmount()) - 0.5f) * 2) / 2.0f;
+        float v = ((float) value / (float) (100 - control.getVisibleAmount()) - 0.5f) * 2;
+        return v;
     }
 
 
@@ -142,7 +144,7 @@ public class AccelerometerPanel
 
     private void setAcceleratedValue(JScrollBar control, double x)
     {
-        int pos = (int) ((x + 0.5f) * (100 - control.getVisibleAmount()));
+        int pos = (int) ((x + 1.0f) * (100.0f - control.getVisibleAmount()) / 2.0f);
         control.setValue(pos);
     }
 

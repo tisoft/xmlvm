@@ -47,11 +47,11 @@ public class SensorManager implements UIAccelerometerDelegate {
   public void accelerometerDidAccelerate(UIAccelerometer accelerometer,
 			UIAcceleration acceleration) {
     // This is to adapt the iPhone value range to the Android one. iPhone/iPod
-    // touch has a range of -0.5 to 0.5 whereas the Android phone delivers the
-    // actual g-force value.
-    float x = (float) (2 * acceleration.x() * GRAVITY_EARTH);
-    float y = (float) (2 * acceleration.y() * GRAVITY_EARTH);
-    float z = (float) (2 * acceleration.z() * GRAVITY_EARTH);
+    // touch scale 1G to a value of 1 whereas the Android phone delivers the
+    // actual G-force value.
+    float x = (float) (acceleration.x() * GRAVITY_EARTH);
+    float y = (float) (acceleration.y() * GRAVITY_EARTH);
+    float z = (float) (acceleration.z() * GRAVITY_EARTH);
     for (int i = 0; i < numListeners; i++) {
       RegisteredListener listener = listeners[i];
       if ((listener.sensors & SENSOR_ACCELEROMETER) != 0) {

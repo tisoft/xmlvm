@@ -139,6 +139,7 @@ public class SimulatorGUI
 
     public void setAccelerated(double x, double y, double z)
     {
-        accelerometer.setAccelerated(x, y, z);
+        if (accelerometer != null)
+            accelerometer.setAccelerated(x, y, z);
     }
 }
