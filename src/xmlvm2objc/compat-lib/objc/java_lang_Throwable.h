@@ -3,8 +3,9 @@
 
 // java.lang.Throwable
 //----------------------------------------------------------------------------
-typedef NSException java_lang_Throwable;
-@interface NSException (cat_java_lang_Throwable)
+// For some reason, compiling for the device doesn't like to define this
+// class as a category.
+@interface java_lang_Throwable : NSException
 
 - (id) init;
 - (void) __init_java_lang_Throwable;

@@ -3,7 +3,7 @@
 
 // java.lang.Throwable
 //----------------------------------------------------------------------------
-@implementation NSException (cat_java_lang_Throwable)
+@implementation java_lang_Throwable
 
 - (id) init
 {

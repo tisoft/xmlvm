@@ -3,7 +3,7 @@
 
 // java.lang.Exception
 //----------------------------------------------------------------------------
-@implementation NSException (cat_java_lang_Exception)
+@implementation java_lang_Exception
 
 - (id) init
 {
