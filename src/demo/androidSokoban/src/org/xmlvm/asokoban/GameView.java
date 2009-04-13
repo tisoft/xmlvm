@@ -5,6 +5,9 @@ import android.view.Display;
 import android.view.WindowManager;
 import android.widget.AbsoluteLayout;
 
+/**
+ * The GameView class wraps everything that is required for displaying a game.
+ */
 public class GameView {
 
     private Activity       activity;
@@ -18,15 +21,13 @@ public class GameView {
     private int            offsetTop;
     private int            offsetLeft;
 
-    public GameView(Activity activity, int level) {
+    public GameView(Activity activity, int level, int displayWidth, int displayHeight) {
         this.activity = activity;
         layout = new AbsoluteLayout(activity);
         activity.setContentView(layout);
         tileSize = 20;// piece.getWidth();
-        WindowManager w = activity.getWindowManager();
-        Display d = w.getDefaultDisplay();
-        displayWidth = d.getWidth();
-        displayHeight = d.getHeight();
+        this.displayWidth = displayWidth;
+        this.displayHeight = displayHeight;
         board = new Board(new CharField(Levels.getLevel(level), Board.BOARD_WIDTH,
                 Board.BOARD_HEIGHT));
         gameController = new GameController(board);

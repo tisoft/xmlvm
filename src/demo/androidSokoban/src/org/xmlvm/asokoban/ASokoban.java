@@ -10,7 +10,9 @@ import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -22,7 +24,7 @@ public class ASokoban extends Activity implements SensorListener {
     private static final float movingThreshold = 1.7f;
 
     private GameView           gameView;
-    private SensorManager      sensorManager;
+//    private SensorManager      sensorManager;
     private int                currentLevel;
     private boolean            pauseGame;
 
@@ -59,11 +61,16 @@ public class ASokoban extends Activity implements SensorListener {
 
     }
 
+    /**
+     * Shows an info dialog for the current level and loads it.
+     */
     public void loadLevel() {
         pauseGame = true;
         // Use currentLevel as dialog ID to avoid caching of the AlertDialog
         showDialog(currentLevel);
-        gameView = new GameView(this, currentLevel);
+        WindowManager windowManager = getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        gameView = new GameView(this, currentLevel, display.getWidth(), display.getHeight());
     }
 
     @Override
@@ -76,10 +83,14 @@ public class ASokoban extends Activity implements SensorListener {
                 }).create();
     }
 
+    /* (non-Javadoc)
+     * @see android.hardware.SensorListener#onSensorChanged(int, float[])
+     */
     public void onSensorChanged(int sensor, float[] values) {
-        if (pauseGame)
-            return;
-        if (gameView.getGameController().levelFinished()) {
+        if (pauseGame) {
+          return;
+        }
+        if (gameView.getGameController().isLevelFinished()) {
             currentLevel++;
             loadLevel();
             return;
@@ -104,7 +115,7 @@ public class ASokoban extends Activity implements SensorListener {
                 dy = -1;
         }
         if (Math.abs(dx) > 0 || Math.abs(dy) > 0) {
-            gameView.getGameController().move(dx, dy);
+            gameView.getGameController().moveMan(dx, dy);
         }
     }
 
@@ -117,6 +128,9 @@ public class ASokoban extends Activity implements SensorListener {
      * sensorManager.unregisterListener(this); super.onStop(); }
      */
 
+    /* (non-Javadoc)
+     * @see android.hardware.SensorListener#onAccuracyChanged(int, int)
+     */
     public void onAccuracyChanged(int sensor, int accuracy) {
     }
 

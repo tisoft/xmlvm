@@ -1,5 +1,8 @@
 package org.xmlvm.asokoban;
 
+/**
+ * The controller class for the Sokoban game.
+ */
 public class GameController {
     private int           moveCount = 0;
     private Man           man       = null;
@@ -7,28 +10,48 @@ public class GameController {
     private GamePieceList goals     = null;
     private Board         board     = null;
 
+    /**
+     * Instantiates a new GameController with the given {@link Board}.
+     * 
+     * @param board
+     *            The Board that is played.
+     */
     public GameController(Board board) {
         balls = new GamePieceList();
         goals = new GamePieceList();
         this.board = board;
     }
 
+    /**
+     * Returns the number of moves already made in the current game.
+     */
     public int getMoveCount() {
         return moveCount;
     }
 
-    public boolean levelFinished() {
+    /**
+     * Returns whether the current level is finished.
+     */
+    public boolean isLevelFinished() {
         for (int i = 0; i < goals.size(); i++) {
             Goal goal = (Goal) goals.get(i);
-            if (testBallPosition(goal.getX(), goal.getY()) == null) {
+            if (getBallAtPosition(goal.getX(), goal.getY()) == null) {
                 return false;
             }
         }
-
         return true;
     }
 
-    public void move(int dx, int dy) {
+    /**
+     * Moves the man in the given direction. If the man "hits" a ball that is
+     * movable, it will move it as well.
+     * 
+     * @param dx
+     *            The number of pixels to move horizontally.
+     * @param dy
+     *            The number of pixels to move vertically.
+     */
+    public void moveMan(int dx, int dy) {
         int newX = man.getX() + dx;
         int newY = man.getY() + dy;
 
@@ -38,9 +61,9 @@ public class GameController {
         }
 
         // Check ball and piece behind it
-        Ball adjacentBall = testBallPosition(newX, newY);
+        Ball adjacentBall = getBallAtPosition(newX, newY);
         if (adjacentBall != null
-                && (testBallPosition(newX + dx, newY + dy) != null || board.getBoardPiece(newX
+                && (getBallAtPosition(newX + dx, newY + dy) != null || board.getBoardPiece(newX
                         + dx, newY + dy) == Board.WALL)) {
             return;
         }
@@ -58,7 +81,17 @@ public class GameController {
         return;
     }
 
-    private Ball testBallPosition(int x, int y) {
+    /**
+     * Returns the ball at the requested position.
+     * 
+     * @param x
+     *            The x coordinate to check for a ball.
+     * @param y
+     *            The y coordinate to check for a ball.
+     * @return If a {@link Ball} exists at the requested location, it returns
+     *         it. Null otherwise.
+     */
+    private Ball getBallAtPosition(int x, int y) {
         for (int i = 0; i < balls.size(); i++) {
             Ball b = (Ball) balls.get(i);
             if (b.getX() == x && b.getY() == y) {
@@ -69,14 +102,23 @@ public class GameController {
         return null;
     }
 
+    /**
+     * Sets the man of the game.
+     */
     public void setMan(Man man) {
         this.man = man;
     }
 
+    /**
+     * Adds a ball to the game.
+     */
     public void addBall(Ball ball) {
         balls.add(ball);
     }
 
+    /**
+     * Adds a goal to the game.
+     */
     public void addGoal(Goal goal) {
         goals.add(goal);
     }

@@ -1,6 +1,5 @@
 package org.xmlvm.asokoban;
 
-
 /**
  * A MovableGamePiece is a special kind of {@link GamePiece} that can be moved
  * on the screen.
@@ -9,6 +8,9 @@ public class MovableGamePiece extends GamePiece {
     private int counter;
     private int dx;
     private int dy;
+
+    private int px;
+    private int py;
 
     protected MovableGamePiece(GameView view, int resourceID, int x, int y) {
         super(view, resourceID, x, y);
@@ -40,7 +42,7 @@ public class MovableGamePiece extends GamePiece {
     public boolean moveOneStep() {
         px += dx * 2;
         py += dy * 2;
-        updatePosition();
+        updatePosition(px, py);
         counter--;
         if (counter == 0) {
             x += dx;
