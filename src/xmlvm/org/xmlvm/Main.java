@@ -258,7 +258,7 @@ public void genObjC(Document doc, String path, String headerFileName,
       String interfaces = clazz.getAttributeValue("interfaces");
       if (interfaces != null) {
       for (String i : interfaces.split(",")) {
-    	    p.println("#import \"" + i.replace('.', '_') + ".h\"");
+    	    p.println("#import \"" + i.replace('.', '_').replace('$', '_') + ".h\"");
         }
       }
       p.println();
