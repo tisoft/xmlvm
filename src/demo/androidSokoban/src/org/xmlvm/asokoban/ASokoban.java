@@ -6,6 +6,7 @@ package org.xmlvm.asokoban;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
@@ -23,6 +24,7 @@ public class ASokoban extends Activity implements SensorListener {
     private GameView           gameView;
     private SensorManager      sensorManager;
     private int                currentLevel;
+    private boolean            pauseGame;
 
     /** Called when the activity is first created. */
     @Override
@@ -36,6 +38,7 @@ public class ASokoban extends Activity implements SensorListener {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         currentLevel = 0;
+        pauseGame = true;
         loadLevel();
         SensorManager sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
 
@@ -57,17 +60,25 @@ public class ASokoban extends Activity implements SensorListener {
     }
 
     public void loadLevel() {
-        showDialog(0);
+        pauseGame = true;
+        // Use currentLevel as dialog ID to avoid caching of the AlertDialog
+        showDialog(currentLevel);
         gameView = new GameView(this, currentLevel);
     }
 
     @Override
     protected Dialog onCreateDialog(int id) {
         return new AlertDialog.Builder(ASokoban.this).setTitle("Level: " + (currentLevel + 1))
-                .setPositiveButton("OK", null).create();
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        pauseGame = false;
+                    }
+                }).create();
     }
 
     public void onSensorChanged(int sensor, float[] values) {
+        if (pauseGame)
+            return;
         if (gameView.getGameController().levelFinished()) {
             currentLevel++;
             loadLevel();
