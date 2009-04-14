@@ -36,9 +36,6 @@ public class ASokoban extends Activity implements SensorListener {
         // Switch to fullscreen view, getting rid of the status bar as well.
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        currentLevel = 0;
-        pauseGame = true;
-        loadLevel();
         SensorManager sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
 
         // ----------------------------------------------------------------------------------
@@ -57,6 +54,9 @@ public class ASokoban extends Activity implements SensorListener {
                 SensorManager.SENSOR_DELAY_FASTEST);
         // Set the orientation to landscape programmatically.
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        currentLevel = 0;
+        pauseGame = true;
+        loadLevel();
     }
 
     /**
