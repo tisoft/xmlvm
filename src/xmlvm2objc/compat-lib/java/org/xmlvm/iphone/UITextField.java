@@ -45,7 +45,8 @@ public class UITextField extends UIView {
 		this.borderStyle = style;
 	}
 
-	public void keyTyped(char key) {
+	@Override
+    public void keyTyped(char key) {
 		if (key == '\b' && !text.equals(""))
 			text = text.substring(0, text.length() - 1);
 		else
@@ -53,7 +54,8 @@ public class UITextField extends UIView {
 		Simulator.redrawDisplay();
 	}
 
-	public void drawRect(CGRect r) {
+	@Override
+    public void drawRect(CGRect r) {
 		Graphics2D g = CGContext.theContext.graphicsContext;
 		g.setFont(font);
 		CGRect displayRect = getDisplayRect();
