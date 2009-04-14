@@ -31,8 +31,6 @@ public class ASokoban extends Activity implements SensorListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Set the orientation to landscape programmatically.
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         // No title bar.
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         // Switch to fullscreen view, getting rid of the status bar as well.
@@ -57,7 +55,8 @@ public class ASokoban extends Activity implements SensorListener {
         // ---------------------------------------------------------------------
         sensorManager.registerListener(this, SensorManager.SENSOR_ACCELEROMETER,
                 SensorManager.SENSOR_DELAY_FASTEST);
-
+        // Set the orientation to landscape programmatically.
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     /**
@@ -94,8 +93,8 @@ public class ASokoban extends Activity implements SensorListener {
             loadLevel();
             return;
         }
-        float x = -values[1];
-        float y = -values[0];
+        float x = values[0];
+        float y = -values[1];
         gameView.getMover().setMovingSpeed(x, y);
         if (gameView.isMoving()) {
             return;
