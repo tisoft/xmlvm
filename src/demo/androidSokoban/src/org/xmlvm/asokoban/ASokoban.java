@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Window;
