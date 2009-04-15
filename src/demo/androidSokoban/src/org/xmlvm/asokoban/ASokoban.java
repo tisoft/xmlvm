@@ -28,6 +28,9 @@ public class ASokoban extends Activity implements SensorListener {
 //    private SensorManager      sensorManager;
     private int                currentLevel;
     private boolean            pauseGame;
+    
+    // Used to keep the device awake and the screen bright.
+    private PowerManager.WakeLock wakeLock;
 
     /** Called when the activity is first created. */
     @Override
@@ -68,8 +71,8 @@ public class ASokoban extends Activity implements SensorListener {
      */
     public void setDeviceNoSleep() {
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "ASokoban");
-        wl.acquire();
+        wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "ASokoban");
+        wakeLock.acquire();
     }
 
     /**
@@ -139,12 +142,18 @@ public class ASokoban extends Activity implements SensorListener {
      * sensorManager.unregisterListener(this); super.onStop(); }
      */
 
+    @Override
+    protected void onDestroy() {
+        wakeLock.release();
+        super.onDestroy();
+    }
+
     /* (non-Javadoc)
      * @see android.hardware.SensorListener#onAccuracyChanged(int, int)
      */
     public void onAccuracyChanged(int sensor, int accuracy) {
     }
-
+    
     /*
      * @Override public boolean onTrackballEvent(MotionEvent event) { if
      * (gameView.isMoving()) { return false; } if (event.getAction() ==

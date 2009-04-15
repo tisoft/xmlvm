@@ -29,7 +29,7 @@ public class PowerManager {
          * are other wake locks held.
          */
         public void release() {
-            // TODO: Implement.
+            // TODO(arno): Implement.
         }
     }
 

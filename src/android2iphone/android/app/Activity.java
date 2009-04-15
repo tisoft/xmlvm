@@ -89,6 +89,13 @@ public class Activity extends ContextThemeWrapper {
     }
 
     /**
+     * Perform any final cleanup before an activity is destroyed. Can be
+     * overridden by subclasses.
+     */
+    protected void onDestroy() {
+    }
+
+    /**
      * TODO: Implement for real.
      */
     public void startActivity(Intent intent) {
