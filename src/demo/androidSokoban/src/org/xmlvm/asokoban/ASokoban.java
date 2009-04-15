@@ -6,11 +6,13 @@ package org.xmlvm.asokoban;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
@@ -31,6 +33,8 @@ public class ASokoban extends Activity implements SensorListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Sets the device to not sleep or loose brightness.
+        setDeviceNoSleep();
         // No title bar.
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         // Switch to fullscreen view, getting rid of the status bar as well.
@@ -57,6 +61,15 @@ public class ASokoban extends Activity implements SensorListener {
         currentLevel = 0;
         pauseGame = true;
         loadLevel();
+    }
+    
+    /**
+     * Sets the device to not sleep or go to standby, and keeps the display bright.
+     */
+    public void setDeviceNoSleep() {
+        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "ASokoban");
+        wl.acquire();
     }
 
     /**

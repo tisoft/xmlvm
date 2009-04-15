@@ -21,14 +21,41 @@
 package android.content;
 
 import android.hardware.SensorManager;
+import android.os.PowerManager;
 
+/**
+ * <i>(XMLVM Compatibility Class)</i>
+ * <p>
+ * Interface to global information about an application environment.
+ */
 public class Context {
-  public static final String SENSOR_SERVICE = "SENSOR_SERVICE";
+    /**
+     * Use with {@link #getSystemService(String)} to retrieve a
+     * {@link SensorManager} for accessing sensors.
+     */
+    public static final String SENSOR_SERVICE = "sensor";
+    /**
+     * Use with {@link #getSystemService(String)} to retrieve a
+     * {@link PowerManager} for controlling power management, including
+     * "wake locks," which let you keep the device on while you're running long
+     * tasks.
+     */
+    public static final String POWER_SERVICE  = "power";
 
-  public Object getSystemService(String service) {
-    if (service.equals(SENSOR_SERVICE)) {
-      return new SensorManager();
+    /**
+     * Return the handle to a system-level service by name. The class of the
+     * returned object varies by the requested name-
+     * 
+     * @param service
+     *            The name of the desired service.
+     * @return The service or null if the name does not exist.
+     */
+    public Object getSystemService(String service) {
+        if (service.equals(SENSOR_SERVICE)) {
+            return new SensorManager();
+        } else if (service.equals(POWER_SERVICE)) {
+            return new PowerManager();
+        }
+        return null;
     }
-    return null;
-  }
 }
