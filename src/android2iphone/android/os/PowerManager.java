@@ -1,5 +1,7 @@
 package android.os;
 
+import android.app.ActivityWrapper;
+
 /**
  * <i>(XMLVM Compatibility Class)</i>
  * <p>
@@ -19,7 +21,7 @@ public class PowerManager {
          * the wake lock.
          */
         public void acquire() {
-            // TODO(arno): Implement
+            ActivityWrapper.getActivity().getMyIphoneWrapper().setIdleTimerDisabled(true);
         }
 
         /**
@@ -29,7 +31,7 @@ public class PowerManager {
          * are other wake locks held.
          */
         public void release() {
-            // TODO(arno): Implement.
+            ActivityWrapper.getActivity().getMyIphoneWrapper().setIdleTimerDisabled(false);
         }
     }
 
@@ -56,7 +58,6 @@ public class PowerManager {
      *            Your class name (or other tag) for debugging purposes.
      */
     public PowerManager.WakeLock newWakeLock(int flags, String tag) {
-        // TODO(arno): Implement.
-        return null;
+        return new WakeLock();
     }
 }
