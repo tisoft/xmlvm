@@ -36,7 +36,6 @@ public class ViewGroup extends View {
   }
 
   public void addView(View child, int idx) {
-	// TODO use idx
-	this.getMainView().addSubview(child.getMainView());
+	this.getMainView().insertSubview(child.getMainView(), idx);
   }
 }

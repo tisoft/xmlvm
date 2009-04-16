@@ -20,7 +20,6 @@
 
 package android.widget;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UIView;
@@ -54,15 +53,5 @@ public class AbsoluteLayout extends ViewGroup {
 class AbsView extends UIView {
     public AbsView(CGRect rect) {
         super(rect);
-    }
-
-    public void drawRect(CGRect rect) {
-        // Todo is this foobar on iphone?
-        float black[] = { 0, 0, 0, 1 };
-        CGContext ctx = CGContext.UICurrentContext();
-        // CGRect displayRect = getDisplayRect();
-        ctx.setFillColor(black);
-        ctx.fillRect(rect);
-        super.drawRect(rect);
     }
 }

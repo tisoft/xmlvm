@@ -32,75 +32,37 @@ import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
 
 public class ImageView extends View {
-  protected OneImageView myImage;
+    protected UIImageView image;
 
-  public void setImageResource(int resId) {
-	  this.myImage.loadImage(resId);
-  }
-
-  public void setLayoutParams(ViewGroup.LayoutParams l) {
-    super.setLayoutParams(l);
-    AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams) l;
-    int width = a.width;
-    int height = a.height;
-
-    if (width == LayoutParams.WRAP_CONTENT) {
-      width = myImage.getWidth();
-    }
-    if (height == LayoutParams.WRAP_CONTENT) {
-      height = myImage.getHeight();
-    }
-    myImage.setBounds(new CGRect(a.x, a.y, width, height));
-    myImage.setFrame(new CGRect(a.x, a.y, width, height));
-  }
-
-  public ImageView(Context c) {
-      myImage = new OneImageView(((Activity) c).getWindow().getCGRect());
-	  this.setMainView(myImage);
-  }
-
-  public AbsoluteLayout.LayoutParams getLayoutParams() {
-    return (AbsoluteLayout.LayoutParams) getCurLayout();
-  }
-
-  public void bringToFront() {
-	// TODO Auto-generated method stub
-  }
-}
-
-class OneImageView extends UIImageView {
-  
-  UIImage _img;
-
-  void setNeedsUpdate() {
-    this.setNeedsDisplayInRect(myLoc);
-  }
-
-  public int getHeight() {
-	return (int) _img.getSize().height;
-  }
-
-  public int getWidth() {
-	return (int) _img.getSize().width;
-  }
-
-  public void loadImage(int resId) {
-    _img = UIImage.imageAtPath(ResourceMapper.getFileNameById(resId));
-    setImage(_img);
+    public void setImageResource(int resId) {
+        this.image.setImage(UIImage.imageAtPath(ResourceMapper.getFileNameById(resId)));
     }
 
-  OneImageView(CGRect windowRect) {
-    super(windowRect);
-  }
+    public void setLayoutParams(ViewGroup.LayoutParams l) {
+        super.setLayoutParams(l);
+        AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams) l;
+        int width = a.width;
+        int height = a.height;
 
-  void setBounds(CGRect bounds) {
-    this.myLoc = bounds;
-  }
+        if (width == LayoutParams.WRAP_CONTENT) {
+            width = (int) image.getImage().getSize().width;
+        }
+        if (height == LayoutParams.WRAP_CONTENT) {
+            height = (int) image.getImage().getSize().height;
+        }
+        image.setFrame(new CGRect(a.x, a.y, width, height));
+    }
 
-  private CGRect myLoc = new CGRect(0, 0, 0, 0);
+    public ImageView(Context c) {
+        image = new UIImageView(((Activity) c).getWindow().getCGRect());
+        this.setMainView(image);
+    }
 
-  public void drawRect(CGRect rect) {
-    CGRect toDraw = myLoc;
-    _img.draw1PartImageInRect(toDraw);
-  }
+    public AbsoluteLayout.LayoutParams getLayoutParams() {
+        return (AbsoluteLayout.LayoutParams) getCurLayout();
+    }
+
+    public void bringToFront() {
+        // TODO Auto-generated method stub
+    }
 }

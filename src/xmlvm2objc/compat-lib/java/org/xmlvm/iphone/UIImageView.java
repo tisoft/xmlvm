@@ -17,6 +17,10 @@ public class UIImageView extends UIView {
         this.image = image;
     }
 
+    public UIImage getImage() {
+        return this.image;
+    }
+
     public void drawRect(CGRect r) {
         Graphics2D g = CGContext.theContext.graphicsContext;
         CGRect displayRect = getDisplayRect();

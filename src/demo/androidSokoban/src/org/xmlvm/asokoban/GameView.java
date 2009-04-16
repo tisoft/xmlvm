@@ -1,8 +1,6 @@
 package org.xmlvm.asokoban;
 
 import android.app.Activity;
-import android.view.Display;
-import android.view.WindowManager;
 import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
 

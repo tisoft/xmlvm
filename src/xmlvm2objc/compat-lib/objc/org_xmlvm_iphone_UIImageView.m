@@ -30,6 +30,11 @@
     [self setImage: image];
 }
 
+- (org_xmlvm_iphone_UIImage*) getImage
+{
+    return self.image;
+}
+
 - (void) setNeedsDisplayInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect
 {
 	[self setNeedsDisplayInRect: [rect getCGRect]];
