@@ -8,6 +8,8 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
@@ -22,13 +24,15 @@ import android.view.WindowManager;
  * {@link Activity}.
  */
 public class ASokoban extends Activity implements SensorListener {
-    private static final float movingThreshold = 1.7f;
-
-    private GameView           gameView;
-//    private SensorManager      sensorManager;
-    private int                currentLevel;
-    private boolean            pauseGame;
-    
+    private static final float    movingThreshold = 1.7f;
+    // Used to store the level in the user prefs.
+    private static final String   PREFKEY_LEVEL   = "level";
+    private GameView              gameView;
+    // private SensorManager sensorManager;
+    private int                   currentLevel;
+    private boolean               pauseGame;
+    // Used for reading and writing preferences.
+    private SharedPreferences     prefs;
     // Used to keep the device awake and the screen bright.
     private PowerManager.WakeLock wakeLock;
 
@@ -36,6 +40,7 @@ public class ASokoban extends Activity implements SensorListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        prefs = getPreferences(MODE_PRIVATE);
         // Sets the device to not sleep or loose brightness.
         setDeviceNoSleep();
         // No title bar.
@@ -61,13 +66,14 @@ public class ASokoban extends Activity implements SensorListener {
                 SensorManager.SENSOR_DELAY_FASTEST);
         // Set the orientation to landscape programmatically.
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        currentLevel = 0;
+        currentLevel = prefs.getInt(PREFKEY_LEVEL, 0);
         pauseGame = true;
         loadLevel();
     }
-    
+
     /**
-     * Sets the device to not sleep or go to standby, and keeps the display bright.
+     * Sets the device to not sleep or go to standby, and keeps the display
+     * bright.
      */
     public void setDeviceNoSleep() {
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
@@ -87,6 +93,16 @@ public class ASokoban extends Activity implements SensorListener {
         gameView = new GameView(this, currentLevel, display.getWidth(), display.getHeight());
     }
 
+    /**
+     * Stores the current level in the preferences, so it can be loaded when the
+     * application is restarted.
+     */
+    protected void storeCurrentLevel() {
+        Editor editor = prefs.edit();
+        editor.putInt(PREFKEY_LEVEL, currentLevel);
+        editor.commit();
+    }
+
     @Override
     protected Dialog onCreateDialog(int id) {
         return new AlertDialog.Builder(ASokoban.this).setTitle("Level: " + (currentLevel + 1))
@@ -97,12 +113,14 @@ public class ASokoban extends Activity implements SensorListener {
                 }).create();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see android.hardware.SensorListener#onSensorChanged(int, float[])
      */
     public void onSensorChanged(int sensor, float[] values) {
         if (pauseGame) {
-          return;
+            return;
         }
         if (gameView.getGameController().isLevelFinished()) {
             currentLevel++;
@@ -144,16 +162,19 @@ public class ASokoban extends Activity implements SensorListener {
 
     @Override
     protected void onDestroy() {
+        storeCurrentLevel();
         wakeLock.release();
         super.onDestroy();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see android.hardware.SensorListener#onAccuracyChanged(int, int)
      */
     public void onAccuracyChanged(int sensor, int accuracy) {
     }
-    
+
     /*
      * @Override public boolean onTrackballEvent(MotionEvent event) { if
      * (gameView.isMoving()) { return false; } if (event.getAction() ==

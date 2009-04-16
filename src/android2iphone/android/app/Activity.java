@@ -22,7 +22,9 @@ package android.app;
 
 import org.xmlvm.iphone.UIInterfaceOrientation;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
@@ -38,9 +40,9 @@ import android.view.WindowManager;
  * @see http://developer.android.com/reference/android/app/Activity.html}
  */
 public class Activity extends ContextThemeWrapper {
-    private ActivityWrapper myIphoneWrapper;
-    private Window          window;
-    private int             screenOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+    private ActivityWrapper   myIphoneWrapper;
+    private Window            window;
+    private int               screenOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
 
     protected void onCreate(Bundle savedInstanceState) {
         window = new Window(this);
@@ -156,5 +158,22 @@ public class Activity extends ContextThemeWrapper {
 
     public int getRequestedOrientation() {
         return screenOrientation;
+    }
+
+    /**
+     * Retrieve a {@link SharedPreferences} object for accessing preferences
+     * that are private to this activity.
+     * 
+     * @param mode
+     *            Operating mode. Use {@link Context#MODE_PRIVATE} for the
+     *            default operation, {@link Context#MODE_WORLD_READABLE} and
+     *            {@link Context#MODE_WORLD_WRITEABLE} to control permissions.
+     * 
+     * @return Returns the single SharedPreferences instance that can be used to
+     *         retrieve and modify the preference values.
+     */
+    public SharedPreferences getPreferences(int mode) {
+        //TODO(arno): Instantiate.
+        return null;
     }
 }

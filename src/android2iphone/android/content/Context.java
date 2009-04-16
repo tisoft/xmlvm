@@ -33,14 +33,32 @@ public class Context {
      * Use with {@link #getSystemService(String)} to retrieve a
      * {@link SensorManager} for accessing sensors.
      */
-    public static final String SENSOR_SERVICE = "sensor";
+    public static final String SENSOR_SERVICE       = "sensor";
     /**
      * Use with {@link #getSystemService(String)} to retrieve a
      * {@link PowerManager} for controlling power management, including
      * "wake locks," which let you keep the device on while you're running long
      * tasks.
      */
-    public static final String POWER_SERVICE  = "power";
+    public static final String POWER_SERVICE        = "power";
+
+    // *** File creation modes *** //
+    /**
+     * File creation mode: the default mode, where the created file can only be
+     * accessed by the calling application (or all applications sharing the same
+     * user ID).
+     */
+    public static final int    MODE_PRIVATE         = 0;
+    /**
+     * File creation mode: allow all other applications to have read access to
+     * the created file.
+     */
+    public static final int    MODE_WORLD_READABLE  = 1;
+    /**
+     * File creation mode: allow all other applications to have write access to
+     * the created file.
+     */
+    public static final int    MODE_WORLD_WRITEABLE = 2;
 
     /**
      * Return the handle to a system-level service by name. The class of the
