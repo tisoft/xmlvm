@@ -45,7 +45,7 @@ public abstract class GamePiece {
         this.x = x;
         this.y = y;
         image = new ImageView(view.getActivity());
-        view.getLayout().addView(image, 0);
+        view.getLayout().addView(image, 1);
         image.setImageResource(resourceID);
         updatePosition();
     }
