@@ -179,7 +179,9 @@
 	</target>
 
 
-	<target name="build-iphoneDemo" depends="build-ifireworks,all-ihelloworld,cc-ifireworks,build-android-compat-lib,cc-android-compat-lib,sim-afireworks-jar,cc-sim-afireworks,build-iremote, cc-iremote">
+	<target name="build-iphoneDemo" depends="build-ifireworks,all-ihelloworld,cc-ifireworks,build-android-compat-lib,cc-android-compat-lib,
+		                                     sim-afireworks-jar,cc-sim-afireworks,build-iremote, cc-iremote,
+                                             sim-asokoban-jar,cc-sim-asokoban">
 	</target>
 
 	<target name="all-ihelloworld" depends="build-ihelloworld-portrait,cc-ihelloworld-portrait,
