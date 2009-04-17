@@ -4,7 +4,7 @@ import org.xmlvm.iphone.*;
 
 public class HelloWorld extends UIApplication {
 
-    public void applicationDidFinishLaunching(NSNotification aNotification) {
+    public void applicationDidFinishLaunching(UIApplication app) {
         UIScreen screen = UIScreen.mainScreen();
         CGRect rect = screen.applicationFrame();
         UIWindow window = new UIWindow(rect);

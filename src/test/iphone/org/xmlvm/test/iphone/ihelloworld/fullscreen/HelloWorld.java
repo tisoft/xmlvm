@@ -4,7 +4,7 @@ import org.xmlvm.iphone.*;
 
 public class HelloWorld extends UIApplication {
 
-    public void applicationDidFinishLaunching(NSNotification aNotification) {
+    public void applicationDidFinishLaunching(UIApplication app) {
         this.setStatusBarHidden(true);
         this.setStatusBarOrientation(UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight);
         UIScreen screen = UIScreen.mainScreen();

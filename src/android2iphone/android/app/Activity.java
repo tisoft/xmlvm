@@ -173,7 +173,6 @@ public class Activity extends ContextThemeWrapper {
      *         retrieve and modify the preference values.
      */
     public SharedPreferences getPreferences(int mode) {
-        //TODO(arno): Instantiate.
-        return null;
+        return new SharedPreferences(mode);
     }
 }

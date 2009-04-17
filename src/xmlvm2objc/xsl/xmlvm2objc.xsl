@@ -298,7 +298,7 @@ int main(int argc, char* argv[])
   <xsl:text>
 </xsl:text>
       <xsl:choose>
-        <xsl:when test="../.[@isInterface = 'true']">
+        <xsl:when test="../.[@isInterface = 'true'] or @isAbstract = 'true'">
         <xsl:text>{
 }
 
@@ -421,6 +421,14 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="jvm:lreturn">
+  <xsl:text>    _op1.l = _stack[--_sp].l;
+    [_pool release];
+    return _op1.l;
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="jvm:freturn">
   <xsl:text>    _op1.f = _stack[--_sp].f;
     [_pool release];
@@ -525,6 +533,14 @@ int main(int argc, char* argv[])
 
 <xsl:template match="jvm:iconst">
   <xsl:text>    _stack[_sp++].i = </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="jvm:lconst">
+  <xsl:text>    _stack[_sp++].l = </xsl:text>
   <xsl:value-of select="@value"/>
   <xsl:text>;
 </xsl:text>

@@ -25,7 +25,10 @@ public abstract class UIApplication {
         return this.idleTimerDisabled;
     }
 
-    public abstract void applicationDidFinishLaunching(NSNotification aNotification);
+    public abstract void applicationDidFinishLaunching(UIApplication app);
+
+    public void applicationWillTerminate(UIApplication app) {
+    }
 
     public void setStatusBarOrientation(int orientation) {
         Simulator.setStatusBarOrientation(orientation);

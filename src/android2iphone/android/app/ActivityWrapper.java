@@ -20,7 +20,6 @@
 
 package android.app;
 
-import org.xmlvm.iphone.NSNotification;
 import org.xmlvm.iphone.UIApplication;
 
 public class ActivityWrapper extends UIApplication {
@@ -34,8 +33,14 @@ public class ActivityWrapper extends UIApplication {
 	  return theActivity;
   }
 
-  public void applicationDidFinishLaunching(NSNotification aNotification) {
+  @Override
+  public void applicationDidFinishLaunching(UIApplication app) {
     theActivity.setMyIphoneWrapper(this);
     theActivity.onCreate(null);
+  }
+  
+  @Override
+  public void applicationWillTerminate(UIApplication app) {
+      theActivity.onDestroy();
   }
 }

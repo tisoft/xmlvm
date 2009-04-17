@@ -1,11 +1,16 @@
 package android.content;
 
+import org.xmlvm.iphone.NSUserDefaults;
+
 /**
  * <i>(XMLVM Compatibility Class)</i>
  * <p>
  * Interface for accessing and modifying preference data
  */
-public abstract class SharedPreferences {
+public class SharedPreferences {
+
+    private NSUserDefaults preferences;
+
     /**
      * <i>(XMLVM Compatibility Class)</i>
      * <p>
@@ -13,7 +18,14 @@ public abstract class SharedPreferences {
      * changes you make in an editor are batched, and not copied back to the
      * original SharedPreferences or persistent storage until you call commit().
      */
-    public abstract class Editor {
+    public class Editor {
+
+        private NSUserDefaults preferences;
+
+        private Editor(NSUserDefaults preferences) {
+            this.preferences = preferences;
+        }
+
         /**
          * Commit your preferences changes back from this Editor to the
          * SharedPreferences object it is editing.
@@ -21,7 +33,10 @@ public abstract class SharedPreferences {
          * @return Returns true if the new values were successfully written to
          *         persistent storage.
          */
-        public abstract boolean commit();
+        public boolean commit() {
+            preferences.synchronize();
+            return true;
+        }
 
         /**
          * Set a boolean value in the preferences editor, to be written back
@@ -30,7 +45,10 @@ public abstract class SharedPreferences {
          * @return Returns a reference to the same Editor object, so you can
          *         chain put calls together.
          */
-        public abstract SharedPreferences.Editor putBoolean(String key, boolean value);
+        public SharedPreferences.Editor putBoolean(String key, boolean value) {
+            preferences.setBool(value, key);
+            return this;
+        }
 
         /**
          * Set a float value in the preferences editor, to be written back once
@@ -39,7 +57,10 @@ public abstract class SharedPreferences {
          * @return Returns a reference to the same Editor object, so you can
          *         chain put calls together.
          */
-        public abstract SharedPreferences.Editor putFloat(String key, float value);
+        public SharedPreferences.Editor putFloat(String key, float value) {
+            preferences.setFloat(value, key);
+            return this;
+        }
 
         /**
          * Set an int value in the preferences editor, to be written back once
@@ -48,7 +69,10 @@ public abstract class SharedPreferences {
          * @return Returns a reference to the same Editor object, so you can
          *         chain put calls together.
          */
-        public abstract SharedPreferences.Editor putInt(String key, int value);
+        public SharedPreferences.Editor putInt(String key, int value) {
+            preferences.setInteger(value, key);
+            return this;
+        }
 
         /**
          * Set a long value in the preferences editor, to be written back once
@@ -57,7 +81,10 @@ public abstract class SharedPreferences {
          * @return Returns a reference to the same Editor object, so you can
          *         chain put calls together.
          */
-        public abstract SharedPreferences.Editor putLong(String key, long value);
+        public SharedPreferences.Editor putLong(String key, long value) {
+            // TODO not yet implemented
+            return this;
+        }
 
         /**
          * Set a String value in the preferences editor, to be written back once
@@ -66,7 +93,15 @@ public abstract class SharedPreferences {
          * @return Returns a reference to the same Editor object, so you can
          *         chain put calls together.
          */
-        public abstract SharedPreferences.Editor putString(String key, String value);
+        public SharedPreferences.Editor putString(String key, String value) {
+            // TODO not yet implemented
+            return this;
+        }
+    }
+
+    public SharedPreferences(int mode) {
+        // TODO what to do with mode?
+        preferences = NSUserDefaults.standardUserDefaults();
     }
 
     /**
@@ -77,7 +112,9 @@ public abstract class SharedPreferences {
      * @return Returns true if the preference exists in the preferences,
      *         otherwise false.
      */
-    public abstract boolean contains(String key);
+    public boolean contains(String key) {
+        return preferences.objectForKey(key) != null;
+    }
 
     /**
      * Create a new Editor for these preferences, through which you can make
@@ -90,30 +127,53 @@ public abstract class SharedPreferences {
      *         allowing you to modify the values in this SharedPreferences
      *         object.
      */
-    public abstract SharedPreferences.Editor edit();
+    public SharedPreferences.Editor edit() {
+        return new Editor(preferences);
+    }
 
     /**
      * Retrieve a boolean value from the preferences.
      */
-    public abstract boolean getBoolean(String key, boolean defValue);
+    public boolean getBoolean(String key, boolean defValue) {
+        if (!contains(key)) {
+            return defValue;
+        }
+        return preferences.boolForKey(key);
+    }
 
     /**
      * Retrieve a float value from the preferences.
      */
-    public abstract float getFloat(String key, float defValue);
+    public float getFloat(String key, float defValue) {
+        if (!contains(key)) {
+            return defValue;
+        }
+        return preferences.floatForKey(key);
+    }
 
     /**
      * Retrieve an int value from the preferences.
      */
-    public abstract int getInt(String key, int defValue);
+    public int getInt(String key, int defValue) {
+        if (!contains(key)) {
+            return defValue;
+        }
+        return preferences.integerForKey(key);
+    }
 
     /**
      * Retrieve a long value from the preferences.
      */
-    public abstract long getLong(String key, long defValue);
+    public long getLong(String key, long defValue) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 
     /**
      * Retrieve a String value from the preferences.
      */
-    public abstract String getString(String key, String defValue);
+    public String getString(String key, String defValue) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

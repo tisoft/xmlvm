@@ -15,7 +15,7 @@ public class Main
 
 	
 	
-    public void applicationDidFinishLaunching(NSNotification aNotification)
+    public void applicationDidFinishLaunching(UIApplication app)
     {
         UIScreen screen = UIScreen.mainScreen();
         CGRect rect = screen.applicationFrame();

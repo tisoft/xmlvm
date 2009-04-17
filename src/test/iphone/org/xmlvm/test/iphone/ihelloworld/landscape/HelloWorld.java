@@ -4,7 +4,7 @@ import org.xmlvm.iphone.*;
 
 public class HelloWorld extends UIApplication {
 
-    public void applicationDidFinishLaunching(NSNotification aNotification) {
+    public void applicationDidFinishLaunching(UIApplication app) {
         this.setStatusBarOrientation(UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight);
         UIScreen screen = UIScreen.mainScreen();
         CGRect rect = screen.applicationFrame();

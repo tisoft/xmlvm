@@ -15,7 +15,7 @@ public class Main
 
     
     
-    public void applicationDidFinishLaunching(NSNotification aNotification)
+    public void applicationDidFinishLaunching(UIApplication app)
     {
         this.setStatusBarHidden(true);
 

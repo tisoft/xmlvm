@@ -11,14 +11,24 @@
 {
 }
 
-- (void) applicationDidFinishLaunching: (id) app
+- (void) applicationDidFinishLaunching: (UIApplication*) app
 {
-    [self applicationDidFinishLaunching___org_xmlvm_iphone_NSNotification: nil /* TODO: should pass notification */];
+    [self applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication: self];
 }
 
-- (void) applicationDidFinishLaunching___org_xmlvm_iphone_NSNotification :(org_xmlvm_iphone_NSNotification*)n1
+- (void) applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app
 {
-    // Never called since overriden in application
+    // Do nothing here
+}
+
+- (void) applicationWillTerminate: (UIApplication*) app
+{
+    [self applicationWillTerminate___org_xmlvm_iphone_UIApplication: self];
+}
+
+- (void) applicationWillTerminate___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app
+{
+    // Do nothing here
 }
 
 - (void) setStatusBarHidden___boolean:(bool) flag
