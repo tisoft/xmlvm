@@ -1,9 +1,5 @@
 package org.xmlvm.asokoban;
 
-import org.xmlvm.asokoban.GamePiece.Position;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A Boards represents a logical Sokoban level. It uses a {@link CharField} in
@@ -45,7 +41,7 @@ public class Board {
     /**
      * Used to store the calculated floor tiles.
      */
-    private List<Position>  floorTiles   = new ArrayList<Position>();
+    private boolean[] floorTiles;
 
     /**
      * Initializes a board with the given level.
@@ -124,7 +120,7 @@ public class Board {
     }
 
     public boolean isFloor(int x, int y) {
-        return floorTiles.contains(new Position(x, y));
+        return floorTiles[x * getHeight() + y];
     }
 
     /**
@@ -139,6 +135,7 @@ public class Board {
      * placed inside the level.
      */
     private void generateFloorTiles() {
+        floorTiles = new boolean[getWidth() * getHeight()];
         for (int x = 0; x < getWidth(); ++x) {
             int minWall = 0;
             int maxWall = 0;
@@ -146,6 +143,7 @@ public class Board {
             // First figure out for this column, where the first and where the
             // last wall tile is.
             for (int y = 0; y < getHeight(); ++y) {
+                floorTiles[x * getHeight() + y] = false;
                 if (getBoardPiece(x, y) == WALL) {
                     if (!firstFound) {
                         minWall = y;
@@ -158,7 +156,7 @@ public class Board {
             // Next we put the tiles in place.
             for (int y = minWall + 1; y < maxWall; ++y) {
                 if (getBoardPiece(x, y) != WALL) {
-                    floorTiles.add(new Position(x, y));
+                    floorTiles[x * getHeight() + y] = true;
                 }
             }
         }
