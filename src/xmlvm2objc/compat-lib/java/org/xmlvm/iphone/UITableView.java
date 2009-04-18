@@ -82,6 +82,7 @@ public class UITableView
         		headerLabel.setText(header);
         		headerLabel.setFont(font);
         		headerLabel.setFontColor(Color.DARK_GRAY);
+                headerLabel.setBackgroundColor(null);
         		addSubview(headerLabel);
         		y += 25;
         	}

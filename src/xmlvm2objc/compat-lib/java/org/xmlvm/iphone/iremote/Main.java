@@ -1,22 +1,14 @@
-
 package org.xmlvm.iphone.iremote;
 
 import org.xmlvm.iphone.*;
 
+public class Main extends UIApplication implements UIAccelerometerDelegate {
 
+    private SettingsTableDataSource settings    = null;
+    private UIAccelerometer         accel       = null;
+    private boolean                 httpRunning = false;
 
-public class Main
-    extends UIApplication
-    implements UIAccelerometerDelegate
-{
-
-	private SettingsTableDataSource settings = null;
-	private UIAccelerometer accel = null;
-
-	
-	
-    public void applicationDidFinishLaunching(UIApplication app)
-    {
+    public void applicationDidFinishLaunching(UIApplication app) {
         UIScreen screen = UIScreen.mainScreen();
         CGRect rect = screen.applicationFrame();
         UIWindow window = new UIWindow(rect);
@@ -28,25 +20,26 @@ public class Main
         table.setDataSource(settings);
         UITableViewDelegate dg = new SettingsTableDelegate();
         table.setDelegate(dg);
-        
+
         window.makeKeyAndVisible();
 
         accel = UIAccelerometer.getSharedAccelerometer();
-        accel.setUpdateInterval(1.0/40);
+        accel.setUpdateInterval(1.0 / 40);
         accel.setDelegate(this);
     }
 
-
-
-	public void accelerometerDidAccelerate(UIAccelerometer accelerometer,
-			UIAcceleration acceleration) {
+    public void accelerometerDidAccelerate(UIAccelerometer accelerometer,
+            UIAcceleration acceleration) {
         if (settings == null)
             return;
         if (!settings.accelerometer.isOn())
             return;
+        if (httpRunning)
+            return;
         String ip = settings.ipAddress.getText();
         if (ip.equals(""))
-        	return;
+            return;
+        httpRunning = true;
         String server = new String("http://" + ip + ":8080/ACC/");
         server += String.valueOf(acceleration.x());
         server += "/";
@@ -56,19 +49,26 @@ public class Main
         NSURL url = NSURL.URLWithString(server);
         NSMutableURLRequest request = new NSMutableURLRequest(url);
 
-        NSErrorHolder error = new NSErrorHolder();
-        NSHTTPURLResponseHolder response = new NSHTTPURLResponseHolder();
-        NSData data = NSURLConnection.sendSynchronousRequest(request, response,
-                error);
+        NSURLConnection.connectionWithRequest(request, new NSURLConnectionDelegate() {
+            public void connectionDidFinishLoading(NSURLConnection connection) {
+                httpRunning = false;
+            }
+
+            public void connectionDidFailWithError(NSURLConnection connection, NSError error) {
+                httpRunning = false;
+            }
+        });
+        /*
+         * NSErrorHolder error = new NSErrorHolder(); NSHTTPURLResponseHolder
+         * response = new NSHTTPURLResponseHolder(); NSData data =
+         * NSURLConnection.sendSynchronousRequest(request, response, error);
+         */
     }
-
-
 
     /**
      * @param args
      */
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         UIApplication.main(args, Main.class);
     }
 }
