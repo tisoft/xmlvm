@@ -7,6 +7,34 @@ import android.widget.ImageView;
  * A GamePiece represents the base class for a single tile in the game.
  */
 public abstract class GamePiece {
+
+    /**
+     * Simple class for describing a position.
+     */
+    static class Position {
+        private int x;
+        private int y;
+
+        public Position(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            Position other = (Position) o;
+            return other.x == x && other.y == y;
+        }
+    }
+
     /**
      * The size of the square piece in pixels.
      */

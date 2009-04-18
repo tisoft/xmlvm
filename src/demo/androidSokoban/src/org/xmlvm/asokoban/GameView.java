@@ -81,6 +81,15 @@ public class GameView {
          * new Wall(this, x, y); break; } }
          */
 
+        // First we set all the floor tiles, as they should be at the bottom.
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                if (board.isFloor(x, y)) {
+                    new Floor(this, x, y);
+                }
+            }
+        }
+
         // TODO we make two passes over the game board in order to force
         // a certain Z-order in which the game pieces are later rendered.
         for (int pass = 0; pass < 2; pass++) {
