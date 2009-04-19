@@ -1212,7 +1212,7 @@ _sp--;
 </xsl:template>
 
 
-<xsl:template match="jvm:caload">
+<xsl:template match="jvm:baload|jvm:caload">
   <xsl:text>    _op1.i = _stack[--_sp].i;
     _op2.o = _stack[--_sp].o;
     _stack[_sp++].i = [[_op2.o objectAtIndex: _op1.i] intValue];
@@ -1237,7 +1237,7 @@ _sp--;
 </xsl:template>
 
 
-<xsl:template match="jvm:castore">
+<xsl:template match="jvm:bastore|jvm:castore">
   <xsl:text>    _op1.i = _stack[--_sp].i;
     _op2.i = _stack[--_sp].i;
     _op3.o = _stack[--_sp].o;
@@ -1428,7 +1428,7 @@ _sp--;
    to the output stream.
 -->
 <xsl:template match="*">
-  <xsl:text>      //ERROR("</xsl:text>
+  <xsl:text>      ERROR("</xsl:text>
   <xsl:value-of select="name()"/>
     <xsl:text>");
 </xsl:text>
