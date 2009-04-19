@@ -130,10 +130,9 @@ public class AndroidFireworks extends Activity {
                 }
                 if (touchCount == 0) {
                     fireworks.touchExplode((int) event.getX(), (int) event.getY());
-                    return true;
                 }
                 touchCount = (touchCount + 1) % touchMod;
-                return false;
+                return true;
             }
         });
         fireworks = new Fireworks(layout, environment);
