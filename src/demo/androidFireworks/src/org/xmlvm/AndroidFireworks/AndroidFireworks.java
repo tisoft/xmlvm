@@ -30,9 +30,12 @@ import android.os.Handler;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.View.OnTouchListener;
 import android.widget.AbsoluteLayout;
 
 /**
@@ -58,9 +61,8 @@ public class AndroidFireworks extends Activity {
     public static final String YOUTUBE_XMLVM_URL = "http://www.youtube.com/watch?v=s8nMpi5-P-I";
 
     private ViewGroup          layout;
-    private Fireworks          f;
+    private Fireworks          fireworks;
     private Environment        environment       = new Environment();
-
     private Handler            updater           = new Handler();
     private Runnable           updateFw;
 
@@ -96,7 +98,7 @@ public class AndroidFireworks extends Activity {
         super.onCreate(savedInstanceState);
         updateFw = new Runnable() {
             public void run() {
-                f.doUpdate();
+                fireworks.doUpdate();
                 updater.postDelayed(updateFw, 50);
                 layout.invalidate();
             }
@@ -118,7 +120,23 @@ public class AndroidFireworks extends Activity {
             public void onAccuracyChanged(int sensor, int accuracy) {
             }
         }, SensorManager.SENSOR_ACCELEROMETER, SensorManager.SENSOR_DELAY_FASTEST);
-        f = new Fireworks(layout, environment);
+        layout.setOnTouchListener(new OnTouchListener() {
+            private final int touchMod   = 3;
+            private int       touchCount = 0;
+
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    touchCount = 0;
+                }
+                if (touchCount == 0) {
+                    fireworks.touchExplode((int) event.getX(), (int) event.getY());
+                    return true;
+                }
+                touchCount = (touchCount + 1) % touchMod;
+                return false;
+            }
+        });
+        fireworks = new Fireworks(layout, environment);
         updater.postDelayed(updateFw, 100);
     }
 

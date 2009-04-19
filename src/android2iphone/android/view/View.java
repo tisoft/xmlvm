@@ -22,38 +22,66 @@ package android.view;
 
 import org.xmlvm.iphone.UIView;
 
+import android.content.Context;
+
 /**
  * iPhone implementation of Android's View class.
  * 
  * @see http://developer.android.com/reference/android/view/View.html
  */
 public class View {
-  private UIView mainView;
-  private ViewGroup.LayoutParams curLayout;
+    public static abstract class OnTouchListener {
+        /**
+         * Called when a touch event is dispatched to a view. This allows
+         * listeners to get a chance to respond before the target view.
+         * 
+         * @param v
+         *            The view the touch event has been dispatched to.
+         * @param event
+         *            he MotionEvent object containing full information about
+         *            the event.
+         * 
+         * @return True if the listener has consumed the event, false otherwise.
+         */
+        public abstract boolean onTouch(View v, MotionEvent event);
+    }
 
-  public ViewGroup.LayoutParams getCurLayout() {
-    return curLayout;
-  }
+    private UIView                 mainView;
+    private ViewGroup.LayoutParams curLayout;
+    private Context                c;
 
-  public void invalidate() {
-    mainView.setNeedsDisplay();
-  }
+    public View(Context c) {
+        this.c = c;
+    }
 
-  public void setLayoutParams(ViewGroup.LayoutParams l) {
-    curLayout = l;
-  }
+    public ViewGroup.LayoutParams getCurLayout() {
+        return curLayout;
+    }
 
-  /**
-   * Internal. Not part of Android API
-   */
-  public UIView getMainView() {
-    return mainView;
-  }
+    public void invalidate() {
+        mainView.setNeedsDisplay();
+    }
 
-  /**
-   * Internal. Not part of Android API
-   */
-  public void setMainView(UIView view) {
-    mainView = view;
-  }
+    public void setLayoutParams(ViewGroup.LayoutParams l) {
+        curLayout = l;
+    }
+
+    public final Context getContext() {
+        return c;
+    }
+
+    /**
+     * Internal. Not part of Android API
+     */
+    public UIView getMainView() {
+        return mainView;
+    }
+
+    /**
+     * Internal. Not part of Android API
+     */
+    public void setMainView(UIView view) {
+        mainView = view;
+    }
+
 }

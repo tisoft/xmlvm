@@ -20,6 +20,7 @@
 
 package android.view;
 
+import android.content.Context;
 
 /**
  * iPhone implementation of Android's ViewGroup class.
@@ -27,15 +28,23 @@ package android.view;
  * @see http://developer.android.com/reference/android/view/ViewGroup.html
  */
 public class ViewGroup extends View {
-  public static class LayoutParams {
-    public static final int WRAP_CONTENT = -1;
-  }
+    public static class LayoutParams {
+        public static final int WRAP_CONTENT = -1;
+    }
 
-  public void addView(View child) {
-    this.getMainView().addSubview(child.getMainView());
-  }
+    public ViewGroup(Context c) {
+        super(c);
+    }
 
-  public void addView(View child, int idx) {
-	this.getMainView().insertSubview(child.getMainView(), idx);
-  }
+    public void addView(View child) {
+        this.getMainView().addSubview(child.getMainView());
+    }
+
+    public void addView(View child, int idx) {
+        this.getMainView().insertSubview(child.getMainView(), idx);
+    }
+
+    public void setOnTouchListener(OnTouchListener listener) {
+        // TODO(arno): Implement.
+    }
 }
