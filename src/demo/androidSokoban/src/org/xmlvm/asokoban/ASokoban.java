@@ -35,6 +35,8 @@ public class ASokoban extends Activity implements SensorListener {
     private SharedPreferences     prefs;
     // Used to keep the device awake and the screen bright.
     private PowerManager.WakeLock wakeLock;
+    // The current dialog shown.
+    private Dialog                currentDialog;
 
     /** Called when the activity is first created. */
     @Override
@@ -105,12 +107,24 @@ public class ASokoban extends Activity implements SensorListener {
 
     @Override
     protected Dialog onCreateDialog(int id) {
-        return new AlertDialog.Builder(ASokoban.this).setTitle("Level: " + (currentLevel + 1))
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        maybeCloseCurrentDialog();
+        currentDialog = new AlertDialog.Builder(ASokoban.this).setTitle(
+                "Level: " + (currentLevel + 1)).setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         pauseGame = false;
                     }
                 }).create();
+        return currentDialog;
+    }
+
+    /**
+     * If there is a dialog, we dismiss it. If not, nothing happens.
+     */
+    private void maybeCloseCurrentDialog() {
+        if (currentDialog != null) {
+            currentDialog.dismiss();
+        }
     }
 
     /*
@@ -162,6 +176,7 @@ public class ASokoban extends Activity implements SensorListener {
 
     @Override
     protected void onDestroy() {
+        maybeCloseCurrentDialog();
         storeCurrentLevel();
         wakeLock.release();
         super.onDestroy();

@@ -1,11 +1,11 @@
 package android.app;
 
-
 public class Dialog {
+    public void show() {
+        // TODO Implement.
+    }
 
-	public void show() {
-		// TODO Auto-generated method stub
-		
-	}
-
+    public void dismiss() {
+        // TODO Implement
+    }
 }
