@@ -20,94 +20,98 @@
 
 package org.xmlvm.AndroidFireworks;
 
+import org.xmlvm.AndroidFireworks.AndroidFireworks.Environment;
+
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
 
+/**
+ * A sparks of the big fireworks. A {@link Bomb} contains many Sparks.
+ */
 public class Spark {
-  private AndroidFireworks parent;
-  private ImageView image;
-  private float x;
-  private float y;
-  private float vx;
-  private float vy;
-  private boolean outOfSight;
+    private ImageView   image;
+    private float       x;
+    private float       y;
+    private float       vx;
+    private float       vy;
+    private boolean     outOfSight;
+    private Environment environment;
 
-  public Spark(AndroidFireworks parent) {
-    this.parent = parent;
-    this.image = new ImageView(parent);
-    parent.layout.addView(this.image);
-    double rand = (Math.random() * 4);
-    if (rand < 1) {
-      image.setImageResource(R.drawable.star1);
-    } else if (rand < 2) {
-      image.setImageResource(R.drawable.star2);
-    } else if (rand < 3) {
-      image.setImageResource(R.drawable.star3);
-    } else {
-      image.setImageResource(R.drawable.star4);
+    public Spark(ViewGroup viewGroup, Environment environment) {
+        this.environment = environment;
+        this.image = new ImageView(viewGroup.getContext());
+        viewGroup.addView(this.image);
+        double rand = (Math.random() * 4);
+        if (rand < 1) {
+            image.setImageResource(R.drawable.star1);
+        } else if (rand < 2) {
+            image.setImageResource(R.drawable.star2);
+        } else if (rand < 3) {
+            image.setImageResource(R.drawable.star3);
+        } else {
+            image.setImageResource(R.drawable.star4);
+        }
+        AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, -100,
+                -100);
+        image.setLayoutParams(p);
     }
-    AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
-        ViewGroup.LayoutParams.WRAP_CONTENT,
-        ViewGroup.LayoutParams.WRAP_CONTENT, -100, -100);
-    image.setLayoutParams(p);
-  }
 
-  void reset(int x, int y) {
-    this.x = x;
-    this.y = y;
-    vx = (float) (Math.random() * Const.MAX2V) - (Const.MAX2V / 2);
-    vy = (float) (Math.random() * Const.MAX2V) - (Const.MAX2V / 2);
-    outOfSight = false;
-  }
-
-  public float getX() {
-    return x;
-  }
-
-  public void setX(float x) {
-    this.x = x;
-  }
-
-  public float getY() {
-    return y;
-  }
-
-  public void setY(float y) {
-    this.y = y;
-  }
-
-  public boolean isOutOfSight() {
-    return outOfSight;
-  }
-
-  public void setOutOfSight(boolean outOfSight) {
-    this.outOfSight = outOfSight;
-  }
-
-  public void nextStep() {
-    if (outOfSight) {
-      return;
+    void reset(int x, int y) {
+        this.x = x;
+        this.y = y;
+        vx = (float) (Math.random() * Const.MAX2V) - (Const.MAX2V / 2);
+        vy = (float) (Math.random() * Const.MAX2V) - (Const.MAX2V / 2);
+        outOfSight = false;
     }
-    if (x < -Const.IMAGE_SIZE || x > parent.environment.windowWidth || y < -Const.IMAGE_SIZE
-        || y > parent.environment.windowHeight) {
-      // This spark is out of reach
-      outOfSight = true;
-      return;
-    }
-    // Gravity
-    vx += (Const.DV * (parent.getRotation().rotY / 10f));
-    vy += (Const.DV * (-parent.getRotation().rotX / 10f));
-    x += (Const.T * vx);
-    y += (Const.T * vy);
-    updateImage();
-  }
 
-  private void updateImage() {
-    AbsoluteLayout.LayoutParams p = (AbsoluteLayout.LayoutParams) image
-        .getLayoutParams();
-    p.x = (int) this.x;
-    p.y = (int) this.y;
-    image.setLayoutParams(p);
-  }
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public boolean isOutOfSight() {
+        return outOfSight;
+    }
+
+    public void setOutOfSight(boolean outOfSight) {
+        this.outOfSight = outOfSight;
+    }
+
+    public void nextStep() {
+        if (outOfSight) {
+            return;
+        }
+        if (x < -Const.IMAGE_SIZE || x > environment.windowWidth || y < -Const.IMAGE_SIZE
+                || y > environment.windowHeight) {
+            // This spark is out of reach
+            outOfSight = true;
+            return;
+        }
+        // Gravity
+        vx += (Const.DV * (environment.rotY / 10f));
+        vy += (Const.DV * (-environment.rotX / 10f));
+        x += (Const.T * vx);
+        y += (Const.T * vy);
+        updateImage();
+    }
+
+    private void updateImage() {
+        AbsoluteLayout.LayoutParams p = (AbsoluteLayout.LayoutParams) image.getLayoutParams();
+        p.x = (int) this.x;
+        p.y = (int) this.y;
+        image.setLayoutParams(p);
+    }
 }

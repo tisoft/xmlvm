@@ -20,29 +20,51 @@
 
 package org.xmlvm.AndroidFireworks;
 
+import org.xmlvm.AndroidFireworks.AndroidFireworks.Environment;
+
+import android.view.ViewGroup;
+
+/**
+ * A bomb is a logical group of sparks. A bomb defines where a group of stars
+ * start to animate upon an "explosion".
+ */
 public class Bomb {
-  Spark sparks[];
+    private Spark sparks[];
 
-  public Bomb(AndroidFireworks parent) {
-    sparks = new Spark[Const.SPARKS_PER_BOMB];
-    for (int i = 0; i < Const.SPARKS_PER_BOMB; i++)
-      sparks[i] = new Spark(parent);
-  }
-
-  void reset(int x, int y) {
-    int i;
-    for (i = 0; i < Const.SPARKS_PER_BOMB; ++i) {
-      sparks[i].reset(x, y);
+    public Bomb(ViewGroup viewGroup, Environment environment) {
+        sparks = new Spark[Const.SPARKS_PER_BOMB];
+        for (int i = 0; i < Const.SPARKS_PER_BOMB; i++)
+            sparks[i] = new Spark(viewGroup, environment);
     }
-  }
 
-  boolean allOutOfSight() {
-    int i, count = 0;
-    for (i = 0; i < Const.SPARKS_PER_BOMB; ++i) {
-      if (sparks[i].isOutOfSight()) {
-        count++;
-      }
+    /**
+     * Returns the requested Spark.
+     */
+    public Spark getSpark(int n) {
+        return sparks[n];
     }
-    return count == Const.SPARKS_PER_BOMB;
-  }
+
+    /**
+     * Resets all client {@link Spark}s contained in this Bomb to the given
+     * location.
+     */
+    public void reset(int x, int y) {
+        int i;
+        for (i = 0; i < Const.SPARKS_PER_BOMB; ++i) {
+            sparks[i].reset(x, y);
+        }
+    }
+
+    /**
+     * Returns whether all sparks are out of sight.
+     */
+    public boolean allOutOfSight() {
+        int i, count = 0;
+        for (i = 0; i < Const.SPARKS_PER_BOMB; ++i) {
+            if (sparks[i].isOutOfSight()) {
+                count++;
+            }
+        }
+        return count == Const.SPARKS_PER_BOMB;
+    }
 }

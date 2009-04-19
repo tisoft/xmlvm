@@ -35,123 +35,120 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AbsoluteLayout;
 
+/**
+ * The main class/activity of the Fireworks application.
+ * 
+ */
 public class AndroidFireworks extends Activity {
-  public static final String VISIT_XMLVM = "Visit Project XMLVM.org";
-  public static final String WATCH_YOUTUBE = "Watch Google TechTalk";
-  public static final String XMLVM_URL = "http://www.xmlvm.org";
-  public static final String YOUTUBE_XMLVM_URL = "http://www.youtube.com/watch?v=s8nMpi5-P-I";
+    /**
+     * UI Text for inviting people to visit XMLVM.org.
+     */
+    public static final String VISIT_XMLVM       = "Visit Project XMLVM.org";
+    /**
+     * UI Text for inviting people to watch the XMLVM Google TechTalk.
+     */
+    public static final String WATCH_YOUTUBE     = "Watch Google TechTalk";
+    /**
+     * The URL to XMLVM.org
+     */
+    public static final String XMLVM_URL         = "http://www.xmlvm.org";
+    /**
+     * The URL to the XMLVM YouTube video.
+     */
+    public static final String YOUTUBE_XMLVM_URL = "http://www.youtube.com/watch?v=s8nMpi5-P-I";
 
-  public ViewGroup layout;
-  public Fireworks f;
-  public Environment environment = new Environment();
+    private ViewGroup          layout;
+    private Fireworks          f;
+    private Environment        environment       = new Environment();
 
-  private Handler updater = new Handler();
-  private Runnable updateFw = new Runnable() {
-    public void run() {
-      f.doUpdate();
-      updater.postDelayed(updateFw, 50);
-      layout.invalidate();
+    private Handler            updater           = new Handler();
+    private Runnable           updateFw;
+
+    @Override
+    public void onContentChanged() {
+        WindowManager w = getWindowManager();
+        Display d = w.getDefaultDisplay();
+        environment.windowWidth = d.getWidth();
+        environment.windowHeight = d.getHeight();
     }
-  };
 
-  @Override
-  public void onContentChanged() {
-    WindowManager w = getWindowManager();
-    Display d = w.getDefaultDisplay();
-    environment.windowWidth = d.getWidth();
-    environment.windowHeight = d.getHeight();
-  }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    menu.add(VISIT_XMLVM).setIcon(R.drawable.xmlvm);
-    menu.add(WATCH_YOUTUBE).setIcon(R.drawable.youtube);
-    return true;
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    if (item.getTitle().equals(VISIT_XMLVM)) {
-      viewUri(Uri.parse(XMLVM_URL));
-      return true;
-    } else if (item.getTitle().equals(WATCH_YOUTUBE)) {
-      viewUri(Uri.parse(YOUTUBE_XMLVM_URL));
-      return true;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(VISIT_XMLVM).setIcon(R.drawable.xmlvm);
+        menu.add(WATCH_YOUTUBE).setIcon(R.drawable.youtube);
+        return true;
     }
-    return false;
-  }
 
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    // No title bar.
-    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-    // Switch to fullscreen view, getting rid of the status bar as well.
-    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    layout = new AbsoluteLayout(this);
-    setContentView(layout);
-    SensorManager sensorManager = (SensorManager) this
-        .getSystemService(SENSOR_SERVICE);
-    sensorManager.registerListener(new SensorListener() {
-      public void onSensorChanged(int sensor, float[] values) {
-        environment.rotX = values[1];
-        environment.rotY = values[0];
-      }
-
-      public void onAccuracyChanged(int sensor, int accuracy) {
-      }
-    }, SensorManager.SENSOR_ACCELEROMETER, SensorManager.SENSOR_DELAY_FASTEST);
-    f = new Fireworks(this);
-    updater.postDelayed(updateFw, 100);
-  }
-
-  private void viewUri(Uri uri) {
-    Intent intent = new Intent(Intent.ACTION_VIEW);
-    intent.setData(uri);
-    startActivity(intent);
-  }
-
-  public Environment getRotation() {
-    return this.environment;
-  }
-
-  static class Environment {
-    public float rotX = 0;
-    public float rotY = 0;
-    public int windowHeight = 10;
-    public int windowWidth = 10;
-  }
-}
-
-class Fireworks {
-  Bomb[] bombs;
-  AndroidFireworks form;
-
-  public Fireworks(AndroidFireworks form) {
-    this.form = form;
-    bombs = new Bomb[Const.BOMB_COUNT];
-    for (int j = 0; j < Const.BOMB_COUNT; ++j) {
-      bombs[j] = new Bomb(form);
-      bombs[j].reset(
-          (int) (Math.random() * (form.environment.windowWidth - 60)) + 30,
-          (int) (Math.random() * (form.environment.windowHeight - 60)) + 30);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getTitle().equals(VISIT_XMLVM)) {
+            viewUri(Uri.parse(XMLVM_URL));
+            return true;
+        } else if (item.getTitle().equals(WATCH_YOUTUBE)) {
+            viewUri(Uri.parse(YOUTUBE_XMLVM_URL));
+            return true;
+        }
+        return false;
     }
-  }
 
-  public void doUpdate() {
-    for (int j = 0; j < Const.BOMB_COUNT; ++j) {
-      Bomb bomb = bombs[j];
-      // Log.d("doUpdate()", "Height: " + form.environment.windowHeight);
-      if (bomb.allOutOfSight()) {
-        bomb.reset((int) (Math.random() * form.environment.windowWidth),
-            (int) (Math.random() * form.environment.windowHeight));
-      }
-      for (int i = 0; i < Const.SPARKS_PER_BOMB; ++i) {
-        // Update the position
-        Spark spark = bomb.sparks[i];
-        spark.nextStep();
-      }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        updateFw = new Runnable() {
+            public void run() {
+                f.doUpdate();
+                updater.postDelayed(updateFw, 50);
+                layout.invalidate();
+            }
+        };
+        // No title bar.
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // Switch to fullscreen view, getting rid of the status bar as well.
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        layout = new AbsoluteLayout(this);
+        setContentView(layout);
+        SensorManager sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
+        sensorManager.registerListener(new SensorListener() {
+            public void onSensorChanged(int sensor, float[] values) {
+                environment.rotX = values[1];
+                environment.rotY = values[0];
+            }
+
+            public void onAccuracyChanged(int sensor, int accuracy) {
+            }
+        }, SensorManager.SENSOR_ACCELEROMETER, SensorManager.SENSOR_DELAY_FASTEST);
+        f = new Fireworks(layout, environment);
+        updater.postDelayed(updateFw, 100);
     }
-  }
+
+    /**
+     * Returns the main {@link ViewGroup} for the Fireworks layout.
+     */
+    public ViewGroup getLayout() {
+        return layout;
+    }
+
+    /**
+     * Returns the active Environment.
+     */
+    public Environment getEnvironment() {
+        return environment;
+    }
+
+    private void viewUri(Uri uri) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(uri);
+        startActivity(intent);
+    }
+
+    /**
+     * A simple class for keepting basic environmental data.
+     */
+    public static class Environment {
+        public float rotX         = 0;
+        public float rotY         = 0;
+        public int   windowHeight = 10;
+        public int   windowWidth  = 10;
+    }
 }
