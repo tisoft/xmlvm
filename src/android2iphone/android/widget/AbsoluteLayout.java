@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 
 public class AbsoluteLayout extends ViewGroup {
     public AbsoluteLayout(Context c) {
+        super(c);
         UIScreen screen = UIScreen.mainScreen();
         CGRect rect = screen.applicationFrame();
         rect.origin.x = rect.origin.y = 0;
