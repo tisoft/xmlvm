@@ -21,7 +21,7 @@
 package org.xmlvm.AndroidFireworks;
 
 public class Const {
-    final static int   BOMB_COUNT      = 8;
+    final static int   BOMB_COUNT      = 6;
     final static int   SPARKS_PER_BOMB = 10;
 
     final static int   IMAGE_SIZE      = 15;

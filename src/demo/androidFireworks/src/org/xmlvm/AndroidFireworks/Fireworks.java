@@ -9,8 +9,9 @@ import android.view.ViewGroup;
  */
 public class Fireworks {
     private Bomb[]      bombs;
-    private int         touchCount = 0;
+    private int         touchCount                 = 0;
     private Environment environment;
+    private boolean     userActive                 = false;
 
     public Fireworks(ViewGroup viewGroup, Environment environment) {
         this.environment = environment;
@@ -27,8 +28,11 @@ public class Fireworks {
      * Performs the update for the next frame.
      */
     public void doUpdate() {
+        if (allBombsOutOfSite()) {
+            userActive = false;
+        }
         for (int i = 0; i < bombs.length; ++i) {
-            updateBomb(bombs[i], false);
+            updateBomb(bombs[i], !userActive);
         }
     }
 
@@ -50,7 +54,20 @@ public class Fireworks {
      * Will make a touch-bomb explode at the given position.
      */
     public void touchExplode(int x, int y) {
+        userActive = true;
         bombs[touchCount].reset(x, y);
         touchCount = (touchCount + 1) % bombs.length;
+    }
+
+    /**
+     * Returns whether all bombs are out of sight.
+     */
+    private boolean allBombsOutOfSite() {
+        for (int i = 0; i < bombs.length; ++i) {
+            if (!bombs[i].allOutOfSight()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

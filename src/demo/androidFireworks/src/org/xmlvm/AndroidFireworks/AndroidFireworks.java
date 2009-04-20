@@ -99,7 +99,7 @@ public class AndroidFireworks extends Activity {
         updateFw = new Runnable() {
             public void run() {
                 fireworks.doUpdate();
-                updater.postDelayed(updateFw, 50);
+                updater.postDelayed(updateFw, 60);
                 layout.invalidate();
             }
         };
