@@ -1,6 +1,7 @@
 package org.xmlvm.asokoban;
 
 
+
 /**
  * A Boards represents a logical Sokoban level. It uses a {@link CharField} in
  * order to get the information about a level from an encoded String.
@@ -83,7 +84,7 @@ public class Board {
         if (shouldRotate()) {
             int t = x;
             x = y;
-            y = x;
+            y = t;
         }
         char c = charField.getChar(height - y - 1, x);
         return getPiece(c);
