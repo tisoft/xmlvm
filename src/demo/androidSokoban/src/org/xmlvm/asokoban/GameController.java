@@ -49,7 +49,6 @@ public class GameController implements SensorListener {
      * 
      * @param activity
      *            The application's activity.
-     * 
      * @param gameView
      *            The GameView used to display the game.
      */
@@ -80,7 +79,6 @@ public class GameController implements SensorListener {
      * 
      * @param dx
      *            The number of pixels to move horizontally.
-     * 
      * @param dy
      *            The number of pixels to move vertically.
      */
@@ -119,10 +117,8 @@ public class GameController implements SensorListener {
      * 
      * @param x
      *            The x coordinate to check for a ball.
-     * 
      * @param y
      *            The y coordinate to check for a ball.
-     * 
      * @return If a {@link Ball} exists at the requested location, it returns
      *         it. Null otherwise.
      */
@@ -171,7 +167,6 @@ public class GameController implements SensorListener {
      * 
      * @param sensor
      *            Indicates which sensor generated the event.
-     * 
      * @param values
      *            The values retrieved from the sensor. To determine the man's
      *            movement the first two values (x and y) are used.
@@ -233,7 +228,7 @@ public class GameController implements SensorListener {
         gameView.displayBoard(board);
 
         // Display current level
-        new AlertDialog.Builder(gameView.getActivity()).setTitle("Level: " + currentLevel)
+        new AlertDialog.Builder(gameView.getActivity()).setTitle("Level: " + (currentLevel + 1))
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         gamePaused = false;
@@ -266,7 +261,7 @@ public class GameController implements SensorListener {
     /**
      * Returns the number of moves already made in the current game.
      * 
-     * @return The numer of moves.
+     * @return The number of moves.
      */
     public int getMoveCount() {
         return moveCount;
