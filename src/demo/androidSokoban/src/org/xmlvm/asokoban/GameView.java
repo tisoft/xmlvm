@@ -13,32 +13,35 @@ public class GameView {
     private AbsoluteLayout layout;
     private GameController gameController;
     private GamePieceMover mover;
-    private Board          board;
+    private ImageView      backgroundImage;
     private int            tileSize;
     private int            displayWidth;
     private int            displayHeight;
     private int            offsetTop;
     private int            offsetLeft;
 
-    public GameView(Activity activity, int level, int displayWidth, int displayHeight) {
+    public GameView(Activity activity) {
+
+        // Initialization
+        tileSize = 20;
+        mover = new GamePieceMover();
+
+        // Store activity for future use
         this.activity = activity;
+
+        // Connect view to activity and create background
         layout = new AbsoluteLayout(activity);
         activity.setContentView(layout);
-        tileSize = 20;// piece.getWidth();
-        this.displayWidth = displayWidth;
-        this.displayHeight = displayHeight;
-        ImageView backgroundImage = new ImageView(activity);
+        backgroundImage = new ImageView(activity);
         backgroundImage.setImageResource(R.drawable.background);
-        layout.addView(backgroundImage, 0);
-        board = new Board(new CharField(Levels.getLevel(level), Board.BOARD_WIDTH,
-                Board.BOARD_HEIGHT));
-        gameController = new GameController(board);
-        mover = new GamePieceMover();
-        loadGame(level);
     }
 
     public GameController getGameController() {
         return this.gameController;
+    }
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
     }
 
     public Activity getActivity() {
@@ -65,11 +68,20 @@ public class GameView {
         return mover.isMoving();
     }
 
-    private void loadGame(int level) {
+    public void setDisplayWidth(int displayWidth) {
+        this.displayWidth = displayWidth;
+    }
+
+    public void setDisplayHeight(int displayHeight) {
+        this.displayHeight = displayHeight;
+    }
+
+    public void displayBoard(Board board) {
         int width = board.getWidth();
         int height = board.getHeight();
         offsetTop = (displayHeight - (height * tileSize)) / 2;
         offsetLeft = (displayWidth - (width * tileSize)) / 2;
+
         /*
          * for (int x = 0; x < width; x++) { for (int y = 0; y < height; y++) {
          * // TODO Can't deal with <jvm:tableswitch> for now switch
@@ -80,6 +92,10 @@ public class GameView {
          * Man(this, x, y); gameController.setMan(man); break; case Board.WALL:
          * new Wall(this, x, y); break; } }
          */
+
+        // Start with an empty display and show background image
+        layout.removeAllViews();
+        layout.addView(backgroundImage, 0);
 
         // First we set all the floor tiles, as they should be at the bottom.
         for (int x = 0; x < width; x++) {
@@ -113,4 +129,5 @@ public class GameView {
         }
 
     }
+
 }

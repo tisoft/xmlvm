@@ -1,25 +1,44 @@
 package org.xmlvm.asokoban;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.hardware.SensorListener;
+
+//import android.view.View.OnTouchListener;
+
 /**
  * The controller class for the Sokoban game.
  */
-public class GameController {
-    private int           moveCount = 0;
-    private Man           man       = null;
-    private GamePieceList balls     = null;
-    private GamePieceList goals     = null;
-    private Board         board     = null;
+public class GameController implements SensorListener {
+    // implements OnTouchListener {
+
+    private static final float movingThreshold = 1.7f;
+
+    private boolean            gamePaused      = true;
+    private int                currentLevel    = 0;
+    private int                moveCount       = 0;
+    private Man                man             = null;
+    private GamePieceList      balls           = null;
+    private GamePieceList      goals           = null;
+    private Board              board           = null;
+    private GameView           gameView        = null;
+    private Activity           activity        = null;
 
     /**
-     * Instantiates a new GameController with the given {@link Board}.
+     * Instantiates a new GameController and connects it to the given
+     * {@link GameView}.
      * 
-     * @param board
-     *            The Board that is played.
+     * @param activity
+     *            The application's activity.
+     * 
+     * @param gameView
+     *            The GameView used to display the game.
      */
-    public GameController(Board board) {
-        balls = new GamePieceList();
-        goals = new GamePieceList();
-        this.board = board;
+
+    public GameController(Activity activity, GameView gameView) {
+        this.activity = activity;
+        this.gameView = gameView;
     }
 
     /**
@@ -122,4 +141,95 @@ public class GameController {
     public void addGoal(Goal goal) {
         goals.add(goal);
     }
+
+    @Override
+    public void onAccuracyChanged(int arg0, int arg1) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onSensorChanged(int sensor, float[] values) {
+        if (gamePaused) {
+            return;
+        }
+        
+        if (gameView.getGameController().isLevelFinished()) {
+             currentLevel++;
+            loadLevel(currentLevel);
+            return;
+        }
+        
+        float x = values[0];
+        float y = -values[1];
+        gameView.getMover().setMovingSpeed(x, y);
+        if (gameView.isMoving()) {
+            return;
+        }
+        int dx = 0;
+        int dy = 0;
+        if (Math.abs(x) > Math.abs(y)) {
+            if (x > movingThreshold)
+                dx = 1;
+            if (x < -movingThreshold)
+                dx = -1;
+        } else {
+            if (y > movingThreshold)
+                dy = 1;
+            if (y < -movingThreshold)
+                dy = -1;
+        }
+        if (Math.abs(dx) > 0 || Math.abs(dy) > 0) {
+            gameView.getGameController().moveMan(dx, dy);
+        }
+    }
+
+    public void loadLevel(int level) {
+        // Pause game and store current level
+        gamePaused = true;
+        currentLevel = level;
+
+        // Create and display the level's board
+        board = new Board(new CharField(Levels.getLevel(level), Board.BOARD_WIDTH,
+                Board.BOARD_HEIGHT));
+        balls = new GamePieceList();
+        goals = new GamePieceList();
+
+        gameView.displayBoard(board);
+
+        // Display current level
+        new AlertDialog.Builder(gameView.getActivity()).setTitle("Level: " + currentLevel)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        gamePaused = false;
+                    }
+                }).create().show();
+    }
+
+    /*
+     * @Override public boolean onTouch(View v, MotionEvent event) { if
+     * (event.getAction() == MotionEvent.ACTION_DOWN) { createLevelsDialog();
+     * return true; }
+     * 
+     * return false; }
+     * 
+     * private void createLevelsDialog() { DialogInterface.OnClickListener
+     * listener = new DialogInterface.OnClickListener() {
+     * 
+     * @Override public void onClick(DialogInterface dialog, int which) {
+     * Log.d("LevelsDialog", "Button: " + which); dialog.dismiss(); }
+     * 
+     * };
+     * 
+     * AlertDialog levelsDialog = new
+     * AlertDialog.Builder(gameView.getActivity()).create();
+     * levelsDialog.setTitle("Levels ..."); levelsDialog.setButton("Reset",
+     * listener); levelsDialog.setButton2("Next", listener);
+     * levelsDialog.show(); }
+     */
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
 }

@@ -1,17 +1,10 @@
 package org.xmlvm.asokoban;
 
-//import org.openintents.hardware.SensorManagerSimulator;
-//import org.openintents.provider.Hardware;
-
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
-import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.PowerManager;
@@ -23,54 +16,66 @@ import android.view.WindowManager;
  * The main controller class of the Sokoban game, implemented as an Android
  * {@link Activity}.
  */
-public class ASokoban extends Activity implements SensorListener {
-    private static final float    movingThreshold = 1.7f;
-    // Used to store the level in the user prefs.
-    private static final String   PREFKEY_LEVEL   = "level";
+public class ASokoban extends Activity {
+
+    /** Used to store the level in the user prefs. */
+    private static final String   PREFKEY_LEVEL = "level";
+
+    /** The view used to display the game. */
     private GameView              gameView;
-    // private SensorManager sensorManager;
-    private int                   currentLevel;
-    private boolean               pauseGame;
-    // Used for reading and writing preferences.
+
+    /** The controller used to control the game. */
+    private GameController        gameController;
+
+    /** Used for reading and writing preferences. */
     private SharedPreferences     prefs;
-    // Used to keep the device awake and the screen bright.
+
+    /** Used to keep the device awake and the screen bright. */
     private PowerManager.WakeLock wakeLock;
-    // The current dialog shown.
-    private Dialog                currentDialog;
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Retrieve persisted data
         prefs = getPreferences(MODE_PRIVATE);
+        int currentLevel = prefs.getInt(PREFKEY_LEVEL, 0);
+
         // Sets the device to not sleep or loose brightness.
         setDeviceNoSleep();
+
         // No title bar.
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         // Switch to fullscreen view, getting rid of the status bar as well.
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        SensorManager sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
 
-        // ----------------------------------------------------------------------------------
-        /*
-         * Hardware.mContentResolver = getContentResolver(); sensorManager =
-         * (SensorManager) new SensorManagerSimulator( (SensorManager)
-         * getSystemService(SENSOR_SERVICE)); // If the emulator is used, use
-         * the OpenIntent simulator to simulate sensor // changes. if
-         * (isEmulator()) { Intent intent = new Intent(Intent.ACTION_VIEW,
-         * Hardware.Preferences.CONTENT_URI); startActivity(intent);
-         * sensorManager.unregisterListener(this);
-         * SensorManagerSimulator.connectSimulator(); }
-         */
-        // ---------------------------------------------------------------------
-        sensorManager.registerListener(this, SensorManager.SENSOR_ACCELEROMETER,
+        // Create view and controller
+        gameView = new GameView(this);
+        gameController = new GameController(this, gameView);
+        gameView.setGameController(gameController);
+
+        // BEWARE: The order of the following steps is significant:
+        // 1. Register SensorListener
+        // 2. Switch to LANDSCAPE
+        // 3. Compute display dimensions
+
+        // Register GameController as SensorListener
+        SensorManager sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
+        sensorManager.registerListener(gameController, SensorManager.SENSOR_ACCELEROMETER,
                 SensorManager.SENSOR_DELAY_FASTEST);
-        // Set the orientation to landscape programmatically.
+
+        // Set the orientation to landscape programmatically and set the
+        // GameView's display dimensions.
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        currentLevel = prefs.getInt(PREFKEY_LEVEL, 0);
-        pauseGame = true;
-        loadLevel();
+        WindowManager windowManager = getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        gameView.setDisplayWidth(display.getWidth());
+        gameView.setDisplayHeight(display.getHeight());
+
+        gameController.loadLevel(currentLevel);
     }
 
     /**
@@ -84,110 +89,20 @@ public class ASokoban extends Activity implements SensorListener {
     }
 
     /**
-     * Shows an info dialog for the current level and loads it.
-     */
-    public void loadLevel() {
-        pauseGame = true;
-        // Use currentLevel as dialog ID to avoid caching of the AlertDialog
-        showDialog(currentLevel);
-        WindowManager windowManager = getWindowManager();
-        Display display = windowManager.getDefaultDisplay();
-        gameView = new GameView(this, currentLevel, display.getWidth(), display.getHeight());
-    }
-
-    /**
      * Stores the current level in the preferences, so it can be loaded when the
      * application is restarted.
      */
     protected void storeCurrentLevel() {
         Editor editor = prefs.edit();
-        editor.putInt(PREFKEY_LEVEL, currentLevel);
+        editor.putInt(PREFKEY_LEVEL, gameController.getCurrentLevel());
         editor.commit();
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
-        maybeCloseCurrentDialog();
-        currentDialog = new AlertDialog.Builder(ASokoban.this).setTitle(
-                "Level: " + (currentLevel + 1)).setPositiveButton("OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        pauseGame = false;
-                    }
-                }).create();
-        return currentDialog;
-    }
-
-    /**
-     * If there is a dialog, we dismiss it. If not, nothing happens.
-     */
-    private void maybeCloseCurrentDialog() {
-        if (currentDialog != null) {
-            currentDialog.dismiss();
-        }
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see android.hardware.SensorListener#onSensorChanged(int, float[])
-     */
-    public void onSensorChanged(int sensor, float[] values) {
-        if (pauseGame) {
-            return;
-        }
-        if (gameView.getGameController().isLevelFinished()) {
-            currentLevel++;
-            loadLevel();
-            return;
-        }
-        float x = values[0];
-        float y = -values[1];
-        gameView.getMover().setMovingSpeed(x, y);
-        if (gameView.isMoving()) {
-            return;
-        }
-        int dx = 0;
-        int dy = 0;
-        if (Math.abs(x) > Math.abs(y)) {
-            if (x > movingThreshold)
-                dx = 1;
-            if (x < -movingThreshold)
-                dx = -1;
-        } else {
-            if (y > movingThreshold)
-                dy = 1;
-            if (y < -movingThreshold)
-                dy = -1;
-        }
-        if (Math.abs(dx) > 0 || Math.abs(dy) > 0) {
-            gameView.getGameController().moveMan(dx, dy);
-        }
-    }
-
-    /*
-     * @Override protected void onResume() { super.onResume();
-     * sensorManager.registerListener(this, SensorManager.SENSOR_ACCELEROMETER,
-     * SensorManager.SENSOR_DELAY_FASTEST); }
-     * 
-     * @Override protected void onStop() {
-     * sensorManager.unregisterListener(this); super.onStop(); }
-     */
-
-    @Override
     protected void onDestroy() {
-        maybeCloseCurrentDialog();
         storeCurrentLevel();
         wakeLock.release();
         super.onDestroy();
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see android.hardware.SensorListener#onAccuracyChanged(int, int)
-     */
-    public void onAccuracyChanged(int sensor, int accuracy) {
     }
 
     /*

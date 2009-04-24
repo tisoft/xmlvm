@@ -47,4 +47,8 @@ public class ViewGroup extends View {
     public void setOnTouchListener(OnTouchListener listener) {
         // TODO(arno): Implement.
     }
+    
+    public void removeAllViews() {
+        // TODO(arno): Implement
+    }
 }
