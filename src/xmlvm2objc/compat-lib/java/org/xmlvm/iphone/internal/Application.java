@@ -11,12 +11,13 @@ public class Application
 {
 
     private String appl;
+    private String androidClassName;
 
 
-
-    public Application(String appl)
+    public Application(String appl, String androidClassName)
     {
         this.appl = appl;
+        this.androidClassName = androidClassName;
     }
 
 
@@ -26,7 +27,7 @@ public class Application
         try {
             Class clazz = Class.forName(appl);
             Class[] paramTypes = {String[].class};
-            Object[] params = {new String[0]};
+            Object[] params = {new String[]{androidClassName}};
             Method m = null;
             m = clazz.getMethod("main", paramTypes);
             m.invoke(null, params);

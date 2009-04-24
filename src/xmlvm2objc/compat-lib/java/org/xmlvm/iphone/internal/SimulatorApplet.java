@@ -45,7 +45,8 @@ public class SimulatorApplet
     public void start()
     {
         String appl = getParameter("appl");
-        applThread = new Thread(new Application(appl));
+        String androidClassName = getParameter("androidClassName");
+        applThread = new Thread(new Application(appl,androidClassName));
         applThread.start();
     }
 
@@ -57,7 +58,7 @@ public class SimulatorApplet
     private JPanel getJContentPane()
     {
         if (jContentPane == null) {
-            jContentPane = new SimulatorGUI(new AppletImageLoader(this));
+            jContentPane = new SimulatorGUI(new ImageLoader());
         }
         return jContentPane;
     }

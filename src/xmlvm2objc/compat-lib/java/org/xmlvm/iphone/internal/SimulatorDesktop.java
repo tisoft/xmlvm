@@ -29,7 +29,7 @@ public class SimulatorDesktop
         contentPane = window.getContentPane();
         contentPane.setLayout(null);
         contentPane.setSize(580, 750);
-        SimulatorGUI gui = new SimulatorGUI(new FileImageLoader());
+        SimulatorGUI gui = new SimulatorGUI(new ImageLoader());
         contentPane.add(gui);
         window.setVisible(true);
     }
