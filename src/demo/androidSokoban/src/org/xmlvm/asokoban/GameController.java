@@ -13,16 +13,34 @@ import android.hardware.SensorListener;
 public class GameController implements SensorListener {
     // implements OnTouchListener {
 
+    /** Threshold to start moving the man. */
     private static final float movingThreshold = 1.7f;
 
+    /** A flag to indicate whether sensor events will be processed or not. */
     private boolean            gamePaused      = true;
+
+    /** The current level. */
     private int                currentLevel    = 0;
+
+    /** The number of moves. */
     private int                moveCount       = 0;
+
+    /** A representation of the game's man game piece. */
     private Man                man             = null;
+
+    /** A list of all ball game pieces. */
     private GamePieceList      balls           = null;
+
+    /** A list of all goal game pieces. */
     private GamePieceList      goals           = null;
+
+    /** The current game board. */
     private Board              board           = null;
+
+    /** The {@link GameView} associated with this GameController. */
     private GameView           gameView        = null;
+
+    /** The Activity associated with this GameView. */
     private Activity           activity        = null;
 
     /**
@@ -42,14 +60,9 @@ public class GameController implements SensorListener {
     }
 
     /**
-     * Returns the number of moves already made in the current game.
-     */
-    public int getMoveCount() {
-        return moveCount;
-    }
-
-    /**
      * Returns whether the current level is finished.
+     * 
+     * @return true if the level is finished, false otherwise.
      */
     public boolean isLevelFinished() {
         for (int i = 0; i < goals.size(); i++) {
@@ -67,6 +80,7 @@ public class GameController implements SensorListener {
      * 
      * @param dx
      *            The number of pixels to move horizontally.
+     * 
      * @param dy
      *            The number of pixels to move vertically.
      */
@@ -105,8 +119,10 @@ public class GameController implements SensorListener {
      * 
      * @param x
      *            The x coordinate to check for a ball.
+     * 
      * @param y
      *            The y coordinate to check for a ball.
+     * 
      * @return If a {@link Ball} exists at the requested location, it returns
      *         it. Null otherwise.
      */
@@ -148,18 +164,30 @@ public class GameController implements SensorListener {
 
     }
 
+    /**
+     * Callback to process sensor events. Sensor events are used to move the
+     * game's man. They are translated to either -1, 0 or 1 meaning a movement
+     * to the left, no movement or to the right (up and down respectivly).
+     * 
+     * @param sensor
+     *            Indicates which sensor generated the event.
+     * 
+     * @param values
+     *            The values retrieved from the sensor. To determine the man's
+     *            movement the first two values (x and y) are used.
+     */
     @Override
     public void onSensorChanged(int sensor, float[] values) {
         if (gamePaused) {
             return;
         }
-        
+
         if (gameView.getGameController().isLevelFinished()) {
-             currentLevel++;
+            currentLevel++;
             loadLevel(currentLevel);
             return;
         }
-        
+
         float x = values[0];
         float y = -values[1];
         gameView.getMover().setMovingSpeed(x, y);
@@ -184,6 +212,13 @@ public class GameController implements SensorListener {
         }
     }
 
+    /**
+     * Loads the give level. Before the level is started a Dialog shows the
+     * number of the level being started.
+     * 
+     * @param level
+     *            The level to be loaded.
+     */
     public void loadLevel(int level) {
         // Pause game and store current level
         gamePaused = true;
@@ -227,6 +262,15 @@ public class GameController implements SensorListener {
      * listener); levelsDialog.setButton2("Next", listener);
      * levelsDialog.show(); }
      */
+
+    /**
+     * Returns the number of moves already made in the current game.
+     * 
+     * @return The numer of moves.
+     */
+    public int getMoveCount() {
+        return moveCount;
+    }
 
     public int getCurrentLevel() {
         return currentLevel;

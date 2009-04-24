@@ -98,30 +98,13 @@ public class ASokoban extends Activity {
         editor.commit();
     }
 
+    /**
+     * Called when the Activity is being deleted.
+     */
     @Override
     protected void onDestroy() {
         storeCurrentLevel();
         wakeLock.release();
         super.onDestroy();
     }
-
-    /*
-     * @Override public boolean onTrackballEvent(MotionEvent event) { if
-     * (gameView.isMoving()) { return false; } if (event.getAction() ==
-     * MotionEvent.ACTION_MOVE) { if (event.getHistorySize() > 0) { float dx =
-     * event.getX() - event.getHistoricalX(0); float dy = event.getY() -
-     * event.getHistoricalY(0); if (Math.abs(dy) > Math.abs(dx)) { dy = dy > 0 ?
-     * 1 : -1; dx = 0; } else { dy = 0; dx = dx > 0 ? 1 : -1; }
-     * gameView.getGameController().move((int) dx, (int) dy); } return true; }
-     * return false; }
-     */
-
-    /**
-     * Try to figure out whether this app is running on the emulator.
-     */
-    /*
-     * public static boolean isEmulator() { return
-     * Build.DEVICE.equals("generic") && Build.BRAND.equals("generic") &&
-     * Build.PRODUCT.equals("generic"); }
-     */
 }

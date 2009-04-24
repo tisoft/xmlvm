@@ -9,17 +9,43 @@ import android.widget.ImageView;
  */
 public class GameView {
 
+    /** The Activity associated with this GameView. */
     private Activity       activity;
+
+    /** The content view used to display the game. */
     private AbsoluteLayout layout;
+
+    /** The GameController controlling the gane. */
     private GameController gameController;
+
+    /** The helper used to animate the man's moves. */
     private GamePieceMover mover;
+
+    /** The background image. */
     private ImageView      backgroundImage;
+
+    /** The size of a single game piece. */
     private int            tileSize;
+
+    /** The display's X resolution. */
     private int            displayWidth;
+
+    /** The display's Y resolution. */
     private int            displayHeight;
+
+    /** The boards Y offset from the display's top left corner. */
     private int            offsetTop;
+
+    /** The boards X offset from the display's top left corner. */
     private int            offsetLeft;
 
+    /**
+     * Constructor to create a GameActivity and associate it with the
+     * application's activity.
+     * 
+     * @param activity
+     *            The application's activity.
+     */
     public GameView(Activity activity) {
 
         // Initialization
@@ -36,46 +62,12 @@ public class GameView {
         backgroundImage.setImageResource(R.drawable.background);
     }
 
-    public GameController getGameController() {
-        return this.gameController;
-    }
-
-    public void setGameController(GameController gameController) {
-        this.gameController = gameController;
-    }
-
-    public Activity getActivity() {
-        return this.activity;
-    }
-
-    public AbsoluteLayout getLayout() {
-        return this.layout;
-    }
-
-    public int getOffsetLeft() {
-        return this.offsetLeft;
-    }
-
-    public int getOffsetTop() {
-        return this.offsetTop;
-    }
-
-    public GamePieceMover getMover() {
-        return this.mover;
-    }
-
-    public boolean isMoving() {
-        return mover.isMoving();
-    }
-
-    public void setDisplayWidth(int displayWidth) {
-        this.displayWidth = displayWidth;
-    }
-
-    public void setDisplayHeight(int displayHeight) {
-        this.displayHeight = displayHeight;
-    }
-
+    /**
+     * Displays the given game board.
+     * 
+     * @param board
+     *            The board to display.
+     */
     public void displayBoard(Board board) {
         int width = board.getWidth();
         int height = board.getHeight();
@@ -128,6 +120,46 @@ public class GameView {
             }
         }
 
+    }
+
+    public GameController getGameController() {
+        return this.gameController;
+    }
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+    }
+
+    public Activity getActivity() {
+        return this.activity;
+    }
+
+    public AbsoluteLayout getLayout() {
+        return this.layout;
+    }
+
+    public int getOffsetLeft() {
+        return this.offsetLeft;
+    }
+
+    public int getOffsetTop() {
+        return this.offsetTop;
+    }
+
+    public GamePieceMover getMover() {
+        return this.mover;
+    }
+
+    public boolean isMoving() {
+        return mover.isMoving();
+    }
+
+    public void setDisplayWidth(int displayWidth) {
+        this.displayWidth = displayWidth;
+    }
+
+    public void setDisplayHeight(int displayHeight) {
+        this.displayHeight = displayHeight;
     }
 
 }
