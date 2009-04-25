@@ -2,18 +2,29 @@ package org.xmlvm.iphone;
 
 public class UITouch {
 
+    private int    phase;
+    private UIView view;
+    private int    x;
+    private int    y;
+
+    public UITouch(int phase, UIView view, int x, int y) {
+        this.phase = phase;
+        this.view = view;
+        this.x = x;
+        this.y = y;
+    }
+
     public int phase() {
-        // TODO need to implement
-        return 0;
+        return phase;
     }
 
     public UIView getView() {
-        // TODO need to implement
-        return null;
+        return view;
     }
 
     public CGPoint locationInView(UIView view) {
-        // TODO need to implement
-        return null;
+        CGRect rect = view.getDisplayRect();
+        CGPoint point = new CGPoint(x - rect.origin.x, y - rect.origin.y);
+        return point;
     }
 }

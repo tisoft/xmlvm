@@ -10,10 +10,12 @@ public abstract class UIApplication extends UIResponder {
     private boolean idleTimerDisabled;
 
     public UIApplication() {
+        super(false);
         setIdleTimerDisabled(false);
         if (!Simulator.initialized)
             // We run on the desktop
             new SimulatorDesktop();
+        Simulator.addTouchesListener(this);
         setStatusBarOrientation(UIInterfaceOrientation.UIInterfaceOrientationPortrait);
     }
 

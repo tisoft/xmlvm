@@ -2,6 +2,7 @@ package org.xmlvm.iphone.internal;
 
 import javax.swing.JPanel;
 
+import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
 
@@ -43,6 +44,10 @@ public class Simulator {
 
     static public void addKeyListener(UIView listener) {
         simulatorGUI.addKeyListener(listener);
+    }
+
+    static public void addTouchesListener(UIResponder listener) {
+        simulatorGUI.addTouchesListener(listener);
     }
 
     static public float getStatusBarHeight() {
