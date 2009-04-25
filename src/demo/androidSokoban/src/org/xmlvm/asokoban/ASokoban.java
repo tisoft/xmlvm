@@ -37,6 +37,12 @@ public class ASokoban extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // NOTE: The order of the following steps in this method is
+        // significant:
+        // 1. Obtain SensorManager
+        // 2. Switch to LANDSCAPE
+        // 3. Compute display dimensions
 
         // Retrieve persisted data
         prefs = getPreferences(MODE_PRIVATE);
@@ -45,7 +51,10 @@ public class ASokoban extends Activity {
         // Sets the device to not sleep or loose brightness.
         setDeviceNoSleep();
 
-        // Set the orientation to landscape programmatically
+        // 1) Obtain SensorManager.
+        SensorManager sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
+
+        // 2) Set the orientation to landscape programmatically.
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         // No title bar.
@@ -54,23 +63,15 @@ public class ASokoban extends Activity {
         // Switch to fullscreen view, getting rid of the status bar as well.
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        // Create view and controller
+		// Create view and controller.
         gameView = new GameView(this);
         gameController = new GameController(this, gameView);
         gameView.setGameController(gameController);
 
-        // BEWARE: The order of the following steps is significant:
-        // 1. Register SensorListener
-        // 2. Switch to LANDSCAPE
-        // 3. Compute display dimensions
-
-        // Register GameController as SensorListener
-        SensorManager sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
         sensorManager.registerListener(gameController, SensorManager.SENSOR_ACCELEROMETER,
                 SensorManager.SENSOR_DELAY_FASTEST);
-
-        // Set the GameView's display dimensions.
+        
+        // 3) Set the GameView's display dimensions.
         WindowManager windowManager = getWindowManager();
         Display display = windowManager.getDefaultDisplay();
         gameView.setDisplayWidth(display.getWidth());
