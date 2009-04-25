@@ -45,6 +45,9 @@ public class ASokoban extends Activity {
         // Sets the device to not sleep or loose brightness.
         setDeviceNoSleep();
 
+        // Set the orientation to landscape programmatically
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
         // No title bar.
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -67,9 +70,7 @@ public class ASokoban extends Activity {
         sensorManager.registerListener(gameController, SensorManager.SENSOR_ACCELEROMETER,
                 SensorManager.SENSOR_DELAY_FASTEST);
 
-        // Set the orientation to landscape programmatically and set the
-        // GameView's display dimensions.
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        // Set the GameView's display dimensions.
         WindowManager windowManager = getWindowManager();
         Display display = windowManager.getDefaultDisplay();
         gameView.setDisplayWidth(display.getWidth());
