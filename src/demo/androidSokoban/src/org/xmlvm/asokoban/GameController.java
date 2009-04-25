@@ -154,7 +154,6 @@ public class GameController implements SensorListener {
         goals.add(goal);
     }
 
-    @Override
     public void onAccuracyChanged(int arg0, int arg1) {
         // TODO Auto-generated method stub
 
@@ -171,7 +170,6 @@ public class GameController implements SensorListener {
      *            The values retrieved from the sensor. To determine the man's
      *            movement the first two values (x and y) are used.
      */
-    @Override
     public void onSensorChanged(int sensor, float[] values) {
         if (gamePaused) {
             return;
