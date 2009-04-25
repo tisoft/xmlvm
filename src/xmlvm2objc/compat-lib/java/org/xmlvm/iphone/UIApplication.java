@@ -5,7 +5,7 @@ import javax.swing.SwingUtilities;
 import org.xmlvm.iphone.internal.Simulator;
 import org.xmlvm.iphone.internal.SimulatorDesktop;
 
-public abstract class UIApplication {
+public abstract class UIApplication extends UIResponder {
 
     private boolean idleTimerDisabled;
 

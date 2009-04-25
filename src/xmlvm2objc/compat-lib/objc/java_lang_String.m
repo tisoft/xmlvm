@@ -81,6 +81,13 @@
 	return self;
 }
 
+- (NSMutableString*) append___float: (float) f
+{
+	NSNumber* n = [NSNumber numberWithFloat: f];
+	[self appendString: [n stringValue]];
+	return self;
+}
+
 - (NSMutableString*) substring___int_int: (int) from :(int) to
 {
 	NSRange range;

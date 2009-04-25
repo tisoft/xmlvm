@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.xmlvm.iphone.internal.Simulator;
 
-public class UIView {
+public class UIView extends UIResponder {
 
     protected AffineTransform affineTransform;
     protected AffineTransform savedTransform;

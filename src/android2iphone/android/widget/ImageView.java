@@ -56,7 +56,7 @@ public class ImageView extends View {
     public ImageView(Context c) {
         super(c);
         image = new UIImageView(((Activity) c).getWindow().getCGRect());
-        this.setMainView(image);
+        this.addSubview(image);
     }
 
     public AbsoluteLayout.LayoutParams getLayoutParams() {

@@ -6,25 +6,25 @@
 
 - (void) println___int: (int) i
 {
-    printf("%d\n", i);
+    NSLog(@"d", i);
 }
 
 
 - (void) println___float: (float) f
 {
-    printf("%f\n", f);
+    NSLog(@"%f", f);
 }
 
 
 - (void) println___double: (double) d
 {
-    printf("%lf\n", d);
+    NSLog(@"%lf", d);
 }
 
 
 - (void) println___java_lang_String: (NSString*) s
 {
-    printf("%s\n", [s cString]);
+    NSLog(s);
 }
 
 

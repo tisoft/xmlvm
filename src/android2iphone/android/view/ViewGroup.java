@@ -20,6 +20,12 @@
 
 package android.view;
 
+import java.util.Set;
+
+import org.xmlvm.iphone.CGPoint;
+import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UITouch;
+
 import android.content.Context;
 
 /**
@@ -28,27 +34,45 @@ import android.content.Context;
  * @see http://developer.android.com/reference/android/view/ViewGroup.html
  */
 public class ViewGroup extends View {
+
+    private OnTouchListener listener;
+
     public static class LayoutParams {
         public static final int WRAP_CONTENT = -1;
     }
 
     public ViewGroup(Context c) {
         super(c);
+        this.listener = null;
     }
 
     public void addView(View child) {
-        this.getMainView().addSubview(child.getMainView());
+        this.addSubview(child);
     }
 
     public void addView(View child, int idx) {
-        this.getMainView().insertSubview(child.getMainView(), idx);
-    }
-
-    public void setOnTouchListener(OnTouchListener listener) {
-        // TODO(arno): Implement.
+        this.insertSubview(child, idx);
     }
     
     public void removeAllViews() {
         // TODO(arno): Implement
+    }
+
+    public void setOnTouchListener(OnTouchListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+        if (this.listener == null) {
+            return;
+        }
+        UITouch firstTouch = touches.iterator().next();
+        CGPoint point = firstTouch.locationInView(this);
+        // TODO why generate an ACTION_DOWN event in touchesMoves?
+        // aFireworks registers on ACTION_DOWN. Why not ACTION_MOVE?
+        MotionEvent motionEvent = new MotionEvent(MotionEvent.ACTION_DOWN, (int) point.x,
+                (int) point.y);
+        this.listener.onTouch(this, motionEvent);
     }
 }

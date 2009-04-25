@@ -29,8 +29,8 @@ import android.content.Context;
  * 
  * @see http://developer.android.com/reference/android/view/View.html
  */
-public class View {
-    public static abstract class OnTouchListener {
+public class View extends UIView {
+    public static interface OnTouchListener {
         /**
          * Called when a touch event is dispatched to a view. This allows
          * listeners to get a chance to respond before the target view.
@@ -43,10 +43,9 @@ public class View {
          * 
          * @return True if the listener has consumed the event, false otherwise.
          */
-        public abstract boolean onTouch(View v, MotionEvent event);
+        public boolean onTouch(View v, MotionEvent event);
     }
 
-    private UIView                 mainView;
     private ViewGroup.LayoutParams curLayout;
     private Context                c;
 
@@ -59,7 +58,7 @@ public class View {
     }
 
     public void invalidate() {
-        mainView.setNeedsDisplay();
+        this.setNeedsDisplay();
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
@@ -69,19 +68,4 @@ public class View {
     public final Context getContext() {
         return c;
     }
-
-    /**
-     * Internal. Not part of Android API
-     */
-    public UIView getMainView() {
-        return mainView;
-    }
-
-    /**
-     * Internal. Not part of Android API
-     */
-    public void setMainView(UIView view) {
-        mainView = view;
-    }
-
 }

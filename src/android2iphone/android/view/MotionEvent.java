@@ -19,6 +19,8 @@ public class MotionEvent {
 
     public MotionEvent(int action, int x, int y) {
         this.action = action;
+        this.x = x;
+        this.y = y;
     }
 
     /**

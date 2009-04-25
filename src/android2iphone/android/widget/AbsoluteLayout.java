@@ -22,7 +22,6 @@ package android.widget;
 
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIScreen;
-import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.view.ViewGroup;
@@ -32,8 +31,7 @@ public class AbsoluteLayout extends ViewGroup {
         super(c);
         UIScreen screen = UIScreen.mainScreen();
         CGRect rect = screen.applicationFrame();
-        rect.origin.x = rect.origin.y = 0;
-        setMainView(new AbsView(rect));
+        this.setFrame(rect);
     }
 
     public static class LayoutParams extends ViewGroup.LayoutParams {
@@ -48,11 +46,5 @@ public class AbsoluteLayout extends ViewGroup {
             this.x = x;
             this.y = y;
         }
-    }
-}
-
-class AbsView extends UIView {
-    public AbsView(CGRect rect) {
-        super(rect);
     }
 }

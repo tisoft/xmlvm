@@ -51,4 +51,5 @@
     // TODO: change args array to argc, argc
 	UIApplicationMain(0, nil, nil, nil);
 }
+
 @end

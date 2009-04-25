@@ -10,6 +10,7 @@
 @end
 
 @interface UIView (cat_org_xmlvm_iphone_UIView)
+- (void) __init_org_xmlvm_iphone_UIView;
 - (void) __init_org_xmlvm_iphone_UIView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;
 - (org_xmlvm_iphone_CGRect*) getBounds;
 - (void) setFrame___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*) frame;

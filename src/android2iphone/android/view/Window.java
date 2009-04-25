@@ -23,7 +23,6 @@ package android.view;
 import org.xmlvm.iphone.CGAffineTransform;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIScreen;
-import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
 
 import android.app.Activity;
@@ -51,9 +50,8 @@ public class Window {
         adjustFrameSize();
         CGRect viewRect = new CGRect(rect);
         viewRect.origin.x = viewRect.origin.y = 0;
-        UIView iview = view.getMainView();
-        iview.setFrame(viewRect);
-        iWindow.addSubview(iview);
+        view.setFrame(viewRect);
+        iWindow.addSubview(view);
         iWindow.makeKeyAndVisible();
     }
 
