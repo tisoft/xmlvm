@@ -53,7 +53,7 @@ public class ViewGroup extends View {
     public void addView(View child, int idx) {
         this.insertSubview(child, idx);
     }
-    
+
     public void removeAllViews() {
         // TODO(arno): Implement
     }
@@ -63,16 +63,32 @@ public class ViewGroup extends View {
     }
 
     @Override
+    public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+        processTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+    }
+
+    @Override
     public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+        processTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+    }
+
+    @Override
+    public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
+        processTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+    }
+
+    @Override
+    public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+        processTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+    }
+
+    private void processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
         if (this.listener == null) {
             return;
         }
         UITouch firstTouch = touches.iterator().next();
         CGPoint point = firstTouch.locationInView(this);
-        // TODO why generate an ACTION_DOWN event in touchesMoves?
-        // aFireworks registers on ACTION_DOWN. Why not ACTION_MOVE?
-        MotionEvent motionEvent = new MotionEvent(MotionEvent.ACTION_DOWN, (int) point.x,
-                (int) point.y);
+        MotionEvent motionEvent = new MotionEvent(action, (int) point.x, (int) point.y);
         this.listener.onTouch(this, motionEvent);
     }
 }
