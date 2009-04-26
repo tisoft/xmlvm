@@ -87,13 +87,9 @@ public class GameView {
 
         // Start with an empty display and show background image
         layout.removeAllViews();
-        layout.addView(backgroundImage, 0);
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (board.isFloor(x, y)) {
-                    new Floor(this, x, y);
-                }
                 int p = board.getBoardPiece(x, y);
                 if (p == Board.BALL) {
                     Ball ball = new Ball(this, x, y);
@@ -107,9 +103,13 @@ public class GameView {
                 } else if (p == Board.WALL) {
                     new Wall(this, x, y);
                 }
+                if (board.isFloor(x, y)) {
+                    new Floor(this, x, y);
+                }
             }
         }
 
+        layout.addView(backgroundImage, 0);
     }
 
     public GameController getGameController() {

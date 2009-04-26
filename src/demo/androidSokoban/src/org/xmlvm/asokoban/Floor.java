@@ -5,6 +5,6 @@ package org.xmlvm.asokoban;
  */
 public class Floor extends GamePiece {
     public Floor(GameView view, int x, int y) {
-        super(view, R.drawable.floor, x, y);
+        super(view, R.drawable.floor, x, y, false);
     }
 }

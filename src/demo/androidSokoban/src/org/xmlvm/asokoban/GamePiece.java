@@ -68,12 +68,16 @@ public abstract class GamePiece {
      * @param y
      *            The y-coordinate to draw this GamePiece.
      */
-    public GamePiece(GameView view, int resourceID, int x, int y) {
+    public GamePiece(GameView view, int resourceID, int x, int y, boolean addToFront) {
         this.view = view;
         this.x = x;
         this.y = y;
         image = new ImageView(view.getActivity());
-        view.getLayout().addView(image);
+        if (addToFront) {
+            view.getLayout().addView(image);
+        } else {
+            view.getLayout().addView(image, 0);
+        }
         image.setImageResource(resourceID);
         updatePosition();
     }

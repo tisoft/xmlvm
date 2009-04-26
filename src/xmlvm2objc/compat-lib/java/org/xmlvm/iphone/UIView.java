@@ -73,7 +73,7 @@ public class UIView extends UIResponder {
     public void bringSubviewToFront(UIView subView) {
         int i = subViews.indexOf(subView);
         subViews.remove(i);
-        subViews.add(subViews.size(), subView);
+        subViews.add(subView);
     }
 
     public void layoutSubviews() {

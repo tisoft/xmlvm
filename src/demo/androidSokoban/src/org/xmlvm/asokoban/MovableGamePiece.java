@@ -13,7 +13,7 @@ public class MovableGamePiece extends GamePiece {
     private int py;
 
     protected MovableGamePiece(GameView view, int resourceID, int x, int y) {
-        super(view, resourceID, x, y);
+        super(view, resourceID, x, y, true);
     }
 
     /**
