@@ -3,45 +3,41 @@ package org.xmlvm.asokoban;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.hardware.SensorListener;
 
 //import android.view.View.OnTouchListener;
 
 /**
  * The controller class for the Sokoban game.
  */
-public class GameController implements SensorListener {
+public class GameController implements MoveFinishedHandler {
     // implements OnTouchListener {
 
-    /** Threshold to start moving the man. */
-    private static final float movingThreshold = 1.7f;
-
     /** A flag to indicate whether sensor events will be processed or not. */
-    private boolean            gamePaused      = true;
+    private boolean       gamePaused   = true;
 
     /** The current level. */
-    private int                currentLevel    = 0;
+    private int           currentLevel = 0;
 
     /** The number of moves. */
-    private int                moveCount       = 0;
+    private int           moveCount    = 0;
 
     /** A representation of the game's man game piece. */
-    private Man                man             = null;
+    private Man           man          = null;
 
     /** A list of all ball game pieces. */
-    private GamePieceList      balls           = null;
+    private GamePieceList balls        = null;
 
     /** A list of all goal game pieces. */
-    private GamePieceList      goals           = null;
+    private GamePieceList goals        = null;
 
     /** The current game board. */
-    private Board              board           = null;
+    private Board         board        = null;
 
     /** The {@link GameView} associated with this GameController. */
-    private GameView           gameView        = null;
+    private GameView      gameView     = null;
 
     /** The Activity associated with this GameView. */
-    private Activity           activity        = null;
+    private Activity      activity     = null;
 
     /**
      * Instantiates a new GameController and connects it to the given
@@ -154,57 +150,6 @@ public class GameController implements SensorListener {
         goals.add(goal);
     }
 
-    public void onAccuracyChanged(int arg0, int arg1) {
-        // TODO Auto-generated method stub
-
-    }
-
-    /**
-     * Callback to process sensor events. Sensor events are used to move the
-     * game's man. They are translated to either -1, 0 or 1 meaning a movement
-     * to the left, no movement or to the right (up and down respectivly).
-     * 
-     * @param sensor
-     *            Indicates which sensor generated the event.
-     * @param values
-     *            The values retrieved from the sensor. To determine the man's
-     *            movement the first two values (x and y) are used.
-     */
-    public void onSensorChanged(int sensor, float[] values) {
-        if (gamePaused) {
-            return;
-        }
-
-        if (gameView.getGameController().isLevelFinished()) {
-            currentLevel++;
-            loadLevel(currentLevel);
-            return;
-        }
-
-        float x = values[0];
-        float y = -values[1];
-        gameView.getMover().setMovingSpeed(x, y);
-        if (gameView.isMoving()) {
-            return;
-        }
-        int dx = 0;
-        int dy = 0;
-        if (Math.abs(x) > Math.abs(y)) {
-            if (x > movingThreshold)
-                dx = 1;
-            if (x < -movingThreshold)
-                dx = -1;
-        } else {
-            if (y > movingThreshold)
-                dy = 1;
-            if (y < -movingThreshold)
-                dy = -1;
-        }
-        if (Math.abs(dx) > 0 || Math.abs(dy) > 0) {
-            gameView.getGameController().moveMan(dx, dy);
-        }
-    }
-
     /**
      * Loads the give level. Before the level is started a Dialog shows the
      * number of the level being started.
@@ -265,8 +210,26 @@ public class GameController implements SensorListener {
         return moveCount;
     }
 
+    /**
+     * Returns the current level.
+     */
     public int getCurrentLevel() {
         return currentLevel;
     }
 
+    /**
+     * Returns whether the game is paused.
+     */
+    public boolean isGamePaused() {
+        return gamePaused;
+    }
+
+    @Override
+    public void onMoveFinished() {
+        if (isLevelFinished()) {
+            currentLevel++;
+            loadLevel(currentLevel);
+            return;
+        }
+    }
 }

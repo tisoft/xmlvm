@@ -46,13 +46,10 @@ public class GameView {
      * @param activity
      *            The application's activity.
      */
-    public GameView(Activity activity) {
-
+    public GameView(Activity activity, GamePieceMover mover) {
         // Initialization
         tileSize = 20;
-        mover = new GamePieceMover();
-
-        // Store activity for future use
+        this.mover = mover;
         this.activity = activity;
 
         // Connect view to activity and create background
@@ -131,10 +128,6 @@ public class GameView {
 
     public GamePieceMover getMover() {
         return this.mover;
-    }
-
-    public boolean isMoving() {
-        return mover.isMoving();
     }
 
     public void setDisplayWidth(int displayWidth) {

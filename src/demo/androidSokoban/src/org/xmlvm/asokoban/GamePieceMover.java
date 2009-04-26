@@ -2,13 +2,17 @@ package org.xmlvm.asokoban;
 
 import android.os.Handler;
 
+/**
+ * This class is responsible for moving {@link GamePiece}s.
+ */
 public class GamePieceMover {
-    private static final int   maxPiecesMoving = 2;
-    private MovableGamePiece[] gamePiecesToBeMoved;
-    private int                animationDelay;
+    private static final int    maxPiecesMoving = 2;
+    private MovableGamePiece[]  gamePiecesToBeMoved;
+    private int                 animationDelay;
 
-    private Handler            updater         = new Handler();
-    private Runnable           updateAnimation;
+    private Handler             updater         = new Handler();
+    private Runnable            updateAnimation;
+    private MoveFinishedHandler moveFinishedHandler;
 
     public GamePieceMover() {
         updateAnimation = new Runnable() {
@@ -17,8 +21,12 @@ public class GamePieceMover {
                 for (int i = 0; i < maxPiecesMoving; i++) {
                     if (gamePiecesToBeMoved[i] != null) {
                         boolean done = gamePiecesToBeMoved[i].moveOneStep();
-                        if (done)
+                        if (done) {
                             gamePiecesToBeMoved[i] = null;
+                            if (moveFinishedHandler != null) {
+                                moveFinishedHandler.onMoveFinished();
+                            }
+                        }
                     }
                 }
             }
@@ -51,5 +59,15 @@ public class GamePieceMover {
         if (newAnimationDelay < 5)
             newAnimationDelay = 5;
         animationDelay = newAnimationDelay;
+    }
+
+    /**
+     * Sets a MoveFinishedHandler that will be called when a move has finished.
+     * 
+     * @param handler
+     *            The handler is called when a move has been finished.
+     */
+    public void setMoveFinishedHandler(MoveFinishedHandler handler) {
+        moveFinishedHandler = handler;
     }
 }

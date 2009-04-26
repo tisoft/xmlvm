@@ -27,6 +27,9 @@ public class ASokoban extends Activity {
     /** The controller used to control the game. */
     private GameController        gameController;
 
+    /** The controller handling inputs from the user. */
+    private InputController       inputController;
+
     /** Used for reading and writing preferences. */
     private SharedPreferences     prefs;
 
@@ -37,7 +40,7 @@ public class ASokoban extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         // NOTE: The order of the following steps in this method is
         // significant:
         // 1. Obtain SensorManager
@@ -63,14 +66,17 @@ public class ASokoban extends Activity {
         // Switch to fullscreen view, getting rid of the status bar as well.
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		// Create view and controller.
-        gameView = new GameView(this);
+        // Create view and controller.
+        GamePieceMover mover = new GamePieceMover();
+        gameView = new GameView(this, mover);
         gameController = new GameController(this, gameView);
         gameView.setGameController(gameController);
+        mover.setMoveFinishedHandler(gameController);
 
-        sensorManager.registerListener(gameController, SensorManager.SENSOR_ACCELEROMETER,
+        inputController = new InputController(mover, gameController);
+        sensorManager.registerListener(inputController, SensorManager.SENSOR_ACCELEROMETER,
                 SensorManager.SENSOR_DELAY_FASTEST);
-        
+
         // 3) Set the GameView's display dimensions.
         WindowManager windowManager = getWindowManager();
         Display display = windowManager.getDefaultDisplay();
