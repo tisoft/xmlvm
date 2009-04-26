@@ -106,7 +106,8 @@ public class InputController implements SensorListener, OnTouchListener {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             lastDownX = event.getX();
             lastDownY = event.getY();
-        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+        } else if (event.getAction() == MotionEvent.ACTION_UP
+                || event.getAction() == MotionEvent.ACTION_MOVE) {
             lastUpX = event.getX();
             lastUpY = event.getY();
             moveWithInput(lastUpX - lastDownX, lastUpY - lastDownY, swipeThreshold);
