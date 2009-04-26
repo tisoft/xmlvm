@@ -69,11 +69,12 @@ public class ASokoban extends Activity {
         // Create view and controller.
         GamePieceMover mover = new GamePieceMover();
         gameView = new GameView(this, mover);
-        gameController = new GameController(this, gameView);
+        gameController = new GameController(gameView);
         gameView.setGameController(gameController);
         mover.setMoveFinishedHandler(gameController);
 
         inputController = new InputController(mover, gameController);
+        gameView.setOnTouchListener(inputController);
         sensorManager.registerListener(inputController, SensorManager.SENSOR_ACCELEROMETER,
                 SensorManager.SENSOR_DELAY_FASTEST);
 

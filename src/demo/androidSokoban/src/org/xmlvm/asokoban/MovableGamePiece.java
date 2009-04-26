@@ -51,4 +51,8 @@ public class MovableGamePiece extends GamePiece {
         }
         return false;
     }
+    
+    public boolean isMoving() {
+        return view.getMover().isMoving();
+    }
 }

@@ -1,6 +1,7 @@
 package org.xmlvm.asokoban;
 
 import android.app.Activity;
+import android.view.View.OnTouchListener;
 import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
 
@@ -138,4 +139,10 @@ public class GameView {
         this.displayHeight = displayHeight;
     }
 
+    /**
+     * Registers a listener that gets called when a touch event occurs.
+     */
+    public void setOnTouchListener(OnTouchListener listener) {
+        layout.setOnTouchListener(listener);
+    }
 }

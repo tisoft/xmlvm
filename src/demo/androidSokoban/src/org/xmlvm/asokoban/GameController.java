@@ -1,17 +1,12 @@
 package org.xmlvm.asokoban;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-
-//import android.view.View.OnTouchListener;
 
 /**
  * The controller class for the Sokoban game.
  */
 public class GameController implements MoveFinishedHandler {
-    // implements OnTouchListener {
-
     /** A flag to indicate whether sensor events will be processed or not. */
     private boolean       gamePaused   = true;
 
@@ -36,9 +31,6 @@ public class GameController implements MoveFinishedHandler {
     /** The {@link GameView} associated with this GameController. */
     private GameView      gameView     = null;
 
-    /** The Activity associated with this GameView. */
-    private Activity      activity     = null;
-
     /**
      * Instantiates a new GameController and connects it to the given
      * {@link GameView}.
@@ -49,8 +41,7 @@ public class GameController implements MoveFinishedHandler {
      *            The GameView used to display the game.
      */
 
-    public GameController(Activity activity, GameView gameView) {
-        this.activity = activity;
+    public GameController(GameView gameView) {
         this.gameView = gameView;
     }
 
@@ -79,6 +70,9 @@ public class GameController implements MoveFinishedHandler {
      *            The number of pixels to move vertically.
      */
     public void moveMan(int dx, int dy) {
+        if (man.isMoving()) {
+            return;
+        }
         int newX = man.getX() + dx;
         int newY = man.getY() + dy;
 
@@ -224,7 +218,9 @@ public class GameController implements MoveFinishedHandler {
         return gamePaused;
     }
 
-    @Override
+    /* (non-Javadoc)
+     * @see org.xmlvm.asokoban.MoveFinishedHandler#onMoveFinished()
+     */
     public void onMoveFinished() {
         if (isLevelFinished()) {
             currentLevel++;
