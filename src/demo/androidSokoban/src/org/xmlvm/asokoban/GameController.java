@@ -31,6 +31,8 @@ public class GameController implements MoveFinishedHandler {
     /** The {@link GameView} associated with this GameController. */
     private GameView      gameView     = null;
 
+    private AlertDialog   dialog;
+
     /**
      * Instantiates a new GameController and connects it to the given
      * {@link GameView}.
@@ -165,12 +167,14 @@ public class GameController implements MoveFinishedHandler {
         gameView.displayBoard(board);
 
         // Display current level
-        new AlertDialog.Builder(gameView.getActivity()).setTitle("Level: " + (currentLevel + 1))
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        dialog = new AlertDialog.Builder(gameView.getActivity()).setTitle(
+                "Level: " + (currentLevel + 1)).setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         gamePaused = false;
                     }
-                }).create().show();
+                }).create();
+        dialog.show();
     }
 
     /*
@@ -218,7 +222,9 @@ public class GameController implements MoveFinishedHandler {
         return gamePaused;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.xmlvm.asokoban.MoveFinishedHandler#onMoveFinished()
      */
     public void onMoveFinished() {
@@ -227,5 +233,12 @@ public class GameController implements MoveFinishedHandler {
             loadLevel(currentLevel);
             return;
         }
+    }
+
+    /**
+     * Should be called, before the object is destroyed.
+     */
+    public void onDestroy() {
+        dialog.dismiss();
     }
 }

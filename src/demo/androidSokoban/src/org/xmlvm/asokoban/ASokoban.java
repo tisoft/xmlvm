@@ -114,6 +114,7 @@ public class ASokoban extends Activity {
     protected void onDestroy() {
         storeCurrentLevel();
         wakeLock.release();
+        gameController.onDestroy();
         super.onDestroy();
     }
 }
