@@ -74,34 +74,27 @@ public class GameView {
         offsetTop = (displayHeight - (height * tileSize)) / 2;
         offsetLeft = (displayWidth - (width * tileSize)) / 2;
 
-        /*
-         * for (int x = 0; x < width; x++) { for (int y = 0; y < height; y++) {
-         * // TODO Can't deal with <jvm:tableswitch> for now switch
-         * (board.getBoardPiece(x, y)) { case Board.BALL: Ball ball = new
-         * Ball(this, x, y); gameController.addBall(ball); break; case
-         * Board.GOAL: Goal goal = new Goal(this, x, y);
-         * gameController.addGoal(goal); break; case Board.MAN: Man man = new
-         * Man(this, x, y); gameController.setMan(man); break; case Board.WALL:
-         * new Wall(this, x, y); break; } }
-         */
-
         // Start with an empty display and show background image
         layout.removeAllViews();
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                int p = board.getBoardPiece(x, y);
-                if (p == Board.BALL) {
+                switch (board.getBoardPiece(x, y)) {
+                case Board.BALL:
                     Ball ball = new Ball(this, x, y);
                     gameController.addBall(ball);
-                } else if (p == Board.GOAL) {
+                    break;
+                case Board.GOAL:
                     Goal goal = new Goal(this, x, y);
                     gameController.addGoal(goal);
-                } else if (p == Board.MAN) {
+                    break;
+                case Board.MAN:
                     Man man = new Man(this, x, y);
                     gameController.setMan(man);
-                } else if (p == Board.WALL) {
+                    break;
+                case Board.WALL:
                     new Wall(this, x, y);
+                    break;
                 }
                 if (board.isFloor(x, y)) {
                     new Floor(this, x, y);

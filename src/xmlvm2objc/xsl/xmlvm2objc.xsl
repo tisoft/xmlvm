@@ -1042,6 +1042,26 @@ _sp--;
 </xsl:template>
 
 
+<xsl:template match="jvm:tableswitch">
+  <xsl:text>    _op1.i = _stack[--_sp].i;
+    switch(_op1.i) {
+    </xsl:text>
+  <xsl:for-each select="jvm:case">
+    <xsl:text>case </xsl:text>
+    <xsl:value-of select="../@min + position() - 1"/>
+    <xsl:text>: goto label</xsl:text>
+    <xsl:value-of select="@label"/>
+    <xsl:text>;
+    </xsl:text>
+  </xsl:for-each>
+  <xsl:text>default: goto label</xsl:text>
+  <xsl:value-of select="jvm:default/@label"/>
+  <xsl:text>;
+    }
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="jvm:dcmpg">
   <xsl:text>    _op2.f = (float) _stack[--_sp].d;
     _op1.f = (float) _stack[--_sp].d;
