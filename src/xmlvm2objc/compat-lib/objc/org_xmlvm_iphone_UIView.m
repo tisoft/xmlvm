@@ -59,6 +59,11 @@
     [self insertSubview: view atIndex: idx];
 }
 
+- (void) bringSubviewToFront___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) view
+{
+	[self bringSubviewToFront: view];
+}
+
 - (void) setTransform___org_xmlvm_iphone_CGAffineTransform :(org_xmlvm_iphone_CGAffineTransform*)trans
 {
 	if (trans == [java_lang_null _GET_NULL])

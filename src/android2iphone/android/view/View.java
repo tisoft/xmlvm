@@ -68,4 +68,8 @@ public class View extends UIView {
     public final Context getContext() {
         return c;
     }
+
+    public void bringToFront() {
+        // TODO Auto-generated method stub
+    }
 }

@@ -70,6 +70,12 @@ public class UIView extends UIResponder {
         Simulator.redrawDisplay();
     }
 
+    public void bringSubviewToFront(UIView subView) {
+        int i = subViews.indexOf(subView);
+        subViews.remove(i);
+        subViews.add(subViews.size(), subView);
+    }
+
     public void layoutSubviews() {
     }
 

@@ -62,8 +62,4 @@ public class ImageView extends View {
     public AbsoluteLayout.LayoutParams getLayoutParams() {
         return (AbsoluteLayout.LayoutParams) getCurLayout();
     }
-
-    public void bringToFront() {
-        // TODO Auto-generated method stub
-    }
 }

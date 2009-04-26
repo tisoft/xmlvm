@@ -89,33 +89,23 @@ public class GameView {
         layout.removeAllViews();
         layout.addView(backgroundImage, 0);
 
-        // First we set all the floor tiles, as they should be at the bottom.
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 if (board.isFloor(x, y)) {
                     new Floor(this, x, y);
                 }
-            }
-        }
-
-        // TODO we make two passes over the game board in order to force
-        // a certain Z-order in which the game pieces are later rendered.
-        for (int pass = 0; pass < 2; pass++) {
-            for (int x = 0; x < width; x++) {
-                for (int y = 0; y < height; y++) {
-                    int p = board.getBoardPiece(x, y);
-                    if (p == Board.BALL && pass == 1) {
-                        Ball ball = new Ball(this, x, y);
-                        gameController.addBall(ball);
-                    } else if (p == Board.GOAL && pass == 0) {
-                        Goal goal = new Goal(this, x, y);
-                        gameController.addGoal(goal);
-                    } else if (p == Board.MAN & pass == 1) {
-                        Man man = new Man(this, x, y);
-                        gameController.setMan(man);
-                    } else if (p == Board.WALL && pass == 0) {
-                        new Wall(this, x, y);
-                    }
+                int p = board.getBoardPiece(x, y);
+                if (p == Board.BALL) {
+                    Ball ball = new Ball(this, x, y);
+                    gameController.addBall(ball);
+                } else if (p == Board.GOAL) {
+                    Goal goal = new Goal(this, x, y);
+                    gameController.addGoal(goal);
+                } else if (p == Board.MAN) {
+                    Man man = new Man(this, x, y);
+                    gameController.setMan(man);
+                } else if (p == Board.WALL) {
+                    new Wall(this, x, y);
                 }
             }
         }
