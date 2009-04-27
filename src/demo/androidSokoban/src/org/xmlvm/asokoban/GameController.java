@@ -238,6 +238,24 @@ public class GameController implements MoveFinishedHandler {
         return gamePaused;
     }
 
+    /**
+     * Retrieves the tile's size in pixels.
+     * 
+     * @return The retrieved tile size.
+     */
+    public int getTileSize() {
+        return gameView.getTileSize();
+    }
+
+    /**
+     * Accessor to retrieve the game board.
+     * 
+     * @return The game board.
+     */
+    public Board getBoard() {
+        return board;
+    }
+
     /*
      * (non-Javadoc)
      * 
@@ -263,4 +281,9 @@ public class GameController implements MoveFinishedHandler {
             changeLevelDialog.dismiss();
         }
     }
+
+    public GameView getGameView() {
+        return gameView;
+    }
+
 }

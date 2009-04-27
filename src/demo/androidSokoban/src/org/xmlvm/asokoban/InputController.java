@@ -11,11 +11,18 @@ import android.view.View.OnTouchListener;
 public class InputController implements SensorListener, OnTouchListener {
     /** Accelerometer threshold to start moving the man. */
     private static final float accelerometerThreshold = 1.7f;
+    
     /** Swiping threshold to start moving the man. */
     private static final float swipeThreshold         = 20f;
 
+    /** Helper class used to animate the man's movement. */
     private GamePieceMover     mover;
+    
+    /** The GameController associated with this InputController. */
     private GameController     controller;
+    
+    /** The GameView associated with this InputController. */
+    private GameView           gameView;
 
     /** The X coordinate for the last touch button down event. */
     private float              lastDownX;
@@ -29,6 +36,7 @@ public class InputController implements SensorListener, OnTouchListener {
     public InputController(GamePieceMover mover, GameController controller) {
         this.mover = mover;
         this.controller = controller;
+        this.gameView = controller.getGameView();
     }
 
     /**
@@ -117,11 +125,15 @@ public class InputController implements SensorListener, OnTouchListener {
                 moveWithInput(lastUpX - lastDownX, lastUpY - lastDownY, swipeThreshold);
             }
             // Handle simple tap to either display the level dialog or to move
-            // the
-            // man to the given position
+            // the man to the given position
             else {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    controller.showLevelDialog();
+                    int tx = gameView.getTileX(lastUpX);
+                    int ty = gameView.getTileY(lastUpY);
+
+                    if (!controller.getBoard().isFloor(tx, ty)) {
+                        controller.showLevelDialog();
+                    }
                 }
             }
         }
