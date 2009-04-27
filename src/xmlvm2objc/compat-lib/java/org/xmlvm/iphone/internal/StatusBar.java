@@ -84,6 +84,7 @@ public class StatusBar extends UIView {
         rect = timeLabel.getFrame();
         rect.origin.x = frame.size.width / 2 - 20;
         timeLabel.setFrame(rect);
+        computeCombinedTransforms();
     }
 
     public void drawRect(CGRect rect) {
@@ -102,10 +103,10 @@ public class StatusBar extends UIView {
         g.fillRect(x, y, w, h - 1);
         g.setPaint(new Color(0x5b6268));
         g.drawLine(x, y + h - 1, w, y + h - 1);
+        restoreLastTransform();
         for (UIView v : subViews) {
             v.drawRect(rect);
         }
-        restoreLastTransform();
     }
 
     public void setStatusBarHidden(boolean flag) {
@@ -137,6 +138,9 @@ public class StatusBar extends UIView {
             this.affineTransform = new AffineTransform();
             this.affineTransform.translate(320, 0);
             this.affineTransform.rotate((float) ((Math.PI / 180) * 90));
+            break;
+        case UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown:
+            // TODO
             break;
         }
         reLayout();

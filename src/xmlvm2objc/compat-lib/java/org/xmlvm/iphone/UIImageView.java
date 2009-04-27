@@ -22,11 +22,12 @@ public class UIImageView extends UIView {
     }
 
     public void drawRect(CGRect r) {
+        this.setTransformForThisView();
         Graphics2D g = CGContext.theContext.graphicsContext;
         // draw the image using the AffineTransform
         AffineTransform trans = new AffineTransform();
-        trans.translate(frame.origin.x, frame.origin.y);//displayRect.origin.x, displayRect.origin.y);
-        trans.concatenate(affineTransform);
+        trans.translate(frame.origin.x, frame.origin.y);
         g.drawImage(image.image, trans, Simulator.getDisplay());
+        this.restoreLastTransform();
     }
 }

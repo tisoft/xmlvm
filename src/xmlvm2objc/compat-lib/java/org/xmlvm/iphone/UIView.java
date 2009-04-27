@@ -10,7 +10,13 @@ import org.xmlvm.iphone.internal.Simulator;
 
 public class UIView extends UIResponder {
 
+    /** The affine transform for this view */
     protected AffineTransform affineTransform;
+    /**
+     * The affine transform plus all concatenated parent transforms for this
+     * view
+     */
+    protected AffineTransform combinedAffineTransform;
     protected AffineTransform savedTransform;
 
     protected CGRect          frame;
@@ -20,21 +26,22 @@ public class UIView extends UIResponder {
     protected Color           backgroundColor;
 
     public UIView() {
+        init();
+    }
+
+    public UIView(CGRect rect) {
+        init();
+        setFrame(rect);
+    }
+
+    private void init() {
         this.frame = null;
         this.bounds = null;
         this.backgroundColor = null;
         this.affineTransform = new AffineTransform();
+        this.combinedAffineTransform = new AffineTransform();
         subViews = new ArrayList<UIView>();
         parent = null;
-
-    }
-
-    public UIView(CGRect rect) {
-        this.affineTransform = new AffineTransform();
-        subViews = new ArrayList<UIView>();
-        parent = null;
-        this.backgroundColor = null;
-        setFrame(rect);
     }
 
     public void initWithFrame(CGRect rect) {
@@ -50,6 +57,7 @@ public class UIView extends UIResponder {
         frame = new CGRect(rect);
         bounds = new CGRect(rect);
         bounds.origin.x = bounds.origin.y = 0;
+        computeCombinedTransforms();
         if (needsLayouting)
             layoutSubviews();
     }
@@ -61,12 +69,14 @@ public class UIView extends UIResponder {
     public void addSubview(UIView subView) {
         subView.parent = this;
         subViews.add(subView);
+        subView.computeCombinedTransforms();
         Simulator.redrawDisplay();
     }
 
     public void insertSubview(UIView subView, int idx) {
         subView.parent = this;
         subViews.add(idx, subView);
+        subView.computeCombinedTransforms();
         Simulator.redrawDisplay();
     }
 
@@ -96,9 +106,7 @@ public class UIView extends UIResponder {
     protected void setTransformForThisView() {
         Graphics2D g = CGContext.theContext.graphicsContext;
         savedTransform = g.getTransform();
-        AffineTransform trans = new AffineTransform();
-        trans.concatenate(affineTransform);
-        g.transform(trans);
+        g.transform(combinedAffineTransform);
     }
 
     protected void restoreLastTransform() {
@@ -115,10 +123,12 @@ public class UIView extends UIResponder {
             g.clearRect((int) displayRect.origin.x, (int) displayRect.origin.y,
                     (int) displayRect.size.width, (int) displayRect.size.height);
         }
+        // We have to restore the last transform since every subview will set
+        // its own combined affine transform.
+        restoreLastTransform();
         for (UIView v : subViews) {
             v.drawRect(rect);
         }
-        restoreLastTransform();
     }
 
     public void setNeedsDisplay() {
@@ -132,6 +142,13 @@ public class UIView extends UIResponder {
         Simulator.redrawDisplay(x, y, (int) rect.size.width, (int) rect.size.height);
     }
 
+    /**
+     * Set a Cocoa-style affine transfor for this view. The affine transform is
+     * converted to an AWT-style affine transform.
+     * 
+     * @param trans
+     *            Cocoa-style affine transform.
+     */
     public void setTransform(CGAffineTransform trans) {
         affineTransform = new AffineTransform();
 
@@ -139,8 +156,8 @@ public class UIView extends UIResponder {
             switch (trans.type) {
             case CGAffineTransform.ROTATE:
                 // Rotate
-                affineTransform.rotate(trans.alpha, frame.origin.x + bounds.size.width / 2,
-                        frame.origin.y + bounds.size.height / 2);
+                affineTransform.rotate(trans.alpha, frame.origin.x + bounds.size.width / 2.0,
+                        frame.origin.y + bounds.size.height / 2.0);
                 break;
             case CGAffineTransform.TRANSLATE:
                 affineTransform.translate(trans.tx, trans.ty);
@@ -149,12 +166,50 @@ public class UIView extends UIResponder {
             trans = trans.next;
         }
 
+        computeCombinedTransforms();
+
         Simulator.redrawDisplay();
         // TODO the following clip rect doesn't work properly when rotating
         // images.
         // repaint((int) displayRect.origin.x,
         // (int) displayRect.origin.y, (int) displayRect.size.width,
         // (int) displayRect.size.height);
+    }
+
+    /**
+     * Compute the combined affine transform of this view. The combined affine
+     * transform is the affine transform set for this view concatenated with the
+     * affine transforms of all the view's parents.
+     */
+    protected void computeCombinedTransforms() {
+        combinedAffineTransform = new AffineTransform();
+        if (parent != null) {
+            combinedAffineTransform = new AffineTransform(parent.combinedAffineTransform);
+        }
+        combinedAffineTransform.concatenate(affineTransform);
+        for (UIView v : subViews) {
+            v.computeCombinedTransforms();
+        }
+    }
+
+    /**
+     * Returns the combined AWT-style affine transform of this view. The
+     * combined affine transform is the concatenation of all the parent's affine
+     * transforms.
+     * 
+     * @return AWT-style combined affine transform.
+     */
+    public AffineTransform getCombinedTransform() {
+        return this.combinedAffineTransform;
+    }
+
+    /**
+     * Returns the AWT-style affine transform of this view.
+     * 
+     * @return AWT-style affine transform.
+     */
+    public AffineTransform getAffineTransform() {
+        return this.affineTransform;
     }
 
     public void keyTyped(char key) {

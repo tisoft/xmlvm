@@ -112,6 +112,7 @@ public class UITableView
 
     public void drawRect(CGRect rect)
     {
+        this.setTransformForThisView();
         Graphics2D g = CGContext.theContext.graphicsContext;
         CGRect displayRect = getDisplayRect();
         int x = (int) displayRect.origin.x;
@@ -140,6 +141,7 @@ public class UITableView
         	g.drawLine((int) div.origin.x, (int) (y + div.origin.y),
         			(int) div.size.width, (int) (y + div.origin.y));
         }
+        this.restoreLastTransform();
         super.drawRect(rect);
     }
 }

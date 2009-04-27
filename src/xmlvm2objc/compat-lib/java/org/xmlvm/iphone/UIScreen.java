@@ -15,10 +15,10 @@ public class UIScreen {
             applicationFrame = new CGRect(0, offset, 320, 480 - offset);
             break;
         case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
-            applicationFrame = new CGRect(offset, 0, 320 - offset, 480);
+            applicationFrame = new CGRect(0, 0, 320 - offset, 480);
             break;
         case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
-            applicationFrame = new CGRect(0, 0, 320 - offset, 480);
+            applicationFrame = new CGRect(offset, 0, 320 - offset, 480);
             break;
         case UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown:
             applicationFrame = new CGRect(0, 0, 320, 480 - offset);

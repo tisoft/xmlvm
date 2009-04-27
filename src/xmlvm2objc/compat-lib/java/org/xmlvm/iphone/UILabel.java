@@ -33,26 +33,32 @@ public class UILabel extends UIView {
 
     public void setText(String text) {
         this.text = text;
+        this.setNeedsDisplay();
     }
 
     public void setFont(Font font) {
         this.font = font;
+        this.setNeedsDisplay();
     }
 
     // TODO should be called setTextColor
     public void setFontColor(Color fontColor) {
         this.fontColor = fontColor;
+        this.setNeedsDisplay();
     }
 
     public void setBackgroundColor(Color color) {
         this.backgroundColor = color;
+        this.setNeedsDisplay();
     }
 
     public void setTextAlignment(int alignment) {
         this.textAlignment = alignment;
+        this.setNeedsDisplay();
     }
 
     public void drawRect(CGRect r) {
+        this.setTransformForThisView();
         Graphics2D g = CGContext.theContext.graphicsContext;
         CGRect displayRect = getDisplayRect();
         if (backgroundColor != null) {
@@ -79,5 +85,6 @@ public class UILabel extends UIView {
         }
         y += ((int) frame.size.height - height) / 2 + height - descent;
         g.drawString(text, x, y);
+        this.restoreLastTransform();
     }
 }
