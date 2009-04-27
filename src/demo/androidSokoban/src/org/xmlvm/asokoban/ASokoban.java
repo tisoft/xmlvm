@@ -19,7 +19,7 @@ import android.view.WindowManager;
 public class ASokoban extends Activity {
 
     /** Used to store the level in the user prefs. */
-    private static final String   PREFKEY_LEVEL = "level";
+    private static final String   PREFKEY_LEVEL     = "level";
 
     /** The view used to display the game. */
     private GameView              gameView;
@@ -36,6 +36,12 @@ public class ASokoban extends Activity {
     /** Used to keep the device awake and the screen bright. */
     private PowerManager.WakeLock wakeLock;
 
+    /** The splash view shown right after the start of the application */
+    private SplashView            splashView;
+
+    /** Whether the SplashView is shown. */
+    private boolean               splashViewShown = true;
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,7 +55,7 @@ public class ASokoban extends Activity {
 
         // Retrieve persisted data
         prefs = getPreferences(MODE_PRIVATE);
-        int currentLevel = prefs.getInt(PREFKEY_LEVEL, 0);
+        final int currentLevel = prefs.getInt(PREFKEY_LEVEL, 0);
 
         // Sets the device to not sleep or loose brightness.
         setDeviceNoSleep();
@@ -83,8 +89,23 @@ public class ASokoban extends Activity {
         Display display = windowManager.getDefaultDisplay();
         gameView.setDisplayWidth(display.getWidth());
         gameView.setDisplayHeight(display.getHeight());
-
-        gameController.loadLevel(currentLevel, true);
+        
+        // Add the SplashView
+        splashView = new SplashView(this);
+        gameView.addView(splashView);
+        
+        // When the user taps the screen, the SplashView should disappear and
+        // the level should load.
+        inputController.setTapHandler(new SimpleTapHandler() {
+            @Override
+            public void onTap() {
+                if (splashViewShown) {
+                    gameView.removeView(splashView);
+                    gameController.loadLevel(currentLevel, true);
+                    splashViewShown = false;
+                }
+            }
+        });
     }
 
     /**

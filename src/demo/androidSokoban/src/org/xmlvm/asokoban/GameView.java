@@ -1,6 +1,7 @@
 package org.xmlvm.asokoban;
 
 import android.app.Activity;
+import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
@@ -179,6 +180,26 @@ public class GameView {
      */
     public int getTileY(float py) {
         return ((int) py - offsetTop) / tileSize;
+    }
+
+    /**
+     * Adds a view to be displayed
+     * 
+     * @param view
+     *            The View to add.
+     */
+    public void addView(View view) {
+        layout.addView(view);
+    }
+
+    /**
+     * Removes a view from being shown.
+     * 
+     * @param view
+     *            The View to remove.
+     */
+    public void removeView(View view) {
+        layout.removeView(view);
     }
 
 }

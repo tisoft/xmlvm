@@ -154,10 +154,9 @@ public class GameController implements MoveFinishedHandler {
      * 
      * @param level
      *            The level to be loaded.
-     * 
      * @param showLevel
      *            Determines whether the loaded level will be indicated with a
-     *            DialogBix
+     *            DialogBox
      */
     public void loadLevel(int level, boolean showLevel) {
         // Pause game and store current level
@@ -206,7 +205,6 @@ public class GameController implements MoveFinishedHandler {
             }
 
         };
-
         changeLevelDialog = new AlertDialog.Builder(gameView.getActivity()).create();
         changeLevelDialog.setTitle("Levels ...");
         changeLevelDialog.setButton("Reset", listener);

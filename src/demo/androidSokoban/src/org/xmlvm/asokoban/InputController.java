@@ -11,16 +11,16 @@ import android.view.View.OnTouchListener;
 public class InputController implements SensorListener, OnTouchListener {
     /** Accelerometer threshold to start moving the man. */
     private static final float accelerometerThreshold = 1.7f;
-    
+
     /** Swiping threshold to start moving the man. */
     private static final float swipeThreshold         = 20f;
 
     /** Helper class used to animate the man's movement. */
     private GamePieceMover     mover;
-    
+
     /** The GameController associated with this InputController. */
     private GameController     controller;
-    
+
     /** The GameView associated with this InputController. */
     private GameView           gameView;
 
@@ -32,6 +32,9 @@ public class InputController implements SensorListener, OnTouchListener {
     private float              lastUpX;
     /** The Y coordinate for the last touch button up event. */
     private float              lastUpY;
+
+    /** A tap handler that is called when a tap event happened. */
+    private SimpleTapHandler   tapHandler;
 
     public InputController(GamePieceMover mover, GameController controller) {
         this.mover = mover;
@@ -111,6 +114,10 @@ public class InputController implements SensorListener, OnTouchListener {
      * android.view.MotionEvent)
      */
     public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN && tapHandler != null) {
+            tapHandler.onTap();
+        }
+
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             lastDownX = event.getX();
             lastDownY = event.getY();
@@ -131,12 +138,19 @@ public class InputController implements SensorListener, OnTouchListener {
                     int tx = gameView.getTileX(lastUpX);
                     int ty = gameView.getTileY(lastUpY);
 
-                    if (!controller.getBoard().isFloor(tx, ty)) {
+                    if (!controller.getBoard().isFloor(tx, ty) && !controller.isGamePaused()) {
                         controller.showLevelDialog();
                     }
                 }
             }
         }
         return true;
+    }
+
+    /**
+     * Sets the handler that will be called when the user taps the screen.
+     */
+    public void setTapHandler(SimpleTapHandler handler) {
+        tapHandler = handler;
     }
 }

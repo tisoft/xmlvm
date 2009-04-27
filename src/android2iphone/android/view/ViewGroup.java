@@ -50,6 +50,10 @@ public class ViewGroup extends View {
         this.addSubview(child);
     }
 
+    public void removeView(View child) {
+        // TODO(arno): Implement
+    }
+
     public void addView(View child, int idx) {
         this.insertSubview(child, idx);
     }
