@@ -6,8 +6,6 @@ package org.xmlvm.asokoban;
  */
 public class Levels {
     private static final String[] levels = {
-//            "########\n#    @ #\n#      #\n#    $ #\n#    . #\n########",
-//            "#####\n#   #\n# @ #\n# $ #\n# . #\n#####",
             "    #####\n    #   #\n    #$  #\n  ###  $##\n  #  $ $ #\n### # ## #   ######\n#   # ## #####  ..#\n# $  $          ..#\n##### ### #@##  ..#\n    #     #########\n    #######",
             "############\n#..  #     ###\n#..  # $  $  #\n#..  #$####  #\n#..    @ ##  #\n#..  # #  $ ##\n###### ##$ $ #\n  # $  $ $ $ #\n  #    #     #\n  ############",
             "        ########\n        #     @#\n        # $#$ ##\n        # $  $#\n        ##$ $ #\n######### $ # ###\n#....  ## $  $  #\n##...    $  $   #\n#....  ##########\n########",
@@ -70,5 +68,14 @@ public class Levels {
      */
     public static String getLevel(int level) {
         return levels[level];
+    }
+
+    /**
+     * Returns the number of levels available.
+     * 
+     * @return The number of levels.
+     */
+    public static int getSize() {
+        return levels.length;
     }
 }

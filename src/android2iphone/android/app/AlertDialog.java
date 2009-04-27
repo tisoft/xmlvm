@@ -5,6 +5,7 @@ import org.xmlvm.iphone.UIAlertViewDelegate;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 
 public class AlertDialog extends Dialog implements DialogInterface {
 
@@ -49,5 +50,25 @@ public class AlertDialog extends Dialog implements DialogInterface {
     @Override
     public void show() {
         this.alertView.show();
+    }
+
+    public void setTitle(String string) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void setButton(String string, OnClickListener listener) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void setButton2(String string, OnClickListener listener) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void setButton3(String string, OnClickListener listener) {
+        // TODO Auto-generated method stub
+        
     }
 }

@@ -84,7 +84,7 @@ public class ASokoban extends Activity {
         gameView.setDisplayWidth(display.getWidth());
         gameView.setDisplayHeight(display.getHeight());
 
-        gameController.loadLevel(currentLevel);
+        gameController.loadLevel(currentLevel, true);
     }
 
     /**

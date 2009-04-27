@@ -110,7 +110,20 @@ public class InputController implements SensorListener, OnTouchListener {
                 || event.getAction() == MotionEvent.ACTION_MOVE) {
             lastUpX = event.getX();
             lastUpY = event.getY();
-            moveWithInput(lastUpX - lastDownX, lastUpY - lastDownY, swipeThreshold);
+
+            // Handle swipe to move the man
+            if (Math.abs(lastUpX - lastDownX) > swipeThreshold
+                    || Math.abs(lastUpY - lastDownY) > swipeThreshold) {
+                moveWithInput(lastUpX - lastDownX, lastUpY - lastDownY, swipeThreshold);
+            }
+            // Handle simple tap to either display the level dialog or to move
+            // the
+            // man to the given position
+            else {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    controller.showLevelDialog();
+                }
+            }
         }
         return true;
     }

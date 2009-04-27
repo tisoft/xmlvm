@@ -8,30 +8,32 @@ import android.content.DialogInterface;
  */
 public class GameController implements MoveFinishedHandler {
     /** A flag to indicate whether sensor events will be processed or not. */
-    private boolean       gamePaused   = true;
+    private boolean       gamePaused         = true;
 
     /** The current level. */
-    private int           currentLevel = 0;
+    private int           currentLevel       = 0;
 
     /** The number of moves. */
-    private int           moveCount    = 0;
+    private int           moveCount          = 0;
 
     /** A representation of the game's man game piece. */
-    private Man           man          = null;
+    private Man           man                = null;
 
     /** A list of all ball game pieces. */
-    private GamePieceList balls        = null;
+    private GamePieceList balls              = null;
 
     /** A list of all goal game pieces. */
-    private GamePieceList goals        = null;
+    private GamePieceList goals              = null;
 
     /** The current game board. */
-    private Board         board        = null;
+    private Board         board              = null;
 
     /** The {@link GameView} associated with this GameController. */
-    private GameView      gameView     = null;
+    private GameView      gameView           = null;
 
-    private AlertDialog   dialog;
+    private AlertDialog   currentLevelDialog = null;
+
+    private AlertDialog   changeLevelDialog  = null;
 
     /**
      * Instantiates a new GameController and connects it to the given
@@ -152,8 +154,12 @@ public class GameController implements MoveFinishedHandler {
      * 
      * @param level
      *            The level to be loaded.
+     * 
+     * @param showLevel
+     *            Determines whether the loaded level will be indicated with a
+     *            DialogBix
      */
-    public void loadLevel(int level) {
+    public void loadLevel(int level, boolean showLevel) {
         // Pause game and store current level
         gamePaused = true;
         currentLevel = level;
@@ -167,37 +173,47 @@ public class GameController implements MoveFinishedHandler {
         gameView.displayBoard(board);
 
         // Display current level
-        dialog = new AlertDialog.Builder(gameView.getActivity()).setTitle(
-                "Level: " + (currentLevel + 1)).setPositiveButton("OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        gamePaused = false;
-                    }
-                }).create();
-        dialog.show();
+        if (showLevel) {
+            currentLevelDialog = new AlertDialog.Builder(gameView.getActivity()).setTitle(
+                    "Level: " + (currentLevel + 1)).setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            gamePaused = false;
+                        }
+                    }).create();
+            currentLevelDialog.show();
+        }
     }
 
-    /*
-     * @Override public boolean onTouch(View v, MotionEvent event) { if
-     * (event.getAction() == MotionEvent.ACTION_DOWN) { createLevelsDialog();
-     * return true; }
-     * 
-     * return false; }
-     * 
-     * private void createLevelsDialog() { DialogInterface.OnClickListener
-     * listener = new DialogInterface.OnClickListener() {
-     * 
-     * @Override public void onClick(DialogInterface dialog, int which) {
-     * Log.d("LevelsDialog", "Button: " + which); dialog.dismiss(); }
-     * 
-     * };
-     * 
-     * AlertDialog levelsDialog = new
-     * AlertDialog.Builder(gameView.getActivity()).create();
-     * levelsDialog.setTitle("Levels ..."); levelsDialog.setButton("Reset",
-     * listener); levelsDialog.setButton2("Next", listener);
-     * levelsDialog.show(); }
-     */
+    public void showLevelDialog() {
+        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                boolean showLevelDialog = false;
+                // Second button: Increase current level to proceed to next
+                // level
+                if (which == DialogInterface.BUTTON3) {
+                    currentLevel++;
+                    showLevelDialog = true;
+                }
+
+                changeLevelDialog.dismiss();
+
+                if (which != DialogInterface.BUTTON2 && currentLevel < Levels.getSize()) {
+                    loadLevel(currentLevel, showLevelDialog);
+                }
+            }
+
+        };
+
+        changeLevelDialog = new AlertDialog.Builder(gameView.getActivity()).create();
+        changeLevelDialog.setTitle("Levels ...");
+        changeLevelDialog.setButton("Reset", listener);
+        changeLevelDialog.setButton2("Cancel", listener);
+        changeLevelDialog.setButton3("Next", listener);
+        changeLevelDialog.show();
+    }
 
     /**
      * Returns the number of moves already made in the current game.
@@ -230,7 +246,7 @@ public class GameController implements MoveFinishedHandler {
     public void onMoveFinished() {
         if (isLevelFinished()) {
             currentLevel++;
-            loadLevel(currentLevel);
+            loadLevel(currentLevel, true);
             return;
         }
     }
@@ -239,6 +255,12 @@ public class GameController implements MoveFinishedHandler {
      * Should be called, before the object is destroyed.
      */
     public void onDestroy() {
-        dialog.dismiss();
+        if (currentLevelDialog != null) {
+            currentLevelDialog.dismiss();
+        }
+
+        if (changeLevelDialog != null) {
+            changeLevelDialog.dismiss();
+        }
     }
 }
