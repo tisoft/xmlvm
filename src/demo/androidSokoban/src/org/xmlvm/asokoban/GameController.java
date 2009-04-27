@@ -206,7 +206,8 @@ public class GameController implements MoveFinishedHandler {
 
         };
         changeLevelDialog = new AlertDialog.Builder(gameView.getActivity()).create();
-        changeLevelDialog.setTitle("Levels ...");
+        changeLevelDialog.setTitle("You can reset the current level, jump to the next or dismiss "
+                + "this dialog.");
         changeLevelDialog.setButton("Reset", listener);
         changeLevelDialog.setButton2("Cancel", listener);
         changeLevelDialog.setButton3("Next", listener);
