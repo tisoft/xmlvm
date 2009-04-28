@@ -20,7 +20,6 @@ import javax.swing.JPanel;
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIEvent;
-import org.xmlvm.iphone.UIInterfaceOrientation;
 import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UITouchPhase;
@@ -115,13 +114,16 @@ public class Display extends JPanel implements MouseListener, MouseMotionListene
         UIView view = null;
         // TODO
         UIEvent event = null;
-        
+
         int x = e.getX();
         int y = e.getY();
         Set<UITouch> touches = new HashSet<UITouch>();
         UITouch touch = new UITouch(phase, view, x, y);
         touches.add(touch);
-        for (UIResponder responder : touchesListener) {
+        // Make a static array out of the current list to prevent concurrent
+        // modification problems.
+        final UIResponder[] responders = touchesListener.toArray(new UIResponder[0]);
+        for (UIResponder responder : responders) {
             switch (phase) {
             case UITouchPhase.UITouchPhaseBegan:
                 responder.touchesBegan(touches, event);
