@@ -21,9 +21,6 @@ public class InputController implements SensorListener, OnTouchListener {
     /** The GameController associated with this InputController. */
     private GameController     controller;
 
-    /** The GameView associated with this InputController. */
-    private GameView           gameView;
-
     /** The X coordinate for the last touch button down event. */
     private float              lastDownX;
     /** The Y coordinate for the last touch button down event. */
@@ -39,7 +36,6 @@ public class InputController implements SensorListener, OnTouchListener {
     public InputController(GamePieceMover mover, GameController controller) {
         this.mover = mover;
         this.controller = controller;
-        this.gameView = controller.getGameView();
     }
 
     /**
