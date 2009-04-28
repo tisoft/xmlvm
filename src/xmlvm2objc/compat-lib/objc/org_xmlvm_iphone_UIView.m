@@ -64,6 +64,11 @@
 	[self bringSubviewToFront: view];
 }
 
+- (java_util_List*) getSubviews
+{
+	return self.subviews;
+}
+
 - (void) setTransform___org_xmlvm_iphone_CGAffineTransform :(org_xmlvm_iphone_CGAffineTransform*)trans
 {
 	if (trans == [java_lang_null _GET_NULL])
