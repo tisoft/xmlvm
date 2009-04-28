@@ -26,6 +26,9 @@ public class GameView {
     /** The background image. */
     private ImageView      backgroundImage;
 
+    /** The Info logo image. */
+    private ImageView      infoImage;
+
     /** The size of a single game piece. */
     private int            tileSize;
 
@@ -59,6 +62,8 @@ public class GameView {
         activity.setContentView(layout);
         backgroundImage = new ImageView(activity);
         backgroundImage.setImageResource(R.drawable.background);
+        infoImage = new ImageView(activity);
+        infoImage.setImageResource(R.drawable.info);
     }
 
     /**
@@ -102,6 +107,11 @@ public class GameView {
         }
 
         layout.addView(backgroundImage, 0);
+
+        AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
+                AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
+                displayWidth - tileSize -1, displayHeight - tileSize);
+        layout.addView(infoImage, p);
     }
 
     public GameController getGameController() {

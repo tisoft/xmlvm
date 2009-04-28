@@ -18,11 +18,12 @@ public final class R {
         public static final int goal=0x7f020004;
         public static final int goal15=0x7f020005;
         public static final int icon=0x7f020006;
-        public static final int man=0x7f020007;
-        public static final int man15=0x7f020008;
-        public static final int splash=0x7f020009;
-        public static final int wall=0x7f02000a;
-        public static final int wall15=0x7f02000b;
+        public static final int info=0x7f020007;
+        public static final int man=0x7f020008;
+        public static final int man15=0x7f020009;
+        public static final int splash=0x7f02000a;
+        public static final int wall=0x7f02000b;
+        public static final int wall15=0x7f02000c;
     }
     public static final class layout {
         public static final int main=0x7f030000;
