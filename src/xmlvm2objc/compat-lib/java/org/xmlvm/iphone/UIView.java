@@ -86,6 +86,15 @@ public class UIView extends UIResponder {
         subViews.add(subView);
     }
 
+    public void removeFromSuperview() {
+        parent.subViews.remove(this);
+        Simulator.redrawDisplay();
+    }
+
+    public List<UIView> getSubviews() {
+        return new ArrayList<UIView>(this.subViews);
+    }
+
     public void layoutSubviews() {
     }
 

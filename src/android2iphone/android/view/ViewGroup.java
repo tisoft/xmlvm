@@ -25,6 +25,7 @@ import java.util.Set;
 import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UITouch;
+import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 
@@ -51,7 +52,7 @@ public class ViewGroup extends View {
     }
 
     public void removeView(View child) {
-        // TODO(arno): Implement
+        child.removeFromSuperview();
     }
 
     public void addView(View child, int idx) {
@@ -59,7 +60,9 @@ public class ViewGroup extends View {
     }
 
     public void removeAllViews() {
-        // TODO(arno): Implement
+        for (UIView view : this.getSubviews()) {
+            view.removeFromSuperview();
+        }
     }
 
     public void setOnTouchListener(OnTouchListener listener) {
