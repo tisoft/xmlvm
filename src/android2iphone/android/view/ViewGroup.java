@@ -28,8 +28,6 @@ import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
-import android.widget.ImageView;
-import android.widget.AbsoluteLayout.LayoutParams;
 
 /**
  * iPhone implementation of Android's ViewGroup class.
@@ -53,11 +51,11 @@ public class ViewGroup extends View {
         this.addSubview(child);
     }
 
-
-    public void addView(ImageView infoImage, LayoutParams p) {
-        // TODO implement
-        
+    public void addView(View child, LayoutParams p) {
+        this.addView(child);
+        child.setLayoutParams(p);
     }
+
     public void removeView(View child) {
         child.removeFromSuperview();
     }
