@@ -135,10 +135,7 @@ public class InputController implements SensorListener, OnTouchListener {
             // the man to the given position
             else {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    int tx = gameView.getTileX(lastUpX);
-                    int ty = gameView.getTileY(lastUpY);
-
-                    if (!controller.getBoard().isFloor(tx, ty) && !controller.isGamePaused()) {
+                    if (!controller.isGamePaused()) {
                         controller.showLevelDialog();
                     }
                 }

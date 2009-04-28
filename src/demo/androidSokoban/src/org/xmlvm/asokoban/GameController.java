@@ -246,15 +246,6 @@ public class GameController implements MoveFinishedHandler {
         return gameView.getTileSize();
     }
 
-    /**
-     * Accessor to retrieve the game board.
-     * 
-     * @return The game board.
-     */
-    public Board getBoard() {
-        return board;
-    }
-
     /*
      * (non-Javadoc)
      * 

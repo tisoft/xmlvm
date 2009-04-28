@@ -157,32 +157,6 @@ public class GameView {
     }
 
     /**
-     * Computes the horizontal tile index of a given pixel. If the given
-     * position is outside the board a negative value is returned.
-     * 
-     * @param px
-     *            The pixel position to get a tile index from.
-     * 
-     * @return The computed tile index.
-     */
-    public int getTileX(float px) {
-        return ((int) px - offsetLeft) / tileSize;
-    }
-
-    /**
-     * Computes the vertical tile index of a given pixel. If the given position
-     * is outside the board a negative value is returned.
-     * 
-     * @param py
-     *            The pixel position to get a tile index from.
-     * 
-     * @return The computed tile index.
-     */
-    public int getTileY(float py) {
-        return ((int) py - offsetTop) / tileSize;
-    }
-
-    /**
      * Adds a view to be displayed
      * 
      * @param view
