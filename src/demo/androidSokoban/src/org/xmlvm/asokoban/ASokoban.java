@@ -19,7 +19,7 @@ import android.view.WindowManager;
 public class ASokoban extends Activity {
 
     /** Used to store the level in the user prefs. */
-    private static final String   PREFKEY_LEVEL     = "level";
+    private static final String   PREFKEY_LEVEL = "level";
 
     /** The view used to display the game. */
     private GameView              gameView;
@@ -35,12 +35,6 @@ public class ASokoban extends Activity {
 
     /** Used to keep the device awake and the screen bright. */
     private PowerManager.WakeLock wakeLock;
-
-    /** The splash view shown right after the start of the application */
-    private SplashView            splashView;
-
-    /** Whether the SplashView is shown. */
-    private boolean               splashViewShown = true;
 
     /** Called when the activity is first created. */
     @Override
@@ -75,11 +69,11 @@ public class ASokoban extends Activity {
         // Create view and controller.
         GamePieceMover mover = new GamePieceMover();
         gameView = new GameView(this, mover);
-        gameController = new GameController(gameView);
+        gameController = new GameController(gameView, this, currentLevel);
         gameView.setGameController(gameController);
         mover.setMoveFinishedHandler(gameController);
 
-        inputController = new InputController(mover, gameController);
+        inputController = new InputController(mover, gameController, gameView);
         gameView.setOnTouchListener(inputController);
         sensorManager.registerListener(inputController, SensorManager.SENSOR_ACCELEROMETER,
                 SensorManager.SENSOR_DELAY_FASTEST);
@@ -89,23 +83,8 @@ public class ASokoban extends Activity {
         Display display = windowManager.getDefaultDisplay();
         gameView.setDisplayWidth(display.getWidth());
         gameView.setDisplayHeight(display.getHeight());
-        
-        // Add the SplashView
-        splashView = new SplashView(this);
-        gameView.addView(splashView);
-        
-        // When the user taps the screen, the SplashView should disappear and
-        // the level should load.
-        inputController.setTapHandler(new SimpleTapHandler() {
-            @Override
-            public void onTap() {
-                if (splashViewShown) {
-                    gameView.removeView(splashView);
-                    gameController.loadLevel(currentLevel, true);
-                    splashViewShown = false;
-                }
-            }
-        });
+
+        gameController.showSplashScreen(inputController, true);
     }
 
     /**

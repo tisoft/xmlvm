@@ -110,7 +110,7 @@ public class GameView {
 
         AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
                 AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                displayWidth - tileSize -1, displayHeight - tileSize);
+                displayWidth - tileSize - 1, displayHeight - tileSize);
         layout.addView(infoImage, p);
     }
 
@@ -186,4 +186,18 @@ public class GameView {
         layout.removeView(view);
     }
 
+    /**
+     * Tests whether a given coordinate is inside the info logo.
+     * 
+     * @param x
+     *            The x part of the coordinate to be tested.
+     * 
+     * @param y
+     *            The y part of the coordinate to be tested.
+     * 
+     * @return true if the coordinate is inside of the logo, false otherwise.
+     */
+    public boolean isInsideInfoLogo(float x, float y) {
+        return (int) x > displayWidth - tileSize && (int) y > displayHeight - tileSize;
+    }
 }

@@ -1,5 +1,6 @@
 package org.xmlvm.asokoban;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
@@ -31,6 +32,15 @@ public class GameController implements MoveFinishedHandler {
     /** The {@link GameView} associated with this GameController. */
     private GameView      gameView           = null;
 
+    /**
+     * The splash view shown right after the start of the application or after
+     * tapping the (i) logo.
+     */
+    private SplashView    splashView;
+
+    /** Whether the SplashView is shown. */
+    private boolean       splashViewShown    = true;
+
     private AlertDialog   currentLevelDialog = null;
 
     private AlertDialog   changeLevelDialog  = null;
@@ -45,8 +55,10 @@ public class GameController implements MoveFinishedHandler {
      *            The GameView used to display the game.
      */
 
-    public GameController(GameView gameView) {
+    public GameController(GameView gameView, Activity activity, int currentLevel) {
         this.gameView = gameView;
+        splashView = new SplashView(activity);
+        this.currentLevel = currentLevel;
     }
 
     /**
@@ -184,6 +196,10 @@ public class GameController implements MoveFinishedHandler {
         }
     }
 
+    /**
+     * Shows a dialog allowing the user to reset the current level or to proceed
+     * to the next level.
+     */
     public void showLevelDialog() {
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
 
@@ -212,6 +228,30 @@ public class GameController implements MoveFinishedHandler {
         changeLevelDialog.setButton2("Cancel", listener);
         changeLevelDialog.setButton3("Next", listener);
         changeLevelDialog.show();
+    }
+
+    public void showSplashScreen(final InputController ic, final boolean loadLevel) {
+        // Add the SplashView
+        gameView.addView(splashView);
+        splashViewShown = true;
+
+        // When the user taps the screen, the SplashView should disappear and
+        // the level should load.
+        ic.setTapHandler(new SimpleTapHandler() {
+            @Override
+            public void onTap() {
+                if (splashViewShown) {
+                    gameView.removeView(splashView);
+                    ic.setTapHandler(null);
+                    splashViewShown = false;
+                    
+                    if (loadLevel) {
+                        loadLevel(currentLevel, true);
+                    }
+                }
+            }
+        });
+
     }
 
     /**

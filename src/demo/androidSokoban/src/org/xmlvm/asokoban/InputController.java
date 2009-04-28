@@ -21,6 +21,9 @@ public class InputController implements SensorListener, OnTouchListener {
     /** The GameController associated with this InputController. */
     private GameController     controller;
 
+    /** The GameView associated with this InputController. */
+    private GameView           view;
+
     /** The X coordinate for the last touch button down event. */
     private float              lastDownX;
     /** The Y coordinate for the last touch button down event. */
@@ -33,9 +36,10 @@ public class InputController implements SensorListener, OnTouchListener {
     /** A tap handler that is called when a tap event happened. */
     private SimpleTapHandler   tapHandler;
 
-    public InputController(GamePieceMover mover, GameController controller) {
+    public InputController(GamePieceMover mover, GameController controller, GameView view) {
         this.mover = mover;
         this.controller = controller;
+        this.view = view;
     }
 
     /**
@@ -112,6 +116,7 @@ public class InputController implements SensorListener, OnTouchListener {
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN && tapHandler != null) {
             tapHandler.onTap();
+            return true;
         }
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -127,12 +132,15 @@ public class InputController implements SensorListener, OnTouchListener {
                     || Math.abs(lastUpY - lastDownY) > swipeThreshold) {
                 moveWithInput(lastUpX - lastDownX, lastUpY - lastDownY, swipeThreshold);
             }
-            // Handle simple tap to either display the level dialog or to move
-            // the man to the given position
+            // Either display the level dialog or the splash screen
             else {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     if (!controller.isGamePaused()) {
-                        controller.showLevelDialog();
+                        if (view.isInsideInfoLogo(lastUpX, lastUpY)) {
+                            controller.showSplashScreen(this, false);
+                        } else {
+                            controller.showLevelDialog();
+                        }
                     }
                 }
             }
