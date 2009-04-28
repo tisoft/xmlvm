@@ -198,6 +198,6 @@ public class GameView {
      * @return true if the coordinate is inside of the logo, false otherwise.
      */
     public boolean isInsideInfoLogo(float x, float y) {
-        return (int) x > displayWidth - tileSize && (int) y > displayHeight - tileSize;
+        return (int) x > displayWidth - 30 && (int) y > displayHeight - 30;
     }
 }
