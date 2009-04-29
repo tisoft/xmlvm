@@ -111,10 +111,9 @@ public class GameView {
 
         layout.addView(backgroundImage, 0);
 
-        AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
+        layout.addView(infoImage, new AbsoluteLayout.LayoutParams(
                 AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                displayWidth - INFO_ICON_SIZE - 1, displayHeight - INFO_ICON_SIZE);
-        layout.addView(infoImage, p);
+                displayWidth - INFO_ICON_SIZE - 1, displayHeight - INFO_ICON_SIZE));
     }
 
     public GameController getGameController() {
