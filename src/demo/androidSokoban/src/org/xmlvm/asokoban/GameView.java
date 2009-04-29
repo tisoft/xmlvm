@@ -11,38 +11,41 @@ import android.widget.ImageView;
  */
 public class GameView {
 
+    /** The INFO icon's size. */
+    private static final int INFO_ICON_SIZE = 25;
+
     /** The Activity associated with this GameView. */
-    private Activity       activity;
+    private Activity         activity;
 
     /** The content view used to display the game. */
-    private AbsoluteLayout layout;
+    private AbsoluteLayout   layout;
 
     /** The GameController controlling the gane. */
-    private GameController gameController;
+    private GameController   gameController;
 
     /** The helper used to animate the man's moves. */
-    private GamePieceMover mover;
+    private GamePieceMover   mover;
 
     /** The background image. */
-    private ImageView      backgroundImage;
+    private ImageView        backgroundImage;
 
     /** The Info logo image. */
-    private ImageView      infoImage;
+    private ImageView        infoImage;
 
     /** The size of a single game piece. */
-    private int            tileSize;
+    private int              tileSize;
 
     /** The display's X resolution. */
-    private int            displayWidth;
+    private int              displayWidth;
 
     /** The display's Y resolution. */
-    private int            displayHeight;
+    private int              displayHeight;
 
     /** The boards Y offset from the display's top left corner. */
-    private int            offsetTop;
+    private int              offsetTop;
 
     /** The boards X offset from the display's top left corner. */
-    private int            offsetLeft;
+    private int              offsetLeft;
 
     /**
      * Constructor to create a GameActivity and associate it with the
@@ -110,7 +113,7 @@ public class GameView {
 
         AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
                 AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                displayWidth - tileSize - 1, displayHeight - tileSize);
+                displayWidth - INFO_ICON_SIZE - 1, displayHeight - INFO_ICON_SIZE);
         layout.addView(infoImage, p);
     }
 
@@ -198,6 +201,7 @@ public class GameView {
      * @return true if the coordinate is inside of the logo, false otherwise.
      */
     public boolean isInsideInfoLogo(float x, float y) {
-        return (int) x > displayWidth - 30 && (int) y > displayHeight - 30;
+        return (int) x > displayWidth - (INFO_ICON_SIZE + 10)
+                && (int) y > displayHeight - (INFO_ICON_SIZE + 10);
     }
 }
