@@ -114,8 +114,11 @@ public class InputController implements SensorListener, OnTouchListener {
      * android.view.MotionEvent)
      */
     public boolean onTouch(View v, MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN && tapHandler != null) {
-            tapHandler.onTap();
+        if ((event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_UP)
+                && tapHandler != null) {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                tapHandler.onTap();
+            }
             return true;
         }
 
