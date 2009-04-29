@@ -364,10 +364,13 @@ public class ParseJVM
          * parameter. This indicates a missing <var> declaration for a hidden
          * parameter.
          */
+        int numMethodArgs = method.getArgumentTypes().length;
         if (isConstructor && lvs.length == 1
-                && method.getArgumentTypes().length == 1)
-            addHiddenVarDecl(xml_code, 1);
-
+                && numMethodArgs > 0) {
+            for (int i = 0; i < numMethodArgs; i++) {
+                addHiddenVarDecl(xml_code, lastID + i + 1);
+            }
+        }
 
         if (method.isSynthetic()) {
             /*
