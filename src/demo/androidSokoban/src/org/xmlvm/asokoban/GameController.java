@@ -89,7 +89,7 @@ public class GameController implements MoveFinishedHandler {
      *            The number of pixels to move vertically.
      */
     public void moveMan(int dx, int dy) {
-        if (man.isMoving()) {
+        if (man == null || man.isMoving()) {
             return;
         }
         int newX = man.getX() + dx;
