@@ -14,6 +14,9 @@ public class GameController implements MoveFinishedHandler {
     /** The current level. */
     private int           currentLevel       = 0;
 
+    /** Indicates whether the current level has been started. */
+    private boolean       levelStarted       = false;
+
     /** The number of moves. */
     private int           moveCount          = 0;
 
@@ -106,6 +109,7 @@ public class GameController implements MoveFinishedHandler {
         }
 
         // Move man only
+        levelStarted = true;
         moveCount++;
         if (adjacentBall == null) {
             man.startMoving(dx, dy);
@@ -174,6 +178,7 @@ public class GameController implements MoveFinishedHandler {
         // Pause game and store current level
         gamePaused = true;
         currentLevel = level;
+        levelStarted = false;
 
         // Create and display the level's board
         board = new Board(new CharField(Levels.getLevel(level), Board.BOARD_WIDTH,
@@ -193,6 +198,8 @@ public class GameController implements MoveFinishedHandler {
                         }
                     }).create();
             currentLevelDialog.show();
+        } else {
+            gamePaused = false;
         }
     }
 
@@ -206,6 +213,13 @@ public class GameController implements MoveFinishedHandler {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 boolean showLevelDialog = false;
+                // First button: Test for previous level and go back to previous
+                // level if necessary
+                if (which == DialogInterface.BUTTON1 && !levelStarted && currentLevel > 0) {
+                    currentLevel--;
+                    showLevelDialog = true;
+                }
+
                 // Second button: Increase current level to proceed to next
                 // level
                 if (which == DialogInterface.BUTTON3) {
@@ -215,7 +229,7 @@ public class GameController implements MoveFinishedHandler {
 
                 changeLevelDialog.dismiss();
 
-                if (which != DialogInterface.BUTTON2 && currentLevel < Levels.getSize()) {
+                if (which != DialogInterface.BUTTON2) {
                     loadLevel(currentLevel, showLevelDialog);
                 }
             }
@@ -224,9 +238,16 @@ public class GameController implements MoveFinishedHandler {
         changeLevelDialog = new AlertDialog.Builder(gameView.getActivity()).create();
         changeLevelDialog.setTitle("You can reset the current level, jump to the next or dismiss "
                 + "this dialog.");
-        changeLevelDialog.setButton("Reset", listener);
+        if (!levelStarted && currentLevel > 0) {
+            changeLevelDialog.setButton("Previous", listener);
+        } else {
+            changeLevelDialog.setButton("Reset", listener);
+        }
         changeLevelDialog.setButton2("Cancel", listener);
-        changeLevelDialog.setButton3("Next", listener);
+
+        if (currentLevel < Levels.getSize() - 1) {
+            changeLevelDialog.setButton3("Next", listener);
+        }
         changeLevelDialog.show();
     }
 
@@ -244,7 +265,7 @@ public class GameController implements MoveFinishedHandler {
                     gameView.removeView(splashView);
                     ic.setTapHandler(null);
                     splashViewShown = false;
-                    
+
                     if (loadLevel) {
                         loadLevel(currentLevel, true);
                     }
