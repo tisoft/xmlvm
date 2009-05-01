@@ -48,7 +48,7 @@
     CGRect _r1 = [r1 getCGRect];
     CGRect _r2 = [r2 getCGRect];
     CGRect _r = CGRectIntersection(_r1, _r2);
-    org_xmlvm_iphone_CGRect* r = [[org_xmlvm_iphone_CGRect alloc] init];
+    org_xmlvm_iphone_CGRect* r = [[[org_xmlvm_iphone_CGRect alloc] init] autorelease];
     r->origin->x = _r.origin.x;
     r->origin->y = _r.origin.y;
     r->size->width = _r.size.width;

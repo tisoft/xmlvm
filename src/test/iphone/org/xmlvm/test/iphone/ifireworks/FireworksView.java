@@ -10,6 +10,8 @@ public class FireworksView
 {
     Bomb    bombs[];
     boolean timerActive;
+    NSTimer timer;
+    
     FireworksView(CGRect windowRect)
     {
         super(windowRect);
@@ -48,7 +50,7 @@ public class FireworksView
 
     void initTimer()
     {
-        new NSTimer(0.05f, this, "triggered", null, true);
+        timer = new NSTimer(0.05f, this, "triggered", null, true);
     }
 
 

@@ -411,10 +411,6 @@ int main(int argc, char* argv[])
 
 <xsl:template match="jvm:astore">
   <xsl:text>    _op1.o = _stack[--_sp].o;
-    [_op1.o retain];
-    [_locals[</xsl:text>
-  <xsl:value-of select="@index"/>
-  <xsl:text>].o release];
     _locals[</xsl:text>
   <xsl:value-of select="@index"/>
   <xsl:text>].o = _op1.o;
