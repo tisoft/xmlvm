@@ -74,13 +74,13 @@ public class AlertDialog extends Dialog implements DialogInterface {
     }
 
     public void setButton2(String string, OnClickListener listener) {
-        buttonTitles[1] = string;
-        listeners[1] = listener;
+        buttonTitles[2] = string;
+        listeners[2] = listener;
     }
 
     public void setButton3(String string, OnClickListener listener) {
-        buttonTitles[2] = string;
-        listeners[2] = listener;
+        buttonTitles[1] = string;
+        listeners[1] = listener;
     }
 
     /**
@@ -92,9 +92,18 @@ public class AlertDialog extends Dialog implements DialogInterface {
             listener = AlertDialog.this.builder.clickListener;
         }
         if (listener != null) {
-            // Internally we have index from 0-2. The constants
-            // DialogInterface.[BUTTON1|BUTTON2|BUTTON3] are -1, -2 and -3.
-            int index = -buttonIndex - 1;
+            int index = 0;
+            switch(buttonIndex) {
+            case 0:
+                index = DialogInterface.BUTTON1;
+                break;
+            case 1:
+                index = DialogInterface.BUTTON3;
+                break;
+            case 2:
+                index = DialogInterface.BUTTON2;
+                break;
+            }
             listener.onClick(AlertDialog.this, index);
         }
     }
