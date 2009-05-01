@@ -18,5 +18,17 @@
 	[delegate retain];
 	[self initWithTitle:title message:message delegate:delegate cancelButtonTitle:cancelButtonTitle otherButtonTitles: nil];
 }
+
+- (void) setTitle___java_lang_String
+			 :(java_lang_String*) title;
+{
+	self.title = title;
+}
+
+- (int) addButtonWithTitle___java_lang_String
+             :(java_lang_String*) title;
+{
+	return [self addButtonWithTitle:title];
+}
              
 @end

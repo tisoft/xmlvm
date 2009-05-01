@@ -210,7 +210,6 @@ public class GameController implements MoveFinishedHandler {
     public void showLevelDialog() {
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
 
-            @Override
             public void onClick(DialogInterface dialog, int which) {
                 boolean showLevelDialog = false;
                 // First button: Test for previous level and go back to previous
@@ -236,8 +235,7 @@ public class GameController implements MoveFinishedHandler {
 
         };
         changeLevelDialog = new AlertDialog.Builder(gameView.getActivity()).create();
-        changeLevelDialog.setTitle("You can reset the current level, jump to the next or dismiss "
-                + "this dialog.");
+        changeLevelDialog.setTitle("What do you want to do?");
         if (!levelStarted && currentLevel > 0) {
             changeLevelDialog.setButton("Previous", listener);
         } else {
@@ -259,7 +257,6 @@ public class GameController implements MoveFinishedHandler {
         // When the user taps the screen, the SplashView should disappear and
         // the level should load.
         ic.setTapHandler(new SimpleTapHandler() {
-            @Override
             public void onTap() {
                 if (splashViewShown) {
                     gameView.removeView(splashView);

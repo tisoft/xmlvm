@@ -615,6 +615,11 @@ int main(int argc, char* argv[])
 </xsl:text>
 </xsl:template>
 
+<xsl:template match="jvm:ineg">
+  <xsl:text>    _op1.i = _stack[--_sp].i;
+    _stack[_sp++].i = -_op1.i;
+</xsl:text>
+</xsl:template>
 
 <xsl:template match="jvm:iload">
   <xsl:text>    _op1.i = _locals[</xsl:text>

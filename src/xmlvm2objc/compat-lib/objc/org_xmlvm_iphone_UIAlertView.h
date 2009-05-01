@@ -15,4 +15,9 @@ typedef UIAlertView org_xmlvm_iphone_UIAlertView;
              :(org_xmlvm_iphone_UIAlertViewDelegate*) delegate
              :(java_lang_String*) cancelButtonTitle;
              
+- (void) setTitle___java_lang_String
+			 :(java_lang_String*) title;
+
+- (int) addButtonWithTitle___java_lang_String
+             :(java_lang_String*) title;
 @end
