@@ -242,9 +242,25 @@ int main(int argc, char* argv[])
     <xsl:value-of select="vm:fixname(@package)"/>
     <xsl:text>_</xsl:text>
     <xsl:value-of select="vm:fixname(@name)"/>
+    
+    <!-- Emit destructor -->
     <xsl:text>;
 
+- (void) dealloc;
+{
 </xsl:text>
+	<xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type)]">
+	  <xsl:text>    [</xsl:text>
+	  <xsl:value-of select="@name"/>
+	  <xsl:text> release];
+</xsl:text>
+	</xsl:for-each>
+	<xsl:text>    [super dealloc];
+}
+
+</xsl:text>
+
+	<!-- Emit getters and setters for static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
       <!-- Emit getter -->
       <xsl:variable name="field">
