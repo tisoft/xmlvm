@@ -19,4 +19,13 @@ public class UIAlertView extends UIView {
         // TODO just a dummy implementation
         delegate.clickedButtonAtIndex(this, 0);
     }
+    
+    public void setTitle(String title) {
+        // TODO
+    }
+    
+    public int addButtonWithTitle(String title) {
+        // TODO
+        return 0;
+    }
 }
