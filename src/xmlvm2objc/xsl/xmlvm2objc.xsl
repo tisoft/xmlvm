@@ -350,10 +350,6 @@ int main(int argc, char* argv[])
   <xsl:text>];
     int _sp = 0;
     XMLVMElem _op1, _op2, _op3;
-    int _i;
-    for (_i = 0; _i &lt;</xsl:text>
-  <xsl:value-of select="../@locals"/>
-  <xsl:text>; _i++) _locals[_i].o = [java_lang_null _GET_NULL];
     NSAutoreleasePool* _pool = [[NSAutoreleasePool alloc] init];
 </xsl:text>
   <xsl:call-template name="initLocals"/>
