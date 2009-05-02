@@ -21,6 +21,8 @@
 
 - (void) setDelegate___org_xmlvm_iphone_UITableViewDelegate :(org_xmlvm_iphone_UITableViewDelegate*) delegate
 {
+	// TODO the delegate should be released in dealloc
+	[delegate retain];
 	[self setDelegate: delegate];
 }
 
