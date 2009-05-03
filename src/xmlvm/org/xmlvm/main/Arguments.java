@@ -27,14 +27,12 @@ import java.util.List;
  * This class parses the arguments given in a string array and makes them easily
  * accessible for the application to use.
  * 
- * @author Arno Puder
- * 
  */
 public class Arguments {
 	// The arguments that are given by the user on the command line.
-	public static final String ARG_IN = "--in";
-	public static final String ARG_OUT = "--out";
-	public static final String ARG_TARGET = "--target";
+	public static final String ARG_IN = "--in=";
+	public static final String ARG_OUT = "--out=";
+	public static final String ARG_TARGET = "--target=";
 	public static final String ARG_IPHONE_APP = "--iphone-app=";
 	public static final String ARG_ANDROID_TO_IPHONE = "--android2iphone";
 	public static final String ARG_QX_APP = "--qx-app=";
