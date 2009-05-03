@@ -10,13 +10,17 @@ NSObject* _STATIC_NULL;
 
 + (void) initialize
 {
-    _STATIC_NULL = [[[NSObject alloc] init] autorelease];
+    _STATIC_NULL = [[NSObject alloc] init];
+}
+
+- (NSUInteger) retainCount
+{
+	// UINT_MAX indicates that this instance is immortal
+	return UINT_MAX;
 }
 
 + (NSObject*) _GET_NULL
 {
-	// Usually we don't do a retain in getters, but NULL is different
-	[_STATIC_NULL retain];
     return _STATIC_NULL;
 }
 

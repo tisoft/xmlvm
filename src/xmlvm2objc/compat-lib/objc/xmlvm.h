@@ -34,6 +34,7 @@ typedef union {
 @interface java_lang_null : NSObject
 
 + (void) initialize;
+- (NSUInteger) retainCount;
 + (NSObject*) _GET_NULL;
 
 @end
