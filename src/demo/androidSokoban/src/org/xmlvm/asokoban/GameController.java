@@ -1,5 +1,8 @@
 package org.xmlvm.asokoban;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,44 +12,44 @@ import android.content.DialogInterface;
  */
 public class GameController implements MoveFinishedHandler {
     /** A flag to indicate whether sensor events will be processed or not. */
-    private boolean       gamePaused         = true;
+    private boolean         gamePaused         = true;
 
     /** The current level. */
-    private int           currentLevel       = 0;
+    private int             currentLevel       = 0;
 
     /** Indicates whether the current level has been started. */
-    private boolean       levelStarted       = false;
+    private boolean         levelStarted       = false;
 
     /** The number of moves. */
-    private int           moveCount          = 0;
+    private int             moveCount          = 0;
 
     /** A representation of the game's man game piece. */
-    private Man           man                = null;
+    private Man             man                = null;
 
     /** A list of all ball game pieces. */
-    private GamePieceList balls              = null;
+    private List<GamePiece> balls              = null;
 
     /** A list of all goal game pieces. */
-    private GamePieceList goals              = null;
+    private List<GamePiece> goals              = null;
 
     /** The current game board. */
-    private Board         board              = null;
+    private Board           board              = null;
 
     /** The {@link GameView} associated with this GameController. */
-    private GameView      gameView           = null;
+    private GameView        gameView           = null;
 
     /**
      * The splash view shown right after the start of the application or after
      * tapping the (i) logo.
      */
-    private SplashView    splashView;
+    private SplashView      splashView;
 
     /** Whether the SplashView is shown. */
-    private boolean       splashViewShown    = true;
+    private boolean         splashViewShown    = true;
 
-    private AlertDialog   currentLevelDialog = null;
+    private AlertDialog     currentLevelDialog = null;
 
-    private AlertDialog   changeLevelDialog  = null;
+    private AlertDialog     changeLevelDialog  = null;
 
     /**
      * Instantiates a new GameController and connects it to the given
@@ -183,8 +186,8 @@ public class GameController implements MoveFinishedHandler {
         // Create and display the level's board
         board = new Board(new CharField(Levels.getLevel(level), Board.BOARD_WIDTH,
                 Board.BOARD_HEIGHT));
-        balls = new GamePieceList();
-        goals = new GamePieceList();
+        balls = new ArrayList<GamePiece>();
+        goals = new ArrayList<GamePiece>();
 
         gameView.displayBoard(board);
 
