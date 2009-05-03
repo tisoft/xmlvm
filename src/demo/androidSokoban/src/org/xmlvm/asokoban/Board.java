@@ -1,7 +1,5 @@
 package org.xmlvm.asokoban;
 
-
-
 /**
  * A Boards represents a logical Sokoban level. It uses a {@link CharField} in
  * order to get the information about a level from an encoded String.
@@ -42,7 +40,7 @@ public class Board {
     /**
      * Used to store the calculated floor tiles.
      */
-    private boolean[] floorTiles;
+    private boolean[]       floorTiles;
 
     /**
      * Initializes a board with the given level.
@@ -144,6 +142,7 @@ public class Board {
             // First figure out for this column, where the first and where the
             // last wall tile is.
             for (int y = 0; y < getHeight(); ++y) {
+                // Initialize with false.
                 floorTiles[x * getHeight() + y] = false;
                 if (getBoardPiece(x, y) == WALL) {
                     if (!firstFound) {
@@ -159,6 +158,30 @@ public class Board {
                 if (getBoardPiece(x, y) != WALL) {
                     floorTiles[x * getHeight() + y] = true;
                 }
+            }
+        }
+
+        // Now we have do fix the tiles that might stick out left or and right.
+        // We do this by looking at horizontal slices and removing all tiles
+        // that occur before walls. We do this from the left and then from the
+        // right.
+        for (int y = 0; y < getHeight(); ++y) {
+            boolean firstFound = false;
+            // First from the left.
+            for (int x = 0; x < getWidth(); ++x) {
+                if (getBoardPiece(x, y) == WALL) {
+                    break;
+                }
+                floorTiles[x * getHeight() + y] = false;
+            }
+
+            firstFound = false;
+            // Then from the right.
+            for (int x = getWidth() - 1; x >= 0; --x) {
+                if (getBoardPiece(x, y) == WALL) {
+                    break;
+                }
+                floorTiles[x * getHeight() + y] = false;
             }
         }
     }
