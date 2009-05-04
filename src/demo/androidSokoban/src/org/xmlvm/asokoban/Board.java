@@ -37,10 +37,6 @@ public class Board {
     private CharField       charField    = null;
     private int             width        = 0;
     private int             height       = 0;
-    /**
-     * Used to store the calculated floor tiles.
-     */
-    private boolean[]       floorTiles;
 
     /**
      * Initializes a board with the given level.
@@ -52,7 +48,6 @@ public class Board {
         this.charField = charField;
         width = charField.getBoardWidth();
         height = charField.getBoardHeight();
-        generateFloorTiles();
     }
 
     /**
@@ -119,7 +114,13 @@ public class Board {
     }
 
     public boolean isFloor(int x, int y) {
-        return floorTiles[x * getHeight() + y];
+        if (shouldRotate()) {
+            int t = x;
+            x = y;
+            y = t;
+        }
+        char c = charField.getChar(height - y - 1, x);
+        return c != '_' && c != '#';
     }
 
     /**
@@ -127,62 +128,5 @@ public class Board {
      */
     private boolean shouldRotate() {
         return height > width;
-    }
-
-    /**
-     * Generates the floor tiles, on which the man can walk. These are only
-     * placed inside the level.
-     */
-    private void generateFloorTiles() {
-        floorTiles = new boolean[getWidth() * getHeight()];
-        for (int x = 0; x < getWidth(); ++x) {
-            int minWall = 0;
-            int maxWall = 0;
-            boolean firstFound = false;
-            // First figure out for this column, where the first and where the
-            // last wall tile is.
-            for (int y = 0; y < getHeight(); ++y) {
-                // Initialize with false.
-                floorTiles[x * getHeight() + y] = false;
-                if (getBoardPiece(x, y) == WALL) {
-                    if (!firstFound) {
-                        minWall = y;
-                        firstFound = true;
-                    } else {
-                        maxWall = y;
-                    }
-                }
-            }
-            // Next we put the tiles in place.
-            for (int y = minWall + 1; y < maxWall; ++y) {
-                if (getBoardPiece(x, y) != WALL) {
-                    floorTiles[x * getHeight() + y] = true;
-                }
-            }
-        }
-
-        // Now we have do fix the tiles that might stick out left or and right.
-        // We do this by looking at horizontal slices and removing all tiles
-        // that occur before walls. We do this from the left and then from the
-        // right.
-        for (int y = 0; y < getHeight(); ++y) {
-            boolean firstFound = false;
-            // First from the left.
-            for (int x = 0; x < getWidth(); ++x) {
-                if (getBoardPiece(x, y) == WALL) {
-                    break;
-                }
-                floorTiles[x * getHeight() + y] = false;
-            }
-
-            firstFound = false;
-            // Then from the right.
-            for (int x = getWidth() - 1; x >= 0; --x) {
-                if (getBoardPiece(x, y) == WALL) {
-                    break;
-                }
-                floorTiles[x * getHeight() + y] = false;
-            }
-        }
     }
 }
