@@ -12,31 +12,31 @@ import android.content.DialogInterface;
  */
 public class GameController implements MoveFinishedHandler {
     /** A flag to indicate whether sensor events will be processed or not. */
-    private boolean         gamePaused         = true;
+    private boolean         gamePaused           = true;
 
     /** The current level. */
-    private int             currentLevel       = 0;
+    private int             currentLevel         = 0;
 
     /** Indicates whether the current level has been started. */
-    private boolean         levelStarted       = false;
+    private boolean         levelStarted         = false;
 
     /** The number of moves. */
-    private int             moveCount          = 0;
+    private int             moveCount            = 0;
 
     /** A representation of the game's man game piece. */
-    private Man             man                = null;
+    private Man             man                  = null;
 
     /** A list of all ball game pieces. */
-    private List<GamePiece> balls              = null;
+    private List<GamePiece> balls                = null;
 
     /** A list of all goal game pieces. */
-    private List<GamePiece> goals              = null;
+    private List<GamePiece> goals                = null;
 
     /** The current game board. */
-    private Board           board              = null;
+    private Board           board                = null;
 
     /** The {@link GameView} associated with this GameController. */
-    private GameView        gameView           = null;
+    private GameView        gameView             = null;
 
     /**
      * The splash view shown right after the start of the application or after
@@ -45,11 +45,13 @@ public class GameController implements MoveFinishedHandler {
     private SplashView      splashView;
 
     /** Whether the SplashView is shown. */
-    private boolean         splashViewShown    = true;
+    private boolean         splashViewShown      = true;
 
-    private AlertDialog     currentLevelDialog = null;
+    private AlertDialog     currentLevelDialog   = null;
 
-    private AlertDialog     changeLevelDialog  = null;
+    private AlertDialog     changeLevelDialog    = null;
+
+    private AlertDialog     congratulationDialog = null;
 
     /**
      * Instantiates a new GameController and connects it to the given
@@ -252,6 +254,26 @@ public class GameController implements MoveFinishedHandler {
         changeLevelDialog.show();
     }
 
+    /**
+     * Shows a dialog allowing the user to reset the current level or to proceed
+     * to the next level.
+     */
+    public void showCongratulationDialog() {
+
+        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                loadLevel(0, false);
+            }
+
+        };
+
+        congratulationDialog = new AlertDialog.Builder(gameView.getActivity()).create();
+        congratulationDialog.setTitle("Congratulations! All levels finished. Skipping to level 1.");
+        congratulationDialog.setButton("OK", listener);
+        congratulationDialog.show();
+    }
+
     public void showSplashScreen(final InputController ic, final boolean loadLevel) {
         // Add the SplashView
         gameView.addView(splashView);
@@ -314,8 +336,15 @@ public class GameController implements MoveFinishedHandler {
      */
     public void onMoveFinished() {
         if (isLevelFinished()) {
-            currentLevel++;
-            loadLevel(currentLevel, true);
+            // More levels left
+            if (currentLevel < Levels.getSize() - 1) {
+                currentLevel++;
+                loadLevel(currentLevel, true);
+            }
+            // All levels finished: Congratulate and wrap to level 1
+            else {
+                showCongratulationDialog();
+            }
             return;
         }
     }
@@ -326,10 +355,17 @@ public class GameController implements MoveFinishedHandler {
     public void onDestroy() {
         if (currentLevelDialog != null) {
             currentLevelDialog.dismiss();
+            currentLevelDialog = null;
         }
 
         if (changeLevelDialog != null) {
             changeLevelDialog.dismiss();
+            changeLevelDialog = null;
+        }
+
+        if (congratulationDialog != null) {
+            congratulationDialog.dismiss();
+            congratulationDialog = null;
         }
     }
 
