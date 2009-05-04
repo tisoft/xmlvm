@@ -1,10 +1,6 @@
-
 package org.xmlvm.iphone;
 
-
-public class UIButtonType
-{
-
+public class UIButtonType {
     public static final int UIButtonTypeCustom           = 0;
     public static final int UIButtonTypeRoundedRect      = 1;
     public static final int UIButtonTypeDetailDisclosure = 2;
