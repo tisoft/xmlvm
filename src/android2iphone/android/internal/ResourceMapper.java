@@ -18,61 +18,51 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.internal;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.xmlvm.iphone.UIImage;
+
 import android.app.ActivityWrapper;
 
+public class ResourceMapper {
+    /** A map holding the mapping from resourceId to UIImage. */
+    private static Map<Integer, UIImage> imageMap = new HashMap<Integer, UIImage>();
 
-
-public class ResourceMapper
-{
-    /** A map holding the mapping from resourceId to filename. */
-//    private static Map<Integer, String> _resourceTable = new HashMap<Integer, String>();
-
-
-
-    public static String getFileNameById(int resourceId)
-    {
-        /*
-        String fileName = _resourceTable.get(new Integer(resourceId));
-        
-        if (fileName == null) {
-            fileName = findVariableById(resourceId);
+    public static UIImage getImageById(int resourceId) {
+        UIImage theImage = imageMap.get(new Integer(resourceId));
+        if (theImage == null) {
+            String fileName = findVariableById(resourceId);
+            fileName += ".png";
+            theImage = UIImage.imageAtPath(fileName);
+            imageMap.put(new Integer(resourceId), theImage);
         }
-        
-        return fileName + ".png";
-        */
-        
-        return findVariableById(resourceId) + ".png";
+        return theImage;
     }
 
-
-
-    private static String findVariableById(int resourceId)
-    {
+    private static String findVariableById(int resourceId) {
         try {
             int i;
             String activityPackageName = ActivityWrapper.getActivity().getClass().getName();
             i = activityPackageName.lastIndexOf('.');
             activityPackageName = activityPackageName.substring(0, i);
-            
+
             String rClassName = activityPackageName + ".R$drawable";
             Class<?> rClazz = Class.forName(rClassName);
             Field[] fields = rClazz.getDeclaredFields();
 
-            for (i = 0; i < fields.length
-                    && fields[i].getInt(rClazz) != resourceId; i++);
+            for (i = 0; i < fields.length && fields[i].getInt(rClazz) != resourceId; i++)
+                ;
 
             if (i < fields.length) {
-//                _resourceTable.put(new Integer(resourceId), fields[i].getName());
                 return fields[i].getName();
             }
-            
+
             return "";
-        }
-        catch (Throwable t) {
+        } catch (Throwable t) {
             return "";
         }
     }

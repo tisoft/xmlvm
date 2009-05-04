@@ -21,7 +21,6 @@
 package android.widget;
 
 import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIImage;
 import org.xmlvm.iphone.UIImageView;
 
 import android.app.Activity;
@@ -35,7 +34,7 @@ public class ImageView extends View {
     protected UIImageView image;
 
     public void setImageResource(int resId) {
-        this.image.setImage(UIImage.imageAtPath(ResourceMapper.getFileNameById(resId)));
+        this.image.setImage(ResourceMapper.getImageById(resId));
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
