@@ -3,6 +3,13 @@ package org.xmlvm.asokoban;
 /**
  * As long as we don't support reading and writing of files, we store the
  * string-representations of the levels in this class.
+ * 
+ * The following characters are valid to define a board:
+ * ' ': A floor tile
+ * '#': A wall piece
+ * '@': The man
+ * '$': A ball
+ * '.': A goal tile
  */
 public class Levels {
     private static final String[] levels = {
