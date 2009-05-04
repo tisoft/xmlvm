@@ -6,11 +6,11 @@ import android.os.Handler;
  * This class is responsible for moving {@link GamePiece}s.
  */
 public class GamePieceMover {
-    private static final int    maxPiecesMoving = 2;
+    private static final int    MAX_PIECES_MOVING = 2;
     private MovableGamePiece[]  gamePiecesToBeMoved;
     private int                 animationDelay;
 
-    private Handler             updater         = new Handler();
+    private Handler             updater           = new Handler();
     private Runnable            updateAnimation;
     private MoveFinishedHandler moveFinishedHandler;
 
@@ -18,12 +18,16 @@ public class GamePieceMover {
         updateAnimation = new Runnable() {
             public void run() {
                 updater.postDelayed(updateAnimation, animationDelay);
-                for (int i = 0; i < maxPiecesMoving; i++) {
+                boolean moveFinished = false;
+                for (int i = 0; i < MAX_PIECES_MOVING; i++) {
                     if (gamePiecesToBeMoved[i] != null) {
                         boolean done = gamePiecesToBeMoved[i].moveOneStep();
                         if (done) {
                             gamePiecesToBeMoved[i] = null;
-                            if (moveFinishedHandler != null) {
+                            // Only report that the move has finished, if we
+                            // didn't do this already.
+                            if (!moveFinished && moveFinishedHandler != null) {
+                                moveFinished = true;
                                 moveFinishedHandler.onMoveFinished();
                             }
                         }
@@ -31,15 +35,15 @@ public class GamePieceMover {
                 }
             }
         };
-        gamePiecesToBeMoved = new MovableGamePiece[maxPiecesMoving];
-        for (int i = 0; i < maxPiecesMoving; i++)
+        gamePiecesToBeMoved = new MovableGamePiece[MAX_PIECES_MOVING];
+        for (int i = 0; i < MAX_PIECES_MOVING; i++)
             gamePiecesToBeMoved[i] = null;
         animationDelay = 70;
         updater.postDelayed(updateAnimation, animationDelay);
     }
 
     public synchronized void moveGamePiece(MovableGamePiece gamePiece) {
-        for (int i = 0; i < maxPiecesMoving; i++) {
+        for (int i = 0; i < MAX_PIECES_MOVING; i++) {
             if (gamePiecesToBeMoved[i] == null) {
                 gamePiecesToBeMoved[i] = gamePiece;
                 break;
