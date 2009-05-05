@@ -23,6 +23,7 @@
 	<property name="xmlvm.ifireworks" value="build/ifireworks" />
 	<property name="xmlvm.iremote" value="build/iremote" />
 	<property name="xmlvm.ihelloworld" value="build/ihelloworld" />
+	<property name="xmlvm.widgets" value="build/widgets" />
 
 	<property name="xmlvm.afireworks" value="build/afireworks" />
 	<property name="xmlvm.asokoban" value="build/asokoban" />
@@ -180,13 +181,15 @@
 
 
 	<target name="build-iphoneDemo" depends="build-ifireworks,all-ihelloworld,cc-ifireworks,build-android-compat-lib,cc-android-compat-lib,
-		                                     sim-afireworks-jar,cc-sim-afireworks,build-iremote, cc-iremote,
+		                                     sim-afireworks-jar,cc-sim-afireworks,build-iremote, cc-iremote, all-widgets,
                                              sim-asokoban-jar,cc-sim-asokoban">
 	</target>
 
 	<target name="all-ihelloworld" depends="build-ihelloworld-portrait,cc-ihelloworld-portrait,
 		                                    build-ihelloworld-landscape,cc-ihelloworld-landscape,
 		                                    build-ihelloworld-fullscreen,cc-ihelloworld-fullscreen"/>
+	
+	<target name="all-widgets" depends="build-ibuttontest, cc-ibuttontest" />
 	
 	<target name="build-ihelloworld-portrait" depends="build-objc-compat-lib">
 		<mkdir dir="${xmlvm.ihelloworld}/portrait" />
@@ -281,6 +284,38 @@
 			<arg value="--out=${xmlvm.demo}/ihelloworld/fullscreen/iphone" />
 			<arg value="--iphone-app=iHelloWorld" />
 			<arg value="${xmlvm.ihelloworld}/fullscreen/*.class" />
+		</java>
+	</target>
+
+	<target name="build-ibuttontest" depends="build-objc-compat-lib">
+		<mkdir dir="${xmlvm.widgets}/button" />
+		<javac srcdir="src/test/iphone/org/xmlvm/test/iphone/widgets/button" destdir="${xmlvm.widgets}/button" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<mkdir dir="${xmlvm.demo}/widgets/ibuttontest/java"/>
+		<jar destfile="${xmlvm.demo}/widgets/ibuttontest/java/ibuttontest.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Implementation-Vendor" value="xmlvm.org" />
+				<attribute name="Main-Class" value="org.xmlvm.test.iphone.widgets.button.UIButtonTest" />
+				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar" />
+			</manifest>
+			<fileset dir="${xmlvm.widgets}/button" />
+			<fileset dir="var/iphone">
+				<include name="*.png/" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="cc-ibuttontest" depends="xmlvmjar">
+		<mkdir dir="${xmlvm.demo}/widgets/ibuttontest/iphone" />
+		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
+			<arg value="--out=${xmlvm.demo}/widgets/ibuttontest/iphone" />
+			<arg value="--iphone-app=iButtonTest" />
+			<arg value="${xmlvm.widgets}/button/*.class" />
 		</java>
 	</target>
 
