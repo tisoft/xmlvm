@@ -1,4 +1,4 @@
-package org.xmlvm.test.iphone.widgets;
+package org.xmlvm.test.iphone.widgets.button;
 
 import java.awt.Color;
 import java.awt.Font;
