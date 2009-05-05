@@ -75,22 +75,22 @@ public class UIButton extends UIView {
         setNeedsDisplay();
     }
 
-    public void setTitleForState(String title, int state) {
+    public void setTitle(String title, int state) {
         this.title = title;
         setNeedsDisplay();
     }
 
-    public void setTitleColorForState(Color titleColor, int state) {
+    public void setTitleColor(Color titleColor, int state) {
         this.titleColor = titleColor;
         setNeedsDisplay();
     }
 
-    public void setTitleShadowColorForState(Color titleShadowColor, int state) {
+    public void setTitleShadowColor(Color titleShadowColor, int state) {
         this.titleShadowColor = titleShadowColor;
         setNeedsDisplay();
     }
 
-    public void setTitleShadowOffsetForState(CGSize titleShadowOffset, int state) {
+    public void setTitleShadowOffset(CGSize titleShadowOffset, int state) {
         this.titleShadowOffset = titleShadowOffset;
         setNeedsDisplay();
     }
