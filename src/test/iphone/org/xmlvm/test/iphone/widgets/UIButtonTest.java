@@ -1,5 +1,6 @@
 package org.xmlvm.test.iphone.widgets;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import org.xmlvm.iphone.*;
@@ -22,22 +23,24 @@ public class UIButtonTest extends UIApplication {
 
         UIButton customButton = new UIButton(UIButtonType.UIButtonTypeCustom, new CGRect(10, 10,
                 90, 60));
-        customButton.setTitleForState("Custom", UIControlState.UIControlStateNormal);
         customButton.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
+        customButton.setTitleForState("Custom", UIControlState.UIControlStateNormal);
+        customButton.setTitleShadowColorForState(Color.DARK_GRAY, UIControlState.UIControlStateNormal);
+        customButton.setTitleShadowOffsetForState(new CGSize(2, 2), UIControlState.UIControlStateNormal);
         mainView.addSubview(customButton);
         mainView.bringSubviewToFront(customButton);
 
         UIButton roundedRectButton = new UIButton(UIButtonType.UIButtonTypeCustom, new CGRect(115,
                 10, 90, 60));
-        roundedRectButton.setTitleForState("Rounded", UIControlState.UIControlStateNormal);
         roundedRectButton.setFont(new Font("Arial", Font.BOLD, 14));
+        roundedRectButton.setTitleForState("Rounded", UIControlState.UIControlStateNormal);
         mainView.addSubview(roundedRectButton);
         mainView.bringSubviewToFront(roundedRectButton);
 
         UIButton detailDisclosureButton = new UIButton(UIButtonType.UIButtonTypeCustom, new CGRect(
                 220, 10, 90, 60));
-        detailDisclosureButton.setTitleForState("Detail", UIControlState.UIControlStateNormal);
         detailDisclosureButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        detailDisclosureButton.setTitleForState("Detail", UIControlState.UIControlStateNormal);
         mainView.addSubview(detailDisclosureButton);
         mainView.bringSubviewToFront(detailDisclosureButton);
 

@@ -7,11 +7,16 @@ import java.awt.Graphics2D;
 
 public class UIButton extends UIView {
 
-    private static final Font DEFAULT_FONT = new Font("Dialog", Font.PLAIN, 14);
+    private static final Font  DEFAULT_FONT               = new Font("Dialog", Font.PLAIN, 14);
+    private static final Color DEFAULT_TITLE_COLOR        = Color.WHITE;
+    private static final Color DEFAULT_TITLE_SHADOW_COLOR = Color.DARK_GRAY;
 
-    private int    buttonType;
-    private String title;
-    private Font   font;
+    private int                buttonType;
+    private String             title;
+    private Color              titleColor;
+    private Color              titleShadowColor;
+    private CGSize             titleShadowOffset;
+    private Font               font;
 
     public UIButton(int buttonType) {
         super(new CGRect(0, 0, 0, 0));
@@ -52,12 +57,17 @@ public class UIButton extends UIView {
         int y = (int) displayRect.origin.y;
         y += ((int) frame.size.height - height) / 2 + height - descent;
 
+        if (titleShadowOffset != null) {
+            g.setColor(titleShadowColor != null ? titleShadowColor : DEFAULT_TITLE_SHADOW_COLOR);
+            g.drawString(title, x + titleShadowOffset.width, y + titleShadowOffset.height);
+        }
+
+        g.setColor(titleColor != null ? titleColor : DEFAULT_TITLE_COLOR);
         g.drawString(title, x, y);
     }
 
-    public void setTitleForState(String title, int state) {
-        this.title = title;
-        setNeedsDisplay();
+    private void init(int buttonType) {
+        this.buttonType = buttonType;
     }
 
     public void setFont(Font font) {
@@ -65,7 +75,23 @@ public class UIButton extends UIView {
         setNeedsDisplay();
     }
 
-    private void init(int buttonType) {
-        this.buttonType = buttonType;
+    public void setTitleForState(String title, int state) {
+        this.title = title;
+        setNeedsDisplay();
+    }
+
+    public void setTitleColorForState(Color titleColor, int state) {
+        this.titleColor = titleColor;
+        setNeedsDisplay();
+    }
+
+    public void setTitleShadowColorForState(Color titleShadowColor, int state) {
+        this.titleShadowColor = titleShadowColor;
+        setNeedsDisplay();
+    }
+
+    public void setTitleShadowOffsetForState(CGSize titleShadowOffset, int state) {
+        this.titleShadowOffset = titleShadowOffset;
+        setNeedsDisplay();
     }
 }
