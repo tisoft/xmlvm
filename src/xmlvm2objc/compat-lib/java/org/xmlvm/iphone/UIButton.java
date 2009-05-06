@@ -18,14 +18,13 @@ public class UIButton extends UIView {
     private CGSize             titleShadowOffset;
     private Font               font;
 
-    public UIButton(int buttonType) {
+    private UIButton(int buttonType) {
         super(new CGRect(0, 0, 0, 0));
         init(buttonType);
     }
 
-    public UIButton(int buttonType, CGRect rect) {
-        super(rect);
-        init(buttonType);
+    public static UIButton buttonWithType(int buttonType) {
+        return new UIButton(buttonType);
     }
 
     public void drawRect(CGRect r) {

@@ -21,6 +21,7 @@ public class UIButtonTest extends UIApplication {
         title.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
         mainView.addSubview(title);
 
+        /*
         UIButton customButton = new UIButton(UIButtonType.UIButtonTypeCustom, new CGRect(10, 10,
                 90, 60));
         customButton.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
@@ -29,14 +30,15 @@ public class UIButtonTest extends UIApplication {
         customButton.setTitleShadowOffset(new CGSize(2, 2), UIControlState.UIControlStateNormal);
         mainView.addSubview(customButton);
         mainView.bringSubviewToFront(customButton);
-
-        UIButton roundedRectButton = new UIButton(UIButtonType.UIButtonTypeCustom, new CGRect(115,
-                10, 90, 60));
-        roundedRectButton.setFont(new Font("Arial", Font.BOLD, 14));
+    */
+        UIButton roundedRectButton = UIButton.buttonWithType(UIButtonType.UIButtonTypeRoundedRect);
+        roundedRectButton.setFrame(new CGRect(115, 10, 90, 60));
+        //roundedRectButton.setFont(new Font("Arial", Font.BOLD, 14));
         roundedRectButton.setTitle("Rounded", UIControlState.UIControlStateNormal);
         mainView.addSubview(roundedRectButton);
-        mainView.bringSubviewToFront(roundedRectButton);
+        //mainView.bringSubviewToFront(roundedRectButton);
 
+        /*
         UIButton detailDisclosureButton = new UIButton(UIButtonType.UIButtonTypeCustom, new CGRect(
                 220, 10, 90, 60));
         detailDisclosureButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
@@ -61,7 +63,8 @@ public class UIButtonTest extends UIApplication {
         contactAddButton.setTitle("Contact", UIControlState.UIControlStateNormal);
         mainView.addSubview(contactAddButton);
         mainView.bringSubviewToFront(contactAddButton);
-
+    */
+        
         window.makeKeyAndVisible();
     }
 
