@@ -131,13 +131,9 @@ int main(int argc, char* argv[])
 </xsl:text>
 </xsl:template>
 
-<xsl:function name="vm:fixname">
-  <xsl:param  name="a"/>
-  <xsl:value-of  select="replace(replace($a,'\$', '_'),'\.','_')"/>
-</xsl:function>
-  
-  
-  <xsl:template name="emitInterfaces">
+
+
+<xsl:template name="emitInterfaces">
   <xsl:for-each select="vm:class">
     <xsl:text>
 </xsl:text>
@@ -350,8 +346,11 @@ int main(int argc, char* argv[])
   <xsl:text>];
     int _sp = 0;
     XMLVMElem _op1, _op2, _op3;
-    NSAutoreleasePool* _pool = [[NSAutoreleasePool alloc] init];
 </xsl:text>
+  <xsl:if test="vm:useAutoReleasePool(.)">
+    <xsl:text>    NSAutoreleasePool* _pool = [[NSAutoreleasePool alloc] init];
+</xsl:text>
+  </xsl:if>
   <xsl:call-template name="initLocals"/>
   <xsl:apply-templates/>
   <xsl:text>}
@@ -415,32 +414,47 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="jvm:return">
-  <xsl:text>    [_pool release];
-    return;
+  <xsl:if test="vm:useAutoReleasePool(.)">
+    <xsl:text>    [_pool release];
+</xsl:text>
+  </xsl:if>
+  <xsl:text>    return;
 </xsl:text>
 </xsl:template>
 
 
 <xsl:template match="jvm:ireturn">
   <xsl:text>    _op1.i = _stack[--_sp].i;
-    [_pool release];
-    return _op1.i;
+</xsl:text>
+  <xsl:if test="vm:useAutoReleasePool(.)">
+    <xsl:text>    [_pool release];
+</xsl:text>
+  </xsl:if>
+  <xsl:text>    return _op1.i;
 </xsl:text>
 </xsl:template>
 
 
 <xsl:template match="jvm:lreturn">
   <xsl:text>    _op1.l = _stack[--_sp].l;
-    [_pool release];
-    return _op1.l;
+</xsl:text>
+  <xsl:if test="vm:useAutoReleasePool(.)">
+    <xsl:text>    [_pool release];
+</xsl:text>
+  </xsl:if>
+  <xsl:text>    return _op1.l;
 </xsl:text>
 </xsl:template>
 
 
 <xsl:template match="jvm:freturn">
   <xsl:text>    _op1.f = _stack[--_sp].f;
-    [_pool release];
-    return _op1.f;
+</xsl:text>
+  <xsl:if test="vm:useAutoReleasePool(.)">
+    <xsl:text>    [_pool release];
+</xsl:text>
+  </xsl:if>
+  <xsl:text>    return _op1.f;
 </xsl:text>
 </xsl:template>
 
@@ -448,8 +462,12 @@ int main(int argc, char* argv[])
 <xsl:template match="jvm:areturn">
   <xsl:text>    _op1.o = _stack[--_sp].o;
     [_op1.o retain];
-    [_pool release];
-    return _op1.o;
+</xsl:text>
+  <xsl:if test="vm:useAutoReleasePool(.)">
+    <xsl:text>    [_pool release];
+</xsl:text>
+  </xsl:if>
+  <xsl:text>    return _op1.o;
 </xsl:text>
 </xsl:template>
 
@@ -1454,6 +1472,25 @@ _sp--;
 </xsl:function>
 
 
+<xsl:function name="vm:useAutoReleasePool" as="xs:boolean">
+  <xsl:param name="type" as="node()"/>
+  
+  <xsl:variable name="flag" select="$type/ancestor::vm:class/vm:annotations/vm:annotation[@type='org.xmlvm.iphone.XMLVMNoAutoReleasePool']"/>
+  <xsl:value-of select="not($flag = '')"/>
+</xsl:function>
+
+
+
+<xsl:function name="vm:fixname">
+  <xsl:param  name="a"/>
+  <xsl:value-of  select="replace(replace($a,'\$', '_'),'\.','_')"/>
+</xsl:function>
+  
+  
+<xsl:template match="vm:annotations">
+  <!-- Ignore annotations -->
+</xsl:template>
+
 <!--
    Default template. If the XMLVM file should contain an instruction
    that is not handled by this stylesheet, this default template
@@ -1461,7 +1498,7 @@ _sp--;
    to the output stream.
 -->
 <xsl:template match="*">
-  <xsl:text>      //ERROR("</xsl:text>
+  <xsl:text>      ERROR("</xsl:text>
   <xsl:value-of select="name()"/>
     <xsl:text>");
 </xsl:text>

@@ -117,6 +117,7 @@ public class ParseJVM
             }
             xml_class.setAttribute("interfaces", allInterfaces);
         }
+        addAnnotations(xml_class, clazz.getAnnotationEntries());
         xml_root.addContent(xml_class);
     }
 
@@ -196,6 +197,7 @@ public class ParseJVM
         Element sgn = parseSignature(method.getSignature());
         xml_method.addContent(sgn);
 
+        // TODO this should also be handled via the <annotations> tag. Need modification in xmlvm2js.xsl
         // Look for NativeInterface annotation
         for (AnnotationEntry annotation : method.getAnnotationEntries()) {
             String type = annotation.getAnnotationType();
@@ -207,12 +209,41 @@ public class ParseJVM
             }
         }
 
+        addAnnotations(xml_method, method.getAnnotationEntries());
+        
         xml_class.addContent(xml_method);
         this.method = method;
     }
 
 
 
+    private void addAnnotations(Element node, AnnotationEntry[] annotations) {
+        if (annotations.length == 0) {
+            return;
+        }
+        Element a = new Element("annotations", nsXMLVM);
+        node.addContent(a);
+        for (AnnotationEntry annotation : annotations) {
+            String type = annotation.getAnnotationType();
+            // Turn into a scoped name. Strip off leading "L" and trailing ";"
+            type = type.substring(1, type.length() - 1);
+            type = type.replaceAll("/", ".");
+            Element newAnnotation = new Element("annotation", nsXMLVM);
+            a.addContent(newAnnotation);
+            newAnnotation.setAttribute("type", type);
+            ElementValuePair[] values = annotation.getElementValuePairs();
+            for (ElementValuePair value : values) {
+                Element property = new Element("property", nsXMLVM);
+                // TODO Need to add type
+                property.setAttribute("name", value.getNameString());
+                property.setAttribute("value", value.getValue().stringifyValue());
+                newAnnotation.addContent(property);
+            }
+        }
+    }
+    
+    
+    
     private void addAccessModifiers(Element node, int flags)
     {
         String[] modifiers = Utility.accessToString(flags).split(" ");

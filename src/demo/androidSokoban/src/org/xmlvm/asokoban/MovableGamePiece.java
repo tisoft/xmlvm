@@ -1,9 +1,12 @@
 package org.xmlvm.asokoban;
 
+import org.xmlvm.iphone.XMLVMNoAutoReleasePool;
+
 /**
  * A MovableGamePiece is a special kind of {@link GamePiece} that can be moved
  * on the screen.
  */
+@XMLVMNoAutoReleasePool
 public class MovableGamePiece extends GamePiece {
     private int counter;
     private int dx;

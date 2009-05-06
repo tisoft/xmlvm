@@ -1,9 +1,12 @@
 package org.xmlvm.asokoban;
 
+import org.xmlvm.iphone.XMLVMNoAutoReleasePool;
+
 
 /**
  * A CharField represents a string-encoded board.
  */
+@XMLVMNoAutoReleasePool
 public class CharField {
     /**
      * The character used to initialize a field in the CharField.

@@ -1,11 +1,14 @@
 package org.xmlvm.asokoban;
 
+import org.xmlvm.iphone.XMLVMNoAutoReleasePool;
+
 import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
 
 /**
  * A GamePiece represents the base class for a single tile in the game.
  */
+@XMLVMNoAutoReleasePool
 public abstract class GamePiece {
 
     /**
