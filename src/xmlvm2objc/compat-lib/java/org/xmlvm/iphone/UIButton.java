@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 
 public class UIButton extends UIView {
 
-    private static final Font  DEFAULT_FONT               = new Font("Dialog", Font.PLAIN, 14);
-    private static final Color DEFAULT_TITLE_COLOR        = Color.WHITE;
+    private static final Font  DEFAULT_FONT               = new Font("Arial", Font.BOLD, 14);
+    private static final Color DEFAULT_TITLE_COLOR        = new Color(0x59709c);
     private static final Color DEFAULT_TITLE_SHADOW_COLOR = Color.DARK_GRAY;
 
     private int                buttonType;
@@ -32,19 +32,37 @@ public class UIButton extends UIView {
         Graphics2D g = CGContext.theContext.graphicsContext;
         CGRect displayRect = getDisplayRect();
 
-        g.setColor(Color.BLACK);
-        g.fillRect((int) displayRect.origin.x, (int) displayRect.origin.y,
-                (int) displayRect.size.width, (int) displayRect.size.height);
+        switch (buttonType) {
+        case UIButtonType.UIButtonTypeRoundedRect:
+            drawRoundedRectButton(g, displayRect);
+            break;
 
-        drawTitle(g, displayRect);
+        default:
+            g.setColor(Color.BLACK);
+            g.fillRect((int) displayRect.origin.x, (int) displayRect.origin.y,
+                    (int) displayRect.size.width, (int) displayRect.size.height);
+            drawTitle(g, displayRect);
+        }
+
         restoreLastTransform();
     }
 
-    private void drawTitle(Graphics2D g, CGRect displayRect) {
+    private void drawRoundedRectButton(Graphics2D g, CGRect displayRect) {
         g.setColor(Color.WHITE);
+        g.fillRoundRect((int) displayRect.origin.x, (int) displayRect.origin.y,
+                    (int) displayRect.size.width, (int) displayRect.size.height, 16, 16);
 
+        g.setColor(new Color(0x9f9f9f));
+        g.drawRoundRect((int) displayRect.origin.x, (int) displayRect.origin.y,
+                    (int) displayRect.size.width, (int) displayRect.size.height, 16, 16);
+        
+        drawTitle(g, displayRect);
+}
+
+    private void drawTitle(Graphics2D g, CGRect displayRect) {
+        
         g.setFont(font != null ? font : DEFAULT_FONT);
-
+        
         FontMetrics fm = g.getFontMetrics();
         int width = fm.stringWidth(title);
         int height = fm.getHeight();
