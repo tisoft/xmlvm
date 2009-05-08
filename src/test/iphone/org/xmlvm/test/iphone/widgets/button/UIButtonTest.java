@@ -27,6 +27,18 @@ public class UIButtonTest extends UIApplication {
         roundedRectButton.setTitle("Rounded", UIControlState.UIControlStateNormal);
         mainView.addSubview(roundedRectButton);
 
+        UIButton alertDialogLightButton = UIButton.buttonWithType(UIButtonType.UIButtonTypeAlertLight);
+        alertDialogLightButton.setFrame(new CGRect(115, 10, 90, 60));
+//        detailDisclosureButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        alertDialogLightButton.setTitle("alertLight", UIControlState.UIControlStateNormal);
+        mainView.addSubview(alertDialogLightButton);
+
+        UIButton alertDialogDarkButton = UIButton.buttonWithType(UIButtonType.UIButtonTypeAlertDark);
+        alertDialogDarkButton.setFrame(new CGRect(220, 10, 90, 60));
+        alertDialogDarkButton.setTitle("alertDark", UIControlState.UIControlStateNormal);
+        mainView.addSubview(alertDialogDarkButton);
+
+        /*
         UIButton detailDisclosureButton = UIButton.buttonWithType(UIButtonType.UIButtonTypeDetailDisclosure);
         detailDisclosureButton.setFrame(new CGRect(115, 10, 90, 60));
 //        detailDisclosureButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
@@ -37,6 +49,7 @@ public class UIButtonTest extends UIApplication {
         contactAddButton.setFrame(new CGRect(220, 10, 90, 60));
         contactAddButton.setTitle("Contact", UIControlState.UIControlStateNormal);
         mainView.addSubview(contactAddButton);
+        */
         
         UIButton infoLightButton = UIButton.buttonWithType(UIButtonType.UIButtonTypeInfoLight);
         infoLightButton.setFrame(new CGRect(10, 390, 90, 60));
