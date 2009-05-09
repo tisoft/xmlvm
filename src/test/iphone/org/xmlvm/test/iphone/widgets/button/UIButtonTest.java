@@ -37,11 +37,27 @@ public class UIButtonTest extends UIApplication {
         alertDialogLightButton.setFrame(new CGRect(115, 10, 90, 60));
 //        detailDisclosureButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
         alertDialogLightButton.setTitle("alertLight", UIControlState.UIControlStateNormal);
+        alertDialogLightButton.addTarget(new UIControlDelegate() {
+
+            @Override
+            public void raiseEvent() {
+                title.setText("alertDialogLightButton pressed");
+            }
+            
+        }, UIControl.UIControlEventTouchUpInside);
         mainView.addSubview(alertDialogLightButton);
 
         UIButton alertDialogDarkButton = UIButton.buttonWithType(UIButtonType.UIButtonTypeAlertDark);
         alertDialogDarkButton.setFrame(new CGRect(220, 10, 90, 60));
         alertDialogDarkButton.setTitle("alertDark", UIControlState.UIControlStateNormal);
+        alertDialogDarkButton.addTarget(new UIControlDelegate() {
+
+            @Override
+            public void raiseEvent() {
+                title.setText("alertDialogDarkButton pressed");
+            }
+            
+        }, UIControl.UIControlEventTouchUpInside);
         mainView.addSubview(alertDialogDarkButton);
 
         /*

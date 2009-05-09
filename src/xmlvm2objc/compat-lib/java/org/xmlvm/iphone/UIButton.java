@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
+import java.awt.Paint;
 import java.awt.RenderingHints;
 import java.awt.geom.Path2D;
 import java.util.Iterator;
@@ -19,6 +20,7 @@ public class UIButton extends UIControl {
     private static final Color DEFAULT_TITLE_COLOR        = new Color(0x59709c);
     private static final Color DEFAULT_TITLE_SHADOW_COLOR = Color.DARK_GRAY;
 
+    private boolean            buttonPressed              = false;
     private int                buttonType;
     private String             title;
     private Color              titleColor;
@@ -59,6 +61,7 @@ public class UIButton extends UIControl {
             g.setColor(Color.BLACK);
             g.fillRect((int) displayRect.origin.x, (int) displayRect.origin.y,
                     (int) displayRect.size.width, (int) displayRect.size.height);
+            g.setColor(Color.WHITE);
             drawTitle(g, displayRect);
         }
 
@@ -66,16 +69,32 @@ public class UIButton extends UIControl {
     }
 
     private void drawRoundedRectButton(Graphics2D g, CGRect displayRect) {
-        g.setColor(Color.WHITE);
+        Paint borderColor;
+        Paint fillColor;
+        Paint titleColor;
+
+        if (buttonPressed) {
+            borderColor = new Color(0x9f9f9f);
+            fillColor = new GradientPaint(0, displayRect.origin.y, new Color(5, 140, 245), 0,
+                    displayRect.origin.y + displayRect.size.height - 1, new Color(1, 96, 230));
+            titleColor = Color.WHITE;
+        } else {
+            borderColor = new Color(0x9f9f9f);
+            fillColor = Color.WHITE;
+            titleColor = this.titleColor != null ? this.titleColor : DEFAULT_TITLE_COLOR;
+        }
+
+        g.setPaint(fillColor);
         g.fillRoundRect((int) displayRect.origin.x, (int) displayRect.origin.y,
                 (int) displayRect.size.width, (int) displayRect.size.height, DEFAULT_ARC_DIAMETER,
                 DEFAULT_ARC_DIAMETER);
 
-        g.setColor(new Color(0x9f9f9f));
+        g.setPaint(borderColor);
         g.drawRoundRect((int) displayRect.origin.x, (int) displayRect.origin.y,
                 (int) displayRect.size.width, (int) displayRect.size.height, DEFAULT_ARC_DIAMETER,
                 DEFAULT_ARC_DIAMETER);
 
+        g.setPaint(titleColor);
         drawTitle(g, displayRect);
     }
 
@@ -157,6 +176,7 @@ public class UIButton extends UIControl {
         g.setPaint(Color.DARK_GRAY);
         g.draw(shadowShape);
 
+        g.setPaint(titleColor);
         drawTitle(g, displayRect);
     }
 
@@ -194,11 +214,12 @@ public class UIButton extends UIControl {
         y += ((int) frame.size.height - height) / 2 + height - descent;
 
         if (titleShadowOffset != null) {
-            g.setColor(titleShadowColor != null ? titleShadowColor : DEFAULT_TITLE_SHADOW_COLOR);
+            Paint p = g.getPaint();
+            g.setPaint(titleShadowColor != null ? titleShadowColor : DEFAULT_TITLE_SHADOW_COLOR);
             g.drawString(title, x + titleShadowOffset.width, y + titleShadowOffset.height);
+            g.setPaint(p);
         }
 
-        g.setColor(titleColor != null ? titleColor : DEFAULT_TITLE_COLOR);
         g.drawString(title, x, y);
     }
 
@@ -242,21 +263,33 @@ public class UIButton extends UIControl {
     }
 
     @Override
-    public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-        UITouch t = touches.iterator().next();
-        CGPoint p = t.locationInView(this);
-        CGRect r = this.getBounds();
-        if (p.x < 0 || p.y < 0 || p.x > r.size.width || p.y > r.size.height) {
-            return;
+    public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+        if (touchedInsideButton(touches)) {
+            buttonPressed = true;
+            setNeedsDisplay();
         }
-        
-        for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet().iterator(); it
-                .hasNext();) {
-            Map.Entry<Integer, UIControlDelegate> e = it.next();
-            if ((e.getKey().intValue() & UIControlEventTouchUpInside) > 0) {
-                e.getValue().raiseEvent();
+    }
+
+    @Override
+    public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+        if (buttonPressed && touchedInsideButton(touches)) {
+            for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet()
+                    .iterator(); it.hasNext();) {
+                Map.Entry<Integer, UIControlDelegate> e = it.next();
+                if ((e.getKey().intValue() & UIControlEventTouchUpInside) > 0) {
+                    e.getValue().raiseEvent();
+                }
             }
         }
 
+        buttonPressed = false;
+        setNeedsDisplay();
+    }
+
+    private boolean touchedInsideButton(Set<UITouch> touches) {
+        UITouch t = touches.iterator().next();
+        CGPoint p = t.locationInView(this);
+        CGRect r = this.getBounds();
+        return p.x < 0 || p.y < 0 || p.x > r.size.width || p.y > r.size.height ? false : true;
     }
 }
