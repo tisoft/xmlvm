@@ -46,7 +46,9 @@ public class SimulatorGUI extends JPanel {
     }
 
     public void redrawDisplay(int x, int y, int width, int height) {
-        display.repaint(x, y, width, height);
+        // TODO Use computed clipping rect after fixing its computation in UIView
+//        display.repaint(x, y, width, height);
+        display.repaint();
     }
 
     private void addStatusBar() {

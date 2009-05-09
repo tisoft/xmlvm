@@ -144,6 +144,7 @@ public class UIView extends UIResponder {
         setNeedsDisplayInRect(getDisplayRect());
     }
 
+    // TODO (arno) Fix the clipping rect computation
     protected void setNeedsDisplayInRect(CGRect rect) {
         CGRect displayRect = getDisplayRect();
         int x = (int) (displayRect.origin.x + rect.origin.x);
