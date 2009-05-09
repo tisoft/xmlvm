@@ -12,7 +12,7 @@ import org.xmlvm.iphone.internal.*;
 
 
 public class UISwitch
-    extends UIView
+    extends UIControl
     implements GestureListener
 {
 

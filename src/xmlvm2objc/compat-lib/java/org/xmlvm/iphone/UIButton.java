@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Path2D;
 
-public class UIButton extends UIView {
+public class UIButton extends UIControl {
 
     private static final int   DEFAULT_ARC_DIAMETER       = 16;
     private static final int   ALERT_BUTTON_ARC_DIAMETER  = 8;
@@ -29,7 +29,7 @@ public class UIButton extends UIView {
     private Color              lowerDarkColor             = null;
 
     private UIButton(int buttonType) {
-        super(new CGRect(0, 0, 0, 0));
+        super();
         init(buttonType);
     }
 

@@ -1,7 +1,5 @@
 package org.xmlvm.test.iphone.widgets.button;
 
-import java.awt.Color;
-import java.awt.Font;
 
 import org.xmlvm.iphone.*;
 
@@ -16,7 +14,7 @@ public class UIButtonTest extends UIApplication {
         UIView mainView = new UIView(rect);
         window.addSubview(mainView);
 
-        UILabel title = new UILabel(rect);
+        final UILabel title = new UILabel(rect);
         title.setText("-- No button pressed --");
         title.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
         mainView.addSubview(title);
@@ -25,6 +23,14 @@ public class UIButtonTest extends UIApplication {
         roundedRectButton.setFrame(new CGRect(10, 10, 90, 60));
         //roundedRectButton.setFont(new Font("Arial", Font.BOLD, 14));
         roundedRectButton.setTitle("Rounded", UIControlState.UIControlStateNormal);
+        roundedRectButton.addTarget(new UIControlDelegate() {
+
+            @Override
+            public void raiseEvent() {
+                title.setText("roundedRectButton pressed");
+            }
+            
+        }, UIControl.UIControlEventTouchUpInside);
         mainView.addSubview(roundedRectButton);
 
         UIButton alertDialogLightButton = UIButton.buttonWithType(UIButtonType.UIButtonTypeAlertLight);
@@ -77,5 +83,4 @@ public class UIButtonTest extends UIApplication {
     public static void main(String[] args) {
         UIApplication.main(args, UIButtonTest.class);
     }
-
 }
