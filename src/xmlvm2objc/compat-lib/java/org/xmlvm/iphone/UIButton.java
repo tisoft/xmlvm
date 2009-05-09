@@ -7,6 +7,9 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Path2D;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 public class UIButton extends UIControl {
 
@@ -236,5 +239,19 @@ public class UIButton extends UIControl {
     public void setTitleShadowOffset(CGSize titleShadowOffset, int state) {
         this.titleShadowOffset = titleShadowOffset;
         setNeedsDisplay();
+    }
+
+    @Override
+    public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+        //TODO Test coordinates (inside/outside button)
+        
+        for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet().iterator(); it
+                .hasNext();) {
+            Map.Entry<Integer, UIControlDelegate> e = it.next();
+            if ((e.getKey().intValue() & UIControlEventTouchUpInside) > 0) {
+                e.getValue().raiseEvent();
+            }
+        }
+
     }
 }
