@@ -32,11 +32,15 @@ public class UIControl extends UIView {
 
     public UIControl() {
         super(new CGRect(0, 0, 0, 0));
-        delegates = new HashMap<Integer, UIControlDelegate>();
+        init();
     }
 
     public UIControl(CGRect rect) {
         super(rect);
+        init();
+    }
+
+    private void init() {
         delegates = new HashMap<Integer, UIControlDelegate>();
     }
 

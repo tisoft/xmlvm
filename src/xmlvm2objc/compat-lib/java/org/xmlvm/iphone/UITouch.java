@@ -35,8 +35,7 @@ public class UITouch {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        UIScreen screen = UIScreen.mainScreen();
-        CGRect rect = screen.applicationFrame();
+        CGRect rect = view.getDisplayRect();
         dstPoint.x -= rect.origin.x;
         dstPoint.y -= rect.origin.y;
         CGPoint point = new CGPoint(dstPoint.x, dstPoint.y);

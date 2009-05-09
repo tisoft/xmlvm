@@ -243,7 +243,12 @@ public class UIButton extends UIControl {
 
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-        //TODO Test coordinates (inside/outside button)
+        UITouch t = touches.iterator().next();
+        CGPoint p = t.locationInView(this);
+        CGRect r = this.getBounds();
+        if (p.x < 0 || p.y < 0 || p.x > r.size.width || p.y > r.size.height) {
+            return;
+        }
         
         for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet().iterator(); it
                 .hasNext();) {
