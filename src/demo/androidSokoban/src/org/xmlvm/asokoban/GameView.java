@@ -84,19 +84,35 @@ public class GameView {
         // Start with an empty display and show background image
         layout.removeAllViews();
 
+        Ball ball;
+        Goal goal;
+        Man man;
+        
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 switch (board.getBoardPiece(x, y)) {
-                case Board.BALL:
-                    Ball ball = new Ball(this, x, y);
-                    gameController.addBall(ball);
-                    break;
                 case Board.GOAL:
-                    Goal goal = new Goal(this, x, y);
+                    goal = new Goal(this, x, y);
                     gameController.addGoal(goal);
                     break;
+                case Board.BALL:
+                    ball = new Ball(this, x, y);
+                    gameController.addBall(ball);
+                    break;
+                case Board.BALL_IN_GOAL:
+                    goal = new Goal(this, x, y);
+                    gameController.addGoal(goal);
+                    ball = new Ball(this, x, y);
+                    gameController.addBall(ball);
+                    break;
                 case Board.MAN:
-                    Man man = new Man(this, x, y);
+                    man = new Man(this, x, y);
+                    gameController.setMan(man);
+                    break;
+                case Board.MAN_ON_GOAL:
+                    goal = new Goal(this, x, y);
+                    gameController.addGoal(goal);
+                    man = new Man(this, x, y);
                     gameController.setMan(man);
                     break;
                 case Board.WALL:

@@ -21,13 +21,22 @@ public class Board {
      */
     public static final int BALL         = 2;
     /**
+     * A ball that initially is placed on a goal.
+     */
+    public static final int BALL_IN_GOAL = 3;
+    /**
      * A goal onto which a ball must be placed
      */
-    public static final int GOAL         = 3;
+    public static final int GOAL         = 4;
     /**
      * The man is controlled by the user to push the balls into the goals.
      */
-    public static final int MAN          = 4;
+    public static final int MAN          = 5;
+    /**
+     * The man initially on a goal.
+     */
+    public static final int MAN_ON_GOAL  = 6;
+
     /**
      * The width of every board.
      */
@@ -105,12 +114,18 @@ public class Board {
         case '$':
             return BALL;
 
+        case '*':
+            return BALL_IN_GOAL;
+            
         case '.':
             return GOAL;
 
         case '@':
             return MAN;
 
+        case '+':
+            return MAN_ON_GOAL;
+            
         default:
             return SPACE;
         }
