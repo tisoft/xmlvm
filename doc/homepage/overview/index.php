@@ -7,6 +7,7 @@
 <table>
   <tr>
     <td>
+      <img src="overview.jpg" style="float:right;width:330px; margin:0px 30px 10px 30px;" alt="XMLVM Overview Diagram"/>
       <p>
         The goal of XMLVM is to offer a flexible and extensible cross-compiler toolchain. Instead of cross-compiling on a source code level, XMLVM
         cross-compiles byte code instructions from Sun Microsystem's virtual machine and Microsoft's Common Language Runtime. The benefit of this
@@ -14,7 +15,6 @@
         to a regular compiler. In XMLVM, byte code-based programs are represented as XML documents. This allows manipulation and translation
         of XMLVM-based programs using advanced XML technologies such as XSLT, XQuery, and XPath.
       </p>
-
       <p>
         XMLVM serves as an <a href="../toolchain">umbrella for several projects</a>. For all projects, a Java class file
         or a .NET executable is first <a href="../frontend">translated to an XML-document</a>.
@@ -23,12 +23,49 @@
         be <a href="../javascript">cross-compiled to JavaScript</a> so that they can run as
         AJAX applications in any browser. Yet another transformation allows to <a href="../iphone">cross-compile a Java program to
         Objective-C</a> to create a native iPhone application.
-		<br>
-		You can even <a href ="../android">cross compile an Android application to run on the iPhone</a>
       </p>
+      <p>
+		    You can even <a href ="../android">cross compile an Android application to run on the iPhone</a> <span class="new">New!</span>
+      </p>
+      
+      <h2 style="margin-top:20px">Get involved <span class="new">New!</span></h2>
+      <table style="width:100%">
+        <tr>
+          <td style="width:50%; padding:0 20px">
+            If you want to receive updates and important news about XMLVM simply subscribe to this mailing list.
+          </td>
+          <td style="width:50%; padding:0 20px;">
+            Get in contact with the developers and other users by subscribing to this mailing list.
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">
+            <div class="rounded_rectangle"><a target="_blank" href="https://lists.sourceforge.net/lists/listinfo/xmlvm-announce">xmlvm-announce</a></div>
+          </td>
+          <td>
+            <div class="rounded_rectangle"><a target="_blank" href="https://lists.sourceforge.net/lists/listinfo/xmlvm-users">xmlvm-users</a></div>
+          </td>
+        </tr>
+      </table>
+
     </td>
     <td>
-      <img src="overview.jpg" style="margin-left:30px;" alt="XMLVM Overview Diagram"/>
+      
+    </td>
+    <td style="border-left: 1px solid #AAA; width:150px; padding-left:10px;">
+      <h4>What's new</h4>
+      <div class="news_item">
+        <div class="date">May 9th 2009</div>
+        <h1>Xsokoban coming soon</h1>
+        <p>
+          We are working hard on our second big Android to iPhone demo called Xsokoban. We will release it in parallel on the Android Market and iTunes AppStore. Stay tuned.
+        </p>
+        <div class="date">May 8th 2009</div>
+        <h1>Website updates</h1>
+        <p>
+          Our homepage got a few important updates and clean-ups. As you can see we now have a news section on the front-page. The <a href="../android">Android-to-iPhone section</a> has also been updated.
+        </p>
+      </div>
     </td>
   </tr>
 </table>

@@ -54,12 +54,19 @@ img {
 h1 {
   font-size:24px;
   color:#000;
+  margin-top:0;
 }
 
 h2 {
   font-size:18px;  
   color:#000;
   margin-bottom:5px;
+}
+
+h4 {
+  font-weight:bold;
+  font-size:14px;
+  margin:0 0 0 0;
 }
 
 #sub_footer {
@@ -84,8 +91,50 @@ h2 {
   color:#000;
 }
 
+.new {
+  color:red;
+  font-size:9px;
+  position:relative;
+  top:-5px;
+}
+
 sub {
   vertical-align:baseline;
   font-size:10px;
   font-style:italic;
+}
+
+.news_item h1 {
+  font-weight:bold;
+  font-size:12px;
+  text-align:left;
+  margin-top:0;
+}
+
+.news_item p {
+  font-size:10px;
+}
+
+.news_item .date {
+  text-align:right;
+  font-size:10px;
+  margin-top:15px;
+}
+
+.rounded_rectangle {
+  background:url(overview/rounded_rectangle.jpg) no-repeat;
+  width:207px;
+  height:53px;
+  text-align:center;
+  vertical-align:middle;
+  font-size: 18px;
+  color:white;
+  text-align:center;
+  padding:13px 0;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.rounded_rectangle a {
+  color:white;
 }
