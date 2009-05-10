@@ -135,12 +135,12 @@ public class InputController implements SensorListener, OnTouchListener {
                     || Math.abs(lastUpY - lastDownY) > swipeThreshold) {
                 moveWithInput(lastUpX - lastDownX, lastUpY - lastDownY, swipeThreshold);
             }
-            // Either display the level dialog or the splash screen
+            // Either display the level dialog or the info view.
             else {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     if (!controller.isGamePaused()) {
                         if (view.isInsideInfoLogo(lastUpX, lastUpY)) {
-                            controller.showSplashScreen(this, false);
+                            controller.showInfoView();
                         } else {
                             controller.showLevelDialog();
                         }

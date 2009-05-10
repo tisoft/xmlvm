@@ -38,11 +38,11 @@ public class GameController implements MoveFinishedHandler {
     /** The {@link GameView} associated with this GameController. */
     private GameView        gameView             = null;
 
-    /**
-     * The splash view shown right after the start of the application or after
-     * tapping the (i) logo.
-     */
+    /** The splash view shown right after the start of the application. */
     private SplashView      splashView;
+
+    /** The info screen contains instructions and settings. */
+    private InfoView        infoView;
 
     /** Whether the SplashView is shown. */
     private boolean         splashViewShown      = true;
@@ -57,15 +57,20 @@ public class GameController implements MoveFinishedHandler {
      * Instantiates a new GameController and connects it to the given
      * {@link GameView}.
      * 
-     * @param activity
-     *            The application's activity.
      * @param gameView
      *            The GameView used to display the game.
+     * @param splashView
+     *            The SplashView that should be used within the game.
+     * @param infoView
+     *            The InfoView that should be used within the game.
+     * @param currentLevel
+     *            The current level.
      */
-
-    public GameController(GameView gameView, Activity activity, int currentLevel) {
+    public GameController(GameView gameView, SplashView splashView, InfoView infoView,
+            int currentLevel) {
         this.gameView = gameView;
-        splashView = new SplashView(activity);
+        this.splashView = splashView;
+        this.infoView = infoView;
         this.currentLevel = currentLevel;
     }
 
@@ -274,18 +279,28 @@ public class GameController implements MoveFinishedHandler {
         congratulationDialog.show();
     }
 
-    public void showSplashScreen(final InputController ic, final boolean loadLevel) {
+    /**
+     * Shows the splashScreen until the user taps the screen.
+     * 
+     * @param inputController
+     *            The input controller that should be used to hide the view on a
+     *            tap.
+     * @param loadLevel
+     *            Whether the current level should be loaded after the screen is
+     *            tapped.
+     */
+    public void showSplashScreen(final InputController inputController, final boolean loadLevel) {
         // Add the SplashView
         gameView.addView(splashView);
         splashViewShown = true;
 
         // When the user taps the screen, the SplashView should disappear and
         // the level should load.
-        ic.setTapHandler(new SimpleTapHandler() {
+        inputController.setTapHandler(new SimpleTapHandler() {
             public void onTap() {
                 if (splashViewShown) {
                     gameView.removeView(splashView);
-                    ic.setTapHandler(null);
+                    inputController.setTapHandler(null);
                     splashViewShown = false;
 
                     if (loadLevel) {
@@ -294,7 +309,13 @@ public class GameController implements MoveFinishedHandler {
                 }
             }
         });
-
+    }
+    
+    /**
+     * Shows the {@link InfoView} instance associated with this GameController.
+     */
+    public void showInfoView() {
+        infoView.show();
     }
 
     /**
