@@ -362,7 +362,7 @@
 
 	<target name="sim-afireworks" depends="build-android-compat-lib">
 		<mkdir dir="${xmlvm.afireworks}" />
-		<javac srcdir="./src/demo/AndroidFireworks" destdir="${xmlvm.afireworks}" debug="${debug}">
+		<javac srcdir="./src/demo/androidFireworks" destdir="${xmlvm.afireworks}" debug="${debug}">
 			<classpath>
 				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
 				<pathelement location="${xmlvm.libjars}/android-compat.jar" />
@@ -407,7 +407,7 @@
 
 	<target name="sim-asokoban" depends="build-android-compat-lib">
 		<mkdir dir="${xmlvm.asokoban}" />
-		<javac srcdir="./src/demo/AndroidSokoban" destdir="${xmlvm.asokoban}" debug="${debug}">
+		<javac srcdir="./src/demo/androidSokoban" destdir="${xmlvm.asokoban}" debug="${debug}">
 			<classpath>
 				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
 				<pathelement location="${xmlvm.libjars}/android-compat.jar" />
@@ -429,7 +429,7 @@
 			<fileset dir="var/iphone">
 				<include name="*.png/" />
 			</fileset>
-			<fileset dir="src/demo/AndroidSokoban/res/drawable">
+			<fileset dir="src/demo/androidSokoban/res/drawable">
 				<include name="*.png" />
 			</fileset>
 		</jar>
@@ -444,7 +444,7 @@
 			<arg value="${xmlvm.asokoban}/*.class" />
 		</java>
 		<copy todir="${xmlvm.demo}/asokoban/iphone">
-			<fileset dir="src/demo/AndroidSokoban/res/drawable">
+			<fileset dir="src/demo/androidSokoban/res/drawable">
 				<include name="*.png" />
 			</fileset>
 		</copy>
