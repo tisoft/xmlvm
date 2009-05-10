@@ -56,9 +56,9 @@
       <h4>What's new</h4>
       <div class="news_item">
         <div class="date">May 9th 2009</div>
-        <h1>Xsokoban coming soon</h1>
+        <h1>Xokoban coming soon</h1>
         <p>
-          We are working hard on our second big Android to iPhone demo called Xsokoban. We will release it in parallel on the Android Market and iTunes AppStore. Stay tuned.
+          We are working hard on our second big Android to iPhone demo called Xokoban. We will release it in parallel on the Android Market and iTunes AppStore. Stay tuned.
         </p>
         <div class="date">May 8th 2009</div>
         <h1>Website updates</h1>
