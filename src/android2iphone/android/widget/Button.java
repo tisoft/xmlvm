@@ -21,50 +21,60 @@
 package android.widget;
 
 import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIImageView;
+import org.xmlvm.iphone.UIButton;
+import org.xmlvm.iphone.UIButtonType;
+import org.xmlvm.iphone.UIControl;
+import org.xmlvm.iphone.UIControlDelegate;
+import org.xmlvm.iphone.UIControlState;
 
 import android.content.Context;
-import android.internal.ResourceMapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
 
-public class ImageView extends View {
-    protected UIImageView image;
+public class Button extends View {
+    protected UIButton button;
+    private String     title;
 
-    public ImageView(Context c) {
+    public Button(Context c) {
         super(c);
         this.setOpaque(false);
-        this.setFrame(new CGRect(0,0, 0, 0));
-        image = new UIImageView(new CGRect(0, 0, 0, 0));//((Activity) c).getWindow().getCGRect());
-        this.addSubview(image);
-    }
-
-    public void setImageResource(int resId) {
-        this.image.setImage(ResourceMapper.getImageById(resId));
-        float width = image.getImage().getSize().width;
-        float height = image.getImage().getSize().height;
-        this.setFrame(new CGRect(0, 0, width, height));
-        image.setFrame(new CGRect(0, 0, width, height));
+        button = UIButton.buttonWithType(UIButtonType.UIButtonTypeRoundedRect);
+        this.addSubview(button);
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
         super.setLayoutParams(l);
         AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams) l;
-        int width = a.width;
-        int height = a.height;
-
-        if (width == LayoutParams.WRAP_CONTENT) {
-            width = (int) image.getImage().getSize().width;
+        if (a.width == LayoutParams.WRAP_CONTENT) {
+            // TODO just a rough approximation: 18px per character
+            a.width = title.length() * 18;
         }
-        if (height == LayoutParams.WRAP_CONTENT) {
-            height = (int) image.getImage().getSize().height;
+        if (a.height == LayoutParams.WRAP_CONTENT) {
+            a.height = 20;
         }
-        this.setFrame(new CGRect(a.x, a.y, width, height));
-        image.setFrame(new CGRect(0, 0, width, height));
+        this.setFrame(new CGRect(a.x, a.y, a.width, a.height));
+        button.setFrame(new CGRect(0, 0, /*a.x, a.y,*/ a.width, a.height));
     }
 
     public AbsoluteLayout.LayoutParams getLayoutParams() {
         return (AbsoluteLayout.LayoutParams) getCurLayout();
+    }
+
+    public void setText(String title) {
+        this.title = title;
+        button.setTitle(title, UIControlState.UIControlStateNormal);
+    }
+
+    public void setOnClickListener(OnClickListener listener) {
+        final OnClickListener theListener = listener;
+        button.addTarget(new UIControlDelegate() {
+
+            @Override
+            public void raiseEvent() {
+                theListener.onClick(Button.this);
+            }
+
+        }, UIControl.UIControlEventTouchUpInside);
     }
 }

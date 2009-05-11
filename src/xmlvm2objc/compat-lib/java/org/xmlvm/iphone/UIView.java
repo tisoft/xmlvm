@@ -24,9 +24,11 @@ public class UIView extends UIResponder {
     protected List<UIView>    subViews;
     protected UIView          parent;
     protected Color           backgroundColor;
+    protected boolean         opaque;
 
     public UIView() {
         init();
+        setFrame(new CGRect(0, 0, 0, 0));
     }
 
     public UIView(CGRect rect) {
@@ -38,6 +40,7 @@ public class UIView extends UIResponder {
         this.frame = null;
         this.bounds = null;
         this.backgroundColor = null;
+        this.opaque = true;
         this.affineTransform = new AffineTransform();
         this.combinedAffineTransform = new AffineTransform();
         subViews = new ArrayList<UIView>();
@@ -220,6 +223,10 @@ public class UIView extends UIResponder {
      */
     public AffineTransform getAffineTransform() {
         return this.affineTransform;
+    }
+
+    public void setOpaque(boolean opaque) {
+        this.opaque = opaque;
     }
 
     public void keyTyped(char key) {

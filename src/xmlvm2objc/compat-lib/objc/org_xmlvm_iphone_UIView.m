@@ -88,4 +88,8 @@
     // Will not be called because overridden in derived class
 }
 
+- (void) setOpaque___boolean :(int)opaque
+{
+	[self setOpaque:opaque];
+}
 @end

@@ -1,7 +1,9 @@
 package org.xmlvm.asokoban;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.AbsoluteLayout;
+import android.widget.Button;
 import android.widget.ImageView;
 
 /**
@@ -19,6 +21,22 @@ public class InfoView extends AbsoluteLayout {
         ImageView splashImage = new ImageView(context);
         splashImage.setImageResource(R.drawable.splash_info);
         addView(splashImage, 0);
+        Button okButton = new Button(context);
+        okButton.setText("OK");
+        AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
+                AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
+                380, 150);
+        okButton.setLayoutParams(p);
+        addView(okButton);
+        okButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                if (shown) {
+                    hide();
+                }
+            }
+        });
     }
 
     /**
@@ -27,13 +45,11 @@ public class InfoView extends AbsoluteLayout {
     public void show() {
         gameView.addView(this);
         shown = true;
-
-        // When the user taps the screen, the View should disappear.
+        
+        // TODO(sascha) install a dummy tap handler so that the "Next/Prev/Cancel" dialog doesn't pop up.
         inputController.setTapHandler(new SimpleTapHandler() {
             public void onTap() {
-                if (shown) {
-                    hide();
-                }
+                // Do nothing
             }
         });
     }

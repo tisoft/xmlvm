@@ -26,7 +26,8 @@ public class UIImageView extends UIView {
         Graphics2D g = CGContext.theContext.graphicsContext;
         // draw the image using the AffineTransform
         AffineTransform trans = new AffineTransform();
-        trans.translate(frame.origin.x, frame.origin.y);
+        CGRect rect = this.getDisplayRect();
+        trans.translate(rect.origin.x, rect.origin.y);
         g.drawImage(image.image, trans, Simulator.getDisplay());
         this.restoreLastTransform();
     }

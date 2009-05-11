@@ -46,6 +46,10 @@ public class View extends UIView {
         public boolean onTouch(View v, MotionEvent event);
     }
 
+    public static interface OnClickListener {
+        public void onClick(View view);
+    }
+
     private ViewGroup.LayoutParams curLayout;
     private Context                c;
 
