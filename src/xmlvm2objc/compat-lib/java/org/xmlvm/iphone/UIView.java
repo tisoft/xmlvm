@@ -25,6 +25,7 @@ public class UIView extends UIResponder {
     protected UIView          parent;
     protected Color           backgroundColor;
     protected boolean         opaque;
+    protected float           alpha;
 
     public UIView() {
         init();
@@ -232,4 +233,23 @@ public class UIView extends UIResponder {
     public void keyTyped(char key) {
         // Do nothing
     }
+
+    // TODO: Make this package visible only
+    public Color getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    // TODO: Make this package visible only
+    public void setBackgroundColor(Color backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    public float getAlpha() {
+        return alpha;
+    }
+
+    public void setAlpha(float alpha) {
+        this.alpha = alpha;
+    }
+
 }

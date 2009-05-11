@@ -14,8 +14,6 @@ import java.util.Set;
 
 public class UIButton extends UIControl {
 
-    private static final int   DEFAULT_ARC_DIAMETER       = 16;
-    private static final int   ALERT_BUTTON_ARC_DIAMETER  = 8;
     private static final Font  DEFAULT_FONT               = new Font("Arial", Font.BOLD, 14);
     private static final Color DEFAULT_TITLE_COLOR        = new Color(0x59709c);
     private static final Color DEFAULT_TITLE_SHADOW_COLOR = Color.DARK_GRAY;
@@ -27,6 +25,7 @@ public class UIButton extends UIControl {
     private Color              titleShadowColor;
     private CGSize             titleShadowOffset;
     private Font               font;
+    private int                edgeDiameter               = 16;
 
     private Color              upperLightColor            = null;
     private Color              upperDarkColor             = null;
@@ -35,7 +34,8 @@ public class UIButton extends UIControl {
 
     private UIButton(int buttonType) {
         super();
-        init(buttonType);
+
+        this.buttonType = buttonType;
     }
 
     public static UIButton buttonWithType(int buttonType) {
@@ -49,12 +49,11 @@ public class UIButton extends UIControl {
 
         switch (buttonType) {
         case UIButtonType.UIButtonTypeRoundedRect:
-            drawRoundedRectButton(g, displayRect);
-            break;
-
-        case UIButtonType.UIButtonTypeAlertLight:
-        case UIButtonType.UIButtonTypeAlertDark:
-            drawAlertButton(g, displayRect);
+            if (backgroundColor == null) {
+                drawRoundedRectButton(g, displayRect);
+            } else {
+                drawColoredButton(g, displayRect);
+            }
             break;
 
         default:
@@ -86,19 +85,19 @@ public class UIButton extends UIControl {
 
         g.setPaint(fillColor);
         g.fillRoundRect((int) displayRect.origin.x, (int) displayRect.origin.y,
-                (int) displayRect.size.width, (int) displayRect.size.height, DEFAULT_ARC_DIAMETER,
-                DEFAULT_ARC_DIAMETER);
+                (int) displayRect.size.width, (int) displayRect.size.height, edgeDiameter,
+                edgeDiameter);
 
         g.setPaint(borderColor);
         g.drawRoundRect((int) displayRect.origin.x, (int) displayRect.origin.y,
-                (int) displayRect.size.width, (int) displayRect.size.height, DEFAULT_ARC_DIAMETER,
-                DEFAULT_ARC_DIAMETER);
+                (int) displayRect.size.width, (int) displayRect.size.height, edgeDiameter,
+                edgeDiameter);
 
         g.setPaint(titleColor);
         drawTitle(g, displayRect);
     }
 
-    private void drawAlertButton(Graphics2D g, CGRect displayRect) {
+    private void drawColoredButton(Graphics2D g, CGRect displayRect) {
 
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -107,15 +106,14 @@ public class UIButton extends UIControl {
         // (which means make its outline one pixel wider/higher)
         Path2D upperShape = new Path2D.Double();
         upperShape.moveTo(displayRect.origin.x, displayRect.origin.y + displayRect.size.height / 2);
-        upperShape.lineTo(displayRect.origin.x, displayRect.origin.y + ALERT_BUTTON_ARC_DIAMETER
-                / 2);
+        upperShape.lineTo(displayRect.origin.x, displayRect.origin.y + edgeDiameter / 2);
         upperShape.quadTo(displayRect.origin.x, displayRect.origin.y, displayRect.origin.x
-                + ALERT_BUTTON_ARC_DIAMETER / 2, displayRect.origin.y);
-        upperShape.lineTo(displayRect.origin.x + displayRect.size.width - ALERT_BUTTON_ARC_DIAMETER
-                / 2 + 1, displayRect.origin.y);
+                + edgeDiameter / 2, displayRect.origin.y);
+        upperShape.lineTo(displayRect.origin.x + displayRect.size.width - edgeDiameter / 2 + 1,
+                displayRect.origin.y);
         upperShape.quadTo(displayRect.origin.x + displayRect.size.width + 1, displayRect.origin.y,
                 displayRect.origin.x + displayRect.size.width + 1, displayRect.origin.y
-                        + ALERT_BUTTON_ARC_DIAMETER / 2);
+                        + edgeDiameter / 2);
         upperShape.lineTo(displayRect.origin.x + displayRect.size.width + 1, displayRect.origin.y
                 + displayRect.size.height / 2);
         upperShape.closePath();
@@ -131,15 +129,15 @@ public class UIButton extends UIControl {
         Path2D lowerShape = new Path2D.Double();
         lowerShape.moveTo(displayRect.origin.x, displayRect.origin.y + displayRect.size.height / 2);
         lowerShape.lineTo(displayRect.origin.x, displayRect.origin.y + displayRect.size.height
-                - ALERT_BUTTON_ARC_DIAMETER / 2 + 1);
+                - edgeDiameter / 2 + 1);
         lowerShape.quadTo(displayRect.origin.x, displayRect.origin.y + displayRect.size.height + 1,
-                displayRect.origin.x + ALERT_BUTTON_ARC_DIAMETER / 2, displayRect.origin.y
+                displayRect.origin.x + edgeDiameter / 2, displayRect.origin.y
                         + displayRect.size.height + 1);
-        lowerShape.lineTo(displayRect.origin.x + displayRect.size.width - ALERT_BUTTON_ARC_DIAMETER
-                / 2 + 1, displayRect.origin.y + displayRect.size.height + 1);
+        lowerShape.lineTo(displayRect.origin.x + displayRect.size.width - edgeDiameter / 2 + 1,
+                displayRect.origin.y + displayRect.size.height + 1);
         lowerShape.quadTo(displayRect.origin.x + displayRect.size.width + 1, displayRect.origin.y
                 + displayRect.size.height + 1, displayRect.origin.x + displayRect.size.width + 1,
-                displayRect.origin.y + displayRect.size.height - ALERT_BUTTON_ARC_DIAMETER / 2 + 1);
+                displayRect.origin.y + displayRect.size.height - edgeDiameter / 2 + 1);
         lowerShape.lineTo(displayRect.origin.x + displayRect.size.width + 1, displayRect.origin.y
                 + displayRect.size.height / 2);
         lowerShape.closePath();
@@ -150,56 +148,66 @@ public class UIButton extends UIControl {
         g.setPaint(darkGradient);
         g.fill(lowerShape);
 
-        // Draw upper light gray line
-        g.setPaint(new Color(0xe0e0e0));
-        g.drawLine((int) (displayRect.origin.x + ALERT_BUTTON_ARC_DIAMETER / 2),
-                (int) displayRect.origin.y, (int) (displayRect.origin.x + displayRect.size.width
-                        - ALERT_BUTTON_ARC_DIAMETER / 2 + 1), (int) displayRect.origin.y);
-
-        // Draw surrounding shadow
-        Path2D shadowShape = new Path2D.Double();
-        shadowShape.moveTo(displayRect.origin.x, displayRect.origin.y + ALERT_BUTTON_ARC_DIAMETER
-                / 2);
-        shadowShape.lineTo(displayRect.origin.x, displayRect.origin.y + displayRect.size.height
-                - ALERT_BUTTON_ARC_DIAMETER / 2);
-        shadowShape.quadTo(displayRect.origin.x, displayRect.origin.y + displayRect.size.height,
-                displayRect.origin.x + ALERT_BUTTON_ARC_DIAMETER / 2, displayRect.origin.y
-                        + displayRect.size.height);
-        shadowShape.lineTo(displayRect.origin.x + displayRect.size.width
-                - ALERT_BUTTON_ARC_DIAMETER / 2, displayRect.origin.y + displayRect.size.height);
-        shadowShape.quadTo(displayRect.origin.x + displayRect.size.width, displayRect.origin.y
-                + displayRect.size.height, displayRect.origin.x + displayRect.size.width,
-                displayRect.origin.y + displayRect.size.height - ALERT_BUTTON_ARC_DIAMETER / 2);
-        shadowShape.lineTo(displayRect.origin.x + displayRect.size.width, displayRect.origin.y
-                + ALERT_BUTTON_ARC_DIAMETER / 2);
-
+        // Draw durrounding dark gray line
         g.setPaint(Color.DARK_GRAY);
-        g.draw(shadowShape);
+        g.drawRoundRect((int) displayRect.origin.x, (int) displayRect.origin.y,
+                (int) displayRect.size.width, (int) displayRect.size.height - 2, edgeDiameter,
+                edgeDiameter);
+
+        // Draw upper light line
+        Path2D upperLineShape = new Path2D.Double();
+        upperLineShape.moveTo(displayRect.origin.x, displayRect.origin.y + edgeDiameter / 2);
+        upperLineShape.quadTo(displayRect.origin.x, displayRect.origin.y, displayRect.origin.x
+                + edgeDiameter / 2, displayRect.origin.y);
+        upperLineShape.lineTo(displayRect.origin.x + displayRect.size.width - edgeDiameter / 2,
+                displayRect.origin.y);
+        upperLineShape.quadTo(displayRect.origin.x + displayRect.size.width, displayRect.origin.y,
+                displayRect.origin.x + displayRect.size.width, displayRect.origin.y + edgeDiameter
+                        / 2);
+        g.setPaint(Color.WHITE);
+        g.draw(upperLineShape);
+        
+        // g.setPaint(new Color(0xe0e0e0));
+        // g.drawLine((int) (displayRect.origin.x + ALERT_BUTTON_ARC_DIAMETER /
+        // 2),
+        // (int) displayRect.origin.y, (int) (displayRect.origin.x +
+        // displayRect.size.width
+        // - ALERT_BUTTON_ARC_DIAMETER / 2 + 1), (int) displayRect.origin.y);
+        //
+        // // Draw surrounding shadow
+        // Path2D shadowShape = new Path2D.Double();
+        // shadowShape.moveTo(displayRect.origin.x, displayRect.origin.y +
+        // ALERT_BUTTON_ARC_DIAMETER
+        // / 2);
+        // shadowShape.lineTo(displayRect.origin.x, displayRect.origin.y +
+        // displayRect.size.height
+        // - ALERT_BUTTON_ARC_DIAMETER / 2);
+        // shadowShape.quadTo(displayRect.origin.x, displayRect.origin.y +
+        // displayRect.size.height,
+        // displayRect.origin.x + ALERT_BUTTON_ARC_DIAMETER / 2,
+        // displayRect.origin.y
+        // + displayRect.size.height);
+        // shadowShape.lineTo(displayRect.origin.x + displayRect.size.width
+        // - ALERT_BUTTON_ARC_DIAMETER / 2, displayRect.origin.y +
+        // displayRect.size.height);
+        // shadowShape.quadTo(displayRect.origin.x + displayRect.size.width,
+        // displayRect.origin.y
+        // + displayRect.size.height, displayRect.origin.x +
+        // displayRect.size.width,
+        // displayRect.origin.y + displayRect.size.height -
+        // ALERT_BUTTON_ARC_DIAMETER / 2);
+        // shadowShape.lineTo(displayRect.origin.x + displayRect.size.width,
+        // displayRect.origin.y
+        // + ALERT_BUTTON_ARC_DIAMETER / 2);
+
+        // g.setPaint(Color.DARK_GRAY);
+        // g.draw(shadowShape);
 
         g.setPaint(titleColor);
         drawTitle(g, displayRect);
     }
 
-    private void initGradientColors() {
-        switch (buttonType) {
-        case UIButtonType.UIButtonTypeAlertLight:
-            upperLightColor = new Color(0xa4, 0xa7, 0xb7, 191);
-            upperDarkColor = new Color(0x85, 0x89, 0x9e, 191);
-            lowerLightColor = new Color(0x64, 0x6a, 0x84, 191);
-            lowerDarkColor = new Color(0x60, 0x65, 0x80, 191);
-            break;
-
-        case UIButtonType.UIButtonTypeAlertDark:
-            upperLightColor = new Color(0x7b, 0x7f, 0x96, 191);
-            upperDarkColor = new Color(0x57, 0x5e, 0x7a, 191);
-            lowerLightColor = new Color(0x3a, 0x42, 0x63, 191);
-            lowerDarkColor = new Color(0x38, 0x40, 0x61, 191);
-            break;
-        }
-    }
-
     private void drawTitle(Graphics2D g, CGRect displayRect) {
-
         g.setFont(font != null ? font : DEFAULT_FONT);
 
         FontMetrics fm = g.getFontMetrics();
@@ -221,20 +229,6 @@ public class UIButton extends UIControl {
         }
 
         g.drawString(title, x, y);
-    }
-
-    private void init(int buttonType) {
-        this.buttonType = buttonType;
-
-        // Initialize setting for AlertDialog buttons
-        if (buttonType == UIButtonType.UIButtonTypeAlertLight
-                || buttonType == UIButtonType.UIButtonTypeAlertDark) {
-            titleColor = Color.WHITE;
-            titleShadowColor = Color.DARK_GRAY;
-            titleShadowOffset = new CGSize(0, -1);
-
-            initGradientColors();
-        }
     }
 
     public void setFont(Font font) {
@@ -260,6 +254,10 @@ public class UIButton extends UIControl {
     public void setTitleShadowOffset(CGSize titleShadowOffset, int state) {
         this.titleShadowOffset = titleShadowOffset;
         setNeedsDisplay();
+    }
+
+    public void setEdgeDiameter(int edgeDiameter) {
+        this.edgeDiameter = edgeDiameter;
     }
 
     @Override
@@ -292,4 +290,28 @@ public class UIButton extends UIControl {
         CGRect r = this.getBounds();
         return p.x < 0 || p.y < 0 || p.x > r.size.width || p.y > r.size.height ? false : true;
     }
+
+    @Override
+    public void setBackgroundColor(Color backgroundColor) {
+        super.setBackgroundColor(backgroundColor);
+        deriveButtonColors();
+    }
+
+    @Override
+    public void setAlpha(float alpha) {
+        super.setAlpha(alpha);
+        deriveButtonColors();
+    }
+
+    private void deriveButtonColors() {
+        upperDarkColor = new Color((int) (backgroundColor.getRed() * 1.125), (int) (backgroundColor
+                .getGreen() * 1.125), (int) (backgroundColor.getBlue() * 1.125), (int) alpha);
+        lowerDarkColor = new Color((int) (backgroundColor.getRed() * 0.875), (int) (backgroundColor
+                .getGreen() * 0.875), (int) (backgroundColor.getBlue() * 0.875), (int) alpha);
+        upperLightColor = new Color((int) (upperDarkColor.getRed() * 1.1), (int) (upperDarkColor
+                .getGreen() * 1.1), (int) (upperDarkColor.getBlue() * 1.1), (int) alpha);
+        lowerLightColor = new Color((int) (lowerDarkColor.getRed() * 1.1), (int) (lowerDarkColor
+                .getGreen() * 1.1), (int) (lowerDarkColor.getBlue() * 1.1), (int) alpha);
+    }
+
 }
