@@ -19,7 +19,10 @@ import android.view.WindowManager;
 public class ASokoban extends Activity {
 
     /** Used to store the level in the user prefs. */
-    private static final String   PREFKEY_LEVEL = "level";
+    private static final String   PREFKEY_LEVEL             = "level";
+
+    /** Used to store usage of the accelerometer. */
+    private static final String   PREFKEY_USERACCELEROMETER = "useAccelerometer";
 
     /** The view used to display the game. */
     private GameView              gameView;
@@ -36,6 +39,12 @@ public class ASokoban extends Activity {
     /** Used to keep the device awake and the screen bright. */
     private PowerManager.WakeLock wakeLock;
 
+    /** The SensorManager used to register/unregister SensorListeners. */
+    private SensorManager         sensorManager;
+
+    /** Determines whether the man can be controlled using the accelerometer. */
+    private boolean               useAccelerometer;
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,12 +59,13 @@ public class ASokoban extends Activity {
         // Retrieve persisted data
         prefs = getPreferences(MODE_PRIVATE);
         final int currentLevel = prefs.getInt(PREFKEY_LEVEL, 0);
+        useAccelerometer = prefs.getBoolean(PREFKEY_USERACCELEROMETER, true);
 
         // Sets the device to not sleep or loose brightness.
         setDeviceNoSleep();
 
         // 1) Obtain SensorManager.
-        SensorManager sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
+        sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
 
         // 2) Set the orientation to landscape programmatically.
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -78,8 +88,10 @@ public class ASokoban extends Activity {
         inputController = new InputController(mover, gameController, gameView);
         inputController.setTapHandler(gameController);
         gameView.setOnTouchListener(inputController);
-        sensorManager.registerListener(inputController, SensorManager.SENSOR_ACCELEROMETER,
-                SensorManager.SENSOR_DELAY_FASTEST);
+
+        if (useAccelerometer) {
+            enableAccelerometer();
+        }
 
         // 3) Set the GameView's display dimensions.
         WindowManager windowManager = getWindowManager();
@@ -119,4 +131,48 @@ public class ASokoban extends Activity {
         gameController.onDestroy();
         super.onDestroy();
     }
+
+    /**
+     * Enables the accelerometer by registering the SensorListener.
+     */
+    public void enableAccelerometer() {
+        if (!useAccelerometer) {
+            useAccelerometer = true;
+            sensorManager.registerListener(inputController, SensorManager.SENSOR_ACCELEROMETER,
+                    SensorManager.SENSOR_DELAY_FASTEST);
+            storeAccelerometerUsage();
+        }
+    }
+
+    /**
+     * Disables the accelerometer by unregistering the SensorListener.
+     */
+    public void disableAccelerometer() {
+        if (useAccelerometer) {
+            useAccelerometer = false;
+            sensorManager.unregisterListener(inputController);
+            storeAccelerometerUsage();
+        }
+    }
+
+    /**
+     * Determines whether the accelerometer can be used to control the man's
+     * movements.
+     * 
+     * @return true if the accelerometer is enabled, false otherwise
+     */
+    public boolean isAccelerometerEnabled() {
+        return useAccelerometer;
+    }
+
+    /**
+     * Stores the accelerometer usage in the preferences, so it can be loaded
+     * when the application is restarted.
+     */
+    private void storeAccelerometerUsage() {
+        Editor editor = prefs.edit();
+        editor.putBoolean(PREFKEY_USERACCELEROMETER, useAccelerometer);
+        editor.commit();
+    }
+
 }

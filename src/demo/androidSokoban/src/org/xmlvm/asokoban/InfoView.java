@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.AbsoluteLayout;
 import android.widget.Button;
+import android.widget.CheckBox;
 
 /**
  * A info view that is shown when the user clicks on the (i) button. It contains
@@ -11,20 +12,35 @@ import android.widget.Button;
  */
 public class InfoView extends SplashView {
     private OnCloseHandler onCloseHandler;
-    
-    public InfoView(Context context, GameView gameView) {
+
+    public InfoView(final Context context, GameView gameView) {
         super(context, gameView, R.drawable.splash_info);
-        Button okButton = new Button(context);
-        okButton.setText("OK");
+
+        final CheckBox enableAccelerometer = new CheckBox(context);
         AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
                 AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                380, 150);
+                380, 30);
+        enableAccelerometer.setLayoutParams(p);
+        enableAccelerometer.setChecked(((ASokoban) context).isAccelerometerEnabled());
+        addView(enableAccelerometer);
+
+        Button okButton = new Button(context);
+        okButton.setText("OK");
+        p = new AbsoluteLayout.LayoutParams(AbsoluteLayout.LayoutParams.WRAP_CONTENT,
+                AbsoluteLayout.LayoutParams.WRAP_CONTENT, 380, 150);
         okButton.setLayoutParams(p);
         addView(okButton);
         okButton.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View view) {
+                if (enableAccelerometer.isChecked()) {
+                    ((ASokoban) context).enableAccelerometer();
+                }
+                else {
+                    ((ASokoban) context).disableAccelerometer();
+                }
+                
                 if (shown) {
                     hide();
                     onCloseHandler.onClose();
@@ -32,7 +48,7 @@ public class InfoView extends SplashView {
             }
         });
     }
-    
+
     /**
      * Sets the handler that should be called when this dialog is closing.
      */
