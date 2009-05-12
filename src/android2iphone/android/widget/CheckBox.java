@@ -1,16 +1,12 @@
 package android.widget;
 
 import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIButton;
-import org.xmlvm.iphone.UIButtonType;
 import org.xmlvm.iphone.UISwitch;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsoluteLayout.LayoutParams;
 
-// TODO Implement this
 public class CheckBox extends View {
 
     protected UISwitch uiSwitch;
@@ -24,9 +20,8 @@ public class CheckBox extends View {
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
         super.setLayoutParams(l);
+        // TODO Fix hard coded sizing
         AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams) l;
-//        this.setFrame(new CGRect(a.x, a.y, a.width, a.height));
-//        uiSwitch.setFrame(new CGRect(0, 0, /* a.x, a.y, */a.width, a.height));
         this.setFrame(new CGRect(a.x - 20, a.y + 8, 80, 28));
         uiSwitch.setFrame(new CGRect(0, 0, 80, 28));
     }
@@ -36,9 +31,10 @@ public class CheckBox extends View {
     }
 
     public boolean isChecked() {
-        return false;
+        return uiSwitch.isOn();
     }
 
     public void setChecked(boolean checked) {
+        uiSwitch.setOn(checked);
     }
 }
