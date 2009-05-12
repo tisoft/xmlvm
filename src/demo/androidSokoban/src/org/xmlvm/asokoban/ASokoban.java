@@ -90,7 +90,8 @@ public class ASokoban extends Activity {
         gameView.setOnTouchListener(inputController);
 
         if (useAccelerometer) {
-            enableAccelerometer();
+            sensorManager.registerListener(inputController, SensorManager.SENSOR_ACCELEROMETER,
+                    SensorManager.SENSOR_DELAY_FASTEST);
         }
 
         // 3) Set the GameView's display dimensions.
