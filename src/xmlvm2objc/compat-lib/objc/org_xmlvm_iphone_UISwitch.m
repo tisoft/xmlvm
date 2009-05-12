@@ -16,4 +16,8 @@
     [self initWithFrame: rect];
 }
 
+- (void) setOn___boolean: (int) on
+{
+	[self setOn: on];
+}
 @end

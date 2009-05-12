@@ -1073,6 +1073,26 @@ _sp--;
 </xsl:template>
 
 
+<xsl:template match="jvm:if_acmpne">
+  <xsl:text>    _op2.o = _stack[--_sp].o;
+    _op1.o = _stack[--_sp].o;
+    if (_op1.o != _op2.o) goto label</xsl:text>
+  <xsl:value-of select="@label"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="jvm:if_acmpeq">
+  <xsl:text>    _op2.o = _stack[--_sp].o;
+    _op1.o = _stack[--_sp].o;
+    if (_op1.o == _op2.o) goto label</xsl:text>
+  <xsl:value-of select="@label"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="jvm:tableswitch">
   <xsl:text>    _op1.i = _stack[--_sp].i;
     switch(_op1.i) {
