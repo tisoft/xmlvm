@@ -98,8 +98,10 @@ public class UIButton extends UIControl {
                 (int) displayRect.size.width, (int) displayRect.size.height, edgeDiameter,
                 edgeDiameter);
 
-        g.setPaint(titleColor);
-        drawTitle(g, displayRect);
+        if (title != null) {
+            g.setPaint(titleColor);
+            drawTitle(g, displayRect);
+        }
     }
 
     private void drawColoredButton(Graphics2D g, CGRect displayRect) {
@@ -175,8 +177,10 @@ public class UIButton extends UIControl {
         g.setPaint(Color.WHITE);
         g.draw(upperLineShape);
 
-        g.setPaint(titleColor);
-        drawTitle(g, displayRect);
+        if (title != null) {
+            g.setPaint(titleColor);
+            drawTitle(g, displayRect);
+        }
     }
 
     private void drawTitle(Graphics2D g, CGRect displayRect) {
