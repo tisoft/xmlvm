@@ -94,16 +94,40 @@ public class UIButtonTest extends UIApplication {
          * mainView.addSubview(contactAddButton);
          */
 
-        UIButton infoLightButton = UIButton.buttonWithType(UIButtonType.UIButtonTypeInfoLight);
-        infoLightButton.setFrame(new CGRect(10, 390, 90, 60));
-        infoLightButton.setTitle("Light", UIControlState.UIControlStateNormal);
-        mainView.addSubview(infoLightButton);
+        UIButton darkGrayButton = UIButton.buttonWithType(UIButtonType.UIButtonTypeRoundedRect);
+        darkGrayButton.setFrame(new CGRect(10, 390, 90, 60));
+        darkGrayButton.setBackgroundColor(new Color(10, 10, 10));
+        darkGrayButton.setPressedBackgroundColor(Color.BLUE);
+        darkGrayButton.setPressedTitleColor(Color.WHITE);
+        darkGrayButton.setAlpha(191);
+        darkGrayButton.setTitleColor(Color.BLACK, UIControlState.UIControlStateNormal);
+        darkGrayButton.setTitleShadowOffset(new CGSize(0, -1), UIControlState.UIControlStateNormal);
+        darkGrayButton.setEdgeDiameter(8);
+        darkGrayButton.setTitle("darkGray", UIControlState.UIControlStateNormal);
+        darkGrayButton.addTarget(new UIControlDelegate() {
 
-        UIButton infoDarkButton = UIButton.buttonWithType(UIButtonType.UIButtonTypeInfoDark);
-        infoDarkButton.setFrame(new CGRect(220, 390, 90, 60));
-        infoDarkButton.setTitle("Dark", UIControlState.UIControlStateNormal);
-        mainView.addSubview(infoDarkButton);
+            @Override
+            public void raiseEvent() {
+                title.setText("darkGrayButton pressed");
+            }
 
+        }, UIControl.UIControlEventTouchUpInside);
+        mainView.addSubview(darkGrayButton);
+
+        /*
+         * UIButton infoLightButton =
+         * UIButton.buttonWithType(UIButtonType.UIButtonTypeInfoLight);
+         * infoLightButton.setFrame(new CGRect(10, 390, 90, 60));
+         * infoLightButton.setTitle("Light",
+         * UIControlState.UIControlStateNormal);
+         * mainView.addSubview(infoLightButton);
+         * 
+         * UIButton infoDarkButton =
+         * UIButton.buttonWithType(UIButtonType.UIButtonTypeInfoDark);
+         * infoDarkButton.setFrame(new CGRect(220, 390, 90, 60));
+         * infoDarkButton.setTitle("Dark", UIControlState.UIControlStateNormal);
+         * mainView.addSubview(infoDarkButton);
+         */
         /*
          * UIButton customButton = new UIButton(UIButtonType.UIButtonTypeCustom,
          * new CGRect(10, 10, 90, 60)); customButton.setFont(new Font("Arial",
