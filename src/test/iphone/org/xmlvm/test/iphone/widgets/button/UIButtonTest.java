@@ -16,7 +16,7 @@ public class UIButtonTest extends UIApplication {
         window.addSubview(mainView);
 
         final UILabel title = new UILabel(rect);
-        title.setBackgroundColor(Color.BLUE);
+        title.setBackgroundColor(Color.WHITE);
         title.setText("-- No button pressed --");
         title.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
         mainView.addSubview(title);

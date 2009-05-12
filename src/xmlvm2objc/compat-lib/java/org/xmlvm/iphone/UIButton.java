@@ -32,6 +32,11 @@ public class UIButton extends UIControl {
     private Color              lowerLightColor            = null;
     private Color              lowerDarkColor             = null;
 
+    private Color              upperLightPressedColor     = null;
+    private Color              upperDarkPressedColor      = null;
+    private Color              lowerLightPressedColor     = null;
+    private Color              lowerDarkPressedColor      = null;
+
     private UIButton(int buttonType) {
         super();
 
@@ -118,8 +123,10 @@ public class UIButton extends UIControl {
                 + displayRect.size.height / 2);
         upperShape.closePath();
 
-        GradientPaint lightGradient = new GradientPaint(0, displayRect.origin.y, upperLightColor,
-                0, displayRect.origin.y + displayRect.size.height / 2, upperDarkColor);
+        GradientPaint lightGradient = new GradientPaint(0, displayRect.origin.y,
+                buttonPressed ? upperLightPressedColor : upperLightColor, 0, displayRect.origin.y
+                        + displayRect.size.height / 2, buttonPressed ? upperDarkPressedColor
+                        : upperDarkColor);
         g.setPaint(lightGradient);
         g.fill(upperShape);
 
@@ -143,8 +150,9 @@ public class UIButton extends UIControl {
         lowerShape.closePath();
 
         GradientPaint darkGradient = new GradientPaint(0, displayRect.origin.y
-                + displayRect.size.height + 1, lowerDarkColor, 0, displayRect.origin.y
-                + displayRect.size.height + 1, lowerLightColor);
+                + displayRect.size.height + 1, buttonPressed ? lowerDarkPressedColor
+                : lowerDarkColor, 0, displayRect.origin.y + displayRect.size.height + 1,
+                buttonPressed ? lowerLightPressedColor : lowerLightColor);
         g.setPaint(darkGradient);
         g.fill(lowerShape);
 
@@ -166,42 +174,6 @@ public class UIButton extends UIControl {
                         / 2);
         g.setPaint(Color.WHITE);
         g.draw(upperLineShape);
-        
-        // g.setPaint(new Color(0xe0e0e0));
-        // g.drawLine((int) (displayRect.origin.x + ALERT_BUTTON_ARC_DIAMETER /
-        // 2),
-        // (int) displayRect.origin.y, (int) (displayRect.origin.x +
-        // displayRect.size.width
-        // - ALERT_BUTTON_ARC_DIAMETER / 2 + 1), (int) displayRect.origin.y);
-        //
-        // // Draw surrounding shadow
-        // Path2D shadowShape = new Path2D.Double();
-        // shadowShape.moveTo(displayRect.origin.x, displayRect.origin.y +
-        // ALERT_BUTTON_ARC_DIAMETER
-        // / 2);
-        // shadowShape.lineTo(displayRect.origin.x, displayRect.origin.y +
-        // displayRect.size.height
-        // - ALERT_BUTTON_ARC_DIAMETER / 2);
-        // shadowShape.quadTo(displayRect.origin.x, displayRect.origin.y +
-        // displayRect.size.height,
-        // displayRect.origin.x + ALERT_BUTTON_ARC_DIAMETER / 2,
-        // displayRect.origin.y
-        // + displayRect.size.height);
-        // shadowShape.lineTo(displayRect.origin.x + displayRect.size.width
-        // - ALERT_BUTTON_ARC_DIAMETER / 2, displayRect.origin.y +
-        // displayRect.size.height);
-        // shadowShape.quadTo(displayRect.origin.x + displayRect.size.width,
-        // displayRect.origin.y
-        // + displayRect.size.height, displayRect.origin.x +
-        // displayRect.size.width,
-        // displayRect.origin.y + displayRect.size.height -
-        // ALERT_BUTTON_ARC_DIAMETER / 2);
-        // shadowShape.lineTo(displayRect.origin.x + displayRect.size.width,
-        // displayRect.origin.y
-        // + ALERT_BUTTON_ARC_DIAMETER / 2);
-
-        // g.setPaint(Color.DARK_GRAY);
-        // g.draw(shadowShape);
 
         g.setPaint(titleColor);
         drawTitle(g, displayRect);
@@ -304,14 +276,28 @@ public class UIButton extends UIControl {
     }
 
     private void deriveButtonColors() {
-        upperDarkColor = new Color((int) (backgroundColor.getRed() * 1.125), (int) (backgroundColor
-                .getGreen() * 1.125), (int) (backgroundColor.getBlue() * 1.125), (int) alpha);
+        upperDarkColor = new Color((int) (Math.min(backgroundColor.getRed() * 1.125, 255)),
+                (int) Math.min(backgroundColor.getGreen() * 1.125, 255), (int) Math.min(
+                        backgroundColor.getBlue() * 1.125, 255), (int) alpha);
         lowerDarkColor = new Color((int) (backgroundColor.getRed() * 0.875), (int) (backgroundColor
                 .getGreen() * 0.875), (int) (backgroundColor.getBlue() * 0.875), (int) alpha);
-        upperLightColor = new Color((int) (upperDarkColor.getRed() * 1.1), (int) (upperDarkColor
-                .getGreen() * 1.1), (int) (upperDarkColor.getBlue() * 1.1), (int) alpha);
+        upperLightColor = new Color((int) Math.min(upperDarkColor.getRed() * 1.1, 255), (int) Math
+                .min(upperDarkColor.getGreen() * 1.1, 255), (int) Math.min(
+                upperDarkColor.getBlue() * 1.1, 255), (int) alpha);
         lowerLightColor = new Color((int) (lowerDarkColor.getRed() * 1.1), (int) (lowerDarkColor
                 .getGreen() * 1.1), (int) (lowerDarkColor.getBlue() * 1.1), (int) alpha);
-    }
 
+        upperDarkPressedColor = new Color((int) (upperDarkColor.getRed() * 0.2),
+                (int) (upperDarkColor.getGreen() * 0.2), (int) (upperDarkColor.getBlue() * 0.2),
+                (int) alpha);
+        upperLightPressedColor = new Color((int) (upperLightColor.getRed() * 0.2),
+                (int) (upperLightColor.getGreen() * 0.2), (int) (upperLightColor.getBlue() * 0.2),
+                (int) alpha);
+        lowerDarkPressedColor = new Color((int) (lowerDarkColor.getRed() * 0.1),
+                (int) (lowerDarkColor.getGreen() * 0.2), (int) (lowerDarkColor.getBlue() * 0.2),
+                (int) alpha);
+        lowerLightPressedColor = new Color((int) (lowerLightColor.getRed() * 0.1),
+                (int) (lowerLightColor.getGreen() * 0.2), (int) (lowerLightColor.getBlue() * 0.2),
+                (int) alpha);
+    }
 }
