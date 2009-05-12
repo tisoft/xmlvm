@@ -62,6 +62,8 @@ public class UISwitch
 
     public void drawRect(CGRect rect)
     {
+        setTransformForThisView();
+        
         Graphics2D g = CGContext.theContext.graphicsContext;
         g.setFont(font);
         CGRect displayRect = getDisplayRect();
@@ -119,6 +121,8 @@ public class UISwitch
         FontMetrics fm = g.getFontMetrics();
         g.drawString(label, knob.origin.x + INSET, knob.origin.y
                 + (h - fm.getHeight()) / 2 + fm.getHeight() - fm.getDescent());
+        
+        restoreLastTransform();
     }
 
 
