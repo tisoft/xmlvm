@@ -20,22 +20,23 @@
 
 package android.hardware;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.xmlvm.iphone.UIAcceleration;
-import org.xmlvm.iphone.UIAccelerometerDelegate;
 import org.xmlvm.iphone.UIAccelerometer;
+import org.xmlvm.iphone.UIAccelerometerDelegate;
 
 import android.app.ActivityWrapper;
 import android.content.pm.ActivityInfo;
 
 public class SensorManager implements UIAccelerometerDelegate {
-    public static final float    GRAVITY_EARTH        = 9.80665f;
-    public static final int      SENSOR_ACCELEROMETER = 0x00000002;
-    public static final int      SENSOR_DELAY_FASTEST = 0x00000000;
-    // TODO: support list on iPhone
-    private RegisteredListener[] listeners            = new RegisteredListener[20];
-    int                          numListeners;
+    public static final float        GRAVITY_EARTH        = 9.80665f;
+    public static final int          SENSOR_ACCELEROMETER = 0x00000002;
+    public static final int          SENSOR_DELAY_FASTEST = 0x00000000;
+    private List<RegisteredListener> listeners            = new ArrayList<RegisteredListener>();
 
-    private UIAccelerometer      accel;
+    private UIAccelerometer          accel;
 
     public SensorManager() {
         accel = UIAccelerometer.getSharedAccelerometer();
@@ -44,11 +45,19 @@ public class SensorManager implements UIAccelerometerDelegate {
     }
 
     public void registerListener(SensorListener listener, int sensors, int rate) {
-        listeners[numListeners++] = new RegisteredListener(listener, sensors);
+        listeners.add(new RegisteredListener(listener, sensors));
     }
-    
+
     public void unregisterListener(SensorListener listener) {
-        // TODO Implement this
+        int found = -1;
+        for (int i = 0; i < listeners.size(); i++) {
+            RegisteredListener registeredListener = listeners.get(i);
+            if (registeredListener.listener == listener) {
+                found = i;
+            }
+        }
+
+        listeners.remove(found);
     }
 
     public void accelerometerDidAccelerate(UIAccelerometer accelerometer,
@@ -60,14 +69,14 @@ public class SensorManager implements UIAccelerometerDelegate {
         float x = (float) (acceleration.x() * GRAVITY_EARTH);
         float y = (float) (acceleration.y() * GRAVITY_EARTH);
         float z = (float) (acceleration.z() * GRAVITY_EARTH);
-        for (int i = 0; i < numListeners; i++) {
-            RegisteredListener listener = listeners[i];
+        for (int i = 0; i < listeners.size(); i++) {
+            RegisteredListener listener = listeners.get(i);
             if ((listener.sensors & SENSOR_ACCELEROMETER) != 0) {
                 float[] values;
                 if (ActivityWrapper.getActivity().getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-                    values = new float[] {x, y, z, x, y, z};
+                    values = new float[] { x, y, z, x, y, z };
                 } else {
-                    values = new float[] {-y, x, z, x, y, z};
+                    values = new float[] { -y, x, z, x, y, z };
                 }
                 listener.listener.onSensorChanged(SENSOR_ACCELEROMETER, values);
             }
