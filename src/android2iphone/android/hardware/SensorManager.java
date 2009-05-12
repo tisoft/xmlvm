@@ -46,6 +46,10 @@ public class SensorManager implements UIAccelerometerDelegate {
     public void registerListener(SensorListener listener, int sensors, int rate) {
         listeners[numListeners++] = new RegisteredListener(listener, sensors);
     }
+    
+    public void unregisterListener(SensorListener listener) {
+        // TODO Implement this
+    }
 
     public void accelerometerDidAccelerate(UIAccelerometer accelerometer,
             UIAcceleration acceleration) {
