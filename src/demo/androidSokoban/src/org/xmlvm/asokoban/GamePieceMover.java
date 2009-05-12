@@ -36,8 +36,9 @@ public class GamePieceMover {
             }
         };
         gamePiecesToBeMoved = new MovableGamePiece[MAX_PIECES_MOVING];
-        for (int i = 0; i < MAX_PIECES_MOVING; i++)
+        for (int i = 0; i < MAX_PIECES_MOVING; i++) {
             gamePiecesToBeMoved[i] = null;
+        }
         animationDelay = 70;
         updater.postDelayed(updateAnimation, animationDelay);
     }

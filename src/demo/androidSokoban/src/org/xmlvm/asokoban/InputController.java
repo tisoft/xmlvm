@@ -1,6 +1,7 @@
 package org.xmlvm.asokoban;
 
 import android.hardware.SensorListener;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -10,10 +11,16 @@ import android.view.View.OnTouchListener;
  */
 public class InputController implements SensorListener, OnTouchListener {
     /** Accelerometer threshold to start moving the man. */
-    private static final float accelerometerThreshold = 1.7f;
+    private static final float ACCELEROMETER_THRESHOLD = 1.7f;
 
     /** Swiping threshold to start moving the man. */
-    private static final float swipeThreshold         = 20f;
+    private static final float SWIPE_THRESHOLD         = 20f;
+
+    /**
+     * If dx and dy from current up to last down event are within this value,
+     * the event is interpreted as a tap event.
+     */
+    private static final float TAP_THRESHOLD           = 5f;
 
     /** Helper class used to animate the man's movement. */
     private GamePieceMover     mover;
@@ -22,7 +29,7 @@ public class InputController implements SensorListener, OnTouchListener {
     private GameController     controller;
 
     /** The GameView associated with this InputController. */
-    private GameView           view;
+    private GameView           gameView;
 
     /** The X coordinate for the last touch button down event. */
     private float              lastDownX;
@@ -33,13 +40,21 @@ public class InputController implements SensorListener, OnTouchListener {
     /** The Y coordinate for the last touch button up event. */
     private float              lastUpY;
 
+    /** True, if the screen is currently touched. */
+    private boolean            currentlyDown           = false;
+
+    /** True if the last button down happened during the game. */
+    private boolean            lastDownDuringGame      = false;
+
     /** A tap handler that is called when a tap event happened. */
     private SimpleTapHandler   tapHandler;
+
+    private Handler            runnableHandler         = new Handler();
 
     public InputController(GamePieceMover mover, GameController controller, GameView view) {
         this.mover = mover;
         this.controller = controller;
-        this.view = view;
+        this.gameView = view;
     }
 
     /**
@@ -65,7 +80,7 @@ public class InputController implements SensorListener, OnTouchListener {
         if (mover.isMoving()) {
             return;
         }
-        moveWithInput(x, y, accelerometerThreshold);
+        moveWithInput(x, y, ACCELEROMETER_THRESHOLD);
     }
 
     /**
@@ -98,54 +113,38 @@ public class InputController implements SensorListener, OnTouchListener {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see android.hardware.SensorListener#onAccuracyChanged(int, int)
-     */
+    @Override
     public void onAccuracyChanged(int arg0, int arg1) {
         // Do nothing.
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see android.view.View.OnTouchListener#onTouch(android.view.View,
-     * android.view.MotionEvent)
-     */
+    @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if ((event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_UP)
-                && tapHandler != null) {
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                tapHandler.onTap();
+        // See if we have a simple tap event that we can forward to a handle.
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            if ((Math.abs(lastDownX - event.getX()) <= TAP_THRESHOLD)
+                    && (Math.abs(lastDownY - event.getY()) <= TAP_THRESHOLD)) {
+                if (tapHandler != null) {
+                    tapHandler.onTap(event.getX(), event.getY());
+                }
+                return true;
             }
-            return true;
-        }
-
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            lastDownX = event.getX();
-            lastDownY = event.getY();
-        } else if (event.getAction() == MotionEvent.ACTION_UP
-                || event.getAction() == MotionEvent.ACTION_MOVE) {
             lastUpX = event.getX();
             lastUpY = event.getY();
+            currentlyDown = false;
+        } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            lastDownX = event.getX();
+            lastDownY = event.getY();
+            currentlyDown = true;
+            lastDownDuringGame = !controller.isGamePaused();
+        }
 
+        if (event.getAction() == MotionEvent.ACTION_MOVE && lastDownDuringGame
+                && !controller.isGamePaused()) {
             // Handle swipe to move the man
-            if (Math.abs(lastUpX - lastDownX) > swipeThreshold
-                    || Math.abs(lastUpY - lastDownY) > swipeThreshold) {
-                moveWithInput(lastUpX - lastDownX, lastUpY - lastDownY, swipeThreshold);
-            }
-            // Either display the level dialog or the info view.
-            else {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (!controller.isGamePaused()) {
-                        if (view.isInsideInfoLogo(lastUpX, lastUpY)) {
-                            controller.showInfoView();
-                        } else {
-                            controller.showLevelDialog();
-                        }
-                    }
-                }
+            if (Math.abs(event.getX() - lastDownX) > SWIPE_THRESHOLD
+                    || Math.abs(event.getY() - lastDownY) > SWIPE_THRESHOLD) {
+                moveWithInput(event.getX() - lastDownX, event.getY() - lastDownY, SWIPE_THRESHOLD);
             }
         }
         return true;

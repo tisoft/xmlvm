@@ -3,14 +3,13 @@ package org.xmlvm.asokoban;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
 /**
  * The controller class for the Sokoban game.
  */
-public class GameController implements MoveFinishedHandler {
+public class GameController implements MoveFinishedHandler, SimpleTapHandler {
     /** A flag to indicate whether sensor events will be processed or not. */
     private boolean         gamePaused           = true;
 
@@ -71,6 +70,12 @@ public class GameController implements MoveFinishedHandler {
         this.gameView = gameView;
         this.splashView = splashView;
         this.infoView = infoView;
+        this.infoView.setOnCloseHandler(new OnCloseHandler() {
+            @Override
+            public void onClose() {
+                gamePaused = false;
+            }
+        });
         this.currentLevel = currentLevel;
     }
 
@@ -289,32 +294,16 @@ public class GameController implements MoveFinishedHandler {
      *            Whether the current level should be loaded after the screen is
      *            tapped.
      */
-    public void showSplashScreen(final InputController inputController, final boolean loadLevel) {
-        // Add the SplashView
-        gameView.addView(splashView);
-        splashViewShown = true;
-
-        // When the user taps the screen, the SplashView should disappear and
-        // the level should load.
-        inputController.setTapHandler(new SimpleTapHandler() {
-            public void onTap() {
-                if (splashViewShown) {
-                    gameView.removeView(splashView);
-                    inputController.setTapHandler(null);
-                    splashViewShown = false;
-
-                    if (loadLevel) {
-                        loadLevel(currentLevel, true);
-                    }
-                }
-            }
-        });
+    public void showSplashScreen() {
+        gamePaused = true;
+        splashView.show();
     }
-    
+
     /**
      * Shows the {@link InfoView} instance associated with this GameController.
      */
     public void showInfoView() {
+        gamePaused = true;
         infoView.show();
     }
 
@@ -350,11 +339,7 @@ public class GameController implements MoveFinishedHandler {
         return gameView.getTileSize();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.xmlvm.asokoban.MoveFinishedHandler#onMoveFinished()
-     */
+    @Override
     public void onMoveFinished() {
         if (isLevelFinished()) {
             // More levels left
@@ -390,8 +375,24 @@ public class GameController implements MoveFinishedHandler {
         }
     }
 
+    /**
+     * Returns the current GameView instance.
+     */
     public GameView getGameView() {
         return gameView;
     }
 
+    @Override
+    public void onTap(float x, float y) {
+        if (splashView.isViewShown()) {
+            splashView.hide();
+            loadLevel(currentLevel, true);
+        } else if (!gamePaused) {
+            if (gameView.isInsideInfoLogo(x, y)) {
+                showInfoView();
+            } else {
+                showLevelDialog();
+            }
+        }
+    }
 }

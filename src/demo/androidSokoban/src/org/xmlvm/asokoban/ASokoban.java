@@ -69,14 +69,14 @@ public class ASokoban extends Activity {
         // Create view and controller.
         GamePieceMover mover = new GamePieceMover();
         gameView = new GameView(this, mover);
-        SplashView splashView = new SplashView(this);
+        SplashView splashView = new SplashView(this, gameView);
         InfoView infoView = new InfoView(this, gameView);
         gameController = new GameController(gameView, splashView, infoView, currentLevel);
         gameView.setGameController(gameController);
         mover.setMoveFinishedHandler(gameController);
 
         inputController = new InputController(mover, gameController, gameView);
-        infoView.setInputController(inputController);
+        inputController.setTapHandler(gameController);
         gameView.setOnTouchListener(inputController);
         sensorManager.registerListener(inputController, SensorManager.SENSOR_ACCELEROMETER,
                 SensorManager.SENSOR_DELAY_FASTEST);
@@ -86,8 +86,7 @@ public class ASokoban extends Activity {
         Display display = windowManager.getDefaultDisplay();
         gameView.setDisplayWidth(display.getWidth());
         gameView.setDisplayHeight(display.getHeight());
-
-        gameController.showSplashScreen(inputController, true);
+        gameController.showSplashScreen();
     }
 
     /**
