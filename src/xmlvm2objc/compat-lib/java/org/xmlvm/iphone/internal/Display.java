@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIAlertView;
 import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UITouch;
@@ -32,6 +33,7 @@ public class Display extends JPanel implements MouseListener, MouseMotionListene
     private Gestures          gestures;
     private UIView            keyListener;
     private List<UIResponder> touchesListener;
+    private UIAlertView       alertView;
 
     public Display(int x, int y) {
         this.setLayout(null);
@@ -76,6 +78,10 @@ public class Display extends JPanel implements MouseListener, MouseMotionListene
             v.drawRect(rect);
         }
         statusBar.drawRect(rect);
+        
+        if (alertView != null) {
+            alertView.drawRect(rect);
+        }
     }
 
     public void mouseClicked(MouseEvent e) {
@@ -163,5 +169,9 @@ public class Display extends JPanel implements MouseListener, MouseMotionListene
 
     public void addTouchesListener(UIResponder listener) {
         touchesListener.add(listener);
+    }
+    
+    public void setAlertView(UIAlertView alertView) {
+        this.alertView = alertView;
     }
 }
