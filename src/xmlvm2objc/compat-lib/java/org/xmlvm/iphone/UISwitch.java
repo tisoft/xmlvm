@@ -9,17 +9,20 @@ import java.util.Set;
 
 public class UISwitch extends UIControl {
 
-    private boolean   isOn;
-    final private int INSET = 8;
-    private Font      font;
+    private boolean           isOn;
+    private Font              font;
+
+    private static final int  INSET               = 8;
+    public static final float kSwitchButtonWidth  = 94.0f;
+    public static final float kSwitchButtonHeight = 27.0f;
 
     public UISwitch() {
-        super(new CGRect(0, 0, 0, 0));
+        super(new CGRect(0, 0, kSwitchButtonWidth, kSwitchButtonHeight));
         init();
     }
 
     public UISwitch(CGRect rect) {
-        super(rect);
+        super(new CGRect(rect.origin.x, rect.origin.y, kSwitchButtonWidth, kSwitchButtonHeight));
         init();
     }
 
@@ -31,6 +34,7 @@ public class UISwitch extends UIControl {
 
     public void setOn(boolean on) {
         this.isOn = on;
+        this.setNeedsDisplay();
     }
 
     public boolean isOn() {

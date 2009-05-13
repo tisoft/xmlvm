@@ -6,8 +6,6 @@ public class SettingsTableDataSource extends UITableViewDataSource {
 
 	private static final float kTextFieldWidth = 150.0f;
 	private static final float kTextFieldHeight = 30.0f;
-	private static final float kSwitchButtonWidth = 94.0f;
-	private static final float kSwitchButtonHeight = 27.0f;
 
 	public UITextField ipAddress;
 	public UISwitch accelerometer;
@@ -24,8 +22,7 @@ public class SettingsTableDataSource extends UITableViewDataSource {
 			cell.setView(ipAddress);
 		} else {
 			cell.setLabelText("Accelerometer");
-			accelerometer = new UISwitch(new CGRect(0, 0, kSwitchButtonWidth,
-					kSwitchButtonHeight));
+			accelerometer = new UISwitch(new CGRect(0, 0, 0, 0));
 			cell.setView(accelerometer);
 		}
 		return cell;

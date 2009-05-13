@@ -20,10 +20,11 @@ public class CheckBox extends View {
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
         super.setLayoutParams(l);
-        // TODO Fix hard coded sizing
         AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams) l;
-        this.setFrame(new CGRect(a.x - 20, a.y + 8, 80, 28));
-        uiSwitch.setFrame(new CGRect(0, 0, 80, 28));
+        this.setFrame(new CGRect(a.x, a.y, UISwitch.kSwitchButtonWidth,
+                UISwitch.kSwitchButtonHeight));
+        uiSwitch.setFrame(new CGRect(0, 0, UISwitch.kSwitchButtonWidth,
+                UISwitch.kSwitchButtonHeight));
     }
 
     public AbsoluteLayout.LayoutParams getLayoutParams() {
