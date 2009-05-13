@@ -49,15 +49,15 @@ public class SensorManager implements UIAccelerometerDelegate {
     }
 
     public void unregisterListener(SensorListener listener) {
-        RegisteredListener registeredListener;
-        
-        for (int i = 0; i < listeners.size(); i++) {
-            do {
-                registeredListener = listeners.get(i);
-                if (registeredListener.listener == listener) {
-                    listeners.remove(i);
-                }
-            } while (i < listeners.size() && registeredListener.listener == listener);
+        int i = 0;
+        while (i < listeners.size()) {
+            RegisteredListener registeredListener = listeners.get(i);
+            if (registeredListener.listener == listener) {
+                listeners.remove(i);
+            }
+            else {
+                i++;
+            }
         }
     }
 
