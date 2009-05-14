@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Path2D;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class UIAlertView extends UIView {
 
     private static final int    FRAME_SIZE         = 2;
     private static final int    EDGE_DIAMETER      = 16;
-    private static final int    INSETS             = 5;
+    private static final int    INSETS             = 6;
     private static final int    LABEL_INSETS       = 12;
     private static final int    FULL_BUTTON_WIDTH  = 260;
     private static final int    SMALL_BUTTON_WIDTH = 124;
@@ -115,6 +116,11 @@ public class UIAlertView extends UIView {
                 UIControl.UIControlEventTouchUpInside);
 
         // TODO: Set color, opacity and font style/color
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.setBackgroundColor(new Color (110, 126, 150));
+        button.setAlpha(180);
+        button.setEdgeDiameter(8);
+        
         addSubview(button);
         buttons.add(button);
 
@@ -132,13 +138,15 @@ public class UIAlertView extends UIView {
         int h = (int) displayRect.size.height;
 
         // Paint the surrounding border
+        Stroke stroke = g.getStroke();
         g.setPaint(Color.WHITE);
         g.setStroke(new BasicStroke(FRAME_SIZE));
         g.drawRoundRect(x, y, w, h, EDGE_DIAMETER, EDGE_DIAMETER);
+        g.setStroke(stroke);
         
         // Paint the view's background
-        g.setPaint(new Color(5, 20, 100, 200));
-        g.fillRoundRect(x + 2, y + 2, w - 4, h - 4, EDGE_DIAMETER, EDGE_DIAMETER);
+        g.setPaint(new Color(5, 20, 100, 180));
+        g.fillRoundRect(x + 1, y + 1, w - 2, h - 2, EDGE_DIAMETER, EDGE_DIAMETER);
         
         // Paint the background's shine
         Path2D shineShape = new Path2D.Double();
@@ -148,9 +156,11 @@ public class UIAlertView extends UIView {
         shineShape.lineTo(x + w - FRAME_SIZE - EDGE_DIAMETER / 2, y + FRAME_SIZE);
         shineShape.quadTo(x + w, y, x + w - FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2);
         shineShape.lineTo(x + w - FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
-        shineShape.quadTo(x + w / 2, y + 40, x + FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
+        shineShape.quadTo(x + w / 2, y + 42, x + FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
         
-        g.setPaint(new Color(140, 170, 190, 200));
+        GradientPaint shineGradient = new GradientPaint(0, y + 1, new Color(140, 170, 190, 180),
+                0, y + 28, new Color(135, 153, 171, 180));
+        g.setPaint(shineGradient);
         g.fill(shineShape);
 
         restoreLastTransform();
