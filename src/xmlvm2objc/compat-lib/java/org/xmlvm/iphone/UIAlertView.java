@@ -2,6 +2,7 @@ package org.xmlvm.iphone;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -32,8 +33,8 @@ public class UIAlertView extends UIView {
     private static final int    FULL_BUTTON_WIDTH  = 260;
     private static final int    SMALL_BUTTON_WIDTH = 124;
     private static final int    BUTTON_HEIGHT      = 42;
-    private static final int    TITLE_FONT_SIZE    = 14;
-    private static final int    MESSAGE_FONT_SIZE  = 12;
+    private static final int    TITLE_FONT_SIZE    = 16;
+    private static final int    MESSAGE_FONT_SIZE  = 14;
 
     private String              title;
     private String              message;
@@ -51,12 +52,20 @@ public class UIAlertView extends UIView {
         this.cancelButtonTitle = cancelButtonTitle;
 
         titleView = new UILabel();
+        titleView.setBackgroundColor(new Color(0, 0, 0, 0));
+        titleView.setFontColor(Color.WHITE);
+        titleView.setFont(new Font("Arial", Font.BOLD, TITLE_FONT_SIZE));
+        titleView.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
         if (title != null && title.length() > 0) {
             titleView.setText(title);
             addSubview(titleView);
         }
 
         messageView = new UILabel();
+        messageView.setBackgroundColor(new Color(0, 0, 0, 0));
+        messageView.setFontColor(Color.WHITE);
+        messageView.setFont(new Font("Arial", Font.BOLD, MESSAGE_FONT_SIZE));
+        messageView.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
         if (message != null && message.length() > 0) {
             messageView.setText(message);
             addSubview(messageView);
