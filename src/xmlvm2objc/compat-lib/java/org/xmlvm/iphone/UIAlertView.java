@@ -117,8 +117,8 @@ public class UIAlertView extends UIView {
 
         // TODO: Set color, opacity and font style/color
         button.setFont(new Font("Arial", Font.BOLD, 14));
-        button.setBackgroundColor(new Color (110, 126, 150));
-        button.setAlpha(180);
+        button.setBackgroundColor(new Color (150, 170, 190));
+        button.setAlpha(200);
         button.setEdgeDiameter(8);
         
         addSubview(button);
@@ -145,7 +145,7 @@ public class UIAlertView extends UIView {
         g.setStroke(stroke);
         
         // Paint the view's background
-        g.setPaint(new Color(5, 20, 100, 180));
+        g.setPaint(new Color(5, 10, 80, 180));
         g.fillRoundRect(x + 1, y + 1, w - 2, h - 2, EDGE_DIAMETER, EDGE_DIAMETER);
         
         // Paint the background's shine
@@ -158,7 +158,7 @@ public class UIAlertView extends UIView {
         shineShape.lineTo(x + w - FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
         shineShape.quadTo(x + w / 2, y + 42, x + FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
         
-        GradientPaint shineGradient = new GradientPaint(0, y + 1, new Color(140, 170, 190, 180),
+        GradientPaint shineGradient = new GradientPaint(0, y + 1, new Color(150, 190, 200, 180),
                 0, y + 28, new Color(135, 153, 171, 180));
         g.setPaint(shineGradient);
         g.fill(shineShape);
