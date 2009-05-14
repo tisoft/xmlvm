@@ -62,8 +62,8 @@ public class UILabel extends UIView {
         Graphics2D g = CGContext.theContext.graphicsContext;
         CGRect displayRect = getDisplayRect();
         if (backgroundColor != null) {
-            g.setBackground(backgroundColor);
-            g.clearRect((int) displayRect.origin.x, (int) displayRect.origin.y,
+            g.setPaint(backgroundColor);
+            g.fillRect((int) displayRect.origin.x, (int) displayRect.origin.y,
                     (int) displayRect.size.width, (int) displayRect.size.height);
         }
         g.setColor(fontColor);
