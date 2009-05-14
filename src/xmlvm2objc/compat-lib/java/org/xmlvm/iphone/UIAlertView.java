@@ -1,5 +1,6 @@
 package org.xmlvm.iphone;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
@@ -25,11 +26,22 @@ public class UIAlertView extends UIView {
         }
     }
 
+    private static final int    FRAME_SIZE         = 2;
+    private static final int    INSETS             = 5;
+    private static final int    LABEL_INSETS       = 12;
+    private static final int    FULL_BUTTON_WIDTH  = 260;
+    private static final int    SMALL_BUTTON_WIDTH = 124;
+    private static final int    BUTTON_HEIGHT      = 42;
+    private static final int    TITLE_FONT_SIZE    = 14;
+    private static final int    MESSAGE_FONT_SIZE  = 12;
+
     private String              title;
     private String              message;
     private UIAlertViewDelegate delegate;
     private String              cancelButtonTitle;
-    private List<UIButton>      buttons = new ArrayList<UIButton>();
+    private List<UIButton>      buttons            = new ArrayList<UIButton>();
+    private UILabel             titleView;
+    private UILabel             messageView;
 
     public UIAlertView(String title, String message, UIAlertViewDelegate delegate,
             String cancelButtonTitle) {
@@ -38,13 +50,27 @@ public class UIAlertView extends UIView {
         this.delegate = delegate;
         this.cancelButtonTitle = cancelButtonTitle;
 
-        this.setFrame(new CGRect(196, 130, 90, 60));
+        titleView = new UILabel();
+        if (title != null && title.length() > 0) {
+            titleView.setText(title);
+            addSubview(titleView);
+        }
+
+        messageView = new UILabel();
+        if (message != null && message.length() > 0) {
+            messageView.setText(message);
+            addSubview(messageView);
+        }
+
         initTransformation();
+
+        // TODO: This will be done by layout() - remove this
+        this.setFrame(new CGRect(196, 130, 90, 60));
 
     }
 
     public void show() {
-        if (getSubviews().size() == 0) {
+        if (buttons.size() == 0) {
             addButtonWithTitle(cancelButtonTitle);
         }
 
@@ -54,21 +80,34 @@ public class UIAlertView extends UIView {
     }
 
     public void setTitle(String title) {
-        // TODO
+        this.title = title;
+        titleView.setText(title);
+        
+        if (title != null && title.length() > 0 && !getSubviews().contains(titleView)) {
+            addSubview(titleView);
+        }
+        
+        if ((title == null || title.length() == 0) && getSubviews().contains(titleView)) {
+            titleView.removeFromSuperview();
+        }
     }
 
     public int addButtonWithTitle(String title) {
         UIButton button = UIButton.buttonWithType(UIButtonType.UIButtonTypeRoundedRect);
-        button.setFrame(new CGRect(10, 30 * getSubviews().size(), 30, 20));
+
+        // TODO: Frame will be set by layout() - remove this
+        button.setFrame(new CGRect(10, 30 * buttons.size(), 30, 20));
+
         button.setTitle(title, UIControlState.UIControlStateNormal);
         button.setEdgeDiameter(8);
-        button.addTarget(new ButtonClickCallback(getSubviews().size()),
+        button.addTarget(new ButtonClickCallback(buttons.size()),
                 UIControl.UIControlEventTouchUpInside);
 
-        // TODO: Set color and opacity
+        // TODO: Set color, opacity and font style/color
         addSubview(button);
+        buttons.add(button);
 
-        return getSubviews().size() - 1;
+        return buttons.size() - 1;
     }
 
     public void drawRect(CGRect rect) {
@@ -83,7 +122,8 @@ public class UIAlertView extends UIView {
 
         // TODO: Draw view
         g.setPaint(Color.WHITE);
-        g.drawRoundRect(x, y, w, h, 24, 24);
+        g.setStroke(new BasicStroke(FRAME_SIZE));
+        g.drawRoundRect(x, y, w, h, 16, 16);
 
         restoreLastTransform();
         for (UIView v : subViews) {
@@ -92,7 +132,69 @@ public class UIAlertView extends UIView {
     }
 
     private void doLayout() {
+        int x;
+        int y;
+        int width;
+        int height;
 
+        // Compute AlertView's boundary
+        if (buttons.size() != 2) {
+            width = 2 * FRAME_SIZE + 2 * INSETS + FULL_BUTTON_WIDTH;
+            height = 2 * FRAME_SIZE + LABEL_INSETS + buttons.size() * INSETS
+                    + (buttons.size() * BUTTON_HEIGHT);
+        } else {
+            width = 2 * FRAME_SIZE + 4 * INSETS + 2 * SMALL_BUTTON_WIDTH;
+            height = 2 * FRAME_SIZE + LABEL_INSETS + INSETS + BUTTON_HEIGHT;
+        }
+
+        if (title != null && title.length() > 0) {
+            height += LABEL_INSETS + TITLE_FONT_SIZE;
+        }
+
+        if (message != null && message.length() > 0) {
+            height += LABEL_INSETS + MESSAGE_FONT_SIZE;
+        }
+
+        x = getScreenWidth() / 2 - width / 2;
+        y = getScreenHeight() / 2 - height / 2;
+        setFrame(new CGRect(x, y, width, height));
+
+        // Compute title and message boundaries
+        int buttonYOffset = FRAME_SIZE;
+        int messageYOffset = FRAME_SIZE;
+
+        if (title != null && title.length() > 0) {
+            buttonYOffset += LABEL_INSETS + TITLE_FONT_SIZE;
+            messageYOffset += LABEL_INSETS + TITLE_FONT_SIZE;
+            titleView.setFrame(new CGRect(FRAME_SIZE + INSETS, LABEL_INSETS,
+                    buttons.size() != 2 ? FULL_BUTTON_WIDTH : SMALL_BUTTON_WIDTH, TITLE_FONT_SIZE));
+        }
+
+        if (message != null && message.length() > 0) {
+            buttonYOffset += LABEL_INSETS + MESSAGE_FONT_SIZE;
+            messageView
+                    .setFrame(new CGRect(FRAME_SIZE + INSETS, LABEL_INSETS + messageYOffset,
+                            buttons.size() != 2 ? FULL_BUTTON_WIDTH : SMALL_BUTTON_WIDTH,
+                            MESSAGE_FONT_SIZE));
+        }
+
+        // Compute buttons' boundaries
+        if (buttons.size() != 2) {
+            for (int i = 0; i < buttons.size(); i++) {
+                int buttonY = LABEL_INSETS + i * (INSETS + BUTTON_HEIGHT);
+                UIButton button = buttons.get(i);
+                button.setFrame(new CGRect(FRAME_SIZE + INSETS, buttonYOffset + buttonY,
+                        FULL_BUTTON_WIDTH, BUTTON_HEIGHT));
+            }
+        } else {
+            UIButton b1 = buttons.get(0);
+            UIButton b2 = buttons.get(1);
+
+            b1.setFrame(new CGRect(FRAME_SIZE + INSETS, buttonYOffset + LABEL_INSETS,
+                    SMALL_BUTTON_WIDTH, BUTTON_HEIGHT));
+            b2.setFrame(new CGRect(FRAME_SIZE + 3 * INSETS, buttonYOffset + LABEL_INSETS,
+                    SMALL_BUTTON_WIDTH, BUTTON_HEIGHT));
+        }
     }
 
     private void initTransformation() {
@@ -128,5 +230,17 @@ public class UIAlertView extends UIView {
         System.out.println("Clicked button " + buttonIndex);
         ((Display) Simulator.getDisplay()).setAlertView(null);
         setNeedsDisplay();
+    }
+
+    private int getScreenWidth() {
+        return Simulator.getStatusBarOrientation() == UIInterfaceOrientation.UIInterfaceOrientationPortrait
+                || Simulator.getStatusBarOrientation() == UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown ? 320
+                : 480;
+    }
+
+    private int getScreenHeight() {
+        return Simulator.getStatusBarOrientation() == UIInterfaceOrientation.UIInterfaceOrientationPortrait
+                || Simulator.getStatusBarOrientation() == UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown ? 480
+                : 320;
     }
 }
