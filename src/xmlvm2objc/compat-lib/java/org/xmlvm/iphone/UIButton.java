@@ -79,10 +79,15 @@ public class UIButton extends UIControl {
         Paint fillColor;
         Paint titleColor;
 
+        int x = (int) displayRect.origin.x;
+        int y = (int) displayRect.origin.y;
+        int w = (int) displayRect.size.width - 2;
+        int h = (int) displayRect.size.height - 2;
+
         if (buttonPressed) {
             borderColor = new Color(0x9f9f9f);
-            fillColor = new GradientPaint(0, displayRect.origin.y, new Color(5, 140, 245), 0,
-                    displayRect.origin.y + displayRect.size.height - 1, new Color(1, 96, 230));
+            fillColor = new GradientPaint(0, y, new Color(5, 140, 245), 0, y
+                    + displayRect.size.height - 1, new Color(1, 96, 230));
             titleColor = Color.WHITE;
         } else {
             borderColor = new Color(0x9f9f9f);
@@ -91,14 +96,10 @@ public class UIButton extends UIControl {
         }
 
         g.setPaint(fillColor);
-        g.fillRoundRect((int) displayRect.origin.x, (int) displayRect.origin.y,
-                (int) displayRect.size.width, (int) displayRect.size.height, edgeDiameter,
-                edgeDiameter);
+        g.fillRoundRect(x, y, w, h, edgeDiameter, edgeDiameter);
 
         g.setPaint(borderColor);
-        g.drawRoundRect((int) displayRect.origin.x, (int) displayRect.origin.y,
-                (int) displayRect.size.width, (int) displayRect.size.height, edgeDiameter,
-                edgeDiameter);
+        g.drawRoundRect(x, y, w, h, edgeDiameter, edgeDiameter);
 
         if (title != null) {
             g.setPaint(titleColor);
@@ -110,27 +111,26 @@ public class UIButton extends UIControl {
 
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+        int x = (int) displayRect.origin.x;
+        int y = (int) displayRect.origin.y;
+        int w = (int) displayRect.size.width - 2;
+        int h = (int) displayRect.size.height - 2;
+
         // Draw the button's upper part, so that the shape's interior has the
         // specified size
         // (which means make its outline one pixel wider/higher)
         Path2D upperShape = new Path2D.Double();
-        upperShape.moveTo(displayRect.origin.x, displayRect.origin.y + displayRect.size.height / 2);
-        upperShape.lineTo(displayRect.origin.x, displayRect.origin.y + edgeDiameter / 2);
-        upperShape.quadTo(displayRect.origin.x, displayRect.origin.y, displayRect.origin.x
-                + edgeDiameter / 2, displayRect.origin.y);
-        upperShape.lineTo(displayRect.origin.x + displayRect.size.width - edgeDiameter / 2 + 1,
-                displayRect.origin.y);
-        upperShape.quadTo(displayRect.origin.x + displayRect.size.width + 1, displayRect.origin.y,
-                displayRect.origin.x + displayRect.size.width + 1, displayRect.origin.y
-                        + edgeDiameter / 2);
-        upperShape.lineTo(displayRect.origin.x + displayRect.size.width + 1, displayRect.origin.y
-                + displayRect.size.height / 2);
+        upperShape.moveTo(x, y + h / 2);
+        upperShape.lineTo(x, y + edgeDiameter / 2);
+        upperShape.quadTo(x, y, x + edgeDiameter / 2, y);
+        upperShape.lineTo(x + w - edgeDiameter / 2 + 1, y);
+        upperShape.quadTo(x + w + 1, y, x + w + 1, y + edgeDiameter / 2);
+        upperShape.lineTo(x + w + 1, y + h / 2);
         upperShape.closePath();
 
-        GradientPaint lightGradient = new GradientPaint(0, displayRect.origin.y,
-                buttonPressed ? upperLightPressedColor : upperLightColor, 0, displayRect.origin.y
-                        + displayRect.size.height / 2, buttonPressed ? upperDarkPressedColor
-                        : upperDarkColor);
+        GradientPaint lightGradient = new GradientPaint(0, y,
+                buttonPressed ? upperLightPressedColor : upperLightColor, 0, y + h / 2,
+                buttonPressed ? upperDarkPressedColor : upperDarkColor);
         g.setPaint(lightGradient);
         g.fill(upperShape);
 
@@ -138,44 +138,30 @@ public class UIButton extends UIControl {
         // specified size
         // (which means make its outline one pixel wider/higher)
         Path2D lowerShape = new Path2D.Double();
-        lowerShape.moveTo(displayRect.origin.x, displayRect.origin.y + displayRect.size.height / 2);
-        lowerShape.lineTo(displayRect.origin.x, displayRect.origin.y + displayRect.size.height
-                - edgeDiameter / 2 + 1);
-        lowerShape.quadTo(displayRect.origin.x, displayRect.origin.y + displayRect.size.height + 1,
-                displayRect.origin.x + edgeDiameter / 2, displayRect.origin.y
-                        + displayRect.size.height + 1);
-        lowerShape.lineTo(displayRect.origin.x + displayRect.size.width - edgeDiameter / 2 + 1,
-                displayRect.origin.y + displayRect.size.height + 1);
-        lowerShape.quadTo(displayRect.origin.x + displayRect.size.width + 1, displayRect.origin.y
-                + displayRect.size.height + 1, displayRect.origin.x + displayRect.size.width + 1,
-                displayRect.origin.y + displayRect.size.height - edgeDiameter / 2 + 1);
-        lowerShape.lineTo(displayRect.origin.x + displayRect.size.width + 1, displayRect.origin.y
-                + displayRect.size.height / 2);
+        lowerShape.moveTo(x, y + h / 2);
+        lowerShape.lineTo(x, y + h - edgeDiameter / 2 + 1);
+        lowerShape.quadTo(x, y + h + 1, x + edgeDiameter / 2, y + h + 1);
+        lowerShape.lineTo(x + w - edgeDiameter / 2 + 1, y + h + 1);
+        lowerShape.quadTo(x + w + 1, y + h + 1, x + w + 1, y + h - edgeDiameter / 2 + 1);
+        lowerShape.lineTo(x + w + 1, y + h / 2);
         lowerShape.closePath();
 
-        GradientPaint darkGradient = new GradientPaint(0, displayRect.origin.y
-                + displayRect.size.height + 1, buttonPressed ? lowerDarkPressedColor
-                : lowerDarkColor, 0, displayRect.origin.y + displayRect.size.height + 1,
+        GradientPaint darkGradient = new GradientPaint(0, y + h + 1,
+                buttonPressed ? lowerDarkPressedColor : lowerDarkColor, 0, y + h + 1,
                 buttonPressed ? lowerLightPressedColor : lowerLightColor);
         g.setPaint(darkGradient);
         g.fill(lowerShape);
 
         // Draw durrounding dark gray line
         g.setPaint(Color.DARK_GRAY);
-        g.drawRoundRect((int) displayRect.origin.x, (int) displayRect.origin.y,
-                (int) displayRect.size.width, (int) displayRect.size.height - 2, edgeDiameter,
-                edgeDiameter);
+        g.drawRoundRect((int) x, (int) y, (int) w, (int) h - 2, edgeDiameter, edgeDiameter);
 
         // Draw upper light line
         Path2D upperLineShape = new Path2D.Double();
-        upperLineShape.moveTo(displayRect.origin.x, displayRect.origin.y + edgeDiameter / 2);
-        upperLineShape.quadTo(displayRect.origin.x, displayRect.origin.y, displayRect.origin.x
-                + edgeDiameter / 2, displayRect.origin.y);
-        upperLineShape.lineTo(displayRect.origin.x + displayRect.size.width - edgeDiameter / 2,
-                displayRect.origin.y);
-        upperLineShape.quadTo(displayRect.origin.x + displayRect.size.width, displayRect.origin.y,
-                displayRect.origin.x + displayRect.size.width, displayRect.origin.y + edgeDiameter
-                        / 2);
+        upperLineShape.moveTo(x, y + edgeDiameter / 2);
+        upperLineShape.quadTo(x, y, x + edgeDiameter / 2, y);
+        upperLineShape.lineTo(x + w - edgeDiameter / 2, y);
+        upperLineShape.quadTo(x + w, y, x + w, y + edgeDiameter / 2);
         g.setPaint(Color.WHITE);
         g.draw(upperLineShape);
 
