@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Path2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class UIAlertView extends UIView {
     }
 
     private static final int    FRAME_SIZE         = 2;
+    private static final int    EDGE_DIAMETER      = 16;
     private static final int    INSETS             = 5;
     private static final int    LABEL_INSETS       = 12;
     private static final int    FULL_BUTTON_WIDTH  = 260;
@@ -91,11 +93,11 @@ public class UIAlertView extends UIView {
     public void setTitle(String title) {
         this.title = title;
         titleView.setText(title);
-        
+
         if (title != null && title.length() > 0 && !getSubviews().contains(titleView)) {
             addSubview(titleView);
         }
-        
+
         if ((title == null || title.length() == 0) && getSubviews().contains(titleView)) {
             titleView.removeFromSuperview();
         }
@@ -129,10 +131,27 @@ public class UIAlertView extends UIView {
         int w = (int) displayRect.size.width;
         int h = (int) displayRect.size.height;
 
-        // TODO: Draw view
+        // Paint the surrounding border
         g.setPaint(Color.WHITE);
         g.setStroke(new BasicStroke(FRAME_SIZE));
-        g.drawRoundRect(x, y, w, h, 16, 16);
+        g.drawRoundRect(x, y, w, h, EDGE_DIAMETER, EDGE_DIAMETER);
+        
+        // Paint the view's background
+        g.setPaint(new Color(5, 20, 100, 200));
+        g.fillRoundRect(x + 2, y + 2, w - 4, h - 4, EDGE_DIAMETER, EDGE_DIAMETER);
+        
+        // Paint the background's shine
+        Path2D shineShape = new Path2D.Double();
+        shineShape.moveTo(x + FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
+        shineShape.lineTo(x + FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2);
+        shineShape.quadTo(x, y, x + FRAME_SIZE + EDGE_DIAMETER / 2, y + FRAME_SIZE);
+        shineShape.lineTo(x + w - FRAME_SIZE - EDGE_DIAMETER / 2, y + FRAME_SIZE);
+        shineShape.quadTo(x + w, y, x + w - FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2);
+        shineShape.lineTo(x + w - FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
+        shineShape.quadTo(x + w / 2, y + 40, x + FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
+        
+        g.setPaint(new Color(140, 170, 190, 200));
+        g.fill(shineShape);
 
         restoreLastTransform();
         for (UIView v : subViews) {
