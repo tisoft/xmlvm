@@ -144,6 +144,10 @@ public class UIAlertView extends UIView {
         g.drawRoundRect(x, y, w, h, EDGE_DIAMETER, EDGE_DIAMETER);
         g.setStroke(stroke);
         
+        // Paint dark screen overlay
+        g.setPaint(new Color(20, 20, 20, 80));
+        g.fillRect(0, 0, getScreenWidth(), getScreenHeight());
+        
         // Paint the view's background
         g.setPaint(new Color(5, 10, 80, 180));
         g.fillRoundRect(x + 1, y + 1, w - 2, h - 2, EDGE_DIAMETER, EDGE_DIAMETER);
