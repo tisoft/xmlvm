@@ -154,13 +154,13 @@ public class UIAlertView extends UIView {
         
         // Paint the background's shine
         Path2D shineShape = new Path2D.Double();
-        shineShape.moveTo(x + FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
-        shineShape.lineTo(x + FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2);
-        shineShape.quadTo(x, y, x + FRAME_SIZE + EDGE_DIAMETER / 2, y + FRAME_SIZE);
-        shineShape.lineTo(x + w - FRAME_SIZE - EDGE_DIAMETER / 2, y + FRAME_SIZE);
-        shineShape.quadTo(x + w, y, x + w - FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2);
-        shineShape.lineTo(x + w - FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
-        shineShape.quadTo(x + w / 2, y + 42, x + FRAME_SIZE, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
+        shineShape.moveTo(x + FRAME_SIZE - 1, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
+        shineShape.lineTo(x + FRAME_SIZE - 1, y + FRAME_SIZE + EDGE_DIAMETER / 2);
+        shineShape.quadTo(x, y, x + FRAME_SIZE + EDGE_DIAMETER / 2, y + FRAME_SIZE - 1);
+        shineShape.lineTo(x + w - FRAME_SIZE - EDGE_DIAMETER / 2, y + FRAME_SIZE - 1);
+        shineShape.quadTo(x + w, y, x + w - FRAME_SIZE + 1, y + FRAME_SIZE + EDGE_DIAMETER / 2);
+        shineShape.lineTo(x + w - FRAME_SIZE + 1, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
+        shineShape.quadTo(x + w / 2, y + 42, x + FRAME_SIZE - 1, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
         
         GradientPaint shineGradient = new GradientPaint(0, y + 1, new Color(150, 190, 200, 180),
                 0, y + 28, new Color(135, 153, 171, 180));
