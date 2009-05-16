@@ -1,12 +1,7 @@
 package org.xmlvm.iphone.internal;
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
@@ -14,21 +9,18 @@ import org.xmlvm.iphone.UIWindow;
 public class SimulatorGUI extends JPanel {
 
     private ImageLoader        imageLoader;
-    private Display            display;
     private AccelerometerPanel accelerometer;
-    public StatusBar           statusBar;
+    private Device             device;
 
-    final static private int   simulatorPositionX = 50;
-    final static private int   simulatorPositionY = 120;
+    final static private int   simulatorPositionX = 15;
+    final static private int   simulatorPositionY = 15;
 
     public SimulatorGUI(ImageLoader imageLoader) {
         Simulator.setGUI(this);
         this.imageLoader = imageLoader;
         this.setLayout(null);
         this.setSize(580, 750);
-        addChassis();
-        addDisplay();
-        addStatusBar();
+        addDevice();
         addAccelerometerPanel();
     }
 
@@ -36,24 +28,25 @@ public class SimulatorGUI extends JPanel {
         return imageLoader;
     }
 
-    private void addDisplay() {
-        display = new Display(simulatorPositionX, simulatorPositionY);
-        this.add(display, 0);
+    private void addDevice() {
+        device = new Device(imageLoader);
+        device.setLocation(simulatorPositionX, simulatorPositionY);
+        this.add(device, 0);
     }
 
     public void redrawDisplay() {
-        display.repaint();
+        if (device != null) {
+            device.repaint();
+        }
     }
 
     public void redrawDisplay(int x, int y, int width, int height) {
-        // TODO Use computed clipping rect after fixing its computation in UIView
-//        display.repaint(x, y, width, height);
-        display.repaint();
-    }
-
-    private void addStatusBar() {
-        statusBar = new StatusBar(new CGRect(0, 0, 320, 20));
-        display.setStatusBar(statusBar);
+        // TODO Use computed clipping rect after fixing its computation in
+        // UIView
+        // display.repaint(x, y, width, height);
+        if (device != null) {
+            device.repaint();
+        }
     }
 
     private void addAccelerometerPanel() {
@@ -62,38 +55,34 @@ public class SimulatorGUI extends JPanel {
         this.add(accelerometer);
     }
 
-    private void addChassis() {
-        Image image = imageLoader.loadImage("chassis.png");
-        ImageIcon chassisIcon = new ImageIcon(image);
-        JLabel chassis = new JLabel(chassisIcon);
-        chassis.setBounds(simulatorPositionX - 35, simulatorPositionY - 110, chassisIcon
-                .getIconWidth(), chassisIcon.getIconHeight());
-        this.add(chassis);
-    }
-
     public void addUIWindow(UIWindow newWindow) {
-        display.addView(newWindow);
-        display.validate();
+        device.addUIWindow(newWindow);
     }
 
     public void addGestureListener(GestureListener listener) {
-        display.addGestureListener(listener);
+        device.addGestureListener(listener);
     }
 
     public void addKeyListener(UIView listener) {
-        display.addKeyListener(listener);
+        device.addKeyListener(listener);
     }
 
     public void addTouchesListener(UIResponder listener) {
-        display.addTouchesListener(listener);
+        if (device != null) {
+            device.addTouchesListener(listener);
+        }
     }
 
     public float getStatusBarHeight() {
-        return statusBar.getStatusBarHeight();
+        return device.getStatusBarHeight();
     }
 
     public JPanel getDisplay() {
-        return display;
+        return device.getDisplay();
+    }
+
+    public StatusBar getStatusBar() {
+        return device.getStatusBar();
     }
 
     public void setAccelerated(double x, double y, double z) {

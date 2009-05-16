@@ -51,11 +51,11 @@ public class Simulator {
     }
 
     static public float getStatusBarHeight() {
-        return simulatorGUI.statusBar.getStatusBarHeight();
+        return simulatorGUI.getStatusBarHeight();
     }
 
     static public void setStatusBarHidden(boolean flag) {
-        simulatorGUI.statusBar.setStatusBarHidden(flag);
+        simulatorGUI.getStatusBar().setStatusBarHidden(flag);
     }
 
     public static JPanel getDisplay() {
@@ -67,10 +67,10 @@ public class Simulator {
     }
 
     public static void setStatusBarOrientation(int orientation) {
-        simulatorGUI.statusBar.setStatusBarOrientation(orientation);
+        simulatorGUI.getStatusBar().setStatusBarOrientation(orientation);
     }
 
     public static int getStatusBarOrientation() {
-        return simulatorGUI.statusBar.getStatusBarOrientation();
+        return simulatorGUI.getStatusBar().getStatusBarOrientation();
     }
 }
