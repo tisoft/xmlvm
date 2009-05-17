@@ -250,7 +250,7 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
 
         };
         changeLevelDialog = new AlertDialog.Builder(gameView.getActivity()).create();
-        changeLevelDialog.setTitle("What do you want to do?");
+        changeLevelDialog.setTitle("   Current Level: " + (currentLevel +1) + "   ");
         if (!levelStarted && currentLevel > 0) {
             changeLevelDialog.setButton("Previous", listener);
         } else {
