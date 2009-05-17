@@ -1,7 +1,11 @@
 package org.xmlvm.iphone.internal;
 
-import javax.swing.JPanel;
+import java.awt.Dimension;
+import java.awt.geom.AffineTransform;
 
+import javax.swing.JFrame;
+
+import org.xmlvm.iphone.UIInterfaceOrientation;
 import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
@@ -10,6 +14,7 @@ public class Simulator {
 
     static public boolean       initialized = false;
     static private SimulatorGUI simulatorGUI;
+    static private JFrame       simulatorFrame;
 
     private Simulator() {
     }
@@ -58,7 +63,7 @@ public class Simulator {
         simulatorGUI.getStatusBar().setStatusBarHidden(flag);
     }
 
-    public static JPanel getDisplay() {
+    public static Display getDisplay() {
         return simulatorGUI.getDisplay();
     }
 
@@ -68,9 +73,48 @@ public class Simulator {
 
     public static void setStatusBarOrientation(int orientation) {
         simulatorGUI.getStatusBar().setStatusBarOrientation(orientation);
+        Dimension frameSize = null;
+        AffineTransform deviceTransform = new AffineTransform();
+        AffineTransform displayTransform = new AffineTransform();
+
+        switch (orientation) {
+        case UIInterfaceOrientation.UIInterfaceOrientationPortrait:
+            frameSize = new Dimension(580, 750);
+            displayTransform.translate(35, 107);
+            break;
+
+        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
+            frameSize = new Dimension(883, 450);
+            break;
+
+        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
+            frameSize = new Dimension(883, 450);
+            deviceTransform.rotate((float) ((Math.PI / 180) * -90), 580 / 2, 750 / 2);
+            deviceTransform.translate(275, 85);
+
+            displayTransform.translate(35, 107);
+            break;
+
+        case UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown:
+            frameSize = new Dimension(580, 750);
+            break;
+        }
+
+        if (simulatorFrame != null) {
+            simulatorFrame.setSize(frameSize);
+        }
+        simulatorGUI.updateSize(frameSize, deviceTransform, displayTransform);
     }
 
     public static int getStatusBarOrientation() {
         return simulatorGUI.getStatusBar().getStatusBarOrientation();
+    }
+
+    public static JFrame getSimulatorFrame() {
+        return simulatorFrame;
+    }
+
+    public static void setSimulatorFrame(JFrame simulatorFrame) {
+        Simulator.simulatorFrame = simulatorFrame;
     }
 }

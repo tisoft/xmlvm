@@ -1,6 +1,14 @@
 package org.xmlvm.iphone.internal;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.geom.AffineTransform;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -11,14 +19,13 @@ import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
 
-public class Device extends JPanel {
+public class Device extends JPanel implements KeyListener, MouseListener, MouseMotionListener {
 
-    private ImageLoader      imageLoader;
-    private Display          display;
-    public StatusBar         statusBar;
-
-    final static private int displayPositionX = 35;
-    final static private int displayPositionY = 110;
+    private ImageLoader     imageLoader;
+    private Display         display;
+    private AffineTransform deviceTransform;
+    private AffineTransform displayTransform;
+    public StatusBar        statusBar;
 
     public Device(ImageLoader imageLoader) {
         this.imageLoader = imageLoader;
@@ -27,6 +34,11 @@ public class Device extends JPanel {
         addChassis();
         addDisplay();
         addStatusBar();
+
+        this.addMouseListener(this);
+        this.addMouseMotionListener(this);
+        this.addKeyListener(this);
+        this.setFocusable(true);
     }
 
     public ImageLoader getImageLoader() {
@@ -34,19 +46,21 @@ public class Device extends JPanel {
     }
 
     private void addDisplay() {
-        display = new Display(displayPositionX, displayPositionY);
-        this.add(display, 0);
+        display = new Display(this);
     }
 
     public void redrawDisplay() {
-        display.repaint();
+        // TODO: Limit repaint to the display area
+        this.repaint();
     }
 
     public void redrawDisplay(int x, int y, int width, int height) {
         // TODO Use computed clipping rect after fixing its computation in
         // UIView
         // display.repaint(x, y, width, height);
-        display.repaint();
+
+        // TODO: Limit repaint to the specified display area
+        this.repaint();
     }
 
     private void addStatusBar() {
@@ -66,8 +80,8 @@ public class Device extends JPanel {
     }
 
     public void addUIWindow(UIWindow newWindow) {
-        display.addView(newWindow);
-        display.validate();
+        display.addSubview(newWindow);
+        this.validate();
     }
 
     public void addGestureListener(GestureListener listener) {
@@ -86,11 +100,81 @@ public class Device extends JPanel {
         return statusBar.getStatusBarHeight();
     }
 
-    public JPanel getDisplay() {
+    public Display getDisplay() {
         return display;
     }
 
     public StatusBar getStatusBar() {
         return this.statusBar;
     }
+
+    public void paint(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        AffineTransform savedTransform = g2d.getTransform();
+        g2d.transform(deviceTransform);
+        super.paint(g);
+
+        g2d.transform(displayTransform);
+        display.drawRect(g2d);
+
+        g2d.setTransform(savedTransform);
+    }
+
+    public void mouseClicked(MouseEvent e) {
+        display.mouseClicked(e);
+    }
+
+    public void mouseEntered(MouseEvent e) {
+        display.mouseEntered(e);
+    }
+
+    public void mouseExited(MouseEvent e) {
+        display.mouseExited(e);
+    }
+
+    public void mousePressed(MouseEvent e) {
+        display.mousePressed(e);
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        display.mouseReleased(e);
+    }
+
+    public void mouseDragged(MouseEvent e) {
+        display.mouseDragged(e);
+    }
+
+    public void mouseMoved(MouseEvent e) {
+        // System.out.println("X: " + e.getX() + ", Y: " + e.getY());
+        display.mouseMoved(e);
+    }
+
+    public void keyPressed(KeyEvent arg0) {
+        display.keyPressed(arg0);
+    }
+
+    public void keyReleased(KeyEvent arg0) {
+        display.keyReleased(arg0);
+    }
+
+    public void keyTyped(KeyEvent e) {
+        display.keyTyped(e);
+    }
+
+    public AffineTransform getDeviceTransform() {
+        return deviceTransform;
+    }
+
+    public void setDeviceTransform(AffineTransform deviceTransform) {
+        this.deviceTransform = deviceTransform;
+    }
+
+    public AffineTransform getDisplayTransform() {
+        return displayTransform;
+    }
+
+    public void setDisplayTransform(AffineTransform displayTransform) {
+        this.displayTransform = displayTransform;
+    }
+
 }

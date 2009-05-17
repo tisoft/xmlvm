@@ -58,7 +58,7 @@ public class SimulatorApplet
     private JPanel getJContentPane()
     {
         if (jContentPane == null) {
-            jContentPane = new SimulatorGUI(new ImageLoader());
+            jContentPane = new SimulatorGUI(null, new ImageLoader());
         }
         return jContentPane;
     }

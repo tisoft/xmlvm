@@ -1,5 +1,9 @@
 package org.xmlvm.iphone.internal;
 
+import java.awt.Dimension;
+import java.awt.geom.AffineTransform;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.xmlvm.iphone.UIResponder;
@@ -15,8 +19,9 @@ public class SimulatorGUI extends JPanel {
     final static private int   simulatorPositionX = 15;
     final static private int   simulatorPositionY = 15;
 
-    public SimulatorGUI(ImageLoader imageLoader) {
+    public SimulatorGUI(JFrame simulatorFrame, ImageLoader imageLoader) {
         Simulator.setGUI(this);
+        Simulator.setSimulatorFrame(simulatorFrame);
         this.imageLoader = imageLoader;
         this.setLayout(null);
         this.setSize(580, 750);
@@ -51,7 +56,8 @@ public class SimulatorGUI extends JPanel {
 
     private void addAccelerometerPanel() {
         accelerometer = new AccelerometerPanel();
-        accelerometer.setLocation(430, 50);
+        accelerometer
+                .setLocation(this.getBounds().width - accelerometer.getBounds().width - 30, 50);
         this.add(accelerometer);
     }
 
@@ -77,7 +83,7 @@ public class SimulatorGUI extends JPanel {
         return device.getStatusBarHeight();
     }
 
-    public JPanel getDisplay() {
+    public Display getDisplay() {
         return device.getDisplay();
     }
 
@@ -88,5 +94,14 @@ public class SimulatorGUI extends JPanel {
     public void setAccelerated(double x, double y, double z) {
         if (accelerometer != null)
             accelerometer.setAccelerated(x, y, z);
+    }
+
+    void updateSize(Dimension d, AffineTransform deviceTransform, AffineTransform displayTransform) {
+        this.setSize(d);
+        accelerometer
+                .setLocation(this.getBounds().width - accelerometer.getBounds().width - 30, 50);
+        device.setSize((int) d.getWidth() - 160, (int) d.getHeight());
+        device.setDeviceTransform(deviceTransform);
+        device.setDisplayTransform(displayTransform);
     }
 }
