@@ -85,13 +85,15 @@ public class Simulator {
 
         case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
             frameSize = new Dimension(883, 450);
+            deviceTransform.rotate((float) ((Math.PI / 180) * 90), 580 / 2, 750 / 2);
+            deviceTransform.translate(-85, -29);
+            displayTransform.translate(35, 107);
             break;
 
         case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
             frameSize = new Dimension(883, 450);
             deviceTransform.rotate((float) ((Math.PI / 180) * -90), 580 / 2, 750 / 2);
             deviceTransform.translate(275, 85);
-
             displayTransform.translate(35, 107);
             break;
 

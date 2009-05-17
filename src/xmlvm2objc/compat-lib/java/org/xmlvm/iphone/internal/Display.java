@@ -55,22 +55,22 @@ public class Display extends UIView implements ImageObserver {
         Rectangle savedClip = g2d.getClipBounds();
         Rectangle r = new Rectangle(0, 0, 320, 480);
         g2d.setClip(r);
-        
+
         CGContext.setGraphicsContext(g2d);
         g2d.setBackground(Color.BLACK);
         g2d.clearRect(r.x, r.y, r.width, r.height);
         CGRect rect = new CGRect(r.x, r.y, r.width, r.height);
-        
+
         for (UIView v : subViews) {
             v.drawRect(rect);
         }
-        
+
         statusBar.drawRect(rect);
 
         if (alertView != null) {
             alertView.drawRect(rect);
         }
-        
+
         g2d.setClip(savedClip);
     }
 
@@ -82,6 +82,11 @@ public class Display extends UIView implements ImageObserver {
 
         int x = translateX(e.getX(), e.getY());
         int y = translateY(e.getX(), e.getY());
+
+        // Ignore events outside of the display
+        if (x < 0 || x > 319 || y < 0 || y > 479) {
+            return;
+        }
         
 //        System.out.println("(Translated) X: " + x + ", Y: " + y);
 
@@ -177,23 +182,29 @@ public class Display extends UIView implements ImageObserver {
         switch (Simulator.getStatusBarOrientation()) {
         case UIInterfaceOrientation.UIInterfaceOrientationPortrait:
             return x - 35;
-            
+
         case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
             return 354 - y;
+
+        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
+            return y - 35;
         }
-        
+
         return x;
     }
-    
+
     private int translateY(int x, int y) {
         switch (Simulator.getStatusBarOrientation()) {
         case UIInterfaceOrientation.UIInterfaceOrientationPortrait:
             return y - 107;
-            
+
         case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
             return x - 107;
+
+        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
+            return 479 - x + 107;
         }
-        
+
         return y;
     }
 }
