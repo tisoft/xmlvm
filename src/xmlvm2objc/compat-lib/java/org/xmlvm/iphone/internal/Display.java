@@ -88,7 +88,7 @@ public class Display extends UIView implements ImageObserver {
             return;
         }
         
-        System.out.println("(Translated) X: " + x + ", Y: " + y);
+//        System.out.println("(Translated) X: " + x + ", Y: " + y);
 
         Set<UITouch> touches = new HashSet<UITouch>();
         UITouch touch = new UITouch(phase, view, x, y);
