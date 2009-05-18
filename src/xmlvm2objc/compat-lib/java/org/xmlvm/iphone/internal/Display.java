@@ -104,11 +104,6 @@ public class Display extends UIView implements ImageObserver {
         findTouchedView(touches, alertView != null ? alertView : this, 0, result);
         UIResponder responder = result.uiView != null ? result.uiView : this.getSubviews().get(0);
 
-        // Make a static array out of the current list to prevent concurrent
-        // modification problems.
-        // final UIResponder[] responders = touchesListener.toArray(new
-        // UIResponder[0]);
-        // for (UIResponder responder : responders) {
         switch (phase) {
         case UITouchPhase.UITouchPhaseBegan:
             responder.touchesBegan(touches, event);
