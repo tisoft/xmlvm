@@ -99,6 +99,10 @@ public class Simulator {
 
         case UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown:
             frameSize = new Dimension(580, 750);
+            frameSize = new Dimension(580, 750);
+            deviceTransform.rotate((float) ((Math.PI / 180) * 180), 580 / 2, 750 / 2);
+            deviceTransform.translate(190, 55);
+            displayTransform.translate(35, 107);
             break;
         }
 

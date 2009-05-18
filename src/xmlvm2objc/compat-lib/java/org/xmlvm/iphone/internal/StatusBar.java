@@ -140,7 +140,10 @@ public class StatusBar extends UIView {
             this.affineTransform.rotate((float) ((Math.PI / 180) * 90));
             break;
         case UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown:
-            // TODO
+            this.setFrame(new CGRect(0, 0, 320, statusBarHeight));
+            this.affineTransform = new AffineTransform();
+            this.affineTransform.translate(320, 479);
+            this.affineTransform.rotate((float) ((Math.PI / 180) * 180));
             break;
         }
         reLayout();
