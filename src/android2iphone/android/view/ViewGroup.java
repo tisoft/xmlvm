@@ -76,31 +76,39 @@ public class ViewGroup extends View {
 
     @Override
     public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-        processTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+        if (!processTouchesEvent(MotionEvent.ACTION_DOWN, touches, event)) {
+            super.touchesBegan(touches, event);
+        }
     }
 
     @Override
     public void touchesMoved(Set<UITouch> touches, UIEvent event) {
-        processTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+        if (!processTouchesEvent(MotionEvent.ACTION_MOVE, touches, event)) {
+            super.touchesMoved(touches, event);
+        }
     }
 
     @Override
     public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
-        processTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+        if (!processTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event)) {
+            super.touchesCancelled(touches, event);
+        }
     }
 
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-        processTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+        if (!processTouchesEvent(MotionEvent.ACTION_UP, touches, event)) {
+            super.touchesEnded(touches, event);
+        }
     }
 
-    private void processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
+    private boolean processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
         if (this.listener == null) {
-            return;
+            return false;
         }
         UITouch firstTouch = touches.iterator().next();
         CGPoint point = firstTouch.locationInView(this);
         MotionEvent motionEvent = new MotionEvent(action, (int) point.x, (int) point.y);
-        this.listener.onTouch(this, motionEvent);
+        return this.listener.onTouch(this, motionEvent);
     }
 }

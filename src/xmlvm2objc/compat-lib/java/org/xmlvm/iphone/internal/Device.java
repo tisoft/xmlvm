@@ -23,8 +23,8 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
 
     private ImageLoader     imageLoader;
     private Display         display;
-    private AffineTransform deviceTransform;
-    private AffineTransform displayTransform;
+    private AffineTransform deviceTransform = new AffineTransform();
+    private AffineTransform displayTransform = new AffineTransform();
     public StatusBar        statusBar;
 
     public Device(ImageLoader imageLoader) {

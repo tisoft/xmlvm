@@ -8,9 +8,11 @@ import org.xmlvm.iphone.internal.SimulatorDesktop;
 public abstract class UIApplication extends UIResponder {
 
     private boolean idleTimerDisabled;
+    public static UIApplication instance;
 
     public UIApplication() {
         super(false);
+        instance = this;
         setIdleTimerDisabled(false);
         if (!Simulator.initialized)
             // We run on the desktop

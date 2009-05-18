@@ -228,7 +228,7 @@ public class UIButton extends UIControl {
 
     @Override
     public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-        if (touchedInsideButton(touches)) {
+        if (touchedInsideView(touches)) {
             buttonPressed = true;
             setNeedsDisplay();
         }
@@ -236,7 +236,7 @@ public class UIButton extends UIControl {
 
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-        if (buttonPressed && touchedInsideButton(touches)) {
+        if (buttonPressed && touchedInsideView(touches)) {
             for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet()
                     .iterator(); it.hasNext();) {
                 Map.Entry<Integer, UIControlDelegate> e = it.next();
@@ -248,13 +248,6 @@ public class UIButton extends UIControl {
 
         buttonPressed = false;
         setNeedsDisplay();
-    }
-
-    private boolean touchedInsideButton(Set<UITouch> touches) {
-        UITouch t = touches.iterator().next();
-        CGPoint p = t.locationInView(this);
-        CGRect r = this.getBounds();
-        return p.x < 0 || p.y < 0 || p.x > r.size.width - 1 || p.y > r.size.height - 1? false : true;
     }
 
     @Override

@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.xmlvm.iphone.internal.Simulator;
 
@@ -250,6 +251,49 @@ public class UIView extends UIResponder {
 
     public void setAlpha(float alpha) {
         this.alpha = alpha;
+    }
+
+    public boolean touchedInsideView(Set<UITouch> touches) {
+        UITouch t = touches.iterator().next();
+        CGPoint p = t.locationInView(this);
+        CGRect r = this.getBounds();
+        return p.x < 0 || p.y < 0 || p.x > r.size.width - 1 || p.y > r.size.height - 1? false : true;
+    }
+    
+    public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+        if (parent != null) {
+            parent.touchesBegan(touches, event);
+        }
+        else {
+            UIApplication.instance.touchesBegan(touches, event);
+        }
+    }
+
+    public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
+        if (parent != null) {
+            parent.touchesCancelled(touches, event);
+        }
+        else {
+            UIApplication.instance.touchesCancelled(touches, event);
+        }
+    }
+
+    public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+        if (parent != null) {
+            parent.touchesEnded(touches, event);
+        }
+        else {
+            UIApplication.instance.touchesEnded(touches, event);
+        }
+    }
+
+    public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+        if (parent != null) {
+            parent.touchesMoved(touches, event);
+        }
+        else {
+            UIApplication.instance.touchesMoved(touches, event);
+        }
     }
 
 }

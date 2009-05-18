@@ -23,6 +23,11 @@ import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UITouchPhase;
 import org.xmlvm.iphone.UIView;
 
+class ViewSearchResult {
+    public int    level;
+    public UIView uiView;
+}
+
 public class Display extends UIView implements ImageObserver {
 
     private StatusBar         statusBar;
@@ -87,31 +92,38 @@ public class Display extends UIView implements ImageObserver {
         if (x < 0 || x > 319 || y < 0 || y > 479) {
             return;
         }
-        
-//        System.out.println("(Translated) X: " + x + ", Y: " + y);
+
+        // System.out.println("(Translated) X: " + x + ", Y: " + y);
 
         Set<UITouch> touches = new HashSet<UITouch>();
         UITouch touch = new UITouch(phase, view, x, y);
         touches.add(touch);
+
+        // Find top most view touched
+        ViewSearchResult result = new ViewSearchResult();
+        findTouchedView(touches, alertView != null ? alertView : this, 0, result);
+        UIResponder responder = result.uiView != null ? result.uiView : this.getSubviews().get(0);
+
         // Make a static array out of the current list to prevent concurrent
         // modification problems.
-        final UIResponder[] responders = touchesListener.toArray(new UIResponder[0]);
-        for (UIResponder responder : responders) {
-            switch (phase) {
-            case UITouchPhase.UITouchPhaseBegan:
-                responder.touchesBegan(touches, event);
-                break;
-            case UITouchPhase.UITouchPhaseMoved:
-                responder.touchesMoved(touches, event);
-                break;
-            case UITouchPhase.UITouchPhaseEnded:
-                responder.touchesEnded(touches, event);
-                break;
-            case UITouchPhase.UITouchPhaseCancelled:
-                responder.touchesCancelled(touches, event);
-                break;
-            }
+        // final UIResponder[] responders = touchesListener.toArray(new
+        // UIResponder[0]);
+        // for (UIResponder responder : responders) {
+        switch (phase) {
+        case UITouchPhase.UITouchPhaseBegan:
+            responder.touchesBegan(touches, event);
+            break;
+        case UITouchPhase.UITouchPhaseMoved:
+            responder.touchesMoved(touches, event);
+            break;
+        case UITouchPhase.UITouchPhaseEnded:
+            responder.touchesEnded(touches, event);
+            break;
+        case UITouchPhase.UITouchPhaseCancelled:
+            responder.touchesCancelled(touches, event);
+            break;
         }
+        // }
     }
 
     public void mouseClicked(MouseEvent e) {
@@ -173,6 +185,10 @@ public class Display extends UIView implements ImageObserver {
         this.alertView = alertView;
     }
 
+    public UIAlertView getAlertView() {
+        return this.alertView;
+    }
+
     @Override
     public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
         return device.imageUpdate(img, infoflags, x, y, width, height);
@@ -206,5 +222,17 @@ public class Display extends UIView implements ImageObserver {
         }
 
         return y;
+    }
+
+    private void findTouchedView(Set<UITouch> touches, UIView uiView, int nesting,
+            ViewSearchResult result) {
+        for (UIView childView : uiView.getSubviews()) {
+            findTouchedView(touches, childView, nesting + 1, result);
+        }
+
+        if (uiView.touchedInsideView(touches) && (nesting >= result.level || result.uiView == null)) {
+            result.level = nesting;
+            result.uiView = uiView;
+        }
     }
 }

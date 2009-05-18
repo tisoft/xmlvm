@@ -31,4 +31,13 @@ public class UIResponder {
     public void touchesMoved(Set<UITouch> touches, UIEvent event) {
         // Do nothing
     }
+    
+    public UIResponder getNextResponder() {
+        if (this instanceof UIView) {
+            return ((UIView) this).parent;
+        }
+        else {
+            return UIApplication.instance;
+        }
+    }
 }
