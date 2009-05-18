@@ -254,7 +254,7 @@ public class UIButton extends UIControl {
         UITouch t = touches.iterator().next();
         CGPoint p = t.locationInView(this);
         CGRect r = this.getBounds();
-        return p.x < 0 || p.y < 0 || p.x > r.size.width || p.y > r.size.height ? false : true;
+        return p.x < 0 || p.y < 0 || p.x > r.size.width - 1 || p.y > r.size.height - 1? false : true;
     }
 
     @Override
