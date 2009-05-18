@@ -30,7 +30,7 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
     public Device(ImageLoader imageLoader) {
         this.imageLoader = imageLoader;
         this.setLayout(null);
-        this.setSize(580, 750);
+        this.setSize(580 - 160, 750);
         addChassis();
         addDisplay();
         addStatusBar();

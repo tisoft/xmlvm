@@ -84,16 +84,16 @@ public class Simulator {
             break;
 
         case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
-            frameSize = new Dimension(883, 450);
+            frameSize = new Dimension(883, 455);
             deviceTransform.rotate((float) ((Math.PI / 180) * 90), 580 / 2, 750 / 2);
-            deviceTransform.translate(-85, -29);
+            deviceTransform.translate(-80, -34);
             displayTransform.translate(35, 107);
             break;
 
         case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
-            frameSize = new Dimension(883, 450);
+            frameSize = new Dimension(883, 455);
             deviceTransform.rotate((float) ((Math.PI / 180) * -90), 580 / 2, 750 / 2);
-            deviceTransform.translate(275, 85);
+            deviceTransform.translate(270, 90);
             displayTransform.translate(35, 107);
             break;
 

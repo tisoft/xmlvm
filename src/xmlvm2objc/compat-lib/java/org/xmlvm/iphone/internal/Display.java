@@ -88,7 +88,7 @@ public class Display extends UIView implements ImageObserver {
             return;
         }
         
-//        System.out.println("(Translated) X: " + x + ", Y: " + y);
+        System.out.println("(Translated) X: " + x + ", Y: " + y);
 
         Set<UITouch> touches = new HashSet<UITouch>();
         UITouch touch = new UITouch(phase, view, x, y);
@@ -184,10 +184,10 @@ public class Display extends UIView implements ImageObserver {
             return x - 35;
 
         case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
-            return 354 - y;
+            return 359 - y;
 
         case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
-            return y - 35;
+            return y - 40;
         }
 
         return x;
@@ -199,10 +199,10 @@ public class Display extends UIView implements ImageObserver {
             return y - 107;
 
         case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
-            return x - 107;
+            return x - 112;
 
         case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
-            return 479 - x + 107;
+            return 479 - x + 112;
         }
 
         return y;
