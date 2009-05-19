@@ -92,8 +92,8 @@ public class Display extends UIView implements ImageObserver {
         // Ignore events outside of the display
         if (x < 0 || x > 319 || y < 0 || y > 479) {
             if (currentResponder == null) {
-            return;}
-            else {
+                return;
+            } else {
                 phase = UITouchPhase.UITouchPhaseEnded;
             }
         }
