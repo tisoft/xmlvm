@@ -82,8 +82,6 @@ public class Display extends UIView implements ImageObserver {
 
     private void deliverTouchesEvent(int phase, MouseEvent e) {
         // TODO
-        UIView view = null;
-        // TODO
         UIEvent event = null;
 
         int x = translateX(e.getX(), e.getY());
@@ -106,7 +104,7 @@ public class Display extends UIView implements ImageObserver {
 
         // Generate a temporal touch set for hit testing
         Set<UITouch> touches = new HashSet<UITouch>();
-        UITouch touch = new UITouch(phase, view, x, y);
+        UITouch touch = new UITouch(phase, null, x, y);
         touches.add(touch);
 
         // Find top most view touched
