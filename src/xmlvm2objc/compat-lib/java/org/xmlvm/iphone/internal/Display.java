@@ -36,6 +36,7 @@ public class Display extends UIView implements ImageObserver {
     private List<UIResponder> touchesListener;
     private UIAlertView       alertView;
     private Device            device;
+    private UIResponder       currentResponder;
 
     public Display(Device device) {
         this.device = device;
@@ -95,6 +96,7 @@ public class Display extends UIView implements ImageObserver {
 
         // System.out.println("(Translated) X: " + x + ", Y: " + y);
 
+        // Generate a temporal touch set for hit testing
         Set<UITouch> touches = new HashSet<UITouch>();
         UITouch touch = new UITouch(phase, view, x, y);
         touches.add(touch);
@@ -102,10 +104,23 @@ public class Display extends UIView implements ImageObserver {
         // Find top most view touched
         ViewSearchResult result = new ViewSearchResult();
         findTouchedView(touches, alertView != null ? alertView : this, 0, result);
-        UIResponder responder = result.uiView != null ? result.uiView : this.getSubviews().get(0);
+
+        // Determine target responder
+        UIResponder responder = null;
+        if (currentResponder != null) {
+            responder = currentResponder;
+        } else {
+            responder = result.uiView != null ? result.uiView : this.getSubviews().get(0);
+        }
+
+        // Generate the final touch set which also includes the target view
+        touches = new HashSet<UITouch>();
+        touch = new UITouch(phase, result.uiView, x, y);
+        touches.add(touch);
 
         switch (phase) {
         case UITouchPhase.UITouchPhaseBegan:
+            currentResponder = responder;
             responder.touchesBegan(touches, event);
             break;
         case UITouchPhase.UITouchPhaseMoved:
@@ -113,9 +128,11 @@ public class Display extends UIView implements ImageObserver {
             break;
         case UITouchPhase.UITouchPhaseEnded:
             responder.touchesEnded(touches, event);
+            currentResponder = null;
             break;
         case UITouchPhase.UITouchPhaseCancelled:
             responder.touchesCancelled(touches, event);
+            currentResponder = null;
             break;
         }
         // }
