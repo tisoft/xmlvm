@@ -89,7 +89,7 @@ public class Display extends UIView implements ImageObserver {
         int x = translateX(e.getX(), e.getY());
         int y = translateY(e.getX(), e.getY());
 
-        // Ignore events outside of the display
+        // Ignore events outside of the display or map it to a touches ended
         if (x < 0 || x > 319 || y < 0 || y > 479) {
             if (currentResponder == null) {
                 return;
@@ -98,7 +98,11 @@ public class Display extends UIView implements ImageObserver {
             }
         }
 
-        // System.out.println("(Translated) X: " + x + ", Y: " + y);
+        // Map a mouse move which has no preceeding touchesBegan to a
+        // touchesBegan
+        if (phase == UITouchPhase.UITouchPhaseMoved && currentResponder == null) {
+            phase = UITouchPhase.UITouchPhaseBegan;
+        }
 
         // Generate a temporal touch set for hit testing
         Set<UITouch> touches = new HashSet<UITouch>();
@@ -139,7 +143,6 @@ public class Display extends UIView implements ImageObserver {
             currentResponder = null;
             break;
         }
-        // }
     }
 
     public void mouseClicked(MouseEvent e) {
