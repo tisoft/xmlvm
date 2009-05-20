@@ -153,18 +153,18 @@ public class UIButton extends UIControl {
         g.fill(lowerShape);
 
         // Draw durrounding dark gray line
-        g.setPaint(Color.DARK_GRAY);
-        g.drawRoundRect((int) x, (int) y, (int) w, (int) h - 2, edgeDiameter, edgeDiameter);
+        g.setPaint(Color.BLACK);
+        g.drawRoundRect((int) x, (int) y, (int) w + 1, (int) h - 2, edgeDiameter, edgeDiameter);
 
         // Draw upper light line
-        Path2D upperLineShape = new Path2D.Double();
-        upperLineShape.moveTo(x, y + edgeDiameter / 2);
-        upperLineShape.quadTo(x, y, x + edgeDiameter / 2, y);
-        upperLineShape.lineTo(x + w - edgeDiameter / 2, y);
-        upperLineShape.quadTo(x + w, y, x + w, y + edgeDiameter / 2);
-        g.setPaint(Color.WHITE);
-        g.draw(upperLineShape);
-
+        if (!buttonPressed) {
+            Color c = new Color((int) Math.min(backgroundColor.getRed() * 1.3, 255), (int) Math
+                    .min(backgroundColor.getGreen() * 1.3, 255), (int) Math.min(backgroundColor
+                    .getBlue() * 1.3, 255));
+            g.setPaint(c);
+            g.drawLine(x + 2, y + 1, x + w - 3, y + 1);
+        }
+        
         if (title != null) {
             g
                     .setPaint(!buttonPressed || pressedTitleColor == null ? titleColor

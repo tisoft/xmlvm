@@ -117,6 +117,7 @@ public class UIAlertView extends UIView {
 
         // TODO: Set color, opacity and font style/color
         button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.setTitleColor(Color.WHITE, UIControlState.UIControlStateNormal);
         button.setBackgroundColor(new Color(150, 170, 190));
         button.setAlpha(200);
         button.setEdgeDiameter(8);
@@ -137,16 +138,16 @@ public class UIAlertView extends UIView {
         int w = (int) displayRect.size.width;
         int h = (int) displayRect.size.height;
 
+        // Paint dark screen overlay
+        g.setPaint(new Color(20, 20, 20, 80));
+        g.fillRect(0, 0, getScreenWidth(), getScreenHeight());
+
         // Paint the surrounding border
         Stroke stroke = g.getStroke();
         g.setPaint(Color.WHITE);
         g.setStroke(new BasicStroke(FRAME_SIZE));
         g.drawRoundRect(x, y, w, h, EDGE_DIAMETER, EDGE_DIAMETER);
         g.setStroke(stroke);
-
-        // Paint dark screen overlay
-        g.setPaint(new Color(20, 20, 20, 80));
-        g.fillRect(0, 0, getScreenWidth(), getScreenHeight());
 
         // Paint the view's background
         g.setPaint(new Color(5, 10, 80, 180));
