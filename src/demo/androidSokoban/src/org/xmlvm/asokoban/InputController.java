@@ -16,12 +16,6 @@ public class InputController implements SensorListener, OnTouchListener {
     /** Swiping threshold to start moving the man. */
     private static final float SWIPE_THRESHOLD         = 20f;
 
-    /**
-     * If dx and dy from current up to last down event are within this value,
-     * the event is interpreted as a tap event.
-     */
-    private static final float TAP_THRESHOLD           = 5f;
-
     /** Helper class used to animate the man's movement. */
     private GamePieceMover     mover;
 
@@ -122,8 +116,8 @@ public class InputController implements SensorListener, OnTouchListener {
     public boolean onTouch(View v, MotionEvent event) {
         // See if we have a simple tap event that we can forward to a handle.
         if (event.getAction() == MotionEvent.ACTION_UP) {
-            if ((Math.abs(lastDownX - event.getX()) <= TAP_THRESHOLD)
-                    && (Math.abs(lastDownY - event.getY()) <= TAP_THRESHOLD)) {
+            if ((Math.abs(lastDownX - event.getX()) <= SWIPE_THRESHOLD)
+                    && (Math.abs(lastDownY - event.getY()) <= SWIPE_THRESHOLD)) {
                 if (tapHandler != null) {
                     tapHandler.onTap(event.getX(), event.getY());
                 }
