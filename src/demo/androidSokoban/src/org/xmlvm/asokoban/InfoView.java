@@ -19,7 +19,7 @@ public class InfoView extends SplashView {
         final CheckBox enableAccelerometer = new CheckBox(context);
         AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
                 AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                380, 30);
+                35, 255);
         enableAccelerometer.setLayoutParams(p);
         enableAccelerometer.setChecked(((ASokoban) context).isAccelerometerEnabled());
         addView(enableAccelerometer);
@@ -27,7 +27,7 @@ public class InfoView extends SplashView {
         Button okButton = new Button(context);
         okButton.setText("OK");
         p = new AbsoluteLayout.LayoutParams(AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                AbsoluteLayout.LayoutParams.WRAP_CONTENT, 380, 150);
+                AbsoluteLayout.LayoutParams.WRAP_CONTENT, 280, 255);
         okButton.setLayoutParams(p);
         addView(okButton);
         okButton.setOnClickListener(new OnClickListener() {
@@ -36,11 +36,10 @@ public class InfoView extends SplashView {
             public void onClick(View view) {
                 if (enableAccelerometer.isChecked()) {
                     ((ASokoban) context).enableAccelerometer();
-                }
-                else {
+                } else {
                     ((ASokoban) context).disableAccelerometer();
                 }
-                
+
                 if (shown) {
                     hide();
                     onCloseHandler.onClose();
