@@ -5,7 +5,7 @@ package org.xmlvm.test.iphone.ifireworks;
 public class Const
 {
 
-    final static int   BOMB_COUNT      = 4;
+    final static int   BOMB_COUNT      = 6;
     final static int   SPARKS_PER_BOMB = 10;
 
     final static int   HEIGHT          = 480;
