@@ -1,12 +1,8 @@
-
 package org.xmlvm.test.iphone.ifireworks;
 
 import org.xmlvm.iphone.*;
 
-
-
-public class Spark
-{
+public class Spark {
 
     public UIImage image;
     CGRect         position;
@@ -14,27 +10,25 @@ public class Spark
     float          vy;
     boolean        outOfSight;
 
-
-
-    void resetWithX(int x, int y)
-    {
-        position = new CGRect(x, y, Const.IMAGE_SIZE, Const.IMAGE_SIZE);
+    void resetWithX(int x, int y) {
+        if (position == null) {
+            position = new CGRect(x, y, Const.IMAGE_SIZE, Const.IMAGE_SIZE);
+        } else {
+            position.origin.x = x;
+            position.origin.y = y;
+        }
         double rand = (Math.random() * 4);
-        if (rand < 1) {
-            image = UIImage
-                    .imageAtPath("star1.png");
-        }
-        else if (rand < 2) {
-            image = UIImage
-                    .imageAtPath("star2.png");
-        }
-        else if (rand < 3) {
-            image = UIImage
-                    .imageAtPath("star3.png");
-        }
-        else {
-            image = UIImage
-                    .imageAtPath("star4.png");
+
+        if (image == null) {
+            if (rand < 1) {
+                image = UIImage.imageAtPath("star1.png");
+            } else if (rand < 2) {
+                image = UIImage.imageAtPath("star2.png");
+            } else if (rand < 3) {
+                image = UIImage.imageAtPath("star3.png");
+            } else {
+                image = UIImage.imageAtPath("star4.png");
+            }
         }
         vx = (float) (Math.random() * Const.MAX2V) - (Const.MAX2V / 2);
         vy = (float) (Math.random() * Const.MAX2V) - (Const.MAX2V / 2);
@@ -42,17 +36,12 @@ public class Spark
         outOfSight = false;
     }
 
-
-
-    void nextStep()
-    {
+    void nextStep() {
         if (outOfSight) {
             return;
         }
-        if (position.origin.x < -Const.IMAGE_SIZE
-                || position.origin.x > Const.WIDTH
-                || position.origin.y < -Const.IMAGE_SIZE
-                || position.origin.y > Const.HEIGHT) {
+        if (position.origin.x < -Const.IMAGE_SIZE || position.origin.x > Const.WIDTH
+                || position.origin.y < -Const.IMAGE_SIZE || position.origin.y > Const.HEIGHT) {
             // This spark is out of reach
             outOfSight = true;
             return;
