@@ -27,9 +27,9 @@ public class FireworksView extends UIView {
             bombs[j] = new Bomb();
             bombs[j].resetWithX((int) (Math.random() * (Const.WIDTH - 60)) + 30, (int) (Math
                     .random() * (Const.HEIGHT - 60)) + 30);
-            this.setNeedsDisplay();
         }
 
+        this.setNeedsDisplay();
         initTimer();
     }
 
@@ -71,17 +71,15 @@ public class FireworksView extends UIView {
                 // NSLog(@"All Out Of Sight");
                 bombs[j].resetWithX((int) (Math.random() * Const.WIDTH),
                         (int) (Math.random() * Const.HEIGHT));
-                this.setNeedsDisplay();
             }
             if (!bombs[j].allOutOfSight()) {
                 for (int i = 0; i < Const.SPARKS_PER_BOMB; ++i) {
-                    CGRect old = new CGRect(bombs[j].sparks[i].position);
                     bombs[j].sparks[i].nextStep();
-                    this.setNeedsDisplayInRect(old);
-                    this.setNeedsDisplayInRect(bombs[j].sparks[i].position);
                 }
             }
         }
+        
+        this.setNeedsDisplay();
     }
 
     private boolean allBombsOutOfSite() {
