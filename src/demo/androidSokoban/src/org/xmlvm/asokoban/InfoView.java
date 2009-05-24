@@ -19,7 +19,7 @@ public class InfoView extends SplashView {
         final CheckBox enableAccelerometer = new CheckBox(context);
         AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
                 AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                35, 255);
+                35, 250);
         enableAccelerometer.setLayoutParams(p);
         enableAccelerometer.setChecked(((ASokoban) context).isAccelerometerEnabled());
         addView(enableAccelerometer);
