@@ -76,8 +76,11 @@ public class ASokoban extends Activity {
         // Switch to fullscreen view, getting rid of the status bar as well.
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        
+        UpdateTimer timer = UpdateTimer.getInstance();
+        
         // Create view and controller.
-        GamePieceMover mover = new GamePieceMover();
+        GamePieceMover mover = new GamePieceMover(timer);
         gameView = new GameView(this, mover);
         SplashView splashView = new SplashView(this, gameView);
         InfoView infoView = new InfoView(this, gameView);
@@ -85,7 +88,7 @@ public class ASokoban extends Activity {
         gameView.setGameController(gameController);
         mover.setMoveFinishedHandler(gameController);
 
-        inputController = new InputController(mover, gameController, gameView);
+        inputController = new InputController(mover, gameController, timer);
         inputController.setTapHandler(gameController);
         gameView.setOnTouchListener(inputController);
 

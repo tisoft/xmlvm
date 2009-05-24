@@ -5,7 +5,7 @@ import android.os.Handler;
 /**
  * This class is responsible for moving {@link GamePiece}s.
  */
-public class GamePieceMover {
+public class GamePieceMover implements TimerUpdateHandler {
     private static final int    MAX_PIECES_MOVING = 2;
     private MovableGamePiece[]  gamePiecesToBeMoved;
     private int                 animationDelay;
@@ -14,33 +14,12 @@ public class GamePieceMover {
     private Runnable            updateAnimation;
     private MoveFinishedHandler moveFinishedHandler;
 
-    public GamePieceMover() {
-        updateAnimation = new Runnable() {
-            public void run() {
-                updater.postDelayed(updateAnimation, animationDelay);
-                boolean moveFinished = false;
-                for (int i = 0; i < MAX_PIECES_MOVING; i++) {
-                    if (gamePiecesToBeMoved[i] != null) {
-                        boolean done = gamePiecesToBeMoved[i].moveOneStep();
-                        if (done) {
-                            gamePiecesToBeMoved[i] = null;
-                            // Only report that the move has finished, if we
-                            // didn't do this already.
-                            if (!moveFinished && moveFinishedHandler != null) {
-                                moveFinished = true;
-                                moveFinishedHandler.onMoveFinished();
-                            }
-                        }
-                    }
-                }
-            }
-        };
+    public GamePieceMover(UpdateTimer timer) {
         gamePiecesToBeMoved = new MovableGamePiece[MAX_PIECES_MOVING];
         for (int i = 0; i < MAX_PIECES_MOVING; i++) {
             gamePiecesToBeMoved[i] = null;
         }
-        animationDelay = 70;
-        updater.postDelayed(updateAnimation, animationDelay);
+        timer.addTimerUpdateHandler(this);
     }
 
     public synchronized void moveGamePiece(MovableGamePiece gamePiece) {
@@ -74,5 +53,24 @@ public class GamePieceMover {
      */
     public void setMoveFinishedHandler(MoveFinishedHandler handler) {
         moveFinishedHandler = handler;
+    }
+
+    @Override
+    public void onTimerUpdate() {
+        boolean moveFinished = false;
+        for (int i = 0; i < MAX_PIECES_MOVING; i++) {
+            if (gamePiecesToBeMoved[i] != null) {
+                boolean done = gamePiecesToBeMoved[i].moveOneStep();
+                if (done) {
+                    gamePiecesToBeMoved[i] = null;
+                    // Only report that the move has finished, if we
+                    // didn't do this already.
+                    if (!moveFinished && moveFinishedHandler != null) {
+                        moveFinished = true;
+                        moveFinishedHandler.onMoveFinished();
+                    }
+                }
+            }
+        }
     }
 }
