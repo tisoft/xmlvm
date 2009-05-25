@@ -10,13 +10,13 @@ public class Spark {
     float          vy;
     boolean        outOfSight;
 
+    public Spark() {
+        position = new CGRect(0, 0, Const.IMAGE_SIZE, Const.IMAGE_SIZE);
+    }
+
     void resetWithX(int x, int y) {
-        if (position == null) {
-            position = new CGRect(x, y, Const.IMAGE_SIZE, Const.IMAGE_SIZE);
-        } else {
-            position.origin.x = x;
-            position.origin.y = y;
-        }
+        position.origin.x = x;
+        position.origin.y = y;
         double rand = (Math.random() * 4);
 
         if (image == null) {
