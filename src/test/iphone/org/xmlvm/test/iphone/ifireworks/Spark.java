@@ -4,8 +4,8 @@ import org.xmlvm.iphone.*;
 
 public class Spark {
 
-    public UIImage image;
-    CGRect         position;
+    public UIImage image    = null;
+    CGRect         position = null;
     float          vx;
     float          vy;
     boolean        outOfSight;
