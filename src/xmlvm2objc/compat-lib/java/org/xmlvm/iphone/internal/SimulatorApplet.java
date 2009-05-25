@@ -1,4 +1,3 @@
-
 package org.xmlvm.iphone.internal;
 
 import java.awt.Color;
@@ -6,57 +5,41 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JApplet;
 
-
-
-public class SimulatorApplet
-    extends JApplet
-{
+/**
+ * The SimulatorApplet is an applet that uses our Simuator to run iPhone
+ * applications.
+ */
+public class SimulatorApplet extends JApplet {
 
     private JPanel jContentPane = null;
-    private Thread applThread;  //  @jve:decl-index=0:
+    private Thread applThread;
 
-
-
-    /**
-     * This is the xxx default constructor
-     */
-    public SimulatorApplet()
-    {
+    public SimulatorApplet() {
         super();
         Simulator.initialized = true;
     }
 
-
-
-    /**
-     * This method initializes this
-     * 
-     * @return void
-     */
-    public void init()
-    {
+    @Override
+    public void init() {
         this.setSize(580, 750);
         this.setBackground(Color.WHITE);
         this.setLayout(null);
         this.setContentPane(getJContentPane());
     }
 
-
-    public void start()
-    {
+    @Override
+    public void start() {
         String appl = getParameter("appl");
         String androidClassName = getParameter("androidClassName");
-        applThread = new Thread(new Application(appl,androidClassName));
+        applThread = new Thread(new Application(appl, androidClassName));
         applThread.start();
     }
 
     /**
-     * This method initializes jContentPane
-     * 
-     * @return javax.swing.JPanel
+     * Returns the jContentPane singleton that is used by the simulator to draw
+     * the UI.
      */
-    private JPanel getJContentPane()
-    {
+    private JPanel getJContentPane() {
         if (jContentPane == null) {
             jContentPane = new SimulatorGUI(null, new ImageLoader());
         }
