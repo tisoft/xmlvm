@@ -16,6 +16,9 @@
 <li> <a href="../iphone/demo">iPhone Simulator</a>: a Java-only version of the
      Cocoa library can be run as a Java applet.
 	
+<li> <a href="../iphone/demo/xokoban.html">Xokoban</a>: an Android application running
+     under the Java iPhone Simulator.
+	
 </ul>
 
 

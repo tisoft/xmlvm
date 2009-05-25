@@ -11,7 +11,7 @@
 
 <body>
 
-<h1>iPhone Simulator</h1>
+<h1>Xokoban</h1>
 
 This page features a demo of the Java-to-Objective-C cross-compiler. The demo below
 implements a simple fireworks application. The application is written in Java and
@@ -21,8 +21,9 @@ which is shown below. The three scroll-bars simulate the iPhone's accelerometer.
 The fireworks demo is implemented such that the sparks will always follow gravity,
 independent of the orientation of the iPhone.
 
-<applet code="org.xmlvm.iphone.internal.SimulatorApplet.class" appl="org.xmlvm.test.iphone.ifireworks.Main" width="580" height="750" archive="ifireworks.jar,objc-compat.jar>
+<applet code="org.xmlvm.iphone.internal.SimulatorApplet.class" appl="org.xmlvm.iphone.internal.AndroidAppLauncher" androidClassName="org.xmlvm.asokoban.ASokoban" width="883" height="455" archive="asokoban.jar,objc-compat.jar,android-compat.jar">
 Your browser does not support the applet tag.
 </applet>
+
 </body>
 </html>
