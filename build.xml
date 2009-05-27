@@ -516,14 +516,12 @@
 		<delete dir="build" />
 	</target>
 
-	<target name="homepage" depends="_createDirTree" description="Copies all document files from the XMLVM source tree to xml11.org/xmlvm homepage">
-
+	<target name="homepage" depends="_createDirTree,_copyDemoJars" description="Copies all document files from the XMLVM source tree to xml11.org/xmlvm homepage">
 		<copy todir="${homepage.dir}/htdocs/xmlvm">
 			<fileset dir="${doc.dir}/homepage">
 				<exclude name="**/CVS/*" />
 			</fileset>
 		</copy>
-
 	</target>
 
 	<target name="_createDirTree">
@@ -534,4 +532,11 @@
 		<mkdir dir="${homepage.dir}/htdocs/xmlvm/download/dist" />
 	</target>
 
+	<target name="_copyDemoJars"  depends="build-ifireworks,sim-asokoban-jar">
+		<mkdir dir="${doc.dir}/homepage/lib" />
+		<copy todir="${doc.dir}/homepage/lib" file="${xmlvm.libjars}/objc-compat.jar" />
+		<copy todir="${doc.dir}/homepage/lib" file="${xmlvm.libjars}/android-compat.jar" />
+		<copy todir="${doc.dir}/homepage/android/demo" file="${xmlvm.demo}/asokoban/java/asokoban.jar" />
+		<copy todir="${doc.dir}/homepage/iphone/demo" file="${xmlvm.demo}/ifireworks/java/ifireworks.jar" />
+	</target>
 </project>
