@@ -93,7 +93,7 @@ public class FireworksView extends UIView {
 
     @Override
     public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-        touchCount2 = 0;
+        touchCount1 = 0;
         handleTouch(touches);
     }
 
