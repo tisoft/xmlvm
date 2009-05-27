@@ -1,5 +1,6 @@
 package org.xmlvm.iphone.internal;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.geom.AffineTransform;
 
@@ -14,7 +15,7 @@ public class Simulator {
 
     static public boolean       initialized = false;
     static private SimulatorGUI simulatorGUI;
-    static private JFrame       simulatorFrame;
+    static private Component    rootWindow;
 
     private Simulator() {
     }
@@ -106,9 +107,7 @@ public class Simulator {
             break;
         }
 
-        if (simulatorFrame != null) {
-            simulatorFrame.setSize(frameSize);
-        }
+        rootWindow.setSize(frameSize);
         simulatorGUI.updateSize(frameSize, deviceTransform, displayTransform);
     }
 
@@ -116,11 +115,11 @@ public class Simulator {
         return simulatorGUI.getStatusBar().getStatusBarOrientation();
     }
 
-    public static JFrame getSimulatorFrame() {
-        return simulatorFrame;
+    public static Component getRootWindow() {
+        return rootWindow;
     }
 
-    public static void setSimulatorFrame(JFrame simulatorFrame) {
-        Simulator.simulatorFrame = simulatorFrame;
+    public static void setRootWindow(Component rootWindow) {
+        Simulator.rootWindow = rootWindow;
     }
 }

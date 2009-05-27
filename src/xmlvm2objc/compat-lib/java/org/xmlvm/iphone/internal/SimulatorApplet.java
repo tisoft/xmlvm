@@ -41,7 +41,7 @@ public class SimulatorApplet extends JApplet {
      */
     private JPanel getJContentPane() {
         if (jContentPane == null) {
-            jContentPane = new SimulatorGUI(null, new ImageLoader());
+            jContentPane = new SimulatorGUI(this, new ImageLoader());
         }
         return jContentPane;
     }

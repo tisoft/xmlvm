@@ -1,9 +1,9 @@
 package org.xmlvm.iphone.internal;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.geom.AffineTransform;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.xmlvm.iphone.UIResponder;
@@ -19,9 +19,9 @@ public class SimulatorGUI extends JPanel {
     final static private int   simulatorPositionX = 15;
     final static private int   simulatorPositionY = 15;
 
-    public SimulatorGUI(JFrame simulatorFrame, ImageLoader imageLoader) {
+    public SimulatorGUI(Component rootWindow, ImageLoader imageLoader) {
         Simulator.setGUI(this);
-        Simulator.setSimulatorFrame(simulatorFrame);
+        Simulator.setRootWindow(rootWindow);
         this.imageLoader = imageLoader;
         this.setLayout(null);
         this.setSize(580, 750);
