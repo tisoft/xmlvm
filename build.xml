@@ -514,6 +514,9 @@
 	<target name="clean" description="Remove all build files">
 		<delete dir="dist" />
 		<delete dir="build" />
+		<delete dir="${doc.dir}/homepage/lib" />
+		<delete file="${doc.dir}/homepage/android/demo/asokoban.jar" />
+		<delete file="${doc.dir}/homepage/iphone/demo/ifireworks.jar" />
 	</target>
 
 	<target name="homepage" depends="_createDirTree,_copyDemoJars" description="Copies all document files from the XMLVM source tree to xml11.org/xmlvm homepage">
