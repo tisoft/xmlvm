@@ -1,23 +1,237 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{book}
+
+\usepackage{supertabular}
+\usepackage{multirow}
+\usepackage{graphicx}
+
 
 \newcommand{\xmlvm}{\texttt{xmlvm} }
 
-\title{XMLVM User Manual}
-\date{}
 
 \begin{document}
 
-\maketitle 
+\begin{titlepage}
+\begin{center}
+\includegraphics{pics/xmlvm_logo.png}
+\Huge
+\\[3cm]
+\textbf{XMLVM User Manual}
+\normalsize
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+
+
+\chapter{Introduction}
+
+XMLVM is a flexible cross-compilation framework. Instead of
+cross-compiling source code of high-level programming languages, XMLVM
+translates byte code instructions. Byte code instructions are
+represented by XML-tags and the cross-compilation is done via XSL
+stylesheets. This chapter gives an introduction to XMLVM. Section
+\ref{SEC_OVERVIEW} provides a brief overview of the XMLVM toolchain.
+Section \ref{SEC_GETTING_XMLVM} describes how to obtain the source
+code of XMLVM and Section \ref{SEC_COMPILING_XMLVM} how to build XMLVM
+from source. The various command line options supported by XMLVM are
+described in Section \ref{SEC_INVOKING_XMLVM}.
+
 
 \section{Overview}
+\label{SEC_OVERVIEW}
+
+XMLVM supports byte code instructions from two popular virtual
+machines: the Java Virtual Machine (JVM) and the Common Language
+Runtime (CLR) that is part of the .NET framework. The name XMLVM is
+inspired by the fact that byte code instructions are represented via
+XML. Each byte code instruction is mapped to a corresponding XML-tag.
+Transformations of XMLVM programs are done via XSL stylesheets. Figure
+\ref{FIG_XMLVM_TOOLCHAIN} shows all possible paths through the XMLVM
+toolchain.
+
+\begin{figure}
+\includegraphics{pics/xmlvm_toolchain.pdf}
+\caption{\label{FIG_XMLVM_TOOLCHAIN} XMLVM Toolchain.}
+\end{figure}
+
+The first step in using XMLVM is to compile a Java or .NET source code
+program to byte code. This is done with a native compiler such as Sun
+Microsystems \texttt{javac} or Microsofts Visual Studio. The resulting
+byte code program (either a Java \texttt{.class} file or a .NET
+\texttt{.exe} file) is fed into the XMLVM toolchain where it is first
+converted to XML. XMLVM$_{JVM}$ denotes an XMLVM program that contains
+JVM byte code instructions, whereas a XMLVM$_{CLR}$ program contains
+CLR byte code instructions. It is possible to cross-compile
+XMLVM$_{CLR}$ to XMLVM$_{JVM}$ with the help of a data flow analysis
+(denoted as XMLVM$_{DFA}$ in Figure \ref{FIG_XMLVM_TOOLCHAIN}).
+
+XMLVM$_{JVM}$ serves as the canonical representation within the XMLVM
+toolchain in the sense that it separates the frontend from the
+backend. That is to say, all code generating backends use
+XMLVM$_{JVM}$ as their input. As can be seen in Figure
+\ref{FIG_XMLVM_TOOLCHAIN}, various paths through the XMLVM toolchain
+are possible. For example, .NET programs can be cross-compiled to Java
+class files and Java class files can be cross-compiled to JavaScript
+amongst others.
+
+
+\begin{table}[h]
+\caption{\label{TAB_XMLVM_COMPLETENESS} Completeness of various XMLVM backends.}
+\centering
+\begin{tabular}{|l||p{4.5cm}|p{4.5cm}|}
+\hline
+\multirow{2}{*}{\textbf{To:}}
+    & \multicolumn{2}{c|}{\textbf{From:}} \\ \cline{2-3}
+    & \multicolumn{1}{c|}{\textbf{JVM}}
+    & \multicolumn{1}{c|}{\textbf{CLR}} \\ \hline \hline
+C++
+    & Language cross-compilation only. No library support.
+    & Language cross-compilation only. No library support.  \\ \hline
+JavaScript
+    & Compatibility library for a subset of AWT.
+    & Compatibility library for a subset of WinForms. \\ \hline
+Python
+    & Language cross-compilation only. No library support.
+    & Language cross-compilation only. No library support. \\ \hline
+.NET
+    & Language cross-compilation only for a subset of JVM instructions.
+    & N/A \\ \hline
+Java
+    & N/A
+    & Support for most .NET instructions. No support for generics.
+      Compatibility library for a subset of WinForms. \\ \hline
+Objective-C
+    & Most of language cross-compilation. Compatibility libraries
+      for a subset of Cocoa.
+    & Language cross-compilation only. No library support. \\ \hline
+\end{tabular}
+\end{table}
+
+
+The byte code level cross-compilation is only one aspect of XMLVM. The
+XMLVM distribution also contains compatibility libraries for the
+various targets. For example, When cross-compiling from C\# to
+Java class files, XMLVM contains a compatibility library for WinForms (the
+Microsoft GUI library) written in Java. This allows C\# desktop
+applications to be cross-compiled to Java desktop applications. Similarly,
+when cross-compiling from Java to JavaScript, XMLVM features a
+compatibility library for AWT/Swing written in JavaScript that
+effectively allow to cross-compile Java desktop applications to AJAX
+applications.
+
+It should be noted that XMLVM is a research project and as such lacks
+the completeness of a commercial product. Each individual backend
+requires a significant effort to support different API. WinForms,
+AWT/Swing, and Cocoa are all complex libraries and at this point XMLVM
+only supports a subset of each. The various paths through the XMLVM
+toolchain have different levels of maturity that should be taken
+into consideration when using XMLVM. Table
+\ref{TAB_XMLVM_COMPLETENESS} gives an overview of the completeness of
+the various backends. An in-depth overview of the theoretical
+foundations of XMLVM can be found in \cite{Puder:09a}.
+
+
+
+\section{Getting XMLVM}
+\label{SEC_GETTING_XMLVM}
+
+XMLVM is released under the GPL v2 license and is hosted at
+SourceForge. We currently do not offer pre-compiled binary packages.
+The only way to obtain XMLVM is to checkout the latest version from
+the Subversion repository. You will need a Subversion client to do
+this. If you are using a command line version of Subversion, you can
+checkout the trunk of the XMLVM repository via the following command:
+
+\begin{verbatim}
+svn co https://xmlvm.svn.sourceforge.net/svnroot/xmlvm/trunk/xmlvm
+\end{verbatim}
+
+Note that this will give you a read-only version of the repository.
+You will be able to update (which you should do frequently) but not
+commit changes to the repository. If you find a bug, please send a
+mail to the XMLVM mailing list.
+
+XMLVM is developed using the Eclipse IDE. You can also checkout the
+sources of XMLVM via Eclipse (using an appropriate Subversion plugin
+such as Subclipse or Subversive). The XMLVM sources contain
+\texttt{.project} and \texttt{.classpath} files so that Eclipse will
+recognize XMLVM as an Eclipse project. The benefit of using Eclipse is
+that it makes it easy to navigate the source code if you intend to
+study the internals of XMLVM. There are also numerous Eclipse launch
+configurations (in the \texttt{etc/} directory) that allow the
+invocation of various demos.
+
+
+\section{Compiling XMLVM}
+\label{SEC_COMPILING_XMLVM}
+
+XMLVM depends on numerous third-party libraries such as BCEL, JDOM, or
+Saxon. All these libraries are also released under an Open Source
+library. To facilitate the compilation process, XMLVM contains binary
+versions (i.e., jars) of all required libraries. All third-party
+libraries are contained in the \texttt{lib/} directory. Building XMLVM
+from sources requires Java 1.6 as well as ant. In order to compile
+XMLVM from command line, simply run ant in the XMLVM root directory:
+
+\begin{verbatim}
+    cd xmlvm
+    ant
+\end{verbatim}
+
+After a successful run of ant, there should be a \texttt{dist/}
+directory. The ant script packages all dependent libraries and XMLVM's
+own class files into one jar file. The only file needed to run XMLVM
+is the jar file \texttt{dist/xmlvm.jar}. This jar file can be copied
+to a convenient location. The following section explains how to run
+XMLVM. The directory \texttt{dist/demo/} contains several demos to
+highlight the various aspects of XMLVM.
 
 
 \section{Invoking XMLVM}
+\label{SEC_INVOKING_XMLVM}
 
-XMLVM can be invoked via the \xmlvm command line tool. Its behavior is
-controlled by numerous command line arguments. \xmlvm reads in one or
-more source files, processes them according to the command line
-options, and then writes out one or more destination files.
+As mentioned in the previous section, the ant script will package the
+binaries of XMLVM into one jar file. By default, this jar file is
+located in \texttt{dist/xmlvm.jar} after a successful compilation of
+XMLVM. Java 1.6 is needed to run XMLVM. Invoking XMLVM can be done in
+the following way:
+
+\begin{verbatim}
+    java -jar dist/xmlvm.jar
+\end{verbatim}
+
+Command line options can be appended at the end of the command line
+such as:
+
+\begin{verbatim}
+    java -jar dist/xmlvm.jar --version
+\end{verbatim}
+
+The various byte code transformations and code generators can be
+invoked via appropriate command line options. Section
+\ref{SEC_COMMAND_LINE_OPTIONS} explains all available command line
+options and Section \ref{SEC_COMMAND_LINE_OPTIONS_EXAMPLES} gives some
+examples. Note that at this point we only give an overview of the
+command line options. Refer to subsequent chapters for more detailed
+information on the various backends.
+
+
+\subsection{Command Line Options}
+\label{SEC_COMMAND_LINE_OPTIONS}
+
+XMLVM can be invoked by running the executable jar file called
+\texttt{xmlvm.jar}. In the following we assume that an alias called
+\xmlvm is defined to invoke XMLVM. Under Unix, this can be
+accomplished via the following command:
+
+\begin{verbatim}
+    alias xmlvm="java -jar dist/xmlvm.jar"
+\end{verbatim}
+
+The behavior of XMLVM is controlled by numerous command line
+arguments. \xmlvm reads in one or more source files, processes them
+according to the command line options, and then writes out one or more
+destination files.
 
 \begin{description}
 
@@ -74,7 +288,7 @@ options, and then writes out one or more destination files.
   class files.
 
 \item[\texttt{exe}:] The input files are cross-compiled to a .NET
-  execurable.
+  executable.
 
 \item[\texttt{js}:] The input files are cross-compiled to JavaScript.
 
@@ -137,7 +351,8 @@ options, and then writes out one or more destination files.
 \end{description}
 
 
-\section{Examples}
+\subsection{Examples}
+\label{SEC_COMMAND_LINE_OPTIONS_EXAMPLES}
 
 \begin{description}
 
@@ -208,6 +423,34 @@ options, and then writes out one or more destination files.
 
 \end{description}
 
+
+
+\chapter{iPhone/Android Backend}
+
+\section{Generating Objective-C}
+
+\section{Running an iPhone Application}
+
+\subsection{Java-based iPhone Emulator}
+
+\subsection{Apple's iPhone Emulator}
+
+\subsection{Using Apple's Xcode IDE}
+
+\section{Android Compatibility Library}
+
+
+\chapter{JavaScript/AJAX Backend}
+
+TBD
+
+
+\begin{appendix}
+\chapter{Frequently Asked Questions}
+
+\end{appendix}
+
+\bibliography{literature}
 \bibliographystyle{plain}
 
 \end{document}

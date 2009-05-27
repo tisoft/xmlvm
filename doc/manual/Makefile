@@ -2,7 +2,7 @@
 PICS=
 
 
-LATEX    = latex
+LATEX    = pdflatex
 BIBTEX   = bibtex
 DVIPS    = dvips
 DVIPDF   = dvipdf
@@ -10,12 +10,12 @@ FIG2DEV  = fig2dev
 
 .SUFFIXES : .ltx .dvi .pdf .ps .fig .tex .eps
 
-%.dvi: %.tex
+%.pdf: %.tex
 	$(LATEX) $<
 	if grep Rerun `basename $< .tex`.log >/dev/null; then $(LATEX) $< ; fi
-	#$(BIBTEX) `basename $< .tex`
-	#$(LATEX) $<
-	#if grep Rerun `basename $< .tex`.log >/dev/null; then $(LATEX) $< ; fi
+	$(BIBTEX) `basename $< .tex`
+	$(LATEX) $<
+	if grep Rerun `basename $< .tex`.log >/dev/null; then $(LATEX) $< ; fi
 
 %.ps: %.dvi
 	$(DVIPS) -f < $< > $@
