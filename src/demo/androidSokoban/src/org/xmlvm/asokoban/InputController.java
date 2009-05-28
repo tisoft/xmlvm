@@ -1,7 +1,6 @@
 package org.xmlvm.asokoban;
 
 import android.hardware.SensorListener;
-import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -17,10 +16,10 @@ public class InputController implements SensorListener, OnTouchListener, TimerUp
     private static final float SWIPE_THRESHOLD         = 20f;
 
     /** Helper class used to animate the man's movement. */
-    private GamePieceMover     mover;
+    private GamePieceMover     mover                   = null;
 
     /** The GameController associated with this InputController. */
-    private GameController     controller;
+    private GameController     controller              = null;
 
     /** The X coordinate for the last move event. */
     private float              lastMoveX;
@@ -38,9 +37,9 @@ public class InputController implements SensorListener, OnTouchListener, TimerUp
     private boolean            lastDownDuringGame      = false;
 
     /** A tap handler that is called when a tap event happened. */
-    private SimpleTapHandler   tapHandler;
+    private SimpleTapHandler   tapHandler              = null;
 
-    private UpdateTimer        timer;
+    private UpdateTimer        timer                   = null;
 
     public InputController(GamePieceMover mover, GameController controller, UpdateTimer timer) {
         this.mover = mover;

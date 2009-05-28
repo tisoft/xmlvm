@@ -6,18 +6,17 @@ import java.util.List;
 import android.os.Handler;
 
 /**
- * A timer that fires recurring updates. Can be used to animate game
- * tiles.
+ * A timer that fires recurring updates. Can be used to animate game tiles.
  */
 public class UpdateTimer {
     /** The default update interval */
     public static int                DEFAULT_DELAY_IN_MILLIS = 70;
 
-    private static UpdateTimer       instance;
+    private static UpdateTimer       instance                = null;
 
     private List<TimerUpdateHandler> handlers                = new ArrayList<TimerUpdateHandler>();
     private Handler                  updater                 = new Handler();
-    private Runnable                 updateAnimation;
+    private Runnable                 updateAnimation         = null;
 
     /**
      * Returns a default instance that will updat every
@@ -34,7 +33,7 @@ public class UpdateTimer {
         updateAnimation = new Runnable() {
             public void run() {
                 updater.postDelayed(updateAnimation, animationDelayMillis);
-                for(TimerUpdateHandler handler : handlers) {
+                for (TimerUpdateHandler handler : handlers) {
                     handler.onTimerUpdate();
                 }
             }

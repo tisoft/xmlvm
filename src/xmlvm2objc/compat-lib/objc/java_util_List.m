@@ -33,4 +33,14 @@
 	return o;
 }
 
+- (BOOL) remove___java_lang_Object :(java_lang_Object*) item
+{
+	if ([((NSMutableArray*) self) indexOfObject: item] != NSNotFound) {
+		[((NSMutableArray*) self) removeObject: item];
+		return true;
+	} else {
+		return false;
+	}
+}
+
 @end
