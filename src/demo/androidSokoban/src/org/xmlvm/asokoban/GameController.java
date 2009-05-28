@@ -231,14 +231,14 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
                 // level if necessary
                 if (which == DialogInterface.BUTTON1 && !levelStarted && currentLevel > 0) {
                     currentLevel--;
-                    showLevelDialog = true;
+                    //showLevelDialog = true;
                 }
 
                 // Second button: Increase current level to proceed to next
                 // level
                 if (which == DialogInterface.BUTTON3) {
                     currentLevel++;
-                    showLevelDialog = true;
+                    //showLevelDialog = true;
                 }
 
                 changeLevelDialog.dismiss();
