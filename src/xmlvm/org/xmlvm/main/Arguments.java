@@ -29,27 +29,26 @@ import java.util.List;
  */
 public class Arguments {
     // The arguments that are given by the user on the command line.
-    public static final String ARG_IN                = "--in=";
-    public static final String ARG_OUT               = "--out=";
-    public static final String ARG_TARGET            = "--target=";
-    public static final String ARG_IPHONE_APP        = "--iphone-app=";
-    public static final String ARG_ANDROID_TO_IPHONE = "--android2iphone";
-    public static final String ARG_QX_APP            = "--qx-app=";
-    public static final String ARG_QX_MAIN           = "--qx-main=";
-    public static final String ARG_QX_DEBUG          = "--qx-debug";
-    public static final String ARG_VERSION           = "--version";
-    public static final String ARG_QUIET             = "--quiet";
+    public static final String ARG_IN            = "--in=";
+    public static final String ARG_OUT           = "--out=";
+    public static final String ARG_TARGET        = "--target=";
+    public static final String ARG_IPHONE_APP    = "--iphone-app=";
+    public static final String ARG_QX_APP        = "--qx-app=";
+    public static final String ARG_QX_MAIN       = "--qx-main=";
+    public static final String ARG_QX_DEBUG      = "--qx-debug";
+    public static final String ARG_VERSION       = "--version";
+    public static final String ARG_QUIET         = "--quiet";
 
     // The parsed values will be stored here.
-    private List<String>       option_in             = new ArrayList<String>();
-    private String             option_out            = null;
-    private Targets            option_target         = Targets.NONE;
-    private String             option_iphone_app     = null;
-    private String             option_qx_app         = null;
-    private String             option_qx_main        = null;
-    private boolean            option_qx_debug       = false;
-    private boolean            option_version        = false;
-    private boolean            option_quiet          = false;
+    private List<String>       option_in         = new ArrayList<String>();
+    private String             option_out        = null;
+    private Targets            option_target     = Targets.NONE;
+    private String             option_iphone_app = null;
+    private String             option_qx_app     = null;
+    private String             option_qx_main    = null;
+    private boolean            option_qx_debug   = false;
+    private boolean            option_version    = false;
+    private boolean            option_quiet      = false;
 
     /**
      * Prints usage information and exits the applications.
@@ -62,7 +61,7 @@ public class Arguments {
         String[] msg = {
                 "Usage: xmlvm [--in=<path>]",
                 "             [--out=<dir>]",
-                "              --target=[xmlvm|jvm|clr|dfa|class|exe|js|cpp|python|objc|iphone|qooxdoo|android2iphone]",
+                "              --target=[xmlvm|jvm|clr|dfa|class|exe|js|cpp|python|objc|iphone|qooxdoo|android-on-iphone]",
                 "             [--iphone-app=<app-name>]",
                 "             [--qx-app=<app-name> --qx-main=<main-class> [--qx-debug]]",
                 "             [--quiet] [--version]" };
@@ -115,8 +114,8 @@ public class Arguments {
                     option_target = Targets.IPHONE;
                 else if (target.equals("qooxdoo"))
                     option_target = Targets.QOOXDOO;
-                else if (target.equals("android2iphone"))
-                    option_target = Targets.ANDROID2IPHONE;
+                else if (target.equals("android-on-iphone"))
+                    option_target = Targets.ANDROIDONIPHONE;
                 else
                     usage("Unkown target: " + target);
             } else if (arg.startsWith(ARG_IPHONE_APP)) {
@@ -147,7 +146,8 @@ public class Arguments {
             usage("Need at least one --in argument");
         if (option_out == null)
             option_out = ".";
-        if (option_target == Targets.IPHONE && option_iphone_app != null)
+        if (((option_target == Targets.IPHONE) || (option_target == Targets.ANDROIDONIPHONE))
+                && option_iphone_app == null)
             usage("--target=iphone requires option --iphone-app");
         if (option_qx_app != null && option_qx_main == null)
             usage("--qx-app requires --qx-main");
