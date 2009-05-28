@@ -3,6 +3,12 @@
 \usepackage{supertabular}
 \usepackage{multirow}
 \usepackage{graphicx}
+\usepackage{fancyvrb}
+
+
+\DefineVerbatimEnvironment%
+  {code}{Verbatim}{numbers=left,numbersep=3pt,frame=lines,%
+                   xleftmargin=7pt,fontsize=\footnotesize}
 
 
 \newcommand{\xmlvm}{\texttt{xmlvm} }
@@ -259,7 +265,9 @@ destination files.
   with the same name will be overwritten. If the \texttt{--out}
   parameter is omitted, the current directory is the default.
 
-\item[\texttt{--target=$[$xmlvm|jvm|clr|dfa|class|exe|js|cpp|python|objc|iphone$]$}]
+\item[\texttt{--target=$[$xmlvm|jvm|clr|dfa|class|exe|js|cpp|python|objc|}]
+  $ $\\
+  \texttt{iphone|android-on-iphone$]$}
   $ $
 
   This option defines the output format of the target. These
@@ -304,18 +312,21 @@ destination files.
   ready to compile iPhone application.  The resulting iPhone
   application can be compiled via ``make'' using Apple's SDK for the
   iPhone. This option requires the option \texttt{--iphone-app}.
+
+\item[\texttt{android-on-iphone}:] Cross-compiles an Android
+  application to the iPhone.  This option is mostly identical in
+  behavior as target \texttt{iphone}, except that target
+  \texttt{android-on-iphone} will also copy an Android compatibility
+  library to the output directory specified by \texttt{--out}. This
+  option also requires the option \texttt{--iphone-app}.
 \end{description}
 
 \item[\texttt{--iphone-app=$<$app\_name$>$}] $ $
 
-  This option can only be used in conjunction with option
-  \texttt{--target=iphone}. It specifies the name of the iPhone
-  application whose name will be \texttt{$<$app\_name$>$}.
-
-\item[\texttt{--android2iphone}] $ $
-
-  Cross-compiles an Android application to the iPhone. This option
-  requires \texttt{--target=iphone}..
+  This option can only be used in conjunction with targets
+  \texttt{iphone} or \texttt{android-on-iphone}. It specifies the name
+  of the iPhone application whose name will be
+  \texttt{$<$app\_name$>$}.
 
 \item[\texttt{--qx-app=$<$app\_name$>$}] $ $
 
@@ -403,10 +414,10 @@ destination files.
   \texttt{Info.plist} and a \texttt{Makefile}. The iPhone application
   will be called \texttt{TheApplication} using a default icon.
 
-\item[\texttt{xmlvm --in=/foo --target=iphone --android2iphone --iphone-app=TheApplication}] $ $
+\item[\texttt{xmlvm --in=/foo --target=android-on-iphone --iphone-app=TheApplication}] $ $
 
   Same as the previous example, but will also copy the Android
-  compatibility libraries to the output directory. This effectively
+  compatibility library to the output directory. This effectively
   allows Java-based Android applications to be cross-compiled to the
   iPhone.
 
@@ -427,17 +438,226 @@ destination files.
 
 \chapter{iPhone/Android Backend}
 
-\section{Generating Objective-C}
+With the help of XMLVM it is possible to cross-compile Java
+applications to native iPhone applications. The Apple license
+agreement does not permit the installation of a virtual machine on the
+iPhone. By cross-compiling a Java application to a native iPhone
+application, this restriction of the license agreement is therefore
+not violated. XMLVM can legally generate native iPhone application and
+it is not necessary to jailbreak a device in order to run an
+application cross-compiled by XMLVM. Section \ref{SEC_IPHONE} gives an
+overview of Java-based iPhone applications including the obligatory
+``Hello World'' program. Section \ref{SEC_RUNNING_IPHONE_APP} explains
+various ways how a Java-based iPhone application can be
+executed. Section \ref{SEC_ANDROID4IPHONE} demonstrates how
+Android applications can be cross-compiled to native iPhone
+applications. Section \ref{SEC_IPHONE_SAMPLE_APPS} gives an overview
+of various sample applications that show the capabilities of the
+Java-for-iPhone portion of XMLVM.
+
+
+\section{Java-based iPhone Applications}
+\label{SEC_IPHONE}
+
+Apple only supports Objective-C as the development language for the
+iPhone. The GUI of iPhone applications is based on Cocoa Touch. If
+Java is to be used as a development language for iPhone applications,
+two aspects need to be addressed: the cross-compilation of Java to
+Objective-C and a Java API for Cocoa Touch. The following application
+shows the ``Hello World'' application for the iPhone written in Java:
+
+\begin{code}
+import org.xmlvm.iphone.*;
+
+public class HelloWorld extends UIApplication {
+
+    public void applicationDidFinishLaunching(UIApplication app) {
+        UIScreen screen = UIScreen.mainScreen();
+        CGRect rect = screen.applicationFrame();
+        UIWindow window = new UIWindow(rect);
+
+        rect.origin.x = rect.origin.y = 0;
+        UIView mainView = new UIView(rect);
+        window.addSubview(mainView);
+
+        UILabel title = new UILabel(rect);
+        title.setText("Hello World!");
+        title.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
+        mainView.addSubview(title);
+
+        window.makeKeyAndVisible();
+    }
+
+    public static void main(String[] args) {
+        UIApplication.main(args, HelloWorld.class);
+    }
+
+}
+\end{code}
+
+
+The Java API for Cocoa Touch is loosely based on the Objective-C
+counterpart. While XMLVM makes better use of overloading and interface
+definitions for delegates to create a strongly-typed API, the
+description of the various classes and methods can be taken from
+Apple's official documentation. Choosing the target \texttt{iphone}
+(see Section \ref{SEC_COMMAND_LINE_OPTIONS}) will cross-compile this
+application to Objective-C, include all required compatibility
+libraries for Cocoa Touch, as well as generate a Makefile that
+facilitates the compilation of the native version of the application.
+
 
 \section{Running an iPhone Application}
+\label{SEC_RUNNING_IPHONE_APP}
+
+A Java-based iPhone application can by executed in several ways, each
+of which will be explained in the following.
 
 \subsection{Java-based iPhone Emulator}
+\label{SEC_JAVA_BASED_IPHONE_EMULATOR}
+
+XMLVM includes Java implementations of the Cocoa Touch API. Classes
+such as \texttt{UIWindow} and \texttt{UILabel} have been implemented
+making use of Java2D. The implication is that a Java-based iPhone
+application can be run as a pure 100\% Java application on a standard
+Java virtual machine without the need of Apple's SDK or an actual
+device. Note that re-implementing Cocoa Touch in Java is a major
+undertaking in itself and XMLVM only support a certain subset of the
+API. While this approach works well for the demos shipped with XMLVM
+(an online applet version of the demos can be viewed at
+\texttt{http://xmlvm.org}) there are currently no plans to make
+further enhancements of the Java-based iPhone emulator.
+
 
 \subsection{Apple's iPhone Emulator}
 
+Apple's SDK for the iPhone includes an iPhone emulator. When
+cross-compiling a Java application using the the \texttt{iphone}
+target, the resulting \texttt{Makefile} compiles and deploys the
+native application on Apple's emulator. The \texttt{Makefile} will
+only work on a Mac OS platform with a default installation of the
+Xcode toolchain. After cross-compiling an application using XMLVM,
+simply change to the directory where the code was generated and type
+``make''. This will compile and run the application in Apple's
+emulator.
+
+
 \subsection{Using Apple's Xcode IDE}
 
+The \texttt{Makefile} generated by XMLVM can only compile and deploy
+the application on Apple's emulator. Given the complexity of code
+signing that Apple requires for all native iPhone applications, you
+will need to use Xcode if a cross-compiled Java application is to be
+deployed on a device. The following steps explain the process of
+compiling an XMLVM-generated application using Xcode:
+
+\begin{enumerate}
+\item First cross-compile the Java-based iPhone application using
+  XMLVM by using target \texttt{iphone}.
+\item Launch Xcode and create a new Cocoa application by selecting
+  File $>$ New Project... $>$ Window Based Application.
+\item Choose a name for the new project and a location where it will
+  be stored. This location should not be the directory where XMLVM
+  cross-compiled the application.
+\item Xcode will automatically generate some skeleton files that need
+  to be deleted. Delete \texttt{main.m}, \texttt{MainWindow.xib}, as
+  well as the application delegate header and implementation file.
+\item In \texttt{Info.plist}, delete the property ``Main nib file base
+  name.''
+\item Add all source files generated by XMLVM to the project by
+  selecting Project $>$ Add to Project... Do not add the
+  \texttt{Info.plist}, \texttt{Makefile}, and \texttt{MakeVars} files
+  that were generated by XMLVM.
+\item Clicking on ``Build and Go'' should compile and launch the
+  application in Apple's emulator.
+\item With the proper certificates and entitlements installed, you can
+  change the target to a provisioned device and clicking on ``Build
+  and Go'' now should compile and deploy the application on the
+  device.
+\end{enumerate}
+
+
 \section{Android Compatibility Library}
+\label{SEC_ANDROID4IPHONE}
+
+Android is an Open Source platform for mobile devices. Initiated by
+Google, Android has received much attention. Android applications are
+developed using Java, although a special compiler converts class files
+to a proprietary, regiser-based virtual machine that is used on
+Android devices to execute applications. Android defines its own API
+for writing mobile applications. With the help of XMLVM it is possible
+to cross-compile Java-based Android applications to native iPhone
+applications. Figure \ref{FIG_ANDROID2IPHONE} depicts this process.
+
+\begin{figure}
+\includegraphics{pics/android2iphone.pdf}
+\caption{\label{FIG_ANDROID2IPHONE} Android to iPhone cross-compilation.}
+\end{figure}
+
+The Android application is written in Java and makes use of an Android
+specific API. XMLVM offers a compatibility library, written in Java,
+that offers the same API as Android, but only makes use of the
+Java-based API for Cocoa Touch mentioned earlier. During the
+cross-compilation process, both the application and the Android
+compatibility library are cross-compiled from Java to Objective-C and
+linked with the Cocoa Touch compatibility library to yield a native
+iPhone application.
+
+As can be seen, compared to the Java-for-the-iPhone portion of XMLVM,
+the only additional feature added to support Android applications is
+the Android compatibility library. When selecting target
+\texttt{android-on-iphone} (see Section
+\ref{SEC_COMMAND_LINE_OPTIONS}), additional to cross-compiling the
+application to Objective-C, this option also includes the Android
+compatibility library to the generated project.  The Android-based
+iPhone application can be run in both the XMLVM-specific iPhone
+emulator as well as Apple's emulator as explained in the previous
+section.
+
+
+\section{Sample Applications}
+\label{SEC_IPHONE_SAMPLE_APPS}
+
+XMLVM includes several sample programs that demonstrate the
+Java-for-the-iPhone portion of XMLVM. All examples can be executed in
+one of the ways explained in Section \ref{SEC_RUNNING_IPHONE_APP}: in
+XMLVM's own Java-based iPhone emulator, by running the
+\texttt{Makefile}, or by using the Xcode IDE. Additionally, the sample
+programs can also be run via Eclipse-specific launch configurations
+stored in the \texttt{etc/} directory. Those launch configurations
+will run the Java-based iPhone emulator that was described in Section
+\ref{SEC_JAVA_BASED_IPHONE_EMULATOR}.
+
+All sample programs will get automatically compiled when running ant
+as explained in Section \ref{SEC_COMPILING_XMLVM}. After ant
+successfully completes, there will be a directory \texttt{dist/demo/}.
+Each sub-directory contains one sample application in two different
+versions: the \texttt{java/} directory will contain the Java-version
+that can be executed as a pure Java application using XMLVM's iPhone
+emulator, whereas the \texttt{iphone/} directory will contain the
+ready-to-compile Objective-C source of the same application. The
+following sample applications are available:
+
+\begin{description}
+
+\item[iHelloWorld (Portrait):] ``Hello World'' in portrait mode.
+\item[iHelloWorld (Landscape):] ``Hello World'' in landscape mode.
+\item[iHelloWorld (Fullscreen):] ``Hello World'' in fullscreen
+  landscape mode.
+\item[iFireworks:] iPhone version of the fireworks application.
+\item[aFireworks:] Android version of the fireworks application. The
+  \texttt{dist/demo/afireworks/} directory will contain the cross-compiled
+  version for the iPhone. It is possible to import directory
+  \texttt{src/demo/afireworks/} as an Android project under Eclipse (requires
+  the Android SDK). In this case aFireworks can be run inside the
+  Android emulator.
+\item[Xokoban:] Android version of the Xokoban application. The
+  \texttt{dist/demo/xokoban/} directory will contain the
+  cross-compiled version for the iPhone. It is possible to import
+  directory \texttt{src/demo/xokoban/} as an Android project under
+  Eclipse (requires the Android SDK). In this case Xokoban can be run
+  inside the Android emulator.
+\end{description}
 
 
 \chapter{JavaScript/AJAX Backend}
