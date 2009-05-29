@@ -57,6 +57,8 @@ public class UIAlertView extends UIView {
         titleView = new UILabel();
         titleView.setBackgroundColor(new Color(0, 0, 0, 0));
         titleView.setFontColor(Color.WHITE);
+        titleView.setShadowColor(Color.DARK_GRAY);
+        titleView.setShadowOffset(new CGSize(0, -1));
         titleView.setFont(new Font("Arial", Font.BOLD, TITLE_FONT_SIZE));
         titleView.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
         if (title != null && title.length() > 0) {
@@ -67,6 +69,8 @@ public class UIAlertView extends UIView {
         messageView = new UILabel();
         messageView.setBackgroundColor(new Color(0, 0, 0, 0));
         messageView.setFontColor(Color.WHITE);
+        messageView.setShadowColor(Color.DARK_GRAY);
+        messageView.setShadowOffset(new CGSize(0, -1));
         messageView.setFont(new Font("Arial", Font.BOLD, MESSAGE_FONT_SIZE));
         messageView.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
         if (message != null && message.length() > 0) {
@@ -107,17 +111,16 @@ public class UIAlertView extends UIView {
     public int addButtonWithTitle(String title) {
         UIButton button = UIButton.buttonWithType(UIButtonType.UIButtonTypeRoundedRect);
 
-        // TODO: Frame will be set by layout() - remove this
-        button.setFrame(new CGRect(10, 30 * buttons.size(), 30, 20));
-
         button.setTitle(title, UIControlState.UIControlStateNormal);
         button.setEdgeDiameter(8);
         button.addTarget(new ButtonClickCallback(buttons.size()),
                 UIControl.UIControlEventTouchUpInside);
 
-        // TODO: Set color, opacity and font style/color
+        // Set color, opacity and font style/color
         button.setFont(new Font("Arial", Font.BOLD, 14));
         button.setTitleColor(Color.WHITE, UIControlState.UIControlStateNormal);
+        button.setTitleShadowColor(Color.DARK_GRAY, UIControlState.UIControlStateNormal);
+        button.setTitleShadowOffset(new CGSize(0, -1), UIControlState.UIControlStateNormal);
         button.setBackgroundColor(new Color(150, 170, 190));
         button.setAlpha(200);
         button.setEdgeDiameter(8);

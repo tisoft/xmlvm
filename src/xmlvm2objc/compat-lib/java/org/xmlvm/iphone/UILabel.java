@@ -10,6 +10,8 @@ public class UILabel extends UIView {
     private String text;
     private Font   font;
     private Color  fontColor;
+    private Color  shadowColor;
+    private CGSize shadowOffset;
     private int    textAlignment;
 
     public UILabel() {
@@ -29,6 +31,7 @@ public class UILabel extends UIView {
         setBackgroundColor(Color.WHITE);
         setTextAlignment(UITextAlignment.UITextAlignmentLeft);
         setText("");
+        shadowOffset = new CGSize(0, 0);
     }
 
     public void setText(String text) {
@@ -66,7 +69,6 @@ public class UILabel extends UIView {
             g.fillRect((int) displayRect.origin.x, (int) displayRect.origin.y,
                     (int) displayRect.size.width, (int) displayRect.size.height);
         }
-        g.setColor(fontColor);
         g.setFont(font);
         FontMetrics fm = g.getFontMetrics();
         int width = fm.stringWidth(text);
@@ -84,7 +86,30 @@ public class UILabel extends UIView {
             break;
         }
         y += ((int) frame.size.height - height) / 2 + height - descent;
+        
+        if (shadowColor != null) {
+            g.setColor(shadowColor);
+            g.drawString(text, x + shadowOffset.width, y + shadowOffset.height);
+        }
+        
+        g.setColor(fontColor);
         g.drawString(text, x, y);
         this.restoreLastTransform();
+    }
+
+    public Color getShadowColor() {
+        return shadowColor;
+    }
+
+    public void setShadowColor(Color shadowColor) {
+        this.shadowColor = shadowColor;
+    }
+
+    public CGSize getShadowOffset() {
+        return shadowOffset;
+    }
+
+    public void setShadowOffset(CGSize shadowOffset) {
+        this.shadowOffset = shadowOffset;
     }
 }
