@@ -40,18 +40,24 @@ public class SimulatorGUI extends JPanel {
     }
 
     public void redrawDisplay() {
-        if (device != null) {
-            device.repaint();
-        }
+        // TODO: Eliminate this ugly workaround
+        Simulator.getRootWindow().repaint();
+        
+//        if (device != null) {
+//            device.repaint();
+//        }
     }
 
     public void redrawDisplay(int x, int y, int width, int height) {
+        // TODO: Eliminate this ugly workaround
+        Simulator.getRootWindow().repaint();
+        
         // TODO Use computed clipping rect after fixing its computation in
         // UIView
         // display.repaint(x, y, width, height);
-        if (device != null) {
-            device.repaint();
-        }
+//        if (device != null) {
+//            device.repaint();
+//        }
     }
 
     private void addAccelerometerPanel() {
