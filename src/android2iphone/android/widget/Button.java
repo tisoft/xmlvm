@@ -48,13 +48,13 @@ public class Button extends View {
         AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams) l;
         if (a.width == LayoutParams.WRAP_CONTENT) {
             // TODO just a rough approximation: 18px per character
-            a.width = title.length() * 18;
+            a.width = title.length() * 18 + 20;
         }
         if (a.height == LayoutParams.WRAP_CONTENT) {
-            a.height = 20;
+            a.height = 25;
         }
         this.setFrame(new CGRect(a.x, a.y, a.width, a.height));
-        button.setFrame(new CGRect(0, 0, /*a.x, a.y,*/ a.width, a.height));
+        button.setFrame(new CGRect(0, 0, a.width, a.height));
     }
 
     public AbsoluteLayout.LayoutParams getLayoutParams() {

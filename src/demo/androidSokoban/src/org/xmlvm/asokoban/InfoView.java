@@ -27,7 +27,7 @@ public class InfoView extends SplashView {
         Button okButton = new Button(context);
         okButton.setText("OK");
         p = new AbsoluteLayout.LayoutParams(AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                AbsoluteLayout.LayoutParams.WRAP_CONTENT, 280, 255);
+                AbsoluteLayout.LayoutParams.WRAP_CONTENT, 270, 255);
         okButton.setLayoutParams(p);
         addView(okButton);
         okButton.setOnClickListener(new OnClickListener() {
