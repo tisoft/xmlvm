@@ -126,12 +126,12 @@ Microsoft GUI library) written in Java. This allows C\# desktop
 applications to be cross-compiled to Java desktop applications. Similarly,
 when cross-compiling from Java to JavaScript, XMLVM features a
 compatibility library for AWT/Swing written in JavaScript that
-effectively allow to cross-compile Java desktop applications to AJAX
+effectively allows to cross-compile Java desktop applications to AJAX
 applications.
 
 It should be noted that XMLVM is a research project and as such lacks
 the completeness of a commercial product. Each individual backend
-requires a significant effort to support different API. WinForms,
+requires a significant effort to support different APIs. WinForms,
 AWT/Swing, and Cocoa are all complex libraries and at this point XMLVM
 only supports a subset of each. The various paths through the XMLVM
 toolchain have different levels of maturity that should be taken
@@ -146,7 +146,8 @@ foundations of XMLVM can be found in \cite{Puder:09a}.
 \label{SEC_GETTING_XMLVM}
 
 XMLVM is released under the GPL v2 license and is hosted at
-SourceForge. We currently do not offer pre-compiled binary packages.
+SourceForge\footnote{http://sourceforge.net/projects/xmlvm}.
+We currently do not offer pre-compiled binary packages.
 The only way to obtain XMLVM is to checkout the latest version from
 the Subversion repository. You will need a Subversion client to do
 this. If you are using a command line version of Subversion, you can
@@ -159,11 +160,12 @@ svn co https://xmlvm.svn.sourceforge.net/svnroot/xmlvm/trunk/xmlvm
 Note that this will give you a read-only version of the repository.
 You will be able to update (which you should do frequently) but not
 commit changes to the repository. If you find a bug, please send a
-mail to the XMLVM mailing list.
+mail to the XMLVM mailing list\footnote{https://lists.sourceforge.net/lists/listinfo/xmlvm-users}.
 
 XMLVM is developed using the Eclipse IDE. You can also checkout the
 sources of XMLVM via Eclipse (using an appropriate Subversion plugin
-such as Subclipse or Subversive). The XMLVM sources contain
+such as Subclipse\footnote{http://subclipse.tigris.org} or
+Subversive\footnote{http://www.eclipse.org/subversive}). The XMLVM sources contain
 \texttt{.project} and \texttt{.classpath} files so that Eclipse will
 recognize XMLVM as an Eclipse project. The benefit of using Eclipse is
 that it makes it easy to navigate the source code if you intend to
@@ -175,7 +177,7 @@ invocation of various demos.
 \section{Compiling XMLVM}
 \label{SEC_COMPILING_XMLVM}
 
-XMLVM depends on numerous third-party libraries such as BCEL, JDOM, or
+XMLVM depends on numerous third-party libraries such as BCEL, JDOM, and
 Saxon. All these libraries are also released under an Open Source
 library. To facilitate the compilation process, XMLVM contains binary
 versions (i.e., jars) of all required libraries. All third-party
@@ -235,7 +237,7 @@ XMLVM can be invoked by running the executable jar file called
 accomplished via the following command:
 
 \begin{verbatim}
-    alias xmlvm="java -jar dist/xmlvm.jar"
+    alias xmlvm="java -jar $(pwd)/dist/xmlvm.jar"
 \end{verbatim}
 
 The behavior of XMLVM is controlled by numerous command line
@@ -271,7 +273,7 @@ destination files.
 
 \item[\texttt{--target=$[$xmlvm|jvm|clr|dfa|class|exe|js|cpp|python|objc|}]
   $ $\\
-  \texttt{iphone|android-on-iphone$]$}
+  \texttt{qooxdoo|iphone|android-on-iphone$]$}
   $ $
 
   This option defines the output format of the target. These
@@ -311,6 +313,16 @@ destination files.
 \item[\texttt{objc}:] The input files are cross-compiled to
   Objective-C.
 
+\item[\textttt{qooxdoo}:] Cross-compiles an application as a web
+  application. The business logic is cross-compiled to JavaScript
+  and a Java or .NET compatibility library is copied alongside.
+  The output directory specified by \textttt{--out} will contain a
+  ready to deploy web application.
+  The environment variable \texttt{QOOXDOO\_HOME} needs to point to the
+  base directory of the Qooxdoo\footnote{http://www.qooxdoo.org} installation.
+  This option implies \texttt{--target=js} and requires options
+  \texttt{--qx-main} as well as \texttt{--qx-app}.
+
 \item[\texttt{iphone}:] Cross-compiles an application to the iPhone.
   The output directory specified by \texttt{--out} will contain a
   ready to compile iPhone application.  The resulting iPhone
@@ -334,13 +346,8 @@ destination files.
 
 \item[\texttt{--qx-app=$<$app\_name$>$}] $ $
 
-  Cross-compiles an application to a Qooxdoo application. The
-  environment variable \texttt{QOOXDOO\_HOME} needs to point to the
-  base directory of the Qooxdoo installation. The application will be
-  called \texttt{$<$app\_name$>$}. The output directory specified by
-  \texttt{--out} will contain a ready to run Qooxdoo application. This
-  option implies \texttt{--target=js} and requires option
-  \texttt{--qx-main}.
+  This option lets you specify the name of the generated Qooxdoo
+  application.
 
 \item[\texttt{--qx-main=$<$main-class$>$}] $ $
 
@@ -622,8 +629,8 @@ section.
 \section{Sample Applications}
 \label{SEC_IPHONE_SAMPLE_APPS}
 
-XMLVM includes several sample programs that demonstrate the
-Java-for-the-iPhone portion of XMLVM. All examples can be executed in
+XMLVM includes several sample applications that demonstrate the
+Java-for-the-iPhone portion of XMLVM. All samples can be executed in
 one of the ways explained in Section \ref{SEC_RUNNING_IPHONE_APP}: in
 XMLVM's own Java-based iPhone emulator, by running the
 \texttt{Makefile}, or by using the Xcode IDE. Additionally, the sample
@@ -632,8 +639,8 @@ stored in the \texttt{etc/} directory. Those launch configurations
 will run the Java-based iPhone emulator that was described in Section
 \ref{SEC_JAVA_BASED_IPHONE_EMULATOR}.
 
-All sample programs will get automatically compiled when running ant
-as explained in Section \ref{SEC_COMPILING_XMLVM}. After ant
+All sample programs will get automatically compiled when running \texttt{ant}
+as explained in Section \ref{SEC_COMPILING_XMLVM}. After \texttt{ant}
 successfully completes, there will be a directory \texttt{dist/demo/}.
 Each sub-directory contains one sample application in two different
 versions: the \texttt{java/} directory will contain the Java-version
