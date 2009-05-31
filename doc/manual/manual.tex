@@ -4,6 +4,7 @@
 \usepackage{multirow}
 \usepackage{graphicx}
 \usepackage{fancyvrb}
+\usepackage{url}
 
 
 \DefineVerbatimEnvironment%
@@ -146,7 +147,7 @@ foundations of XMLVM can be found in \cite{Puder:09a}.
 \label{SEC_GETTING_XMLVM}
 
 XMLVM is released under the GPL v2 license and is hosted at
-SourceForge\footnote{http://sourceforge.net/projects/xmlvm}.
+SourceForge \cite{sf-xmlvm}.
 We currently do not offer pre-compiled binary packages.
 The only way to obtain XMLVM is to checkout the latest version from
 the Subversion repository. You will need a Subversion client to do
@@ -160,12 +161,12 @@ svn co https://xmlvm.svn.sourceforge.net/svnroot/xmlvm/trunk/xmlvm
 Note that this will give you a read-only version of the repository.
 You will be able to update (which you should do frequently) but not
 commit changes to the repository. If you find a bug, please send a
-mail to the XMLVM mailing list\footnote{https://lists.sourceforge.net/lists/listinfo/xmlvm-users}.
+mail to the XMLVM mailing list \cite{sf-xmlvm-list}.
 
 XMLVM is developed using the Eclipse IDE. You can also checkout the
 sources of XMLVM via Eclipse (using an appropriate Subversion plugin
-such as Subclipse\footnote{http://subclipse.tigris.org} or
-Subversive\footnote{http://www.eclipse.org/subversive}). The XMLVM sources contain
+such as Subclipse \cite{subclipse} or
+Subversive \cite{subversive}). The XMLVM sources contain
 \texttt{.project} and \texttt{.classpath} files so that Eclipse will
 recognize XMLVM as an Eclipse project. The benefit of using Eclipse is
 that it makes it easy to navigate the source code if you intend to
@@ -313,13 +314,13 @@ destination files.
 \item[\texttt{objc}:] The input files are cross-compiled to
   Objective-C.
 
-\item[\textttt{qooxdoo}:] Cross-compiles an application as a web
+\item[\texttt{qooxdoo}:] Cross-compiles an application as a web
   application. The business logic is cross-compiled to JavaScript
   and a Java or .NET compatibility library is copied alongside.
-  The output directory specified by \textttt{--out} will contain a
+  The output directory specified by \texttt{--out} will contain a
   ready to deploy web application.
   The environment variable \texttt{QOOXDOO\_HOME} needs to point to the
-  base directory of the Qooxdoo\footnote{http://www.qooxdoo.org} installation.
+  base directory of the Qooxdoo \cite{qooxdoo} installation.
   This option implies \texttt{--target=js} and requires options
   \texttt{--qx-main} as well as \texttt{--qx-app}.
 
@@ -681,6 +682,7 @@ TBD
 
 \end{appendix}
 
+\raggedright
 \bibliography{literature}
 \bibliographystyle{plain}
 
