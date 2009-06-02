@@ -179,6 +179,10 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
         goals.add(goal);
     }
 
+    public void loadLevel(boolean showLevel) {
+        loadLevel(currentLevel, showLevel);
+    }
+    
     /**
      * Loads the give level. Before the level is started a Dialog shows the
      * number of the level being started.
@@ -231,14 +235,14 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
                 // level if necessary
                 if (which == DialogInterface.BUTTON1 && !levelStarted && currentLevel > 0) {
                     currentLevel--;
-                    //showLevelDialog = true;
+                    // showLevelDialog = true;
                 }
 
                 // Second button: Increase current level to proceed to next
                 // level
                 if (which == DialogInterface.BUTTON3) {
                     currentLevel++;
-                    //showLevelDialog = true;
+                    // showLevelDialog = true;
                 }
 
                 changeLevelDialog.dismiss();
@@ -250,7 +254,7 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
 
         };
         changeLevelDialog = new AlertDialog.Builder(gameView.getActivity()).create();
-        changeLevelDialog.setTitle("   Current Level: " + (currentLevel +1) + "   ");
+        changeLevelDialog.setTitle("   Current Level: " + (currentLevel + 1) + "   ");
         if (!levelStarted && currentLevel > 0) {
             changeLevelDialog.setButton("Previous", listener);
         } else {
@@ -386,7 +390,13 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
     public void onTap(float x, float y) {
         if (splashView.isViewShown()) {
             splashView.hide();
-            loadLevel(currentLevel, true);
+
+            ASokoban activity = (ASokoban) gameView.getActivity();
+            if (activity.isFirstRun()) {
+                showInfoView();
+            } else {
+                loadLevel(currentLevel, true);
+            }
         } else if (!gamePaused) {
             if (gameView.isInsideInfoLogo(x, y)) {
                 showInfoView();

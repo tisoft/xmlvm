@@ -43,6 +43,11 @@ public class InfoView extends SplashView {
                 if (shown) {
                     hide();
                     onCloseHandler.onClose();
+                    
+                    if (((ASokoban) context).isFirstRun()) {
+                        ((ASokoban) context).setFirstRun(false);
+                        getGameController().loadLevel(true);
+                    }
                 }
             }
         });
@@ -53,5 +58,9 @@ public class InfoView extends SplashView {
      */
     public void setOnCloseHandler(OnCloseHandler handler) {
         onCloseHandler = handler;
+    }
+    
+    private GameController getGameController() {
+        return gameView.getGameController();
     }
 }

@@ -23,6 +23,9 @@ public class ASokoban extends Activity {
 
     /** Used to store usage of the accelerometer. */
     private static final String   PREFKEY_USERACCELEROMETER = "useAccelerometer";
+    
+    /** Used to store whether Xokoban has been started for the first time. */
+    private static final String PREFKEY_FIRSTRUN = "firstRun";
 
     /** The view used to display the game. */
     private GameView              gameView;
@@ -44,6 +47,9 @@ public class ASokoban extends Activity {
 
     /** Determines whether the man can be controlled using the accelerometer. */
     private boolean               useAccelerometer;
+    
+    /** Indicates whether Sokoban has been started before. */
+    private boolean firstRun;
 
     /** Called when the activity is first created. */
     @Override
@@ -60,6 +66,7 @@ public class ASokoban extends Activity {
         prefs = getPreferences(MODE_PRIVATE);
         final int currentLevel = prefs.getInt(PREFKEY_LEVEL, 0);
         useAccelerometer = prefs.getBoolean(PREFKEY_USERACCELEROMETER, true);
+        firstRun = prefs.getBoolean(PREFKEY_FIRSTRUN, true);
 
         // Sets the device to not sleep or loose brightness.
         setDeviceNoSleep();
@@ -103,6 +110,7 @@ public class ASokoban extends Activity {
         gameView.setDisplayWidth(display.getWidth());
         gameView.setDisplayHeight(display.getHeight());
         gameController.showSplashScreen();
+        
     }
 
     /**
@@ -179,4 +187,16 @@ public class ASokoban extends Activity {
         editor.commit();
     }
 
+    public boolean isFirstRun() {
+        return firstRun;
+    }
+    
+    public void setFirstRun(boolean firstRun) {
+        this.firstRun = firstRun;
+        
+        Editor editor = prefs.edit();
+        editor.putBoolean(PREFKEY_FIRSTRUN, firstRun);
+        editor.commit();
+
+    }
 }
