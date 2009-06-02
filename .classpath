@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/xmlvm"/>
+	<classpathentry kind="src" path="src/demo/android/xokoban/gen"/>
+	<classpathentry kind="src" path="src/demo/android/xokoban/src"/>
 	<classpathentry kind="src" path="src/demo/androidFireworks/gen"/>
-	<classpathentry kind="src" path="src/demo/androidSokoban/gen"/>
 	<classpathentry kind="src" path="src/demo/androidFireworks/src"/>
 	<classpathentry kind="src" path="src/android2iphone"/>
 	<classpathentry kind="src" path="src/demo/java"/>
@@ -18,7 +19,6 @@
 	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/objc"/>
 	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/java"/>
 	<classpathentry kind="src" path="src/test/iphone"/>
-	<classpathentry kind="src" path="src/demo/androidSokoban/src"/>
 	<classpathentry kind="lib" path="lib/bcel.jar"/>
 	<classpathentry kind="lib" path="lib/jakarta-regexp.jar"/>
 	<classpathentry kind="lib" path="lib/jdom.jar"/>
