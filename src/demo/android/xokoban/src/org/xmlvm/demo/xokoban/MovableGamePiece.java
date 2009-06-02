@@ -1,4 +1,4 @@
-package org.xmlvm.asokoban;
+package org.xmlvm.demo.xokoban;
 
 import org.xmlvm.iphone.XMLVMNoAutoReleasePool;
 

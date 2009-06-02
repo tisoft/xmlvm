@@ -1,4 +1,4 @@
-package org.xmlvm.asokoban;
+package org.xmlvm.demo.xokoban;
 
 /**
  * Simple listener that can be called when the screen was tapped.

@@ -1,4 +1,4 @@
-package org.xmlvm.asokoban;
+package org.xmlvm.demo.xokoban;
 
 import android.content.Context;
 import android.view.View;

@@ -1,4 +1,4 @@
-package org.xmlvm.asokoban;
+package org.xmlvm.demo.xokoban;
 
 /**
  * A Goal is a special {@link GamePiece} where all the {@link Ball}s have to be

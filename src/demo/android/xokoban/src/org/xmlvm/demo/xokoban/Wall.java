@@ -1,4 +1,4 @@
-package org.xmlvm.asokoban;
+package org.xmlvm.demo.xokoban;
 
 /**
  * A Wall is a simple {@link GamePiece} that is used as a boundary for moving

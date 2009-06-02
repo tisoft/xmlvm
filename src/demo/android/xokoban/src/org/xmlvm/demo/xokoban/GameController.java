@@ -1,4 +1,4 @@
-package org.xmlvm.asokoban;
+package org.xmlvm.demo.xokoban;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -391,7 +391,7 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
         if (splashView.isViewShown()) {
             splashView.hide();
 
-            ASokoban activity = (ASokoban) gameView.getActivity();
+            Xokoban activity = (Xokoban) gameView.getActivity();
             if (activity.isFirstRun()) {
                 showInfoView();
             } else {

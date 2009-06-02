@@ -1,4 +1,4 @@
-package org.xmlvm.asokoban;
+package org.xmlvm.demo.xokoban;
 
 /**
  * Classes implementing this interface can be registered to receive timer

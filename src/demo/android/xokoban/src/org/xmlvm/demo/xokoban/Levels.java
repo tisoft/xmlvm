@@ -1,4 +1,4 @@
-package org.xmlvm.asokoban;
+package org.xmlvm.demo.xokoban;
 
 /**
  * As long as we don't support reading and writing of files, we store the

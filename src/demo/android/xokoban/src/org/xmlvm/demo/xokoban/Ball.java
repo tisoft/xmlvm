@@ -1,4 +1,4 @@
-package org.xmlvm.asokoban;
+package org.xmlvm.demo.xokoban;
 
 /**
  * A ball is a sub-class of {@link MovableGamePiece} that represents the piece

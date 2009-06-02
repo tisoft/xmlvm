@@ -1,4 +1,4 @@
-package org.xmlvm.asokoban;
+package org.xmlvm.demo.xokoban;
 
 import android.content.Context;
 import android.view.View;
@@ -21,7 +21,7 @@ public class InfoView extends SplashView {
                 AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
                 35, 250);
         enableAccelerometer.setLayoutParams(p);
-        enableAccelerometer.setChecked(((ASokoban) context).isAccelerometerEnabled());
+        enableAccelerometer.setChecked(((Xokoban) context).isAccelerometerEnabled());
         addView(enableAccelerometer);
 
         Button okButton = new Button(context);
@@ -35,17 +35,17 @@ public class InfoView extends SplashView {
             @Override
             public void onClick(View view) {
                 if (enableAccelerometer.isChecked()) {
-                    ((ASokoban) context).enableAccelerometer();
+                    ((Xokoban) context).enableAccelerometer();
                 } else {
-                    ((ASokoban) context).disableAccelerometer();
+                    ((Xokoban) context).disableAccelerometer();
                 }
 
                 if (shown) {
                     hide();
                     onCloseHandler.onClose();
                     
-                    if (((ASokoban) context).isFirstRun()) {
-                        ((ASokoban) context).setFirstRun(false);
+                    if (((Xokoban) context).isFirstRun()) {
+                        ((Xokoban) context).setFirstRun(false);
                         getGameController().loadLevel(true);
                     }
                 }

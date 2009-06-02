@@ -1,4 +1,4 @@
-package org.xmlvm.asokoban;
+package org.xmlvm.demo.xokoban;
 
 /**
  * A Man is special subclass of {@link MovableGamePiece} that represents the

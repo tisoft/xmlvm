@@ -1,4 +1,4 @@
-package org.xmlvm.asokoban;
+package org.xmlvm.demo.xokoban;
 
 /**
  * A floor is painted inside the levels. Everywhere, the {@link Man} can go.

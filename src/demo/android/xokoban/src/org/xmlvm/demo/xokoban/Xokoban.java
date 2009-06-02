@@ -1,4 +1,4 @@
-package org.xmlvm.asokoban;
+package org.xmlvm.demo.xokoban;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,7 +16,7 @@ import android.view.WindowManager;
  * The main controller class of the Sokoban game, implemented as an Android
  * {@link Activity}.
  */
-public class ASokoban extends Activity {
+public class Xokoban extends Activity {
 
     /** Used to store the level in the user prefs. */
     private static final String   PREFKEY_LEVEL             = "level";
