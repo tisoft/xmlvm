@@ -1,15 +1,20 @@
-package org.xmlvm.test.iphone.ihelloworld.portrait;
+package org.xmlvm.demo.ihelloworld.fullscreen;
 
 import org.xmlvm.iphone.*;
 
-public class HelloWorldUpsideDown extends UIApplication {
+public class HelloWorld extends UIApplication {
 
     public void applicationDidFinishLaunching(UIApplication app) {
-        this.setStatusBarOrientation(UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown);
+        this.setStatusBarHidden(true);
+        this.setStatusBarOrientation(UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight);
         UIScreen screen = UIScreen.mainScreen();
         CGRect rect = screen.applicationFrame();
+        float t = rect.size.height;
+        rect.size.height = rect.size.width;
+        rect.size.width = t;
         UIWindow window = new UIWindow(rect);
-        CGAffineTransform trans = CGAffineTransform.makeRotation((float) ((Math.PI / 180) * 180));
+        CGAffineTransform trans = CGAffineTransform.makeRotation((float) ((Math.PI / 180) * -90));
+        trans.translate(-80, -80);
         window.setTransform(trans);
 
         rect.origin.x = rect.origin.y = 0;
@@ -25,7 +30,7 @@ public class HelloWorldUpsideDown extends UIApplication {
     }
 
     public static void main(String[] args) {
-        UIApplication.main(args, HelloWorldUpsideDown.class);
+        UIApplication.main(args, HelloWorld.class);
     }
 
 }

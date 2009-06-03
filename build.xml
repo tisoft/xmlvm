@@ -22,7 +22,7 @@
 
 	<property name="xmlvm.ifireworks" value="build/demo/iphone/ifireworks" />
 	<property name="xmlvm.iremote" value="build/iremote" />
-	<property name="xmlvm.ihelloworld" value="build/ihelloworld" />
+	<property name="xmlvm.ihelloworld" value="build/demo/iphone/ihelloworld" />
 	<property name="xmlvm.widgets" value="build/widgets" />
 
 	<property name="xmlvm.afireworks" value="build/demo/android/afireworks" />
@@ -187,25 +187,26 @@
 
 	<target name="all-ihelloworld" depends="build-ihelloworld-portrait,cc-ihelloworld-portrait,
 		                                    build-ihelloworld-landscape,cc-ihelloworld-landscape,
-		                                    build-ihelloworld-fullscreen,cc-ihelloworld-fullscreen"/>
+		                                    build-ihelloworld-fullscreen,cc-ihelloworld-fullscreen,
+											build-ihelloworld-upsidedown,cc-ihelloworld-upsidedown"/>
 	
 	<target name="all-widgets" depends="build-ibuttontest, cc-ibuttontest" />
 	
 	<target name="build-ihelloworld-portrait" depends="build-objc-compat-lib">
 		<mkdir dir="${xmlvm.ihelloworld}/portrait" />
-		<javac srcdir="src/test/iphone/org/xmlvm/test/iphone/ihelloworld/portrait" destdir="${xmlvm.ihelloworld}/portrait" debug="${debug}">
+		<javac srcdir="demo/iphone/ihelloworld/portrait/src" destdir="${xmlvm.ihelloworld}/portrait" debug="${debug}">
 			<classpath>
 				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
 			</classpath>
 			<include name="**/*.java" />
 		</javac>
-		<mkdir dir="${xmlvm.demo}/ihelloworld/portrait/java"/>
-		<jar destfile="${xmlvm.demo}/ihelloworld/portrait/java/ihelloworld.jar">
+		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/portrait/java"/>
+		<jar destfile="${xmlvm.demo}/iphone/ihelloworld/portrait/java/ihelloworld.jar">
 			<manifest>
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.test.iphone.ihelloworld.portrait.HelloWorld" />
-				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar" />
+				<attribute name="Main-Class" value="org.xmlvm.demo.ihelloworld.portrait.HelloWorld" />
+				<attribute name="Class-Path" value="../../../../../lib/objc-compat.jar" />
 			</manifest>
 			<fileset dir="${xmlvm.ihelloworld}/portrait" />
 			<fileset dir="var/iphone">
@@ -215,29 +216,61 @@
 	</target>
 
 	<target name="cc-ihelloworld-portrait" depends="xmlvmjar">
-		<mkdir dir="${xmlvm.demo}/ihelloworld/portrait/iphone" />
+		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/portrait/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/ihelloworld/portrait/iphone" />
+			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/portrait/iphone" />
 			<arg value="--iphone-app=iHelloWorld" />
 			<arg value="${xmlvm.ihelloworld}/portrait/*.class" />
 		</java>
 	</target>
 
-	<target name="build-ihelloworld-landscape" depends="build-objc-compat-lib">
-		<mkdir dir="${xmlvm.ihelloworld}/landscape" />
-		<javac srcdir="src/test/iphone/org/xmlvm/test/iphone/ihelloworld/landscape" destdir="${xmlvm.ihelloworld}/landscape" debug="${debug}">
+	<target name="build-ihelloworld-upsidedown" depends="build-objc-compat-lib">
+		<mkdir dir="${xmlvm.ihelloworld}/upsidedown" />
+		<javac srcdir="demo/iphone/ihelloworld/upsidedown/src" destdir="${xmlvm.ihelloworld}/upsidedown" debug="${debug}">
 			<classpath>
 				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
 			</classpath>
 			<include name="**/*.java" />
 		</javac>
-		<mkdir dir="${xmlvm.demo}/ihelloworld/landscape/java"/>
-		<jar destfile="${xmlvm.demo}/ihelloworld/landscape/java/ihelloworld.jar">
+		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/upsidedown/java"/>
+		<jar destfile="${xmlvm.demo}/iphone/ihelloworld/upsidedown/java/ihelloworld.jar">
 			<manifest>
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.test.iphone.ihelloworld.landscape.HelloWorld" />
-				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar" />
+				<attribute name="Main-Class" value="org.xmlvm.demo.ihelloworld.upsidedown.HelloWorld" />
+				<attribute name="Class-Path" value="../../../../../lib/objc-compat.jar" />
+			</manifest>
+			<fileset dir="${xmlvm.ihelloworld}/upsidedown" />
+			<fileset dir="var/iphone">
+				<include name="*.png/" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="cc-ihelloworld-upsidedown" depends="xmlvmjar">
+		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/upsidedown/iphone" />
+		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
+			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/upsidedown/iphone" />
+			<arg value="--iphone-app=iHelloWorld" />
+			<arg value="${xmlvm.ihelloworld}/upsidedown/*.class" />
+		</java>
+	</target>
+
+	<target name="build-ihelloworld-landscape" depends="build-objc-compat-lib">
+		<mkdir dir="${xmlvm.ihelloworld}/landscape" />
+		<javac srcdir="demo/iphone/ihelloworld/landscape/src" destdir="${xmlvm.ihelloworld}/landscape" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/landscape/java"/>
+		<jar destfile="${xmlvm.demo}/iphone/ihelloworld/landscape/java/ihelloworld.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Implementation-Vendor" value="xmlvm.org" />
+				<attribute name="Main-Class" value="org.xmlvm.demo.ihelloworld.landscape.HelloWorld" />
+				<attribute name="Class-Path" value="../../../../../lib/objc-compat.jar" />
 			</manifest>
 			<fileset dir="${xmlvm.ihelloworld}/landscape" />
 			<fileset dir="var/iphone">
@@ -247,9 +280,9 @@
 	</target>
 
 	<target name="cc-ihelloworld-landscape" depends="xmlvmjar">
-		<mkdir dir="${xmlvm.demo}/ihelloworld/landscape/iphone" />
+		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/landscape/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/ihelloworld/landscape/iphone" />
+			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/landscape/iphone" />
 			<arg value="--iphone-app=iHelloWorld" />
 			<arg value="${xmlvm.ihelloworld}/landscape/*.class" />
 		</java>
@@ -257,19 +290,19 @@
 
 	<target name="build-ihelloworld-fullscreen" depends="build-objc-compat-lib">
 		<mkdir dir="${xmlvm.ihelloworld}/fullscreen" />
-		<javac srcdir="src/test/iphone/org/xmlvm/test/iphone/ihelloworld/fullscreen" destdir="${xmlvm.ihelloworld}/fullscreen" debug="${debug}">
+		<javac srcdir="demo/iphone/ihelloworld/fullscreen/src" destdir="${xmlvm.ihelloworld}/fullscreen" debug="${debug}">
 			<classpath>
 				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
 			</classpath>
 			<include name="**/*.java" />
 		</javac>
-		<mkdir dir="${xmlvm.demo}/ihelloworld/fullscreen/java"/>
-		<jar destfile="${xmlvm.demo}/ihelloworld/fullscreen/java/ihelloworld.jar">
+		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/fullscreen/java"/>
+		<jar destfile="${xmlvm.demo}/iphone/ihelloworld/fullscreen/java/ihelloworld.jar">
 			<manifest>
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.test.iphone.ihelloworld.fullscreen.HelloWorld" />
-				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar" />
+				<attribute name="Main-Class" value="org.xmlvm.demo.ihelloworld.fullscreen.HelloWorld" />
+				<attribute name="Class-Path" value="../../../../../lib/objc-compat.jar" />
 			</manifest>
 			<fileset dir="${xmlvm.ihelloworld}/fullscreen" />
 			<fileset dir="var/iphone">
@@ -279,9 +312,9 @@
 	</target>
 
 	<target name="cc-ihelloworld-fullscreen" depends="xmlvmjar">
-		<mkdir dir="${xmlvm.demo}/ihelloworld/fullscreen/iphone" />
+		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/fullscreen/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/ihelloworld/fullscreen/iphone" />
+			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/fullscreen/iphone" />
 			<arg value="--iphone-app=iHelloWorld" />
 			<arg value="${xmlvm.ihelloworld}/fullscreen/*.class" />
 		</java>
