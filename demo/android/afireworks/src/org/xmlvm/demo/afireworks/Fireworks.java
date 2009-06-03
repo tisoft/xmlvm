@@ -1,6 +1,6 @@
-package org.xmlvm.AndroidFireworks;
+package org.xmlvm.demo.afireworks;
 
-import org.xmlvm.AndroidFireworks.AndroidFireworks.Environment;
+import org.xmlvm.demo.afireworks.AndroidFireworks.Environment;
 
 import android.view.ViewGroup;
 

@@ -18,9 +18,9 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package org.xmlvm.AndroidFireworks;
+package org.xmlvm.demo.afireworks;
 
-import org.xmlvm.AndroidFireworks.AndroidFireworks.Environment;
+import org.xmlvm.demo.afireworks.AndroidFireworks.Environment;
 
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;

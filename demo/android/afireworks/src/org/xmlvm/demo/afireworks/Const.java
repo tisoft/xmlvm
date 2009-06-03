@@ -18,7 +18,7 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package org.xmlvm.AndroidFireworks;
+package org.xmlvm.demo.afireworks;
 
 public class Const {
     final static int   BOMB_COUNT      = 6;

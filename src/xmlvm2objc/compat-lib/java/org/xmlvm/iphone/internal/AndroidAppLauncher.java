@@ -36,7 +36,7 @@ public class AndroidAppLauncher
     /**
      * @TODO: How can we specify this class in build.xml?
      */
-    public static final String ANDROID_FIREWORKS_CLASS = "org.xmlvm.AndroidFireworks.AndroidFireworks";
+    public static final String ANDROID_FIREWORKS_CLASS = "org.xmlvm.demo.afireworks.AndroidFireworks";
 
 
 

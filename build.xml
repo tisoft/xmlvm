@@ -25,7 +25,7 @@
 	<property name="xmlvm.ihelloworld" value="build/ihelloworld" />
 	<property name="xmlvm.widgets" value="build/widgets" />
 
-	<property name="xmlvm.afireworks" value="build/afireworks" />
+	<property name="xmlvm.afireworks" value="build/demo/android/afireworks" />
 	<property name="xmlvm.xokoban" value="build/demo/android/xokoban" />
 
 
@@ -362,7 +362,7 @@
 
 	<target name="sim-afireworks" depends="build-android-compat-lib">
 		<mkdir dir="${xmlvm.afireworks}" />
-		<javac srcdir="./src/demo/androidFireworks" destdir="${xmlvm.afireworks}" debug="${debug}">
+		<javac srcdir="./demo/android/afireworks" destdir="${xmlvm.afireworks}" debug="${debug}">
 			<classpath>
 				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
 				<pathelement location="${xmlvm.libjars}/android-compat.jar" />
@@ -372,8 +372,8 @@
 	</target>
 
 	<target name="sim-afireworks-jar" depends="sim-afireworks">
-		<mkdir dir="${xmlvm.demo}/afireworks/java" />
-		<jar destfile="${xmlvm.demo}/afireworks/java/afireworks.jar">
+		<mkdir dir="${xmlvm.demo}/android/afireworks/java" />
+		<jar destfile="${xmlvm.demo}/android/afireworks/java/afireworks.jar">
 			<manifest>
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
@@ -391,14 +391,14 @@
 	</target>
 
 	<target name="cc-sim-afireworks" depends="sim-afireworks">
-		<mkdir dir="${xmlvm.demo}/afireworks/iphone" />
+		<mkdir dir="${xmlvm.demo}/android/afireworks/iphone" />
 
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/afireworks/iphone" />
+			<arg value="--out=${xmlvm.demo}/android/afireworks/iphone" />
 			<arg value="--android2iphone=aFireworks" />
 			<arg value="${xmlvm.afireworks}/*.class" />
 		</java>
-		<copy todir="${xmlvm.demo}/aFireworks/iphone">
+		<copy todir="${xmlvm.demo}/android/afireworks/iphone">
 			<fileset dir="var/iphone/Applications/iFireworks.app">
 				<include name="*.png" />
 			</fileset>

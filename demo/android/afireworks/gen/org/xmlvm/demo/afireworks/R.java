@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package org.xmlvm.AndroidFireworks;
+package org.xmlvm.demo.afireworks;
 
 public final class R {
     public static final class attr {
