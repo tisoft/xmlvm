@@ -407,7 +407,7 @@
 
 	<target name="sim-xokoban" depends="build-android-compat-lib">
 		<mkdir dir="${xmlvm.xokoban}" />
-		<javac srcdir="./src/demo/android/xokoban" destdir="${xmlvm.xokoban}" debug="${debug}">
+		<javac srcdir="./demo/android/xokoban" destdir="${xmlvm.xokoban}" debug="${debug}">
 			<classpath>
 				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
 				<pathelement location="${xmlvm.libjars}/android-compat.jar" />
@@ -429,7 +429,7 @@
 			<fileset dir="var/iphone">
 				<include name="*.png/" />
 			</fileset>
-			<fileset dir="src/demo/android/xokoban/res/drawable">
+			<fileset dir="demo/android/xokoban/res/drawable">
 				<include name="*.png" />
 			</fileset>
 		</jar>
