@@ -8,7 +8,10 @@
 
 - (java_lang_Object*) objectForKey___java_lang_String: (java_lang_String*) key
 {
-	return [self objectForKey: key];
+	id obj = [self objectForKey: key];
+	if (obj == nil)
+	    return [java_lang_null _GET_NULL];;
+	return obj;
 }
 
 - (void) setInteger___int_java_lang_String :(int) value :(java_lang_String*) key
