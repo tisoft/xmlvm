@@ -20,7 +20,7 @@
 	<property name="xmlvm.android-compat-lib.java" value="${xmlvm.android-compat-lib}/java" />
 	<property name="xmlvm.android-compat-lib.objc" value="${xmlvm.android-compat-lib}/objc" />
 
-	<property name="xmlvm.ifireworks" value="build/ifireworks" />
+	<property name="xmlvm.ifireworks" value="build/demo/iphone/ifireworks" />
 	<property name="xmlvm.iremote" value="build/iremote" />
 	<property name="xmlvm.ihelloworld" value="build/ihelloworld" />
 	<property name="xmlvm.widgets" value="build/widgets" />
@@ -321,40 +321,40 @@
 
 	<target name="build-ifireworks" depends="build-objc-compat-lib">
 		<mkdir dir="${xmlvm.ifireworks}" />
-		<javac srcdir="src/test/iphone/org/xmlvm/test/iphone/ifireworks" destdir="${xmlvm.ifireworks}" debug="${debug}">
+		<javac srcdir="demo/iphone/ifireworks/src" destdir="${xmlvm.ifireworks}" debug="${debug}">
 			<classpath>
 				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
 			</classpath>
 			<include name="**/*.java" />
 		</javac>
-		<mkdir dir="${xmlvm.demo}/ifireworks/java" />
-		<jar destfile="${xmlvm.demo}/ifireworks/java/ifireworks.jar">
+		<mkdir dir="${xmlvm.demo}/iphone/ifireworks/java" />
+		<jar destfile="${xmlvm.demo}/iphone/ifireworks/java/ifireworks.jar">
 			<manifest>
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.test.iphone.ifireworks.Main" />
+				<attribute name="Main-Class" value="org.xmlvm.demo.ifireworks.Main" />
 				<attribute name="Class-Path" value="../../../lib/objc-compat.jar" />
 			</manifest>
 			<fileset dir="${xmlvm.ifireworks}" />
 			<fileset dir="var/iphone">
 				<include name="*.png/" />
 			</fileset>
-			<fileset dir="var/iphone/Applications/iFireworks.app">
+			<fileset dir="demo/iphone/ifireworks/ires">
 				<include name="*.png" />
 			</fileset>
 		</jar>
 	</target>
 
 	<target name="cc-ifireworks" depends="xmlvmjar">
-		<mkdir dir="${xmlvm.demo}/ifireworks/iphone" />
+		<mkdir dir="${xmlvm.demo}/iphone/ifireworks/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/ifireworks/iphone" />
+			<arg value="--out=${xmlvm.demo}/iphone/ifireworks/iphone" />
 			<arg value="--iphone-app=iFireworks" />
 			<arg value="${xmlvm.ifireworks}/*.class" />
 		</java>
 
-		<copy todir="${xmlvm.demo}/ifireworks/iphone">
-			<fileset dir="var/iphone/Applications/iFireworks.app">
+		<copy todir="${xmlvm.demo}/iphone/ifireworks/iphone">
+			<fileset dir="demo/iphone/ifireworks/ires">
 				<include name="*.png" />
 			</fileset>
 		</copy>
@@ -384,8 +384,8 @@
 			<fileset dir="var/iphone">
 				<include name="*.png/" />
 			</fileset>
-			<fileset dir="var/iphone/Applications/iFireworks.app">
-				<include name="*.png" />
+			<fileset dir="demo/android/afireworks/res/drawable">
+				<include name="star*.png" />
 			</fileset>
 		</jar>
 	</target>
@@ -399,8 +399,8 @@
 			<arg value="${xmlvm.afireworks}/*.class" />
 		</java>
 		<copy todir="${xmlvm.demo}/android/afireworks/iphone">
-			<fileset dir="var/iphone/Applications/iFireworks.app">
-				<include name="*.png" />
+			<fileset dir="demo/android/afireworks/res/drawable">
+				<include name="star*.png" />
 			</fileset>
 		</copy>
 	</target>
@@ -540,6 +540,6 @@
 		<copy todir="${doc.dir}/homepage/lib" file="${xmlvm.libjars}/objc-compat.jar" />
 		<copy todir="${doc.dir}/homepage/lib" file="${xmlvm.libjars}/android-compat.jar" />
 		<copy todir="${doc.dir}/homepage/android/demo" file="${xmlvm.demo}/android/xokoban/java/xokoban.jar" />
-		<copy todir="${doc.dir}/homepage/iphone/demo" file="${xmlvm.demo}/ifireworks/java/ifireworks.jar" />
+		<copy todir="${doc.dir}/homepage/iphone/demo" file="${xmlvm.demo}/iphone/ifireworks/java/ifireworks.jar" />
 	</target>
 </project>

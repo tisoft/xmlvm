@@ -1,5 +1,5 @@
 
-package org.xmlvm.test.iphone.ifireworks;
+package org.xmlvm.demo.ifireworks;
 
 import org.xmlvm.iphone.*;
 

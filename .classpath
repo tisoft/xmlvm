@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/xmlvm"/>
+	<classpathentry kind="src" path="demo/iphone/ifireworks/src"/>
 	<classpathentry kind="src" path="demo/android/afireworks/src"/>
 	<classpathentry kind="src" path="demo/android/afireworks/gen"/>
 	<classpathentry kind="src" path="demo/android/xokoban/src"/>
