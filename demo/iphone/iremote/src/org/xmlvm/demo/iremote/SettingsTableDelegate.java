@@ -1,4 +1,4 @@
-package org.xmlvm.iphone.iremote;
+package org.xmlvm.demo.iremote;
 
 import org.xmlvm.iphone.NSIndexPath;
 import org.xmlvm.iphone.UITableView;

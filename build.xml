@@ -21,7 +21,7 @@
 	<property name="xmlvm.android-compat-lib.objc" value="${xmlvm.android-compat-lib}/objc" />
 
 	<property name="xmlvm.ifireworks" value="build/demo/iphone/ifireworks" />
-	<property name="xmlvm.iremote" value="build/iremote" />
+	<property name="xmlvm.iremote" value="build/demo/iphone/iremote" />
 	<property name="xmlvm.ihelloworld" value="build/demo/iphone/ihelloworld" />
 	<property name="xmlvm.widgets" value="build/widgets" />
 
@@ -485,19 +485,19 @@
 
 	<target name="build-iremote" depends="build-objc-compat-lib">
 		<mkdir dir="${xmlvm.iremote}" />
-		<javac srcdir="src/xmlvm2objc/compat-lib/java/org/xmlvm/iphone/iremote" destdir="${xmlvm.iremote}" debug="${debug}">
+		<javac srcdir="demo/iphone/iremote/src" destdir="${xmlvm.iremote}" debug="${debug}">
 			<classpath>
 				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
 			</classpath>
 			<include name="**/*.java" />
 		</javac>
-		<mkdir dir="${xmlvm.demo}/iremote/java" />
-		<jar destfile="${xmlvm.demo}/iremote/java/iremote.jar">
+		<mkdir dir="${xmlvm.demo}/iphone/iremote/java" />
+		<jar destfile="${xmlvm.demo}/iphone/iremote/java/iremote.jar">
 			<manifest>
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.iphone.iremote.Main" />
-				<attribute name="Class-Path" value="../../../lib/objc-compat.jar" />
+				<attribute name="Main-Class" value="org.xmlvm.demo.iremote.Main" />
+				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar" />
 			</manifest>
 			<fileset dir="${xmlvm.iremote}" />
 			<fileset dir="var/iphone">
@@ -507,9 +507,9 @@
 	</target>
 
 	<target name="cc-iremote" depends="xmlvmjar">
-		<mkdir dir="${xmlvm.demo}/iremote/iphone" />
+		<mkdir dir="${xmlvm.demo}/iphone/iremote/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/iremote/iphone" />
+			<arg value="--out=${xmlvm.demo}/iphone/iremote/iphone" />
 			<arg value="--iphone-app=iRemote" />
 			<arg value="${xmlvm.iremote}/*.class" />
 		</java>

@@ -14,11 +14,12 @@
 	<classpathentry kind="src" path="src/xmlvm2objc/xsl"/>
 	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/objc"/>
 	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/java"/>
-	<classpathentry kind="src" path="src/test/iphone"/>
+	<classpathentry kind="src" path="demo/iphone/iremote/src"/>
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/portrait/src"/>
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/upsidedown/src"/>
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/landscape/src"/>
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/fullscreen/src"/>
+	<classpathentry kind="src" path="src/test/iphone"/>
 	<classpathentry kind="src" path="demo/iphone/ifireworks/src"/>
 	<classpathentry kind="src" path="demo/android/afireworks/src"/>
 	<classpathentry kind="src" path="demo/android/afireworks/gen"/>
