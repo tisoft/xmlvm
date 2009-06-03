@@ -444,7 +444,7 @@
 			<arg value="${xmlvm.xokoban}/*.class" />
 		</java>
 		<copy todir="${xmlvm.demo}/xokoban/iphone">
-			<fileset dir="src/demo/android/xokoban/res/drawable">
+			<fileset dir="demo/android/xokoban/res/drawable">
 				<include name="*.png" />
 			</fileset>
 		</copy>
