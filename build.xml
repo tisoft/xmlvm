@@ -333,7 +333,7 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="org.xmlvm.demo.ifireworks.Main" />
-				<attribute name="Class-Path" value="../../../lib/objc-compat.jar" />
+				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar" />
 			</manifest>
 			<fileset dir="${xmlvm.ifireworks}" />
 			<fileset dir="var/iphone">
@@ -378,7 +378,7 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="org.xmlvm.iphone.internal.AndroidAppLauncher" />
-				<attribute name="Class-Path" value="../../../lib/objc-compat.jar ../../../lib/android-compat.jar" />
+				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../lib/android-compat.jar" />
 			</manifest>
 			<fileset dir="${xmlvm.afireworks}" />
 			<fileset dir="var/iphone">
@@ -423,7 +423,7 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="org.xmlvm.iphone.internal.AndroidAppLauncher" />
-				<attribute name="Class-Path" value="../../../lib/objc-compat.jar ../../../lib/android-compat.jar" />
+				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../lib/android-compat.jar" />
 			</manifest>
 			<fileset dir="${xmlvm.xokoban}" />
 			<fileset dir="var/iphone">
