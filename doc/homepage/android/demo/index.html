@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>XMLVM: iPhone Simulator</title>
+  <title>XMLVM: Xokoban</title>
   <style>
     body {
       font-size:11px;
@@ -13,13 +13,15 @@
 
 <h1>Xokoban</h1>
 
-This page features a demo of the Java-to-Objective-C cross-compiler. The demo below
-implements a simple fireworks application. The application is written in Java and
-can be cross-compiled to run as a native application on the iPhone. Using a
-compatibility library to simulate Cocoa, the same application can also be run as a Java applet
-which is shown below. The three scroll-bars simulate the iPhone's accelerometer.
-The fireworks demo is implemented such that the sparks will always follow gravity,
-independent of the orientation of the iPhone.
+This page features a demo of the Android-to-iPhone cross-compiler. The demo below
+implements a version of the classic Sokoban game called Xokoban within XMLVM. The
+application was originally written for Android using the Android-specific API. By
+using the Android Compatibility Library as well as XMLVM's Java API for Cocoa it
+is possible to run Xokoban on an iPhone or on XMLVM's own Java-based iPhone
+emulator. The latter is shown below through an applet. You can play the game by
+making swipes on the device screen with the mouse. Read the instructions given
+in the info-dialog for more information. Xokoban has been released in Apple's
+AppStore as well the Android Market.
 
 <applet code="org.xmlvm.iphone.internal.SimulatorApplet.class" appl="org.xmlvm.iphone.internal.AndroidAppLauncher" androidClassName="org.xmlvm.demo.xokoban.Xokoban" width="883" height="435" archive="xokoban.jar,../../lib/objc-compat.jar,../../lib/android-compat.jar">
 Your browser does not support the applet tag.
