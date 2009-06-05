@@ -67,7 +67,7 @@ toolchain.
 
 The first step in using XMLVM is to compile a Java or .NET source code
 program to byte code. This is done with a native compiler such as Sun
-Microsystems \texttt{javac} or Microsofts Visual Studio. The resulting
+Microsystem's \texttt{javac} or Microsoft's Visual Studio. The resulting
 byte code program (either a Java \texttt{.class} file or a .NET
 \texttt{.exe} file) is fed into the XMLVM toolchain where it is first
 converted to XML. XMLVM$_{JVM}$ denotes an XMLVM program that contains
@@ -465,7 +465,7 @@ executed. Section \ref{SEC_ANDROID4IPHONE} demonstrates how
 Android applications can be cross-compiled to native iPhone
 applications. Section \ref{SEC_IPHONE_SAMPLE_APPS} gives an overview
 of various sample applications that show the capabilities of the
-Java-for-iPhone portion of XMLVM.
+Java-for-iPhone and Android-to-iPhone portions of XMLVM.
 
 
 \section{Java-based iPhone Applications}
@@ -595,7 +595,7 @@ compiling an XMLVM-generated application using Xcode:
 Android is an Open Source platform for mobile devices. Initiated by
 Google, Android has received much attention. Android applications are
 developed using Java, although a special compiler converts class files
-to a proprietary, regiser-based virtual machine that is used on
+to a proprietary, register-based virtual machine that is used on
 Android devices to execute applications. Android defines its own API
 for writing mobile applications. With the help of XMLVM it is possible
 to cross-compile Java-based Android applications to native iPhone
@@ -631,44 +631,48 @@ section.
 \label{SEC_IPHONE_SAMPLE_APPS}
 
 XMLVM includes several sample applications that demonstrate the
-Java-for-the-iPhone portion of XMLVM. All samples can be executed in
-one of the ways explained in Section \ref{SEC_RUNNING_IPHONE_APP}: in
-XMLVM's own Java-based iPhone emulator, by running the
-\texttt{Makefile}, or by using the Xcode IDE. Additionally, the sample
-programs can also be run via Eclipse-specific launch configurations
-stored in the \texttt{etc/} directory. Those launch configurations
-will run the Java-based iPhone emulator that was described in Section
-\ref{SEC_JAVA_BASED_IPHONE_EMULATOR}.
+Java-for-the-iPhone and Android-to-iPhone portions of XMLVM. The
+source code of the Java-for-the-iPhone demos is located in directory
+\texttt{demo/iphone/}, whereas the source code of the
+Android-to-iPhone demos are located in directory
+\texttt{demo/android/}. All samples can be executed in one of the ways
+explained in Section \ref{SEC_RUNNING_IPHONE_APP}: in XMLVM's own
+Java-based iPhone emulator, by running the \texttt{Makefile}, or by
+using the Xcode IDE. Additionally, the sample programs can also be run
+via Eclipse-specific launch configurations stored in the \texttt{etc/}
+directory. Those launch configurations will run the Java-based iPhone
+emulator that was described in Section
+\ref{SEC_JAVA_BASED_IPHONE_EMULATOR} from within Eclipse.
 
-All sample programs will get automatically compiled when running \texttt{ant}
-as explained in Section \ref{SEC_COMPILING_XMLVM}. After \texttt{ant}
-successfully completes, there will be a directory \texttt{dist/demo/}.
-Each sub-directory contains one sample application in two different
-versions: the \texttt{java/} directory will contain the Java-version
-that can be executed as a pure Java application using XMLVM's iPhone
-emulator, whereas the \texttt{iphone/} directory will contain the
-ready-to-compile Objective-C source of the same application. The
+All sample programs will get automatically compiled when running
+\texttt{ant} as explained in Section \ref{SEC_COMPILING_XMLVM}. After
+\texttt{ant} successfully completes, there will be a directory
+\texttt{dist/demo/}.  For each demo, there are two sub-directories
+each containing the same demo in two different versions: the
+\texttt{java/} directory will contain the Java-version that can be
+executed as a pure Java application using XMLVM's iPhone emulator,
+whereas the \texttt{iphone/} directory will contain the
+ready-to-compile Objective-C source of the same application. The Java
+version can be executed via the \texttt{java -jar} command. The
 following sample applications are available:
 
 \begin{description}
 
 \item[iHelloWorld (Portrait):] ``Hello World'' in portrait mode.
+\item[iHelloWorld (PortraitUpsideDown):] ``Hello World'' in upside
+  down portrait mode.
 \item[iHelloWorld (Landscape):] ``Hello World'' in landscape mode.
 \item[iHelloWorld (Fullscreen):] ``Hello World'' in fullscreen
   landscape mode.
 \item[iFireworks:] iPhone version of the fireworks application.
-\item[aFireworks:] Android version of the fireworks application. The
-  \texttt{dist/demo/afireworks/} directory will contain the cross-compiled
-  version for the iPhone. It is possible to import directory
-  \texttt{src/demo/afireworks/} as an Android project under Eclipse (requires
-  the Android SDK). In this case aFireworks can be run inside the
-  Android emulator.
-\item[Xokoban:] Android version of the Xokoban application. The
-  \texttt{dist/demo/xokoban/} directory will contain the
-  cross-compiled version for the iPhone. It is possible to import
-  directory \texttt{src/demo/xokoban/} as an Android project under
-  Eclipse (requires the Android SDK). In this case Xokoban can be run
-  inside the Android emulator.
+\item[aFireworks:] Android version of the fireworks application. It is
+  possible to import directory \texttt{demo/android/afireworks/} as an
+  Android project under Eclipse (requires the Android SDK). In this
+  case aFireworks can be run inside the Android emulator.
+\item[Xokoban:] Android version of the Xokoban application. It is
+  possible to import directory \texttt{demo/android/xokoban/} as an
+  Android project under Eclipse (requires the Android SDK). In this
+  case Xokoban can be run inside the Android emulator.
 \end{description}
 
 
