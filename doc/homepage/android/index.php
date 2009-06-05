@@ -19,6 +19,8 @@
 	
 <h1>Details: Android to iPhone</h1>
 
+<img src="android2iphone.png" style="float:right;width:440px; margin:0px 30px 10px 30px;" alt="Android2iPhoneDiagram">
+
 <p>
 Android is an Open Source platform for mobile devices. Initiated by
 Google, Android has received much attention. Android applications are
@@ -27,11 +29,9 @@ to a proprietary, register-based virtual machine that is used on
 Android devices to execute applications. Android defines its own API
 for writing mobile applications. With the help of XMLVM it is possible
 to cross-compile Java-based Android applications to native iPhone
-applications. The diagram below depicts the relationship between the
+applications. The diagram depicts the relationship between the
 Android and iPhone version of the application.
 </p>
-
-<img src="android2iphone.png">
 
 <p>
 The Android application is written in Java and makes use of an Android
@@ -55,27 +55,31 @@ method <tt>addTarget()</tt>. The code below will be cross-compiled to
 Objective-C:
 </p>
 
-<pre>
-package android.widget;
-
-public class Button extends View {
-   protected UIButton button;
-
-   // ...
-
-   public void setOnClickListener(OnClickListener listener) {
-        final OnClickListener theListener = listener;
-        button.addTarget(new UIControlDelegate() {
-
-            @Override
-            public void raiseEvent() {
-                theListener.onClick(Button.this);
-            }
-
-        }, UIControl.UIControlEventTouchUpInside);
-   }
-}
-</pre>
+<div class="code_block">
+<p>
+<?php
+print_code("package android.widget;\n".
+"\n".
+"public class Button extends View {\n".
+"   protected UIButton button;\n".
+"\n".
+"   // ...\n".
+"\n".
+"   public void setOnClickListener(OnClickListener listener) {\n".
+"        final OnClickListener theListener = listener;\n".
+"        button.addTarget(new UIControlDelegate() {\n".
+"\n".
+"            @Override\n".
+"            public void raiseEvent() {\n".
+"                theListener.onClick(Button.this);\n".
+"            }\n".
+"\n".
+"        }, UIControl.UIControlEventTouchUpInside);\n".
+"   }\n".
+"}\n");
+?>
+</p>
+</div>
 
 <p>
 XMLVM includes a demo that demonstrates the power of cross-compiling
