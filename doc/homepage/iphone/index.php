@@ -46,7 +46,7 @@ Variable <tt>_stack</tt> represents the runtime stack, whereas <tt>_sp</tt>
 is the stack pointer that refers to
 the top of the stack. Pre-decrement and post-increment operations are
 used for popping and pushing of arguments respectively. Since the
-runtime stack can contain elements or arbitrary types, the declaration
+runtime stack can contain elements of arbitrary types, the declaration
 of helper variables <tt>_op1</tt>, <tt>_op2</tt>, and <tt>_stack[]</tt> are based on a union:
 </p>
 <div class="code_block">
@@ -181,8 +181,10 @@ function popupDemo() {
 Further details on the Java for the iPhone project can be found at a
 <a href="http://www.youtube.com/watch?v=s8nMpi5-P-I">Google Tech Talk</a>
 (<a href="http://plum.sfsu.edu/xml11-external/java4iphone-google.pdf">Slides</a>).
-The slides also contain detailed instructions on how to compile and run the demo
-on a jailbroken iPhone.
+Note that in the presentation it is mentioned that you need a jailbroken device
+to run the demo. With the official release of the iPhone SDK by Apple this is
+no longer necessary. Consult the XMLVM manual for instructions on how to
+run a Java-based iPhone application on an actual device.
 </p>
 
 <?php
