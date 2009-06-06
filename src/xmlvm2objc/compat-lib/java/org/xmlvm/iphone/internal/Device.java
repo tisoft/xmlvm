@@ -24,7 +24,6 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
     private ImageLoader     imageLoader;
     private Display         display;
     private AffineTransform deviceTransform = new AffineTransform();
-    private AffineTransform displayTransform = new AffineTransform();
     public StatusBar        statusBar;
 
     public Device(ImageLoader imageLoader) {
@@ -114,6 +113,8 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
         g2d.transform(deviceTransform);
         super.paint(g);
 
+        AffineTransform displayTransform = new AffineTransform();
+        displayTransform.translate(35, 107);
         g2d.transform(displayTransform);
         display.drawRect(g2d);
 
@@ -167,14 +168,6 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
 
     public void setDeviceTransform(AffineTransform deviceTransform) {
         this.deviceTransform = deviceTransform;
-    }
-
-    public AffineTransform getDisplayTransform() {
-        return displayTransform;
-    }
-
-    public void setDisplayTransform(AffineTransform displayTransform) {
-        this.displayTransform = displayTransform;
     }
 
 }

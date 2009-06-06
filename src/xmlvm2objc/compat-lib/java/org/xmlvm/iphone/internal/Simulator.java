@@ -4,8 +4,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.geom.AffineTransform;
 
-import javax.swing.JFrame;
-
 import org.xmlvm.iphone.UIInterfaceOrientation;
 import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UIView;
@@ -76,26 +74,22 @@ public class Simulator {
         simulatorGUI.getStatusBar().setStatusBarOrientation(orientation);
         Dimension frameSize = null;
         AffineTransform deviceTransform = new AffineTransform();
-        AffineTransform displayTransform = new AffineTransform();
 
         switch (orientation) {
         case UIInterfaceOrientation.UIInterfaceOrientationPortrait:
             frameSize = new Dimension(580, 750);
-            displayTransform.translate(35, 107);
             break;
 
         case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
             frameSize = new Dimension(883, 455);
             deviceTransform.rotate((float) ((Math.PI / 180) * 90), 580 / 2, 750 / 2);
             deviceTransform.translate(-80, -34);
-            displayTransform.translate(35, 107);
             break;
 
         case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
             frameSize = new Dimension(883, 455);
             deviceTransform.rotate((float) ((Math.PI / 180) * -90), 580 / 2, 750 / 2);
             deviceTransform.translate(270, 90);
-            displayTransform.translate(35, 107);
             break;
 
         case UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown:
@@ -103,12 +97,11 @@ public class Simulator {
             frameSize = new Dimension(580, 750);
             deviceTransform.rotate((float) ((Math.PI / 180) * 180), 580 / 2, 750 / 2);
             deviceTransform.translate(190, 55);
-            displayTransform.translate(35, 107);
             break;
         }
 
         rootWindow.setSize(frameSize);
-        simulatorGUI.updateSize(frameSize, deviceTransform, displayTransform);
+        simulatorGUI.updateSize(frameSize, deviceTransform);
     }
 
     public static int getStatusBarOrientation() {

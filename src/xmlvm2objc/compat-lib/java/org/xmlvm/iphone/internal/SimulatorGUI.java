@@ -102,12 +102,11 @@ public class SimulatorGUI extends JPanel {
             accelerometer.setAccelerated(x, y, z);
     }
 
-    void updateSize(Dimension d, AffineTransform deviceTransform, AffineTransform displayTransform) {
+    void updateSize(Dimension d, AffineTransform deviceTransform) {
         this.setSize(d);
         accelerometer
                 .setLocation(this.getBounds().width - accelerometer.getBounds().width - 30, 50);
         device.setSize((int) d.getWidth() - 160, (int) d.getHeight());
         device.setDeviceTransform(deviceTransform);
-        device.setDisplayTransform(displayTransform);
     }
 }
