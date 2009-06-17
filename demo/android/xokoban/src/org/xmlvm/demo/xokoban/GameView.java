@@ -12,7 +12,10 @@ import android.widget.ImageView;
 public class GameView {
 
     /** The INFO icon's size. */
-    private static final int INFO_ICON_SIZE = 25;
+    private static final int INFO_ICON_SIZE   = 25;
+
+    /** The levels dialog icon's size. */
+    private static final int LEVELS_ICON_SIZE = 25;
 
     /** The Activity associated with this GameView. */
     private Activity         activity;
@@ -31,6 +34,9 @@ public class GameView {
 
     /** The Info logo image. */
     private ImageView        infoImage;
+
+    /** The Levels logo image. */
+    private ImageView        levelsImage;
 
     /** The size of a single game piece. */
     private int              tileSize;
@@ -67,6 +73,8 @@ public class GameView {
         backgroundImage.setImageResource(R.drawable.background);
         infoImage = new ImageView(activity);
         infoImage.setImageResource(R.drawable.info);
+        levelsImage = new ImageView(activity);
+        levelsImage.setImageResource(R.drawable.levels);
     }
 
     /**
@@ -87,7 +95,7 @@ public class GameView {
         Ball ball;
         Goal goal;
         Man man;
-        
+
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 switch (board.getBoardPiece(x, y)) {
@@ -130,6 +138,10 @@ public class GameView {
         layout.addView(infoImage, new AbsoluteLayout.LayoutParams(
                 AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
                 displayWidth - INFO_ICON_SIZE - 1, displayHeight - INFO_ICON_SIZE));
+
+        layout.addView(levelsImage, new AbsoluteLayout.LayoutParams(
+                AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
+                0, displayHeight - LEVELS_ICON_SIZE));
     }
 
     public GameController getGameController() {
@@ -205,7 +217,7 @@ public class GameView {
     }
 
     /**
-     * Tests whether a given coordinate is inside the info logo.
+     * Tests whether a given coordinate is inside the info dialog logo.
      * 
      * @param x
      *            The x part of the coordinate to be tested.
@@ -218,5 +230,21 @@ public class GameView {
     public boolean isInsideInfoLogo(float x, float y) {
         return (int) x > displayWidth - (INFO_ICON_SIZE + 10)
                 && (int) y > displayHeight - (INFO_ICON_SIZE + 10);
+    }
+
+    /**
+     * Tests whether a given coordinate is inside the levels dialog logo.
+     * 
+     * @param x
+     *            The x part of the coordinate to be tested.
+     * 
+     * @param y
+     *            The y part of the coordinate to be tested.
+     * 
+     * @return true if the coordinate is inside of the logo, false otherwise.
+     */
+    public boolean isInsideLevelsLogo(float x, float y) {
+        return (int) x < (LEVELS_ICON_SIZE + 10)
+                && (int) y > displayHeight - (LEVELS_ICON_SIZE + 10);
     }
 }

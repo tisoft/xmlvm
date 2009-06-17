@@ -17,10 +17,11 @@ public final class R {
         public static final int goal=0x7f020003;
         public static final int icon=0x7f020004;
         public static final int info=0x7f020005;
-        public static final int man=0x7f020006;
-        public static final int splash=0x7f020007;
-        public static final int splash_info=0x7f020008;
-        public static final int wall=0x7f020009;
+        public static final int levels=0x7f020006;
+        public static final int man=0x7f020007;
+        public static final int splash=0x7f020008;
+        public static final int splash_info=0x7f020009;
+        public static final int wall=0x7f02000a;
     }
     public static final class string {
         public static final int app_name=0x7f030000;

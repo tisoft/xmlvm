@@ -400,7 +400,7 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
         } else if (!gamePaused) {
             if (gameView.isInsideInfoLogo(x, y)) {
                 showInfoView();
-            } else {
+            } else if (gameView.isInsideLevelsLogo(x, y)) {
                 showLevelDialog();
             }
         }
