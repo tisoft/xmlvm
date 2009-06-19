@@ -37,6 +37,11 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
     /** The {@link GameView} associated with this GameController. */
     private GameView        gameView             = null;
 
+    /**
+     * Associated {@link InputController} instance that controls this game
+     * controller.
+     */
+    private InputController inputController      = null;
     /** The splash view shown right after the start of the application. */
     private SplashView      splashView;
 
@@ -77,6 +82,16 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
             }
         });
         this.currentLevel = currentLevel;
+    }
+
+    /**
+     * Set the input controller for this game controller.
+     * 
+     * @param inputController
+     *            The input controller.
+     */
+    public void setInputController(InputController inputController) {
+        this.inputController = inputController;
     }
 
     /**
@@ -182,7 +197,7 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
     public void loadLevel(boolean showLevel) {
         loadLevel(currentLevel, showLevel);
     }
-    
+
     /**
      * Loads the give level. Before the level is started a Dialog shows the
      * number of the level being started.
@@ -346,6 +361,10 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
     @Override
     public void onMoveFinished() {
         if (isLevelFinished()) {
+            if (inputController != null) {
+                // Tell input controller to stop movement
+                inputController.stopMovement();
+            }
             // More levels left
             if (currentLevel < Levels.getSize() - 1) {
                 currentLevel++;

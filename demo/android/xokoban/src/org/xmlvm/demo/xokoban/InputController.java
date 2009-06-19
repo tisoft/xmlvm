@@ -112,8 +112,7 @@ public class InputController implements SensorListener, OnTouchListener, TimerUp
     public boolean onTouch(View v, MotionEvent event) {
         // See if we have a simple tap event that we can forward to a handle.
         if (event.getAction() == MotionEvent.ACTION_UP) {
-            timer.removeTimerUpdateHandler(this);
-            currentlyDown = false;
+            stopMovement();
             if ((Math.abs(lastDownX - event.getX()) <= SWIPE_THRESHOLD)
                     && (Math.abs(lastDownY - event.getY()) <= SWIPE_THRESHOLD)) {
                 if (tapHandler != null) {
@@ -136,6 +135,14 @@ public class InputController implements SensorListener, OnTouchListener, TimerUp
             lastMoveY = event.getY();
         }
         return true;
+    }
+
+    /**
+     * Stops the movement of the man.
+     */
+    public void stopMovement() {
+        timer.removeTimerUpdateHandler(this);
+        currentlyDown = false;
     }
 
     /**

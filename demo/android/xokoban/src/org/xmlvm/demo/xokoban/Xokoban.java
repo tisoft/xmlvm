@@ -97,6 +97,7 @@ public class Xokoban extends Activity {
 
         inputController = new InputController(mover, gameController, timer);
         inputController.setTapHandler(gameController);
+        gameController.setInputController(inputController);
         gameView.setOnTouchListener(inputController);
 
         if (useAccelerometer) {
