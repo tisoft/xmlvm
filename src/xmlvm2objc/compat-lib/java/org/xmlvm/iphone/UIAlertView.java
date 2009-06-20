@@ -214,15 +214,15 @@ public class UIAlertView extends UIView {
             buttonYOffset += LABEL_INSETS + TITLE_FONT_SIZE;
             messageYOffset += LABEL_INSETS + TITLE_FONT_SIZE;
             titleView.setFrame(new CGRect(FRAME_SIZE + INSETS, LABEL_INSETS,
-                    buttons.size() != 2 ? FULL_BUTTON_WIDTH : SMALL_BUTTON_WIDTH, TITLE_FONT_SIZE));
+                    buttons.size() != 2 ? FULL_BUTTON_WIDTH : 2 * (SMALL_BUTTON_WIDTH + INSETS),
+                    TITLE_FONT_SIZE));
         }
 
         if (message != null && message.length() > 0) {
             buttonYOffset += LABEL_INSETS + MESSAGE_FONT_SIZE;
-            messageView
-                    .setFrame(new CGRect(FRAME_SIZE + INSETS, LABEL_INSETS + messageYOffset,
-                            buttons.size() != 2 ? FULL_BUTTON_WIDTH : SMALL_BUTTON_WIDTH,
-                            MESSAGE_FONT_SIZE));
+            messageView.setFrame(new CGRect(FRAME_SIZE + INSETS, LABEL_INSETS + messageYOffset,
+                    buttons.size() != 2 ? FULL_BUTTON_WIDTH : 2 * (SMALL_BUTTON_WIDTH + INSETS),
+                    MESSAGE_FONT_SIZE));
         }
 
         // Compute buttons' boundaries
@@ -239,8 +239,8 @@ public class UIAlertView extends UIView {
 
             b1.setFrame(new CGRect(FRAME_SIZE + INSETS, buttonYOffset + LABEL_INSETS,
                     SMALL_BUTTON_WIDTH, BUTTON_HEIGHT));
-            b2.setFrame(new CGRect(FRAME_SIZE + 3 * INSETS, buttonYOffset + LABEL_INSETS,
-                    SMALL_BUTTON_WIDTH, BUTTON_HEIGHT));
+            b2.setFrame(new CGRect(FRAME_SIZE + 3 * INSETS + SMALL_BUTTON_WIDTH, buttonYOffset
+                    + LABEL_INSETS, SMALL_BUTTON_WIDTH, BUTTON_HEIGHT));
         }
     }
 
