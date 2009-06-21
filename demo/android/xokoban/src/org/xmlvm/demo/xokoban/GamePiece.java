@@ -41,23 +41,23 @@ public abstract class GamePiece {
     /**
      * The size of the square piece in pixels.
      */
-    protected static int tileSize = 20;
+    private int         tileSize;
     /**
      * The x-coordinate of the GamePiece.
      */
-    protected int        x;
+    protected int       x;
     /**
      * The y-coordinate of the GamePiece.
      */
-    protected int        y;
+    protected int       y;
     /**
      * The {@link GameView} use for the current game.
      */
-    protected GameView   view;
+    protected GameView  view;
     /**
      * The {@link ImageView} used to draw the GamePiece.
      */
-    protected ImageView  image;
+    protected ImageView image;
 
     /**
      * Instantiates a GamePiece object.
@@ -66,15 +66,18 @@ public abstract class GamePiece {
      *            The GameView used in the current game.
      * @param resourceID
      *            The image resource ID to be used for drawing this GamePiece.
+     * @param tileSize
+     *            The tile size of this game piece.
      * @param x
      *            The x-coordinate to draw this GamePiece.
      * @param y
      *            The y-coordinate to draw this GamePiece.
      */
-    public GamePiece(GameView view, int resourceID, int x, int y, boolean addToFront) {
+    public GamePiece(GameView view, int resourceID, int tileSize, int x, int y, boolean addToFront) {
         this.view = view;
         this.x = x;
         this.y = y;
+        this.tileSize = tileSize;
         image = new ImageView(view.getActivity());
         if (addToFront) {
             view.getLayout().addView(image);
@@ -121,5 +124,14 @@ public abstract class GamePiece {
      */
     public int getY() {
         return this.y;
+    }
+
+    /**
+     * Returns the size of this tile.
+     * 
+     * @return
+     */
+    public int getTileSize() {
+        return tileSize;
     }
 }

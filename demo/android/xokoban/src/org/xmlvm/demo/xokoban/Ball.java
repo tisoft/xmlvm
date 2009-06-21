@@ -5,7 +5,18 @@ package org.xmlvm.demo.xokoban;
  * to be pushed by the man.
  */
 public class Ball extends MovableGamePiece {
-    public Ball(GameView view, int x, int y) {
-        super(view, R.drawable.ball_20, x, y);
+    public Ball(GameView view, int tileSize, int x, int y) {
+        super(view, getResourceId(tileSize), tileSize, x, y);
+    }
+    
+    private static int getResourceId(int tileSize) {
+        switch (tileSize) {
+        case 20:
+            return R.drawable.ball_20;
+        case 30:
+            return R.drawable.ball_30;
+        default:
+            return R.drawable.ball_20;
+        }
     }
 }

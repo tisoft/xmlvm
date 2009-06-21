@@ -38,9 +38,6 @@ public class GameView {
     /** The Levels logo image. */
     private ImageView        levelsImage;
 
-    /** The size of a single game piece. */
-    private int              tileSize;
-
     /** The display's X resolution. */
     private int              displayWidth;
 
@@ -62,7 +59,6 @@ public class GameView {
      */
     public GameView(Activity activity, GamePieceMover mover) {
         // Initialization
-        tileSize = 20;
         this.mover = mover;
         this.activity = activity;
 
@@ -86,6 +82,7 @@ public class GameView {
     public void displayBoard(Board board) {
         int width = board.getWidth();
         int height = board.getHeight();
+        int tileSize = determineTileSize(width, height);
         offsetTop = (displayHeight - (height * tileSize)) / 2;
         offsetLeft = (displayWidth - (width * tileSize)) / 2;
 
@@ -100,35 +97,35 @@ public class GameView {
             for (int y = 0; y < height; y++) {
                 switch (board.getBoardPiece(x, y)) {
                 case Board.GOAL:
-                    goal = new Goal(this, x, y);
+                    goal = new Goal(this, tileSize, x, y);
                     gameController.addGoal(goal);
                     break;
                 case Board.BALL:
-                    ball = new Ball(this, x, y);
+                    ball = new Ball(this, tileSize, x, y);
                     gameController.addBall(ball);
                     break;
                 case Board.BALL_IN_GOAL:
-                    goal = new Goal(this, x, y);
+                    goal = new Goal(this, tileSize, x, y);
                     gameController.addGoal(goal);
-                    ball = new Ball(this, x, y);
+                    ball = new Ball(this, tileSize, x, y);
                     gameController.addBall(ball);
                     break;
                 case Board.MAN:
-                    man = new Man(this, x, y);
+                    man = new Man(this, tileSize, x, y);
                     gameController.setMan(man);
                     break;
                 case Board.MAN_ON_GOAL:
-                    goal = new Goal(this, x, y);
+                    goal = new Goal(this, tileSize, x, y);
                     gameController.addGoal(goal);
-                    man = new Man(this, x, y);
+                    man = new Man(this, tileSize, x, y);
                     gameController.setMan(man);
                     break;
                 case Board.WALL:
-                    new Wall(this, x, y);
+                    new Wall(this, tileSize, x, y);
                     break;
                 }
                 if (board.isFloor(x, y)) {
-                    new Floor(this, x, y);
+                    new Floor(this, tileSize, x, y);
                 }
             }
         }
@@ -188,15 +185,6 @@ public class GameView {
     }
 
     /**
-     * Accessor to retrieve a tile's size in pixels
-     * 
-     * @return The tile's pixel size.
-     */
-    public int getTileSize() {
-        return tileSize;
-    }
-
-    /**
      * Adds a view to be displayed
      * 
      * @param view
@@ -246,5 +234,12 @@ public class GameView {
     public boolean isInsideLevelsLogo(float x, float y) {
         return (int) x < (LEVELS_ICON_SIZE + 10)
                 && (int) y > displayHeight - (LEVELS_ICON_SIZE + 10);
+    }
+    
+    private int determineTileSize(int boardWidth, int boardHeight) {
+        int maxTileWidth = 480 / boardWidth;
+        int maxTileHeight = 320 / boardHeight;
+        
+        return maxTileWidth < 30 || maxTileHeight < 30 ? 20 : 30;
     }
 }

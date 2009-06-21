@@ -48,9 +48,6 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
     /** The info screen contains instructions and settings. */
     private InfoView        infoView;
 
-    /** Whether the SplashView is shown. */
-    private boolean         splashViewShown      = true;
-
     private AlertDialog     currentLevelDialog   = null;
 
     private AlertDialog     changeLevelDialog    = null;
@@ -347,15 +344,6 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
      */
     public boolean isGamePaused() {
         return gamePaused;
-    }
-
-    /**
-     * Retrieves the tile's size in pixels.
-     * 
-     * @return The retrieved tile size.
-     */
-    public int getTileSize() {
-        return gameView.getTileSize();
     }
 
     @Override

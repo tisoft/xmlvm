@@ -15,8 +15,8 @@ public class MovableGamePiece extends GamePiece {
     private int px;
     private int py;
 
-    protected MovableGamePiece(GameView view, int resourceID, int x, int y) {
-        super(view, resourceID, x, y, true);
+    protected MovableGamePiece(GameView view, int resourceID, int tileSize, int x, int y) {
+        super(view, resourceID, tileSize ,x, y, true);
     }
 
     /**
@@ -33,7 +33,7 @@ public class MovableGamePiece extends GamePiece {
         this.dy = dy;
         px = 0;
         py = 0;
-        counter = tileSize / 2;
+        counter = getTileSize() / 2;
     }
 
     /**
