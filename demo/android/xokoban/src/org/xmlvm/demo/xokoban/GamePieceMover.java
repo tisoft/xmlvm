@@ -10,8 +10,6 @@ public class GamePieceMover implements TimerUpdateHandler {
     private MovableGamePiece[]  gamePiecesToBeMoved;
     private int                 animationDelay;
 
-    private Handler             updater           = new Handler();
-    private Runnable            updateAnimation;
     private MoveFinishedHandler moveFinishedHandler;
 
     public GamePieceMover(UpdateTimer timer) {

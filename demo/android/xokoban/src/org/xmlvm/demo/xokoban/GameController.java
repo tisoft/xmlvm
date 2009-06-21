@@ -351,7 +351,7 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
         if (isLevelFinished()) {
             if (inputController != null) {
                 // Tell input controller to stop movement
-                inputController.stopMovement();
+                inputController.stopMovement(true);
             }
             // More levels left
             if (currentLevel < Levels.getSize() - 1) {

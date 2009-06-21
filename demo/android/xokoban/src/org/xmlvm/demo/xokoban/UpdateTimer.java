@@ -17,6 +17,7 @@ public class UpdateTimer {
     private List<TimerUpdateHandler> handlers                = new ArrayList<TimerUpdateHandler>();
     private Handler                  updater                 = new Handler();
     private Runnable                 updateAnimation         = null;
+    private boolean                  isRunning;
 
     /**
      * Returns a default instance that will updat every
@@ -24,21 +25,40 @@ public class UpdateTimer {
      */
     public static UpdateTimer getInstance() {
         if (instance == null) {
-            instance = new UpdateTimer(DEFAULT_DELAY_IN_MILLIS);
+            instance = new UpdateTimer();
         }
         return instance;
     }
 
-    public UpdateTimer(final int animationDelayMillis) {
+    private UpdateTimer() {
+        isRunning = false;
         updateAnimation = new Runnable() {
             public void run() {
-                updater.postDelayed(updateAnimation, animationDelayMillis);
+                if (isRunning) {
+                    updater.postDelayed(updateAnimation, DEFAULT_DELAY_IN_MILLIS);
+                }
                 for (TimerUpdateHandler handler : handlers) {
                     handler.onTimerUpdate();
                 }
             }
         };
-        updater.postDelayed(updateAnimation, animationDelayMillis);
+    }
+
+    /**
+     * Start the timer.
+     */
+    public void startTimer() {
+        if (!isRunning) {
+            isRunning = true;
+            updater.postDelayed(updateAnimation, DEFAULT_DELAY_IN_MILLIS);
+        }
+    }
+
+    /**
+     * Stop the timer.
+     */
+    public void stopTimer() {
+        isRunning = false;
     }
 
     /**
