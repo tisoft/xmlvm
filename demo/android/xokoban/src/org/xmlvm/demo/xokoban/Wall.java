@@ -6,6 +6,6 @@ package org.xmlvm.demo.xokoban;
  */
 public class Wall extends GamePiece {
     public Wall(GameView view, int x, int y) {
-        super(view, R.drawable.wall, x, y, false);
+        super(view, R.drawable.wall_20, x, y, false);
     }
 }

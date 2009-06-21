@@ -6,6 +6,6 @@ package org.xmlvm.demo.xokoban;
  */
 public class Ball extends MovableGamePiece {
     public Ball(GameView view, int x, int y) {
-        super(view, R.drawable.ball, x, y);
+        super(view, R.drawable.ball_20, x, y);
     }
 }
