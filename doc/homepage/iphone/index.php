@@ -104,55 +104,28 @@ version of "Hello World" in Java:
 </p>
 <div class="code_block">
 <p>
-<style>
-td.java, td.java-ln {vertical-align:top;}
-tt.java, tt.java-ln, pre.java, pre.java-ln {line-height:1em; margin-bottom:0em;}
-td.java-ln { text-align:right; }
-tt.java-ln, pre.java-ln { color:#888888 }
-/* Background       */ span.java0  { font-size: 10pt; color:#ffffff; }
-/* Line numbers       */ span.java1  { font-size: 10pt; color:#808080; }
-/* Multi-line comments       */ span.java2  { font-size: 10pt; color:#3f7f5f; }
-/* Single-line comments       */ span.java3  { font-size: 10pt; color:#3f7f5f; }
-/* Keywords       */ span.java4  { font-size: 10pt; color:#7f0055; font-weight:bold; }
-/* Strings       */ span.java5  { font-size: 10pt; color:green; }
-/* Character constants       */ span.java6  { font-size: 10pt; color:#990000; }
-/* Numeric constants       */ span.java7  { font-size: 10pt; color:#990000; }
-/* Parenthesis       */ span.java8  { font-size: 10pt; color:#000000; }
-/* Primitive Types       */ span.java9  { font-size: 10pt; color:#7f0055; font-weight:bold; }
-/* Others       */ span.java10  { font-size: 10pt; color:#000000; }
-/* Javadoc keywords       */ span.java11  { font-size: 10pt; color:#7f9fbf; }
-/* Javadoc HTML tags       */ span.java12  { font-size: 10pt; color:#7f7f9f; }
-/* Javadoc links       */ span.java13  { font-size: 10pt; color:#3f3fbf; }
-/* Javadoc others       */ span.java14  { font-size: 10pt; color:#3f5fbf; }
-/* Undefined       */ span.java15  { font-size: 10pt; color:#ff6100; }
-/* Annotation       */ span.java16  { font-size: 10pt; color:#646464; }
-</style>
-
-<tt class="java"><span class="java0"><br />
-</span><span class="java4">public class </span><span class="java10">HelloWorld<br />
-&#xA0;&#xA0;&#xA0; </span><span class="java4">extends </span><span class="java10">UIApplication<br />
-</span><span class="java8">{<br />
-&#xA0;&#xA0;&#xA0; </span><span class="java4">public </span><span class="java9">void </span><span class="java10">applicationDidFinishLaunching</span><span class="java8">(</span><span class="java10">NSNotification aNotification</span><span class="java8">)<br />
-&#xA0;&#xA0;&#xA0; {<br />
-&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; </span><span class="java10">CGRect rect = UIHardware.fullScreenApplicationContentRect</span><span class="java8">()</span><span class="java10">;<br />
-&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; UIWindow window = </span><span class="java4">new </span><span class="java10">UIWindow</span><span class="java8">(</span><span class="java10">rect</span><span class="java8">)</span><span class="java10">;<br />
-&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; window.orderFront</span><span class="java8">(</span><span class="java4">this</span><span class="java8">)</span><span class="java10">;<br />
-&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; window.makeKey</span><span class="java8">(</span><span class="java4">this</span><span class="java8">)</span><span class="java10">;<br />
-&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; window._setHidden</span><span class="java8">(</span><span class="java4">false</span><span class="java8">)</span><span class="java10">;<br />
-&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; rect.origin.x = rect.origin.y = </span><span class="java7">0</span><span class="java10">;<br />
-&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; UIView mainView = </span><span class="java4">new </span><span class="java10">UIView</span><span class="java8">(</span><span class="java10">rect</span><span class="java8">)</span><span class="java10">;<br />
-&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; window.setContentView</span><span class="java8">(</span><span class="java10">mainView</span><span class="java8">)</span><span class="java10">;<br />
-&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; UITextLabel _title = </span><span class="java4">new </span><span class="java10">UITextLabel</span><span class="java8">(</span><span class="java10">rect</span><span class="java8">)</span><span class="java10">;<br />
-&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; _title.setText</span><span class="java8">(</span><span class="java5">&#34;Hello World!&#34;</span><span class="java8">)</span><span class="java10">;<br />
-&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; _title.setCentersHorizontally</span><span class="java8">(</span><span class="java4">true</span><span class="java8">)</span><span class="java10">;<br />
-&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; mainView.addSubview</span><span class="java8">(</span><span class="java10">_title</span><span class="java8">)</span><span class="java10">;<br />
-&#xA0;&#xA0;&#xA0; </span><span class="java8">}<br />
-<br />
-&#xA0;&#xA0;&#xA0; </span><span class="java4">public static </span><span class="java9">void </span><span class="java10">main</span><span class="java8">(</span><span class="java10">String</span><span class="java8">[] </span><span class="java10">args</span><span class="java8">)<br />
-&#xA0;&#xA0;&#xA0; {<br />
-&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; </span><span class="java10">UIApplication.main</span><span class="java8">(</span><span class="java10">args, HelloWorld.</span><span class="java4">class</span><span class="java8">)</span><span class="java10">;<br />
-&#xA0;&#xA0;&#xA0; </span><span class="java8">}<br />
-}</span></tt>
+<?php
+print_code("public class HelloWorld extends UIApplication\n".
+"{\n".
+"  public void applicationDidFinishLaunching(NSNotification n)\n".
+"  {\n".
+"    UIScreen screen = UIScreen.mainScreen();\n".
+"    CGRect rect = screen.applicationFrame();\n".
+"    UIWindow window = new UIWindow(rect);\n".
+"\n".
+"    rect.origin.x = rect.origin.y = 0;\n".
+"    UIView mainView = new UIView(rect);\n".
+"    window.addSubview(mainView);\n".
+"\n".
+"    UILabel title = new UILabel(rect);\n".
+"    title.setText(\"Hello World!\");\n".
+"    title.setTextAlignment(UITextAlignment.UITextAlignmentCenter);\n".
+"    mainView.addSubview(title);\n".
+"\n".
+"    window.makeKeyAndVisible();\n".
+"  }\n".
+"}\n");
+?>
 </p>
 </div>
 

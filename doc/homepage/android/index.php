@@ -37,7 +37,7 @@ Android and iPhone version of the application.
 The Android application is written in Java and makes use of an Android
 specific API. XMLVM offers a compatibility library, written in Java,
 that offers the same API as Android, but only makes use of the
-Java-based API for Cocoa Touch mentioned earlier. During the
+<a href="../iphone/">Java-based API for Cocoa Touch</a>. During the
 cross-compilation process, both the application and the Android
 compatibility library are cross-compiled from Java to Objective-C and
 linked with the Cocoa Touch compatibility library to yield a native
