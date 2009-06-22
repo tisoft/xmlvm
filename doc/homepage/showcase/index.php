@@ -4,6 +4,20 @@
 ?>
 <h1>Showcases</h1>
 
+<script>
+function popupIPhoneDemo() {
+	newwindow=window.open("../iphone/demo",'XMLVM: Android Demo','height=840,width=600');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
+function popupAndroidDemo() {
+	newwindow=window.open("../android/demo",'XMLVM: Android Demo','height=600,width=910');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+</script>
+
 <ul>
 
 <li> <a href="http://www.xml11.org">XML11</a>: XMLVM is used as part of the
@@ -13,10 +27,10 @@
      This application was developed as a desktop application using Java and
      cross-compiled using XMLVM to an AJAX application.
      
-<li> <a href="../iphone/demo">iPhone Simulator</a>: a Java-only version of the
+<li> <a href="#" onclick="popupIPhoneDemo();">iPhone Simulator</a>: a Java-only version of the
      Cocoa library can be run as a Java applet.
 	
-<li> <a href="../android/demo/index.html">Xokoban</a>: an Android application running
+<li> <a href="#" onclick="popupAndroidDemo();">Xokoban</a>: an Android application running
      under the Java iPhone Simulator.
 	
 </ul>

@@ -81,11 +81,19 @@ print_code("package android.widget;\n".
 </p>
 </div>
 
-<p>
+<script>
+function popupDemo() {
+	newwindow=window.open("demo",'XMLVM: Android Demo','height=600,width=910');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+</script>
+
 XMLVM includes a demo that demonstrates the power of cross-compiling
 Android applications to the iPhone. The demo is an Android version of
-the classic Sokoban game called Xokoban. An <a href="demo/">online
-version</a> of Xokoban can be played in XMLVM's own iPhone emulator.
+the classic Sokoban game called Xokoban. An <a href="#" onclick="popupDemo();">
+online version (requires Java)</a> of Xokoban can be played in XMLVM's own iPhone 
+emulator.
 </p>
 
 <?php
