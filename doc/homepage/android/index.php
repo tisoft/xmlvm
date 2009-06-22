@@ -83,7 +83,7 @@ print_code("package android.widget;\n".
 
 <script>
 function popupDemo() {
-	newwindow=window.open("demo",'XMLVM: Android Demo','height=600,width=910');
+	var newwindow=window.open("demo", "_blank", "height=600,width=910");
 	if (window.focus) {newwindow.focus()}
 	return false;
 }

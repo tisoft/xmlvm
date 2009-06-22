@@ -141,7 +141,7 @@ fireworks. On a real iPhone the sparks will follow gravity:
 </p>
 <script>
 function popupDemo() {
-	newwindow=window.open("demo",'XMLVM: iPhone Demo','height=840,width=600');
+	var newwindow=window.open("demo", "_blank", "height=895,width=600");
 	if (window.focus) {newwindow.focus()}
 	return false;
 }

@@ -6,13 +6,13 @@
 
 <script>
 function popupIPhoneDemo() {
-	newwindow=window.open("../iphone/demo",'XMLVM: Android Demo','height=840,width=600');
+	var newwindow=window.open("../iphone/demo", "_blank", "height=895,width=600");
 	if (window.focus) {newwindow.focus()}
 	return false;
 }
 
 function popupAndroidDemo() {
-	newwindow=window.open("../android/demo",'XMLVM: Android Demo','height=600,width=910');
+	var newwindow=window.open("../android/demo", "_blank", "height=600,width=910");
 	if (window.focus) {newwindow.focus()}
 	return false;
 }
