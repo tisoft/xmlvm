@@ -31,8 +31,7 @@ public class NSTimer implements Runnable {
             try {
                 Thread.sleep(milliInterval);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                return;
             }
             timerTick();
             if (!repeats) {
@@ -80,5 +79,9 @@ public class NSTimer implements Runnable {
         };
         
         SwingUtilities.invokeLater(r);
+    }
+
+    public void invalidate() {
+        thread.interrupt();
     }
 }

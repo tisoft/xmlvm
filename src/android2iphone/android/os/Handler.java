@@ -23,15 +23,22 @@ package android.os;
 import org.xmlvm.iphone.NSTimer;
 
 public class Handler {
-  Runnable toRun;
+    Runnable toRun = null;
+    NSTimer  timer = null;
 
-  public void run(NSTimer timer) {
-    toRun.run();
-  }
+    public void run(NSTimer timer) {
+        toRun.run();
+    }
 
-  public final boolean postDelayed(Runnable r, long delayMillis) {
-    this.toRun = r;
-    new NSTimer(((float) delayMillis) / 1000, this, "run", null, false);
-    return true;
-  }
+    public final boolean postDelayed(Runnable r, long delayMillis) {
+        this.toRun = r;
+        timer = new NSTimer(((float) delayMillis) / 1000, this, "run", null, false);
+        return true;
+    }
+
+    public void removeCallbacks(Runnable runnable) {
+        if (runnable == toRun) {
+            timer.invalidate();
+        }
+    }
 }

@@ -13,11 +13,28 @@
 {
     NSMutableString* sel = [NSMutableString stringWithString: (NSString*) method];
     [sel appendString: @"___org_xmlvm_iphone_NSTimer:"];
-    [NSTimer scheduledTimerWithTimeInterval:timerInterval
-             target:t
-             selector:NSSelectorFromString(sel)
-             userInfo:userInfo
-             repeats:r ];
+    [timer release];
+    timer = [NSTimer scheduledTimerWithTimeInterval:timerInterval
+                     target:t
+                     selector:NSSelectorFromString(sel)
+                     userInfo:userInfo
+                     repeats:r];
+    // Make sure timer is valid even after it fired. If we don't do this, we can't do
+    // an invalidate after it fired.
+    [timer retain];
+}
+
+- (void) dealloc
+{
+	[timer release];
+	[super dealloc];
+}
+
+- (void) invalidate
+{
+	if ([timer isValid]) {
+    	[timer invalidate];
+    }
 }
 
 @end

@@ -14,5 +14,7 @@
              :(java_lang_String*) method
              :(java_lang_Object*) userInfo
              :(int) repeats;
-             
+- (void) dealloc;
+- (void) invalidate;
+
 @end
