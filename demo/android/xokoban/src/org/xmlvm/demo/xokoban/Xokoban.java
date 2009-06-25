@@ -84,20 +84,14 @@ public class Xokoban extends Activity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
-        UpdateTimer timer = UpdateTimer.getInstance();
-        
         // Create view and controller.
-        GamePieceMover mover = new GamePieceMover(timer);
-        gameView = new GameView(this, mover);
+        gameView = new GameView(this);
         SplashView splashView = new SplashView(this, gameView);
         InfoView infoView = new InfoView(this, gameView);
         gameController = new GameController(gameView, splashView, infoView, currentLevel);
         gameView.setGameController(gameController);
-        mover.setMoveFinishedHandler(gameController);
 
-        inputController = new InputController(mover, gameController, timer);
-        inputController.setTapHandler(gameController);
-        gameController.setInputController(inputController);
+        inputController = new InputController(gameController);
         gameView.setOnTouchListener(inputController);
 
         if (useAccelerometer) {
@@ -111,7 +105,6 @@ public class Xokoban extends Activity {
         gameView.setDisplayWidth(display.getWidth());
         gameView.setDisplayHeight(display.getHeight());
         gameController.showSplashScreen();
-        
     }
 
     /**
@@ -120,7 +113,7 @@ public class Xokoban extends Activity {
      */
     public void setDeviceNoSleep() {
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "ASokoban");
+        wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "Xokoban");
         wakeLock.acquire();
     }
 

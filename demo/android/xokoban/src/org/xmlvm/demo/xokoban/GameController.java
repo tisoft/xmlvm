@@ -5,54 +5,69 @@ import java.util.List;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Handler;
 
 /**
  * The controller class for the Sokoban game.
  */
-public class GameController implements MoveFinishedHandler, SimpleTapHandler {
+public class GameController implements MoveFinishedHandler, SimpleTapHandler, Runnable {
     /** A flag to indicate whether sensor events will be processed or not. */
-    private boolean         gamePaused           = true;
+    private boolean         gamePaused              = true;
 
     /** The current level. */
-    private int             currentLevel         = 0;
+    private int             currentLevel            = 0;
 
     /** Indicates whether the current level has been started. */
-    private boolean         levelStarted         = false;
+    private boolean         levelStarted            = false;
 
     /** The number of moves. */
-    private int             moveCount            = 0;
+    private int             moveCount               = 0;
 
     /** A representation of the game's man game piece. */
-    private Man             man                  = null;
+    private Man             man                     = null;
 
     /** A list of all ball game pieces. */
-    private List<GamePiece> balls                = null;
+    private List<GamePiece> balls                   = null;
 
     /** A list of all goal game pieces. */
-    private List<GamePiece> goals                = null;
+    private List<GamePiece> goals                   = null;
 
     /** The current game board. */
-    private Board           board                = null;
+    private Board           board                   = null;
 
     /** The {@link GameView} associated with this GameController. */
-    private GameView        gameView             = null;
+    private GameView        gameView                = null;
 
-    /**
-     * Associated {@link InputController} instance that controls this game
-     * controller.
-     */
-    private InputController inputController      = null;
     /** The splash view shown right after the start of the application. */
     private SplashView      splashView;
 
     /** The info screen contains instructions and settings. */
     private InfoView        infoView;
 
-    private AlertDialog     currentLevelDialog   = null;
+    private AlertDialog     currentLevelDialog      = null;
 
-    private AlertDialog     changeLevelDialog    = null;
+    private AlertDialog     changeLevelDialog       = null;
 
-    private AlertDialog     congratulationDialog = null;
+    private AlertDialog     congratulationDialog    = null;
+
+    /** Indicated the new X-direction the man should move to. */
+    private int             newDX;
+
+    /** Indicated the new Y-direction the man should move to. */
+    private int             newDY;
+
+    /** Stop man when current move is finished. */
+    private boolean         stopMovement            = true;
+
+    /** Set to true if timer is running. */
+    private boolean         timerIsRunning          = false;
+
+    /** Delay between two timer ticks. */
+    private long            animationDelay;
+
+    private static int      DEFAULT_DELAY_IN_MILLIS = 70;
+
+    private Handler         timerHandler            = new Handler();
 
     /**
      * Instantiates a new GameController and connects it to the given
@@ -82,16 +97,6 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
     }
 
     /**
-     * Set the input controller for this game controller.
-     * 
-     * @param inputController
-     *            The input controller.
-     */
-    public void setInputController(InputController inputController) {
-        this.inputController = inputController;
-    }
-
-    /**
      * Returns whether the current level is finished.
      * 
      * @return true if the level is finished, false otherwise.
@@ -106,47 +111,86 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
         return true;
     }
 
+    public void setMovingSpeed(float x, float y) {
+        x = Math.abs(x);
+        y = Math.abs(y);
+        float max = Math.max(x, y);
+        int newAnimationDelay = (int) (DEFAULT_DELAY_IN_MILLIS - 8 * max);
+        if (newAnimationDelay < 5)
+            newAnimationDelay = 5;
+        animationDelay = newAnimationDelay;
+    }
+
     /**
-     * Moves the man in the given direction. If the man "hits" a ball that is
-     * movable, it will move it as well.
+     * Schedule the man to move in a certain direction designated by the input
+     * parameters. If the man is currently stop, he will start moving
+     * immediately. Otherwise the new direction will be considered after the
+     * current move is finished (i.e., the man has reached the new tile).
      * 
      * @param dx
-     *            The number of pixels to move horizontally.
+     *            New X-direction (either -1, 0, or 1)
      * @param dy
-     *            The number of pixels to move vertically.
+     *            New Y-direction (either -1, 0, or 1)
      */
-    public void moveMan(int dx, int dy) {
-        if (man == null || man.isMoving()) {
-            return;
+    public void scheduleMoveMan(int dx, int dy) {
+        newDX = dx;
+        newDY = dy;
+        if (moveMan() && !timerIsRunning) {
+            timerIsRunning = true;
+            stopMovement = false;
+            timerHandler.removeCallbacks(this);
+            animationDelay = DEFAULT_DELAY_IN_MILLIS;
+            timerHandler.postDelayed(this, animationDelay);
         }
-        int newX = man.getX() + dx;
-        int newY = man.getY() + dy;
+    }
+
+    /**
+     * Schedule to stop the man. The timer can't be stopped right away because
+     * the current move first needs to complete (i.e., the man needs to reach
+     * the next tile).
+     */
+    public void scheduleStopMan() {
+        stopMovement = true;
+    }
+
+    /**
+     * Attempts to move the man in the direction given by variables
+     * {@link newDX} and {@link newDY}.
+     * 
+     * @return Returns true if the man can move in the desired direction.
+     */
+    private boolean moveMan() {
+        if (man == null || man.isMoving()) {
+            return false;
+        }
+        int newX = man.getX() + newDX;
+        int newY = man.getY() + newDY;
 
         // Check wall
         if (board.getBoardPiece(newX, newY) == Board.WALL) {
-            return;
+            return false;
         }
 
         // Check ball and piece behind it
         Ball adjacentBall = getBallAtPosition(newX, newY);
         if (adjacentBall != null
-                && (getBallAtPosition(newX + dx, newY + dy) != null || board.getBoardPiece(newX
-                        + dx, newY + dy) == Board.WALL)) {
-            return;
+                && (getBallAtPosition(newX + newDX, newY + newDY) != null || board.getBoardPiece(
+                        newX + newDX, newY + newDY) == Board.WALL)) {
+            return false;
         }
 
         // Move man only
         levelStarted = true;
         moveCount++;
         if (adjacentBall == null) {
-            man.startMoving(dx, dy);
+            man.startMoving(newDX, newDY);
         }
         // Move man and ball
         else {
-            adjacentBall.startMoving(dx, dy);
-            man.startMoving(dx, dy);
+            adjacentBall.startMoving(newDX, newDY);
+            man.startMoving(newDX, newDY);
         }
-        return;
+        return true;
     }
 
     /**
@@ -349,10 +393,8 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
     @Override
     public void onMoveFinished() {
         if (isLevelFinished()) {
-            if (inputController != null) {
-                // Tell input controller to stop movement
-                inputController.stopMovement(true);
-            }
+            timerIsRunning = false;
+            stopMovement = true;
             // More levels left
             if (currentLevel < Levels.getSize() - 1) {
                 currentLevel++;
@@ -364,6 +406,10 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
             }
             return;
         }
+        if (!stopMovement) {
+            stopMovement = !moveMan();
+        }
+        timerIsRunning = !stopMovement;
     }
 
     /**
@@ -410,6 +456,14 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler {
             } else if (gameView.isInsideLevelsLogo(x, y)) {
                 showLevelDialog();
             }
+        }
+    }
+
+    @Override
+    public void run() {
+        if (timerIsRunning) {
+            timerHandler.postDelayed(this, animationDelay);
+            gameView.getMover().doNextAnimationStep();
         }
     }
 }

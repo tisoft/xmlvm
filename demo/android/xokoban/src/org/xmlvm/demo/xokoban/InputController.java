@@ -8,15 +8,12 @@ import android.view.View.OnTouchListener;
 /**
  * This controller handles input coming from the various controllers.
  */
-public class InputController implements SensorListener, OnTouchListener, TimerUpdateHandler {
+public class InputController implements SensorListener, OnTouchListener {
     /** Accelerometer threshold to start moving the man. */
-    private static final float ACCELEROMETER_THRESHOLD = 1.7f;
+    private static final float ACCELEROMETER_THRESHOLD = 2.0f;
 
     /** Swiping threshold to start moving the man. */
-    private static final float SWIPE_THRESHOLD         = 20f;
-
-    /** Helper class used to animate the man's movement. */
-    private GamePieceMover     mover                   = null;
+    private static final float SWIPE_THRESHOLD         = 30f;
 
     /** The GameController associated with this InputController. */
     private GameController     controller              = null;
@@ -26,31 +23,18 @@ public class InputController implements SensorListener, OnTouchListener, TimerUp
     /** The Y coordinate for the last move event. */
     private float              lastMoveY;
     /** The X coordinate for the last touch button down event. */
-    private float              lastDownX;
+    private float              lastStartX;
     /** The Y coordinate for the last touch button down event. */
-    private float              lastDownY;
+    private float              lastStartY;
 
-    /** True, if the screen is currently touched. */
-    private boolean            currentlyDown           = false;
-
-    /** True if the last button down happened during the game. */
-    private boolean            lastDownDuringGame      = false;
-
-    /** A tap handler that is called when a tap event happened. */
-    private SimpleTapHandler   tapHandler              = null;
-
-    private UpdateTimer        timer                   = null;
-
-    public InputController(GamePieceMover mover, GameController controller, UpdateTimer timer) {
-        this.mover = mover;
+    public InputController(GameController controller) {
         this.controller = controller;
-        this.timer = timer;
     }
 
     /**
      * Callback to process sensor events. Sensor events are used to move the
      * game's man. They are translated to either -1, 0 or 1 meaning a movement
-     * to the left, no movement or to the right (up and down respectivly).
+     * to the left, no movement or to the right (up and down respectively).
      * 
      * @param sensor
      *            Indicates which sensor generated the event.
@@ -66,11 +50,10 @@ public class InputController implements SensorListener, OnTouchListener, TimerUp
 
         float x = values[0];
         float y = -values[1];
-        mover.setMovingSpeed(x, y);
-        if (mover.isMoving()) {
-            return;
+        controller.setMovingSpeed(x, y);
+        if (!moveWithInput(x, y, ACCELEROMETER_THRESHOLD)) {
+            controller.scheduleStopMan();
         }
-        moveWithInput(x, y, ACCELEROMETER_THRESHOLD);
     }
 
     /**
@@ -84,7 +67,10 @@ public class InputController implements SensorListener, OnTouchListener, TimerUp
      *            The threshold that has to be exceeded in order for a move to
      *            trigger.
      */
-    public void moveWithInput(float x, float y, float threshold) {
+    public boolean moveWithInput(float x, float y, float threshold) {
+        if (controller.isGamePaused()) {
+            return false;
+        }
         int dx = 0;
         int dy = 0;
         if (Math.abs(x) > Math.abs(y)) {
@@ -99,8 +85,10 @@ public class InputController implements SensorListener, OnTouchListener, TimerUp
                 dy = -1;
         }
         if (Math.abs(dx) > 0 || Math.abs(dy) > 0) {
-            controller.moveMan(dx, dy);
+            controller.scheduleMoveMan(dx, dy);
+            return true;
         }
+        return false;
     }
 
     @Override
@@ -110,60 +98,20 @@ public class InputController implements SensorListener, OnTouchListener, TimerUp
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        // See if we have a simple tap event that we can forward to a handle.
-        if (event.getAction() == MotionEvent.ACTION_UP) {
-            stopMovement(false);
-            if ((Math.abs(lastDownX - event.getX()) <= SWIPE_THRESHOLD)
-                    && (Math.abs(lastDownY - event.getY()) <= SWIPE_THRESHOLD)) {
-                if (tapHandler != null) {
-                    tapHandler.onTap(event.getX(), event.getY());
-                }
-                return true;
-            }
-        } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            if (!currentlyDown) {
-                lastDownX = event.getX();
-                lastDownY = event.getY();
-                timer.addTimerUpdateHandler(this);
-                timer.startTimer();
-            }
-            lastMoveX = event.getX();
-            lastMoveY = event.getY();
-            currentlyDown = true;
-            lastDownDuringGame = !controller.isGamePaused();
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            lastStartX = event.getX();
+            lastStartY = event.getY();
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+            controller.scheduleStopMan();
+            controller.onTap(event.getX(), event.getY());
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
             lastMoveX = event.getX();
             lastMoveY = event.getY();
-        }
-        return true;
-    }
-
-    /**
-     * Stops the movement of the man.
-     */
-    public void stopMovement(boolean stopTimer) {
-        if (stopTimer) {
-            timer.stopTimer();
-        }
-        timer.removeTimerUpdateHandler(this);
-        currentlyDown = false;
-    }
-
-    /**
-     * Sets the handler that will be called when the user taps the screen.
-     */
-    public void setTapHandler(SimpleTapHandler handler) {
-        tapHandler = handler;
-    }
-
-    @Override
-    public void onTimerUpdate() {
-        if (lastDownDuringGame && !controller.isGamePaused()) {
-            // Handle swipe to move the man
-            if (Math.abs(lastDownX - lastMoveX) > SWIPE_THRESHOLD
-                    || Math.abs(lastDownY - lastMoveY) > SWIPE_THRESHOLD) {
-                moveWithInput(lastMoveX - lastDownX, lastMoveY - lastDownY, SWIPE_THRESHOLD);
+            if (moveWithInput(lastMoveX - lastStartX, lastMoveY - lastStartY, SWIPE_THRESHOLD)) {
+                lastStartX = lastMoveX;
+                lastStartY = lastMoveY;
             }
         }
+        return true;
     }
 }

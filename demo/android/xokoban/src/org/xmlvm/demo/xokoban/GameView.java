@@ -57,10 +57,11 @@ public class GameView {
      * @param activity
      *            The application's activity.
      */
-    public GameView(Activity activity, GamePieceMover mover) {
+    public GameView(Activity activity) {
         // Initialization
-        this.mover = mover;
         this.activity = activity;
+        this.mover = new GamePieceMover();
+
 
         // Connect view to activity and create background
         layout = new AbsoluteLayout(activity);
@@ -147,6 +148,7 @@ public class GameView {
 
     public void setGameController(GameController gameController) {
         this.gameController = gameController;
+        mover.setMoveFinishedHandler(gameController);
     }
 
     public Activity getActivity() {
