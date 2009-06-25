@@ -20,13 +20,19 @@ public class InputController implements SensorListener, OnTouchListener {
 
     /** The X coordinate for the last move event. */
     private float              lastMoveX;
+    
     /** The Y coordinate for the last move event. */
     private float              lastMoveY;
+    
     /** The X coordinate for the last touch button down event. */
     private float              lastStartX;
+    
     /** The Y coordinate for the last touch button down event. */
     private float              lastStartY;
 
+    /** True if the current action down/action up sequence could be a tap. */
+    private boolean couldBeTap;
+    
     public InputController(GameController controller) {
         this.controller = controller;
     }
@@ -99,15 +105,19 @@ public class InputController implements SensorListener, OnTouchListener {
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            couldBeTap = true;
             lastStartX = event.getX();
             lastStartY = event.getY();
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
             controller.scheduleStopMan();
-            controller.onTap(event.getX(), event.getY());
+            if (couldBeTap) {
+                controller.onTap(event.getX(), event.getY());
+            }
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
             lastMoveX = event.getX();
             lastMoveY = event.getY();
             if (moveWithInput(lastMoveX - lastStartX, lastMoveY - lastStartY, SWIPE_THRESHOLD)) {
+                couldBeTap = false;
                 lastStartX = lastMoveX;
                 lastStartY = lastMoveY;
             }

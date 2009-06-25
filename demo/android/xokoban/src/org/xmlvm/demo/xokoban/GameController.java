@@ -8,9 +8,9 @@ import android.content.DialogInterface;
 import android.os.Handler;
 
 /**
- * The controller class for the Sokoban game.
+ * The controller class for the Xokoban game.
  */
-public class GameController implements MoveFinishedHandler, SimpleTapHandler, Runnable {
+public class GameController implements MoveFinishedHandler, Runnable {
     /** A flag to indicate whether sensor events will be processed or not. */
     private boolean         gamePaused              = true;
 
@@ -50,11 +50,11 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler, Ru
 
     private AlertDialog     congratulationDialog    = null;
 
-    /** Indicated the new X-direction the man should move to. */
-    private int             newDX;
+    /** Indicated the next X-direction the man should move to. */
+    private int             nextDX;
 
-    /** Indicated the new Y-direction the man should move to. */
-    private int             newDY;
+    /** Indicated the next Y-direction the man should move to. */
+    private int             nextDY;
 
     /** Stop man when current move is finished. */
     private boolean         stopMovement            = true;
@@ -133,8 +133,8 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler, Ru
      *            New Y-direction (either -1, 0, or 1)
      */
     public void scheduleMoveMan(int dx, int dy) {
-        newDX = dx;
-        newDY = dy;
+        nextDX = dx;
+        nextDY = dy;
         if (moveMan() && !timerIsRunning) {
             timerIsRunning = true;
             stopMovement = false;
@@ -163,8 +163,8 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler, Ru
         if (man == null || man.isMoving()) {
             return false;
         }
-        int newX = man.getX() + newDX;
-        int newY = man.getY() + newDY;
+        int newX = man.getX() + nextDX;
+        int newY = man.getY() + nextDY;
 
         // Check wall
         if (board.getBoardPiece(newX, newY) == Board.WALL) {
@@ -174,8 +174,8 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler, Ru
         // Check ball and piece behind it
         Ball adjacentBall = getBallAtPosition(newX, newY);
         if (adjacentBall != null
-                && (getBallAtPosition(newX + newDX, newY + newDY) != null || board.getBoardPiece(
-                        newX + newDX, newY + newDY) == Board.WALL)) {
+                && (getBallAtPosition(newX + nextDX, newY + nextDY) != null || board.getBoardPiece(
+                        newX + nextDX, newY + nextDY) == Board.WALL)) {
             return false;
         }
 
@@ -183,12 +183,12 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler, Ru
         levelStarted = true;
         moveCount++;
         if (adjacentBall == null) {
-            man.startMoving(newDX, newDY);
+            man.startMoving(nextDX, nextDY);
         }
         // Move man and ball
         else {
-            adjacentBall.startMoving(newDX, newDY);
-            man.startMoving(newDX, newDY);
+            adjacentBall.startMoving(nextDX, nextDY);
+            man.startMoving(nextDX, nextDY);
         }
         return true;
     }
@@ -346,13 +346,6 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler, Ru
 
     /**
      * Shows the splashScreen until the user taps the screen.
-     * 
-     * @param inputController
-     *            The input controller that should be used to hide the view on a
-     *            tap.
-     * @param loadLevel
-     *            Whether the current level should be loaded after the screen is
-     *            tapped.
      */
     public void showSplashScreen() {
         gamePaused = true;
@@ -433,13 +426,13 @@ public class GameController implements MoveFinishedHandler, SimpleTapHandler, Ru
     }
 
     /**
-     * Returns the current GameView instance.
+     * Called by the input controller when the user tapped on screen.
+     * 
+     * @param x
+     *            X-coordinate of touch.
+     * @param y
+     *            Y-coordinate of touch.
      */
-    public GameView getGameView() {
-        return gameView;
-    }
-
-    @Override
     public void onTap(float x, float y) {
         if (splashView.isViewShown()) {
             splashView.hide();
