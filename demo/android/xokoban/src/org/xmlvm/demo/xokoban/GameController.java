@@ -139,7 +139,10 @@ public class GameController implements MoveFinishedHandler, Runnable {
             timerIsRunning = true;
             stopMovement = false;
             timerHandler.removeCallbacks(this);
-            animationDelay = DEFAULT_DELAY_IN_MILLIS;
+            
+            // DEFAULT_DELAY_IN_MILLIS is the delay for 20x20 tiles. If tiles
+            // are larger the delay has to be shorter to move the man faster.
+            animationDelay = DEFAULT_DELAY_IN_MILLIS * 20 / man.getTileSize();
             timerHandler.postDelayed(this, animationDelay);
         }
     }
