@@ -11,6 +11,8 @@ public class MovableGamePiece extends GamePiece {
     private int counter;
     private int dx;
     private int dy;
+    
+    private int animationFactor;
 
     private int px;
     private int py;
@@ -33,7 +35,8 @@ public class MovableGamePiece extends GamePiece {
         this.dy = dy;
         px = 0;
         py = 0;
-        counter = getTileSize() / 2;
+        animationFactor = getTileSize() / 10;
+        counter = getTileSize() / animationFactor;
     }
 
     /**
@@ -43,8 +46,8 @@ public class MovableGamePiece extends GamePiece {
      * @return TODO
      */
     public boolean moveOneStep() {
-        px += dx * 2;
-        py += dy * 2;
+        px += dx * animationFactor;
+        py += dy * animationFactor;
         updatePosition(px, py);
         counter--;
         if (counter == 0) {
