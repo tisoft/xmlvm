@@ -2,7 +2,7 @@
 include MakeVars
 
 
-ALL_SOURCES=$(SOURCES)
+ALL_SOURCES=$(wildcard *.m)
 
 
 DEPLOY_DIR=$(HOME)/Library/Application\ Support/iPhone\ Simulator/User/Applications
