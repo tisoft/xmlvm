@@ -139,7 +139,7 @@ public class GameController implements MoveFinishedHandler, Runnable {
             timerIsRunning = true;
             stopMovement = false;
             timerHandler.removeCallbacks(this);
-            animationDelay = DEFAULT_DELAY_IN_MILLIS;
+            animationDelay = DEFAULT_DELAY_IN_MILLIS;// - (man.getTileSize() - 20) * 2;
             timerHandler.postDelayed(this, animationDelay);
         }
     }
