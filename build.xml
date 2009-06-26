@@ -162,7 +162,7 @@
 				<attribute name="Implementation-Title" value="XMLVM" />
 				<attribute name="Implementation-Version" value="alpha" />
 				<attribute name="Main-Class" value="com.simontuffs.onejar.Boot" />
-				<attribute name="One-Jar-Main-Class" value="org.xmlvm.Main" />
+				<attribute name="One-Jar-Main-Class" value="org.xmlvm.proc.NewMain" />
 			</manifest>
 		</jar>
 
@@ -173,7 +173,7 @@
 				<attribute name="Implementation-Title" value="XMLVM" />
 				<attribute name="Implementation-Version" value="alpha" />
 				<attribute name="Main-Class" value="com.simontuffs.onejar.Boot" />
-				<attribute name="One-Jar-Main-Class" value="org.xmlvm.Main" />
+				<attribute name="One-Jar-Main-Class" value="org.xmlvm.proc.NewMain" />
 			</manifest>
 			<fileset dir="${xmlvm.build}" />
 		</jar>
@@ -219,8 +219,9 @@
 		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/portrait/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/portrait/iphone" />
+			<arg value="--target=iphone" />
 			<arg value="--iphone-app=iHelloWorld" />
-			<arg value="${xmlvm.ihelloworld}/portrait/*.class" />
+			<arg value="--in=${xmlvm.ihelloworld}/portrait/" />
 		</java>
 	</target>
 
@@ -251,8 +252,9 @@
 		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/upsidedown/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/upsidedown/iphone" />
+			<arg value="--target=iphone" />
 			<arg value="--iphone-app=iHelloWorld" />
-			<arg value="${xmlvm.ihelloworld}/upsidedown/*.class" />
+			<arg value="--in=${xmlvm.ihelloworld}/upsidedown/" />
 		</java>
 	</target>
 
@@ -283,8 +285,9 @@
 		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/landscape/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/landscape/iphone" />
+			<arg value="--target=iphone" />
 			<arg value="--iphone-app=iHelloWorld" />
-			<arg value="${xmlvm.ihelloworld}/landscape/*.class" />
+			<arg value="--in=${xmlvm.ihelloworld}/landscape/" />
 		</java>
 	</target>
 
@@ -315,8 +318,9 @@
 		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/fullscreen/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/fullscreen/iphone" />
+			<arg value="--target=iphone" />
 			<arg value="--iphone-app=iHelloWorld" />
-			<arg value="${xmlvm.ihelloworld}/fullscreen/*.class" />
+			<arg value="--in=${xmlvm.ihelloworld}/fullscreen/" />
 		</java>
 	</target>
 
@@ -347,8 +351,9 @@
 		<mkdir dir="${xmlvm.demo}/widgets/ibuttontest/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/widgets/ibuttontest/iphone" />
+			<arg value="--target=iphone" />
 			<arg value="--iphone-app=iButtonTest" />
-			<arg value="${xmlvm.widgets}/button/*.class" />
+			<arg value="--in=${xmlvm.widgets}/button/" />
 		</java>
 	</target>
 
@@ -382,8 +387,9 @@
 		<mkdir dir="${xmlvm.demo}/iphone/ifireworks/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ifireworks/iphone" />
+			<arg value="--target=iphone" />
 			<arg value="--iphone-app=iFireworks" />
-			<arg value="${xmlvm.ifireworks}/*.class" />
+			<arg value="--in=${xmlvm.ifireworks}/" />
 		</java>
 
 		<copy todir="${xmlvm.demo}/iphone/ifireworks/iphone">
@@ -428,8 +434,9 @@
 
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/android/afireworks/iphone" />
-			<arg value="--android2iphone=aFireworks" />
-			<arg value="${xmlvm.afireworks}/*.class" />
+			<arg value="--target=android-on-iphone" />
+			<arg value="--iphone-app=aFireworks" />
+			<arg value="--in=${xmlvm.afireworks}/" />
 		</java>
 		<copy todir="${xmlvm.demo}/android/afireworks/iphone">
 			<fileset dir="demo/android/afireworks/res/drawable">
@@ -473,8 +480,9 @@
 
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/android/xokoban/iphone" />
-			<arg value="--android2iphone=Xokoban" />
-			<arg value="${xmlvm.xokoban}/*.class" />
+			<arg value="--target=android-on-iphone" />
+			<arg value="--iphone-app=Xokoban" />
+			<arg value="--in=${xmlvm.xokoban}/" />
 		</java>
 		<copy todir="${xmlvm.demo}/android/xokoban/iphone">
 			<fileset dir="demo/android/xokoban/res/drawable">
@@ -510,8 +518,9 @@
 		<mkdir dir="${xmlvm.demo}/iphone/iremote/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/iremote/iphone" />
+			<arg value="--target=iphone" />
 			<arg value="--iphone-app=iRemote" />
-			<arg value="${xmlvm.iremote}/*.class" />
+			<arg value="--in=${xmlvm.iremote}/" />
 		</java>
 	</target>
 
