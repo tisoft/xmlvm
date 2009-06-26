@@ -103,10 +103,10 @@
 
 	<target name="cc-android-compat-lib" depends="build-android-compat-lib,build-xmlvm">
 		<mkdir dir="${xmlvm.android-compat-lib.objc}" />
-		<java classname="org.xmlvm.Main">
+		<java classname="org.xmlvm.proc.NewMain">
 			<arg value="--out=${xmlvm.android-compat-lib.objc}" />
-			<arg value="--objc" />
-			<arg value="${xmlvm.android-compat-lib.java}/*.class" />
+			<arg value="--target=objc" />
+			<arg value="--in=${xmlvm.android-compat-lib.java}/" />
 			<classpath refid="classpath.run" />
 		</java>
 	</target>
