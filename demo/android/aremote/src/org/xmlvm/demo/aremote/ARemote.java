@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ * 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
+ * Ave, Cambridge, MA 02139, USA.
+ * 
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ */
+
 package org.xmlvm.demo.aremote;
 
 import java.io.IOException;
@@ -44,9 +64,9 @@ public class ARemote extends Activity implements SensorListener {
         if (httpRequestRunning) {
             return;
         }
-        float x = values[0] / 9.81f;
-        float y = values[1] / 9.81f;
-        float z = values[2] / 9.81f;
+        float x = values[0] / SensorManager.GRAVITY_EARTH;
+        float y = values[1] / SensorManager.GRAVITY_EARTH;
+        float z = values[2] / SensorManager.GRAVITY_EARTH;
         String ip = "192.168.178.24";
         String server = new String("http://" + ip + ":8080/ACC/");
         server += String.valueOf(x);
