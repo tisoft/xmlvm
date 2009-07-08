@@ -60,7 +60,9 @@ public class ARemote extends Activity implements SensorListener, OnCheckedChange
     @Override
     public void onResume() {
         super.onResume();
-        enableAccelerometer();
+        if (cbxAccelerometer.isChecked()) {
+            enableAccelerometer();
+        }
     }
 
     @Override
