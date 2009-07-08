@@ -38,4 +38,9 @@ public class CheckBox extends View {
     public void setChecked(boolean checked) {
         uiSwitch.setOn(checked);
     }
+
+    public void setSelected(boolean b) {
+        // TODO Auto-generated method stub
+        
+    }
 }
