@@ -32,7 +32,11 @@ function popupAndroidDemo() {
 	
 <li> <a href="#" onclick="popupAndroidDemo();">Xokoban</a>: an Android application running
      under the Java iPhone Simulator.
-	
+
+<li> <a href="http://www.cokeandcode.com/resumepage">Kevin Glass</a> has used XMLVM to create
+     a <a href="http://www.cokeandcode.com/aboidblog">cross-platform game</a> for Android and
+     the iPhone.
+
 </ul>
 
 

@@ -23,6 +23,14 @@ Since XMLVM is currently in an early development phase we do not provide a stabl
 All releases currently offered are experimental development releases that are not to be used
 in a production environment.
 </p>
+
+<h2>Documentation</h2>
+<p>
+A first version of the <a href="http://xmlvm.svn.sourceforge.net/viewvc/xmlvm/trunk/xmlvm/doc/manual/manual.pdf">XMLVM
+documentation</a> is available. The current version covers the installation of XMLVM as well as the iPhone/Android
+portion of the toolchain.
+</p>
+
 <?php
   include("../footer.html");
 ?>
