@@ -138,8 +138,7 @@ public class ARemote extends Activity implements SensorListener {
         cbxAccelerometer = new CheckBox(this);
         cbxAccelerometer.setSelected(false);
         p = new AbsoluteLayout.LayoutParams(AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                AbsoluteLayout.LayoutParams.WRAP_CONTENT, 320 - INSETS - LINE_HEIGHT,
-                3 * INSETS - 10);
+                AbsoluteLayout.LayoutParams.WRAP_CONTENT, 320 - IP_WIDTH - INSETS, 3 * INSETS - 10);
         cbxAccelerometer.setLayoutParams(p);
         layout.addView(cbxAccelerometer);
 
