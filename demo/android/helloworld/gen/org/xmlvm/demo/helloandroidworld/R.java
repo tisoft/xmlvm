@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package org.xmlvm.demo.aremote;
+package org.xmlvm.demo.helloandroidworld;
 
 public final class R {
     public static final class attr {

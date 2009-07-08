@@ -30,18 +30,29 @@ import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.AbsoluteLayout;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class ARemote extends Activity implements SensorListener {
 
-    private Handler       handler            = new Handler();
-    private boolean       httpRequestRunning = false;
-    private SensorManager sensorManager;
+    private static final int INSETS             = 25;
+    private static final int LINE_HEIGHT        = 35;
+    private static final int IP_WIDTH           = 120;
 
+    private Handler          handler            = new Handler();
+    private boolean          httpRequestRunning = false;
+    private SensorManager    sensorManager;
+    private CheckBox         cbxAccelerometer;
+    private EditText         edtIpAddress;
+
+    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
-        //setContentView(R.layout.main);
+        initLayout();
     }
 
     @Override
@@ -65,13 +76,13 @@ public class ARemote extends Activity implements SensorListener {
 
     @Override
     public void onSensorChanged(int sensor, float[] values) {
-        if (httpRequestRunning) {
+        if (!cbxAccelerometer.isChecked() || httpRequestRunning) {
             return;
         }
         float x = values[0] / SensorManager.GRAVITY_EARTH;
         float y = values[1] / SensorManager.GRAVITY_EARTH;
         float z = values[2] / SensorManager.GRAVITY_EARTH;
-        String ip = "192.168.178.24";
+        String ip = edtIpAddress.getText().toString();
         String server = new String("http://" + ip + ":8080/ACC/");
         server += String.valueOf(x);
         server += "/";
@@ -97,5 +108,41 @@ public class ARemote extends Activity implements SensorListener {
                 httpRequestRunning = false;
             }
         });
+    }
+
+    private void initLayout() {
+        AbsoluteLayout layout = new AbsoluteLayout(this);
+
+        TextView lblAdress = new TextView(this);
+        AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
+                AbsoluteLayout.LayoutParams.WRAP_CONTENT, LINE_HEIGHT, INSETS, INSETS);
+        lblAdress.setLayoutParams(p);
+        lblAdress.setText("IP Address");
+        layout.addView(lblAdress);
+
+        TextView lblAccelerometer = new TextView(this);
+        p = new AbsoluteLayout.LayoutParams(AbsoluteLayout.LayoutParams.WRAP_CONTENT, LINE_HEIGHT,
+                INSETS, 3 * INSETS);
+        lblAccelerometer.setLayoutParams(p);
+        lblAccelerometer.setText("Accelerometer");
+        layout.addView(lblAccelerometer);
+
+        edtIpAddress = new EditText(this);
+        edtIpAddress.setTextSize(12.0f);
+        p = new AbsoluteLayout.LayoutParams(IP_WIDTH, AbsoluteLayout.LayoutParams.WRAP_CONTENT, 320
+                - IP_WIDTH - INSETS, INSETS - 10);
+        edtIpAddress.setLayoutParams(p);
+        edtIpAddress.setLines(1);
+        layout.addView(edtIpAddress);
+
+        cbxAccelerometer = new CheckBox(this);
+        cbxAccelerometer.setSelected(false);
+        p = new AbsoluteLayout.LayoutParams(AbsoluteLayout.LayoutParams.WRAP_CONTENT,
+                AbsoluteLayout.LayoutParams.WRAP_CONTENT, 320 - INSETS - LINE_HEIGHT,
+                3 * INSETS - 10);
+        cbxAccelerometer.setLayoutParams(p);
+        layout.addView(cbxAccelerometer);
+
+        setContentView(layout);
     }
 }
