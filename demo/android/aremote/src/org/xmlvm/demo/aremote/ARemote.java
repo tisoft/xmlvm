@@ -32,10 +32,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.AbsoluteLayout;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
-public class ARemote extends Activity implements SensorListener {
+public class ARemote extends Activity implements SensorListener, OnCheckedChangeListener {
 
     private static final int INSETS             = 25;
     private static final int LINE_HEIGHT        = 35;
@@ -58,14 +60,13 @@ public class ARemote extends Activity implements SensorListener {
     @Override
     public void onResume() {
         super.onResume();
-        sensorManager.registerListener(this, SensorManager.SENSOR_ACCELEROMETER,
-                SensorManager.SENSOR_DELAY_FASTEST);
+        enableAccelerometer();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        sensorManager.unregisterListener(this);
+        disableAccelerometer();
     }
 
     @Override
@@ -76,7 +77,7 @@ public class ARemote extends Activity implements SensorListener {
 
     @Override
     public void onSensorChanged(int sensor, float[] values) {
-        if (!cbxAccelerometer.isChecked() || httpRequestRunning) {
+        if (httpRequestRunning) {
             return;
         }
         float x = values[0] / SensorManager.GRAVITY_EARTH;
@@ -140,8 +141,41 @@ public class ARemote extends Activity implements SensorListener {
         p = new AbsoluteLayout.LayoutParams(AbsoluteLayout.LayoutParams.WRAP_CONTENT,
                 AbsoluteLayout.LayoutParams.WRAP_CONTENT, 320 - IP_WIDTH - INSETS, 3 * INSETS - 10);
         cbxAccelerometer.setLayoutParams(p);
+        cbxAccelerometer.setOnCheckedChangeListener(this);
         layout.addView(cbxAccelerometer);
 
         setContentView(layout);
     }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * android.widget.CompoundButton.OnCheckedChangeListener#onCheckedChanged
+     * (android.widget.CompoundButton, boolean)
+     */
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+            enableAccelerometer();
+        } else {
+            disableAccelerometer();
+        }
+    }
+
+    /**
+     * 
+     */
+    private void enableAccelerometer() {
+        sensorManager.registerListener(this, SensorManager.SENSOR_ACCELEROMETER,
+                SensorManager.SENSOR_DELAY_FASTEST);
+    }
+
+    /**
+     * 
+     */
+    private void disableAccelerometer() {
+        sensorManager.unregisterListener(this);
+    }
+
 }

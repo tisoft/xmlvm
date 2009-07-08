@@ -4,10 +4,9 @@ import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UISwitch;
 
 import android.content.Context;
-import android.view.View;
 import android.view.ViewGroup;
 
-public class CheckBox extends View {
+public class CheckBox extends CompoundButton {
 
     protected UISwitch uiSwitch;
 
