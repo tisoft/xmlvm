@@ -36,6 +36,11 @@ public class Handler {
         return true;
     }
 
+    public void post(Runnable runnable) {
+        // TODO Auto-generated method stub
+        
+    }
+
     public void removeCallbacks(Runnable runnable) {
         if (runnable == toRun) {
             timer.invalidate();

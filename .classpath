@@ -21,6 +21,8 @@
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/fullscreen/src"/>
 	<classpathentry kind="src" path="src/test/iphone"/>
 	<classpathentry kind="src" path="demo/iphone/ifireworks/src"/>
+	<classpathentry kind="src" path="demo/android/aremote/src"/>
+	<classpathentry kind="src" path="demo/android/aremote/gen"/>
 	<classpathentry kind="src" path="demo/android/afireworks/src"/>
 	<classpathentry kind="src" path="demo/android/afireworks/gen"/>
 	<classpathentry kind="src" path="demo/android/xokoban/src"/>

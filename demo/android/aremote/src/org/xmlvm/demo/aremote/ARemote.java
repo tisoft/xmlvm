@@ -37,20 +37,24 @@ public class ARemote extends Activity implements SensorListener {
     private boolean       httpRequestRunning = false;
     private SensorManager sensorManager;
 
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
-        sensorManager.registerListener(this, SensorManager.SENSOR_ACCELEROMETER,
-                SensorManager.SENSOR_DELAY_FASTEST);
-        setContentView(R.layout.main);
+        //setContentView(R.layout.main);
     }
 
     @Override
-    public void onDestroy() {
+    public void onResume() {
+        super.onResume();
+        sensorManager.registerListener(this, SensorManager.SENSOR_ACCELEROMETER,
+                SensorManager.SENSOR_DELAY_FASTEST);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
         sensorManager.unregisterListener(this);
-        super.onDestroy();
     }
 
     @Override

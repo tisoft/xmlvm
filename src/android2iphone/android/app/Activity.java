@@ -49,6 +49,16 @@ public class Activity extends ContextThemeWrapper {
         onContentChanged();
     }
 
+    public void onResume() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void onPause() {
+        // TODO Auto-generated method stub
+        
+    }
+
     public void setContentView(View view) {
         window.setContentView(view);
     }
