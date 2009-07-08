@@ -28,22 +28,14 @@
 		    You can even <a href ="../android">cross compile an Android application to run on the iPhone</a> <span class="new">New!</span>
       </p>
       
-      <h2 style="margin-top:20px">Get involved <span class="new">New!</span></h2>
-      <table style="width:100%">
+      <h2 style="margin-top:20px">Get involved <span class="new">New!</span></h2><br/>
+      <table style="width:80%; margin-top: 5px; margin-left:auto; margin-right:auto; text-align:center; border:1px dashed gray;">
         <tr>
-          <td style="width:50%; padding:0 20px">
-            If you want to receive updates and important news about XMLVM simply subscribe to this mailing list.
-          </td>
-          <td style="width:50%; padding:0 20px;">
-            Get in contact with the developers and other users by subscribing to this mailing list.
-          </td>
-        </tr>
-        <tr>
-          <td style="text-align:center;">
-            <div class="rounded_rectangle"><a target="_blank" href="https://lists.sourceforge.net/lists/listinfo/xmlvm-announce">xmlvm-announce</a></div>
-          </td>
-          <td>
+          <td style="vertical-align:middle;">
             <div class="rounded_rectangle"><a target="_blank" href="https://lists.sourceforge.net/lists/listinfo/xmlvm-users">xmlvm-users</a></div>
+          </td>
+          <td style="vertical-align:middle;">
+            Get in contact with the developers and other users by subscribing to this mailing list.
           </td>
         </tr>
       </table>
@@ -55,16 +47,30 @@
     <td style="border-left: 1px solid #AAA; width:150px; padding-left:10px;">
       <h4>What's new</h4>
       <div class="news_item">
-        <div class="date">May 9th 2009</div>
-        <h1>Xokoban coming soon</h1>
-        <p>
-          We are working hard on our second big Android to iPhone demo called Xokoban. We will release it in parallel on the Android Market and iTunes AppStore. Stay tuned.
-        </p>
-        <div class="date">May 8th 2009</div>
-        <h1>Website updates</h1>
-        <p>
-          Our homepage got a few important updates and clean-ups. As you can see we now have a news section on the front-page. The <a href="../android">Android-to-iPhone section</a> has also been updated.
-        </p>
+
+<?php
+  $doc = new DOMDocument();
+  $doc->load('http://sourceforge.net/export/rss2_projnews.php?group_id=200328');
+  $arrFeeds = array();
+  $count = 0;
+  foreach ($doc->getElementsByTagName('item') as $node) {
+      # Set the maximum amount of new we want to show.
+      if ($count++ >= 5) {
+        break;
+      }
+      $title = $node->getElementsByTagName('title')->item(0)->nodeValue;
+      $description = $node->getElementsByTagName('description')->item(0)->nodeValue;
+      $date = $node->getElementsByTagName('pubDate')->item(0)->nodeValue;
+      $date = date_parse($date);
+      $dateStr = $date["day"]." ".date("M", mktime(0, 0, 0, $date["month"], 1, 2009))." ".$date["year"];
+?>
+
+        <div class="date"><?echo($dateStr);?></div>
+        <h1><? echo($title);?></h1>
+        <p><? echo($description);?></p>
+<?php
+ }
+?>
       </div>
     </td>
   </tr>

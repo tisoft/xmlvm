@@ -113,6 +113,7 @@ sub {
 
 .news_item p {
   font-size:10px;
+  text-align:left !important;
 }
 
 .news_item .date {
@@ -130,7 +131,8 @@ sub {
   font-size: 18px;
   color:white;
   text-align:center;
-  padding:13px 0;
+  padding-top:13px;
+  margin-bottom:-13px;
   margin-left:auto;
   margin-right:auto;
 }
