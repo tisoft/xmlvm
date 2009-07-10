@@ -38,4 +38,10 @@
 	}
     self.textAlignment = a;
 }
+
+- (void) setFont___org_xmlvm_iphone_UIFont :(org_xmlvm_iphone_UIFont*) font
+{
+	[self setFont: font];
+}
+
 @end

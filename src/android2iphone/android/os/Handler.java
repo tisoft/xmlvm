@@ -36,9 +36,9 @@ public class Handler {
         return true;
     }
 
-    public void post(Runnable runnable) {
-        // TODO Auto-generated method stub
-        
+    public void post(Runnable r) {
+        this.toRun = r;
+        timer = new NSTimer(0f, this, "run", null, false);
     }
 
     public void removeCallbacks(Runnable runnable) {

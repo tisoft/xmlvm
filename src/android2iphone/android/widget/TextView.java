@@ -21,6 +21,7 @@
 package android.widget;
 
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UILabel;
 
 import android.content.Context;
@@ -38,7 +39,7 @@ public class TextView extends View {
         uiLabel = new UILabel();
         
         // TODO Set default color white
-//        uiLabel.setFontColor(new Color(0xffffff));
+        //uiLabel.setFontColor(new Color(0xffffff));
         
         this.addSubview(uiLabel);
     }
@@ -68,6 +69,7 @@ public class TextView extends View {
     }
 
     public void setTextSize(float size) {
-        // TODO Auto-generated method stub        
+        UIFont font = uiLabel.getFont();
+        uiLabel.setFont(font.fontWithSize(size));
     }
 }

@@ -9,6 +9,7 @@ public class UILabel extends UIView {
 
     private String text;
     private Font   font;
+    private UIFont uiFont;
     private Color  fontColor;
     private Color  shadowColor;
     private CGSize shadowOffset;
@@ -28,6 +29,7 @@ public class UILabel extends UIView {
         // Set a default font
         setFont(new Font("Arial", Font.PLAIN, 16));
         setFontColor(Color.BLACK);
+        setFont(new UIFont());
         setBackgroundColor(Color.WHITE);
         setTextAlignment(UITextAlignment.UITextAlignmentLeft);
         setText("");
@@ -42,6 +44,14 @@ public class UILabel extends UIView {
     public void setFont(Font font) {
         this.font = font;
         this.setNeedsDisplay();
+    }
+
+    public void setFont(UIFont font) {
+        this.uiFont = font;
+    }
+
+    public UIFont getFont() {
+        return this.uiFont;
     }
 
     // TODO should be called setTextColor
@@ -86,12 +96,12 @@ public class UILabel extends UIView {
             break;
         }
         y += ((int) frame.size.height - height) / 2 + height - descent;
-        
+
         if (shadowColor != null) {
             g.setColor(shadowColor);
             g.drawString(text, x + shadowOffset.width, y + shadowOffset.height);
         }
-        
+
         g.setColor(fontColor);
         g.drawString(text, x, y);
         this.restoreLastTransform();

@@ -1,5 +1,6 @@
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_CGRect.h"
+#import "org_xmlvm_iphone_UIFont.h"
 
 // UITextLabel
 //----------------------------------------------------------------------------
@@ -9,4 +10,5 @@ typedef UILabel org_xmlvm_iphone_UILabel;
 - (void) __init_org_xmlvm_iphone_UILabel___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;
 - (void) setText___java_lang_String :(NSString*)n1;
 - (void) setTextAlignment___int :(int) alignment;
+- (void) setFont___org_xmlvm_iphone_UIFont :(org_xmlvm_iphone_UIFont*) font;
 @end
