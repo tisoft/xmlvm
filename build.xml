@@ -26,6 +26,7 @@
 	<property name="xmlvm.widgets" value="build/widgets" />
 
 	<property name="xmlvm.afireworks" value="build/demo/android/afireworks" />
+	<property name="xmlvm.aremote" value="build/demo/android/aremote" />
 	<property name="xmlvm.xokoban" value="build/demo/android/xokoban" />
 
 
@@ -443,6 +444,44 @@
 				<include name="star*.png" />
 			</fileset>
 		</copy>
+	</target>
+
+	<target name="sim-aremote" depends="build-android-compat-lib">
+		<mkdir dir="${xmlvm.aremote}" />
+		<javac srcdir="./demo/android/aremote" destdir="${xmlvm.aremote}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+				<pathelement location="${xmlvm.libjars}/android-compat.jar" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+	</target>
+
+	<target name="sim-aremote-jar" depends="sim-aremote">
+		<mkdir dir="${xmlvm.demo}/android/aremote/java" />
+		<jar destfile="${xmlvm.demo}/android/aremote/java/aremote.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Implementation-Vendor" value="xmlvm.org" />
+				<attribute name="Main-Class" value="org.xmlvm.iphone.internal.AndroidAppLauncher" />
+				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../lib/android-compat.jar" />
+			</manifest>
+			<fileset dir="${xmlvm.aremote}" />
+			<fileset dir="var/iphone">
+				<include name="*.png/" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="cc-sim-aremote" depends="sim-aremote">
+		<mkdir dir="${xmlvm.demo}/android/aremote/iphone" />
+
+		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
+			<arg value="--out=${xmlvm.demo}/android/aremote/iphone" />
+			<arg value="--target=android-on-iphone" />
+			<arg value="--iphone-app=aRemote" />
+			<arg value="--in=${xmlvm.aremote}/" />
+		</java>
 	</target>
 
 	<target name="sim-xokoban" depends="build-android-compat-lib">
