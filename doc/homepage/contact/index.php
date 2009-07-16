@@ -22,20 +22,20 @@
 <script type="text/javascript">
 <!--
   var arno = 'Arno Puder &lt;arno<b>';
-  arno += '&#64;</b>puder&#46';
+  arno += '&#64;</b>xmlvm&#46';
   arno += ';&#111;rg&gt; (Developer)';
 
-  var sascha = 'Sascha Haeberling &lt;mail<b>';
-  sascha += '&#64;</b>sascha-haeberling&#46';
-  sascha += 'com&gt; (Developer)';
+  var sascha = 'Sascha Haeberling &lt;sascha<b>';
+  sascha += '&#64;</b>xmlvm&#46';
+  sascha += ';&#111;rg&gt; (Developer)';
   
-  var frusty = 'Wolfgang Korn &lt;wolfgang.korn<b>';
-  frusty += '&#64;</b>gmx&#46';
-  frusty += ';&#100;e&gt; (Developer)';
+  var frusty = 'Wolfgang Korn &lt;frusty<b>';
+  frusty += '&#64;</b>xmlvm&#46';
+  frusty += ';&#111;rg&gt; (Developer)';
   
-  var leigh = 'Leigh Jin &lt;leigh.jin<b>';
-  leigh += '&#64;</b>gmail&#46';
-  leigh += 'com&gt; (Business Development)';
+  var leigh = 'Leigh Jin &lt;leigh<b>';
+  leigh += '&#64;</b>xmlvm&#46';
+  leigh += ';&#111;rg&gt; (Business Development)';
   
   var jessica = 'Jessica Lee &lt;jeslucas<b>';
   jessica += '&#64;</b>hotmail&#46';
