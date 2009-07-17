@@ -510,6 +510,13 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     <xsl:text>; break }</xsl:text>
 </xsl:template>
 
+<!-- iflt -->
+<xsl:template match="jvm:iflt">
+    <xsl:text>
+            if (__stack[--__sp] &lt; 0) { __next_label = </xsl:text>
+    <xsl:value-of select="@label"/>
+    <xsl:text>; break }</xsl:text>
+</xsl:template>
 
 <!-- ifne -->
 <xsl:template match="jvm:ifne">
@@ -553,6 +560,14 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>
           __value = __stack[--__sp];
           __stack[__sp++] = __value * (-1);
+   </xsl:text>
+</xsl:template>
+
+<!-- fneg  TODO: if most neg value, result must be most neg value again-->
+<xsl:template match="jvm:fneg">
+  <xsl:text>
+          __value = __stack[--__sp];
+          __stack[__sp++] = __value * (-1.0);
    </xsl:text>
 </xsl:template>
 

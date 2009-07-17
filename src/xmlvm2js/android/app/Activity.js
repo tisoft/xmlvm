@@ -1,11 +1,14 @@
 qx.Class.define("android_app_Activity", {
-  extend: java_lang_Object,
+  extend: android_content_Context, // TODO not quite right base class
   construct: function() {
     this.base(arguments);
     this.qxComposite = new qx.ui.container.Composite(new qx.ui.layout.Basic());
     // TODO: Hardcoded
     this.qxComposite.setUserBounds(0, 0, 320, 480);
-    window.qxApp.getRoot().add(this.qxComposite);
+    // Android has a black background as default
+    this.qxComposite.setBackgroundColor("black");
+    //window.qxApp.getRoot().add(this.qxComposite);
+    qx.core.Init.getApplication().getRoot().add(this.qxComposite);
   },  
   members: {
     qxComposite: 0,
@@ -13,6 +16,16 @@ qx.Class.define("android_app_Activity", {
     },
     $setContentView___android_view_View: function(view) {
       this.qxComposite.add(view.getQX(), {});
+    },
+    $requestWindowFeature___int: function(feature) {
+    	// TODO
+    },
+    $getWindow: function() {
+    	// TODO
+    	return new android_view_Window();
+    },
+    $getWindowManager: function() {
+    	return new android_view_WindowManager();
     }
   }
 });

@@ -1,5 +1,5 @@
 qx.Class.define("android_widget_AbsoluteLayout", {
-  extend: java_lang_Object,
+  extend: android_view_ViewGroup,
   construct: function() {
     this.base(arguments);
     this.qxComposite = new qx.ui.container.Composite(new qx.ui.layout.Basic());

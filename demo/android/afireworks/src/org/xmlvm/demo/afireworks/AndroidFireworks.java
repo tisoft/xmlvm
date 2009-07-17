@@ -168,4 +168,11 @@ public class AndroidFireworks extends Activity {
         public int   windowHeight = 10;
         public int   windowWidth  = 10;
     }
+
+    /* Entry point for PalmPre */
+    public static void main(String[] args) {
+        AndroidFireworks app = new AndroidFireworks();
+        app.onContentChanged();
+        app.onCreate(null);
+    }
 }

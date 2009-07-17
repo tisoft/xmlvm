@@ -6,6 +6,7 @@ qx.Class.define("java_awt_Frame", {
 			console.log("Embedding Window into XML11_ROOT");
 			this.xml11Embeded = true;
 			this.qxComponent = new qx.ui.container.Composite(new qx.ui.layout.Basic());
+			qx.core.Init.getApplication().getRoot().add(this.qxComponent);
 			this.anchor.id = "XML11_ROOT_OCCUPIED";
 		}else{
 			this.xml11Embeded = false;
