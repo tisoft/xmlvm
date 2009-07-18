@@ -2,12 +2,7 @@ qx.Class.define("android_widget_ImageView", {
   extend: java_lang_Object,
   construct: function() {
     this.base(arguments);
-    android_widget_ImageView.rnd = (android_widget_ImageView.rnd + 1) % 4;
-    this.qxImage = new qx.ui.basic.Image("star" + (android_widget_ImageView.rnd + 1) + ".png");
-	this.qxImage.setZIndex(0);
-  },
-  statics: {
-	  rnd: 0
+    this.qxImage = new qx.ui.basic.Image(null);
   },
   members: {
     qxImage: 0,
@@ -38,7 +33,8 @@ qx.Class.define("android_widget_ImageView", {
     	return p;
     },
     $setImageResource___int: function(resId) {
-    	// TODO
+        android_internal_ResourceMapper.setImageWithId(this.qxImage, resId);
+    	//this.qxImage.setZIndex(0);
     }
   }
 });

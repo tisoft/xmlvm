@@ -59,13 +59,41 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     <xsl:for-each select="vm:field[count(@isStatic)=1 and @isStatic='true']">
 			<xsl:text>,
     $</xsl:text>
-			<xsl:value-of select="@name" /><xsl:text>: 0</xsl:text>
+			<xsl:value-of select="@name" /><xsl:text>: </xsl:text>
+			<xsl:value-of select="if (@value) then @value else 0"/>
 	</xsl:for-each>
 	<xsl:for-each select="vm:method[count(@isStatic)=1 and @isStatic='true']">
 			<xsl:text>,
 </xsl:text>
 			<xsl:apply-templates select="."/>
 	</xsl:for-each>
+	<xsl:if test="@extends = 'android.app.Activity'">
+	  <xsl:text>,
+    $main___java_lang_String_ARRAYTYPE: function(args) {
+        new </xsl:text>
+      <xsl:call-template name="getPackgePlusClassName">
+	    <xsl:with-param name="package" select="@package"/>
+	    <xsl:with-param name="classname" select="'R$drawable'"/>
+	  </xsl:call-template>
+	  <xsl:text>();
+	    </xsl:text>
+      <xsl:call-template name="getPackgePlusClassName">
+	    <xsl:with-param name="package" select="@package"/>
+	    <xsl:with-param name="classname" select="@name"/>
+	  </xsl:call-template>
+        <xsl:text>.initClass();
+        var app = new </xsl:text>
+	  <xsl:call-template name="getPackgePlusClassName">
+	    <xsl:with-param name="package" select="@package"/>
+	    <xsl:with-param name="classname" select="@name"/>
+	  </xsl:call-template>
+	  <xsl:text>();
+	    app.$$init_();
+        app.$onContentChanged();
+        app.$onCreate___android_os_Bundle([]);
+    }
+</xsl:text>
+	</xsl:if>
 <xsl:text>
   }, //statics
 
@@ -77,7 +105,8 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 			</xsl:if>
 			<xsl:text>
     $</xsl:text>
-			<xsl:value-of select="@name" /><xsl:text>: 0</xsl:text>
+			<xsl:value-of select="@name" /><xsl:text>: </xsl:text>
+			<xsl:value-of select="if (@value) then @value else 0"/>
 	</xsl:for-each>
     <xsl:for-each select="vm:method[count(@isStatic)=0 or @isStatic='false']">
 		<!-- Only if there are non-static vm:fields, add the comma in front of the first non-static method-->
