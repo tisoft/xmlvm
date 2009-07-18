@@ -20,15 +20,7 @@
  * http://www.xml11.org/xmlvm/
  */
 
-
-
 package org.xmlvm;
-
-/*
- * Created on Jul 3, 2004
- */
-
-
 
 import java.util.Date;
 import java.util.Hashtable;

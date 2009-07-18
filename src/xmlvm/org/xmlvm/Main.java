@@ -23,19 +23,7 @@ package org.xmlvm;
 import edu.arizona.cs.mbel.mbel.ClassParser;
 import edu.arizona.cs.mbel.mbel.Module;
 
-import  org.apache.bcel.Constants;
-
 import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.generic.ASTORE;
-import org.apache.bcel.generic.ALOAD;
-import org.apache.bcel.generic.ARETURN;
-import org.apache.bcel.generic.InstructionConstants;
-import org.apache.bcel.generic.InstructionFactory;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.ClassGen;
-
-import org.apache.bcel.generic.LocalVariableGen;
-
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -68,8 +56,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-
-
 
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;

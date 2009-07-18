@@ -1,6 +1,5 @@
 /*
- * XMLVM --- An XML-based Programming Language Copyright (c) 2004-2005 by Arno
- * Puder
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
  * 
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -16,26 +15,89 @@
  * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
  * Ave, Cambridge, MA 02139, USA.
  * 
- * For more information, visit the XMLVM Home Page at
- * http://www.xml11.org/xmlvm/
- */
-
-/*
- * Created on Mar 21, 2005 by Arno
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
 package org.xmlvm;
 
+import edu.arizona.cs.mbel.instructions.ADD;
+import edu.arizona.cs.mbel.instructions.ADD_OVF;
+import edu.arizona.cs.mbel.instructions.BGE;
+import edu.arizona.cs.mbel.instructions.BGT;
+import edu.arizona.cs.mbel.instructions.BLE;
+import edu.arizona.cs.mbel.instructions.BLT;
+import edu.arizona.cs.mbel.instructions.BNE_UN;
+import edu.arizona.cs.mbel.instructions.BOX;
+import edu.arizona.cs.mbel.instructions.BR;
+import edu.arizona.cs.mbel.instructions.BRFALSE;
+import edu.arizona.cs.mbel.instructions.BRTRUE;
+import edu.arizona.cs.mbel.instructions.BranchInstruction;
+import edu.arizona.cs.mbel.instructions.CALL;
+import edu.arizona.cs.mbel.instructions.CALLVIRT;
+import edu.arizona.cs.mbel.instructions.CASTCLASS;
+import edu.arizona.cs.mbel.instructions.CEQ;
+import edu.arizona.cs.mbel.instructions.CGT;
+import edu.arizona.cs.mbel.instructions.CLT;
+import edu.arizona.cs.mbel.instructions.CONV;
+import edu.arizona.cs.mbel.instructions.DIV;
+import edu.arizona.cs.mbel.instructions.DUP;
+import edu.arizona.cs.mbel.instructions.Instruction;
+import edu.arizona.cs.mbel.instructions.InstructionHandle;
+import edu.arizona.cs.mbel.instructions.LDARG;
+import edu.arizona.cs.mbel.instructions.LDC;
+import edu.arizona.cs.mbel.instructions.LDELEM;
+import edu.arizona.cs.mbel.instructions.LDFLD;
+import edu.arizona.cs.mbel.instructions.LDFTN;
+import edu.arizona.cs.mbel.instructions.LDLEN;
+import edu.arizona.cs.mbel.instructions.LDLOC;
+import edu.arizona.cs.mbel.instructions.LDLOCA;
+import edu.arizona.cs.mbel.instructions.LDNULL;
+import edu.arizona.cs.mbel.instructions.LDSFLD;
+import edu.arizona.cs.mbel.instructions.LDSTR;
+import edu.arizona.cs.mbel.instructions.MUL;
+import edu.arizona.cs.mbel.instructions.NEWARR;
+import edu.arizona.cs.mbel.instructions.NEWOBJ;
+import edu.arizona.cs.mbel.instructions.NOP;
+import edu.arizona.cs.mbel.instructions.POP;
+import edu.arizona.cs.mbel.instructions.REM;
+import edu.arizona.cs.mbel.instructions.RET;
+import edu.arizona.cs.mbel.instructions.STARG;
+import edu.arizona.cs.mbel.instructions.STELEM;
+import edu.arizona.cs.mbel.instructions.STFLD;
+import edu.arizona.cs.mbel.instructions.STLOC;
+import edu.arizona.cs.mbel.instructions.STSFLD;
+import edu.arizona.cs.mbel.instructions.SUB;
+import edu.arizona.cs.mbel.mbel.AbstractTypeReference;
+import edu.arizona.cs.mbel.mbel.Field;
+import edu.arizona.cs.mbel.mbel.FieldRef;
+import edu.arizona.cs.mbel.mbel.Method;
+import edu.arizona.cs.mbel.mbel.MethodBody;
+import edu.arizona.cs.mbel.mbel.MethodDefOrRef;
+import edu.arizona.cs.mbel.mbel.MethodRef;
+import edu.arizona.cs.mbel.mbel.Module;
+import edu.arizona.cs.mbel.mbel.NestedTypeRef;
+import edu.arizona.cs.mbel.mbel.TypeDef;
+import edu.arizona.cs.mbel.mbel.TypeRef;
+import edu.arizona.cs.mbel.signature.ClassTypeSignature;
+import edu.arizona.cs.mbel.signature.FieldAttributes;
+import edu.arizona.cs.mbel.signature.LocalVar;
+import edu.arizona.cs.mbel.signature.LocalVarList;
+import edu.arizona.cs.mbel.signature.MethodAttributes;
+import edu.arizona.cs.mbel.signature.MethodSignature;
+import edu.arizona.cs.mbel.signature.ParameterSignature;
+import edu.arizona.cs.mbel.signature.ReturnTypeSignature;
+import edu.arizona.cs.mbel.signature.SZArrayTypeSignature;
+import edu.arizona.cs.mbel.signature.SignatureConstants;
+import edu.arizona.cs.mbel.signature.TypeAttributes;
+import edu.arizona.cs.mbel.signature.TypeSignature;
+import edu.arizona.cs.mbel.signature.ValueTypeSignature;
+
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.Namespace;
+
 import java.util.Date;
 import java.util.Hashtable;
-
-import org.jdom.*;
-
-import sun.reflect.Reflection;
-
-import edu.arizona.cs.mbel.instructions.*;
-import edu.arizona.cs.mbel.mbel.*;
-import edu.arizona.cs.mbel.signature.*;
 
 
 

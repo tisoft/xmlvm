@@ -1,6 +1,5 @@
 /*
- * XMLVM --- An XML-based Programming Language Copyright (c) 2004-2005 by Arno
- * Puder
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
  * 
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -16,12 +15,7 @@
  * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
  * Ave, Cambridge, MA 02139, USA.
  * 
- * For more information, visit the XMLVM Home Page at
- * http://www.xml11.org/xmlvm/
- */
-
-/*
- * Created on Aug 2, 2007 by Ilias
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
 package org.xmlvm;
