@@ -9,11 +9,9 @@ qx.Class.define("android_app_Activity", {
     this.qxComposite.setBackgroundColor("black");
     //window.qxApp.getRoot().add(this.qxComposite);
     qx.core.Init.getApplication().getRoot().add(this.qxComposite);
-    // TODO hack
-    android_app_Activity.theActivity = "org_xmlvm_demo_afireworks_AndroidFireworks";
   },
   statics: {
-	  theActivity: 0
+	  theActivityClassName: 0
   },
   members: {
     qxComposite: 0,

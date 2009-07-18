@@ -70,6 +70,10 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 	<xsl:if test="@extends = 'android.app.Activity'">
 	  <xsl:text>,
     $main___java_lang_String_ARRAYTYPE: function(args) {
+      // Dummy main.
+    },
+    launchActivity: function(sceneAssistant) {
+        android_internal_SceneAssistant.theSceneAssistant = sceneAssistant;
         new </xsl:text>
       <xsl:call-template name="getPackgePlusClassName">
 	    <xsl:with-param name="package" select="@package"/>
@@ -82,6 +86,12 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 	    <xsl:with-param name="classname" select="@name"/>
 	  </xsl:call-template>
         <xsl:text>.initClass();
+        android_app_Activity.theActivityClassName = "</xsl:text>
+      <xsl:call-template name="getPackgePlusClassName">
+	    <xsl:with-param name="package" select="@package"/>
+	    <xsl:with-param name="classname" select="@name"/>
+	  </xsl:call-template>
+      <xsl:text>";
         var app = new </xsl:text>
 	  <xsl:call-template name="getPackgePlusClassName">
 	    <xsl:with-param name="package" select="@package"/>

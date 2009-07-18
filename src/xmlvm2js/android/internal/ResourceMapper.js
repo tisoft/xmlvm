@@ -16,7 +16,7 @@ qx.Class.define("android_internal_ResourceMapper", {
 	     image.setSource(fileName);
      },
      findVariableById: function(resourceId) {
-    	 var activityPackageName = android_app_Activity.theActivity;
+    	 var activityPackageName = android_app_Activity.theActivityClassName;
     	 var i = activityPackageName.lastIndexOf('_');
          activityPackageName = activityPackageName.substring(0, i);
 
