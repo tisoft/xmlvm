@@ -16,7 +16,7 @@ pre, code {base-200612.css (line 62)
   font-size:100%;
 }
 </style>
-<h1>Individual Contributors License</h1>
+<h1>Individual Contributor License Agreement</h1>
 
 <h2 class="title">XMLVM<br/> 
   Individual Contributor License Agreement ("Agreement"), v1.0</h2> 
@@ -175,42 +175,42 @@ Please sign: __________________________________ Date: ________________
 <h2>Sign Electronically</h2> 
 <p>Alternatively to sending by postal mail, email, or fax, you may also choose to sign the form electronically:</p> 
  
-<form action="http://www.xmlvm.org/contribute/cla/submit.php" method="POST"> 
+<form action="http://www.xmlvm.org/contribute/submit_cla.php" method="POST"> 
  
 <table id="cla_form"> 
 <tr valign="top"> 
-<td align="right">Full name:</td> 
-<td><input type="text" name="single:0" /></td> 
+<td align="right">Full Name:</td> 
+<td><input type="text" name="fullname" /></td> 
 </tr> 
  
 <tr valign="top"> 
 <td align="right">E-Mail:</td> 
-<td><input type="text" name="single:1" /></td> 
+<td><input type="text" name="email" /></td> 
 </tr> 
  
 <tr valign="top"> 
 <td align="right">Mailing Address:</td> 
-<td><textarea class="ss-q-long" name="single:2" rows="4" cols="40"></textarea></td> 
+<td><textarea class="ss-q-long" name="address" rows="4" cols="40"></textarea></td> 
 </tr> 
  
 <tr valign="top"> 
 <td align="right">Country:</td> 
-<td><input type="text" name="single:3" /></td> 
+<td><input type="text" name="country" /></td> 
 </tr> 
  
 <tr valign="top"> 
 <td align="right">Telephone Number:</td> 
-<td><input type="text" name="single:5" /></td> 
+<td><input type="text" name="telephone" /></td> 
 </tr> 
  
 <tr valign="top"> 
 <td align="right">Fax Number:</td> 
-<td><input type="text" name="single:4" /> <em>(optional)</em></td> 
+<td><input type="text" name="fax" /> <em>(optional)</em></td> 
 </tr> 
  
 <tr valign="top"> 
 <td align="right">Electronic Signature:</td> 
-<td><input type="text" name="single:6" /> Type "<b>I AGREE</b>" to accept the terms above.</td> 
+<td><input type="text" name="signature" /> Type "<b>I AGREE</b>" to accept the terms above.</td> 
 </tr> 
  
 <tr valign="top"> 
