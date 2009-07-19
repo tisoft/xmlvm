@@ -71,6 +71,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 	  <xsl:text>,
     $main___java_lang_String_ARRAYTYPE: function(args) {
       // Dummy main.
+      //org_xmlvm_demo_afireworks_AndroidFireworks.launchActivity(null);
     },
     launchActivity: function(sceneAssistant) {
         android_internal_SceneAssistant.theSceneAssistant = sceneAssistant;

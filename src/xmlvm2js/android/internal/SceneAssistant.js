@@ -4,9 +4,11 @@ qx.Class.define("android_internal_SceneAssistant", {
   	this.base(arguments);
   },
   statics: {
-	  theSceneAssistant: 0,
+	  theSceneAssistant: null,
 	  enableFullScreenMode: function(flag) {
-          android_internal_SceneAssistant.theSceneAssistant.enableFullScreenMode(flag);
+	      if (android_internal_SceneAssistant.theSceneAssistant) {
+              android_internal_SceneAssistant.theSceneAssistant.controller.enableFullScreenMode(flag);
+	      }
       }
   }
 });
