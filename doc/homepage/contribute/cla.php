@@ -2,20 +2,6 @@
   include("../header.html");
   include("../content_top.html");
 ?>
-<style>
-pre {base-200612.css (line 68)
-  background-color:#F5F5F5;
-  border:1px solid silver;
-  margin:2em;
-  overflow:auto;
-  padding:0.5em;
-}
-pre, code {base-200612.css (line 62)
-  color:#007000;
-  font-family:"bogus font here",monospace;
-  font-size:100%;
-}
-</style>
 <h1>Individual Contributor License Agreement</h1>
 
 <h2 class="title">XMLVM<br/> 
@@ -48,7 +34,7 @@ done so, please complete and send an original signed Agreement to</p>
 Please read this document carefully before signing and keep a copy for
 your records.</p> 
  
-<pre> 
+<pre class="code"> 
  
    Full name: ____________________________  E-Mail: ______________________
    
@@ -162,13 +148,10 @@ behalf of a third-party: [named here]".</p></li>
 <li><p>You agree to notify XMLVM of any facts or circumstances of
 which you become aware that would make these representations
 inaccurate in any respect.</p></li> 
- 
 </ol> 
  
  
-<pre> 
- 
- 
+<pre class="code"> 
 Please sign: __________________________________ Date: ________________
 </pre> 
  

@@ -2,25 +2,6 @@
   include("../header.html");
   include("../content_top.html");
 ?>
-<style>
-pre {
-  font-size:9pt;
-  color:#070;
-  font-family:monospace, courier;
-  display:inline;
-}
-
-pre.code {
-	background-color:#EEE;
-	border:1px solid #BBB;
-	font-size:9pt;
-	line-height:125%;
-	margin:1em 0;
-	overflow:auto;
-	padding:1em;
-	display:block;
-}
-</style>
 <h1>Contribute</h1>
 
 <h2 class="title">Making XMLVM better</h2> 
