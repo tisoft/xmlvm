@@ -3,12 +3,15 @@ qx.Class.define("android_view_Display", {
   construct: function() {
   	this.base(arguments);
   },
+  statics: {
+	  orientation: 1
+  },
   members: {
 	$getWidth: function() {
-	    return 320;
+	    return android_view_Display.orientation == 0 /* SCREEN_ORIENTATION_LANDSCAPE */ ? 480 : 320;
     },
     $getHeight: function() {
-	    return 480;
+	    return android_view_Display.orientation == 0 /* SCREEN_ORIENTATION_LANDSCAPE */ ? 320 : 480;
     }
   }
 });

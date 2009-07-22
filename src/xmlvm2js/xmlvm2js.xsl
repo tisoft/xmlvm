@@ -71,7 +71,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 	  <xsl:text>,
     $main___java_lang_String_ARRAYTYPE: function(args) {
       // Dummy main.
-      //org_xmlvm_demo_afireworks_AndroidFireworks.launchActivity(null);
+      org_xmlvm_demo_xokoban_Xokoban.launchActivity(null);
     },
     launchActivity: function(sceneAssistant) {
         android_internal_SceneAssistant.theSceneAssistant = sceneAssistant;
@@ -379,6 +379,52 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:value-of select="@label"/>
   <xsl:text>; break;</xsl:text>
 </xsl:template>  
+
+
+<xsl:template match="jvm:lookupswitch">
+  <xsl:text>    __op1 = __stack[--__sp];
+    switch (__op1) {</xsl:text>
+  <xsl:for-each select="jvm:case">
+    <xsl:text>
+        case </xsl:text>
+    <xsl:value-of select="@key"/>
+    <xsl:text>: __next_label = </xsl:text>
+    <xsl:value-of select="@label"/>
+    <xsl:text>; break;</xsl:text>
+  </xsl:for-each>
+  <xsl:if test="jvm:default">
+    <xsl:text>
+        default: __next_label = </xsl:text>
+    <xsl:value-of select="jvm:default/@label"/>
+    <xsl:text>; break;</xsl:text>
+  </xsl:if>
+  <xsl:text>
+    }
+    break;
+</xsl:text>
+</xsl:template>
+
+
+
+<xsl:template match="jvm:tableswitch">
+  <xsl:text>    __op1 = __stack[--__sp];
+    switch(__op1) {
+    </xsl:text>
+  <xsl:for-each select="jvm:case">
+    <xsl:text>case </xsl:text>
+    <xsl:value-of select="../@min + position() - 1"/>
+    <xsl:text>: __next_label = </xsl:text>
+    <xsl:value-of select="@label"/>
+    <xsl:text>; break;
+    </xsl:text>
+  </xsl:for-each>
+  <xsl:text>default: __next_label = </xsl:text>
+  <xsl:value-of select="jvm:default/@label"/>
+  <xsl:text>; break;
+    }
+    break;
+</xsl:text>
+</xsl:template>
 
 
 

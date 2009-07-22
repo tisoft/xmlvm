@@ -5,7 +5,12 @@ qx.Class.define("android_content_Context", {
   },
   members: {
 	$getSystemService___java_lang_String: function(service) {
-    	return new android_hardware_SensorManager();
+    	if (service.$str == "sensor") {
+    		return new android_hardware_SensorManager();
+    	}
+    	if (service.$str == "power") {
+    		return new android_os_PowerManager();
+    	}
     }
   }
 });

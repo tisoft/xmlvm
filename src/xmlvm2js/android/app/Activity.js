@@ -15,6 +15,8 @@ qx.Class.define("android_app_Activity", {
   },
   members: {
     qxComposite: 0,
+    $onContentChanged: function() {
+    },
     $onCreate___android_os_Bundle: function(bundle) {
     },
     $setContentView___android_view_View: function(view) {
@@ -23,12 +25,22 @@ qx.Class.define("android_app_Activity", {
     $requestWindowFeature___int: function(feature) {
     	// TODO
     },
+    $setRequestedOrientation___int: function(orientation) {
+    	// TODO
+    	android_view_Display.orientation = orientation;
+    	if (orientation == 0 /* SCREEN_ORIENTATION_LANDSCAPE */) {
+    		this.qxComposite.setUserBounds(0, 0, 480, 320);
+    	}
+    },
     $getWindow: function() {
     	// TODO
     	return new android_view_Window();
     },
     $getWindowManager: function() {
     	return new android_view_WindowManager();
+    },
+    $getPreferences___int: function(mode) {
+    	return new android_content_SharedPreferences();
     }
   }
 });
