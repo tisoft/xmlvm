@@ -35,6 +35,12 @@ qx.Class.define("android_app_AlertDialog", {
     },
 
     $show: function() {
+    	  if (android_internal_MojoProxy.theSceneAssistant) {
+    		  android_internal_MojoProxy.showAlertDialog(this);
+    		  return;
+    	  }
+    	  /*
+    	   // QX version
           var layout = new qx.ui.layout.VBox();
           layout.setSpacing(10);
           this.popup = new qx.ui.popup.Popup(layout);
@@ -81,9 +87,14 @@ qx.Class.define("android_app_AlertDialog", {
             }
 
 	      this.popup.show();
+	      */
     },
     $dismiss: function() {
-    	this.popup.hide();
+    	/*
+    	if (this.popup != 0) {
+    	    this.popup.hide();
+    	}
+    	*/
     }
 
   }

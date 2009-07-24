@@ -71,10 +71,11 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 	  <xsl:text>,
     $main___java_lang_String_ARRAYTYPE: function(args) {
       // Dummy main.
-      org_xmlvm_demo_xokoban_Xokoban.launchActivity(null);
+      //org_xmlvm_demo_xokoban_Xokoban.launchActivity(null, null);
     },
-    launchActivity: function(sceneAssistant) {
-        android_internal_SceneAssistant.theSceneAssistant = sceneAssistant;
+    launchActivity: function(stageAssistant, sceneAssistant) {
+        android_internal_MojoProxy.theStageAssistant = stageAssistant;
+        android_internal_MojoProxy.theSceneAssistant = sceneAssistant;
         new </xsl:text>
       <xsl:call-template name="getPackgePlusClassName">
 	    <xsl:with-param name="package" select="@package"/>

@@ -30,6 +30,7 @@ qx.Class.define("android_app_Activity", {
     	android_view_Display.orientation = orientation;
     	if (orientation == 0 /* SCREEN_ORIENTATION_LANDSCAPE */) {
     		this.qxComposite.setUserBounds(0, 0, 480, 320);
+    		android_internal_MojoProxy.setWindowOrientation('left');
     	}
     },
     $getWindow: function() {

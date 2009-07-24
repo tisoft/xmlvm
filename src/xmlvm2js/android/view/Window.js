@@ -7,7 +7,7 @@ qx.Class.define("android_view_Window", {
 	  $setFlags___int_int: function(flags, mask) {
 	      var maskedFlags = (flags & mask);
 	      if ((maskedFlags & 1024 /*WindowManager.LayoutParams.FLAG_FULLSCREEN*/) != 0) {
-	          android_internal_SceneAssistant.enableFullScreenMode(true);
+	          android_internal_MojoProxy.enableFullScreenMode(true);
           }
       }
   }
