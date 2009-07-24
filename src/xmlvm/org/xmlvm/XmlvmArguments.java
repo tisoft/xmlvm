@@ -30,6 +30,7 @@ package org.xmlvm;
  * @author Sascha Haeberling
  * 
  */
+@Deprecated
 public class XmlvmArguments {
   // The arguments that are given by the user on the command line.
   public static final String ARG_JS = "--js";
