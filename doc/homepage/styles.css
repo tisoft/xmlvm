@@ -33,6 +33,7 @@ img {
   margin-top:0px;
   background-image:url(content_background.jpg);
   background-repeat:repeat-y;
+  background-color:#FFF;
   border:0px none;
   padding:0px;
 }
@@ -139,4 +140,22 @@ sub {
 
 .rounded_rectangle a {
   color:white;
+}
+
+pre {
+  font-size:9pt;
+  color:#070;
+  font-family:monospace, courier;
+  display:inline;
+}
+
+pre.code {
+	background-color:#EEE;
+	border:1px solid #BBB;
+	font-size:9pt;
+	line-height:125%;
+	margin:1em 0;
+	overflow:auto;
+	padding:1em;
+	display:block;
 }
