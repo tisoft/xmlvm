@@ -11,7 +11,9 @@
 	$telephone = $_POST["telephone"];
 	$fax = $_POST["fax"];
 	$signature = $_POST["signature"];
-	$stage = $_POST["stage"];
+	$stage = $_GET["stage"];
+	$successful = $_GET["successful"];
+  if ($stage != "2") {
 ?>
 <h1>Submit your Individual Contributor License Agreement</h1>
 
@@ -28,7 +30,7 @@ Please take a close look at the data below. If this is what you want to submit, 
 	<tr><td>Electronic Signature:</td><td><b><pre><?php echo($signature);?></pre></b></td></tr>
 </table>
 <br/><br/>
-<form action="http://www.xmlvm.org/contribute/submit_cla.php" method="POST">
+<form action="http://www.haeberling.de/xmlvm/submit_cla_2.php" method="POST">
 	<input type="hidden" name="fullname" value="<?php echo($fullName);?>"/>
 	<input type="hidden" name="email" value="<?php echo($email);?>" />
 	<input type="hidden" name="address" value="<?php echo($address);?>" />
@@ -36,11 +38,9 @@ Please take a close look at the data below. If this is what you want to submit, 
 	<input type="hidden" name="telephone" value="<?php echo($telephone);?>" />
 	<input type="hidden" name="fax" value="<?php echo($fax);?>" />
 	<input type="hidden" name="signature" value="<?php echo($signature);?>" />
-	<input type="hidden" name="stage" value="2">
 <?php
 $MSG_PREFIX = "<div style=\"color:red\">";
 $MSG_POSTFIX = "</div>";
-if ($stage != "2") {
 	$ok = true;
 	if (empty($fullName)) {
 		echo ($MSG_PREFIX . "Please enter your full name." . $MSG_POSTFIX);
@@ -80,30 +80,20 @@ if ($stage != "2") {
 </form>
 <?php
 	} else {
-		// Assemble a message and send it via e-mail.
-		$message = "A new CLA has been submitted:\n\n";
-		
-		// The form data
-		$message .= "Full Name : ".$fullName."\n";
-		$message .= "E-Mail    : ".$email."\n";
-		$message .= "Address   : ".$address."\n";
-		$message .= "Country   : ".$country."\n";
-		$message .= "Telephone : ".$telephone."\n";
-		$message .= "Fax       : ".$fax."\n";
-		$message .= "Signature : ".$signature."\n\n";
-		
-		// Extra information about the submitter.
-		$message .= "*** EXTRA INFORMATION ***\n";
-		$message .= "IP Address:".$_SERVER['REMOTE_ADDR']."\n";
-		
-		$headers = "From: license@xmlvm.org" . "\r\n" .
-		    	   "Reply-To: license@xmlvm.org" . "\r\n" .
-		           "X-Mailer: PHP/" . phpversion();
-		// Send the E-Mail containing the collected data.
-		mail('saschah@gmail.com', 'XMLVM CLA Submission', $message, $headers);
 ?>
 <h2>Confirmation</h2>
+<?php
+  if ($successful == "1") {
+?>
 Your data has been submitted. We will contact you shortly with a written confirmation. Thank you for helping us making XMLVM better!
+<?php
+  } else {
+?>
+Your submission could not be sent because of technical difficulties. Please contact us directly via <a href="mailto:license@xmlvm.org">license@xmlvm.org</a>
+<?php
+  }
+?>
+
 
 <?php
 	}
