@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Writes out instances of {@link OutputFile}.
+ * Writes out instances of {@link OutputFile}s.
  */
 public class OutputFileWriter {
     private List<OutputFile> outputFiles;
@@ -39,9 +39,17 @@ public class OutputFileWriter {
         this.outputFiles = outputFiles;
     }
 
+    /**
+     * Writes the files given in the constructor to the file system.
+     * 
+     * @return Whether the write process was successful.
+     */
     public boolean write() {
         boolean success = true;
         for (OutputFile outputFile : outputFiles) {
+            if (!createOutputDirectory(outputFile)) {
+                Log.error("Could not create directory for file: " + outputFile.getFileName());
+            }
             String pathAndName = outputFile.getLocation();
             if (!outputFile.getLocation().endsWith(File.separator)) {
                 pathAndName += File.separator;
@@ -55,7 +63,6 @@ public class OutputFileWriter {
                 DirectoryCopyOutput directoryCopy = (DirectoryCopyOutput) outputFile;
                 FileUtil.copyFiles(directoryCopy.getAffectedSourceFiles(), directoryCopy
                         .getLocation());
-
             } else {
                 try {
                     Log.debug("Writing file: " + pathAndName);
@@ -69,5 +76,28 @@ public class OutputFileWriter {
             }
         }
         return success;
+    }
+
+    /**
+     * Make sure that the directory, this file is written to, exists or is
+     * created.
+     * 
+     * @return Whether the directory exists or could be created.
+     */
+    private boolean createOutputDirectory(OutputFile outputFile) {
+        File location = new File(outputFile.getLocation());
+        if (location.exists()) {
+            if (location.isDirectory()) {
+                return true;
+            } else {
+                Log.error("Location is not a directory: " + outputFile.getLocation());
+                return false;
+            }
+        }
+        if (!location.mkdirs()) {
+            Log.error("Directory could not be created: " + outputFile.getLocation());
+            return false;
+        }
+        return true;
     }
 }
