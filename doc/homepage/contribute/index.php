@@ -19,7 +19,7 @@ The root for checking out the code is:
 
 <pre class="code">http://xmlvm.svn.sourceforge.net/svnroot/xmlvm/trunk/xmlvm</pre>
 
-If you want to checkout the code via the Subversion <pre>svn</pre> cient, use the following command:
+If you want to checkout the code via the Subversion <pre>svn</pre> client, use the following command:
 
 <pre class="code">svn co http://xmlvm.svn.sourceforge.net/svnroot/xmlvm/trunk/xmlvm xmlvm</pre>
 
@@ -123,14 +123,17 @@ To use this file go to your XMLVM project in Eclipse and choose: <pre>Project ->
 <br/><br/>
 Not everything is covered by these rules. For example, naming variables in a meaningful and compliant way is up to you. So please look around in the rest of the code to get a feel for how you should name classes, members and methods.
 
-<h3>Submitting a patch</h3>
-Before we can accept a patch, two things are important:<br/><br/>
-<h4>Contributors license agreement</h4>
+<h3>Contributors license agreement</h3>
+Before we can accept a patch, you need to sign a Contributor License Agreement.
 We need to have a <a href="http://www.xmlvm.org/contribute/cla.php">Contributor License Agreement</a> from you on file. Without it, your code cannot be submitted into the XMLVM repository. You only need to do this once.<br/><br/>
 In return we will grant you a GPL linking exception that will enable you to use XMLVM in a commercial product without having to place your own code under the GPL.
 <br/><br/>
-<h4>Code reviews</h4>
-The next step is submit your patch for a code review. A code review gives us the opportunity to take a close look at your contribution so we can make sure it doesn't contain major bugs and complies with our coding styles. In order to make this process easy, we host a code review portal which you can find here:
+
+<h3>Submitting a patch</h3>
+Before generating a patch, please first update your local work copy to the latest version of the Subversion repository in order to reduce the risk of conflicts. In Eclipse, right-click on the project name and then select <pre>Team -> Create patch...</pre>. Once you have generated the patch, you have two options to submit it. You can either simply email it to <pre>reviews@xmlvm.org</pre> or you can submit it through a hosted code reviewing tool.
+A code review gives us the opportunity to take a close look at your contribution so we can make sure it doesn't contain major bugs and complies with our coding styles.
+<br/><br/>
+In order to make this process easy, we host a code review portal which you can find here:
 
 <a href="http://xmlvm-reviews.appspot.com/">http://xmlvm-reviews.appspot.com/</a>
 

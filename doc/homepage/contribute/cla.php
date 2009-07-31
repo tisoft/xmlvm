@@ -16,18 +16,21 @@ have a Contributor License Agreement ("CLA") on file that has been
 signed by each Contributor, indicating agreement to the license terms
 below.  This license is for your protection as a Contributor as well
 as the protection of XMLVM; it does not change your rights to use
-your own Contributions for any other purpose.  If you have not already
-done so, please complete and send an original signed Agreement to</p> 
+your own Contributions for any other purpose. XMLVM's CLA is based
+on the <a href="http://www.apache.org/licenses/icla.txt">Apache's CLA</a>.
+If you have not already done so, please complete and send an original
+signed Agreement to:</p> 
  
 <blockquote> 
   Arno Puder<br/> 
   San Francisco State University<br/> 
   1600 Holloway Avenue<br/>
   San Francisco, CA  94132<br/> 
-  U.S.A.<br/> 
+  U.S.A.<br/>
+  Fax: +1-415-338-6826<br/>
 </blockquote> 
  
-<p>Scanned agreements may also be emailed in PDF form to arno@puder.org,
+<p>Scanned agreements may also be emailed in PDF form to license@xmlvm.org,
     or signed electronically with the form below.</p> 
  
 <p> 
