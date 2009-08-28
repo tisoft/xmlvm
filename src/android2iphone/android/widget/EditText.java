@@ -11,7 +11,7 @@ public class EditText extends TextView {
 
     public Object getText() {
         // TODO Auto-generated method stub
-        return null;
+        return "Dummy";
     }
 
     public void setLines(int i) {

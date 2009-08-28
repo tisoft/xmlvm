@@ -63,6 +63,14 @@ public class Activity extends ContextThemeWrapper {
         window.setContentView(view);
     }
 
+    public void setContentView(int id) {
+        window.setContentView(id);
+    }
+    
+    public View findViewById(int id) {
+        return window.findViewById(id);
+    }
+
     /**
      * TODO: Implement for real.
      */

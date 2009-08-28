@@ -24,18 +24,28 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.xmlvm.iphone.NSBundle;
+import org.xmlvm.iphone.NSData;
 import org.xmlvm.iphone.UIImage;
 
 import android.app.ActivityWrapper;
 
 public class ResourceMapper {
     /** A map holding the mapping from resourceId to UIImage. */
-    private static Map<Integer, UIImage> imageMap = new HashMap<Integer, UIImage>();
+    private static Map<Integer, UIImage> imageMap  = new HashMap<Integer, UIImage>();
+
+    /**
+     * A map holding the mapping from resourceId to NSData (representing the
+     * content of the XML layout file).
+     */
+    private static Map<Integer, NSData>  layoutMap = new HashMap<Integer, NSData>();
+
+    private static Map<String, Integer>  idMap     = new HashMap<String, Integer>();
 
     public static UIImage getImageById(int resourceId) {
         UIImage theImage = imageMap.get(new Integer(resourceId));
         if (theImage == null) {
-            String fileName = findVariableById(resourceId);
+            String fileName = findVariableById(resourceId, "drawable");
             fileName += ".png";
             theImage = UIImage.imageAtPath(fileName);
             imageMap.put(new Integer(resourceId), theImage);
@@ -43,14 +53,35 @@ public class ResourceMapper {
         return theImage;
     }
 
-    private static String findVariableById(int resourceId) {
+    public static NSData getLayoutById(int resourceId) {
+        NSData theFile = layoutMap.get(new Integer(resourceId));
+        if (theFile == null) {
+            String fileName = findVariableById(resourceId, "layout");
+            String filePath = NSBundle.mainBundle().pathForResource(fileName, "xml");
+            theFile = NSData.dataWithContentsOfFile(filePath);
+            layoutMap.put(new Integer(resourceId), theFile);
+        }
+        return theFile;
+    }
+
+    public static int getIdByName(String name) {
+        Integer theId = idMap.get(name);
+        if (theId == null) {
+            theId = new Integer(findIdByVariableName(name, "id"));
+            idMap.put(name, theId);
+        }
+        return theId.intValue();
+
+    }
+
+    private static String findVariableById(int resourceId, String resourceClass) {
         try {
             int i;
             String activityPackageName = ActivityWrapper.getActivity().getClass().getName();
             i = activityPackageName.lastIndexOf('.');
             activityPackageName = activityPackageName.substring(0, i);
 
-            String rClassName = activityPackageName + ".R$drawable";
+            String rClassName = activityPackageName + ".R$" + resourceClass;
             Class<?> rClazz = Class.forName(rClassName);
             Field[] fields = rClazz.getDeclaredFields();
 
@@ -64,6 +95,30 @@ public class ResourceMapper {
             return "";
         } catch (Throwable t) {
             return "";
+        }
+    }
+
+    private static int findIdByVariableName(String variableName, String resourceClass) {
+        try {
+            int i;
+            String activityPackageName = ActivityWrapper.getActivity().getClass().getName();
+            i = activityPackageName.lastIndexOf('.');
+            activityPackageName = activityPackageName.substring(0, i);
+
+            String rClassName = activityPackageName + ".R$" + resourceClass;
+            Class<?> rClazz = Class.forName(rClassName);
+            Field[] fields = rClazz.getDeclaredFields();
+
+            for (i = 0; i < fields.length && !fields[i].getName().equals(variableName); i++)
+                ;
+
+            if (i < fields.length) {
+                return fields[i].getInt(rClazz);
+            }
+
+            return -1;
+        } catch (Throwable t) {
+            return -1;
         }
     }
 }

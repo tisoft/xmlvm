@@ -22,6 +22,8 @@
 	<classpathentry kind="src" path="src/test/iphone"/>
 	<classpathentry kind="src" path="demo/iphone/ifireworks/src"/>
 	<classpathentry kind="src" path="demo/android/aremote/src"/>
+	<classpathentry kind="src" path="demo/android/sayhello/gen"/>
+	<classpathentry kind="src" path="demo/android/sayhello/src"/>
 	<classpathentry kind="src" path="demo/android/aremote/gen"/>
 	<classpathentry kind="src" path="demo/android/afireworks/src"/>
 	<classpathentry kind="src" path="demo/android/afireworks/gen"/>

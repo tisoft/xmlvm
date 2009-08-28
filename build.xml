@@ -28,6 +28,7 @@
 	<property name="xmlvm.afireworks" value="build/demo/android/afireworks" />
 	<property name="xmlvm.aremote" value="build/demo/android/aremote" />
 	<property name="xmlvm.xokoban" value="build/demo/android/xokoban" />
+	<property name="xmlvm.sayhello" value="build/demo/android/sayhello" />
 
 
 
@@ -183,7 +184,7 @@
 
 	<target name="build-iphoneDemo" depends="build-ifireworks,all-ihelloworld,cc-ifireworks,build-android-compat-lib,cc-android-compat-lib,
 		                                     sim-afireworks-jar,cc-sim-afireworks,build-iremote, cc-iremote, all-widgets,
-                                             sim-xokoban-jar,cc-sim-xokoban">
+                                             sim-xokoban-jar,cc-sim-xokoban,sim-sayhello-jar,cc-sim-sayhello">
 	</target>
 
 	<target name="all-ihelloworld" depends="build-ihelloworld-portrait,cc-ihelloworld-portrait,
@@ -526,6 +527,52 @@
 		<copy todir="${xmlvm.demo}/android/xokoban/iphone">
 			<fileset dir="demo/android/xokoban/res/drawable">
 				<include name="*.png" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="sim-sayhello" depends="build-android-compat-lib">
+		<mkdir dir="${xmlvm.sayhello}" />
+		<javac srcdir="./demo/android/sayhello" destdir="${xmlvm.sayhello}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+				<pathelement location="${xmlvm.libjars}/android-compat.jar" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+	</target>
+
+	<target name="sim-sayhello-jar" depends="sim-sayhello">
+		<mkdir dir="${xmlvm.demo}/android/sayhello/java" />
+		<jar destfile="${xmlvm.demo}/android/sayhello/java/sayhello.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Implementation-Vendor" value="xmlvm.org" />
+				<attribute name="Main-Class" value="org.xmlvm.iphone.internal.AndroidAppLauncher" />
+				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../lib/android-compat.jar" />
+			</manifest>
+			<fileset dir="${xmlvm.sayhello}" />
+			<fileset dir="var/iphone">
+				<include name="*.png/" />
+			</fileset>
+			<fileset dir="demo/android/sayhello/res/layout">
+				<include name="*.xml" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="cc-sim-sayhello" depends="sim-sayhello">
+		<mkdir dir="${xmlvm.demo}/android/sayhello/iphone" />
+
+		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
+			<arg value="--out=${xmlvm.demo}/android/sayhello/iphone" />
+			<arg value="--target=android-on-iphone" />
+			<arg value="--iphone-app=SayHello" />
+			<arg value="--in=${xmlvm.sayhello}/" />
+		</java>
+		<copy todir="${xmlvm.demo}/android/sayhello/iphone">
+			<fileset dir="demo/android/sayhello/res/layout">
+				<include name="*.xml" />
 			</fileset>
 		</copy>
 	</target>

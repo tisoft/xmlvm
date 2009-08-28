@@ -74,6 +74,12 @@
     return self;
 }
 
+- (NSMutableString*) append___java_lang_Object: (java_lang_Object*) obj
+{
+    [self appendString: [obj toString]];
+    return self;
+}
+
 - (NSMutableString*) append___int: (int) i
 {
 	NSNumber* n = [NSNumber numberWithInt: i];
@@ -94,6 +100,11 @@
 	range.location = from;
 	range.length = to - from;
 	return [self substringWithRange: range];
+}
+
+- (NSMutableString*) substring___int: (int) from
+{
+	return [self substringFromIndex: from];
 }
 
 - (int) equals___java_lang_Object: (java_lang_Object*) o

@@ -20,4 +20,11 @@
 	return (java_lang_Object*) value;
 }
 
+- (java_util_Set*) keySet
+{
+	NSArray* keyArray = [self allKeys];
+	NSSet* keys = [NSSet setWithArray: keyArray];
+	return keys;
+}
+
 @end

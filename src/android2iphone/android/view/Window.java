@@ -27,6 +27,8 @@ import org.xmlvm.iphone.UIWindow;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.internal.Layout;
+import android.internal.LayoutManager;
 
 /**
  * iPhone Implementation of Android's Window class.
@@ -38,12 +40,14 @@ public class Window {
     private Activity        activity;
     private UIWindow        iWindow;
     private CGRect          rect;
+    private Layout          layout;
 
     public Window(Activity parent) {
         this.activity = parent;
         UIScreen screen = UIScreen.mainScreen();
         rect = screen.applicationFrame();
         iWindow = new UIWindow(rect);
+        layout = null;
     }
 
     public void setContentView(View view) {
@@ -53,6 +57,11 @@ public class Window {
         view.setFrame(viewRect);
         iWindow.addSubview(view);
         iWindow.makeKeyAndVisible();
+    }
+
+    public void setContentView(int id) {
+        layout = LayoutManager.getLayout(activity, id);
+        setContentView(layout.getTopView());
     }
 
     public void setFlags(int flags, int mask) {
@@ -80,7 +89,8 @@ public class Window {
             iWindow.setFrame(rect);
             CGAffineTransform trans = CGAffineTransform
                     .makeRotation((float) ((Math.PI / 180) * 90));
-            // TODO Translate should be 90, 90 for visible status bar (i.e., non-fullscreen)
+            // TODO Translate should be 90, 90 for visible status bar (i.e.,
+            // non-fullscreen)
             trans.translate(80, 80);
             iWindow.setTransform(trans);
         }
@@ -91,5 +101,13 @@ public class Window {
      */
     public CGRect getCGRect() {
         return rect;
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    public View findViewById(int id) {
+        return layout.findViewById(id);
     }
 }
