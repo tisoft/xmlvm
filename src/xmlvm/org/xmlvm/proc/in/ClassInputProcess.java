@@ -25,6 +25,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import org.apache.bcel.classfile.AnnotationEntry;
+import org.apache.bcel.classfile.ClassFormatException;
 import org.apache.bcel.classfile.ClassParser;
 import org.apache.bcel.classfile.Code;
 import org.apache.bcel.classfile.Constant;
@@ -323,7 +324,11 @@ public class ClassInputProcess extends InputProcess<ClassFile> {
             } else if (c instanceof ConstantClass) {
                 ConstantClass cc = (ConstantClass) c;
                 String s = (String) cc.getConstantValue(cpg.getConstantPool());
-                s = s.replace("/", ".");
+                try {
+                    s = Utility.signatureToString(s);
+                } catch (ClassFormatException ex) {
+                    s = s.replace("/", ".");
+                }
                 node.setAttribute("type", s);
             } else if (c instanceof ConstantDouble) {
                 node.setAttribute("type", "double");
