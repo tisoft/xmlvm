@@ -312,8 +312,12 @@ public class ClassInputProcess extends InputProcess<ClassFile> {
             Constant c = cpg.getConstant(idx);
             if (c instanceof ConstantString) {
                 node.setAttribute("type", "java.lang.String");
-                String val = ((ConstantString) c).getBytes(cpg.getConstantPool());
-                val = val.replaceAll("\\n", "\\\\n");
+                String valOrig = ((ConstantString) c).getBytes(cpg.getConstantPool());
+                String val = "";
+                for (int i = 0; i < valOrig.length(); i++) {
+                    char ch = valOrig.charAt(i);
+                    val += (ch < ' ' || ch > 'z') ? String.format("\\%03o", new Integer(ch)) : ch;
+                }
                 node.setAttribute("value", val);
                 // node.setText(val);
             } else if (c instanceof ConstantClass) {
