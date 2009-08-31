@@ -194,9 +194,11 @@ int main(int argc, char* argv[])
     </xsl:for-each>
     <!-- Emit declarations for all methods -->
     <xsl:for-each select="vm:method">
-      <xsl:call-template name="emitMethodSignature"/>
-  <xsl:text>;
+      <xsl:if test="not(vm:isDuplicateMethod(.))">
+        <xsl:call-template name="emitMethodSignature"/>
+        <xsl:text>;
 </xsl:text>
+      </xsl:if>
     </xsl:for-each>
       
     <xsl:text>
@@ -306,20 +308,22 @@ int main(int argc, char* argv[])
     </xsl:for-each>
     
     <xsl:for-each select="vm:method">
-      <xsl:call-template name="emitMethodSignature"/>
-  <xsl:text>
+      <xsl:if test="not(vm:isDuplicateMethod(.))">
+        <xsl:call-template name="emitMethodSignature"/>
+        <xsl:text>
 </xsl:text>
-      <xsl:choose>
-        <xsl:when test="../.[@isInterface = 'true'] or @isAbstract = 'true'">
-        <xsl:text>{
+        <xsl:choose>
+          <xsl:when test="../.[@isInterface = 'true'] or @isAbstract = 'true'">
+          <xsl:text>{
 }
 
 </xsl:text>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates/>
-        </xsl:otherwise>
-      </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:if>
     </xsl:for-each>
       
     <xsl:text>
@@ -1482,6 +1486,22 @@ _sp--;
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
+
+<!--  javac will sometimes generate two methods that only differ in their return type.
+      This can happen e.g. with type erasures. Function vm:isDuplicateMethod will determine
+      if the given method is a duplicate that is not needed when generating Objective-C (in fact,
+      Objective-C does not permit two methods that only differ in their return type).
+      A method is a duplicate if it is (1) synthetic, (2) a method with the same name exists
+      in the class, and (3) the method is not a constructor (synthetic constructors are generated
+      for inner classes. A better way would be to make sure they have different return types).  -->
+<xsl:function name="vm:isDuplicateMethod" as="xs:boolean">
+  <xsl:param name="method" as="node()"/>
+
+  <xsl:variable name="name" select="$method/@name"/>
+  <xsl:value-of select="$method/@isSynthetic = 'true' and count($method/../vm:method[@name = $name]) gt 1 and
+                        $method/@name ne '&lt;init&gt;'"/>
+</xsl:function>
 
 
 <xsl:function name="vm:isObjectRef" as="xs:boolean">
