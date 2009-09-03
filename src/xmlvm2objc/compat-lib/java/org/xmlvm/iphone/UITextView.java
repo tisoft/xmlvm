@@ -7,20 +7,19 @@ import java.awt.Graphics2D;
 
 import org.xmlvm.iphone.internal.Simulator;
 
-public class UITextField extends UIView {
+public class UITextView extends UIView {
 
 	private String text;
 	private Font font;
 	private UIColor textColor;
-	private int borderStyle;
 
 	private static final int TEXT_LEFT_INSET = 5;
 
-	public UITextField() {
+	public UITextView() {
 	    super(new CGRect(0, 0, 0, 0));
 	    init();
 	}
-	public UITextField(CGRect rect) {
+	public UITextView(CGRect rect) {
 		super(rect);
 		init();
 	}
@@ -45,10 +44,6 @@ public class UITextField extends UIView {
 		this.textColor = color;
 	}
 
-	public void setBorderStyle(int style) {
-		this.borderStyle = style;
-	}
-
 	@Override
     public void keyTyped(char key) {
 		if (key == '\b' && !text.equals(""))
@@ -69,12 +64,10 @@ public class UITextField extends UIView {
 		int rectWidth = (int) displayRect.size.width;
 		int rectHeight = (int) displayRect.size.height;
 		g.clearRect(rectX, rectY, rectWidth, rectHeight);
-		switch (borderStyle) {
-		case UITextBorderStyle.UITextBorderStyleBezel:
-			g.setColor(Color.GRAY);
-			g.draw3DRect(rectX, rectY, rectWidth, rectHeight, false);
-			break;
-		}
+
+		g.setColor(Color.GRAY);
+		g.draw3DRect(rectX, rectY, rectWidth, rectHeight, false);
+
 		g.setColor(textColor.color);
 		FontMetrics fm = g.getFontMetrics();
 		int width = fm.stringWidth(text);
