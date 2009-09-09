@@ -17,12 +17,12 @@ CONFIGURATION_TEMP_DIR=obj
 
 INFOPLIST_FILE=Info.plist
 
-CC=gcc-4.0
+CC=gcc-4.2
 
 CFLAGS=-x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 \
        -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type \
-       -D__IPHONE_OS_VERSION_MIN_REQUIRED=20000 \
-       -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.2.sdk \
+       -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 \
+       -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk \
        -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 \
        -I.
 
@@ -30,7 +30,7 @@ CFLAGS=-x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 \
 LD=$(CC)
 
 LDFLAGS=-arch i386 \
-        -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.2.sdk \
+        -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk \
         -mmacosx-version-min=10.5 \
         -framework Foundation -framework UIKit -framework CoreGraphics
 
