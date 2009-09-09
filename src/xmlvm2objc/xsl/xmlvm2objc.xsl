@@ -157,12 +157,16 @@ int main(int argc, char* argv[])
 </xsl:text>
       <!-- Emit declarations for all non-static fields -->
       <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
-        <xsl:text>@public </xsl:text>
+        <xsl:text>@private </xsl:text>
         <xsl:call-template name="emitType">
           <xsl:with-param name="type" select="@type"/>
         </xsl:call-template>
         <xsl:text> </xsl:text>
-        <xsl:value-of select="@name"/>
+        <xsl:value-of select="vm:fixname(../@package)"/>
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="vm:fixname(../@name)"/>
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="vm:fixname(@name)"/>
         <xsl:text>;
 </xsl:text>
       </xsl:for-each>
@@ -170,19 +174,21 @@ int main(int argc, char* argv[])
 }
 </xsl:text>
     </xsl:if>
-    <!-- Emit declarations for getter and setter methods (as class methods) for all static fields -->
-    <xsl:for-each select="vm:field[@isStatic = 'true']">
+    <!-- Emit declarations for getter and setter methods for all fields -->
+    <xsl:for-each select="vm:field">
       <!-- Emit getter -->
-      <xsl:text>+ (</xsl:text>
+      <xsl:value-of select="if (@isStatic = 'true') then '+' else '-'"/>
+      <xsl:text> (</xsl:text>
       <xsl:call-template name="emitType">
         <xsl:with-param name="type" select="@type"/>
       </xsl:call-template>
-      <xsl:text>) _GET_STATIC_</xsl:text>
+      <xsl:text>) _GET_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>;
 </xsl:text>
       <!-- Emit setter -->
-      <xsl:text>+ (void) _PUT_STATIC_</xsl:text>
+      <xsl:value-of select="if (@isStatic = 'true') then '+' else '-'"/>
+      <xsl:text> (void) _PUT_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>: (</xsl:text>
       <xsl:call-template name="emitType">
@@ -249,7 +255,11 @@ int main(int argc, char* argv[])
 </xsl:text>
 	<xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type)]">
 	  <xsl:text>    [</xsl:text>
-	  <xsl:value-of select="@name"/>
+      <xsl:value-of select="vm:fixname(../@package)"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(../@name)"/>
+      <xsl:text>_</xsl:text>
+	  <xsl:value-of select="vm:fixname(@name)"/>
 	  <xsl:text> release];
 </xsl:text>
 	</xsl:for-each>
@@ -258,33 +268,35 @@ int main(int argc, char* argv[])
 
 </xsl:text>
 
-	<!-- Emit getters and setters for static fields -->
-    <xsl:for-each select="vm:field[@isStatic = 'true']">
+	<!-- Emit getters and setters for all fields -->
+    <xsl:for-each select="vm:field">
       <!-- Emit getter -->
       <xsl:variable name="field">
-        <xsl:text>_STATIC_</xsl:text>
         <xsl:value-of select="vm:fixname(../@package)"/>
         <xsl:text>_</xsl:text>
         <xsl:value-of select="vm:fixname(../@name)"/>
         <xsl:text>_</xsl:text>
         <xsl:value-of select="vm:fixname(@name)"/>
       </xsl:variable>
-      <xsl:text>+ (</xsl:text>
+      <xsl:value-of select="if (@isStatic = 'true') then '+' else '-'"/>
+      <xsl:text> (</xsl:text>
       <xsl:call-template name="emitType">
         <xsl:with-param name="type" select="@type"/>
       </xsl:call-template>
-      <xsl:text>) _GET_STATIC_</xsl:text>
+      <xsl:text>) _GET_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>
 {
     return </xsl:text>
+      <xsl:value-of select="if (@isStatic = 'true') then '_STATIC_' else ''"/>
       <xsl:value-of select="$field"/>
       <xsl:text>;
 }
 
 </xsl:text>
       <!-- Emit setter -->
-      <xsl:text>+ (void) _PUT_STATIC_</xsl:text>
+      <xsl:value-of select="if (@isStatic = 'true') then '+' else '-'"/>
+      <xsl:text> (void) _PUT_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>: (</xsl:text>
       <xsl:call-template name="emitType">
@@ -296,10 +308,12 @@ int main(int argc, char* argv[])
     <xsl:if test="vm:isObjectRef(@type)">
         <xsl:text>[v retain];
     [</xsl:text>
+        <xsl:value-of select="if (@isStatic = 'true') then '_STATIC_' else ''"/>
         <xsl:value-of select="$field"/>
         <xsl:text> release];
     </xsl:text>
     </xsl:if>
+      <xsl:value-of select="if (@isStatic = 'true') then '_STATIC_' else ''"/>
       <xsl:value-of select="$field"/>
       <xsl:text> = v;
 }
@@ -521,8 +535,8 @@ int main(int argc, char* argv[])
   <xsl:value-of select="$typedAccess"/>
   <xsl:text> = [</xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)"/>
-  <xsl:text> _GET_STATIC_</xsl:text>
-  <xsl:value-of select="@field"/>
+  <xsl:text> _GET_</xsl:text>
+  <xsl:value-of select="vm:fixname(@field)"/>
   <xsl:text>];
     _stack[_sp++]</xsl:text>
   <xsl:value-of select="$typedAccess"/>
@@ -546,8 +560,8 @@ int main(int argc, char* argv[])
   <xsl:text>;
     [</xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)"/>
-  <xsl:text> _PUT_STATIC_</xsl:text>
-  <xsl:value-of select="@field"/>
+  <xsl:text> _PUT_</xsl:text>
+  <xsl:value-of select="vm:fixname(@field)"/>
   <xsl:text>: _op1</xsl:text>
   <xsl:value-of select="$typedAccess"/>
   <xsl:text>];
@@ -831,33 +845,20 @@ int main(int argc, char* argv[])
   <xsl:value-of select="$m"/>
   <xsl:text>;
     </xsl:text>
-  <xsl:if test="vm:isObjectRef(@type)">
-    <xsl:text>[_op1.o retain];
-    </xsl:text>
-  </xsl:if>
   <xsl:text>_op2.o = _stack[--_sp].o;
     </xsl:text>
-  <xsl:if test="vm:isObjectRef(@type)">
-    <xsl:text>[((</xsl:text>
-    <xsl:call-template name="emitType">
-      <xsl:with-param name="type" select="@class-type"/>
-    </xsl:call-template>
-    <xsl:text>) _op2.o)-&gt;</xsl:text>
-    <xsl:value-of select="@field"/>
-    <xsl:text> release];
-    </xsl:text>
-  </xsl:if>
-  <xsl:text>((</xsl:text>
+  <xsl:text>[((</xsl:text>
   <xsl:call-template name="emitType">
     <xsl:with-param name="type" select="@class-type"/>
   </xsl:call-template>
-  <xsl:text>) _op2.o)-&gt;</xsl:text>
-  <xsl:value-of select="@field"/>
-  <xsl:text> = _op1</xsl:text>
+  <xsl:text>) _op2.o) _PUT_</xsl:text>
+  <xsl:value-of select="vm:fixname(@field)"/>
+  <xsl:text>: _op1</xsl:text>
   <xsl:value-of select="$m"/>
-  <xsl:text>;
+  <xsl:text>];
 </xsl:text>
 </xsl:template>
+
 
 
 <xsl:template match="jvm:getfield">
@@ -869,13 +870,14 @@ int main(int argc, char* argv[])
   <xsl:text>    _op1.o = _stack[--_sp].o;
     _op2</xsl:text>
   <xsl:value-of select="$m"/>
-  <xsl:text> = ((</xsl:text>
+  <xsl:text> = [((</xsl:text>
   <xsl:call-template name="emitType">
     <xsl:with-param name="type" select="@class-type"/>
   </xsl:call-template>
-  <xsl:text>) _op1.o)-&gt;</xsl:text>
-  <xsl:value-of select="@field"/>
-  <xsl:text>;
+  <xsl:text>) _op1.o) </xsl:text>
+  <xsl:text> _GET_</xsl:text>
+  <xsl:value-of select="vm:fixname(@field)"/>
+  <xsl:text>];
     _stack[_sp++]</xsl:text>
   <xsl:value-of select="$m"/>
   <xsl:text> = _op2</xsl:text>
@@ -883,6 +885,8 @@ int main(int argc, char* argv[])
   <xsl:text>;
 </xsl:text>
 </xsl:template>
+
+
 
 <xsl:template match="jvm:pop">
 <xsl:text>

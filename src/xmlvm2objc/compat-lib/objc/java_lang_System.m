@@ -10,15 +10,15 @@ java_io_PrintStream* _STATIC_java_lang_System_out;
 + (void) initialize
 {
     java_io_PrintStream* v = [[[java_io_PrintStream alloc] init] autorelease];
-    [java_lang_System _PUT_STATIC_out: v];
+    [java_lang_System _PUT_out: v];
 }
 
-+ (java_io_PrintStream*) _GET_STATIC_out
++ (java_io_PrintStream*) _GET_out
 {
     return _STATIC_java_lang_System_out;
 }
 
-+ (void) _PUT_STATIC_out: (java_io_PrintStream*) v
++ (void) _PUT_out: (java_io_PrintStream*) v
 {
     [v retain];
     [_STATIC_java_lang_System_out release];

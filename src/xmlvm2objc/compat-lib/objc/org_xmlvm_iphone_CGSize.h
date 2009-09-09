@@ -8,4 +8,10 @@
 @public float width;
 @public float height;
 }
+
+- (void) _PUT_width: (float) w;
+- (float) _GET_width;
+- (void) _PUT_height: (float) h;
+- (float) _GET_height;
+
 @end

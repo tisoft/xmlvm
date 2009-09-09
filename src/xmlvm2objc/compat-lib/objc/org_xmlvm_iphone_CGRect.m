@@ -41,6 +41,29 @@
     size->height = other->size->height;
 }
 
+- (void) _PUT_origin: (org_xmlvm_iphone_CGPoint*) o
+{
+	[self->origin release];
+	[o retain];
+	self->origin = o;
+}
+
+- (org_xmlvm_iphone_CGPoint*) _GET_origin
+{
+	return self->origin;
+}
+
+- (void) _PUT_size: (org_xmlvm_iphone_CGSize*) s
+{
+	[self->size release];
+	[s retain];
+	self->size = s;
+}
+
+- (org_xmlvm_iphone_CGSize*) _GET_size
+{
+	return size;
+}
 
 + (org_xmlvm_iphone_CGRect*) Intersection___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect
        :(org_xmlvm_iphone_CGRect*)r1 :(org_xmlvm_iphone_CGRect*)r2

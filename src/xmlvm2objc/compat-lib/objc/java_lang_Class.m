@@ -37,12 +37,12 @@
 	unsigned int count, i;
 
 	NSMutableArray* fields = [[[NSMutableArray alloc] init] autorelease];
-	// TODO here we look only for static methods with prefix _GET_STATIC_. We should also return instance fields.
     Method* m = class_copyMethodList(object_getClass(clazz), &count);
 	for (i = 0; i < count; i++) {
 		NSString* name = [NSString stringWithCString: sel_getName(method_getName(m[i])) encoding: NSASCIIStringEncoding];
-		if ([name hasPrefix: @"_GET_STATIC_"]) {
-			NSString* fieldName = [name substringFromIndex: 12];
+		if ([name hasPrefix: @"_GET_"]) {
+			NSString* fieldName = [name substringFromIndex: 5];
+			// TODO the isStatic: TRUE is not necessarily true. We also return instance members here
             java_lang_reflect_Field* f = [[[java_lang_reflect_Field alloc] initWithName: fieldName isStatic: TRUE] autorelease];
 			[fields addObject: f];
 		}
