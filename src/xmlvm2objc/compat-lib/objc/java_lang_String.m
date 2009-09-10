@@ -23,27 +23,27 @@
 + (NSMutableString*) valueOf___int: (int) i
 {
     NSNumber* n = [NSNumber numberWithInt: i];
-    return [NSMutableString stringWithString: [n stringValue]];
+    return [[NSMutableString alloc] initWithString: [n stringValue]];
 }
 
 + (NSMutableString*) valueOf___float: (float) f
 {
     NSNumber* n = [NSNumber numberWithFloat: f];
-    return [NSMutableString stringWithString: [n stringValue]];
+    return [[NSMutableString alloc] initWithString: [n stringValue]];
 }
 
 + (NSMutableString*) valueOf___double: (double) d
 {
     NSNumber* n = [NSNumber numberWithDouble: d];
-    return [NSMutableString stringWithString: [n stringValue]];
+    return [[NSMutableString alloc] initWithString: [n stringValue]];
 }
 
 + (NSMutableString*) valueOf___java_lang_Object: (java_lang_Object*) o
 {
     if ([o isKindOfClass: [NSMutableString class]] == YES) {
-        return [NSMutableString stringWithString: (NSMutableString*) o];
+        return [[NSMutableString alloc] initWithString: (NSMutableString*) o];
     }
-    return [NSMutableString stringWithString: @"Unkown type in valueOf___java_lang_Object"];
+    return [[NSMutableString alloc] initWithString: @"Unkown type in valueOf___java_lang_Object"];
 }
 
 - (unichar) charAt___int: (int) idx
@@ -121,12 +121,12 @@
 	NSRange range;
 	range.location = from;
 	range.length = to - from;
-	return [self substringWithRange: range];
+	return [[NSMutableString alloc] initWithString: [self substringWithRange: range]];
 }
 
 - (NSMutableString*) substring___int: (int) from
 {
-	return [self substringFromIndex: from];
+	return [[NSMutableString alloc] initWithString: [self substringFromIndex: from]];
 }
 
 - (int) equals___java_lang_Object: (java_lang_Object*) o

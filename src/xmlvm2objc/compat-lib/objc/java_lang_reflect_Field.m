@@ -10,8 +10,15 @@
 {
 	[super init];
 	self->name = n;
+	[self->name retain];
 	self->isStatic = flag;
 	return self;
+}
+
+- (void) dealloc
+{
+	[self->name release];
+	[super dealloc];
 }
 
 - (void) __init_java_lang_reflect_Field
@@ -20,9 +27,9 @@
 
 - (java_lang_String*) getName
 {
-	java_lang_String* name = self->name;
-	[name retain];
-	return name;
+	java_lang_String* n = self->name;
+	[n retain];
+	return n;
 }
 
 - (int) getInt___java_lang_Object: (java_lang_Object*) obj

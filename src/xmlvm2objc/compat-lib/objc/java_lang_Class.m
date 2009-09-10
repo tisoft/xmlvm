@@ -20,6 +20,7 @@
 	// (if the simple name contains "_"). For a proper solution every class would need to register its
 	// Java-based simple name in some global data structure.
 	NSMutableString* simpleName = [mangledName stringByReplacingOccurrencesOfString: @"_" withString: @"."];
+	[simpleName retain];
 	return simpleName;
 }
 
@@ -34,6 +35,7 @@
 	NSString* mangledName = [className stringByReplacingOccurrencesOfString: @"." withString: @"_"];
 	mangledName = [mangledName stringByReplacingOccurrencesOfString: @"$" withString: @"_"];
 	classWrapper->clazz = NSClassFromString(mangledName);
+	//[mangledName release];
 	return classWrapper;
 }
 
@@ -48,8 +50,9 @@
 		if ([name hasPrefix: @"_GET_"]) {
 			NSString* fieldName = [name substringFromIndex: 5];
 			// TODO the isStatic: TRUE is not necessarily true. We also return instance members here
-            java_lang_reflect_Field* f = [[[java_lang_reflect_Field alloc] initWithName: fieldName isStatic: TRUE] autorelease];
+            java_lang_reflect_Field* f = [[java_lang_reflect_Field alloc] initWithName: fieldName isStatic: TRUE];
 			[fields addObject: f];
+			//[fieldName release];
 		}
 	}
     free(m);

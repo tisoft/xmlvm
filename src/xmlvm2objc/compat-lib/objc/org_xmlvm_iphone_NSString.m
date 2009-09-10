@@ -7,7 +7,7 @@
 
 + (java_lang_String*) stringWithContentsOfFile___java_lang_String: (java_lang_String*) path
 {
-	return [NSString stringWithContentsOfFile: path];
+	return [[NSMutableString alloc] initWithContentsOfFile: path];
 }
 
 @end

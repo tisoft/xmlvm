@@ -8,7 +8,9 @@
 
 - (java_lang_String*) getName
 {
-	return [[self getClass] getName];
+	java_lang_String* name = (java_lang_String*) [[self getClass] getName];
+	[name retain];
+	return name;
 }
 
 - (void) __init_java_lang_Object

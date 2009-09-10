@@ -24,7 +24,9 @@
 
 - (NSString*) getText
 {
-    return [self text];
+	NSString* txt = [self text];
+	[txt retain];
+    return txt;
 }
 
 - (void) setTextColor___org_xmlvm_iphone_UIColor: (org_xmlvm_iphone_UIColor*) color

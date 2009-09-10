@@ -26,6 +26,7 @@
 {
 	NSArray* keyArray = [self allKeys];
 	NSSet* keys = [NSSet setWithArray: keyArray];
+	[keys retain];
 	return keys;
 }
 

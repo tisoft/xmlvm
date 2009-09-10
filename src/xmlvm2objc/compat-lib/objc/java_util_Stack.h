@@ -11,7 +11,7 @@ typedef NSMutableArray java_util_Stack;
 - (void) __init_java_util_Stack;
 - (java_util_Iterator*) iterator;
 - (int) size;
-- (BOOL) push___java_lang_Object :(java_lang_Object*) item;
+- (java_lang_Object*) push___java_lang_Object :(java_lang_Object*) item;
 - (java_lang_Object*) get___int :(int) idx;
 - (java_lang_Object*) pop;
 - (java_lang_Object*) remove___int :(int) idx;
