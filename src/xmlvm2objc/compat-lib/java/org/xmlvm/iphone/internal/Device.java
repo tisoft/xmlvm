@@ -1,5 +1,8 @@
 package org.xmlvm.iphone.internal;
 
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -14,6 +17,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.PixelFormat;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UIView;
@@ -25,21 +30,42 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
     private Display         display;
     private AffineTransform deviceTransform = new AffineTransform();
     public StatusBar        statusBar;
-
+    private Canvas glPanel;
+    private boolean glCreated = false;
+    private Image chassisImage;
+    
     public Device(ImageLoader imageLoader) {
         this.imageLoader = imageLoader;
+
         this.setLayout(null);
         this.setSize(580 - 160, 750);
-        addChassis();
-        addDisplay();
-        addStatusBar();
 
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
         this.addKeyListener(this);
         this.setFocusable(true);
-    }
 
+        addDisplay();
+        addStatusBar();
+        
+        if (Boolean.getBoolean("xmlvm.gl")) {
+            chassisImage = imageLoader.loadImage("chassis.png");
+            
+        	glPanel = new Canvas();
+	        glPanel.addMouseListener(this);
+	        glPanel.addMouseMotionListener(this);
+	        glPanel.setIgnoreRepaint(true);
+	        glPanel.addKeyListener(this);
+	        glPanel.setFocusable(true);
+	        glPanel.setBackground(Color.black);
+	        glPanel.setBounds(35,107,320,480);
+	        glPanel.setSize(320,480);
+	        add(glPanel);
+        } else {
+            addChassis();
+        }
+    }
+    
     public ImageLoader getImageLoader() {
         return imageLoader;
     }
@@ -68,8 +94,8 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
     }
 
     private void addChassis() {
-        Image image = imageLoader.loadImage("chassis.png");
-        ImageIcon chassisIcon = new ImageIcon(image);
+        chassisImage = imageLoader.loadImage("chassis.png");
+        ImageIcon chassisIcon = new ImageIcon(chassisImage);
         int width = chassisIcon.getIconWidth();
         int height = chassisIcon.getIconHeight();
         JLabel chassis = new JLabel(chassisIcon);
@@ -108,17 +134,32 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
     }
 
     public void paint(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        AffineTransform savedTransform = g2d.getTransform();
-        g2d.transform(deviceTransform);
-        super.paint(g);
-
-        AffineTransform displayTransform = new AffineTransform();
-        displayTransform.translate(35, 107);
-        g2d.transform(displayTransform);
-        display.drawRect(g2d);
-
-        g2d.setTransform(savedTransform);
+    	if (glPanel == null) {
+	        Graphics2D g2d = (Graphics2D) g;
+	        AffineTransform savedTransform = g2d.getTransform();
+	        g2d.transform(deviceTransform);
+	        super.paint(g);
+	
+	        AffineTransform displayTransform = new AffineTransform();
+	        displayTransform.translate(35, 107);
+	        g2d.transform(displayTransform);
+	        display.drawRect(g2d);
+	
+	        g2d.setTransform(savedTransform);
+    	} else {
+    		super.paint(g);
+    		g.drawImage(chassisImage, 0, 0, null);
+    		if (!glCreated) {
+    			glCreated = true;
+    			try {
+    				org.lwjgl.opengl.Display.create(new PixelFormat(8,8,0));
+    				org.lwjgl.opengl.Display.setParent(glPanel);
+    				org.lwjgl.opengl.Display.setVSyncEnabled(true);
+    			} catch (LWJGLException e) {
+    				throw new RuntimeException(e);
+    			}
+    		}
+    	}
     }
 
     public void mouseClicked(MouseEvent e) {
@@ -170,4 +211,7 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
         this.deviceTransform = deviceTransform;
     }
 
+    public Component getComponent() {
+    	return this;
+    }
 }

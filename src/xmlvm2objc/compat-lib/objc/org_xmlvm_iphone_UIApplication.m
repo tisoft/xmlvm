@@ -11,6 +11,26 @@
 {
 }
 
+- (void) applicationDidBecomeActive___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app
+{    
+	// Do nothing here
+}
+
+- (void) applicationWillResignActive___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app
+{
+    // Do nothing here
+}
+
+- (void) applicationDidBecomeActive: (org_xmlvm_iphone_UIApplication*) app
+{    
+	[self applicationDidBecomeActive___org_xmlvm_iphone_UIApplication: self];
+}
+
+- (void) applicationWillResignActive: (org_xmlvm_iphone_UIApplication*) app
+{
+	[self applicationWillResignActive___org_xmlvm_iphone_UIApplication: self];
+}
+
 - (void) applicationDidFinishLaunching: (UIApplication*) app
 {
     [self applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication: self];

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.xmlvm.iphone.gl.CAEAGLLayer;
 import org.xmlvm.iphone.internal.Simulator;
 
 public class UIView extends UIResponder {
@@ -27,7 +28,10 @@ public class UIView extends UIResponder {
     protected Color           backgroundColor;
     protected boolean         opaque;
     protected float           alpha;
-
+    
+    // TODO not pretty
+    private CAEAGLLayer layer = new CAEAGLLayer();
+    
     public UIView() {
         init();
         setFrame(new CGRect(0, 0, 0, 0));
@@ -38,6 +42,16 @@ public class UIView extends UIResponder {
         setFrame(rect);
     }
 
+    public UIView(CGRect rect, String layerClass) {
+        init();
+        setFrame(rect);
+        try {
+			layer = new CAEAGLLayer();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} 
+    }
+    
     private void init() {
         this.frame = null;
         this.bounds = null;
@@ -70,7 +84,7 @@ public class UIView extends UIResponder {
     public CGRect getFrame() {
         return this.frame;
     }
-
+    
     public void addSubview(UIView subView) {
         subView.parent = this;
         subViews.add(subView);
@@ -230,6 +244,10 @@ public class UIView extends UIResponder {
     public void setOpaque(boolean opaque) {
         this.opaque = opaque;
     }
+    
+    public void setClearsContextBeforeDrawing(boolean clear) {
+    	// TODO
+    }
 
     public void keyTyped(char key) {
         // Do nothing
@@ -295,5 +313,8 @@ public class UIView extends UIResponder {
             UIApplication.instance.touchesMoved(touches, event);
         }
     }
-
+    
+    public CAEAGLLayer getEAGLLayer() {
+    	return layer;
+    }
 }

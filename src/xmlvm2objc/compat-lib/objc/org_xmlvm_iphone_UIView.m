@@ -3,11 +3,22 @@
 // UIView
 //----------------------------------------------------------------------------
 
+static java_lang_String* layerClassName;
+
 /*
  * We have to use inheritance to override drawRect because we cannot achieve
  * the same with categories.
  */
 @implementation org_xmlvm_iphone_UIView : UIView
+
++ (Class) layerClass
+{
+	if (layerClassName == nil) {
+		return [super layerClass];
+	}
+	
+	return objc_getClass([layerClassName UTF8String]);
+}
 
 - (void) drawRect:(CGRect)rect
 {
@@ -22,21 +33,32 @@
 
 @end
 
-
 @implementation UIView (cat_org_xmlvm_iphone_UIView)
 
 - (void) __init_org_xmlvm_iphone_UIView
 {
+	layerClassName = nil;
+	srand(time(NULL));
 }
 
 - (void) __init_org_xmlvm_iphone_UIView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1
 {
-	[self initWithFrame: [n1 getCGRect]];
+	layerClassName = nil;
+	[self initWithFrame: [n1 getCGRect]];	
+	srand(time(NULL));
 }
+
+- (void) __init_org_xmlvm_iphone_UIView___org_xmlvm_iphone_CGRect_java_lang_String :(org_xmlvm_iphone_CGRect*)n1:(java_lang_String*)layer
+{
+	layerClassName = layer;
+	[self initWithFrame: [n1 getCGRect]];	
+	srand(time(NULL));
+}
+
 
 - (org_xmlvm_iphone_CGRect*) getBounds
 {
-    org_xmlvm_iphone_CGRect* rect = [[[org_xmlvm_iphone_CGRect alloc] init] autorelease];
+    org_xmlvm_iphone_CGRect* rect = [[org_xmlvm_iphone_CGRect alloc] init];
     rect->origin->x = self.bounds.origin.x;
     rect->origin->y = self.bounds.origin.y;
     rect->size->width = self.bounds.size.width;
@@ -66,12 +88,14 @@
 
 - (java_util_List*) getSubviews
 {
-	return self.subviews;
+	java_util_List* views = [self subviews];
+	[views retain];
+	return views;
 }
 
 - (void) setTransform___org_xmlvm_iphone_CGAffineTransform :(org_xmlvm_iphone_CGAffineTransform*)trans
 {
-	if (trans == [java_lang_null _GET_NULL])
+	if (trans == [NSNull null])
  		[self setTransform: CGAffineTransformIdentity];
  	else
     	[self setTransform: trans->transform];
@@ -92,4 +116,18 @@
 {
 	[self setOpaque:opaque];
 }
+
+- (void) setClearsContextBeforeDrawing___boolean :(int)clear
+{
+	[self setClearsContextBeforeDrawing:clear];
+}
+
+- (org_xmlvm_iphone_gl_CAEAGLLayer*) getEAGLLayer
+{
+	org_xmlvm_iphone_gl_CAEAGLLayer* result = [[org_xmlvm_iphone_gl_CAEAGLLayer alloc] init];
+	result->glLayer = (CAEAGLLayer*) self.layer;
+	
+	return result;
+}
+
 @end

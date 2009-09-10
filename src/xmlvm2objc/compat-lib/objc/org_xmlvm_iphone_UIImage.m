@@ -13,7 +13,7 @@
 
 - (org_xmlvm_iphone_CGSize*) getSize
 {
-    org_xmlvm_iphone_CGSize* s = [[[org_xmlvm_iphone_CGSize alloc] init] autorelease];
+    org_xmlvm_iphone_CGSize* s = [[org_xmlvm_iphone_CGSize alloc] init];
     s->width = [self size].width;
     s->height = [self size].height;
     return s;
@@ -24,4 +24,21 @@
     CGRect r = [rect getCGRect];
     [self drawInRect: r];
 }
+
+- (void) draw___int_int :(int)x :(int)y
+{
+	CGPoint p = CGPointMake(x,y);
+	p.x = x;
+	p.y = y;
+	[self drawAtPoint: p];
+}
+
+- (org_xmlvm_iphone_CGImage*) getCoreImage
+{
+	org_xmlvm_iphone_CGImage* retval = [[org_xmlvm_iphone_CGImage alloc] init];
+	retval->image = [self CGImage];
+
+	return retval;
+}
+
 @end

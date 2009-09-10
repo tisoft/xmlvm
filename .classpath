@@ -19,6 +19,7 @@
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/upsidedown/src"/>
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/landscape/src"/>
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/fullscreen/src"/>
+	<classpathentry kind="src" path="demo/iphone/gl/nehelesson4/src"/>
 	<classpathentry kind="src" path="src/test/iphone"/>
 	<classpathentry kind="src" path="demo/iphone/ifireworks/src"/>
 	<classpathentry kind="src" path="demo/android/aremote/src"/>
@@ -44,5 +45,6 @@
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-adapters-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-api-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/lwjgl.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

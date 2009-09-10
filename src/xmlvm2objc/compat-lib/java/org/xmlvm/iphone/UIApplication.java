@@ -31,8 +31,11 @@ public abstract class UIApplication extends UIResponder {
 
     public abstract void applicationDidFinishLaunching(UIApplication app);
 
-    public void applicationWillTerminate(UIApplication app) {
-    }
+    public void applicationWillTerminate(UIApplication app) {}
+    
+    public void applicationDidBecomeActive(UIApplication app) {}
+    
+    public void applicationWillResignActive(UIApplication app) {}
 
     public void setStatusBarOrientation(int orientation) {
         Simulator.setStatusBarOrientation(orientation);

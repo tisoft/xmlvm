@@ -10,10 +10,7 @@ import org.xmlvm.iphone.internal.Simulator;
 
 public class UIImage
 {
-
     public BufferedImage image;
-
-
 
     private UIImage(String filename)
     {
@@ -21,15 +18,16 @@ public class UIImage
         image = loader.loadImage(filename);
     }
 
-
-
     public static UIImage imageAtPath(String filename)
     {
    		return new UIImage(filename);
     }
 
-
-
+    public CGImage getCoreImage()
+    {
+    	return new CGImage(image);
+    }
+    
     public void draw1PartImageInRect(CGRect position)
     {
         CGContext.theContext.graphicsContext.drawImage(image,
@@ -38,7 +36,9 @@ public class UIImage
                 Simulator.getDisplay());
     }
     
-    
+    public void draw(int x, int y) {
+    	CGContext.theContext.graphicsContext.drawImage(image, x, y, null);
+    }
     
     public CGSize getSize()
     {

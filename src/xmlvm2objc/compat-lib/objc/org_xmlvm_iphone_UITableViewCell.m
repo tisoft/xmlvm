@@ -17,7 +17,9 @@
 
 - (org_xmlvm_iphone_UIView*) getContentView
 {
-	return [self contentView];
+	org_xmlvm_iphone_UIView* view = [self contentView];
+	[view retain];
+	return view;
 }
 
 @end

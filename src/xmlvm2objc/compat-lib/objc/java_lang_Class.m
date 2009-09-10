@@ -23,9 +23,14 @@
 	return simpleName;
 }
 
+- (NSObject*) newInstance
+{
+	return (NSObject*) class_createInstance(clazz, class_getInstanceSize(clazz));
+}
+
 + (java_lang_Class*) forName___java_lang_String :(java_lang_String*) className;
 {
-	java_lang_Class* classWrapper = [[[java_lang_Class alloc] init] autorelease];
+	java_lang_Class* classWrapper = [[java_lang_Class alloc] init];
 	NSString* mangledName = [className stringByReplacingOccurrencesOfString: @"." withString: @"_"];
 	mangledName = [mangledName stringByReplacingOccurrencesOfString: @"$" withString: @"_"];
 	classWrapper->clazz = NSClassFromString(mangledName);
@@ -36,7 +41,7 @@
 {
 	unsigned int count, i;
 
-	NSMutableArray* fields = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray* fields = [[NSMutableArray alloc] init];
     Method* m = class_copyMethodList(object_getClass(clazz), &count);
 	for (i = 0; i < count; i++) {
 		NSString* name = [NSString stringWithCString: sel_getName(method_getName(m[i])) encoding: NSASCIIStringEncoding];

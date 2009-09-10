@@ -7,7 +7,7 @@
 
 - (java_util_Iterator*) iterator
 {
-	return [[[java_util_Iterator alloc] init: [self objectEnumerator]] autorelease];
+	return [[java_util_Iterator alloc] init: [self objectEnumerator]];
 }
 
 @end

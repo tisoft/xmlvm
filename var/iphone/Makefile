@@ -32,7 +32,8 @@ LD=$(CC)
 LDFLAGS=-arch i386 \
         -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk \
         -mmacosx-version-min=10.5 \
-        -framework Foundation -framework UIKit -framework CoreGraphics
+        -framework Foundation -framework UIKit -framework CoreGraphics -framework QuartzCore \
+        -framework AVFoundation -framework OpenGLES
 
 
 WRAPPER_NAME=$(PRODUCT_NAME).app

@@ -39,4 +39,9 @@
 	return number;
 }
 
++ (int) parseInt___java_lang_String: (java_lang_String *) str
+{
+	return atoi([str UTF8String]);
+}
+
 @end

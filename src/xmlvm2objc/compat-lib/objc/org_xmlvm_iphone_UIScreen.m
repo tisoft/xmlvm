@@ -6,7 +6,7 @@
 
 + (org_xmlvm_iphone_UIScreen*) mainScreen
 {
-	org_xmlvm_iphone_UIScreen* xmlvmScreen = [[[org_xmlvm_iphone_UIScreen alloc] init] autorelease];
+	org_xmlvm_iphone_UIScreen* xmlvmScreen = [[org_xmlvm_iphone_UIScreen alloc] init];
 	xmlvmScreen->screen = [UIScreen mainScreen];
 	return xmlvmScreen;
 }
@@ -14,7 +14,7 @@
 - (org_xmlvm_iphone_CGRect*) bounds
 {
 	CGRect rect = [screen bounds];
-    org_xmlvm_iphone_CGRect* xmlvmCGRect = [[[org_xmlvm_iphone_CGRect alloc] init] autorelease];
+    org_xmlvm_iphone_CGRect* xmlvmCGRect = [[org_xmlvm_iphone_CGRect alloc] init];
     xmlvmCGRect->origin->x = rect.origin.x;
     xmlvmCGRect->origin->y = rect.origin.y;
     xmlvmCGRect->size->width = rect.size.width;
@@ -25,7 +25,7 @@
 - (org_xmlvm_iphone_CGRect*) applicationFrame
 {
 	CGRect rect = [screen applicationFrame];
-    org_xmlvm_iphone_CGRect* xmlvmCGRect = [[[org_xmlvm_iphone_CGRect alloc] init] autorelease];
+    org_xmlvm_iphone_CGRect* xmlvmCGRect = [[org_xmlvm_iphone_CGRect alloc] init];
     xmlvmCGRect->origin->x = rect.origin.x;
     xmlvmCGRect->origin->y = rect.origin.y;
     xmlvmCGRect->size->width = rect.size.width;

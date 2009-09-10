@@ -24,6 +24,7 @@
 {
 	id next = self->nextObj;
 	self->nextObj = [enumerator nextObject];
+	[next retain];
 	return (java_lang_Object*) next;
 }
 

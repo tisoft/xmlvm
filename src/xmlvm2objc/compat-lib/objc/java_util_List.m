@@ -7,7 +7,7 @@
 
 - (java_util_Iterator*) iterator
 {
-	return [[[java_util_Iterator alloc] init: [self objectEnumerator]] autorelease];
+	return [[java_util_Iterator alloc] init: [self objectEnumerator]];
 }
 
 - (int) size
@@ -23,12 +23,15 @@
 
 - (java_lang_Object*) get___int :(int) idx
 {
-	return (java_lang_Object*) [self objectAtIndex: idx];
+	java_lang_Object* item = (java_lang_Object*) [self objectAtIndex: idx];
+	[item retain];
+	return item;
 }
 
 - (java_lang_Object*) remove___int :(int) idx
 {
 	java_lang_Object* o = [self objectAtIndex: idx];
+	[o retain];
 	[((NSMutableArray*) self) removeObjectAtIndex: idx];
 	return o;
 }
@@ -43,4 +46,18 @@
 	}
 }
 
+- (int) indexOf___java_lang_Object :(java_lang_Object*) item
+{
+	return [((NSMutableArray*) self) indexOfObject: item];
+}
+
+- (int) contains___java_lang_Object :(java_lang_Object*) item
+{
+	return [self indexOf___java_lang_Object: item] != NSNotFound;
+}
+
+- (void) clear
+{
+	[self removeAllObjects];
+}
 @end

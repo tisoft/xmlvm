@@ -8,10 +8,18 @@
 
 - (java_lang_Object*) objectForKey___java_lang_String: (java_lang_String*) key
 {
+	[self synchronize];
 	id obj = [self objectForKey: key];
 	if (obj == nil)
-	    return [java_lang_null _GET_NULL];;
+	    return [NSNull null];
+	[obj retain];
 	return obj;
+}
+
+- (void) setObject___java_lang_Object_java_lang_String: (java_lang_Object*) value :(java_lang_String*) key
+{
+	[self setObject: value forKey: key];
+	[self synchronize];
 }
 
 - (void) setInteger___int_java_lang_String :(int) value :(java_lang_String*) key
@@ -42,6 +50,22 @@
 - (float) floatForKey___java_lang_String :(java_lang_String*) key
 {
 	return [self floatForKey: key];
+}
+
+- (org_xmlvm_iphone_NSData*) dataForKey___java_lang_String :(java_lang_String*) key
+{
+	[self synchronize];
+	org_xmlvm_iphone_NSData* data = [self dataForKey: key];
+	[data retain];
+	return data;
+}
+
+- (java_lang_String*) stringForKey___java_lang_String :(java_lang_String*) key
+{	
+	[self synchronize];
+	java_lang_String* data = [self stringForKey: key];
+	[data retain];
+	return data;
 }
 
 @end

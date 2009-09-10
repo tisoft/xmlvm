@@ -16,6 +16,26 @@
     return sqrt(x);
 }
 
++ (double) sin___double: (double) a
+{
+	return sin(a);
+}
+
++ (double) cos___double: (double) a
+{
+	return cos(a);
+}
+
++ (double) tan___double: (double) a
+{
+    return tan(a);
+}
+
++ (double) atan2___double_double: (double) y :(double) x
+{
+	return atan2(y,x);
+}
+
 + (double) asin___double: (double) x
 {
     return asin(x);
@@ -34,6 +54,16 @@
 + (float) max___float_float :(float) x :(float) y
 {
 	return x < y ? y : x;
+}
+
++ (int) max___int_int :(int) x :(int) y
+{
+	return x < y ? y : x;
+}
+
++ (int) min___int_int :(int) x :(int) y
+{
+	return x >  y ? y : x;
 }
 
 @end

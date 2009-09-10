@@ -51,6 +51,7 @@
 		<pathelement location="lib/yuicompressor-2.1.2.jar" />
 		<pathelement location="lib/czlUtil.jar" />
 		<pathelement location="lib/saxon9.jar" />
+		<pathelement location="lib/lwjgl.jar" />
 	</path>
 
 	<path id="classpath.run">
@@ -62,6 +63,7 @@
 		<pathelement location="lib/jakarta-regexp.jar" />
 		<pathelement location="lib/saxon9.jar" />
 		<pathelement location="lib/xercesImpl.jar" />
+		<pathelement location="lib/lwjgl.jar" />
 	</path>
 
 

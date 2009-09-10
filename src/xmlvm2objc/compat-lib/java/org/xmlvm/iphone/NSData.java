@@ -13,6 +13,10 @@ public class NSData {
         this.in = in;
     }
 
+    protected NSData() {
+        this.in = null;
+    }
+
     public InputStream getInputStream() {
         return this.in;
     }

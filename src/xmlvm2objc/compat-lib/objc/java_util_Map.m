@@ -9,6 +9,7 @@
                                                               :(java_lang_Object*) value
 {
 	[((NSMutableDictionary*) self) setObject: value forKey: key];
+	[value retain];
 	return value;
 }
 
@@ -16,7 +17,8 @@
 {
 	id value = [self objectForKey: key];
 	if (value == nil)
-		return [java_lang_null _GET_NULL];
+		return [NSNull null];
+	[value retain];
 	return (java_lang_Object*) value;
 }
 

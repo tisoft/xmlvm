@@ -20,7 +20,9 @@
 
 - (java_lang_String*) getName
 {
-	return self->name;
+	java_lang_String* name = self->name;
+	[name retain];
+	return name;
 }
 
 - (int) getInt___java_lang_Object: (java_lang_Object*) obj

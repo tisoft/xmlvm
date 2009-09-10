@@ -4,6 +4,11 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_CGSize;
 
+- (void) __init_org_xmlvm_iphone_CGSize___float_float: (float) w : (float) h {
+	width = w;
+	height = h;
+}
+
 - (void) _PUT_width: (float) w
 {
 	self->width = w;

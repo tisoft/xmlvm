@@ -476,6 +476,16 @@ int main(int argc, char* argv[])
 </xsl:text>
 </xsl:template>
 
+<xsl:template match="jvm:dreturn">
+  <xsl:text>    _op1.d = _stack[--_sp].d;
+</xsl:text>
+  <xsl:if test="vm:useAutoReleasePool(.)">
+    <xsl:text>    [_pool release];
+</xsl:text>
+  </xsl:if>
+  <xsl:text>    return _op1.d;
+</xsl:text>
+</xsl:template>
 
 <xsl:template match="jvm:areturn">
   <xsl:text>    _op1.o = _stack[--_sp].o;
@@ -570,7 +580,7 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="jvm:aconst_null">
-  <xsl:text>    _stack[_sp++].o = [java_lang_null _GET_NULL];
+  <xsl:text>    _stack[_sp++].o = [NSNull null];
 </xsl:text>
 </xsl:template>
 
@@ -705,6 +715,11 @@ int main(int argc, char* argv[])
     _stack[_sp++].i = _op1.i &amp; _op2.i;</xsl:text>
 </xsl:template>
 
+<xsl:template match="jvm:ior">
+  <xsl:text>    _op2.i = _stack[--_sp].i;
+    _op1.i = _stack[--_sp].i;
+    _stack[_sp++].i = _op1.i | _op2.i;</xsl:text>
+</xsl:template>
 
 <xsl:template match="jvm:iadd">
   <xsl:text>    _op2.i = _stack[--_sp].i;
@@ -817,6 +832,11 @@ int main(int argc, char* argv[])
     _stack[_sp++].f = (float) _op1.i;</xsl:text>
 </xsl:template>
   
+<xsl:template match="jvm:i2b">
+  <xsl:text>    _op1.i = _stack[--_sp].i;
+    _stack[_sp++].i = (int) (_op1.i &amp; 0xFF);</xsl:text>
+</xsl:template>
+
 <xsl:template match="jvm:i2l">
   <xsl:text>    _op1.i = _stack[--_sp].i;
     _stack[_sp++].l = (long) _op1.i;</xsl:text>
@@ -889,8 +909,7 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="jvm:pop">
-<xsl:text>
-_sp--;
+  <xsl:text>    _sp--;
 </xsl:text>
 </xsl:template>
 
@@ -1015,7 +1034,7 @@ _sp--;
 
 <xsl:template match="jvm:ifnull">
   <xsl:text>    _op1.o = _stack[--_sp].o;
-    if (_op1.o == [java_lang_null _GET_NULL]) goto label</xsl:text>
+    if (_op1.o == [NSNull null]) goto label</xsl:text>
   <xsl:value-of select="@label"/>
   <xsl:text>;
 </xsl:text>
@@ -1024,7 +1043,7 @@ _sp--;
 
 <xsl:template match="jvm:ifnonnull">
   <xsl:text>    _op1.o = _stack[--_sp].o;
-    if (_op1.o != [java_lang_null _GET_NULL]) goto label</xsl:text>
+    if (_op1.o != [NSNull null]) goto label</xsl:text>
   <xsl:value-of select="@label"/>
   <xsl:text>;
 </xsl:text>
@@ -1197,6 +1216,10 @@ _sp--;
   <xsl:text>];
 </xsl:text>
   <xsl:if test="vm:signature/vm:return/@type != 'void'">
+    <xsl:if test="vm:isObjectRef(vm:signature/vm:return/@type)">
+      <xsl:text>    [_op1.o autorelease];
+</xsl:text>
+    </xsl:if>
     <xsl:text>    _stack[_sp++]</xsl:text>
     <xsl:value-of select="$returnTypedAccess"/>
     <xsl:text> = _op1</xsl:text>
@@ -1256,6 +1279,10 @@ _sp--;
   <xsl:text>];
 </xsl:text>
   <xsl:if test="vm:signature/vm:return/@type != 'void'">
+    <xsl:if test="vm:isObjectRef(vm:signature/vm:return/@type)">
+      <xsl:text>    [_op1.o autorelease];
+</xsl:text>
+    </xsl:if>
     <xsl:text>    _stack[_sp++]</xsl:text>
     <xsl:value-of select="$returnTypedAccess"/>
     <xsl:text> = _op1</xsl:text>
@@ -1269,12 +1296,12 @@ _sp--;
 <xsl:template match="jvm:newarray|jvm:anewarray">
   <xsl:text>    _op1.i = _stack[--_sp].i;
     _stack[_sp].o = [NSMutableArray arrayWithCapacity: _op1.i];
+    
     for (_op2.i = 0; _op2.i &lt; _op1.i; _op2.i++)
-        [_stack[_sp].o addObject: [[NSObject alloc] init]];
+        [_stack[_sp].o addObject: [NSNull null]];
     _sp++;
 </xsl:text>
 </xsl:template>
-
 
 <xsl:template match="jvm:arraylength">
   <xsl:text>    _op1.i = [_stack[--_sp].o count];
@@ -1534,6 +1561,145 @@ _sp--;
 <xsl:template match="vm:annotations">
   <!-- Ignore annotations -->
 </xsl:template>
+
+<!-- Kev Adds -->
+<xsl:template match="jvm:ishl">
+  <xsl:text>    _op2.i = _stack[--_sp].i;
+    _op1.i = _stack[--_sp].i;
+    _stack[_sp++].i = _op1.i &lt;&lt; _op2.i;</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:ishr">
+  <xsl:text>    _op2.i = _stack[--_sp].i;
+    _op1.i = _stack[--_sp].i;
+    _stack[_sp++].i = _op1.i &gt;&gt; _op2.i;</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:dup2">
+  <xsl:text>    _op1 = _stack[_sp - 2];
+    _op2 = _stack[_sp - 1];
+
+    _stack[_sp++] = _op1;    
+    _stack[_sp++] = _op2;
+</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:if_icmpgt">
+  <xsl:text>    _op2.i = _stack[--_sp].i;
+    _op1.i = _stack[--_sp].i;
+    if (_op1.i &gt; _op2.i) goto label</xsl:text>
+  <xsl:value-of select="@label"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:dcmpl">
+  <xsl:text>    _op2.f = (float) _stack[--_sp].d;
+    _op1.f = (float) _stack[--_sp].d;
+    _op3.i = -1;
+    if (_op1.f &gt; _op2.f)
+      _op3.i = 1;
+    else if (_op1.f == _op2.f)
+      _op3.i = 0;
+    else if (_op1.f &lt; _op2.f)
+      _op3.i = -1;
+    _stack[_sp++].i = _op3.i;
+</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:lcmp">
+    <xsl:text>    _op2.l = _stack[--_sp].l;
+    _op1.l = _stack[--_sp].l;
+    _op3.i = 1;
+    if (_op1.l &gt; _op2.l)
+      _op3.i = 1;
+    else if (_op1.l == _op2.l)
+      _op3.i = 0;
+    else if (_op1.l &lt; _op2.l)
+      _op3.i = -1;
+    _stack[_sp++].i = _op3.i;
+</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:monitorenter">
+  <xsl:text>    _op1.o = _stack[--_sp].o;
+  	@syncrhonized(_op1.o) {
+</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:monitorexit">
+  <xsl:text>    }
+</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:l2i">
+  <xsl:text>    _op1.l = _stack[--_sp].l;
+  _stack[_sp++].i = (int) _op1.l;</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:i2c">
+  <xsl:text>    _op1.i = _stack[--_sp].i;
+  _stack[_sp++].i = (short) _op1.i;</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:ladd">
+  <xsl:text>    _op2.l = _stack[--_sp].l;
+    _op1.l = _stack[--_sp].l;
+    _stack[_sp++].l = _op1.l + _op2.l;</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:lmul">
+  <xsl:text>    _op2.l = _stack[--_sp].l;
+    _op1.l = _stack[--_sp].l;
+    _stack[_sp++].l = _op1.l * _op2.l;</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:ldiv">
+  <xsl:text>    _op2.l = _stack[--_sp].l;
+    _op1.l = _stack[--_sp].l;
+    _stack[_sp++].l = _op1.l / _op2.l;</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:lrem">
+  <xsl:text>    _op2.l = _stack[--_sp].l;
+    _op1.l = _stack[--_sp].l;
+    _stack[_sp++].l = _op1.l % _op2.l;</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:dup_x2">
+  <xsl:text>    _op1.i = _stack[--_sp].i;
+    _op2.i = _stack[--_sp].i;
+    _op3.i = _stack[--_sp].i;
+    _stack[_sp++].i = _op1.l;
+    _stack[_sp++].i = _op3.l;
+    _stack[_sp++].i = _op2.l;
+    _stack[_sp++].i = _op1.l;</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:lstore">
+  <xsl:text>    _op1.l = _stack[--_sp].l;
+    _locals[</xsl:text>
+  <xsl:value-of select="@index"/>
+  <xsl:text>].l = _op1.l;
+</xsl:text>
+</xsl:template>
+
+<!-- natte adds -->
+
+<xsl:template match="jvm:dsub">
+    <xsl:text>    _op2.d = _stack[--_sp].d;
+    _op1.d = _stack[--_sp].d;
+    _stack[_sp++].d = _op1.d - _op2.d;
+</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:lsub">
+    <xsl:text>    _op2.l = _stack[--_sp].l;
+    _op1.l = _stack[--_sp].l;
+    _stack[_sp++].l = _op1.l - _op2.l;
+</xsl:text>
+</xsl:template>
+
 
 <!--
    Default template. If the XMLVM file should contain an instruction

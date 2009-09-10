@@ -71,12 +71,14 @@
 - (NSMutableString*) append___java_lang_String: (java_lang_String*) str
 {
     [self appendString: str];
+    [self retain];
     return self;
 }
 
 - (NSMutableString*) append___java_lang_Object: (java_lang_Object*) obj
 {
     [self appendString: [obj toString]];
+    [self retain];
     return self;
 }
 
@@ -84,6 +86,25 @@
 {
 	NSNumber* n = [NSNumber numberWithInt: i];
 	[self appendString: [n stringValue]];
+    [self retain];
+	return self;
+}
+
+
+- (NSMutableString*) append___long: (long) l
+{
+	NSNumber* n = [NSNumber numberWithInt: l];
+	[self appendString: [n stringValue]];
+    [self retain];
+	return self;
+}
+
+- (NSMutableString*) append___char: (char) i
+{
+	char temp[10];
+	sprintf(temp, "%c", i);
+	[self appendString: [NSString stringWithUTF8String: temp]];
+    [self retain];
 	return self;
 }
 
@@ -91,6 +112,7 @@
 {
 	NSNumber* n = [NSNumber numberWithFloat: f];
 	[self appendString: [n stringValue]];
+    [self retain];
 	return self;
 }
 
@@ -115,8 +137,47 @@
     return [self compare: (NSString*) o] == 0;
 }
 
+- (int) equalsIgnoreCase___java_lang_String: (java_lang_String*) s
+{
+	return [self caseInsensitiveCompare: s] == 0;
+}
+
 - (NSMutableString*) toString
 {
+    [self retain];
     return self;
 }
+
+- (int) indexOf___int: (int) ch {
+	int i;
+	
+	for (i = 0; i < [self length]; i++) {
+		if ([self characterAtIndex: i] == ch)
+			return i;
+	}
+	
+	return -1;
+}
+	
+- (int) startsWith___java_lang_String: (java_lang_String*) s {
+	return [self hasPrefix: s] == YES ? 1 : 0;
+}
+
+- (int) lastIndexOf___java_lang_String: (java_lang_String*) s {
+	NSRange range = [self rangeOfString: s options:NSBackwardsSearch];
+	if (range.location == NSNotFound) {
+		return -1;
+	}
+
+	return range.location;
+}
+
+- (int) indexOf___java_lang_String: (java_lang_String*) s {
+	NSRange range = [self rangeOfString: s];
+	if (range.location == NSNotFound) {
+		return -1;
+	}
+
+}
+
 @end

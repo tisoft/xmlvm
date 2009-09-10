@@ -11,7 +11,7 @@
 #import <UIKit/UITableViewCell.h>
 #import <UIKit/UIImage.h>
 #import <UIKit/UIImageView.h>
-#import <UIKit/UiScreen.h>
+#import <UIKit/UIScreen.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import <UIKit/UILabel.h>
 #import <UIKit/UITextField.h>
@@ -28,13 +28,3 @@ typedef union {
     long    l;
 } XMLVMElem;
 
-
-// java.lang.null
-//----------------------------------------------------------------------------
-@interface java_lang_null : NSObject
-
-+ (void) initialize;
-- (NSUInteger) retainCount;
-+ (NSObject*) _GET_NULL;
-
-@end

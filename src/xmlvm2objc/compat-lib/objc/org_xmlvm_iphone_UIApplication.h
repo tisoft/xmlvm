@@ -9,6 +9,10 @@
 - (void) applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app;
 - (void) applicationWillTerminate: (UIApplication*) app;
 - (void) applicationWillTerminate___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app;
+- (void) applicationDidBecomeActive___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app;
+- (void) applicationDidBecomeActive:(org_xmlvm_iphone_UIApplication*) app;
+- (void) applicationWillResignActive___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app;
+- (void) applicationWillResignActive:(org_xmlvm_iphone_UIApplication*) app;
 - (void) setStatusBarHidden___boolean:(bool) flag;
 - (void) setStatusBarOrientation___int: (int) orientation;
 - (void) setIdleTimerDisabled___boolean: (bool) flag;

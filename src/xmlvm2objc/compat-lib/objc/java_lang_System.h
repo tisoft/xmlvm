@@ -7,5 +7,6 @@
 + (void) initialize;
 + (java_io_PrintStream*) _GET_out;
 + (void) _PUT_out: (java_io_PrintStream*) v;
++ (long) currentTimeMillis;
 
 @end

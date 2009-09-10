@@ -16,5 +16,6 @@
 - (java_lang_String*) getName;
 + (java_lang_Class*) forName___java_lang_String :(java_lang_String*) className;
 - (NSMutableArray*) getDeclaredFields;
+- (NSObject*) newInstance;
 
 @end

@@ -15,5 +15,21 @@
     // Do nothing
 }
 
+- (NSString *) getMessage
+{
+	NSString* reason = [self reason];
+	[reason retain];
+    return reason;
+}
 
+- (NSString *) toString
+{
+	NSString* name = [self name];
+	[name retain];
+    return name;
+}
+
+- (void) printStackTrace
+{
+}
 @end
