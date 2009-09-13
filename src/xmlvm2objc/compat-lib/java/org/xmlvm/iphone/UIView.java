@@ -84,7 +84,7 @@ public class UIView extends UIResponder {
     public CGRect getFrame() {
         return this.frame;
     }
-    
+
     public void addSubview(UIView subView) {
         subView.parent = this;
         subViews.add(subView);
@@ -279,6 +279,10 @@ public class UIView extends UIResponder {
     }
     
     public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+        if (getDelegate() != null) {
+            getDelegate().touchesBegan(touches, event);
+        }
+        
         if (parent != null) {
             parent.touchesBegan(touches, event);
         }
@@ -288,6 +292,10 @@ public class UIView extends UIResponder {
     }
 
     public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
+        if (getDelegate() != null) {
+            getDelegate().touchesCancelled(touches, event);
+        }
+        
         if (parent != null) {
             parent.touchesCancelled(touches, event);
         }
@@ -297,6 +305,10 @@ public class UIView extends UIResponder {
     }
 
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+        if (getDelegate() != null) {
+            getDelegate().touchesEnded(touches, event);
+        }
+        
         if (parent != null) {
             parent.touchesEnded(touches, event);
         }
@@ -306,6 +318,10 @@ public class UIView extends UIResponder {
     }
 
     public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+        if (getDelegate() != null) {
+            getDelegate().touchesMoved(touches, event);
+        }
+        
         if (parent != null) {
             parent.touchesMoved(touches, event);
         }

@@ -22,6 +22,7 @@ package android.widget;
 
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIImageView;
+import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.internal.ResourceMapper;
@@ -30,22 +31,18 @@ import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
 
 public class ImageView extends View {
-    protected UIImageView image;
 
     public ImageView(Context c) {
         super(c);
-        this.setOpaque(false);
-        this.setFrame(new CGRect(0,0, 0, 0));
-        image = new UIImageView(new CGRect(0, 0, 0, 0));//((Activity) c).getWindow().getCGRect());
-        this.addSubview(image);
+        
+        //((Activity) c).getWindow().getCGRect());
     }
 
     public void setImageResource(int resId) {
-        this.image.setImage(ResourceMapper.getImageById(resId));
-        float width = image.getImage().getSize().width;
-        float height = image.getImage().getSize().height;
-        this.setFrame(new CGRect(0, 0, width, height));
-        image.setFrame(new CGRect(0, 0, width, height));
+        getUIImageView().setImage(ResourceMapper.getImageById(resId));
+        float width = getUIImageView().getImage().getSize().width;
+        float height = getUIImageView().getImage().getSize().height;
+        getUIImageView().setFrame(new CGRect(0, 0, width, height));
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
@@ -55,16 +52,24 @@ public class ImageView extends View {
         int height = a.height;
 
         if (width == LayoutParams.WRAP_CONTENT) {
-            width = (int) image.getImage().getSize().width;
+            width = (int) getUIImageView().getImage().getSize().width;
         }
         if (height == LayoutParams.WRAP_CONTENT) {
-            height = (int) image.getImage().getSize().height;
+            height = (int) getUIImageView().getImage().getSize().height;
         }
-        this.setFrame(new CGRect(a.x, a.y, width, height));
-        image.setFrame(new CGRect(0, 0, width, height));
+        getUIImageView().setFrame(new CGRect(a.x, a.y, width, height));
     }
 
     public AbsoluteLayout.LayoutParams getLayoutParams() {
         return (AbsoluteLayout.LayoutParams) getCurLayout();
+    }
+
+    @Override
+    protected UIView xmlvmCreateUIView() {
+        return new UIImageView(new CGRect(0, 0, 0, 0));
+    }
+    
+    private UIImageView getUIImageView() {
+        return (UIImageView) xmlvmGetUIView();
     }
 }

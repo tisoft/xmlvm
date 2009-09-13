@@ -5,6 +5,8 @@ import java.util.Set;
 import org.xmlvm.iphone.internal.Simulator;
 
 public class UIResponder {
+    
+    private UIResponderDelegate delegate = null;
 
     public UIResponder() {
         Simulator.addTouchesListener(this);
@@ -39,5 +41,13 @@ public class UIResponder {
         else {
             return UIApplication.instance;
         }
+    }
+
+    public UIResponderDelegate getDelegate() {
+        return delegate;
+    }
+
+    public void setDelegate(UIResponderDelegate delegate) {
+        this.delegate = delegate;
     }
 }

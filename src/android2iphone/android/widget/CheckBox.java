@@ -2,27 +2,21 @@ package android.widget;
 
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UISwitch;
+import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.view.ViewGroup;
 
 public class CheckBox extends CompoundButton {
 
-    protected UISwitch uiSwitch;
-
     public CheckBox(Context c) {
         super(c);
-        this.setOpaque(false);
-        uiSwitch = new UISwitch();
-        this.addSubview(uiSwitch);
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
         super.setLayoutParams(l);
         AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams) l;
-        this.setFrame(new CGRect(a.x, a.y, UISwitch.kSwitchButtonWidth,
-                UISwitch.kSwitchButtonHeight));
-        uiSwitch.setFrame(new CGRect(0, 0, UISwitch.kSwitchButtonWidth,
+        getUISwitch().setFrame(new CGRect(a.x, a.y, UISwitch.kSwitchButtonWidth,
                 UISwitch.kSwitchButtonHeight));
     }
 
@@ -31,15 +25,24 @@ public class CheckBox extends CompoundButton {
     }
 
     public boolean isChecked() {
-        return uiSwitch.isOn();
+        return getUISwitch().isOn();
     }
 
     public void setChecked(boolean checked) {
-        uiSwitch.setOn(checked);
+        getUISwitch().setOn(checked);
     }
 
     public void setSelected(boolean b) {
         // TODO Auto-generated method stub
         
+    }
+
+    @Override
+    protected UIView xmlvmCreateUIView() {
+        return new UISwitch();
+    }
+    
+    private UISwitch getUISwitch() {
+        return (UISwitch) xmlvmGetUIView();
     }
 }

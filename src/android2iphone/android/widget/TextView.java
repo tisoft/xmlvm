@@ -23,6 +23,7 @@ package android.widget;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UILabel;
+import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.view.View;
@@ -30,18 +31,12 @@ import android.view.ViewGroup;
 
 public class TextView extends View {
 
-    protected UILabel uiLabel;
     
     public TextView(Context c) {
         super(c);
-        this.setOpaque(false);
-        
-        uiLabel = new UILabel();
         
         // TODO Set default color white
         //uiLabel.setFontColor(new Color(0xffffff));
-        
-        this.addSubview(uiLabel);
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
@@ -58,18 +53,27 @@ public class TextView extends View {
 //            height = (int) image.getImage().getSize().height;
 //        }
         
-        this.setFrame(new CGRect(a.x, a.y, width, height));
-        uiLabel.setFrame(new CGRect(0, 0, width, height));
+        xmlvmGetUIView().setFrame(new CGRect(a.x, a.y, width, height));
     }
 
 
     public void setText(String string) {
-        uiLabel.setText(string);
+        getUILabel().setText(string);
         
     }
 
     public void setTextSize(float size) {
-        UIFont font = uiLabel.getFont();
-        uiLabel.setFont(font.fontWithSize(size));
+        UIFont font = getUILabel().getFont();
+        getUILabel().setFont(font.fontWithSize(size));
     }
+
+    @Override
+    protected UIView xmlvmCreateUIView() {
+        return new UILabel();
+    }
+    
+    private UILabel getUILabel() {
+        return (UILabel) xmlvmGetUIView();
+    }
+    
 }

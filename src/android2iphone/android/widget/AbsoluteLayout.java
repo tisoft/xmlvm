@@ -30,7 +30,7 @@ public class AbsoluteLayout extends ViewGroup {
     public AbsoluteLayout(Context c) {
         super(c);
         CGRect rect = ((Activity) c).getWindow().getCGRect();
-        this.setFrame(rect);
+        this.xmlvmGetUIView().setFrame(rect);
     }
 
     public static class LayoutParams extends ViewGroup.LayoutParams {

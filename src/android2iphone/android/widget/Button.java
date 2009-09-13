@@ -26,6 +26,7 @@ import org.xmlvm.iphone.UIButtonType;
 import org.xmlvm.iphone.UIControl;
 import org.xmlvm.iphone.UIControlDelegate;
 import org.xmlvm.iphone.UIControlState;
+import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.view.View;
@@ -33,14 +34,10 @@ import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
 
 public class Button extends View {
-    protected UIButton button;
     private String     title;
 
     public Button(Context c) {
         super(c);
-        this.setOpaque(false);
-        button = UIButton.buttonWithType(UIButtonType.UIButtonTypeRoundedRect);
-        this.addSubview(button);
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
@@ -53,8 +50,7 @@ public class Button extends View {
         if (a.height == LayoutParams.WRAP_CONTENT) {
             a.height = 25;
         }
-        this.setFrame(new CGRect(a.x, a.y, a.width, a.height));
-        button.setFrame(new CGRect(0, 0, a.width, a.height));
+        getUIButton().setFrame(new CGRect(a.x, a.y, a.width, a.height));
     }
 
     public AbsoluteLayout.LayoutParams getLayoutParams() {
@@ -63,12 +59,12 @@ public class Button extends View {
 
     public void setText(String title) {
         this.title = title;
-        button.setTitle(title, UIControlState.UIControlStateNormal);
+        getUIButton().setTitle(title, UIControlState.UIControlStateNormal);
     }
 
     public void setOnClickListener(OnClickListener listener) {
         final OnClickListener theListener = listener;
-        button.addTarget(new UIControlDelegate() {
+        getUIButton().addTarget(new UIControlDelegate() {
 
             @Override
             public void raiseEvent() {
@@ -76,5 +72,14 @@ public class Button extends View {
             }
 
         }, UIControl.UIControlEventTouchUpInside);
+    }
+
+    @Override
+    protected UIView xmlvmCreateUIView() {
+        return UIButton.buttonWithType(UIButtonType.UIButtonTypeRoundedRect);
+    }
+    
+    private UIButton getUIButton() {
+        return (UIButton) xmlvmGetUIView();
     }
 }

@@ -54,8 +54,8 @@ public class Window {
         adjustFrameSize();
         CGRect viewRect = new CGRect(rect);
         viewRect.origin.x = viewRect.origin.y = 0;
-        view.setFrame(viewRect);
-        iWindow.addSubview(view);
+        view.xmlvmGetUIView().setFrame(viewRect);
+        iWindow.addSubview(view.xmlvmGetUIView());
         iWindow.makeKeyAndVisible();
     }
 

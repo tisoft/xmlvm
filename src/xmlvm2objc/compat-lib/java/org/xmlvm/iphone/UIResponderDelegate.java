@@ -18,36 +18,20 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.widget;
+package org.xmlvm.iphone;
 
-import org.xmlvm.iphone.UITextView;
-import org.xmlvm.iphone.UIView;
+import java.util.Set;
 
-import android.content.Context;
+/**
+ *
+ */
+public interface UIResponderDelegate {
+    public void touchesBegan(Set<UITouch> touches, UIEvent event);
 
-public class EditText extends TextView {
-    
-    public EditText(Context c) {
-        super(c);
-        
-        getUITextView().setText("");
-    }
+    public void touchesCancelled(Set<UITouch> touches, UIEvent event);
 
-    public Object getText() {
-        return getUITextView().getText();
-    }
+    public void touchesEnded(Set<UITouch> touches, UIEvent event);
 
-    public void setLines(int i) {
-        // TODO Auto-generated method stub
-        
-    }
+    public void touchesMoved(Set<UITouch> touches, UIEvent event);
 
-    @Override
-    protected UIView xmlvmCreateUIView() {
-        return new UITextView();
-    }
-
-    private UITextView getUITextView() {
-        return (UITextView) xmlvmGetUIView();
-    }
 }

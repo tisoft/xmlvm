@@ -18,36 +18,14 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.widget;
+package android.view;
 
-import org.xmlvm.iphone.UITextView;
-import org.xmlvm.iphone.UIView;
+/**
+ * @author b520
+ * 
+ */
+public interface ViewParent {
 
-import android.content.Context;
+    public ViewParent getParent();
 
-public class EditText extends TextView {
-    
-    public EditText(Context c) {
-        super(c);
-        
-        getUITextView().setText("");
-    }
-
-    public Object getText() {
-        return getUITextView().getText();
-    }
-
-    public void setLines(int i) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    protected UIView xmlvmCreateUIView() {
-        return new UITextView();
-    }
-
-    private UITextView getUITextView() {
-        return (UITextView) xmlvmGetUIView();
-    }
 }

@@ -20,6 +20,12 @@
 
 package android.view;
 
+import java.util.Set;
+
+import org.xmlvm.iphone.CGPoint;
+import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UIResponderDelegate;
+import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
@@ -29,7 +35,7 @@ import android.content.Context;
  * 
  * @see http://developer.android.com/reference/android/view/View.html
  */
-public class View extends UIView {
+public class View {
     public static interface OnTouchListener {
         /**
          * Called when a touch event is dispatched to a view. This allows
@@ -52,9 +58,41 @@ public class View extends UIView {
 
     private ViewGroup.LayoutParams curLayout;
     private Context                c;
+    private UIView                 uiView;
+    private ViewParent             parent;
+    private OnTouchListener        listener;
+    private UIResponderDelegate    responderDelegate;
 
     public View(Context c) {
         this.c = c;
+        uiView = xmlvmCreateUIView();
+
+        responderDelegate = new UIResponderDelegate() {
+
+            @Override
+            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+            }
+
+            @Override
+            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+            }
+
+            @Override
+            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+            }
+
+            @Override
+            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+            }
+
+        };
+        
+        uiView.setDelegate(responderDelegate);
+
     }
 
     public ViewGroup.LayoutParams getCurLayout() {
@@ -62,7 +100,7 @@ public class View extends UIView {
     }
 
     public void invalidate() {
-        this.setNeedsDisplay();
+        uiView.setNeedsDisplay();
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
@@ -75,5 +113,39 @@ public class View extends UIView {
 
     public void bringToFront() {
         // TODO Auto-generated method stub
+    }
+
+    public ViewParent getParent() {
+        return parent;
+    }
+
+    public void setOnTouchListener(OnTouchListener listener) {
+        this.listener = listener;
+    }
+
+    private boolean processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
+        if (this.listener == null) {
+            return false;
+        }
+        UITouch firstTouch = touches.iterator().next();
+        CGPoint point = firstTouch.locationInView(uiView);
+        MotionEvent motionEvent = new MotionEvent(action, (int) point.x, (int) point.y);
+        return this.listener.onTouch(this, motionEvent);
+    }
+
+    protected UIView xmlvmCreateUIView() {
+        return new UIView();
+    }
+
+    public UIView xmlvmGetUIView() {
+        return uiView;
+    }
+
+    public void xmlvmSetParent(ViewParent parent) {
+        this.parent = parent;
+    }
+
+    protected void finalize() {
+        uiView.setDelegate(null);
     }
 }

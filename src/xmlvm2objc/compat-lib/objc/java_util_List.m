@@ -21,6 +21,11 @@
 	return TRUE;
 }
 
+- (void) add___int_java_lang_Object :(int) idx :(java_lang_Object*) item
+{
+    [((NSMutableArray*) self) insertObject :item atIndex :idx];
+}
+
 - (java_lang_Object*) get___int :(int) idx
 {
 	java_lang_Object* item = (java_lang_Object*) [self objectAtIndex: idx];

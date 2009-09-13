@@ -1,6 +1,8 @@
 #import "xmlvm.h"
 #import "java_util_Set.h"
 #import "org_xmlvm_iphone_UIEvent.h"
+#import "org_xmlvm_iphone_UIResponderDelegate.h"
+
 
 
 // UIResponder
@@ -27,4 +29,9 @@
              :(java_util_Set*) touches
              :(org_xmlvm_iphone_UIEvent*) event;
 
+- (void) setDelegate___org_xmlvm_iphone_UIResponderDelegate
+             :(id) delegate;
+
+- (NSString*) getKey;
+             
 @end
