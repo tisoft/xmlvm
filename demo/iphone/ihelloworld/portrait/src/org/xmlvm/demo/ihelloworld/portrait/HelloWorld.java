@@ -1,10 +1,14 @@
 package org.xmlvm.demo.ihelloworld.portrait;
 
-import java.util.Set;
+import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIApplication;
+import org.xmlvm.iphone.UILabel;
+import org.xmlvm.iphone.UIScreen;
+import org.xmlvm.iphone.UITextAlignment;
+import org.xmlvm.iphone.UIView;
+import org.xmlvm.iphone.UIWindow;
 
-import org.xmlvm.iphone.*;
-
-public class HelloWorld extends UIApplication implements UIResponderDelegate {
+public class HelloWorld extends UIApplication {
 
     public void applicationDidFinishLaunching(UIApplication app) {
         UIScreen screen = UIScreen.mainScreen();
@@ -20,23 +24,10 @@ public class HelloWorld extends UIApplication implements UIResponderDelegate {
         title.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
         mainView.addSubview(title);
 
-        mainView.setDelegate(this);
-        
         window.makeKeyAndVisible();
     }
 
     public static void main(String[] args) {
         UIApplication.main(args, HelloWorld.class);
     }
-
-    @Override
-    public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-        System.out.println("Touches began");
-    }
-
-    @Override
-    public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-        System.out.println("Touches ended");
-    }
-
 }
