@@ -95,7 +95,7 @@ static NSMutableDictionary* delegates;
 }
 
 - (void) setDelegate___org_xmlvm_iphone_UIResponderDelegate
-             :(id) delegate
+             :(id<org_xmlvm_iphone_UIResponderDelegate>) delegate
 {
     if (delegate != [NSNull null]) {
         [delegates setObject: delegate forKey: [self getKey]];
@@ -107,7 +107,7 @@ static NSMutableDictionary* delegates;
 
 - (NSString*) getKey
 {
-	return [[NSString alloc] initWithFormat: @"%d", self];
+	return [[[NSString alloc] initWithFormat: @"%d", self] autorelease];
 }
 
 @end
