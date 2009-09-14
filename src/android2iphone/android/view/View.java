@@ -146,7 +146,6 @@ public class View {
     }
 
     protected void finalize() {
-        this.parent = null;
         uiView.setDelegate(null);
     }
 }

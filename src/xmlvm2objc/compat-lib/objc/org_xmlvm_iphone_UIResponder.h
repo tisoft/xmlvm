@@ -30,7 +30,7 @@
              :(org_xmlvm_iphone_UIEvent*) event;
 
 - (void) setDelegate___org_xmlvm_iphone_UIResponderDelegate
-             :(id) delegate;
+             :(id<org_xmlvm_iphone_UIResponderDelegate>) delegate;
 
 - (NSString*) getKey;
              
