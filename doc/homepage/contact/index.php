@@ -29,7 +29,7 @@
   sascha += '&#64;</b>xmlvm&#46';
   sascha += ';&#111;rg&gt; (Developer)';
   
-  var frusty = 'Wolfgang Korn &lt;frusty<b>';
+  var frusty = 'Wolfgang Korn &lt;wolfgang<b>';
   frusty += '&#64;</b>xmlvm&#46';
   frusty += ';&#111;rg&gt; (Developer)';
   
