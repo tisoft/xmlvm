@@ -253,6 +253,12 @@ int main(int argc, char* argv[])
 - (void) dealloc;
 {
 </xsl:text>
+<xsl:if test="vm:method[@name='finalize' and 
+                        not(vm:signature/vm:parameter) and 
+                        vm:signature/vm:return[@type='void']]">
+    <xsl:text>    [self finalize_</xsl:text><xsl:value-of select="vm:fixname(concat(@package, '.', @name))"/><xsl:text>];
+</xsl:text>
+</xsl:if>
 	<xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type)]">
 	  <xsl:text>    [</xsl:text>
       <xsl:value-of select="vm:fixname(../@package)"/>
@@ -1411,6 +1417,10 @@ int main(int argc, char* argv[])
     </xsl:when>
     <xsl:when test="$name = '&lt;clinit&gt;'">
       <xsl:text>initialize</xsl:text>
+    </xsl:when>
+    <xsl:when test="$name = 'finalize'">
+      <xsl:text>finalize_</xsl:text>
+      <xsl:value-of select="vm:fixname($class-type)"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="$name"/>
