@@ -16,7 +16,7 @@ static NSMutableDictionary* delegates;
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    id delegate = [delegates objectForKey: [self getKey]];
+    id delegate = [delegates objectForKey: [NSValue valueWithPointer: self]];
     if (delegate != nil) {
         [delegate touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event];
     }
@@ -36,7 +36,7 @@ static NSMutableDictionary* delegates;
 
 - (void) touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    id delegate = [delegates objectForKey: [self getKey]];
+    id delegate = [delegates objectForKey: [NSValue valueWithPointer: self]];
     if (delegate != nil) {
         [delegate touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event];
     }
@@ -56,7 +56,7 @@ static NSMutableDictionary* delegates;
 
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    id delegate = [delegates objectForKey: [self getKey]];
+    id delegate = [delegates objectForKey: [NSValue valueWithPointer: self]];
     if (delegate != nil) {
         [delegate touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event];
     }
@@ -76,7 +76,7 @@ static NSMutableDictionary* delegates;
 
 - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    id delegate = [delegates objectForKey: [self getKey]];
+    id delegate = [delegates objectForKey: [NSValue valueWithPointer: self]];
     if (delegate != nil) {
         [delegate touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event];
     }
@@ -98,16 +98,11 @@ static NSMutableDictionary* delegates;
              :(id<org_xmlvm_iphone_UIResponderDelegate>) delegate
 {
     if (delegate != [NSNull null]) {
-        [delegates setObject: delegate forKey: [self getKey]];
+        [delegates setObject: delegate forKey: [NSValue valueWithPointer: self]];
     }
     else {
-        [delegates removeObjectForKey: [self getKey]];
+        [delegates removeObjectForKey: [NSValue valueWithPointer: self]];
     }
-}
-
-- (NSString*) getKey
-{
-	return [[[NSString alloc] initWithFormat: @"%d", self] autorelease];
 }
 
 @end

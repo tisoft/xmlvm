@@ -31,7 +31,5 @@
 
 - (void) setDelegate___org_xmlvm_iphone_UIResponderDelegate
              :(id<org_xmlvm_iphone_UIResponderDelegate>) delegate;
-
-- (NSString*) getKey;
              
 @end
