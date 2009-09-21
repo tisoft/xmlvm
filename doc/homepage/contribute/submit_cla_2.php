@@ -22,16 +22,26 @@
   
   // Extra information about the submitter.
   $message .= "*** EXTRA INFORMATION ***\n";
-  $message .= "IP Address:".$_SERVER['REMOTE_ADDR']."\n";
+  $message .= mt_implode($_SERVER);
   
   $headers = "From: license@xmlvm.org" . "\r\n" .
-           "Reply-To: license@xmlvm.org" . "\r\n" .
+             "Reply-To: license@xmlvm.org" . "\r\n" .
              "X-Mailer: PHP/" . phpversion();
   // Send the E-Mail containing the collected data.
   if (mail('license@xmlvm.org', 'XMLVM CLA Application Submission', $message, $headers)) {
     $successful = "1";
   } else {
     $successful = "0";
+  }
+  
+
+  function mt_implode($array)
+  {
+      $lem = array_keys($array);
+      for($i=0;$i<sizeof($lem);$i++) {
+          $str .= $lem[$i] . ": " . $array[$lem[$i]] . "\n";
+      }
+      return $str;
   }
 ?>
 

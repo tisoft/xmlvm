@@ -9,7 +9,7 @@ include("../nav.html");
   <td id="main_content_td">
     <div id="main_content">
           
-<h1>Details: Toolchain Overview</h1>
+<h1>Overview: Toolchain</h1>
 
 The figure below depicts the complete XMLVM toolchain. Each of the
 boxes represent an artifact while the arrows denote the various

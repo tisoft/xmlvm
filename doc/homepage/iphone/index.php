@@ -9,7 +9,7 @@ include("../nav.html");
   <td id="main_content_td">
     <div id="main_content">
           
-<h1>Details: iPhone/Objective-C</h1>
+<h1>Overview: iPhone/Objective-C</h1>
 <div style="display:inline; float:right; margin: 0px 0px 5px 10px;">
 <object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/s8nMpi5-P-I&hl=en&fs=1&rel=0&color1=0x5d1719&color2=0xcd311b"></param><param name="allowFullScreen" value="true"></param><embed src="http://www.youtube.com/v/s8nMpi5-P-I&hl=en&fs=1&rel=0&color1=0x5d1719&color2=0xcd311b" type="application/x-shockwave-flash" allowfullscreen="true" width="425" height="344"></embed></object>
 </div>

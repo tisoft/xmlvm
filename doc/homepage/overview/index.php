@@ -1,9 +1,10 @@
 <?php
   include("../header.html");
-  include("../content_top.html") ;
+  include("../nav.html");
 ?>
-<h1>Overview</h1>
-
+<tr>
+  <td id="main_content_td">
+    <div id="main_content">
 <table>
   <tr>
     <td>

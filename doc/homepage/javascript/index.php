@@ -9,7 +9,7 @@ include("../nav.html");
   <td id="main_content_td">
     <div id="main_content">
           
-<h1>Details: JavaScript</h1>
+<h1>Overview: JavaScript</h1>
 
 <p>
 <a href="http://en.wikipedia.org/wiki/Ajax_%28programming%29">AJAX</a>

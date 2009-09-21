@@ -10,7 +10,7 @@ include("../nav.html");
   <td id="main_content_td">
     <div id="main_content">
           
-<h1>Details: CLR to JVM</h1>
+<h1>Overview: CLR to JVM</h1>
 <p>
 Both Microsoft's .NET Framework as well as Sun Microsystem's virtual
 machine are stack-based. While both support similar features, they

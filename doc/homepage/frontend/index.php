@@ -10,7 +10,7 @@ include("../nav.html");
   <td id="main_content_td">
     <div id="main_content">
           
-<h1>Details: Frontend</h1>
+<h1>Overview: Frontend</h1>
 
 <p>At the core of XMLVM is an XML-representation of byte code programs.
 Such programs are typically executed by a virtual machine. Two

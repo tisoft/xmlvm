@@ -1,23 +1,14 @@
-<html>
-  <head>
-    <title>XMLVM Usage Manual</title>
+<?php
+  include("../header.html");
+  include("../content_top.html");
+?>
     <style>
-      body {
-        font-family:Arial,Verdana,Tahoma;
-        font-size: 12px;
-        color:#444;
-      }
-      
       code {
         font-weight: bold;
-      }
-      
-      h1,h2,h3,h4,h5,h6 {
-        color:#000;
+        font-family: Courier New, Monospace
       }
     </style>
-  </head>
-  <body>
+
 	  <h1>XMLVM User Manual</h1>
 	  <!--  TODO: Table of contents -->
 	
@@ -32,9 +23,9 @@
 			Section <a href="#getting_xmlvm">Getting XMLVM</a> describes how to obtain the source
 			code of XMLVM and Section <a href="#compiling_xmlvm">Compiling XMLVM</a> how to build XMLVM
 			from source. The various command line options supported by XMLVM are
-			described in Section <a href="invoking_xmlvm">Invoking XMLVM</a>.
+			described in Section <a href="#invoking_xmlvm">Invoking XMLVM</a>.
     </p>
-    <h3>Overview</h3>
+    <h3><a name="overview">Overview</a></h3>
     <p>
 			XMLVM supports byte code instructions from two popular virtual
 			machines: the Java Virtual Machine (JVM) and the Common Language
@@ -96,7 +87,7 @@
 			foundations of XMLVM can be found in <a href="#cite_Puder_09a">Puder09a</a>.
 		</p>
 		
-		<h3>Getting XMLVM</h3>
+		<h3><a name="getting_xmlvm">Getting XMLVM</a></h3>
 		<p>
 		  XMLVM is released under the GPL v2 license and is hosted at
 			<a href="http://www.sourceforge.net/project/xmlvm">SourceForge</a>.
@@ -106,7 +97,7 @@
 			this. If you are using a command line version of Subversion, you can
 			checkout the trunk of the XMLVM repository via the following command:
 		</p>
-			<code>svn co https://xmlvm.svn.sourceforge.net/svnroot/xmlvm/trunk/xmlvm</code>
+			<code>svn co https://xmlvm.svn.sourceforge.net/svnroot/xmlvm/trunk/xmlvm</code><br/><br/>
 		<p>	
 			Note that this will give you a read-only version of the repository.
 			You will be able to update (which you should do frequently) but not
@@ -126,7 +117,7 @@
 			invocation of various demos.
 		</p>
 		
-		<h3>Compiling XMLVM</h3>
+		<h3><a name="compiling_xmlvm">Compiling XMLVM</a></h3>
     <p>
       XMLVM depends on numerous third-party libraries such as BCEL, JDOM, and
 			Saxon. All these libraries are also released under an Open Source
@@ -139,7 +130,7 @@
 			<code>
 			    cd xmlvm<br/>
 			    ant
-			</code>
+			</code><br/><br/>
 		<p>	
 			After a successful run of ant, there should be a <code>dist/</code>
 			directory. The ant script packages all dependent libraries and XMLVM's
@@ -150,7 +141,7 @@
 			highlight the various aspects of XMLVM.
 		</p>
 			
-		<h3>Invoking XMLVM</h3>
+		<h3><a name="invoking_xmlvm">Invoking XMLVM</a></h3>
 		<p>	
 			As mentioned in the previous section, the ant script will package the
 			binaries of XMLVM into one jar file. By default, this jar file is
@@ -160,14 +151,14 @@
 		</p>
 		<code>
 			    java -jar dist/xmlvm.jar
-		</code>
+		</code><br/><br/>
 		<p>
 			Command line options can be appended at the end of the command line
 			such as:
 		</p>
 		<code>
 			    java -jar dist/xmlvm.jar --version
-		</code>
+		</code><br/><br/>
 		<p>
 			The various byte code transformations and code generators can be
 			invoked via appropriate command line options. Section
@@ -178,7 +169,7 @@
 			information on the various backends.
     </p>
     
-    <h4>Command Line Options</h4>
+    <h4><a name="command_line_options">Command Line Options</a></h4>
     <p>
       XMLVM can be invoked by running the executable jar file called
 			<code>xmlvm.jar</code>. In the following we assume that an alias called
@@ -187,7 +178,7 @@
 		</p>
 			<code>
 			    alias xmlvm="java -jar $(pwd)/dist/xmlvm.jar"
-			</code>
+			</code><br/><br/>
 	  <p>
 			The behavior of XMLVM is controlled by numerous command line
 			arguments. <code>xmlvm</code> reads in one or more source files, processes them
@@ -335,7 +326,7 @@
       </li>
     </ul>
     
-    <h4>Examples</h4>
+    <h4><a name="command_line_option_examples">Examples</a></h4>
     <ul>
       <li><code>xmlvm --in=/foo/bar</code>
 			  <p>
@@ -424,7 +415,7 @@
 			overview of Java-based iPhone applications including the obligatory
 			``Hello World'' program. Section <a href="#running_iphone">Running an iPhone Application</a> explains
 			various ways how a Java-based iPhone application can be
-			executed. Section <a href="#android4iphone">Android Compatibiity Library</a> demonstrates how
+			executed. Section <a href="#android4iphone">Android Compatibility Library</a> demonstrates how
 			Android applications can be cross-compiled to native iPhone
 			applications. Section <a href="#iphone_sample_apps">Sample Applications</a> gives an overview
 			of various sample applications that show the capabilities of the
@@ -488,7 +479,7 @@
 			  of which will be explained in the following.
 			</p>
 			
-			<h4>Java-based iPhone Emulator</h4>
+			<h4><a name="java_based_emulator">Java-based iPhone Emulator</a></h4>
 		  <p>
 				XMLVM includes Java implementations of the Cocoa Touch API. Classes
 				such as <code>UIWindow</code> and <code>UILabel</code> have been implemented
@@ -577,8 +568,8 @@
 				As can be seen, compared to the Java-for-the-iPhone portion of XMLVM,
 				the only additional feature added to support Android applications is
 				the Android compatibility library. When selecting target
-				<code>android-on-iphone</code> (see Section
-				\ref{SEC_COMMAND_LINE_OPTIONS}), additional to cross-compiling the
+				<code>android-on-iphone</code> (see <a href="#command_line_options">
+				Command Line Options</a>), additional to cross-compiling the
 				application to Objective-C, this option also includes the Android
 				compatibility library to the generated project.  The Android-based
 				iPhone application can be run in both the XMLVM-specific iPhone
@@ -594,17 +585,17 @@
 				<code>demo/iphone/</code>, whereas the source code of the
 				Android-to-iPhone demos are located in directory
 				<code>demo/android/</code>. All samples can be executed in one of the ways
-				explained in Section \ref{SEC_RUNNING_IPHONE_APP}: in XMLVM's own
+				explained in <a href="#running_iphone">Running an iPhone Application</a>: in XMLVM's own
 				Java-based iPhone emulator, by running the <code>Makefile</code>, or by
 				using the Xcode IDE. Additionally, the sample programs can also be run
 				via Eclipse-specific launch configurations stored in the <code>etc/</code>
 				directory. Those launch configurations will run the Java-based iPhone
-				emulator that was described in Section
-				\ref{SEC_JAVA_BASED_IPHONE_EMULATOR} from within Eclipse.
+				emulator that was described in <a href="#java_based_emulator">
+				Java-based iPhone Emulator</a> from within Eclipse.
 			</p>
 			<p>	
 				All sample programs will get automatically compiled when running
-				<code>ant</code> as explained in Section \ref{SEC_COMPILING_XMLVM}. After
+				<code>ant</code> as explained in <a href="#compiling_xmlvm">Compiling XMLVM</a>. After
 				<code>ant</code> successfully completes, there will be a directory
 				<code>dist/demo/</code>.  For each demo, there are two sub-directories
 				each containing the same demo in two different versions: the
@@ -633,5 +624,6 @@
 				  Android project under Eclipse (requires the Android SDK). In this
 				  case Xokoban can be run inside the Android emulator.</li>
 			</ul>
-  </body>
-</html>
+<?php
+  include("../footer.html");
+?>
