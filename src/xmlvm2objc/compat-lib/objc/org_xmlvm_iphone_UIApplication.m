@@ -11,6 +11,11 @@
 {
 }
 
++ (org_xmlvm_iphone_UIApplication*) getSharedApplication
+{
+	return [[UIApplication sharedApplication] retain];
+}
+
 - (void) applicationDidBecomeActive___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app
 {    
 	// Do nothing here
@@ -66,10 +71,15 @@
     [self setIdleTimerDisabled: flag];
 }
 
-+ (void) main___java_lang_String_ARRAYTYPE_java_lang_Class :(NSMutableArray*)n1 :(id)n2
++ (void) main___java_lang_String_ARRAYTYPE_java_lang_Class :(NSMutableArray*) args :(java_lang_Class*) app
 {
     // TODO: change args array to argc, argc
-	UIApplicationMain(0, nil, nil, nil);
+  	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSMutableString* className = [app getName];
+	NSMutableString* mangledName = [className stringByReplacingOccurrencesOfString: @"." withString: @"_"];
+	[className release];
+    UIApplicationMain(0 /*argc*/, nil /*argv*/, mangledName, mangledName);
+	[pool release];				 
 }
 
 @end

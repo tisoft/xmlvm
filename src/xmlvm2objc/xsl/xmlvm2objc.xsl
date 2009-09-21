@@ -36,20 +36,9 @@
 </xsl:text>
       <xsl:call-template name="emitImplementation"/>
       
-	  <xsl:choose>
-	  <xsl:when test="vm:class/@extends = 'android.app.Activity'">
-        <xsl:call-template name="emitMainMethodForAndroid2Iphone"/>
-      </xsl:when>
-      
-      
-      <xsl:otherwise>
-      
       <xsl:if test="vm:class/vm:method/@name = 'main'">
         <xsl:call-template name="emitMainMethod"/>
       </xsl:if>
-      </xsl:otherwise>
-      
-      </xsl:choose>
       
     </xsl:otherwise>
   </xsl:choose>
@@ -57,75 +46,20 @@
 
 
 
-<xsl:template name="emitMainMethodForAndroid2Iphone">
-  <xsl:text>
-
-#import "android_app_ActivityWrapper.h"
-
-int main(int argc, char* argv[])
-{
-  	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    </xsl:text>
-    <xsl:variable name="cl" as="node()" select="vm:class[@extends = 'android.app.Activity']"/>
-    <xsl:value-of select="vm:fixname($cl/@package)"/>
-    <xsl:text>_</xsl:text>
-    <xsl:value-of select="$cl/@name"/>
-    
-    <xsl:text> *activity = [[[ </xsl:text>
-    
-    <xsl:value-of select="vm:fixname($cl/@package)"/>
-    <xsl:text>_</xsl:text>
-    <xsl:value-of select="$cl/@name"/>
-    
-    <xsl:text> alloc] init] autorelease];
-    [activity __init_</xsl:text>
-    <xsl:value-of select="vm:fixname($cl/@package)"/>
-    <xsl:text>_</xsl:text>
-    <xsl:value-of select="$cl/@name"/>
-    <xsl:text>];
-    [android_app_ActivityWrapper setActivity___android_app_Activity: activity];
-    UIApplicationMain(
-     argc, 
-     argv,
-     @"android_app_ActivityWrapper",
-     @"android_app_ActivityWrapper");
-	[pool release];
-	return 0;					 
-  }
-  
-  
-  
-</xsl:text>
-</xsl:template>
-
 <xsl:template name="emitMainMethod">
   <xsl:text>
   
       
-  int main(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
-  	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    UIApplicationMain(
-     argc, 
-     argv,
-     @"</xsl:text>
+    [</xsl:text>
     <xsl:variable name="cl" as="node()" select="vm:class/vm:method[@name = 'main']/.."/>
     <xsl:value-of select="vm:fixname($cl/@package)"/>
     <xsl:text>_</xsl:text>
     <xsl:value-of select="$cl/@name"/>
-    <xsl:text>",
-     @"</xsl:text>
-    <xsl:variable name="cl" as="node()" select="vm:class/vm:method[@name = 'main']/.."/>
-    <xsl:value-of select="vm:fixname($cl/@package)"/>
-    <xsl:text>_</xsl:text>
-    <xsl:value-of select="$cl/@name"/>
-    <xsl:text>");
-	 
-	[pool release];
+    <xsl:text> main___java_lang_String_ARRAYTYPE: nil];
 	return 0;						 
-  
-  }
-  
+}
   
   
 </xsl:text>

@@ -31,7 +31,7 @@ public class NSBundle {
     private NSBundle() {
     }
 
-    public static NSBundle mainBundle() {
+    public static NSBundle getMainBundle() {
         return mainBundle;
     }
 

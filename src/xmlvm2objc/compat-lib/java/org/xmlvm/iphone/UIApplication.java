@@ -8,7 +8,7 @@ import org.xmlvm.iphone.internal.SimulatorDesktop;
 public abstract class UIApplication extends UIResponder {
 
     private boolean idleTimerDisabled;
-    public static UIApplication instance;
+    private static UIApplication instance;
 
     public UIApplication() {
         super(false);
@@ -21,6 +21,10 @@ public abstract class UIApplication extends UIResponder {
         setStatusBarOrientation(UIInterfaceOrientation.UIInterfaceOrientationPortrait);
     }
 
+    public static UIApplication getSharedApplication() {
+        return instance;
+    }
+    
     public void setIdleTimerDisabled(boolean flag) {
         this.idleTimerDisabled = flag;
     }

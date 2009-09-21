@@ -22,6 +22,7 @@ package android.view;
 
 import org.xmlvm.iphone.CGAffineTransform;
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UIWindow;
 
@@ -67,7 +68,7 @@ public class Window {
     public void setFlags(int flags, int mask) {
         int maskedFlags = (flags & mask);
         if ((maskedFlags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0) {
-            this.activity.getMyIphoneWrapper().setStatusBarHidden(true);
+            UIApplication.getSharedApplication().setStatusBarHidden(true);
             adjustFrameSize();
         }
     }

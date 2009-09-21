@@ -9,7 +9,7 @@
 
 + (NSData*) dataWithContentsOfFile___java_lang_String: (java_lang_String*) path
 {
-	return [NSData dataWithContentsOfFile: path];
+	return [[NSData dataWithContentsOfFile: path] retain];
 }
 
 - (int) getByte___int: (int) index;

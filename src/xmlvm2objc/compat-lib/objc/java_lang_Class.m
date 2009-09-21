@@ -26,7 +26,19 @@
 
 - (NSObject*) newInstance
 {
-	return (NSObject*) class_createInstance(clazz, class_getInstanceSize(clazz));
+	// Instantiate object
+	NSObject* obj = (NSObject*) class_createInstance(clazz, class_getInstanceSize(clazz));
+	// Call default constructor
+	NSMutableString* mangledName = [NSMutableString stringWithCString: class_getName(clazz) encoding: NSASCIIStringEncoding];
+    NSMutableString* constructor = [NSMutableString stringWithString: @"__init_"];
+	[constructor appendString: mangledName];
+	SEL sel = NSSelectorFromString(constructor);
+	NSMethodSignature * sig = [clazz instanceMethodSignatureForSelector:sel];
+	NSInvocation* inv = [NSInvocation invocationWithMethodSignature: sig];
+	[inv setTarget: obj];
+	[inv setSelector: sel];
+	[inv invoke];
+	return obj;
 }
 
 + (java_lang_Class*) forName___java_lang_String :(java_lang_String*) className;

@@ -1,6 +1,7 @@
 package android.os;
 
-import android.app.ActivityWrapper;
+import org.xmlvm.iphone.UIApplication;
+
 
 /**
  * <i>(XMLVM Compatibility Class)</i>
@@ -21,7 +22,7 @@ public class PowerManager {
          * the wake lock.
          */
         public void acquire() {
-            ActivityWrapper.getActivity().getMyIphoneWrapper().setIdleTimerDisabled(true);
+            UIApplication.getSharedApplication().setIdleTimerDisabled(true);
         }
 
         /**
@@ -31,7 +32,7 @@ public class PowerManager {
          * are other wake locks held.
          */
         public void release() {
-            ActivityWrapper.getActivity().getMyIphoneWrapper().setIdleTimerDisabled(false);
+            UIApplication.getSharedApplication().setIdleTimerDisabled(false);
         }
     }
 

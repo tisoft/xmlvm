@@ -39,7 +39,7 @@ public class UIResponder {
             return ((UIView) this).parent;
         }
         else {
-            return UIApplication.instance;
+            return UIApplication.getSharedApplication();
         }
     }
 

@@ -20,6 +20,7 @@
 
 package android.app;
 
+import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIInterfaceOrientation;
 
 import android.content.Context;
@@ -40,23 +41,26 @@ import android.view.WindowManager;
  * @see http://developer.android.com/reference/android/app/Activity.html}
  */
 public class Activity extends ContextThemeWrapper {
-    private ActivityWrapper   myIphoneWrapper;
-    private Window            window;
-    private int               screenOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+    private Window             window;
+    private int                screenOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
 
     protected void onCreate(Bundle savedInstanceState) {
         window = new Window(this);
         onContentChanged();
     }
 
-    public void onResume() {
-        // TODO Auto-generated method stub
-        
+    public void xmlvmOnCreate(Bundle savedInstanceState) {
+        onCreate(savedInstanceState);
     }
 
-    public void onPause() {
+    protected void onResume() {
         // TODO Auto-generated method stub
-        
+
+    }
+
+    protected void onPause() {
+        // TODO Auto-generated method stub
+
     }
 
     public void setContentView(View view) {
@@ -66,7 +70,7 @@ public class Activity extends ContextThemeWrapper {
     public void setContentView(int id) {
         window.setContentView(id);
     }
-    
+
     public View findViewById(int id) {
         return window.findViewById(id);
     }
@@ -115,6 +119,10 @@ public class Activity extends ContextThemeWrapper {
     protected void onDestroy() {
     }
 
+    public void xmlvmOnDestroy() {
+        onDestroy();
+    }
+
     /**
      * TODO: Implement for real.
      */
@@ -143,31 +151,17 @@ public class Activity extends ContextThemeWrapper {
     }
 
     /**
-     * Internal. Not part of Android API.
-     */
-    public void setMyIphoneWrapper(ActivityWrapper myIphoneWrapper) {
-        this.myIphoneWrapper = myIphoneWrapper;
-    }
-
-    /**
-     * Internal. Not part of Android API.
-     */
-    public ActivityWrapper getMyIphoneWrapper() {
-        return myIphoneWrapper;
-    }
-
-    /**
      * Change the desired orientation of this activity.
      */
     public void setRequestedOrientation(int requestedOrientation) {
         screenOrientation = requestedOrientation;
         switch (requestedOrientation) {
         case ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE:
-            myIphoneWrapper
+            UIApplication.getSharedApplication()
                     .setStatusBarOrientation(UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft);
             break;
         case ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:
-            myIphoneWrapper
+            UIApplication.getSharedApplication()
                     .setStatusBarOrientation(UIInterfaceOrientation.UIInterfaceOrientationPortrait);
             break;
         }

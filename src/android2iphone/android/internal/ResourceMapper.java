@@ -28,7 +28,6 @@ import org.xmlvm.iphone.NSBundle;
 import org.xmlvm.iphone.NSData;
 import org.xmlvm.iphone.UIImage;
 
-import android.app.ActivityWrapper;
 
 public class ResourceMapper {
     /** A map holding the mapping from resourceId to UIImage. */
@@ -57,7 +56,7 @@ public class ResourceMapper {
         NSData theFile = layoutMap.get(new Integer(resourceId));
         if (theFile == null) {
             String fileName = findVariableById(resourceId, "layout");
-            String filePath = NSBundle.mainBundle().pathForResource(fileName, "xml");
+            String filePath = NSBundle.getMainBundle().pathForResource(fileName, "xml");
             theFile = NSData.dataWithContentsOfFile(filePath);
             layoutMap.put(new Integer(resourceId), theFile);
         }
@@ -77,7 +76,7 @@ public class ResourceMapper {
     private static String findVariableById(int resourceId, String resourceClass) {
         try {
             int i;
-            String activityPackageName = ActivityWrapper.getActivity().getClass().getName();
+            String activityPackageName = AndroidAppLauncher.getActivity().getClass().getName();
             i = activityPackageName.lastIndexOf('.');
             activityPackageName = activityPackageName.substring(0, i);
 
@@ -101,7 +100,7 @@ public class ResourceMapper {
     private static int findIdByVariableName(String variableName, String resourceClass) {
         try {
             int i;
-            String activityPackageName = ActivityWrapper.getActivity().getClass().getName();
+            String activityPackageName = AndroidAppLauncher.getActivity().getClass().getName();
             i = activityPackageName.lastIndexOf('.');
             activityPackageName = activityPackageName.substring(0, i);
 
