@@ -36,6 +36,7 @@
 	}
 	
 	NSSet* keys = [NSSet setWithArray: ma];
+	[ma release];
 	[keys retain];
 	return keys;
 }
