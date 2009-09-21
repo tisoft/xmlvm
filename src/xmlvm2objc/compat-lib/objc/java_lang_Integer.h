@@ -4,7 +4,7 @@
 
 // java.lang.Integer
 //----------------------------------------------------------------------------
-@interface java_lang_Integer : java_lang_Object {
+@interface java_lang_Integer : java_lang_Object <NSCopying> {
 
 int number;
 
