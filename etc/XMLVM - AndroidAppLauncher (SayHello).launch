@@ -17,4 +17,5 @@
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="android.internal.AndroidAppLauncher"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="org.xmlvm.demo.sayhello.SayHello"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="xmlvm"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.library.path=${lwjgl.native.path}"/>
 </launchConfiguration>
