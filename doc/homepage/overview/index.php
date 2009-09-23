@@ -5,6 +5,7 @@
 <tr>
   <td id="main_content_td">
     <div id="main_content">
+    <br/>
 <table>
   <tr>
     <td>
