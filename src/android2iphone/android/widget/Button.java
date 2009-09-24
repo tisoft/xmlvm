@@ -53,10 +53,6 @@ public class Button extends View {
         getUIButton().setFrame(new CGRect(a.x, a.y, a.width, a.height));
     }
 
-    public AbsoluteLayout.LayoutParams getLayoutParams() {
-        return (AbsoluteLayout.LayoutParams) getCurLayout();
-    }
-
     public void setText(String title) {
         this.title = title;
         getUIButton().setTitle(title, UIControlState.UIControlStateNormal);

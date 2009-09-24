@@ -20,10 +20,6 @@ public class CheckBox extends CompoundButton {
                 UISwitch.kSwitchButtonHeight));
     }
 
-    public AbsoluteLayout.LayoutParams getLayoutParams() {
-        return (AbsoluteLayout.LayoutParams) getCurLayout();
-    }
-
     public boolean isChecked() {
         return getUISwitch().isOn();
     }

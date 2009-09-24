@@ -56,7 +56,7 @@ public class View {
         public void onClick(View view);
     }
 
-    private ViewGroup.LayoutParams curLayout;
+    private ViewGroup.LayoutParams layoutParams;
     private Context                c;
     private UIView                 uiView;
     private ViewParent             parent;
@@ -95,8 +95,8 @@ public class View {
 
     }
 
-    public ViewGroup.LayoutParams getCurLayout() {
-        return curLayout;
+    public ViewGroup.LayoutParams getLayoutParams() {
+        return layoutParams;
     }
 
     public void invalidate() {
@@ -104,7 +104,7 @@ public class View {
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
-        curLayout = l;
+        layoutParams = l;
     }
 
     public final Context getContext() {

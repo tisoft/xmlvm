@@ -60,10 +60,6 @@ public class ImageView extends View {
         getUIImageView().setFrame(new CGRect(a.x, a.y, width, height));
     }
 
-    public AbsoluteLayout.LayoutParams getLayoutParams() {
-        return (AbsoluteLayout.LayoutParams) getCurLayout();
-    }
-
     @Override
     protected UIView xmlvmCreateUIView() {
         return new UIImageView(new CGRect(0, 0, 0, 0));
