@@ -1305,6 +1305,13 @@ int main(int argc, char* argv[])
   <!-- TODO should do a runtime type check -->
 </xsl:template>
 
+<xsl:template match="jvm:instanceof">
+  <xsl:text>    _op1.o = _stack[--_sp].o;
+    _stack[_sp++].i = _op1.o != [NSNull null] &amp;&amp; 
+        ([_op1.o isKindOfClass: objc_getClass("</xsl:text><xsl:value-of select="vm:fixname(@type)"/><xsl:text>")] ||
+         [_op1.o conformsToProtocol: objc_getProtocol("</xsl:text><xsl:value-of select="vm:fixname(@type)"/><xsl:text>")]);
+</xsl:text>
+</xsl:template>
 
 <xsl:template name="emitType">
   <xsl:param name="type"/>
