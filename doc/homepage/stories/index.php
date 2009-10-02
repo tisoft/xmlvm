@@ -36,8 +36,11 @@ function popupAndroidDemo() {
 <li> <a href="http://www.cokeandcode.com/resumepage">Kevin Glass</a> has used XMLVM to create
      a <a href="http://www.cokeandcode.com/aboidblog">cross-platform game</a> for Android and
      the iPhone.
-
 </ul>
+
+<h1>Sponsors</h1>
+The following companies and institutions support XMLVM:<br/><br/>
+<a target="_blank" href="http://www.bluecarat.eu"><img src="bluecarat.jpg" title="blueCarat AG" alt="blueCarat AG" /></a>
 
 
 <?php

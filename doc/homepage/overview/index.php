@@ -62,6 +62,12 @@
       }
       $title = $node->getElementsByTagName('title')->item(0)->nodeValue;
       $description = $node->getElementsByTagName('description')->item(0)->nodeValue;
+      /* At the end of the description is a comment link in the form of: (0 comments).
+         This removes it. */
+      $commentsStart = strrpos($description, '(');
+      if ($commentsStart) {
+        $description = substr($description, 0, $commentsStart);
+      }
       $date = $node->getElementsByTagName('pubDate')->item(0)->nodeValue;
       $date = date_parse($date);
       $dateStr = $date["day"]." ".date("M", mktime(0, 0, 0, $date["month"], 1, 2009))." ".$date["year"];
