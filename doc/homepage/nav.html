@@ -1,6 +1,6 @@
 <?php 
 function printLink($dir, $title, $last = false) {
-  if(stripos($_SERVER['REQUEST_URI'], $dir))
+  if(strpos($_SERVER['REQUEST_URI'], $dir))
   {
 	  echo("<b>$title</b>");
   }

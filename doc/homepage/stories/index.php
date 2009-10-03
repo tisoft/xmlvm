@@ -40,7 +40,8 @@ function popupAndroidDemo() {
 
 <h1>Sponsors</h1>
 The following companies and institutions support XMLVM:<br/><br/>
-<a target="_blank" href="http://xmlvm.org/redirect.php?url=http://www.bluecarat.eu"><img src="bluecarat.jpg" title="blueCarat AG" alt="blueCarat AG" /></a>
+<a target="_blank" href="http://xmlvm.org/redirect.php?url=http://www.bluecarat.eu">
+  <img style="display:inline" src="bluecarat.jpg" title="blueCarat AG" alt="blueCarat AG" /></a>
 
 
 <?php
