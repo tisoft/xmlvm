@@ -26,20 +26,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.ViewGroup;
 
-public class AbsoluteLayout extends ViewGroup {
+public class LinearLayout extends ViewGroup {
 
     public static class LayoutParams extends ViewGroup.LayoutParams {
-        public int x;
-        public int y;
-
-        public LayoutParams(int width, int height, int x, int y) {
+        public LayoutParams(int width, int height) {
             super(width, height);
-            this.x = x;
-            this.y = y;
         }
     }
 
-    public AbsoluteLayout(Context c) {
+    public LinearLayout(Context c) {
         super(c);
     }
 

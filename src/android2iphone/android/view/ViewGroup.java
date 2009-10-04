@@ -23,6 +23,9 @@ package android.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xmlvm.iphone.CGRect;
+
+import android.app.Activity;
 import android.content.Context;
 
 /**
@@ -36,11 +39,22 @@ public class ViewGroup extends View implements ViewParent {
 
     public static class LayoutParams {
         public static final int WRAP_CONTENT = -1;
+
+        public int width;
+        public int height;
+
+        public LayoutParams(int width, int height) {
+            this.width = width;
+            this.height = height;
+        }
     }
 
     public ViewGroup(Context c) {
         super(c);
         this.subViews = new ArrayList<View>();
+
+        CGRect rect = ((Activity) c).getWindow().getCGRect();
+        this.xmlvmGetUIView().setFrame(rect);
     }
 
     public void addView(View child) {
