@@ -10,7 +10,22 @@
     </style>
 
 	  <h1>XMLVM User Manual</h1>
-	  <!--  TODO: Table of contents -->
+	  
+	  <div class="table_of_contents">
+	    <ol>
+        <li>First</li>
+        <li>Second
+          <ul>
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+          </ul>
+        </li>
+        <li>Third</li>
+        <li>Fourth</li>
+        <li>Fifth</li>
+	    </ol>
+	  </div>
 	
 	  <h2>Introduction</h2>
 	  <p>
@@ -36,7 +51,9 @@
 			following Figure shows all possible paths through the XMLVM
 			toolchain:
 		</p>
-			<b style="color:red">INSERT XMLVM_TOOLCHAIN</b>
+		<p style="text-align:center;">
+			<img style="display:inline" src="xmlvm_toolchain.png" alt="XMLVM Toolchain" title="XMLVM Toolchain"/>
+		</p>
 		<p>	
 			The first step in using XMLVM is to compile a Java or .NET source code
 			program to byte code. This is done with a native compiler such as Sun
@@ -553,7 +570,9 @@
 				to cross-compile Java-based Android applications to native iPhone
 				applications. The following Figure depicts this process:
 			</p>
-			<b style="color:red">INSERT pics/android2iphone.pdf</b>
+			<p style="text-align:center">
+			  <img style="display:inline" src="android2iphone.png" alt="Android to iPhone" title="Android to iPhone" />
+			</p>
 			<p>	
 				The Android application is written in Java and makes use of an Android
 				specific API. XMLVM offers a compatibility library, written in Java,
