@@ -20,9 +20,6 @@
 
 package android.widget;
 
-import org.xmlvm.iphone.CGRect;
-
-import android.app.Activity;
 import android.content.Context;
 import android.view.ViewGroup;
 
