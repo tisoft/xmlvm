@@ -171,6 +171,14 @@ pre.code {
 	display:block;
 }
 
+.table_of_contents {
+  float:right;
+  margin-left:20px;
+  padding-right:20px;
+  border:1px solid #AAA;
+  background:#EEE;
+}
+
 
 /* From www.roundedcornr.com */
 .roundedcornr_box_537267 {
