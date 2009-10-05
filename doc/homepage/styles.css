@@ -179,6 +179,19 @@ pre.code {
   background:#EEE;
 }
 
+.table1 {
+  background:#EEE;
+  border-spacing:0;
+}
+
+.table1 b {
+  font-size:110%;
+}
+
+.table1 td {
+  border:1px solid #AAA;
+  padding:3px;
+}
 
 /* From www.roundedcornr.com */
 .roundedcornr_box_537267 {

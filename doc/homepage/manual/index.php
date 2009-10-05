@@ -92,10 +92,50 @@
 			are possible. For example, .NET programs can be cross-compiled to Java
 			class files and Java class files can be cross-compiled to JavaScript
 			amongst others.
-		</p>
-      <b style="color:red">INSERT TABLE</b>
-      <table>
-      </table>
+     	</p>
+     	<p>
+	        <table class="table1">
+	            <tr>
+	              <td rowspan=2><b>To:</b></td>
+	              <td colspan=2><b>From:</b></td>
+	            </tr>
+	            <tr>
+	              <td><b>JVM</b></td>
+	              <td><b>CLR</b></td>
+	            </tr>
+		        <tr>
+		          <td>C++</td>
+		          <td>Language crosscompilation only. No library support.</td>
+		          <td>Language crosscompilation only. No library support.</td>
+		        </tr>
+		        <tr>
+		          <td>JavaScript</td>
+		          <td>Compatibility library for a subset of AWT.</td>
+		          <td>Compatibility library for a subset of WinForms.</td>
+		        </tr>
+		        <tr>
+		          <td>Python</td>
+		          <td>Language crosscompilation only. No library support.</td>
+		          <td>Language crosscompilation only. No library support.</td>
+		        </tr>
+		        <tr>
+		          <td>.NET</td>
+		          <td>Language crosscompilation only for a subset of JVM instructions.</td>
+		          <td>N/A</td>
+		        </tr>
+		        <tr>
+		          <td>Java</td>
+		          <td>N/A</td>
+		          <td>Support for most .NET instructions. No support for generics.
+		              Compatibility library for a subset of Win-Forms.</td>
+		        </tr>
+		        <tr>
+		          <td>Objective-C</td>
+		          <td>Most of language crosscompilation. Compatibility libraries for a subset of Cocoa.</td>
+		          <td>Language crosscompilation only. No library support.</td>
+		        </tr>
+	        </table>
+        </p>
 		<p>
 			The byte code level cross-compilation is only one aspect of XMLVM. The
 			XMLVM distribution also contains compatibility libraries for the
@@ -117,8 +157,7 @@
 			toolchain have different levels of maturity that should be taken
 			into consideration when using XMLVM. The previous Table
 			gives an overview of the completeness of
-			the various backends. An in-depth overview of the theoretical
-			foundations of XMLVM can be found in <a href="#cite_Puder_09a">Puder09a</a>.
+			the various backends.
 		</p>
 		
 		<h3><a name="getting_xmlvm">Getting XMLVM</a></h3>
