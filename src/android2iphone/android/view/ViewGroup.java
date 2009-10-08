@@ -38,7 +38,7 @@ public class ViewGroup extends View implements ViewParent {
     private List<View> subViews;
 
     public static class LayoutParams {
-        public static final int WRAP_CONTENT = -1;
+        public static final int WRAP_CONTENT = -2;
 
         public int width;
         public int height;
