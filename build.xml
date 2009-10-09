@@ -184,17 +184,14 @@
 	</target>
 
 
-	<target name="build-iphoneDemo" depends="build-ifireworks,all-ihelloworld,cc-ifireworks,build-android-compat-lib,cc-android-compat-lib,
-		                                     sim-afireworks-jar,cc-sim-afireworks,build-iremote, cc-iremote, all-widgets,
-                                             sim-xokoban-jar,cc-sim-xokoban,sim-sayhello-jar,cc-sim-sayhello">
+	<target name="build-iphoneDemo" depends="all-ihelloworld,all-widgets,
+											cc-ifireworks,cc-iremote,
+											sim-afireworks-jar,cc-sim-afireworks,sim-xokoban-jar,cc-sim-xokoban,sim-sayhello-jar,cc-sim-sayhello">
 	</target>
 
-	<target name="all-ihelloworld" depends="build-ihelloworld-portrait,cc-ihelloworld-portrait,
-		                                    build-ihelloworld-landscape,cc-ihelloworld-landscape,
-		                                    build-ihelloworld-fullscreen,cc-ihelloworld-fullscreen,
-											build-ihelloworld-upsidedown,cc-ihelloworld-upsidedown"/>
+	<target name="all-ihelloworld" depends="cc-ihelloworld-portrait,cc-ihelloworld-landscape,cc-ihelloworld-fullscreen,cc-ihelloworld-upsidedown"/>
 	
-	<target name="all-widgets" depends="build-ibuttontest, cc-ibuttontest" />
+	<target name="all-widgets" depends="cc-ibuttontest" />
 	
 	<target name="build-ihelloworld-portrait" depends="build-objc-compat-lib">
 		<mkdir dir="${xmlvm.ihelloworld}/portrait" />
@@ -219,7 +216,7 @@
 		</jar>
 	</target>
 
-	<target name="cc-ihelloworld-portrait" depends="xmlvmjar">
+	<target name="cc-ihelloworld-portrait" depends="xmlvmjar,build-ihelloworld-portrait">
 		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/portrait/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/portrait/iphone" />
@@ -252,7 +249,7 @@
 		</jar>
 	</target>
 
-	<target name="cc-ihelloworld-upsidedown" depends="xmlvmjar">
+	<target name="cc-ihelloworld-upsidedown" depends="xmlvmjar,build-ihelloworld-upsidedown">
 		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/upsidedown/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/upsidedown/iphone" />
@@ -285,7 +282,7 @@
 		</jar>
 	</target>
 
-	<target name="cc-ihelloworld-landscape" depends="xmlvmjar">
+	<target name="cc-ihelloworld-landscape" depends="xmlvmjar,build-ihelloworld-landscape">
 		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/landscape/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/landscape/iphone" />
@@ -318,7 +315,7 @@
 		</jar>
 	</target>
 
-	<target name="cc-ihelloworld-fullscreen" depends="xmlvmjar">
+	<target name="cc-ihelloworld-fullscreen" depends="xmlvmjar,build-ihelloworld-fullscreen">
 		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/fullscreen/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/fullscreen/iphone" />
@@ -351,7 +348,7 @@
 		</jar>
 	</target>
 
-	<target name="cc-ibuttontest" depends="xmlvmjar">
+	<target name="cc-ibuttontest" depends="xmlvmjar,build-ibuttontest">
 		<mkdir dir="${xmlvm.demo}/widgets/ibuttontest/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/widgets/ibuttontest/iphone" />
@@ -387,7 +384,7 @@
 		</jar>
 	</target>
 
-	<target name="cc-ifireworks" depends="xmlvmjar">
+	<target name="cc-ifireworks" depends="xmlvmjar,build-ifireworks">
 		<mkdir dir="${xmlvm.demo}/iphone/ifireworks/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ifireworks/iphone" />
@@ -436,7 +433,7 @@
 		</jar>
 	</target>
 
-	<target name="cc-sim-afireworks" depends="sim-afireworks">
+	<target name="cc-sim-afireworks" depends="sim-afireworks,xmlvmjar">
 		<mkdir dir="${xmlvm.demo}/android/afireworks/iphone" />
 
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
@@ -484,7 +481,7 @@
 		</jar>
 	</target>
 
-	<target name="cc-sim-aremote" depends="sim-aremote">
+	<target name="cc-sim-aremote" depends="sim-aremote,xmlvmjar">
 		<mkdir dir="${xmlvm.demo}/android/aremote/iphone" />
 
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
@@ -528,7 +525,7 @@
 		</jar>
 	</target>
 
-	<target name="cc-sim-xokoban" depends="sim-xokoban">
+	<target name="cc-sim-xokoban" depends="sim-xokoban,xmlvmjar">
 		<mkdir dir="${xmlvm.demo}/android/xokoban/iphone" />
 
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
@@ -579,7 +576,7 @@
 		</jar>
 	</target>
 
-	<target name="cc-sim-sayhello" depends="sim-sayhello">
+	<target name="cc-sim-sayhello" depends="sim-sayhello,xmlvmjar">
 		<mkdir dir="${xmlvm.demo}/android/sayhello/iphone" />
 
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
@@ -621,7 +618,7 @@
 		</jar>
 	</target>
 
-	<target name="cc-iremote" depends="xmlvmjar">
+	<target name="cc-iremote" depends="xmlvmjar,build-iremote">
 		<mkdir dir="${xmlvm.demo}/iphone/iremote/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/iremote/iphone" />
