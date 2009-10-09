@@ -499,7 +499,8 @@
 				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
 				<pathelement location="${xmlvm.libjars}/android-compat.jar" />
 			</classpath>
-			<include name="**/*.java" />
+			<include name="src/**/*.java" />
+			<include name="gen/**/*.java" />
 		</javac>
 	</target>
 
