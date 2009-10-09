@@ -38,7 +38,7 @@ public class IPhoneOutputProcess extends OutputProcess<ObjectiveCOutputProcess> 
     private static final String IPHONE_MAKEFILE_PATH           = "var/iphone/Makefile";
 
     private static final String IPHONE_SRC                     = "/src";
-    private static final String IPHONE_SRC_LIB                 = IPHONE_SRC + "/lib";
+    private static final String IPHONE_SRC_LIB                 = IPHONE_SRC + "/lib/iphone";
     private static final String IPHONE_SRC_APP                 = IPHONE_SRC + "/app";
 
     private List<OutputFile>    result                         = new ArrayList<OutputFile>();

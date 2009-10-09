@@ -2,7 +2,7 @@
 include MakeVars
 
 
-ALL_SOURCES=$(wildcard $(SRCROOT)/lib/*.m) $(wildcard $(SRCROOT)/app/*.m)
+ALL_SOURCES=$(wildcard $(SRCROOT)/lib/iphone/*.m) $(wildcard $(SRCROOT)/lib/android/*.m) $(wildcard $(SRCROOT)/app/*.m)
 
 
 DEPLOY_DIR=$(HOME)/Library/Application\ Support/iPhone\ Simulator/User/Applications
@@ -10,6 +10,7 @@ DEPLOY_UUID=XMLVM
  
 
 SRCROOT=src
+RESOURCES=resources
 
 BUILT_PRODUCTS_DIR=build
 
@@ -24,7 +25,7 @@ CFLAGS=-x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 \
        -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 \
        -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk \
        -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 \
-       -I$(SRCROOT)/lib -I$(SRCROOT)/app
+       -I$(SRCROOT)/lib/iphone -I$(SRCROOT)/lib/android -I$(SRCROOT)/app
 
 
 LD=$(CC)
@@ -69,8 +70,7 @@ $(PRODUCT_ABS): $(APP_ABS) $(OBJECTS_ABS)
 $(APP_ABS): $(INFOPLIST_ABS)
 	mkdir -p $(APP_ABS)
 	cp $(INFOPLIST_ABS) $(APP_ABS)/
-	find $(SRCROOT) -name "*.png" -exec cp {} $(APP_ABS)/ \;
-	find $(SRCROOT) -name "*.xml" -exec cp {} $(APP_ABS)/ \;
+	find $(RESOURCES) -name "*" -exec cp {} $(APP_ABS)/ \;
 
 $(CONFIGURATION_TEMP_DIR)/%.o: $(SRCROOT)/%.m
 	mkdir -p $(dir $@)

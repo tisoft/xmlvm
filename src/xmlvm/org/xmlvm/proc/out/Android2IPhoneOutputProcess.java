@@ -35,8 +35,8 @@ import org.xmlvm.util.JarUtil;
  */
 public class Android2IPhoneOutputProcess extends OutputProcess<IPhoneOutputProcess> {
     private static final String ANDROID_IPHONE_COMPAT_LIB_JAR = "/iphone/android-compat-lib.jar";
-    private static final String IPHONE_SRC                    = "/src";
-    private static final String IPHONE_SRC_LIB                = IPHONE_SRC + "/lib";
+    private static final String ANDROID_SRC                   = "/src";
+    private static final String ANDROID_SRC_LIB               = ANDROID_SRC + "/lib/android";
     private List<OutputFile>    result                        = new ArrayList<OutputFile>();
 
     public Android2IPhoneOutputProcess(Arguments arguments) {
@@ -65,7 +65,7 @@ public class Android2IPhoneOutputProcess extends OutputProcess<IPhoneOutputProce
             // This is the typical scenario for when XMLVM is called from within
             // xmlvm.jar.
             FromJarOutputFile compatLibJar = new FromJarOutputFile();
-            compatLibJar.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
+            compatLibJar.setLocation(arguments.option_out() + ANDROID_SRC_LIB);
             compatLibJar.setSourceJar(ANDROID_IPHONE_COMPAT_LIB_JAR);
             result.add(compatLibJar);
         } else {
@@ -77,7 +77,7 @@ public class Android2IPhoneOutputProcess extends OutputProcess<IPhoneOutputProce
             // will process the compatibility library.
             Arguments args = new Arguments(new String[] {
                     "--in=" + FileUtil.getBinDirectory() + File.separatorChar + "android",
-                    "--out=" + arguments.option_out() + IPHONE_SRC_LIB, "--target=objc" });
+                    "--out=" + arguments.option_out() + ANDROID_SRC_LIB, "--target=objc" });
             XmlvmProcessor subProcessor = new XmlvmProcessor(args);
             if (subProcessor.process()) {
                 result.addAll(subProcessor.getTargetProcess().getOutputFiles());

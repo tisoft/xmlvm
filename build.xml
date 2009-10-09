@@ -393,7 +393,7 @@
 			<arg value="--in=${xmlvm.ifireworks}/" />
 		</java>
 
-		<copy todir="${xmlvm.demo}/iphone/ifireworks/iphone">
+		<copy todir="${xmlvm.demo}/iphone/ifireworks/iphone/resources">
 			<fileset dir="demo/iphone/ifireworks/ires">
 				<include name="*.png" />
 			</fileset>
@@ -442,12 +442,12 @@
 			<arg value="--iphone-app=aFireworks" />
 			<arg value="--in=${xmlvm.afireworks}/" />
 		</java>
-		<copy todir="${xmlvm.demo}/android/afireworks/iphone">
+		<copy todir="${xmlvm.demo}/android/afireworks/iphone/resources">
 			<fileset dir="demo/android/afireworks/res/drawable">
 				<include name="star*.png" />
 			</fileset>
 		</copy>
-		<copy todir="${xmlvm.demo}/android/afireworks/iphone">
+		<copy todir="${xmlvm.demo}/android/afireworks/iphone/resources">
 			<fileset dir="demo/android/afireworks">
 				<include name="*.xml" />
 			</fileset>
@@ -535,12 +535,12 @@
 			<arg value="--iphone-app=Xokoban" />
 			<arg value="--in=${xmlvm.xokoban}/" />
 		</java>
-		<copy todir="${xmlvm.demo}/android/xokoban/iphone">
+		<copy todir="${xmlvm.demo}/android/xokoban/iphone/resources">
 			<fileset dir="demo/android/xokoban/res/drawable">
 				<include name="*.png" />
 			</fileset>
 		</copy>
-		<copy todir="${xmlvm.demo}/android/xokoban/iphone">
+		<copy todir="${xmlvm.demo}/android/xokoban/iphone/resources">
 			<fileset dir="demo/android/xokoban">
 				<include name="*.xml" />
 			</fileset>
@@ -586,7 +586,7 @@
 			<arg value="--iphone-app=SayHello" />
 			<arg value="--in=${xmlvm.sayhello}/" />
 		</java>
-		<copy todir="${xmlvm.demo}/android/sayhello/iphone">
+		<copy todir="${xmlvm.demo}/android/sayhello/iphone/resources">
 			<fileset dir="demo/android/sayhello">
 				<include name="*.xml" />
 			</fileset>
