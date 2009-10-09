@@ -37,6 +37,10 @@ public class IPhoneOutputProcess extends OutputProcess<ObjectiveCOutputProcess> 
     private static final String IPHONE_MAKFILE_IN_JAR_RESOURCE = "/iphone/Makefile";
     private static final String IPHONE_MAKEFILE_PATH           = "var/iphone/Makefile";
 
+    private static final String IPHONE_SRC                     = "/src";
+    private static final String IPHONE_SRC_LIB                 = IPHONE_SRC + "/lib";
+    private static final String IPHONE_SRC_APP                 = IPHONE_SRC + "/app";
+
     private List<OutputFile>    result                         = new ArrayList<OutputFile>();
 
     public IPhoneOutputProcess(Arguments arguments) {
@@ -58,7 +62,12 @@ public class IPhoneOutputProcess extends OutputProcess<ObjectiveCOutputProcess> 
 
         // Add all the files from the preprocesses to our result list.
         for (ObjectiveCOutputProcess preprocess : preprocesses) {
-            result.addAll(preprocess.getOutputFiles());
+            for (OutputFile in : preprocess.getOutputFiles()) {
+                OutputFile out = new OutputFile(in.getData());
+                out.setFileName(in.getFileName());
+                out.setLocation(in.getLocation() + IPHONE_SRC_APP);
+                result.add(out);
+            }
         }
 
         if (JarUtil.resourceExists(IPHONE_COMPAT_LIB_JAR)) {
@@ -68,13 +77,14 @@ public class IPhoneOutputProcess extends OutputProcess<ObjectiveCOutputProcess> 
             // This is the typical scenario for when XMLVM is called from within
             // xmlvm.jar.
             FromJarOutputFile compatLibJar = new FromJarOutputFile();
-            compatLibJar.setLocation(arguments.option_out());
+            compatLibJar.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
             compatLibJar.setSourceJar(IPHONE_COMPAT_LIB_JAR);
             result.add(compatLibJar);
         } else {
             // If the jar is not present, we take the file from their actual
             // path and copy them to the destination.
-            result.add(new DirectoryCopyOutput(IPHONE_COMPAT_LIB_PATH, arguments.option_out()));
+            result.add(new DirectoryCopyOutput(IPHONE_COMPAT_LIB_PATH, arguments.option_out()
+                    + IPHONE_SRC_LIB));
         }
 
         // Create MakeVars

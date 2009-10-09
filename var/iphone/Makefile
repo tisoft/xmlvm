@@ -2,18 +2,18 @@
 include MakeVars
 
 
-ALL_SOURCES=$(wildcard *.m)
+ALL_SOURCES=$(wildcard $(SRCROOT)/lib/*.m) $(wildcard $(SRCROOT)/app/*.m)
 
 
 DEPLOY_DIR=$(HOME)/Library/Application\ Support/iPhone\ Simulator/User/Applications
 DEPLOY_UUID=XMLVM
  
 
-SRCROOT=.
+SRCROOT=src
 
 BUILT_PRODUCTS_DIR=build
 
-CONFIGURATION_TEMP_DIR=obj
+CONFIGURATION_TEMP_DIR=$(BUILT_PRODUCTS_DIR)/obj
 
 INFOPLIST_FILE=Info.plist
 
@@ -24,7 +24,7 @@ CFLAGS=-x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 \
        -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 \
        -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk \
        -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 \
-       -I.
+       -I$(SRCROOT)/lib -I$(SRCROOT)/app
 
 
 LD=$(CC)
@@ -40,16 +40,16 @@ WRAPPER_NAME=$(PRODUCT_NAME).app
 
 EXECUTABLE_NAME=$(PRODUCT_NAME)
 
-SOURCES_ABS=$(addprefix $(SRCROOT)/,$(ALL_SOURCES))
+SOURCES_ABS=$(addprefix ./,$(ALL_SOURCES))
 
-INFOPLIST_ABS=$(addprefix $(SRCROOT)/,$(INFOPLIST_FILE))
+INFOPLIST_ABS=$(addprefix ./,$(INFOPLIST_FILE))
 
 OBJECTS=\
-	$(patsubst %.c,%.o,$(filter %.c,$(ALL_SOURCES))) \
-	$(patsubst %.cc,%.o,$(filter %.cc,$(ALL_SOURCES))) \
-	$(patsubst %.cpp,%.o,$(filter %.cpp,$(ALL_SOURCES))) \
-	$(patsubst %.m,%.o,$(filter %.m,$(ALL_SOURCES))) \
-	$(patsubst %.mm,%.o,$(filter %.mm,$(ALL_SOURCES)))
+	$(patsubst $(SRCROOT)/%.c,%.o,$(filter %.c,$(ALL_SOURCES))) \
+	$(patsubst $(SRCROOT)/%.cc,%.o,$(filter %.cc,$(ALL_SOURCES))) \
+	$(patsubst $(SRCROOT)/%.cpp,%.o,$(filter %.cpp,$(ALL_SOURCES))) \
+	$(patsubst $(SRCROOT)/%.m,%.o,$(filter %.m,$(ALL_SOURCES))) \
+	$(patsubst $(SRCROOT)/%.mm,%.o,$(filter %.mm,$(ALL_SOURCES)))
 
 OBJECTS_ABS=$(addprefix $(CONFIGURATION_TEMP_DIR)/,$(OBJECTS))
 
