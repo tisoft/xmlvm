@@ -164,7 +164,7 @@ public class UIButton extends UIControl {
             g.setPaint(c);
             g.drawLine(x + 2, y + 1, x + w - 3, y + 1);
         }
-        
+
         if (title != null) {
             g
                     .setPaint(!buttonPressed || pressedTitleColor == null ? titleColor
@@ -273,42 +273,42 @@ public class UIButton extends UIControl {
     private void deriveButtonColors() {
         upperDarkColor = new Color((int) (Math.min(backgroundColor.getRed() * 1.125, 255)),
                 (int) Math.min(backgroundColor.getGreen() * 1.125, 255), (int) Math.min(
-                        backgroundColor.getBlue() * 1.125, 255), (int) alpha);
+                        backgroundColor.getBlue() * 1.125, 255), getAlphaAsInt());
         lowerDarkColor = new Color((int) (backgroundColor.getRed() * 0.875), (int) (backgroundColor
-                .getGreen() * 0.875), (int) (backgroundColor.getBlue() * 0.875), (int) alpha);
+                .getGreen() * 0.875), (int) (backgroundColor.getBlue() * 0.875), getAlphaAsInt());
         upperLightColor = new Color((int) Math.min(upperDarkColor.getRed() * 1.1, 255), (int) Math
                 .min(upperDarkColor.getGreen() * 1.1, 255), (int) Math.min(
-                upperDarkColor.getBlue() * 1.1, 255), (int) alpha);
+                upperDarkColor.getBlue() * 1.1, 255), getAlphaAsInt());
         lowerLightColor = new Color((int) (lowerDarkColor.getRed() * 1.1), (int) (lowerDarkColor
-                .getGreen() * 1.1), (int) (lowerDarkColor.getBlue() * 1.1), (int) alpha);
+                .getGreen() * 1.1), (int) (lowerDarkColor.getBlue() * 1.1), getAlphaAsInt());
 
         if (pressedBackgroundColor == null) {
             upperDarkPressedColor = new Color((int) (upperDarkColor.getRed() * 0.2),
                     (int) (upperDarkColor.getGreen() * 0.2),
-                    (int) (upperDarkColor.getBlue() * 0.2), (int) alpha);
+                    (int) (upperDarkColor.getBlue() * 0.2), getAlphaAsInt());
             upperLightPressedColor = new Color((int) (upperLightColor.getRed() * 0.2),
                     (int) (upperLightColor.getGreen() * 0.2),
-                    (int) (upperLightColor.getBlue() * 0.2), (int) alpha);
+                    (int) (upperLightColor.getBlue() * 0.2), getAlphaAsInt());
             lowerDarkPressedColor = new Color((int) (lowerDarkColor.getRed() * 0.1),
                     (int) (lowerDarkColor.getGreen() * 0.2),
-                    (int) (lowerDarkColor.getBlue() * 0.2), (int) alpha);
+                    (int) (lowerDarkColor.getBlue() * 0.2), getAlphaAsInt());
             lowerLightPressedColor = new Color((int) (lowerLightColor.getRed() * 0.1),
                     (int) (lowerLightColor.getGreen() * 0.2),
-                    (int) (lowerLightColor.getBlue() * 0.2), (int) alpha);
+                    (int) (lowerLightColor.getBlue() * 0.2), getAlphaAsInt());
         } else {
             upperDarkPressedColor = new Color((int) (Math.min(
                     pressedBackgroundColor.getRed() * 1.125, 255)), (int) Math.min(
                     pressedBackgroundColor.getGreen() * 1.125, 255), (int) Math.min(
-                    pressedBackgroundColor.getBlue() * 1.125, 255), (int) alpha);
+                    pressedBackgroundColor.getBlue() * 1.125, 255), getAlphaAsInt());
             lowerDarkPressedColor = new Color((int) (pressedBackgroundColor.getRed() * 0.875),
                     (int) (pressedBackgroundColor.getGreen() * 0.875),
-                    (int) (pressedBackgroundColor.getBlue() * 0.875), (int) alpha);
+                    (int) (pressedBackgroundColor.getBlue() * 0.875), getAlphaAsInt());
             upperLightPressedColor = new Color((int) Math.min(upperDarkPressedColor.getRed() * 1.1,
                     255), (int) Math.min(upperDarkPressedColor.getGreen() * 1.1, 255), (int) Math
-                    .min(upperDarkPressedColor.getBlue() * 1.1, 255), (int) alpha);
+                    .min(upperDarkPressedColor.getBlue() * 1.1, 255), getAlphaAsInt());
             lowerLightPressedColor = new Color((int) (lowerDarkPressedColor.getRed() * 1.1),
                     (int) (lowerDarkPressedColor.getGreen() * 1.1), (int) (lowerDarkPressedColor
-                            .getBlue() * 1.1), (int) alpha);
+                            .getBlue() * 1.1), getAlphaAsInt());
 
         }
     }

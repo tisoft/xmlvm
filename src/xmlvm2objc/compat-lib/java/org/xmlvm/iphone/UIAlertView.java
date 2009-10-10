@@ -122,7 +122,7 @@ public class UIAlertView extends UIView {
         button.setTitleShadowColor(Color.DARK_GRAY, UIControlState.UIControlStateNormal);
         button.setTitleShadowOffset(new CGSize(0, -1), UIControlState.UIControlStateNormal);
         button.setBackgroundColor(new Color(150, 170, 190));
-        button.setAlpha(200);
+        button.setAlpha(0.8f);
         button.setEdgeDiameter(8);
 
         addSubview(button);

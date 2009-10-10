@@ -270,6 +270,11 @@ public class UIView extends UIResponder {
     public void setAlpha(float alpha) {
         this.alpha = alpha;
     }
+    
+    protected int getAlphaAsInt()
+    {
+    	return (int)(255f * alpha);
+    }
 
     public boolean touchedInsideView(Set<UITouch> touches) {
         UITouch t = touches.iterator().next();
