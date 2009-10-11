@@ -33,7 +33,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 /**
- * The main controller class of the Sokoban game, implemented as an Android
+ * The main controller class of the Xokoban game, implemented as an Android
  * {@link Activity}.
  */
 public class Xokoban extends Activity {

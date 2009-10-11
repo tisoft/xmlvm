@@ -20,26 +20,31 @@
 
 package org.xmlvm.proc.out;
 
-import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.XmlvmProcess;
-
 import java.util.List;
 
-/**
- * OutputProcess.
- * 
- * @param <T>
- *            The most specific XmlvmProcess type for pre-processes.
- */
-public abstract class OutputProcess<T extends XmlvmProcess<?>> extends XmlvmProcess<T> {
+import org.xmlvm.main.Arguments;
 
-    public OutputProcess(Arguments arguments) {
+/**
+ * Takes the output of a {@link QooxdooOutputProcess} and makes sure an app
+ * developed on the Android can be run on a Palm Pre.
+ * <p>
+ * IN DEVELOPMENT: PARDON THE DUST :)
+ */
+public class Android2PalmPreOutputProcess extends OutputProcess<QooxdooOutputProcess> {
+
+    public Android2PalmPreOutputProcess(Arguments arguments) {
         super(arguments);
+        // We only support QooxdooOutputProcesses as input.
+        addSupportedInput(QooxdooOutputProcess.class);
     }
 
-    /**
-     * Returns all the files this process inherited or produced and wants to
-     * have written to the file system.
-     */
-    public abstract List<OutputFile> getOutputFiles();
+    @Override
+    public List getOutputFiles() {
+        return null;
+    }
+
+    @Override
+    public boolean process() {
+        return false;
+    }
 }

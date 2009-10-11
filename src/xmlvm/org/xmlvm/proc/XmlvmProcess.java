@@ -72,6 +72,13 @@ public abstract class XmlvmProcess<T extends XmlvmProcess<?>> {
      */
     public abstract boolean process();
 
+    /**
+     * Processors can override it to do post-processing.
+     */
+    public boolean postProcess() {
+        return true;
+    }
+
     public List<Class<T>> getSupportedInputs() {
         return supportedInputs;
     }
@@ -169,10 +176,26 @@ public abstract class XmlvmProcess<T extends XmlvmProcess<?>> {
     protected List<T> preprocess() {
         for (T process : preprocesses) {
             if (process.isActive()) {
+                // TODO(haeberling): Maybe replace by preprocess? This way
+                // processes don't have to call preprocess themselves anymore.
                 process.process();
             }
         }
         return preprocesses;
+    }
+
+    /**
+     * Runs {@link #postProcess()} on all preprocesses.
+     */
+    public boolean postProcessPreProcesses() {
+        for (T process : preprocesses) {
+            if (process.isActive()) {
+                if (!process.postProcessPreProcesses()) {
+                    return false;
+                }
+            }
+        }
+        return postProcess();
     }
 
     /**

@@ -61,7 +61,8 @@ public class Arguments {
         String[] msg = {
                 "Usage: xmlvm [--in=<path>]",
                 "             [--out=<dir>]",
-                "              --target=[xmlvm|jvm|clr|dfa|class|exe|js|cpp|python|objc|iphone|qooxdoo|android-on-iphone]",
+                "              --target=[xmlvm|jvm|clr|dfa|class|exe|js|cpp|python|objc|iphone|" +
+                "                        qooxdoo|android-on-iphone|android-on-pre]",
                 "             [--iphone-app=<app-name>]",
                 "             [--qx-app=<app-name> --qx-main=<main-class> [--qx-debug]]",
                 "             [--quiet] [--version]" };
@@ -116,6 +117,8 @@ public class Arguments {
                     option_target = Targets.QOOXDOO;
                 else if (target.equals("android-on-iphone"))
                     option_target = Targets.ANDROIDONIPHONE;
+                else if (target.equals("android-on-pre"))
+                    option_target = Targets.ANDROIDONPRE;
                 else
                     usage("Unkown target: " + target);
             } else if (arg.startsWith(ARG_IPHONE_APP)) {

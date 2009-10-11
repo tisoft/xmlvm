@@ -93,7 +93,7 @@ public class XmlvmProcessor {
     }
 
     /**
-     * Start the processing.
+     * Starts the processing.
      * 
      * @return Whether the processing was successful.
      */
@@ -107,6 +107,15 @@ public class XmlvmProcessor {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Starts the post-processing.
+     * 
+     * @return Whether the post-processing was successful.
+     */
+    public boolean postProcess() {
+        return targetProcess.postProcessPreProcesses();
     }
 
     /**

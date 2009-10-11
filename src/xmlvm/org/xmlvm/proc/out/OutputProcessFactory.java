@@ -64,6 +64,8 @@ public class OutputProcessFactory {
             return new IPhoneOutputProcess(arguments);
         } else if (target == Targets.ANDROIDONIPHONE) {
             return new Android2IPhoneOutputProcess(arguments);
+        } else if (target == Targets.ANDROIDONPRE) {
+            return new Android2PalmPreOutputProcess(arguments);
         } else if (target == Targets.XMLVM) {
             return new XmlvmOutputProcess(arguments);
         } else {

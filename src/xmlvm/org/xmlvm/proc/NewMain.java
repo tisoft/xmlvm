@@ -51,13 +51,20 @@ public class NewMain {
         // Instantiate the processor.
         XmlvmProcessor processor = new XmlvmProcessor(arguments);
 
-        // We start processing the inputs.
+        // 1) Processing.
         if (processor.process()) {
             Log.debug("Processing finished successfully.");
+            // 2) Wirting files.
             if (processor.writeOutputFiles()) {
                 Log.debug("Files written successfully.");
+                // 3) Post-Processing.
+                if (processor.postProcess()) {
+                    Log.debug("Post-Processing successful.");
+                } else {
+                    Log.error("Something went wrong during post-processing.");
+                }
             } else {
-                Log.debug("Something went wrong while writing files.");
+                Log.error("Something went wrong while writing files.");
             }
         } else {
             Log.error("Something went wrong during processing.");

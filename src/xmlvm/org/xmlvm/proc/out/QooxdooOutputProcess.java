@@ -20,22 +20,83 @@
 
 package org.xmlvm.proc.out;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+
+import com.crazilec.util.UtilCopy;
 
 /**
  * This process takes JavaScript outputs and creates a Qooxdoo project from
  * them.
  */
+/**
+ * @author Sascha
+ * 
+ */
 public class QooxdooOutputProcess extends OutputProcess<JavaScriptOutputProcess> {
-    private List<OutputFile> outputFiles = new ArrayList<OutputFile>();
+    /** The path to the qooxdoo distribution. */
+    private static final String QX_PATH                  = System.getenv("XMLVM_QOOXDOO_PATH");
+
+    /**
+     * Temporary subdirectory in output directory which is used to assemble the
+     * final output using qooxdoo.
+     */
+    private static final String TEMP_CACHE_SUBDIR        = "temp_cache";
+
+    /** The name of the script that is used to build the application. */
+    private static final String QX_GENERATOR_SCRIPT_NAME = "generate.py";
+
+    /**
+     * The absolute path to the script that is used to create the qooxdoo
+     * application skeleton.
+     */
+    private static final String QX_CREATOR_SCRIPT        = QX_PATH
+                                                                 + "/tool/bin/create-application.py";
+
+    /** The name of the temporary qooxdoo app that is used during the process. */
+    private static final String QX_TEMP_APP_NAME         = "temp_qx_app";
+
+    /** The path to the XMLVM emulation library. */
+    private static final String JS_EMULATION_LIB_PATH    = "./src/xmlvm2js";
+    private static final String APPLICATION_JS_PATH      = JS_EMULATION_LIB_PATH
+                                                                 + "/Application.js.template";
+
+    /**
+     * This is where the temporary computation output is put. The directory will
+     * be deleted after the process is done.
+     */
+    private String              tempDestination;
+
+    /**
+     * The directory in which the source JS file for the Qooxdoo application go.
+     */
+    private String              tempQxSourcePath;
+
+    /** The name of the final Qooxdoo application. */
+    private String              applicationName;
+
+    /** The main method of the application. */
+    protected String            mainMethod;
+
+    /** The files to be returned by this process */
+    private List<OutputFile>    outputFiles              = new ArrayList<OutputFile>();
 
     public QooxdooOutputProcess(Arguments arguments) {
         super(arguments);
         // We only support JavaScript inputs.
-        // addSupportedInput(JavaScriptOutputProcess.class);
         addSupportedInput(JavaScriptOutputProcess.class);
     }
 
@@ -46,10 +107,459 @@ public class QooxdooOutputProcess extends OutputProcess<JavaScriptOutputProcess>
 
     @Override
     public boolean process() {
+        tempDestination = arguments.option_out() + File.separator + TEMP_CACHE_SUBDIR;
+        mainMethod = arguments.option_qx_main();
+        applicationName = arguments.option_qx_app();
+
+        // This is the path, where the source for the temporary qooxdoo project
+        // will be allocated.
+        tempQxSourcePath = tempDestination + "/" + QX_TEMP_APP_NAME + "/source/class";
+
+        // Sanity checks the environment.
+        peformSanityChecks();
+
+        // Make sure the output directory is all set.
+        if (!isDestinationNotEmpty()) {
+            if (!prepareDestinationDirectory()) {
+                return false;
+            }
+        } else {
+            Log.debug("A valid Qooxdoo destination directory seems to exist.");
+        }
+
         List<JavaScriptOutputProcess> preprocesses = preprocess();
         for (JavaScriptOutputProcess process : preprocesses) {
-            outputFiles.addAll(process.getOutputFiles());
+            for (OutputFile outputFile : process.getOutputFiles()) {
+                outputFile.setLocation(tempQxSourcePath);
+                outputFiles.add(outputFile);
+            }
         }
         return true;
+    }
+
+    @Override
+    public boolean postProcess() {
+        Log.debug("QX: Copying compatibility library ...");
+        if (!prepareJsEmulationLibrary(new File(JS_EMULATION_LIB_PATH), new File(tempQxSourcePath))) {
+            return false;
+        }
+        Log.debug("QX: Injecting custom Application.js ...");
+        if (!injectCustomApplicationJs(tempQxSourcePath)) {
+            return false;
+        }
+        return executeGenerator();
+    }
+
+    /**
+     * Executed Qooxdoo's generator to build the application.
+     * 
+     * @throws XmlvmBuilderException
+     */
+    private boolean executeGenerator() {
+        String buildType = arguments.option_qx_debug() ? " source" : " build";
+        Log.debug("Qooxdoo build type: '" + buildType + " '");
+        try {
+            Process process = createPythonProcess(tempDestination + "/" + QX_TEMP_APP_NAME + "/"
+                    + QX_GENERATOR_SCRIPT_NAME + buildType);
+            printOutputOfProcess(process, "Qooxdoo Generator");
+            int exitCode = process.waitFor();
+            if (exitCode != 0) {
+                Log.error("Error while executing python. Exit Code: " + exitCode);
+                return false;
+            }
+        } catch (IOException e) {
+            Log.error("Error while executing python: " + e.getMessage());
+            return false;
+        } catch (InterruptedException e) {
+            Log.error("Error while executing python: " + e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Prepares the output directory.
+     * 
+     * @return whether the process was successful
+     */
+    private boolean prepareDestinationDirectory() {
+        Log.debug("Preparation of destination directory:  " + arguments.option_out() + " ...");
+        // Create destination and temporary destination directories, if they do
+        // not already exist. If they do exist, remove their contents.
+        for (String directory : new String[] { arguments.option_out(), tempDestination }) {
+            File dir = new File(directory);
+            if (dir.exists()) {
+                if (!deleteDirectory(dir)) {
+                    Log.error("Couldn't clear destination directory");
+                }
+            }
+            dir.mkdirs();
+        }
+        // STEP 2: Executing qooxdoo application creator.
+        Log.debug("Executing qooxdoo application creator ...");
+        return initQxSkeleton();
+    }
+
+    /**
+     * Uses the qooxdoo application creator to create a temporary project that
+     * is used during the building process.
+     * 
+     */
+    private boolean initQxSkeleton() {
+        try {
+            Process process = createPythonProcess(QX_CREATOR_SCRIPT + " --name " + QX_TEMP_APP_NAME
+                    + " --out " + tempDestination);
+            printOutputOfProcess(process, "CREATOR");
+            int exitCode = process.waitFor();
+            if (exitCode != 0) {
+                Log.error("Error while executing python. Exit Code: " + exitCode);
+                return false;
+            }
+        } catch (IOException e) {
+            Log.error("Error while executing python: " + e.getMessage());
+            return false;
+        } catch (InterruptedException e) {
+            Log.error("Error while executing python: " + e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Performs sanity checks that have to be passed in order for the builder to
+     * run successfully. This way the application is able to fail early.
+     * 
+     * @return whether everything is set for the process
+     */
+    private boolean peformSanityChecks() {
+        // Check whether qooxdoo-path exists.
+        if (QX_PATH == null) {
+            Log.error("QX directory is not defined. Please define it using XMLVM_QOOXDOO_PATH");
+            return false;
+        }
+        if (!(new File(QX_PATH)).isDirectory()) {
+            Log.error("QX directory cannot be found: " + QX_PATH);
+            return false;
+        }
+        // Check whether creator script is present.
+        if (!(new File(QX_CREATOR_SCRIPT)).isFile()) {
+            Log.error("QX creator cannot be found: " + QX_CREATOR_SCRIPT);
+            return false;
+        }
+        // Check whether Python is present
+        if (!isPythonPresent()) {
+            Log.error("Python executable cannot be found. Make sure python.exe is on your PATH.");
+            return false;
+        }
+        // Check whether JS emulation library is present.
+        if (!(new File(JS_EMULATION_LIB_PATH)).isDirectory()) {
+            Log.error("Emulation library cannot be found: " + JS_EMULATION_LIB_PATH);
+            return false;
+        }
+        // Check whether the custom Application.js template is present
+        if (!(new File(APPLICATION_JS_PATH)).isFile()) {
+            Log.error("Custom Application.js file not found: " + APPLICATION_JS_PATH);
+            return false;
+        }
+        // Check whether mainMethod is defined and has the required format
+        if (mainMethod == null || mainMethod.indexOf('.') == -1) {
+            Log.error(Arguments.ARG_QX_MAIN + " must be of format: <ClassName>.(main|Main)");
+            return false;
+        }
+        // If the destination directory exists and has content, we check whether
+        // there is already a valid QX project. If not, something is wrong.
+        if (isDestinationNotEmpty()) {
+            String generateScript = tempDestination + "/" + QX_TEMP_APP_NAME + "/"
+                    + QX_GENERATOR_SCRIPT_NAME;
+            File generateScriptFile = new File(generateScript);
+            if (!generateScriptFile.isFile()) {
+                Log.error("Output directory exists, but doesn't seem to be a valid QX project as "
+                        + "the following file could not be found: "
+                        + generateScriptFile.getAbsolutePath());
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns whether the Python runtime is all set.
+     */
+    private static boolean isPythonPresent() {
+        String line = "";
+        try {
+            Process process;
+            process = Runtime.getRuntime().exec("python --version");
+            BufferedReader input = new BufferedReader(new InputStreamReader(process
+                    .getErrorStream()));
+            line = input.readLine();
+            process.destroy();
+        } catch (IOException e) {
+            return false;
+        }
+        if (line != null && line.startsWith("Python")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Recursively deletes the given directory.
+     * 
+     * @param path
+     *            the directory to delete.
+     * @return whether the process was successful.
+     */
+    private static boolean deleteDirectory(File path) {
+        if (path.exists()) {
+            File[] files = path.listFiles();
+            for (int i = 0; i < files.length; i++) {
+                if (files[i].isDirectory()) {
+                    deleteDirectory(files[i]);
+                } else {
+                    files[i].delete();
+                }
+            }
+        }
+        return (path.delete());
+    }
+
+    /**
+     * Creates a Python process.
+     * 
+     * @param arguments
+     *            Arguments to the python process.
+     * @return A process object to monitor.
+     * @throws IOException
+     */
+    private static Process createPythonProcess(String arguments) throws IOException {
+        return Runtime.getRuntime().exec("python " + arguments);
+    }
+
+    /**
+     * Takes a process and reads it output till the end. The output is prefixed
+     * with the given line prefix.
+     * 
+     * @param process
+     *            The process to take the output from.
+     * @param linePrefix
+     *            The line prefix to mark the output.
+     */
+    private static void printOutputOfProcess(final Process process, final String linePrefix) {
+        InputReaderThread inputThread = new InputReaderThread(process.getInputStream(), System.out,
+                linePrefix);
+        InputReaderThread errorThread = new InputReaderThread(process.getErrorStream(), System.err,
+                "(ERROR) " + linePrefix);
+        inputThread.start();
+        errorThread.start();
+    }
+
+    /**
+     * Returns whether the destination directory is not empty.
+     */
+    private boolean isDestinationNotEmpty() {
+        File outputDir = new File(arguments.option_out());
+        return outputDir.isDirectory() && (outputDir.list().length != 0);
+    }
+
+    /**
+     * Takes the emulation library and puts it into the destination so it is
+     * ready to be used by qooxdoo's build system.
+     * 
+     * @return whether the operation was successful.
+     */
+    private boolean prepareJsEmulationLibrary(File basePath, File destination) {
+        // Check, whether the destination directory actually exists.
+        if (!destination.isDirectory()) {
+            Log.error("Destination directory does not exist: " + destination.getAbsolutePath());
+            return false;
+        }
+        // Recursively rename and copy all JS files.
+        return renameAndCopyJsFiles(basePath, basePath, destination);
+    }
+
+    /**
+     * Recursively go through all sub-directories and look for JS files. When
+     * found, rename file to match to internal class-name (required by qooxdoo),
+     * and copy files into destination directory.
+     * 
+     * @param absoluteBasePath
+     *            The root of the emulation library.
+     * @param basePath
+     *            The path where to search for JS files.
+     * @param destination
+     *            The path where the renamed JS files should be copied to.
+     * 
+     * @return whether the operation was successful.
+     */
+    private boolean renameAndCopyJsFiles(File absoluteBasePath, File basePath, File destination) {
+        // Accepts files
+        FileFilter jsFileFilter = new FileFilter() {
+            public boolean accept(File pathname) {
+                return !pathname.isDirectory() && pathname.getName().toLowerCase().endsWith(".js");
+            }
+        };
+        // Accepts directories
+        FileFilter directoryFilter = new FileFilter() {
+            public boolean accept(File pathname) {
+                return pathname.isDirectory();
+            }
+        };
+        // Go through all files in this directory ...
+        for (File entry : basePath.listFiles(jsFileFilter)) {
+            if (!renameAndCopyJsFile(absoluteBasePath, entry, destination)) {
+                return false;
+            }
+        }
+        // ... then recursively go through subdirectories.
+        for (File entry : basePath.listFiles(directoryFilter)) {
+            if (!renameAndCopyJsFiles(absoluteBasePath, entry, destination)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Renames and copies a single JS file. The renaming will integrate the
+     * pathname from a given root path, so the file name matches the class name
+     * within the file.
+     * 
+     * @param absoluteBasePath
+     * @param jsFile
+     * @param destination
+     * 
+     * @return whether the operation was successful.
+     */
+    private boolean renameAndCopyJsFile(File absoluteBasePath, File jsFile, File destination) {
+        // +1 to remove trailing slash.
+        String cutPath = jsFile.getAbsolutePath().substring(
+                absoluteBasePath.getAbsolutePath().length() + 1);
+        String outputFileName = cutPath.replace(File.separatorChar, '_');
+        try {
+            UtilCopy uc = new UtilCopy();
+            uc.binCopy(destination.getAbsolutePath() + File.separator + outputFileName, jsFile
+                    .getAbsolutePath());
+        } catch (FileNotFoundException e) {
+            Log.error("Error while copying file: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            Log.error("Error while copying file: " + e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Generates and writes out the Application.js file that is uses by Qooxdoo
+     * as the entry point.
+     * 
+     * @param jsClassPath
+     *            the path in which the application JS files are located.
+     * @return whether the operation was successful.
+     */
+    private boolean injectCustomApplicationJs(String jsClassPath) {
+        String applicationJs = readFileAsString(new File(APPLICATION_JS_PATH));
+
+        // We replace the variables in the template with the requires values.
+        applicationJs = applicationJs.replace("{{XMLVM_TEMP_PROJECT_NAME}}", QX_TEMP_APP_NAME);
+        applicationJs = applicationJs.replace("{{XMLVM_MAIN_METHOD_CALL}}", generateMainCall());
+        String filename = jsClassPath + "/" + QX_TEMP_APP_NAME + "/Application.js";
+        try {
+            FileWriter writer = new FileWriter(filename);
+            writer.write(applicationJs);
+            writer.close();
+        } catch (IOException e) {
+            Log.error("Couldn't not write: " + filename);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Based on the {@link Arguments#option_qx_main()} argument, the actual main
+     * call is generated.
+     */
+    private String generateMainCall() {
+        String mainClass = mainMethod.substring(0, mainMethod.lastIndexOf('.'));
+        mainClass = mainClass.replace('.', '_');
+        if (mainMethod.endsWith("Main")) {
+            // If the format is <ClassName>.Main we expect this to be a C# main
+            // method call.
+            return mainClass + ".$Main();";
+        } else {
+            return mainClass + ".$main___java_lang_String_ARRAYTYPE(undefined);";
+        }
+    }
+
+    /**
+     * Read the content of a file as String.
+     * 
+     * @param file
+     *            the file to read.
+     */
+    public static String readFileAsString(File file) {
+        final int READ_BUFFER = 4096;
+
+        FileInputStream is;
+        try {
+            is = new FileInputStream(file);
+            StringBuffer buffer = new StringBuffer();
+            byte b[] = new byte[READ_BUFFER];
+            int l = 0;
+            if (is == null) {
+                return "";
+            } else {
+                while ((l = is.read(b)) > 0) {
+                    buffer.append(new String(b, 0, l));
+                }
+            }
+            return buffer.toString();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    /**
+     * Takes the input of an {@link InputStream} and writes it to the given
+     * output stream. Useful if e.g. the stream comes from a process.
+     */
+    private static class InputReaderThread extends Thread {
+        private BufferedReader in;
+        private PrintStream    out;
+        private String         prefix;
+
+        /**
+         * Instantiates a new InputReaderThread.
+         * 
+         * @param inputStream
+         *            the stream to read from
+         * @param outStream
+         *            the stream to write to
+         * @param linePrefix
+         *            a line prefix prepended to the output of each line to
+         *            identify the process
+         */
+        public InputReaderThread(InputStream inputStream, PrintStream outStream, String linePrefix) {
+            in = new BufferedReader(new InputStreamReader(inputStream));
+            out = outStream;
+            prefix = linePrefix;
+        }
+
+        @Override
+        public void run() {
+            String line;
+            try {
+                while ((line = in.readLine()) != null) {
+                    out.println(prefix + " > " + line);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

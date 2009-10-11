@@ -681,15 +681,11 @@ public class ClassInputProcess extends InputProcess<ClassFile> {
         }
 
         private void emitNEWARRAY(Element xml_inst, NEWARRAY inst) {
-
             xml_inst.setAttribute("type", inst.getType().toString());
-
         }
 
         private void emitANEWARRAY(Element xml_inst, ANEWARRAY inst) {
-
             xml_inst.setAttribute("type", inst.getType(cpg).toString());
-
         }
 
         private final void put(InstructionHandle ih, int id) {

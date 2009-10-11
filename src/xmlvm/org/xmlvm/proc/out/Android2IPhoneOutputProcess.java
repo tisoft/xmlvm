@@ -31,7 +31,9 @@ import org.xmlvm.util.FileUtil;
 import org.xmlvm.util.JarUtil;
 
 /**
- * 
+ * Takes an {@link IPhoneOutputProcess} as the input and augments it with
+ * compatibility classes necessary if the original application was written for
+ * the Android API.
  */
 public class Android2IPhoneOutputProcess extends OutputProcess<IPhoneOutputProcess> {
     private static final String ANDROID_IPHONE_COMPAT_LIB_JAR = "/iphone/android-compat-lib.jar";
