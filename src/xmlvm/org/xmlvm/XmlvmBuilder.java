@@ -47,6 +47,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Deprecated // Use NewMain.
 public class XmlvmBuilder {
   /**
    * Class file pattern.
@@ -87,7 +88,6 @@ public class XmlvmBuilder {
       JS_EMULATION_LIB_PATH + "/Application.js.template";
 
   protected String applicationName;
-  // protected String indexFileName;
   protected String mainClass;
   /**
    * This is where the final compilation will be put in.
