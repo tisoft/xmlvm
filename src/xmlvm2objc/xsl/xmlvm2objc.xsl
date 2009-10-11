@@ -1003,7 +1003,7 @@ int main(int argc, char* argv[])
 <xsl:template match="jvm:if_icmpge">
   <xsl:text>    _op2.i = _stack[--_sp].i;
     _op1.i = _stack[--_sp].i;
-    if (_op1.i >= _op2.i) goto label</xsl:text>
+    if (_op1.i &gt;= _op2.i) goto label</xsl:text>
   <xsl:value-of select="@label"/>
   <xsl:text>;
 </xsl:text>
