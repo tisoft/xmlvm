@@ -61,8 +61,8 @@ public class Arguments {
         String[] msg = {
                 "Usage: xmlvm [--in=<path>]",
                 "             [--out=<dir>]",
-                "              --target=[xmlvm|jvm|clr|dfa|class|exe|js|cpp|python|objc|iphone|" +
-                "                        qooxdoo|android-on-iphone|android-on-pre]",
+                "              --target=[xmlvm|jvm|clr|dfa|class|exe|js|cpp|python|objc|iphone|"
+                        + "qooxdoo|android-on-iphone|android-on-pre]",
                 "             [--iphone-app=<app-name>]",
                 "             [--qx-app=<app-name> --qx-main=<main-class> [--qx-debug]]",
                 "             [--quiet] [--version]" };
