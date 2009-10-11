@@ -58,4 +58,16 @@ java_io_PrintStream* _STATIC_java_lang_System_out;
     _STATIC_java_lang_System_out = v;
 }
 
+/*
+ TODO - This currently does nothing with the properties passed-in, it might be worthwhile
+ to actually store the values and provide other related methods, like getProperty. 
+ The function was only added to allow Java code that sets properties required by the OpenGL 
+ support in the xmlvm iPhone Simulator to cross-compile without modification.
+ */
+
++ (java_lang_String *) setProperty___java_lang_String_java_lang_String: (NSString *) s1: (NSString *)s2
+{
+    return NULL;
+}
+
 @end

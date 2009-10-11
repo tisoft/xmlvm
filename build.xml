@@ -23,12 +23,15 @@
 	<property name="xmlvm.ifireworks" value="build/demo/iphone/ifireworks" />
 	<property name="xmlvm.iremote" value="build/demo/iphone/iremote" />
 	<property name="xmlvm.ihelloworld" value="build/demo/iphone/ihelloworld" />
+	<property name="xmlvm.iglnehelesson4" value="build/demo/iphone/gl/nehelesson4" />
 	<property name="xmlvm.widgets" value="build/widgets" />
 
 	<property name="xmlvm.afireworks" value="build/demo/android/afireworks" />
 	<property name="xmlvm.aremote" value="build/demo/android/aremote" />
 	<property name="xmlvm.xokoban" value="build/demo/android/xokoban" />
 	<property name="xmlvm.sayhello" value="build/demo/android/sayhello" />
+
+	<property name="xmlvm.opengl" value="build/demo/android/opengl" />
 
 
 
@@ -185,8 +188,9 @@
 
 
 	<target name="build-iphoneDemo" depends="all-ihelloworld,all-widgets,
-											cc-ifireworks,cc-iremote,
-											sim-afireworks-jar,cc-sim-afireworks,sim-xokoban-jar,cc-sim-xokoban,sim-sayhello-jar,cc-sim-sayhello">
+                                             build-iglnehelesson4,cc-iglnehelesson4,
+											 cc-ifireworks,cc-iremote,
+											 sim-afireworks-jar,cc-sim-afireworks,sim-xokoban-jar,cc-sim-xokoban,sim-sayhello-jar,cc-sim-sayhello">
 	</target>
 
 	<target name="all-ihelloworld" depends="cc-ihelloworld-portrait,cc-ihelloworld-landscape,cc-ihelloworld-fullscreen,cc-ihelloworld-upsidedown"/>
@@ -226,6 +230,39 @@
 		</java>
 	</target>
 
+	<target name="build-iglnehelesson4" depends="build-objc-compat-lib">
+		<mkdir dir="${xmlvm.iglnehelesson4}" />
+		<javac srcdir="demo/iphone/gl/nehelesson4/src" destdir="${xmlvm.iglnehelesson4}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<mkdir dir="${xmlvm.demo}/iphone/iglnehelesson4/java"/>
+		<jar destfile="${xmlvm.demo}/iphone/iglnehelesson4/java/iglnehelesson4.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Implementation-Vendor" value="xmlvm.org" />
+				<attribute name="Main-Class" value="org.xmlvm.iphone.demo.gl.nehelesson4.NeHeLesson4" />
+				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../../lib/lwjgl.jar" />
+			</manifest>
+			<fileset dir="${xmlvm.iglnehelesson4}" />
+			<fileset dir="var/iphone">
+				<include name="*.png/" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="cc-iglnehelesson4" depends="xmlvmjar">
+		<mkdir dir="${xmlvm.demo}/iphone/iglnehelesson4/iphone" />
+		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
+			<arg value="--out=${xmlvm.demo}/iphone/iglnehelesson4/iphone" />
+			<arg value="--target=iphone" />
+			<arg value="--iphone-app=iGLNeHeLesson4" />
+			<arg value="--in=${xmlvm.iglnehelesson4}/" />
+		</java>
+	</target>
+	
 	<target name="build-ihelloworld-upsidedown" depends="build-objc-compat-lib">
 		<mkdir dir="${xmlvm.ihelloworld}/upsidedown" />
 		<javac srcdir="demo/iphone/ihelloworld/upsidedown/src" destdir="${xmlvm.ihelloworld}/upsidedown" debug="${debug}">
