@@ -65,6 +65,7 @@ import javax.xml.transform.URIResolver;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+@Deprecated  // Use NewMain instead when possible
 public class Main {
   private JavaClass jvm_class;
   private Module cil_class;
