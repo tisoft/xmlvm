@@ -23,18 +23,17 @@ package org.xmlvm.proc.out;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.util.FileUtil;
+import org.xmlvm.util.InputReaderThread;
 
 import com.crazilec.util.UtilCopy;
 
@@ -127,6 +126,8 @@ public class QooxdooOutputProcess extends OutputProcess<JavaScriptOutputProcess>
             Log.debug("A valid Qooxdoo destination directory seems to exist.");
         }
 
+        // Change the path of the JavaScript files so they are copied into the
+        // Qooxdoo project.
         List<JavaScriptOutputProcess> preprocesses = preprocess();
         for (JavaScriptOutputProcess process : preprocesses) {
             for (OutputFile outputFile : process.getOutputFiles()) {
@@ -139,10 +140,14 @@ public class QooxdooOutputProcess extends OutputProcess<JavaScriptOutputProcess>
 
     @Override
     public boolean postProcess() {
+        // TODO(Sascha): Is there a way to do this at processing, rather than
+        // post-processing time?
         Log.debug("QX: Copying compatibility library ...");
         if (!prepareJsEmulationLibrary(new File(JS_EMULATION_LIB_PATH), new File(tempQxSourcePath))) {
             return false;
         }
+        // TODO(Sascha): Is there a way to do this at processing, rather than
+        // post-processing time?
         Log.debug("QX: Injecting custom Application.js ...");
         if (!injectCustomApplicationJs(tempQxSourcePath)) {
             return false;
@@ -460,7 +465,7 @@ public class QooxdooOutputProcess extends OutputProcess<JavaScriptOutputProcess>
      * @return whether the operation was successful.
      */
     private boolean injectCustomApplicationJs(String jsClassPath) {
-        String applicationJs = readFileAsString(new File(APPLICATION_JS_PATH));
+        String applicationJs = FileUtil.readFileAsString(new File(APPLICATION_JS_PATH));
 
         // We replace the variables in the template with the requires values.
         applicationJs = applicationJs.replace("{{XMLVM_TEMP_PROJECT_NAME}}", QX_TEMP_APP_NAME);
@@ -490,76 +495,6 @@ public class QooxdooOutputProcess extends OutputProcess<JavaScriptOutputProcess>
             return mainClass + ".$Main();";
         } else {
             return mainClass + ".$main___java_lang_String_ARRAYTYPE(undefined);";
-        }
-    }
-
-    /**
-     * Read the content of a file as String.
-     * 
-     * @param file
-     *            the file to read.
-     */
-    public static String readFileAsString(File file) {
-        final int READ_BUFFER = 4096;
-
-        FileInputStream is;
-        try {
-            is = new FileInputStream(file);
-            StringBuffer buffer = new StringBuffer();
-            byte b[] = new byte[READ_BUFFER];
-            int l = 0;
-            if (is == null) {
-                return "";
-            } else {
-                while ((l = is.read(b)) > 0) {
-                    buffer.append(new String(b, 0, l));
-                }
-            }
-            return buffer.toString();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
-    /**
-     * Takes the input of an {@link InputStream} and writes it to the given
-     * output stream. Useful if e.g. the stream comes from a process.
-     */
-    private static class InputReaderThread extends Thread {
-        private BufferedReader in;
-        private PrintStream    out;
-        private String         prefix;
-
-        /**
-         * Instantiates a new InputReaderThread.
-         * 
-         * @param inputStream
-         *            the stream to read from
-         * @param outStream
-         *            the stream to write to
-         * @param linePrefix
-         *            a line prefix prepended to the output of each line to
-         *            identify the process
-         */
-        public InputReaderThread(InputStream inputStream, PrintStream outStream, String linePrefix) {
-            in = new BufferedReader(new InputStreamReader(inputStream));
-            out = outStream;
-            prefix = linePrefix;
-        }
-
-        @Override
-        public void run() {
-            String line;
-            try {
-                while ((line = in.readLine()) != null) {
-                    out.println(prefix + " > " + line);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

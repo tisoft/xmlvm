@@ -119,4 +119,35 @@ public class FileUtil {
     public static String getBinDirectory() {
         return (new File("bin")).getAbsolutePath();
     }
+
+    /**
+     * Read the content of a file as String.
+     * 
+     * @param file
+     *            the file to read.
+     */
+    public static String readFileAsString(File file) {
+        final int READ_BUFFER = 4096;
+
+        FileInputStream is;
+        try {
+            is = new FileInputStream(file);
+            StringBuffer buffer = new StringBuffer();
+            byte b[] = new byte[READ_BUFFER];
+            int l = 0;
+            if (is == null) {
+                return "";
+            } else {
+                while ((l = is.read(b)) > 0) {
+                    buffer.append(new String(b, 0, l));
+                }
+            }
+            return buffer.toString();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }

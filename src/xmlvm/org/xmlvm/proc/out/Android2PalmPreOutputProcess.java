@@ -20,6 +20,7 @@
 
 package org.xmlvm.proc.out;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlvm.main.Arguments;
@@ -28,9 +29,11 @@ import org.xmlvm.main.Arguments;
  * Takes the output of a {@link QooxdooOutputProcess} and makes sure an app
  * developed on the Android can be run on a Palm Pre.
  * <p>
- * IN DEVELOPMENT: PARDON THE DUST :)
+ * TODO(Sascha): IN DEVELOPMENT, PARDON THE DUST :)
  */
 public class Android2PalmPreOutputProcess extends OutputProcess<QooxdooOutputProcess> {
+
+    List<OutputFile> outputFiles = new ArrayList<OutputFile>();
 
     public Android2PalmPreOutputProcess(Arguments arguments) {
         super(arguments);
@@ -39,12 +42,22 @@ public class Android2PalmPreOutputProcess extends OutputProcess<QooxdooOutputPro
     }
 
     @Override
-    public List getOutputFiles() {
-        return null;
+    public List<OutputFile> getOutputFiles() {
+        return outputFiles;
     }
 
     @Override
     public boolean process() {
-        return false;
+        // Just copy over the files from the Qooxdoo Process.
+        List<QooxdooOutputProcess> preprocesses = preprocess();
+        for (QooxdooOutputProcess process : preprocesses) {
+            outputFiles.addAll(process.getOutputFiles());
+        }
+        return true;
+    }
+
+    @Override
+    public boolean postProcess() {
+        return true;
     }
 }
