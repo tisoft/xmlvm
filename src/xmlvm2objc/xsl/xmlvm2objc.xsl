@@ -302,6 +302,17 @@ int main(int argc, char* argv[])
     XMLVMElem _locals[</xsl:text>
   <xsl:value-of select="../@locals"/>
   <xsl:text>];
+  </xsl:text>
+  <xsl:if test="../@name = '&lt;clinit&gt;' and ../@isStatic='true'"><xsl:text>
+    if (strcmp(class_getName(self), "</xsl:text>
+    	<xsl:value-of select="vm:fixname(../../@package)"/>
+    	<xsl:text>_</xsl:text>
+    	<xsl:value-of select="../../@name"/><xsl:text>") != 0) {
+        return;
+    }
+  </xsl:text>
+  </xsl:if>
+  <xsl:text>
     int _sp = 0;
     XMLVMElem _op1, _op2, _op3;
 </xsl:text>
