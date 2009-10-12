@@ -28,7 +28,6 @@ import org.xmlvm.iphone.NSBundle;
 import org.xmlvm.iphone.NSData;
 import org.xmlvm.iphone.UIImage;
 
-
 public class ResourceMapper {
     /** A map holding the mapping from resourceId to UIImage. */
     private static Map<Integer, UIImage> imageMap  = new HashMap<Integer, UIImage>();
@@ -69,8 +68,8 @@ public class ResourceMapper {
             theId = new Integer(findIdByVariableName(name, "id"));
             idMap.put(name, theId);
         }
-        return theId.intValue();
 
+        return theId.intValue();
     }
 
     private static String findVariableById(int resourceId, String resourceClass) {

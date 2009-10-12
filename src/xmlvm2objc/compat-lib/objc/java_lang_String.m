@@ -40,6 +40,11 @@
     [self setString: str];
 }
 
+- (void) __init_java_lang_StringBuffer
+{
+	[self setString: @""];
+}
+
 + (NSMutableString*) valueOf___int: (int) i
 {
     NSNumber* n = [NSNumber numberWithInt: i];

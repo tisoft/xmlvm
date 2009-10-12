@@ -18,46 +18,19 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.widget;
+package android.util;
 
-import org.xmlvm.iphone.UITextView;
-import org.xmlvm.iphone.UIView;
+public interface AttributeSet {
 
-import android.content.Context;
-import android.util.AttributeSet;
+    public int getAttributeIntValue(String namespace, String attribute, int defaultValue);
 
-public class EditText extends TextView {
+    public float getAttributeFloatValue(String namespace, String attribute, float defaultValue);
 
-    public EditText(Context c) {
-        super(c);
+    public String getAttributeValue(String namespace, String attribute);
 
-        getUITextView().setText("");
-    }
+    public int getAttributeResourceValue(String namespace, String attribute, int defaultValue);
 
-    public EditText(Context c, AttributeSet attrs) {
-        this(c);
-        parseAttributes(attrs);
-    }
+    public String getIdAttribute();
 
-    public Object getText() {
-        return getUITextView().getText();
-    }
-
-    public void setLines(int i) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    protected UIView xmlvmCreateUIView() {
-        return new UITextView();
-    }
-
-    private UITextView getUITextView() {
-        return (UITextView) xmlvmGetUIView();
-    }
-
-    protected void parseAttributes(AttributeSet attrs) {
-        super.parseAttributes(attrs);
-    }
+    public int getIdAttributeResourceValue(int defaultValue);
 }

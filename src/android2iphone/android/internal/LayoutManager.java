@@ -20,21 +20,33 @@
 
 package android.internal;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 import org.xmlvm.iphone.NSData;
 import org.xmlvm.iphone.NSXMLParser;
 import org.xmlvm.iphone.NSXMLParserDelegate;
 
 import android.content.Context;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 class LayoutParser extends NSXMLParserDelegate {
 
-    private String prefix = "";
-    private Layout layout;
-
-    public LayoutParser(Layout layout) {
-        this.layout = layout;
+    private Map<Integer, View> viewMap          = new HashMap<Integer, View>();
+    private String             prefix           = "";
+    private Context            context;
+    private ViewGroup          currentViewGroup = null;
+    private Stack<ViewGroup>   viewGroupStack   = new Stack<ViewGroup>();
+    
+    public LayoutParser(Context context) {
+        this.context = context;
     }
 
     @Override
@@ -47,15 +59,16 @@ class LayoutParser extends NSXMLParserDelegate {
     @Override
     public void didStartElement(NSXMLParser parser, String elementName, String namespaceURI,
             String qualifiedName, Map<String, String> attributes) {
-        ViewParameters params = parseLayoutParameters(attributes);
+        AttributeSet attrs = new ResourceAttributes(prefix, attributes);
+
         if (qualifiedName.equals("LinearLayout")) {
-            layout.beginLinearLayout(params);
+            beginLinearLayout(attrs);
         } else if (qualifiedName.equals("EditText")) {
-            layout.addEditText(params);
+            addEditText(attrs);
         } else if (qualifiedName.equals("TextView")) {
-            layout.addTextView(params);
+            addTextView(attrs);
         } else if (qualifiedName.equals("Button")) {
-            layout.addButton(params);
+            addButton(attrs);
         } else {
             // TODO error
         }
@@ -70,24 +83,59 @@ class LayoutParser extends NSXMLParserDelegate {
     public void didEndElement(NSXMLParser parser, String elementName, String namespaceURI,
             String qualifiedName) {
         if (qualifiedName.equals("LinearLayout")) {
-            layout.endLinearLayout();
+            endLinearLayout();
         }
     }
 
-    private ViewParameters parseLayoutParameters(Map<String, String> attributes) {
-        ViewParameters params = new ViewParameters();
-        for (String key : attributes.keySet()) {
-            String value = attributes.get(key);
-            if (key.equals(prefix + "id")) {
-                String name = value.substring("@+id/".length());
-                params.id = ResourceMapper.getIdByName(name);
-            } else if (key.equals(prefix + "text")) {
-                params.text = value;
-            } else {
-                // TODO many more attributes
-            }
+    ViewGroup getCurrentView() {
+        return currentViewGroup;
+    }
+
+    private void beginLinearLayout(AttributeSet attrs) {
+        ViewGroup vg = new LinearLayout(context, attrs);
+        addView(vg, attrs);
+        viewGroupStack.push(vg);
+        currentViewGroup = vg;
+    }
+
+    private void endLinearLayout() {
+        currentViewGroup = viewGroupStack.pop();
+    }
+
+    private void addEditText(AttributeSet attrs) {
+        EditText editText = new EditText(context, attrs);
+        addView(editText, attrs);
+    }
+
+    public void addTextView(AttributeSet attrs) {
+        TextView textView = new TextView(context, attrs);
+        addView(textView, attrs);
+    }
+
+    public void addButton(AttributeSet attrs) {
+        Button button = new Button(context, attrs);
+        addView(button, attrs);
+    }
+
+    private void addView(View view, AttributeSet attrs) {
+
+        ViewGroup.LayoutParams layoutParams;
+
+        if (currentViewGroup != null) {
+            currentViewGroup.addView(view);
+            layoutParams = currentViewGroup.generateLayoutParams(attrs);
+        } else {
+            layoutParams = new ViewGroup.LayoutParams(context, attrs);
         }
-        return params;
+        view.setLayoutParams(layoutParams);
+
+        if (view.getId() != 0) {
+            viewMap.put(new Integer(view.getId()), view);
+        }
+    }
+
+    Map<Integer, View> getViewMap() {
+        return viewMap;
     }
 }
 
@@ -97,15 +145,18 @@ class LayoutParser extends NSXMLParserDelegate {
  */
 public class LayoutManager {
 
-    public static Layout getLayout(Context context, int id) {
-        Layout layout = new Layout(context);
+    public static ViewGroup getLayout(Context context, int id) {
         NSData layoutDesc = ResourceMapper.getLayoutById(id);
         NSXMLParser xmlParser = new NSXMLParser(layoutDesc);
         xmlParser.setShouldProcessNamespaces(true);
         xmlParser.setShouldReportNamespacePrefixes(true);
-        xmlParser.setDelegate(new LayoutParser(layout));
+        LayoutParser parser = new LayoutParser(context);
+        xmlParser.setDelegate(parser);
         boolean success = xmlParser.parse();
         // TODO what to do if success == false?
-        return layout;
+        ViewGroup topLevelView = parser.getCurrentView();
+        topLevelView.setXmlvmViewMap(parser.getViewMap());
+
+        return topLevelView;
     }
 }

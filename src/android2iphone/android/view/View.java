@@ -29,6 +29,9 @@ import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
+import android.internal.ResourceAttributes;
+import android.internal.ResourceMapper;
+import android.util.AttributeSet;
 
 /**
  * iPhone implementation of Android's View class.
@@ -62,7 +65,16 @@ public class View {
     private ViewParent             parent;
     private OnTouchListener        listener;
     private UIResponderDelegate    responderDelegate;
+    private int                    id;
 
+    // Temporarily used
+    private static int nextY;
+    
+    protected int getNextY() {
+        int y = nextY;
+        nextY += 40;
+        return y;
+    }
     public View(Context c) {
         this.c = c;
         uiView = xmlvmCreateUIView();
@@ -90,9 +102,14 @@ public class View {
             }
 
         };
-        
+
         uiView.setDelegate(responderDelegate);
 
+    }
+
+    public View(Context c, AttributeSet attrs) {
+        this(c);
+        parseAttributes(attrs);
     }
 
     public ViewGroup.LayoutParams getLayoutParams() {
@@ -147,5 +164,17 @@ public class View {
 
     protected void finalize() {
         uiView.setDelegate(null);
+    }
+
+    protected void parseAttributes(AttributeSet attrs) {
+        id = attrs.getIdAttributeResourceValue(0);
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return this.id;
     }
 }

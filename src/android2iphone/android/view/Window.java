@@ -28,7 +28,6 @@ import org.xmlvm.iphone.UIWindow;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
-import android.internal.Layout;
 import android.internal.LayoutManager;
 
 /**
@@ -41,17 +40,17 @@ public class Window {
     private Activity        activity;
     private UIWindow        iWindow;
     private CGRect          rect;
-    private Layout          layout;
+    private View            contentView;
 
     public Window(Activity parent) {
         this.activity = parent;
         UIScreen screen = UIScreen.mainScreen();
         rect = screen.applicationFrame();
         iWindow = new UIWindow(rect);
-        layout = null;
     }
 
     public void setContentView(View view) {
+        contentView = view;
         adjustFrameSize();
         CGRect viewRect = new CGRect(rect);
         viewRect.origin.x = viewRect.origin.y = 0;
@@ -61,8 +60,8 @@ public class Window {
     }
 
     public void setContentView(int id) {
-        layout = LayoutManager.getLayout(activity, id);
-        setContentView(layout.getTopView());
+        ViewGroup vg = LayoutManager.getLayout(activity, id);
+        setContentView(vg);
     }
 
     public void setFlags(int flags, int mask) {
@@ -109,6 +108,11 @@ public class Window {
      * @return
      */
     public View findViewById(int id) {
-        return layout.findViewById(id);
+        if (contentView instanceof ViewGroup) {
+            ViewGroup vg = (ViewGroup) contentView;
+            return vg.getXmlvmViewMap().get(new Integer(id));
+        } else {
+            return null;
+        }
     }
 }

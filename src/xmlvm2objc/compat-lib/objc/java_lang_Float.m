@@ -18,15 +18,50 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.internal;
+#import "java_lang_Float.h"
 
-/**
- * @author arno
- * 
- */
-public class ViewParameters {
 
-    public int    id   = -1;
-    public String text = null;
+// java.lang.Float
+//----------------------------------------------------------------------------
+@implementation java_lang_Float
 
+- (id) init
+{
+	[super init];
+	number = 0.0f;
+	return self;
 }
+
+- (id) copyWithZone:(NSZone *)zone
+{
+    java_lang_Float* other = [[[self class] allocWithZone:zone] init];
+    other->number = self->number;
+    return other;
+}
+
+- (NSUInteger) hash
+{
+	return number;
+}
+
+- (void) __init_java_lang_Flaot___float :(float) f
+{
+	number = f;
+}
+
+- (BOOL)isEqual:(id)anObject
+{
+	return [anObject isKindOfClass: [java_lang_Float class]] && ((java_lang_Float*) anObject)-> number == number;
+}
+
+- (float) floatValue
+{
+	return number;
+}
+
++ (float) parseFloat___java_lang_String: (java_lang_String *) str
+{
+	return atof([str UTF8String]);
+}
+
+@end

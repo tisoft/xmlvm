@@ -22,11 +22,13 @@ package android.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.xmlvm.iphone.CGRect;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.AttributeSet;
 
 /**
  * iPhone implementation of Android's ViewGroup class.
@@ -35,26 +37,80 @@ import android.content.Context;
  */
 public class ViewGroup extends View implements ViewParent {
 
-    private List<View> subViews;
+    private List<View>         subViews;
+    private Map<Integer, View> xmlvmViewMap;
 
     public static class LayoutParams {
+        public static final int FILL_PARENT  = -1;
         public static final int WRAP_CONTENT = -2;
 
-        public int width;
-        public int height;
+        public int              width;
+        public int              height;
+
+        public LayoutParams(Context context, AttributeSet attrs) {
+            width = sizeFromString(attrs.getAttributeValue(null, "layout_width"), 0);
+            height = sizeFromString(attrs.getAttributeValue(null, "layout_height"), 0);
+        }
 
         public LayoutParams(int width, int height) {
             this.width = width;
             this.height = height;
         }
+
+        private int sizeFromString(String str, int defaultValue) {
+            if (str == null || str.length() == 0) {
+                return defaultValue;
+            } else if (str.equalsIgnoreCase("wrap_content")) {
+                return WRAP_CONTENT;
+            } else if (str.equalsIgnoreCase("fill_parent")) {
+                return FILL_PARENT;
+            } else {
+                return Integer.parseInt(str);
+            }
+        }
     }
 
+    public static class MarginLayoutParams extends LayoutParams {
+
+        public int bottomMargin;
+        public int leftMargin;
+        public int rightMargin;
+        public int topMargin;
+
+        public MarginLayoutParams(Context context, AttributeSet attrs) {
+            super(context, attrs);
+
+            bottomMargin = resolveDimension(attrs.getAttributeValue(null, "layout_marginBottom"));
+            leftMargin = resolveDimension(attrs.getAttributeValue(null, "layout_marginLeft"));
+            rightMargin = resolveDimension(attrs.getAttributeValue(null, "layout_marginRight"));
+            topMargin = resolveDimension(attrs.getAttributeValue(null, "layout_marginTop"));
+        }
+
+        public MarginLayoutParams(int width, int height) {
+            super(width, height);
+        }
+
+        private int resolveDimension(String dimension) {
+            // TODO Handle the various dimension types
+            if (dimension != null && dimension.length() > 2) {
+                return Integer.parseInt(dimension.substring(0, dimension.length() - 2));
+            } else {
+                return 0;
+            }
+        }
+    }
+    
     public ViewGroup(Context c) {
         super(c);
         this.subViews = new ArrayList<View>();
 
         CGRect rect = ((Activity) c).getWindow().getCGRect();
         this.xmlvmGetUIView().setFrame(rect);
+    }
+
+    public ViewGroup(Context c, AttributeSet attrs) {
+        this(c);
+        parseAttributes(attrs);
     }
 
     public void addView(View child) {
@@ -85,6 +141,22 @@ public class ViewGroup extends View implements ViewParent {
             View view = subViews.get(0);
             removeView(view);
         }
+    }
+
+    public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new LayoutParams(getContext(), attrs);
+    }
+
+    protected void parseAttributes(AttributeSet attrs) {
+        super.parseAttributes(attrs);
+    }
+
+    public Map<Integer, View> getXmlvmViewMap() {
+        return xmlvmViewMap;
+    }
+
+    public void setXmlvmViewMap(Map<Integer, View> xmlvmViewMap) {
+        this.xmlvmViewMap = xmlvmViewMap;
     }
 
 }

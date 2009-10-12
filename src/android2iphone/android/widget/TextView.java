@@ -26,40 +26,47 @@ import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
 public class TextView extends View {
 
-    
     public TextView(Context c) {
         super(c);
-        
+
         // TODO Set default color white
-        //uiLabel.setFontColor(new Color(0xffffff));
+        // uiLabel.setFontColor(new Color(0xffffff));
+    }
+
+    public TextView(Context c, AttributeSet attrs) {
+        this(c);
+        parseAttributes(attrs);
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
         super.setLayoutParams(l);
-        AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams) l;
-        int width = a.width;
-        int height = a.height;
-
-        // TODO Compute bounds depending on the text size
-//        if (width == LayoutParams.WRAP_CONTENT) {
-//            width = (int) image.getImage().getSize().width;
-//        }
-//        if (height == LayoutParams.WRAP_CONTENT) {
-//            height = (int) image.getImage().getSize().height;
-//        }
         
-        xmlvmGetUIView().setFrame(new CGRect(a.x, a.y, width, height));
-    }
+        // TODO Fix sizes
+        int width = l.width < 0 ? 320 : l.width;
+        int height = l.height < 0 ? 30 : l.height;
+        int x = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).x : 0;
+        int y = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).y : getNextY();
+        
+        // TODO Compute bounds depending on the text size
+        // if (width == LayoutParams.WRAP_CONTENT) {
+        // width = (int) image.getImage().getSize().width;
+        // }
+        // if (height == LayoutParams.WRAP_CONTENT) {
+        // height = (int) image.getImage().getSize().height;
+        // }
 
+        xmlvmGetUIView().setFrame(new CGRect(x, y, width, height));
+    }
 
     public void setText(String string) {
         getUILabel().setText(string);
-        
+
     }
 
     public void setTextSize(float size) {
@@ -71,9 +78,13 @@ public class TextView extends View {
     protected UIView xmlvmCreateUIView() {
         return new UILabel();
     }
-    
+
     private UILabel getUILabel() {
         return (UILabel) xmlvmGetUIView();
     }
-    
+
+    protected void parseAttributes(AttributeSet attrs) {
+        super.parseAttributes(attrs);
+    }
+
 }
