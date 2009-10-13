@@ -26,6 +26,8 @@
 @interface java_lang_Math : java_lang_Object
 
 + (double) random;
++ (float) pow___float_float: (float) x : (float) y;
++ (double) pow___double_double: (double) x : (double) y;
 + (double) sqrt___double: (double) x;
 + (double) asin___double: (double) x;
 + (double) sin___double: (double) a;
@@ -35,7 +37,10 @@
 + (int) abs___int: (int) i;
 + (float) abs___float: (float) f;
 + (float) max___float_float :(float) x :(float) y;
++ (double) max___double_double :(double) x :(double) y;
 + (int) max___int_int :(int) x :(int) y;
++ (float) min___float_float :(float) x :(float) y;
++ (double) min___double_double :(double) x :(double) y;
 + (int) min___int_int :(int) x :(int) y;
 @end
 

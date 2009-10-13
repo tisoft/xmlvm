@@ -23,7 +23,7 @@ CC=gcc-4.2
 CFLAGS=-x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 \
        -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type \
        -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 \
-       -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk \
+       -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk \
        -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 \
        -I$(SRCROOT)/lib/iphone -I$(SRCROOT)/lib/android -I$(SRCROOT)/app
 
@@ -31,7 +31,7 @@ CFLAGS=-x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 \
 LD=$(CC)
 
 LDFLAGS=-arch i386 \
-        -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk \
+        -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk \
         -mmacosx-version-min=10.5 \
         -framework Foundation -framework UIKit -framework CoreGraphics -framework QuartzCore \
         -framework AVFoundation -framework OpenGLES
@@ -70,7 +70,7 @@ $(PRODUCT_ABS): $(APP_ABS) $(OBJECTS_ABS)
 $(APP_ABS): $(INFOPLIST_ABS)
 	mkdir -p $(APP_ABS)
 	cp $(INFOPLIST_ABS) $(APP_ABS)/
-	find $(RESOURCES) -name "*" -exec cp {} $(APP_ABS)/ \;
+	if [ -d $(RESOURCES) ]; then find $(RESOURCES) -name "*" -exec cp {} $(APP_ABS)/ \; ; fi
 
 $(CONFIGURATION_TEMP_DIR)/%.o: $(SRCROOT)/%.m
 	mkdir -p $(dir $@)

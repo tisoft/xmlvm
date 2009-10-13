@@ -31,6 +31,16 @@
     return (double)random()/2147483647.0;
 }
 
++ (float) pow___float_float: (float) x : (float) y
+{
+    return pow(x, y);
+}
+
++ (double) pow___double_double: (double) x : (double) y
+{
+    return pow(x, y);
+}
+
 + (double) sqrt___double: (double) x
 {
     return sqrt(x);
@@ -76,9 +86,24 @@
 	return x < y ? y : x;
 }
 
++ (double) max___double_double :(double) x :(double) y
+{
+	return x < y ? y : x;
+}
+
 + (int) max___int_int :(int) x :(int) y
 {
 	return x < y ? y : x;
+}
+
++ (float) min___float_float :(float) x :(float) y
+{
+	return x >  y ? y : x;
+}
+
++ (double) min___double_double :(double) x :(double) y
+{
+	return x >  y ? y : x;
 }
 
 + (int) min___int_int :(int) x :(int) y
