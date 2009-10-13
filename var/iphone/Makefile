@@ -70,7 +70,7 @@ $(PRODUCT_ABS): $(APP_ABS) $(OBJECTS_ABS)
 $(APP_ABS): $(INFOPLIST_ABS)
 	mkdir -p $(APP_ABS)
 	cp $(INFOPLIST_ABS) $(APP_ABS)/
-	if [ -d $(RESOURCES) ]; then find $(RESOURCES) -name "*" -exec cp {} $(APP_ABS)/ \; ; fi
+	if [ -d $(RESOURCES) ]; then find $(RESOURCES) -name "*" -type f -exec cp {} $(APP_ABS)/ \; ; fi
 
 $(CONFIGURATION_TEMP_DIR)/%.o: $(SRCROOT)/%.m
 	mkdir -p $(dir $@)
