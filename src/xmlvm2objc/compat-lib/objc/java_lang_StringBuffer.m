@@ -19,3 +19,104 @@
  */
 
 #import "java_lang_StringBuffer.h"
+
+
+// java.lang.StringBuffer
+//----------------------------------------------------------------------------
+@implementation NSMutableString (cat_java_lang_StringBuffer)
+
+- (void) __init_java_lang_StringBuilder
+{
+    [self setString: @""];
+}
+
+- (void) __init_java_lang_StringBuilder___java_lang_String: (java_lang_String*) str
+{
+    [self setString: str];
+}
+
+- (void) __init_java_lang_StringBuffer
+{
+	[self setString: @""];
+}
+
+- (void) __init_java_lang_StringBuffer___java_lang_String: (java_lang_String*) str
+{
+    [self setString: str];
+}
+
+- (java_lang_StringBuffer*) append___java_lang_String: (java_lang_String*) str
+{
+    [self appendString: str];
+    [self retain];
+    return self;
+}
+
+- (java_lang_StringBuffer*) append___java_lang_Object: (java_lang_Object*) obj
+{
+    [self appendString: [obj toString]];
+    [self retain];
+    return self;
+}
+
+- (java_lang_StringBuffer*) append___int: (int) i
+{
+	NSNumber* n = [NSNumber numberWithInt: i];
+	[self appendString: [n stringValue]];
+    [self retain];
+	return self;
+}
+
+
+- (java_lang_StringBuffer*) append___long: (long) l
+{
+	NSNumber* n = [NSNumber numberWithInt: l];
+	[self appendString: [n stringValue]];
+    [self retain];
+	return self;
+}
+
+- (java_lang_StringBuffer*) append___char: (char) i
+{
+	char temp[10];
+	sprintf(temp, "%c", i);
+	[self appendString: [NSString stringWithUTF8String: temp]];
+    [self retain];
+	return self;
+}
+
+- (java_lang_StringBuffer*) append___float: (float) f
+{
+	NSNumber* n = [NSNumber numberWithFloat: f];
+	[self appendString: [n stringValue]];
+    [self retain];
+	return self;
+}
+
+- (java_lang_String*) substring___int_int: (int) from :(int) to
+{
+	NSRange range;
+	range.location = from;
+	range.length = to - from;
+	return [[NSString alloc] initWithString: [self substringWithRange: range]];
+}
+
+- (java_lang_String*) substring___int: (int) from
+{
+	return [[NSString alloc] initWithString: [self substringFromIndex: from]];
+}
+
+- (java_lang_String*) toString
+{
+    return [[NSString alloc] initWithString: self];
+}
+
+- (int) indexOf___java_lang_String: (java_lang_String*) s {
+	NSRange range = [self rangeOfString: s];
+	if (range.location == NSNotFound) {
+		return -1;
+	}
+}
+
+@end
+

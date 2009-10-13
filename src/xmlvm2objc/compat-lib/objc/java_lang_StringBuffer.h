@@ -18,6 +18,27 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
+#import "xmlvm.h"
 #import "java_lang_String.h"
 
-typedef java_lang_String java_lang_StringBuffer;
+typedef NSMutableString java_lang_StringBuffer;
+
+@interface NSMutableString (cat_java_lang_String) //java_lang_String : java_lang_Object 
+
+- (void) __init_java_lang_StringBuilder;
+- (void) __init_java_lang_StringBuilder___java_lang_String: (java_lang_String*) str;
+- (void) __init_java_lang_StringBuffer;
+- (void) __init_java_lang_StringBuffer___java_lang_String: (java_lang_String*) str;
+- (java_lang_StringBuffer*) append___java_lang_String: (java_lang_String*) str;
+- (java_lang_StringBuffer*) append___java_lang_Object: (java_lang_Object*) obj;
+- (java_lang_StringBuffer*) append___int: (int) i;
+- (java_lang_StringBuffer*) append___long: (long) l;
+- (java_lang_StringBuffer*) append___char: (char) i;
+- (java_lang_StringBuffer*) append___float: (float) f;
+- (java_lang_String*) substring___int_int: (int) from :(int) to;
+- (java_lang_String*) substring___int: (int) from;
+- (java_lang_String*) toString;
+- (int) indexOf___java_lang_String: (java_lang_String*) s;
+
+
+@end

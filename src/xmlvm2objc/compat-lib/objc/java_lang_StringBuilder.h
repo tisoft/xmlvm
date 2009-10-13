@@ -18,6 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "java_lang_String.h"
+#import "java_lang_StringBuffer.h"
 
-typedef java_lang_String java_lang_StringBuilder;
+typedef java_lang_StringBuffer java_lang_StringBuilder;
