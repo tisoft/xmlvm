@@ -53,7 +53,7 @@
 		<pathelement location="lib/bcel.jar" />
 		<pathelement location="lib/jdom.jar" />
 		<pathelement location="lib/mbel.jar" />
-		<pathelement location="lib/yuicompressor-2.1.2.jar" />
+		<pathelement location="lib/yuicompressor-2.3.6.jar" />
 		<pathelement location="lib/czlUtil.jar" />
 		<pathelement location="lib/saxon9.jar" />
 		<pathelement location="lib/lwjgl.jar" />
