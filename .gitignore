@@ -1,0 +1,7 @@
+target
+build
+dist
+*.iml
+.DS_Store
+.idea
+
