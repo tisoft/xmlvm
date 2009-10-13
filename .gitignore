@@ -1,0 +1,11 @@
+target
+build
+dist
+*.iml
+.DS_Store
+.idea
+.cache
+.classpath
+properties/local.properties
+/bin
+/bin-*
