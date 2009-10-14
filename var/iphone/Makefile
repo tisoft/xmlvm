@@ -1,5 +1,8 @@
 
 include MakeVars
+ifeq (a, a$(IPHONE_SDK_HOME))
+    IPHONE_SDK_HOME=/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk
+endif
 
 
 ALL_SOURCES=$(wildcard $(SRCROOT)/lib/iphone/*.m) $(wildcard $(SRCROOT)/lib/android/*.m) $(wildcard $(SRCROOT)/app/*.m)
@@ -23,7 +26,7 @@ CC=gcc-4.2
 CFLAGS=-x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 \
        -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type \
        -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 \
-       -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk \
+       -isysroot $(IPHONE_SDK_HOME) \
        -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 \
        -I$(SRCROOT)/lib/iphone -I$(SRCROOT)/lib/android -I$(SRCROOT)/app
 
@@ -31,7 +34,7 @@ CFLAGS=-x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 \
 LD=$(CC)
 
 LDFLAGS=-arch i386 \
-        -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk \
+        -isysroot $(IPHONE_SDK_HOME) \
         -mmacosx-version-min=10.5 \
         -framework Foundation -framework UIKit -framework CoreGraphics -framework QuartzCore \
         -framework AVFoundation -framework OpenGLES
