@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.xmlvm.compat-lib</groupId>
+    <artifactId>iphone</artifactId>
+    <version>0.1-SNAPSHOT</version>
+
+    <repositories>
+        <repository>
+            <id>lwjgl</id>
+            <url>http://pantsware.dyndns.org/nexus/content/repositories/thirdparty</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.lwjgl</groupId>
+            <artifactId>lwjgl</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <sourceDirectory>../../../src/xmlvm2objc/compat-lib/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>../../../var/iphone</directory>
+                <excludes>
+                    <exclude>**/Applications/**</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>../../../src/xmlvm2objc/compat-lib/objc</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+	
