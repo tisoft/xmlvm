@@ -1585,7 +1585,7 @@ int main(int argc, char* argv[])
 
 <xsl:template match="jvm:monitorenter">
   <xsl:text>    _op1.o = _stack[--_sp].o;
-  	@syncrhonized(_op1.o) {
+  	@synchronized(_op1.o) {
 </xsl:text>
 </xsl:template>
 
