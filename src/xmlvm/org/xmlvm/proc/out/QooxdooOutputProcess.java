@@ -194,7 +194,7 @@ public class QooxdooOutputProcess extends OutputProcess<JavaScriptOutputProcess>
         for (String directory : new String[] { arguments.option_out(), tempDestination }) {
             File dir = new File(directory);
             if (dir.exists()) {
-                if (!deleteDirectory(dir)) {
+                if (!FileUtil.deleteDirectory(dir)) {
                     Log.error("Couldn't clear destination directory");
                 }
             }
@@ -307,27 +307,6 @@ public class QooxdooOutputProcess extends OutputProcess<JavaScriptOutputProcess>
         } else {
             return false;
         }
-    }
-
-    /**
-     * Recursively deletes the given directory.
-     * 
-     * @param path
-     *            the directory to delete.
-     * @return whether the process was successful.
-     */
-    private static boolean deleteDirectory(File path) {
-        if (path.exists()) {
-            File[] files = path.listFiles();
-            for (int i = 0; i < files.length; i++) {
-                if (files[i].isDirectory()) {
-                    deleteDirectory(files[i]);
-                } else {
-                    files[i].delete();
-                }
-            }
-        }
-        return (path.delete());
     }
 
     /**
