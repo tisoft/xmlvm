@@ -74,7 +74,7 @@ public class ObjectiveCOutputProcess extends OutputProcess<InputProcess<?>> {
         Namespace nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
         Element clazz = doc.getRootElement().getChild("class", nsXMLVM);
         String namespaceName = clazz.getAttributeValue("package");
-        String inheritsFrom = clazz.getAttributeValue("extends").replace('.', '_');
+        String inheritsFrom = clazz.getAttributeValue("extends").replace('.', '_').replace('$', '_');
         String className = clazz.getAttributeValue("name").replace('$', '_');
         String fileNameStem = (namespaceName + "." + className).replace('.', '_');
         String headerFileName = fileNameStem + H_EXTENSION;
