@@ -26,8 +26,7 @@ import android.view.ViewGroup;
 
 public class LinearLayout extends ViewGroup {
 
-    // TODO Extend this from ViewGroup.MarginLayoutParams (breaks cross-compilation)
-    public static class LayoutParams extends ViewGroup.LayoutParams {
+    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
 
         public int   gravitiy;
         public float weight;
@@ -65,9 +64,8 @@ public class LinearLayout extends ViewGroup {
         super.parseAttributes(attrs);
     }
 
-    // TODO Uncomment this (breaks cross-compilation)
-//    public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
-//        return new LayoutParams(getContext(), attrs);
-//    }
+    public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new LayoutParams(getContext(), attrs);
+    }
 
 }
