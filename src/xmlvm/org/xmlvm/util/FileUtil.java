@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -127,28 +128,61 @@ public class FileUtil {
      *            the file to read.
      */
     public static String readFileAsString(File file) {
-        final int READ_BUFFER = 4096;
-
-        FileInputStream is;
         try {
-            is = new FileInputStream(file);
-            StringBuffer buffer = new StringBuffer();
-            byte b[] = new byte[READ_BUFFER];
-            int l = 0;
-            if (is == null) {
+            FileInputStream is;
+            return readStringFromStream(new FileInputStream(file));
+        } catch (FileNotFoundException e) {
+            Log.error("Could not read file: " + file.getAbsolutePath());
+            return "";
+        }
+    }
+
+    /**
+     * Read the content of an {@link InputStream} as String.
+     * 
+     * @param stream
+     *            the stream to read from
+     * @return the content of the stream or an empty string, if an error occurs.
+     */
+    public static String readStringFromStream(InputStream stream) {
+        final int READ_BUFFER = 4096;
+        StringBuffer buffer = new StringBuffer();
+        byte b[] = new byte[READ_BUFFER];
+        int l = 0;
+        try {
+            if (stream == null) {
                 return "";
             } else {
-                while ((l = is.read(b)) > 0) {
+                while ((l = stream.read(b)) > 0) {
                     buffer.append(new String(b, 0, l));
                 }
             }
-            return buffer.toString();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return "";
         }
-        return "";
+        return buffer.toString();
+    }
+
+    /**
+     * Writes a string to a file.
+     * 
+     * @param file
+     *            the file to write to
+     * @param content
+     *            the content to write to the file
+     * @return whether the writing was successful
+     */
+    public static boolean writeStringToFile(File file, String content) {
+        try {
+            FileWriter stageAssistantWriter = new FileWriter(file);
+            stageAssistantWriter.write(content);
+            stageAssistantWriter.close();
+        } catch (IOException e) {
+            Log.error("Could not write to " + file.getAbsolutePath());
+            return false;
+        }
+        return true;
     }
 
     /**

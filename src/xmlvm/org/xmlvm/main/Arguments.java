@@ -31,6 +31,7 @@ public class Arguments {
     // The arguments that are given by the user on the command line.
     public static final String ARG_IN            = "--in=";
     public static final String ARG_OUT           = "--out=";
+    public static final String ARG_RESOURCE      = "--resource=";
     public static final String ARG_TARGET        = "--target=";
     public static final String ARG_IPHONE_APP    = "--iphone-app=";
     public static final String ARG_QX_APP        = "--qx-app=";
@@ -42,6 +43,7 @@ public class Arguments {
     // The parsed values will be stored here.
     private List<String>       option_in         = new ArrayList<String>();
     private String             option_out        = null;
+    private List<String>       option_resource   = new ArrayList<String>();
     private Targets            option_target     = Targets.NONE;
     private String             option_iphone_app = null;
     private String             option_qx_app     = null;
@@ -61,6 +63,7 @@ public class Arguments {
         String[] msg = {
                 "Usage: xmlvm [--in=<path>]",
                 "             [--out=<dir>]",
+                "             [--resource=<path>]",
                 "              --target=[xmlvm|jvm|clr|dfa|class|exe|js|cpp|python|objc|iphone|"
                         + "qooxdoo|android-on-iphone|android-on-pre]",
                 "             [--iphone-app=<app-name>]",
@@ -87,6 +90,8 @@ public class Arguments {
                 if (option_out != null)
                     usage("--out can only be used once");
                 option_out = arg.substring(ARG_OUT.length());
+            } else if (arg.startsWith(ARG_RESOURCE)) {
+                option_resource.add(arg.substring(ARG_RESOURCE.length()));
             } else if (arg.startsWith(ARG_TARGET)) {
                 if (option_target != Targets.NONE)
                     usage("--target can only be specified once");
@@ -162,6 +167,10 @@ public class Arguments {
 
     public String option_out() {
         return option_out;
+    }
+
+    public List<String> option_resource() {
+        return option_resource;
     }
 
     public Targets option_target() {
