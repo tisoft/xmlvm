@@ -20,10 +20,10 @@ function popupAndroidDemo() {
 
 <ul>
 
-<li> <a href="http://www.xml11.org">XML11</a>: XMLVM is used as part of the
+<li> <a href="http://xmlvm.org/redirect.php?url=http://www.xml11.org">XML11</a>: XMLVM is used as part of the
      XML11 project where Java applications are cross-compiled to AJAX applications.
 
-<li> <a href="http://www.sf-movies.org">SF-Movies</a>: Movies made in San Francisco.
+<li> <a href="http://xmlvm.org/redirect.php?url=http://www.sf-movies.org">SF-Movies</a>: Movies made in San Francisco.
      This application was developed as a desktop application using Java and
      cross-compiled using XMLVM to an AJAX application.
      
@@ -33,7 +33,7 @@ function popupAndroidDemo() {
 <li> <a href="#" onclick="popupAndroidDemo();">Xokoban</a>: an Android application running
      under the Java iPhone Simulator.
 
-<li> <a href="http://www.cokeandcode.com/resumepage">Kevin Glass</a> has used XMLVM to create
+<li> <a href="http://xmlvm.org/redirect.php?url=http://www.cokeandcode.com/resumepage">Kevin Glass</a> has used XMLVM to create
      a <a href="http://www.cokeandcode.com/aboidblog">cross-platform game</a> for Android and
      the iPhone.
 </ul>
