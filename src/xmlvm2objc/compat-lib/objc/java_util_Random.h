@@ -27,8 +27,8 @@
 @interface java_util_Random : java_lang_Object {
 }
 
-- (double) nextDouble;
-- (void) __init_java_util_Random;
+- (double) nextDouble__;
+- (void) __init_java_util_Random__;
 - (void) __init_java_util_Random___int :(int) seed;
 - (void) __init_java_util_Random___long :(long) seed;
 

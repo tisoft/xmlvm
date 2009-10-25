@@ -29,7 +29,7 @@
 typedef NSBundle org_xmlvm_iphone_NSBundle;
 @interface NSBundle (cat_NSBundle)
 
-+ (NSBundle*) getMainBundle;
++ (NSBundle*) mainBundle__;
 - (java_lang_String*) pathForResource___java_lang_String_java_lang_String: (java_lang_String*) resource
                                                                          : (java_lang_String*) type;
 @end

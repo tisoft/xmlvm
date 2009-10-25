@@ -45,7 +45,7 @@
 	return self;
 }
 
-- (java_nio_FloatBuffer*) reset
+- (java_nio_FloatBuffer*) reset__
 {
 	index = 0;
 	[self retain];

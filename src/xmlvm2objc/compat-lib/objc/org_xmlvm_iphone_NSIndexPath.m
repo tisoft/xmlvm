@@ -24,12 +24,12 @@
 //----------------------------------------------------------------------------
 @implementation NSIndexPath (cat_org_xmlvm_iphone_NSIndexPath)
 
-- (int) getSection
+- (int) getSection__
 {
 	return [self section];
 }
 
-- (int) getRow
+- (int) getRow__
 {
 	return [self row];
 }

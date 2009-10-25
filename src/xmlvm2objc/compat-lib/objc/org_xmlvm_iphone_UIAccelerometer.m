@@ -51,7 +51,7 @@
 //----------------------------------------------------------------------------
 @implementation UIAccelerometer (cat_org_xmlvm_iphone_UIAccelerometer)
 
-+ (UIAccelerometer*) getSharedAccelerometer
++ (UIAccelerometer*) sharedAccelerometer__
 {
 	return [UIAccelerometer sharedAccelerometer];
 }

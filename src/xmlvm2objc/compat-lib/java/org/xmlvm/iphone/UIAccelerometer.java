@@ -11,7 +11,7 @@ public class UIAccelerometer {
 	private UIAccelerometer() {
 	}
 
-	public static UIAccelerometer getSharedAccelerometer() {
+	public static UIAccelerometer sharedAccelerometer() {
 		return sharedAccelerometer;
 	}
 

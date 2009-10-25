@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_UITableViewDataSource
 
-- (void) __init_org_xmlvm_iphone_UITableViewDataSource
+- (void) __init_org_xmlvm_iphone_UITableViewDataSource__
 {
 }
 

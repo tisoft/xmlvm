@@ -31,7 +31,7 @@
 //----------------------------------------------------------------------------
 @interface org_xmlvm_iphone_NSURLConnectionDelegate : java_lang_Object
 
-- (void) __init_org_xmlvm_iphone_NSURLConnectionDelegate;
+- (void) __init_org_xmlvm_iphone_NSURLConnectionDelegate__;
 
 - (void) connectionDidFinishLoading :(NSURLConnection*) connection;
 - (void) connection: (NSURLConnection*) connection didFailWithError :(NSError*) error;

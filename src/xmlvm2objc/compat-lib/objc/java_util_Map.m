@@ -44,7 +44,7 @@
 	return (java_lang_Object*) value;
 }
 
-- (java_util_Set*) keySet
+- (java_util_Set*) keySet__
 {
 	NSEnumerator* e = [[self allKeys] objectEnumerator];
 	NSMutableArray* ma = [[NSMutableArray alloc] init];

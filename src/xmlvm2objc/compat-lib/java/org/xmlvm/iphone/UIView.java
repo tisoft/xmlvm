@@ -292,7 +292,7 @@ public class UIView extends UIResponder {
             parent.touchesBegan(touches, event);
         }
         else {
-            UIApplication.getSharedApplication().touchesBegan(touches, event);
+            UIApplication.sharedApplication().touchesBegan(touches, event);
         }
     }
 
@@ -305,7 +305,7 @@ public class UIView extends UIResponder {
             parent.touchesCancelled(touches, event);
         }
         else {
-            UIApplication.getSharedApplication().touchesCancelled(touches, event);
+            UIApplication.sharedApplication().touchesCancelled(touches, event);
         }
     }
 
@@ -318,7 +318,7 @@ public class UIView extends UIResponder {
             parent.touchesEnded(touches, event);
         }
         else {
-            UIApplication.getSharedApplication().touchesEnded(touches, event);
+            UIApplication.sharedApplication().touchesEnded(touches, event);
         }
     }
 
@@ -331,7 +331,7 @@ public class UIView extends UIResponder {
             parent.touchesMoved(touches, event);
         }
         else {
-            UIApplication.getSharedApplication().touchesMoved(touches, event);
+            UIApplication.sharedApplication().touchesMoved(touches, event);
         }
     }
     

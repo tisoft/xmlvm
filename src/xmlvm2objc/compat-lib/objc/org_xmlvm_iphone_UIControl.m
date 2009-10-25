@@ -24,7 +24,7 @@
 //----------------------------------------------------------------------------
 @implementation UIControl (cat_org_xmlvm_iphone_UIControl)
 
-- (void) __init_org_xmlvm_iphone_UIControl
+- (void) __init_org_xmlvm_iphone_UIControl__
 {
 }
 
@@ -39,7 +39,7 @@
 {
 	// TODO better memory management
 	[delegate retain];
-	[self addTarget:delegate action:@selector(raiseEvent) forControlEvents:controlEvents];
+	[self addTarget:delegate action:@selector(raiseEvent__) forControlEvents:controlEvents];
 }
 
 @end

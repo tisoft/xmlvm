@@ -27,13 +27,13 @@
 - (int) read___char_ARRAYTYPE_int_int: (NSMutableArray *) buffer: (int) pos: (int) len {
 }
 
-- (bool) ready {
+- (bool) ready__ {
 }
 
-- (java_lang_String*) readLine {
+- (java_lang_String*) readLine__ {
 }
 
-- (void) close {
+- (void) close__ {
 }
 
 @end

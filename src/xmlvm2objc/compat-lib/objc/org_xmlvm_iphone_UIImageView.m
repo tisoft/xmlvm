@@ -50,7 +50,7 @@
     [self setImage: image];
 }
 
-- (org_xmlvm_iphone_UIImage*) getImage
+- (org_xmlvm_iphone_UIImage*) getImage__
 {
 	org_xmlvm_iphone_UIImage* image = [self image];
 	[image retain];

@@ -38,10 +38,11 @@ typedef NSString java_lang_String;
 - (java_lang_String*) substring___int: (int) from;
 - (int) equals___java_lang_Object: (java_lang_Object*) o;
 - (int) equalsIgnoreCase___java_lang_String: (java_lang_String*) s;
-- (java_lang_String*) toString;
+- (java_lang_String*) toString__;
 
 - (int) lastIndexOf___java_lang_String: (java_lang_String*) s;
 - (int) indexOf___java_lang_String: (java_lang_String*) s;
 - (int) indexOf___int: (int) ch;
 - (int) startsWith___java_lang_String: (java_lang_String*) s;
+- (int) length__;
 @end

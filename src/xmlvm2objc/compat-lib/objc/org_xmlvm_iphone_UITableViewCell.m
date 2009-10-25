@@ -23,9 +23,10 @@
 
 // UITableViewCell
 //----------------------------------------------------------------------------
-@implementation UITableViewCell (cat_org_xmlvm_iphone_UITableViewCell)
+//@implementation UITableViewCell (cat_org_xmlvm_iphone_UITableViewCell)
+@implementation org_xmlvm_iphone_UITableViewCell
 
-- (void) __init_org_xmlvm_iphone_UITableViewCell
+- (void) __init_org_xmlvm_iphone_UITableViewCell__
 {
 	[self initWithFrame: CGRectZero reuseIdentifier: nil];
 }
@@ -35,11 +36,21 @@
 	[self initWithFrame: [rect getCGRect] reuseIdentifier: nil];
 }
 
-- (org_xmlvm_iphone_UIView*) getContentView
+- (org_xmlvm_iphone_UIView*) getContentView__
 {
 	org_xmlvm_iphone_UIView* view = [self contentView];
 	[view retain];
 	return view;
+}
+
+- (void) layoutSubviews
+{
+	[self layoutSubviews__];
+}
+
+- (void) layoutSubviews__
+{
+	[super layoutSubviews];
 }
 
 @end

@@ -28,6 +28,7 @@
 //----------------------------------------------------------------------------
 typedef NSUserDefaults org_xmlvm_iphone_NSUserDefaults;
 @interface NSUserDefaults (cat_org_xmlvm_iphone_NSUserDefaults)
++ (org_xmlvm_iphone_NSUserDefaults*) standardUserDefaults__;
 - (java_lang_Object*) objectForKey___java_lang_String: (java_lang_String*) key;
 - (void) setObject___java_lang_Object_java_lang_String: (java_lang_Object*) value :(java_lang_String*) key;
 - (void) setInteger___int_java_lang_String :(int) value :(java_lang_String*) key;
@@ -39,4 +40,5 @@ typedef NSUserDefaults org_xmlvm_iphone_NSUserDefaults;
 
 - (org_xmlvm_iphone_NSData*) dataForKey___java_lang_String :(java_lang_String*) key;
 - (java_lang_String*) stringForKey___java_lang_String :(java_lang_String*) key;
+- (BOOL) synchronize__;
 @end

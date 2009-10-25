@@ -24,7 +24,7 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_AVAudioPlayer;
 
-- (void) __init_org_xmlvm_iphone_AVAudioPlayer {
+- (void) __init_org_xmlvm_iphone_AVAudioPlayer__ {
 }
 
 - (void) load___java_lang_String: (java_lang_String*) ref {	
@@ -35,7 +35,7 @@
 	[player setVolume: 1.0];
 }
 
-- (void) playSound {
+- (void) playSound__ {
 	[player play];
 }
 

@@ -32,7 +32,7 @@ id nextObj;
 }
 
 - (id) init :(NSEnumerator*) e;
-- (bool) hasNext;
-- (java_lang_Object*) next;
+- (bool) hasNext__;
+- (java_lang_Object*) next__;
 
 @end

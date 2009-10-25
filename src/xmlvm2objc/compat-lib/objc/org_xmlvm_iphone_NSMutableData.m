@@ -23,7 +23,7 @@
 // NSMutableData 
 //----------------------------------------------------------------------------
 @implementation NSMutableData (cat_org_xmlvm_iphone_NSMutableData)
-- (void) __init_org_xmlvm_iphone_NSMutableData
+- (void) __init_org_xmlvm_iphone_NSMutableData__
 {
 }
 
@@ -39,12 +39,12 @@
     [self appendBytes: c length: 1];
 }
 
-- (int) byteCount
+- (int) byteCount__
 {
     return [self length];
 }
 
-- (java_lang_String*) toString
+- (java_lang_String*) toString__
 {
     return [[NSMutableString alloc] initWithData:self encoding:NSUTF8StringEncoding];
 }

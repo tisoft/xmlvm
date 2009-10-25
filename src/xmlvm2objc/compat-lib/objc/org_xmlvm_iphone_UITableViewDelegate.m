@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_UITableViewDelegate
 
-- (void) __init_org_xmlvm_iphone_UITableViewDelegate
+- (void) __init_org_xmlvm_iphone_UITableViewDelegate__
 {
 }
 

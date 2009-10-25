@@ -52,7 +52,7 @@
 	return self;
 }
 
-- (java_nio_ByteBuffer*) reset
+- (java_nio_ByteBuffer*) reset__
 {
 	index = 0;
 	[self retain];

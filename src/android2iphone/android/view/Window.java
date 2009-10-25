@@ -67,7 +67,7 @@ public class Window {
     public void setFlags(int flags, int mask) {
         int maskedFlags = (flags & mask);
         if ((maskedFlags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0) {
-            UIApplication.getSharedApplication().setStatusBarHidden(true);
+            UIApplication.sharedApplication().setStatusBarHidden(true);
             adjustFrameSize();
         }
     }

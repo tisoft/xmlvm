@@ -54,7 +54,7 @@
 	return [anObject isKindOfClass: [java_lang_Integer class]] && ((java_lang_Integer*) anObject)-> number == number;
 }
 
-- (int) intValue
+- (int) intValue__
 {
 	return number;
 }

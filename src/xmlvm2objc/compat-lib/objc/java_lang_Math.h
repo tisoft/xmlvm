@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @interface java_lang_Math : java_lang_Object
 
-+ (double) random;
++ (double) random__;
 + (float) pow___float_float: (float) x : (float) y;
 + (double) pow___double_double: (double) x : (double) y;
 + (double) sqrt___double: (double) x;

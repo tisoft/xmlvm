@@ -33,7 +33,7 @@ java_io_PrintStream* _STATIC_java_lang_System_out;
  value it doesn't return an accurate time according to the Java spec for this method.
  Problems lie in the long representation on the 32 bit target architecture.
  */
-+ (long) currentTimeMillis
++ (long) currentTimeMillis__
 {
     double result = trunc(([NSDate timeIntervalSinceReferenceDate] - 268300000) * 1000);
 	result -= 2168640000;

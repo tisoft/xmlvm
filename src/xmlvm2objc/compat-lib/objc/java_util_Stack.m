@@ -25,16 +25,16 @@
 //----------------------------------------------------------------------------
 @implementation NSMutableArray (cat_java_util_Stack)
 
-- (void) __init_java_util_Stack
+- (void) __init_java_util_Stack__
 {
 }
 
-- (java_util_Iterator*) iterator
+- (java_util_Iterator*) iterator__
 {
 	return [[java_util_Iterator alloc] init: [self objectEnumerator]];
 }
 
-- (int) size
+- (int) size__
 {
 	return [self count];
 }
@@ -61,7 +61,7 @@
 	return o;
 }
 
-- (java_lang_Object*) pop
+- (java_lang_Object*) pop__
 {
 	java_lang_Object* o = [self lastObject];
 	[o retain];

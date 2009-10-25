@@ -24,7 +24,7 @@
 // NSBundle
 //----------------------------------------------------------------------------
 @implementation NSBundle (cat_NSBundle)
-+ (NSBundle*) getMainBundle
++ (NSBundle*) mainBundle__
 {
 	return [[NSBundle mainBundle] retain];
 }

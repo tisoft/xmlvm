@@ -31,7 +31,7 @@
 	return toRet;
 }
 
-- (org_xmlvm_iphone_CGSize*) getSize
+- (org_xmlvm_iphone_CGSize*) getSize__
 {
     org_xmlvm_iphone_CGSize* s = [[org_xmlvm_iphone_CGSize alloc] init];
     s->width = [self size].width;
@@ -53,7 +53,7 @@
 	[self drawAtPoint: p];
 }
 
-- (org_xmlvm_iphone_CGImage*) getCoreImage
+- (org_xmlvm_iphone_CGImage*) getCoreImage__
 {
 	org_xmlvm_iphone_CGImage* retval = [[org_xmlvm_iphone_CGImage alloc] init];
 	retval->image = [self CGImage];

@@ -49,7 +49,7 @@
 + (void) glTexCoordPointer___int_int_int_java_nio_FloatBuffer: (int) size: (int) type: (int) stride: (java_nio_FloatBuffer*) buffer;
 + (void) glDrawArrays___int_int_int: (int) mode: (int) first: (int) count;
 + (void) glColor4f___float_float_float_float: (float) r: (float) g: (float) b: (float) a;
-+ (void) glLoadIdentity;
++ (void) glLoadIdentity__;
 + (void) glViewport___int_int_int_int: (int) i: (int) j: (int) width: (int) height;
 + (void) glMatrixMode___int: (int) mode;
 + (void) glOrthof___float_float_float_float_float_float: (float) a: (float) b: (float) c: (float) d: (float) e: (float) f;

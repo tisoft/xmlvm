@@ -25,11 +25,11 @@
 //----------------------------------------------------------------------------
 @implementation java_util_Random
 
-- (double) nextDouble {
+- (double) nextDouble__ {
 	return (double)random()/2147483647.0;
 }
 
-- (void) __init_java_util_Random {
+- (void) __init_java_util_Random__ {
 }
 
 - (void) __init_java_util_Random___int :(int) seed {

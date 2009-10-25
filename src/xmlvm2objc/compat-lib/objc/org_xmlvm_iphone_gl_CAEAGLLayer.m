@@ -36,7 +36,7 @@
 	return self;
 }
 
-- (org_xmlvm_iphone_gl_EAGLDrawable*) getDrawable
+- (org_xmlvm_iphone_gl_EAGLDrawable*) getDrawable__
 {
 	org_xmlvm_iphone_gl_EAGLDrawable* result = [[org_xmlvm_iphone_gl_EAGLDrawable alloc] init];
 	result->drawable = self->glLayer;

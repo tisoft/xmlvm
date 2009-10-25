@@ -27,6 +27,6 @@
 typedef NSSet java_util_Set;
 @interface NSSet (cat_java_util_Set)
 
-- (java_util_Iterator*) iterator;
+- (java_util_Iterator*) iterator__;
 
 @end

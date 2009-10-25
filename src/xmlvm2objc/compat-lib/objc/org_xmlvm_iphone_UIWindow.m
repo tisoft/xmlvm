@@ -38,4 +38,9 @@
     [self addSubview: view];
 }
 
+- (void) makeKeyAndVisible__
+{
+	[self makeKeyAndVisible];
+}
+
 @end

@@ -26,10 +26,10 @@
 //----------------------------------------------------------------------------
 typedef UITextField org_xmlvm_iphone_UITextField;
 @interface UITextField (cat_org_xmlvm_iphone_UITextField)
-- (void) __init_org_xmlvm_iphone_UITextField;
+- (void) __init_org_xmlvm_iphone_UITextField__;
 - (void) __init_org_xmlvm_iphone_UITextField___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;
 - (void) setText___java_lang_String :(NSString*)n1;
-- (NSString*) getText;
+- (NSString*) getText__;
 - (void) setTextColor___org_xmlvm_iphone_UIColor: (org_xmlvm_iphone_UIColor*) color;
 - (void) setBorderStyle___int :(int) style;
 @end

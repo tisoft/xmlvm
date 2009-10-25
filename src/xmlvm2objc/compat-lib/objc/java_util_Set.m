@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @implementation NSSet (cat_java_util_Set)
 
-- (java_util_Iterator*) iterator
+- (java_util_Iterator*) iterator__
 {
 	return [[java_util_Iterator alloc] init: [self objectEnumerator]];
 }

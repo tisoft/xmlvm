@@ -25,22 +25,22 @@
 //----------------------------------------------------------------------------
 @implementation NSMutableArray (cat_java_util_ArrayList)
 
-- (void) __init_java_util_ArrayList
+- (void) __init_java_util_ArrayList__
 {
 }
 
-- (void) clear
+- (void) clear__
 {
 	[self removeAllObjects];
 }
 
 
-- (java_util_Iterator*) iterator
+- (java_util_Iterator*) iterator__
 {
 	return [[java_util_Iterator alloc] init: [self objectEnumerator]];
 }
 
-- (int) size
+- (int) size__
 {
 	return [self count];
 }

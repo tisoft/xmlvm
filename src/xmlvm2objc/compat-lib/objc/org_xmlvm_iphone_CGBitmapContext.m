@@ -44,7 +44,7 @@
 	return retval;	
 }
 
-- (java_nio_ByteBuffer *) getData
+- (java_nio_ByteBuffer *) getData__
 {
 	java_nio_ByteBuffer* retval = [[java_nio_ByteBuffer alloc] init];
 	retval->data = data;

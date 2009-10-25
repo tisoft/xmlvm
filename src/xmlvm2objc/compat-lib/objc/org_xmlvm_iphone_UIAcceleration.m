@@ -18,40 +18,27 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "java_lang_Object.h"
-#import "java_lang_Class.h"
-#import "java_lang_String.h"
+#import "org_xmlvm_iphone_UIAcceleration.h"
 
-// java.lang.Object
+
+// UIAcceleration
 //----------------------------------------------------------------------------
-@implementation NSObject (cat_java_lang_Object)
+@implementation UIAcceleration (cat_org_xmlvm_iphone_UIAcceleration)
 
-- (java_lang_String*) getName__
+- (UIAccelerationValue) x__
 {
-	java_lang_String* name = (java_lang_String*) [[self getClass__] getName__];
-	[name retain];
-	return name;
+	return [self x];
 }
 
-- (void) __init_java_lang_Object__
+- (UIAccelerationValue) y__
 {
+	return [self y];
 }
 
-- (java_lang_Class*) getClass__
+- (UIAccelerationValue) z__
 {
-	java_lang_Class* wrapperClass = [[java_lang_Class alloc] init];
-	wrapperClass->clazz = [self class];
-	return wrapperClass;
+	return [self z];
 }
 
-- (int) intValue__
-{
-	return 0;
-}
-
-- (int) equals___java_lang_Object: (java_lang_Object*) o
-{
-	return self == o;
-}
 
 @end

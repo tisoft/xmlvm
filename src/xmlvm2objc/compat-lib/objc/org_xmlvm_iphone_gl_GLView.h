@@ -49,14 +49,14 @@
 
 - (void) __init_org_xmlvm_iphone_gl_GLView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;
 
-- (void)startAnimation;
-- (void)stopAnimation;
-- (BOOL)createFramebuffer;
-- (void)destroyFramebuffer;
+- (void)startAnimation__;
+- (void)stopAnimation__;
+- (BOOL)createFramebuffer__;
+- (void)destroyFramebuffer__;
 
-- (void)setupView;
-- (void)drawView;
-- (void)renderView;
+- (void)setupView__;
+- (void)drawView__;
+- (void)renderView__;
 
 @property NSTimeInterval animationInterval;
 

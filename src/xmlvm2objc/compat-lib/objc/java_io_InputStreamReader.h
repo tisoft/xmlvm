@@ -31,8 +31,8 @@
 - (void) __init_java_io_InputStreamReader___java_io_InputStream_java_lang_String: (java_io_InputStream*) input: (java_lang_String*) encoding;
 
 - (int) read___char_ARRAYTYPE_int_int: (NSMutableArray *) buffer: (int) pos: (int) len;
-- (bool) ready;
-- (java_lang_String*) readLine;
-- (void) close;
+- (bool) ready__;
+- (java_lang_String*) readLine__;
+- (void) close__;
 
 @end

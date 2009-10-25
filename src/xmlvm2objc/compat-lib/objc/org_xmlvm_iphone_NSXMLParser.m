@@ -45,5 +45,9 @@
 	[self setShouldReportNamespacePrefixes: flag];
 }
 
+- (BOOL) parse__
+{
+	return [self parse];
+}
 @end
 

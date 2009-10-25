@@ -31,10 +31,10 @@
 @interface java_lang_ClassNotFoundException : java_lang_Exception
 
 - (id) init;
-- (void) __init_java_lang_ClassNotFoundException;
+- (void) __init_java_lang_ClassNotFoundException__;
 - (void) __init_java_lang_ClassNotFoundException___java_lang_String: (java_lang_String*) msg;
 - (void) __init_java_lang_ClassNotFoundException___java_lang_String_java_lang_Throwable: (java_lang_String*) msg: (java_lang_Throwable*) cause;
 - (java_lang_ClassNotFoundException *) initCause___java_lang_Throwable: (java_lang_Throwable*) cause;
-- (void) printStackTrace;
+- (void) printStackTrace__;
 
 @end

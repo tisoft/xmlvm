@@ -30,7 +30,7 @@
     return [self initWithName: @"java_io_IOException" reason: nil userInfo: nil];
 }
 
-- (void) __init_java_io_IOException
+- (void) __init_java_io_IOException__
 {
     // Do nothing
 }
@@ -49,7 +49,7 @@
 	return self;
 }
 
-- (void) printStackTrace
+- (void) printStackTrace__
 {
 }
 

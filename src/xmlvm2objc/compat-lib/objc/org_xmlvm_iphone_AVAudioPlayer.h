@@ -29,7 +29,7 @@
 @interface org_xmlvm_iphone_AVAudioPlayer : java_lang_Object {
 AVAudioPlayer *player;
 }
-- (void) __init_org_xmlvm_iphone_AVAudioPlayer;
+- (void) __init_org_xmlvm_iphone_AVAudioPlayer__;
 - (void) load___java_lang_String: (java_lang_String*) ref;
-- (void) playSound;
+- (void) playSound__;
 @end

@@ -32,7 +32,7 @@
 }
 
 + (org_xmlvm_iphone_CGImage*) createPNGFromDataProvider___org_xmlvm_iphone_CGDataProvider :(org_xmlvm_iphone_CGDataProvider*)provider;
-- (CGImageRef) getCGImage;
-- (org_xmlvm_iphone_CGSize*) getSize;
+- (CGImageRef) getCGImage__;
+- (org_xmlvm_iphone_CGSize*) getSize__;
 
 @end

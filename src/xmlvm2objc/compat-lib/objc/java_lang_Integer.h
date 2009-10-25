@@ -35,7 +35,7 @@ int number;
 - (NSUInteger) hash;
 - (void) __init_java_lang_Integer___int :(int) i;
 - (BOOL)isEqual:(id)anObject;
-- (int) intValue;
+- (int) intValue__;
 + (int) parseInt___java_lang_String: (java_lang_String *) str;
 
 @end

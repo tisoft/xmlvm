@@ -32,6 +32,6 @@ typedef NSDictionary java_util_Map;
 - (java_lang_Object*) put___java_lang_Object_java_lang_Object :(java_lang_Object*) key
                                                               :(java_lang_Object*) value;
 - (java_lang_Object*) get___java_lang_Object :(java_lang_Object*) key;
-- (java_util_Set*) keySet;
+- (java_util_Set*) keySet__;
 
 @end

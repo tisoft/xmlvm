@@ -52,7 +52,7 @@
 	return [anObject isKindOfClass: [java_lang_Boolean class]] && ((java_lang_Boolean*) anObject)-> value == value;
 }
 
-- (int) booleanValue
+- (int) booleanValue__
 {
 	return value;
 }

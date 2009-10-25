@@ -30,6 +30,6 @@
 }
 
 - (id) init;
-- (org_xmlvm_iphone_gl_EAGLDrawable*) getDrawable;
+- (org_xmlvm_iphone_gl_EAGLDrawable*) getDrawable__;
 
 @end

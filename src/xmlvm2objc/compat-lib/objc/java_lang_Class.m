@@ -33,7 +33,7 @@
 {
 }
 
-- (java_lang_String*) getName
+- (java_lang_String*) getName__
 {
 	NSMutableString* mangledName = [NSMutableString stringWithCString: class_getName(clazz) encoding: NSASCIIStringEncoding];
 	// TODO the substitution of "." for "_" is a bit simplistic and might not yield the correct result
@@ -44,7 +44,7 @@
 	return simpleName;
 }
 
-- (NSObject*) newInstance
+- (NSObject*) newInstance__
 {
 	// Instantiate object
 	NSObject* obj = (NSObject*) class_createInstance(clazz, class_getInstanceSize(clazz));
@@ -52,6 +52,7 @@
 	NSMutableString* mangledName = [NSMutableString stringWithCString: class_getName(clazz) encoding: NSASCIIStringEncoding];
     NSMutableString* constructor = [NSMutableString stringWithString: @"__init_"];
 	[constructor appendString: mangledName];
+	[constructor appendString: @"__"];
 	SEL sel = NSSelectorFromString(constructor);
 	NSMethodSignature * sig = [clazz instanceMethodSignatureForSelector:sel];
 	NSInvocation* inv = [NSInvocation invocationWithMethodSignature: sig];
@@ -71,7 +72,7 @@
 	return classWrapper;
 }
 
-- (NSMutableArray*) getDeclaredFields
+- (NSMutableArray*) getDeclaredFields__
 {
 	unsigned int count, i;
 

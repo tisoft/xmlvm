@@ -30,7 +30,7 @@
     return [self initWithName: @"java_lang_IllegalArgumentException" reason: nil userInfo: nil];
 }
 
-- (void) __init_java_lang_IllegalArgumentException
+- (void) __init_java_lang_IllegalArgumentException__
 {
     // Do nothing
 }
@@ -49,7 +49,7 @@
 	return self;
 }
 
-- (void) printStackTrace
+- (void) printStackTrace__
 {
 }
 

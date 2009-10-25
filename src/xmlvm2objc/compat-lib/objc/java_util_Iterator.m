@@ -35,12 +35,12 @@
 }
 	
 
-- (bool) hasNext
+- (bool) hasNext__
 {
 	return self->nextObj != nil;
 }
 
-- (java_lang_Object*) next
+- (java_lang_Object*) next__
 {
 	id next = self->nextObj;
 	self->nextObj = [enumerator nextObject];

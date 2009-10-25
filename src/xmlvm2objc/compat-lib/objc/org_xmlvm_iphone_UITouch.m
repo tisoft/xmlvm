@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @implementation UITouch (cat_org_xmlvm_iphone_UITouch)
 
-- (org_xmlvm_iphone_UIView*) getView
+- (org_xmlvm_iphone_UIView*) getView__
 {
 	org_xmlvm_iphone_UIView* view = [self view];
 	[view retain];

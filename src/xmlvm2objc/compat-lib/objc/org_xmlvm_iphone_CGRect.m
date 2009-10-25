@@ -63,8 +63,8 @@
 
 - (void) _PUT_origin: (org_xmlvm_iphone_CGPoint*) o
 {
-	[self->origin release];
 	[o retain];
+	[self->origin release];
 	self->origin = o;
 }
 
@@ -75,8 +75,8 @@
 
 - (void) _PUT_size: (org_xmlvm_iphone_CGSize*) s
 {
-	[self->size release];
 	[s retain];
+	[self->size release];
 	self->size = s;
 }
 

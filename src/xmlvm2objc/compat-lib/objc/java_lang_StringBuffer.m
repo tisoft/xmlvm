@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @implementation NSMutableString (cat_java_lang_StringBuffer)
 
-- (void) __init_java_lang_StringBuilder
+- (void) __init_java_lang_StringBuilder__
 {
     [self setString: @""];
 }
@@ -35,7 +35,7 @@
     [self setString: str];
 }
 
-- (void) __init_java_lang_StringBuffer
+- (void) __init_java_lang_StringBuffer__
 {
 	[self setString: @""];
 }
@@ -54,7 +54,7 @@
 
 - (java_lang_StringBuffer*) append___java_lang_Object: (java_lang_Object*) obj
 {
-    [self appendString: [obj toString]];
+    [self appendString: [obj toString__]];
     [self retain];
     return self;
 }
@@ -106,7 +106,7 @@
 	return [[NSString alloc] initWithString: [self substringFromIndex: from]];
 }
 
-- (java_lang_String*) toString
+- (java_lang_String*) toString__
 {
     return [[NSString alloc] initWithString: self];
 }

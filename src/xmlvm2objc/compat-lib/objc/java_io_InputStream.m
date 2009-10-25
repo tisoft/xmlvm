@@ -24,7 +24,7 @@
 //----------------------------------------------------------------------------
 @implementation java_io_InputStream;
 
-- (int) read {
+- (int) read__ {
 	return 0;
 }
 

@@ -26,7 +26,7 @@
 //----------------------------------------------------------------------------
 @interface org_xmlvm_iphone_UITableViewDelegate : java_lang_Object <UITableViewDelegate>
 
-- (void) __init_org_xmlvm_iphone_UITableViewDelegate;
+- (void) __init_org_xmlvm_iphone_UITableViewDelegate__;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 

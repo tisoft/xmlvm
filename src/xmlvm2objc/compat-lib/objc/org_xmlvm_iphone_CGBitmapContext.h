@@ -31,7 +31,7 @@
 
 + (org_xmlvm_iphone_CGBitmapContext*) createWithSize___int_int_org_xmlvm_iphone_CGImage :(int) width :(int) height :(org_xmlvm_iphone_CGImage*) image;
 + (org_xmlvm_iphone_CGBitmapContext*) createWithSize___int_int :(int) width :(int) height;
-- (java_nio_ByteBuffer*) getData;
+- (java_nio_ByteBuffer*) getData__;
 - (void) release;
 
 @end

@@ -31,7 +31,7 @@ static java_lang_String* layerClassName;
  */
 @implementation org_xmlvm_iphone_UIView : UIView
 
-+ (Class) layerClass
++ (Class) layerClass__
 {
 	if (layerClassName == nil) {
 		return [super layerClass];
@@ -55,7 +55,7 @@ static java_lang_String* layerClassName;
 
 @implementation UIView (cat_org_xmlvm_iphone_UIView)
 
-- (void) __init_org_xmlvm_iphone_UIView
+- (void) __init_org_xmlvm_iphone_UIView__
 {
 	layerClassName = nil;
 	srand(time(NULL));
@@ -76,7 +76,7 @@ static java_lang_String* layerClassName;
 }
 
 
-- (org_xmlvm_iphone_CGRect*) getBounds
+- (org_xmlvm_iphone_CGRect*) getBounds__
 {
     org_xmlvm_iphone_CGRect* rect = [[org_xmlvm_iphone_CGRect alloc] init];
     rect->origin->x = self.bounds.origin.x;
@@ -101,12 +101,17 @@ static java_lang_String* layerClassName;
     [self insertSubview: view atIndex: idx];
 }
 
+- (void) removeFromSuperview__
+{
+	[self removeFromSuperview];
+}
+
 - (void) bringSubviewToFront___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) view
 {
 	[self bringSubviewToFront: view];
 }
 
-- (java_util_List*) getSubviews
+- (java_util_List*) getSubviews__
 {
 	java_util_List* views = [self subviews];
 	[views retain];
@@ -119,6 +124,11 @@ static java_lang_String* layerClassName;
  		[self setTransform: CGAffineTransformIdentity];
  	else
     	[self setTransform: trans->transform];
+}
+
+- (void) setNeedsDisplay__
+{
+	[self setNeedsDisplay];
 }
 
 - (void) setNeedsDisplayInRect___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)rect
@@ -142,7 +152,7 @@ static java_lang_String* layerClassName;
 	[self setClearsContextBeforeDrawing:clear];
 }
 
-- (org_xmlvm_iphone_gl_CAEAGLLayer*) getEAGLLayer
+- (org_xmlvm_iphone_gl_CAEAGLLayer*) getEAGLLayer__
 {
 	org_xmlvm_iphone_gl_CAEAGLLayer* result = [[org_xmlvm_iphone_gl_CAEAGLLayer alloc] init];
 	result->glLayer = (CAEAGLLayer*) self.layer;

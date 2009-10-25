@@ -114,7 +114,7 @@
 	glColor4f(r,g,b,a);
 }
 
-+ (void) glLoadIdentity
++ (void) glLoadIdentity__
 {
 	glLoadIdentity();
 }

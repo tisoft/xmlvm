@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_NSXMLParserDelegate
 
-- (void) __init_org_xmlvm_iphone_NSXMLParserDelegate
+- (void) __init_org_xmlvm_iphone_NSXMLParserDelegate__
 {
 }
 

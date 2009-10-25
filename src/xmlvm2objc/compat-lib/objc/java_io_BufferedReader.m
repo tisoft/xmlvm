@@ -32,15 +32,15 @@
 	return [target read___char_ARRAYTYPE_int_int: buffer: pos: len];
 }
 
-- (bool) ready {
+- (bool) ready__ {
 	return [target ready];
 }
 
-- (java_lang_String*) readLine {
+- (java_lang_String*) readLine__ {
 	return [target readLine];
 }
 
-- (void) close {
+- (void) close__ {
 	[target close];
 }
 

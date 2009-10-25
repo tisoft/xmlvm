@@ -22,7 +22,7 @@ public class PowerManager {
          * the wake lock.
          */
         public void acquire() {
-            UIApplication.getSharedApplication().setIdleTimerDisabled(true);
+            UIApplication.sharedApplication().setIdleTimerDisabled(true);
         }
 
         /**
@@ -32,7 +32,7 @@ public class PowerManager {
          * are other wake locks held.
          */
         public void release() {
-            UIApplication.getSharedApplication().setIdleTimerDisabled(false);
+            UIApplication.sharedApplication().setIdleTimerDisabled(false);
         }
     }
 

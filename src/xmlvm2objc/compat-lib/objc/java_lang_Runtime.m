@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @implementation java_lang_Runtime
 
-- (int) freeMemory
+- (int) freeMemory__
 {
 	return 134348800;
 }

@@ -36,4 +36,5 @@ typedef NSXMLParser org_xmlvm_iphone_NSXMLParser;
 - (void) setDelegate___org_xmlvm_iphone_NSXMLParserDelegate: (org_xmlvm_iphone_NSXMLParserDelegate*) delegate;
 - (void) setShouldProcessNamespaces___boolean: (int) flag;
 - (void) setShouldReportNamespacePrefixes___boolean: (int) flag;
+- (BOOL) parse__;
 @end

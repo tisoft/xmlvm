@@ -23,7 +23,7 @@ public class Main extends UIApplication implements UIAccelerometerDelegate {
 
         window.makeKeyAndVisible();
 
-        accel = UIAccelerometer.getSharedAccelerometer();
+        accel = UIAccelerometer.sharedAccelerometer();
         accel.setUpdateInterval(1.0 / 40);
         accel.setDelegate(this);
     }

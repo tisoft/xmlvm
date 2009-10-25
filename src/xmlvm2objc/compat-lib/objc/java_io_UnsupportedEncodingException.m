@@ -30,7 +30,7 @@
     return [self initWithName: @"java_io_UnsupportedEncodingException" reason: nil userInfo: nil];
 }
 
-- (void) __init_java_io_UnsupportedEncodingException
+- (void) __init_java_io_UnsupportedEncodingException__
 {
     // Do nothing
 }
@@ -49,7 +49,7 @@
 	return self;
 }
 
-- (void) printStackTrace
+- (void) printStackTrace__
 {
 }
 

@@ -102,7 +102,7 @@
 	return [self caseInsensitiveCompare: s] == 0;
 }
 
-- (java_lang_String*) toString
+- (java_lang_String*) toString__
 {
     [self retain];
     return self;
@@ -137,6 +137,11 @@
 	if (range.location == NSNotFound) {
 		return -1;
 	}
+}
+
+- (int) length__
+{
+	return [self length];
 }
 
 @end

@@ -23,7 +23,7 @@
 #import "java_lang_String.h"
 
 @interface java_io_InputStream : java_lang_Object 
-- (int) read;
-- (bool) ready;
-- (java_lang_String *) readLine;
+- (int) read__;
+- (bool) ready__;
+- (java_lang_String *) readLine__;
 @end

@@ -35,7 +35,7 @@ float number;
 - (NSUInteger) hash;
 - (void) __init_java_lang_Float___float :(float) f;
 - (BOOL)isEqual:(id)anObject;
-- (float) floatValue;
+- (float) floatValue__;
 + (float) parseFloat___java_lang_String: (java_lang_String *) str;
 
 @end

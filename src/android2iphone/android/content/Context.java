@@ -33,14 +33,14 @@ public class Context {
      * Use with {@link #getSystemService(String)} to retrieve a
      * {@link SensorManager} for accessing sensors.
      */
-    public static final String SENSOR_SERVICE       = "sensor";
+    public static final String   SENSOR_SERVICE       = "sensor";
     /**
      * Use with {@link #getSystemService(String)} to retrieve a
      * {@link PowerManager} for controlling power management, including
      * "wake locks," which let you keep the device on while you're running long
      * tasks.
      */
-    public static final String POWER_SERVICE        = "power";
+    public static final String   POWER_SERVICE        = "power";
 
     // *** File creation modes *** //
     /**
@@ -48,17 +48,20 @@ public class Context {
      * accessed by the calling application (or all applications sharing the same
      * user ID).
      */
-    public static final int    MODE_PRIVATE         = 0;
+    public static final int      MODE_PRIVATE         = 0;
     /**
      * File creation mode: allow all other applications to have read access to
      * the created file.
      */
-    public static final int    MODE_WORLD_READABLE  = 1;
+    public static final int      MODE_WORLD_READABLE  = 1;
     /**
      * File creation mode: allow all other applications to have write access to
      * the created file.
      */
-    public static final int    MODE_WORLD_WRITEABLE = 2;
+    public static final int      MODE_WORLD_WRITEABLE = 2;
+
+    private static SensorManager sensorManager        = null;
+    private static PowerManager  powerManager         = null;
 
     /**
      * Return the handle to a system-level service by name. The class of the
@@ -70,9 +73,15 @@ public class Context {
      */
     public Object getSystemService(String service) {
         if (service.equals(SENSOR_SERVICE)) {
-            return new SensorManager();
+            if (sensorManager == null) {
+                sensorManager = new SensorManager();
+            }
+            return sensorManager;
         } else if (service.equals(POWER_SERVICE)) {
-            return new PowerManager();
+            if (powerManager == null) {
+                powerManager = new PowerManager();
+            }
+            return powerManager;
         }
         return null;
     }

@@ -26,7 +26,7 @@
 //----------------------------------------------------------------------------
 @implementation UITextView (cat_org_xmlvm_iphone_UITextView);
 
-- (void) __init_org_xmlvm_iphone_UITextView
+- (void) __init_org_xmlvm_iphone_UITextView__
 {
 	[self initWithFrame: CGRectZero];
 }
@@ -42,7 +42,7 @@
     [self setText: n1];
 }
 
-- (NSString*) getText
+- (NSString*) getText__
 {
 	NSString* txt = [self text];
 	[txt retain];

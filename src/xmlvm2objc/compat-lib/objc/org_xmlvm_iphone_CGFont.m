@@ -38,17 +38,17 @@
 	return toRet;
 }
 
-- (int) getUnitsPerEm
+- (int) getUnitsPerEm__
 {
 	return CGFontGetUnitsPerEm(font);
 }
 
-- (int) getAscent
+- (int) getAscent__
 {
 	return CGFontGetAscent(font);
 }
 
-- (int) getDescent
+- (int) getDescent__
 {
 	return CGFontGetDescent(font);
 }

@@ -28,7 +28,7 @@ extern void CGFontGetGlyphsForUnichars(CGFontRef, const unichar[], const CGGlyph
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_CGContext;
 
-+ (org_xmlvm_iphone_CGContext*) UICurrentContext
++ (org_xmlvm_iphone_CGContext*) UICurrentContext__
 {
 	
     org_xmlvm_iphone_CGContext* c = [[org_xmlvm_iphone_CGContext alloc] init];
@@ -134,7 +134,7 @@ extern void CGFontGetGlyphsForUnichars(CGFontRef, const unichar[], const CGGlyph
 	CGContextShowGlyphs(context, textToPrint, textLength);
 }
 
-- (org_xmlvm_iphone_CGPoint*) getTextPosition
+- (org_xmlvm_iphone_CGPoint*) getTextPosition__
 {
 	CGPoint pt = CGContextGetTextPosition(context);
 	org_xmlvm_iphone_CGPoint* retVal = [[org_xmlvm_iphone_CGPoint alloc] init];
@@ -144,7 +144,7 @@ extern void CGFontGetGlyphsForUnichars(CGFontRef, const unichar[], const CGGlyph
 	return retVal;
 }
 
-- (org_xmlvm_iphone_CGRect*)getClip;
+- (org_xmlvm_iphone_CGRect*)getClip__;
 {
 	CGRect rect = CGContextGetClipBoundingBox(context);
 	org_xmlvm_iphone_CGRect* retVal = [[org_xmlvm_iphone_CGRect alloc] init];
@@ -165,12 +165,12 @@ extern void CGFontGetGlyphsForUnichars(CGFontRef, const unichar[], const CGGlyph
 	}
 }
 
-- (void) storeState
+- (void) storeState__
 {
 	CGContextSaveGState(context);
 }
 
-- (void) restoreState
+- (void) restoreState__
 {
 	CGContextRestoreGState(context);
 }

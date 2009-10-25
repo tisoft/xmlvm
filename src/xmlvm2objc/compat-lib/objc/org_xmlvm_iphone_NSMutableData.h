@@ -27,9 +27,9 @@
 //----------------------------------------------------------------------------
 typedef NSMutableData org_xmlvm_iphone_NSMutableData;
 @interface NSMutableData (cat_org_xmlvm_iphone_NSMutableData)
-- (void) __init_org_xmlvm_iphone_NSMutableData;
+- (void) __init_org_xmlvm_iphone_NSMutableData__;
 - (int) getByte___int: (int) index;
 - (void) appendByte___int: (int) value;
-- (int) byteCount;
-- (java_lang_String*) toString;
+- (int) byteCount__;
+- (java_lang_String*) toString__;
 @end

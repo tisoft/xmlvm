@@ -33,7 +33,7 @@
 @public CGFontRef localFont;
 @public float localSize;
 }
-+ (org_xmlvm_iphone_CGContext*) UICurrentContext;
++ (org_xmlvm_iphone_CGContext*) UICurrentContext__;
 - (void) setFillColor___float_ARRAYTYPE: (NSMutableArray*) color;
 - (void) setStrokeColor___float_ARRAYTYPE: (NSMutableArray*) color;
 - (void) fillRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect;
@@ -49,12 +49,12 @@
 - (void) setFontSize___float :(float)size;
 - (void) showTextAtPoint___float_float_java_lang_String: (float)x: (float)y: (NSString*)text;
 - (void) showText___java_lang_String: (NSString*)text;
-- (org_xmlvm_iphone_CGPoint*) getTextPosition;
+- (org_xmlvm_iphone_CGPoint*) getTextPosition__;
 - (void) setTextDrawingMode___int :(int)mode;
 
-- (void) storeState;
-- (void) restoreState;
-- (org_xmlvm_iphone_CGRect*)getClip;
+- (void) storeState__;
+- (void) restoreState__;
+- (org_xmlvm_iphone_CGRect*)getClip__;
 
 - (void) drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage: (org_xmlvm_iphone_CGRect*)rect: (org_xmlvm_iphone_CGImage*)image;
 - (void) drawLayer___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGLayer: (org_xmlvm_iphone_CGRect*)rect: (org_xmlvm_iphone_CGLayer*)layer;

@@ -28,7 +28,7 @@
 @public CGFontRef font;
 }
 + (org_xmlvm_iphone_CGFont*) createFromDataProider___org_xmlvm_iphone_CGDataProvider :(org_xmlvm_iphone_CGDataProvider*)provider;
-- (int) getUnitsPerEm;
-- (int) getAscent;
-- (int) getDescent;
+- (int) getUnitsPerEm__;
+- (int) getAscent__;
+- (int) getDescent__;
 @end

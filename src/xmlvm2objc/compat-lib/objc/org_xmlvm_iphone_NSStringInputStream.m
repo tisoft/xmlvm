@@ -33,16 +33,16 @@
 	pos = 0;
 }
 
-- (int) read {
+- (int) read__ {
 	data = [str UTF8String];
 	return (int) data[pos++];
 }
 
-- (bool) ready {
+- (bool) ready__ {
 	return (pos < total);	
 }
 
-- (java_lang_String *) readLine {
+- (java_lang_String *) readLine__ {
 	if ([self ready] == 0) {
 		return [NSNull null];
 	}

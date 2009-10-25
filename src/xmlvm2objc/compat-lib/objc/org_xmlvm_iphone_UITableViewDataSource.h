@@ -29,7 +29,7 @@
 //----------------------------------------------------------------------------
 @interface org_xmlvm_iphone_UITableViewDataSource : java_lang_Object <UITableViewDataSource>
 
-- (void) __init_org_xmlvm_iphone_UITableViewDataSource;
+- (void) __init_org_xmlvm_iphone_UITableViewDataSource__;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;

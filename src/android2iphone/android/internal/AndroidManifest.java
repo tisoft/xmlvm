@@ -82,7 +82,7 @@ public class AndroidManifest {
     public String mainActivity;
     
     public AndroidManifest() {
-        String filePath = NSBundle.getMainBundle().pathForResource("AndroidManifest", "xml");
+        String filePath = NSBundle.mainBundle().pathForResource("AndroidManifest", "xml");
         NSData manifestFile = NSData.dataWithContentsOfFile(filePath);
         NSXMLParser xmlParser = new NSXMLParser(manifestFile);
         xmlParser.setShouldProcessNamespaces(true);

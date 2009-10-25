@@ -30,7 +30,7 @@
     return [self initWithName: @"java_lang_Exception" reason: nil userInfo: nil];
 }
 
-- (void) __init_java_lang_Exception
+- (void) __init_java_lang_Exception__
 {
     // Do nothing
 }
@@ -48,7 +48,7 @@
 	return self;
 }
 
-- (void) printStackTrace
+- (void) printStackTrace__
 {
 }
 

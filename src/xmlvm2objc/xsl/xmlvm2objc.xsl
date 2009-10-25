@@ -882,9 +882,9 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="jvm:new">
-  <xsl:text>    _stack[_sp++].o = [[[</xsl:text>
-  <xsl:value-of select="vm:fixname(@type)"/>
-  <xsl:text> alloc] init] autorelease];
+    <xsl:text>    _stack[_sp++].o = [[[</xsl:text>
+    <xsl:value-of select="vm:fixname(@type)"/>
+    <xsl:text> alloc] init] autorelease];
 </xsl:text>
 </xsl:template>
 
@@ -1391,22 +1391,24 @@ int main(int argc, char* argv[])
     <xsl:with-param name="name" select="@name"/>
     <xsl:with-param name="class-type" select="concat(../@package, '.', ../@name)"/>
   </xsl:call-template>
-  <xsl:call-template name="appendSignature"/>
-  <xsl:for-each select="vm:signature/vm:parameter">
-    <xsl:text> :(</xsl:text>
-    <xsl:call-template name="emitType">
-      <xsl:with-param name="type" select="@type"/>
-    </xsl:call-template>
-    <xsl:text>)n</xsl:text>
-    <xsl:value-of select="position()"/>
-  </xsl:for-each>
+  <xsl:if test="@name != '&lt;clinit&gt;'">
+    <xsl:call-template name="appendSignature"/>
+    <xsl:for-each select="vm:signature/vm:parameter">
+      <xsl:text> :(</xsl:text>
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="@type"/>
+      </xsl:call-template>
+      <xsl:text>)n</xsl:text>
+      <xsl:value-of select="position()"/>
+    </xsl:for-each>
+  </xsl:if>
 </xsl:template>
 
 
 <xsl:template name="appendSignature">
+  <xsl:text>__</xsl:text>
   <xsl:choose>
     <xsl:when test="count(vm:signature/vm:parameter) != 0">
-      <xsl:text>__</xsl:text>
       <xsl:for-each select="vm:signature/vm:parameter">
         <xsl:text>_</xsl:text>
         <xsl:value-of select="replace(vm:fixname(@type), '\[\]', '_ARRAYTYPE')"/>

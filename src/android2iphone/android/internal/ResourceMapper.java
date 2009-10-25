@@ -55,7 +55,7 @@ public class ResourceMapper {
         NSData theFile = layoutMap.get(new Integer(resourceId));
         if (theFile == null) {
             String fileName = findVariableById(resourceId, "layout");
-            String filePath = NSBundle.getMainBundle().pathForResource(fileName, "xml");
+            String filePath = NSBundle.mainBundle().pathForResource(fileName, "xml");
             theFile = NSData.dataWithContentsOfFile(filePath);
             layoutMap.put(new Integer(resourceId), theFile);
         }

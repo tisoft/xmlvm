@@ -26,6 +26,11 @@
 //----------------------------------------------------------------------------
 @implementation NSUserDefaults (cat_org_xmlvm_iphone_NSUserDefaults)
 
++ (org_xmlvm_iphone_NSUserDefaults*) standardUserDefaults__
+{
+	return [[NSUserDefaults standardUserDefaults] retain];
+}
+
 - (java_lang_Object*) objectForKey___java_lang_String: (java_lang_String*) key
 {
 	[self synchronize];
@@ -86,6 +91,11 @@
 	java_lang_String* data = [self stringForKey: key];
 	[data retain];
 	return data;
+}
+
+- (BOOL) synchronize__
+{
+	return [self synchronize];
 }
 
 @end

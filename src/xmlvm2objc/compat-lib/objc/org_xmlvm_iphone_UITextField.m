@@ -26,7 +26,7 @@
 //----------------------------------------------------------------------------
 @implementation UITextField (cat_org_xmlvm_iphone_UITextField);
 
-- (void) __init_org_xmlvm_iphone_UITextField
+- (void) __init_org_xmlvm_iphone_UITextField__
 {
 	[self initWithFrame: CGRectZero];
 }
@@ -42,7 +42,7 @@
     [self setText: n1];
 }
 
-- (NSString*) getText
+- (NSString*) getText__
 {
     return [self text];
 }

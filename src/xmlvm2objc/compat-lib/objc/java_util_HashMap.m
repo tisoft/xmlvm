@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @implementation NSMutableDictionary (cat_java_util_HashMap)
 
-- (void) __init_java_util_HashMap
+- (void) __init_java_util_HashMap__
 {
 }
 

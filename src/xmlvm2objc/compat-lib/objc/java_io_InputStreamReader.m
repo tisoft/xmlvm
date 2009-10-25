@@ -35,15 +35,15 @@
 	target = (org_xmlvm_iphone_NSStringInputStream *) input;
 }
 
-- (bool) ready {
+- (bool) ready__ {
 	return [target ready];
 }
 
-- (java_lang_String*) readLine {
+- (java_lang_String*) readLine__ {
 	return [target readLine];
 }
 
-- (void) close {
+- (void) close__ {
 }
 
 @end

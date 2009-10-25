@@ -60,7 +60,7 @@
 	return self;
 }
 
-- (java_nio_IntBuffer*) reset
+- (java_nio_IntBuffer*) reset__
 {
 	index = 0;
 	[self retain];

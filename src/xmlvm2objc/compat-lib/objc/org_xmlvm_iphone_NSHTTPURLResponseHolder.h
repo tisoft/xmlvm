@@ -26,6 +26,6 @@
 // NSHTTPURLResponseHolder
 //----------------------------------------------------------------------------
 @interface org_xmlvm_iphone_NSHTTPURLResponseHolder : java_lang_Object
-- (void) __init_org_xmlvm_iphone_NSHTTPURLResponseHolder;
+- (void) __init_org_xmlvm_iphone_NSHTTPURLResponseHolder__;
 @end
 

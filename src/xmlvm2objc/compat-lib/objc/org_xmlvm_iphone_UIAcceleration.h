@@ -21,4 +21,13 @@
 #import "xmlvm.h"
 
 
+// UIAcceleration
+//----------------------------------------------------------------------------
 typedef UIAcceleration org_xmlvm_iphone_UIAcceleration;
+@interface UIAcceleration (cat_org_xmlvm_iphone_UIAcceleration)
+
+- (UIAccelerationValue) x__;
+- (UIAccelerationValue) y__;
+- (UIAccelerationValue) z__;
+
+@end

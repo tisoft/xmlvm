@@ -32,10 +32,10 @@
 
 }
 
-- (void) __init_java_lang_Class;
-- (java_lang_String*) getName;
+- (void) __init_java_lang_Class__;
+- (java_lang_String*) getName__;
 + (java_lang_Class*) forName___java_lang_String :(java_lang_String*) className;
-- (NSMutableArray*) getDeclaredFields;
-- (NSObject*) newInstance;
+- (NSMutableArray*) getDeclaredFields__;
+- (NSObject*) newInstance__;
 
 @end

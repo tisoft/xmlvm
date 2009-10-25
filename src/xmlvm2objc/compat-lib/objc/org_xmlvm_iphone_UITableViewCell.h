@@ -25,11 +25,14 @@
 
 // UITableViewCell
 //----------------------------------------------------------------------------
-typedef UITableViewCell org_xmlvm_iphone_UITableViewCell;
-@interface UITableViewCell (cat_org_xmlvm_iphone_UITableViewCell)
+//typedef UITableViewCell org_xmlvm_iphone_UITableViewCell;
+//@interface UITableViewCell (cat_org_xmlvm_iphone_UITableViewCell)
+@interface org_xmlvm_iphone_UITableViewCell : UITableViewCell
 
-- (void) __init_org_xmlvm_iphone_UITableViewCell;
+- (void) __init_org_xmlvm_iphone_UITableViewCell__;
 - (void) __init_org_xmlvm_iphone_UITableViewCell___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect;
-- (org_xmlvm_iphone_UIView*) getContentView;
+- (org_xmlvm_iphone_UIView*) getContentView__;
+- (void) layoutSubviews;
+- (void) layoutSubviews__;
 
 @end

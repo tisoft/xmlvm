@@ -21,7 +21,7 @@ public abstract class UIApplication extends UIResponder {
         setStatusBarOrientation(UIInterfaceOrientation.UIInterfaceOrientationPortrait);
     }
 
-    public static UIApplication getSharedApplication() {
+    public static UIApplication sharedApplication() {
         return instance;
     }
     

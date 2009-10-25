@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_UIAlertViewDelegate
 
-- (void) __init_org_xmlvm_iphone_UIAlertViewDelegate
+- (void) __init_org_xmlvm_iphone_UIAlertViewDelegate__
 {
 }
 

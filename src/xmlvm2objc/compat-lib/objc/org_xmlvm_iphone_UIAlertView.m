@@ -50,5 +50,10 @@
 {
 	return [self addButtonWithTitle:title];
 }
-             
+
+- (void) show__
+{
+	[self show];
+}
+
 @end

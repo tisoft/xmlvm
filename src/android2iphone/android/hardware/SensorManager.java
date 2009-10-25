@@ -39,7 +39,7 @@ public class SensorManager implements UIAccelerometerDelegate {
     private UIAccelerometer          accel;
 
     public SensorManager() {
-        accel = UIAccelerometer.getSharedAccelerometer();
+        accel = UIAccelerometer.sharedAccelerometer();
         accel.setUpdateInterval(1.0 / 40);
         accel.setDelegate(this);
     }

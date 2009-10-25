@@ -29,5 +29,5 @@
 //----------------------------------------------------------------------------
 @interface org_xmlvm_iphone_UIControlDelegate : java_lang_Object
 - (id) init;
-- (void) __init_org_xmlvm_iphone_UIControlDelegate;
+- (void) __init_org_xmlvm_iphone_UIControlDelegate__;
 @end

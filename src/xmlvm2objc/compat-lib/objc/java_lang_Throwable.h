@@ -27,9 +27,9 @@
 // class as a category.
 @interface java_lang_Throwable : NSException
 - (id) init;
-- (void) __init_java_lang_Throwable;
-- (NSString *) getMessage;
-- (NSString *) toString;
-- (void) printStackTrace;
+- (void) __init_java_lang_Throwable__;
+- (NSString *) getMessage__;
+- (NSString *) toString__;
+- (void) printStackTrace__;
 
 @end

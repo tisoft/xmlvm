@@ -37,7 +37,7 @@
     return (int) ((unsigned char *) [self bytes])[index];
 }
 
-- (java_lang_String*) toString
+- (java_lang_String*) toString__
 {
     return [[NSMutableString alloc] initWithData:self encoding:NSUTF8StringEncoding];
 }

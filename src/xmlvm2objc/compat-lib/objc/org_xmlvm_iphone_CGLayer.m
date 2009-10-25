@@ -34,7 +34,7 @@
 	return retval;
 }
 
-- (org_xmlvm_iphone_CGContext*) getContext 
+- (org_xmlvm_iphone_CGContext*) getContext__
 {
 	org_xmlvm_iphone_CGContext *context = [[org_xmlvm_iphone_CGContext alloc] init];
 	context->context = CGLayerGetContext(layer);
@@ -42,12 +42,12 @@
 	return context;
 }
 
-- (CGLayerRef) getCGLayer
+- (CGLayerRef) getCGLayer__
 {
 	return layer;
 }
 
-- (org_xmlvm_iphone_CGSize*) getSize
+- (org_xmlvm_iphone_CGSize*) getSize__
 {
     org_xmlvm_iphone_CGSize* s = [[org_xmlvm_iphone_CGSize alloc] init];
     CGSize size = CGLayerGetSize(layer);

@@ -33,6 +33,6 @@
 - (java_nio_IntBuffer*) put___int: (int) value;
 - (java_nio_IntBuffer*) put___int_int: (int) pos : (int) value;
 - (int) get___int: (int) value;
-- (java_nio_IntBuffer*) reset;
+- (java_nio_IntBuffer*) reset__;
 
 @end

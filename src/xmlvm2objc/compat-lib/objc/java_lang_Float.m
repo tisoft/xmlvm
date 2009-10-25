@@ -54,7 +54,7 @@
 	return [anObject isKindOfClass: [java_lang_Float class]] && ((java_lang_Float*) anObject)-> number == number;
 }
 
-- (float) floatValue
+- (float) floatValue__
 {
 	return number;
 }

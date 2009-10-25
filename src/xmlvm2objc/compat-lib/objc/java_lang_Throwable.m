@@ -30,26 +30,26 @@
     return [self initWithName: @"java_lang_Throwable" reason: nil userInfo: nil];
 }
 
-- (void) __init_java_lang_Throwable
+- (void) __init_java_lang_Throwable__
 {
     // Do nothing
 }
 
-- (NSString *) getMessage
+- (NSString *) getMessage__
 {
 	NSString* reason = [self reason];
 	[reason retain];
     return reason;
 }
 
-- (NSString *) toString
+- (NSString *) toString__
 {
 	NSString* name = [self name];
 	[name retain];
     return name;
 }
 
-- (void) printStackTrace
+- (void) printStackTrace__
 {
 }
 @end

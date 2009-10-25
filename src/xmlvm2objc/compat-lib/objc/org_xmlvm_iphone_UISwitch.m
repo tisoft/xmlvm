@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @implementation UISwitch (cat_org_xmlvm_iphone_UISwitch)
 
-- (void) __init_org_xmlvm_iphone_UISwitch
+- (void) __init_org_xmlvm_iphone_UISwitch__
 {
     [self initWithFrame: CGRectZero];
 }
@@ -40,4 +40,10 @@
 {
 	[self setOn: on];
 }
+
+- (BOOL) isOn__
+{
+	return [self isOn];
+}
+
 @end

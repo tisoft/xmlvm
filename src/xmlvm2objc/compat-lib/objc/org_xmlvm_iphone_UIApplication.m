@@ -27,11 +27,11 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_UIApplication;
 
-- (void) __init_org_xmlvm_iphone_UIApplication
+- (void) __init_org_xmlvm_iphone_UIApplication__
 {
 }
 
-+ (org_xmlvm_iphone_UIApplication*) getSharedApplication
++ (org_xmlvm_iphone_UIApplication*) sharedApplication__
 {
 	return [[UIApplication sharedApplication] retain];
 }
@@ -95,7 +95,7 @@
 {
     // TODO: change args array to argc, argc
   	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    NSMutableString* className = [app getName];
+    NSMutableString* className = [app getName__];
 	NSMutableString* mangledName = [className stringByReplacingOccurrencesOfString: @"." withString: @"_"];
 	[className release];
     UIApplicationMain(0 /*argc*/, nil /*argv*/, mangledName, mangledName);

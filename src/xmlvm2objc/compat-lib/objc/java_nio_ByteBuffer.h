@@ -32,6 +32,6 @@
 - (java_nio_ByteBuffer*) put___int: (int) value;
 - (java_nio_ByteBuffer*) put___int_int: (int) pos: (int) value;
 - (int) get___int: (int) value;
-- (java_nio_ByteBuffer*) reset;
+- (java_nio_ByteBuffer*) reset__;
 
 @end

@@ -31,6 +31,6 @@
 - (void) __init_java_nio_FloatBuffer___int: (int) size;
 - (java_nio_FloatBuffer*) put___float: (float) value;
 - (float) get___float: (int) value;
-- (java_nio_FloatBuffer*) reset;
+- (java_nio_FloatBuffer*) reset__;
 
 @end

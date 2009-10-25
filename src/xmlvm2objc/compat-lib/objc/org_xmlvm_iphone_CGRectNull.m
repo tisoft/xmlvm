@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_CGRectNull : org_xmlvm_iphone_CGRect
 
-- (void) __init_org_xmlvm_iphone_CGRectNull
+- (void) __init_org_xmlvm_iphone_CGRectNull__
 {
 }
 

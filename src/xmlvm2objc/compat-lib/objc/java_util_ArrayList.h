@@ -26,9 +26,9 @@
 typedef NSMutableArray java_util_ArrayList;
 @interface NSMutableArray (cat_java_util_ArrayList)
 
-- (void) __init_java_util_ArrayList;
-- (java_util_Iterator*) iterator;
-- (int) size;
+- (void) __init_java_util_ArrayList__;
+- (java_util_Iterator*) iterator__;
+- (int) size__;
 - (BOOL) add___java_lang_Object :(java_lang_Object*) item;
 - (java_lang_Object*) set___int_java_lang_Object :(java_lang_Object*) item;
 - (java_lang_Object*) get___int :(int) idx;
@@ -36,6 +36,6 @@ typedef NSMutableArray java_util_ArrayList;
 - (BOOL) remove___java_lang_Object :(java_lang_Object*) item;
 - (int) indexOf___java_lang_Object :(java_lang_Object*) item;
 - (int) contains___java_lang_Object :(java_lang_Object*) item;
-- (void) clear;
+- (void) clear__;
 
 @end

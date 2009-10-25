@@ -26,7 +26,7 @@
 //----------------------------------------------------------------------------
 @implementation java_lang_Math;
 
-+ (double) random
++ (double) random__
 {
     return (double)random()/2147483647.0;
 }

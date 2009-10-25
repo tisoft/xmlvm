@@ -43,14 +43,14 @@
 	return retval;
 }
 
-- (CGImageRef) getCGImage
+- (CGImageRef) getCGImage__
 {
 	return image;
 }
 
 
 
-- (org_xmlvm_iphone_CGSize*) getSize
+- (org_xmlvm_iphone_CGSize*) getSize__
 {
     org_xmlvm_iphone_CGSize* s = [[org_xmlvm_iphone_CGSize alloc] init];
     s->width = CGImageGetWidth( image );

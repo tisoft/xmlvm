@@ -50,7 +50,7 @@
 	[super dealloc];
 }
 
-- (void) invalidate
+- (void) invalidate__
 {
 	if ([timer isValid]) {
     	[timer invalidate];

@@ -25,12 +25,12 @@
 //----------------------------------------------------------------------------
 @implementation NSArray (cat_java_util_List)
 
-- (java_util_Iterator*) iterator
+- (java_util_Iterator*) iterator__
 {
 	return [[java_util_Iterator alloc] init: [self objectEnumerator]];
 }
 
-- (int) size
+- (int) size__
 {
 	return [self count];
 }
@@ -81,7 +81,7 @@
 	return [self indexOf___java_lang_Object: item] != NSNotFound;
 }
 
-- (void) clear
+- (void) clear__
 {
 	[self removeAllObjects];
 }

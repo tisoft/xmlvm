@@ -27,7 +27,7 @@ public class Main
         window.addSubview(mainView);
         window.makeKeyAndVisible();
         
-        accel = UIAccelerometer.getSharedAccelerometer();
+        accel = UIAccelerometer.sharedAccelerometer();
         accel.setUpdateInterval(1.0/40);
         accel.setDelegate(this);
     }

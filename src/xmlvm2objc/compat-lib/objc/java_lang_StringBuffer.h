@@ -25,9 +25,9 @@ typedef NSMutableString java_lang_StringBuffer;
 
 @interface NSMutableString (cat_java_lang_String) //java_lang_String : java_lang_Object 
 
-- (void) __init_java_lang_StringBuilder;
+- (void) __init_java_lang_StringBuilder__;
 - (void) __init_java_lang_StringBuilder___java_lang_String: (java_lang_String*) str;
-- (void) __init_java_lang_StringBuffer;
+- (void) __init_java_lang_StringBuffer__;
 - (void) __init_java_lang_StringBuffer___java_lang_String: (java_lang_String*) str;
 - (java_lang_StringBuffer*) append___java_lang_String: (java_lang_String*) str;
 - (java_lang_StringBuffer*) append___java_lang_Object: (java_lang_Object*) obj;
@@ -37,7 +37,7 @@ typedef NSMutableString java_lang_StringBuffer;
 - (java_lang_StringBuffer*) append___float: (float) f;
 - (java_lang_String*) substring___int_int: (int) from :(int) to;
 - (java_lang_String*) substring___int: (int) from;
-- (java_lang_String*) toString;
+- (java_lang_String*) toString__;
 - (int) indexOf___java_lang_String: (java_lang_String*) s;
 
 

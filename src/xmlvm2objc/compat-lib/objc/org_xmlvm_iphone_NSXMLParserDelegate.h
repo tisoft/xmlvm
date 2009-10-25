@@ -31,7 +31,7 @@
 //----------------------------------------------------------------------------
 @interface org_xmlvm_iphone_NSXMLParserDelegate : NSObject
 
-- (void) __init_org_xmlvm_iphone_NSXMLParserDelegate;
+- (void) __init_org_xmlvm_iphone_NSXMLParserDelegate__;
 
 - (void) parser:(NSXMLParser *)parser didStartMappingPrefix:(NSString *)prefix toURI:(NSString *)namespaceURI;
 - (void) didStartMappingPrefix___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String

@@ -33,8 +33,8 @@
 }
 
 + (org_xmlvm_iphone_CGLayer*) createWithContext___org_xmlvm_iphone_CGContext_org_xmlvm_iphone_CGSize :(org_xmlvm_iphone_CGContext*)context :(org_xmlvm_iphone_CGSize*)size;
-- (CGLayerRef) getCGLayer;
-- (org_xmlvm_iphone_CGContext*) getContext;
-- (org_xmlvm_iphone_CGSize*) getSize;
+- (CGLayerRef) getCGLayer__;
+- (org_xmlvm_iphone_CGContext*) getContext__;
+- (org_xmlvm_iphone_CGSize*) getSize__;
 
 @end

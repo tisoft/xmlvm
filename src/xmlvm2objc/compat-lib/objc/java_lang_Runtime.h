@@ -28,6 +28,6 @@
 
 }
 
-- (int) freeMemory;
+- (int) freeMemory__;
 
 @end

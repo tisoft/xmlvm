@@ -35,6 +35,6 @@ int value;
 - (void) __init_java_lang_Boolean___int :(int) i;
 - (void) __init_java_lang_Boolean___boolean :(BOOL) b;
 - (BOOL)isEqual:(id)anObject;
-- (int) booleanValue;
+- (int) booleanValue__;
 
 @end

@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @implementation UIFont (cat_org_xmlvm_iphone_UIFont);
 
-- (void) __init_org_xmlvm_iphone_UIFont
+- (void) __init_org_xmlvm_iphone_UIFont__
 {
 }
 

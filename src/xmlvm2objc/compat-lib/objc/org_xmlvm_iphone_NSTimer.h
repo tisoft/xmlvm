@@ -35,6 +35,6 @@
              :(java_lang_Object*) userInfo
              :(int) repeats;
 - (void) dealloc;
-- (void) invalidate;
+- (void) invalidate__;
 
 @end

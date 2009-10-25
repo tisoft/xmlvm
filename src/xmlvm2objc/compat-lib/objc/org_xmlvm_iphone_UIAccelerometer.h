@@ -39,7 +39,7 @@ id<org_xmlvm_iphone_UIAccelerometerDelegate> delegate;
 typedef UIAccelerometer org_xmlvm_iphone_UIAccelerometer;
 @interface UIAccelerometer (cat_org_xmlvm_iphone_UIAccelerometer)
 
-+ (UIAccelerometer*) getSharedAccelerometer;
++ (UIAccelerometer*) sharedAccelerometer__;
 - (void) setUpdateInterval___double: (double)interval;
 - (void) setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate :(id<org_xmlvm_iphone_UIAccelerometerDelegate>) delegate; 
 

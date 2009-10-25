@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @implementation UILabel (cat_org_xmlvm_iphone_UILabel);
 
-- (void) __init_org_xmlvm_iphone_UILabel
+- (void) __init_org_xmlvm_iphone_UILabel__
 {
 	[self initWithFrame: CGRectZero];
 }

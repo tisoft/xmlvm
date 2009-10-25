@@ -29,7 +29,7 @@
 //----------------------------------------------------------------------------
 @interface org_xmlvm_iphone_UIAlertViewDelegate : java_lang_Object <UIAlertViewDelegate>
 
-- (void) __init_org_xmlvm_iphone_UIAlertViewDelegate;
+- (void) __init_org_xmlvm_iphone_UIAlertViewDelegate__;
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 - (void) clickedButtonAtIndex___org_xmlvm_iphone_UIAlertView_int
             :(org_xmlvm_iphone_UIAlertView*) alertView

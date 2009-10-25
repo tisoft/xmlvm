@@ -41,11 +41,11 @@
 	[super dealloc];
 }
 
-- (void) __init_java_lang_reflect_Field
+- (void) __init_java_lang_reflect_Field__
 {
 }
 
-- (java_lang_String*) getName
+- (java_lang_String*) getName__
 {
 	java_lang_String* n = self->name;
 	[n retain];

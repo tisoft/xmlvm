@@ -71,7 +71,7 @@
 }
 
 
-- (void)layoutSubviews
+- (void)layoutSubviews__
 {
 	[EAGLContext setCurrentContext:context];
 	[self destroyFramebuffer];
@@ -80,7 +80,7 @@
 }
 
 
-- (BOOL)createFramebuffer
+- (BOOL)createFramebuffer__
 {
 	glGenRenderbuffersOES(1, &viewRenderbuffer);
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
@@ -103,7 +103,7 @@
 }
 
 
-- (void)destroyFramebuffer
+- (void)destroyFramebuffer__
 {
 	glDeleteFramebuffersOES(1, &viewFramebuffer);
 	viewFramebuffer = 0;
@@ -117,13 +117,13 @@
 }
 
 
-- (void)startAnimation
+- (void)startAnimation__
 {
 	animationTimer = [NSTimer scheduledTimerWithTimeInterval:animationInterval target:self selector:@selector(drawView) userInfo:nil repeats:YES];
 }
 
 
-- (void)stopAnimation
+- (void)stopAnimation__
 {
 	[animationTimer invalidate];
 	animationTimer = nil;
@@ -140,7 +140,7 @@
 	}
 }
 
-- (void)setupView
+- (void)setupView__
 {
 	// Sets up matrices and transforms for OpenGL ES
 	glViewport(0, 0, backingWidth, backingHeight);
@@ -160,7 +160,7 @@
 }
 
 // Updates the OpenGL view when the timer fires
-- (void)drawView
+- (void)drawView__
 {
 	// Make sure that you are drawing to the current context
 	[EAGLContext setCurrentContext:context];
@@ -194,7 +194,7 @@
 	[super dealloc];
 }
 
-- (void) renderView
+- (void) renderView__
 {
 	printf("Local Render View\n");
 }

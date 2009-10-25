@@ -30,8 +30,8 @@
 }
 
 - (void) __init_org_xmlvm_iphone_NSStringInputStream___java_lang_String: (java_lang_String *) ref;
-- (int) read;
-- (bool) ready;
-- (java_lang_String *) readLine;
+- (int) read__;
+- (bool) ready__;
+- (java_lang_String *) readLine__;
 
 @end

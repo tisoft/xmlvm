@@ -30,7 +30,7 @@
 	return self;
 }
 
-- (void) __init_org_xmlvm_iphone_UIControlDelegate
+- (void) __init_org_xmlvm_iphone_UIControlDelegate__
 {
 }
 

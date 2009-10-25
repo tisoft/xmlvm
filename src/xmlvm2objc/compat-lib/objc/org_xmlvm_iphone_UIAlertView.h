@@ -40,4 +40,7 @@ typedef UIAlertView org_xmlvm_iphone_UIAlertView;
 
 - (int) addButtonWithTitle___java_lang_String
              :(java_lang_String*) title;
+             
+- (void) show__;
+
 @end
