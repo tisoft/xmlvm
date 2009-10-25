@@ -47,7 +47,7 @@ public class Android2PalmPreOutputProcess extends OutputProcess<QooxdooOutputPro
     private static final String[] GENERATE_PROJECT_OPTS    = { "-p",
             "\"{title:'$PROJECT', id:org.xmlvm.$PROJECT, version:'1.0.0'}\"", "$PROJECT" };
     private static final String[] GENERATE_SCENE_OPTS      = { "-t", "new_scene", "-p",
-            "\"name:$SCENE\"", "$PROJECT"                 };
+            "\"{name:$SCENE}\"", "$PROJECT"                 };
     private static final String   STAGE_ASSISTANT_TEMPLATE = "/pre/stage-assistant.js";
     private static final String   INDEX_HTML_TEMPLATE      = "/pre/index.html";
     private static final String   VERSION_ARG              = "--version";
@@ -362,7 +362,7 @@ public class Android2PalmPreOutputProcess extends OutputProcess<QooxdooOutputPro
      */
     private boolean arePalmToolsPresent() {
         Log.debug("Checking for Palm SDK Tools ...");
-        if (PALM_SDK_PATH.isEmpty()) {
+        if (PALM_SDK_PATH == null || PALM_SDK_PATH.isEmpty()) {
             Log.error("You have to set the Path to your Palm 'SDK' directory using the "
                     + "environment variable XMLVM_PALM_SDK_PATH.");
             return false;
