@@ -4,9 +4,10 @@ import org.xmlvm.iphone.*;
 
 public class Main extends UIApplication implements UIAccelerometerDelegate {
 
-    private SettingsTableDataSource settings    = null;
-    private UIAccelerometer         accel       = null;
-    private boolean                 httpRunning = false;
+    private SettingsTableDataSource settings     = null;
+    private UIAccelerometer         accel        = null;
+    private boolean                 httpRunning  = false;
+    private NSURLConnectionDelegate httpDelegate = null;
 
     public void applicationDidFinishLaunching(UIApplication app) {
         UIScreen screen = UIScreen.mainScreen();
@@ -22,6 +23,16 @@ public class Main extends UIApplication implements UIAccelerometerDelegate {
         table.setDelegate(dg);
 
         window.makeKeyAndVisible();
+
+        httpDelegate = new NSURLConnectionDelegate() {
+            public void connectionDidFinishLoading(NSURLConnection connection) {
+                httpRunning = false;
+            }
+
+            public void connectionDidFailWithError(NSURLConnection connection, NSError error) {
+                httpRunning = false;
+            }
+        };
 
         accel = UIAccelerometer.sharedAccelerometer();
         accel.setUpdateInterval(1.0 / 40);
@@ -49,15 +60,7 @@ public class Main extends UIApplication implements UIAccelerometerDelegate {
         NSURL url = NSURL.URLWithString(server);
         NSMutableURLRequest request = new NSMutableURLRequest(url);
 
-        NSURLConnection.connectionWithRequest(request, new NSURLConnectionDelegate() {
-            public void connectionDidFinishLoading(NSURLConnection connection) {
-                httpRunning = false;
-            }
-
-            public void connectionDidFailWithError(NSURLConnection connection, NSError error) {
-                httpRunning = false;
-            }
-        });
+        NSURLConnection.connectionWithRequest(request, httpDelegate);
         /*
          * NSErrorHolder error = new NSErrorHolder(); NSHTTPURLResponseHolder
          * response = new NSHTTPURLResponseHolder(); NSData data =

@@ -21,10 +21,10 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 
-typedef NSString java_lang_String;
 
+typedef NSMutableString java_lang_String;
 
-@interface NSString (cat_java_lang_String) //java_lang_String : java_lang_Object 
+@interface NSMutableString (cat_java_lang_String) 
 
 - (void) __init_java_lang_String___java_lang_String: (java_lang_String*) str;
 + (java_lang_String*) valueOf___int: (int) i;

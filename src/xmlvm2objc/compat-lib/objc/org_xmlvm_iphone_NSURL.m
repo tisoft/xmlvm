@@ -31,7 +31,7 @@
 
 + (NSURL*) URLWithString___java_lang_String: (java_lang_String*) url
 {
-    return [NSURL URLWithString: url];
+    return [[NSURL URLWithString: url] retain];
 }
 @end
 

@@ -30,9 +30,7 @@
                :(org_xmlvm_iphone_NSMutableURLRequest*) req
                :(org_xmlvm_iphone_NSURLConnectionDelegate*) delegate
 {
-	// TODO better reference counting for the delegate
-	[delegate retain];
-	return [NSURLConnection connectionWithRequest:req delegate:delegate];
+	return [[NSURLConnection connectionWithRequest:req delegate:delegate] retain];
 }
 
 + (NSData*) sendSynchronousRequest___org_xmlvm_iphone_NSMutableURLRequest_org_xmlvm_iphone_NSHTTPURLResponseHolder_org_xmlvm_iphone_NSErrorHolder

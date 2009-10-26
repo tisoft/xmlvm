@@ -44,7 +44,7 @@
 
 - (NSString*) getText__
 {
-    return [self text];
+    return [[self text] retain];
 }
 
 - (void) setTextColor___org_xmlvm_iphone_UIColor: (org_xmlvm_iphone_UIColor*) color
