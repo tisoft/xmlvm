@@ -85,7 +85,7 @@ public class GameController implements MoveFinishedHandler, Runnable {
     /** Delay between two timer ticks. */
     private long            animationDelay;
 
-    private static int      DEFAULT_DELAY_IN_MILLIS = 70;
+    private static int      DEFAULT_DELAY_IN_MILLIS = 60;
 
     private Handler         timerHandler            = new Handler();
 
