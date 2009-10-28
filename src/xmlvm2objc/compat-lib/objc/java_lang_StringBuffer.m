@@ -116,6 +116,7 @@
 	if (range.location == NSNotFound) {
 		return -1;
 	}
+	return range.location;
 }
 
 @end
