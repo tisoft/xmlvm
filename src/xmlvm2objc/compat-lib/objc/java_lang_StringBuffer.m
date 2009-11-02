@@ -87,8 +87,7 @@
 
 - (java_lang_StringBuffer*) append___float: (float) f
 {
-	NSNumber* n = [NSNumber numberWithFloat: f];
-	[self appendString: [n stringValue]];
+	[self appendString: [NSString stringWithFormat: @"%1.1f", f]];
     [self retain];
 	return self;
 }
