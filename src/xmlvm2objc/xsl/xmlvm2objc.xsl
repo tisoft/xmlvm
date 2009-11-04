@@ -108,6 +108,10 @@ int main(int argc, char* argv[])
 }
 </xsl:text>
     </xsl:if>
+    <!-- Emit default constructor and initializer used for initializing member variables -->
+    <xsl:text>+ (void) initialize;
+- (id) init;
+</xsl:text>
     <!-- Emit declarations for getter and setter methods for all fields -->
     <xsl:for-each select="vm:field">
       <!-- Emit getter -->
@@ -180,11 +184,72 @@ int main(int argc, char* argv[])
     <xsl:value-of select="vm:fixname(@package)"/>
     <xsl:text>_</xsl:text>
     <xsl:value-of select="vm:fixname(@name)"/>
-    
-    <!-- Emit destructor -->
     <xsl:text>;
 
-- (void) dealloc;
+</xsl:text>
+
+    <!-- Emit default Objective-C class initialized used for member initialization -->
+    <xsl:text>+ (void) initialize
+{
+    if (strcmp(class_getName(self), "</xsl:text>
+    	<xsl:value-of select="vm:fixname(@package)"/>
+    	<xsl:text>_</xsl:text>
+    	<xsl:value-of select="@name"/>
+    	<xsl:text>") == 0) {</xsl:text>
+        <xsl:for-each select="vm:field[@isStatic = 'true' and vm:isObjectRef(@type)]">
+          <xsl:text>
+        _STATIC_</xsl:text>
+          <xsl:value-of select="vm:fixname(../@package)"/>
+          <xsl:text>_</xsl:text>
+          <xsl:value-of select="vm:fixname(../@name)"/>
+          <xsl:text>_</xsl:text>
+          <xsl:value-of select="vm:fixname(@name)"/>
+          <xsl:text> = (id) [NSNull null];</xsl:text>
+        </xsl:for-each>
+    	<!-- If there is a Java class initializer, call it. -->
+        <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
+          <xsl:text>
+        [</xsl:text>
+          <xsl:value-of select="vm:fixname(@package)"/>
+          <xsl:text>_</xsl:text>
+          <xsl:value-of select="vm:fixname(@name)"/>
+          <xsl:text> __clinit_</xsl:text>
+          <xsl:value-of select="vm:fixname(@package)"/>
+          <xsl:text>_</xsl:text>
+          <xsl:value-of select="vm:fixname(@name)"/>
+          <xsl:text>];</xsl:text>
+        </xsl:if>
+      <xsl:text>
+    }</xsl:text>
+    <xsl:text>
+}
+
+</xsl:text>
+    
+    <!-- Emit default Objective-C constructor used for member initialization -->
+    <xsl:text>- (id) init
+{
+    if (self = [super init]) {
+</xsl:text>
+      <!-- Emit declarations for all non-static member fields -->
+      <xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type)]">
+        <xsl:text>        </xsl:text>
+        <xsl:value-of select="vm:fixname(../@package)"/>
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="vm:fixname(../@name)"/>
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="vm:fixname(@name)"/>
+        <xsl:text> = (id) [NSNull null];
+</xsl:text>
+      </xsl:for-each>
+    <xsl:text>    }
+    return self;
+}
+
+</xsl:text>
+
+    <!-- Emit destructor -->
+    <xsl:text>- (void) dealloc
 {
 </xsl:text>
 <xsl:if test="vm:method[@name='finalize' and 
@@ -305,16 +370,6 @@ int main(int argc, char* argv[])
     int _sp = 0;
     XMLVMElem _op1, _op2, _op3;
 </xsl:text>
-  <xsl:if test="../@name = '&lt;clinit&gt;' and ../@isStatic='true'"><xsl:text>
-    if (strcmp(class_getName(self), "</xsl:text>
-    	<xsl:value-of select="vm:fixname(../../@package)"/>
-    	<xsl:text>_</xsl:text>
-    	<xsl:value-of select="../../@name"/><xsl:text>") != 0) {
-        return;
-    }
-    
-</xsl:text>
-  </xsl:if>
   <xsl:if test="vm:useAutoReleasePool(.)">
     <xsl:text>    NSAutoreleasePool* _pool = [[NSAutoreleasePool alloc] init];
 </xsl:text>
@@ -1367,7 +1422,8 @@ int main(int argc, char* argv[])
       <xsl:value-of select="vm:fixname($class-type)"/>
     </xsl:when>
     <xsl:when test="$name = '&lt;clinit&gt;'">
-      <xsl:text>initialize</xsl:text>
+      <xsl:text>__clinit_</xsl:text>
+      <xsl:value-of select="vm:fixname($class-type)"/>
     </xsl:when>
     <xsl:when test="$name = 'finalize'">
       <xsl:text>finalize_</xsl:text>
