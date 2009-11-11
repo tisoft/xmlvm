@@ -611,6 +611,9 @@
 			<fileset dir="demo/android/sayhello">
 				<include name="*.xml" />
 			</fileset>
+			<fileset dir="demo/android/sayhello/res/layout">
+				<include name="*.xml" />
+			</fileset>
 		</jar>
 	</target>
 
