@@ -20,7 +20,6 @@
 
 package org.xmlvm;
 
-
 public @interface NativeInterface {
 
     String value();

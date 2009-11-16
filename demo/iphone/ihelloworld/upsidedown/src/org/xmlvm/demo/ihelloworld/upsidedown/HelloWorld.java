@@ -5,9 +5,9 @@ import org.xmlvm.iphone.*;
 public class HelloWorld extends UIApplication {
 
     public void applicationDidFinishLaunching(UIApplication app) {
-        this.setStatusBarOrientation(UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown);
+        this.setStatusBarOrientation(UIInterfaceOrientation.PortraitUpsideDown);
         UIScreen screen = UIScreen.mainScreen();
-        CGRect rect = screen.applicationFrame();
+        CGRect rect = screen.getApplicationFrame();
         UIWindow window = new UIWindow(rect);
         CGAffineTransform trans = CGAffineTransform.makeRotation((float) ((Math.PI / 180) * 180));
         window.setTransform(trans);
@@ -18,7 +18,7 @@ public class HelloWorld extends UIApplication {
 
         UILabel title = new UILabel(rect);
         title.setText("Hello World!");
-        title.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
+        title.setTextAlignment(UITextAlignment.Center);
         mainView.addSubview(title);
 
         window.makeKeyAndVisible();

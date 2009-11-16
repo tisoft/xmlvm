@@ -26,31 +26,51 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.Namespace;
 
+import edu.arizona.cs.mbel.emit.Emitter;
+import edu.arizona.cs.mbel.instructions.BranchInstruction;
+import edu.arizona.cs.mbel.instructions.CALL;
+import edu.arizona.cs.mbel.instructions.CALLVIRT;
+import edu.arizona.cs.mbel.instructions.Instruction;
+import edu.arizona.cs.mbel.instructions.InstructionHandle;
+import edu.arizona.cs.mbel.instructions.InstructionList;
+import edu.arizona.cs.mbel.instructions.LDARG;
+import edu.arizona.cs.mbel.instructions.LDC;
+import edu.arizona.cs.mbel.instructions.LDNULL;
+import edu.arizona.cs.mbel.instructions.LDSFLD;
+import edu.arizona.cs.mbel.instructions.LDSTR;
+import edu.arizona.cs.mbel.instructions.NEWOBJ;
+import edu.arizona.cs.mbel.instructions.RET;
 import edu.arizona.cs.mbel.mbel.AssemblyInfo;
 import edu.arizona.cs.mbel.mbel.AssemblyRefInfo;
 import edu.arizona.cs.mbel.mbel.AssemblyTypeRef;
+import edu.arizona.cs.mbel.mbel.EntryPoint;
+import edu.arizona.cs.mbel.mbel.Field;
 import edu.arizona.cs.mbel.mbel.FieldRef;
 import edu.arizona.cs.mbel.mbel.Method;
+import edu.arizona.cs.mbel.mbel.MethodBody;
+import edu.arizona.cs.mbel.mbel.MethodRef;
 import edu.arizona.cs.mbel.mbel.Module;
 import edu.arizona.cs.mbel.mbel.TypeDef;
 import edu.arizona.cs.mbel.mbel.TypeRef;
-import edu.arizona.cs.mbel.instructions.Instruction;
-import edu.arizona.cs.mbel.instructions.RET;
-import edu.arizona.cs.mbel.parse.*;
-import edu.arizona.cs.mbel.signature.*;
-import edu.arizona.cs.mbel.instructions.*;
-import edu.arizona.cs.mbel.mbel.*;
-import edu.arizona.cs.mbel.emit.*;
+import edu.arizona.cs.mbel.parse.PE_Header;
+import edu.arizona.cs.mbel.signature.ArrayShapeSignature;
+import edu.arizona.cs.mbel.signature.ArrayTypeSignature;
+import edu.arizona.cs.mbel.signature.CallingConvention;
+import edu.arizona.cs.mbel.signature.ClassTypeSignature;
+import edu.arizona.cs.mbel.signature.FieldSignature;
+import edu.arizona.cs.mbel.signature.MethodSignature;
+import edu.arizona.cs.mbel.signature.ParameterInfo;
+import edu.arizona.cs.mbel.signature.ParameterSignature;
+import edu.arizona.cs.mbel.signature.ReturnTypeSignature;
+import edu.arizona.cs.mbel.signature.SZArrayTypeSignature;
+import edu.arizona.cs.mbel.signature.SignatureException;
+import edu.arizona.cs.mbel.signature.TypeSignature;
 
-
-
-public class GenCIL
-{
+public class GenCIL {
 
     private InstructionList              il;
     private InstructionHandlerManagerCIL instructionHandlerManager;
@@ -62,26 +82,18 @@ public class GenCIL
     private TypeDef                      currentTypeDef;
     private MethodBody                   body;
 
-
-
-    public GenCIL(Document xmlvm)
-    {
+    public GenCIL(Document xmlvm) {
         this.xmlvm = xmlvm;
         nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
     }
 
+    public void create(OutputStream out, String assemblyName) throws IllegalXMLVMException,
+            IOException {
+        compatJavaLibAssembly = new AssemblyRefInfo(0, 0, 0, 0, 0, null, "CompatJavaLib", null,
+                null);
 
-
-    public void create(OutputStream out, String assemblyName)
-        throws IllegalXMLVMException, IOException
-    {
-        compatJavaLibAssembly = new AssemblyRefInfo(0, 0, 0, 0, 0, null,
-                                                    "CompatJavaLib", null, null);
-
-        module = new Module(assemblyName + ".exe", new byte[16],
-                            PE_Header.PE_SUBSYSTEM_WINDOWS_CUI);
-        assembly = new AssemblyInfo(AssemblyInfo.SHA1, 1, 0, 1, 1, 0, null,
-                                    assemblyName, "");
+        module = new Module(assemblyName + ".exe", new byte[16], PE_Header.PE_SUBSYSTEM_WINDOWS_CUI);
+        assembly = new AssemblyInfo(AssemblyInfo.SHA1, 1, 0, 1, 1, 0, null, assemblyName, "");
         module.setAssemblyInfo(assembly);
 
         Element root = xmlvm.getRootElement();
@@ -105,20 +117,14 @@ public class GenCIL
                 else if (tag.equals("field"))
                     createField(decl);
                 else
-                    throw new IllegalXMLVMException(
-                                                    "Unknown class declaration '"
-                                                            + tag + "'");
+                    throw new IllegalXMLVMException("Unknown class declaration '" + tag + "'");
             }
         }
         Emitter emitter = new Emitter(module);
         emitter.emitModule(out);
     }
 
-
-
-    private void createMethod(Element method)
-        throws IllegalXMLVMException
-    {
+    private void createMethod(Element method) throws IllegalXMLVMException {
         try {
             String methodName = method.getAttributeValue("name");
             Element signature = method.getChild("signature", nsXMLVM);
@@ -136,55 +142,40 @@ public class GenCIL
             }
             accessFlags |= Method.HideBySig;
             boolean hasThis = (accessFlags & Method.Static) == 0;
-            MethodSignature methodSignature = new MethodSignature(
-                                                                  hasThis,
-                                                                  false,
-                                                                  CallingConvention.DEFAULT,
-                                                                  retType,
-                                                                  argTypes);
+            MethodSignature methodSignature = new MethodSignature(hasThis, false,
+                    CallingConvention.DEFAULT, retType, argTypes);
             Method m = new Method(methodName, 0, accessFlags, methodSignature);
             currentTypeDef.addMethod(m);
             if (m.getName().equals("Main")) {
                 module.setEntryPoint(new EntryPoint(m));
             }
-            body = new MethodBody(true, Integer.parseInt(method
-                    .getAttributeValue("stack")), null);
+            body = new MethodBody(true, Integer.parseInt(method.getAttributeValue("stack")), null);
             m.setMethodBody(body);
             il = body.getInstructionList();
             instructionHandlerManager = new InstructionHandlerManagerCIL(il);
             Element code = method.getChild("code", nsXMLVM);
             createCode(code);
-        }
-        catch (SignatureException e) {
+        } catch (SignatureException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-
-
-    private void createField(Element field)
-        throws IllegalXMLVMException
-    {
+    private void createField(Element field) throws IllegalXMLVMException {
         try {
             String name = field.getAttributeValue("name");
-            TypeSignature t = parseTypeSignature(field
-                    .getAttributeValue("type"));
+            TypeSignature t = parseTypeSignature(field.getAttributeValue("type"));
             int flags = getFieldAccessFlags(field);
             FieldSignature fs = new FieldSignature(t);
             Field f = new Field(name, flags, fs);
             currentTypeDef.addField(f);
-        }
-        catch (SignatureException e) {
+        } catch (SignatureException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-
-
-    private TypeRef getTypeRef(String typeRef)
-    {
+    private TypeRef getTypeRef(String typeRef) {
         // Decompose typeRef into namespace and name
         int i = typeRef.indexOf('.');
         if (i == -1) {
@@ -194,12 +185,12 @@ public class GenCIL
         i = typeRef.lastIndexOf('.');
         String ns = typeRef.substring(0, i);
         String name = typeRef.substring(i + 1);
-        
+
         // Check if this is a refence into our own module
         TypeRef ref = module.getTypeDefByName(ns, name);
         if (ref != null)
             return ref;
-        
+
         // Check for Java compatibility assembly
         if (ns.startsWith("java."))
             return new AssemblyTypeRef(compatJavaLibAssembly, ns, name);
@@ -208,25 +199,18 @@ public class GenCIL
         return null;
     }
 
-
-
     private ReturnTypeSignature collectReturnTypeSignature(Element signature)
-        throws IllegalXMLVMException, SignatureException
-    {
+            throws IllegalXMLVMException, SignatureException {
         Element ret = signature.getChild("return", nsXMLVM);
         String t = ret.getAttributeValue("type");
         if (t.equals("void"))
-            return new ReturnTypeSignature(
-                                           ReturnTypeSignature.ELEMENT_TYPE_VOID);
+            return new ReturnTypeSignature(ReturnTypeSignature.ELEMENT_TYPE_VOID);
         else
             return new ReturnTypeSignature(parseTypeSignature(t), false);
     }
 
-
-
     private ParameterSignature[] collectParameterSignature(Element signature)
-        throws IllegalXMLVMException, SignatureException
-    {
+            throws IllegalXMLVMException, SignatureException {
         List<Element> params = signature.getChildren("parameter", nsXMLVM);
         if (params.isEmpty())
             return null;
@@ -239,11 +223,8 @@ public class GenCIL
         return argTypes.toArray(new ParameterSignature[0]);
     }
 
-
-
-    private TypeSignature parseTypeSignature(String type)
-        throws IllegalXMLVMException, SignatureException
-    {
+    private TypeSignature parseTypeSignature(String type) throws IllegalXMLVMException,
+            SignatureException {
         int arrayDimension = 0;
         while (type.endsWith("[]")) {
             arrayDimension++;
@@ -274,54 +255,36 @@ public class GenCIL
         else if (arrayDimension == 1)
             return new SZArrayTypeSignature(baseType);
         else
-            return new ArrayTypeSignature(
-                                          baseType,
-                                          new ArrayShapeSignature(
-                                                                  arrayDimension,
-                                                                  null, null));
+            return new ArrayTypeSignature(baseType, new ArrayShapeSignature(arrayDimension, null,
+                    null));
     }
 
-
-
-    private void createCode(Element code)
-        throws IllegalXMLVMException
-    {
+    private void createCode(Element code) throws IllegalXMLVMException {
         List<Element> instructions = code.getChildren();
         for (Element inst : instructions) {
             String name = inst.getName().toUpperCase();
-            String opcMethodName = "createInstruction"
-                    + name.substring(0, 1).toUpperCase()
+            String opcMethodName = "createInstruction" + name.substring(0, 1).toUpperCase()
                     + name.substring(1).toLowerCase();
             // + name;
             Class appClazz;
             java.lang.reflect.Method opcMeth;
-            Class[] paramTypes = {Element.class};
-            Object[] params = {inst};
+            Class[] paramTypes = { Element.class };
+            Object[] params = { inst };
             appClazz = this.getClass();
             Object newInstr = null;
             try {
                 opcMeth = appClazz.getMethod(opcMethodName, paramTypes);
                 newInstr = opcMeth.invoke(this, params);
-            }
-            catch (SecurityException e) {
-                throw new IllegalXMLVMException("Illegal instruction '" + name
-                        + "'");
-            }
-            catch (NoSuchMethodException e) {
-                throw new IllegalXMLVMException("Illegal instruction '" + name
-                        + "'");
-            }
-            catch (IllegalArgumentException e) {
-                throw new IllegalXMLVMException("Illegal instruction '" + name
-                        + "'");
-            }
-            catch (IllegalAccessException e) {
-                throw new IllegalXMLVMException("Illegal instruction '" + name
-                        + "'");
-            }
-            catch (InvocationTargetException e) {
-                throw new IllegalXMLVMException("Illegal instruction '" + name
-                        + "'");
+            } catch (SecurityException e) {
+                throw new IllegalXMLVMException("Illegal instruction '" + name + "'");
+            } catch (NoSuchMethodException e) {
+                throw new IllegalXMLVMException("Illegal instruction '" + name + "'");
+            } catch (IllegalArgumentException e) {
+                throw new IllegalXMLVMException("Illegal instruction '" + name + "'");
+            } catch (IllegalAccessException e) {
+                throw new IllegalXMLVMException("Illegal instruction '" + name + "'");
+            } catch (InvocationTargetException e) {
+                throw new IllegalXMLVMException("Illegal instruction '" + name + "'");
             }
 
             if (newInstr != null) {
@@ -337,10 +300,7 @@ public class GenCIL
         }
     }
 
-
-
-    private int getMethodAccessFlags(Element elem)
-    {
+    private int getMethodAccessFlags(Element elem) {
         short af = 0;
         af |= checkAccessFlag(elem, "isPublic", Method.Public);
         af |= checkAccessFlag(elem, "isPrivate", Method.Private);
@@ -350,10 +310,7 @@ public class GenCIL
         return af;
     }
 
-
-
-    private int getFieldAccessFlags(Element elem)
-    {
+    private int getFieldAccessFlags(Element elem) {
         short af = 0;
         af |= checkAccessFlag(elem, "isPublic", Field.Public);
         af |= checkAccessFlag(elem, "isPrivate", Field.Private);
@@ -362,90 +319,61 @@ public class GenCIL
         return af;
     }
 
-
-
-    private int checkAccessFlag(Element elem, String flag, int jvmFlag)
-    {
+    private int checkAccessFlag(Element elem, String flag, int jvmFlag) {
         String val = elem.getAttributeValue(flag);
         if (val == null)
             return 0;
         return val.equals("true") ? jvmFlag : 0;
     }
 
-
-
-    public Instruction createInstructionLdarg(Element inst)
-    {
+    public Instruction createInstructionLdarg(Element inst) {
         Instruction newInstr = null;
         if (inst.getAttributeValue("index").equals("0")) {
             newInstr = new LDARG(LDARG.LDARG_0);
-        }
-        else if (inst.getAttributeValue("index").equals("1")) {
+        } else if (inst.getAttributeValue("index").equals("1")) {
             newInstr = new LDARG(LDARG.LDARG_1);
-        }
-        else if (inst.getAttributeValue("index").equals("2")) {
+        } else if (inst.getAttributeValue("index").equals("2")) {
             newInstr = new LDARG(LDARG.LDARG_2);
-        }
-        else if (inst.getAttributeValue("index").equals("3")) {
+        } else if (inst.getAttributeValue("index").equals("3")) {
             newInstr = new LDARG(LDARG.LDARG_3);
-        }
-        else {
+        } else {
             // Throw exception or do default
         }
         return newInstr;
     }
 
-
-
-    public Instruction createInstructionLdc(Element inst)
-    {
+    public Instruction createInstructionLdc(Element inst) {
         Instruction newInstr = null;
         if (inst.getAttributeValue("type").equals("System.String")) {
             newInstr = new LDSTR(inst.getAttributeValue("value"));
-        }
-        else if (inst.getAttributeValue("type").equals("float")) {
-            newInstr = new LDC(Integer
-                    .parseInt(inst.getAttributeValue("value").substring(0,
-                            inst.getAttributeValue("value").length() - 2)));
+        } else if (inst.getAttributeValue("type").equals("float")) {
+            newInstr = new LDC(Integer.parseInt(inst.getAttributeValue("value").substring(0,
+                    inst.getAttributeValue("value").length() - 2)));
         }
         return newInstr;
     }
 
-
-
-    public Instruction createInstructionLdsfld(Element inst)
-        throws IllegalXMLVMException, SignatureException
-    {
+    public Instruction createInstructionLdsfld(Element inst) throws IllegalXMLVMException,
+            SignatureException {
         String name = inst.getAttributeValue("field");
         TypeRef fieldRef = getTypeRef(inst.getAttributeValue("type"));
         TypeRef classRef = getTypeRef(inst.getAttributeValue("class-type"));
-        FieldSignature fieldSig = new FieldSignature(
-                                                     new ClassTypeSignature(
-                                                                            fieldRef));
+        FieldSignature fieldSig = new FieldSignature(new ClassTypeSignature(fieldRef));
         FieldRef field = new FieldRef(name, fieldSig, classRef);
         return new LDSFLD(field);
     }
 
-
-
-    public Instruction createInstructionLdstr(Element inst)
-    {
+    public Instruction createInstructionLdstr(Element inst) {
         String str = inst.getAttributeValue("value");
         return new LDSTR(str);
     }
 
-
-
-    public Instruction createInstructionLdnull(Element inst)
-    {
+    public Instruction createInstructionLdnull(Element inst) {
         return new LDNULL();
     }
 
-
-
-    private MethodRef collectMethodReference(Element inst)
-        throws IllegalXMLVMException, SignatureException
-    {
+    private MethodRef collectMethodReference(Element inst) throws IllegalXMLVMException,
+            SignatureException {
         String methodName = inst.getAttributeValue("method");
         if (methodName.equals("<init>"))
             methodName = ".ctor";
@@ -454,57 +382,38 @@ public class GenCIL
         ReturnTypeSignature retType = collectReturnTypeSignature(signature);
         ParameterSignature[] argTypes = collectParameterSignature(signature);
         boolean hasThis = inst.getAttributeValue("has-this").equals("true");
-        MethodSignature methodSignature = new MethodSignature(
-                                                              hasThis,
-                                                              false,
-                                                              CallingConvention.DEFAULT,
-                                                              retType, argTypes);
+        MethodSignature methodSignature = new MethodSignature(hasThis, false,
+                CallingConvention.DEFAULT, retType, argTypes);
         return new MethodRef(methodName, classType, methodSignature);
 
     }
 
-
-
-    public Instruction createInstructionCallvirt(Element inst)
-        throws SignatureException, IllegalXMLVMException
-    {
+    public Instruction createInstructionCallvirt(Element inst) throws SignatureException,
+            IllegalXMLVMException {
         return new CALLVIRT(collectMethodReference(inst));
     }
 
-
-
-    public Instruction createInstructionCall(Element inst)
-        throws SignatureException, IllegalXMLVMException
-    {
+    public Instruction createInstructionCall(Element inst) throws SignatureException,
+            IllegalXMLVMException {
         return new CALL(collectMethodReference(inst));
     }
 
-
-
-    public Instruction createInstructionReturn(Element inst)
-    {
+    public Instruction createInstructionReturn(Element inst) {
         Instruction newInstr = null;
         newInstr = new RET();
         return newInstr;
     }
 
-
-
-    public Instruction createInstructionNewobj(Element inst)
-        throws IllegalXMLVMException, SignatureException
-    {
+    public Instruction createInstructionNewobj(Element inst) throws IllegalXMLVMException,
+            SignatureException {
         String methodName = ".ctor";
         TypeRef classType = getTypeRef(inst.getAttributeValue("type"));
         Element signature = inst.getChild("signature", nsXMLVM);
         ReturnTypeSignature retType = collectReturnTypeSignature(signature);
         ParameterSignature[] argTypes = collectParameterSignature(signature);
-        MethodSignature methodSignature = new MethodSignature(
-                                                              true,
-                                                              false,
-                                                              CallingConvention.DEFAULT,
-                                                              retType, argTypes);
-        MethodRef methodRef = new MethodRef(methodName, classType,
-                                            methodSignature);
+        MethodSignature methodSignature = new MethodSignature(true, false,
+                CallingConvention.DEFAULT, retType, argTypes);
+        MethodRef methodRef = new MethodRef(methodName, classType, methodSignature);
         return new NEWOBJ(methodRef);
     }
 }

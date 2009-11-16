@@ -1,0 +1,253 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3 /* Foundation.framework */; };
+		4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5 /* UIKit.framework */; };
+		6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7 /* CoreGraphics.framework */; };
+		28 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29 /* AVFoundation.framework */; };
+		30 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31 /* QuartzCore.framework */; };
+		32 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33 /* OpenGLES.framework */; };
+__BUILDREFS__/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1 /* __PROJNAME__.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = __PROJNAME__.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		29 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		31 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		33 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8 /* __PROJNAME__-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "__PROJNAME__-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = SOURCE_ROOT; };
+__FILEREFS__/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2 /* Foundation.framework in Frameworks */,
+				4 /* UIKit.framework in Frameworks */,
+				6 /* CoreGraphics.framework in Frameworks */,
+				28 /* AVFoundation.framework in Frameworks */,
+				30 /* QuartzCore.framework in Frameworks */,
+				32 /* OpenGLES.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		24 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+__APPSRC__			);
+			name = Application;
+			path = src/app;
+			sourceTree = "<group>";
+		};
+		25 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				26 /* iPhone */,
+				27 /* Android */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		27 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+__IPHONESRC__			);
+			name = iPhone;
+			path = src/lib/iphone;
+			sourceTree = "<group>";
+		};
+		26 /* Android */ = {
+			isa = PBXGroup;
+			children = (
+__ANDROIDSRC__			);
+			name = Android;
+			path = src/lib/android;
+			sourceTree = "<group>";
+		};
+		11 /* MainGroup */ = {
+			isa = PBXGroup;
+			children = (
+				24 /* 	Application */,
+				25 /* Library */,
+				12 /* Resources */,
+				13 /* Frameworks */,
+				10 /* Products */,
+			);
+			name = MainGroup;
+			sourceTree = "<group>";
+		};
+		12 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+__RESOURCES__				8 /* __PROJNAME__-Info.plist */,
+			);
+			name = Resources;
+			path = resources;
+			sourceTree = "<group>";
+		};
+		13 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5 /* UIKit.framework */,
+				3 /* Foundation.framework */,
+				7 /* CoreGraphics.framework */,
+				29 /* AVFoundation.framework */,
+				31 /* QuartzCore.framework */,
+				33 /* OpenGLES.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		10 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1 /* __PROJNAME__.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		14 /* __PROJNAME__ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15 /* Build configuration list for PBXNativeTarget "__PROJNAME__" */;
+			buildPhases = (
+				16 /* Resources */,
+				17 /* Sources */,
+				9 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = __PROJNAME__;
+			productName = __PROJNAME__;
+			productReference = 1 /* __PROJNAME__.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 19 /* Build configuration list for PBXProject "__PROJNAME__" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 11 /* MainGroup */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				14 /* __PROJNAME__ */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		16 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+__RESOURCES_BUILD__			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		17 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+__SRC_BUILD__			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		22 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1;
+			};
+			name = Debug;
+		};
+		23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1;
+			};
+			name = Release;
+		};
+		20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "__PROJNAME__-Info.plist";
+				PRODUCT_NAME = __PROJNAME__;
+			};
+			name = Debug;
+		};
+		21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "__PROJNAME__-Info.plist";
+				PRODUCT_NAME = __PROJNAME__;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		19 /* Build configuration list for PBXProject "__PROJNAME__" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22 /* Debug */,
+				23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15 /* Build configuration list for PBXNativeTarget "__PROJNAME__" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20 /* Debug */,
+				21 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18 /* Project object */;
+}

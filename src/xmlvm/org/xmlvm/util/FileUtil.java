@@ -1,15 +1,19 @@
 package org.xmlvm.util;
 
-import org.xmlvm.Log;
-
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Writer;
+
+import org.xmlvm.Log;
 
 /**
  * Various utilities around handling files.
@@ -73,7 +77,6 @@ public class FileUtil {
                 }
             }
         }
-
         return true;
     }
 
@@ -88,29 +91,130 @@ public class FileUtil {
      */
     public static boolean copyFile(File source, File destination) {
         try {
-            InputStream in = new FileInputStream(source);
-            OutputStream out = new FileOutputStream(destination);
+            return copyStreams(new FileInputStream(source), new FileOutputStream(destination));
+        } catch (FileNotFoundException ex) {
+        }
+        return false;
+    }
 
-            // Buffer for copying.
+    /**
+     * The actual procedure of copying Streams (like binary files)
+     * 
+     * @param in
+     *            The stream to read data from
+     * @param out
+     *            The stream to write data to
+     * @return true, if everything is ok
+     */
+    public static boolean copyStreams(InputStream in, OutputStream out) {
+        if (in == null || out == null)
+            return false;
+        try {
             byte[] buf = new byte[4096];
             int len;
-
-            // Copy the bytes.
-            while ((len = in.read(buf)) > 0) {
+            while ((len = in.read(buf)) > 0)
                 out.write(buf, 0, len);
-            }
-
-            // Close the files.
             in.close();
             out.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return false;
+            return true;
         } catch (IOException e) {
+            try {
+                in.close();
+            } catch (IOException ex1) {
+            }
+            try {
+                out.close();
+            } catch (IOException ex1) {
+            }
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return false;
+    }
+
+    /**
+     * The actual procedure of copying writers (like text files)
+     * 
+     * @param in
+     *            The stream to read data from
+     * @param out
+     *            The stream to write data to
+     * @return true, if everything is ok
+     */
+    public static boolean copyReaders(BufferedReader in, Writer out) {
+        if (in == null || out == null)
+            return false;
+        try {
+            String line;
+            while ((line = in.readLine()) != null)
+                out.append(line).append('\n');
+            in.close();
+            out.close();
+            return true;
+        } catch (IOException e) {
+            try {
+                in.close();
+            } catch (IOException ex1) {
+            }
+            try {
+                out.close();
+            } catch (IOException ex1) {
+            }
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * Search for a resource (namely a file) either inside a JAR file or in a
+     * local file. First try to find the requested filename inside the JAR. If
+     * it is not found, then it tries to locate this resource on the file. In
+     * any case it returns a BufferedReader of this resource.
+     * 
+     * This method is usefil to read text-line resources either from a JAR file
+     * or a local file.
+     * 
+     * @param JARResource
+     *            The name of the resource inside the JAR file
+     * @param FileResource
+     *            The filename of the resource as a local file
+     * @return the BufferedReader of this resource, or null if resource was not
+     *         found in either places.
+     */
+    public static BufferedReader findReaderResource(String JARResource, String FileResource) {
+        BufferedReader in = null;
+        try {
+            if (JarUtil.resourceExists(JARResource))
+                in = JarUtil.getFile(JARResource);
+            else
+                in = new BufferedReader(new FileReader(FileResource));
+        } catch (FileNotFoundException ex) {
+        }
+        return in;
+    }
+
+    /**
+     * Search for a resource (namely a file) either inside a JAR file or in a
+     * local file. First try to find the requested filename inside the JAR. If
+     * it is not found, then it tries to locate this resource on the file. In
+     * any case it returns a BufferedInputStream of this resource.
+     * 
+     * This method is usefil to read binary resources (e.g. images) either from
+     * a JAR file or a local file.
+     * 
+     * @param JARResource
+     * @param FileResource
+     * @return
+     */
+    public static BufferedInputStream findStreamResource(String JARResource, String FileResource) {
+        BufferedInputStream in = null;
+        try {
+            if (JarUtil.resourceExists(JARResource))
+                in = JarUtil.getStream(JARResource);
+            else
+                in = new BufferedInputStream(new FileInputStream(FileResource));
+        } catch (FileNotFoundException ex) {
+        }
+        return in;
     }
 
     /**

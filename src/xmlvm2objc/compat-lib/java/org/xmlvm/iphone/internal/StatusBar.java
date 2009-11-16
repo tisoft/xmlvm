@@ -1,51 +1,48 @@
 package org.xmlvm.iphone.internal;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GradientPaint;
-import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
+import java.awt.Rectangle;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.xmlvm.iphone.CGContext;
+import org.xmlvm.iphone.CGAffineTransform;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
+import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UIImage;
 import org.xmlvm.iphone.UIImageView;
 import org.xmlvm.iphone.UIInterfaceOrientation;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UIView;
+import org.xmlvm.iphone.internal.renderer.StatusBarRenderer;
 
 public class StatusBar extends UIView {
 
-    public static final int      statusBarHeight = 20;
-
-    private boolean              isHidden;
+    public static final int      STATUS_BAR_HEIGHT = 20;
+    /* */
     private float                fullHeight;
     private int                  orientation;
-    private static final UIImage batteryImage    = UIImage.imageAtPath("battery.png");
-    private static final UIImage wifiImage       = UIImage.imageAtPath("wifi.png");
-
-    private UILabel              ipodLabel;
-    private UIImageView          wifiIcon;
-    private UIImageView          batteryIcon;
-    private UILabel              timeLabel;
+    public UILabel               ipodLabel;
+    public UILabel               timeLabel;
+    public UIImageView           wifiIcon;
+    public UIImageView           batteryIcon;
+    private static final UIImage batteryImage      = UIImage.imageWithContentsOfFile("battery.png");
+    private static final UIImage wifiImage         = UIImage.imageWithContentsOfFile("wifi.png");
 
     public StatusBar(CGRect rect) {
         super(rect);
-        isHidden = false;
-        fullHeight = frame.size.height;
+        fullHeight = getFrame().size.height;
         addIPodLabel(rect);
         addWifiIcon(rect);
         addBatteryIcon(rect);
         addTimeLabel(rect);
+        xmlvmSetRenderer(new StatusBarRenderer(this));
     }
 
     private void addIPodLabel(CGRect rect) {
         ipodLabel = new UILabel(new CGRect(5, 0, 20, rect.size.height));
-        ipodLabel.setFont(new Font("Arial", Font.BOLD, 12));
-        ipodLabel.setFontColor(Color.DARK_GRAY);
+        ipodLabel.setFont(UIFont.fontWithNameSize("Arial Bold", 12));
+        ipodLabel.setTextColor(UIColor.darkGrayColor);
         ipodLabel.setBackgroundColor(null);
         ipodLabel.setText("iPod");
         addSubview(ipodLabel);
@@ -66,8 +63,8 @@ public class StatusBar extends UIView {
 
     private void addTimeLabel(CGRect rect) {
         timeLabel = new UILabel(new CGRect(rect.size.width / 2 - 20, 0, 20, rect.size.height));
-        timeLabel.setFont(new Font("Arial", Font.BOLD, 14));
-        timeLabel.setFontColor(Color.BLACK);
+        timeLabel.setFont(UIFont.fontWithNameSize("Arial Bold", 14));
+        timeLabel.setTextColor(UIColor.blackColor);
         timeLabel.setBackgroundColor(null);
         SimpleDateFormat formatter;
         formatter = new SimpleDateFormat("K:mm a");
@@ -75,81 +72,62 @@ public class StatusBar extends UIView {
         addSubview(timeLabel);
     }
 
-    private void reLayout() {
-        CGRect rect;
-        rect = batteryIcon.getFrame();
-        rect.origin.x = frame.size.width - 30;
-        batteryIcon.setFrame(rect);
-        
-        rect = timeLabel.getFrame();
-        rect.origin.x = frame.size.width / 2 - 20;
-        timeLabel.setFrame(rect);
-        computeCombinedTransforms();
-    }
-
-    public void drawRect(CGRect rect) {
-        if (frame.size.height == 0)
-            return;
-        setTransformForThisView();
-        Graphics2D g = CGContext.theContext.graphicsContext;
-        CGRect displayRect = getDisplayRect();
-        int x = (int) displayRect.origin.x;
-        int y = (int) displayRect.origin.y;
-        int w = (int) displayRect.size.width;
-        int h = (int) displayRect.size.height;
-        GradientPaint grayGradient = new GradientPaint(0, y, new Color(0xeef6f9), 0, y + h - 1,
-                new Color(0xbdc5c8));
-        g.setPaint(grayGradient);
-        g.fillRect(x, y, w, h - 1);
-        g.setPaint(new Color(0x5b6268));
-        g.drawLine(x, y + h - 1, w, y + h - 1);
-        restoreLastTransform();
-        for (UIView v : subViews) {
-            v.drawRect(rect);
-        }
-    }
-
-    public void setStatusBarHidden(boolean flag) {
-        isHidden = flag;
-        frame.size.height = isHidden ? 0.0f : fullHeight;
+    public void setHidden(boolean hidden) {
+        super.setHidden(hidden);
+        CGRect frame = getFrame();
+        frame.size.height = isHidden() ? 0.0f : fullHeight;
+        setFrame(frame);
     }
 
     public float getStatusBarHeight() {
-        return frame.size.height;
-    }
-
-    public void setStatusBarOrientation(int orientation) {
-        this.orientation = orientation;
-        if (isHidden)
-            return;
-        switch (orientation) {
-        case UIInterfaceOrientation.UIInterfaceOrientationPortrait:
-            this.setFrame(new CGRect(0, 0, 320, statusBarHeight));
-            this.affineTransform = new AffineTransform();
-            break;
-        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
-            this.setFrame(new CGRect(0, 0, 480, statusBarHeight));
-            this.affineTransform = new AffineTransform();
-            this.affineTransform.translate(0, 320 + 320 / 2);
-            this.affineTransform.rotate((float) ((Math.PI / 180) * -90));
-            break;
-        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
-            this.setFrame(new CGRect(0, 0, 480, statusBarHeight));
-            this.affineTransform = new AffineTransform();
-            this.affineTransform.translate(320, 0);
-            this.affineTransform.rotate((float) ((Math.PI / 180) * 90));
-            break;
-        case UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown:
-            this.setFrame(new CGRect(0, 0, 320, statusBarHeight));
-            this.affineTransform = new AffineTransform();
-            this.affineTransform.translate(320, 479);
-            this.affineTransform.rotate((float) ((Math.PI / 180) * 180));
-            break;
-        }
-        reLayout();
+        return getFrame().size.height;
     }
 
     public int getStatusBarOrientation() {
         return orientation;
+    }
+
+    public void setStatusBarOrientation(int orientation) {
+        this.orientation = orientation;
+        reLayout();
+    }
+
+    public void reLayout() {
+        CGRect frame;
+        CGAffineTransform trans = null;
+        Rectangle dev = Device.ScreenSize;
+        int height = isHidden() ? 0 : STATUS_BAR_HEIGHT;
+        switch (orientation) {
+        case UIInterfaceOrientation.LandscapeRight:
+            frame = new CGRect(0, 0, 480, height);
+            trans = CGAffineTransform.makeRotation(-(float) (Math.PI / 2));
+            trans = CGAffineTransform.translate(trans, -230, -230);
+            break;
+        case UIInterfaceOrientation.LandscapeLeft:
+            frame = new CGRect(0, 0, 480, height);
+            trans = CGAffineTransform.makeRotation((float) (Math.PI / 2));
+            trans = CGAffineTransform.translate(trans, 230, -70);
+            break;
+        case UIInterfaceOrientation.PortraitUpsideDown:
+            frame = new CGRect(0, 0, dev.width, height);
+            trans = CGAffineTransform.makeRotation((float) (Math.PI));
+            trans = CGAffineTransform.translate(trans, 0, -460);
+            break;
+        default:
+        case UIInterfaceOrientation.Portrait:
+            frame = new CGRect(0, 0, dev.width, height);
+            trans = null;
+            break;
+        }
+        setFrame(frame);
+        setTransform(trans);
+
+        CGRect battery = batteryIcon.getFrame();
+        battery.origin.x = frame.size.width - 30;
+        batteryIcon.setFrame(battery);
+
+        CGRect time = timeLabel.getFrame();
+        time.origin.x = frame.size.width / 2 - 20;
+        timeLabel.setFrame(time);
     }
 }

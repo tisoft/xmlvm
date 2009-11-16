@@ -20,6 +20,7 @@
 
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_NSNotification.h"
+#import "java_util_List.h"
 
 // UIApplication
 //----------------------------------------------------------------------------
@@ -38,4 +39,5 @@
 - (void) setStatusBarOrientation___int: (int) orientation;
 - (void) setIdleTimerDisabled___boolean: (bool) flag;
 + (void) main___java_lang_String_ARRAYTYPE_java_lang_Class :(NSMutableArray*) args :(java_lang_Class*) app;
+- (java_util_List *) getWindows__;
 @end

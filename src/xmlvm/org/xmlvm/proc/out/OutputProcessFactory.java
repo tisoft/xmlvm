@@ -17,7 +17,6 @@
  * 
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
-
 package org.xmlvm.proc.out;
 
 import org.xmlvm.Log;
@@ -29,6 +28,7 @@ import org.xmlvm.proc.XmlvmProcess;
  * Creates OutputProcess based on the given targets.
  */
 public class OutputProcessFactory {
+
     /**
      * The arguments that should be given to the created processes.
      */
@@ -48,27 +48,29 @@ public class OutputProcessFactory {
      * Based on the given target, returns a suitable OutputProcess or null, if
      * no process could be found.
      */
-    public OutputProcess<? extends XmlvmProcess> createOutputProcess(Targets target,
-            String out) {
-        if (target == Targets.JS) {
+    public OutputProcess<? extends XmlvmProcess> createOutputProcess(Targets target, String out) {
+        switch (target) {
+        case JS:
             return new JavaScriptOutputProcess(arguments);
-        } else if (target == Targets.PYTHON) {
+        case PYTHON:
             return new PythonOutputProcess(arguments);
-        } else if (target == Targets.CPP) {
+        case CPP:
             return new CppOutputProcess(arguments);
-        } else if (target == Targets.OBJC) {
+        case OBJC:
             return new ObjectiveCOutputProcess(arguments);
-        } else if (target == Targets.QOOXDOO) {
+        case QOOXDOO:
             return new QooxdooOutputProcess(arguments);
-        } else if (target == Targets.IPHONE) {
+        case IPHONE:
             return new IPhoneOutputProcess(arguments);
-        } else if (target == Targets.ANDROIDONIPHONE) {
+        case IPHONEANDROID:
             return new Android2IPhoneOutputProcess(arguments);
-        } else if (target == Targets.ANDROIDONPRE) {
-            return new Android2PalmPreOutputProcess(arguments);
-        } else if (target == Targets.XMLVM) {
+        case PREANDROID:
+            return new Android2IPhoneOutputProcess(arguments);
+        case XMLVM:
             return new XmlvmOutputProcess(arguments);
-        } else {
+        case IPHONETEMPLATE:
+            return new TemplateOutputProcess(arguments);
+        default:
             Log.error("Could not create OutputProcess for target '" + target + "'.");
         }
         return null;

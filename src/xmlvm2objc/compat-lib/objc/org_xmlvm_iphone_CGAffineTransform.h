@@ -27,5 +27,7 @@
 @public CGAffineTransform transform;
 }
 + (org_xmlvm_iphone_CGAffineTransform*) makeRotation___float: (float) alpha;
-- (void) translate___float_float :(float) tx :(float) ty;
++ (org_xmlvm_iphone_CGAffineTransform*) makeScale___float_float: (float) tx :(float)ty;
++ (org_xmlvm_iphone_CGAffineTransform*) translate___org_xmlvm_iphone_CGAffineTransform_float_float:(org_xmlvm_iphone_CGAffineTransform *)transf :(float)tx :(float)ty;
++ (org_xmlvm_iphone_CGAffineTransform*) rotate___org_xmlvm_iphone_CGAffineTransform_float:(org_xmlvm_iphone_CGAffineTransform *)transf :(float)alpha;
 @end

@@ -24,9 +24,15 @@
 //----------------------------------------------------------------------------
 @implementation java_io_PrintStream;
 
+- (void) println___boolean: (int) i
+{
+    NSLog(@"%@", (i == NO) ? @"false" : @"true");
+}
+
+
 - (void) println___int: (int) i
 {
-    NSLog(@"d", i);
+    NSLog(@"%d", i);
 }
 
 
@@ -44,9 +50,12 @@
 
 - (void) println___java_lang_String: (NSString*) s
 {
-    NSLog(s);
+    NSLog(@"%@", s);    // safer with text containing %? strings
 }
 
+- (void) println__ {
+	NSLog(@" ");
+}
 
 @end
 

@@ -77,7 +77,7 @@ public class NSTimer implements Runnable {
                 }
             }
         };
-        
+
         SwingUtilities.invokeLater(r);
     }
 

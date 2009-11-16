@@ -40,13 +40,8 @@ public class NewMain {
         // Initialize arguments.
         Arguments arguments = new Arguments(args);
 
-        // Print version if requested.
-        if (arguments.option_version()) {
-            printVersion();
-        }
-
         // Sets whether log messages should be shown or not.
-        Log.setQuiet(arguments.option_quiet());
+        Log.setLevel(arguments.option_debug());
 
         // Instantiate the processor.
         XmlvmProcessor processor = new XmlvmProcessor(arguments);
@@ -69,13 +64,5 @@ public class NewMain {
         } else {
             Log.error("Something went wrong during processing.");
         }
-    }
-
-    /**
-     * Prints version information.
-     */
-    public static void printVersion() {
-        System.out.println("XMLVM 2 alpha (experimental rebuild)");
-        System.out.println("Note: Not all command like arguments activated yet.");
     }
 }

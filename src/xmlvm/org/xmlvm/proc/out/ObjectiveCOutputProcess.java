@@ -20,6 +20,11 @@
 
 package org.xmlvm.proc.out;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -28,11 +33,6 @@ import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XsltRunner;
 import org.xmlvm.proc.in.InputProcess;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 
 public class ObjectiveCOutputProcess extends OutputProcess<InputProcess<?>> {
     private static final String M_EXTENSION = ".m";
@@ -74,7 +74,8 @@ public class ObjectiveCOutputProcess extends OutputProcess<InputProcess<?>> {
         Namespace nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
         Element clazz = doc.getRootElement().getChild("class", nsXMLVM);
         String namespaceName = clazz.getAttributeValue("package");
-        String inheritsFrom = clazz.getAttributeValue("extends").replace('.', '_').replace('$', '_');
+        String inheritsFrom = clazz.getAttributeValue("extends").replace('.', '_')
+                .replace('$', '_');
         String className = clazz.getAttributeValue("name").replace('$', '_');
         String fileNameStem = (namespaceName + "." + className).replace('.', '_');
         String headerFileName = fileNameStem + H_EXTENSION;

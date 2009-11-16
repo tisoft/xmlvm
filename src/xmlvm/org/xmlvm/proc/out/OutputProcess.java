@@ -20,10 +20,10 @@
 
 package org.xmlvm.proc.out;
 
+import java.util.List;
+
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcess;
-
-import java.util.List;
 
 /**
  * OutputProcess.

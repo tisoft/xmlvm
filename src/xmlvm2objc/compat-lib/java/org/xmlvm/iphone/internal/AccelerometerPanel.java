@@ -34,39 +34,25 @@ import javax.swing.border.TitledBorder;
 
 import org.xmlvm.iphone.UIAccelerometer;
 
-
-
-public class AccelerometerPanel
-    extends JPanel
-    implements AdjustmentListener
-{
+public class AccelerometerPanel extends JPanel implements AdjustmentListener {
 
     private JScrollBar xAxisControl;
     private JScrollBar yAxisControl;
     private JScrollBar zAxisControl;
 
-
-
-    public AccelerometerPanel()
-    {
+    public AccelerometerPanel() {
         this.setLayout(null);
-        this.setBorder(BorderFactory.createCompoundBorder(BorderFactory
-                .createEmptyBorder(5, 5, 5, 5), BorderFactory
-                .createCompoundBorder(BorderFactory.createTitledBorder(null,
-                        "Accelerometer", TitledBorder.DEFAULT_JUSTIFICATION,
-                        TitledBorder.DEFAULT_POSITION, new Font("Dialog",
-                                                                Font.BOLD, 12),
-                        new Color(51, 51, 51)), BorderFactory
-                        .createEmptyBorder(5, 5, 5, 5))));
+        this.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5,
+                5), BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder(null,
+                "Accelerometer", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION,
+                new Font("Dialog", Font.BOLD, 12), new Color(51, 51, 51)), BorderFactory
+                .createEmptyBorder(5, 5, 5, 5))));
         this.setSize(120, 160);
         addControls();
         setAccelerated(0, 0, 0);
     }
 
-
-
-    private void addControls()
-    {
+    private void addControls() {
         JLabel label;
 
         // X
@@ -100,30 +86,21 @@ public class AccelerometerPanel
         this.add(label, 0);
     }
 
-
-
-    private void setControlParameters(JScrollBar control)
-    {
+    private void setControlParameters(JScrollBar control) {
         control.setBlockIncrement(1);
         control.setMaximum(100);
         control.setSize(20, 100);
         control.addAdjustmentListener(this);
     }
 
-
-
-    public void adjustmentValueChanged(AdjustmentEvent event)
-    {
+    public void adjustmentValueChanged(AdjustmentEvent event) {
         float x = computeAcceleratedValue(xAxisControl);
         float y = computeAcceleratedValue(yAxisControl);
         float z = computeAcceleratedValue(zAxisControl);
         UIAccelerometer.setAcceleratedInternal(x, y, z);
     }
 
-
-
-    private float computeAcceleratedValue(JScrollBar control)
-    {
+    private float computeAcceleratedValue(JScrollBar control) {
         int value = control.getValue();
         if (value == control.getMaximum())
             return 1;
@@ -131,19 +108,13 @@ public class AccelerometerPanel
         return v;
     }
 
-
-
-    public void setAccelerated(double x, double y, double z)
-    {
+    public void setAccelerated(double x, double y, double z) {
         setAcceleratedValue(xAxisControl, x);
         setAcceleratedValue(yAxisControl, y);
         setAcceleratedValue(zAxisControl, z);
     }
 
-
-
-    private void setAcceleratedValue(JScrollBar control, double x)
-    {
+    private void setAcceleratedValue(JScrollBar control, double x) {
         int pos = (int) ((x + 1.0f) * (100.0f - control.getVisibleAmount()) / 2.0f);
         control.setValue(pos);
     }

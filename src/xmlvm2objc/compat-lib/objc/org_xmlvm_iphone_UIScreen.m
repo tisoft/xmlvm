@@ -31,7 +31,7 @@
 	return xmlvmScreen;
 }
 
-- (org_xmlvm_iphone_CGRect*) bounds__
+- (org_xmlvm_iphone_CGRect*) getBounds__
 {
 	CGRect rect = [screen bounds];
     org_xmlvm_iphone_CGRect* xmlvmCGRect = [[org_xmlvm_iphone_CGRect alloc] init];
@@ -42,7 +42,7 @@
     return xmlvmCGRect;
 }
 
-- (org_xmlvm_iphone_CGRect*) applicationFrame__
+- (org_xmlvm_iphone_CGRect*) getApplicationFrame__
 {
 	CGRect rect = [screen applicationFrame];
     org_xmlvm_iphone_CGRect* xmlvmCGRect = [[org_xmlvm_iphone_CGRect alloc] init];

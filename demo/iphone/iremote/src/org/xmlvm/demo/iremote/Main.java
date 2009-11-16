@@ -11,11 +11,11 @@ public class Main extends UIApplication implements UIAccelerometerDelegate {
 
     public void applicationDidFinishLaunching(UIApplication app) {
         UIScreen screen = UIScreen.mainScreen();
-        CGRect rect = screen.applicationFrame();
+        CGRect rect = screen.getApplicationFrame();
         UIWindow window = new UIWindow(rect);
 
         rect.origin.x = rect.origin.y = 0;
-        UITableView table = new UITableView(rect, UITableViewStyle.UITableViewStyleGrouped);
+        UITableView table = new UITableView(rect, UITableViewStyle.Grouped);
         window.addSubview(table);
         settings = new SettingsTableDataSource();
         table.setDataSource(settings);

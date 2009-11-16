@@ -27,6 +27,8 @@ import java.util.List;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessor;
+import org.xmlvm.proc.out.build.MakeFile;
+import org.xmlvm.proc.out.build.XCodeFile;
 import org.xmlvm.util.FileUtil;
 import org.xmlvm.util.JarUtil;
 
@@ -36,9 +38,9 @@ import org.xmlvm.util.JarUtil;
  * the Android API.
  */
 public class Android2IPhoneOutputProcess extends OutputProcess<IPhoneOutputProcess> {
+    public static final String  ANDROID_SRC_LIB               = "/src/lib/android";
+
     private static final String ANDROID_IPHONE_COMPAT_LIB_JAR = "/iphone/android-compat-lib.jar";
-    private static final String ANDROID_SRC                   = "/src";
-    private static final String ANDROID_SRC_LIB               = ANDROID_SRC + "/lib/android";
     private List<OutputFile>    result                        = new ArrayList<OutputFile>();
 
     public Android2IPhoneOutputProcess(Arguments arguments) {
@@ -57,7 +59,11 @@ public class Android2IPhoneOutputProcess extends OutputProcess<IPhoneOutputProce
         Log.debug("Processing Android2IPhoneOutputProcess");
         List<IPhoneOutputProcess> preprocesses = preprocess();
         for (IPhoneOutputProcess preprocess : preprocesses) {
-            result.addAll(preprocess.getOutputFiles());
+            for (OutputFile in : preprocess.getOutputFiles()) {
+                if (!(in.getFileName().equals("Makefile") || in.getFileName().equals(
+                        "project.pbxproj")))
+                    result.add(in);
+            }
         }
 
         if (JarUtil.resourceExists(ANDROID_IPHONE_COMPAT_LIB_JAR)) {
@@ -89,11 +95,13 @@ public class Android2IPhoneOutputProcess extends OutputProcess<IPhoneOutputProce
             }
         }
 
-        // TODO Auto-generated method stub
+        // Create various buildfiles
+        MakeFile makefile = new MakeFile();
+        Log.error(makefile.composeBuildFiles(result, arguments));
+        XCodeFile xcode = new XCodeFile();
+        Log.error(xcode.composeBuildFiles(result, arguments));
+
         return true;
     }
 
-    private List<OutputFile> processAndroidCompatLib() {
-        return null;
-    }
 }

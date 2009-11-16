@@ -20,6 +20,13 @@
 
 package org.xmlvm;
 
+import java.util.Date;
+import java.util.Hashtable;
+
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.Namespace;
+
 import edu.arizona.cs.mbel.instructions.ADD;
 import edu.arizona.cs.mbel.instructions.ADD_OVF;
 import edu.arizona.cs.mbel.instructions.BGE;
@@ -92,149 +99,118 @@ import edu.arizona.cs.mbel.signature.TypeAttributes;
 import edu.arizona.cs.mbel.signature.TypeSignature;
 import edu.arizona.cs.mbel.signature.ValueTypeSignature;
 
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.Namespace;
-
-import java.util.Date;
-import java.util.Hashtable;
-
-
-
 /**
  * @author Arno
  * 
  */
-public class ParseCIL
-{
+public class ParseCIL {
 
-    private Module    module;
+    private Module                    module;
 
-    private Namespace nsXMLVM;
+    private Namespace                 nsXMLVM;
 
-    private Namespace nsCLR;
+    private Namespace                 nsCLR;
 
-    private Hashtable map;
-    
+    private Hashtable                 map;
+
     private Hashtable<String, String> _nestedClassNamespaceMap = new Hashtable<String, String>();
-    
-    private String _enumBaseType = "";
 
+    private String                    _enumBaseType            = "";
 
-
-    public ParseCIL(Module module)
-    {
+    public ParseCIL(Module module) {
         this.module = module;
     }
 
-
-    public Document genXMLVM()
-    {
+    public Document genXMLVM() {
         nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
         nsCLR = Namespace.getNamespace("clr", "http://xmlvm.org/clr");
         Element xml = new org.jdom.Element("xmlvm", nsXMLVM);
         xml.addNamespaceDeclaration(nsCLR);
         xml.addContent(new org.jdom.Comment("Generated: " + new Date()));
         TypeDef[] td = module.getTypeDefs();
-        
+
         String namespace = "";
         String name;
-        
-        // For each class in the module, discover its true 
+
+        // For each class in the module, discover its true
         // namespace and store that information for later processing.
         for (int i = 0; i < td.length; i++) {
-        	long flags = td[i].getFlags();
-        	name = td[i].getName();
-        	
-        	// If the TypeDef is not the .module node for the .exe, so visit it.
-        	if (flags != 0) {
-        		
-        		// If the map contains this class name as a key, then
+            long flags = td[i].getFlags();
+            name = td[i].getName();
+
+            // If the TypeDef is not the .module node for the .exe, so visit it.
+            if (flags != 0) {
+
+                // If the map contains this class name as a key, then
                 // this class is a nested class so we need to get its
                 // true namespace
-                if (this._nestedClassNamespaceMap.containsKey(name))
-                {
-                	namespace = this._nestedClassNamespaceMap.get(name);
+                if (this._nestedClassNamespaceMap.containsKey(name)) {
+                    namespace = this._nestedClassNamespaceMap.get(name);
+                } else {
+                    namespace = td[i].getNamespace();
                 }
-                else
-                {
-                	namespace = td[i].getNamespace();
-                }
-                    
+
                 String nestedNamespace = "";
-            	
-            	if (namespace.equals(""))
-            	{
-            		nestedNamespace = name;
-            	}
-            	else
-            	{
-            		nestedNamespace = namespace + "." + name;
-            	}
-            	
-            	TypeDef[] nestedClasses = td[i].getNestedClasses();
-            	
-                for (int j = 0; j < nestedClasses.length; j++)
-                {
-                	this._nestedClassNamespaceMap.put(nestedClasses[j].getName(), nestedNamespace);
+
+                if (namespace.equals("")) {
+                    nestedNamespace = name;
+                } else {
+                    nestedNamespace = namespace + "." + name;
                 }
-        	}  
+
+                TypeDef[] nestedClasses = td[i].getNestedClasses();
+
+                for (int j = 0; j < nestedClasses.length; j++) {
+                    this._nestedClassNamespaceMap.put(nestedClasses[j].getName(), nestedNamespace);
+                }
+            }
         }
-        
-        
+
         // Process all the TypeDefs in the module to create
         // our XML document.
         for (int i = 0; i < td.length; i++) {
-        	long flags = td[i].getFlags();
-        	
-        	// If the TypeDef is not the .module node for the .exe, visit it.
-        	if (flags != 0) {
-                	xml.addContent(visitTypeDef(td[i]));
-        	}  
+            long flags = td[i].getFlags();
+
+            // If the TypeDef is not the .module node for the .exe, visit it.
+            if (flags != 0) {
+                xml.addContent(visitTypeDef(td[i]));
+            }
         }
         org.jdom.Document doc = new Document(xml);
         return doc;
     }
 
-
-
-    private Element visitTypeDef(TypeDef td)
-    {
+    private Element visitTypeDef(TypeDef td) {
         Element xml = new Element("class", nsXMLVM);
-        
+
         String name = td.getName();
         String namespace = td.getNamespace();
         TypeRef tr = td.getSuperClass();
         String base_class = "";
-        
-        if ( tr.getNamespace() != "" )
-        {
-        	base_class = tr.getNamespace() + "." + tr.getName();
+
+        if (tr.getNamespace() != "") {
+            base_class = tr.getNamespace() + "." + tr.getName();
+        } else {
+            base_class = tr.getName();
         }
-        else
-        {
-        	base_class = tr.getName();
-        }
-        
+
         boolean isEnum = base_class.equals("System.Enum");
-        
+
         long flags = td.getFlags();
-        
+
         // If the map contains this class name as a key, then
         // this class is a nested class so we need to get its
         // true namespace
-        if (this._nestedClassNamespaceMap.containsKey(name))
-        {
-        	namespace = this._nestedClassNamespaceMap.get(name);
+        if (this._nestedClassNamespaceMap.containsKey(name)) {
+            namespace = this._nestedClassNamespaceMap.get(name);
         }
-        
+
         xml.setAttribute("name", name);
-        
+
         if (((flags & TypeAttributes.Public) != 0) || ((flags & TypeAttributes.NestedPublic) != 0)) {
             xml.setAttribute("isPublic", "true");
         }
 
-        
         if (!namespace.equals(""))
             xml.setAttribute("package", namespace);
         xml.setAttribute("extends", base_class);
@@ -252,53 +228,37 @@ public class ParseCIL
         return xml;
     }
 
-
-
-    private Element visitField(Field f, boolean isEnum)
-    {
+    private Element visitField(Field f, boolean isEnum) {
         Element xml = new Element("field", nsXMLVM);
         addFieldModifiers(f, xml);
         xml.setAttribute("name", f.getName());
         TypeSignature ts = f.getSignature().getType();
         String type = addType(ts, xml);
-        
-        if (isEnum && f.getName().equals("value__") )
-        {
-        	this._enumBaseType = type;
+
+        if (isEnum && f.getName().equals("value__")) {
+            this._enumBaseType = type;
         }
-        
-        
+
         // get the default value for each of the Enum fields
-        if (isEnum && !f.getName().equals("value__") )
-        {
-        	if ( this._enumBaseType.equals("int") )
-        	{
-        		int value = ParseCIL.byteArrayToInt(f.getDefaultValue());
-        		xml.setAttribute("value", String.valueOf(value));
-        	}
-        	else if ( this._enumBaseType.equals("byte") )
-        	{
-        		byte value = f.getDefaultValue()[0];
-        		xml.setAttribute("value", String.valueOf(value));
-        	}
-        	else if ( this._enumBaseType.equals("short") )
-        	{
-        		short value = (short)ParseCIL.byteArrayToShort(f.getDefaultValue());
-        		xml.setAttribute("value", String.valueOf(value));
-        	}
-        	else if ( this._enumBaseType.equals("long") )
-        	{
-        		long value = ParseCIL.byteArrayToLong(f.getDefaultValue());
-        		xml.setAttribute("value", String.valueOf(value));
-        	}
+        if (isEnum && !f.getName().equals("value__")) {
+            if (this._enumBaseType.equals("int")) {
+                int value = ParseCIL.byteArrayToInt(f.getDefaultValue());
+                xml.setAttribute("value", String.valueOf(value));
+            } else if (this._enumBaseType.equals("byte")) {
+                byte value = f.getDefaultValue()[0];
+                xml.setAttribute("value", String.valueOf(value));
+            } else if (this._enumBaseType.equals("short")) {
+                short value = (short) ParseCIL.byteArrayToShort(f.getDefaultValue());
+                xml.setAttribute("value", String.valueOf(value));
+            } else if (this._enumBaseType.equals("long")) {
+                long value = ParseCIL.byteArrayToLong(f.getDefaultValue());
+                xml.setAttribute("value", String.valueOf(value));
+            }
         }
         return xml;
     }
 
-
-
-    private Element visitMethod(Method mt)
-    {
+    private Element visitMethod(Method mt) {
         Element xml = new Element("method", nsXMLVM);
         String name = mt.getName();
         // TODO Shouldn't rename constructor
@@ -316,10 +276,7 @@ public class ParseCIL
         return xml;
     }
 
-
-
-    private int computeLocals(Method mt)
-    {
+    private int computeLocals(Method mt) {
         /*
          * this method computes the number of locals we need. We use "locals"
          * here as defined in the JVM.
@@ -344,10 +301,7 @@ public class ParseCIL
         return locals;
     }
 
-
-
-    private void addMethodModifiers(Method mt, Element xml)
-    {
+    private void addMethodModifiers(Method mt, Element xml) {
         int attr = mt.getFlags();
         if ((attr & MethodAttributes.Static) != 0) {
             xml.setAttribute("isStatic", "true");
@@ -360,10 +314,7 @@ public class ParseCIL
         }
     }
 
-
-
-    private void addFieldModifiers(Field f, Element xml)
-    {
+    private void addFieldModifiers(Field f, Element xml) {
         int attr = f.getFlags();
         if ((attr & FieldAttributes.Static) != 0) {
             xml.setAttribute("isStatic", "true");
@@ -376,10 +327,7 @@ public class ParseCIL
         }
     }
 
-
-
-    private void addMethodSignature(MethodSignature ms, Element xml)
-    {
+    private void addMethodSignature(MethodSignature ms, Element xml) {
         Element xml_sig = new Element("signature", nsXMLVM);
 
         // add return type
@@ -400,34 +348,27 @@ public class ParseCIL
         xml.addContent(xml_sig);
     }
 
-
-
-    private String genClassTypeName(TypeRef tr)
-    {
+    private String genClassTypeName(TypeRef tr) {
         String name = tr.getName();
         if (tr instanceof NestedTypeRef) {
             tr = ((NestedTypeRef) tr).getEnclosingTypeRef();
             name = tr.getName() + "$" + name;
         }
         String ns = tr.getNamespace();
-        if (!ns.equals(""))
-        {
+        if (!ns.equals("")) {
             ns += ".";
         }
-        	
+
         // If this class is in our nested class list,
         // then we need to get its true namespace
-        if(this._nestedClassNamespaceMap.containsKey(name)) {
-        	ns = this._nestedClassNamespaceMap.get(name) + ".";
+        if (this._nestedClassNamespaceMap.containsKey(name)) {
+            ns = this._nestedClassNamespaceMap.get(name) + ".";
         }
-        
+
         return ns + name;
     }
 
-
-
-    private String addType(TypeSignature ts, Element xml)
-    {
+    private String addType(TypeSignature ts, Element xml) {
         String type = null;
         byte t = ts.getType();
         if (t == TypeSignature.ELEMENT_TYPE_STRING)
@@ -443,9 +384,8 @@ public class ParseCIL
         if (t == TypeSignature.ELEMENT_TYPE_I8)
             type = "long";
         if (t == TypeSignature.ELEMENT_TYPE_U4)
-        	type = "uint";
-        if (t == TypeSignature.ELEMENT_TYPE_I4
-                || t == TypeSignature.ELEMENT_TYPE_I)
+            type = "uint";
+        if (t == TypeSignature.ELEMENT_TYPE_I4 || t == TypeSignature.ELEMENT_TYPE_I)
             type = "int";
         if (t == TypeSignature.ELEMENT_TYPE_R4)
             type = "float";
@@ -467,20 +407,17 @@ public class ParseCIL
             xml.setAttribute("isValueType", "true");
             ValueTypeSignature vt = (ValueTypeSignature) ts;
             TypeRef tr = (TypeRef) vt.getValueType();
-            
+
             type = "";
-            
+
             // If this class is in our nested class list,
             // then we need to get its true namespace
-            if (this._nestedClassNamespaceMap.containsKey(tr.getName()))
-            {
-            	type = this._nestedClassNamespaceMap.get(tr.getName());
+            if (this._nestedClassNamespaceMap.containsKey(tr.getName())) {
+                type = this._nestedClassNamespaceMap.get(tr.getName());
+            } else {
+                type = tr.getNamespace();
             }
-            else
-            {
-            	type = tr.getNamespace();
-            }
-            
+
             if (!type.equals(""))
                 type += ".";
             type += tr.getName();
@@ -488,7 +425,7 @@ public class ParseCIL
         if (t == TypeSignature.ELEMENT_TYPE_BOOLEAN)
             type = "boolean";
         if (t == TypeSignature.ELEMENT_TYPE_CHAR)
-        	type = "char";
+            type = "char";
         if (type == null) {
             System.err.println("Unknown type: " + ts + "(" + t + ")");
             type = "UNKNOWN";
@@ -497,10 +434,7 @@ public class ParseCIL
         return type;
     }
 
-
-
-    private void addReturnType(ReturnTypeSignature ts, Element xml)
-    {
+    private void addReturnType(ReturnTypeSignature ts, Element xml) {
         if (ts == null)
             // can be null for constructor
             return;
@@ -513,10 +447,7 @@ public class ParseCIL
             addType(t, xml);
     }
 
-
-
-    private void addMethodCode(MethodBody mb, Element xml)
-    {
+    private void addMethodCode(MethodBody mb, Element xml) {
         Element xml_code = new Element("code", nsXMLVM);
         xml.addContent(xml_code);
 
@@ -532,8 +463,7 @@ public class ParseCIL
             }
         }
 
-        InstructionHandle[] ihl = mb.getInstructionList()
-                .getInstructionHandles();
+        InstructionHandle[] ihl = mb.getInstructionList().getInstructionHandles();
         buildBranchTable(ihl);
         // Instruction[] il = mb.getInstructionList().getInstructions();
         for (int i = 0; i < ihl.length; i++) {
@@ -548,10 +478,7 @@ public class ParseCIL
         }
     }
 
-
-
-    private void buildBranchTable(InstructionHandle[] ihl)
-    {
+    private void buildBranchTable(InstructionHandle[] ihl) {
         int counter = 0;
 
         map = new Hashtable();
@@ -564,63 +491,53 @@ public class ParseCIL
         }
     }
 
-
-
-    private void put(InstructionHandle ih, int id)
-    {
+    private void put(InstructionHandle ih, int id) {
         if ((Integer) map.get(ih) == null)
             map.put(ih, new Integer(id));
     }
-    
-    
-    
+
     /**
      * Convert the byte array to an int.
-     *
-     * @param b The byte array
+     * 
+     * @param b
+     *            The byte array
      * @return The integer
      */
     private static int byteArrayToInt(byte[] b) {
-        int value = (((b[3]&0xff)<<24)|((b[2]&0xff)<<16)|((b[1]&0xff)<<8)|(b[0]&0xff));
+        int value = (((b[3] & 0xff) << 24) | ((b[2] & 0xff) << 16) | ((b[1] & 0xff) << 8) | (b[0] & 0xff));
         return value;
     }
-    
-    
-    
+
     /**
      * Convert the byte array to an short
-     *
-     * @param b The byte array
+     * 
+     * @param b
+     *            The byte array
      * @return The short
      */
     private static short byteArrayToShort(byte[] b) {
-        short value = (short)(((b[1]&0xff)<<8)|(b[0]&0xff));
+        short value = (short) (((b[1] & 0xff) << 8) | (b[0] & 0xff));
         return value;
     }
-    
-    
-    
+
     /**
      * Convert the byte array to an long.
-     *
-     * @param b The byte array
+     * 
+     * @param b
+     *            The byte array
      * @return The long
      */
     private static long byteArrayToLong(byte[] byteArray) {
-    	long value = 0;
-    	
-    	for ( int i = 0; i < byteArray.length; i++ )
-    	{
-    		value |= (((long)byteArray[i])&0xff)<<(i*8);
-    	}
- 
+        long value = 0;
+
+        for (int i = 0; i < byteArray.length; i++) {
+            value |= (((long) byteArray[i]) & 0xff) << (i * 8);
+        }
+
         return value;
     }
-    
 
-
-    private void addInstruction(Instruction inst, Element xml)
-    {
+    private void addInstruction(Instruction inst, Element xml) {
         Element xml_inst = null;
         if (inst instanceof BOX)
             xml_inst = visitInstructionBOX((BOX) inst);
@@ -673,11 +590,11 @@ public class ParseCIL
         if (inst instanceof POP)
             xml_inst = visitInstructionPOP((POP) inst);
         if (inst instanceof LDNULL)
-        	xml_inst = visitInstructionLDNULL((LDNULL) inst);
+            xml_inst = visitInstructionLDNULL((LDNULL) inst);
         if (inst instanceof CONV)
-        	xml_inst = visitInstructionCONV((CONV) inst);
+            xml_inst = visitInstructionCONV((CONV) inst);
         if (inst instanceof NOP)
-        	xml_inst = visitInstructionNOP((NOP) inst);
+            xml_inst = visitInstructionNOP((NOP) inst);
         if (inst instanceof BGE)
             xml_inst = visitBranchInstruction((BranchInstruction) inst, "bge");
         if (inst instanceof BLE)
@@ -689,95 +606,74 @@ public class ParseCIL
         if (inst instanceof BGT)
             xml_inst = visitBranchInstruction((BranchInstruction) inst, "bgt");
         if (inst instanceof BRFALSE)
-            xml_inst = visitBranchInstruction((BranchInstruction) inst,
-                    "brfalse");
+            xml_inst = visitBranchInstruction((BranchInstruction) inst, "brfalse");
         if (inst instanceof BRTRUE)
-            xml_inst = visitBranchInstruction((BranchInstruction) inst,
-                    "brtrue");
+            xml_inst = visitBranchInstruction((BranchInstruction) inst, "brtrue");
         if (inst instanceof BNE_UN)
-            xml_inst = visitBranchInstruction((BranchInstruction) inst,
-                    "bne_un");
+            xml_inst = visitBranchInstruction((BranchInstruction) inst, "bne_un");
         if (inst instanceof LDFLD)
-            xml_inst = visitAccessFieldInstruction(((LDFLD) inst).getField(),
-                    "ldfld");
+            xml_inst = visitAccessFieldInstruction(((LDFLD) inst).getField(), "ldfld");
         if (inst instanceof STFLD)
-            xml_inst = visitAccessFieldInstruction(((STFLD) inst).getField(),
-                    "stfld");
+            xml_inst = visitAccessFieldInstruction(((STFLD) inst).getField(), "stfld");
         if (inst instanceof STSFLD)
-        	xml_inst = visitAccessFieldInstruction(((STSFLD) inst).getField(),
-        			"stsfld");
+            xml_inst = visitAccessFieldInstruction(((STSFLD) inst).getField(), "stsfld");
         if (inst instanceof NEWARR)
-         	xml_inst = visitInstructionNewarr((NEWARR)inst);
-        
-        if( inst instanceof STELEM)
-        	xml_inst = visitInstructionStElm((STELEM)inst);
-        if( inst instanceof LDELEM)
-        	xml_inst = visitInstructionLdElm((LDELEM)inst);
-        
-        
+            xml_inst = visitInstructionNewarr((NEWARR) inst);
 
-        if(xml_inst == null)
-        {
-        	
-        	String toGet = "visitInstruction" +  inst.getName().toUpperCase();
-        	java.lang.reflect.Method foundMethod = null;
-        	try
-        	{
-        		foundMethod = this.getClass().getDeclaredMethod(toGet,new Class[]{inst.getClass()});
-        	}
-        	catch(Exception e)
-        	{
-        		
-        	}
-        
-        	if(foundMethod != null)
-        	{
-        		try
-        		{
-        			xml_inst = (Element)foundMethod.invoke(this, inst);
-        		}
-        		catch(Exception b)
-        		{
-        		}
-        	}
-        	
-        	if(xml_inst == null)
-        	{
-        		System.out.println("Error: Cannot create instruction; Couldn't find processing method");
-        		System.out.println("Looking for " + toGet + "(" + inst.getClass().getName() + ")");
+        if (inst instanceof STELEM)
+            xml_inst = visitInstructionStElm((STELEM) inst);
+        if (inst instanceof LDELEM)
+            xml_inst = visitInstructionLdElm((LDELEM) inst);
 
-        	}
+        if (xml_inst == null) {
+
+            String toGet = "visitInstruction" + inst.getName().toUpperCase();
+            java.lang.reflect.Method foundMethod = null;
+            try {
+                foundMethod = this.getClass().getDeclaredMethod(toGet,
+                        new Class[] { inst.getClass() });
+            } catch (Exception e) {
+
+            }
+
+            if (foundMethod != null) {
+                try {
+                    xml_inst = (Element) foundMethod.invoke(this, inst);
+                } catch (Exception b) {
+                }
+            }
+
+            if (xml_inst == null) {
+                System.out
+                        .println("Error: Cannot create instruction; Couldn't find processing method");
+                System.out.println("Looking for " + toGet + "(" + inst.getClass().getName() + ")");
+
+            }
 
         }
-    	  if (xml_inst == null) {
-    		  xml_inst = new Element("UNKNOWN");
-              xml_inst.setAttribute("instruction", inst.toString());
-              xml_inst.setAttribute("typename", inst.getClass().getName());
-          }
-    
-        
-      
+        if (xml_inst == null) {
+            xml_inst = new Element("UNKNOWN");
+            xml_inst.setAttribute("instruction", inst.toString());
+            xml_inst.setAttribute("typename", inst.getClass().getName());
+        }
+
         xml.addContent(xml_inst);
     }
 
-
-
-
-    private Element visitInstructionLDLEN(LDLEN inst)
-    {
-        Element xml = new Element(inst.getName(),nsCLR);
+    private Element visitInstructionLDLEN(LDLEN inst) {
+        Element xml = new Element(inst.getName(), nsCLR);
         return xml;
     }
-    private Element visitInstructionLDSFLD(LDSFLD inst)
-    {
-    	FieldRef ref = inst.getField();
-    	String opc = inst.getName();
-    	
-    	return visitAccessFieldInstruction(ref,opc);
-    	
+
+    private Element visitInstructionLDSFLD(LDSFLD inst) {
+        FieldRef ref = inst.getField();
+        String opc = inst.getName();
+
+        return visitAccessFieldInstruction(ref, opc);
+
     }
-    private Element visitAccessFieldInstruction(FieldRef ref, String opc)
-    {
+
+    private Element visitAccessFieldInstruction(FieldRef ref, String opc) {
         Element xml = new Element(opc, nsCLR);
         AbstractTypeReference pt = ref.getParent();
         TypeRef tr = (TypeRef) pt;
@@ -785,15 +681,12 @@ public class ParseCIL
 
         // If this class is in our nested class list,
         // then we need to get its true namespace
-        if (this._nestedClassNamespaceMap.containsKey(tr.getName()))
-        {
-        	name = this._nestedClassNamespaceMap.get(tr.getName());
+        if (this._nestedClassNamespaceMap.containsKey(tr.getName())) {
+            name = this._nestedClassNamespaceMap.get(tr.getName());
+        } else {
+            name = tr.getNamespace();
         }
-        else
-        {
-        	name = tr.getNamespace();
-        }
-        
+
         if (!name.equals(""))
             name += ".";
         name += tr.getName();
@@ -804,10 +697,7 @@ public class ParseCIL
         return xml;
     }
 
-
-
-    private Element visitInstructionBOX(BOX inst)
-    {
+    private Element visitInstructionBOX(BOX inst) {
         Element xml = new Element("box", nsCLR);
         AbstractTypeReference pt = inst.getValueType();
         TypeRef tr = (TypeRef) pt;
@@ -815,15 +705,12 @@ public class ParseCIL
 
         // If this class is in our nested class list,
         // then we need to get its true namespace
-        if (this._nestedClassNamespaceMap.containsKey(tr.getName()))
-        {
-        	name = this._nestedClassNamespaceMap.get(tr.getName());
+        if (this._nestedClassNamespaceMap.containsKey(tr.getName())) {
+            name = this._nestedClassNamespaceMap.get(tr.getName());
+        } else {
+            name = tr.getNamespace();
         }
-        else
-        {
-        	name = tr.getNamespace();
-        }
-        
+
         if (!name.equals(""))
             name += ".";
         name += tr.getName();
@@ -831,44 +718,37 @@ public class ParseCIL
         return xml;
     }
 
-    private Element visitInstructionStElm(STELEM inst)
-    {
-    // Don't care about subtype at the moment
-    Element xml = new Element("stelem",nsCLR);
-    return xml;
-    }
-    
-    private Element visitInstructionLdElm(LDELEM inst)
-    {
-    // Don't care about subtype at the moment
-    Element xml = new Element("ldelem",nsCLR);
-    return xml;
-    }
-    
-    private Element visitInstructionNewarr(NEWARR inst)
-    {
-    	Element xml = new Element("newarr",nsCLR);
-    	//xml.setAttribute("name", inst.getName());
-    	//xml.setAttribute("length", inst.getLength() + "");
-        AbstractTypeReference tr = inst.getType();
-        xml.setAttribute("type", genClassTypeName((TypeRef)tr) + "[]");
-        xml.setAttribute("elementType", genClassTypeName((TypeRef)tr));
+    private Element visitInstructionStElm(STELEM inst) {
+        // Don't care about subtype at the moment
+        Element xml = new Element("stelem", nsCLR);
         return xml;
-    
     }
 
-    private Element visitInstructionCASTCLASS(CASTCLASS inst)
-    {
+    private Element visitInstructionLdElm(LDELEM inst) {
+        // Don't care about subtype at the moment
+        Element xml = new Element("ldelem", nsCLR);
+        return xml;
+    }
+
+    private Element visitInstructionNewarr(NEWARR inst) {
+        Element xml = new Element("newarr", nsCLR);
+        // xml.setAttribute("name", inst.getName());
+        // xml.setAttribute("length", inst.getLength() + "");
+        AbstractTypeReference tr = inst.getType();
+        xml.setAttribute("type", genClassTypeName((TypeRef) tr) + "[]");
+        xml.setAttribute("elementType", genClassTypeName((TypeRef) tr));
+        return xml;
+
+    }
+
+    private Element visitInstructionCASTCLASS(CASTCLASS inst) {
         Element xml = new Element("castclass", nsCLR);
         AbstractTypeReference tr = inst.getType();
         xml.setAttribute("type", genClassTypeName((TypeRef) tr));
         return xml;
     }
 
-
-
-    private Element visitBranchInstruction(BranchInstruction inst, String cmd)
-    {
+    private Element visitBranchInstruction(BranchInstruction inst, String cmd) {
         Element xml = new Element(cmd, nsCLR);
         InstructionHandle target = inst.getTargetHandle();
         Integer label = (Integer) map.get(target);
@@ -876,37 +756,34 @@ public class ParseCIL
         return xml;
     }
 
-
-
-    private Element visitInstructionLDC(LDC inst)
-    {
+    private Element visitInstructionLDC(LDC inst) {
         String type = null;
         switch (inst.getOpcode()) {
-            case LDC.LDC_I4:
-            case LDC.LDC_I4_S:
-            case LDC.LDC_I4_0:
-            case LDC.LDC_I4_1:
-            case LDC.LDC_I4_2:
-            case LDC.LDC_I4_3:
-            case LDC.LDC_I4_4:
-            case LDC.LDC_I4_5:
-            case LDC.LDC_I4_6:
-            case LDC.LDC_I4_7:
-            case LDC.LDC_I4_8:
-                type = "int";
-                break;
-            case LDC.LDC_R4:
-                type = "float";
-                break;
-            case LDC.LDC_R8:
-                type = "double";
-                break;
-            case LDC.LDC_I8:
-            	type = "long";
-            	break;
-            case LDC.LDC_I4_M1:
-            	type = "uint";
-            	break;
+        case LDC.LDC_I4:
+        case LDC.LDC_I4_S:
+        case LDC.LDC_I4_0:
+        case LDC.LDC_I4_1:
+        case LDC.LDC_I4_2:
+        case LDC.LDC_I4_3:
+        case LDC.LDC_I4_4:
+        case LDC.LDC_I4_5:
+        case LDC.LDC_I4_6:
+        case LDC.LDC_I4_7:
+        case LDC.LDC_I4_8:
+            type = "int";
+            break;
+        case LDC.LDC_R4:
+            type = "float";
+            break;
+        case LDC.LDC_R8:
+            type = "double";
+            break;
+        case LDC.LDC_I8:
+            type = "long";
+            break;
+        case LDC.LDC_I4_M1:
+            type = "uint";
+            break;
         }
         if (type == null) {
             System.err.println("Unknown LDC opcode: " + inst.getOpcode());
@@ -917,37 +794,25 @@ public class ParseCIL
         return xml;
     }
 
-
-
-    private Element visitInstructionSTLOC(STLOC inst)
-    {
+    private Element visitInstructionSTLOC(STLOC inst) {
         Element xml = new Element("stloc", nsCLR);
         xml.setAttribute("index", "" + inst.getIndexValue());
         return xml;
     }
 
-
-
-    private Element visitInstructionLDLOC(LDLOC inst)
-    {
+    private Element visitInstructionLDLOC(LDLOC inst) {
         Element xml = new Element("ldloc", nsCLR);
         xml.setAttribute("index", "" + inst.getIndexValue());
         return xml;
     }
 
-
-
-    private Element visitInstructionLDLOCA(LDLOCA inst)
-    {
+    private Element visitInstructionLDLOCA(LDLOCA inst) {
         Element xml = new Element("ldloca", nsCLR);
         xml.setAttribute("index", "" + inst.getIndexValue());
         return xml;
     }
 
-
-
-    private Element visitInstructionLDFTN(LDFTN inst)
-    {
+    private Element visitInstructionLDFTN(LDFTN inst) {
         Element xml = new Element("ldftn", nsCLR);
         MethodDefOrRef m = inst.getMethod();
         AbstractTypeReference pt = m.getParent();
@@ -956,15 +821,12 @@ public class ParseCIL
 
         // If this class is in our nested class list,
         // then we need to get its true namespace
-        if (this._nestedClassNamespaceMap.containsKey(tr.getName()))
-        {
-        	name = this._nestedClassNamespaceMap.get(tr.getName());
+        if (this._nestedClassNamespaceMap.containsKey(tr.getName())) {
+            name = this._nestedClassNamespaceMap.get(tr.getName());
+        } else {
+            name = tr.getNamespace();
         }
-        else
-        {
-        	 name = tr.getNamespace();
-        }
-        
+
         if (!name.equals(""))
             name += ".";
         name += tr.getName();
@@ -979,115 +841,76 @@ public class ParseCIL
         return xml;
     }
 
-
-
-    private Element visitInstructionPOP(POP inst)
-    {
+    private Element visitInstructionPOP(POP inst) {
         Element xml = new Element("pop", nsCLR);
         return xml;
     }
 
-
-
-    private Element visitInstructionDUP(DUP inst)
-    {
+    private Element visitInstructionDUP(DUP inst) {
         Element xml = new Element("dup", nsCLR);
         return xml;
     }
 
-
-
-    private Element visitInstructionADD(ADD inst)
-    {
+    private Element visitInstructionADD(ADD inst) {
         Element xml = new Element("add", nsCLR);
         return xml;
     }
 
-
-
-    private Element visitInstructionADD_OVF(ADD_OVF inst)
-    {
+    private Element visitInstructionADD_OVF(ADD_OVF inst) {
         Element xml = new Element("add_ovf", nsCLR);
         return xml;
     }
 
-
-
-    private Element visitInstructionSUB(SUB inst)
-    {
+    private Element visitInstructionSUB(SUB inst) {
         Element xml = new Element("sub", nsCLR);
         return xml;
     }
 
-
-
-    private Element visitInstructionMUL(MUL inst)
-    {
+    private Element visitInstructionMUL(MUL inst) {
         Element xml = new Element("mul", nsCLR);
         return xml;
     }
 
-
-
-    private Element visitInstructionDIV(DIV inst)
-    {
+    private Element visitInstructionDIV(DIV inst) {
         Element xml = new Element("div", nsCLR);
         return xml;
     }
 
-
-
-    private Element visitInstructionREM(REM inst)
-    {
+    private Element visitInstructionREM(REM inst) {
         Element xml = new Element("rem", nsCLR);
         return xml;
     }
 
-
-
-    private Element visitInstructionCEQ(CEQ inst)
-    {
+    private Element visitInstructionCEQ(CEQ inst) {
         Element xml = new Element("ceq", nsCLR);
         return xml;
     }
-    
-    
-    
-    private Element visitInstructionCGT(CGT inst)
-    {
+
+    private Element visitInstructionCGT(CGT inst) {
         Element xml = new Element("cgt", nsCLR);
         return xml;
     }
-    
-    
-    
-    private Element visitInstructionCLT(CLT inst)
-    {
+
+    private Element visitInstructionCLT(CLT inst) {
         Element xml = new Element("clt", nsCLR);
         return xml;
     }
 
-
-
-    private Element visitInstructionNEWOBJ(NEWOBJ inst)
-    {
+    private Element visitInstructionNEWOBJ(NEWOBJ inst) {
         Element xml = new Element("newobj", nsCLR);
         MethodDefOrRef m = inst.getMethod();
         AbstractTypeReference pt = m.getParent();
         TypeRef tr = (TypeRef) pt;
         String name = tr.getNamespace();
-        
+
         // If this class is in our nested class list,
         // then we need to get its true namespace
-        if (this._nestedClassNamespaceMap.containsKey(tr.getName()))
-        {
-        	name = this._nestedClassNamespaceMap.get(tr.getName());
+        if (this._nestedClassNamespaceMap.containsKey(tr.getName())) {
+            name = this._nestedClassNamespaceMap.get(tr.getName());
+        } else {
+            name = tr.getNamespace();
         }
-        else
-        {
-        	 name = tr.getNamespace();
-        }
-        
+
         if (!name.equals(""))
             name += ".";
         name += tr.getName();
@@ -1101,28 +924,19 @@ public class ParseCIL
         return xml;
     }
 
-
-
-    private Element visitInstructionLDARG(LDARG inst)
-    {
+    private Element visitInstructionLDARG(LDARG inst) {
         Element xml = new Element("ldarg", nsCLR);
         xml.setAttribute("index", "" + inst.getArgumentNumber());
         return xml;
     }
 
-
-
-    private Element visitInstructionSTARG(STARG inst)
-    {
+    private Element visitInstructionSTARG(STARG inst) {
         Element xml = new Element("starg", nsCLR);
         xml.setAttribute("index", "" + inst.getArgumentNumber());
         return xml;
     }
 
-
-
-    private Element visitInstructionCALL(CALL inst)
-    {
+    private Element visitInstructionCALL(CALL inst) {
         MethodDefOrRef m = inst.getMethod();
         MethodSignature ms = null;
         if (m instanceof MethodRef) {
@@ -1146,10 +960,7 @@ public class ParseCIL
         return xml;
     }
 
-
-
-    private Element visitInstructionCALLVIRT(CALLVIRT inst)
-    {
+    private Element visitInstructionCALLVIRT(CALLVIRT inst) {
         MethodDefOrRef m = inst.getMethod();
         MethodSignature ms = null;
         if (m instanceof MethodRef)
@@ -1171,86 +982,73 @@ public class ParseCIL
         return xml;
     }
 
-
-
-    private Element visitInstructionRET(RET inst)
-    {
+    private Element visitInstructionRET(RET inst) {
         return new Element("return", nsCLR);
     }
 
-    
-
-    private Element visitInstructionLDSTR(LDSTR inst)
-    {
+    private Element visitInstructionLDSTR(LDSTR inst) {
         Element xml = new Element("ldc", nsCLR);
         xml.setAttribute("type", "System.String");
         xml.setAttribute("value", inst.getString());
         return xml;
     }
-    
-    
-    
-    private Element visitInstructionLDNULL(LDNULL inst)
-    {
+
+    private Element visitInstructionLDNULL(LDNULL inst) {
         Element xml = new Element("ldnull", nsCLR);
         return xml;
     }
-    
-    private Element visitInstructionNOP(NOP inst)
-    {
-    	Element xml = new Element("nop", nsCLR);
-    	return xml;
+
+    private Element visitInstructionNOP(NOP inst) {
+        Element xml = new Element("nop", nsCLR);
+        return xml;
     }
-    
-    
-    private Element visitInstructionCONV(CONV inst)
-    {
-    	Element xml = null;
-    	int optcode = inst.getOpcode();
-    
-    	switch(optcode)
-    	{
-    		case CONV.CONV_I8:
-    			xml = new Element("conv.i8", nsCLR);
-    			break;
-    		case CONV.CONV_I4:
-    			xml = new Element("conv.i4", nsCLR);    
-    			break;
-    		case CONV.CONV_I2:
-    			xml = new Element("conv.i2", nsCLR); 
-    			break;
-    		case CONV.CONV_I1:
-    			xml = new Element("conv.i1", nsCLR); 
-    			break;
-    		case CONV.CONV_R4:
-    			xml = new Element("conv.r4", nsCLR); 
-    			break;
-    		case CONV.CONV_R8:
-    			xml = new Element("conv.r8", nsCLR); 
-    			break;
-    		case CONV.CONV_U8:
-    			xml = new Element("conv.u8", nsCLR);
-    			break;
-    		case CONV.CONV_U4:
-    			xml = new Element("conv.u4", nsCLR); 
-    			break;
-    		case CONV.CONV_U2:
-    			xml = new Element("conv.u2", nsCLR); 
-    			break;
-    		case CONV.CONV_U1:
-    			xml = new Element("conv.u1", nsCLR); 
-    			break;
-    		case CONV.CONV_U:
-    			xml = new Element("conv.u", nsCLR);
-    			break;
-    		case CONV.CONV_I:
-    			xml = new Element("conv.i", nsCLR); 
-    			break;
-    		case CONV.CONV_R_UN:
-    			xml = new Element("conv.r.un", nsCLR);  
-    			break;
-    	}
-    	
-    	return xml;
+
+    private Element visitInstructionCONV(CONV inst) {
+        Element xml = null;
+        int optcode = inst.getOpcode();
+
+        switch (optcode) {
+        case CONV.CONV_I8:
+            xml = new Element("conv.i8", nsCLR);
+            break;
+        case CONV.CONV_I4:
+            xml = new Element("conv.i4", nsCLR);
+            break;
+        case CONV.CONV_I2:
+            xml = new Element("conv.i2", nsCLR);
+            break;
+        case CONV.CONV_I1:
+            xml = new Element("conv.i1", nsCLR);
+            break;
+        case CONV.CONV_R4:
+            xml = new Element("conv.r4", nsCLR);
+            break;
+        case CONV.CONV_R8:
+            xml = new Element("conv.r8", nsCLR);
+            break;
+        case CONV.CONV_U8:
+            xml = new Element("conv.u8", nsCLR);
+            break;
+        case CONV.CONV_U4:
+            xml = new Element("conv.u4", nsCLR);
+            break;
+        case CONV.CONV_U2:
+            xml = new Element("conv.u2", nsCLR);
+            break;
+        case CONV.CONV_U1:
+            xml = new Element("conv.u1", nsCLR);
+            break;
+        case CONV.CONV_U:
+            xml = new Element("conv.u", nsCLR);
+            break;
+        case CONV.CONV_I:
+            xml = new Element("conv.i", nsCLR);
+            break;
+        case CONV.CONV_R_UN:
+            xml = new Element("conv.r.un", nsCLR);
+            break;
+        }
+
+        return xml;
     }
 }

@@ -34,6 +34,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
+import org.xmlvm.iphone.UIControlEvent;
 
 public class Button extends View {
     private String title;
@@ -65,7 +66,7 @@ public class Button extends View {
 
     public void setText(String title) {
         this.title = title;
-        getUIButton().setTitle(title, UIControlState.UIControlStateNormal);
+        getUIButton().setTitle(title, UIControlState.Normal);
     }
 
     public void setOnClickListener(OnClickListener listener) {
@@ -77,12 +78,12 @@ public class Button extends View {
                 theListener.onClick(Button.this);
             }
 
-        }, UIControl.UIControlEventTouchUpInside);
+        }, UIControlEvent.TouchUpInside);
     }
 
     @Override
     protected UIView xmlvmCreateUIView() {
-        return UIButton.buttonWithType(UIButtonType.UIButtonTypeRoundedRect);
+        return UIButton.buttonWithType(UIButtonType.RoundedRect);
     }
 
     private UIButton getUIButton() {
@@ -94,6 +95,6 @@ public class Button extends View {
 
         String value = attrs.getAttributeValue(null, "text");
         this.title = value != null ? value : "";
-        getUIButton().setTitle(title, UIControlState.UIControlStateNormal);
+        getUIButton().setTitle(title, UIControlState.Normal);
     }
 }

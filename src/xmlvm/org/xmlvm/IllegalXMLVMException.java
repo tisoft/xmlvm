@@ -20,24 +20,15 @@
 
 package org.xmlvm;
 
-
-public class IllegalXMLVMException
-    extends Exception
-{
+public class IllegalXMLVMException extends Exception {
 
     private String reason;
 
-
-
-    public IllegalXMLVMException(String reason)
-    {
+    public IllegalXMLVMException(String reason) {
         this.reason = reason;
     }
 
-
-
-    public String toString()
-    {
+    public String toString() {
         return "IllegalXMLVMException: " + reason;
     }
 }

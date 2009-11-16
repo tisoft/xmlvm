@@ -1,37 +1,63 @@
+
+/**
+ * 
+ * @author teras
+ */
+
 package org.xmlvm.iphone;
+
+import java.awt.geom.AffineTransform;
 
 public class CGAffineTransform {
 
-    public static final int  ROTATE    = 0;
-    public static final int  TRANSLATE = 1;
+    private AffineTransform transform;
 
-    public int               type;
-    public float             alpha;
-    public float             tx;
-    public float             ty;
+    private CGAffineTransform(AffineTransform transform) {
+        this.transform = transform;
+    }
 
-    public CGAffineTransform next;
-    public CGAffineTransform tail;
-
-    private CGAffineTransform() {
-        next = null;
-        tail = this;
+    public static CGAffineTransform make(float a, float b, float c, float d, float tx, float ty) {
+        return new CGAffineTransform(new AffineTransform(a, b, c, d, tx, ty));
     }
 
     public static CGAffineTransform makeRotation(float alpha) {
-        CGAffineTransform trans = new CGAffineTransform();
-        trans.type = ROTATE;
-        trans.alpha = alpha;
-        return trans;
+        return new CGAffineTransform(AffineTransform.getRotateInstance(alpha));
     }
 
-    public void translate(float x, float y) {
-        CGAffineTransform n = new CGAffineTransform();
-        n.type = TRANSLATE;
-        n.tx = x;
-        n.ty = y;
-        this.tail.next = n;
-        this.tail = n;
+    public static CGAffineTransform makeScale(float sx, float sy) {
+        return new CGAffineTransform(AffineTransform.getScaleInstance(sx, sy));
+    }
+
+    public static CGAffineTransform makeTranslation(float tx, float ty) {
+        return new CGAffineTransform(AffineTransform.getTranslateInstance(tx, ty));
+    }
+
+    public static CGAffineTransform rotate(CGAffineTransform transf, float alpha) {
+        AffineTransform old = (AffineTransform) transf.transform.clone();
+        old.rotate(alpha);
+        return new CGAffineTransform(old);
+    }
+
+    public static CGAffineTransform scale(CGAffineTransform transf, float sx, float sy) {
+        AffineTransform old = (AffineTransform) transf.transform.clone();
+        old.scale(sx, sy);
+        return new CGAffineTransform(old);
+    }
+
+    public static CGAffineTransform translate(CGAffineTransform transf, float tx, float ty) {
+        AffineTransform old = (AffineTransform) transf.transform.clone();
+        old.translate(tx, ty);
+        return new CGAffineTransform(old);
+    }
+
+    public static CGAffineTransform concat(CGAffineTransform transf1, CGAffineTransform transf2) {
+        AffineTransform old = (AffineTransform) transf1.transform.clone();
+        old.concatenate(transf2.transform);
+        return new CGAffineTransform(old);
+    }
+
+    public AffineTransform xmlvmGetAffine() {
+        return transform;
     }
 
 }

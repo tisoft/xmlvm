@@ -108,7 +108,7 @@ public class QooxdooOutputProcess extends OutputProcess<JavaScriptOutputProcess>
     public boolean process() {
         tempDestination = arguments.option_out() + File.separator + TEMP_CACHE_SUBDIR;
         mainMethod = arguments.option_qx_main();
-        applicationName = arguments.option_qx_app();
+        applicationName = arguments.option_app_name();
 
         // This is the path, where the source for the temporary qooxdoo project
         // will be allocated.

@@ -13,9 +13,9 @@ public class NeHeLesson4 extends UIApplication {
 		this.setStatusBarHidden(true);
 
 	    UIScreen screen = UIScreen.mainScreen();
-	    window = new UIWindow(screen.applicationFrame());
+	    window = new UIWindow(screen.getApplicationFrame());
 	
-	    mainView = new NeHeLesson4View(screen.applicationFrame());
+	    mainView = new NeHeLesson4View(screen.getApplicationFrame());
 	    
 	    window.addSubview(mainView);
 	    window.makeKeyAndVisible();

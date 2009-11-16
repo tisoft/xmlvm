@@ -25,20 +25,21 @@
 #import "org_xmlvm_iphone_CGAffineTransform.h"
 #import "org_xmlvm_iphone_CALayer.h"
 #import "org_xmlvm_iphone_gl_CAEAGLLayer.h"
+#import "org_xmlvm_iphone_UIColor.h"
 
 // UIView
 //----------------------------------------------------------------------------
 @interface org_xmlvm_iphone_UIView : UIView
 - (void) drawRect:(CGRect)rect;
-+ (Class) layerClass__;
 @end
 
 @interface UIView (cat_org_xmlvm_iphone_UIView)
 - (void) __init_org_xmlvm_iphone_UIView__;
 - (void) __init_org_xmlvm_iphone_UIView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;
-- (void) __init_org_xmlvm_iphone_UIView___org_xmlvm_iphone_CGRect_java_lang_String :(org_xmlvm_iphone_CGRect*)n1:(java_lang_String*)layer;
 - (org_xmlvm_iphone_CGRect*) getBounds__;
 - (void) setFrame___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*) frame;
+- (void) setLocation___float_float: (int)x :(int)y;
+- (void) setSize___float_float: (int)width :(int)height;
 - (void) addSubview___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) view;
 - (void) insertSubview___org_xmlvm_iphone_UIView_int :(org_xmlvm_iphone_UIView*) view :(int) idx;
 - (void) removeFromSuperview__;
@@ -49,6 +50,15 @@
 - (void) setNeedsDisplayInRect___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)rect;
 - (void) drawRect___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)rect;
 - (void) setOpaque___boolean :(int) opaque;
+- (void) setBackgroundColor___org_xmlvm_iphone_UIColor:(org_xmlvm_iphone_UIColor*) col;
 - (void) setClearsContextBeforeDrawing___boolean :(int) clear;
-- (org_xmlvm_iphone_gl_CAEAGLLayer*) getEAGLLayer__;
+- (void) setUserInteractionEnabled___boolean:(int) uinteraction;
+- (void) setHidden___boolean:(int) uinteraction;
+- (void) setClipsToBounds___boolean:(int) clips;
+- (org_xmlvm_iphone_CGRect*) getFrame__;
+- (org_xmlvm_iphone_UIView*) getSuperview__;
+- (org_xmlvm_iphone_UIColor*) getBackgroundColor__;
+- (float) getAlpha__;
+- (void) setAlpha___float :(float)n1;
+
 @end

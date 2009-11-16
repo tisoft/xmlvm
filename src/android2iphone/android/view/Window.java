@@ -45,7 +45,7 @@ public class Window {
     public Window(Activity parent) {
         this.activity = parent;
         UIScreen screen = UIScreen.mainScreen();
-        rect = screen.applicationFrame();
+        rect = screen.getApplicationFrame();
         iWindow = new UIWindow(rect);
     }
 
@@ -79,7 +79,7 @@ public class Window {
      */
     public void adjustFrameSize() {
         UIScreen screen = UIScreen.mainScreen();
-        rect = screen.applicationFrame();
+        rect = screen.getApplicationFrame();
         iWindow.setTransform(null);
         iWindow.setFrame(rect);
         if (activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
@@ -87,12 +87,12 @@ public class Window {
             rect.size.height = rect.size.width;
             rect.size.width = t;
             iWindow.setFrame(rect);
-            CGAffineTransform trans = CGAffineTransform
+            CGAffineTransform rotation = CGAffineTransform
                     .makeRotation((float) ((Math.PI / 180) * 90));
             // TODO Translate should be 90, 90 for visible status bar (i.e.,
             // non-fullscreen)
-            trans.translate(80, 80);
-            iWindow.setTransform(trans);
+            CGAffineTransform translation = CGAffineTransform.translate(rotation, 80, 80);
+            iWindow.setTransform(translation);
         }
     }
 

@@ -12,7 +12,7 @@ public class HelloWorld extends UIApplication {
 
     public void applicationDidFinishLaunching(UIApplication app) {
         UIScreen screen = UIScreen.mainScreen();
-        CGRect rect = screen.applicationFrame();
+        CGRect rect = screen.getApplicationFrame();
         UIWindow window = new UIWindow(rect);
 
         rect.origin.x = rect.origin.y = 0;
@@ -21,7 +21,7 @@ public class HelloWorld extends UIApplication {
 
         UILabel title = new UILabel(rect);
         title.setText("Hello World!");
-        title.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
+        title.setTextAlignment(UITextAlignment.Center);
         mainView.addSubview(title);
 
         window.makeKeyAndVisible();

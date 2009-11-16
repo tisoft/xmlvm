@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -22,18 +23,20 @@ import org.lwjgl.opengl.PixelFormat;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UIView;
-import org.xmlvm.iphone.UIWindow;
 
 public class Device extends JPanel implements KeyListener, MouseListener, MouseMotionListener {
 
-    private ImageLoader     imageLoader;
-    private Display         display;
-    private AffineTransform deviceTransform = new AffineTransform();
-    public StatusBar        statusBar;
-    private Canvas glPanel;
-    private boolean glCreated = false;
-    private Image chassisImage;
-    
+    /* Single point of defining the resolution of the iPhone */
+    public static final Rectangle ScreenSize      = new Rectangle(0, 0, 320, 480);
+
+    private ImageLoader           imageLoader;
+    private Display               display;
+    private AffineTransform       deviceTransform = new AffineTransform();
+    public StatusBar              statusBar;
+    private Canvas                glPanel;
+    private boolean               glCreated       = false;
+    private Image                 chassisImage;
+
     public Device(ImageLoader imageLoader) {
         this.imageLoader = imageLoader;
 
@@ -47,25 +50,25 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
 
         addDisplay();
         addStatusBar();
-        
+
         if (Boolean.getBoolean("xmlvm.gl")) {
             chassisImage = imageLoader.loadImage("chassis.png");
-            
-        	glPanel = new Canvas();
-	        glPanel.addMouseListener(this);
-	        glPanel.addMouseMotionListener(this);
-	        glPanel.setIgnoreRepaint(true);
-	        glPanel.addKeyListener(this);
-	        glPanel.setFocusable(true);
-	        glPanel.setBackground(Color.black);
-	        glPanel.setBounds(35,107,320,480);
-	        glPanel.setSize(320,480);
-	        add(glPanel);
+
+            glPanel = new Canvas();
+            glPanel.addMouseListener(this);
+            glPanel.addMouseMotionListener(this);
+            glPanel.setIgnoreRepaint(true);
+            glPanel.addKeyListener(this);
+            glPanel.setFocusable(true);
+            glPanel.setBackground(Color.black);
+            glPanel.setBounds(35, 107, ScreenSize.width, ScreenSize.height);
+            glPanel.setSize(ScreenSize.width, ScreenSize.height);
+            add(glPanel);
         } else {
             addChassis();
         }
     }
-    
+
     public ImageLoader getImageLoader() {
         return imageLoader;
     }
@@ -104,11 +107,6 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
         this.add(chassis);
     }
 
-    public void addUIWindow(UIWindow newWindow) {
-        display.addSubview(newWindow);
-        this.validate();
-    }
-
     public void addGestureListener(GestureListener listener) {
         display.addGestureListener(listener);
     }
@@ -134,32 +132,32 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
     }
 
     public void paint(Graphics g) {
-    	if (glPanel == null) {
-	        Graphics2D g2d = (Graphics2D) g;
-	        AffineTransform savedTransform = g2d.getTransform();
-	        g2d.transform(deviceTransform);
-	        super.paint(g);
-	
-	        AffineTransform displayTransform = new AffineTransform();
-	        displayTransform.translate(35, 107);
-	        g2d.transform(displayTransform);
-	        display.drawRect(g2d);
-	
-	        g2d.setTransform(savedTransform);
-    	} else {
-    		super.paint(g);
-    		g.drawImage(chassisImage, 0, 0, null);
-    		if (!glCreated) {
-    			glCreated = true;
-    			try {
-    				org.lwjgl.opengl.Display.create(new PixelFormat(8,8,0));
-    				org.lwjgl.opengl.Display.setParent(glPanel);
-    				org.lwjgl.opengl.Display.setVSyncEnabled(true);
-    			} catch (LWJGLException e) {
-    				throw new RuntimeException(e);
-    			}
-    		}
-    	}
+        if (glPanel == null) {
+            Graphics2D g2d = (Graphics2D) g;
+            AffineTransform savedTransform = g2d.getTransform();
+            g2d.transform(deviceTransform);
+            super.paint(g);
+
+            AffineTransform displayTransform = new AffineTransform();
+            displayTransform.translate(35, 107);
+            g2d.transform(displayTransform);
+            display.paint(g2d);
+
+            g2d.setTransform(savedTransform);
+        } else {
+            super.paint(g);
+            g.drawImage(chassisImage, 0, 0, null);
+            if (!glCreated) {
+                glCreated = true;
+                try {
+                    org.lwjgl.opengl.Display.create(new PixelFormat(8, 8, 0));
+                    org.lwjgl.opengl.Display.setParent(glPanel);
+                    org.lwjgl.opengl.Display.setVSyncEnabled(true);
+                } catch (LWJGLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 
     public void mouseClicked(MouseEvent e) {
@@ -212,6 +210,6 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
     }
 
     public Component getComponent() {
-    	return this;
+        return this;
     }
 }

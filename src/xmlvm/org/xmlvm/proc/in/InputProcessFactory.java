@@ -86,6 +86,8 @@ public class InputProcessFactory {
             // XMLVM files.
         } else if (XmlvmFile.isXmlvmInput(input)) {
             return new XmlvmInputProcess(arguments, new XmlvmFile(input));
+        } else if (EmptyInputProcess.isEmptyInput(input)) {
+            return new EmptyInputProcess();
         }
         Log.warn("Unable to create InputProcesses for input: " + input);
         return null;

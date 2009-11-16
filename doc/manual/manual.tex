@@ -270,7 +270,7 @@ destination files.
 
 \item[\texttt{--target=$[$xmlvm|jvm|clr|dfa|class|exe|js|cpp|python|objc|}]
   $ $\\
-  \texttt{qooxdoo|iphone|android-on-iphone$]$}
+  \texttt{qooxdoo|iphone|pre:android$]$}
   $ $
 
   This option defines the output format of the target. These
@@ -318,54 +318,71 @@ destination files.
   The environment variable \texttt{QOOXDOO\_HOME} needs to point to the
   base directory of the Qooxdoo \cite{qooxdoo} installation.
   This option implies \texttt{--target=js} and requires options
-  \texttt{--qx-main} as well as \texttt{--qx-app}.
+  \texttt{--qx-main} as well as \texttt{--app-name}.
 
 \item[\texttt{iphone}:] Cross-compiles an application to the iPhone.
   The output directory specified by \texttt{--out} will contain a
   ready to compile iPhone application.  The resulting iPhone
   application can be compiled via ``make'' using Apple's SDK for the
-  iPhone. This option requires the option \texttt{--iphone-app}.
+  iPhone. This option requires the option \texttt{--app-name}.
 
-\item[\texttt{android-on-iphone}:] Cross-compiles an Android
+  For this target, some optional sub-targets exist:
+  \texttt{iphone:android} and \texttt{iphone:template}.
+
+\item[\texttt{iphone:android} :] Cross-compiles an Android
   application to the iPhone.  This option is mostly identical in
   behavior as target \texttt{iphone}, except that target
-  \texttt{android-on-iphone} will also copy an Android compatibility
+  \texttt{iphone:android} will also copy an Android compatibility
   library to the output directory specified by \texttt{--out}. This
-  option also requires the option \texttt{--iphone-app}.
+  option also requires the option \texttt{--app-name}.
+
+\item[\texttt{iphone:template} :] Create a template Netbeans project
+  as an iPhone application. The output directory specified by
+  \texttt{--out} will contain a ready to compile iPhone application.
+  The resulting application could be compiled as a Netbeans project
+  or by using the provided ant scripts. The \texttt{--in} paremeter is
+  ignored. This option requires the option \texttt{--app-name}.
+
+\item[\texttt{iphone:android} :] Cross-compiles an Android
+  application to the Palm Pre.
+  
 \end{description}
 
-\item[\texttt{--iphone-app=$<$app\_name$>$}] $ $
+\item[\texttt{--app-name=$<$app\_name$>$}] $ $
 
   This option can only be used in conjunction with targets
-  \texttt{iphone} or \texttt{android-on-iphone}. It specifies the name
-  of the iPhone application whose name will be
-  \texttt{$<$app\_name$>$}.
-
-\item[\texttt{--qx-app=$<$app\_name$>$}] $ $
-
-  This option lets you specify the name of the generated Qooxdoo
-  application.
+  \texttt{iphone}, \texttt{iphone:android}, \texttt{iphone:template}
+  or \texttt{qooxdoo}. It specifies the name of the application, whose
+  name will be \texttt{$<$app\_name$>$}.
 
 \item[\texttt{--qx-main=$<$main-class$>$}] $ $
 
   This option denotes the entry point of the generated Qooxdoo
   application. It requires a full qualified name as a parameter. This
   option can only be used in conjunction with option
-  \texttt{--qx-app}.
+  \texttt{--app-name}.
 
 \item[\texttt{--qx-debug}] $ $
 
   Creates a debug version of the Qooxdoo application.  If not
   specified, a ready-to-deploy version will be generated.  Requires
-  option \texttt{--qx-app}.
+  option \texttt{--app-name}.
+
+\item[\texttt{--debug=<level>}] $ $
+
+  Sets the log level of XMLVM. Possible levels are \texttt{none}
+  (absolutely no debug information is printed), \texttt{error} (only
+  errors are printed), \texttt{warning} (errors and warning are
+  printed) and \texttt{all} (full debug information, including errors
+  and warnings are printed). Defaults to \texttt{error}.
+
+\item[\texttt{--help}] $ $
+
+  Prints usage and exits.
 
 \item[\texttt{--version}] $ $
 
-  Prints the version of XMLVM.
-
-\item[\texttt{--quiet}] $ $
-
-  No diagnostic messages are printed.
+  Prints the version of XMLVM and exits.
 
 \end{description}
 
@@ -413,7 +430,7 @@ destination files.
   files will be placed in appropriate sub-directories matching their
   package names.
 
-\item[\texttt{xmlvm --in=/foo --target=iphone --iphone-app=TheApplication}] $ $
+\item[\texttt{xmlvm --in=/foo --target=iphone --app-name=TheApplication}] $ $
 
   Same as the previous example, however instead of creating Java
   \texttt{*.class} files, an iPhone application will be generated.
@@ -422,14 +439,14 @@ destination files.
   \texttt{Info.plist} and a \texttt{Makefile}. The iPhone application
   will be called \texttt{TheApplication} using a default icon.
 
-\item[\texttt{xmlvm --in=/foo --target=android-on-iphone --iphone-app=TheApplication}] $ $
+\item[\texttt{xmlvm --in=/foo --target=iphone:android --app-name=TheApplication}] $ $
 
   Same as the previous example, but will also copy the Android
   compatibility library to the output directory. This effectively
   allows Java-based Android applications to be cross-compiled to the
   iPhone.
 
-\item[\texttt{xmlvm --in=/foo --qx-app=TheApplication
+\item[\texttt{xmlvm --in=/foo --app-name=TheApplication
     --qx-main=com.acme.Main}] $ $
 
   The directory \texttt{/foo} is searched recursively for
@@ -614,7 +631,7 @@ iPhone application.
 As can be seen, compared to the Java-for-the-iPhone portion of XMLVM,
 the only additional feature added to support Android applications is
 the Android compatibility library. When selecting target
-\texttt{android-on-iphone} (see Section
+\texttt{iphone:android} (see Section
 \ref{SEC_COMMAND_LINE_OPTIONS}), additional to cross-compiling the
 application to Objective-C, this option also includes the Android
 compatibility library to the generated project.  The Android-based

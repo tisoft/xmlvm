@@ -1,9 +1,6 @@
 package org.xmlvm.iphone;
 
-import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
-
-import org.xmlvm.iphone.internal.Simulator;
+import org.xmlvm.iphone.internal.renderer.UIImageViewRenderer;
 
 public class UIImageView extends UIView {
 
@@ -11,6 +8,7 @@ public class UIImageView extends UIView {
 
     public UIImageView(CGRect rect) {
         super(rect);
+        xmlvmSetRenderer(new UIImageViewRenderer(this));
     }
 
     public void setImage(UIImage image) {
@@ -19,16 +17,5 @@ public class UIImageView extends UIView {
 
     public UIImage getImage() {
         return this.image;
-    }
-
-    public void drawRect(CGRect r) {
-        this.setTransformForThisView();
-        Graphics2D g = CGContext.theContext.graphicsContext;
-        // draw the image using the AffineTransform
-        AffineTransform trans = new AffineTransform();
-        CGRect rect = this.getDisplayRect();
-        trans.translate(rect.origin.x, rect.origin.y);
-        g.drawImage(image.image, trans, Simulator.getDisplay());
-        this.restoreLastTransform();
     }
 }

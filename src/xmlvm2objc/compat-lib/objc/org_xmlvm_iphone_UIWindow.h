@@ -27,6 +27,7 @@
 //----------------------------------------------------------------------------
 typedef UIWindow org_xmlvm_iphone_UIWindow;
 @interface UIWindow (cat_org_xmlvm_iphone_UIWindow)
+- (void) __init_org_xmlvm_iphone_UIWindow__;
 - (void) __init_org_xmlvm_iphone_UIWindow___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;
 - (void) addSubview___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*)view;
 - (void) makeKeyAndVisible__;

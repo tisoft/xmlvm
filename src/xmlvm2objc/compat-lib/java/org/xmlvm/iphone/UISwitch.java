@@ -1,35 +1,28 @@
 package org.xmlvm.iphone;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.GradientPaint;
-import java.awt.Graphics2D;
+import static org.xmlvm.iphone.UIControlEvent.TouchUpInside;
+import static org.xmlvm.iphone.UIControlEvent.ValueChanged;
+
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
+
+import org.xmlvm.iphone.internal.renderer.UISwitchRenderer;
 
 public class UISwitch extends UIControl {
 
-    private boolean           isOn;
-    private Font              font;
-
-    private static final int  INSET               = 8;
     public static final float kSwitchButtonWidth  = 94.0f;
     public static final float kSwitchButtonHeight = 27.0f;
+    private boolean           isOn;
 
     public UISwitch() {
-        super(new CGRect(0, 0, kSwitchButtonWidth, kSwitchButtonHeight));
-        init();
+        this(new CGRect(0, 0, kSwitchButtonWidth, kSwitchButtonHeight));
     }
 
     public UISwitch(CGRect rect) {
         super(new CGRect(rect.origin.x, rect.origin.y, kSwitchButtonWidth, kSwitchButtonHeight));
-        init();
-    }
-
-    private void init() {
-        // Set a default font
-        font = new Font("Arial", Font.BOLD, 16);
-        this.setOn(false);
+        xmlvmSetRenderer(new UISwitchRenderer(this));
+        setOn(false);
     }
 
     public void setOn(boolean on) {
@@ -41,51 +34,7 @@ public class UISwitch extends UIControl {
         return isOn;
     }
 
-    public void drawRect(CGRect rect) {
-        setTransformForThisView();
-
-        Graphics2D g = CGContext.theContext.graphicsContext;
-        g.setFont(font);
-        CGRect displayRect = getDisplayRect();
-        int x = (int) displayRect.origin.x;
-        int y = (int) displayRect.origin.y;
-        int w = (int) displayRect.size.width;
-        int h = (int) displayRect.size.height;
-        GradientPaint blueGradient = new GradientPaint(0, y, new Color(61, 89, 171), 0, y + h,
-                new Color(100, 149, 237));
-        GradientPaint whiteGradient = new GradientPaint(0, y, new Color(220, 220, 220), 0, y + h,
-                Color.WHITE);
-        GradientPaint grayGradient = new GradientPaint(0, y, Color.LIGHT_GRAY, 0, y + h,
-                Color.WHITE);
-        g.setPaint(isOn ? blueGradient : whiteGradient);
-        g.fillRoundRect(x, y, w, h, INSET, INSET);
-        g.setColor(Color.LIGHT_GRAY);
-        g.drawRoundRect(x, y, w, h, INSET, INSET);
-        CGRect knob = new CGRect(displayRect);
-        float halfWidth = w / 2;
-        knob.size.width = halfWidth;
-        if (isOn)
-            knob.origin.x += halfWidth;
-        g.drawRoundRect((int) knob.origin.x, (int) knob.origin.y, (int) knob.size.width,
-                (int) knob.size.height, INSET, INSET);
-        g.setPaint(grayGradient);
-        g.fillRoundRect((int) knob.origin.x, (int) knob.origin.y, (int) knob.size.width,
-                (int) knob.size.height, INSET, INSET);
-        String label = "ON";
-        knob.origin.x = x;
-        g.setColor(Color.WHITE);
-        if (!isOn) {
-            knob.origin.x += halfWidth;
-            g.setColor(Color.GRAY);
-            label = "OFF";
-        }
-        FontMetrics fm = g.getFontMetrics();
-        g.drawString(label, knob.origin.x + INSET, knob.origin.y + (h - fm.getHeight()) / 2
-                + fm.getHeight() - fm.getDescent());
-
-        restoreLastTransform();
-    }
-
+    /* TODO teras: find a better way to receive this type of events */
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
         UITouch t = touches.iterator().next();
@@ -93,10 +42,20 @@ public class UISwitch extends UIControl {
         CGRect r = this.getBounds();
 
         if (!(p.x < 0 || p.y < 0 || p.x > r.size.width || p.y > r.size.height)) {
-            if (p.x <= r.size.width / 2) {
-                setOn(true);
-            } else {
-                setOn(false);
+            for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet()
+                    .iterator(); it.hasNext();) {
+                Map.Entry<Integer, UIControlDelegate> e = it.next();
+                if ((e.getKey().intValue() & TouchUpInside) > 0) {
+                    e.getValue().raiseEvent();
+                }
+            }
+            setOn(!this.isOn);
+            for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet()
+                    .iterator(); it.hasNext();) {
+                Map.Entry<Integer, UIControlDelegate> e = it.next();
+                if ((e.getKey().intValue() & ValueChanged) > 0) {
+                    e.getValue().raiseEvent();
+                }
             }
         }
     }

@@ -26,15 +26,52 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
-import org.apache.bcel.classfile.*;
-import org.apache.bcel.generic.*;
-import org.jdom.*;
+import org.apache.bcel.classfile.AnnotationEntry;
+import org.apache.bcel.classfile.Code;
+import org.apache.bcel.classfile.Constant;
+import org.apache.bcel.classfile.ConstantClass;
+import org.apache.bcel.classfile.ConstantDouble;
+import org.apache.bcel.classfile.ConstantFloat;
+import org.apache.bcel.classfile.ConstantInteger;
+import org.apache.bcel.classfile.ConstantLong;
+import org.apache.bcel.classfile.ConstantString;
+import org.apache.bcel.classfile.ConstantValue;
+import org.apache.bcel.classfile.DescendingVisitor;
+import org.apache.bcel.classfile.ElementValuePair;
+import org.apache.bcel.classfile.ExceptionTable;
+import org.apache.bcel.classfile.Field;
+import org.apache.bcel.classfile.JavaClass;
+import org.apache.bcel.classfile.Method;
+import org.apache.bcel.classfile.Synthetic;
+import org.apache.bcel.classfile.Utility;
+import org.apache.bcel.generic.ANEWARRAY;
+import org.apache.bcel.generic.ATHROW;
+import org.apache.bcel.generic.BranchHandle;
+import org.apache.bcel.generic.BranchInstruction;
+import org.apache.bcel.generic.CPInstruction;
+import org.apache.bcel.generic.CodeExceptionGen;
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.ConstantPushInstruction;
+import org.apache.bcel.generic.FieldInstruction;
+import org.apache.bcel.generic.IINC;
+import org.apache.bcel.generic.Instruction;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.InvokeInstruction;
+import org.apache.bcel.generic.LocalVariableGen;
+import org.apache.bcel.generic.LocalVariableInstruction;
+import org.apache.bcel.generic.MethodGen;
+import org.apache.bcel.generic.NEWARRAY;
+import org.apache.bcel.generic.ObjectType;
+import org.apache.bcel.generic.ReturnInstruction;
+import org.apache.bcel.generic.Select;
+import org.apache.bcel.generic.TABLESWITCH;
+import org.apache.bcel.generic.Type;
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.Namespace;
 
-
-
-public class ParseJVM
-    extends org.apache.bcel.classfile.EmptyVisitor
-{
+public class ParseJVM extends org.apache.bcel.classfile.EmptyVisitor {
 
     private JavaClass        clazz;
 
@@ -56,10 +93,7 @@ public class ParseJVM
 
     private Method           method;
 
-
-
-    public ParseJVM(JavaClass clazz)
-    {
+    public ParseJVM(JavaClass clazz) {
         this.clazz = clazz;
         class_name = clazz.getClassName();
         cp = new ConstantPoolGen(clazz.getConstantPool());
@@ -70,22 +104,16 @@ public class ParseJVM
         xml_root.addContent(new org.jdom.Comment("Generated: " + new Date()));
     }
 
-
-
     /**
      * Start traversal using DefaultVisitor pattern.
      */
-    public Document genXMLVM()
-    {
+    public Document genXMLVM() {
         new DescendingVisitor(clazz, this).visit();
         org.jdom.Document doc = new Document(xml_root);
         return doc;
     }
 
-
-
-    public void visitJavaClass(JavaClass clazz)
-    {
+    public void visitJavaClass(JavaClass clazz) {
         xml_class = new org.jdom.Element("class", nsXMLVM);
         String class_name = clazz.getClassName();
         String package_name = "";
@@ -113,10 +141,7 @@ public class ParseJVM
         xml_root.addContent(xml_class);
     }
 
-
-
-    public void visitField(Field field)
-    {
+    public void visitField(Field field) {
         Element f = new Element("field", nsXMLVM);
         xml_class.addContent(f);
         addAccessModifiers(f, field.getAccessFlags());
@@ -125,42 +150,28 @@ public class ParseJVM
         f.setAttribute("type", t.toString());
         ConstantValue val = field.getConstantValue();
         if (val != null) {
-        	f.setAttribute("value", val.toString());
+            f.setAttribute("value", val.toString());
         }
     }
 
-
-
-    public void visitConstantValue(ConstantValue cv)
-    {
+    public void visitConstantValue(ConstantValue cv) {
         // System.out.println("**************** = " + cv);
     }
 
-
-
-    public void visitDeprecated(org.apache.bcel.classfile.Deprecated attribute)
-    {
+    public void visitDeprecated(org.apache.bcel.classfile.Deprecated attribute) {
         // printEndMethod(attribute);
     }
 
-
-
-    public void visitSynthetic(Synthetic attribute)
-    {
+    public void visitSynthetic(Synthetic attribute) {
         // printEndMethod(attribute);
     }
 
-
-
-    private Element parseSignature(String signature)
-    {
+    private Element parseSignature(String signature) {
         org.jdom.Element sgn = new Element("signature", nsXMLVM);
-        String[] params = Utility
-                .methodSignatureArgumentTypes(signature, false);
+        String[] params = Utility.methodSignatureArgumentTypes(signature, false);
 
         Element ret = new Element("return", nsXMLVM);
-        ret.setAttribute("type", Utility.methodSignatureReturnType(signature,
-                false));
+        ret.setAttribute("type", Utility.methodSignatureReturnType(signature, false));
         sgn.addContent(ret);
 
         for (int i = 0; i < params.length; i++) {
@@ -171,10 +182,7 @@ public class ParseJVM
         return sgn;
     }
 
-
-
-    public void visitMethod(Method method)
-    {
+    public void visitMethod(Method method) {
         xml_method = new Element("method", nsXMLVM);
         xml_method.setAttribute("name", method.getName());
         addAccessModifiers(xml_method, method.getAccessFlags());
@@ -189,7 +197,8 @@ public class ParseJVM
         Element sgn = parseSignature(method.getSignature());
         xml_method.addContent(sgn);
 
-        // TODO this should also be handled via the <annotations> tag. Need modification in xmlvm2js.xsl
+        // TODO this should also be handled via the <annotations> tag. Need
+        // modification in xmlvm2js.xsl
         // Look for NativeInterface annotation
         for (AnnotationEntry annotation : method.getAnnotationEntries()) {
             String type = annotation.getAnnotationType();
@@ -202,12 +211,10 @@ public class ParseJVM
         }
 
         addAnnotations(xml_method, method.getAnnotationEntries());
-        
+
         xml_class.addContent(xml_method);
         this.method = method;
     }
-
-
 
     private void addAnnotations(Element node, AnnotationEntry[] annotations) {
         if (annotations.length == 0) {
@@ -233,11 +240,8 @@ public class ParseJVM
             }
         }
     }
-    
-    
-    
-    private void addAccessModifiers(Element node, int flags)
-    {
+
+    private void addAccessModifiers(Element node, int flags) {
         String[] modifiers = Utility.accessToString(flags).split(" ");
         for (int i = 0; i < modifiers.length; i++) {
             String modifier = modifiers[i];
@@ -250,10 +254,7 @@ public class ParseJVM
 
     }
 
-
-
-    public void visitExceptionTable(ExceptionTable e)
-    {
+    public void visitExceptionTable(ExceptionTable e) {
         /*
          * String[] names = e.getExceptionNames(); for (int i = 0; i <
          * names.length; i++) out.println(".throws " + names[i].replace('.',
@@ -263,10 +264,7 @@ public class ParseJVM
          */
     }
 
-
-
-    private void addConstant(Element node, int idx)
-    {
+    private void addConstant(Element node, int idx) {
         Constant c = cp.getConstant(idx);
         if (c instanceof ConstantString) {
             node.setAttribute("type", "java.lang.String");
@@ -274,43 +272,30 @@ public class ParseJVM
             val = val.replaceAll("\\n", "\\\\n");
             node.setAttribute("value", val);
             // node.setText(val);
-        }
-        else if (c instanceof ConstantClass) {
+        } else if (c instanceof ConstantClass) {
             ConstantClass cc = (ConstantClass) c;
             String s = (String) cc.getConstantValue(cp.getConstantPool());
             s = s.replace("/", ".");
             node.setAttribute("type", s);
-        }
-        else if (c instanceof ConstantDouble) {
+        } else if (c instanceof ConstantDouble) {
             node.setAttribute("type", "double");
-            node.setAttribute("value", java.lang.String
-                    .valueOf(((ConstantDouble) c).getBytes()));
-        }
-        else if (c instanceof ConstantLong) {
+            node.setAttribute("value", java.lang.String.valueOf(((ConstantDouble) c).getBytes()));
+        } else if (c instanceof ConstantLong) {
             node.setAttribute("type", "long");
-            node.setAttribute("value", java.lang.String
-                    .valueOf(((ConstantLong) c).getBytes()));
-        }
-        else if (c instanceof ConstantFloat) {
+            node.setAttribute("value", java.lang.String.valueOf(((ConstantLong) c).getBytes()));
+        } else if (c instanceof ConstantFloat) {
             node.setAttribute("type", "float");
-            node.setAttribute("value", java.lang.String
-                    .valueOf(((ConstantFloat) c).getBytes()));
-        }
-        else if (c instanceof ConstantInteger) {
+            node.setAttribute("value", java.lang.String.valueOf(((ConstantFloat) c).getBytes()));
+        } else if (c instanceof ConstantInteger) {
             node.setAttribute("type", "int");
-            node.setAttribute("value", String.valueOf(((ConstantInteger) c)
-                    .getBytes()));
-        }
-        else {
+            node.setAttribute("value", String.valueOf(((ConstantInteger) c).getBytes()));
+        } else {
             node.setAttribute("type", "unknown");
             node.setAttribute("value", c.toString());
         }
     }
 
-
-
-    public void visitCode(Code code)
-    {
+    public void visitCode(Code code) {
         int label_counter = 0;
 
         MethodGen mg = new MethodGen(method, class_name, cp);
@@ -325,8 +310,7 @@ public class ParseJVM
 
         for (int i = 0; i < ihs.length; i++) {
             if (ihs[i] instanceof BranchHandle) {
-                BranchInstruction bi = (BranchInstruction) ihs[i]
-                        .getInstruction();
+                BranchInstruction bi = (BranchInstruction) ihs[i].getInstruction();
 
                 if (bi instanceof Select) { // Special cases LOOKUPSWITCH and
                     // TABLESWITCH
@@ -388,8 +372,7 @@ public class ParseJVM
          * parameter.
          */
         int numMethodArgs = method.getArgumentTypes().length;
-        if (isConstructor && lvs.length == 1
-                && numMethodArgs > 0) {
+        if (isConstructor && lvs.length == 1 && numMethodArgs > 0) {
             for (int i = 0; i < numMethodArgs; i++) {
                 addHiddenVarDecl(xml_code, lastID + i + 1);
             }
@@ -420,13 +403,10 @@ public class ParseJVM
                     nested_xml_code = new Element("catch", nsJVM);
                     if (caught == null) {
                         nested_xml_code.setAttribute("type", "java.lang.Exception");
+                    } else {
+                        nested_xml_code.setAttribute("type", caught.getClassName());
                     }
-                    else {
-                        nested_xml_code.setAttribute("type", caught
-                                .getClassName());
-                    }
-                    nested_xml_code.setAttribute("using",
-                            get(ex.getHandlerPC()));
+                    nested_xml_code.setAttribute("using", get(ex.getHandlerPC()));
                     xml_code.addContent(nested_xml_code);
                     xml_code = nested_xml_code;
                 }
@@ -444,41 +424,28 @@ public class ParseJVM
 
             if (inst instanceof BranchInstruction) {
                 emitBranchInstruction(xml_inst, ih);
-            }
-            else if (inst instanceof FieldInstruction) {
+            } else if (inst instanceof FieldInstruction) {
                 emitFieldInstruction(xml_inst, (FieldInstruction) inst);
-            }
-            else if (inst instanceof InvokeInstruction) {
+            } else if (inst instanceof InvokeInstruction) {
                 emitInvokeInstruction(xml_inst, (InvokeInstruction) inst);
-            }
-            else if (inst instanceof ReturnInstruction) {
+            } else if (inst instanceof ReturnInstruction) {
                 // this method does not need to do anything
                 // emitReturnInstruction(xml_inst, (ReturnInstruction) inst);
-            }
-            else if (inst instanceof CPInstruction) {
+            } else if (inst instanceof CPInstruction) {
                 emitCPInstruction(xml_inst, (CPInstruction) inst);
-            }
-            else if (inst instanceof IINC) {
+            } else if (inst instanceof IINC) {
                 emitIINC(xml_inst, (IINC) inst);
-            }
-            else if (inst instanceof LocalVariableInstruction) {
-                emitLocalVariableInstruction(xml_inst,
-                        (LocalVariableInstruction) inst);
-            }
-            else if (inst instanceof ConstantPushInstruction) {
-                emitConstantPushInstruction(xml_inst,
-                        (ConstantPushInstruction) inst);
-            }
-            else if (inst instanceof ATHROW) {
+            } else if (inst instanceof LocalVariableInstruction) {
+                emitLocalVariableInstruction(xml_inst, (LocalVariableInstruction) inst);
+            } else if (inst instanceof ConstantPushInstruction) {
+                emitConstantPushInstruction(xml_inst, (ConstantPushInstruction) inst);
+            } else if (inst instanceof ATHROW) {
                 emitATHROW(xml_inst, (ATHROW) inst);
-            }
-            else if (inst instanceof NEWARRAY) {
+            } else if (inst instanceof NEWARRAY) {
                 emitNEWARRAY(xml_inst, (NEWARRAY) inst);
-            }
-            else if (inst instanceof ANEWARRAY) {
+            } else if (inst instanceof ANEWARRAY) {
                 emitANEWARRAY(xml_inst, (ANEWARRAY) inst);
-            }
-            else {
+            } else {
                 // do nothing
             }
 
@@ -491,8 +458,6 @@ public class ParseJVM
         }
     }
 
-
-
     /**
      * The Java compiler sometimes generates additional arguments or methods
      * that are not in the original source code (called <em>synthetic</em>
@@ -503,18 +468,15 @@ public class ParseJVM
      * @param xml_code
      * @param id
      */
-    private void addHiddenVarDecl(Element xml_code, int id)
-    {
+    private void addHiddenVarDecl(Element xml_code, int id) {
         String type = null;
         if (method.isStatic()) {
             Type t = method.getArgumentTypes()[id];
             type = t.toString();
-        }
-        else {
+        } else {
             if (id == 0) {
                 type = this.class_name;
-            }
-            else {
+            } else {
                 Type t = method.getArgumentTypes()[id - 1];
                 type = t.toString();
             }
@@ -524,7 +486,7 @@ public class ParseJVM
          * the numbering of the <var> declarations.
          */
         assert !type.equals("long") && !type.equals("double");
-        
+
         Element var = new Element("var", nsJVM);
         var.setAttribute("name", "__HIDDEN_" + id);
         var.setAttribute("id", "" + id);
@@ -533,10 +495,7 @@ public class ParseJVM
         xml_code.addContent(var);
     }
 
-
-
-    private void emitBranchInstruction(Element xml_inst, InstructionHandle ih)
-    {
+    private void emitBranchInstruction(Element xml_inst, InstructionHandle ih) {
         Instruction inst = ih.getInstruction();
 
         if (inst instanceof Select) { // Special cases LOOKUPSWITCH and
@@ -554,8 +513,7 @@ public class ParseJVM
                     case_label.setAttribute("label", get(targets[j]));
                     xml_inst.addContent(case_label);
                 }
-            }
-            else { // LOOKUPSWITCH
+            } else { // LOOKUPSWITCH
                 for (int j = 0; j < targets.length; j++) {
                     org.jdom.Element case_label = new Element("case", nsJVM);
                     case_label.setAttribute("key", "" + matchs[j]);
@@ -568,8 +526,7 @@ public class ParseJVM
             org.jdom.Element default_label = new Element("default", nsJVM);
             default_label.setAttribute("label", get(s.getTarget()));
             xml_inst.addContent(default_label);
-        }
-        else {
+        } else {
             BranchInstruction bi = (BranchInstruction) inst;
             ih = bi.getTarget();
             String label = get(ih);
@@ -581,10 +538,7 @@ public class ParseJVM
         }
     }
 
-
-
-    private void emitFieldInstruction(Element xml_inst, FieldInstruction inst)
-    {
+    private void emitFieldInstruction(Element xml_inst, FieldInstruction inst) {
         Type type = inst.getFieldType(cp);
         xml_inst.setAttribute("class-type", inst.getClassName(cp));
         xml_inst.setAttribute("type", type.toString());
@@ -592,10 +546,7 @@ public class ParseJVM
         xml_inst.setAttribute("field", name);
     }
 
-
-
-    private void emitInvokeInstruction(Element xml_inst, InvokeInstruction inst)
-    {
+    private void emitInvokeInstruction(Element xml_inst, InvokeInstruction inst) {
         Type type = inst.getClassType(cp);
         xml_inst.setAttribute("class-type", type.toString());
         xml_inst.setAttribute("method", inst.getMethodName(cp));
@@ -603,39 +554,23 @@ public class ParseJVM
         xml_inst.addContent(parseSignature(sgn));
     }
 
-
-
-    private final String get(InstructionHandle ih)
-    {
+    private final String get(InstructionHandle ih) {
         return map.get(ih).toString();
     }
 
-
-
-    private void emitCPInstruction(Element xml_inst, CPInstruction inst)
-    {
+    private void emitCPInstruction(Element xml_inst, CPInstruction inst) {
         addConstant(xml_inst, inst.getIndex());
     }
 
-
-
-    private void emitIINC(Element xml_inst, IINC inst)
-    {
-        xml_inst.setAttribute("index", java.lang.String
-                .valueOf(inst.getIndex()));
-        xml_inst.setAttribute("incr", java.lang.String.valueOf(inst
-                .getIncrement()));
+    private void emitIINC(Element xml_inst, IINC inst) {
+        xml_inst.setAttribute("index", java.lang.String.valueOf(inst.getIndex()));
+        xml_inst.setAttribute("incr", java.lang.String.valueOf(inst.getIncrement()));
     }
 
-
-
-    private void emitLocalVariableInstruction(Element xml_inst,
-            LocalVariableInstruction inst)
-    {
+    private void emitLocalVariableInstruction(Element xml_inst, LocalVariableInstruction inst) {
         Type type = inst.getType(cp);
         xml_inst.setAttribute("type", type.toString());
-        xml_inst.setAttribute("index", java.lang.String
-                .valueOf(inst.getIndex()));
+        xml_inst.setAttribute("index", java.lang.String.valueOf(inst.getIndex()));
         String op = inst.toString();
         int i;
         for (i = 0; i < op.length(); i++) {
@@ -647,24 +582,16 @@ public class ParseJVM
         xml_inst.setName(op);
     }
 
-
-
-    private void emitConstantPushInstruction(Element xml_inst,
-            ConstantPushInstruction inst)
-    {
+    private void emitConstantPushInstruction(Element xml_inst, ConstantPushInstruction inst) {
         Type type = inst.getType(cp);
         xml_inst.setAttribute("type", type.toString());
-        xml_inst.setAttribute("value", java.lang.String
-                .valueOf(inst.getValue()));
+        xml_inst.setAttribute("value", java.lang.String.valueOf(inst.getValue()));
         String op = xml_inst.getName();
         op = op.split("_")[0];
         xml_inst.setName(op);
     }
 
-
-
-    private void emitATHROW(Element xml_inst, ATHROW inst)
-    {
+    private void emitATHROW(Element xml_inst, ATHROW inst) {
         // The purpose of this method is to attempt to determine
         // the type of the Exception to be thrown. We do this by
         // searching backwards through the instructions preceeding
@@ -694,32 +621,21 @@ public class ParseJVM
         xml_inst.setAttribute("type", type);
     }
 
-
-
-    private void emitNEWARRAY(Element xml_inst, NEWARRAY inst)
-    {
+    private void emitNEWARRAY(Element xml_inst, NEWARRAY inst) {
 
         xml_inst.setAttribute("type", inst.getType().toString());
 
     }
 
-
-
-    private void emitANEWARRAY(Element xml_inst, ANEWARRAY inst)
-    {
+    private void emitANEWARRAY(Element xml_inst, ANEWARRAY inst) {
 
         xml_inst.setAttribute("type", inst.getType(cp).toString());
 
     }
 
-
-
-    private final void put(InstructionHandle ih, int id)
-    {
+    private final void put(InstructionHandle ih, int id) {
         if ((Integer) map.get(ih) == null)
             map.put(ih, new Integer(id));
     }
-
-
 
 }

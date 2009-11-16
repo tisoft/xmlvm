@@ -1,7 +1,5 @@
 package org.xmlvm.iphone;
 
-
-public class NSHTTPURLResponseHolder
-{
+public class NSHTTPURLResponseHolder {
 
 }

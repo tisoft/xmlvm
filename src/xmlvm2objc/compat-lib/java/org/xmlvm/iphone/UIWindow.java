@@ -1,25 +1,18 @@
-
 package org.xmlvm.iphone;
 
-import org.xmlvm.iphone.internal.*;
+public class UIWindow extends UIView {
 
-
-
-public class UIWindow
-    extends UIView
-{
-
-
-    public UIWindow(CGRect rect)
-    {
-        super(rect);
-        Simulator.addUIWindow(this);
+    public UIWindow() {
+        this(new CGRect(0, 0, 0, 0));
     }
 
+    public UIWindow(CGRect rect) {
+        super(rect);
+    }
 
-
-	public void makeKeyAndVisible()
-	{
-		// TODO Auto-generated method stub
-	}
+    public void makeKeyAndVisible() {
+        if (UIApplication.sharedApplication().getKeyWindow() == this)
+            return;
+        UIApplication.sharedApplication().setKeyWindow(this);
+    }
 }

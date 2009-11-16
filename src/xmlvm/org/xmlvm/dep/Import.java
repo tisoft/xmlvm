@@ -4,22 +4,19 @@
 
 package org.xmlvm.dep;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
-import org.jdom.*;
+import org.jdom.Document;
+import org.jdom.Element;
 
-
-
-public class Import
-{
+public class Import {
 
     private String      omitRef;
     private Set<String> refs;
 
-
-
-    public void genImport(Document xmlvm)
-    {
+    public void genImport(Document xmlvm) {
         init();
         Element root = xmlvm.getRootElement();
         Element class_ = root.getChild("class");
@@ -47,27 +44,18 @@ public class Import
         root.addContent(1, imp);
     }
 
-
-
-    private void init()
-    {
+    private void init() {
         refs = new HashSet<String>();
     }
 
-
-
-    private void addRef(String ref)
-    {
+    private void addRef(String ref) {
         if (!ref.equals(omitRef))
             refs.add(ref);
     }
 
-
-
-    private void addType(String type)
-    {
-        final String[] primitiveTypes = {"void", "boolean", "char", "int",
-            "byte", "short", "long", "double", "float"};
+    private void addType(String type) {
+        final String[] primitiveTypes = { "void", "boolean", "char", "int", "byte", "short",
+                "long", "double", "float" };
         type = type.replace("[]", "");
         for (String t : primitiveTypes)
             if (type.equals(t))
@@ -75,28 +63,19 @@ public class Import
         addRef(type);
     }
 
-
-
-    private void visitField(Element field)
-    {
+    private void visitField(Element field) {
         String type = field.getAttributeValue("type");
         addType(type);
     }
 
-
-
-    private void visitMethod(Element meth)
-    {
+    private void visitMethod(Element meth) {
         Element sig = meth.getChild("signature");
         visitSignature(sig);
         Element code = meth.getChild("code");
         visitCode(code);
     }
 
-
-
-    private void visitSignature(Element sig)
-    {
+    private void visitSignature(Element sig) {
         Iterator it = sig.getChildren().iterator();
         while (it.hasNext()) {
             Element param = (Element) it.next();
@@ -105,10 +84,7 @@ public class Import
         }
     }
 
-
-
-    private void visitCode(Element code)
-    {
+    private void visitCode(Element code) {
         if (code == null)
             return;
         Iterator it = code.getDescendants();
@@ -125,10 +101,7 @@ public class Import
         }
     }
 
-
-
-    private void visitInvoke(Element inv)
-    {
+    private void visitInvoke(Element inv) {
         Element sig = inv.getChild("signature");
         visitSignature(sig);
     }

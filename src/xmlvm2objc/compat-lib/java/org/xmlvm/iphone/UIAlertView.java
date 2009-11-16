@@ -1,22 +1,110 @@
 package org.xmlvm.iphone;
 
-import java.awt.BasicStroke;
+import static org.xmlvm.iphone.internal.renderer.UIAlertViewRenderer.FIRSTBUTTON_ID;
+import static org.xmlvm.iphone.internal.renderer.UIAlertViewRenderer.MESSAGE_ID;
+import static org.xmlvm.iphone.internal.renderer.UIAlertViewRenderer.TITLE_FONT_SIZE;
+import static org.xmlvm.iphone.internal.renderer.UIAlertViewRenderer.TITLE_ID;
+
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.GradientPaint;
-import java.awt.Graphics2D;
-import java.awt.Stroke;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Path2D;
-import java.util.ArrayList;
+import java.awt.Rectangle;
 import java.util.List;
 
-import org.xmlvm.iphone.internal.Display;
-import org.xmlvm.iphone.internal.Simulator;
+import org.xmlvm.iphone.internal.Device;
+import org.xmlvm.iphone.internal.renderer.UIAlertButtonRenderer;
+import org.xmlvm.iphone.internal.renderer.UIAlertViewRenderer;
+import org.xmlvm.iphone.internal.renderer.UILabelRenderer;
 
 public class UIAlertView extends UIView {
 
-    class ButtonClickCallback extends UIControlDelegate {
+    private UIAlertViewDelegate delegate;
+
+    public UIAlertView(String title, String message, UIAlertViewDelegate delegate,
+            String cancelButtonTitle) {
+        xmlvmSetRenderer(new UIAlertViewRenderer(this));
+        this.delegate = delegate;
+        addBaseView();
+        addBaseView();
+        setMessage(message);
+        setTitle(title);
+        if (cancelButtonTitle != null)
+            addButtonWithTitle(cancelButtonTitle);
+        /*
+         * UIAlert as a modal dialog covers the whole screen - see comments in
+         * UIAlertViewRenderer
+         */
+        Rectangle r = Device.ScreenSize;
+        setFrame(new CGRect(r.x, r.y, r.width, r.height));
+    }
+
+    private void addBaseView() {
+        UILabel label = new UILabel();
+        addSubview(label);
+        label.setBackgroundColor(UIColor.clearColor);
+        label.setTextColor(UIColor.whiteColor);
+        ((UILabelRenderer) label.xmlvmGetRenderer()).setShadowColor(UIColor.darkGrayColor);
+        ((UILabelRenderer) label.xmlvmGetRenderer()).setShadowOffset(new CGSize(0, -1));
+        label.setFont(UIFont.fontWithNameSize("Arial Bold", TITLE_FONT_SIZE));
+        label.setTextAlignment(UITextAlignment.Center);
+    }
+
+    public void show() {
+        UIApplication.sharedApplication().getKeyWindow().addSubview(this);
+        ((UIAlertViewRenderer) xmlvmGetRenderer()).doLayout();
+        setNeedsDisplay();
+    }
+
+    private void setViewWithString(String txt, UILabel view) {
+        if (txt == null)
+            txt = "";
+        view.setText(txt);
+    }
+
+    public void setTitle(String title) {
+        setViewWithString(title, (UILabel) getSubviews().get(TITLE_ID));
+    }
+
+    public String getTitle() {
+        return ((UILabel) getSubviews().get(TITLE_ID)).getText();
+    }
+
+    public void setMessage(String message) {
+        setViewWithString(message, (UILabel) getSubviews().get(MESSAGE_ID));
+    }
+
+    public String getMesssage() {
+        return ((UILabel) getSubviews().get(MESSAGE_ID)).getText();
+    }
+
+    public int addButtonWithTitle(String title) {
+        UIButton button = UIButton.buttonWithType(UIAlertButtonRenderer.AlertViewType);
+        UIAlertButtonRenderer bgui = (UIAlertButtonRenderer) button.xmlvmGetRenderer();
+
+        List<UIView> oldlist = getSubviews();
+
+        button.setTitle(title, UIControlState.Normal);
+        bgui.setEdgeDiameter(8);
+        button.addTarget(new ButtonClickCallback(oldlist.size() - FIRSTBUTTON_ID),
+                UIControlEvent.TouchUpInside);
+        // Set color, opacity and font style/color
+        button.setFont(UIFont.fontWithNameSize("Arial Bold", 14));
+        button.setTitleColor(UIColor.whiteColor, UIControlState.Normal);
+        button.setTitleShadowColor(UIColor.darkGrayColor, UIControlState.Normal);
+        button.setTitleShadowOffset(new CGSize(0, -1), UIControlState.Normal);
+        bgui.setBackgroundTypeColor(new Color(150, 170, 190));
+        button.setAlpha(0.78f);
+
+        addSubview(button);
+        return oldlist.size(); // The same number as in ButtonClickCallback
+    }
+
+    private void buttonClicked(int buttonIndex) {
+        delegate.clickedButtonAtIndex(this, buttonIndex);
+        removeFromSuperview();
+        setNeedsDisplay();
+    }
+
+    private class ButtonClickCallback extends UIControlDelegate {
+
         private int buttonIndex;
 
         public ButtonClickCallback(int buttonIndex) {
@@ -27,268 +115,5 @@ public class UIAlertView extends UIView {
         public void raiseEvent() {
             buttonClicked(buttonIndex);
         }
-    }
-
-    private static final int    FRAME_SIZE         = 2;
-    private static final int    EDGE_DIAMETER      = 16;
-    private static final int    INSETS             = 6;
-    private static final int    LABEL_INSETS       = 12;
-    private static final int    FULL_BUTTON_WIDTH  = 260;
-    private static final int    SMALL_BUTTON_WIDTH = 124;
-    private static final int    BUTTON_HEIGHT      = 42;
-    private static final int    TITLE_FONT_SIZE    = 16;
-    private static final int    MESSAGE_FONT_SIZE  = 14;
-
-    private String              title;
-    private String              message;
-    private UIAlertViewDelegate delegate;
-    private String              cancelButtonTitle;
-    private List<UIButton>      buttons            = new ArrayList<UIButton>();
-    private UILabel             titleView;
-    private UILabel             messageView;
-
-    public UIAlertView(String title, String message, UIAlertViewDelegate delegate,
-            String cancelButtonTitle) {
-        this.title = title;
-        this.message = message;
-        this.delegate = delegate;
-        this.cancelButtonTitle = cancelButtonTitle;
-
-        titleView = new UILabel();
-        titleView.setBackgroundColor(new Color(0, 0, 0, 0));
-        titleView.setFontColor(Color.WHITE);
-        titleView.setShadowColor(Color.DARK_GRAY);
-        titleView.setShadowOffset(new CGSize(0, -1));
-        titleView.setFont(new Font("Arial", Font.BOLD, TITLE_FONT_SIZE));
-        titleView.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
-        if (title != null && title.length() > 0) {
-            titleView.setText(title);
-            addSubview(titleView);
-        }
-
-        messageView = new UILabel();
-        messageView.setBackgroundColor(new Color(0, 0, 0, 0));
-        messageView.setFontColor(Color.WHITE);
-        messageView.setShadowColor(Color.DARK_GRAY);
-        messageView.setShadowOffset(new CGSize(0, -1));
-        messageView.setFont(new Font("Arial", Font.BOLD, MESSAGE_FONT_SIZE));
-        messageView.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
-        if (message != null && message.length() > 0) {
-            messageView.setText(message);
-            addSubview(messageView);
-        }
-
-        initTransformation();
-
-        // TODO: This will be done by layout() - remove this
-        this.setFrame(new CGRect(196, 130, 90, 60));
-
-    }
-
-    public void show() {
-        if (buttons.size() == 0) {
-            addButtonWithTitle(cancelButtonTitle);
-        }
-
-        ((Display) Simulator.getDisplay()).setAlertView(this);
-        doLayout();
-        setNeedsDisplay();
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-        titleView.setText(title);
-
-        if (title != null && title.length() > 0 && !getSubviews().contains(titleView)) {
-            addSubview(titleView);
-        }
-
-        if ((title == null || title.length() == 0) && getSubviews().contains(titleView)) {
-            titleView.removeFromSuperview();
-        }
-    }
-
-    public int addButtonWithTitle(String title) {
-        UIButton button = UIButton.buttonWithType(UIButtonType.UIButtonTypeRoundedRect);
-
-        button.setTitle(title, UIControlState.UIControlStateNormal);
-        button.setEdgeDiameter(8);
-        button.addTarget(new ButtonClickCallback(buttons.size()),
-                UIControl.UIControlEventTouchUpInside);
-
-        // Set color, opacity and font style/color
-        button.setFont(new Font("Arial", Font.BOLD, 14));
-        button.setTitleColor(Color.WHITE, UIControlState.UIControlStateNormal);
-        button.setTitleShadowColor(Color.DARK_GRAY, UIControlState.UIControlStateNormal);
-        button.setTitleShadowOffset(new CGSize(0, -1), UIControlState.UIControlStateNormal);
-        button.setBackgroundColor(new Color(150, 170, 190));
-        button.setAlpha(0.8f);
-        button.setEdgeDiameter(8);
-
-        addSubview(button);
-        buttons.add(button);
-
-        return buttons.size() - 1;
-    }
-
-    public void drawRect(CGRect rect) {
-        setTransformForThisView();
-        Graphics2D g = CGContext.theContext.graphicsContext;
-        CGRect displayRect = getDisplayRect();
-
-        int x = (int) displayRect.origin.x;
-        int y = (int) displayRect.origin.y;
-        int w = (int) displayRect.size.width;
-        int h = (int) displayRect.size.height;
-
-        // Paint dark screen overlay
-        g.setPaint(new Color(20, 20, 20, 80));
-        g.fillRect(0, 0, getScreenWidth(), getScreenHeight());
-
-        // Paint the surrounding border
-        Stroke stroke = g.getStroke();
-        g.setPaint(Color.WHITE);
-        g.setStroke(new BasicStroke(FRAME_SIZE));
-        g.drawRoundRect(x, y, w, h, EDGE_DIAMETER, EDGE_DIAMETER);
-        g.setStroke(stroke);
-
-        // Paint the view's background
-        g.setPaint(new Color(5, 10, 80, 180));
-        g.fillRoundRect(x + 1, y + 1, w - 2, h - 2, EDGE_DIAMETER, EDGE_DIAMETER);
-
-        // Paint the background's shine
-        Path2D shineShape = new Path2D.Double();
-        shineShape.moveTo(x + FRAME_SIZE - 1, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
-        shineShape.lineTo(x + FRAME_SIZE - 1, y + FRAME_SIZE + EDGE_DIAMETER / 2);
-        shineShape.quadTo(x, y, x + FRAME_SIZE + EDGE_DIAMETER / 2, y + FRAME_SIZE - 1);
-        shineShape.lineTo(x + w - FRAME_SIZE - EDGE_DIAMETER / 2, y + FRAME_SIZE - 1);
-        shineShape.quadTo(x + w, y, x + w - FRAME_SIZE + 1, y + FRAME_SIZE + EDGE_DIAMETER / 2);
-        shineShape.lineTo(x + w - FRAME_SIZE + 1, y + FRAME_SIZE + EDGE_DIAMETER / 2 + 4);
-        shineShape.quadTo(x + w / 2, y + 42, x + FRAME_SIZE - 1, y + FRAME_SIZE + EDGE_DIAMETER / 2
-                + 4);
-
-        GradientPaint shineGradient = new GradientPaint(0, y + 1, new Color(150, 190, 200, 180), 0,
-                y + 28, new Color(135, 153, 171, 180));
-        g.setPaint(shineGradient);
-        g.fill(shineShape);
-
-        restoreLastTransform();
-        for (UIView v : subViews) {
-            v.drawRect(rect);
-        }
-    }
-
-    private void doLayout() {
-        int x;
-        int y;
-        int width;
-        int height;
-
-        // Compute AlertView's boundary
-        if (buttons.size() != 2) {
-            width = 2 * FRAME_SIZE + 2 * INSETS + FULL_BUTTON_WIDTH;
-            height = 2 * FRAME_SIZE + LABEL_INSETS + buttons.size() * INSETS
-                    + (buttons.size() * BUTTON_HEIGHT);
-        } else {
-            width = 2 * FRAME_SIZE + 4 * INSETS + 2 * SMALL_BUTTON_WIDTH;
-            height = 2 * FRAME_SIZE + LABEL_INSETS + INSETS + BUTTON_HEIGHT;
-        }
-
-        if (title != null && title.length() > 0) {
-            height += LABEL_INSETS + TITLE_FONT_SIZE;
-        }
-
-        if (message != null && message.length() > 0) {
-            height += LABEL_INSETS + MESSAGE_FONT_SIZE;
-        }
-
-        x = getScreenWidth() / 2 - width / 2;
-        y = getScreenHeight() / 2 - height / 2;
-        setFrame(new CGRect(x, y, width, height));
-
-        // Compute title and message boundaries
-        int buttonYOffset = FRAME_SIZE;
-        int messageYOffset = FRAME_SIZE;
-
-        if (title != null && title.length() > 0) {
-            buttonYOffset += LABEL_INSETS + TITLE_FONT_SIZE;
-            messageYOffset += LABEL_INSETS + TITLE_FONT_SIZE;
-            titleView.setFrame(new CGRect(FRAME_SIZE + INSETS, LABEL_INSETS,
-                    buttons.size() != 2 ? FULL_BUTTON_WIDTH : 2 * (SMALL_BUTTON_WIDTH + INSETS),
-                    TITLE_FONT_SIZE));
-        }
-
-        if (message != null && message.length() > 0) {
-            buttonYOffset += LABEL_INSETS + MESSAGE_FONT_SIZE;
-            messageView.setFrame(new CGRect(FRAME_SIZE + INSETS, LABEL_INSETS + messageYOffset,
-                    buttons.size() != 2 ? FULL_BUTTON_WIDTH : 2 * (SMALL_BUTTON_WIDTH + INSETS),
-                    MESSAGE_FONT_SIZE));
-        }
-
-        // Compute buttons' boundaries
-        if (buttons.size() != 2) {
-            for (int i = 0; i < buttons.size(); i++) {
-                int buttonY = LABEL_INSETS + i * (INSETS + BUTTON_HEIGHT);
-                UIButton button = buttons.get(i);
-                button.setFrame(new CGRect(FRAME_SIZE + INSETS, buttonYOffset + buttonY,
-                        FULL_BUTTON_WIDTH, BUTTON_HEIGHT));
-            }
-        } else {
-            UIButton b1 = buttons.get(0);
-            UIButton b2 = buttons.get(1);
-
-            b1.setFrame(new CGRect(FRAME_SIZE + INSETS, buttonYOffset + LABEL_INSETS,
-                    SMALL_BUTTON_WIDTH, BUTTON_HEIGHT));
-            b2.setFrame(new CGRect(FRAME_SIZE + 3 * INSETS + SMALL_BUTTON_WIDTH, buttonYOffset
-                    + LABEL_INSETS, SMALL_BUTTON_WIDTH, BUTTON_HEIGHT));
-        }
-    }
-
-    private void initTransformation() {
-        int orientation = Simulator.getStatusBarOrientation();
-
-        switch (orientation) {
-        case UIInterfaceOrientation.UIInterfaceOrientationPortrait:
-            // this.setFrame(new CGRect(0, 0, 320, statusBarHeight));
-            this.affineTransform = new AffineTransform();
-            break;
-        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
-            // this.setFrame(new CGRect(0, 0, 480, statusBarHeight));
-            this.affineTransform = new AffineTransform();
-            this.affineTransform.translate(0, 320 + 320 / 2);
-            this.affineTransform.rotate((float) ((Math.PI / 180) * -90));
-            break;
-        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
-            // this.setFrame(new CGRect(0, 0, 480, statusBarHeight));
-            this.affineTransform = new AffineTransform();
-            this.affineTransform.translate(320, 0);
-            this.affineTransform.rotate((float) ((Math.PI / 180) * 90));
-            break;
-        case UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown:
-            // TODO
-            break;
-        }
-
-        computeCombinedTransforms();
-    }
-
-    private void buttonClicked(int buttonIndex) {
-        delegate.clickedButtonAtIndex(this, buttonIndex);
-        if (((Display) Simulator.getDisplay()).getAlertView() == this) {
-            ((Display) Simulator.getDisplay()).setAlertView(null);
-        }
-        setNeedsDisplay();
-    }
-
-    private int getScreenWidth() {
-        return Simulator.getStatusBarOrientation() == UIInterfaceOrientation.UIInterfaceOrientationPortrait
-                || Simulator.getStatusBarOrientation() == UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown ? 320
-                : 480;
-    }
-
-    private int getScreenHeight() {
-        return Simulator.getStatusBarOrientation() == UIInterfaceOrientation.UIInterfaceOrientationPortrait
-                || Simulator.getStatusBarOrientation() == UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown ? 480
-                : 320;
     }
 }

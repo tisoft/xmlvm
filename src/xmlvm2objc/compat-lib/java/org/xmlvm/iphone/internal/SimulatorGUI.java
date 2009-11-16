@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 
 import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UIView;
-import org.xmlvm.iphone.UIWindow;
 
 public class SimulatorGUI extends JPanel {
 
@@ -42,22 +41,22 @@ public class SimulatorGUI extends JPanel {
     public void redrawDisplay() {
         // TODO: Eliminate this ugly workaround
         Simulator.getRootWindow().repaint();
-        
-//        if (device != null) {
-//            device.repaint();
-//        }
+
+        // if (device != null) {
+        // device.repaint();
+        // }
     }
 
     public void redrawDisplay(int x, int y, int width, int height) {
         // TODO: Eliminate this ugly workaround
         Simulator.getRootWindow().repaint();
-        
+
         // TODO Use computed clipping rect after fixing its computation in
         // UIView
         // display.repaint(x, y, width, height);
-//        if (device != null) {
-//            device.repaint();
-//        }
+        // if (device != null) {
+        // device.repaint();
+        // }
     }
 
     private void addAccelerometerPanel() {
@@ -65,10 +64,6 @@ public class SimulatorGUI extends JPanel {
         accelerometer
                 .setLocation(this.getBounds().width - accelerometer.getBounds().width - 30, 50);
         this.add(accelerometer);
-    }
-
-    public void addUIWindow(UIWindow newWindow) {
-        device.addUIWindow(newWindow);
     }
 
     public void addGestureListener(GestureListener listener) {

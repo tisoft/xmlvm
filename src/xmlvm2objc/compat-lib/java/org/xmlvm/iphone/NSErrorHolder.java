@@ -1,7 +1,5 @@
 package org.xmlvm.iphone;
 
-
-public class NSErrorHolder
-{
+public class NSErrorHolder {
 
 }

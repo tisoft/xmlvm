@@ -17,9 +17,9 @@
  * 
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
-
 package org.xmlvm;
 
+import java.io.PrintStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,63 +28,82 @@ import java.util.Date;
  * Basic logging functionality.
  */
 public class Log {
-  private static final String ERROR = "   ERROR: ";
-  private static final String DEBUG = "   DEBUG: ";
-  private static final String WARNING = " WARNING: ";
-  
-  private static final String DATE_FORMAT = "MM/dd/yy HH:mm:ss.SSS";
 
-  private static boolean quiet = false;
-  private static DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+    private static final String     DATE_FORMAT = "MM/dd/yy HH:mm:ss.SSS";
+    private static final DateFormat dateFormat  = new SimpleDateFormat(DATE_FORMAT);
+    private static Level            level       = Level.ERROR;
 
-  private Log() {
-  }
-
-  /**
-   * Sets the quiet status for logging. If enabled, only errors will be logged.
-   */
-  public static void setQuiet(boolean isQuiet) {
-    quiet = isQuiet;
-  }
-
-  /**
-   * Logs an error message to {@link System.err}. This is not affected by the
-   * quiet status and will be printed in any circumstance.
-   * 
-   * @param message
-   *          The error message.
-   */
-  public static void error(String message) {
-    System.err.println("[" + getDate() + "] " + ERROR + message);
-  }
-
-  /**
-   * Logs a debug message to {@link System.out}. If quiet mode is enabled, this
-   * message will not be logged.
-   * 
-   * @param message
-   *          The debug message.
-   */
-  public static void debug(String message) {
-    if (!quiet) {
-      System.out.println("[" + getDate() + "] " + DEBUG + message);
+    /**
+     * Display log message, if it is in the correct log level
+     * 
+     * @param l
+     *            Desired level
+     * @param message
+     *            Message to display
+     */
+    private static void display(Level l, String message) {
+        if (l.compareTo(level) <= 0 && message != null)
+            l.stream.println("[" + getDate() + "] " + l.prefix + message);
     }
-  }
 
-  /**
-   * Logs a warning to {@link System.out}. If quiet mode is enabled, this
-   * message will not be logged.
-   * 
-   * @param message
-   *          The warning message.
-   */
-  public static void warn(String message) {
-    if (!quiet) {
-      System.out.println("[" + getDate() + "] " + WARNING + message);
+    /**
+     * Logs an error message
+     * 
+     * @param message
+     *            The error message.
+     */
+    public static void error(String message) {
+        display(Level.ERROR, message);
     }
-  }
 
-  private static String getDate() {
-    return dateFormat.format(new Date());
-  }
+    /**
+     * Logs a debug message
+     * 
+     * @param message
+     *            The debug message.
+     */
+    public static void debug(String message) {
+        display(Level.ALL, message);
+    }
+
+    /**
+     * Logs a warning to {@link System.out}. If quiet mode is enabled, this
+     * message will not be logged.
+     * 
+     * @param message
+     *            The warning message.
+     */
+    public static void warn(String message) {
+        display(Level.WARNING, message);
+    }
+
+    private static String getDate() {
+        return dateFormat.format(new Date());
+    }
+
+    public static void setLevel(Level l) {
+        if (l != null)
+            level = l;
+    }
+
+    public enum Level {
+
+        NONE("          ", System.out), ERROR("   ERROR: ", System.err), WARNING(" WARNING: ",
+                System.out), ALL("   DEBUG: ", System.out);
+        private final String      prefix;
+        private final PrintStream stream;
+
+        Level(String prefix, PrintStream stream) {
+            this.prefix = prefix;
+            this.stream = stream;
+        }
+
+        public static Level getLevel(String level) {
+            try {
+                return Level.valueOf(level.toUpperCase());
+            } catch (IllegalArgumentException ex) {
+            }
+            return null;
+        }
+    }
 }

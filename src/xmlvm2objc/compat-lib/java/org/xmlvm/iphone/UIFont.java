@@ -17,16 +17,43 @@
  * 
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
-
 package org.xmlvm.iphone;
 
+import java.awt.Font;
+
 /**
- * @author arno
+ * @author teras
  * 
  */
 public class UIFont {
 
+    private final Font font;
+
+    private UIFont(String name, int fontsize) {
+        int type = Font.PLAIN;
+        String lower = name.toLowerCase();
+        if (lower.indexOf("bold") >= 0) {
+            type |= Font.BOLD;
+            name = name.replaceAll("[bB][oO][lL][dD]", "");
+        }
+        if (lower.indexOf("italic") >= 0) {
+            type |= Font.ITALIC;
+            name = name.replaceAll("[iI][tT][aA][lL][iI][cC]", "");
+        }
+        name = name.replace("  ", " ");
+        name = name.trim();
+        font = new Font(name, type, fontsize);
+    }
+
     public UIFont fontWithSize(float fontSize) {
-        return new UIFont();
+        return new UIFont(font.getFontName(), Math.round(fontSize));
+    }
+
+    public static UIFont fontWithNameSize(String name, float fontsize) {
+        return new UIFont(name, Math.round(fontsize));
+    }
+
+    public Font xmlvmGetFont() {
+        return font;
     }
 }

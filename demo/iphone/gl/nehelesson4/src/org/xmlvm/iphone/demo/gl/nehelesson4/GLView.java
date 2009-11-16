@@ -2,13 +2,13 @@ package org.xmlvm.iphone.demo.gl.nehelesson4;
 
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.NSTimer;
-import org.xmlvm.iphone.UIView;
+import org.xmlvm.iphone.UIViewGL;
 import org.xmlvm.iphone.gl.CAEAGLLayer;
 import org.xmlvm.iphone.gl.EAGLContext;
 import org.xmlvm.iphone.gl.EAGLDrawable;
 import org.xmlvm.iphone.gl.GL;
 
-public abstract class GLView extends UIView {
+public abstract class GLView extends UIViewGL {
 	private int backingWidth;
 	private int backingHeight;
 	private EAGLContext context;
@@ -19,13 +19,13 @@ public abstract class GLView extends UIView {
 	private boolean isViewSetup;
 
     public GLView(CGRect rect) {
-    	super(rect, "CAEAGLLayer");
+    	super(rect);
     
     	backingWidth = (int) rect.size.width;
     	backingHeight = (int) rect.size.height;
     	
     	// Get the layer
-    	CAEAGLLayer eaglLayer = this.getEAGLLayer();
+    	CAEAGLLayer eaglLayer = getEAGLLayer();
     	
     	context = new EAGLContext(EAGLContext.kEAGLRenderingAPIOpenGLES1);
     	EAGLContext.setCurrentContext(context);

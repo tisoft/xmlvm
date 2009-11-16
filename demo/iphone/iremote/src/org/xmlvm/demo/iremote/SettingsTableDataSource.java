@@ -18,7 +18,7 @@ public class SettingsTableDataSource extends UITableViewDataSource {
 			cell.setLabelText("IP Address");
 			ipAddress = new UITextField(new CGRect(0, 0, kTextFieldWidth,
 					kTextFieldHeight));
-			ipAddress.setBorderStyle(UITextBorderStyle.UITextBorderStyleBezel);
+			ipAddress.setBorderStyle(UITextBorderStyle.Bezel);
 			cell.setView(ipAddress);
 		} else {
 			cell.setLabelText("Accelerometer");

@@ -21,13 +21,13 @@ public class Spark {
 
         if (image == null) {
             if (rand < 1) {
-                image = UIImage.imageAtPath("star1.png");
+                image = UIImage.imageWithContentsOfFile("star1.png");
             } else if (rand < 2) {
-                image = UIImage.imageAtPath("star2.png");
+                image = UIImage.imageWithContentsOfFile("star2.png");
             } else if (rand < 3) {
-                image = UIImage.imageAtPath("star3.png");
+                image = UIImage.imageWithContentsOfFile("star3.png");
             } else {
-                image = UIImage.imageAtPath("star4.png");
+                image = UIImage.imageWithContentsOfFile("star4.png");
             }
         }
         vx = (float) (Math.random() * Const.MAX2V) - (Const.MAX2V / 2);

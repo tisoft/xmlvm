@@ -22,6 +22,8 @@ package android.view;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import org.xmlvm.iphone.CGSize;
+import org.xmlvm.iphone.UIScreen;
 
 public class Display {
     private Activity activity;
@@ -35,7 +37,8 @@ public class Display {
      * only a dummy.
      */
     public int getWidth() {
-        return activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? 480 : 320;
+        CGSize s = UIScreen.mainScreen().getBounds().size;
+        return (int)(activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? s.height : s.width);
     }
 
     /**
@@ -43,6 +46,7 @@ public class Display {
      * only a dummy.
      */
     public int getHeight() {
-        return activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? 320 : 480;
+        CGSize s = UIScreen.mainScreen().getBounds().size;
+        return (int)(activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? s.width : s.height);
     }
 }

@@ -5,26 +5,26 @@ import java.nio.ByteBuffer;
 
 public class CGBitmapContext extends CGContext {
 
-	public static CGBitmapContext createWithSize(int x, int y, CGImage image) {
-		return new CGBitmapContext(x,y);
-	}
-	
-	public static CGBitmapContext createWithSize(int x, int y) {
-		return new CGBitmapContext(x,y);
-	}
-	
-	CGBitmapContext(Graphics2D g) {
-		super(g);
-	}
+    public static CGBitmapContext createWithSize(int x, int y, CGImage image) {
+        return new CGBitmapContext(x, y);
+    }
 
-	private CGBitmapContext(int x, int y) {
-		super(null);
-	}
-	
-	public void release() {
-	}
-	
-	public ByteBuffer getData() {
-		return null;
-	}
+    public static CGBitmapContext createWithSize(int x, int y) {
+        return new CGBitmapContext(x, y);
+    }
+
+    CGBitmapContext(Graphics2D g) {
+        super(g);
+    }
+
+    private CGBitmapContext(int x, int y) {
+        super(null);
+    }
+
+    public void release() {
+    }
+
+    public ByteBuffer getData() {
+        return null;
+    }
 }

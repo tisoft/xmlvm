@@ -17,22 +17,18 @@
  * 
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
-
 package org.xmlvm.proc.out;
 
-import org.xmlvm.Log;
-import org.xmlvm.util.FileUtil;
-import org.xmlvm.util.JarUtil;
-
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
+
+import org.xmlvm.Log;
 
 /**
  * Writes out instances of {@link OutputFile}s.
  */
 public class OutputFileWriter {
+
     private List<OutputFile> outputFiles;
 
     public OutputFileWriter(List<OutputFile> outputFiles) {
@@ -45,37 +41,13 @@ public class OutputFileWriter {
      * @return Whether the write process was successful.
      */
     public boolean write() {
-        boolean success = true;
         for (OutputFile outputFile : outputFiles) {
-            if (!createOutputDirectory(outputFile)) {
+            if (!createOutputDirectory(outputFile))
                 Log.error("Could not create directory for file: " + outputFile.getFileName());
-            }
-            String pathAndName = outputFile.getLocation();
-            if (!outputFile.getLocation().endsWith(File.separator)) {
-                pathAndName += File.separator;
-            }
-            pathAndName += outputFile.getFileName();
-
-            if (outputFile instanceof FromJarOutputFile) {
-                FromJarOutputFile fromJarFile = ((FromJarOutputFile) outputFile);
-                JarUtil.copy(fromJarFile.getSourceJar(), pathAndName);
-            } else if (outputFile instanceof DirectoryCopyOutput) {
-                DirectoryCopyOutput directoryCopy = (DirectoryCopyOutput) outputFile;
-                FileUtil.copyFiles(directoryCopy.getAffectedSourceFiles(), directoryCopy
-                        .getLocation());
-            } else {
-                try {
-                    Log.debug("Writing file: " + pathAndName);
-                    FileWriter writer = new FileWriter(pathAndName);
-                    writer.write(outputFile.getData());
-                    writer.close();
-                } catch (IOException e) {
-                    success = false;
-                    Log.error("Could not write file.\n" + e.getMessage());
-                }
-            }
+            if (!outputFile.performAction())
+                return false;
         }
-        return success;
+        return true;
     }
 
     /**

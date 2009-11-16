@@ -20,10 +20,6 @@
 
 package org.xmlvm.proc;
 
-import org.jdom.Document;
-import org.jdom.output.XMLOutputter;
-import org.xmlvm.proc.out.OutputFile;
-
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -36,6 +32,10 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
+
+import org.jdom.Document;
+import org.jdom.output.XMLOutputter;
+import org.xmlvm.proc.out.OutputFile;
 
 /**
  * Utility class for running XSL transformations.

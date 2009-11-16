@@ -28,6 +28,6 @@
 @private UIScreen* screen;
 }
 + (org_xmlvm_iphone_UIScreen*) mainScreen__;
-- (org_xmlvm_iphone_CGRect*) bounds__;
-- (org_xmlvm_iphone_CGRect*) applicationFrame__;
+- (org_xmlvm_iphone_CGRect*) getBounds__;
+- (org_xmlvm_iphone_CGRect*) getApplicationFrame__;
 @end

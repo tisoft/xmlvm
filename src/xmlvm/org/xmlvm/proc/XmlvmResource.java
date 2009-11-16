@@ -28,32 +28,31 @@ import org.jdom.Namespace;
  * InputProcesses.
  */
 public class XmlvmResource {
-  public static enum Type {
-    JVM, CLI, CLI_DFA
-  }
+    public static enum Type {
+        JVM, CLI, CLI_DFA
+    }
 
-  public static Namespace xmlvmNamespace =
-      Namespace.getNamespace("vm", "http://xmlvm.org");
+    public static Namespace xmlvmNamespace = Namespace.getNamespace("vm", "http://xmlvm.org");
 
-  private String name;
-  private Type type;
-  private Document xmlvmDocument;
+    private String          name;
+    private Type            type;
+    private Document        xmlvmDocument;
 
-  public XmlvmResource(String name, Type type, Document xmlvmDocument) {
-    this.name = name;
-    this.type = type;
-    this.xmlvmDocument = xmlvmDocument;
-  }
+    public XmlvmResource(String name, Type type, Document xmlvmDocument) {
+        this.name = name;
+        this.type = type;
+        this.xmlvmDocument = xmlvmDocument;
+    }
 
-  public Document getXmlvmDocument() {
-    return xmlvmDocument;
-  }
+    public Document getXmlvmDocument() {
+        return xmlvmDocument;
+    }
 
-  public Type getType() {
-    return type;
-  }
+    public Type getType() {
+        return type;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 }

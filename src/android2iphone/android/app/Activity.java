@@ -158,11 +158,11 @@ public class Activity extends ContextThemeWrapper {
         switch (requestedOrientation) {
         case ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE:
             UIApplication.sharedApplication()
-                    .setStatusBarOrientation(UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft);
+                    .setStatusBarOrientation(UIInterfaceOrientation.LandscapeLeft);
             break;
         case ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:
             UIApplication.sharedApplication()
-                    .setStatusBarOrientation(UIInterfaceOrientation.UIInterfaceOrientationPortrait);
+                    .setStatusBarOrientation(UIInterfaceOrientation.Portrait);
             break;
         }
         window.adjustFrameSize();

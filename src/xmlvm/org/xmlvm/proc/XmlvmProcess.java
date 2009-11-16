@@ -20,12 +20,12 @@
 
 package org.xmlvm.proc;
 
-import org.xmlvm.Log;
-import org.xmlvm.main.Arguments;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.xmlvm.Log;
+import org.xmlvm.main.Arguments;
 
 /**
  * A collection of possible process IDs.

@@ -7,7 +7,6 @@ import java.awt.geom.AffineTransform;
 import org.xmlvm.iphone.UIInterfaceOrientation;
 import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UIView;
-import org.xmlvm.iphone.UIWindow;
 
 public class Simulator {
 
@@ -38,10 +37,6 @@ public class Simulator {
         simulatorGUI.redrawDisplay(x, y, width, height);
     }
 
-    static public void addUIWindow(UIWindow newWindow) {
-        simulatorGUI.addUIWindow(newWindow);
-    }
-
     static public void addGestureListener(GestureListener listener) {
         simulatorGUI.addGestureListener(listener);
     }
@@ -59,7 +54,7 @@ public class Simulator {
     }
 
     static public void setStatusBarHidden(boolean flag) {
-        simulatorGUI.getStatusBar().setStatusBarHidden(flag);
+        simulatorGUI.getStatusBar().setHidden(flag);
     }
 
     public static Display getDisplay() {
@@ -76,23 +71,23 @@ public class Simulator {
         AffineTransform deviceTransform = new AffineTransform();
 
         switch (orientation) {
-        case UIInterfaceOrientation.UIInterfaceOrientationPortrait:
+        case UIInterfaceOrientation.Portrait:
             frameSize = new Dimension(580, 750);
             break;
 
-        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
+        case UIInterfaceOrientation.LandscapeRight:
             frameSize = new Dimension(883, 455);
             deviceTransform.rotate((float) ((Math.PI / 180) * 90), 580 / 2, 750 / 2);
             deviceTransform.translate(-80, -34);
             break;
 
-        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
+        case UIInterfaceOrientation.LandscapeLeft:
             frameSize = new Dimension(883, 455);
             deviceTransform.rotate((float) ((Math.PI / 180) * -90), 580 / 2, 750 / 2);
             deviceTransform.translate(270, 90);
             break;
 
-        case UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown:
+        case UIInterfaceOrientation.PortraitUpsideDown:
             frameSize = new Dimension(580, 750);
             frameSize = new Dimension(580, 750);
             deviceTransform.rotate((float) ((Math.PI / 180) * 180), 580 / 2, 750 / 2);

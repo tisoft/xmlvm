@@ -22,7 +22,6 @@
 
 
 
-
 // UIApplication
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_UIApplication;
@@ -100,6 +99,11 @@
 	[className release];
     UIApplicationMain(0 /*argc*/, nil /*argv*/, mangledName, mangledName);
 	[pool release];				 
+}
+
+- (java_util_List *) getWindows__
+{
+	return [self.windows retain];
 }
 
 @end

@@ -33,9 +33,22 @@
     return t;
 }
 
-- (void) translate___float_float :(float) tx :(float) ty
-{
-	transform = CGAffineTransformTranslate(transform, tx, ty);
++ (org_xmlvm_iphone_CGAffineTransform*) makeScale___float_float: (float) tx :(float)ty {
+    org_xmlvm_iphone_CGAffineTransform* t = [[org_xmlvm_iphone_CGAffineTransform alloc] init];
+    t->transform = CGAffineTransformMakeScale(tx, ty);
+    return t;
+}
+
++ (org_xmlvm_iphone_CGAffineTransform*) translate___org_xmlvm_iphone_CGAffineTransform_float_float:(org_xmlvm_iphone_CGAffineTransform *)transf :(float)tx :(float)ty {
+	org_xmlvm_iphone_CGAffineTransform* t = [[org_xmlvm_iphone_CGAffineTransform alloc] init];
+	t->transform = CGAffineTransformTranslate(transf->transform, tx, ty);
+	return t;
+}
+
++ (org_xmlvm_iphone_CGAffineTransform*) rotate___org_xmlvm_iphone_CGAffineTransform_float:(org_xmlvm_iphone_CGAffineTransform *)transf :(float)alpha {
+	org_xmlvm_iphone_CGAffineTransform* t = [[org_xmlvm_iphone_CGAffineTransform alloc] init];
+	t->transform = CGAffineTransformRotate(transf->transform, alpha);
+	return t;
 }
 
 @end

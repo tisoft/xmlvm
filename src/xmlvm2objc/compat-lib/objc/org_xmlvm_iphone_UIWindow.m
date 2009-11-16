@@ -25,6 +25,11 @@
 //----------------------------------------------------------------------------
 @implementation UIWindow (cat_org_xmlvm_iphone_UIWindow);
 
+- (void) __init_org_xmlvm_iphone_UIWindow__ {
+	[super __init_org_xmlvm_iphone_UIView__];
+	[self retain];
+}
+
 - (void) __init_org_xmlvm_iphone_UIWindow___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1
 {
 	[self initWithFrame: [n1 getCGRect]];

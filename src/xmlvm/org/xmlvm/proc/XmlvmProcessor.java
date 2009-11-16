@@ -59,7 +59,6 @@ public class XmlvmProcessor {
         // Set the target process.
         setTargetProcess(outputProcessFactory.createOutputProcess(arguments.option_target(),
                 arguments.option_out()));
-
     }
 
     /**

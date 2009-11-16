@@ -5,7 +5,7 @@ import java.util.Set;
 import org.xmlvm.iphone.internal.Simulator;
 
 public class UIResponder {
-    
+
     private UIResponderDelegate delegate = null;
 
     public UIResponder() {
@@ -33,17 +33,21 @@ public class UIResponder {
     public void touchesMoved(Set<UITouch> touches, UIEvent event) {
         // Do nothing
     }
-    
+
     public UIResponder getNextResponder() {
         if (this instanceof UIView) {
-            return ((UIView) this).parent;
-        }
-        else {
+            return ((UIView) this).getSuperview();
+        } else {
             return UIApplication.sharedApplication();
         }
     }
 
-    public UIResponderDelegate getDelegate() {
+    public boolean resignFirstResponder() {
+        // Do nothing
+        return true;
+    }
+
+    public UIResponderDelegate getResponderDelegate() {
         return delegate;
     }
 

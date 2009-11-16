@@ -1,26 +1,16 @@
-
 package org.xmlvm.iphone;
 
 import java.net.URL;
 
-
-
-public class NSMutableURLRequest
-{
+public class NSMutableURLRequest {
 
     private NSURL url;
 
-
-
-    public NSMutableURLRequest(NSURL url)
-    {
+    public NSMutableURLRequest(NSURL url) {
         this.url = url;
     }
 
-
-
-    public URL getURL()
-    {
+    public URL getURL() {
         return url.getURL();
     }
 }

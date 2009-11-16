@@ -20,22 +20,27 @@
 
 package org.xmlvm.util;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
-import org.xmlvm.Main;
+import org.xmlvm.Log;
 import org.xmlvm.proc.NewMain;
 
 public class JarUtil {
 
-    public static void copy(String fromJar, String toPath) {
+    public static boolean copy(String fromJar, String toPath) {
         try {
-            JarInputStream libFiles = new JarInputStream(Main.class.getResourceAsStream(fromJar));
+            JarInputStream libFiles = new JarInputStream(NewMain.class.getResourceAsStream(fromJar));
             if (!toPath.endsWith(File.separator))
                 toPath += File.separator;
             File dir = new File(toPath);
@@ -55,14 +60,19 @@ public class JarUtil {
                 dest.flush();
                 dest.close();
             }
+            return true;
         } catch (Exception ex) {
             ex.printStackTrace();
-            System.exit(-1);
+            return false;
         }
     }
 
     public static BufferedReader getFile(String name) {
-        return new BufferedReader(new InputStreamReader(Main.class.getResourceAsStream(name)));
+        return new BufferedReader(new InputStreamReader(NewMain.class.getResourceAsStream(name)));
+    }
+
+    public static BufferedInputStream getStream(String name) {
+        return new BufferedInputStream(NewMain.class.getResourceAsStream(name));
     }
 
     /**
@@ -70,5 +80,35 @@ public class JarUtil {
      */
     public static boolean resourceExists(String name) {
         return NewMain.class.getResourceAsStream(name) != null;
+    }
+
+    public static List<String> list(String fromJar) {
+        try {
+            ArrayList<String> list = new ArrayList<String>();
+
+            JarInputStream libFiles = new JarInputStream(JarUtil.class.getResourceAsStream(fromJar));
+            JarEntry file = null;
+            while ((file = libFiles.getNextJarEntry()) != null) {
+                list.add(file.getName());
+            }
+            return list;
+        } catch (IOException ex) {
+            Log.error("Unable to parse JAR file " + fromJar);
+        }
+        return null;
+    }
+
+    public static String findSelfJar() {
+        String jarname = "xmlvm";
+        String classpath = System.getProperty("java.class.path");
+        StringTokenizer tok = new StringTokenizer(classpath, System.getProperty("path.separator"));
+
+        while (tok.hasMoreTokens()) {
+            File file = new File(tok.nextToken()).getAbsoluteFile();
+            if (file.getName().toLowerCase().endsWith(jarname.toLowerCase() + ".jar")
+                    || file.getName().toLowerCase().endsWith(jarname.toLowerCase() + ".exe"))
+                return file.getAbsolutePath();
+        }
+        return null;
     }
 }

@@ -20,9 +20,9 @@ public class Main
         this.setStatusBarHidden(true);
 
         UIScreen screen = UIScreen.mainScreen();
-        window = new UIWindow(screen.applicationFrame());
+        window = new UIWindow(screen.getApplicationFrame());
 
-        mainView = new FireworksView(screen.applicationFrame());
+        mainView = new FireworksView(screen.getApplicationFrame());
 
         window.addSubview(mainView);
         window.makeKeyAndVisible();

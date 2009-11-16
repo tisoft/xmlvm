@@ -17,15 +17,27 @@
  * 
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
-
 package org.xmlvm.proc.out;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+
+import org.xmlvm.Log;
+import org.xmlvm.util.FileUtil;
 
 /**
  * This class represents a file and its content, read to be written out to the
  * file system.
  */
 public class OutputFile {
-    private String data;
+
+    private byte[] data;
     private String location = "";
     private String fileName = "";
 
@@ -40,14 +52,62 @@ public class OutputFile {
      * Returns the contents of this file.
      */
     public String getData() {
-        return new String(data);
+        String res = null;
+        try {
+            res = new String(data, "UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            Log.error(ex.getMessage());
+        }
+        return res;
     }
 
     /**
      * Sets the content of this file.
      */
     public void setData(String data) {
-        this.data = data;
+        if (data == null)
+            this.data = null;
+        else
+            try {
+                this.data = data.getBytes("UTF-8");
+            } catch (UnsupportedEncodingException ex) {
+                Log.error(ex.getMessage());
+            }
+    }
+
+    /**
+     * Sets the content of this file from an Input stream
+     * 
+     * @param stream
+     *            The InputStream to use - only UTF-8 streams are supported
+     * @return true, if everything was succesfull
+     */
+    public boolean setDataFromStream(InputStream stream) {
+        if (stream == null)
+            return false;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        if (FileUtil.copyStreams(stream, out)) {
+            data = out.toByteArray();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Sets the content of this file from a BufferReader
+     * 
+     * @param in
+     *            The BufferReader to use as input
+     * @return true, if everything was succesfull
+     */
+    public boolean setDataFromReader(BufferedReader in) {
+        if (in == null)
+            return false;
+        StringWriter out = new StringWriter();
+        if (FileUtil.copyReaders(in, out)) {
+            setData(out.toString());
+        }
+        return false;
     }
 
     /**
@@ -76,5 +136,49 @@ public class OutputFile {
      */
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    /**
+     * Get a list of the files affected by this OutputFile class. Only one file
+     * (the output file) is affected
+     * 
+     * @return Array of affected files.
+     */
+    public File[] getAffectedSourceFiles() {
+        File[] res = { new File(location, fileName) };
+        return res;
+    }
+
+    /**
+     * Perform the actual action of this OutputFile (i.e. write file to disk)
+     * 
+     * @return true, if no errors exist
+     */
+    public boolean performAction() {
+        FileOutputStream out = null;
+        try {
+            String pathAndName = getFullPath();
+            out = new FileOutputStream(pathAndName);
+            out.write(data);
+            out.close();
+            return true;
+        } catch (IOException e) {
+            Log.error("Could not write file.\n" + e.getMessage());
+            if (out != null)
+                try {
+                    out.close();
+                } catch (IOException ex) {
+                }
+        }
+        return false;
+    }
+
+    /**
+     * Get the fill pathname of the output file
+     * 
+     * @return The full pathname as String
+     */
+    public String getFullPath() {
+        return location + (location.endsWith(File.separator) ? "" : File.separator) + fileName;
     }
 }

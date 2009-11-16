@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.xmlvm.util;
 
 import java.io.BufferedReader;
@@ -28,8 +27,8 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 
 /**
- * Takes the input of an {@link InputStream} and writes it to the given
- * output stream. Useful if e.g. the stream comes from a process.
+ * Takes the input of an {@link InputStream} and writes it to the given output
+ * stream. Useful if e.g. the stream comes from a process.
  */
 public class InputReaderThread extends Thread {
     private BufferedReader in;
@@ -44,8 +43,8 @@ public class InputReaderThread extends Thread {
      * @param outStream
      *            the stream to write to
      * @param linePrefix
-     *            a line prefix prepended to the output of each line to
-     *            identify the process
+     *            a line prefix prepended to the output of each line to identify
+     *            the process
      */
     public InputReaderThread(InputStream inputStream, PrintStream outStream, String linePrefix) {
         in = new BufferedReader(new InputStreamReader(inputStream));

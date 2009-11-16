@@ -14,9 +14,9 @@ public class NSUserDefaults {
     public Object objectForKey(String key) {
         return preferences.get(key);
     }
-    
+
     public void setObject(Object value, String key) {
-    	preferences.put(key, value);
+        preferences.put(key, value);
     }
 
     public void setInteger(int value, String key) {
@@ -46,12 +46,12 @@ public class NSUserDefaults {
     public float floatForKey(String key) {
         return (Float) preferences.get(key);
     }
-    
+
     public NSData dataForKey(String key) {
-    	return (NSData) preferences.get(key);
+        return (NSData) preferences.get(key);
     }
-    
+
     public String stringForKey(String key) {
-    	return (String) preferences.get(key);
+        return (String) preferences.get(key);
     }
 }

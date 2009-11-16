@@ -2,11 +2,11 @@ package org.xmlvm.iphone.internal;
 
 import java.awt.Color;
 
-import javax.swing.JPanel;
 import javax.swing.JApplet;
+import javax.swing.JPanel;
 
 /**
- * The SimulatorApplet is an applet that uses our Simuator to run iPhone
+ * The SimulatorApplet is an applet that uses our Simulator to run iPhone
  * applications.
  */
 public class SimulatorApplet extends JApplet {

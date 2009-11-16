@@ -37,7 +37,7 @@
 
 	<property name="debug" value="yes" />
 	<property name="doc.dir" value="doc" />
-
+	<property name="ant.build.javac.target" value="1.5"/>
 
 	<property name="tmp.dir" value="${xmlvm.main}" />
 	<property name="cscCompiler" value="C:/WINDOWS/Microsoft.NET/Framework/v2.0.50727/csc.exe" />
@@ -86,7 +86,7 @@
 	<target name="build-objc-compat-lib" depends="init">
 		<echo message="Generating objc-compat.jar" />
 		<mkdir dir="${xmlvm.objc-compat-lib}" />
-		<javac srcdir="src/xmlvm2objc/compat-lib" destdir="${xmlvm.objc-compat-lib}" debug="${debug}">
+		<javac srcdir="src/xmlvm2objc/compat-lib/java" destdir="${xmlvm.objc-compat-lib}" debug="${debug}">
 			<classpath refid="classpath.compile" />
 			<include name="**/*.java" />
 		</javac>
@@ -109,6 +109,13 @@
 	</target>
 
 	<target name="cc-android-compat-lib" depends="build-android-compat-lib,build-xmlvm">
+		<uptodate property="cc-android-compat-lib.notrequired" targetfile="${xmlvm.android-compat-lib.objc}">
+   			<srcfiles dir= "${xmlvm.android-compat-lib.java}" includes="**/*.class"/>
+  		</uptodate>
+		<antcall target="cc-android-compat-lib.impl"/>
+	</target>
+	<target name="cc-android-compat-lib.impl" unless="cc-android-compat-lib.notrequired">
+		<echo message="Building android compatibility lib"/>
 		<mkdir dir="${xmlvm.android-compat-lib.objc}" />
 		<java classname="org.xmlvm.proc.NewMain">
 			<arg value="--out=${xmlvm.android-compat-lib.objc}" />
@@ -119,8 +126,8 @@
 	</target>
 
 	<target name="build-xmlvm" depends="init">
-		<mkdir dir="${xmlvm.build.main}" />
 		<echo message="Compiling XMLVM" />
+		<mkdir dir="${xmlvm.build.main}" />
 		<javac srcdir="src/xmlvm" destdir="${xmlvm.bin}" debug="${debug}">
 			<classpath refid="classpath.compile" />
 			<include name="**/*.java" />
@@ -133,6 +140,7 @@
 			<fileset dir="lib">
 				<include name="**/*.jar/" />
 				<exclude name="one-jar-boot.jar" />
+				<exclude name="lwjgl.jar" />
 			</fileset>
 		</copy>
 
@@ -140,6 +148,24 @@
 			<patternset>
 				<include name="**/*.class" />
 				<exclude name="OneJar.class" />
+			</patternset>
+		</unjar>
+
+		<unjar src="lib/lwjgl.jar" dest="${xmlvm.build}">
+			<patternset>
+				<include name="**/*.class" />
+			</patternset>
+		</unjar>
+
+		<unjar src="dist/lib/objc-compat.jar" dest="${xmlvm.build}">
+			<patternset>
+				<include name="**/*.class" />
+			</patternset>
+		</unjar>
+
+		<unjar src="dist/lib/android-compat.jar" dest="${xmlvm.build}">
+			<patternset>
+				<include name="**/*.class" />
 			</patternset>
 		</unjar>
 
@@ -159,7 +185,18 @@
 
 		<copy todir="${xmlvm.bin}/iphone">
 			<fileset file="var/iphone/Makefile" />
+			<fileset file="var/iphone/project.template" />
 			<fileset file="var/iphone/Info.plist" />
+		</copy>
+
+		<copy todir="${xmlvm.bin}/iphone/netbeans">
+			<fileset dir="var/iphone/netbeans/" />
+		</copy>
+
+		<copy todir="${xmlvm.build}">
+			<fileset file="var/iphone/battery.png"/>
+			<fileset file="var/iphone/chassis.png"/>
+			<fileset file="var/iphone/wifi.png"/>
 		</copy>
 
 		<jar destfile="${xmlvm.build.main}/main.jar" basedir="${xmlvm.bin}">
@@ -187,15 +224,15 @@
 	</target>
 
 
-	<target name="build-iphoneDemo" depends="all-ihelloworld,all-widgets,
+	<target name="build-iphoneDemo" depends="all-ihelloworld,
                                              build-iglnehelesson4,cc-iglnehelesson4,
 											 cc-ifireworks,cc-iremote,
 											 sim-afireworks-jar,cc-sim-afireworks,sim-xokoban-jar,cc-sim-xokoban,sim-sayhello-jar,cc-sim-sayhello">
 	</target>
 
+	<target name="all-cc" depends="all-ihelloworld,cc-ifireworks,cc-iremote,cc-sim-afireworks,cc-sim-aremote,cc-sim-sayhello,cc-sim-xokoban"/>
+
 	<target name="all-ihelloworld" depends="cc-ihelloworld-portrait,cc-ihelloworld-landscape,cc-ihelloworld-fullscreen,cc-ihelloworld-upsidedown"/>
-	
-	<target name="all-widgets" depends="cc-ibuttontest" />
 	
 	<target name="build-ihelloworld-portrait" depends="build-objc-compat-lib">
 		<mkdir dir="${xmlvm.ihelloworld}/portrait" />
@@ -225,7 +262,7 @@
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/portrait/iphone" />
 			<arg value="--target=iphone" />
-			<arg value="--iphone-app=iHelloWorld" />
+			<arg value="--app-name=iHelloWorld" />
 			<arg value="--in=${xmlvm.ihelloworld}/portrait/" />
 		</java>
 	</target>
@@ -253,7 +290,7 @@
 		</jar>
 	</target>
 
-	<target name="cc-iglnehelesson4" depends="xmlvmjar">
+	<target name="cc-iglnehelesson4" depends="xmlvmjar,build-iglnehelesson4">
 		<mkdir dir="${xmlvm.demo}/iphone/iglnehelesson4/iphone" />
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/iglnehelesson4/iphone" />
@@ -291,7 +328,7 @@
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/upsidedown/iphone" />
 			<arg value="--target=iphone" />
-			<arg value="--iphone-app=iHelloWorld" />
+			<arg value="--app-name=iHelloWorld" />
 			<arg value="--in=${xmlvm.ihelloworld}/upsidedown/" />
 		</java>
 	</target>
@@ -324,7 +361,7 @@
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/landscape/iphone" />
 			<arg value="--target=iphone" />
-			<arg value="--iphone-app=iHelloWorld" />
+			<arg value="--app-name=iHelloWorld" />
 			<arg value="--in=${xmlvm.ihelloworld}/landscape/" />
 		</java>
 	</target>
@@ -357,7 +394,7 @@
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/fullscreen/iphone" />
 			<arg value="--target=iphone" />
-			<arg value="--iphone-app=iHelloWorld" />
+			<arg value="--app-name=iHelloWorld" />
 			<arg value="--in=${xmlvm.ihelloworld}/fullscreen/" />
 		</java>
 	</target>
@@ -383,16 +420,6 @@
 				<include name="*.png/" />
 			</fileset>
 		</jar>
-	</target>
-
-	<target name="cc-ibuttontest" depends="xmlvmjar,build-ibuttontest">
-		<mkdir dir="${xmlvm.demo}/widgets/ibuttontest/iphone" />
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/widgets/ibuttontest/iphone" />
-			<arg value="--target=iphone" />
-			<arg value="--iphone-app=iButtonTest" />
-			<arg value="--in=${xmlvm.widgets}/button/" />
-		</java>
 	</target>
 
 	<target name="build-ifireworks" depends="build-objc-compat-lib">
@@ -426,15 +453,10 @@
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/ifireworks/iphone" />
 			<arg value="--target=iphone" />
-			<arg value="--iphone-app=iFireworks" />
+			<arg value="--app-name=iFireworks" />
 			<arg value="--in=${xmlvm.ifireworks}/" />
+			<arg value="--resource=demo/iphone/ifireworks/ires"/>
 		</java>
-
-		<copy todir="${xmlvm.demo}/iphone/ifireworks/iphone/resources">
-			<fileset dir="demo/iphone/ifireworks/ires">
-				<include name="*.png" />
-			</fileset>
-		</copy>
 	</target>
 
 	<target name="sim-afireworks" depends="build-android-compat-lib">
@@ -476,19 +498,11 @@
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/android/afireworks/iphone" />
 			<arg value="--target=android-on-iphone" />
-			<arg value="--iphone-app=aFireworks" />
+			<arg value="--app-name=aFireworks" />
 			<arg value="--in=${xmlvm.afireworks}/" />
+			<arg value="--resource=demo/android/afireworks/res/drawable"/>
+			<arg value="--resource=demo/android/afireworks/AndroidManifest.xml"/>
 		</java>
-		<copy todir="${xmlvm.demo}/android/afireworks/iphone/resources">
-			<fileset dir="demo/android/afireworks/res/drawable">
-				<include name="star*.png" />
-			</fileset>
-		</copy>
-		<copy todir="${xmlvm.demo}/android/afireworks/iphone/resources">
-			<fileset dir="demo/android/afireworks">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
 	</target>
 
 	<target name="sim-aremote" depends="build-android-compat-lib">
@@ -524,7 +538,7 @@
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/android/aremote/iphone" />
 			<arg value="--target=android-on-iphone" />
-			<arg value="--iphone-app=aRemote" />
+			<arg value="--app-name=aRemote" />
 			<arg value="--in=${xmlvm.aremote}/" />
 		</java>
 	</target>
@@ -569,19 +583,11 @@
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/android/xokoban/iphone" />
 			<arg value="--target=android-on-iphone" />
-			<arg value="--iphone-app=Xokoban" />
+			<arg value="--app-name=Xokoban" />
 			<arg value="--in=${xmlvm.xokoban}/" />
+			<arg value="--resource=demo/android/xokoban/res/drawable" />
+			<arg value="--resource=demo/android/xokoban/AndroidManifest.xml" />
 		</java>
-		<copy todir="${xmlvm.demo}/android/xokoban/iphone/resources">
-			<fileset dir="demo/android/xokoban/res/drawable">
-				<include name="*.png" />
-			</fileset>
-		</copy>
-		<copy todir="${xmlvm.demo}/android/xokoban/iphone/resources">
-			<fileset dir="demo/android/xokoban">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
 	</target>
 
 	<target name="sim-sayhello" depends="build-android-compat-lib">
@@ -623,17 +629,11 @@
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/android/sayhello/iphone" />
 			<arg value="--target=android-on-iphone" />
-			<arg value="--iphone-app=SayHello" />
+			<arg value="--app-name=SayHello" />
 			<arg value="--in=${xmlvm.sayhello}/" />
+			<arg value="--resource=demo/android/sayhello/res/layout"/>
+			<arg value="--resource=demo/android/sayhello/AndroidManifest.xml"/>
 		</java>
-		<copy todir="${xmlvm.demo}/android/sayhello/iphone/resources">
-			<fileset dir="demo/android/sayhello">
-				<include name="*.xml" />
-			</fileset>
-			<fileset dir="demo/android/sayhello/res/layout">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
 	</target>
 
 	<target name="build-iremote" depends="build-objc-compat-lib">
@@ -664,7 +664,7 @@
 		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
 			<arg value="--out=${xmlvm.demo}/iphone/iremote/iphone" />
 			<arg value="--target=iphone" />
-			<arg value="--iphone-app=iRemote" />
+			<arg value="--app-name=iRemote" />
 			<arg value="--in=${xmlvm.iremote}/" />
 		</java>
 	</target>

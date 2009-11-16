@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 @implementation UIImage(cat_org_xmlvm_iphone_UIImage);
 
-+ (org_xmlvm_iphone_UIImage*) imageAtPath___java_lang_String :(NSString*)n1
++ (org_xmlvm_iphone_UIImage*) imageWithContentsOfFile___java_lang_String :(NSString*)n1
 {
 	org_xmlvm_iphone_UIImage *toRet = [UIImage imageNamed:n1];
 	return toRet;
@@ -39,13 +39,13 @@
     return s;
 }
 
-- (void) draw1PartImageInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect
+- (void) drawInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect
 {
     CGRect r = [rect getCGRect];
     [self drawInRect: r];
 }
 
-- (void) draw___int_int :(int)x :(int)y
+- (void) drawAtPoint___int_int :(int)x :(int)y
 {
 	CGPoint p = CGPointMake(x,y);
 	p.x = x;
@@ -53,7 +53,7 @@
 	[self drawAtPoint: p];
 }
 
-- (org_xmlvm_iphone_CGImage*) getCoreImage__
+- (org_xmlvm_iphone_CGImage*) getCGImage__
 {
 	org_xmlvm_iphone_CGImage* retval = [[org_xmlvm_iphone_CGImage alloc] init];
 	retval->image = [self CGImage];

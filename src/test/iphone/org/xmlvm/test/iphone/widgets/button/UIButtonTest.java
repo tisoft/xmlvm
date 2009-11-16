@@ -1,6 +1,5 @@
 package org.xmlvm.test.iphone.widgets.button;
 
-import java.awt.Color;
 
 import org.xmlvm.iphone.*;
 
@@ -8,7 +7,7 @@ public class UIButtonTest extends UIApplication {
 
     public void applicationDidFinishLaunching(UIApplication app) {
         UIScreen screen = UIScreen.mainScreen();
-        CGRect rect = screen.applicationFrame();
+        CGRect rect = screen.getApplicationFrame();
         UIWindow window = new UIWindow(rect);
 
         rect.origin.x = rect.origin.y = 0;
@@ -16,15 +15,15 @@ public class UIButtonTest extends UIApplication {
         window.addSubview(mainView);
 
         final UILabel title = new UILabel(rect);
-        title.setBackgroundColor(Color.WHITE);
+        title.setBackgroundColor(UIColor.whiteColor);
         title.setText("-- No button pressed --");
-        title.setTextAlignment(UITextAlignment.UITextAlignmentCenter);
+        title.setTextAlignment(UITextAlignment.Center);
         mainView.addSubview(title);
 
-        UIButton roundedRectButton = UIButton.buttonWithType(UIButtonType.UIButtonTypeRoundedRect);
+        UIButton roundedRectButton = UIButton.buttonWithType(UIButtonType.RoundedRect);
         roundedRectButton.setFrame(new CGRect(10, 10, 90, 60));
         // roundedRectButton.setFont(new Font("Arial", Font.BOLD, 14));
-        roundedRectButton.setTitle("Rounded", UIControlState.UIControlStateNormal);
+        roundedRectButton.setTitle("Rounded", UIControlState.Normal);
         roundedRectButton.addTarget(new UIControlDelegate() {
 
             @Override
@@ -32,21 +31,20 @@ public class UIButtonTest extends UIApplication {
                 title.setText("roundedRectButton pressed");
             }
 
-        }, UIControl.UIControlEventTouchUpInside);
+        }, UIControlEvent.TouchUpInside);
         mainView.addSubview(roundedRectButton);
 
         UIButton alertDialogLightButton = UIButton
-                .buttonWithType(UIButtonType.UIButtonTypeRoundedRect);
+                .buttonWithType(UIButtonType.RoundedRect);
         alertDialogLightButton.setFrame(new CGRect(115, 10, 90, 60));
-        alertDialogLightButton.setBackgroundColor(new Color(122, 126, 150));
-        alertDialogLightButton.setAlpha(191);
-        alertDialogLightButton.setTitleColor(Color.WHITE, UIControlState.UIControlStateNormal);
+        alertDialogLightButton.setBackgroundColor(UIColor.colorWithRGBA(122, 126, 150, 191));
+        alertDialogLightButton.setTitleColor(UIColor.whiteColor, UIControlState.Normal);
         alertDialogLightButton.setTitleShadowOffset(new CGSize(0, -1),
-                UIControlState.UIControlStateNormal);
-        alertDialogLightButton.setEdgeDiameter(8);
+                UIControlState.Normal);
+        //TODO: alertDialogLightButton.setEdgeDiameter(8);
         // detailDisclosureButton.setFont(new Font("Times New Roman", Font.BOLD,
         // 16));
-        alertDialogLightButton.setTitle("alertLight", UIControlState.UIControlStateNormal);
+        alertDialogLightButton.setTitle("alertLight", UIControlState.Normal);
         alertDialogLightButton.addTarget(new UIControlDelegate() {
 
             @Override
@@ -54,19 +52,18 @@ public class UIButtonTest extends UIApplication {
                 title.setText("alertDialogLightButton pressed");
             }
 
-        }, UIControl.UIControlEventTouchUpInside);
+        }, UIControlEvent.TouchUpInside);
         mainView.addSubview(alertDialogLightButton);
 
         UIButton alertDialogDarkButton = UIButton
-                .buttonWithType(UIButtonType.UIButtonTypeRoundedRect);
+                .buttonWithType(UIButtonType.RoundedRect);
         alertDialogDarkButton.setFrame(new CGRect(220, 10, 90, 60));
-        alertDialogDarkButton.setBackgroundColor(new Color(76, 82, 113));
-        alertDialogDarkButton.setAlpha(191);
-        alertDialogDarkButton.setTitleColor(Color.WHITE, UIControlState.UIControlStateNormal);
+        alertDialogDarkButton.setBackgroundColor(UIColor.colorWithRGBA(76, 82, 113, 191));
+        alertDialogDarkButton.setTitleColor(UIColor.whiteColor, UIControlState.Normal);
         alertDialogDarkButton.setTitleShadowOffset(new CGSize(0, -1),
-                UIControlState.UIControlStateNormal);
-        alertDialogDarkButton.setEdgeDiameter(8);
-        alertDialogDarkButton.setTitle("alertDark", UIControlState.UIControlStateNormal);
+                UIControlState.Normal);
+        //TODO: alertDialogDarkButton.setEdgeDiameter(8);
+        alertDialogDarkButton.setTitle("alertDark", UIControlState.Normal);
         alertDialogDarkButton.addTarget(new UIControlDelegate() {
 
             @Override
@@ -74,7 +71,7 @@ public class UIButtonTest extends UIApplication {
                 title.setText("alertDialogDarkButton pressed");
             }
 
-        }, UIControl.UIControlEventTouchUpInside);
+        }, UIControlEvent.TouchUpInside);
         mainView.addSubview(alertDialogDarkButton);
 
         /*
@@ -94,16 +91,15 @@ public class UIButtonTest extends UIApplication {
          * mainView.addSubview(contactAddButton);
          */
 
-        UIButton darkGrayButton = UIButton.buttonWithType(UIButtonType.UIButtonTypeRoundedRect);
+        UIButton darkGrayButton = UIButton.buttonWithType(UIButtonType.RoundedRect);
         darkGrayButton.setFrame(new CGRect(10, 390, 90, 60));
-        darkGrayButton.setBackgroundColor(new Color(10, 10, 10));
-        darkGrayButton.setPressedBackgroundColor(Color.BLUE);
-        darkGrayButton.setPressedTitleColor(Color.WHITE);
-        darkGrayButton.setAlpha(191);
-        darkGrayButton.setTitleColor(Color.BLACK, UIControlState.UIControlStateNormal);
-        darkGrayButton.setTitleShadowOffset(new CGSize(0, -1), UIControlState.UIControlStateNormal);
-        darkGrayButton.setEdgeDiameter(8);
-        darkGrayButton.setTitle("darkGray", UIControlState.UIControlStateNormal);
+        darkGrayButton.setBackgroundColor(UIColor.colorWithRGBA(10, 10, 10, 191));
+        //TODO: darkGrayButton.setPressedBackgroundColor(UIColor.blueColor);
+        //TODO: darkGrayButton.setPressedTitleColor(Color.WHITE);
+        darkGrayButton.setTitleColor(UIColor.blackColor, UIControlState.Normal);
+        darkGrayButton.setTitleShadowOffset(new CGSize(0, -1), UIControlState.Normal);
+        //TODO: darkGrayButton.setEdgeDiameter(8);
+        darkGrayButton.setTitle("darkGray", UIControlState.Normal);
         darkGrayButton.addTarget(new UIControlDelegate() {
 
             @Override
@@ -111,7 +107,7 @@ public class UIButtonTest extends UIApplication {
                 title.setText("darkGrayButton pressed");
             }
 
-        }, UIControl.UIControlEventTouchUpInside);
+        }, UIControlEvent.TouchUpInside);
         mainView.addSubview(darkGrayButton);
 
         /*

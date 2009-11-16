@@ -41,7 +41,7 @@ public class FireworksView extends UIView {
         for (int j = 0; j < Const.BOMB_COUNT; ++j) {
             for (int i = 0; i < Const.SPARKS_PER_BOMB; ++i) {
                 if (!CGRect.IsNull(CGRect.Intersection(rect, bombs[j].sparks[i].position))) {
-                    bombs[j].sparks[i].image.draw1PartImageInRect(bombs[j].sparks[i].position);
+                    bombs[j].sparks[i].image.drawInRect(bombs[j].sparks[i].position);
                 }
             }
         }

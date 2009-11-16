@@ -1,5 +1,5 @@
+PRODUCT_NAME=__PROJNAME__
 
-include MakeVars
 ifeq (a, a$(IPHONE_SDK_HOME))
     IPHONE_SDK_HOME=/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk
 endif
@@ -9,7 +9,7 @@ ALL_SOURCES=$(wildcard $(SRCROOT)/lib/iphone/*.m) $(wildcard $(SRCROOT)/lib/andr
 
 
 DEPLOY_DIR=$(HOME)/Library/Application\ Support/iPhone\ Simulator/User/Applications
-DEPLOY_UUID=XMLVM
+DEPLOY_UUID=$(PRODUCT_NAME)
  
 
 SRCROOT=src
@@ -19,7 +19,7 @@ BUILT_PRODUCTS_DIR=build
 
 CONFIGURATION_TEMP_DIR=$(BUILT_PRODUCTS_DIR)/obj
 
-INFOPLIST_FILE=Info.plist
+INFOPLIST_FILE=$(PRODUCT_NAME)-Info.plist
 
 CC=gcc-4.2
 
@@ -72,7 +72,7 @@ $(PRODUCT_ABS): $(APP_ABS) $(OBJECTS_ABS)
 
 $(APP_ABS): $(INFOPLIST_ABS)
 	mkdir -p $(APP_ABS)
-	cp $(INFOPLIST_ABS) $(APP_ABS)/
+	cp $(INFOPLIST_ABS) $(APP_ABS)/Info.plist
 	if [ -d $(RESOURCES) ]; then find $(RESOURCES) -name "*" -type f -exec cp {} $(APP_ABS)/ \; ; fi
 
 $(CONFIGURATION_TEMP_DIR)/%.o: $(SRCROOT)/%.m

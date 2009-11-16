@@ -1,8 +1,8 @@
 package org.xmlvm.iphone;
 
+import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
-
 
 public class UITouch {
 
@@ -30,15 +30,27 @@ public class UITouch {
         Point2D.Float srcPoint = new Point2D.Float(x, y);
         Point2D.Float dstPoint = null;
         try {
-            dstPoint = (Point2D.Float) view.getCombinedTransform().inverseTransform(srcPoint, null);
-        } catch (NoninvertibleTransformException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            dstPoint = (Point2D.Float) getTransformation(view).inverseTransform(srcPoint, null);
+        } catch (NoninvertibleTransformException ex) {
+            ex.printStackTrace();
         }
-        CGRect rect = view.getDisplayRect();
-        dstPoint.x -= rect.origin.x;
-        dstPoint.y -= rect.origin.y;
-        CGPoint point = new CGPoint(dstPoint.x, dstPoint.y);
-        return point;
+        return new CGPoint(dstPoint.x, dstPoint.y);
+    }
+
+    private AffineTransform getTransformation(UIView v) {
+        AffineTransform res = new AffineTransform();
+        while (v != null) {
+            AffineTransform tr = AffineTransform.getTranslateInstance(v.getFrame().origin.x, v
+                    .getFrame().origin.y);
+            AffineTransform ta = v.xmlvmGetRenderer().getJavaAffineTransformation();
+            if (ta != null)
+                ta.concatenate(tr);
+            else
+                ta = tr;
+            ta.concatenate(res);
+            res = ta;
+            v = v.getSuperview();
+        }
+        return res;
     }
 }

@@ -47,7 +47,7 @@ public class Android2PalmPreOutputProcess extends OutputProcess<QooxdooOutputPro
     private static final String[] GENERATE_PROJECT_OPTS    = { "-p",
             "\"{title:'$PROJECT', id:org.xmlvm.$PROJECT, version:'1.0.0'}\"", "$PROJECT" };
     private static final String[] GENERATE_SCENE_OPTS      = { "-t", "new_scene", "-p",
-            "\"{name:$SCENE}\"", "$PROJECT"                 };
+            "\"{name:$SCENE}\"", "$PROJECT"               };
     private static final String   STAGE_ASSISTANT_TEMPLATE = "/pre/stage-assistant.js";
     private static final String   INDEX_HTML_TEMPLATE      = "/pre/index.html";
     private static final String   VERSION_ARG              = "--version";
@@ -74,7 +74,7 @@ public class Android2PalmPreOutputProcess extends OutputProcess<QooxdooOutputPro
     @Override
     public boolean process() {
         // TODO(Sascha): Use generic "app-name" argument in the future.
-        appName = arguments.option_qx_app();
+        appName = arguments.option_app_name();
         sceneName = appName + "Scene";
         compiledQxBuildPath = arguments.option_out() + File.separatorChar + "temp_cache"
                 + File.separatorChar + "temp_qx_app";

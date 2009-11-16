@@ -65,7 +65,7 @@ java_io_PrintStream* _STATIC_java_lang_System_out;
  support in the xmlvm iPhone Simulator to cross-compile without modification.
  */
 
-+ (java_lang_String *) setProperty___java_lang_String_java_lang_String: (NSString *) s1: (NSString *)s2
++ (java_lang_String *) setProperty___java_lang_String_java_lang_String: (java_lang_String *) s1: (java_lang_String *)s2
 {
     return NULL;
 }

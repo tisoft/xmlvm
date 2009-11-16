@@ -17,19 +17,20 @@
  * 
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
-
 package org.xmlvm.proc.out;
-
-import org.xmlvm.Log;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xmlvm.Log;
+import org.xmlvm.util.FileUtil;
+
 /**
  * Copies files from a source directory to the given location.
  */
 public class DirectoryCopyOutput extends OutputFile {
+
     private String sourceDirectory;
 
     public DirectoryCopyOutput(String sourceDirectory, String location) {
@@ -70,5 +71,15 @@ public class DirectoryCopyOutput extends OutputFile {
             }
         }
         return resultList.toArray(new File[0]);
+    }
+
+    /**
+     * Perform the actual action of this DirectoryCopyOutput (i.e. write files
+     * to disk)
+     * 
+     * @return true, if no errors exist
+     */
+    public boolean performAction() {
+        return FileUtil.copyFiles(getAffectedSourceFiles(), getLocation());
     }
 }

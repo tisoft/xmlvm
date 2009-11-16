@@ -45,7 +45,7 @@ public class ResourceMapper {
         if (theImage == null) {
             String fileName = findVariableById(resourceId, "drawable");
             fileName += ".png";
-            theImage = UIImage.imageAtPath(fileName);
+            theImage = UIImage.imageWithContentsOfFile(fileName);
             imageMap.put(new Integer(resourceId), theImage);
         }
         return theImage;

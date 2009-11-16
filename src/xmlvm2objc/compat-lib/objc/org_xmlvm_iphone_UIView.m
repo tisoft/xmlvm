@@ -23,22 +23,12 @@
 // UIView
 //----------------------------------------------------------------------------
 
-static java_lang_String* layerClassName;
+@implementation org_xmlvm_iphone_UIView : UIView
 
 /*
  * We have to use inheritance to override drawRect because we cannot achieve
  * the same with categories.
  */
-@implementation org_xmlvm_iphone_UIView : UIView
-
-+ (Class) layerClass__
-{
-	if (layerClassName == nil) {
-		return [super layerClass];
-	}
-	
-	return objc_getClass([layerClassName UTF8String]);
-}
 
 - (void) drawRect:(CGRect)rect
 {
@@ -57,38 +47,42 @@ static java_lang_String* layerClassName;
 
 - (void) __init_org_xmlvm_iphone_UIView__
 {
-	layerClassName = nil;
 	srand(time(NULL));
 }
 
 - (void) __init_org_xmlvm_iphone_UIView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1
 {
-	layerClassName = nil;
 	[self initWithFrame: [n1 getCGRect]];	
 	srand(time(NULL));
-}
-
-- (void) __init_org_xmlvm_iphone_UIView___org_xmlvm_iphone_CGRect_java_lang_String :(org_xmlvm_iphone_CGRect*)n1:(java_lang_String*)layer
-{
-	layerClassName = layer;
-	[self initWithFrame: [n1 getCGRect]];	
-	srand(time(NULL));
-}
-
-
-- (org_xmlvm_iphone_CGRect*) getBounds__
-{
-    org_xmlvm_iphone_CGRect* rect = [[org_xmlvm_iphone_CGRect alloc] init];
-    rect->origin->x = self.bounds.origin.x;
-    rect->origin->y = self.bounds.origin.y;
-    rect->size->width = self.bounds.size.width;
-    rect->size->height = self.bounds.size.height;
-    return rect;
 }
 
 - (void) setFrame___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*) frame
 {
 	self.frame = [frame getCGRect];
+}
+
+- (void) setLocation___float_float: (int)x :(int)y {
+	CGRect f = self.frame;
+	f.origin.x = x;
+	f.origin.y = y;
+	self.frame = f;
+}
+
+- (void) setSize___float_float: (int)width :(int)height {
+	CGRect f = self.frame;
+	f.size.width = width;
+	f.size.height = height;
+	self.frame = f;
+}
+
+- (org_xmlvm_iphone_CGRect*) getBounds__
+{
+	org_xmlvm_iphone_CGRect* rect = [[org_xmlvm_iphone_CGRect alloc] init];
+	rect->origin->x = self.bounds.origin.x;
+	rect->origin->y = self.bounds.origin.y;
+	rect->size->width = self.bounds.size.width;
+	rect->size->height = self.bounds.size.height;
+	return rect;
 }
 
 - (void) addSubview___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*)view
@@ -139,7 +133,7 @@ static java_lang_String* layerClassName;
 
 - (void) drawRect___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)rect
 {
-    // Will not be called because overridden in derived class
+	// Will not be called because overridden in derived class
 }
 
 - (void) setOpaque___boolean :(int)opaque
@@ -147,17 +141,57 @@ static java_lang_String* layerClassName;
 	[self setOpaque:opaque];
 }
 
+- (void) setBackgroundColor___org_xmlvm_iphone_UIColor:(org_xmlvm_iphone_UIColor*) col {
+	[self setBackgroundColor:col];
+}
+
 - (void) setClearsContextBeforeDrawing___boolean :(int)clear
 {
 	[self setClearsContextBeforeDrawing:clear];
 }
 
-- (org_xmlvm_iphone_gl_CAEAGLLayer*) getEAGLLayer__
-{
-	org_xmlvm_iphone_gl_CAEAGLLayer* result = [[org_xmlvm_iphone_gl_CAEAGLLayer alloc] init];
-	result->glLayer = (CAEAGLLayer*) self.layer;
-	
-	return result;
+- (void) setUserInteractionEnabled___boolean:(int) uinteraction {
+    [self setUserInteractionEnabled:uinteraction];
 }
+
+- (void) setHidden___boolean:(int) uinteraction {
+    [self setHidden:uinteraction];
+}
+
+- (void) setClipsToBounds___boolean:(int) clips {
+    [self setClipsToBounds:clips];
+}
+
+- (org_xmlvm_iphone_CGRect*) getFrame__
+{
+	org_xmlvm_iphone_CGRect * res = [[org_xmlvm_iphone_CGRect alloc] init];
+	CGRect frame = [self frame];
+	res->origin->x = frame.origin.x;
+	res->origin->y = frame.origin.y;
+	res->size->width = frame.size.width;
+	res->size->height = frame.size.height;
+	return res;
+}
+
+- (org_xmlvm_iphone_UIView*) getSuperview__
+{
+	return [self.superview retain];
+}
+
+- (org_xmlvm_iphone_UIColor*) getBackgroundColor__
+{
+	return [self.backgroundColor retain];
+}
+
+- (float) getAlpha__
+{
+	return [self alpha];
+}
+
+- (void) setAlpha___float :(float)n1
+{
+	[self setAlpha:n1];
+}
+
 
 @end

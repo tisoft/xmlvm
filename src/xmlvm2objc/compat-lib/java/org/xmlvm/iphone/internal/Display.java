@@ -15,26 +15,21 @@ import java.util.Set;
 
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIAlertView;
+import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UIInterfaceOrientation;
 import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UITouchPhase;
 import org.xmlvm.iphone.UIView;
+import org.xmlvm.iphone.UIWindow;
 
-class ViewSearchResult {
-    public int    level;
-    public UIView uiView;
-}
-
-public class Display extends UIView implements ImageObserver {
+public class Display implements ImageObserver {
 
     private StatusBar         statusBar;
     private Gestures          gestures;
     private UIView            keyListener;
     private List<UIResponder> touchesListener;
-    private UIAlertView       alertView;
     private Device            device;
     private UIResponder       currentResponder;
 
@@ -44,7 +39,7 @@ public class Display extends UIView implements ImageObserver {
         statusBar = null;
         keyListener = null;
         touchesListener = new ArrayList<UIResponder>();
-        this.addKeyListener(this);
+        // this.addKeyListener(this);
     }
 
     public void addGestureListener(GestureListener listener) {
@@ -55,27 +50,20 @@ public class Display extends UIView implements ImageObserver {
         this.statusBar = statusBar;
     }
 
-    public void drawRect(Graphics2D g2d) {
-
+    public void paint(Graphics2D g2d) {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         Rectangle savedClip = g2d.getClipBounds();
-        Rectangle r = new Rectangle(0, 0, 320, 480);
+        Rectangle r = new Rectangle(Device.ScreenSize);
         g2d.setClip(r);
 
         CGContext.setGraphicsContext(g2d);
         g2d.setBackground(Color.BLACK);
         g2d.clearRect(r.x, r.y, r.width, r.height);
         CGRect rect = new CGRect(r.x, r.y, r.width, r.height);
-
-        for (UIView v : subViews) {
-            v.drawRect(rect);
-        }
-
+        UIWindow keyWindow = UIApplication.sharedApplication().getKeyWindow();
+        if (keyWindow != null)
+            keyWindow.drawRect(rect);
         statusBar.drawRect(rect);
-
-        if (alertView != null) {
-            alertView.drawRect(rect);
-        }
 
         g2d.setClip(savedClip);
     }
@@ -92,14 +80,14 @@ public class Display extends UIView implements ImageObserver {
             if (currentResponder == null) {
                 return;
             } else {
-                phase = UITouchPhase.UITouchPhaseEnded;
+                phase = UITouchPhase.Ended;
             }
         }
 
         // Map a mouse move which has no preceeding touchesBegan to a
         // touchesBegan
-        if (phase == UITouchPhase.UITouchPhaseMoved && currentResponder == null) {
-            phase = UITouchPhase.UITouchPhaseBegan;
+        if (phase == UITouchPhase.Moved && currentResponder == null) {
+            phase = UITouchPhase.Began;
         }
 
         // Generate a temporal touch set for hit testing
@@ -108,15 +96,18 @@ public class Display extends UIView implements ImageObserver {
         touches.add(touch);
 
         // Find top most view touched
+        UIWindow keyWindow = UIApplication.sharedApplication().getKeyWindow();
+        if (keyWindow == null)
+            return;
         ViewSearchResult result = new ViewSearchResult();
-        findTouchedView(touches, alertView != null ? alertView : this, 0, result);
+        findTouchedView(touches, keyWindow, 0, result);
 
         // Determine target responder
         UIResponder responder = null;
         if (currentResponder != null) {
             responder = currentResponder;
         } else {
-            responder = result.uiView != null ? result.uiView : this.getSubviews().get(0);
+            responder = result.uiView != null ? result.uiView : keyWindow;
         }
 
         // Generate the final touch set which also includes the target view
@@ -125,18 +116,18 @@ public class Display extends UIView implements ImageObserver {
         touches.add(touch);
 
         switch (phase) {
-        case UITouchPhase.UITouchPhaseBegan:
+        case UITouchPhase.Began:
             currentResponder = responder;
             responder.touchesBegan(touches, event);
             break;
-        case UITouchPhase.UITouchPhaseMoved:
+        case UITouchPhase.Moved:
             responder.touchesMoved(touches, event);
             break;
-        case UITouchPhase.UITouchPhaseEnded:
+        case UITouchPhase.Ended:
             responder.touchesEnded(touches, event);
             currentResponder = null;
             break;
-        case UITouchPhase.UITouchPhaseCancelled:
+        case UITouchPhase.Cancelled:
             responder.touchesCancelled(touches, event);
             currentResponder = null;
             break;
@@ -157,17 +148,17 @@ public class Display extends UIView implements ImageObserver {
 
     public void mousePressed(MouseEvent e) {
         gestures.mousePressed(e);
-        this.deliverTouchesEvent(UITouchPhase.UITouchPhaseBegan, e);
+        this.deliverTouchesEvent(UITouchPhase.Began, e);
     }
 
     public void mouseReleased(MouseEvent e) {
         gestures.mouseReleased(e);
-        this.deliverTouchesEvent(UITouchPhase.UITouchPhaseEnded, e);
+        this.deliverTouchesEvent(UITouchPhase.Ended, e);
     }
 
     public void mouseDragged(MouseEvent e) {
         gestures.mouseDragged(e);
-        this.deliverTouchesEvent(UITouchPhase.UITouchPhaseMoved, e);
+        this.deliverTouchesEvent(UITouchPhase.Moved, e);
     }
 
     public void mouseMoved(MouseEvent e) {
@@ -198,14 +189,6 @@ public class Display extends UIView implements ImageObserver {
         touchesListener.add(listener);
     }
 
-    public void setAlertView(UIAlertView alertView) {
-        this.alertView = alertView;
-    }
-
-    public UIAlertView getAlertView() {
-        return this.alertView;
-    }
-
     @Override
     public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
         return device.imageUpdate(img, infoflags, x, y, width, height);
@@ -213,43 +196,46 @@ public class Display extends UIView implements ImageObserver {
 
     private int translateX(int x, int y) {
         switch (Simulator.getStatusBarOrientation()) {
-        case UIInterfaceOrientation.UIInterfaceOrientationPortrait:
-            return x - 35;
-
-        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
+        case UIInterfaceOrientation.LandscapeLeft:
             return 359 - y;
-
-        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
+        case UIInterfaceOrientation.LandscapeRight:
             return y - 40;
+        case UIInterfaceOrientation.PortraitUpsideDown:
+            return 319 - x + 35;
+        case UIInterfaceOrientation.Portrait:
+        default:
+            return x - 35;
         }
-
-        return x;
     }
 
     private int translateY(int x, int y) {
         switch (Simulator.getStatusBarOrientation()) {
-        case UIInterfaceOrientation.UIInterfaceOrientationPortrait:
-            return y - 107;
-
-        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
+        case UIInterfaceOrientation.LandscapeLeft:
             return x - 112;
-
-        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
+        case UIInterfaceOrientation.LandscapeRight:
             return 479 - x + 112;
+        case UIInterfaceOrientation.PortraitUpsideDown:
+            return 479 - y + 107;
+        case UIInterfaceOrientation.Portrait:
+        default:
+            return y - 107;
         }
-
-        return y;
     }
 
     private void findTouchedView(Set<UITouch> touches, UIView uiView, int nesting,
             ViewSearchResult result) {
-        for (UIView childView : uiView.getSubviews()) {
-            findTouchedView(touches, childView, nesting + 1, result);
-        }
-
-        if (uiView.touchedInsideView(touches) && (nesting >= result.level || result.uiView == null)) {
+        if ((!uiView.isHidden()) && uiView.isUserInteractionEnabled()
+                && uiView.touchedInsideView(touches)) {
             result.level = nesting;
             result.uiView = uiView;
         }
+        for (UIView childView : uiView.getSubviews()) {
+            findTouchedView(touches, childView, nesting + 1, result);
+        }
+    }
+
+    private class ViewSearchResult {
+        private int    level;
+        private UIView uiView;
     }
 }

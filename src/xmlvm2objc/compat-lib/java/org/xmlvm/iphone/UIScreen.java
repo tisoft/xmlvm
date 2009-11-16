@@ -1,36 +1,54 @@
 package org.xmlvm.iphone;
 
+import java.awt.Rectangle;
+
+import org.xmlvm.iphone.internal.Device;
 import org.xmlvm.iphone.internal.Simulator;
 
 public class UIScreen {
 
+    private final static UIScreen mainScreen;
+    private final static CGRect   bounds;
+
+    static {
+        Rectangle b = Device.ScreenSize;
+        bounds = new CGRect(b.x, b.y, b.width, b.height);
+        mainScreen = new UIScreen();
+    }
+
+    // Prevent someone from instantiating this class
     private UIScreen() {
     }
-
+    
     public static UIScreen mainScreen() {
-        return new UIScreen();
+        return mainScreen;
     }
 
-    public CGRect bounds() {
-        return new CGRect(new CGRect(0.0f, 0.0f, 320.0f, 480.0f));
+    public CGRect getBounds() {
+        return new CGRect(bounds);
     }
 
-    public CGRect applicationFrame() {
+    public CGRect getApplicationFrame() {
         CGRect applicationFrame = null;
         float offset = Simulator.getStatusBarHeight();
         int orientation = Simulator.getStatusBarOrientation();
+
         switch (orientation) {
-        case UIInterfaceOrientation.UIInterfaceOrientationPortrait:
-            applicationFrame = new CGRect(0, offset, 320, 480 - offset);
+        case UIInterfaceOrientation.Portrait:
+            applicationFrame = new CGRect(bounds.origin.x, bounds.origin.y + offset,
+                    bounds.size.width, bounds.size.height - offset);
             break;
-        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeLeft:
-            applicationFrame = new CGRect(0, 0, 320 - offset, 480);
+        case UIInterfaceOrientation.LandscapeLeft:
+            applicationFrame = new CGRect(bounds.origin.x, bounds.origin.y, bounds.size.width
+                    - offset, bounds.size.height);
             break;
-        case UIInterfaceOrientation.UIInterfaceOrientationLandscapeRight:
-            applicationFrame = new CGRect(offset, 0, 320 - offset, 480);
+        case UIInterfaceOrientation.LandscapeRight:
+            applicationFrame = new CGRect(bounds.origin.x + offset, bounds.origin.y,
+                    bounds.size.width - offset, bounds.size.height);
             break;
-        case UIInterfaceOrientation.UIInterfaceOrientationPortraitUpsideDown:
-            applicationFrame = new CGRect(0, 0, 320, 480 - offset);
+        case UIInterfaceOrientation.PortraitUpsideDown:
+            applicationFrame = new CGRect(bounds.origin.x, bounds.origin.y, bounds.size.width,
+                    bounds.size.height - offset);
             break;
         }
         return applicationFrame;
