@@ -20,7 +20,7 @@
 
 #import "java_lang_Class.h"
 #import "java_lang_reflect_Field.h"
-
+#import "java_lang_reflect_Constructor.h"
 #import <objc/runtime.h>
 
 
@@ -29,13 +29,25 @@
 //----------------------------------------------------------------------------
 @implementation java_lang_Class;
 
-- (void) __init_java_lang_Class
+- (id) initWithClass: (Class) c
+{
+	[super init];
+	self->clazz = c;
+	return self;
+}
+
+- (void) __init_java_lang_Class__
 {
 }
 
 - (java_lang_String*) getName__
 {
 	NSMutableString* mangledName = [NSMutableString stringWithCString: class_getName(clazz) encoding: NSASCIIStringEncoding];
+	if ([mangledName isEqualToString:@"NSCFString"]) {
+		mangledName = @"java_lang_String";
+	}
+	//TODO probably check for other classes such as java_util_Map, etc
+	
 	// TODO the substitution of "." for "_" is a bit simplistic and might not yield the correct result
 	// (if the simple name contains "_"). For a proper solution every class would need to register its
 	// Java-based simple name in some global data structure.
@@ -92,5 +104,33 @@
 	return fields;
 }
 
+- (java_lang_reflect_Constructor*) getConstructor___java_lang_Class_ARRAYTYPE :(NSMutableArray*) signature
+{
+	unsigned int count, i;
+
+	NSMutableString* mangledConstructorName = [[NSMutableString alloc] init];
+	[mangledConstructorName appendString: @"__init_"];
+	[mangledConstructorName appendString: [NSMutableString stringWithCString: class_getName(clazz) encoding: NSASCIIStringEncoding]];
+	[mangledConstructorName appendString: @"__"];
+	
+	for (i = 0; i < [signature count]; i++) {
+		NSMutableString* t = [[signature objectAtIndex:i] getName__];
+		NSMutableString* mt = [t stringByReplacingOccurrencesOfString: @"." withString: @"_"];
+		[t release];
+		[mangledConstructorName appendString:@"_"];
+		[mangledConstructorName appendString:mt];
+	}
+	
+	for (i = 0; i < [signature count]; i++) {
+		[mangledConstructorName appendString:@":"];
+	}
+
+	//TODO make sure that this constructor actually exists for clazz
+	
+	java_lang_reflect_Constructor* c = [[java_lang_reflect_Constructor alloc] initWithClass:self
+	                                        andSignature:signature andMangledConstructorName:mangledConstructorName];
+	[mangledConstructorName release];
+	return c;
+}
 
 @end

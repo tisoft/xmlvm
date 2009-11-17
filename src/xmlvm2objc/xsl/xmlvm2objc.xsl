@@ -532,7 +532,7 @@ int main(int argc, char* argv[])
     <xsl:otherwise>
       <xsl:text>.o = [</xsl:text>
       <xsl:value-of select="vm:fixname(@type)"/>
-      <xsl:text> class]</xsl:text>
+      <xsl:text> getClass__]</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
   <xsl:text>;
