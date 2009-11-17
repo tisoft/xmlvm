@@ -20,20 +20,48 @@
 
 package android.content;
 
+import android.internal.Assert;
 import android.net.Uri;
+import android.os.Bundle;
 
 public class Intent {
-  public static final String ACTION_VIEW = "android.intent.action.VIEW";
+    public static final String ACTION_VIEW = "android.intent.action.VIEW";
 
-  /**
-   * @TODO Implement for real.
-   */
-  public Intent(String name) {
-  }
+    /**
+     * @TODO Implement for real.
+     */
+    public Intent(String name) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
-  /**
-   * @TODO Implement for real.
-   */
-  public void setData(Uri uri) {
-  }
+    /**
+     * @param name
+     * @param uri
+     */
+    public Intent(String name, Uri uri) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    /**
+     * @TODO Implement for real.
+     */
+    public void setData(Uri uri) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    /**
+     * @return
+     */
+    public Bundle getExtras() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
+    /**
+     * @param name
+     * @param value
+     */
+    public void putExtra(String name, int value) {
+        Assert.NOT_IMPLEMENTED();
+    }
 }

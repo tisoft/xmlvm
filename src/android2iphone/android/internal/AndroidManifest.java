@@ -54,6 +54,9 @@ class AndroidManifestParser extends NSXMLParserDelegate {
         }
         if (qualifiedName.equals("activity")) {
             currentActivity = attributes.get(prefix + "name");
+            if (currentActivity.indexOf('.') == -1) {
+                currentActivity = manifest.appPackage + '.' + currentActivity;
+            }
             if (currentActivity.charAt(0) == '.') {
                 currentActivity = manifest.appPackage + currentActivity;
             }

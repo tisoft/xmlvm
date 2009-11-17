@@ -18,11 +18,14 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
+#import "java_io_ObjectInputStream.h"
 
-#import "xmlvm.h"
+@implementation java_io_ObjectInputStream
 
-void ERROR(char* msg)
+- (double) readDouble__
 {
-	NSLog([NSString stringWithUTF8String:msg]);
-	@throw [NSException exceptionWithName: @"XMLVM missing byte code instruction" reason:[NSString stringWithUTF8String:msg] userInfo: nil];
+	[self abcMissingMethod];
+	return 0;
 }
+
+@end

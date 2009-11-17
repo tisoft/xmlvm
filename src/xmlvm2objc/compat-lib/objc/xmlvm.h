@@ -49,3 +49,5 @@ typedef union {
     long    l;
 } XMLVMElem;
 
+
+void ERROR(char* msg);

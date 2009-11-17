@@ -20,6 +20,17 @@
 
 package android.os;
 
+import android.internal.Assert;
+
 public class Bundle {
+
+    /**
+     * @param i
+     * @return
+     */
+    public int getInt(String i) {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
 }

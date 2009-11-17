@@ -27,6 +27,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.internal.Assert;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.Menu;
@@ -41,26 +42,34 @@ import android.view.WindowManager;
  * @see http://developer.android.com/reference/android/app/Activity.html}
  */
 public class Activity extends ContextThemeWrapper {
-    private Window             window;
-    private int                screenOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+    private Window          window;
+    private int             screenOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+
+    public static final int RESULT_CANCELED   = 0;
+    public static final int RESULT_OK         = -1;
 
     protected void onCreate(Bundle savedInstanceState) {
         window = new Window(this);
         onContentChanged();
     }
 
+    protected void onResume() {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    protected void onPause() {
+        Assert.NOT_IMPLEMENTED();
+    }
+
     public void xmlvmOnCreate(Bundle savedInstanceState) {
         onCreate(savedInstanceState);
     }
 
-    protected void onResume() {
-        // TODO Auto-generated method stub
-
-    }
-
-    protected void onPause() {
-        // TODO Auto-generated method stub
-
+    /**
+     * @param bundle
+     */
+    protected void onSaveInstanceState(Bundle bundle) {
+        Assert.NOT_IMPLEMENTED();
     }
 
     public void setContentView(View view) {
@@ -112,6 +121,10 @@ public class Activity extends ContextThemeWrapper {
         return true;
     }
 
+    public void onStart() {
+        Assert.NOT_IMPLEMENTED();
+    }
+
     /**
      * Perform any final cleanup before an activity is destroyed. Can be
      * overridden by subclasses.
@@ -127,20 +140,29 @@ public class Activity extends ContextThemeWrapper {
      * TODO: Implement for real.
      */
     public void startActivity(Intent intent) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void startActivityForResult(Intent intent, int requestCode) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void setResult(int result) {
+        Assert.NOT_IMPLEMENTED();
     }
 
     public void requestWindowFeature(int feature) {
-        /*
-         * TODO: can't handle jvm:lookupswitch
-         * 
-         * switch (feature) {
-         * 
-         * case Window.FEATURE_NO_TITLE: // TODO: This will remove the title
-         * bar, but not get rid of the // status bar. On the iPhone we don't
-         * have a title, but maybe we should // implement this as a
-         * compatibility feature. Once we have it, this is the // place to
-         * disable it. break; }
-         */
+        switch (feature) {
+        case Window.FEATURE_NO_TITLE:
+            // TODO: This will remove the title
+            // bar, but not get rid of the // status bar. On the iPhone we don't
+            // have a title, but maybe we should implement this as a
+            // compatibility feature. Once we have it, this is the place to
+            // disable it.
+            break;
+        default:
+            Assert.NOT_IMPLEMENTED();
+        }
     }
 
     /**
@@ -186,5 +208,17 @@ public class Activity extends ContextThemeWrapper {
      */
     public SharedPreferences getPreferences(int mode) {
         return new SharedPreferences(mode);
+    }
+
+    /**
+     * @return
+     */
+    protected Intent getIntent() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
+    public void finish() {
+        Assert.NOT_IMPLEMENTED();
     }
 }

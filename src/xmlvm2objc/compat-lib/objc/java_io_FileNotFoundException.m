@@ -19,10 +19,38 @@
  */
 
 
-#import "xmlvm.h"
+#import "java_io_FileNotFoundException.h"
 
-void ERROR(char* msg)
+// java.io.FileNotFoundException
+//----------------------------------------------------------------------------
+@implementation java_io_FileNotFoundException
+
+- (id) init
 {
-	NSLog([NSString stringWithUTF8String:msg]);
-	@throw [NSException exceptionWithName: @"XMLVM missing byte code instruction" reason:[NSString stringWithUTF8String:msg] userInfo: nil];
+    return [self initWithName: @"java_io_FileNotFoundException" reason: nil userInfo: nil];
 }
+
+- (void) __init_java_io_FileNotFoundException__
+{
+    // Do nothing
+}
+
+- (void) __init_java_io_FileNotFoundException___java_lang_String: (java_lang_String*) msg
+{
+}
+
+- (void) __init_java_io_FileNotFoundException___java_lang_String_java_lang_Throwable: (java_lang_String*) msg: (java_lang_Throwable*) cause
+{
+}
+
+- (java_io_FileNotFoundException *) initCause___java_lang_Throwable: (java_lang_Throwable*) cause
+{
+	[self retain];
+	return self;
+}
+
+- (void) printStackTrace__
+{
+}
+
+@end

@@ -18,11 +18,17 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
+#import "java_io_OutputStream.h"
 
-#import "xmlvm.h"
+// java.io.OutputStream
+//----------------------------------------------------------------------------
+@implementation java_io_OutputStream;
 
-void ERROR(char* msg)
-{
-	NSLog([NSString stringWithUTF8String:msg]);
-	@throw [NSException exceptionWithName: @"XMLVM missing byte code instruction" reason:[NSString stringWithUTF8String:msg] userInfo: nil];
+/*
+- (int) read__ {
+	return 0;
 }
+*/
+
+@end
+

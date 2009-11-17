@@ -29,8 +29,9 @@ import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
-import android.internal.ResourceAttributes;
-import android.internal.ResourceMapper;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.internal.Assert;
 import android.util.AttributeSet;
 
 /**
@@ -39,6 +40,11 @@ import android.util.AttributeSet;
  * @see http://developer.android.com/reference/android/view/View.html
  */
 public class View {
+
+    public static final int VISIBLE = 0;
+    public static final int INVISIBLE = 4;
+    public static final int GONE    = 8;
+
     public static interface OnTouchListener {
         /**
          * Called when a touch event is dispatched to a view. This allows
@@ -68,13 +74,14 @@ public class View {
     private int                    id;
 
     // Temporarily used
-    private static int nextY;
-    
+    private static int             nextY;
+
     protected int getNextY() {
         int y = nextY;
         nextY += 40;
         return y;
     }
+
     public View(Context c) {
         this.c = c;
         uiView = xmlvmCreateUIView();
@@ -129,7 +136,7 @@ public class View {
     }
 
     public void bringToFront() {
-        // TODO Auto-generated method stub
+        Assert.NOT_IMPLEMENTED();
     }
 
     public ViewParent getParent() {
@@ -138,6 +145,10 @@ public class View {
 
     public void setOnTouchListener(OnTouchListener listener) {
         this.listener = listener;
+    }
+
+    public void setOnClickListener(OnClickListener onClickListener) {
+        Assert.NOT_IMPLEMENTED();
     }
 
     private boolean processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
@@ -177,4 +188,28 @@ public class View {
     public int getId() {
         return this.id;
     }
+
+    public View findViewById(int id) {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
+    public Resources getResources() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
+    public void setBackgroundDrawable(Drawable drawable) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void setVisibility(int flag) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public boolean postDelayed(Runnable runnable, long delay) {
+        Assert.NOT_IMPLEMENTED();
+        return true;
+    }
+
 }

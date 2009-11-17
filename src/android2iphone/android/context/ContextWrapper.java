@@ -20,8 +20,43 @@
 
 package android.context;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.internal.Assert;
 
 public class ContextWrapper extends Context {
 
+    @Override
+    public Resources getResources() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see android.content.Context#getAssets()
+     */
+    @Override
+    public AssetManager getAssets() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
+    public FileInputStream openFileInput(String name) {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+    
+    public FileOutputStream openFileOutput(String name, int mode) {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+    
+    public boolean deleteFile(String name) {
+        Assert.NOT_IMPLEMENTED();
+        return false;
+    }
 }

@@ -20,6 +20,11 @@
 
 package android.content;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.hardware.SensorManager;
 import android.os.PowerManager;
 
@@ -28,7 +33,7 @@ import android.os.PowerManager;
  * <p>
  * Interface to global information about an application environment.
  */
-public class Context {
+public abstract class Context {
     /**
      * Use with {@link #getSystemService(String)} to retrieve a
      * {@link SensorManager} for accessing sensors.
@@ -59,6 +64,8 @@ public class Context {
      * the created file.
      */
     public static final int      MODE_WORLD_WRITEABLE = 2;
+    
+    public static final String LAYOUT_INFLATER_SERVICE = "layout_inflater";
 
     private static SensorManager sensorManager        = null;
     private static PowerManager  powerManager         = null;
@@ -85,4 +92,14 @@ public class Context {
         }
         return null;
     }
+
+    public abstract Resources getResources();
+    
+    public abstract AssetManager getAssets();
+    
+    public abstract FileInputStream openFileInput(String name);
+    
+    public abstract FileOutputStream openFileOutput(String name, int mode);
+    
+    public abstract boolean deleteFile(String name);
 }

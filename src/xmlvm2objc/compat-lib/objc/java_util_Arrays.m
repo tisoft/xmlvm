@@ -18,11 +18,7 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
+#import "java_util_Arrays.h"
 
-#import "xmlvm.h"
-
-void ERROR(char* msg)
-{
-	NSLog([NSString stringWithUTF8String:msg]);
-	@throw [NSException exceptionWithName: @"XMLVM missing byte code instruction" reason:[NSString stringWithUTF8String:msg] userInfo: nil];
-}
+@implementation java_util_Arrays
+@end

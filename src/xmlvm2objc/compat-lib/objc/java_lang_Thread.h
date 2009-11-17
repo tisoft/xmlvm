@@ -18,11 +18,10 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 #import "xmlvm.h"
+#import "java_lang_Object.h"
+#import "java_lang_Runnable.h"
 
-void ERROR(char* msg)
-{
-	NSLog([NSString stringWithUTF8String:msg]);
-	@throw [NSException exceptionWithName: @"XMLVM missing byte code instruction" reason:[NSString stringWithUTF8String:msg] userInfo: nil];
-}
+@interface java_lang_Thread : java_lang_Object<java_lang_Runnable> 
+- (void) run__;
+@end
