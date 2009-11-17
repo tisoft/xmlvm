@@ -23,6 +23,16 @@ package android.internal;
 public class Assert {
 
     static public void NOT_IMPLEMENTED() {
-        throw new RuntimeException();
+        FAIL("NOT IMPLEMENTED");
+    }
+
+    static public void FAIL(String msg) {
+        throw new RuntimeException(msg);
+    }
+
+    static public void CHECK(boolean condition) {
+        if (!condition) {
+            throw new RuntimeException("FAILED CHECK");
+        }
     }
 }
