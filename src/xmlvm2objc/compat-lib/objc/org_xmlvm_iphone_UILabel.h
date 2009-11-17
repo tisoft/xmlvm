@@ -31,4 +31,5 @@ typedef UILabel org_xmlvm_iphone_UILabel;
 - (void) setText___java_lang_String :(NSString*)n1;
 - (void) setTextAlignment___int :(int) alignment;
 - (void) setFont___org_xmlvm_iphone_UIFont :(org_xmlvm_iphone_UIFont*) font;
+- (NSString*) getText__;
 @end

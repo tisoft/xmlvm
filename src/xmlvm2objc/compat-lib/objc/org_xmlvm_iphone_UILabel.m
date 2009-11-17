@@ -64,4 +64,9 @@
 	[self setFont: font];
 }
 
+- (NSString*) getText__
+{
+	return self.text;
+}
+
 @end
