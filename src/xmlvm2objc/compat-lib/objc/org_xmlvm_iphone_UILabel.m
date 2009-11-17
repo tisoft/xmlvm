@@ -66,7 +66,7 @@
 
 - (NSString*) getText__
 {
-	return self.text;
+	return [self.text retain];
 }
 
 @end
