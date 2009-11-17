@@ -1331,6 +1331,14 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="jvm:daload">
+  <xsl:text>    _op1.i = _stack[--_sp].i;
+    _op2.o = _stack[--_sp].o;
+    _stack[_sp++].d = [[_op2.o objectAtIndex: _op1.i] doubleValue];
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="jvm:faload">
   <xsl:text>    _op1.i = _stack[--_sp].i;
     _op2.o = _stack[--_sp].o;
@@ -1353,6 +1361,15 @@ int main(int argc, char* argv[])
     _op2.i = _stack[--_sp].i;
     _op3.o = _stack[--_sp].o;
     [_op3.o replaceObjectAtIndex: _op2.i withObject: [NSNumber numberWithInt: _op1.i]];
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="jvm:dastore">
+  <xsl:text>    _op1.d = _stack[--_sp].d;
+    _op2.i = _stack[--_sp].i;
+    _op3.o = _stack[--_sp].o;
+    [_op3.o replaceObjectAtIndex: _op2.i withObject: [NSNumber numberWithDouble: _op1.d]];
 </xsl:text>
 </xsl:template>
 
