@@ -27,11 +27,14 @@ import android.os.Bundle;
 public class Intent {
     public static final String ACTION_VIEW = "android.intent.action.VIEW";
 
-    /**
-     * @TODO Implement for real.
-     */
-    public Intent(String name) {
-        Assert.NOT_IMPLEMENTED();
+    private String             action;
+
+    public Intent(String action) {
+        this.action = action;
+    }
+
+    public String xmlvmGetAction() {
+        return action;
     }
 
     /**

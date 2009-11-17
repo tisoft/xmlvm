@@ -75,7 +75,7 @@ public class ResourceMapper {
     private static String findVariableById(int resourceId, String resourceClass) {
         try {
             int i;
-            String activityPackageName = AndroidAppLauncher.getActivity().getClass().getName();
+            String activityPackageName = ActivityManager.getTopActivity().getClass().getName();
             i = activityPackageName.lastIndexOf('.');
             activityPackageName = activityPackageName.substring(0, i);
 
@@ -99,7 +99,7 @@ public class ResourceMapper {
     private static int findIdByVariableName(String variableName, String resourceClass) {
         try {
             int i;
-            String activityPackageName = AndroidAppLauncher.getActivity().getClass().getName();
+            String activityPackageName = ActivityManager.getTopActivity().getClass().getName();
             i = activityPackageName.lastIndexOf('.');
             activityPackageName = activityPackageName.substring(0, i);
 

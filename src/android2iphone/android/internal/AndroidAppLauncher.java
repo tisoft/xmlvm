@@ -20,41 +20,13 @@
 
 package android.internal;
 
-import org.xmlvm.iphone.UIApplication;
-
-import android.app.Activity;
-
 /**
  * Wiring code for launching an Android Activity inside the iPhone simulator
  */
-public class AndroidAppLauncher extends UIApplication {
-
-    private static Activity theActivity;
-
-    public static void setActivity(Activity activity) {
-        theActivity = activity;
-    }
-
-    public static Activity getActivity() {
-        return theActivity;
-    }
-
-    @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
-        theActivity.xmlvmOnCreate(null);
-    }
-
-    @Override
-    public void applicationWillTerminate(UIApplication app) {
-        theActivity.xmlvmOnDestroy();
-    }
+public class AndroidAppLauncher {
 
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException,
             IllegalAccessException {
-        AndroidManifest manifest = new AndroidManifest();
-        String mainActivity = manifest.mainActivity;
-        Class<?> androidActivityClazz = Class.forName(mainActivity);
-        theActivity = (Activity) androidActivityClazz.newInstance();
-        UIApplication.main(args, AndroidAppLauncher.class);
+        ActivityManager.bootstrapMainActivity();
     }
 }

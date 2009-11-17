@@ -20,6 +20,7 @@
 
 package android.internal;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.xmlvm.iphone.NSBundle;
@@ -27,13 +28,11 @@ import org.xmlvm.iphone.NSData;
 import org.xmlvm.iphone.NSXMLParser;
 import org.xmlvm.iphone.NSXMLParserDelegate;
 
-import android.content.Context;
-
 class AndroidManifestParser extends NSXMLParserDelegate {
 
-    private String prefix = "";
+    private String          prefix = "";
     private AndroidManifest manifest;
-    private String currentActivity;
+    private String          currentActivity;
 
     public AndroidManifestParser(AndroidManifest manifest) {
         this.manifest = manifest;
@@ -63,9 +62,7 @@ class AndroidManifestParser extends NSXMLParserDelegate {
         }
         if (qualifiedName.equals("action")) {
             String action = attributes.get(prefix + "name");
-            if (action.equals("android.intent.action.MAIN")) {
-                manifest.mainActivity = currentActivity;
-            }
+            manifest.addActivity(action, currentActivity);
         }
     }
 
@@ -81,9 +78,9 @@ class AndroidManifestParser extends NSXMLParserDelegate {
  */
 public class AndroidManifest {
 
-    public String appPackage;
-    public String mainActivity;
-    
+    public String               appPackage;
+    private Map<String, String> activities = new HashMap<String, String>();
+
     public AndroidManifest() {
         String filePath = NSBundle.mainBundle().pathForResource("AndroidManifest", "xml");
         NSData manifestFile = NSData.dataWithContentsOfFile(filePath);
@@ -93,5 +90,13 @@ public class AndroidManifest {
         xmlParser.setDelegate(new AndroidManifestParser(this));
         boolean success = xmlParser.parse();
         // TODO what to do if success == false?
+    }
+
+    public void addActivity(String action, String activityName) {
+        activities.put(action, activityName);
+    }
+
+    public String getActivityName(String action) {
+        return activities.get(action);
     }
 }

@@ -23,7 +23,7 @@ package android.internal;
 public class Assert {
 
     static public void NOT_IMPLEMENTED() {
-        FAIL("NOT IMPLEMENTED");
+        throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     static public void FAIL(String msg) {

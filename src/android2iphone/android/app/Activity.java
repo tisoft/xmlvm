@@ -27,6 +27,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.internal.ActivityManager;
 import android.internal.Assert;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
@@ -136,15 +137,12 @@ public class Activity extends ContextThemeWrapper {
         onDestroy();
     }
 
-    /**
-     * TODO: Implement for real.
-     */
     public void startActivity(Intent intent) {
-        Assert.NOT_IMPLEMENTED();
+        ActivityManager.startActivity(intent);
     }
 
     public void startActivityForResult(Intent intent, int requestCode) {
-        Assert.NOT_IMPLEMENTED();
+        ActivityManager.startActivityForResult(intent, requestCode);
     }
 
     public void setResult(int result) {
