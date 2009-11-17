@@ -11,15 +11,20 @@ public class UITextView extends UIView {
 
     public UITextView(CGRect rect) {
         super(rect);
+        init();
+    }
+
+    public UITextView() {
+        super(new CGRect(0, 0, 0, 0));
+        init();
+    }
+
+    private void init() {
         xmlvmSetRenderer(new UITextViewRenderer(this));
         font = UIFont.fontWithNameSize("Arial", 16);
         this.setText("");
         this.setTextColor(UIColor.blackColor);
         Simulator.addKeyListener(this);
-    }
-
-    public UITextView() {
-        super(new CGRect(0, 0, 0, 0));
     }
 
     public UIFont getFont() {
