@@ -26,6 +26,8 @@ import android.view.ViewGroup;
 
 public class LinearLayout extends ViewGroup {
 
+    private int orientation;
+
     public static class LayoutParams extends ViewGroup.MarginLayoutParams {
 
         public int   gravitiy;
@@ -42,12 +44,54 @@ public class LinearLayout extends ViewGroup {
         }
 
         private int parseGravity(String str, int defaultGravity) {
-            // TODO Implement parsing of the various gravity attributes
-            if (str.equalsIgnoreCase("center_horizontal")) {
-                return 0x01;
-            } else {
-                return defaultGravity;
-            }
+            int result = 0;
+            int separatorIndex;
+            
+            do {
+                separatorIndex = str.indexOf('|');
+                String gravityStr = separatorIndex != -1 ? str.substring(0, separatorIndex) : str;
+                str = str.substring(separatorIndex + 1);
+
+                if (gravityStr.equals("top")) {
+                    result |= 0x30;
+                }
+                else if (gravityStr.equals("bottom")) {
+                    result |= 0x50;
+                }
+                else if (gravityStr.equals("left")) {
+                    result |= 0x03;
+                }
+                else if (gravityStr.equals("right")) {
+                    result |= 0x05;
+                }
+                else if (gravityStr.equals("center_vertical")) {
+                    result |= 0x10;
+                }
+                else if (gravityStr.equals("fill_vertical")) {
+                    result |= 0x70;
+                }
+                else if (gravityStr.equals("center_horizontal")) {
+                    result |= 0x01;
+                }
+                else if (gravityStr.equals("fill_horizontal")) {
+                    result |= 0x07;
+                }
+                else if (gravityStr.equals("center")) {
+                    result |= 0x11;
+                }
+                else if (gravityStr.equals("fill")) {
+                    result |= 0x77;
+                }
+                else if (gravityStr.equals("clip_vertical")) {
+                    result |= 0x80;
+                }
+                else if (gravityStr.equals("clip-horizontal")) {
+                    result |= 0x08;
+                }
+
+            } while (separatorIndex >= 0);
+
+            return result;
         }
     }
 
@@ -62,10 +106,21 @@ public class LinearLayout extends ViewGroup {
 
     protected void parseAttributes(AttributeSet attrs) {
         super.parseAttributes(attrs);
+
+        String str = attrs.getAttributeValue(null, "orientation");
+        setOrientation("vertical".equalsIgnoreCase(str) ? 1 : 0);
     }
 
     public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new LayoutParams(getContext(), attrs);
+    }
+
+    public int getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(int orientation) {
+        this.orientation = orientation;
     }
 
 }

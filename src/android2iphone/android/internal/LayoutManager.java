@@ -43,8 +43,9 @@ class LayoutParser extends NSXMLParserDelegate {
     private String             prefix           = "";
     private Context            context;
     private ViewGroup          currentViewGroup = null;
+    private View               layoutRootView   = null;
     private Stack<ViewGroup>   viewGroupStack   = new Stack<ViewGroup>();
-    
+
     public LayoutParser(Context context) {
         this.context = context;
     }
@@ -91,6 +92,10 @@ class LayoutParser extends NSXMLParserDelegate {
         return currentViewGroup;
     }
 
+    View getLayoutRootView() {
+        return layoutRootView;
+    }
+
     private void beginLinearLayout(AttributeSet attrs) {
         ViewGroup vg = new LinearLayout(context, attrs);
         addView(vg, attrs);
@@ -132,6 +137,10 @@ class LayoutParser extends NSXMLParserDelegate {
         if (view.getId() != 0) {
             viewMap.put(new Integer(view.getId()), view);
         }
+
+        if (layoutRootView == null) {
+            layoutRootView = view;
+        }
     }
 
     Map<Integer, View> getViewMap() {
@@ -145,7 +154,7 @@ class LayoutParser extends NSXMLParserDelegate {
  */
 public class LayoutManager {
 
-    public static ViewGroup getLayout(Context context, int id) {
+    public static View getLayout(Context context, int id) {
         NSData layoutDesc = ResourceMapper.getLayoutById(id);
         NSXMLParser xmlParser = new NSXMLParser(layoutDesc);
         xmlParser.setShouldProcessNamespaces(true);
@@ -154,9 +163,12 @@ public class LayoutManager {
         xmlParser.setDelegate(parser);
         boolean success = xmlParser.parse();
         // TODO what to do if success == false?
-        ViewGroup topLevelView = parser.getCurrentView();
-        topLevelView.setXmlvmViewMap(parser.getViewMap());
+        View layoutRootView = parser.getLayoutRootView();
 
-        return topLevelView;
+        if (layoutRootView instanceof ViewGroup) {
+            ((ViewGroup) layoutRootView).setXmlvmViewMap(parser.getViewMap());
+        }
+
+        return layoutRootView;
     }
 }

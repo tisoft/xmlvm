@@ -28,6 +28,7 @@ import org.xmlvm.iphone.CGRect;
 
 import android.app.Activity;
 import android.content.Context;
+import android.internal.Assert;
 import android.util.AttributeSet;
 
 /**
@@ -91,15 +92,20 @@ public class ViewGroup extends View implements ViewParent {
         }
 
         private int resolveDimension(String dimension) {
-            // TODO Handle the various dimension types
-            if (dimension != null && dimension.length() > 2) {
-                return Integer.parseInt(dimension.substring(0, dimension.length() - 2));
-            } else {
+            // A missing dimension is interpreted as 0 pixel
+            if (dimension == null || dimension.length() == 0) {
                 return 0;
             }
+
+            if (dimension.length() > 2 && dimension.endsWith("px")) {
+                return Integer.parseInt(dimension.substring(0, dimension.length() - 2));
+            }
+
+            Assert.FAIL("layout dimension not supported: " + dimension);
+            return 0;
         }
     }
-    
+
     public ViewGroup(Context c) {
         super(c);
         this.subViews = new ArrayList<View>();
@@ -149,6 +155,10 @@ public class ViewGroup extends View implements ViewParent {
 
     protected void parseAttributes(AttributeSet attrs) {
         super.parseAttributes(attrs);
+    }
+
+    public View findViewById(int id) {
+        return xmlvmViewMap.get(new Integer(id));
     }
 
     public Map<Integer, View> getXmlvmViewMap() {

@@ -23,18 +23,16 @@ package android.widget;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIButton;
 import org.xmlvm.iphone.UIButtonType;
-import org.xmlvm.iphone.UIControl;
 import org.xmlvm.iphone.UIControlDelegate;
+import org.xmlvm.iphone.UIControlEvent;
 import org.xmlvm.iphone.UIControlState;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
-import android.internal.ResourceAttributes;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
-import org.xmlvm.iphone.UIControlEvent;
 
 public class Button extends View {
     private String title;

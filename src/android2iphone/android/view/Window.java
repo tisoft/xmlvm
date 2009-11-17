@@ -60,8 +60,8 @@ public class Window {
     }
 
     public void setContentView(int id) {
-        ViewGroup vg = LayoutManager.getLayout(activity, id);
-        setContentView(vg);
+        View v = LayoutManager.getLayout(activity, id);
+        setContentView(v);
     }
 
     public void setFlags(int flags, int mask) {
@@ -110,7 +110,9 @@ public class Window {
     public View findViewById(int id) {
         if (contentView instanceof ViewGroup) {
             ViewGroup vg = (ViewGroup) contentView;
-            return vg.getXmlvmViewMap().get(new Integer(id));
+            return vg.findViewById(id);
+        } else if (contentView.getId() == id) {
+            return contentView;
         } else {
             return null;
         }

@@ -39,11 +39,135 @@ import android.util.AttributeSet;
  * 
  * @see http://developer.android.com/reference/android/view/View.html
  */
+
 public class View {
 
     public static final int VISIBLE = 0;
     public static final int INVISIBLE = 4;
     public static final int GONE    = 8;
+
+    /**
+     * Copyright (C) 2006 The Android Open Source Project
+     * 
+     * A MeasureSpec encapsulates the layout requirements passed from parent to
+     * child. Each MeasureSpec represents a requirement for either the width or
+     * the height. A MeasureSpec is comprised of a size and a mode. There are
+     * three possible modes:
+     * <dl>
+     * <dt>UNSPECIFIED</dt>
+     * <dd>
+     * The parent has not imposed any constraint on the child. It can be
+     * whatever size it wants.</dd>
+     * 
+     * <dt>EXACTLY</dt>
+     * <dd>
+     * The parent has determined an exact size for the child. The child is going
+     * to be given those bounds regardless of how big it wants to be.</dd>
+     * 
+     * <dt>AT_MOST</dt>
+     * <dd>
+     * The child can be as large as it wants up to the specified size.</dd>
+     * </dl>
+     * 
+     * MeasureSpecs are implemented as ints to reduce object allocation. This
+     * class is provided to pack and unpack the &lt;size, mode&gt; tuple into
+     * the int.
+     */
+    public static class MeasureSpec {
+        private static final int MODE_SHIFT  = 30;
+        private static final int MODE_MASK   = 0x3 << MODE_SHIFT;
+
+        /**
+         * Measure specification mode: The parent has not imposed any constraint
+         * on the child. It can be whatever size it wants.
+         */
+        public static final int  UNSPECIFIED = 0 << MODE_SHIFT;
+
+        /**
+         * Measure specification mode: The parent has determined an exact size
+         * for the child. The child is going to be given those bounds regardless
+         * of how big it wants to be.
+         */
+        public static final int  EXACTLY     = 1 << MODE_SHIFT;
+
+        /**
+         * Measure specification mode: The child can be as large as it wants up
+         * to the specified size.
+         */
+        public static final int  AT_MOST     = 2 << MODE_SHIFT;
+
+        /**
+         * Creates a measure specification based on the supplied size and mode.
+         * 
+         * The mode must always be one of the following:
+         * <ul>
+         * <li>{@link android.view.View.MeasureSpec#UNSPECIFIED}</li>
+         * <li>{@link android.view.View.MeasureSpec#EXACTLY}</li>
+         * <li>{@link android.view.View.MeasureSpec#AT_MOST}</li>
+         * </ul>
+         * 
+         * @param size
+         *            the size of the measure specification
+         * @param mode
+         *            the mode of the measure specification
+         * @return the measure specification based on size and mode
+         */
+        public static int makeMeasureSpec(int size, int mode) {
+            return size + mode;
+        }
+
+        /**
+         * Extracts the mode from the supplied measure specification.
+         * 
+         * @param measureSpec
+         *            the measure specification to extract the mode from
+         * @return {@link android.view.View.MeasureSpec#UNSPECIFIED},
+         *         {@link android.view.View.MeasureSpec#AT_MOST} or
+         *         {@link android.view.View.MeasureSpec#EXACTLY}
+         */
+        public static int getMode(int measureSpec) {
+            return (measureSpec & MODE_MASK);
+        }
+
+        /**
+         * Extracts the size from the supplied measure specification.
+         * 
+         * @param measureSpec
+         *            the measure specification to extract the size from
+         * @return the size in pixels defined in the supplied measure
+         *         specification
+         */
+        public static int getSize(int measureSpec) {
+            return (measureSpec & ~MODE_MASK);
+        }
+
+        /**
+         * Returns a String representation of the specified measure
+         * specification.
+         * 
+         * @param measureSpec
+         *            the measure specification to convert to a String
+         * @return a String with the following format: "MeasureSpec: MODE SIZE"
+         */
+        public static String toString(int measureSpec) {
+            int mode = getMode(measureSpec);
+            int size = getSize(measureSpec);
+
+            StringBuilder sb = new StringBuilder("MeasureSpec: ");
+
+            if (mode == UNSPECIFIED)
+                sb.append("UNSPECIFIED ");
+            else if (mode == EXACTLY)
+                sb.append("EXACTLY ");
+            else if (mode == AT_MOST)
+                sb.append("AT_MOST ");
+            else
+                sb.append(mode).append(" ");
+
+            sb.append(size);
+            return sb.toString();
+        }
+    }
 
     public static interface OnTouchListener {
         /**
@@ -72,6 +196,8 @@ public class View {
     private OnTouchListener        listener;
     private UIResponderDelegate    responderDelegate;
     private int                    id;
+    protected int                  measuredWidth;
+    protected int                  measuredHeight;
 
     // Temporarily used
     private static int             nextY;
@@ -190,8 +316,7 @@ public class View {
     }
 
     public View findViewById(int id) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return this.id == id ? this : null;
     }
 
     public Resources getResources() {
@@ -212,4 +337,22 @@ public class View {
         return true;
     }
 
+    protected final void setMeasuredDimension(int measuredWidth, int measuredHeight) {
+        this.measuredWidth = measuredWidth;
+        this.measuredHeight = measuredHeight;
+    }
+
+    public int getMeasuredWidth() {
+        return measuredWidth;
+    }
+
+    public int getMeasuredHeight() {
+        return measuredHeight;
+    }
+
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    }
+
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+    }
 }
