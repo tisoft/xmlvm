@@ -35,7 +35,12 @@ import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
 
 public class Button extends View {
-    private String title;
+    private static final int INSETS_X            = 10;
+    private static final int INSETS_Y            = 5;
+    private static final int DEFAULT_FONT_WIDTH  = 18;
+    private static final int DEFAULT_FONT_HEIGHT = 18;
+
+    private String           title;
 
     public Button(Context c) {
         super(c);
@@ -48,18 +53,22 @@ public class Button extends View {
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
         super.setLayoutParams(l);
-        if (l.width == LayoutParams.WRAP_CONTENT) {
-            // TODO just a rough approximation: 18px per character
-            l.width = title.length() * 18 + 20;
-        }
-        if (l.height == LayoutParams.WRAP_CONTENT) {
-            l.height = 25;
-        }
-        
-        int x = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).x : 0;
-        int y = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).y : getNextY();
 
-        getUIButton().setFrame(new CGRect(x, y, l.width, l.height));
+        int width;
+        int height;
+
+        width = l.width == LayoutParams.WRAP_CONTENT ?
+        // TODO just a rough approximation: 18px per character
+        width = title.length() * DEFAULT_FONT_WIDTH + 2 * INSETS_X
+                : l.width;
+        height = l.height == LayoutParams.WRAP_CONTENT ? height = DEFAULT_FONT_HEIGHT + 2
+                * INSETS_Y : l.height;
+
+        int x = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).x : 0;
+        int y = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).y
+                : getNextY();
+
+        getUIButton().setFrame(new CGRect(x, y, width, height));
     }
 
     public void setText(String title) {
@@ -95,4 +104,15 @@ public class Button extends View {
         this.title = value != null ? value : "";
         getUIButton().setTitle(title, UIControlState.Normal);
     }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        // TODO: Replace with a more elaborated measurement
+        int width = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
+                .getSize(widthMeasureSpec) : 2 * INSETS_X + title.length() * DEFAULT_FONT_WIDTH;
+        int height = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
+                .getSize(heightMeasureSpec) : 2 * INSETS_Y + DEFAULT_FONT_HEIGHT;
+        setMeasuredDimension(width, height);
+    }
+
 }

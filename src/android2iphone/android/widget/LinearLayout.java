@@ -22,11 +22,14 @@ package android.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 
 public class LinearLayout extends ViewGroup {
 
-    private int orientation;
+    private static final int ORIENTATION_HORIZONTAL = 0;
+    private static final int ORIENTATION_VERTICAL   = 1;
+    private int              orientation;
 
     public static class LayoutParams extends ViewGroup.MarginLayoutParams {
 
@@ -46,7 +49,7 @@ public class LinearLayout extends ViewGroup {
         private int parseGravity(String str, int defaultGravity) {
             int result = 0;
             int separatorIndex;
-            
+
             do {
                 separatorIndex = str.indexOf('|');
                 String gravityStr = separatorIndex != -1 ? str.substring(0, separatorIndex) : str;
@@ -54,38 +57,27 @@ public class LinearLayout extends ViewGroup {
 
                 if (gravityStr.equals("top")) {
                     result |= 0x30;
-                }
-                else if (gravityStr.equals("bottom")) {
+                } else if (gravityStr.equals("bottom")) {
                     result |= 0x50;
-                }
-                else if (gravityStr.equals("left")) {
+                } else if (gravityStr.equals("left")) {
                     result |= 0x03;
-                }
-                else if (gravityStr.equals("right")) {
+                } else if (gravityStr.equals("right")) {
                     result |= 0x05;
-                }
-                else if (gravityStr.equals("center_vertical")) {
+                } else if (gravityStr.equals("center_vertical")) {
                     result |= 0x10;
-                }
-                else if (gravityStr.equals("fill_vertical")) {
+                } else if (gravityStr.equals("fill_vertical")) {
                     result |= 0x70;
-                }
-                else if (gravityStr.equals("center_horizontal")) {
+                } else if (gravityStr.equals("center_horizontal")) {
                     result |= 0x01;
-                }
-                else if (gravityStr.equals("fill_horizontal")) {
+                } else if (gravityStr.equals("fill_horizontal")) {
                     result |= 0x07;
-                }
-                else if (gravityStr.equals("center")) {
+                } else if (gravityStr.equals("center")) {
                     result |= 0x11;
-                }
-                else if (gravityStr.equals("fill")) {
+                } else if (gravityStr.equals("fill")) {
                     result |= 0x77;
-                }
-                else if (gravityStr.equals("clip_vertical")) {
+                } else if (gravityStr.equals("clip_vertical")) {
                     result |= 0x80;
-                }
-                else if (gravityStr.equals("clip-horizontal")) {
+                } else if (gravityStr.equals("clip-horizontal")) {
                     result |= 0x08;
                 }
 
@@ -108,7 +100,7 @@ public class LinearLayout extends ViewGroup {
         super.parseAttributes(attrs);
 
         String str = attrs.getAttributeValue(null, "orientation");
-        setOrientation("vertical".equalsIgnoreCase(str) ? 1 : 0);
+        setOrientation("vertical".equals(str) ? ORIENTATION_VERTICAL : ORIENTATION_HORIZONTAL);
     }
 
     public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
@@ -123,4 +115,74 @@ public class LinearLayout extends ViewGroup {
         this.orientation = orientation;
     }
 
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int maxItemSize = 0;
+        int totalSize = 0;
+        int remainingWidth = MeasureSpec.getSize(widthMeasureSpec);
+        int remainingHeight = MeasureSpec.getSize(heightMeasureSpec);
+
+        for (int i = 0; i < getChildCount(); i++) {
+            View v = getChildAt(i);
+            LayoutParams lp = (LayoutParams) v.getLayoutParams();
+            if (orientation == ORIENTATION_VERTICAL) {
+                remainingHeight -= (lp.topMargin + lp.bottomMargin);
+            } else {
+                remainingWidth -= (lp.leftMargin + lp.rightMargin);
+            }
+
+            int viewWidthMeasureSpec = makeMeasureSpec(lp.width, remainingWidth);
+            int viewHeightMeasureSpec = makeMeasureSpec(lp.height, remainingHeight);
+            v.measure(viewWidthMeasureSpec, viewHeightMeasureSpec);
+
+            if (orientation == ORIENTATION_VERTICAL) {
+                remainingHeight -= v.getMeasuredHeight();
+                maxItemSize = v.getMeasuredWidth() > maxItemSize ? v.getMeasuredWidth()
+                        : maxItemSize;
+                totalSize += (lp.topMargin + lp.bottomMargin + v.getMeasuredHeight());
+            } else {
+                remainingWidth -= v.getMeasuredWidth();
+                maxItemSize = v.getMeasuredHeight() > maxItemSize ? v.getMeasuredHeight()
+                        : maxItemSize;
+                totalSize += (lp.leftMargin + lp.rightMargin + v.getMeasuredWidth());
+            }
+        }
+
+        int layoutWidth;
+        int layoutHeight;
+        if (orientation == ORIENTATION_VERTICAL) {
+            layoutWidth = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
+                    .getSize(widthMeasureSpec)
+                    : maxItemSize;
+            layoutHeight = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
+                    .getSize(heightMeasureSpec)
+                    : totalSize;
+        } else {
+            layoutWidth = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
+                    .getSize(widthMeasureSpec)
+                    : totalSize;
+            layoutHeight = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
+                    .getSize(heightMeasureSpec)
+                    : maxItemSize;
+        }
+
+        setMeasuredDimension(layoutWidth, layoutHeight);
+    }
+
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+    }
+
+    private int makeMeasureSpec(int layoutSize, int sizeConstraint) {
+        int mode = layoutSize == LayoutParams.WRAP_CONTENT ? MeasureSpec.AT_MOST
+                : MeasureSpec.EXACTLY;
+
+        int size; 
+        if (mode == MeasureSpec.AT_MOST) { 
+            size = sizeConstraint;
+        }
+        else {
+            size = layoutSize > 0 ? Math.min(layoutSize,sizeConstraint) : sizeConstraint;
+        }
+        
+        return MeasureSpec.makeMeasureSpec(size, mode);
+    }
 }

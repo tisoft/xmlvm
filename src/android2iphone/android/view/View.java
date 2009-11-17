@@ -23,6 +23,7 @@ package android.view;
 import java.util.Set;
 
 import org.xmlvm.iphone.CGPoint;
+import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UIResponderDelegate;
 import org.xmlvm.iphone.UITouch;
@@ -42,9 +43,9 @@ import android.util.AttributeSet;
 
 public class View {
 
-    public static final int VISIBLE = 0;
+    public static final int VISIBLE   = 0;
     public static final int INVISIBLE = 4;
-    public static final int GONE    = 8;
+    public static final int GONE      = 8;
 
     /**
      * Copyright (C) 2006 The Android Open Source Project
@@ -350,9 +351,20 @@ public class View {
         return measuredHeight;
     }
 
+    public final void measure(int widthMeasureSpec, int heightMeasureSpec) {
+        onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        // TODO: If background is set use the background's dimension
+        setMeasuredDimension(0, 0);
+    }
+
+    public final void layout(int left, int top, int right, int bottom) {
+        onLayout(true, left, top, right, bottom);
     }
 
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        uiView.setFrame(new CGRect(left, top, right - left, bottom - top));
     }
 }

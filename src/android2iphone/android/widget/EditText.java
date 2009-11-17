@@ -25,8 +25,14 @@ import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View.MeasureSpec;
 
 public class EditText extends TextView {
+    
+    private static final int INSETS_X = 10;
+    private static final int INSETS_Y = 5;
+    private static final int DEFAULT_FONT_WIDTH = 18;
+    private static final int DEFAULT_FONT_HEIGHT = 18;
 
     public EditText(Context c) {
         super(c);
@@ -59,5 +65,15 @@ public class EditText extends TextView {
 
     protected void parseAttributes(AttributeSet attrs) {
         super.parseAttributes(attrs);
+    }
+    
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        // TODO: Replace with a more elaborated measurement
+        int width = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
+                .getSize(widthMeasureSpec) : 2 * INSETS_X + getUITextView().getText().length() * DEFAULT_FONT_WIDTH;
+        int height = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
+                .getSize(heightMeasureSpec) : 2 * INSETS_Y + DEFAULT_FONT_HEIGHT;
+        setMeasuredDimension(width, height);
     }
 }

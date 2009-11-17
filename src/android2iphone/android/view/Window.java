@@ -29,6 +29,8 @@ import org.xmlvm.iphone.UIWindow;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.internal.LayoutManager;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup.LayoutParams;
 
 /**
  * iPhone Implementation of Android's Window class.
@@ -94,6 +96,36 @@ public class Window {
             CGAffineTransform translation = CGAffineTransform.translate(rotation, 80, 80);
             iWindow.setTransform(translation);
         }
+
+        if (contentView != null) {
+            layoutContentView();
+        }
+    }
+
+    private void layoutContentView() {
+        int widthMeasureSpec;
+        int heightMeasureSpec;
+        LayoutParams lp = contentView.getLayoutParams();
+
+        if (lp == null || lp.width != LayoutParams.FILL_PARENT) {
+            widthMeasureSpec = MeasureSpec.makeMeasureSpec((int) rect.size.width,
+                    MeasureSpec.AT_MOST);
+        } else {
+            widthMeasureSpec = MeasureSpec.makeMeasureSpec((int) rect.size.width,
+                    MeasureSpec.EXACTLY);
+        }
+
+        if (lp == null || lp.height != LayoutParams.FILL_PARENT) {
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec((int) rect.size.height,
+                    MeasureSpec.AT_MOST);
+        } else {
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec((int) rect.size.height,
+                    MeasureSpec.EXACTLY);
+        }
+
+        contentView.measure(widthMeasureSpec, heightMeasureSpec);
+        contentView.layout(0, 0, contentView.getMeasuredWidth(), contentView
+                .getMeasuredHeight());
     }
 
     /**

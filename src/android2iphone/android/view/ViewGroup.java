@@ -29,6 +29,7 @@ import org.xmlvm.iphone.CGRect;
 import android.app.Activity;
 import android.content.Context;
 import android.internal.Assert;
+import android.internal.Dimension;
 import android.util.AttributeSet;
 
 /**
@@ -66,7 +67,8 @@ public class ViewGroup extends View implements ViewParent {
             } else if (str.equalsIgnoreCase("fill_parent")) {
                 return FILL_PARENT;
             } else {
-                return Integer.parseInt(str);
+                
+                return Dimension.resolveDimension(str);
             }
         }
     }
@@ -81,28 +83,18 @@ public class ViewGroup extends View implements ViewParent {
         public MarginLayoutParams(Context context, AttributeSet attrs) {
             super(context, attrs);
 
-            bottomMargin = resolveDimension(attrs.getAttributeValue(null, "layout_marginBottom"));
-            leftMargin = resolveDimension(attrs.getAttributeValue(null, "layout_marginLeft"));
-            rightMargin = resolveDimension(attrs.getAttributeValue(null, "layout_marginRight"));
-            topMargin = resolveDimension(attrs.getAttributeValue(null, "layout_marginTop"));
+            bottomMargin = Dimension.resolveDimension(attrs.getAttributeValue(null,
+                    "layout_marginBottom"));
+            leftMargin = Dimension.resolveDimension(attrs.getAttributeValue(null,
+                    "layout_marginLeft"));
+            rightMargin = Dimension.resolveDimension(attrs.getAttributeValue(null,
+                    "layout_marginRight"));
+            topMargin = Dimension.resolveDimension(attrs
+                    .getAttributeValue(null, "layout_marginTop"));
         }
 
         public MarginLayoutParams(int width, int height) {
             super(width, height);
-        }
-
-        private int resolveDimension(String dimension) {
-            // A missing dimension is interpreted as 0 pixel
-            if (dimension == null || dimension.length() == 0) {
-                return 0;
-            }
-
-            if (dimension.length() > 2 && dimension.endsWith("px")) {
-                return Integer.parseInt(dimension.substring(0, dimension.length() - 2));
-            }
-
-            Assert.FAIL("layout dimension not supported: " + dimension);
-            return 0;
         }
     }
 
@@ -147,6 +139,14 @@ public class ViewGroup extends View implements ViewParent {
             View view = subViews.get(0);
             removeView(view);
         }
+    }
+
+    public int getChildCount() {
+        return subViews.size();
+    }
+
+    public View getChildAt(int index) {
+        return subViews.get(index);
     }
 
     public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
