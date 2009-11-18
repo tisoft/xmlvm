@@ -18,25 +18,47 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.widget;
 
+import org.xmlvm.iphone.UIActivityIndicatorView;
+import org.xmlvm.iphone.UIActivityIndicatorViewStyle;
+import org.xmlvm.iphone.UIView;
+
 import android.content.Context;
-import android.internal.Assert;
+import android.util.AttributeSet;
 import android.view.View;
 
-/**
- * @author arno
- *
+/* TODO: This implementation of ProgressBar is currently hard coded
+ * for indeterminate mode.
  */
 public class ProgressBar extends View {
 
-    /**
-     * @param c
-     */
+    final private int SMALL_SPINNER_SIZE = 21;
+    final private int LARGE_SPINNER_SIZE = 36;
+
     public ProgressBar(Context c) {
         super(c);
-        Assert.NOT_IMPLEMENTED();
+    }
+
+    public ProgressBar(Context c, AttributeSet attrs) {
+        super(c, attrs);
+    }
+
+    @Override
+    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
+        return new UIActivityIndicatorView(UIActivityIndicatorViewStyle.WhiteLarge);
+    }
+
+    @Override
+    protected void parseAttributes(AttributeSet attrs) {
+        super.parseAttributes(attrs);
+
+        // TODO
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        setMeasuredDimension(LARGE_SPINNER_SIZE, LARGE_SPINNER_SIZE);
     }
 
 }
