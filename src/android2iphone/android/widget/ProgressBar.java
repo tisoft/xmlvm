@@ -46,7 +46,11 @@ public class ProgressBar extends View {
 
     @Override
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        return new UIActivityIndicatorView(UIActivityIndicatorViewStyle.WhiteLarge);
+        UIActivityIndicatorView activityIndicator = new UIActivityIndicatorView(
+                UIActivityIndicatorViewStyle.WhiteLarge);
+        activityIndicator.setHidesWhenStopped(false);
+        activityIndicator.startAnimating();
+        return activityIndicator;
     }
 
     @Override
