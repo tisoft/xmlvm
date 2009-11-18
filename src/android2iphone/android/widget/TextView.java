@@ -35,7 +35,7 @@ public class TextView extends View {
 
     private static final int INSETS_X = 0;
     private static final int INSETS_Y = 0;
-    private static final int DEFAULT_FONT_WIDTH = 18;
+    private static final int DEFAULT_FONT_WIDTH = 10;
     private static final int DEFAULT_FONT_HEIGHT = 18;
 
     public TextView(Context c) {
@@ -72,7 +72,7 @@ public class TextView extends View {
 
     public void setText(String string) {
         getUILabel().setText(string);
-
+        requestLayout();
     }
 
     public void setTextSize(float size) {

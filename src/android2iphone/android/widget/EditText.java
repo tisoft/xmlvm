@@ -31,7 +31,7 @@ public class EditText extends TextView {
     
     private static final int INSETS_X = 10;
     private static final int INSETS_Y = 5;
-    private static final int DEFAULT_FONT_WIDTH = 18;
+    private static final int DEFAULT_FONT_WIDTH = 10;
     private static final int DEFAULT_FONT_HEIGHT = 18;
 
     public EditText(Context c) {

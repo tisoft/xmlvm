@@ -20,6 +20,8 @@
 
 package android.widget;
 
+import org.xmlvm.iphone.CGRect;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -121,6 +123,8 @@ public class LinearLayout extends ViewGroup {
         int remainingWidth = MeasureSpec.getSize(widthMeasureSpec);
         int remainingHeight = MeasureSpec.getSize(heightMeasureSpec);
 
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        
         for (int i = 0; i < getChildCount(); i++) {
             View v = getChildAt(i);
             LayoutParams lp = (LayoutParams) v.getLayoutParams();
@@ -130,16 +134,22 @@ public class LinearLayout extends ViewGroup {
                 remainingWidth -= (lp.leftMargin + lp.rightMargin);
             }
 
-            int viewWidthMeasureSpec = makeMeasureSpec(lp.width, remainingWidth);
-            int viewHeightMeasureSpec = makeMeasureSpec(lp.height, remainingHeight);
-            v.measure(viewWidthMeasureSpec, viewHeightMeasureSpec);
-
             if (orientation == ORIENTATION_VERTICAL) {
+                int viewWidthMeasureSpec = makeMeasureSpec(lp.width, remainingWidth - lp.leftMargin
+                        - lp.rightMargin);
+                int viewHeightMeasureSpec = makeMeasureSpec(lp.height, remainingHeight);
+                v.measure(viewWidthMeasureSpec, viewHeightMeasureSpec);
+
                 remainingHeight -= v.getMeasuredHeight();
                 maxItemSize = v.getMeasuredWidth() > maxItemSize ? v.getMeasuredWidth()
                         : maxItemSize;
                 totalSize += (lp.topMargin + lp.bottomMargin + v.getMeasuredHeight());
             } else {
+                int viewWidthMeasureSpec = makeMeasureSpec(lp.width, remainingWidth);
+                int viewHeightMeasureSpec = makeMeasureSpec(lp.height, remainingHeight
+                        - lp.topMargin - lp.bottomMargin);
+                v.measure(viewWidthMeasureSpec, viewHeightMeasureSpec);
+
                 remainingWidth -= v.getMeasuredWidth();
                 maxItemSize = v.getMeasuredHeight() > maxItemSize ? v.getMeasuredHeight()
                         : maxItemSize;
@@ -169,20 +179,50 @@ public class LinearLayout extends ViewGroup {
     }
 
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        int nextPosition = 0;
+        int width = right - left;
+        int height = bottom - top;
+
+        xmlvmGetUIView().setFrame(new CGRect(left, top, width, height));
+
+        for (int i = 0; i < getChildCount(); i++) {
+            View v = getChildAt(i);
+            LayoutParams lp = (LayoutParams) v.getLayoutParams();
+            int x;
+            int y;
+
+            if (orientation == ORIENTATION_VERTICAL) {
+                nextPosition += lp.topMargin;
+
+                // TODO: Support not only center alignment
+                x = (width - v.getMeasuredWidth()) / 2;
+                y = nextPosition;
+
+                nextPosition += (v.getMeasuredHeight() + lp.bottomMargin);
+            } else {
+                nextPosition += lp.leftMargin;
+
+                x = nextPosition;
+                y = lp.topMargin;
+
+                nextPosition += (v.getMeasuredWidth() + lp.rightMargin);
+            }
+
+            v.layout(x, y, x + v.getMeasuredWidth(), y + v.getMeasuredHeight());
+        }
     }
 
     private int makeMeasureSpec(int layoutSize, int sizeConstraint) {
         int mode = layoutSize == LayoutParams.WRAP_CONTENT ? MeasureSpec.AT_MOST
                 : MeasureSpec.EXACTLY;
 
-        int size; 
-        if (mode == MeasureSpec.AT_MOST) { 
+        int size;
+        if (mode == MeasureSpec.AT_MOST) {
             size = sizeConstraint;
+        } else {
+            size = layoutSize > 0 ? Math.min(layoutSize, sizeConstraint) : sizeConstraint;
         }
-        else {
-            size = layoutSize > 0 ? Math.min(layoutSize,sizeConstraint) : sizeConstraint;
-        }
-        
+
         return MeasureSpec.makeMeasureSpec(size, mode);
     }
 }

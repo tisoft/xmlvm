@@ -41,6 +41,8 @@ public class ViewGroup extends View implements ViewParent {
 
     private List<View>         subViews;
     private Map<Integer, View> xmlvmViewMap;
+    private int widthMeasureSpec;
+    private int heightMeasureSpec;
 
     public static class LayoutParams {
         public static final int FILL_PARENT  = -1;
@@ -169,4 +171,13 @@ public class ViewGroup extends View implements ViewParent {
         this.xmlvmViewMap = xmlvmViewMap;
     }
 
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        this.widthMeasureSpec = widthMeasureSpec;
+        this.heightMeasureSpec = heightMeasureSpec;
+    }
+    
+    public void requestLayout() {
+        measure(widthMeasureSpec, heightMeasureSpec);
+        layout(getX(), getY(), getMeasuredWidth(), getMeasuredHeight());
+    }
 }

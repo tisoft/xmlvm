@@ -197,8 +197,12 @@ public class View {
     private OnTouchListener        listener;
     private UIResponderDelegate    responderDelegate;
     private int                    id;
-    protected int                  measuredWidth;
-    protected int                  measuredHeight;
+    private int                    measuredWidth;
+    private int                    measuredHeight;
+    private int                    x;
+    private int                    y;
+    private int                    width;
+    private int                    height;
 
     // Temporarily used
     private static int             nextY;
@@ -338,6 +342,22 @@ public class View {
         return true;
     }
 
+    protected int getX() {
+        return x;
+    }
+
+    protected int getY() {
+        return y;
+    }
+
+    protected int getWidth() {
+        return width;
+    }
+
+    protected int getHeight() {
+        return height;
+    }
+
     protected final void setMeasuredDimension(int measuredWidth, int measuredHeight) {
         this.measuredWidth = measuredWidth;
         this.measuredHeight = measuredHeight;
@@ -365,6 +385,16 @@ public class View {
     }
 
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        uiView.setFrame(new CGRect(left, top, right - left, bottom - top));
+        x = left;
+        y = top;
+        width = right - left;
+        height = bottom - top;
+        uiView.setFrame(new CGRect(left, top, width, height));
+    }
+
+    public void requestLayout() {
+        if (parent != null) {
+            ((View) parent).requestLayout();
+        }
     }
 }
