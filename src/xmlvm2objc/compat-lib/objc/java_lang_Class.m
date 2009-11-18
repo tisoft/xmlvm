@@ -21,6 +21,7 @@
 #import "java_lang_Class.h"
 #import "java_lang_reflect_Field.h"
 #import "java_lang_reflect_Constructor.h"
+#import "java_lang_ClassNotFoundException.h"
 #import <objc/runtime.h>
 
 
@@ -76,11 +77,16 @@
 
 + (java_lang_Class*) forName___java_lang_String :(java_lang_String*) className;
 {
-	java_lang_Class* classWrapper = [[java_lang_Class alloc] init];
 	NSString* mangledName = [className stringByReplacingOccurrencesOfString: @"." withString: @"_"];
 	mangledName = [mangledName stringByReplacingOccurrencesOfString: @"$" withString: @"_"];
-	classWrapper->clazz = NSClassFromString(mangledName);
-	//[mangledName release];
+	Class theClass = NSClassFromString(mangledName);
+	if (theClass == nil) {
+		java_lang_ClassNotFoundException* ex = [[java_lang_ClassNotFoundException alloc] init];
+		[ex __init_java_lang_ClassNotFoundException__];
+		@throw ex;
+	}
+	java_lang_Class* classWrapper = [[java_lang_Class alloc] init];
+	classWrapper->clazz = theClass;
 	return classWrapper;
 }
 
