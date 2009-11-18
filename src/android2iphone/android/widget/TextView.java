@@ -45,8 +45,7 @@ public class TextView extends View {
     }
 
     public TextView(Context c, AttributeSet attrs) {
-        this(c);
-        parseAttributes(attrs);
+        super(c, attrs);
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
@@ -80,7 +79,7 @@ public class TextView extends View {
     }
 
     @Override
-    protected UIView xmlvmCreateUIView() {
+    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
         return new UILabel();
     }
 

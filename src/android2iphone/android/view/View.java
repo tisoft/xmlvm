@@ -20,6 +20,7 @@
 
 package android.view;
 
+import java.util.HashMap;
 import java.util.Set;
 
 import org.xmlvm.iphone.CGPoint;
@@ -33,6 +34,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.internal.Assert;
+import android.internal.ImageDrawable;
+import android.internal.ResourceAttributes;
 import android.util.AttributeSet;
 
 /**
@@ -205,17 +208,17 @@ public class View {
     private int                    height;
 
     public View(Context c) {
-        init(c);
+        init(c, new ResourceAttributes("", new HashMap<String, String>()));
     }
 
     public View(Context c, AttributeSet attrs) {
+        init(c, attrs);
         parseAttributes(attrs);
-        init(c);
     }
 
-    private void init(Context c) {
+    private void init(Context c, AttributeSet attrs) {
         this.c = c;
-        uiView = xmlvmCreateUIView();
+        uiView = xmlvmCreateUIView(attrs);
 
         responderDelegate = new UIResponderDelegate() {
 
@@ -286,7 +289,7 @@ public class View {
         return this.listener.onTouch(this, motionEvent);
     }
 
-    protected UIView xmlvmCreateUIView() {
+    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
         return new UIView();
     }
 
@@ -329,7 +332,8 @@ public class View {
     }
 
     public void setBackgroundResource(int resourceId) {
-        Assert.NOT_IMPLEMENTED();
+        Drawable d = new ImageDrawable(resourceId);
+        setBackgroundDrawable(d);
     }
 
     public void setBackgroundDrawable(Drawable drawable) {

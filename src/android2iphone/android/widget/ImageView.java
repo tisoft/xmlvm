@@ -26,6 +26,7 @@ import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.internal.ResourceMapper;
+import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
@@ -61,7 +62,7 @@ public class ImageView extends View {
     }
 
     @Override
-    protected UIView xmlvmCreateUIView() {
+    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
         return new UIImageView(new CGRect(0, 0, 0, 0));
     }
     

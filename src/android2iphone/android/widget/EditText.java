@@ -41,7 +41,8 @@ public class EditText extends TextView {
     }
 
     public EditText(Context c, AttributeSet attrs) {
-        this(c);
+        super(c, attrs);
+        getUITextView().setText("");
         parseAttributes(attrs);
     }
 
@@ -55,7 +56,7 @@ public class EditText extends TextView {
     }
 
     @Override
-    protected UIView xmlvmCreateUIView() {
+    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
         return new UITextView();
     }
 

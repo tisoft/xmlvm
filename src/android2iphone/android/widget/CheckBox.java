@@ -5,6 +5,7 @@ import org.xmlvm.iphone.UISwitch;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.ViewGroup;
 
 public class CheckBox extends CompoundButton {
@@ -34,7 +35,7 @@ public class CheckBox extends CompoundButton {
     }
 
     @Override
-    protected UIView xmlvmCreateUIView() {
+    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
         return new UISwitch();
     }
     

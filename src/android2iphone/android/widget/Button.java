@@ -47,8 +47,7 @@ public class Button extends View {
     }
 
     public Button(Context c, AttributeSet attrs) {
-        this(c);
-        parseAttributes(attrs);
+        super(c, attrs);
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
@@ -89,7 +88,7 @@ public class Button extends View {
     }
 
     @Override
-    protected UIView xmlvmCreateUIView() {
+    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
         return UIButton.buttonWithType(UIButtonType.RoundedRect);
     }
 
