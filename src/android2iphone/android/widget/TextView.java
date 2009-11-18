@@ -29,13 +29,12 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.MeasureSpec;
 
 public class TextView extends View {
 
-    private static final int INSETS_X = 0;
-    private static final int INSETS_Y = 0;
-    private static final int DEFAULT_FONT_WIDTH = 10;
+    private static final int INSETS_X            = 0;
+    private static final int INSETS_Y            = 0;
+    private static final int DEFAULT_FONT_WIDTH  = 10;
     private static final int DEFAULT_FONT_HEIGHT = 18;
 
     public TextView(Context c) {
@@ -52,13 +51,13 @@ public class TextView extends View {
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
         super.setLayoutParams(l);
-        
+
         // TODO Fix sizes
         int width = l.width < 0 ? 320 : l.width;
         int height = l.height < 0 ? 30 : l.height;
         int x = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).x : 0;
-        int y = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).y : getNextY();
-        
+        int y = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).y : 0;
+
         // TODO Compute bounds depending on the text size
         // if (width == LayoutParams.WRAP_CONTENT) {
         // width = (int) image.getImage().getSize().width;
@@ -97,7 +96,8 @@ public class TextView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // TODO: Replace with a more elaborated measurement
         int width = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                .getSize(widthMeasureSpec) : 2 * INSETS_X + getUILabel().getText().length() * DEFAULT_FONT_WIDTH;
+                .getSize(widthMeasureSpec) : 2 * INSETS_X + getUILabel().getText().length()
+                * DEFAULT_FONT_WIDTH;
         int height = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
                 .getSize(heightMeasureSpec) : 2 * INSETS_Y + DEFAULT_FONT_HEIGHT;
         setMeasuredDimension(width, height);

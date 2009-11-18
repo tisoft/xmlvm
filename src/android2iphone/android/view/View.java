@@ -204,15 +204,6 @@ public class View {
     private int                    width;
     private int                    height;
 
-    // Temporarily used
-    private static int             nextY;
-
-    protected int getNextY() {
-        int y = nextY;
-        nextY += 40;
-        return y;
-    }
-
     public View(Context c) {
         this.c = c;
         uiView = xmlvmCreateUIView();

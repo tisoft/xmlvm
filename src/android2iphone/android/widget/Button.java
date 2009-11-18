@@ -65,8 +65,7 @@ public class Button extends View {
                 * INSETS_Y : l.height;
 
         int x = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).x : 0;
-        int y = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).y
-                : getNextY();
+        int y = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).y : 0;
 
         getUIButton().setFrame(new CGRect(x, y, width, height));
     }
