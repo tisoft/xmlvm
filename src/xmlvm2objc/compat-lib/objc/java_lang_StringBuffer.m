@@ -92,6 +92,13 @@
 	return self;
 }
 
+- (java_lang_StringBuffer*) append___boolean: (BOOL) b;
+{
+	[self appendString: b ? @"true" : @"false"];
+	[self retain];
+	return self;
+}
+
 - (java_lang_String*) substring___int_int: (int) from :(int) to
 {
 	NSRange range;
