@@ -205,6 +205,15 @@ public class View {
     private int                    height;
 
     public View(Context c) {
+        init(c);
+    }
+
+    public View(Context c, AttributeSet attrs) {
+        parseAttributes(attrs);
+        init(c);
+    }
+
+    private void init(Context c) {
         this.c = c;
         uiView = xmlvmCreateUIView();
 
@@ -233,14 +242,8 @@ public class View {
         };
 
         uiView.setDelegate(responderDelegate);
-
     }
-
-    public View(Context c, AttributeSet attrs) {
-        this(c);
-        parseAttributes(attrs);
-    }
-
+    
     public ViewGroup.LayoutParams getLayoutParams() {
         return layoutParams;
     }
@@ -301,6 +304,11 @@ public class View {
 
     protected void parseAttributes(AttributeSet attrs) {
         id = attrs.getIdAttributeResourceValue(0);
+
+        int backgroundId = attrs.getAttributeResourceValue(null, "background", -1);
+        if (backgroundId != -1) {
+            setBackgroundResource(backgroundId);
+        }
     }
 
     public void setId(int id) {
@@ -318,6 +326,10 @@ public class View {
     public Resources getResources() {
         Assert.NOT_IMPLEMENTED();
         return null;
+    }
+
+    public void setBackgroundResource(int resourceId) {
+        Assert.NOT_IMPLEMENTED();
     }
 
     public void setBackgroundDrawable(Drawable drawable) {
