@@ -1,4 +1,3 @@
-
 package org.xmlvm.iphone.internal.renderer;
 
 import java.awt.Graphics2D;
@@ -19,9 +18,11 @@ public class UIImageViewRenderer extends UIViewRenderer<UIImageView> {
     }
 
     public void paint() {
-        Graphics2D g = CGContext.theContext.graphicsContext;
-        CGRect rect = view.getFrame();
-        g.drawImage(view.getImage().xmlvmGetImage(), (int) rect.origin.x, (int) rect.origin.y,
-                Simulator.getDisplay());
+        if (view.getImage() != null) {
+            Graphics2D g = CGContext.theContext.graphicsContext;
+            CGRect rect = view.getFrame();
+            g.drawImage(view.getImage().xmlvmGetImage(), (int) rect.origin.x, (int) rect.origin.y,
+                    Simulator.getDisplay());
+        }
     }
 }
