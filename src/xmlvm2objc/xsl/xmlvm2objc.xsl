@@ -69,6 +69,9 @@ int main(int argc, char* argv[])
 
 <xsl:template name="emitInterfaces">
   <xsl:for-each select="vm:class">
+    <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
+    <xsl:variable name="clname" select="vm:fixname($cclname)"/>
+  
     <xsl:text>
 </xsl:text>
     <xsl:value-of select="if (@isInterface = 'true') then '@protocol ' else '@interface '"/>
@@ -149,12 +152,35 @@ int main(int argc, char* argv[])
 @end
 
 </xsl:text>
+	<!-- For Java interfaces we also emit an Objective-C @interface. The reason is that
+	in Java it is possible to obtain an interface type via getClass(). However, in Objective-C
+	@protocols are not first-class-types and we cannot send a @protocol the 'class' method.
+	Thankfully Objective-C does not object to having the same identifier used both for
+	@interface and @protocol. -->
+	<xsl:if test="@isInterface = 'true'">
+	  <xsl:text>@interface </xsl:text>
+	  <xsl:value-of select="$clname"/>
+	  <xsl:text> : java_lang_Object &lt;</xsl:text>
+	  <xsl:value-of select="$clname"/>
+	  <xsl:text>&gt;
+@end
+</xsl:text>
+	</xsl:if>
   </xsl:for-each>
   
 </xsl:template>
 
 
 <xsl:template name="emitImplementation">
+  <xsl:for-each select="vm:class[@isInterface = 'true']">
+    <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
+    <xsl:variable name="clname" select="vm:fixname($cclname)"/>
+	  <xsl:text>@implementation </xsl:text>
+	  <xsl:value-of select="$clname"/>
+	  <xsl:text>
+@end
+</xsl:text>
+  </xsl:for-each>
   <xsl:for-each select="vm:class[not(@isInterface = 'true')]">
     <!-- Emit global variable definition for all static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
