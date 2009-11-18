@@ -20,6 +20,7 @@
 
 package android.internal;
 
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -64,20 +65,25 @@ class LayoutParser extends NSXMLParserDelegate {
 
         if (qualifiedName.equals("LinearLayout")) {
             beginLinearLayout(attrs);
-        } else if (qualifiedName.equals("EditText")) {
-            addEditText(attrs);
-        } else if (qualifiedName.equals("TextView")) {
-            addTextView(attrs);
-        } else if (qualifiedName.equals("Button")) {
-            addButton(attrs);
         } else {
-            // TODO error
+            View v;
+
+            if (qualifiedName.indexOf('.') == -1) {
+                String str = "android.widget." + qualifiedName;
+                v = createView(str, context, attrs);
+
+                if (v == null) {
+                    str = "android.view." + qualifiedName;
+                    v = createView(str, context, attrs);
+                }
+            } else {
+                v = createView(qualifiedName, context, attrs);
+            }
+
+            if (v != null) {
+                addView(v, attrs);
+            }
         }
-        /*
-         * String attr = ""; // txt = attributes.get(prefix + "orientation");
-         * for (String s : attributes.keySet()) { attr += attributes.get(s) +
-         * ";"; } }
-         */
     }
 
     @Override
@@ -107,19 +113,17 @@ class LayoutParser extends NSXMLParserDelegate {
         currentViewGroup = viewGroupStack.pop();
     }
 
-    private void addEditText(AttributeSet attrs) {
-        EditText editText = new EditText(context, attrs);
-        addView(editText, attrs);
-    }
-
-    public void addTextView(AttributeSet attrs) {
-        TextView textView = new TextView(context, attrs);
-        addView(textView, attrs);
-    }
-
-    public void addButton(AttributeSet attrs) {
-        Button button = new Button(context, attrs);
-        addView(button, attrs);
+    private View createView(String name, Context context, AttributeSet attrs) {
+        try {
+            Class<?> clazz = Class.forName(name);
+            Class<?>[] signature = new Class[] { Context.class, AttributeSet.class };
+            Constructor<?> c = clazz.getConstructor(signature);
+            Object[] params = new Object[] { context, attrs };
+            View v = (View) c.newInstance(params);
+            return v;
+        } catch (Throwable t) {
+            return null;
+        }
     }
 
     private void addView(View view, AttributeSet attrs) {
