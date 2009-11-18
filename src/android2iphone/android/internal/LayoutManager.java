@@ -33,10 +33,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 class LayoutParser extends NSXMLParserDelegate {
 
@@ -75,6 +72,10 @@ class LayoutParser extends NSXMLParserDelegate {
                 if (v == null) {
                     str = "android.view." + qualifiedName;
                     v = createView(str, context, attrs);
+                    
+                    if (v == null) {
+                        v = createView(qualifiedName, context, attrs);
+                    }
                 }
             } else {
                 v = createView(qualifiedName, context, attrs);
