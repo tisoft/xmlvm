@@ -52,39 +52,43 @@ public class LinearLayout extends ViewGroup {
             int result = 0;
             int separatorIndex;
 
-            do {
-                separatorIndex = str.indexOf('|');
-                String gravityStr = separatorIndex != -1 ? str.substring(0, separatorIndex) : str;
-                str = str.substring(separatorIndex + 1);
+            if (str != null) {
+                do {
+                    separatorIndex = str.indexOf('|');
+                    String gravityStr = separatorIndex != -1 ? str.substring(0, separatorIndex)
+                            : str;
+                    str = str.substring(separatorIndex + 1);
 
-                if (gravityStr.equals("top")) {
-                    result |= 0x30;
-                } else if (gravityStr.equals("bottom")) {
-                    result |= 0x50;
-                } else if (gravityStr.equals("left")) {
-                    result |= 0x03;
-                } else if (gravityStr.equals("right")) {
-                    result |= 0x05;
-                } else if (gravityStr.equals("center_vertical")) {
-                    result |= 0x10;
-                } else if (gravityStr.equals("fill_vertical")) {
-                    result |= 0x70;
-                } else if (gravityStr.equals("center_horizontal")) {
-                    result |= 0x01;
-                } else if (gravityStr.equals("fill_horizontal")) {
-                    result |= 0x07;
-                } else if (gravityStr.equals("center")) {
-                    result |= 0x11;
-                } else if (gravityStr.equals("fill")) {
-                    result |= 0x77;
-                } else if (gravityStr.equals("clip_vertical")) {
-                    result |= 0x80;
-                } else if (gravityStr.equals("clip-horizontal")) {
-                    result |= 0x08;
-                }
+                    if (gravityStr.equals("top")) {
+                        result |= 0x30;
+                    } else if (gravityStr.equals("bottom")) {
+                        result |= 0x50;
+                    } else if (gravityStr.equals("left")) {
+                        result |= 0x03;
+                    } else if (gravityStr.equals("right")) {
+                        result |= 0x05;
+                    } else if (gravityStr.equals("center_vertical")) {
+                        result |= 0x10;
+                    } else if (gravityStr.equals("fill_vertical")) {
+                        result |= 0x70;
+                    } else if (gravityStr.equals("center_horizontal")) {
+                        result |= 0x01;
+                    } else if (gravityStr.equals("fill_horizontal")) {
+                        result |= 0x07;
+                    } else if (gravityStr.equals("center")) {
+                        result |= 0x11;
+                    } else if (gravityStr.equals("fill")) {
+                        result |= 0x77;
+                    } else if (gravityStr.equals("clip_vertical")) {
+                        result |= 0x80;
+                    } else if (gravityStr.equals("clip-horizontal")) {
+                        result |= 0x08;
+                    }
 
-            } while (separatorIndex >= 0);
-
+                } while (separatorIndex >= 0);
+            } else {
+                result = defaultGravity;
+            }
             return result;
         }
     }
