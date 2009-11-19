@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIView;
 
 import android.app.Activity;
 import android.content.Context;
@@ -41,8 +43,8 @@ public class ViewGroup extends View implements ViewParent {
 
     private List<View>         subViews;
     private Map<Integer, View> xmlvmViewMap;
-    private int widthMeasureSpec;
-    private int heightMeasureSpec;
+    private int                widthMeasureSpec;
+    private int                heightMeasureSpec;
 
     public static class LayoutParams {
         public static final int FILL_PARENT  = -1;
@@ -69,7 +71,7 @@ public class ViewGroup extends View implements ViewParent {
             } else if (str.equalsIgnoreCase("fill_parent")) {
                 return FILL_PARENT;
             } else {
-                
+
                 return Dimension.resolveDimension(str);
             }
         }
@@ -167,6 +169,12 @@ public class ViewGroup extends View implements ViewParent {
         return xmlvmViewMap;
     }
 
+    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
+        UIView v = new UIView();
+        v.setBackgroundColor(UIColor.colorWithRGBA(0, 0, 0, 0));
+        return v;
+    }
+
     public void setXmlvmViewMap(Map<Integer, View> xmlvmViewMap) {
         this.xmlvmViewMap = xmlvmViewMap;
     }
@@ -175,7 +183,7 @@ public class ViewGroup extends View implements ViewParent {
         this.widthMeasureSpec = widthMeasureSpec;
         this.heightMeasureSpec = heightMeasureSpec;
     }
-    
+
     public void requestLayout() {
         measure(widthMeasureSpec, heightMeasureSpec);
         layout(getX(), getY(), getMeasuredWidth(), getMeasuredHeight());
