@@ -617,6 +617,9 @@
 			<fileset dir="demo/android/sayhello">
 				<include name="*.xml" />
 			</fileset>
+			<fileset dir="demo/android/sayhello/res/drawable">
+				<include name="*.png" />
+			</fileset>
 			<fileset dir="demo/android/sayhello/res/layout">
 				<include name="*.xml" />
 			</fileset>
@@ -632,6 +635,7 @@
 			<arg value="--app-name=SayHello" />
 			<arg value="--in=${xmlvm.sayhello}/" />
 			<arg value="--resource=demo/android/sayhello/res/layout"/>
+			<arg value="--resource=demo/android/sayhello/res/drawable"/>
 			<arg value="--resource=demo/android/sayhello/AndroidManifest.xml"/>
 		</java>
 	</target>
