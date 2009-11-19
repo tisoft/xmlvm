@@ -25,6 +25,7 @@ import java.util.Set;
 
 import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UIResponderDelegate;
 import org.xmlvm.iphone.UITouch;
@@ -246,7 +247,7 @@ public class View {
 
         uiView.setDelegate(responderDelegate);
     }
-    
+
     public ViewGroup.LayoutParams getLayoutParams() {
         return layoutParams;
     }
@@ -290,7 +291,9 @@ public class View {
     }
 
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        return new UIView();
+        UIView v = new UIView();
+        v.setBackgroundColor(UIColor.colorWithRGBA(0.0941f, 0.0941f, 0.0941f, 1.0f));
+        return v;
     }
 
     public UIView xmlvmGetUIView() {
@@ -337,7 +340,10 @@ public class View {
     }
 
     public void setBackgroundDrawable(Drawable drawable) {
-        Assert.NOT_IMPLEMENTED();
+        if (drawable instanceof ImageDrawable) {
+            UIColor c = UIColor.colorWithPatternImage(((ImageDrawable) drawable).getImage());
+            uiView.setBackgroundColor(c);
+        }
     }
 
     public void setVisibility(int flag) {
@@ -383,8 +389,17 @@ public class View {
     }
 
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // TODO: If background is set use the background's dimension
-        setMeasuredDimension(0, 0);
+        // TODO: If background is set use the background's dimension instead of null
+        int backgroundWidth = 0;
+        int backgroundHeight = 0;
+
+        int widthSpec = MeasureSpec.getSize(widthMeasureSpec);
+        int heightSpec = MeasureSpec.getSize(heightMeasureSpec);
+        int width = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
+                .getSize(widthMeasureSpec) : Math.min(backgroundWidth, widthSpec);
+        int height = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
+                .getSize(heightMeasureSpec) : Math.min(backgroundHeight, heightSpec);
+        setMeasuredDimension(width, height);
     }
 
     public final void layout(int left, int top, int right, int bottom) {

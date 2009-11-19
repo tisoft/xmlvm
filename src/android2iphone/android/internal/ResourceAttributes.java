@@ -86,9 +86,15 @@ public class ResourceAttributes implements AttributeSet {
             if (resourceId == -1) {
                 resourceId = defaultValue;
             }
+        } else if (value.startsWith("@drawable/")) {
+            resourceId = ResourceMapper.getDrawableByName(value.substring("@drawable/".length()));
+            if (resourceId == -1) {
+                resourceId = defaultValue;
+            }
         } else {
             resourceId = Integer.parseInt(value);
         }
+
         return resourceId;
     }
 

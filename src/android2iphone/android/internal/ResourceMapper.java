@@ -30,15 +30,16 @@ import org.xmlvm.iphone.UIImage;
 
 public class ResourceMapper {
     /** A map holding the mapping from resourceId to UIImage. */
-    private static Map<Integer, UIImage> imageMap  = new HashMap<Integer, UIImage>();
+    private static Map<Integer, UIImage> imageMap    = new HashMap<Integer, UIImage>();
 
     /**
      * A map holding the mapping from resourceId to NSData (representing the
      * content of the XML layout file).
      */
-    private static Map<Integer, NSData>  layoutMap = new HashMap<Integer, NSData>();
+    private static Map<Integer, NSData>  layoutMap   = new HashMap<Integer, NSData>();
 
-    private static Map<String, Integer>  idMap     = new HashMap<String, Integer>();
+    private static Map<String, Integer>  idMap       = new HashMap<String, Integer>();
+    private static Map<String, Integer>  drawableMap = new HashMap<String, Integer>();
 
     public static UIImage getImageById(int resourceId) {
         UIImage theImage = imageMap.get(new Integer(resourceId));
@@ -70,6 +71,16 @@ public class ResourceMapper {
         }
 
         return theId.intValue();
+    }
+
+    public static int getDrawableByName(String name) {
+        Integer drawableId = drawableMap.get(name);
+        if (drawableId == null) {
+            drawableId = new Integer(findIdByVariableName(name, "drawable"));
+            drawableMap.put(name, drawableId);
+        }
+
+        return drawableId.intValue();
     }
 
     private static String findVariableById(int resourceId, String resourceClass) {

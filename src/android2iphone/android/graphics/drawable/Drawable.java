@@ -25,6 +25,6 @@ package android.graphics.drawable;
  * @author arno
  *
  */
-public class Drawable {
+public abstract class Drawable {
 
 }
