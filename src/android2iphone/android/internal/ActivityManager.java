@@ -20,8 +20,7 @@
 
 package android.internal;
 
-import java.util.Stack;
-
+import org.xmlvm.iphone.NSObject;
 import org.xmlvm.iphone.UIApplication;
 
 import android.app.Activity;
@@ -34,12 +33,10 @@ import android.content.Intent;
 public class ActivityManager extends UIApplication {
 
     private static AndroidManifest manifest;
-    private static Stack<Activity> activityStack = new Stack<Activity>();
     private static Activity        topActivity;
 
-    private static void pushNewActivity(Activity activity) {
+    private static void setTopActivity(Activity activity) {
         topActivity = activity;
-        activityStack.push(activity);
     }
 
     public static Activity getTopActivity() {
@@ -48,15 +45,20 @@ public class ActivityManager extends UIApplication {
 
     @Override
     public void applicationDidFinishLaunching(UIApplication app) {
-        topActivity.xmlvmOnCreate(null);
+        topActivity.xmlvmTransitToStateActive(null);
     }
 
     @Override
     public void applicationWillTerminate(UIApplication app) {
-        topActivity.xmlvmOnDestroy();
+        topActivity.xmlvmTransitToStateDestroyed();
     }
 
-    public static void startActivity(Intent intent) {
+    public static void startActivityForResult(Activity parent, Intent intent, int requestCode) {
+        if (topActivity != null) {
+            // Pause the current activity
+            topActivity.xmlvmTransitToStatePaused();
+        }
+
         String activityName = manifest.getActivityName(intent.xmlvmGetAction());
         Class<?> androidActivityClazz;
         Activity newActivity = null;
@@ -70,23 +72,36 @@ public class ActivityManager extends UIApplication {
         } catch (IllegalAccessException e) {
             Assert.FAIL("Couldn't start activity");
         }
-        pushNewActivity(newActivity);
-        // The first activity will be launched via UIApplication.main and subsequent call
-        // to applicationDidFinishLaunching. Only for following activities we call xmlvmOnCreate()
-        // here directly.
-        if (activityStack.size() > 1) {
-            newActivity.xmlvmOnCreate(null);
+        newActivity.xmlvmSetParent(parent);
+        newActivity.xmlvmSetRequestCode(requestCode);
+        // The first activity will be launched via UIApplication.main and
+        // subsequent call to applicationDidFinishLaunching. Only for following
+        // activities we call xmlvmOnCreate() here directly.
+        if (topActivity != null) {
+            topActivity.xmlvmSetChild(newActivity);
+            newActivity.xmlvmTransitToStateActive(null);
         }
+        setTopActivity(newActivity);
     }
 
-    public static void startActivityForResult(Intent intent, int requestCode) {
-        // TODO not for real
-        startActivity(intent);
+    public static void startActivity(Activity parent, Intent intent) {
+        startActivityForResult(parent, intent, -1);
+    }
+
+    public static void destroyActivity(Activity activity) {
+        Activity parent = activity.xmlvmGetParent();
+        if (parent != null) {
+            NSObject.performSelectorOnMainThread(activity.xmlvmGetParent(),
+                    "xmlvmOnActivityResult", null, false);
+        }
+        activity.xmlvmTransitToStateDestroyed();
+        parent.xmlvmTransitToStateActive(null);
+
     }
 
     public static void bootstrapMainActivity() {
         manifest = new AndroidManifest();
-        startActivity(new Intent("android.intent.action.MAIN"));
+        startActivity(null, new Intent("android.intent.action.MAIN"));
         UIApplication.main(null, ActivityManager.class);
     }
 
