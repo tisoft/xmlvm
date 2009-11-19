@@ -195,16 +195,38 @@ public class LinearLayout extends ViewGroup {
                 nextPosition += lp.topMargin;
 
                 // TODO: Support not only center alignment
-                x = (width - v.getMeasuredWidth()) / 2;
+                // Align center horizontal
+                if ((lp.gravitiy & 0x07) == 0x01) {
+                    x = (width - v.getMeasuredWidth()) / 2;
+                }
+                // Align right
+                else if ((lp.gravitiy & 0x07) == 0x05) {
+                    x = width - lp.rightMargin - v.getMeasuredWidth();
+                }
+                // Default: Align left
+                else {
+                    x = lp.leftMargin;
+                }
+                
                 y = nextPosition;
-
                 nextPosition += (v.getMeasuredHeight() + lp.bottomMargin);
             } else {
                 nextPosition += lp.leftMargin;
 
-                x = nextPosition;
-                y = lp.topMargin;
+                // Center vertical
+                if ((lp.gravitiy & 0x70) == 0x10) {
+                    y = (height - v.getMeasuredHeight()) / 2;
+                }
+                // Align bottom
+                else if ((lp.gravitiy & 0x70) == 0x50) {
+                    y = height - lp.bottomMargin - v.getMeasuredHeight();
+                }
+                // Default: Align top
+                else {
+                    y = lp.topMargin;
+                }
 
+                x = nextPosition;
                 nextPosition += (v.getMeasuredWidth() + lp.rightMargin);
             }
 
