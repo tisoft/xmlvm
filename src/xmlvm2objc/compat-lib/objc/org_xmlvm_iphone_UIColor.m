@@ -30,7 +30,7 @@
 
 + (org_xmlvm_iphone_UIColor*) colorWithPatternImage___org_xmlvm_iphone_UIImage :(org_xmlvm_iphone_UIImage*) image
 {
-	return [[UIColor imageWithPatternImage: image] retain];
+	return [[UIColor colorWithPatternImage: image] retain];
 }
 
 + (org_xmlvm_iphone_UIColor *) _GET_blackColor
