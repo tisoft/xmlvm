@@ -22,10 +22,17 @@
 /** @author teras */
 
 #import "org_xmlvm_iphone_UIColor.h"
+#import "org_xmlvm_iphone_UIImage.h"
 
 // UIColor
 //----------------------------------------------------------------------------
 @implementation UIColor (cat_org_xmlvm_iphone_UIColor)
+
+- (void) __init_org_xmlvm_iphone_UIImage__ :(org_xmlvm_iphone_UIImage*) image
+{
+	[self initWithPatternImage: image];
+}
+
 + (org_xmlvm_iphone_UIColor *) _GET_blackColor
 { return [UIColor blackColor];}
 + (org_xmlvm_iphone_UIColor *) _GET_darkGrayColor

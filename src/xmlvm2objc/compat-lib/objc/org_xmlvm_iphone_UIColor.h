@@ -25,6 +25,7 @@
 //----------------------------------------------------------------------------
 typedef UIColor org_xmlvm_iphone_UIColor;
 @interface UIColor (cat_org_xmlvm_iphone_UIColor)
+- (void) __init_org_xmlvm_iphone_UIImage__ :(org_xmlvm_iphone_UIImage*) image;
 + (org_xmlvm_iphone_UIColor*) _GET_blackColor;
 + (org_xmlvm_iphone_UIColor*) _GET_darkGrayColor;
 + (org_xmlvm_iphone_UIColor*) _GET_lightGrayColor;
