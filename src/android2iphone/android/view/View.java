@@ -293,7 +293,6 @@ public class View {
 
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
         UIView v = new UIView();
-        v.setBackgroundColor(UIColor.colorWithRGBA(0.0941f, 0.0941f, 0.0941f, 1.0f));
         return v;
     }
 
@@ -311,22 +310,24 @@ public class View {
 
     protected void parseAttributes(AttributeSet attrs) {
         id = attrs.getIdAttributeResourceValue(0);
-        
+
         String str = attrs.getAttributeValue(null, "visibility");
         if ("gone".equals(str)) {
             visibility = GONE;
-        }
-        else if ("invisible".equals(str)) {
+        } else if ("invisible".equals(str)) {
             visibility = INVISIBLE;
-        }
-        else {
+        } else {
             visibility = VISIBLE;
         }
         uiView.setHidden(visibility != VISIBLE);
 
-        int backgroundId = attrs.getAttributeResourceValue(null, "background", -1);
-        if (backgroundId != -1) {
-            setBackgroundResource(backgroundId);
+        str = attrs.getAttributeValue(null, "background");
+        //Resolve drawable background
+        if (str != null && str.startsWith("@drawable/")) {
+            int backgroundId = attrs.getAttributeResourceValue(null, "background", -1);
+            if (backgroundId != -1) {
+                setBackgroundResource(backgroundId);
+            }
         }
     }
 
@@ -433,7 +434,7 @@ public class View {
     public int getVisibility() {
         return visibility;
     }
-    
+
     public void setVisibility(int visibility) {
         this.visibility = visibility;
         uiView.setHidden(visibility != VISIBLE);
