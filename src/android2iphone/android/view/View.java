@@ -207,6 +207,7 @@ public class View {
     private int                    y;
     private int                    width;
     private int                    height;
+    private int                    visibility;
 
     public View(Context c) {
         init(c, new ResourceAttributes("", new HashMap<String, String>()));
@@ -310,6 +311,18 @@ public class View {
 
     protected void parseAttributes(AttributeSet attrs) {
         id = attrs.getIdAttributeResourceValue(0);
+        
+        String str = attrs.getAttributeValue(null, "visibility");
+        if ("gone".equals(str)) {
+            visibility = GONE;
+        }
+        else if ("invisible".equals(str)) {
+            visibility = INVISIBLE;
+        }
+        else {
+            visibility = VISIBLE;
+        }
+        uiView.setHidden(visibility != VISIBLE);
 
         int backgroundId = attrs.getAttributeResourceValue(null, "background", -1);
         if (backgroundId != -1) {
@@ -344,10 +357,6 @@ public class View {
             UIColor c = UIColor.colorWithPatternImage(((ImageDrawable) drawable).getImage());
             uiView.setBackgroundColor(c);
         }
-    }
-
-    public void setVisibility(int flag) {
-        Assert.NOT_IMPLEMENTED();
     }
 
     public boolean postDelayed(Runnable runnable, long delay) {
@@ -389,7 +398,8 @@ public class View {
     }
 
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // TODO: If background is set use the background's dimension instead of null
+        // TODO: If background is set use the background's dimension instead of
+        // null
         int backgroundWidth = 0;
         int backgroundHeight = 0;
 
@@ -419,4 +429,14 @@ public class View {
             ((View) parent).requestLayout();
         }
     }
+
+    public int getVisibility() {
+        return visibility;
+    }
+    
+    public void setVisibility(int visibility) {
+        this.visibility = visibility;
+        uiView.setHidden(visibility != VISIBLE);
+    }
+
 }
