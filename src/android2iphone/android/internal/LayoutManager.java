@@ -72,7 +72,7 @@ class LayoutParser extends NSXMLParserDelegate {
                 if (v == null) {
                     str = "android.view." + qualifiedName;
                     v = createView(str, context, attrs);
-                    
+
                     if (v == null) {
                         v = createView(qualifiedName, context, attrs);
                     }
@@ -122,8 +122,10 @@ class LayoutParser extends NSXMLParserDelegate {
             Object[] params = new Object[] { context, attrs };
             View v = (View) c.newInstance(params);
             return v;
-        } catch (Throwable t) {
+        } catch (ClassNotFoundException e) {
             return null;
+        } catch (Throwable t) {
+            throw new RuntimeException(t);
         }
     }
 
