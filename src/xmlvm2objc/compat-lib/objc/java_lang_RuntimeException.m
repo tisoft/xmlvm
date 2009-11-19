@@ -43,6 +43,10 @@
 {
 }
 
+- (void) __init_java_lang_RuntimeException___java_lang_Throwable: (java_lang_Throwable*) cause
+{
+}
+
 - (java_lang_RuntimeException *) initCause___java_lang_Throwable: (java_lang_Throwable*) cause
 {
 	[self retain];
