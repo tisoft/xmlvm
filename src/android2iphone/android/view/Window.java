@@ -23,6 +23,7 @@ package android.view;
 import org.xmlvm.iphone.CGAffineTransform;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
+import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UIWindow;
 
@@ -49,6 +50,7 @@ public class Window {
         UIScreen screen = UIScreen.mainScreen();
         rect = screen.getApplicationFrame();
         iWindow = new UIWindow(rect);
+        iWindow.setBackgroundColor(UIColor.colorWithRGBA(0.0941f, 0.0941f, 0.0941f, 1.0f));
     }
 
     public void setContentView(View view) {
@@ -124,8 +126,7 @@ public class Window {
         }
 
         contentView.measure(widthMeasureSpec, heightMeasureSpec);
-        contentView.layout(0, 0, contentView.getMeasuredWidth(), contentView
-                .getMeasuredHeight());
+        contentView.layout(0, 0, contentView.getMeasuredWidth(), contentView.getMeasuredHeight());
     }
 
     /**
