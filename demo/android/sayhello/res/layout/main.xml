@@ -8,14 +8,13 @@
 		android:layout_marginLeft="20px" android:layout_marginRight="20px"
 		android:layout_marginTop="40px"></EditText>
 	<TextView android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:layout_gravity="center_horizontal|center_vertical"
+		android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
 		android:id="@+id/helloLabel" android:layout_marginTop="40px"></TextView>
 	<Button android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:id="@+id/sayHello"
 		android:text="Say Hello" android:layout_gravity="center_horizontal"
 		android:layout_marginTop="40px"></Button>
 	<LinearLayout android:id="@+id/xmlvmLogo"
-		android:background="@drawable/xmlvm_logo" android:layout_gravity="center_vertical|center_horizontal"
-		android:layout_width="186px" android:layout_height="130px"
-		android:layout_marginBottom="30px" android:layout_marginTop="30px"></LinearLayout>
+		android:background="@drawable/xmlvm_logo" android:layout_width="186px" android:layout_height="130px"
+		android:layout_marginBottom="30px" android:layout_marginTop="30px" android:layout_gravity="center_vertical|center_horizontal"></LinearLayout>
 </LinearLayout>
