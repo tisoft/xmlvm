@@ -29,9 +29,9 @@ import android.view.ViewGroup;
 
 public class LinearLayout extends ViewGroup {
 
-    private static final int ORIENTATION_HORIZONTAL = 0;
-    private static final int ORIENTATION_VERTICAL   = 1;
-    private int              orientation;
+    public static final int HORIZONTAL = 0;
+    public static final int VERTICAL   = 1;
+    private int             orientation;
 
     public static class LayoutParams extends ViewGroup.MarginLayoutParams {
 
@@ -102,7 +102,7 @@ public class LinearLayout extends ViewGroup {
         super.parseAttributes(attrs);
 
         String str = attrs.getAttributeValue(null, "orientation");
-        setOrientation("vertical".equals(str) ? ORIENTATION_VERTICAL : ORIENTATION_HORIZONTAL);
+        setOrientation("vertical".equals(str) ? VERTICAL : HORIZONTAL);
     }
 
     public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
@@ -124,17 +124,17 @@ public class LinearLayout extends ViewGroup {
         int remainingHeight = MeasureSpec.getSize(heightMeasureSpec);
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        
+
         for (int i = 0; i < getChildCount(); i++) {
             View v = getChildAt(i);
             LayoutParams lp = (LayoutParams) v.getLayoutParams();
-            if (orientation == ORIENTATION_VERTICAL) {
+            if (orientation == VERTICAL) {
                 remainingHeight -= (lp.topMargin + lp.bottomMargin);
             } else {
                 remainingWidth -= (lp.leftMargin + lp.rightMargin);
             }
 
-            if (orientation == ORIENTATION_VERTICAL) {
+            if (orientation == VERTICAL) {
                 int viewWidthMeasureSpec = makeMeasureSpec(lp.width, remainingWidth - lp.leftMargin
                         - lp.rightMargin);
                 int viewHeightMeasureSpec = makeMeasureSpec(lp.height, remainingHeight);
@@ -159,7 +159,7 @@ public class LinearLayout extends ViewGroup {
 
         int layoutWidth;
         int layoutHeight;
-        if (orientation == ORIENTATION_VERTICAL) {
+        if (orientation == VERTICAL) {
             layoutWidth = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
                     .getSize(widthMeasureSpec)
                     : maxItemSize;
@@ -191,7 +191,7 @@ public class LinearLayout extends ViewGroup {
             int x;
             int y;
 
-            if (orientation == ORIENTATION_VERTICAL) {
+            if (orientation == VERTICAL) {
                 nextPosition += lp.topMargin;
 
                 // TODO: Support not only center alignment
@@ -207,7 +207,7 @@ public class LinearLayout extends ViewGroup {
                 else {
                     x = lp.leftMargin;
                 }
-                
+
                 y = nextPosition;
                 nextPosition += (v.getMeasuredHeight() + lp.bottomMargin);
             } else {
