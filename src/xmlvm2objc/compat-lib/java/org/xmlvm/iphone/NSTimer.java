@@ -41,18 +41,16 @@ public class NSTimer implements Runnable {
     }
 
     private void timerTick() {
-        Class[] paramTypes = { NSTimer.class };
+        Class<?>[] paramTypes = { NSTimer.class };
         Object[] params = { this };
-        Class targetClass = target.getClass();
+        Class<?> targetClass = target.getClass();
         Method m = null;
         try {
             m = targetClass.getMethod(method, paramTypes);
-        } catch (SecurityException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        } catch (NoSuchMethodException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+        } catch (SecurityException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
         }
 
         // TODO the following is denied by the applets Security Manager
@@ -66,14 +64,11 @@ public class NSTimer implements Runnable {
                 try {
                     m1.invoke(target, p);
                 } catch (IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 } catch (IllegalAccessException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 } catch (InvocationTargetException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
             }
         };

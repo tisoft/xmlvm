@@ -18,47 +18,20 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "java_lang_Thread.h"
+#import "xmlvm.h"
 
-@implementation java_lang_Thread 
+@class java_lang_Object;
+@class java_lang_String;
 
-- (id) init
-{
-	[super init];
-	thread = [[NSThread alloc] initWithTarget:self selector:@selector(threadCallback:) object:nil];
-	runnable = [self retain];
-	return self;
-}
 
-- (void) dealloc
-{
-	[thread release];
-	[runnable release];
-	[super dealloc];
-}
- 
-- (void) __init_java_lang_Thread___java_lang_Runnable: (id<java_lang_Runnable>) r
-{
-	[r retain];
-	[runnable release];
-	runnable = r;
-}
+typedef NSObject org_xmlvm_iphone_NSObject;
 
-- (void) threadCallback: (id) arg
-{
-	[runnable run__];
-	[self release];
-}
+@interface NSObject (cat_org_xmlvm_iphone_NSObject) 
 
-- (void) run__
-{
-	// Will be overridden in derived class
-}
-
-- (void) start__
-{
-	[self retain];
-	[thread start];
-}
++ (void) performSelectorOnMainThread___java_lang_Object_java_lang_String_java_lang_Object_boolean
+              :(java_lang_Object*) target
+              :(java_lang_String*) method
+              :(java_lang_Object*) arg
+              :(BOOL) waitUntilDone;
 
 @end

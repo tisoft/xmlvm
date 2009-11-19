@@ -22,6 +22,17 @@
 #import "java_lang_Object.h"
 #import "java_lang_Runnable.h"
 
-@interface java_lang_Thread : java_lang_Object<java_lang_Runnable> 
+@interface java_lang_Thread : java_lang_Object<java_lang_Runnable> {
+
+id<java_lang_Runnable> runnable;
+NSThread*              thread;
+
+}
+
+- (id) init;
+- (void) dealloc;
+- (void) threadCallback: (id) arg;
 - (void) run__;
+- (void) start__;
+
 @end

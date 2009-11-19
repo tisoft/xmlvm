@@ -18,47 +18,28 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "java_lang_Thread.h"
+#import "java_lang_Object.h"
+#import "java_lang_Class.h"
+#import "java_lang_String.h"
 
-@implementation java_lang_Thread 
+// java.lang.Object
+//----------------------------------------------------------------------------
+@implementation NSObject (cat_org_xmlvm_iphone_NSObject) 
 
-- (id) init
++ (void) performSelectorOnMainThread___java_lang_Object_java_lang_String_java_lang_Object_boolean
+              :(java_lang_Object*) target
+              :(java_lang_String*) method
+              :(java_lang_Object*) arg
+              :(BOOL) waitUntilDone
 {
-	[super init];
-	thread = [[NSThread alloc] initWithTarget:self selector:@selector(threadCallback:) object:nil];
-	runnable = [self retain];
-	return self;
-}
-
-- (void) dealloc
-{
-	[thread release];
-	[runnable release];
-	[super dealloc];
-}
- 
-- (void) __init_java_lang_Thread___java_lang_Runnable: (id<java_lang_Runnable>) r
-{
-	[r retain];
-	[runnable release];
-	runnable = r;
-}
-
-- (void) threadCallback: (id) arg
-{
-	[runnable run__];
-	[self release];
-}
-
-- (void) run__
-{
-	// Will be overridden in derived class
-}
-
-- (void) start__
-{
-	[self retain];
-	[thread start];
+	NSMutableString* selectorName = [NSMutableString stringWithString:method];
+	[selectorName appendString:@"___java_lang_Object:"];
+	SEL selector = NSSelectorFromString(selectorName);
+	
+	[target
+        performSelectorOnMainThread:selector
+        withObject:arg
+        waitUntilDone:waitUntilDone];
 }
 
 @end
