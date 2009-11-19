@@ -1,4 +1,3 @@
-
 package org.xmlvm.iphone.internal.renderer;
 
 import java.awt.Graphics2D;
@@ -53,10 +52,16 @@ public class UIViewRenderer<T extends UIView> {
     public void paint() {
         Graphics2D g = CGContext.theContext.graphicsContext;
         if (view.getBackgroundColor() != UIColor.clearColor) {
+            UIColor c = view.getBackgroundColor();
             CGRect displayRect = view.getFrame();
-            g.setPaint(view.getBackgroundColor().xmlvmGetPaint());
-            g.fillRect((int) displayRect.origin.x, (int) displayRect.origin.y,
-                    (int) displayRect.size.width, (int) displayRect.size.height);
+
+            if (c.xmlvmGetPatternImage() != null) {
+                c.xmlvmGetPatternImage().drawInRect(displayRect);
+            } else {
+                g.setPaint(view.getBackgroundColor().xmlvmGetPaint());
+                g.fillRect((int) displayRect.origin.x, (int) displayRect.origin.y,
+                        (int) displayRect.size.width, (int) displayRect.size.height);
+            }
         }
     }
 

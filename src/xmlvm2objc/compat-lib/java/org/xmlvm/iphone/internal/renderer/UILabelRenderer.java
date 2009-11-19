@@ -38,13 +38,10 @@ public class UILabelRenderer extends UIViewRenderer<UILabel> {
     }
 
     public void paint() {
+        super.paint();
+        
         Graphics2D g = CGContext.theContext.graphicsContext;
         CGRect displayRect = view.getFrame();
-        if (view.getBackgroundColor() != UIColor.clearColor) {
-            g.setPaint(view.getBackgroundColor().xmlvmGetPaint());
-            g.fillRect((int) displayRect.origin.x, (int) displayRect.origin.y,
-                    (int) displayRect.size.width, (int) displayRect.size.height);
-        }
         g.setFont(view.getFont().xmlvmGetFont());
         FontMetrics fm = g.getFontMetrics();
         int width = fm.stringWidth(view.getText());

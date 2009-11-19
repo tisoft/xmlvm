@@ -6,6 +6,7 @@ import java.awt.Paint;
 public class UIColor {
 
     private Paint               color;
+    private UIImage             patternImage;
     public final static UIColor blackColor                    = new UIColor(Color.BLACK);
     public final static UIColor darkGrayColor                 = new UIColor(Color.DARK_GRAY);
     public final static UIColor lightGrayColor                = new UIColor(Color.LIGHT_GRAY);
@@ -32,6 +33,10 @@ public class UIColor {
         if (c == null)
             c = clearColor.xmlvmGetPaint();
         color = c;
+    }
+
+    private UIColor(UIImage patternImage) {
+        this.patternImage = patternImage;
     }
 
     private UIColor(int RGB, float alpha) {
@@ -62,7 +67,15 @@ public class UIColor {
         return new UIColor(red, green, blue, alpha);
     }
 
+    public static UIColor colorWithPatternImage(UIImage patternImage) {
+        return new UIColor(patternImage);
+    }
+
     public Paint xmlvmGetPaint() {
         return color;
+    }
+    
+    public UIImage xmlvmGetPatternImage() {
+        return patternImage;
     }
 }
