@@ -1280,6 +1280,7 @@ int main(int argc, char* argv[])
   <xsl:text>[((</xsl:text>
   
   <xsl:variable name="baseClass">
+    <!-- TODO what if this invoke instruction is nested within a catch-block? -->
     <xsl:value-of select="../../../@extends"/>
   </xsl:variable>
   <xsl:choose>
