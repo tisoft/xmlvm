@@ -453,7 +453,11 @@ public class ClassInputProcess extends InputProcess<ClassFile> {
                 Instruction inst = ih.getInstruction();
                 Integer id = map.get(ih);
 
-                for (int j = 0; j < ehs.length; j++) {
+                /*
+                 * Iterate over catch-blocks in opposite order so that the catch-clauses
+                 * end up in most-derived to base exception class.
+                 */
+                for (int j = ehs.length - 1; j >= 0; j--) {
                     CodeExceptionGen ex = ehs[j];
                     if (ex.getStartPC().equals(ih)) {
                         ObjectType caught = ex.getCatchType();
