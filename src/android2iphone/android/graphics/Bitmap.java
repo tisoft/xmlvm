@@ -18,31 +18,33 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.graphics;
 
-import android.internal.Assert;
+import org.xmlvm.iphone.CGSize;
+import org.xmlvm.iphone.UIImage;
+
+import android.internal.ResourceMapper;
 
 /**
  * @author arno
- *
+ * 
  */
 public final class Bitmap {
 
-    /**
-     * @return
-     */
-    public int getWidth() {
-        Assert.NOT_IMPLEMENTED();
-        return 0;
+    private UIImage image;
+
+    public Bitmap(int resourceId) {
+        image = ResourceMapper.getImageById(resourceId);
     }
 
-    /**
-     * @return
-     */
+    public int getWidth() {
+        CGSize size = image.getSize();
+        return (int) size.width;
+    }
+
     public int getHeight() {
-        Assert.NOT_IMPLEMENTED();
-        return 0;
+        CGSize size = image.getSize();
+        return (int) size.height;
     }
 
 }

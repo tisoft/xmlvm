@@ -86,6 +86,10 @@ public class Activity extends ContextThemeWrapper {
     }
 
     private void xmlvmUnlinkActivity() {
+        if (child == null) {
+            // We have no child so set the parent as the new top activity
+            ActivityManager.setTopActivity(parent);
+        }
         if (parent != null) {
             parent.child = child;
         }
@@ -181,6 +185,7 @@ public class Activity extends ContextThemeWrapper {
     }
 
     protected void onStart() {
+        window.xmlvmSetHidden(false);
     }
 
     public void xmlvmOnStart(Object arg) {
@@ -199,6 +204,7 @@ public class Activity extends ContextThemeWrapper {
 
     public void xmlvmOnResume(Object arg) {
         onResume();
+        window.xmlvmSetHidden(false);
     }
 
     protected void onPause() {
@@ -213,6 +219,7 @@ public class Activity extends ContextThemeWrapper {
 
     public void xmlvmOnStop(Object arg) {
         onStop();
+        window.xmlvmSetHidden(true);
     }
 
     /**
@@ -224,6 +231,7 @@ public class Activity extends ContextThemeWrapper {
 
     public void xmlvmOnDestroy(Object arg) {
         onDestroy();
+        window.xmlvmRemoveWindow();
         window = null;
         xmlvmUnlinkActivity();
     }

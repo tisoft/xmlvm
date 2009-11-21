@@ -1,28 +1,25 @@
 package org.xmlvm.iphone;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class NSData {
 
-    private InputStream in;
+    private String data;
 
     public NSData(InputStream in) {
-        this.in = in;
+        readData(in);
     }
 
     protected NSData() {
-        this.in = null;
+        this.data = "";
     }
 
-    public InputStream getInputStream() {
-        return this.in;
-    }
-
-    public String toString() {
-        String data = "";
+    private void readData(InputStream in) {
+        data = "";
         String line;
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         try {
@@ -34,7 +31,14 @@ public class NSData {
         } catch (IOException e) {
             // do nothing
         }
-        return data;
+    }
+
+    public InputStream getInputStream() {
+        return new ByteArrayInputStream(data.getBytes());
+    }
+
+    public String toString() {
+        return this.data;
     }
 
     public static NSData dataWithContentsOfFile(String path) {

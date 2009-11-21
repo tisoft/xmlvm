@@ -64,4 +64,9 @@
 	return atoi([str UTF8String]);
 }
 
++ (java_lang_String*) toString___int: i
+{
+	return [[NSNumber numberWithInt: i] stringValue];
+}
+
 @end

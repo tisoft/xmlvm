@@ -37,5 +37,6 @@ int number;
 - (BOOL)isEqual:(id)anObject;
 - (int) intValue__;
 + (int) parseInt___java_lang_String: (java_lang_String *) str;
++ (java_lang_String*) toString___int: i;
 
 @end

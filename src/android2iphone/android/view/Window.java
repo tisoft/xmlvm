@@ -54,13 +54,17 @@ public class Window {
     }
 
     public void setContentView(View view) {
+        if (contentView != null) {
+            xmlvmSetHidden(true);
+            contentView.xmlvmGetUIView().removeFromSuperview();
+            contentView.xmlvmSetParent(null);
+        }
         contentView = view;
         adjustFrameSize();
         CGRect viewRect = new CGRect(rect);
         viewRect.origin.x = viewRect.origin.y = 0;
         view.xmlvmGetUIView().setFrame(viewRect);
         iWindow.addSubview(view.xmlvmGetUIView());
-        iWindow.makeKeyAndVisible();
     }
 
     public void setContentView(int id) {
@@ -74,6 +78,24 @@ public class Window {
             UIApplication.sharedApplication().setStatusBarHidden(true);
             adjustFrameSize();
         }
+    }
+
+    public void xmlvmSetHidden(boolean flag) {
+        if (flag) {
+            iWindow.setHidden(true);
+        } else {
+            iWindow.makeKeyAndVisible();
+            iWindow.setHidden(false);
+        }
+    }
+
+    public void xmlvmRemoveWindow() {
+        xmlvmSetHidden(true);
+        if (contentView != null) {
+            contentView.xmlvmGetUIView().removeFromSuperview();
+            contentView.xmlvmSetParent(null);
+        }
+        iWindow = null;
     }
 
     /**

@@ -22,6 +22,7 @@
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
 
+@class java_lang_reflect_Constructor;
 
 
 // java.lang.Class
@@ -37,5 +38,6 @@
 + (java_lang_Class*) forName___java_lang_String :(java_lang_String*) className;
 - (NSMutableArray*) getDeclaredFields__;
 - (NSObject*) newInstance__;
+- (java_lang_reflect_Constructor*) getConstructor___java_lang_Class_ARRAYTYPE :(NSMutableArray*) signature;
 
 @end

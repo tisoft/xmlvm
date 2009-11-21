@@ -29,4 +29,8 @@
 {
 }
 
+- (void) __init_java_util_HashMap___int: (int) size
+{
+}
+
 @end

@@ -32,8 +32,7 @@ public class ContextWrapper extends Context {
 
     @Override
     public Resources getResources() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return new Resources();
     }
 
     /* (non-Javadoc)

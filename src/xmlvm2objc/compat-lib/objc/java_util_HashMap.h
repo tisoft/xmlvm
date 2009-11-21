@@ -27,5 +27,6 @@ typedef NSMutableDictionary java_util_HashMap;
 @interface NSMutableDictionary (cat_java_util_HashMap)
 
 - (void) __init_java_util_HashMap__;
+- (void) __init_java_util_HashMap___int: (int) size;
 
 @end

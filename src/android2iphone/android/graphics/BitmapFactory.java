@@ -22,7 +22,6 @@
 package android.graphics;
 
 import android.content.res.Resources;
-import android.internal.Assert;
 
 /**
  * @author arno
@@ -36,8 +35,7 @@ public class BitmapFactory {
      * @return
      */
     public static Bitmap decodeResource(Resources resources, int id) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return new Bitmap(id);
     }
 
 }

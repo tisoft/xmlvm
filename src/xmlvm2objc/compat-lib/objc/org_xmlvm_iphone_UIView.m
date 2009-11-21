@@ -97,6 +97,9 @@
 
 - (void) removeFromSuperview__
 {
+	// According to the documentation, the receiver will also be released by calling removeFromSuperview
+	//TODO needed or not?
+	//[self retain];
 	[self removeFromSuperview];
 }
 

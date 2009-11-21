@@ -169,6 +169,7 @@ public class LayoutManager {
         LayoutParser parser = new LayoutParser(context);
         xmlParser.setDelegate(parser);
         boolean success = xmlParser.parse();
+        Assert.CHECK(success);
         // TODO what to do if success == false?
         View layoutRootView = parser.getLayoutRootView();
 

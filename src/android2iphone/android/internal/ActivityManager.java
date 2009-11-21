@@ -35,12 +35,16 @@ public class ActivityManager extends UIApplication {
     private static AndroidManifest manifest;
     private static Activity        topActivity;
 
-    private static void setTopActivity(Activity activity) {
+    public static void setTopActivity(Activity activity) {
         topActivity = activity;
     }
 
     public static Activity getTopActivity() {
         return topActivity;
+    }
+
+    public static String getApplicationPackageName() {
+        return manifest.appPackage;
     }
 
     @Override
@@ -51,6 +55,7 @@ public class ActivityManager extends UIApplication {
     @Override
     public void applicationWillTerminate(UIApplication app) {
         topActivity.xmlvmTransitToStateDestroyed();
+        topActivity = null;
     }
 
     public static void startActivityForResult(Activity parent, Intent intent, int requestCode) {
@@ -91,12 +96,13 @@ public class ActivityManager extends UIApplication {
     public static void destroyActivity(Activity activity) {
         Activity parent = activity.xmlvmGetParent();
         if (parent != null) {
-            NSObject.performSelectorOnMainThread(activity.xmlvmGetParent(),
-                    "xmlvmOnActivityResult", null, false);
+            NSObject.performSelectorOnMainThread(parent, "xmlvmOnActivityResult", null, false);
         }
         activity.xmlvmTransitToStateDestroyed();
+        if (topActivity == activity) {
+            topActivity = parent;
+        }
         parent.xmlvmTransitToStateActive(null);
-
     }
 
     public static void bootstrapMainActivity() {

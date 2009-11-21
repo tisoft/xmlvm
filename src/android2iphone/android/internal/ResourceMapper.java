@@ -86,11 +86,8 @@ public class ResourceMapper {
     private static String findVariableById(int resourceId, String resourceClass) {
         try {
             int i;
-            String activityPackageName = ActivityManager.getTopActivity().getClass().getName();
-            i = activityPackageName.lastIndexOf('.');
-            activityPackageName = activityPackageName.substring(0, i);
-
-            String rClassName = activityPackageName + ".R$" + resourceClass;
+            String applicationPackageName = ActivityManager.getApplicationPackageName();
+            String rClassName = applicationPackageName + ".R$" + resourceClass;
             Class<?> rClazz = Class.forName(rClassName);
             Field[] fields = rClazz.getDeclaredFields();
 
@@ -110,11 +107,8 @@ public class ResourceMapper {
     private static int findIdByVariableName(String variableName, String resourceClass) {
         try {
             int i;
-            String activityPackageName = ActivityManager.getTopActivity().getClass().getName();
-            i = activityPackageName.lastIndexOf('.');
-            activityPackageName = activityPackageName.substring(0, i);
-
-            String rClassName = activityPackageName + ".R$" + resourceClass;
+            String applicationPackageName = ActivityManager.getApplicationPackageName();
+            String rClassName = applicationPackageName + ".R$" + resourceClass;
             Class<?> rClazz = Class.forName(rClassName);
             Field[] fields = rClazz.getDeclaredFields();
 
