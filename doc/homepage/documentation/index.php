@@ -6,7 +6,7 @@
 
 <h2>Usage Manual</h2>
 
-Please the see <a href="manual.pdf">manual.pdf</a> for usage information. We are working on a more detailed user manual
+For usage information, please see our <a href="/manual">HTML</a> or <a href="manual.pdf">PDF</a>. We are working on a more detailed user manual
 that will also give you a step by step howto.
 
 <h2>Making XMLVM better</h2>
