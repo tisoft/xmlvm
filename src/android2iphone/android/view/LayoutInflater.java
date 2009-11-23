@@ -50,9 +50,11 @@ public class LayoutInflater {
         }
         
         if (root != null) {
-            v.setLayoutParams(root.getLayoutParams());
             if (attachToRoot) {
                 root.addView(v);
+            }
+            else {
+                v.setLayoutParams(root.getLayoutParams());
             }
         }
         
