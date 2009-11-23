@@ -21,21 +21,42 @@
 
 package android.view;
 
-import android.internal.Assert;
+import android.content.Context;
+import android.internal.LayoutManager;
+
 
 /**
  * @author arno
  *
  */
 public class LayoutInflater {
+    
+    private Context context;
 
+    public LayoutInflater(Context context) {
+        this.context = context;
+    }
+    
     /**
      * @param legionGameOver
      * @param legionGameOverLayout
      * @param b
      */
-    public void inflate(int resource, ViewGroup root, boolean attachToRoot) {
-        Assert.NOT_IMPLEMENTED();
+    public View inflate(int resource, ViewGroup root, boolean attachToRoot)
+    throws InflateException {
+        View v = LayoutManager.getLayout(context, resource);
+        if (v == null) {
+            throw new InflateException("Unable to inflate layout: " + resource);
+        }
+        
+        if (root != null) {
+            v.setLayoutParams(root.getLayoutParams());
+            if (attachToRoot) {
+                root.addView(v);
+            }
+        }
+        
+        return root != null && attachToRoot ? root : v;
     }
 
 }

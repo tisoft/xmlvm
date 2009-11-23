@@ -27,6 +27,7 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.hardware.SensorManager;
 import android.os.PowerManager;
+import android.view.LayoutInflater;
 
 /**
  * <i>(XMLVM Compatibility Class)</i>
@@ -38,14 +39,14 @@ public abstract class Context {
      * Use with {@link #getSystemService(String)} to retrieve a
      * {@link SensorManager} for accessing sensors.
      */
-    public static final String   SENSOR_SERVICE       = "sensor";
+    public static final String    SENSOR_SERVICE          = "sensor";
     /**
      * Use with {@link #getSystemService(String)} to retrieve a
      * {@link PowerManager} for controlling power management, including
      * "wake locks," which let you keep the device on while you're running long
      * tasks.
      */
-    public static final String   POWER_SERVICE        = "power";
+    public static final String    POWER_SERVICE           = "power";
 
     // *** File creation modes *** //
     /**
@@ -53,22 +54,23 @@ public abstract class Context {
      * accessed by the calling application (or all applications sharing the same
      * user ID).
      */
-    public static final int      MODE_PRIVATE         = 0;
+    public static final int       MODE_PRIVATE            = 0;
     /**
      * File creation mode: allow all other applications to have read access to
      * the created file.
      */
-    public static final int      MODE_WORLD_READABLE  = 1;
+    public static final int       MODE_WORLD_READABLE     = 1;
     /**
      * File creation mode: allow all other applications to have write access to
      * the created file.
      */
-    public static final int      MODE_WORLD_WRITEABLE = 2;
-    
-    public static final String LAYOUT_INFLATER_SERVICE = "layout_inflater";
+    public static final int       MODE_WORLD_WRITEABLE    = 2;
 
-    private static SensorManager sensorManager        = null;
-    private static PowerManager  powerManager         = null;
+    public static final String    LAYOUT_INFLATER_SERVICE = "layout_inflater";
+
+    private static SensorManager  sensorManager           = null;
+    private static PowerManager   powerManager            = null;
+    private static LayoutInflater layoutInflater          = null;
 
     /**
      * Return the handle to a system-level service by name. The class of the
@@ -90,16 +92,22 @@ public abstract class Context {
             }
             return powerManager;
         }
+        else if (service.equals(LAYOUT_INFLATER_SERVICE)) {
+            if (layoutInflater == null) {
+                layoutInflater = new LayoutInflater(this);
+            }
+            return layoutInflater;
+        }
         return null;
     }
 
     public abstract Resources getResources();
-    
+
     public abstract AssetManager getAssets();
-    
+
     public abstract FileInputStream openFileInput(String name);
-    
+
     public abstract FileOutputStream openFileOutput(String name, int mode);
-    
+
     public abstract boolean deleteFile(String name);
 }
