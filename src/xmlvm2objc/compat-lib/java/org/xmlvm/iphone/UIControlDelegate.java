@@ -1,6 +1,6 @@
 package org.xmlvm.iphone;
 
-public abstract class UIControlDelegate {
+public interface UIControlDelegate {
 
-    public abstract void raiseEvent();
+    public void raiseEvent(UIControlDelegate sender, int eventType);
 }

@@ -82,7 +82,7 @@ public class ImageButton extends View {
         getUIButton().addTarget(new UIControlDelegate() {
 
             @Override
-            public void raiseEvent() {
+            public void raiseEvent(UIControlDelegate sender, int eventType) {
                 theListener.onClick(ImageButton.this);
             }
 

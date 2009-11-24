@@ -19,15 +19,10 @@
  */
 
 #import "xmlvm.h"
-#import "java_lang_Object.h"
-
-
-@class org_xmlvm_iphone_UIControl;
 
 
 // UIControlDelegate
 //----------------------------------------------------------------------------
-@interface org_xmlvm_iphone_UIControlDelegate : java_lang_Object
-- (id) init;
-- (void) __init_org_xmlvm_iphone_UIControlDelegate__;
+@protocol org_xmlvm_iphone_UIControlDelegate
+- (void) raiseEvent___org_xmlvm_iphone_UIControlDelegate_int: (id<org_xmlvm_iphone_UIControlDelegate>) sender :(int) eventType;
 @end

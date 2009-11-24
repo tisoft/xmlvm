@@ -18,39 +18,48 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.widget;
 
+import org.xmlvm.iphone.UIView;
+
 import android.content.Context;
-import android.internal.Assert;
+import android.internal.UIToggleButton;
+import android.util.AttributeSet;
 
 /**
  * @author arno
- *
+ * 
  */
 public class ToggleButton extends CompoundButton {
 
-    /**
-     * @param c
-     */
     public ToggleButton(Context c) {
         super(c);
-        Assert.NOT_IMPLEMENTED();
     }
 
-    /**
-     * @param b
-     */
-    public void setChecked(boolean b) {
-        Assert.NOT_IMPLEMENTED();
+    public ToggleButton(Context c, AttributeSet attrs) {
+        super(c, attrs);
     }
 
-    /**
-     * @return
-     */
-    public boolean isChecked() {
-        Assert.NOT_IMPLEMENTED();
-        return false;
+    protected void parseAttributes(AttributeSet attrs) {
+        super.parseAttributes(attrs);
+        String value = attrs.getAttributeValue(null, "textOn");
+        setTextOn(value != null ? value : "");
+        value = attrs.getAttributeValue(null, "textOff");
+        setTextOff(value != null ? value : "");
     }
 
+    @Override
+    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
+        return new UIToggleButton();
+    }
+
+    void setTextOff(String textOff) {
+        ((UIToggleButton) xmlvmGetUIView()).setTextOff(textOff);
+        requestLayout();
+    }
+
+    void setTextOn(String textOn) {
+        ((UIToggleButton) xmlvmGetUIView()).setTextOff(textOn);
+        requestLayout();
+    }
 }

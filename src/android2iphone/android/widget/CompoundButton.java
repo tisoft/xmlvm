@@ -21,27 +21,48 @@
 package android.widget;
 
 import android.content.Context;
+import android.internal.Assert;
+import android.util.AttributeSet;
 import android.view.View;
 
 /**
  * @author wkorn
  * 
  */
-public class CompoundButton extends View {
+public class CompoundButton extends Button {
 
+    private boolean checked = false;
+    
     public interface OnCheckedChangeListener {
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked);
     }
 
-    /**
-     * @param c
-     */
     public CompoundButton(Context c) {
         super(c);
-        // TODO Auto-generated constructor stub
+    }
+
+    public CompoundButton(Context c, AttributeSet attrs) {
+        super(c, attrs);
+    }
+
+    protected void parseAttributes(AttributeSet attrs) {
+        super.parseAttributes(attrs);
     }
 
     public void setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener listener) {
-        // TODO Implement this
+        Assert.NOT_IMPLEMENTED();
     }
+    
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
+    public boolean isChecked() {
+        return this.checked;
+    }
+    
+    public void toggle() {
+        this.checked = !this.checked;
+    }
+
 }

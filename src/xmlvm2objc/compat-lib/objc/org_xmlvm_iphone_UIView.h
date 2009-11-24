@@ -29,8 +29,16 @@
 
 // UIView
 //----------------------------------------------------------------------------
-@interface org_xmlvm_iphone_UIView : UIView
+@interface org_xmlvm_iphone_UIView : UIView {
+
+UIImage* backgroundImage;
+
+}
+
+- (void) dealloc;
 - (void) drawRect:(CGRect)rect;
+- (void) setBackgroundImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image;
+
 @end
 
 @interface UIView (cat_org_xmlvm_iphone_UIView)

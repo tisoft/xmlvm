@@ -27,7 +27,7 @@ public class UIButtonTest extends UIApplication {
         roundedRectButton.addTarget(new UIControlDelegate() {
 
             @Override
-            public void raiseEvent() {
+            public void raiseEvent(UIControlDelegate sender, int eventType) {
                 title.setText("roundedRectButton pressed");
             }
 
@@ -48,7 +48,7 @@ public class UIButtonTest extends UIApplication {
         alertDialogLightButton.addTarget(new UIControlDelegate() {
 
             @Override
-            public void raiseEvent() {
+            public void raiseEvent(UIControlDelegate sender, int eventType) {
                 title.setText("alertDialogLightButton pressed");
             }
 
@@ -67,7 +67,7 @@ public class UIButtonTest extends UIApplication {
         alertDialogDarkButton.addTarget(new UIControlDelegate() {
 
             @Override
-            public void raiseEvent() {
+            public void raiseEvent(UIControlDelegate sender, int eventType) {
                 title.setText("alertDialogDarkButton pressed");
             }
 
@@ -103,7 +103,7 @@ public class UIButtonTest extends UIApplication {
         darkGrayButton.addTarget(new UIControlDelegate() {
 
             @Override
-            public void raiseEvent() {
+            public void raiseEvent(UIControlDelegate sender, int eventType) {
                 title.setText("darkGrayButton pressed");
             }
 

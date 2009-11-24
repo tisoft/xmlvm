@@ -103,7 +103,7 @@ public class UIAlertView extends UIView {
         setNeedsDisplay();
     }
 
-    private class ButtonClickCallback extends UIControlDelegate {
+    private class ButtonClickCallback implements UIControlDelegate {
 
         private int buttonIndex;
 
@@ -112,7 +112,7 @@ public class UIAlertView extends UIView {
         }
 
         @Override
-        public void raiseEvent() {
+        public void raiseEvent(UIControlDelegate sender, int eventType) {
             buttonClicked(buttonIndex);
         }
     }

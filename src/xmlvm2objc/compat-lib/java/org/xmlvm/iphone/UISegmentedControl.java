@@ -111,7 +111,7 @@ public class UISegmentedControl extends UIControl {
                 .hasNext();) {
             Map.Entry<Integer, UIControlDelegate> e = it.next();
             if ((e.getKey().intValue() & TouchUpInside) > 0) {
-                e.getValue().raiseEvent();
+                e.getValue().raiseEvent(e.getValue(), UIControlEvent.TouchUpInside);
             }
         }
         if (newselection != selection) {
@@ -124,7 +124,7 @@ public class UISegmentedControl extends UIControl {
                 .hasNext();) {
             Map.Entry<Integer, UIControlDelegate> e = it.next();
             if ((e.getKey().intValue() & ValueChanged) > 0) {
-                e.getValue().raiseEvent();
+                e.getValue().raiseEvent(e.getValue(), UIControlEvent.ValueChanged);
             }
         }
     }

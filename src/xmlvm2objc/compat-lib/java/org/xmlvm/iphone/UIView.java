@@ -14,6 +14,7 @@ public class UIView extends UIResponder {
     private List<UIView>      subviews;
     private UIView            superview;
     private UIColor           backgroundColor;
+    private UIImage           backgroundImage;
     private boolean           opaque;
     private float             alpha;
     private boolean           hidden;
@@ -35,6 +36,7 @@ public class UIView extends UIResponder {
         xmlvmSetRenderer(new UIViewRenderer<UIView>(this));
         this.bounds = null;
         this.backgroundColor = UIColor.clearColor;
+        this.backgroundImage = null;
         this.opaque = true;
         this.hidden = false;
         setUserInteractionEnabled(true);
@@ -149,6 +151,15 @@ public class UIView extends UIResponder {
         if (backgroundColor == null)
             backgroundColor = UIColor.clearColor;
         this.backgroundColor = backgroundColor;
+        setNeedsDisplay();
+    }
+
+    public UIImage getBackgroundImage() {
+        return backgroundImage;
+    }
+    
+    public void setBackgroundImage(UIImage backgroundImage) {
+        this.backgroundImage = backgroundImage;
         setNeedsDisplay();
     }
 

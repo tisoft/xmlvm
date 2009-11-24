@@ -34,12 +34,13 @@
 }
 
 - (void) addTarget___org_xmlvm_iphone_UIControlDelegate_int
-                   :(org_xmlvm_iphone_UIControlDelegate*) delegate
+                   :(id<org_xmlvm_iphone_UIControlDelegate>) delegate
                    :(int) controlEvents
 {
 	// TODO better memory management
 	[delegate retain];
-	[self addTarget:delegate action:@selector(raiseEvent__) forControlEvents:controlEvents];
+	[self addTarget:delegate action:@selector(raiseEvent___org_xmlvm_iphone_UIControlDelegate_int::)
+	      forControlEvents:controlEvents];
 }
 
 @end

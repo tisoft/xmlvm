@@ -46,7 +46,7 @@ public class UISwitch extends UIControl {
                     .iterator(); it.hasNext();) {
                 Map.Entry<Integer, UIControlDelegate> e = it.next();
                 if ((e.getKey().intValue() & TouchUpInside) > 0) {
-                    e.getValue().raiseEvent();
+                    e.getValue().raiseEvent(e.getValue(), UIControlEvent.TouchUpInside);
                 }
             }
             setOn(!this.isOn);
@@ -54,7 +54,7 @@ public class UISwitch extends UIControl {
                     .iterator(); it.hasNext();) {
                 Map.Entry<Integer, UIControlDelegate> e = it.next();
                 if ((e.getKey().intValue() & ValueChanged) > 0) {
-                    e.getValue().raiseEvent();
+                    e.getValue().raiseEvent(e.getValue(), UIControlEvent.ValueChanged);
                 }
             }
         }

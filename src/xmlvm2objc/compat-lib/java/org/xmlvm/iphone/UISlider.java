@@ -78,7 +78,7 @@ public class UISlider extends UIControl {
                 .hasNext();) {
             Map.Entry<Integer, UIControlDelegate> e = it.next();
             if ((e.getKey().intValue() & TouchUpInside) > 0)
-                e.getValue().raiseEvent();
+                e.getValue().raiseEvent(e.getValue(), UIControlEvent.TouchUpInside);
         }
         float newvalue = (float) p.x / r.size.width;
         newvalue = minimum + (maximum - minimum) * newvalue;
@@ -88,7 +88,7 @@ public class UISlider extends UIControl {
                     .iterator(); it.hasNext();) {
                 Map.Entry<Integer, UIControlDelegate> e = it.next();
                 if ((e.getKey().intValue() & ValueChanged) > 0)
-                    e.getValue().raiseEvent();
+                    e.getValue().raiseEvent(e.getValue(), UIControlEvent.ValueChanged);
             }
         }
     }

@@ -20,6 +20,7 @@ public class UILabel extends UIView {
         setTextColor(UIColor.blackColor);
         setBackgroundColor(UIColor.whiteColor);
         setTextAlignment(UITextAlignment.Left);
+        setUserInteractionEnabled(false);
         setText("");
     }
 

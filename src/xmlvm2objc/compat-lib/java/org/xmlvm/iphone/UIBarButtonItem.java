@@ -42,7 +42,7 @@ public class UIBarButtonItem extends UIBarItem {
         b.addTarget(new UIControlDelegate() {
 
             @Override
-            public void raiseEvent() {
+            public void raiseEvent(UIControlDelegate sender, int eventType) {
                 if (action != null)
                     action.clicked();
             }

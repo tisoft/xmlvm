@@ -102,7 +102,9 @@ public class ActivityManager extends UIApplication {
         if (topActivity == activity) {
             topActivity = parent;
         }
-        parent.xmlvmTransitToStateActive(null);
+        if (parent != null) {
+            parent.xmlvmTransitToStateActive(null);
+        }
     }
 
     public static void bootstrapMainActivity() {

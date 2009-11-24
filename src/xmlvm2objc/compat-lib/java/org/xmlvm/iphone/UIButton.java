@@ -99,6 +99,7 @@ public class UIButton extends UIControl {
         }
     }
 
+    //TODO UIButton should make use of UIControl and not the raw interface of UIResponder
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
         UIButtonRenderer gui = (UIButtonRenderer) xmlvmGetRenderer();
@@ -107,7 +108,7 @@ public class UIButton extends UIControl {
                     .iterator(); it.hasNext();) {
                 Map.Entry<Integer, UIControlDelegate> e = it.next();
                 if ((e.getKey().intValue() & TouchUpInside) > 0)
-                    e.getValue().raiseEvent();
+                    e.getValue().raiseEvent(e.getValue(), UIControlEvent.TouchUpInside);
             }
         gui.setButtonPressed(false);
         setNeedsDisplay();

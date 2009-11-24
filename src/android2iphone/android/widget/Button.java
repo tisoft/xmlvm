@@ -23,24 +23,23 @@ package android.widget;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIButton;
 import org.xmlvm.iphone.UIButtonType;
+import org.xmlvm.iphone.UIControl;
 import org.xmlvm.iphone.UIControlDelegate;
 import org.xmlvm.iphone.UIControlEvent;
 import org.xmlvm.iphone.UIControlState;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
+import android.internal.Assert;
 import android.util.AttributeSet;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
 
-public class Button extends View {
+public class Button extends TextView {
     private static final int INSETS_X            = 10;
     private static final int INSETS_Y            = 5;
     private static final int DEFAULT_FONT_WIDTH  = 10;
     private static final int DEFAULT_FONT_HEIGHT = 18;
-
-    private String           title;
 
     public Button(Context c) {
         super(c);
@@ -58,7 +57,7 @@ public class Button extends View {
 
         width = l.width == LayoutParams.WRAP_CONTENT ?
         // TODO just a rough approximation: 18px per character
-        width = title.length() * DEFAULT_FONT_WIDTH + 2 * INSETS_X
+        width = text.length() * DEFAULT_FONT_WIDTH + 2 * INSETS_X
                 : l.width;
         height = l.height == LayoutParams.WRAP_CONTENT ? height = DEFAULT_FONT_HEIGHT + 2
                 * INSETS_Y : l.height;
@@ -66,21 +65,22 @@ public class Button extends View {
         int x = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).x : 0;
         int y = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).y : 0;
 
-        getUIButton().setFrame(new CGRect(x, y, width, height));
+        xmlvmGetUIView().setFrame(new CGRect(x, y, width, height));
     }
 
-    public void setText(String title) {
-        this.title = title;
-        getUIButton().setTitle(title, UIControlState.Normal);
+    public void setText(String text) {
+        this.text = text;
+        UIView view = xmlvmGetUIView();
+        ((UIButton) view).setTitle(text, UIControlState.Normal);
         requestLayout();
     }
 
     public void setOnClickListener(OnClickListener listener) {
         final OnClickListener theListener = listener;
-        getUIButton().addTarget(new UIControlDelegate() {
+        ((UIControl) xmlvmGetUIView()).addTarget(new UIControlDelegate() {
 
             @Override
-            public void raiseEvent() {
+            public void raiseEvent(UIControlDelegate sender, int eventType) {
                 theListener.onClick(Button.this);
             }
 
@@ -92,23 +92,15 @@ public class Button extends View {
         return UIButton.buttonWithType(UIButtonType.RoundedRect);
     }
 
-    private UIButton getUIButton() {
-        return (UIButton) xmlvmGetUIView();
-    }
-
     protected void parseAttributes(AttributeSet attrs) {
         super.parseAttributes(attrs);
-
-        String value = attrs.getAttributeValue(null, "text");
-        this.title = value != null ? value : "";
-        getUIButton().setTitle(title, UIControlState.Normal);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // TODO: Replace with a more elaborated measurement
         int width = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                .getSize(widthMeasureSpec) : 2 * INSETS_X + title.length() * DEFAULT_FONT_WIDTH;
+                .getSize(widthMeasureSpec) : 2 * INSETS_X + text.length() * DEFAULT_FONT_WIDTH;
         int height = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
                 .getSize(heightMeasureSpec) : 2 * INSETS_Y + DEFAULT_FONT_HEIGHT;
         setMeasuredDimension(width, height);

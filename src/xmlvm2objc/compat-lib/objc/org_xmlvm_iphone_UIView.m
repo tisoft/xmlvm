@@ -25,6 +25,12 @@
 
 @implementation org_xmlvm_iphone_UIView : UIView
 
+- (void) dealloc
+{
+	[self->backgroundImage release];
+	[super dealloc];
+}
+
 /*
  * We have to use inheritance to override drawRect because we cannot achieve
  * the same with categories.
@@ -32,6 +38,7 @@
 
 - (void) drawRect:(CGRect)rect
 {
+	[self->backgroundImage drawInRect:rect];
     org_xmlvm_iphone_CGRect* redrawRect = [[org_xmlvm_iphone_CGRect alloc] init];
     redrawRect->origin->x = rect.origin.x;
     redrawRect->origin->y = rect.origin.y;
@@ -39,6 +46,13 @@
     redrawRect->size->height = rect.size.height;
     [self drawRect___org_xmlvm_iphone_CGRect: redrawRect];
     [redrawRect release];
+}
+
+- (void) setBackgroundImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image
+{
+	[image retain];
+	[self->backgroundImage release];
+	self->backgroundImage = image == [NSNull null] ? nil : image;
 }
 
 @end
