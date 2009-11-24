@@ -29,10 +29,12 @@ import android.content.res.Resources;
 import android.internal.Assert;
 
 public class ContextWrapper extends Context {
+    
+    private Resources resources = new Resources();
 
     @Override
     public Resources getResources() {
-        return new Resources();
+        return resources;
     }
 
     /* (non-Javadoc)

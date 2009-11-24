@@ -22,14 +22,18 @@ package android.internal;
 
 import java.util.Map;
 
+import android.content.Context;
 import android.util.AttributeSet;
 
 public class ResourceAttributes implements AttributeSet {
 
+    private Context             context;
     private String              androidNsPrefix;
     private Map<String, String> attributeMap;
 
-    public ResourceAttributes(String androidNsPrefix, Map<String, String> attributeMap) {
+    public ResourceAttributes(Context context, String androidNsPrefix,
+            Map<String, String> attributeMap) {
+        this.context = context;
         this.androidNsPrefix = androidNsPrefix;
         this.attributeMap = attributeMap;
     }
@@ -82,12 +86,15 @@ public class ResourceAttributes implements AttributeSet {
 
         int resourceId;
         if (value.startsWith("@+id/")) {
-            resourceId = ResourceMapper.getIdByName(value.substring("@+id/".length()));
+            resourceId = context.getResources().getIdentifier(value.substring("@+id/".length()),
+                    "id", ActivityManager.getApplicationPackageName());
             if (resourceId == -1) {
                 resourceId = defaultValue;
             }
         } else if (value.startsWith("@drawable/")) {
-            resourceId = ResourceMapper.getDrawableByName(value.substring("@drawable/".length()));
+            resourceId = context.getResources().getIdentifier(
+                    value.substring("@drawable/".length()), "drawable",
+                    ActivityManager.getApplicationPackageName());
             if (resourceId == -1) {
                 resourceId = defaultValue;
             }

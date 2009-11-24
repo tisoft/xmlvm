@@ -33,9 +33,9 @@ import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.internal.Assert;
-import android.internal.ImageDrawable;
 import android.internal.ResourceAttributes;
 import android.util.AttributeSet;
 
@@ -210,7 +210,7 @@ public class View {
     private int                    visibility;
 
     public View(Context c) {
-        init(c, new ResourceAttributes("", new HashMap<String, String>()));
+        init(c, new ResourceAttributes(getContext(), "", new HashMap<String, String>()));
     }
 
     public View(Context c, AttributeSet attrs) {
@@ -322,7 +322,7 @@ public class View {
         uiView.setHidden(visibility != VISIBLE);
 
         str = attrs.getAttributeValue(null, "background");
-        //Resolve drawable background
+        // Resolve drawable background
         if (str != null && str.startsWith("@drawable/")) {
             int backgroundId = attrs.getAttributeResourceValue(null, "background", -1);
             if (backgroundId != -1) {
@@ -349,14 +349,16 @@ public class View {
     }
 
     public void setBackgroundResource(int resourceId) {
-        Drawable d = new ImageDrawable(resourceId);
+        Drawable d = getContext().getResources().getDrawable(resourceId);
         setBackgroundDrawable(d);
     }
 
     public void setBackgroundDrawable(Drawable drawable) {
-        if (drawable instanceof ImageDrawable) {
-            UIColor c = UIColor.colorWithPatternImage(((ImageDrawable) drawable).getImage());
+        if (drawable instanceof BitmapDrawable) {
+            UIColor c = UIColor.colorWithPatternImage(((BitmapDrawable) drawable).xmlvmGetImage());
             uiView.setBackgroundColor(c);
+        } else {
+            Assert.NOT_IMPLEMENTED();
         }
     }
 

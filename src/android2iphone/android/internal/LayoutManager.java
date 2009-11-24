@@ -31,6 +31,7 @@ import org.xmlvm.iphone.NSXMLParserDelegate;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.InflateException;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -58,7 +59,7 @@ class LayoutParser extends NSXMLParserDelegate {
     @Override
     public void didStartElement(NSXMLParser parser, String elementName, String namespaceURI,
             String qualifiedName, Map<String, String> attributes) {
-        AttributeSet attrs = new ResourceAttributes(prefix, attributes);
+        AttributeSet attrs = new ResourceAttributes(context, prefix, attributes);
 
         if (qualifiedName.equals("LinearLayout")) {
             beginLinearLayout(attrs);
@@ -83,6 +84,9 @@ class LayoutParser extends NSXMLParserDelegate {
 
             if (v != null) {
                 addView(v, attrs);
+            }
+            else {
+                throw new InflateException("Unable to create widget: " + qualifiedName);
             }
         }
     }
@@ -162,17 +166,18 @@ class LayoutParser extends NSXMLParserDelegate {
 public class LayoutManager {
 
     public static View getLayout(Context context, int id) {
-        NSData layoutDesc = ResourceMapper.getLayoutById(id);
+        NSData layoutDesc = context.getResources().getLayout(id);
         NSXMLParser xmlParser = new NSXMLParser(layoutDesc);
         xmlParser.setShouldProcessNamespaces(true);
         xmlParser.setShouldReportNamespacePrefixes(true);
         LayoutParser parser = new LayoutParser(context);
         xmlParser.setDelegate(parser);
         boolean success = xmlParser.parse();
-        Assert.CHECK(success);
-        // TODO what to do if success == false?
-        View layoutRootView = parser.getLayoutRootView();
+        if (!success) {
+            throw new InflateException("Unable to inflate layout: " + id);
+        }
 
+        View layoutRootView = parser.getLayoutRootView();
         if (layoutRootView instanceof ViewGroup) {
             ((ViewGroup) layoutRootView).setXmlvmViewMap(parser.getViewMap());
         }

@@ -25,7 +25,9 @@ import org.xmlvm.iphone.UIImageView;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
-import android.internal.ResourceMapper;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.internal.Assert;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,15 +37,24 @@ public class ImageView extends View {
 
     public ImageView(Context c) {
         super(c);
-        
-        //((Activity) c).getWindow().getCGRect());
+
+        // ((Activity) c).getWindow().getCGRect());
     }
 
     public void setImageResource(int resId) {
-        getUIImageView().setImage(ResourceMapper.getImageById(resId));
-        float width = getUIImageView().getImage().getSize().width;
-        float height = getUIImageView().getImage().getSize().height;
-        getUIImageView().setFrame(new CGRect(0, 0, width, height));
+        Drawable d = getContext().getResources().getDrawable(resId);
+        setImageDrawable(d);
+    }
+
+    public void setImageDrawable(Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            getUIImageView().setImage(((BitmapDrawable) drawable).xmlvmGetImage());
+            float width = getUIImageView().getImage().getSize().width;
+            float height = getUIImageView().getImage().getSize().height;
+            getUIImageView().setFrame(new CGRect(0, 0, width, height));
+        } else {
+            Assert.NOT_IMPLEMENTED();
+        }
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
@@ -65,7 +76,7 @@ public class ImageView extends View {
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
         return new UIImageView(new CGRect(0, 0, 0, 0));
     }
-    
+
     private UIImageView getUIImageView() {
         return (UIImageView) xmlvmGetUIView();
     }

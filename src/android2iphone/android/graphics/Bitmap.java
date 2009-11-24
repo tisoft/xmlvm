@@ -20,10 +20,8 @@
 
 package android.graphics;
 
-import org.xmlvm.iphone.CGSize;
-import org.xmlvm.iphone.UIImage;
-
-import android.internal.ResourceMapper;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 
 /**
  * @author arno
@@ -31,20 +29,20 @@ import android.internal.ResourceMapper;
  */
 public final class Bitmap {
 
-    private UIImage image;
+    private Drawable drawable;
 
-    public Bitmap(int resourceId) {
-        image = ResourceMapper.getImageById(resourceId);
+    public Bitmap(Resources res, int resourceId) {
+        drawable = res.getDrawable(resourceId);
     }
 
     public int getWidth() {
-        CGSize size = image.getSize();
-        return (int) size.width;
+        Rect r = drawable.getBounds();
+        return r.right;
     }
 
     public int getHeight() {
-        CGSize size = image.getSize();
-        return (int) size.height;
+        Rect r = drawable.getBounds();
+        return r.bottom;
     }
 
 }

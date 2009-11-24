@@ -18,23 +18,34 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
+package android.graphics.drawable;
 
-package android.internal;
-
+import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIImage;
 
-import android.graphics.drawable.Drawable;;
+import android.graphics.Rect;
 
-public class ImageDrawable extends Drawable {
-    
+public class BitmapDrawable extends Drawable {
+
     private UIImage image;
-    
-    public ImageDrawable(int resourceId) {
-        image = ResourceMapper.getImageById(resourceId);
+
+    private BitmapDrawable(UIImage image) {
+        this.image = image;
     }
-    
-    public UIImage getImage() {
+
+    public static BitmapDrawable xmlvmCreateWithImage(UIImage image) {
+        return new BitmapDrawable(image);
+    }
+
+    public Rect getBounds() {
+        CGSize s = image.getSize();
+        Rect r = new Rect();
+        r.right = (int) s.width;
+        r.bottom = (int) s.height;
+        return r;
+    }
+
+    public UIImage xmlvmGetImage() {
         return image;
     }
-
 }

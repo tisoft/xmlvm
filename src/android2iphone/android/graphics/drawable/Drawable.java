@@ -21,10 +21,12 @@
 
 package android.graphics.drawable;
 
+import android.graphics.Rect;
+
 /**
  * @author arno
  *
  */
 public abstract class Drawable {
-
+    public abstract Rect getBounds();
 }

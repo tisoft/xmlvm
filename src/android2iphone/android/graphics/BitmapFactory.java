@@ -35,7 +35,7 @@ public class BitmapFactory {
      * @return
      */
     public static Bitmap decodeResource(Resources resources, int id) {
-        return new Bitmap(id);
+        return new Bitmap(resources, id);
     }
 
 }
