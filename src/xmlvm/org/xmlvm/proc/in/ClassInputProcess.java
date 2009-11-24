@@ -61,6 +61,7 @@ import org.apache.bcel.generic.InstructionList;
 import org.apache.bcel.generic.InvokeInstruction;
 import org.apache.bcel.generic.LocalVariableGen;
 import org.apache.bcel.generic.LocalVariableInstruction;
+import org.apache.bcel.generic.MULTIANEWARRAY;
 import org.apache.bcel.generic.MethodGen;
 import org.apache.bcel.generic.NEWARRAY;
 import org.apache.bcel.generic.ObjectType;
@@ -494,6 +495,8 @@ public class ClassInputProcess extends InputProcess<ClassFile> {
                     // this method does not need to do anything
                     // emitReturnInstruction(xml_inst, (ReturnInstruction)
                     // inst);
+                } else if (inst instanceof MULTIANEWARRAY) {
+                    emitMULTIANEWARRAY(xml_inst, (MULTIANEWARRAY) inst);
                 } else if (inst instanceof CPInstruction) {
                     emitCPInstruction(xml_inst, (CPInstruction) inst);
                 } else if (inst instanceof IINC) {
@@ -692,6 +695,11 @@ public class ClassInputProcess extends InputProcess<ClassFile> {
             xml_inst.setAttribute("type", inst.getType(cpg).toString());
         }
 
+        private void emitMULTIANEWARRAY(Element xml_inst, MULTIANEWARRAY inst) {
+            xml_inst.setAttribute("dimensions", "" + inst.getDimensions());
+            xml_inst.setAttribute("base-type", inst.getType(cpg).toString().replace("[]", ""));
+        }
+        
         private final void put(InstructionHandle ih, int id) {
             if (map.get(ih) == null)
                 map.put(ih, new Integer(id));
