@@ -2,7 +2,7 @@
   function getUrl($url) {
     if (strpos($url, "@") == 0) {
       if ($url == "@jspektrum") {
-        return "http://www.sigs.de/publications/newsletter/korn_puder_JS_06_09.pdf";
+        return "http://plum.sfsu.edu/xml11-external/korn_puder_JS_06_09.pdf";
       } else if ($url == "@bluecarat") {
         return "http://www.bluecarat.eu";
       }
