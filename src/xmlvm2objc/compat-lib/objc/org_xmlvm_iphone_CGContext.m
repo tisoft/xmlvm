@@ -22,7 +22,6 @@
 #import "org_xmlvm_iphone_CGLayer.h"
 #import <CoreGraphics/CGLayer.h>
 
-extern void CGFontGetGlyphsForUnichars(CGFontRef, const unichar[], const CGGlyph[], size_t);
 
 // CGContext
 //----------------------------------------------------------------------------
@@ -114,24 +113,12 @@ extern void CGFontGetGlyphsForUnichars(CGFontRef, const unichar[], const CGGlyph
 
 - (void) showTextAtPoint___float_float_java_lang_String: (float)x: (float)y: (NSString*)text
 {
-	int textLength = [text length];
-	unichar chars[textLength];
-	CGGlyph textToPrint[textLength];
-	[text getCharacters:chars range:NSMakeRange(0,textLength)];
-
-	CGFontGetGlyphsForUnichars(localFont, chars, textToPrint, textLength);
-	CGContextShowGlyphsAtPoint(context, x, y, textToPrint, textLength);
+    CGContextShowTextAtPoint(context, x, y, [text UTF8String], [text length]);
 }
 
 - (void) showText___java_lang_String: (NSString*)text
 {
-	int textLength = [text length];
-	unichar chars[textLength];
-	CGGlyph textToPrint[textLength];
-	[text getCharacters:chars range:NSMakeRange(0,textLength)];
-
-	CGFontGetGlyphsForUnichars(localFont, chars, textToPrint, textLength);
-	CGContextShowGlyphs(context, textToPrint, textLength);
+    CGContextShowText(context, [text UTF8String],[text length]);
 }
 
 - (org_xmlvm_iphone_CGPoint*) getTextPosition__
