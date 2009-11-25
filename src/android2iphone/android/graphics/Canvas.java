@@ -83,13 +83,11 @@ public class Canvas {
         Assert.NOT_IMPLEMENTED();
     }
 
-    /**
-     * @param text
-     * @param i
-     * @param j
-     * @param paint
-     */
     public void drawText(String texttodisplay, int i, int j, Paint paint) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void setBitmap(Bitmap bitmap) {
         Assert.NOT_IMPLEMENTED();
     }
 

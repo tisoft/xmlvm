@@ -18,43 +18,25 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.view;
+package android.content.res;
 
-import android.content.Context;
+import java.io.FileDescriptor;
+
 import android.internal.Assert;
-import android.internal.LayoutManager;
 
-/**
- * @author arno
- * 
- */
-public class LayoutInflater {
-
-    private Context context;
-
-    public LayoutInflater(Context context) {
-        this.context = context;
-    }
-
-    public View inflate(int resource, ViewGroup root, boolean attachToRoot) throws InflateException {
-        View v = LayoutManager.getLayout(context, resource);
-        if (v == null) {
-            throw new InflateException("Unable to inflate layout: " + resource);
-        }
-
-        if (root != null) {
-            if (attachToRoot) {
-                root.addView(v);
-            } else {
-                v.setLayoutParams(root.getLayoutParams());
-            }
-        }
-
-        return root != null && attachToRoot ? root : v;
-    }
-
-    public View inflate(int resource, ViewGroup root) {
+public class AssetFileDescriptor {
+    public FileDescriptor getFileDescriptor() {
         Assert.NOT_IMPLEMENTED();
         return null;
+    }
+
+    public long getStartOffset() {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
+
+    public long getLength() {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
     }
 }

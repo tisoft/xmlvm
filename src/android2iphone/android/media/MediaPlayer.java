@@ -18,78 +18,48 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
+package android.media;
 
-package android.graphics;
+import java.io.FileDescriptor;
 
 import android.internal.Assert;
 
-/**
- * @author arno
- *
- */
-public class Paint {
+public class MediaPlayer {
 
-    public static final int ANTI_ALIAS_FLAG = 1;
+    public boolean isPlaying() {
+        Assert.NOT_IMPLEMENTED();
+        return false;
+    }
 
-    /**
-     * @param antiAliasFlag
-     */
-    public Paint(int antiAliasFlag) {
+    public void setDataSource(FileDescriptor fd, long offset, long length) {
         Assert.NOT_IMPLEMENTED();
     }
 
-    /**
-     * 
-     */
-    public Paint() {
+    public void setAudioStreamType(int streamtype) {
         Assert.NOT_IMPLEMENTED();
     }
 
-    /**
-     * @param i
-     * @param j
-     * @param k
-     * @param l
-     */
-    public void setARGB(int i, int j, int k, int l) {
+    public void prepare() {
         Assert.NOT_IMPLEMENTED();
     }
 
-    /**
-     * @param f
-     * @param g
-     * @param h
-     * @param i
-     */
-    public void setShadowLayer(float f, float g, float h, int i) {
+    public void setLooping(boolean looping) {
         Assert.NOT_IMPLEMENTED();
     }
 
-    /**
-     * @param fontHeight
-     */
-    public void setTextSize(int fontHeight) {
+    public void setVolume(float leftVolume, float rightVolume) {
         Assert.NOT_IMPLEMENTED();
     }
 
-    /**
-     * @param typeFace
-     */
-    public void setTypeface(Typeface typeface) {
+    public void start() {
         Assert.NOT_IMPLEMENTED();
     }
 
-    /**
-     * @param text
-     * @return
-     */
-    public float measureText(String text) {
-        Assert.NOT_IMPLEMENTED();
-        return 0;
-    }
-
-    public void setAntiAlias(boolean aa) {
+    public void stop() {
         Assert.NOT_IMPLEMENTED();
     }
 
+    public void release() {
+        Assert.NOT_IMPLEMENTED();
+    }
 }

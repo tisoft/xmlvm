@@ -18,17 +18,14 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.graphics;
 
 import android.content.res.AssetManager;
 import android.internal.Assert;
 
-/**
- * @author arno
- *
- */
 public class Typeface {
+
+    public static final int BOLD = 1;
 
     /**
      * @param assets

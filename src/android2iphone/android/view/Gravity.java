@@ -18,16 +18,8 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.content.res;
+package android.view;
 
-import java.io.IOException;
-
-import android.internal.Assert;
-
-public abstract class AssetManager {
-
-    public final AssetFileDescriptor openFd(String fileName) throws IOException {
-        Assert.NOT_IMPLEMENTED();
-        return null;
-    }
+public class Gravity {
+    public static final int CENTER = 17;
 }

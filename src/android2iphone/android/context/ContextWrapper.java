@@ -29,7 +29,7 @@ import android.content.res.Resources;
 import android.internal.Assert;
 
 public class ContextWrapper extends Context {
-    
+
     private Resources resources = new Resources();
 
     @Override
@@ -37,7 +37,9 @@ public class ContextWrapper extends Context {
         return resources;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see android.content.Context#getAssets()
      */
     @Override
@@ -46,16 +48,21 @@ public class ContextWrapper extends Context {
         return null;
     }
 
+    public Context getApplicationContext() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
     public FileInputStream openFileInput(String name) {
         Assert.NOT_IMPLEMENTED();
         return null;
     }
-    
+
     public FileOutputStream openFileOutput(String name, int mode) {
         Assert.NOT_IMPLEMENTED();
         return null;
     }
-    
+
     public boolean deleteFile(String name) {
         Assert.NOT_IMPLEMENTED();
         return false;

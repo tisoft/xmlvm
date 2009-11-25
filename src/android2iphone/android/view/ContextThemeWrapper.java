@@ -21,7 +21,11 @@
 package android.view;
 
 import android.context.ContextWrapper;
+import android.internal.Assert;
 
 public class ContextThemeWrapper extends ContextWrapper {
 
+    public void setTheme(int resid) {
+        Assert.NOT_IMPLEMENTED();
+    }
 }

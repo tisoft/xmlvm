@@ -18,78 +18,29 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
+package android.media;
 
-package android.graphics;
-
+import android.content.res.AssetFileDescriptor;
 import android.internal.Assert;
 
-/**
- * @author arno
- *
- */
-public class Paint {
+public class SoundPool {
 
-    public static final int ANTI_ALIAS_FLAG = 1;
-
-    /**
-     * @param antiAliasFlag
-     */
-    public Paint(int antiAliasFlag) {
+    public SoundPool(int maxStreams, int streamType, int srcQuality) {
         Assert.NOT_IMPLEMENTED();
     }
 
-    /**
-     * 
-     */
-    public Paint() {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    /**
-     * @param i
-     * @param j
-     * @param k
-     * @param l
-     */
-    public void setARGB(int i, int j, int k, int l) {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    /**
-     * @param f
-     * @param g
-     * @param h
-     * @param i
-     */
-    public void setShadowLayer(float f, float g, float h, int i) {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    /**
-     * @param fontHeight
-     */
-    public void setTextSize(int fontHeight) {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    /**
-     * @param typeFace
-     */
-    public void setTypeface(Typeface typeface) {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    /**
-     * @param text
-     * @return
-     */
-    public float measureText(String text) {
+    public int load(AssetFileDescriptor afd, int priority) {
         Assert.NOT_IMPLEMENTED();
         return 0;
     }
 
-    public void setAntiAlias(boolean aa) {
+    public final int play(int soundID, float leftVolume, float rightVolume, int priority, int loop,
+            float rate) {
         Assert.NOT_IMPLEMENTED();
+        return 0;
     }
 
+    public final void stop(int streamID) {
+        Assert.NOT_IMPLEMENTED();
+    }
 }

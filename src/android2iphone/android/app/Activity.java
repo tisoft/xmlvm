@@ -32,6 +32,7 @@ import android.internal.ActivityManager;
 import android.internal.Assert;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -380,6 +381,11 @@ public class Activity extends ContextThemeWrapper {
      * @return
      */
     protected Intent getIntent() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
+    public LayoutInflater getLayoutInflater() {
         Assert.NOT_IMPLEMENTED();
         return null;
     }

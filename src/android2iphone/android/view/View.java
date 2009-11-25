@@ -33,6 +33,7 @@ import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.internal.Assert;
@@ -442,4 +443,15 @@ public class View {
         uiView.setHidden(visibility != VISIBLE);
     }
 
+    public void scrollTo(int x, int y) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    protected void onDraw(Canvas canvas) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void setPressed(boolean pressed) {
+        Assert.NOT_IMPLEMENTED();
+    }
 }

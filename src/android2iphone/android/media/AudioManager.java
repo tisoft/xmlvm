@@ -18,43 +18,21 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.view;
+package android.media;
 
-import android.content.Context;
 import android.internal.Assert;
-import android.internal.LayoutManager;
 
-/**
- * @author arno
- * 
- */
-public class LayoutInflater {
+public class AudioManager {
+    public static final int STREAM_MUSIC = 3;
+    public static final int STREAM_ALARM = 4;
 
-    private Context context;
-
-    public LayoutInflater(Context context) {
-        this.context = context;
-    }
-
-    public View inflate(int resource, ViewGroup root, boolean attachToRoot) throws InflateException {
-        View v = LayoutManager.getLayout(context, resource);
-        if (v == null) {
-            throw new InflateException("Unable to inflate layout: " + resource);
-        }
-
-        if (root != null) {
-            if (attachToRoot) {
-                root.addView(v);
-            } else {
-                v.setLayoutParams(root.getLayoutParams());
-            }
-        }
-
-        return root != null && attachToRoot ? root : v;
-    }
-
-    public View inflate(int resource, ViewGroup root) {
+    public int getStreamVolume(int streamType) {
         Assert.NOT_IMPLEMENTED();
-        return null;
+        return 0;
+    }
+
+    public int getStreamMaxVolume(int streamType) {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
     }
 }

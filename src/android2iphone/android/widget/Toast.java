@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.widget;
 
 import android.content.Context;
@@ -27,12 +26,16 @@ import android.view.View;
 
 /**
  * @author arno
- *
+ * 
  */
 public class Toast {
 
-    public static final int LENGTH_LONG = 1;
+    public static final int LENGTH_LONG  = 1;
     public static final int LENGTH_SHORT = 0;
+
+    public Toast(Context context) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     /**
      * @param context
@@ -45,16 +48,14 @@ public class Toast {
         return null;
     }
 
-    /**
-     * @param legionGameOverLayout
-     */
     public void setView(View view) {
         Assert.NOT_IMPLEMENTED();
     }
 
-    /**
-     * @param lengthLong
-     */
+    public void setGravity(int gravity, int xOffset, int yOffset) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
     public void setDuration(int lengthLong) {
         Assert.NOT_IMPLEMENTED();
     }

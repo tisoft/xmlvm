@@ -22,12 +22,17 @@ package android.graphics;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.internal.Assert;
 
 /**
  * @author arno
  * 
  */
 public final class Bitmap {
+
+    public static enum Config {
+        ALPHA_8, ARGB_4444, ARGB_8888, RGB_565
+    }
 
     private Drawable drawable;
 
@@ -45,4 +50,13 @@ public final class Bitmap {
         return r.bottom;
     }
 
+    public static Bitmap createBitmap(int width, int height, Config rgb565) {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
+    public static Bitmap createBitmap(Bitmap source, int x, int y, int width, int height) {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
 }

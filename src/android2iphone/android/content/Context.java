@@ -67,6 +67,7 @@ public abstract class Context {
     public static final int       MODE_WORLD_WRITEABLE    = 2;
 
     public static final String    LAYOUT_INFLATER_SERVICE = "layout_inflater";
+    public static final String    AUDIO_SERVICE           = "audio";
 
     private static SensorManager  sensorManager           = null;
     private static PowerManager   powerManager            = null;
@@ -91,8 +92,7 @@ public abstract class Context {
                 powerManager = new PowerManager();
             }
             return powerManager;
-        }
-        else if (service.equals(LAYOUT_INFLATER_SERVICE)) {
+        } else if (service.equals(LAYOUT_INFLATER_SERVICE)) {
             if (layoutInflater == null) {
                 layoutInflater = new LayoutInflater(this);
             }

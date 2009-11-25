@@ -27,6 +27,8 @@ import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.internal.Assert;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,14 +73,26 @@ public class TextView extends View {
         xmlvmGetUIView().setFrame(new CGRect(x, y, width, height));
     }
 
+    public final void setText(int resid) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
     public void setText(String string) {
         getUILabel().setText(string);
         requestLayout();
     }
 
+    public final void setText(CharSequence text) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
     public void setTextSize(float size) {
         UIFont font = getUILabel().getFont();
         getUILabel().setFont(font.fontWithSize(size));
+    }
+
+    public void setTypeface(Typeface tf, int style) {
+        Assert.NOT_IMPLEMENTED();
     }
 
     @Override
