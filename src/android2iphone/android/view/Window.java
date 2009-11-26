@@ -131,7 +131,7 @@ public class Window {
         int heightMeasureSpec;
         LayoutParams lp = contentView.getLayoutParams();
 
-        if (lp == null || lp.width != LayoutParams.FILL_PARENT) {
+        if (lp == null || lp.width == LayoutParams.WRAP_CONTENT) {
             widthMeasureSpec = MeasureSpec.makeMeasureSpec((int) rect.size.width,
                     MeasureSpec.AT_MOST);
         } else {
@@ -139,7 +139,7 @@ public class Window {
                     MeasureSpec.EXACTLY);
         }
 
-        if (lp == null || lp.height != LayoutParams.FILL_PARENT) {
+        if (lp == null || lp.height == LayoutParams.WRAP_CONTENT) {
             heightMeasureSpec = MeasureSpec.makeMeasureSpec((int) rect.size.height,
                     MeasureSpec.AT_MOST);
         } else {
