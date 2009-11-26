@@ -2,7 +2,7 @@
   function getUrl($url) {
     if (strpos($url, "@") == 0) {
       if ($url == "@jspektrum") {
-        return "http://plum.sfsu.edu/xml11-external/korn_puder_JS_06_09.pdf";
+        return "http://www.sigs-datacom.de/fachzeitschriften/javaspektrum/archiv/artikelansicht.html?tx_mwjournals_pi1[pointer]=0&tx_mwjournals_pi1[mode]=1&tx_mwjournals_pi1[showUid]=6495";
       } else if ($url == "@bluecarat") {
         return "http://www.bluecarat.eu";
       }
