@@ -43,7 +43,7 @@ public class TextView extends View {
 
     public TextView(Context c) {
         super(c);
-
+        text = "";
         // TODO Set default color white
         // uiLabel.setFontColor(new Color(0xffffff));
     }
