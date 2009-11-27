@@ -441,6 +441,7 @@ public class View {
     public void setVisibility(int visibility) {
         this.visibility = visibility;
         uiView.setHidden(visibility != VISIBLE);
+        requestLayout();
     }
 
     public void scrollTo(int x, int y) {
