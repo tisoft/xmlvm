@@ -30,7 +30,6 @@ import org.xmlvm.iphone.UIControlState;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
-import android.internal.Assert;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;

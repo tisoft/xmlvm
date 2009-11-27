@@ -101,9 +101,12 @@ public class ImageButton extends View {
     protected void parseAttributes(AttributeSet attrs) {
         super.parseAttributes(attrs);
 
+        xmlvmSetIgnoreLayoutRequests(true);
+        
         String value = attrs.getAttributeValue(null, "text");
-        this.title = value != null ? value : "";
-        getUIButton().setTitle(title, UIControlState.Normal);
+        setText(value != null ? value : "");
+        
+        xmlvmSetIgnoreLayoutRequests(false);
     }
 
     @Override

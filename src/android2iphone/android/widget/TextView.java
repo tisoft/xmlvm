@@ -21,7 +21,6 @@
 package android.widget;
 
 import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIControlState;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UIView;
@@ -40,7 +39,7 @@ public class TextView extends View {
     private static final int DEFAULT_FONT_WIDTH  = 10;
     private static final int DEFAULT_FONT_HEIGHT = 18;
 
-    protected String         text                = "";
+    protected String         text;
 
     public TextView(Context c) {
         super(c);
@@ -106,8 +105,13 @@ public class TextView extends View {
 
     protected void parseAttributes(AttributeSet attrs) {
         super.parseAttributes(attrs);
+
+        xmlvmSetIgnoreLayoutRequests(true);
+
         String value = attrs.getAttributeValue(null, "text");
         setText(value != null ? value : "");
+
+        xmlvmSetIgnoreLayoutRequests(false);
     }
 
     @Override

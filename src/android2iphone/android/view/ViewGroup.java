@@ -30,7 +30,6 @@ import org.xmlvm.iphone.UIView;
 
 import android.app.Activity;
 import android.content.Context;
-import android.internal.Assert;
 import android.internal.Dimension;
 import android.util.AttributeSet;
 
@@ -185,7 +184,9 @@ public class ViewGroup extends View implements ViewParent {
     }
 
     public void requestLayout() {
-        measure(widthMeasureSpec, heightMeasureSpec);
-        layout(getX(), getY(), getMeasuredWidth(), getMeasuredHeight());
+        if (!xmlvmGetIgnoreLayoutRequests()) {
+            measure(widthMeasureSpec, heightMeasureSpec);
+            layout(getX(), getY(), getMeasuredWidth(), getMeasuredHeight());
+        }
     }
 }

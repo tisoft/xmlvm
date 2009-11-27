@@ -105,8 +105,12 @@ public class LinearLayout extends ViewGroup {
     protected void parseAttributes(AttributeSet attrs) {
         super.parseAttributes(attrs);
 
+        xmlvmSetIgnoreLayoutRequests(true);
+        
         String str = attrs.getAttributeValue(null, "orientation");
         setOrientation("vertical".equals(str) ? VERTICAL : HORIZONTAL);
+        
+        xmlvmSetIgnoreLayoutRequests(false);
     }
 
     public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
@@ -119,6 +123,7 @@ public class LinearLayout extends ViewGroup {
 
     public void setOrientation(int orientation) {
         this.orientation = orientation;
+        requestLayout();
     }
 
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {

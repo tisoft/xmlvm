@@ -48,9 +48,11 @@ import android.util.AttributeSet;
 
 public class View {
 
-    public static final int VISIBLE   = 0;
-    public static final int INVISIBLE = 4;
-    public static final int GONE      = 8;
+    public static final int VISIBLE              = 0;
+    public static final int INVISIBLE            = 4;
+    public static final int GONE                 = 8;
+
+    private boolean         ignoreLayoutRequests = false;
 
     /**
      * Copyright (C) 2006 The Android Open Source Project
@@ -310,17 +312,18 @@ public class View {
     }
 
     protected void parseAttributes(AttributeSet attrs) {
-        id = attrs.getIdAttributeResourceValue(0);
+        xmlvmSetIgnoreLayoutRequests(true);
+
+        setId(attrs.getIdAttributeResourceValue(0));
 
         String str = attrs.getAttributeValue(null, "visibility");
         if ("gone".equals(str)) {
-            visibility = GONE;
+            setVisibility(GONE);
         } else if ("invisible".equals(str)) {
-            visibility = INVISIBLE;
+            setVisibility(INVISIBLE);
         } else {
-            visibility = VISIBLE;
+            setVisibility(VISIBLE);
         }
-        uiView.setHidden(visibility != VISIBLE);
 
         str = attrs.getAttributeValue(null, "background");
         // Resolve drawable background
@@ -330,6 +333,8 @@ public class View {
                 setBackgroundResource(backgroundId);
             }
         }
+        
+        xmlvmSetIgnoreLayoutRequests(false);
     }
 
     public void setId(int id) {
@@ -429,7 +434,7 @@ public class View {
     }
 
     public void requestLayout() {
-        if (parent != null) {
+        if (parent != null && !xmlvmGetIgnoreLayoutRequests()) {
             ((View) parent).requestLayout();
         }
     }
@@ -454,5 +459,13 @@ public class View {
 
     public void setPressed(boolean pressed) {
         Assert.NOT_IMPLEMENTED();
+    }
+
+    protected boolean xmlvmGetIgnoreLayoutRequests() {
+        return ignoreLayoutRequests;
+    }
+
+    protected void xmlvmSetIgnoreLayoutRequests(boolean ignoreLayoutRequests) {
+        this.ignoreLayoutRequests = ignoreLayoutRequests;
     }
 }
