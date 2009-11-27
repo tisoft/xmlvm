@@ -99,6 +99,13 @@ public class ViewGroup extends View implements ViewParent {
         public MarginLayoutParams(int width, int height) {
             super(width, height);
         }
+
+        public void setMargins(int leftMargin, int topMargin, int rightMargin, int bottomMargin) {
+            this.leftMargin = leftMargin;
+            this.topMargin = topMargin;
+            this.rightMargin = rightMargin;
+            this.bottomMargin = bottomMargin;
+        }
     }
 
     public ViewGroup(Context c) {
