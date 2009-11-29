@@ -22,27 +22,36 @@ package android.util;
 
 public class Log {
 
-    public static void e(String tag, String message) {
-        log("E", tag, message);
+    public static final int ASSERT  = 7;
+    public static final int DEBUG   = 3;
+    public static final int ERROR   = 6;
+    public static final int INFO    = 4;
+    public static final int VERBOSE = 2;
+    public static final int WARN    = 5;
+
+    public static int e(String tag, String message) {
+        return log("E", tag, message);
     }
 
-    public static void w(String tag, String message) {
-        log("W", tag, message);
+    public static int w(String tag, String message) {
+        return log("W", tag, message);
     }
 
-    public static void i(String tag, String message) {
-        log("I", tag, message);
+    public static int i(String tag, String message) {
+        return log("I", tag, message);
     }
 
-    public static void v(String tag, String message) {
-        log("V", tag, message);
+    public static int v(String tag, String message) {
+        return log("V", tag, message);
     }
 
-    public static void d(String tag, String message) {
-        log("D", tag, message);
+    public static int d(String tag, String message) {
+        return log("D", tag, message);
     }
 
-    private static void log(String level, String tag, String message) {
-        System.out.println("<" + level + "> <" + tag + ">: " + message);
+    private static int log(String level, String tag, String message) {
+        String logMsg = "<" + level + "> <" + tag + ">: " + message;
+        System.out.println(logMsg);
+        return logMsg.length();
     }
 }

@@ -39,6 +39,16 @@ public class ResourceAttributes implements AttributeSet {
     }
 
     @Override
+    public boolean getAttributeBooleanValue(String namespace, String attribute, boolean defaultValue) {
+        String value = getAttributeValue(namespace, attribute);
+        if (value == null) {
+            return defaultValue;
+        }
+
+        return Boolean.parseBoolean(value);
+    }
+
+    @Override
     public int getAttributeIntValue(String namespace, String attribute, int defaultValue) {
         String value = getAttributeValue(namespace, attribute);
         if (value == null) {

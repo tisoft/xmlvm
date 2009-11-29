@@ -52,6 +52,9 @@ public class ViewGroup extends View implements ViewParent {
         public int              width;
         public int              height;
 
+        public LayoutParams() {
+        }
+
         public LayoutParams(Context context, AttributeSet attrs) {
             width = sizeFromString(attrs.getAttributeValue(null, "layout_width"), 0);
             height = sizeFromString(attrs.getAttributeValue(null, "layout_height"), 0);
@@ -60,6 +63,11 @@ public class ViewGroup extends View implements ViewParent {
         public LayoutParams(int width, int height) {
             this.width = width;
             this.height = height;
+        }
+
+        public LayoutParams(LayoutParams source) {
+            this.width = source.width;
+            this.height = source.height;
         }
 
         private int sizeFromString(String str, int defaultValue) {
@@ -98,6 +106,20 @@ public class ViewGroup extends View implements ViewParent {
 
         public MarginLayoutParams(int width, int height) {
             super(width, height);
+        }
+
+        public MarginLayoutParams(LayoutParams source) {
+            super(source);
+        }
+
+        public MarginLayoutParams(MarginLayoutParams source) {
+            this.width = source.width;
+            this.height = source.height;
+
+            this.leftMargin = source.leftMargin;
+            this.topMargin = source.topMargin;
+            this.rightMargin = source.rightMargin;
+            this.bottomMargin = source.bottomMargin;
         }
 
         public void setMargins(int leftMargin, int topMargin, int rightMargin, int bottomMargin) {
@@ -159,6 +181,42 @@ public class ViewGroup extends View implements ViewParent {
         return subViews.get(index);
     }
 
+    protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
+        return p != null;
+    }
+
+    /**
+     * Returns a set of default layout parameters. These parameters are
+     * requested when the View passed to {@link #addView(View)} has no layout
+     * parameters already set. If null is returned, an exception is thrown from
+     * addView.
+     * 
+     * @return a set of default layout parameters or null
+     */
+    protected LayoutParams generateDefaultLayoutParams() {
+        return new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+    }
+
+    /**
+     * Returns a safe set of layout parameters based on the supplied layout
+     * params. When a ViewGroup is passed a View whose layout params do not pass
+     * the test of
+     * {@link #checkLayoutParams(android.view.ViewGroup.LayoutParams)}, this
+     * method is invoked. This method should return a new set of layout params
+     * suitable for this ViewGroup, possibly by copying the appropriate
+     * attributes from the specified set of layout params.
+     * 
+     * @param p
+     *            The layout parameters to convert into a suitable set of layout
+     *            parameters for this ViewGroup.
+     * 
+     * @return an instance of {@link android.view.ViewGroup.LayoutParams} or one
+     *         of its descendants
+     */
+    protected LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
+        return p;
+    }
+
     public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new LayoutParams(getContext(), attrs);
     }
@@ -167,8 +225,24 @@ public class ViewGroup extends View implements ViewParent {
         super.parseAttributes(attrs);
     }
 
-    public View findViewById(int id) {
-        return xmlvmViewMap.get(new Integer(id));
+    // public View findViewById(int id) {
+    // return xmlvmViewMap.get(new Integer(id));
+    // }
+
+    @Override
+    protected View findViewTraversal(int id) {
+        if (id == getId()) {
+            return this;
+        }
+
+        for (View v : subViews) {
+            v = v.findViewById(id);
+            if (v != null) {
+                return v;
+            }
+        }
+
+        return null;
     }
 
     public Map<Integer, View> getXmlvmViewMap() {
@@ -193,7 +267,21 @@ public class ViewGroup extends View implements ViewParent {
     public void requestLayout() {
         if (!xmlvmGetIgnoreLayoutRequests()) {
             measure(widthMeasureSpec, heightMeasureSpec);
-            layout(getX(), getY(), getMeasuredWidth(), getMeasuredHeight());
+            layout(getLeft(), getTop(), getMeasuredWidth(), getMeasuredHeight());
         }
+    }
+
+    protected int makeMeasureSpec(int layoutSize, int sizeConstraint) {
+        int mode = layoutSize == LayoutParams.WRAP_CONTENT ? MeasureSpec.AT_MOST
+                : MeasureSpec.EXACTLY;
+
+        int size;
+        if (mode == MeasureSpec.AT_MOST) {
+            size = sizeConstraint;
+        } else {
+            size = layoutSize > 0 ? Math.min(layoutSize, sizeConstraint) : sizeConstraint;
+        }
+
+        return MeasureSpec.makeMeasureSpec(size, mode);
     }
 }

@@ -53,6 +53,10 @@ public class ToggleButton extends CompoundButton {
         return new UIToggleButton();
     }
 
+    public void setText(String text) {
+        this.text = text; 
+    }
+
     void setTextOff(String textOff) {
         ((UIToggleButton) xmlvmGetUIView()).setTextOff(textOff);
         requestLayout();

@@ -203,7 +203,6 @@ public class LinearLayout extends ViewGroup {
                 if (orientation == VERTICAL) {
                     nextPosition += lp.topMargin;
 
-                    // TODO: Support not only center alignment
                     // Align center horizontal
                     if ((lp.gravitiy & 0x07) == 0x01) {
                         x = (width - v.getMeasuredWidth()) / 2;
@@ -242,19 +241,5 @@ public class LinearLayout extends ViewGroup {
                 v.layout(x, y, x + v.getMeasuredWidth(), y + v.getMeasuredHeight());
             }
         }
-    }
-
-    private int makeMeasureSpec(int layoutSize, int sizeConstraint) {
-        int mode = layoutSize == LayoutParams.WRAP_CONTENT ? MeasureSpec.AT_MOST
-                : MeasureSpec.EXACTLY;
-
-        int size;
-        if (mode == MeasureSpec.AT_MOST) {
-            size = sizeConstraint;
-        } else {
-            size = layoutSize > 0 ? Math.min(layoutSize, sizeConstraint) : sizeConstraint;
-        }
-
-        return MeasureSpec.makeMeasureSpec(size, mode);
     }
 }

@@ -48,6 +48,7 @@ import android.util.AttributeSet;
 
 public class View {
 
+    public static final int NO_ID                = 0xffffffff;
     public static final int VISIBLE              = 0;
     public static final int INVISIBLE            = 4;
     public static final int GONE                 = 8;
@@ -197,20 +198,27 @@ public class View {
         public void onClick(View view);
     }
 
-    private ViewGroup.LayoutParams layoutParams;
-    private Context                c;
-    private UIView                 uiView;
-    private ViewParent             parent;
-    private OnTouchListener        listener;
-    private UIResponderDelegate    responderDelegate;
-    private int                    id;
-    private int                    measuredWidth;
-    private int                    measuredHeight;
-    private int                    x;
-    private int                    y;
-    private int                    width;
-    private int                    height;
-    private int                    visibility;
+    protected ViewGroup.LayoutParams layoutParams;
+    protected int                    paddingLeft;
+    protected int                    paddingRight;
+    protected int                    paddingTop;
+    protected int                    paddingBottom;
+    private Context                  c;
+    private UIView                   uiView;
+    private ViewParent               parent;
+    private OnTouchListener          listener;
+    private UIResponderDelegate      responderDelegate;
+    private int                      id;
+    private int                      measuredWidth;
+    private int                      measuredHeight;
+    private int                      left;
+    private int                      top;
+    private int                      width;
+    private int                      height;
+    private int                      minimumWidth;
+    private int                      minimumHeight;
+    private int                      visibility;
+    private Drawable                 backgroundDrawable;
 
     public View(Context c) {
         init(c, new ResourceAttributes(getContext(), "", new HashMap<String, String>()));
@@ -333,7 +341,7 @@ public class View {
                 setBackgroundResource(backgroundId);
             }
         }
-        
+
         xmlvmSetIgnoreLayoutRequests(false);
     }
 
@@ -343,10 +351,6 @@ public class View {
 
     public int getId() {
         return this.id;
-    }
-
-    public View findViewById(int id) {
-        return this.id == id ? this : null;
     }
 
     public Resources getResources() {
@@ -362,7 +366,9 @@ public class View {
     public void setBackgroundDrawable(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             UIColor c = UIColor.colorWithPatternImage(((BitmapDrawable) drawable).xmlvmGetImage());
+            backgroundDrawable = drawable;
             uiView.setBackgroundColor(c);
+
         } else {
             Assert.NOT_IMPLEMENTED();
         }
@@ -373,19 +379,19 @@ public class View {
         return true;
     }
 
-    protected int getX() {
-        return x;
+    public int getLeft() {
+        return left;
     }
 
-    protected int getY() {
-        return y;
+    public int getTop() {
+        return top;
     }
 
-    protected int getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    protected int getHeight() {
+    public int getHeight() {
         return height;
     }
 
@@ -426,8 +432,8 @@ public class View {
     }
 
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        x = left;
-        y = top;
+        this.left = left;
+        this.top = top;
         width = right - left;
         height = bottom - top;
         uiView.setFrame(new CGRect(left, top, width, height));
@@ -453,12 +459,163 @@ public class View {
         Assert.NOT_IMPLEMENTED();
     }
 
+    public int getBaseline() {
+        return -1;
+    }
+
     protected void onDraw(Canvas canvas) {
         Assert.NOT_IMPLEMENTED();
     }
 
     public void setPressed(boolean pressed) {
         Assert.NOT_IMPLEMENTED();
+    }
+
+    public int getPaddingLeft() {
+        return paddingLeft;
+    }
+
+    public int getPaddingRight() {
+        return paddingRight;
+    }
+
+    public int getPaddingTop() {
+        return paddingTop;
+    }
+
+    public int getPaddingBottom() {
+        return paddingBottom;
+    }
+
+    public void setPadding(int paddingLeft, int paddingTop, int paddingRight, int paddingBottom) {
+        this.paddingLeft = paddingLeft;
+        this.paddingTop = paddingTop;
+        this.paddingRight = paddingRight;
+        this.paddingBottom = paddingBottom;
+    }
+
+    public int getMinimumWidth() {
+        return minimumWidth;
+    }
+
+    public void setMinimumWidth(int minimumWidth) {
+        this.minimumWidth = minimumWidth;
+    }
+
+    public int getMinimumHeight() {
+        return minimumHeight;
+    }
+
+    public void setMinimumHeight(int minimumHeight) {
+        this.minimumHeight = minimumHeight;
+    }
+
+    /**
+     * Utility to reconcile a desired size with constraints imposed by a
+     * MeasureSpec. Will take the desired size, unless a different size is
+     * imposed by the constraints.
+     * 
+     * @param size
+     *            How big the view wants to be
+     * @param measureSpec
+     *            Constraints imposed by the parent
+     * @return The size this view should be.
+     */
+    public static int resolveSize(int size, int measureSpec) {
+        int result = size;
+        int specMode = MeasureSpec.getMode(measureSpec);
+        int specSize = MeasureSpec.getSize(measureSpec);
+        switch (specMode) {
+        case MeasureSpec.UNSPECIFIED:
+            result = size;
+            break;
+        case MeasureSpec.AT_MOST:
+            result = Math.min(size, specSize);
+            break;
+        case MeasureSpec.EXACTLY:
+            result = specSize;
+            break;
+        }
+        return result;
+    }
+
+    /**
+     * Returns the suggested minimum height that the view should use. This
+     * returns the maximum of the view's minimum height and the background's
+     * minimum height (
+     * {@link android.graphics.drawable.Drawable#getMinimumHeight()}).
+     * <p>
+     * When being used in {@link #onMeasure(int, int)}, the caller should still
+     * ensure the returned height is within the requirements of the parent.
+     * 
+     * @return The suggested minimum height of the view.
+     */
+    protected int getSuggestedMinimumHeight() {
+        int suggestedMinHeight = minimumHeight;
+
+        if (backgroundDrawable != null) {
+            final int bgMinHeight = backgroundDrawable.getMinimumHeight();
+            if (suggestedMinHeight < bgMinHeight) {
+                suggestedMinHeight = bgMinHeight;
+            }
+        }
+
+        return suggestedMinHeight;
+    }
+
+    /**
+     * Returns the suggested minimum width that the view should use. This
+     * returns the maximum of the view's minimum width) and the background's
+     * minimum width (
+     * {@link android.graphics.drawable.Drawable#getMinimumWidth()}).
+     * <p>
+     * When being used in {@link #onMeasure(int, int)}, the caller should still
+     * ensure the returned width is within the requirements of the parent.
+     * 
+     * @return The suggested minimum width of the view.
+     */
+    protected int getSuggestedMinimumWidth() {
+        int suggestedMinWidth = minimumWidth;
+
+        if (backgroundDrawable != null) {
+            final int bgMinWidth = backgroundDrawable.getMinimumWidth();
+            if (suggestedMinWidth < bgMinWidth) {
+                suggestedMinWidth = bgMinWidth;
+            }
+        }
+
+        return suggestedMinWidth;
+    }
+
+    /**
+     * Look for a child view with the given id. If this view has the given id,
+     * return this view.
+     * 
+     * @param id
+     *            The id to search for.
+     * @return The view that has the given id in the hierarchy or null
+     */
+    public final View findViewById(int id) {
+        if (id < 0) {
+            return null;
+        }
+
+        return findViewTraversal(id);
+    }
+
+    /**
+     * {@hide}
+     * 
+     * @param id
+     *            the id of the view to be found
+     * @return the view of the specified id, null if cannot be found
+     */
+    protected View findViewTraversal(int id) {
+        if (id == this.id) {
+            return this;
+        }
+
+        return null;
     }
 
     protected boolean xmlvmGetIgnoreLayoutRequests() {

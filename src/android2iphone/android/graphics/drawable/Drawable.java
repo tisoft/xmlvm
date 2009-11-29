@@ -18,15 +18,59 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.graphics.drawable;
 
 import android.graphics.Rect;
 
 /**
  * @author arno
- *
+ * 
  */
 public abstract class Drawable {
     public abstract Rect getBounds();
+
+    /**
+     * Return the intrinsic width of the underlying drawable object. Returns -1
+     * if it has no intrinsic width, such as with a solid color.
+     */
+    public int getIntrinsicWidth() {
+        return -1;
+    }
+
+    /**
+     * Return the intrinsic height of the underlying drawable object. Returns -1
+     * if it has no intrinsic height, such as with a solid color.
+     */
+    public int getIntrinsicHeight() {
+        return -1;
+    }
+
+    /**
+     * Returns the minimum width suggested by this Drawable. If a View uses this
+     * Drawable as a background, it is suggested that the View use at least this
+     * value for its width. (There will be some scenarios where this will not be
+     * possible.) This value should INCLUDE any padding.
+     * 
+     * @return The minimum width suggested by this Drawable. If this Drawable
+     *         doesn't have a suggested minimum width, 0 is returned.
+     */
+    public int getMinimumWidth() {
+        final int intrinsicWidth = getIntrinsicWidth();
+        return intrinsicWidth > 0 ? intrinsicWidth : 0;
+    }
+
+    /**
+     * Returns the minimum height suggested by this Drawable. If a View uses
+     * this Drawable as a background, it is suggested that the View use at least
+     * this value for its height. (There will be some scenarios where this will
+     * not be possible.) This value should INCLUDE any padding.
+     * 
+     * @return The minimum height suggested by this Drawable. If this Drawable
+     *         doesn't have a suggested minimum height, 0 is returned.
+     */
+    public int getMinimumHeight() {
+        final int intrinsicHeight = getIntrinsicHeight();
+        return intrinsicHeight > 0 ? intrinsicHeight : 0;
+    }
+
 }

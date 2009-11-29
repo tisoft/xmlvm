@@ -35,6 +35,11 @@
     [self setString: str];
 }
 
+- (void) __init_java_lang_StringBuilder___java_lang_CharSequence: (java_lang_CharSequence*) str
+{
+	// TODO Implement this
+}
+
 - (void) __init_java_lang_StringBuffer__
 {
 	[self setString: @""];

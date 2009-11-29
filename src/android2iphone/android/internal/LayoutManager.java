@@ -21,7 +21,6 @@
 package android.internal;
 
 import java.lang.reflect.Constructor;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
@@ -34,19 +33,19 @@ import android.util.AttributeSet;
 import android.view.InflateException;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 class LayoutParser extends NSXMLParserDelegate {
 
-    private Map<Integer, View> viewMap          = new HashMap<Integer, View>();
-    private String             prefix           = "";
-    private Context            context;
-    private ViewGroup          currentViewGroup = null;
-    private View               layoutRootView   = null;
-    private Stack<ViewGroup>   viewGroupStack   = new Stack<ViewGroup>();
+    private String           prefix           = "";
+    private Context          context;
+    private ViewGroup        root;
+    private ViewGroup        currentViewGroup = null;
+    private View             layoutRootView   = null;
+    private Stack<ViewGroup> viewGroupStack   = new Stack<ViewGroup>();
 
-    public LayoutParser(Context context) {
+    public LayoutParser(Context context, ViewGroup root) {
         this.context = context;
+        this.root = root;
     }
 
     @Override
@@ -60,42 +59,70 @@ class LayoutParser extends NSXMLParserDelegate {
     public void didStartElement(NSXMLParser parser, String elementName, String namespaceURI,
             String qualifiedName, Map<String, String> attributes) {
         AttributeSet attrs = new ResourceAttributes(context, prefix, attributes);
+        View v;
 
-        if (qualifiedName.equals("LinearLayout")) {
-            beginLinearLayout(attrs);
-        } else {
-            View v;
+        if (qualifiedName.indexOf('.') == -1) {
+            String str = "android.widget." + qualifiedName;
+            v = createView(str, context, attrs);
 
-            if (qualifiedName.indexOf('.') == -1) {
-                String str = "android.widget." + qualifiedName;
+            if (v == null) {
+                str = "android.view." + qualifiedName;
                 v = createView(str, context, attrs);
 
                 if (v == null) {
-                    str = "android.view." + qualifiedName;
-                    v = createView(str, context, attrs);
-
-                    if (v == null) {
-                        v = createView(qualifiedName, context, attrs);
-                    }
+                    v = createView(qualifiedName, context, attrs);
                 }
-            } else {
-                v = createView(qualifiedName, context, attrs);
             }
+        } else {
+            v = createView(qualifiedName, context, attrs);
+        }
 
-            if (v != null) {
-                addView(v, attrs);
+        if (v != null) {
+            addView(v, attrs);
+
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                viewGroupStack.push(vg);
+                currentViewGroup = vg;
             }
-            else {
-                throw new InflateException("Unable to create widget: " + qualifiedName);
-            }
+        } else {
+            throw new InflateException("Unable to create widget: " + qualifiedName);
         }
     }
 
     @Override
     public void didEndElement(NSXMLParser parser, String elementName, String namespaceURI,
             String qualifiedName) {
-        if (qualifiedName.equals("LinearLayout")) {
-            endLinearLayout();
+
+        boolean closesCurrentViewGroup = false;
+        String currentViewGroupName = currentViewGroup.getClass().getName();
+
+        if (qualifiedName.indexOf('.') == -1) {
+
+            // Try to find class in android.widget
+            String str = "android.widget." + qualifiedName;
+            if (str.equals(currentViewGroupName)) {
+                closesCurrentViewGroup = true;
+            }
+
+            // Try to find class in android.view
+            str = "android.widget." + qualifiedName;
+            if (str.equals(currentViewGroupName)) {
+                closesCurrentViewGroup = true;
+            }
+
+            // Try to find class in default package
+            if (qualifiedName.equals(currentViewGroupName)) {
+                closesCurrentViewGroup = true;
+            }
+        } else {
+            if (qualifiedName.equals(currentViewGroupName)) {
+                closesCurrentViewGroup = true;
+            }
+        }
+
+        if (closesCurrentViewGroup) {
+            currentViewGroup = viewGroupStack.pop();
         }
     }
 
@@ -105,17 +132,6 @@ class LayoutParser extends NSXMLParserDelegate {
 
     View getLayoutRootView() {
         return layoutRootView;
-    }
-
-    private void beginLinearLayout(AttributeSet attrs) {
-        ViewGroup vg = new LinearLayout(context, attrs);
-        addView(vg, attrs);
-        viewGroupStack.push(vg);
-        currentViewGroup = vg;
-    }
-
-    private void endLinearLayout() {
-        currentViewGroup = viewGroupStack.pop();
     }
 
     private View createView(String name, Context context, AttributeSet attrs) {
@@ -141,21 +157,17 @@ class LayoutParser extends NSXMLParserDelegate {
             currentViewGroup.addView(view);
             layoutParams = currentViewGroup.generateLayoutParams(attrs);
         } else {
-            layoutParams = new ViewGroup.LayoutParams(context, attrs);
+            if (root == null) {
+                layoutParams = new ViewGroup.LayoutParams(context, attrs);
+            } else {
+                layoutParams = root.generateLayoutParams(attrs);
+            }
         }
         view.setLayoutParams(layoutParams);
-
-        if (view.getId() != 0) {
-            viewMap.put(new Integer(view.getId()), view);
-        }
 
         if (layoutRootView == null) {
             layoutRootView = view;
         }
-    }
-
-    Map<Integer, View> getViewMap() {
-        return viewMap;
     }
 }
 
@@ -165,23 +177,18 @@ class LayoutParser extends NSXMLParserDelegate {
  */
 public class LayoutManager {
 
-    public static View getLayout(Context context, int id) {
+    public static View getLayout(Context context, int id, ViewGroup root) {
         NSData layoutDesc = context.getResources().getLayout(id);
         NSXMLParser xmlParser = new NSXMLParser(layoutDesc);
         xmlParser.setShouldProcessNamespaces(true);
         xmlParser.setShouldReportNamespacePrefixes(true);
-        LayoutParser parser = new LayoutParser(context);
+        LayoutParser parser = new LayoutParser(context, root);
         xmlParser.setDelegate(parser);
         boolean success = xmlParser.parse();
         if (!success) {
             throw new InflateException("Unable to inflate layout: " + id);
         }
 
-        View layoutRootView = parser.getLayoutRootView();
-        if (layoutRootView instanceof ViewGroup) {
-            ((ViewGroup) layoutRootView).setXmlvmViewMap(parser.getViewMap());
-        }
-
-        return layoutRootView;
+        return parser.getLayoutRootView();
     }
 }

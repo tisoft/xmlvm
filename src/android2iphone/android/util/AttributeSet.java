@@ -22,6 +22,8 @@ package android.util;
 
 public interface AttributeSet {
 
+    public boolean getAttributeBooleanValue(String namespace, String attribute, boolean defaultValue);
+    
     public int getAttributeIntValue(String namespace, String attribute, int defaultValue);
 
     public float getAttributeFloatValue(String namespace, String attribute, float defaultValue);

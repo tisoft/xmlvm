@@ -48,4 +48,15 @@ public class BitmapDrawable extends Drawable {
     public UIImage xmlvmGetImage() {
         return image;
     }
+    
+    @Override
+    public int getIntrinsicWidth() {
+        return (int) image.getSize().width;
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return (int) image.getSize().height;
+    }
+
 }

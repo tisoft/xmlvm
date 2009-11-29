@@ -35,7 +35,6 @@ import android.internal.Assert;
 import android.util.Log;
 
 public class Resources {
-    private static final String         RES_DIR     = "res";
 
     /** A map holding the mapping from IDs to variable names. */
     private Map<Integer, String>        idToNameMap = new HashMap<Integer, String>();
@@ -99,6 +98,11 @@ public class Resources {
         return findResourceIdByName(str);
     }
 
+    public String getResourceEntryName(int resourceId) {
+        String str = findResourceNameById(resourceId);
+        return str == null ? null : str.substring(str.indexOf('/'));
+    }
+    
     public String getResourcePackageName(int resourceId) {
         return ActivityManager.getApplicationPackageName();
     }

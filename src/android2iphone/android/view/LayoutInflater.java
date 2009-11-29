@@ -37,15 +37,24 @@ public class LayoutInflater {
     }
 
     public View inflate(int resource, ViewGroup root, boolean attachToRoot) throws InflateException {
-        View v = LayoutManager.getLayout(context, resource);
-        if (v == null) {
-            throw new InflateException("Unable to inflate layout: " + resource);
+        if (attachToRoot && root == null) {
+            throw new InflateException("Unable to attach to non existent root");
         }
 
-        if (root != null) {
-            if (attachToRoot) {
-                root.addView(v);
-            } else {
+        View v = null;
+        if (attachToRoot) {
+            v = LayoutManager.getLayout(context, resource, root);
+            if (v == null) {
+                throw new InflateException("Unable to inflate layout: " + resource);
+            }
+            root.addView(v);
+        } else {
+            v = LayoutManager.getLayout(context, resource, null);
+            if (v == null) {
+                throw new InflateException("Unable to inflate layout: " + resource);
+            }
+
+            if (root != null) {
                 v.setLayoutParams(root.getLayoutParams());
             }
         }

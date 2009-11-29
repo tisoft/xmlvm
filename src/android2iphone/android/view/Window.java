@@ -68,7 +68,7 @@ public class Window {
     }
 
     public void setContentView(int id) {
-        View v = LayoutManager.getLayout(activity, id);
+        View v = LayoutManager.getLayout(activity, id, null);
         setContentView(v);
     }
 
@@ -163,13 +163,6 @@ public class Window {
      * @return
      */
     public View findViewById(int id) {
-        if (contentView instanceof ViewGroup) {
-            ViewGroup vg = (ViewGroup) contentView;
-            return vg.findViewById(id);
-        } else if (contentView.getId() == id) {
-            return contentView;
-        } else {
-            return null;
-        }
+        return contentView.findViewById(id);
     }
 }
