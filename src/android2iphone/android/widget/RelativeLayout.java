@@ -920,6 +920,18 @@ public class RelativeLayout extends ViewGroup {
         return new LayoutParams(p);
     }
 
+    @Override
+    protected void parseAttributes(AttributeSet attrs) {
+        super.parseAttributes(attrs);
+
+        xmlvmSetIgnoreLayoutRequests(true);
+
+        mGravity = Gravity.parseGravity(attrs.getAttributeValue(null, "gravity"), 0);
+        mIgnoreGravity = attrs.getAttributeResourceValue(null, "ignoreGravity", 0);
+
+        xmlvmSetIgnoreLayoutRequests(false);
+    }
+
     /**
      * Compares two views in left-to-right and top-to-bottom fashion.
      */
@@ -1003,8 +1015,8 @@ public class RelativeLayout extends ViewGroup {
             mRules[ALIGN_BOTTOM] = attrs.getAttributeResourceValue(null, "layout_alignBottom", 0);
             mRules[ALIGN_PARENT_LEFT] = attrs.getAttributeBooleanValue(null,
                     "layout_alignParentLeft", false) ? TRUE : 0;
-            mRules[ALIGN_PARENT_TOP] = attrs.getAttributeBooleanValue(null, "layout_alignParentTop",
-                    false) ? TRUE : 0;
+            mRules[ALIGN_PARENT_TOP] = attrs.getAttributeBooleanValue(null,
+                    "layout_alignParentTop", false) ? TRUE : 0;
             mRules[ALIGN_PARENT_RIGHT] = attrs.getAttributeBooleanValue(null,
                     "layout_alignParentRight", false) ? TRUE : 0;
             mRules[ALIGN_PARENT_BOTTOM] = attrs.getAttributeBooleanValue(null,
