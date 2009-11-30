@@ -926,8 +926,8 @@ public class RelativeLayout extends ViewGroup {
 
         xmlvmSetIgnoreLayoutRequests(true);
 
-        mGravity = Gravity.parseGravity(attrs.getAttributeValue(null, "gravity"), 0);
-        mIgnoreGravity = attrs.getAttributeResourceValue(null, "ignoreGravity", 0);
+        setGravity(Gravity.parseGravity(attrs.getAttributeValue(null, "gravity"), 0));
+        setIgnoreGravity(attrs.getAttributeResourceValue(null, "ignoreGravity", 0));
 
         xmlvmSetIgnoreLayoutRequests(false);
     }
