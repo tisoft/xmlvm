@@ -21,10 +21,8 @@ package android.widget;
 import static android.util.Log.d;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.SortedSet;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -147,14 +145,10 @@ public class RelativeLayout extends ViewGroup {
 
     private View                  mBaselineView              = null;
     private boolean               mHasBaselineAlignedChild;
-
     private int                   mGravity                   = Gravity.LEFT | Gravity.TOP;
     private final Rect            mContentBounds             = new Rect();
     private final Rect            mSelfBounds                = new Rect();
     private int                   mIgnoreGravity;
-
-    private SortedSet<View>       mTopToBottomLeftToRightSet = null;
-
     private boolean               mDirtyHierarchy;
     private View[]                mSortedHorizontalChildren  = new View[0];
     private View[]                mSortedVerticalChildren    = new View[0];
@@ -932,35 +926,6 @@ public class RelativeLayout extends ViewGroup {
         setIgnoreGravity(attrs.getAttributeResourceValue(null, "ignoreGravity", 0));
 
         xmlvmSetIgnoreLayoutRequests(false);
-    }
-
-    /**
-     * Compares two views in left-to-right and top-to-bottom fashion.
-     */
-    private class TopToBottomLeftToRightComparator implements Comparator<View> {
-        public int compare(View first, View second) {
-            // top - bottom
-            int topDifference = first.getTop() - second.getTop();
-            if (topDifference != 0) {
-                return topDifference;
-            }
-            // left - right
-            int leftDifference = first.getLeft() - second.getLeft();
-            if (leftDifference != 0) {
-                return leftDifference;
-            }
-            // break tie by height
-            int heightDiference = first.getHeight() - second.getHeight();
-            if (heightDiference != 0) {
-                return heightDiference;
-            }
-            // break tie by width
-            int widthDiference = first.getWidth() - second.getWidth();
-            if (widthDiference != 0) {
-                return widthDiference;
-            }
-            return 0;
-        }
     }
 
     /**
