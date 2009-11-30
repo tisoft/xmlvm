@@ -278,6 +278,8 @@ public class RelativeLayout extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
         if (mDirtyHierarchy) {
             mDirtyHierarchy = false;
             sortChildren();
