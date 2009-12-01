@@ -25,10 +25,10 @@
 //----------------------------------------------------------------------------
 @implementation UIImage(cat_org_xmlvm_iphone_UIImage);
 
-+ (org_xmlvm_iphone_UIImage*) imageWithContentsOfFile___java_lang_String :(NSString*)n1
++ (org_xmlvm_iphone_UIImage*) imageWithContentsOfFile___java_lang_String :(NSString*)path
 {
-	org_xmlvm_iphone_UIImage *toRet = [UIImage imageNamed:n1];
-	return toRet;
+	org_xmlvm_iphone_UIImage *toRet = [UIImage imageNamed:path];
+	return toRet != nil ? toRet : [NSNull null];
 }
 
 - (org_xmlvm_iphone_CGSize*) getSize__
