@@ -19,6 +19,25 @@
  */
 
 #import "java_io_FileInputStream.h"
+#import "java_io_FileNotFoundException.h"
 
-@implementation java_io_FileInputStream 
+
+@implementation java_io_FileInputStream
+
+- (void) __init_java_io_FileInputStream___java_lang_String :(java_lang_String*) path
+{
+	self->fd = [NSFileHandle fileHandleForReadingAtPath:path];
+	if (self->fd == nil) {
+		java_io_FileNotFoundException* ex = [[java_io_FileNotFoundException alloc] init];
+		@throw ex;
+	}
+}
+
+- (void) dealloc
+{
+	[self->fd closeFile];
+	[self->fd release];
+	[super dealloc];
+}
+ 
 @end

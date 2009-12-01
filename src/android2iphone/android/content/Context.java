@@ -21,6 +21,7 @@
 package android.content;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 import android.content.res.AssetManager;
@@ -101,11 +102,13 @@ public abstract class Context {
         return null;
     }
 
+    public abstract SharedPreferences getSharedPreferences(String name, int mode);
+
     public abstract Resources getResources();
 
     public abstract AssetManager getAssets();
 
-    public abstract FileInputStream openFileInput(String name);
+    public abstract FileInputStream openFileInput(String name) throws FileNotFoundException;
 
     public abstract FileOutputStream openFileOutput(String name, int mode);
 

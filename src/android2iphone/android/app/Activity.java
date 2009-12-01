@@ -374,7 +374,7 @@ public class Activity extends ContextThemeWrapper {
      *         retrieve and modify the preference values.
      */
     public SharedPreferences getPreferences(int mode) {
-        return new SharedPreferences(mode);
+        return getSharedPreferences(this.getClass().getName(), mode);
     }
 
     /**

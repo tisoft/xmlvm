@@ -21,9 +21,11 @@
 package android.context;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.internal.Assert;
@@ -31,6 +33,11 @@ import android.internal.Assert;
 public class ContextWrapper extends Context {
 
     private Resources resources = new Resources();
+
+    public SharedPreferences getSharedPreferences(String name, int mode) {
+        // TODO what to do with name?
+        return new SharedPreferences(mode);
+    }
 
     @Override
     public Resources getResources() {
@@ -53,9 +60,8 @@ public class ContextWrapper extends Context {
         return null;
     }
 
-    public FileInputStream openFileInput(String name) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+    public FileInputStream openFileInput(String name) throws FileNotFoundException {
+        return new FileInputStream(name);
     }
 
     public FileOutputStream openFileOutput(String name, int mode) {

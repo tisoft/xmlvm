@@ -23,7 +23,6 @@ package android.preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.internal.Assert;
 
 
 /**
@@ -32,13 +31,8 @@ import android.internal.Assert;
  */
 public class PreferenceManager {
 
-    /**
-     * @param context
-     * @return
-     */
     public static SharedPreferences getDefaultSharedPreferences(Context context) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return context.getSharedPreferences("DEFAULT", Context.MODE_PRIVATE);
     }
 
 }

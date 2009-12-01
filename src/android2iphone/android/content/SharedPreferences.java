@@ -2,6 +2,8 @@ package android.content;
 
 import org.xmlvm.iphone.NSUserDefaults;
 
+import android.internal.Assert;
+
 /**
  * <i>(XMLVM Compatibility Class)</i>
  * <p>
@@ -82,7 +84,7 @@ public class SharedPreferences {
          *         chain put calls together.
          */
         public SharedPreferences.Editor putLong(String key, long value) {
-            // TODO not yet implemented
+            Assert.NOT_IMPLEMENTED();
             return this;
         }
 
@@ -94,7 +96,7 @@ public class SharedPreferences {
          *         chain put calls together.
          */
         public SharedPreferences.Editor putString(String key, String value) {
-            // TODO not yet implemented
+            Assert.NOT_IMPLEMENTED();
             return this;
         }
     }
@@ -165,7 +167,7 @@ public class SharedPreferences {
      * Retrieve a long value from the preferences.
      */
     public long getLong(String key, long defValue) {
-        // TODO Auto-generated method stub
+        Assert.NOT_IMPLEMENTED();
         return 0;
     }
 
@@ -173,7 +175,7 @@ public class SharedPreferences {
      * Retrieve a String value from the preferences.
      */
     public String getString(String key, String defValue) {
-        // TODO Auto-generated method stub
+        Assert.NOT_IMPLEMENTED();
         return null;
     }
 }
