@@ -752,6 +752,12 @@ int main(int argc, char* argv[])
     _stack[_sp++].i = _op1.i | _op2.i;</xsl:text>
 </xsl:template>
 
+<xsl:template match="jvm:ixor">
+  <xsl:text>    _op2.i = _stack[--_sp].i;
+    _op1.i = _stack[--_sp].i;
+    _stack[_sp++].i = _op1.i ^ _op2.i;</xsl:text>
+</xsl:template>
+
 <xsl:template match="jvm:iadd">
   <xsl:text>    _op2.i = _stack[--_sp].i;
     _op1.i = _stack[--_sp].i;
