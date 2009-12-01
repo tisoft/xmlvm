@@ -371,10 +371,7 @@ public class View {
 
     public void setBackgroundDrawable(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
-            UIColor c = UIColor.colorWithPatternImage(((BitmapDrawable) drawable).xmlvmGetImage());
-            backgroundDrawable = drawable;
-            uiView.setBackgroundColor(c);
-
+            uiView.setBackgroundImage(((BitmapDrawable) drawable).xmlvmGetImage());
         } else {
             Assert.NOT_IMPLEMENTED();
         }
