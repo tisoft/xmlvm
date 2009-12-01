@@ -15,7 +15,8 @@ public class UIImage {
     }
 
     public static UIImage imageWithContentsOfFile(String filename) {
-        return new UIImage(filename);
+        UIImage uiImage = new UIImage(filename);
+        return uiImage.image != null ? uiImage : null;
     }
 
     public CGImage getCGImage() {
