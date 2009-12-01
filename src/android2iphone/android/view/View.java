@@ -48,12 +48,19 @@ import android.util.AttributeSet;
 
 public class View {
 
-    public static final int NO_ID                = 0xffffffff;
-    public static final int VISIBLE              = 0;
-    public static final int INVISIBLE            = 4;
-    public static final int GONE                 = 8;
+    public static final int  NO_ID                  = 0xffffffff;
+    public static final int  VISIBLE                = 0;
+    public static final int  INVISIBLE              = 4;
+    public static final int  GONE                   = 8;
 
-    private boolean         ignoreLayoutRequests = false;
+    private static final int FORCE_LAYOUT           = 0x00001000;
+    private static final int LAYOUT_REQUIRED        = 0x00002000;
+    static final int         MEASURED_DIMENSION_SET = 0x00000800;
+
+    private boolean          ignoreRequestLayout;
+    private int              flags;
+    protected int            widthMeasureSpec;
+    protected int            heightMeasureSpec;
 
     /**
      * Copyright (C) 2006 The Android Open Source Project
@@ -226,7 +233,10 @@ public class View {
 
     public View(Context c, AttributeSet attrs) {
         init(c, attrs);
+
+        setIgnoreRequestLayout(true);
         parseAttributes(attrs);
+        setIgnoreRequestLayout(false);
     }
 
     private void init(Context c, AttributeSet attrs) {
@@ -320,8 +330,6 @@ public class View {
     }
 
     protected void parseAttributes(AttributeSet attrs) {
-        xmlvmSetIgnoreLayoutRequests(true);
-
         setId(attrs.getIdAttributeResourceValue(0));
 
         String str = attrs.getAttributeValue(null, "visibility");
@@ -341,8 +349,6 @@ public class View {
                 setBackgroundResource(backgroundId);
             }
         }
-
-        xmlvmSetIgnoreLayoutRequests(false);
     }
 
     public void setId(int id) {
@@ -395,9 +401,18 @@ public class View {
         return height;
     }
 
+    public final int getRight() {
+        return getLeft() + getWidth();
+    }
+
+    public final int getBottom() {
+        return getTop() + getHeight();
+    }
+
     protected final void setMeasuredDimension(int measuredWidth, int measuredHeight) {
         this.measuredWidth = measuredWidth;
         this.measuredHeight = measuredHeight;
+        flags |= MEASURED_DIMENSION_SET;
     }
 
     public int getMeasuredWidth() {
@@ -409,7 +424,28 @@ public class View {
     }
 
     public final void measure(int widthMeasureSpec, int heightMeasureSpec) {
-        onMeasure(widthMeasureSpec, heightMeasureSpec);
+        if ((flags & FORCE_LAYOUT) == FORCE_LAYOUT || widthMeasureSpec != this.widthMeasureSpec
+                || heightMeasureSpec != this.heightMeasureSpec) {
+
+            // first clears the measured dimension flag
+            flags &= ~MEASURED_DIMENSION_SET;
+
+            // measure ourselves, this should set the measured dimension flag
+            // back
+            onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+            // flag not set, setMeasuredDimension() was not invoked, we raise
+            // an exception to warn the developer
+            if ((flags & MEASURED_DIMENSION_SET) != MEASURED_DIMENSION_SET) {
+                throw new IllegalStateException("onMeasure() did not set the"
+                        + " measured dimension by calling" + " setMeasuredDimension()");
+            }
+
+            flags |= LAYOUT_REQUIRED;
+        }
+
+        this.widthMeasureSpec = widthMeasureSpec;
+        this.heightMeasureSpec = heightMeasureSpec;
     }
 
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -428,20 +464,28 @@ public class View {
     }
 
     public final void layout(int left, int top, int right, int bottom) {
-        onLayout(true, left, top, right, bottom);
+        boolean changed = setFrame(left, top, right, bottom);
+        if (changed || (flags & LAYOUT_REQUIRED) == LAYOUT_REQUIRED) {
+            onLayout(changed, left, top, right, bottom);
+            flags &= ~LAYOUT_REQUIRED;
+        }
+
+        flags &= ~FORCE_LAYOUT;
     }
 
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        this.left = left;
-        this.top = top;
-        width = right - left;
-        height = bottom - top;
-        uiView.setFrame(new CGRect(left, top, width, height));
+    }
+
+    public boolean isLayoutRequested() {
+        return (flags & FORCE_LAYOUT) == FORCE_LAYOUT;
     }
 
     public void requestLayout() {
-        if (parent != null && !xmlvmGetIgnoreLayoutRequests()) {
-            ((View) parent).requestLayout();
+        if (!getIgnoreRequestLayout()) {
+            flags |= FORCE_LAYOUT;
+            if (parent != null && !parent.isLayoutRequested()) {
+                parent.requestLayout();
+            }
         }
     }
 
@@ -588,6 +632,70 @@ public class View {
     }
 
     /**
+     * Assign a size and position to this view.
+     * 
+     * This is called from layout.
+     * 
+     * @param left
+     *            Left position, relative to parent
+     * @param top
+     *            Top position, relative to parent
+     * @param right
+     *            Right position, relative to parent
+     * @param bottom
+     *            Bottom position, relative to parent
+     * @return true if the new size and position are different than the previous
+     *         ones {@hide}
+     */
+    protected boolean setFrame(int left, int top, int right, int bottom) {
+        boolean changed = false;
+
+        if (this.left != left || getRight() != right || this.top != top || getBottom() != bottom) {
+            changed = true;
+
+            // Remember our drawn bit
+            // int drawn = mPrivateFlags & DRAWN;
+
+            // Invalidate our old position
+            invalidate();
+
+            int oldWidth = width;
+            int oldHeight = height;
+
+            this.left = left;
+            this.top = top;
+            this.width = right - left;
+            this.height = bottom - top;
+            uiView.setFrame(new CGRect(left, top, width, height));
+
+            // mPrivateFlags |= HAS_BOUNDS;
+
+            int newWidth = right - left;
+            int newHeight = bottom - top;
+
+            // if (newWidth != oldWidth || newHeight != oldHeight) {
+            // onSizeChanged(newWidth, newHeight, oldWidth, oldHeight);
+            // }
+
+            if (visibility == VISIBLE) {
+                // If we are visible, force the DRAWN bit to on so that
+                // this invalidate will go through (at least to our parent).
+                // This is because someone may have invalidated this view
+                // before this call to setFrame came in, therby clearing
+                // the DRAWN bit.
+                // mPrivateFlags |= DRAWN;
+                invalidate();
+            }
+
+            // Reset drawn bit to original value (invalidate turns it off)
+            // mPrivateFlags |= drawn;
+            //
+            // mBackgroundSizeChanged = true;
+        }
+        return changed;
+    }
+
+    /**
      * Look for a child view with the given id. If this view has the given id,
      * return this view.
      * 
@@ -618,11 +726,11 @@ public class View {
         return null;
     }
 
-    protected boolean xmlvmGetIgnoreLayoutRequests() {
-        return ignoreLayoutRequests;
+    protected boolean getIgnoreRequestLayout() {
+        return ignoreRequestLayout;
     }
 
-    protected void xmlvmSetIgnoreLayoutRequests(boolean ignoreLayoutRequests) {
-        this.ignoreLayoutRequests = ignoreLayoutRequests;
+    protected void setIgnoreRequestLayout(boolean ignoreRequestLayout) {
+        this.ignoreRequestLayout = ignoreRequestLayout;
     }
 }

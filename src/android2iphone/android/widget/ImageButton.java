@@ -101,12 +101,8 @@ public class ImageButton extends View {
     protected void parseAttributes(AttributeSet attrs) {
         super.parseAttributes(attrs);
 
-        xmlvmSetIgnoreLayoutRequests(true);
-        
         String value = attrs.getAttributeValue(null, "text");
         setText(value != null ? value : "");
-        
-        xmlvmSetIgnoreLayoutRequests(false);
     }
 
     @Override

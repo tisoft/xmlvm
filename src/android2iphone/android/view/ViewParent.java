@@ -27,5 +27,6 @@ package android.view;
 public interface ViewParent {
 
     public ViewParent getParent();
-
+    public boolean isLayoutRequested();
+    public void requestLayout();
 }

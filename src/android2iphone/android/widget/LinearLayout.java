@@ -1,245 +1,1327 @@
 /*
- * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ * Copyright (C) 2006 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  * 
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
- * 
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
- * 
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
- * Ave, Cambridge, MA 02139, USA.
- * 
- * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ * Adapted for XMLVM by XMLVM.org
  */
 
 package android.widget;
 
-import org.xmlvm.iphone.CGRect;
-
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * A Layout that arranges its children in a single column or a single row. The
+ * direction of the row can be set by calling {@link #setOrientation(int)
+ * setOrientation()}. You can also specify gravity, which specifies the
+ * alignment of all the child elements by calling {@link #setGravity(int)
+ * setGravity()} or specify that specific children grow to fill up any remaining
+ * space in the layout by setting the <em>weight</em> member of
+ * {@link android.widget.LinearLayout.LayoutParams LinearLayout.LayoutParams}.
+ * The default orientation is horizontal.
+ * 
+ * <p>
+ * Also see {@link LinearLayout.LayoutParams
+ * android.widget.LinearLayout.LayoutParams} for layout attributes
+ * </p>
+ */
 public class LinearLayout extends ViewGroup {
+    public static final int  HORIZONTAL                 = 0;
+    public static final int  VERTICAL                   = 1;
 
-    public static final int HORIZONTAL = 0;
-    public static final int VERTICAL   = 1;
-    private int             orientation;
+    /**
+     * Whether the children of this layout are baseline aligned. Only applicable
+     * if {@link #mOrientation} is horizontal.
+     */
+    private boolean          mBaselineAligned           = true;
 
-    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
+    /**
+     * If this layout is part of another layout that is baseline aligned, use
+     * the child at this index as the baseline.
+     * 
+     * Note: this is orthogonal to {@link #mBaselineAligned}, which is concerned
+     * with whether the children of this layout are baseline aligned.
+     */
+    private int              mBaselineAlignedChildIndex = 0;
 
-        public int   gravitiy;
-        public float weight;
+    /**
+     * The additional offset to the child's baseline. We'll calculate the
+     * baseline of this layout as we measure vertically; for horizontal linear
+     * layouts, the offset of 0 is appropriate.
+     */
+    private int              mBaselineChildTop          = 0;
 
-        public LayoutParams(Context context, AttributeSet attrs) {
-            super(context, attrs);
-            gravitiy = parseGravity(attrs.getAttributeValue(null, "layout_gravity"), 0);
-            weight = attrs.getAttributeFloatValue(null, "layout_weight", 0);
+    private int              mOrientation;
+    private int              mGravity                   = Gravity.LEFT | Gravity.TOP;
+    private int              mTotalLength;
+
+    private float            mWeightSum;
+
+    private int[]            mMaxAscent;
+    private int[]            mMaxDescent;
+
+    private static final int VERTICAL_GRAVITY_COUNT     = 4;
+
+    private static final int INDEX_CENTER_VERTICAL      = 0;
+    private static final int INDEX_TOP                  = 1;
+    private static final int INDEX_BOTTOM               = 2;
+    private static final int INDEX_FILL                 = 3;
+
+    public LinearLayout(Context context) {
+        super(context);
+    }
+
+    public LinearLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    /**
+     * <p>
+     * Indicates whether widgets contained within this layout are aligned on
+     * their baseline or not.
+     * </p>
+     * 
+     * @return true when widgets are baseline-aligned, false otherwise
+     */
+    public boolean isBaselineAligned() {
+        return mBaselineAligned;
+    }
+
+    /**
+     * <p>
+     * Defines whether widgets contained in this layout are baseline-aligned or
+     * not.
+     * </p>
+     * 
+     * @param baselineAligned
+     *            true to align widgets on their baseline, false otherwise
+     * 
+     * @attr ref android.R.styleable#LinearLayout_baselineAligned
+     */
+    public void setBaselineAligned(boolean baselineAligned) {
+        mBaselineAligned = baselineAligned;
+    }
+
+    @Override
+    public int getBaseline() {
+        if (mBaselineAlignedChildIndex < 0) {
+            return super.getBaseline();
         }
 
-        public LayoutParams(int width, int height) {
-            super(width, height);
+        if (getChildCount() <= mBaselineAlignedChildIndex) {
+            throw new RuntimeException("mBaselineAlignedChildIndex of LinearLayout "
+                    + "set to an index that is out of bounds.");
         }
 
-        private int parseGravity(String str, int defaultGravity) {
-            int result = 0;
-            int separatorIndex;
+        final View child = getChildAt(mBaselineAlignedChildIndex);
+        final int childBaseline = child.getBaseline();
 
-            if (str != null) {
-                do {
-                    separatorIndex = str.indexOf('|');
-                    String gravityStr = separatorIndex != -1 ? str.substring(0, separatorIndex)
-                            : str;
-                    str = str.substring(separatorIndex + 1);
-
-                    if (gravityStr.equals("top")) {
-                        result |= 0x30;
-                    } else if (gravityStr.equals("bottom")) {
-                        result |= 0x50;
-                    } else if (gravityStr.equals("left")) {
-                        result |= 0x03;
-                    } else if (gravityStr.equals("right")) {
-                        result |= 0x05;
-                    } else if (gravityStr.equals("center_vertical")) {
-                        result |= 0x10;
-                    } else if (gravityStr.equals("fill_vertical")) {
-                        result |= 0x70;
-                    } else if (gravityStr.equals("center_horizontal")) {
-                        result |= 0x01;
-                    } else if (gravityStr.equals("fill_horizontal")) {
-                        result |= 0x07;
-                    } else if (gravityStr.equals("center")) {
-                        result |= 0x11;
-                    } else if (gravityStr.equals("fill")) {
-                        result |= 0x77;
-                    } else if (gravityStr.equals("clip_vertical")) {
-                        result |= 0x80;
-                    } else if (gravityStr.equals("clip-horizontal")) {
-                        result |= 0x08;
-                    }
-
-                } while (separatorIndex >= 0);
-            } else {
-                result = defaultGravity;
+        if (childBaseline == -1) {
+            if (mBaselineAlignedChildIndex == 0) {
+                // this is just the default case, safe to return -1
+                return -1;
             }
-            return result;
+            // the user picked an index that points to something that doesn't
+            // know how to calculate its baseline.
+            throw new RuntimeException("mBaselineAlignedChildIndex of LinearLayout "
+                    + "points to a View that doesn't know how to get its baseline.");
+        }
+
+        // TODO: This should try to take into account the virtual offsets
+        // (See getNextLocationOffset and getLocationOffset)
+        // We should add to childTop:
+        // sum([getNextLocationOffset(getChildAt(i)) / i <
+        // mBaselineAlignedChildIndex])
+        // and also add:
+        // getLocationOffset(child)
+        int childTop = mBaselineChildTop;
+
+        if (mOrientation == VERTICAL) {
+            final int majorGravity = mGravity & Gravity.VERTICAL_GRAVITY_MASK;
+            if (majorGravity != Gravity.TOP) {
+                switch (majorGravity) {
+                case Gravity.BOTTOM:
+                    childTop = getBottom() - getTop() - getPaddingBottom() - mTotalLength;
+                    break;
+
+                case Gravity.CENTER_VERTICAL:
+                    childTop += ((getBottom() - getTop() - getPaddingTop() - getPaddingBottom()) - mTotalLength) / 2;
+                    break;
+                }
+            }
+        }
+
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) child.getLayoutParams();
+        return childTop + lp.topMargin + childBaseline;
+    }
+
+    /**
+     * @return The index of the child that will be used if this layout is part
+     *         of a larger layout that is baseline aligned, or -1 if none has
+     *         been set.
+     */
+    public int getBaselineAlignedChildIndex() {
+        return mBaselineAlignedChildIndex;
+    }
+
+    /**
+     * @param i
+     *            The index of the child that will be used if this layout is
+     *            part of a larger layout that is baseline aligned.
+     * 
+     * @attr ref android.R.styleable#LinearLayout_baselineAlignedChildIndex
+     */
+    public void setBaselineAlignedChildIndex(int i) {
+        if ((i < 0) || (i >= getChildCount())) {
+            throw new IllegalArgumentException("base aligned child index out " + "of range (0, "
+                    + getChildCount() + ")");
+        }
+        mBaselineAlignedChildIndex = i;
+    }
+
+    /**
+     * <p>
+     * Returns the view at the specified index. This method can be overriden to
+     * take into account virtual children. Refer to
+     * {@link android.widget.TableLayout} and {@link android.widget.TableRow}
+     * for an example.
+     * </p>
+     * 
+     * @param index
+     *            the child's index
+     * @return the child at the specified index
+     */
+    View getVirtualChildAt(int index) {
+        return getChildAt(index);
+    }
+
+    /**
+     * <p>
+     * Returns the virtual number of children. This number might be different
+     * than the actual number of children if the layout can hold virtual
+     * children. Refer to {@link android.widget.TableLayout} and
+     * {@link android.widget.TableRow} for an example.
+     * </p>
+     * 
+     * @return the virtual number of children
+     */
+    int getVirtualChildCount() {
+        return getChildCount();
+    }
+
+    /**
+     * Returns the desired weights sum.
+     * 
+     * @return A number greater than 0.0f if the weight sum is defined, or a
+     *         number lower than or equals to 0.0f if not weight sum is to be
+     *         used.
+     */
+    public float getWeightSum() {
+        return mWeightSum;
+    }
+
+    /**
+     * Defines the desired weights sum. If unspecified the weights sum is
+     * computed at layout time by adding the layout_weight of each child.
+     * 
+     * This can be used for instance to give a single child 50% of the total
+     * available space by giving it a layout_weight of 0.5 and setting the
+     * weightSum to 1.0.
+     * 
+     * @param weightSum
+     *            a number greater than 0.0f, or a number lower than or equals
+     *            to 0.0f if the weight sum should be computed from the
+     *            children's layout_weight
+     */
+    public void setWeightSum(float weightSum) {
+        mWeightSum = Math.max(0.0f, weightSum);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        
+        if (mOrientation == VERTICAL) {
+            measureVertical(widthMeasureSpec, heightMeasureSpec);
+        } else {
+            measureHorizontal(widthMeasureSpec, heightMeasureSpec);
         }
     }
 
-    public LinearLayout(Context c) {
-        super(c);
+    /**
+     * Measures the children when the orientation of this LinearLayout is set to
+     * {@link #VERTICAL}.
+     * 
+     * @param widthMeasureSpec
+     *            Horizontal space requirements as imposed by the parent.
+     * @param heightMeasureSpec
+     *            Vertical space requirements as imposed by the parent.
+     * 
+     * @see #getOrientation()
+     * @see #setOrientation(int)
+     * @see #onMeasure(int, int)
+     */
+    void measureVertical(int widthMeasureSpec, int heightMeasureSpec) {
+        mTotalLength = 0;
+        int maxWidth = 0;
+        int alternativeMaxWidth = 0;
+        int weightedMaxWidth = 0;
+        boolean allFillParent = true;
+        float totalWeight = 0;
+
+        final int count = getVirtualChildCount();
+
+        final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+        boolean matchWidth = false;
+
+        final int baselineChildIndex = mBaselineAlignedChildIndex;
+
+        // See how tall everyone is. Also remember max width.
+        for (int i = 0; i < count; ++i) {
+            final View child = getVirtualChildAt(i);
+
+            if (child == null) {
+                mTotalLength += measureNullChild(i);
+                continue;
+            }
+
+            if (child.getVisibility() == View.GONE) {
+                i += getChildrenSkipCount(child, i);
+                continue;
+            }
+
+            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) child.getLayoutParams();
+
+            totalWeight += lp.weight;
+
+            if (heightMode == MeasureSpec.EXACTLY && lp.height == 0 && lp.weight > 0) {
+                // Optimization: don't bother measuring children who are going
+                // to use
+                // leftover space. These views will get measured again down
+                // below if
+                // there is any leftover space.
+                mTotalLength += lp.topMargin + lp.bottomMargin;
+            } else {
+                int oldHeight = Integer.MIN_VALUE;
+
+                if (lp.height == 0 && lp.weight > 0) {
+                    // heightMode is either UNSPECIFIED OR AT_MOST, and this
+                    // child
+                    // wanted to stretch to fill available space. Translate that
+                    // to
+                    // WRAP_CONTENT so that it does not end up with a height of
+                    // 0
+                    oldHeight = 0;
+                    lp.height = LayoutParams.WRAP_CONTENT;
+                }
+
+                // Determine how big this child would like to. If this or
+                // previous children have given a weight, then we allow it to
+                // use all available space (and we will shrink things later
+                // if needed).
+                measureChildBeforeLayout(child, i, widthMeasureSpec, 0, heightMeasureSpec,
+                        totalWeight == 0 ? mTotalLength : 0);
+
+                if (oldHeight != Integer.MIN_VALUE) {
+                    lp.height = oldHeight;
+                }
+
+                mTotalLength += child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin
+                        + getNextLocationOffset(child);
+            }
+
+            /**
+             * If applicable, compute the additional offset to the child's
+             * baseline we'll need later when asked {@link #getBaseline}.
+             */
+            if ((baselineChildIndex >= 0) && (baselineChildIndex == i + 1)) {
+                mBaselineChildTop = mTotalLength;
+            }
+
+            // if we are trying to use a child index for our baseline, the above
+            // book keeping only works if there are no children above it with
+            // weight. fail fast to aid the developer.
+            if (i < baselineChildIndex && lp.weight > 0) {
+                throw new RuntimeException("A child of LinearLayout with index "
+                        + "less than mBaselineAlignedChildIndex has weight > 0, which "
+                        + "won't work.  Either remove the weight, or don't set "
+                        + "mBaselineAlignedChildIndex.");
+            }
+
+            boolean matchWidthLocally = false;
+            if (widthMode != MeasureSpec.EXACTLY && lp.width == LayoutParams.FILL_PARENT) {
+                // The width of the linear layout will scale, and at least one
+                // child said it wanted to match our width. Set a flag
+                // indicating that we need to remeasure at least that view when
+                // we know our width.
+                matchWidth = true;
+                matchWidthLocally = true;
+            }
+
+            final int margin = lp.leftMargin + lp.rightMargin;
+            final int measuredWidth = child.getMeasuredWidth() + margin;
+            maxWidth = Math.max(maxWidth, measuredWidth);
+
+            allFillParent = allFillParent && lp.width == LayoutParams.FILL_PARENT;
+            if (lp.weight > 0) {
+                /*
+                 * Widths of weighted Views are bogus if we end up remeasuring,
+                 * so keep them separate.
+                 */
+                weightedMaxWidth = Math.max(weightedMaxWidth, matchWidthLocally ? margin
+                        : measuredWidth);
+            } else {
+                alternativeMaxWidth = Math.max(alternativeMaxWidth, matchWidthLocally ? margin
+                        : measuredWidth);
+            }
+
+            i += getChildrenSkipCount(child, i);
+        }
+
+        // Add in our padding
+        mTotalLength += getPaddingTop() + getPaddingBottom();
+
+        int heightSize = mTotalLength;
+
+        // Check against our minimum height
+        heightSize = Math.max(heightSize, getSuggestedMinimumHeight());
+
+        // Reconcile our calculated size with the heightMeasureSpec
+        heightSize = resolveSize(heightSize, heightMeasureSpec);
+
+        // Either expand children with weight to take up available space or
+        // shrink them if they extend beyond our current bounds
+        int delta = heightSize - mTotalLength;
+        if (delta != 0 && totalWeight > 0.0f) {
+            float weightSum = mWeightSum > 0.0f ? mWeightSum : totalWeight;
+
+            mTotalLength = 0;
+
+            for (int i = 0; i < count; ++i) {
+                final View child = getVirtualChildAt(i);
+
+                if (child.getVisibility() == View.GONE) {
+                    continue;
+                }
+
+                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) child.getLayoutParams();
+
+                float childExtra = lp.weight;
+                if (childExtra > 0) {
+                    // Child said it could absorb extra space -- give him his
+                    // share
+                    int share = (int) (childExtra * delta / weightSum);
+                    weightSum -= childExtra;
+                    delta -= share;
+
+                    final int childWidthMeasureSpec = getChildMeasureSpec(widthMeasureSpec,
+                            getPaddingLeft() + getPaddingRight() + lp.leftMargin + lp.rightMargin,
+                            lp.width);
+
+                    // TODO: Use a field like lp.isMeasured to figure out if
+                    // this
+                    // child has been previously measured
+                    if ((lp.height != 0) || (heightMode != MeasureSpec.EXACTLY)) {
+                        // child was measured once already above...
+                        // base new measurement on stored values
+                        int childHeight = child.getMeasuredHeight() + share;
+                        if (childHeight < 0) {
+                            childHeight = 0;
+                        }
+
+                        child.measure(childWidthMeasureSpec, MeasureSpec.makeMeasureSpec(
+                                childHeight, MeasureSpec.EXACTLY));
+                    } else {
+                        // child was skipped in the loop above.
+                        // Measure for this first time here
+                        child.measure(childWidthMeasureSpec, MeasureSpec.makeMeasureSpec(
+                                share > 0 ? share : 0, MeasureSpec.EXACTLY));
+                    }
+                }
+
+                final int margin = lp.leftMargin + lp.rightMargin;
+                final int measuredWidth = child.getMeasuredWidth() + margin;
+                maxWidth = Math.max(maxWidth, measuredWidth);
+
+                boolean matchWidthLocally = widthMode != MeasureSpec.EXACTLY
+                        && lp.width == LayoutParams.FILL_PARENT;
+
+                alternativeMaxWidth = Math.max(alternativeMaxWidth, matchWidthLocally ? margin
+                        : measuredWidth);
+
+                allFillParent = allFillParent && lp.width == LayoutParams.FILL_PARENT;
+
+                mTotalLength += child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin
+                        + getNextLocationOffset(child);
+            }
+
+            // Add in our padding
+            mTotalLength += getPaddingTop() + getPaddingBottom();
+        } else {
+            alternativeMaxWidth = Math.max(alternativeMaxWidth, weightedMaxWidth);
+        }
+
+        if (!allFillParent && widthMode != MeasureSpec.EXACTLY) {
+            maxWidth = alternativeMaxWidth;
+        }
+
+        maxWidth += getPaddingLeft() + getPaddingRight();
+
+        // Check against our minimum width
+        maxWidth = Math.max(maxWidth, getSuggestedMinimumWidth());
+
+        setMeasuredDimension(resolveSize(maxWidth, widthMeasureSpec), heightSize);
+
+        if (matchWidth) {
+            forceUniformWidth(count, heightMeasureSpec);
+        }
     }
 
-    public LinearLayout(Context c, AttributeSet attrs) {
-        this(c);
-        parseAttributes(attrs);
+    private void forceUniformWidth(int count, int heightMeasureSpec) {
+        // Pretend that the linear layout has an exact size.
+        int uniformMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredWidth(),
+                MeasureSpec.EXACTLY);
+        for (int i = 0; i < count; ++i) {
+            final View child = getVirtualChildAt(i);
+            if (child.getVisibility() != GONE) {
+                LinearLayout.LayoutParams lp = ((LinearLayout.LayoutParams) child.getLayoutParams());
+
+                if (lp.width == LayoutParams.FILL_PARENT) {
+                    // Temporarily force children to reuse their old measured
+                    // height
+                    // FIXME: this may not be right for something like wrapping
+                    // text?
+                    int oldHeight = lp.height;
+                    lp.height = child.getMeasuredHeight();
+
+                    // Remeasue with new dimensions
+                    measureChildWithMargins(child, uniformMeasureSpec, 0, heightMeasureSpec, 0);
+                    lp.height = oldHeight;
+                }
+            }
+        }
     }
 
+    /**
+     * Measures the children when the orientation of this LinearLayout is set to
+     * {@link #HORIZONTAL}.
+     * 
+     * @param widthMeasureSpec
+     *            Horizontal space requirements as imposed by the parent.
+     * @param heightMeasureSpec
+     *            Vertical space requirements as imposed by the parent.
+     * 
+     * @see #getOrientation()
+     * @see #setOrientation(int)
+     * @see #onMeasure(int, int)
+     */
+    void measureHorizontal(int widthMeasureSpec, int heightMeasureSpec) {
+        mTotalLength = 0;
+        int maxHeight = 0;
+        int alternativeMaxHeight = 0;
+        int weightedMaxHeight = 0;
+        boolean allFillParent = true;
+        float totalWeight = 0;
+
+        final int count = getVirtualChildCount();
+
+        final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+        boolean matchHeight = false;
+
+        if (mMaxAscent == null || mMaxDescent == null) {
+            mMaxAscent = new int[VERTICAL_GRAVITY_COUNT];
+            mMaxDescent = new int[VERTICAL_GRAVITY_COUNT];
+        }
+
+        final int[] maxAscent = mMaxAscent;
+        final int[] maxDescent = mMaxDescent;
+
+        maxAscent[0] = maxAscent[1] = maxAscent[2] = maxAscent[3] = -1;
+        maxDescent[0] = maxDescent[1] = maxDescent[2] = maxDescent[3] = -1;
+
+        final boolean baselineAligned = mBaselineAligned;
+
+        // See how wide everyone is. Also remember max height.
+        for (int i = 0; i < count; ++i) {
+            final View child = getVirtualChildAt(i);
+
+            if (child == null) {
+                mTotalLength += measureNullChild(i);
+                continue;
+            }
+
+            if (child.getVisibility() == GONE) {
+                i += getChildrenSkipCount(child, i);
+                continue;
+            }
+
+            final LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) child
+                    .getLayoutParams();
+
+            totalWeight += lp.weight;
+
+            if (widthMode == MeasureSpec.EXACTLY && lp.width == 0 && lp.weight > 0) {
+                // Optimization: don't bother measuring children who are going
+                // to use
+                // leftover space. These views will get measured again down
+                // below if
+                // there is any leftover space.
+                mTotalLength += lp.leftMargin + lp.rightMargin;
+
+                // Baseline alignment requires to measure widgets to obtain the
+                // baseline offset (in particular for TextViews).
+                // The following defeats the optimization mentioned above.
+                // Allow the child to use as much space as it wants because we
+                // can shrink things later (and re-measure).
+                if (baselineAligned) {
+                    final int freeSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+                    child.measure(freeSpec, freeSpec);
+                }
+            } else {
+                int oldWidth = Integer.MIN_VALUE;
+
+                if (lp.width == 0 && lp.weight > 0) {
+                    // widthMode is either UNSPECIFIED OR AT_MOST, and this
+                    // child
+                    // wanted to stretch to fill available space. Translate that
+                    // to
+                    // WRAP_CONTENT so that it does not end up with a width of 0
+                    oldWidth = 0;
+                    lp.width = LayoutParams.WRAP_CONTENT;
+                }
+
+                // Determine how big this child would like to be. If this or
+                // previous children have given a weight, then we allow it to
+                // use all available space (and we will shrink things later
+                // if needed).
+                measureChildBeforeLayout(child, i, widthMeasureSpec,
+                        totalWeight == 0 ? mTotalLength : 0, heightMeasureSpec, 0);
+
+                if (oldWidth != Integer.MIN_VALUE) {
+                    lp.width = oldWidth;
+                }
+
+                mTotalLength += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin
+                        + getNextLocationOffset(child);
+            }
+
+            boolean matchHeightLocally = false;
+            if (heightMode != MeasureSpec.EXACTLY && lp.height == LayoutParams.FILL_PARENT) {
+                // The height of the linear layout will scale, and at least one
+                // child said it wanted to match our height. Set a flag
+                // indicating that
+                // we need to remeasure at least that view when we know our
+                // height.
+                matchHeight = true;
+                matchHeightLocally = true;
+            }
+
+            final int margin = lp.topMargin + lp.bottomMargin;
+            final int childHeight = child.getMeasuredHeight() + margin;
+
+            if (baselineAligned) {
+                final int childBaseline = child.getBaseline();
+                if (childBaseline != -1) {
+                    // Translates the child's vertical gravity into an index
+                    // in the range 0..VERTICAL_GRAVITY_COUNT
+                    final int gravity = (lp.gravity < 0 ? mGravity : lp.gravity)
+                            & Gravity.VERTICAL_GRAVITY_MASK;
+                    final int index = ((gravity >> Gravity.AXIS_Y_SHIFT) & ~Gravity.AXIS_SPECIFIED) >> 1;
+
+                    maxAscent[index] = Math.max(maxAscent[index], childBaseline);
+                    maxDescent[index] = Math.max(maxDescent[index], childHeight - childBaseline);
+                }
+            }
+
+            maxHeight = Math.max(maxHeight, childHeight);
+
+            allFillParent = allFillParent && lp.height == LayoutParams.FILL_PARENT;
+            if (lp.weight > 0) {
+                /*
+                 * Heights of weighted Views are bogus if we end up remeasuring,
+                 * so keep them separate.
+                 */
+                weightedMaxHeight = Math.max(weightedMaxHeight, matchHeightLocally ? margin
+                        : childHeight);
+            } else {
+                alternativeMaxHeight = Math.max(alternativeMaxHeight, matchHeightLocally ? margin
+                        : childHeight);
+            }
+
+            i += getChildrenSkipCount(child, i);
+        }
+
+        // Check mMaxAscent[INDEX_TOP] first because it maps to Gravity.TOP,
+        // the most common case
+        if (maxAscent[INDEX_TOP] != -1 || maxAscent[INDEX_CENTER_VERTICAL] != -1
+                || maxAscent[INDEX_BOTTOM] != -1 || maxAscent[INDEX_FILL] != -1) {
+            final int ascent = Math.max(maxAscent[INDEX_FILL], Math.max(
+                    maxAscent[INDEX_CENTER_VERTICAL], Math.max(maxAscent[INDEX_TOP],
+                            maxAscent[INDEX_BOTTOM])));
+            final int descent = Math.max(maxDescent[INDEX_FILL], Math.max(
+                    maxDescent[INDEX_CENTER_VERTICAL], Math.max(maxDescent[INDEX_TOP],
+                            maxDescent[INDEX_BOTTOM])));
+            maxHeight = Math.max(maxHeight, ascent + descent);
+        }
+
+        // Add in our padding
+        mTotalLength += getPaddingLeft() + getPaddingRight();
+
+        int widthSize = mTotalLength;
+
+        // Check against our minimum width
+        widthSize = Math.max(widthSize, getSuggestedMinimumWidth());
+
+        // Reconcile our calculated size with the widthMeasureSpec
+        widthSize = resolveSize(widthSize, widthMeasureSpec);
+
+        // Either expand children with weight to take up available space or
+        // shrink them if they extend beyond our current bounds
+        int delta = widthSize - mTotalLength;
+        if (delta != 0 && totalWeight > 0.0f) {
+            float weightSum = mWeightSum > 0.0f ? mWeightSum : totalWeight;
+
+            maxAscent[0] = maxAscent[1] = maxAscent[2] = maxAscent[3] = -1;
+            maxDescent[0] = maxDescent[1] = maxDescent[2] = maxDescent[3] = -1;
+            maxHeight = -1;
+
+            mTotalLength = 0;
+
+            for (int i = 0; i < count; ++i) {
+                final View child = getVirtualChildAt(i);
+
+                if (child == null || child.getVisibility() == View.GONE) {
+                    continue;
+                }
+
+                final LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) child
+                        .getLayoutParams();
+
+                float childExtra = lp.weight;
+                if (childExtra > 0) {
+                    // Child said it could absorb extra space -- give him his
+                    // share
+                    int share = (int) (childExtra * delta / weightSum);
+                    weightSum -= childExtra;
+                    delta -= share;
+
+                    final int childHeightMeasureSpec = getChildMeasureSpec(heightMeasureSpec,
+                            getPaddingTop() + getPaddingBottom() + lp.topMargin + lp.bottomMargin,
+                            lp.height);
+
+                    // TODO: Use a field like lp.isMeasured to figure out if
+                    // this
+                    // child has been previously measured
+                    if ((lp.width != 0) || (widthMode != MeasureSpec.EXACTLY)) {
+                        // child was measured once already above ... base new
+                        // measurement
+                        // on stored values
+                        int childWidth = child.getMeasuredWidth() + share;
+                        if (childWidth < 0) {
+                            childWidth = 0;
+                        }
+
+                        child.measure(MeasureSpec.makeMeasureSpec(childWidth, MeasureSpec.EXACTLY),
+                                childHeightMeasureSpec);
+                    } else {
+                        // child was skipped in the loop above. Measure for this
+                        // first time here
+                        child.measure(MeasureSpec.makeMeasureSpec(share > 0 ? share : 0,
+                                MeasureSpec.EXACTLY), childHeightMeasureSpec);
+                    }
+                }
+
+                mTotalLength += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin
+                        + getNextLocationOffset(child);
+
+                boolean matchHeightLocally = heightMode != MeasureSpec.EXACTLY
+                        && lp.height == LayoutParams.FILL_PARENT;
+
+                final int margin = lp.topMargin + lp.bottomMargin;
+                int childHeight = child.getMeasuredHeight() + margin;
+                maxHeight = Math.max(maxHeight, childHeight);
+                alternativeMaxHeight = Math.max(alternativeMaxHeight, matchHeightLocally ? margin
+                        : childHeight);
+
+                allFillParent = allFillParent && lp.height == LayoutParams.FILL_PARENT;
+
+                if (baselineAligned) {
+                    final int childBaseline = child.getBaseline();
+                    if (childBaseline != -1) {
+                        // Translates the child's vertical gravity into an index
+                        // in the range 0..2
+                        final int gravity = (lp.gravity < 0 ? mGravity : lp.gravity)
+                                & Gravity.VERTICAL_GRAVITY_MASK;
+                        final int index = ((gravity >> Gravity.AXIS_Y_SHIFT) & ~Gravity.AXIS_SPECIFIED) >> 1;
+
+                        maxAscent[index] = Math.max(maxAscent[index], childBaseline);
+                        maxDescent[index] = Math
+                                .max(maxDescent[index], childHeight - childBaseline);
+                    }
+                }
+            }
+
+            // Add in our padding
+            mTotalLength += getPaddingLeft() + getPaddingRight();
+
+            // Check mMaxAscent[INDEX_TOP] first because it maps to Gravity.TOP,
+            // the most common case
+            if (maxAscent[INDEX_TOP] != -1 || maxAscent[INDEX_CENTER_VERTICAL] != -1
+                    || maxAscent[INDEX_BOTTOM] != -1 || maxAscent[INDEX_FILL] != -1) {
+                final int ascent = Math.max(maxAscent[INDEX_FILL], Math.max(
+                        maxAscent[INDEX_CENTER_VERTICAL], Math.max(maxAscent[INDEX_TOP],
+                                maxAscent[INDEX_BOTTOM])));
+                final int descent = Math.max(maxDescent[INDEX_FILL], Math.max(
+                        maxDescent[INDEX_CENTER_VERTICAL], Math.max(maxDescent[INDEX_TOP],
+                                maxDescent[INDEX_BOTTOM])));
+                maxHeight = Math.max(maxHeight, ascent + descent);
+            }
+        } else {
+            alternativeMaxHeight = Math.max(alternativeMaxHeight, weightedMaxHeight);
+        }
+
+        if (!allFillParent && heightMode != MeasureSpec.EXACTLY) {
+            maxHeight = alternativeMaxHeight;
+        }
+
+        maxHeight += getPaddingTop() + getPaddingBottom();
+
+        // Check against our minimum height
+        maxHeight = Math.max(maxHeight, getSuggestedMinimumHeight());
+
+        setMeasuredDimension(widthSize, resolveSize(maxHeight, heightMeasureSpec));
+
+        if (matchHeight) {
+            forceUniformHeight(count, widthMeasureSpec);
+        }
+    }
+
+    private void forceUniformHeight(int count, int widthMeasureSpec) {
+        // Pretend that the linear layout has an exact size. This is the
+        // measured height of
+        // ourselves. The measured height should be the max height of the
+        // children, changed
+        // to accomodate the heightMesureSpec from the parent
+        int uniformMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredHeight(),
+                MeasureSpec.EXACTLY);
+        for (int i = 0; i < count; ++i) {
+            final View child = getVirtualChildAt(i);
+            if (child.getVisibility() != GONE) {
+                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) child.getLayoutParams();
+
+                if (lp.height == LayoutParams.FILL_PARENT) {
+                    // Temporarily force children to reuse their old measured
+                    // width
+                    // FIXME: this may not be right for something like wrapping
+                    // text?
+                    int oldWidth = lp.width;
+                    lp.width = child.getMeasuredWidth();
+
+                    // Remeasure with new dimensions
+                    measureChildWithMargins(child, widthMeasureSpec, 0, uniformMeasureSpec, 0);
+                    lp.width = oldWidth;
+                }
+            }
+        }
+    }
+
+    /**
+     * <p>
+     * Returns the number of children to skip after measuring/laying out the
+     * specified child.
+     * </p>
+     * 
+     * @param child
+     *            the child after which we want to skip children
+     * @param index
+     *            the index of the child after which we want to skip children
+     * @return the number of children to skip, 0 by default
+     */
+    int getChildrenSkipCount(View child, int index) {
+        return 0;
+    }
+
+    /**
+     * <p>
+     * Returns the size (width or height) that should be occupied by a null
+     * child.
+     * </p>
+     * 
+     * @param childIndex
+     *            the index of the null child
+     * @return the width or height of the child depending on the orientation
+     */
+    int measureNullChild(int childIndex) {
+        return 0;
+    }
+
+    /**
+     * <p>
+     * Measure the child according to the parent's measure specs. This method
+     * should be overriden by subclasses to force the sizing of children. This
+     * method is called by {@link #measureVertical(int, int)} and
+     * {@link #measureHorizontal(int, int)}.
+     * </p>
+     * 
+     * @param child
+     *            the child to measure
+     * @param childIndex
+     *            the index of the child in this view
+     * @param widthMeasureSpec
+     *            horizontal space requirements as imposed by the parent
+     * @param totalWidth
+     *            extra space that has been used up by the parent horizontally
+     * @param heightMeasureSpec
+     *            vertical space requirements as imposed by the parent
+     * @param totalHeight
+     *            extra space that has been used up by the parent vertically
+     */
+    void measureChildBeforeLayout(View child, int childIndex, int widthMeasureSpec, int totalWidth,
+            int heightMeasureSpec, int totalHeight) {
+        measureChildWithMargins(child, widthMeasureSpec, totalWidth, heightMeasureSpec, totalHeight);
+    }
+
+    /**
+     * <p>
+     * Return the location offset of the specified child. This can be used by
+     * subclasses to change the location of a given widget.
+     * </p>
+     * 
+     * @param child
+     *            the child for which to obtain the location offset
+     * @return the location offset in pixels
+     */
+    int getLocationOffset(View child) {
+        return 0;
+    }
+
+    /**
+     * <p>
+     * Return the size offset of the next sibling of the specified child. This
+     * can be used by subclasses to change the location of the widget following
+     * <code>child</code>.
+     * </p>
+     * 
+     * @param child
+     *            the child whose next sibling will be moved
+     * @return the location offset of the next child in pixels
+     */
+    int getNextLocationOffset(View child) {
+        return 0;
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        if (mOrientation == VERTICAL) {
+            layoutVertical();
+        } else {
+            layoutHorizontal();
+        }
+    }
+
+    /**
+     * Position the children during a layout pass if the orientation of this
+     * LinearLayout is set to {@link #VERTICAL}.
+     * 
+     * @see #getOrientation()
+     * @see #setOrientation(int)
+     * @see #onLayout(boolean, int, int, int, int)
+     */
+    void layoutVertical() {
+        final int paddingLeft = getPaddingLeft();
+
+        int childTop = getPaddingTop();
+        int childLeft = paddingLeft;
+
+        // Where right end of child should go
+        final int width = getRight() - getLeft();
+        int childRight = width - getPaddingRight();
+
+        // Space available for child
+        int childSpace = width - paddingLeft - getPaddingRight();
+
+        final int count = getVirtualChildCount();
+
+        final int majorGravity = mGravity & Gravity.VERTICAL_GRAVITY_MASK;
+        final int minorGravity = mGravity & Gravity.HORIZONTAL_GRAVITY_MASK;
+
+        if (majorGravity != Gravity.TOP) {
+            switch (majorGravity) {
+            case Gravity.BOTTOM:
+                // mTotalLength contains the padding already, we add the top
+                // padding to compensate
+                childTop = getBottom() - getTop() + getPaddingTop() - mTotalLength;
+                break;
+
+            case Gravity.CENTER_VERTICAL:
+                childTop += ((getBottom() - getTop()) - mTotalLength) / 2;
+                break;
+            }
+
+        }
+
+        for (int i = 0; i < count; i++) {
+            final View child = getVirtualChildAt(i);
+            if (child == null) {
+                childTop += measureNullChild(i);
+            } else if (child.getVisibility() != GONE) {
+                final int childWidth = child.getMeasuredWidth();
+                final int childHeight = child.getMeasuredHeight();
+
+                final LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) child
+                        .getLayoutParams();
+
+                int gravity = lp.gravity;
+                if (gravity < 0) {
+                    gravity = minorGravity;
+                }
+
+                switch (gravity & Gravity.HORIZONTAL_GRAVITY_MASK) {
+                case Gravity.LEFT:
+                    childLeft = paddingLeft + lp.leftMargin;
+                    break;
+
+                case Gravity.CENTER_HORIZONTAL:
+                    childLeft = paddingLeft + ((childSpace - childWidth) / 2) + lp.leftMargin
+                            - lp.rightMargin;
+                    break;
+
+                case Gravity.RIGHT:
+                    childLeft = childRight - childWidth - lp.rightMargin;
+                    break;
+                }
+
+                childTop += lp.topMargin;
+                setChildFrame(child, childLeft, childTop + getLocationOffset(child), childWidth,
+                        childHeight);
+                childTop += childHeight + lp.bottomMargin + getNextLocationOffset(child);
+
+                i += getChildrenSkipCount(child, i);
+            }
+        }
+    }
+
+    /**
+     * Position the children during a layout pass if the orientation of this
+     * LinearLayout is set to {@link #HORIZONTAL}.
+     * 
+     * @see #getOrientation()
+     * @see #setOrientation(int)
+     * @see #onLayout(boolean, int, int, int, int)
+     */
+    void layoutHorizontal() {
+        final int paddingTop = getPaddingTop();
+
+        int childTop = paddingTop;
+        int childLeft = getPaddingLeft();
+
+        // Where bottom of child should go
+        final int height = getBottom() - getTop();
+        int childBottom = height - getPaddingBottom();
+
+        // Space available for child
+        int childSpace = height - paddingTop - getPaddingBottom();
+
+        final int count = getVirtualChildCount();
+
+        final int majorGravity = mGravity & Gravity.HORIZONTAL_GRAVITY_MASK;
+        final int minorGravity = mGravity & Gravity.VERTICAL_GRAVITY_MASK;
+
+        final boolean baselineAligned = mBaselineAligned;
+
+        final int[] maxAscent = mMaxAscent;
+        final int[] maxDescent = mMaxDescent;
+
+        if (majorGravity != Gravity.LEFT) {
+            switch (majorGravity) {
+            case Gravity.RIGHT:
+                // mTotalLength contains the padding already, we add the left
+                // padding to compensate
+                childLeft = getRight() - getLeft() + getPaddingLeft() - mTotalLength;
+                break;
+
+            case Gravity.CENTER_HORIZONTAL:
+                childLeft += ((getRight() - getLeft()) - mTotalLength) / 2;
+                break;
+            }
+        }
+
+        for (int i = 0; i < count; i++) {
+            final View child = getVirtualChildAt(i);
+
+            if (child == null) {
+                childLeft += measureNullChild(i);
+            } else if (child.getVisibility() != GONE) {
+                final int childWidth = child.getMeasuredWidth();
+                final int childHeight = child.getMeasuredHeight();
+                int childBaseline = -1;
+
+                final LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) child
+                        .getLayoutParams();
+
+                if (baselineAligned && lp.height != LayoutParams.FILL_PARENT) {
+                    childBaseline = child.getBaseline();
+                }
+
+                int gravity = lp.gravity;
+                if (gravity < 0) {
+                    gravity = minorGravity;
+                }
+
+                switch (gravity & Gravity.VERTICAL_GRAVITY_MASK) {
+                case Gravity.TOP:
+                    childTop = paddingTop + lp.topMargin;
+                    if (childBaseline != -1) {
+                        childTop += maxAscent[INDEX_TOP] - childBaseline;
+                    }
+                    break;
+
+                case Gravity.CENTER_VERTICAL:
+                    // Removed support for baselign alignment when
+                    // layout_gravity or
+                    // gravity == center_vertical. See bug #1038483.
+                    // Keep the code around if we need to re-enable this feature
+                    // if (childBaseline != -1) {
+                    // // Align baselines vertically only if the child is
+                    // smaller than us
+                    // if (childSpace - childHeight > 0) {
+                    // childTop = paddingTop + (childSpace / 2) - childBaseline;
+                    // } else {
+                    // childTop = paddingTop + (childSpace - childHeight) / 2;
+                    // }
+                    // } else {
+                    childTop = paddingTop + ((childSpace - childHeight) / 2) + lp.topMargin
+                            - lp.bottomMargin;
+                    break;
+
+                case Gravity.BOTTOM:
+                    childTop = childBottom - childHeight - lp.bottomMargin;
+                    if (childBaseline != -1) {
+                        int descent = child.getMeasuredHeight() - childBaseline;
+                        childTop -= (maxDescent[INDEX_BOTTOM] - descent);
+                    }
+                    break;
+                }
+
+                childLeft += lp.leftMargin;
+                setChildFrame(child, childLeft + getLocationOffset(child), childTop, childWidth,
+                        childHeight);
+                childLeft += childWidth + lp.rightMargin + getNextLocationOffset(child);
+
+                i += getChildrenSkipCount(child, i);
+            }
+        }
+    }
+
+    private void setChildFrame(View child, int left, int top, int width, int height) {
+        child.layout(left, top, left + width, top + height);
+    }
+
+    /**
+     * Should the layout be a column or a row.
+     * 
+     * @param orientation
+     *            Pass HORIZONTAL or VERTICAL. Default value is HORIZONTAL.
+     * 
+     * @attr ref android.R.styleable#LinearLayout_orientation
+     */
+    public void setOrientation(int orientation) {
+        if (mOrientation != orientation) {
+            mOrientation = orientation;
+            requestLayout();
+        }
+    }
+
+    /**
+     * Returns the current orientation.
+     * 
+     * @return either {@link #HORIZONTAL} or {@link #VERTICAL}
+     */
+    public int getOrientation() {
+        return mOrientation;
+    }
+
+    /**
+     * Describes how the child views are positioned. Defaults to GRAVITY_TOP. If
+     * this layout has a VERTICAL orientation, this controls where all the child
+     * views are placed if there is extra vertical space. If this layout has a
+     * HORIZONTAL orientation, this controls the alignment of the children.
+     * 
+     * @param gravity
+     *            See {@link android.view.Gravity}
+     * 
+     * @attr ref android.R.styleable#LinearLayout_gravity
+     */
+    public void setGravity(int gravity) {
+        if (mGravity != gravity) {
+            if ((gravity & Gravity.HORIZONTAL_GRAVITY_MASK) == 0) {
+                gravity |= Gravity.LEFT;
+            }
+
+            if ((gravity & Gravity.VERTICAL_GRAVITY_MASK) == 0) {
+                gravity |= Gravity.TOP;
+            }
+
+            mGravity = gravity;
+            requestLayout();
+        }
+    }
+
+    public void setHorizontalGravity(int horizontalGravity) {
+        final int gravity = horizontalGravity & Gravity.HORIZONTAL_GRAVITY_MASK;
+        if ((mGravity & Gravity.HORIZONTAL_GRAVITY_MASK) != gravity) {
+            mGravity = (mGravity & ~Gravity.HORIZONTAL_GRAVITY_MASK) | gravity;
+            requestLayout();
+        }
+    }
+
+    public void setVerticalGravity(int verticalGravity) {
+        final int gravity = verticalGravity & Gravity.VERTICAL_GRAVITY_MASK;
+        if ((mGravity & Gravity.VERTICAL_GRAVITY_MASK) != gravity) {
+            mGravity = (mGravity & ~Gravity.VERTICAL_GRAVITY_MASK) | gravity;
+            requestLayout();
+        }
+    }
+
+    @Override
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new LinearLayout.LayoutParams(getContext(), attrs);
+    }
+
+    /**
+     * Returns a set of layout parameters with a width of
+     * {@link android.view.ViewGroup.LayoutParams#FILL_PARENT} and a height of
+     * {@link android.view.ViewGroup.LayoutParams#WRAP_CONTENT} when the
+     * layout's orientation is {@link #VERTICAL}. When the orientation is
+     * {@link #HORIZONTAL}, the width is set to
+     * {@link LayoutParams#WRAP_CONTENT} and the height to
+     * {@link LayoutParams#WRAP_CONTENT}.
+     */
+    @Override
+    protected LayoutParams generateDefaultLayoutParams() {
+        if (mOrientation == HORIZONTAL) {
+            return new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        } else if (mOrientation == VERTICAL) {
+            return new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+        }
+        return null;
+    }
+
+    @Override
+    protected LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
+        return new LayoutParams(p);
+    }
+
+    // Override to allow type-checking of LayoutParams.
+    @Override
+    protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
+        return p instanceof LinearLayout.LayoutParams;
+    }
+
+    @Override
     protected void parseAttributes(AttributeSet attrs) {
         super.parseAttributes(attrs);
 
-        xmlvmSetIgnoreLayoutRequests(true);
-        
         String str = attrs.getAttributeValue(null, "orientation");
         setOrientation("vertical".equals(str) ? VERTICAL : HORIZONTAL);
-        
-        xmlvmSetIgnoreLayoutRequests(false);
+        setGravity(Gravity.parseGravity(attrs.getAttributeValue(null, "gravity"), 0));
+        setWeightSum(attrs.getAttributeFloatValue(null, "weightSum", -1.0f));
+        mBaselineAlignedChildIndex = attrs.getAttributeIntValue(null, "baselineAlignedChildIndex",
+                -1);
+        boolean baselineAligned = attrs.getAttributeBooleanValue(null, "baselineAligned", true);
+        if (!baselineAligned) {
+            setBaselineAligned(baselineAligned);
+        }
     }
 
-    public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new LayoutParams(getContext(), attrs);
-    }
+    /**
+     * Per-child layout information associated with ViewLinearLayout.
+     * 
+     * @attr ref android.R.styleable#LinearLayout_Layout_layout_weight
+     * @attr ref android.R.styleable#LinearLayout_Layout_layout_gravity
+     */
+    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
+        /**
+         * Indicates how much of the extra space in the LinearLayout will be
+         * allocated to the view associated with these LayoutParams. Specify 0
+         * if the view should not be stretched. Otherwise the extra pixels will
+         * be pro-rated among all views whose weight is greater than 0.
+         */
+        public float weight;
 
-    public int getOrientation() {
-        return orientation;
-    }
+        /**
+         * Gravity for the view associated with these LayoutParams.
+         * 
+         * @see android.view.Gravity
+         */
+        public int   gravity = -1;
 
-    public void setOrientation(int orientation) {
-        this.orientation = orientation;
-        requestLayout();
-    }
+        /**
+         * {@inheritDoc}
+         */
+        public LayoutParams(Context c, AttributeSet attrs) {
+            super(c, attrs);
 
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int maxItemSize = 0;
-        int totalSize = 0;
-        int remainingWidth = MeasureSpec.getSize(widthMeasureSpec);
-        int remainingHeight = MeasureSpec.getSize(heightMeasureSpec);
-
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-        for (int i = 0; i < getChildCount(); i++) {
-            View v = getChildAt(i);
-            LayoutParams lp = (LayoutParams) v.getLayoutParams();
-            if (orientation == VERTICAL) {
-                remainingHeight -= (lp.topMargin + lp.bottomMargin);
-            } else {
-                remainingWidth -= (lp.leftMargin + lp.rightMargin);
-            }
-
-            if (orientation == VERTICAL) {
-                int viewWidthMeasureSpec = makeMeasureSpec(lp.width, remainingWidth - lp.leftMargin
-                        - lp.rightMargin);
-                int viewHeightMeasureSpec = makeMeasureSpec(lp.height, remainingHeight);
-                v.measure(viewWidthMeasureSpec, viewHeightMeasureSpec);
-
-                remainingHeight -= v.getMeasuredHeight();
-                maxItemSize = v.getMeasuredWidth() > maxItemSize ? v.getMeasuredWidth()
-                        : maxItemSize;
-                totalSize += (lp.topMargin + lp.bottomMargin + v.getMeasuredHeight());
-            } else {
-                int viewWidthMeasureSpec = makeMeasureSpec(lp.width, remainingWidth);
-                int viewHeightMeasureSpec = makeMeasureSpec(lp.height, remainingHeight
-                        - lp.topMargin - lp.bottomMargin);
-                v.measure(viewWidthMeasureSpec, viewHeightMeasureSpec);
-
-                remainingWidth -= v.getMeasuredWidth();
-                maxItemSize = v.getMeasuredHeight() > maxItemSize ? v.getMeasuredHeight()
-                        : maxItemSize;
-                totalSize += (lp.leftMargin + lp.rightMargin + v.getMeasuredWidth());
-            }
+            gravity = Gravity.parseGravity(attrs.getAttributeValue(null, "layout_gravity"), 0);
+            weight = attrs.getAttributeFloatValue(null, "layout_weight", 0);
         }
 
-        int layoutWidth;
-        int layoutHeight;
-        if (orientation == VERTICAL) {
-            layoutWidth = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                    .getSize(widthMeasureSpec)
-                    : maxItemSize;
-            layoutHeight = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                    .getSize(heightMeasureSpec)
-                    : totalSize;
-        } else {
-            layoutWidth = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                    .getSize(widthMeasureSpec)
-                    : totalSize;
-            layoutHeight = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                    .getSize(heightMeasureSpec)
-                    : maxItemSize;
+        /**
+         * {@inheritDoc}
+         */
+        public LayoutParams(int width, int height) {
+            super(width, height);
+            weight = 0;
         }
 
-        setMeasuredDimension(layoutWidth, layoutHeight);
-    }
+        /**
+         * Creates a new set of layout parameters with the specified width,
+         * height and weight.
+         * 
+         * @param width
+         *            the width, either {@link #FILL_PARENT},
+         *            {@link #WRAP_CONTENT} or a fixed size in pixels
+         * @param height
+         *            the height, either {@link #FILL_PARENT},
+         *            {@link #WRAP_CONTENT} or a fixed size in pixels
+         * @param weight
+         *            the weight
+         */
+        public LayoutParams(int width, int height, float weight) {
+            super(width, height);
+            this.weight = weight;
+        }
 
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        int nextPosition = 0;
-        int width = right - left;
-        int height = bottom - top;
+        /**
+         * {@inheritDoc}
+         */
+        public LayoutParams(ViewGroup.LayoutParams p) {
+            super(p);
+        }
 
-        xmlvmGetUIView().setFrame(new CGRect(left, top, width, height));
-
-        for (int i = 0; i < getChildCount(); i++) {
-            View v = getChildAt(i);
-            LayoutParams lp = (LayoutParams) v.getLayoutParams();
-            int x;
-            int y;
-            if (v.getVisibility() != View.GONE) {
-                if (orientation == VERTICAL) {
-                    nextPosition += lp.topMargin;
-
-                    // Align center horizontal
-                    if ((lp.gravitiy & 0x07) == 0x01) {
-                        x = (width - v.getMeasuredWidth()) / 2;
-                    }
-                    // Align right
-                    else if ((lp.gravitiy & 0x07) == 0x05) {
-                        x = width - lp.rightMargin - v.getMeasuredWidth();
-                    }
-                    // Default: Align left
-                    else {
-                        x = lp.leftMargin;
-                    }
-
-                    y = nextPosition;
-                    nextPosition += (v.getMeasuredHeight() + lp.bottomMargin);
-                } else {
-                    nextPosition += lp.leftMargin;
-
-                    // Center vertical
-                    if ((lp.gravitiy & 0x70) == 0x10) {
-                        y = (height - v.getMeasuredHeight()) / 2;
-                    }
-                    // Align bottom
-                    else if ((lp.gravitiy & 0x70) == 0x50) {
-                        y = height - lp.bottomMargin - v.getMeasuredHeight();
-                    }
-                    // Default: Align top
-                    else {
-                        y = lp.topMargin;
-                    }
-
-                    x = nextPosition;
-                    nextPosition += (v.getMeasuredWidth() + lp.rightMargin);
-                }
-
-                v.layout(x, y, x + v.getMeasuredWidth(), y + v.getMeasuredHeight());
-            }
+        /**
+         * {@inheritDoc}
+         */
+        public LayoutParams(MarginLayoutParams source) {
+            super(source);
         }
     }
 }

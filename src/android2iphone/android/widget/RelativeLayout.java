@@ -920,12 +920,8 @@ public class RelativeLayout extends ViewGroup {
     protected void parseAttributes(AttributeSet attrs) {
         super.parseAttributes(attrs);
 
-        xmlvmSetIgnoreLayoutRequests(true);
-
         setGravity(Gravity.parseGravity(attrs.getAttributeValue(null, "gravity"), 0));
         setIgnoreGravity(attrs.getAttributeResourceValue(null, "ignoreGravity", 0));
-
-        xmlvmSetIgnoreLayoutRequests(false);
     }
 
     /**

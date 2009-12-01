@@ -42,8 +42,6 @@ public class ViewGroup extends View implements ViewParent {
 
     private List<View>         subViews;
     private Map<Integer, View> xmlvmViewMap;
-    private int                widthMeasureSpec;
-    private int                heightMeasureSpec;
 
     public static class LayoutParams {
         public static final int FILL_PARENT  = -1;
@@ -140,7 +138,10 @@ public class ViewGroup extends View implements ViewParent {
 
     public ViewGroup(Context c, AttributeSet attrs) {
         this(c);
+        
+        setIgnoreRequestLayout(true);
         parseAttributes(attrs);
+        setIgnoreRequestLayout(false);        
     }
 
     public void addView(View child) {
@@ -259,16 +260,134 @@ public class ViewGroup extends View implements ViewParent {
         this.xmlvmViewMap = xmlvmViewMap;
     }
 
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        this.widthMeasureSpec = widthMeasureSpec;
-        this.heightMeasureSpec = heightMeasureSpec;
-    }
-
     public void requestLayout() {
-        if (!xmlvmGetIgnoreLayoutRequests()) {
+        if (!getIgnoreRequestLayout()) {
+            super.requestLayout();
             measure(widthMeasureSpec, heightMeasureSpec);
             layout(getLeft(), getTop(), getMeasuredWidth(), getMeasuredHeight());
         }
+    }
+
+    /**
+     * Ask one of the children of this view to measure itself, taking into
+     * account both the MeasureSpec requirements for this view and its padding
+     * and margins. The child must have MarginLayoutParams The heavy lifting is
+     * done in getChildMeasureSpec.
+     * 
+     * @param child
+     *            The child to measure
+     * @param parentWidthMeasureSpec
+     *            The width requirements for this view
+     * @param widthUsed
+     *            Extra space that has been used up by the parent horizontally
+     *            (possibly by other children of the parent)
+     * @param parentHeightMeasureSpec
+     *            The height requirements for this view
+     * @param heightUsed
+     *            Extra space that has been used up by the parent vertically
+     *            (possibly by other children of the parent)
+     */
+    protected void measureChildWithMargins(View child, int parentWidthMeasureSpec, int widthUsed,
+            int parentHeightMeasureSpec, int heightUsed) {
+        final MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
+
+        final int childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec,
+                getPaddingLeft() + getPaddingRight() + lp.leftMargin + lp.rightMargin + widthUsed,
+                lp.width);
+        final int childHeightMeasureSpec = getChildMeasureSpec(parentHeightMeasureSpec,
+                getPaddingTop() + getPaddingBottom() + lp.topMargin + lp.bottomMargin + heightUsed,
+                lp.height);
+
+        child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
+    }
+
+    /**
+     * Does the hard part of measureChildren: figuring out the MeasureSpec to
+     * pass to a particular child. This method figures out the right MeasureSpec
+     * for one dimension (height or width) of one child view.
+     * 
+     * The goal is to combine information from our MeasureSpec with the
+     * LayoutParams of the child to get the best possible results. For example,
+     * if the this view knows its size (because its MeasureSpec has a mode of
+     * EXACTLY), and the child has indicated in its LayoutParams that it wants
+     * to be the same size as the parent, the parent should ask the child to
+     * layout given an exact size.
+     * 
+     * @param spec
+     *            The requirements for this view
+     * @param padding
+     *            The padding of this view for the current dimension and
+     *            margins, if applicable
+     * @param childDimension
+     *            How big the child wants to be in the current dimension
+     * @return a MeasureSpec integer for the child
+     */
+    public static int getChildMeasureSpec(int spec, int padding, int childDimension) {
+        int specMode = MeasureSpec.getMode(spec);
+        int specSize = MeasureSpec.getSize(spec);
+
+        int size = Math.max(0, specSize - padding);
+
+        int resultSize = 0;
+        int resultMode = 0;
+
+        switch (specMode) {
+        // Parent has imposed an exact size on us
+        case MeasureSpec.EXACTLY:
+            if (childDimension >= 0) {
+                resultSize = childDimension;
+                resultMode = MeasureSpec.EXACTLY;
+            } else if (childDimension == LayoutParams.FILL_PARENT) {
+                // Child wants to be our size. So be it.
+                resultSize = size;
+                resultMode = MeasureSpec.EXACTLY;
+            } else if (childDimension == LayoutParams.WRAP_CONTENT) {
+                // Child wants to determine its own size. It can't be
+                // bigger than us.
+                resultSize = size;
+                resultMode = MeasureSpec.AT_MOST;
+            }
+            break;
+
+        // Parent has imposed a maximum size on us
+        case MeasureSpec.AT_MOST:
+            if (childDimension >= 0) {
+                // Child wants a specific size... so be it
+                resultSize = childDimension;
+                resultMode = MeasureSpec.EXACTLY;
+            } else if (childDimension == LayoutParams.FILL_PARENT) {
+                // Child wants to be our size, but our size is not fixed.
+                // Constrain child to not be bigger than us.
+                resultSize = size;
+                resultMode = MeasureSpec.AT_MOST;
+            } else if (childDimension == LayoutParams.WRAP_CONTENT) {
+                // Child wants to determine its own size. It can't be
+                // bigger than us.
+                resultSize = size;
+                resultMode = MeasureSpec.AT_MOST;
+            }
+            break;
+
+        // Parent asked to see how big we want to be
+        case MeasureSpec.UNSPECIFIED:
+            if (childDimension >= 0) {
+                // Child wants a specific size... let him have it
+                resultSize = childDimension;
+                resultMode = MeasureSpec.EXACTLY;
+            } else if (childDimension == LayoutParams.FILL_PARENT) {
+                // Child wants to be our size... find out how big it should
+                // be
+                resultSize = 0;
+                resultMode = MeasureSpec.UNSPECIFIED;
+            } else if (childDimension == LayoutParams.WRAP_CONTENT) {
+                // Child wants to determine its own size.... find out how
+                // big it should be
+                resultSize = 0;
+                resultMode = MeasureSpec.UNSPECIFIED;
+            }
+            break;
+        }
+        return MeasureSpec.makeMeasureSpec(resultSize, resultMode);
     }
 
     protected int makeMeasureSpec(int layoutSize, int sizeConstraint) {

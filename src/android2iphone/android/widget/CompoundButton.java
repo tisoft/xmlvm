@@ -23,7 +23,6 @@ package android.widget;
 import android.content.Context;
 import android.internal.Assert;
 import android.util.AttributeSet;
-import android.view.View;
 
 /**
  * @author wkorn
