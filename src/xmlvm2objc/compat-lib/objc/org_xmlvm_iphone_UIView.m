@@ -53,6 +53,7 @@
 	[image retain];
 	[self->backgroundImage release];
 	self->backgroundImage = image == [NSNull null] ? nil : image;
+	[self setBackgroundColor:nil];
 }
 
 @end
