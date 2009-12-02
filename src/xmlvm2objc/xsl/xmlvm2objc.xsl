@@ -1330,15 +1330,33 @@ int main(int argc, char* argv[])
   </xsl:if>
 </xsl:template>
 
-
-<xsl:template match="jvm:newarray|jvm:anewarray">
+<xsl:template match="jvm:newarray">
   <xsl:text>    _op1.i = _stack[--_sp].i;
-    _stack[_sp].o = [NSMutableArray arrayWithCapacity: _op1.i];
-    
-    for (_op2.i = 0; _op2.i &lt; _op1.i; _op2.i++)
-        [_stack[_sp].o addObject: [NSNull null]];
-    _sp++;
+    _stack[_sp++].o = [XMLVMArray createSingleDimensionWithType:</xsl:text>
+  <xsl:value-of select="vm:typeID(@base-type)"/>
+  <xsl:text> andSize:_op1.i];
 </xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:anewarray">
+  <xsl:text>    _op1.i = _stack[--_sp].i;
+    _stack[_sp++].o = [XMLVMArray createSingleDimensionWithType:0 andSize:_op1.i];
+</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:multianewarray">
+  <xsl:text>    _op1.o = [XMLVMArray createMultiDimensionsWithType:</xsl:text>
+  <xsl:value-of select="vm:typeID(@base-type)"/>
+  <xsl:text> dimensions:&amp;_stack[_sp - </xsl:text>
+  <xsl:value-of select="@dimensions"/>
+  <xsl:text>] count:</xsl:text>
+  <xsl:value-of select="@dimensions"/>
+  <xsl:text>];
+    _sp -= </xsl:text>
+  <xsl:value-of select="@dimensions"/>
+  <xsl:text>;
+    _stack[_sp++].o = _op1.o;
+ </xsl:text>
 </xsl:template>
 
 <xsl:template match="jvm:arraylength">
@@ -1359,7 +1377,7 @@ int main(int argc, char* argv[])
 <xsl:template match="jvm:caload|jvm:iaload|jvm:baload">
   <xsl:text>    _op1.i = _stack[--_sp].i;
     _op2.o = _stack[--_sp].o;
-    _stack[_sp++].i = [[_op2.o objectAtIndex: _op1.i] intValue];
+    _stack[_sp++].i = ((XMLVMArray*) _op2.o)->array.i[_op1.i];
 </xsl:text>
 </xsl:template>
 
@@ -1367,7 +1385,7 @@ int main(int argc, char* argv[])
 <xsl:template match="jvm:daload">
   <xsl:text>    _op1.i = _stack[--_sp].i;
     _op2.o = _stack[--_sp].o;
-    _stack[_sp++].d = [[_op2.o objectAtIndex: _op1.i] doubleValue];
+    _stack[_sp++].d = ((XMLVMArray*) _op2.o)->array.d[_op1.i];
 </xsl:text>
 </xsl:template>
 
@@ -1375,7 +1393,7 @@ int main(int argc, char* argv[])
 <xsl:template match="jvm:faload">
   <xsl:text>    _op1.i = _stack[--_sp].i;
     _op2.o = _stack[--_sp].o;
-    _stack[_sp++].f = [[_op2.o objectAtIndex: _op1.i] floatValue];
+    _stack[_sp++].f = ((XMLVMArray*) _op2.o)->array.f[_op1.i];
 </xsl:text>
 </xsl:template>
 
@@ -1393,7 +1411,7 @@ int main(int argc, char* argv[])
   <xsl:text>    _op1.i = _stack[--_sp].i;
     _op2.i = _stack[--_sp].i;
     _op3.o = _stack[--_sp].o;
-    [_op3.o replaceObjectAtIndex: _op2.i withObject: [NSNumber numberWithInt: _op1.i]];
+    ((XMLVMArray*) _op3.o)->array.i[_op2.i] = _op1.i;
 </xsl:text>
 </xsl:template>
 
@@ -1402,7 +1420,7 @@ int main(int argc, char* argv[])
   <xsl:text>    _op1.d = _stack[--_sp].d;
     _op2.i = _stack[--_sp].i;
     _op3.o = _stack[--_sp].o;
-    [_op3.o replaceObjectAtIndex: _op2.i withObject: [NSNumber numberWithDouble: _op1.d]];
+    ((XMLVMArray*) _op3.o)->array.d[_op2.i] = _op1.d;
 </xsl:text>
 </xsl:template>
 
@@ -1411,7 +1429,7 @@ int main(int argc, char* argv[])
   <xsl:text>    _op1.f = _stack[--_sp].f;
     _op2.i = _stack[--_sp].i;
     _op3.o = _stack[--_sp].o;
-    [_op3.o replaceObjectAtIndex: _op2.i withObject: [NSNumber numberWithFloat: _op1.f]];
+    ((XMLVMArray*) _op3.o)->array.f[_op2.i] = _op1.f;
 </xsl:text>
 </xsl:template>
 
@@ -1607,8 +1625,43 @@ int main(int argc, char* argv[])
 <xsl:function name="vm:isObjectRef" as="xs:boolean">
   <xsl:param name="type" as="xs:string"/>
   
-  <xsl:value-of select="not($type='int' or $type='float' or $type='long' or $type='double' or
+  <xsl:value-of select="not($type='byte' or $type='short' or $type='int' or $type='float' or $type='long' or $type='double' or
                             $type='char' or $type='boolean')"/>
+</xsl:function>
+
+
+<xsl:function name="vm:typeID" as="xs:integer">
+  <xsl:param name="type" as="xs:string"/>
+  
+  <xsl:choose>
+    <xsl:when test="$type='boolean'">
+      <xsl:value-of select="1"/>
+    </xsl:when>
+    <xsl:when test="$type='char'">
+      <xsl:value-of select="2"/>
+    </xsl:when>
+    <xsl:when test="$type='byte'">
+      <xsl:value-of select="3"/>
+    </xsl:when>
+    <xsl:when test="$type='short'">
+      <xsl:value-of select="4"/>
+    </xsl:when>
+    <xsl:when test="$type='int'">
+      <xsl:value-of select="5"/>
+    </xsl:when>
+    <xsl:when test="$type='float'">
+      <xsl:value-of select="6"/>
+    </xsl:when>
+    <xsl:when test="$type='double'">
+      <xsl:value-of select="7"/>
+    </xsl:when>
+    <xsl:when test="$type='long'">
+      <xsl:value-of select="8"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="0"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:function>
 
 

@@ -21,6 +21,99 @@
 
 #import "xmlvm.h"
 
+@implementation XMLVMArray
+
++ (XMLVMArray*) createSingleDimensionWithType:(int) type andSize:(int) size
+{
+    XMLVMArray *retval = [[[XMLVMArray alloc] init] autorelease];
+    retval->type = type;
+    retval->length = size;
+
+    int sizeOfBaseType = 0;
+    // 'type' values are defined by vm:sizeOf in xmlvm2objc.xsl
+    switch (type) {
+    case 1: // boolean
+    case 2: // char
+    case 3: // byte
+    case 4: // short
+    case 5: // int
+       sizeOfBaseType = sizeof(int);
+       break;
+    case 6: // float
+       sizeOfBaseType = sizeof(float);
+       break;
+    case 7: // double
+       sizeOfBaseType = sizeof(double);
+       break;
+    case 8: // long
+       sizeOfBaseType = sizeof(long);
+       break;
+    default: // object reference
+       sizeOfBaseType = sizeof(id);
+       break;
+    }
+    
+    retval->array.data = malloc(sizeOfBaseType * size);
+    bzero(retval->array.data, sizeOfBaseType * size);
+
+    if (type == 0) {
+        for (int i = 0; i < size; i++) {
+            retval->array.o[i] = [NSNull null];
+        }
+    }
+
+    return retval;
+}
+
++ (XMLVMArray*) createMultiDimensionsWithType:(int) type dimensions:(XMLVMElem*) dim count:(int)count
+{
+	int dimensions = dim->i;
+	dim++;
+	count--;
+	if (count == 0) {
+		return [XMLVMArray createSingleDimensionWithType:type andSize:dimensions];
+	}
+	XMLVMArray* slice = [XMLVMArray createSingleDimensionWithType:0 andSize:dimensions];
+	for (int i = 0; i < dimensions; i++) {
+		id o = [XMLVMArray createMultiDimensionsWithType:type dimensions:dim count:count];
+		[slice replaceObjectAtIndex:i withObject:o];
+	}
+	return slice;
+}
+
+- (id) objectAtIndex:(int) idx
+{
+    id obj = self->array.o[idx];
+    return obj;
+}
+
+- (void) replaceObjectAtIndex:(int) idx withObject:(id) obj
+{
+    [obj retain];
+    [self->array.o[idx] release];
+    self->array.o[idx] = obj;
+}
+
+- (int) count
+{
+    return length;
+}
+
+- (void) dealloc
+{
+    if (self->type == 0) {
+        for (int i = 0; i < length; i++) {
+            [self->array.o[i] release];
+        }
+    }
+    free(self->array.data);
+    [super dealloc];
+}
+
+@end
+
+
+
 void ERROR(char* msg)
 {
 	NSLog([NSString stringWithUTF8String:msg]);

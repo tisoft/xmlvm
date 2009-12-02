@@ -49,5 +49,30 @@ typedef union {
     long    l;
 } XMLVMElem;
 
+typedef union {
+    id*     o;
+    int*    i;
+    float*  f;
+    double* d;
+    long*   l;
+	void*   data;
+} XMLVMElemPtr;
+
+
+@interface XMLVMArray : NSObject // TODO should be java_lang_Object
+{
+    @public XMLVMElemPtr array;
+    @public int          type;
+    @public int          length;
+}
+
++ (XMLVMArray*) createSingleDimensionWithType:(int) type andSize:(int) size;
++ (XMLVMArray*) createMultiDimensionsWithType:(int) type dimensions:(XMLVMElem*) dim count:(int)count;
+- (id) objectAtIndex:(int) idx;
+- (void) replaceObjectAtIndex:(int) idx withObject:(id) obj;
+- (int) count;
+
+@end
+
 
 void ERROR(char* msg);

@@ -688,11 +688,11 @@ public class ClassInputProcess extends InputProcess<ClassFile> {
         }
 
         private void emitNEWARRAY(Element xml_inst, NEWARRAY inst) {
-            xml_inst.setAttribute("type", inst.getType().toString());
+            xml_inst.setAttribute("base-type", inst.getType().toString().replace("[]", ""));
         }
 
         private void emitANEWARRAY(Element xml_inst, ANEWARRAY inst) {
-            xml_inst.setAttribute("type", inst.getType(cpg).toString());
+            xml_inst.setAttribute("base-type", inst.getType(cpg).toString().replace("[]", ""));
         }
 
         private void emitMULTIANEWARRAY(Element xml_inst, MULTIANEWARRAY inst) {
