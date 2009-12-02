@@ -52,8 +52,13 @@
 {
 	[image retain];
 	[self->backgroundImage release];
-	self->backgroundImage = image == [NSNull null] ? nil : image;
-	[self setBackgroundColor:nil];
+	if (image == [NSNull null]) {
+		self->backgroundImage = nil;
+	}
+	else {
+		self->backgroundImage = image;
+		[self setBackgroundColor: [UIColor clearColor]];
+	}
 }
 
 @end
