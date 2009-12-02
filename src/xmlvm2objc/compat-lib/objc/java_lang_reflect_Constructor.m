@@ -48,6 +48,7 @@
 	int i;
 	
 	NSObject* obj = (NSObject*) class_createInstance(clazz->clazz, class_getInstanceSize(clazz->clazz));
+	[obj init];
 	// Call constructor
 	SEL sel = NSSelectorFromString(mangledConstructorName);
 	NSMethodSignature * sig = [clazz->clazz instanceMethodSignatureForSelector:sel];

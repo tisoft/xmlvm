@@ -61,6 +61,7 @@
 {
 	// Instantiate object
 	NSObject* obj = (NSObject*) class_createInstance(clazz, class_getInstanceSize(clazz));
+	[obj init];
 	// Call default constructor
 	NSMutableString* mangledName = [NSMutableString stringWithCString: class_getName(clazz) encoding: NSASCIIStringEncoding];
     NSMutableString* constructor = [NSMutableString stringWithString: @"__init_"];
