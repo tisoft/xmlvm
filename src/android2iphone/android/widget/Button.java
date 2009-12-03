@@ -49,7 +49,7 @@ public class Button extends TextView {
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
-        super.setLayoutParams(l);
+        layoutParams = l;
 
         int width;
         int height;

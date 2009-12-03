@@ -41,6 +41,10 @@ public class ImageView extends View {
         // ((Activity) c).getWindow().getCGRect());
     }
 
+    public ImageView(Context c, AttributeSet attrs) {
+        super(c, attrs);
+    }
+
     public void setImageResource(int resId) {
         Drawable d = getContext().getResources().getDrawable(resId);
         setImageDrawable(d);
@@ -58,10 +62,9 @@ public class ImageView extends View {
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
-        super.setLayoutParams(l);
-        AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams) l;
-        int width = a.width;
-        int height = a.height;
+        layoutParams = l;
+        int width = l.width;
+        int height = l.height;
 
         if (width == LayoutParams.WRAP_CONTENT) {
             width = (int) getUIImageView().getImage().getSize().width;
@@ -69,7 +72,11 @@ public class ImageView extends View {
         if (height == LayoutParams.WRAP_CONTENT) {
             height = (int) getUIImageView().getImage().getSize().height;
         }
-        getUIImageView().setFrame(new CGRect(a.x, a.y, width, height));
+        
+        int x = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).x : 0;
+        int y = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).y : 0;
+
+        getUIImageView().setFrame(new CGRect(x, y, width, height));
     }
 
     @Override

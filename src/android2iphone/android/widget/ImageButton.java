@@ -30,11 +30,10 @@ import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
 
-public class ImageButton extends View {
+public class ImageButton extends ImageView {
     private static final int INSETS_X            = 10;
     private static final int INSETS_Y            = 5;
     private static final int DEFAULT_FONT_WIDTH  = 10;
@@ -53,8 +52,7 @@ public class ImageButton extends View {
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
-        super.setLayoutParams(l);
-
+        layoutParams = l;
         int width;
         int height;
 

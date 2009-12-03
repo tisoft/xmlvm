@@ -15,7 +15,7 @@ public class CheckBox extends CompoundButton {
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
-        super.setLayoutParams(l);
+        layoutParams = l;
         AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams) l;
         getUISwitch().setFrame(
                 new CGRect(a.x, a.y, UISwitch.kSwitchButtonWidth, UISwitch.kSwitchButtonHeight));

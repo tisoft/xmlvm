@@ -53,7 +53,7 @@ public class TextView extends View {
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
-        super.setLayoutParams(l);
+        layoutParams = l;
 
         // TODO Fix sizes
         int width = l.width < 0 ? 320 : l.width;
