@@ -343,7 +343,7 @@ public class View {
 
         str = attrs.getAttributeValue(null, "background");
         // Resolve drawable background
-        if (str != null && str.startsWith("@drawable/")) {
+        if (str != null) {
             int backgroundId = attrs.getAttributeResourceValue(null, "background", -1);
             if (backgroundId != -1) {
                 setBackgroundResource(backgroundId);
@@ -371,9 +371,10 @@ public class View {
 
     public void setBackgroundDrawable(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
+            backgroundDrawable = drawable;
             uiView.setBackgroundImage(((BitmapDrawable) drawable).xmlvmGetImage());
         } else {
-            Assert.NOT_IMPLEMENTED();
+            // Assert.NOT_IMPLEMENTED();
         }
     }
 
@@ -448,16 +449,20 @@ public class View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // TODO: If background is set use the background's dimension instead of
         // null
-        int backgroundWidth = 0;
-        int backgroundHeight = 0;
-
-        int widthSpec = MeasureSpec.getSize(widthMeasureSpec);
-        int heightSpec = MeasureSpec.getSize(heightMeasureSpec);
-        int width = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                .getSize(widthMeasureSpec) : Math.min(backgroundWidth, widthSpec);
-        int height = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                .getSize(heightMeasureSpec) : Math.min(backgroundHeight, heightSpec);
-        setMeasuredDimension(width, height);
+        // int backgroundWidth = 0;
+        // int backgroundHeight = 0;
+        //
+        // int widthSpec = MeasureSpec.getSize(widthMeasureSpec);
+        // int heightSpec = MeasureSpec.getSize(heightMeasureSpec);
+        // int width = MeasureSpec.getMode(widthMeasureSpec) ==
+        // MeasureSpec.EXACTLY ? MeasureSpec
+        // .getSize(widthMeasureSpec) : Math.min(backgroundWidth, widthSpec);
+        // int height = MeasureSpec.getMode(heightMeasureSpec) ==
+        // MeasureSpec.EXACTLY ? MeasureSpec
+        // .getSize(heightMeasureSpec) : Math.min(backgroundHeight, heightSpec);
+        // setMeasuredDimension(width, height);
+        setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
+                getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
     }
 
     public final void layout(int left, int top, int right, int bottom) {
@@ -482,6 +487,9 @@ public class View {
             flags |= FORCE_LAYOUT;
             if (parent != null && !parent.isLayoutRequested()) {
                 parent.requestLayout();
+            } else {
+                measure(widthMeasureSpec, heightMeasureSpec);
+                layout(getLeft(), getTop(), getMeasuredWidth(), getMeasuredHeight());
             }
         }
     }
@@ -629,6 +637,34 @@ public class View {
     }
 
     /**
+     * Utility to return a default size. Uses the supplied size if the
+     * MeasureSpec imposed no contraints. Will get larger if allowed by the
+     * MeasureSpec.
+     * 
+     * @param size
+     *            Default size for this view
+     * @param measureSpec
+     *            Constraints imposed by the parent
+     * @return The size this view should be.
+     */
+    public static int getDefaultSize(int size, int measureSpec) {
+        int result = size;
+        int specMode = MeasureSpec.getMode(measureSpec);
+        int specSize = MeasureSpec.getSize(measureSpec);
+
+        switch (specMode) {
+        case MeasureSpec.UNSPECIFIED:
+            result = size;
+            break;
+        case MeasureSpec.AT_MOST:
+        case MeasureSpec.EXACTLY:
+            result = specSize;
+            break;
+        }
+        return result;
+    }
+
+    /**
      * Assign a size and position to this view.
      * 
      * This is called from layout.
@@ -670,9 +706,9 @@ public class View {
             int newWidth = right - left;
             int newHeight = bottom - top;
 
-            // if (newWidth != oldWidth || newHeight != oldHeight) {
-            // onSizeChanged(newWidth, newHeight, oldWidth, oldHeight);
-            // }
+            if (newWidth != oldWidth || newHeight != oldHeight) {
+                onSizeChanged(newWidth, newHeight, oldWidth, oldHeight);
+            }
 
             if (visibility == VISIBLE) {
                 // If we are visible, force the DRAWN bit to on so that
@@ -690,6 +726,9 @@ public class View {
             // mBackgroundSizeChanged = true;
         }
         return changed;
+    }
+
+    protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight) {
     }
 
     /**

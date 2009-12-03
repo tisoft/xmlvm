@@ -61,8 +61,12 @@ public class Resources {
             String fileName = findResourceNameById(resourceId);
             fileName = getFileNamePath(fileName) + ".png";
             UIImage image = UIImage.imageWithContentsOfFile(fileName);
-            d = BitmapDrawable.xmlvmCreateWithImage(image);
-            drawableMap.put(new Integer(resourceId), d);
+            if (image != null) {
+                d = BitmapDrawable.xmlvmCreateWithImage(image);
+                drawableMap.put(new Integer(resourceId), d);
+            } else {
+                Log.d("Resources", "Resources.getDrawable: Must be XML");
+            }
         }
 
         return d;
@@ -102,7 +106,7 @@ public class Resources {
         String str = findResourceNameById(resourceId);
         return str == null ? null : str.substring(str.indexOf('/'));
     }
-    
+
     public String getResourcePackageName(int resourceId) {
         return ActivityManager.getApplicationPackageName();
     }
@@ -160,8 +164,8 @@ public class Resources {
         int i = filePath.lastIndexOf('/');
         String fileName = filePath.substring(i + 1);
         return fileName;
-        
-//        return RES_DIR + "/" + filePath;
+
+        // return RES_DIR + "/" + filePath;
     }
 
     /**

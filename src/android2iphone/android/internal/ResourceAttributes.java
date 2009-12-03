@@ -95,22 +95,28 @@ public class ResourceAttributes implements AttributeSet {
         }
 
         int resourceId;
-        if (value.startsWith("@+id/")) {
-            resourceId = context.getResources().getIdentifier(value.substring("@+id/".length()),
-                    "id", ActivityManager.getApplicationPackageName());
-            if (resourceId == -1) {
-                resourceId = defaultValue;
-            }
-        } else if (value.startsWith("@drawable/")) {
-            resourceId = context.getResources().getIdentifier(
-                    value.substring("@drawable/".length()), "drawable",
+        if (value.startsWith("@")) {
+            String type = getResourceType(value);
+            String name = getResourceName(value);
+            resourceId = context.getResources().getIdentifier(name, type,
                     ActivityManager.getApplicationPackageName());
-            if (resourceId == -1) {
-                resourceId = defaultValue;
-            }
         } else {
             resourceId = Integer.parseInt(value);
         }
+
+        /*
+         * int resourceId; if (value.startsWith("@+id/")) { resourceId =
+         * context.
+         * getResources().getIdentifier(value.substring("@+id/".length()), "id",
+         * ActivityManager.getApplicationPackageName()); if (resourceId == -1) {
+         * resourceId = defaultValue; } } else if
+         * (value.startsWith("@drawable/")) { resourceId =
+         * context.getResources().getIdentifier(
+         * value.substring("@drawable/".length()), "drawable",
+         * ActivityManager.getApplicationPackageName()); if (resourceId == -1) {
+         * resourceId = defaultValue; } } else { resourceId =
+         * Integer.parseInt(value); }
+         */
 
         return resourceId;
     }
@@ -123,5 +129,21 @@ public class ResourceAttributes implements AttributeSet {
     @Override
     public int getIdAttributeResourceValue(int defaultValue) {
         return getAttributeResourceValue(null, "id", defaultValue);
+    }
+
+    private String getResourceType(String resourceName) {
+        int s = 0;
+        if (resourceName.startsWith("@+")) {
+            s = 2;
+        } else if (resourceName.startsWith("@")) {
+            s = 1;
+        }
+
+        int e = resourceName.indexOf('/');
+        return resourceName.substring(s, e);
+    }
+
+    private String getResourceName(String resourceName) {
+        return resourceName.substring(resourceName.indexOf('/') + 1);
     }
 }

@@ -138,10 +138,10 @@ public class ViewGroup extends View implements ViewParent {
 
     public ViewGroup(Context c, AttributeSet attrs) {
         this(c);
-        
+
         setIgnoreRequestLayout(true);
         parseAttributes(attrs);
-        setIgnoreRequestLayout(false);        
+        setIgnoreRequestLayout(false);
     }
 
     public void addView(View child) {
@@ -258,14 +258,6 @@ public class ViewGroup extends View implements ViewParent {
 
     public void setXmlvmViewMap(Map<Integer, View> xmlvmViewMap) {
         this.xmlvmViewMap = xmlvmViewMap;
-    }
-
-    public void requestLayout() {
-        if (!getIgnoreRequestLayout()) {
-            super.requestLayout();
-            measure(widthMeasureSpec, heightMeasureSpec);
-            layout(getLeft(), getTop(), getMeasuredWidth(), getMeasuredHeight());
-        }
     }
 
     /**
