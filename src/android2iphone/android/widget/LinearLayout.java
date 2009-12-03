@@ -47,7 +47,7 @@ public class LinearLayout extends ViewGroup {
      * Whether the children of this layout are baseline aligned. Only applicable
      * if {@link #mOrientation} is horizontal.
      */
-    private boolean          mBaselineAligned           = true;
+    private boolean          mBaselineAligned;
 
     /**
      * If this layout is part of another layout that is baseline aligned, use
@@ -56,7 +56,7 @@ public class LinearLayout extends ViewGroup {
      * Note: this is orthogonal to {@link #mBaselineAligned}, which is concerned
      * with whether the children of this layout are baseline aligned.
      */
-    private int              mBaselineAlignedChildIndex = 0;
+    private int              mBaselineAlignedChildIndex;
 
     /**
      * The additional offset to the child's baseline. We'll calculate the
@@ -1280,7 +1280,7 @@ public class LinearLayout extends ViewGroup {
         public LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
 
-            gravity = Gravity.parseGravity(attrs.getAttributeValue(null, "layout_gravity"), 0);
+            gravity = Gravity.parseGravity(attrs.getAttributeValue(null, "layout_gravity"), -1);
             weight = attrs.getAttributeFloatValue(null, "layout_weight", 0);
         }
 
