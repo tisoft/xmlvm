@@ -131,20 +131,24 @@ public class Window {
         int heightMeasureSpec;
         LayoutParams lp = contentView.getLayoutParams();
 
-        if (lp == null || lp.width == LayoutParams.WRAP_CONTENT) {
+        if (lp == null || lp.width == LayoutParams.FILL_PARENT) {
+            widthMeasureSpec = MeasureSpec.makeMeasureSpec((int) rect.size.width,
+                    MeasureSpec.EXACTLY);
+        } else if (lp.width == LayoutParams.WRAP_CONTENT) {
             widthMeasureSpec = MeasureSpec.makeMeasureSpec((int) rect.size.width,
                     MeasureSpec.AT_MOST);
         } else {
-            widthMeasureSpec = MeasureSpec.makeMeasureSpec((int) rect.size.width,
-                    MeasureSpec.EXACTLY);
+            widthMeasureSpec = MeasureSpec.makeMeasureSpec(lp.width, MeasureSpec.EXACTLY);
         }
 
-        if (lp == null || lp.height == LayoutParams.WRAP_CONTENT) {
+        if (lp == null || lp.height == LayoutParams.FILL_PARENT) {
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec((int) rect.size.height,
+                    MeasureSpec.EXACTLY);
+        } else if (lp.height == LayoutParams.WRAP_CONTENT) {
             heightMeasureSpec = MeasureSpec.makeMeasureSpec((int) rect.size.height,
                     MeasureSpec.AT_MOST);
         } else {
-            heightMeasureSpec = MeasureSpec.makeMeasureSpec((int) rect.size.height,
-                    MeasureSpec.EXACTLY);
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec(lp.height, MeasureSpec.EXACTLY);
         }
 
         contentView.measure(widthMeasureSpec, heightMeasureSpec);
