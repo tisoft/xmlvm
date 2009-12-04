@@ -67,12 +67,14 @@ public class ImageView extends View {
         int height = l.height;
 
         if (width == LayoutParams.WRAP_CONTENT) {
-            width = (int) getUIImageView().getImage().getSize().width;
+            width = getUIImageView().getImage() != null ? (int) getUIImageView().getImage()
+                    .getSize().width : 0;
         }
         if (height == LayoutParams.WRAP_CONTENT) {
-            height = (int) getUIImageView().getImage().getSize().height;
+            height = getUIImageView().getImage() != null ? (int) getUIImageView().getImage()
+                    .getSize().height : 0;
         }
-        
+
         int x = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).x : 0;
         int y = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).y : 0;
 
@@ -84,7 +86,7 @@ public class ImageView extends View {
         return new UIImageView(new CGRect(0, 0, 0, 0));
     }
 
-    private UIImageView getUIImageView() {
+    protected UIImageView getUIImageView() {
         return (UIImageView) xmlvmGetUIView();
     }
 }

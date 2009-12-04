@@ -20,26 +20,14 @@
 
 package android.widget;
 
-import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIButton;
-import org.xmlvm.iphone.UIButtonType;
-import org.xmlvm.iphone.UIControlDelegate;
-import org.xmlvm.iphone.UIControlEvent;
-import org.xmlvm.iphone.UIControlState;
-import org.xmlvm.iphone.UIView;
+import org.xmlvm.iphone.CGSize;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.ViewGroup;
-import android.widget.AbsoluteLayout.LayoutParams;
+import android.view.MotionEvent;
+import android.view.View;
 
 public class ImageButton extends ImageView {
-    private static final int INSETS_X            = 10;
-    private static final int INSETS_Y            = 5;
-    private static final int DEFAULT_FONT_WIDTH  = 10;
-    private static final int DEFAULT_FONT_HEIGHT = 18;
-
-    private String           title;
 
     public ImageButton(Context c) {
         super(c);
@@ -47,70 +35,28 @@ public class ImageButton extends ImageView {
 
     public ImageButton(Context c, AttributeSet attrs) {
         super(c, attrs);
-        title = Integer.toString(getId());
-        getUIButton().setTitle(title, UIControlState.Normal);
-    }
-
-    public void setLayoutParams(ViewGroup.LayoutParams l) {
-        layoutParams = l;
-        int width;
-        int height;
-
-        width = l.width == LayoutParams.WRAP_CONTENT ?
-        // TODO just a rough approximation: 18px per character
-        width = title.length() * DEFAULT_FONT_WIDTH + 2 * INSETS_X
-                : l.width;
-        height = l.height == LayoutParams.WRAP_CONTENT ? height = DEFAULT_FONT_HEIGHT + 2
-                * INSETS_Y : l.height;
-
-        int x = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).x : 0;
-        int y = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).y : 0;
-
-        getUIButton().setFrame(new CGRect(x, y, width, height));
-    }
-
-    public void setText(String title) {
-        this.title = title;
-        getUIButton().setTitle(title, UIControlState.Normal);
-        requestLayout();
     }
 
     public void setOnClickListener(OnClickListener listener) {
         final OnClickListener theListener = listener;
-        getUIButton().addTarget(new UIControlDelegate() {
+        this.setOnTouchListener(new OnTouchListener() {
 
             @Override
-            public void raiseEvent(UIControlDelegate sender, int eventType) {
-                theListener.onClick(ImageButton.this);
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    theListener.onClick(ImageButton.this);
+                    return true;
+                }
+                return false;
             }
 
-        }, UIControlEvent.TouchUpInside);
-    }
-
-    @Override
-    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        return UIButton.buttonWithType(UIButtonType.RoundedRect);
-    }
-
-    private UIButton getUIButton() {
-        return (UIButton) xmlvmGetUIView();
-    }
-
-    protected void parseAttributes(AttributeSet attrs) {
-        super.parseAttributes(attrs);
-
-        String value = attrs.getAttributeValue(null, "text");
-        setText(value != null ? value : "");
+        });
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // TODO: Replace with a more elaborated measurement
-        int width = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                .getSize(widthMeasureSpec) : 2 * INSETS_X + title.length() * DEFAULT_FONT_WIDTH;
-        int height = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                .getSize(heightMeasureSpec) : 2 * INSETS_Y + DEFAULT_FONT_HEIGHT;
-        setMeasuredDimension(width, height);
+        CGSize size = getUIImageView().getBackgroundImage().getSize();
+        setMeasuredDimension((int) size.width, (int) size.height);
     }
 
 }
