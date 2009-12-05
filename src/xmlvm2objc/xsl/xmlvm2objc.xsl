@@ -375,6 +375,14 @@ int main(int argc, char* argv[])
 
 </xsl:text>
           </xsl:when>
+          <xsl:when test="@isNative = 'true'">
+            <xsl:text>{
+    NSException* ex = [[NSException alloc] initWithName:@"Native method not implemented" reason:nil userInfo:nil];
+    @throw ex;
+}
+
+</xsl:text>
+          </xsl:when>
           <xsl:otherwise>
             <xsl:apply-templates/>
           </xsl:otherwise>
