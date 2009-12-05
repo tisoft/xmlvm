@@ -34,6 +34,7 @@ import org.xmlvm.iphone.UIView;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.internal.Assert;
@@ -376,6 +377,20 @@ public class View {
             uiView.setBackgroundImage(((BitmapDrawable) drawable).xmlvmGetImage());
         } else {
             // Assert.NOT_IMPLEMENTED();
+        }
+    }
+
+    public void setBackgroundColor(int color) {
+        switch (color) {
+        case Color.BLUE:
+            uiView.setBackgroundColor(UIColor.blueColor);
+            break;
+        case Color.YELLOW:
+            uiView.setBackgroundColor(UIColor.yellowColor);
+            break;
+        default:
+            Assert.NOT_IMPLEMENTED();
+            break;
         }
     }
 
