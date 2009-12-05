@@ -23,7 +23,7 @@
 
 // java.util.List
 //----------------------------------------------------------------------------
-@implementation NSArray (cat_java_util_List)
+@implementation NSMutableArray (cat_java_util_List)
 
 - (java_util_Iterator*) iterator__
 {

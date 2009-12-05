@@ -268,6 +268,7 @@ public class View {
         };
 
         uiView.setDelegate(responderDelegate);
+        uiView.setUserInteractionEnabled(true);
     }
 
     public ViewGroup.LayoutParams getLayoutParams() {

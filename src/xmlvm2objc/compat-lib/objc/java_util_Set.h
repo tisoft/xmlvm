@@ -19,14 +19,17 @@
  */
 
 #import "xmlvm.h"
+#import "java_lang_Object.h"
 #import "java_util_Iterator.h"
 
 
 // java.util.Set
 //----------------------------------------------------------------------------
-typedef NSSet java_util_Set;
-@interface NSSet (cat_java_util_Set)
+typedef NSMutableSet java_util_Set;
+@interface NSMutableSet (cat_java_util_Set)
 
 - (java_util_Iterator*) iterator__;
+- (void) clear__;
+- (BOOL) add___java_lang_Object: (java_lang_Object*) obj;
 
 @end

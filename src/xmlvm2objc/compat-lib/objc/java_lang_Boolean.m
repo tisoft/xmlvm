@@ -47,6 +47,11 @@
 	value = i;
 }
 
++ (BOOL) parseBoolean___java_lang_String:(java_lang_String*) str
+{
+	return str != [NSNull null] && [str caseInsensitiveCompare:@"true"] == 0;
+}
+
 - (BOOL)isEqual:(id)anObject
 {
 	return [anObject isKindOfClass: [java_lang_Boolean class]] && ((java_lang_Boolean*) anObject)-> value == value;

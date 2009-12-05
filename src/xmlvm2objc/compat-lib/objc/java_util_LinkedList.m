@@ -23,17 +23,19 @@
 
 // java.util.LinkedList
 //----------------------------------------------------------------------------
-@implementation java_util_LinkedList
+@implementation NSMutableArray (cat_java_util_LinkedList)
 
 - (void) __init_java_util_LinkedList__
 {
-	// Implement this
 }
 
 - (java_lang_Object*) removeFirst__
 {
-	// TODO Implement this
+	java_lang_Object* o = [self objectAtIndex:0];
+	[o retain];
+	// TODO should throw exception if list is empty
+	[self removeObjectAtIndex:0];
+	return o;
 }
-
 
 @end

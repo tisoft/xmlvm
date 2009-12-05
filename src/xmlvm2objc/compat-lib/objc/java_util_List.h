@@ -25,8 +25,8 @@
 
 // java.util.List
 //----------------------------------------------------------------------------
-typedef NSArray java_util_List;
-@interface NSArray (cat_java_util_List)
+typedef NSMutableArray java_util_List;
+@interface NSMutableArray (cat_java_util_List)
 
 - (java_util_Iterator*) iterator__;
 - (int) size__;

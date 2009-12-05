@@ -23,11 +23,23 @@
 
 // java.util.Set
 //----------------------------------------------------------------------------
-@implementation NSSet (cat_java_util_Set)
+@implementation NSMutableSet (cat_java_util_Set)
 
 - (java_util_Iterator*) iterator__
 {
 	return [[java_util_Iterator alloc] init: [self objectEnumerator]];
+}
+
+- (void) clear__
+{
+	[self removeAllObjects];
+}
+
+- (BOOL) add___java_lang_Object: (java_lang_Object*) obj
+{
+	BOOL hasObj = [self containsObject:obj];
+	[self addObject:obj];
+	return hasObj;
 }
 
 @end

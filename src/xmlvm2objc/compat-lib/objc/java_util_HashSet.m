@@ -23,6 +23,10 @@
 
 // java.util.HashSet
 //----------------------------------------------------------------------------
-@implementation java_util_HashSet
+@implementation NSMutableSet (cat_java_util_HashSet)
+
+- (void) __init_java_util_HashSet__
+{
+}
 
 @end

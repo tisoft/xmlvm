@@ -35,7 +35,7 @@ import org.xmlvm.iphone.UITouch;
  * widget. It is needed because Cocoa does not offer any equivalent widgets.
  * 
  */
-public class UIToggleButton extends UILabel implements UIResponderDelegate {
+public class UIToggleButton extends UILabel {
 
     private String  textOn   = "ON";
     private String  textOff  = "OFF";

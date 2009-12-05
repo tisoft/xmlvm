@@ -20,12 +20,12 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
-#import "java_util_Iterator.h"
 
 
 // java.util.LinkedList
 //----------------------------------------------------------------------------
-@interface java_util_LinkedList
+typedef NSMutableArray java_util_LinkedList;
+@interface NSMutableArray (cat_java_util_LinkedList)
 
 - (void) __init_java_util_LinkedList__;
 - (java_lang_Object*) removeFirst__;

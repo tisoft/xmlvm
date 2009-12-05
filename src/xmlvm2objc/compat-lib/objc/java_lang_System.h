@@ -29,5 +29,11 @@
 + (void) _PUT_out: (java_io_PrintStream*) v;
 + (long) currentTimeMillis__;
 + (java_lang_String *) setProperty___java_lang_String_java_lang_String: (java_lang_String *) s1: (java_lang_String *) s2;
++ (void) arraycopy___java_lang_Object_int_java_lang_Object_int_int
+               :(java_lang_Object*) src
+               :(int) srcPos
+               :(java_lang_Object*) dest
+               :(int) destPos
+               :(int) length;
 
 @end

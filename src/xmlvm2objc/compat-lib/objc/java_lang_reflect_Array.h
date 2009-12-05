@@ -25,6 +25,6 @@
 
 // java.lang.reflect.Array
 //----------------------------------------------------------------------------
-@interface java_lang_reflect_Array
+@interface java_lang_reflect_Array : java_lang_Object
 
 @end

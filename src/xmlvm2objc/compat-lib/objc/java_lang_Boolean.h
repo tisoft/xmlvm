@@ -34,6 +34,7 @@ int value;
 - (NSUInteger) hash;
 - (void) __init_java_lang_Boolean___int :(int) i;
 - (void) __init_java_lang_Boolean___boolean :(BOOL) b;
++ (BOOL) parseBoolean___java_lang_String:(java_lang_String*) str;
 - (BOOL)isEqual:(id)anObject;
 - (int) booleanValue__;
 
