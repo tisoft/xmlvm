@@ -124,7 +124,7 @@ public class XmlvmProcessor {
      */
     public boolean writeOutputFiles() {
         OutputFileWriter writer = new OutputFileWriter(targetProcess.getOutputFiles());
-        return writer.write();
+        return writer.writeFiles();
     }
 
     /**
