@@ -60,6 +60,11 @@ public class Window {
             contentView.xmlvmSetParent(null);
         }
         contentView = view;
+        if (contentView.getLayoutParams() == null) {
+            contentView.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT,
+                    LayoutParams.FILL_PARENT));
+        }
+
         adjustFrameSize();
         CGRect viewRect = new CGRect(rect);
         viewRect.origin.x = viewRect.origin.y = 0;
@@ -151,8 +156,8 @@ public class Window {
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(lp.height, MeasureSpec.EXACTLY);
         }
 
-        contentView.measure(widthMeasureSpec, heightMeasureSpec);
-        contentView.layout(0, 0, contentView.getMeasuredWidth(), contentView.getMeasuredHeight());
+        contentView.xmlvmSetMeasureSpec(widthMeasureSpec, heightMeasureSpec);
+        contentView.requestLayout();
     }
 
     /**
