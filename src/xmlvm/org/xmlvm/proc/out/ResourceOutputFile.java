@@ -27,7 +27,6 @@ public class ResourceOutputFile extends OutputFile {
      *            Filename to copy
      */
     public ResourceOutputFile(String from, String to, String fname) {
-        super(null);
         setFileName(fname);
         setLocation(to);
         this.sourcePath = from;

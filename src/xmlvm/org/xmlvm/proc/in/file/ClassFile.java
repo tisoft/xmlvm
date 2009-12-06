@@ -21,7 +21,7 @@
 package org.xmlvm.proc.in.file;
 
 public class ClassFile extends XFile {
-    private static final String CLASS_ENDING = ".class";
+    public static final String CLASS_ENDING = ".class";
 
     public ClassFile(String input) {
         super(input);

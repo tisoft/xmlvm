@@ -34,7 +34,6 @@ public class DirectoryCopyOutput extends OutputFile {
     private String sourceDirectory;
 
     public DirectoryCopyOutput(String sourceDirectory, String location) {
-        super(null);
         this.sourceDirectory = sourceDirectory;
         this.setLocation(location);
     }

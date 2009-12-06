@@ -36,133 +36,151 @@ import org.xmlvm.util.FileUtil;
  */
 public class OutputFile {
 
-	private byte[] data;
-	private String location = "";
-	private String fileName = "";
+    private byte[] data;
+    private String location = "";
+    private String fileName = "";
 
-	/**
-	 * Create a new file with the given string content.
-	 */
-	public OutputFile(String data) {
-		setData(data);
-	}
+    /**
+     * Creates an empty OutputFile instance.
+     */
+    public OutputFile() {
+    }
 
-	/**
-	 * Returns the contents of this file.
-	 */
-	public String getData() {
-		String res = null;
-		try {
-			res = new String(data, "UTF-8");
-		} catch (UnsupportedEncodingException ex) {
-			Log.error(ex.getMessage());
-		}
-		return res;
-	}
+    /**
+     * Create a new file with the given string content.
+     */
+    public OutputFile(String data) {
+        setData(data);
+    }
 
-	/**
-	 * Returns the data as a byte array.
-	 */
-	public byte[] getDataAsBytes() {
-		return data;
-	}
+    /**
+     * Create a new file with the given string content.
+     */
+    public OutputFile(byte[] data) {
+        setData(data);
+    }
 
-	/**
-	 * Sets the content of this file.
-	 */
-	public void setData(String data) {
-		if (data == null)
-			this.data = null;
-		else
-			try {
-				this.data = data.getBytes("UTF-8");
-			} catch (UnsupportedEncodingException ex) {
-				Log.error(ex.getMessage());
-			}
-	}
+    /**
+     * Returns the contents of this file.
+     */
+    public String getData() {
+        String res = null;
+        try {
+            res = new String(data, "UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            Log.error(ex.getMessage());
+        }
+        return res;
+    }
 
-	/**
-	 * Sets the content of this file from an Input stream
-	 * 
-	 * @param stream
-	 *            The InputStream to use - only UTF-8 streams are supported
-	 * @return true, if everything was succesfull
-	 */
-	public boolean setDataFromStream(InputStream stream) {
-		if (stream == null)
-			return false;
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		if (FileUtil.copyStreams(stream, out)) {
-			data = out.toByteArray();
-			return true;
-		}
-		return false;
-	}
+    /**
+     * Returns the data as a byte array.
+     */
+    public byte[] getDataAsBytes() {
+        return data;
+    }
 
-	/**
-	 * Sets the content of this file from a BufferReader
-	 * 
-	 * @param in
-	 *            The BufferReader to use as input
-	 * @return true, if everything was succesfull
-	 */
-	public boolean setDataFromReader(BufferedReader in) {
-		if (in == null)
-			return false;
-		StringWriter out = new StringWriter();
-		if (FileUtil.copyReaders(in, out)) {
-			setData(out.toString());
-		}
-		return false;
-	}
+    /**
+     * Sets the content of this file.
+     */
+    public void setData(String data) {
+        if (data == null)
+            this.data = null;
+        else
+            try {
+                this.data = data.getBytes("UTF-8");
+            } catch (UnsupportedEncodingException ex) {
+                Log.error(ex.getMessage());
+            }
+    }
 
-	/**
-	 * Returns the output location of this file.
-	 */
-	public String getLocation() {
-		return location;
-	}
+    /**
+     * Sets the content of this file.
+     */
+    public void setData(byte[] data) {
+        this.data = data;
+    }
 
-	/**
-	 * Sets the output location of this file.
-	 */
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    /**
+     * Sets the content of this file from an Input stream
+     * 
+     * @param stream
+     *            The InputStream to use - only UTF-8 streams are supported
+     * @return true, if everything was succesfull
+     */
+    public boolean setDataFromStream(InputStream stream) {
+        if (stream == null)
+            return false;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        if (FileUtil.copyStreams(stream, out)) {
+            data = out.toByteArray();
+            return true;
+        }
+        return false;
+    }
 
-	/**
-	 * Returns the name of this file (excluding the path).
-	 */
-	public String getFileName() {
-		return fileName;
-	}
+    /**
+     * Sets the content of this file from a BufferReader
+     * 
+     * @param in
+     *            The BufferReader to use as input
+     * @return true, if everything was succesfull
+     */
+    public boolean setDataFromReader(BufferedReader in) {
+        if (in == null)
+            return false;
+        StringWriter out = new StringWriter();
+        if (FileUtil.copyReaders(in, out)) {
+            setData(out.toString());
+        }
+        return false;
+    }
 
-	/**
-	 * Sets the name of this file (excluding the path).
-	 */
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
+    /**
+     * Returns the output location of this file.
+     */
+    public String getLocation() {
+        return location;
+    }
 
-	/**
-	 * Get a list of the files affected by this OutputFile class. Only one file
-	 * (the output file) is affected
-	 * 
-	 * @return Array of affected files.
-	 */
-	public File[] getAffectedSourceFiles() {
-		File[] res = { new File(location, fileName) };
-		return res;
-	}
+    /**
+     * Sets the output location of this file.
+     */
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	/**
-	 * Get the fill pathname of the output file
-	 * 
-	 * @return The full pathname as String
-	 */
-	public String getFullPath() {
-		return location
-				+ (location.endsWith(File.separator) ? "" : File.separator)
-				+ fileName;
-	}
+    /**
+     * Returns the name of this file (excluding the path).
+     */
+    public String getFileName() {
+        return fileName;
+    }
+
+    /**
+     * Sets the name of this file (excluding the path).
+     */
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    /**
+     * Get a list of the files affected by this OutputFile class. Only one file
+     * (the output file) is affected
+     * 
+     * @return Array of affected files.
+     */
+    public File[] getAffectedSourceFiles() {
+        File[] res = { new File(location, fileName) };
+        return res;
+    }
+
+    /**
+     * Get the fill pathname of the output file
+     * 
+     * @return The full pathname as String
+     */
+    public String getFullPath() {
+        return location + (location.endsWith(File.separator) ? "" : File.separator) + fileName;
+    }
 }

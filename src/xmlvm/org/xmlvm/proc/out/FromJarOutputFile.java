@@ -31,10 +31,6 @@ public class FromJarOutputFile extends OutputFile {
 
     private String sourcePath;
 
-    public FromJarOutputFile() {
-        super(null);
-    }
-
     /**
      * Sets the path from where {@link JarUtil} should copy the file.
      */
