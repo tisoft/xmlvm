@@ -253,8 +253,6 @@ public class LinearLayout extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        
         if (mOrientation == VERTICAL) {
             measureVertical(widthMeasureSpec, heightMeasureSpec);
         } else {
