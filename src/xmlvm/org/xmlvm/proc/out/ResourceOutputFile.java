@@ -85,7 +85,8 @@ public class ResourceOutputFile extends OutputFile {
      * 
      * @return true, if no errors exist
      */
-    public boolean performAction() {
+    @Override
+    public boolean write() {
         return FileUtil.copyFile(new File(getSourcePath(), getFileName()), new File(getLocation(),
                 getFileName()));
     }

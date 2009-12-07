@@ -1,5 +1,21 @@
 /*
- * Created on Nov 26, 2005 by Arno
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ * 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
+ * Ave, Cambridge, MA 02139, USA.
+ * 
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
 package org.xmlvm.dep;
@@ -11,6 +27,13 @@ import java.util.Set;
 import org.jdom.Document;
 import org.jdom.Element;
 
+/**
+ * Generates a list of imports for a given XMLVM document and adds it to the
+ * document. This can be used to analyze upfront which imports are required for
+ * a given XMLVM document.
+ * <p>
+ * TODO: Do we want to keep this? If so, integrate into new process.
+ */
 public class Import {
 
     private String      omitRef;
@@ -25,9 +48,9 @@ public class Import {
         omitRef = pack + "." + name;
         String base = class_.getAttributeValue("extends");
         addType(base);
-        Iterator it = class_.getChildren().iterator();
+        Iterator<Element> it = class_.getChildren().iterator();
         while (it.hasNext()) {
-            Element elem = (Element) it.next();
+            Element elem = it.next();
             String tag = elem.getName();
             if (tag.equals("field"))
                 visitField(elem);
@@ -76,9 +99,9 @@ public class Import {
     }
 
     private void visitSignature(Element sig) {
-        Iterator it = sig.getChildren().iterator();
+        Iterator<Element> it = sig.getChildren().iterator();
         while (it.hasNext()) {
-            Element param = (Element) it.next();
+            Element param = it.next();
             String type = param.getAttributeValue("type");
             addType(type);
         }
@@ -87,9 +110,9 @@ public class Import {
     private void visitCode(Element code) {
         if (code == null)
             return;
-        Iterator it = code.getDescendants();
+        Iterator<Element> it = code.getDescendants();
         while (it.hasNext()) {
-            Element inst = (Element) it.next();
+            Element inst = it.next();
             String type = inst.getAttributeValue("type");
             if (type != null)
                 addType(type);

@@ -23,13 +23,10 @@ package org.xmlvm;
 /**
  * This class parses the arguments for the XmlvmBuilder given in a string array
  * and makes them easily accessible for the application to use.
- * 
- * TODO(shaeberling): Look at other open source argument parsing libraries to
- * replace this.
- * 
- * @author Sascha Haeberling
- * 
+ * <p>
+ * NOTE: This class will go away soon as well as {@link XmlvmBuilder} itself.
  */
+@Deprecated
 public class XmlvmBuilderArguments {
     // The arguments that are given by the user on the command line.
     public static final String ARG_JSBUILD               = "--jsbuild";

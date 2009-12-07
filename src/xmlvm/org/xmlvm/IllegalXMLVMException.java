@@ -21,8 +21,9 @@
 package org.xmlvm;
 
 public class IllegalXMLVMException extends Exception {
+    private static final long serialVersionUID = 1L;
 
-    private String reason;
+    private String            reason;
 
     public IllegalXMLVMException(String reason) {
         this.reason = reason;

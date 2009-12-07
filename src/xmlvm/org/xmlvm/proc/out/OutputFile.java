@@ -23,6 +23,8 @@ package org.xmlvm.proc.out;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
@@ -64,6 +66,9 @@ public class OutputFile {
      * Returns the contents of this file.
      */
     public String getData() {
+        if (data == null) {
+            return null;
+        }
         String res = null;
         try {
             res = new String(data, "UTF-8");
@@ -182,5 +187,33 @@ public class OutputFile {
      */
     public String getFullPath() {
         return location + (location.endsWith(File.separator) ? "" : File.separator) + fileName;
+    }
+
+    /**
+     * Write the given file to disk.
+     * 
+     * @return whether file was written successfully
+     */
+    public boolean write() {
+        if (getData() == null) {
+            Log.warn("Ignoring empty file: " + getFullPath());
+            return true;
+        }
+        FileOutputStream out = null;
+        try {
+            String pathAndName = getFullPath();
+            out = new FileOutputStream(pathAndName);
+            out.write(getDataAsBytes());
+            out.close();
+            return true;
+        } catch (IOException e) {
+            Log.error("Could not write file.\n" + e.getMessage());
+            if (out != null)
+                try {
+                    out.close();
+                } catch (IOException ex) {
+                }
+        }
+        return false;
     }
 }

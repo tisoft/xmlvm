@@ -58,7 +58,7 @@ public class Arguments {
     private String                option_app_name = null;
     private String                option_qx_main  = null;
     private boolean               option_qx_debug = false;
-    private Log.Level             option_debug    = Log.Level.ERROR;
+    private Log.Level             option_debug    = Log.Level.WARNING;
     private String                option_skeleton = null;
     private static final String[] shortUsage      = { "Usage: ", "xmlvm --in=<path> [--out=<dir>]",
             "      --target=[xmlvm|jvm|clr|dfa|class|exe|dex|js|cpp|python|objc|iphone|qooxdoo]",

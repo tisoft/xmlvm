@@ -78,7 +78,8 @@ public class DirectoryCopyOutput extends OutputFile {
      * 
      * @return true, if no errors exist
      */
-    public boolean performAction() {
+    @Override
+    public boolean write() {
         return FileUtil.copyFiles(getAffectedSourceFiles(), getLocation());
     }
 }

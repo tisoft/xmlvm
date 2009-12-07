@@ -58,16 +58,17 @@ import org.jdom.output.XMLOutputter;
 import org.jdom.transform.JDOMResult;
 import org.jdom.transform.JDOMSource;
 import org.xmlvm.dep.Import;
-import org.xmlvm.dep.Recursion;
 import org.xmlvm.util.FileSet;
 import org.xmlvm.util.JarUtil;
 
 import edu.arizona.cs.mbel.mbel.ClassParser;
 import edu.arizona.cs.mbel.mbel.Module;
 
+/**
+ * Use NewMain instead. We just keep this class around until we have everything
+ * migrated. This class will be gone VERY soon.
+ */
 @Deprecated
-// Use NewMain instead. We just keep this class around until we have everything
-// migrated.
 public class Main {
     private JavaClass jvm_class;
     private Module    cil_class;
@@ -193,12 +194,6 @@ public class Main {
             System.exit(-1);
         }
         return out;
-    }
-
-    public Document genXMLVM() {
-        if (jvm_class != null)
-            return new ParseJVM(jvm_class).genXMLVM();
-        return new ParseCIL(cil_class).genXMLVM();
     }
 
     /**
@@ -673,8 +668,7 @@ public class Main {
             // file for working with the XMLVM byte code in memory
             // if (!inputFileName.endsWith(".xmlvm")) {
             if (!main._isXMLVM) {
-
-                doc = main.genXMLVM();
+                printDeprecationErrorAndExit();
             } else {
                 SAXBuilder builder = new SAXBuilder();
                 try {
@@ -689,8 +683,7 @@ public class Main {
                 imp.genImport(doc);
             }
             if (args.option_recursive()) {
-                Recursion rec = new Recursion();
-                rec.startRecursion(doc);
+                printDeprecationErrorAndExit();
             }
             OutputStream out = null;
             if (!(args.option_java() || args.option_objc() || args.option_js())) {

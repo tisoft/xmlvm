@@ -68,7 +68,8 @@ public class FromJarOutputFile extends OutputFile {
      * 
      * @return true, if no errors exist
      */
-    public boolean performAction() {
+    @Override
+    public boolean write() {
         return JarUtil.copy(sourcePath, getFullPath());
     }
 }

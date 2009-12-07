@@ -20,8 +20,6 @@
 package org.xmlvm.proc.out;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 import org.xmlvm.Log;
@@ -40,47 +38,24 @@ public class OutputFileWriter {
     /**
      * Writes the files given in the constructor to the file system.
      * 
-     * @return Whether the write process was successful.
+     * @return whether all files were written successfully
      */
     public boolean writeFiles() {
         for (OutputFile outputFile : outputFiles) {
             if (!createOutputDirectory(outputFile))
                 Log.error("Could not create directory for file: " + outputFile.getFileName());
-            if (!writeFile(outputFile))
+            if (!outputFile.write()) {
                 return false;
+            }
         }
         return true;
-    }
-
-    /**
-     * Perform the actual action of this OutputFile (i.e. write file to disk)
-     * 
-     * @return true, if no errors exist
-     */
-    public boolean writeFile(OutputFile file) {
-        FileOutputStream out = null;
-        try {
-            String pathAndName = file.getFullPath();
-            out = new FileOutputStream(pathAndName);
-            out.write(file.getDataAsBytes());
-            out.close();
-            return true;
-        } catch (IOException e) {
-            Log.error("Could not write file.\n" + e.getMessage());
-            if (out != null)
-                try {
-                    out.close();
-                } catch (IOException ex) {
-                }
-        }
-        return false;
     }
 
     /**
      * Make sure that the directory, this file is written to, exists or is
      * created.
      * 
-     * @return Whether the directory exists or could be created.
+     * @return whether the directory exists or could be created
      */
     private boolean createOutputDirectory(OutputFile outputFile) {
         File location = new File(outputFile.getLocation());

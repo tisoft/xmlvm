@@ -31,7 +31,7 @@ public class Log {
 
     private static final String     DATE_FORMAT = "MM/dd/yy HH:mm:ss.SSS";
     private static final DateFormat dateFormat  = new SimpleDateFormat(DATE_FORMAT);
-    private static Level            level       = Level.ERROR;
+    private static Level            level       = Level.ALL;
 
     /**
      * Display log message, if it is in the correct log level
@@ -81,9 +81,9 @@ public class Log {
         return dateFormat.format(new Date());
     }
 
-    public static void setLevel(Level l) {
-        if (l != null)
-            level = l;
+    public static void setLevel(Level newLevel) {
+        if (newLevel != null)
+            level = newLevel;
     }
 
     public enum Level {
