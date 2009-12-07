@@ -48,6 +48,7 @@
 
 	</target>
 	<path id="classpath.compile">
+		<pathelement location="lib/dx.jar" />
 		<pathelement location="lib/bcel.jar" />
 		<pathelement location="lib/jdom.jar" />
 		<pathelement location="lib/mbel.jar" />
