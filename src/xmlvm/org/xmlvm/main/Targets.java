@@ -5,7 +5,7 @@ package org.xmlvm.main;
  */
 public enum Targets {
 
-    NONE, XMLVM, JVM, CLR, DFA, CLASS, EXE, JS, CPP, PYTHON, OBJC, QOOXDOO, IPHONE, IPHONEANDROID, IPHONETEMPLATE, PREANDROID;
+    NONE, XMLVM, JVM, CLR, DFA, CLASS, EXE, DEX, JS, CPP, PYTHON, OBJC, QOOXDOO, IPHONE, IPHONEANDROID, IPHONETEMPLATE, PREANDROID;
 
     public static Targets getTarget(String target) {
         if (target.equals("android-on-iphone"))

@@ -140,9 +140,11 @@ public class JavaByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
                 outputFiles.addAll(createBytecode(process.getXmlvm().getXmlvmDocument(), arguments
                         .option_out()));
             } catch (IOException ex) {
+                ex.printStackTrace();
                 Log.error("Could not create class file for: " + process.getXmlvm().getName());
                 return false;
-            } catch (IllegalXMLVMException e) {
+            } catch (IllegalXMLVMException ex) {
+                ex.printStackTrace();
                 Log.error("Could not create class file for: " + process.getXmlvm().getName());
                 return false;
             }
@@ -155,7 +157,7 @@ public class JavaByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
      * with this object. The location for the binary files is determined by the
      * given string path.
      */
-    public List<OutputFile> createBytecode(Document document, String path)
+    private List<OutputFile> createBytecode(Document document, String path)
             throws IllegalXMLVMException, IOException {
         List<OutputFile> result = new ArrayList<OutputFile>();
         Element root = document.getRootElement();
@@ -313,14 +315,14 @@ public class JavaByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
             String name = inst.getName();
             String opcMethodName = "createInstruction" + name.substring(0, 1).toUpperCase()
                     + name.substring(1);
-            Class appClazz;
+            Class<?> appClazz;
             Method opcMeth;
-            Class[] paramTypes = { Element.class };
+            Class<?>[] paramTypes = { Element.class };
             Object[] params = { inst };
             appClazz = this.getClass();
             Object newInstr = null;
             try {
-                opcMeth = appClazz.getMethod(opcMethodName, paramTypes);
+                opcMeth = appClazz.getDeclaredMethod(opcMethodName, paramTypes);
                 newInstr = opcMeth.invoke(this, params);
             } catch (NoSuchMethodException ex) {
                 throw new IllegalXMLVMException("Illegal instruction 1, unable to find method "
@@ -362,144 +364,171 @@ public class JavaByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
         return val.equals("true") ? jvmFlag : 0;
     }
 
-    public Instruction createInstructionVar(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionVar(Element inst) {
         return null;
     }
 
-    public Instruction createInstructionCheckcast(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionCheckcast(Element inst) throws IllegalXMLVMException {
         String classType = inst.getAttributeValue("type");
         return new CHECKCAST(constantPoolGen.addClass(classType));
     }
 
-    public Instruction createInstructionF2i(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionF2i(Element inst) {
         return new F2I();
     }
 
-    public Instruction createInstructionFmul(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionFmul(Element inst) {
         return new FMUL();
     }
 
-    public Instruction createInstructionFcmpl(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionFcmpl(Element inst) {
         return new FCMPL();
     }
 
-    public Instruction createInstructionFcmpg(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionFcmpg(Element inst) {
         return new FCMPG();
     }
 
-    public Instruction createInstructionFsub(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionFsub(Element inst) {
         return new FSUB();
     }
 
-    public Instruction createInstructionDup(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionDup(Element inst) {
         return new DUP();
     }
 
-    public Instruction createInstructionLabel(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionLabel(Element inst) throws IllegalXMLVMException {
         int id = Integer.parseInt(inst.getAttributeValue("id"));
         instructionHandlerManager.setLabelID(id);
         return null;
     }
 
-    public Instruction createInstructionGoto(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionGoto(Element inst) {
         int id = Integer.parseInt(inst.getAttributeValue("label"));
         BranchInstruction bi = new GOTO(null);
         instructionHandlerManager.registerBranchInstruction(bi, id);
         return bi;
     }
 
-    public Instruction createInstructionD2f(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionD2f(Element inst) {
         return new D2F();
     }
 
-    public Instruction createInstructionI2f(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionI2f(Element inst) {
         return new I2F();
     }
 
-    public Instruction createInstructionD2i(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionD2i(Element inst) {
         return new D2I();
     }
 
-    public Instruction createInstructionArraylength(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionArraylength(Element inst) {
         return new ARRAYLENGTH();
     }
 
-    public Instruction createInstructionIf_acmpne(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIf_acmpne(Element inst) {
         int id = Integer.parseInt(inst.getAttributeValue("label"));
         BranchInstruction bi = new IF_ACMPNE(null);
         instructionHandlerManager.registerBranchInstruction(bi, id);
         return bi;
     }
 
-    public Instruction createInstructionIf_icmplt(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIf_icmplt(Element inst) {
         int id = Integer.parseInt(inst.getAttributeValue("label"));
         BranchInstruction bi = new IF_ICMPLT(null);
         instructionHandlerManager.registerBranchInstruction(bi, id);
         return bi;
     }
 
-    public Instruction createInstructionIf_icmpgt(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIf_icmpgt(Element inst) {
         int id = Integer.parseInt(inst.getAttributeValue("label"));
         BranchInstruction bi = new IF_ICMPGT(null);
         instructionHandlerManager.registerBranchInstruction(bi, id);
         return bi;
     }
 
-    public Instruction createInstructionIf_icmpge(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIf_icmpge(Element inst) {
         int id = Integer.parseInt(inst.getAttributeValue("label"));
         BranchInstruction bi = new IF_ICMPGE(null);
         instructionHandlerManager.registerBranchInstruction(bi, id);
         return bi;
     }
 
-    public Instruction createInstructionIf_icmple(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIf_icmple(Element inst) {
         int id = Integer.parseInt(inst.getAttributeValue("label"));
         BranchInstruction bi = new IF_ICMPLE(null);
         instructionHandlerManager.registerBranchInstruction(bi, id);
         return bi;
     }
 
-    public Instruction createInstructionIf_icmpne(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIf_icmpne(Element inst) {
         int id = Integer.parseInt(inst.getAttributeValue("label"));
         BranchInstruction bi = new IF_ICMPNE(null);
         instructionHandlerManager.registerBranchInstruction(bi, id);
         return bi;
     }
 
-    public Instruction createInstructionIfeq(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIfeq(Element inst) {
         int id = Integer.parseInt(inst.getAttributeValue("label"));
         BranchInstruction bi = new IFEQ(null);
         instructionHandlerManager.registerBranchInstruction(bi, id);
         return bi;
     }
 
-    public Instruction createInstructionIfne(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIfne(Element inst) {
         int id = Integer.parseInt(inst.getAttributeValue("label"));
         BranchInstruction bi = new IFNE(null);
         instructionHandlerManager.registerBranchInstruction(bi, id);
         return bi;
     }
 
-    public Instruction createInstructionAconst_null(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionAconst_null(Element inst) throws IllegalXMLVMException {
         return new ACONST_NULL();
     }
 
-    public Instruction createInstructionAload(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionAload(Element inst) throws IllegalXMLVMException {
         String t = inst.getAttributeValue("type");
         Type type = parseTypeString(t);
         int idx = Integer.parseInt(inst.getAttributeValue("index"));
         return factory.createLoad(type, idx);
     }
 
-    public Instruction createInstructionInvokespecial(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionInvokespecial(Element inst) throws IllegalXMLVMException {
         return createInvokeInstruction(inst, Constants.INVOKESPECIAL);
     }
 
-    public Instruction createInstructionInvokevirtual(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionInvokevirtual(Element inst) throws IllegalXMLVMException {
         return createInvokeInstruction(inst, Constants.INVOKEVIRTUAL);
     }
 
-    public Instruction createInstructionInvokestatic(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionInvokestatic(Element inst) throws IllegalXMLVMException {
         return createInvokeInstruction(inst, Constants.INVOKESTATIC);
     }
 
@@ -513,38 +542,46 @@ public class JavaByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
         return factory.createInvoke(classType, methodName, retType, argTypes, kind);
     }
 
-    public Instruction createInstructionReturn(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionReturn(Element inst) {
         return factory.createReturn(Type.VOID);
     }
 
-    public Instruction createInstructionIreturn(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIreturn(Element inst) {
         return factory.createReturn(Type.INT);
     }
 
-    public Instruction createInstructionDreturn(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionDreturn(Element inst) {
         return factory.createReturn(Type.DOUBLE);
     }
 
-    public Instruction createInstructionFreturn(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionFreturn(Element inst) {
         return factory.createReturn(Type.FLOAT);
     }
 
-    public Instruction createInstructionLreturn(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionLreturn(Element inst) {
         return factory.createReturn(Type.LONG);
     }
 
-    public Instruction createInstructionGetstatic(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionGetstatic(Element inst) throws IllegalXMLVMException {
         String classType = inst.getAttributeValue("class-type");
         String field = inst.getAttributeValue("field");
         Type type = parseTypeString(inst.getAttributeValue("type"));
         return factory.createFieldAccess(classType, field, type, Constants.GETSTATIC);
     }
 
-    public CompoundInstruction createInstructionLdc(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private CompoundInstruction createInstructionLdc(Element inst) throws IllegalXMLVMException {
         return createInstructionPush(inst);
     }
 
-    public CompoundInstruction createInstructionLdc2_w(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private CompoundInstruction createInstructionLdc2_w(Element inst) throws IllegalXMLVMException {
         return createInstructionPush(inst);
     }
 
@@ -566,123 +603,148 @@ public class JavaByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
             throw new IllegalXMLVMException(inst.getName() + " with bad type '" + t + "'");
     }
 
-    public Instruction createInstructionIconst(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIconst(Element inst) {
         int value = Integer.parseInt(inst.getAttributeValue("value"));
         return new ICONST(value);
     }
 
-    public Instruction createInstructionIinc(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIinc(Element inst) {
         int index = Integer.parseInt(inst.getAttributeValue("index"));
         int incr = Integer.parseInt(inst.getAttributeValue("incr"));
         return new IINC(index, incr);
     }
 
-    public Instruction createInstructionBipush(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionBipush(Element inst) {
         byte val = (byte) Integer.parseInt(inst.getAttributeValue("value"));
         return new BIPUSH(val);
     }
 
-    public Instruction createInstructionIstore(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIstore(Element inst) throws IllegalXMLVMException {
         int idx = Integer.parseInt(inst.getAttributeValue("index"));
         return new ISTORE(idx);
     }
 
-    public Instruction createInstructionLstore(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionLstore(Element inst) throws IllegalXMLVMException {
         // BCEL's LSTORE creation instruction only takes an integer!!!
         int idx = Integer.parseInt(inst.getAttributeValue("index"));
         return new LSTORE(idx);
     }
 
-    public Instruction createInstructionIload(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIload(Element inst) throws IllegalXMLVMException {
         int idx = Integer.parseInt(inst.getAttributeValue("index"));
         return new ILOAD(idx);
     }
 
-    public Instruction createInstructionLload(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionLload(Element inst) throws IllegalXMLVMException {
         int idx = Integer.parseInt(inst.getAttributeValue("index"));
         return new LLOAD(idx);
     }
 
-    public Instruction createInstructionAstore(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionAstore(Element inst) {
         int idx = Integer.parseInt(inst.getAttributeValue("index"));
         return new ASTORE(idx);
     }
 
-    public Instruction createInstructionFstore(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionFstore(Element inst) throws IllegalXMLVMException {
         int idx = Integer.parseInt(inst.getAttributeValue("index"));
         return new FSTORE(idx);
     }
 
-    public Instruction createInstructionFload(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionFload(Element inst) throws IllegalXMLVMException {
         int idx = Integer.parseInt(inst.getAttributeValue("index"));
         return new FLOAD(idx);
     }
 
-    public Instruction createInstructionDstore(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionDstore(Element inst) throws IllegalXMLVMException {
         int idx = Integer.parseInt(inst.getAttributeValue("index"));
         return new DSTORE(idx);
     }
 
-    public Instruction createInstructionDload(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionDload(Element inst) throws IllegalXMLVMException {
         int idx = Integer.parseInt(inst.getAttributeValue("index"));
         return new DLOAD(idx);
     }
 
-    public Instruction createInstructionIadd(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIadd(Element inst) throws IllegalXMLVMException {
         return new IADD();
     }
 
-    public Instruction createInstructionLadd(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionLadd(Element inst) throws IllegalXMLVMException {
         return new LADD();
     }
 
-    public Instruction createInstructionIsub(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIsub(Element inst) throws IllegalXMLVMException {
         return new ISUB();
     }
 
-    public Instruction createInstructionDsub(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionDsub(Element inst) throws IllegalXMLVMException {
         return new DSUB();
     }
 
-    public Instruction createInstructionAaload(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionAaload(Element inst) throws IllegalXMLVMException {
         return new AALOAD();
-
     }
 
-    public Instruction createInstructionDadd(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionDadd(Element inst) throws IllegalXMLVMException {
         return new DADD();
     }
 
-    public Instruction createInstructionFadd(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionFadd(Element inst) throws IllegalXMLVMException {
         return new FADD();
     }
 
-    public Instruction createInstructionImul(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionImul(Element inst) throws IllegalXMLVMException {
         return new IMUL();
     }
 
-    public Instruction createInstructionDmul(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionDmul(Element inst) throws IllegalXMLVMException {
         return new DMUL();
     }
 
-    public Instruction createInstructionIdiv(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIdiv(Element inst) throws IllegalXMLVMException {
         return new IDIV();
     }
 
-    public Instruction createInstructionDdiv(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionDdiv(Element inst) throws IllegalXMLVMException {
         return new DDIV();
     }
 
-    public Instruction createInstructionIrem(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionIrem(Element inst) throws IllegalXMLVMException {
         return new IREM();
     }
 
-    public Instruction createInstructionNew(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionNew(Element inst) {
         String t = inst.getAttributeValue("type");
         return factory.createNew(t);
     }
 
-    public Instruction createInstructionPutfield(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionPutfield(Element inst) throws IllegalXMLVMException {
         String classType = inst.getAttributeValue("class-type");
         String field = inst.getAttributeValue("field");
         String type = inst.getAttributeValue("type");
@@ -690,7 +752,8 @@ public class JavaByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
         return factory.createPutField(classType, field, t);
     }
 
-    public Instruction createInstructionPutstatic(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionPutstatic(Element inst) throws IllegalXMLVMException {
         String classType = inst.getAttributeValue("class-type");
         String field = inst.getAttributeValue("field");
         String type = inst.getAttributeValue("type");
@@ -698,11 +761,13 @@ public class JavaByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
         return factory.createPutStatic(classType, field, t);
     }
 
-    public Instruction createInstructionPop(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionPop(Element inst) throws IllegalXMLVMException {
         return new POP();
     }
 
-    public Instruction createInstructionGetfield(Element inst) throws IllegalXMLVMException {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionGetfield(Element inst) throws IllegalXMLVMException {
         String classType = inst.getAttributeValue("class-type");
         String field = inst.getAttributeValue("field");
         String type = inst.getAttributeValue("type");
@@ -710,33 +775,39 @@ public class JavaByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
         return factory.createGetField(classType, field, t);
     }
 
-    public Instruction createInstructionAreturn(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionAreturn(Element inst) {
         return new ARETURN();
     }
 
-    public Instruction createInstructionAnewarray(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionAnewarray(Element inst) {
         String classType = inst.getAttributeValue("elementType");
         return new ANEWARRAY(constantPoolGen.addClass(classType));
     }
 
-    public Instruction createInstructionAastore(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionAastore(Element inst) {
         return new AASTORE();
     }
 
-    public Instruction createInstructionNop(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionNop(Element inst) {
         return new NOP();
     }
 
-    public Instruction createInstructionI2b(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionI2b(Element inst) {
         return new I2B();
     }
 
-    public Instruction createInstructionI2l(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionI2l(Element inst) {
         return new I2L();
     }
 
-    public Instruction createInstructionL2i(Element inst) {
+    @SuppressWarnings("unused")  // Called using reflection
+    private Instruction createInstructionL2i(Element inst) {
         return new L2I();
     }
-
 }

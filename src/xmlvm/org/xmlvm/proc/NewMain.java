@@ -36,7 +36,7 @@ public class NewMain {
      * XMLVM entry point.
      */
     public static void main(String[] args) {
-
+        
         // Initialize arguments.
         Arguments arguments = new Arguments(args);
 
@@ -49,7 +49,7 @@ public class NewMain {
         // 1) Processing.
         if (processor.process()) {
             Log.debug("Processing finished successfully.");
-            // 2) Wirting files.
+            // 2) Writing files.
             if (processor.writeOutputFiles()) {
                 Log.debug("Files written successfully.");
                 // 3) Post-Processing.

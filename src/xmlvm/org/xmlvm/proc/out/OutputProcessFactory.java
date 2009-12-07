@@ -70,8 +70,12 @@ public class OutputProcessFactory {
             return new XmlvmOutputProcess(arguments);
         case IPHONETEMPLATE:
             return new TemplateOutputProcess(arguments);
-        case JVM:
+        case CLASS:
             return new JavaByteCodeOutputProcess(arguments);
+        case EXE:
+            return new CILByteCodeOutputProcess(arguments);
+        case DEX:
+            return new DexOutputProcess(arguments);
         }
         Log.error("Could not create OutputProcess for target '" + target + "'.");
         return null;

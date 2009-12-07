@@ -66,7 +66,8 @@ import edu.arizona.cs.mbel.mbel.ClassParser;
 import edu.arizona.cs.mbel.mbel.Module;
 
 @Deprecated
-// Use NewMain instead when possible
+// Use NewMain instead. We just keep this class around until we have everything
+// migrated.
 public class Main {
     private JavaClass jvm_class;
     private Module    cil_class;
@@ -78,6 +79,11 @@ public class Main {
         cil_class = null;
         class_name = null;
         setSaxonEngine();
+    }
+
+    public static void printDeprecationErrorAndExit() {
+        System.err.println("The usage of Main is no longer supported.");
+        System.exit(-1);
     }
 
     public Main(JavaClass clazz) {
@@ -490,16 +496,6 @@ public class Main {
         return clrAPIDoc;
     }
 
-    public void genExe(Document doc, OutputStream out) {
-        try {
-            Document clrDoc = genCLR(doc);
-            new GenCIL(clrDoc).create(out, class_name);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.exit(-1);
-        }
-    }
-
     public Document genAPI(Document doc) {
         Document apiDoc = null;
         try {
@@ -521,27 +517,6 @@ public class Main {
             System.exit(-1);
         }
         return apiDoc;
-    }
-
-    /**
-     * Generates Java class files based on the given XMLVM(CLR) document. The
-     * root for the generated class files is determined by the given string
-     * path.
-     * 
-     * @param doc
-     *            An XMLVM(CLR) document.
-     * @param path
-     *            The root path for the Java class files. Can be the empty
-     *            string.
-     */
-    public void genJava(Document doc, String path) {
-        try {
-            Document jvmDoc = genAPI(doc);
-            new GenJava(jvmDoc).create(path);
-        } catch (Exception ex) {
-            System.err.println(ex);
-            System.exit(-1);
-        }
     }
 
     /**
@@ -767,15 +742,12 @@ public class Main {
                 Document apiDoc = main.genAPI(doc);
                 main.genXML(apiDoc, out);
             } else if (args.option_java()) {
-                String path = "";
-                if (args.option_out() != null)
-                    path = args.option_out();
-                main.genJava(doc, path);
+                printDeprecationErrorAndExit();
             } else if (args.option_clr()) {
                 Document clrDoc = main.genCLR(doc);
                 main.genXML(clrDoc, out);
             } else if (args.option_exe()) {
-                main.genExe(doc, out);
+                printDeprecationErrorAndExit();
             } else {
                 main.genXML(doc, out);
             }

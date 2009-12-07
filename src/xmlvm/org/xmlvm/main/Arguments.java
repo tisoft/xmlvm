@@ -61,7 +61,7 @@ public class Arguments {
     private Log.Level             option_debug    = Log.Level.ERROR;
     private String                option_skeleton = null;
     private static final String[] shortUsage      = { "Usage: ", "xmlvm --in=<path> [--out=<dir>]",
-            "      --target=[xmlvm|jvm|clr|dfa|class|exe|js|cpp|python|objc|iphone|qooxdoo]",
+            "      --target=[xmlvm|jvm|clr|dfa|class|exe|dex|js|cpp|python|objc|iphone|qooxdoo]",
             "      [--skeleton=<type>]", "      [--lib=<name>", "      [--app-name=<app-name>]",
             "      [--resource=<path>]", "      [--qx-main=<main-class> [--qx-debug]]",
             "      [--debug=[none|error|warning|all]]", "      [--version] [--help]" };
@@ -80,6 +80,7 @@ public class Arguments {
             "    dfa              Data Flow Analysis on input files",
             "    class            Java class bytecode",
             "    exe              .NET executable",
+            "    dex              DEX bytecode",
             "    js               JavaScript",
             "    cpp              C++ source code",
             "    python           Python",
