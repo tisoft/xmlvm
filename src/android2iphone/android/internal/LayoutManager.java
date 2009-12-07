@@ -81,9 +81,8 @@ class LayoutParser extends NSXMLParserDelegate {
             addView(v, attrs);
 
             if (v instanceof ViewGroup) {
-                ViewGroup vg = (ViewGroup) v;
-                viewGroupStack.push(vg);
-                currentViewGroup = vg;
+                viewGroupStack.push(currentViewGroup);
+                currentViewGroup = (ViewGroup) v;
             }
         } else {
             throw new InflateException("Unable to create widget: " + qualifiedName);
