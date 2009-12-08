@@ -38,7 +38,8 @@ static NSMutableDictionary* delegates;
 {
     id delegate = [delegates objectForKey: [NSValue valueWithPointer: self]];
     if (delegate != nil) {
-        [delegate touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event];
+        if ([delegate touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event])
+        	return;
     }
     
 	[self touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event];
@@ -58,7 +59,8 @@ static NSMutableDictionary* delegates;
 {
     id delegate = [delegates objectForKey: [NSValue valueWithPointer: self]];
     if (delegate != nil) {
-        [delegate touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event];
+        if ([delegate touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event])
+        	return;
     }
     
 	[self touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event];
@@ -78,7 +80,8 @@ static NSMutableDictionary* delegates;
 {
     id delegate = [delegates objectForKey: [NSValue valueWithPointer: self]];
     if (delegate != nil) {
-        [delegate touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event];
+        if ([delegate touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event])
+        	return;
     }
     
 	[self touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event];
@@ -98,7 +101,8 @@ static NSMutableDictionary* delegates;
 {
     id delegate = [delegates objectForKey: [NSValue valueWithPointer: self]];
     if (delegate != nil) {
-        [delegate touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event];
+        if ([delegate touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event])
+        	return;
     }
     
 	[self touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent :touches :event];

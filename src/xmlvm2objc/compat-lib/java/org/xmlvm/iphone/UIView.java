@@ -180,8 +180,10 @@ public class UIView extends UIResponder {
     }
 
     public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-        if (getResponderDelegate() != null)
-            getResponderDelegate().touchesBegan(touches, event);
+        if (getResponderDelegate() != null) {
+            if (getResponderDelegate().touchesBegan(touches, event))
+                return;
+        }
 
         if (superview != null)
             superview.touchesBegan(touches, event);
@@ -190,8 +192,10 @@ public class UIView extends UIResponder {
     }
 
     public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
-        if (getResponderDelegate() != null)
-            getResponderDelegate().touchesCancelled(touches, event);
+        if (getResponderDelegate() != null) {
+            if (getResponderDelegate().touchesCancelled(touches, event))
+                return;
+        }
 
         if (superview != null)
             superview.touchesCancelled(touches, event);
@@ -200,8 +204,10 @@ public class UIView extends UIResponder {
     }
 
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-        if (getResponderDelegate() != null)
-            getResponderDelegate().touchesEnded(touches, event);
+        if (getResponderDelegate() != null) {
+            if (getResponderDelegate().touchesEnded(touches, event))
+                return;
+        }
 
         if (superview != null)
             superview.touchesEnded(touches, event);
@@ -210,8 +216,10 @@ public class UIView extends UIResponder {
     }
 
     public void touchesMoved(Set<UITouch> touches, UIEvent event) {
-        if (getResponderDelegate() != null)
-            getResponderDelegate().touchesMoved(touches, event);
+        if (getResponderDelegate() != null) {
+            if (getResponderDelegate().touchesMoved(touches, event))
+                return;
+        }
 
         if (superview != null)
             superview.touchesMoved(touches, event);

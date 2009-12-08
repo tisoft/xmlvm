@@ -247,23 +247,23 @@ public class View {
         responderDelegate = new UIResponderDelegate() {
 
             @Override
-            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+            public boolean touchesBegan(Set<UITouch> touches, UIEvent event) {
+                return processTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
             }
 
             @Override
-            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+            public boolean touchesMoved(Set<UITouch> touches, UIEvent event) {
+                return processTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
             }
 
             @Override
-            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+            public boolean touchesCancelled(Set<UITouch> touches, UIEvent event) {
+                return processTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
             }
 
             @Override
-            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+            public boolean touchesEnded(Set<UITouch> touches, UIEvent event) {
+                return processTouchesEvent(MotionEvent.ACTION_UP, touches, event);
             }
 
         };
@@ -387,6 +387,9 @@ public class View {
             break;
         case Color.YELLOW:
             uiView.setBackgroundColor(UIColor.yellowColor);
+            break;
+        case Color.GREEN:
+            uiView.setBackgroundColor(UIColor.greenColor);
             break;
         default:
             Assert.NOT_IMPLEMENTED();
@@ -784,5 +787,10 @@ public class View {
 
     protected void setIgnoreRequestLayout(boolean ignoreRequestLayout) {
         this.ignoreRequestLayout = ignoreRequestLayout;
+    }
+
+    public void xmlvmSetMeasureSpec(int widthMeasureSpec, int heightMeasureSpec) {
+        this.widthMeasureSpec = widthMeasureSpec;
+        this.heightMeasureSpec = heightMeasureSpec;
     }
 }

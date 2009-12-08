@@ -26,12 +26,12 @@ import java.util.Set;
  *
  */
 public interface UIResponderDelegate {
-    public void touchesBegan(Set<UITouch> touches, UIEvent event);
+    public boolean touchesBegan(Set<UITouch> touches, UIEvent event);
 
-    public void touchesCancelled(Set<UITouch> touches, UIEvent event);
+    public boolean touchesCancelled(Set<UITouch> touches, UIEvent event);
 
-    public void touchesEnded(Set<UITouch> touches, UIEvent event);
+    public boolean touchesEnded(Set<UITouch> touches, UIEvent event);
 
-    public void touchesMoved(Set<UITouch> touches, UIEvent event);
+    public boolean touchesMoved(Set<UITouch> touches, UIEvent event);
 
 }
