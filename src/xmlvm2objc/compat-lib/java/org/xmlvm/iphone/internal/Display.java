@@ -224,6 +224,9 @@ public class Display implements ImageObserver {
 
     private void findTouchedView(Set<UITouch> touches, UIView uiView, int nesting,
             ViewSearchResult result) {
+        if (uiView.isHidden() || !uiView.isUserInteractionEnabled()) {
+            return;
+        }
         if ((!uiView.isHidden()) && uiView.isUserInteractionEnabled()
                 && uiView.touchedInsideView(touches)) {
             result.level = nesting;
