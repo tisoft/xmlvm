@@ -1729,6 +1729,12 @@ int main(int argc, char* argv[])
     _stack[_sp++].i = _op1.i &gt;&gt; _op2.i;</xsl:text>
 </xsl:template>
 
+<xsl:template match="jvm:iushr">
+  <xsl:text>    _op2.i = _stack[--_sp].i;
+    _op1.i = _stack[--_sp].i;
+    _stack[_sp++].i = ((unsigned int) _op1.i) &gt;&gt; _op2.i;</xsl:text>
+</xsl:template>
+
 <xsl:template match="jvm:dup2">
   <xsl:text>    _op1 = _stack[_sp - 2];
     _op2 = _stack[_sp - 1];
@@ -1818,6 +1824,12 @@ int main(int argc, char* argv[])
   <xsl:text>    _op2.l = _stack[--_sp].l;
     _op1.l = _stack[--_sp].l;
     _stack[_sp++].l = _op1.l % _op2.l;</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:lor">
+  <xsl:text>    _op2.l = _stack[--_sp].l;
+    _op1.l = _stack[--_sp].l;
+    _stack[_sp++].l = _op1.l | _op2.l;</xsl:text>
 </xsl:template>
 
 <xsl:template match="jvm:dup_x2">
