@@ -21,6 +21,7 @@
 package android.graphics;
 
 import android.content.res.Resources;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.internal.Assert;
 
@@ -35,6 +36,10 @@ public final class Bitmap {
     }
 
     private Drawable drawable;
+
+    private Bitmap(Drawable drawable) {
+        this.drawable = drawable;
+    }
 
     public Bitmap(Resources res, int resourceId) {
         drawable = res.getDrawable(resourceId);
@@ -56,7 +61,7 @@ public final class Bitmap {
     }
 
     public static Bitmap createBitmap(Bitmap source, int x, int y, int width, int height) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        // TODO this only works for BitmapDrawable
+        return new Bitmap(((BitmapDrawable) source.drawable).xmlvmCropImage(x, y, width, height));
     }
 }

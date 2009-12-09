@@ -20,11 +20,13 @@
 
 package android.os;
 
+import org.xmlvm.iphone.NSObject;
 import org.xmlvm.iphone.NSTimer;
 
 public class Handler {
     Runnable toRun = null;
     NSTimer  timer = null;
+    long     delay;
 
     public void run(NSTimer timer) {
         toRun.run();
@@ -32,18 +34,24 @@ public class Handler {
 
     public final boolean postDelayed(Runnable r, long delayMillis) {
         this.toRun = r;
-        timer = new NSTimer(((float) delayMillis) / 1000, this, "run", null, false);
+        this.delay = delayMillis;
+        NSObject.performSelectorOnMainThread(this, "xmlvmStartTimer", null, true);
         return true;
     }
 
     public void post(Runnable r) {
         this.toRun = r;
-        timer = new NSTimer(0f, this, "run", null, false);
+        this.delay = 0;
+        NSObject.performSelectorOnMainThread(this, "xmlvmStartTimer", null, true);
     }
 
     public void removeCallbacks(Runnable runnable) {
         if (runnable == toRun) {
             timer.invalidate();
         }
+    }
+
+    public void xmlvmStartTimer(Object ticks) {
+        timer = new NSTimer(delay, this, "run", null, false);
     }
 }

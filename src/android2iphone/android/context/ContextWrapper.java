@@ -51,8 +51,7 @@ public class ContextWrapper extends Context {
      */
     @Override
     public AssetManager getAssets() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return new AssetManager();
     }
 
     public Context getApplicationContext() {

@@ -45,4 +45,16 @@ public class UIImage {
     public BufferedImage xmlvmGetImage() {
         return image;
     }
+
+    /**
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @return
+     */
+    public UIImage cropImage(int x, int y, int width, int height) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

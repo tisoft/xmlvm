@@ -38,5 +38,6 @@ int number;
 - (int) intValue__;
 + (int) parseInt___java_lang_String: (java_lang_String *) str;
 + (java_lang_String*) toString___int: i;
++ (java_lang_Integer*) valueOf___int: (int) i;
 
 @end

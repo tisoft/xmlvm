@@ -22,21 +22,21 @@ package android.content.res;
 
 import java.io.FileDescriptor;
 
-import android.internal.Assert;
+import android.util.Log;
 
 public class AssetFileDescriptor {
     public FileDescriptor getFileDescriptor() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "AssetFileDescriptor.getFileDescriptor() not implemented");
         return null;
     }
 
     public long getStartOffset() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "AssetFileDescriptor.getStartOffset() not implemented");
         return 0;
     }
 
     public long getLength() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "AssetFileDescriptor.getLength() not implemented");
         return 0;
     }
 }

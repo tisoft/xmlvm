@@ -69,4 +69,11 @@
 	return [[NSNumber numberWithInt: i] stringValue];
 }
 
++ (java_lang_Integer*) valueOf___int: (int) i
+{
+	java_lang_Integer* o = [[java_lang_Integer alloc] init];
+	[o __init_java_lang_Integer___int:i];
+	return o;
+}
+
 @end

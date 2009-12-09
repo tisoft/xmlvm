@@ -21,13 +21,12 @@
 package android.content.res;
 
 import java.io.IOException;
+import android.util.Log;
 
-import android.internal.Assert;
-
-public abstract class AssetManager {
+public/* abstract */class AssetManager {
 
     public final AssetFileDescriptor openFd(String fileName) throws IOException {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        Log.w("xmlvm", "AssetManager.openFd() not implemented");
+        return new AssetFileDescriptor();
     }
 }

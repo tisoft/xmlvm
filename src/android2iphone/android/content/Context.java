@@ -27,6 +27,7 @@ import java.io.FileOutputStream;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
 import android.os.PowerManager;
 import android.view.LayoutInflater;
 
@@ -72,6 +73,7 @@ public abstract class Context {
 
     private static SensorManager  sensorManager           = null;
     private static PowerManager   powerManager            = null;
+    private static AudioManager   audioManager            = null;
     private static LayoutInflater layoutInflater          = null;
 
     /**
@@ -93,6 +95,11 @@ public abstract class Context {
                 powerManager = new PowerManager();
             }
             return powerManager;
+        } else if (service.equals(AUDIO_SERVICE)) {
+            if (audioManager == null) {
+                audioManager = new AudioManager();
+            }
+            return audioManager;
         } else if (service.equals(LAYOUT_INFLATER_SERVICE)) {
             if (layoutInflater == null) {
                 layoutInflater = new LayoutInflater(this);

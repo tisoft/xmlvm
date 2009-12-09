@@ -20,19 +20,19 @@
 
 package android.media;
 
-import android.internal.Assert;
+import android.util.Log;
 
 public class AudioManager {
     public static final int STREAM_MUSIC = 3;
     public static final int STREAM_ALARM = 4;
 
     public int getStreamVolume(int streamType) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "AudioManager.getStreamVolume() not implemented");
         return 0;
     }
 
     public int getStreamMaxVolume(int streamType) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "AudioManager.getStreamMaxVolume() not implemented");
         return 0;
     }
 }

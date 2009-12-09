@@ -23,43 +23,44 @@ package android.media;
 import java.io.FileDescriptor;
 
 import android.internal.Assert;
+import android.util.Log;
 
 public class MediaPlayer {
 
     public boolean isPlaying() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "MediaPlayer.isPlaying() not implemented");
         return false;
     }
 
     public void setDataSource(FileDescriptor fd, long offset, long length) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "MediaPlayer.setDataSource() not implemented");
     }
 
     public void setAudioStreamType(int streamtype) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "MediaPlayer.setAudioStreamType() not implemented");
     }
 
     public void prepare() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "MediaPlayer.prepare() not implemented");
     }
 
     public void setLooping(boolean looping) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "MediaPlayer.setLooping() not implemented");
     }
 
     public void setVolume(float leftVolume, float rightVolume) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "MediaPlayer.setVolume() not implemented");
     }
 
     public void start() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "MediaPlayer.start() not implemented");
     }
 
     public void stop() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "MediaPlayer.stop() not implemented");
     }
 
     public void release() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "MediaPlayer.release() not implemented");
     }
 }

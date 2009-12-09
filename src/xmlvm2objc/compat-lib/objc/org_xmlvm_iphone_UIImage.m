@@ -61,4 +61,21 @@
 	return retval;
 }
 
+- (org_xmlvm_iphone_UIImage *) cropImage___int_int_int_int: (int) x :(int) y :(int) width :(int) height
+{
+	CGRect cropRect = CGRectMake(x, y, width, height);
+	CGSize size = cropRect.size;
+	UIGraphicsBeginImageContext(size);
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGImageRef subImage = CGImageCreateWithImageInRect([self CGImage], cropRect);
+	CGRect myRect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+	//CGContextScaleCTM(context, 1.0f, -1.0f);
+	//CGContextTranslateCTM(context, 0.0f, -size.height);
+	CGContextDrawImage(context, myRect, subImage);
+	UIImage* croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	CGImageRelease(subImage);
+	return croppedImage;
+}
+
 @end

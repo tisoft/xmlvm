@@ -21,26 +21,26 @@
 package android.media;
 
 import android.content.res.AssetFileDescriptor;
-import android.internal.Assert;
+import android.util.Log;
 
 public class SoundPool {
 
     public SoundPool(int maxStreams, int streamType, int srcQuality) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "SoundPool(int,int,int) not implemented");
     }
 
     public int load(AssetFileDescriptor afd, int priority) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "SoundPool.load() not implemented");
         return 0;
     }
 
     public final int play(int soundID, float leftVolume, float rightVolume, int priority, int loop,
             float rate) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "SoundPool.play() not implemented");
         return 0;
     }
 
     public final void stop(int streamID) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "SoundPool.stop() not implemented");
     }
 }

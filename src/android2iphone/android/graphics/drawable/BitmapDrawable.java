@@ -48,7 +48,11 @@ public class BitmapDrawable extends Drawable {
     public UIImage xmlvmGetImage() {
         return image;
     }
-    
+
+    public BitmapDrawable xmlvmCropImage(int x, int y, int width, int height) {
+        return new BitmapDrawable(image.cropImage(x, y, width, height));
+    }
+
     @Override
     public int getIntrinsicWidth() {
         return (int) image.getSize().width;
