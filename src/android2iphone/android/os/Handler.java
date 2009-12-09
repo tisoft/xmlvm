@@ -26,7 +26,7 @@ import org.xmlvm.iphone.NSTimer;
 public class Handler {
     Runnable toRun = null;
     NSTimer  timer = null;
-    long     delay;
+    float    delay;
 
     public void run(NSTimer timer) {
         toRun.run();
@@ -34,7 +34,7 @@ public class Handler {
 
     public final boolean postDelayed(Runnable r, long delayMillis) {
         this.toRun = r;
-        this.delay = delayMillis;
+        this.delay = ((float) delayMillis) / 1000;
         NSObject.performSelectorOnMainThread(this, "xmlvmStartTimer", null, true);
         return true;
     }
