@@ -32,6 +32,7 @@ import com.android.dx.dex.cf.CfOptions;
 import com.android.dx.dex.cf.CfTranslator;
 import com.android.dx.dex.file.ClassDefItem;
 import com.android.dx.dex.file.DexFile;
+import com.android.dx.dex.file.EncodedMethod;
 
 /**
  * This process takes Java Bytecode and turns it into the DEX format.
@@ -74,11 +75,17 @@ public class DexOutputProcess extends OutputProcess<JavaByteCodeOutputProcess> {
             return null;
         }
         String relativePath = classFile.getFullPath()
-                .substring(arguments.option_out().length() + 2);
+                .substring(arguments.option_out().length() + 1);
+        
+        // Remove a starting slash or backslash.
+        if (relativePath.startsWith("/") || relativePath.startsWith("\\")) {
+            relativePath = relativePath.substring(1);
+        }
         Log.debug("DExing:" + relativePath);
 
         ClassDefItem item = CfTranslator.translate(relativePath, classFile.getDataAsBytes(),
                 new CfOptions());
+        
         DexFile dexFile = new DexFile();
         dexFile.add(item);
         try {
