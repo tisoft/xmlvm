@@ -57,7 +57,6 @@ import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import org.jdom.transform.JDOMResult;
 import org.jdom.transform.JDOMSource;
-import org.xmlvm.dep.Import;
 import org.xmlvm.util.FileSet;
 import org.xmlvm.util.JarUtil;
 
@@ -679,8 +678,7 @@ public class Main {
                 }
             }
             if (args.option_import()) {
-                Import imp = new Import();
-                imp.genImport(doc);
+                printDeprecationErrorAndExit();
             }
             if (args.option_recursive()) {
                 printDeprecationErrorAndExit();
