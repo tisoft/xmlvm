@@ -56,25 +56,14 @@ public class NSObject {
             }
         };
         try {
-            if (SwingUtilities.isEventDispatchThread()) {
-                if (waitUntilDone) {
+            if (waitUntilDone) {
+                if (SwingUtilities.isEventDispatchThread()) {
                     runnable.run();
                 } else {
-                    Thread t = new Thread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            SwingUtilities.invokeLater(runnable);
-                        }
-                    });
-                    t.start();
+                    SwingUtilities.invokeAndWait(runnable);
                 }
             } else {
-                if (waitUntilDone) {
-                    SwingUtilities.invokeAndWait(runnable);
-                } else {
-                    SwingUtilities.invokeLater(runnable);
-                }
+                SwingUtilities.invokeLater(runnable);
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
