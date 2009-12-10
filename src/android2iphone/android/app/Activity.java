@@ -63,6 +63,7 @@ public class Activity extends ContextThemeWrapper {
     private int              state               = STATE_UNINITIALIZED;
     private Activity         parent;
     private Activity         child;
+    private Intent           intent;
     private int              requestCode;
     private int              childRequestCode;
     private int              childResultCode     = RESULT_CANCELED;
@@ -84,6 +85,10 @@ public class Activity extends ContextThemeWrapper {
 
     public void xmlvmSetChild(Activity child) {
         this.child = child;
+    }
+
+    public void xmlvmSetIntent(Intent intent) {
+        this.intent = intent;
     }
 
     private void xmlvmUnlinkActivity() {
@@ -381,8 +386,7 @@ public class Activity extends ContextThemeWrapper {
      * @return
      */
     protected Intent getIntent() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return intent;
     }
 
     public LayoutInflater getLayoutInflater() {

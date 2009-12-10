@@ -28,6 +28,7 @@ public class Intent {
     public static final String ACTION_VIEW = "android.intent.action.VIEW";
 
     private String             action;
+    private Bundle             extras;
 
     public Intent(String action) {
         this.action = action;
@@ -56,15 +57,18 @@ public class Intent {
      * @return
      */
     public Bundle getExtras() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return extras;
     }
 
     /**
      * @param name
      * @param value
      */
-    public void putExtra(String name, int value) {
-        Assert.NOT_IMPLEMENTED();
+    public Intent putExtra(String name, int value) {
+        if (extras == null) {
+            extras = new Bundle();
+        }
+        extras.putInt(name, value);
+        return this;
     }
 }

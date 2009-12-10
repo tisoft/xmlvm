@@ -79,6 +79,7 @@ public class ActivityManager extends UIApplication {
         }
         newActivity.xmlvmSetParent(parent);
         newActivity.xmlvmSetRequestCode(requestCode);
+        newActivity.xmlvmSetIntent(intent);
         // The first activity will be launched via UIApplication.main and
         // subsequent call to applicationDidFinishLaunching. Only for following
         // activities we call xmlvmOnCreate() here directly.

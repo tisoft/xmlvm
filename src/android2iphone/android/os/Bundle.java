@@ -20,17 +20,18 @@
 
 package android.os;
 
-import android.internal.Assert;
+import java.util.HashMap;
 
 public class Bundle {
 
-    /**
-     * @param i
-     * @return
-     */
-    public int getInt(String i) {
-        Assert.NOT_IMPLEMENTED();
-        return 0;
+    private HashMap<String, Object> map = new HashMap<String, Object>();
+
+    public int getInt(String name) {
+        return (Integer) map.get(name);
+    }
+
+    public void putInt(String name, int value) {
+        map.put(name, value);
     }
 
 }
