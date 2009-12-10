@@ -1,0 +1,10 @@
+
+Description for the AppStore:
+Xokoban is an implementation of the classic Sokoban game containing 100 levels.
+This game was originally developed for another smartphone and then cross-compiled
+to the iPhone using XMLVM.
+
+Description for the Android Market:
+Xokoban is an implementation of the classic Sokoban game containing 100 levels.
+This game was originally developed for Android and then cross-compiled
+to the iPhone using XMLVM.
