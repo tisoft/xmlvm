@@ -20,6 +20,7 @@
 
 package org.xmlvm.proc.out;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
@@ -36,8 +37,6 @@ import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.in.InputProcess;
 import org.xmlvm.proc.in.file.ExeFile;
-
-import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 
 import edu.arizona.cs.mbel.emit.Emitter;
 import edu.arizona.cs.mbel.instructions.BranchInstruction;
@@ -201,9 +200,9 @@ public class CILByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
 
     private OutputFile createAssembly(List<Document> documents, String assemblyName)
             throws IllegalXMLVMException, IOException {
-        ByteOutputStream outputStream = new ByteOutputStream();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         createAssembly(documents, outputStream, assemblyName);
-        OutputFile result = new OutputFile(outputStream.getBytes());
+        OutputFile result = new OutputFile(outputStream.toByteArray());
         result.setLocation(arguments.option_out());
         result.setFileName(assemblyName + ExeFile.EXE_ENDING);
         return result;
