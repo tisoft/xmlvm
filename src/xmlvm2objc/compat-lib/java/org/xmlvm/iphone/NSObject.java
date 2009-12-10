@@ -56,10 +56,15 @@ public class NSObject {
             }
         };
         try {
-            if (waitUntilDone) {
-                SwingUtilities.invokeAndWait(runnable);
+            if (SwingUtilities.isEventDispatchThread()) {
+                // TODO should run this runnable in a thread if waitUntilDone == false
+                runnable.run();
             } else {
-                SwingUtilities.invokeLater(runnable);
+                if (waitUntilDone) {
+                    SwingUtilities.invokeAndWait(runnable);
+                } else {
+                    SwingUtilities.invokeLater(runnable);
+                }
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
