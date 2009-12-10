@@ -45,36 +45,13 @@ import org.apache.bcel.classfile.JavaClass;
 import org.apache.bcel.classfile.Method;
 import org.apache.bcel.classfile.Synthetic;
 import org.apache.bcel.classfile.Utility;
-import org.apache.bcel.generic.ANEWARRAY;
-import org.apache.bcel.generic.ATHROW;
-import org.apache.bcel.generic.BranchHandle;
-import org.apache.bcel.generic.BranchInstruction;
-import org.apache.bcel.generic.CPInstruction;
-import org.apache.bcel.generic.CodeExceptionGen;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.ConstantPushInstruction;
-import org.apache.bcel.generic.FieldInstruction;
-import org.apache.bcel.generic.IINC;
-import org.apache.bcel.generic.Instruction;
-import org.apache.bcel.generic.InstructionHandle;
-import org.apache.bcel.generic.InstructionList;
-import org.apache.bcel.generic.InvokeInstruction;
-import org.apache.bcel.generic.LocalVariableGen;
-import org.apache.bcel.generic.LocalVariableInstruction;
-import org.apache.bcel.generic.MULTIANEWARRAY;
-import org.apache.bcel.generic.MethodGen;
-import org.apache.bcel.generic.NEWARRAY;
-import org.apache.bcel.generic.ObjectType;
-import org.apache.bcel.generic.ReturnInstruction;
-import org.apache.bcel.generic.Select;
-import org.apache.bcel.generic.TABLESWITCH;
-import org.apache.bcel.generic.Type;
+import org.apache.bcel.generic.*;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.Namespace;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.XmlvmClass;
+import org.xmlvm.proc.XmlvmClass ;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.in.file.ClassFile;
 
@@ -454,6 +431,14 @@ public class ClassInputProcess extends InputProcess<ClassFile> {
                 Instruction inst = ih.getInstruction();
                 Integer id = map.get(ih);
 
+                //label has to go before try/catch block
+                if (id != null) {
+                    // we have a label at this position
+                    Element label = new Element("label", nsJVM);
+                    label.setAttribute("id", id.toString());
+                    xml_code.addContent(label);
+                }
+
                 /*
                  * Iterate over catch-blocks in opposite order so that the catch-clauses
                  * end up in most-derived to base exception class.
@@ -475,15 +460,12 @@ public class ClassInputProcess extends InputProcess<ClassFile> {
                     }
                 }
 
-                if (id != null) {
-                    // we have a label at this position
-                    Element label = new Element("label", nsJVM);
-                    label.setAttribute("id", id.toString());
-                    xml_code.addContent(label);
-                }
-
                 Element xml_inst = new Element(inst.getName(), nsJVM);
-                xml_code.addContent(xml_inst);
+                // MONITOREXIT is inside the catch, but needs to be outside,
+                // since MONITORENTER is outside, too
+                if(!(inst instanceof MONITOREXIT)) {
+                    xml_code.addContent(xml_inst);
+                }
 
                 if (inst instanceof BranchInstruction) {
                     emitBranchInstruction(xml_inst, ih);
@@ -519,6 +501,10 @@ public class ClassInputProcess extends InputProcess<ClassFile> {
                 for (int j = 0; j < ehs.length; j++) {
                     if (ehs[j].getEndPC().equals(ih)) {
                         xml_code = (Element) xml_code.getParent();
+                        //Here we can add the MONITOREXIT
+                        if(inst instanceof MONITOREXIT && ehs[j].getStartPC().getPrev().getInstruction() instanceof MONITORENTER){
+                            xml_code.addContent(xml_inst);
+                        }
                     }
                 }
             }
