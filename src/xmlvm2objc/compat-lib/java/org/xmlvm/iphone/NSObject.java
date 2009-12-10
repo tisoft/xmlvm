@@ -29,7 +29,7 @@ public class NSObject {
 
     public static void performSelectorOnMainThread(final Object target, final String method,
             final Object arg, boolean waitUntilDone) {
-        Runnable runnable = new Runnable() {
+        final Runnable runnable = new Runnable() {
 
             @Override
             public void run() {
@@ -57,8 +57,18 @@ public class NSObject {
         };
         try {
             if (SwingUtilities.isEventDispatchThread()) {
-                // TODO should run this runnable in a thread if waitUntilDone == false
-                runnable.run();
+                if (waitUntilDone) {
+                    runnable.run();
+                } else {
+                    Thread t = new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            SwingUtilities.invokeLater(runnable);
+                        }
+                    });
+                    t.start();
+                }
             } else {
                 if (waitUntilDone) {
                     SwingUtilities.invokeAndWait(runnable);
