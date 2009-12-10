@@ -20,13 +20,34 @@
 
 package android.graphics.drawable;
 
+import java.util.Arrays;
+
 import android.graphics.Rect;
+import android.util.StateSet;
 
 /**
  * @author arno
  * 
  */
 public abstract class Drawable {
+    private int[] mStateSet = StateSet.WILD_CARD;
+
+    public boolean setState(final int[] stateSet) {
+        if (!Arrays.equals(mStateSet, stateSet)) {
+            mStateSet = stateSet;
+            return onStateChange(stateSet);
+        }
+        return false;
+    }
+
+    public int[] getState() {
+        return mStateSet;
+    }
+
+    protected boolean onStateChange(int[] state) {
+        return false;
+    }
+
     public abstract Rect getBounds();
 
     /**
@@ -73,4 +94,21 @@ public abstract class Drawable {
         return intrinsicHeight > 0 ? intrinsicHeight : 0;
     }
 
+    public static abstract class ConstantState {
+        public abstract Drawable newDrawable();
+
+        public abstract int getChangingConfigurations();
+    }
+
+    public ConstantState getConstantState() {
+        return null;
+    }
+
+    public boolean isStateful() {
+        return false;
+    }
+
+    public Drawable getCurrent() {
+        return this;
+    }
 }

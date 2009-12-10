@@ -77,6 +77,7 @@ public class TextView extends View {
     }
 
     public void setText(String string) {
+        this.text = string;
         getUILabel().setText(string);
         requestLayout();
     }
@@ -114,7 +115,7 @@ public class TextView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // TODO: Replace with a more elaborated measurement
         int width = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                .getSize(widthMeasureSpec) : 2 * INSETS_X + getUILabel().getText().length()
+                .getSize(widthMeasureSpec) : 2 * INSETS_X + text.length()
                 * DEFAULT_FONT_WIDTH;
         int height = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
                 .getSize(heightMeasureSpec) : 2 * INSETS_Y + DEFAULT_FONT_HEIGHT;

@@ -38,6 +38,7 @@ UIImage* backgroundImage;
 - (void) dealloc;
 - (void) drawRect:(CGRect)rect;
 - (void) setBackgroundImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image;
+- (UIImage*) getBackgroundImage__;
 
 @end
 

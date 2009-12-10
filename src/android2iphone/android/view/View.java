@@ -27,6 +27,7 @@ import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UIImage;
 import org.xmlvm.iphone.UIResponderDelegate;
 import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
@@ -37,6 +38,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
 import android.internal.Assert;
 import android.internal.ResourceAttributes;
 import android.util.AttributeSet;
@@ -49,19 +51,45 @@ import android.util.AttributeSet;
 
 public class View {
 
-    public static final int  NO_ID                  = 0xffffffff;
-    public static final int  VISIBLE                = 0;
-    public static final int  INVISIBLE              = 4;
-    public static final int  GONE                   = 8;
+    public static final int          NO_ID                  = 0xffffffff;
+    public static final int          VISIBLE                = 0;
+    public static final int          INVISIBLE              = 4;
+    public static final int          GONE                   = 8;
 
-    private static final int FORCE_LAYOUT           = 0x00001000;
-    private static final int LAYOUT_REQUIRED        = 0x00002000;
-    static final int         MEASURED_DIMENSION_SET = 0x00000800;
+    private static final int         FORCE_LAYOUT           = 0x00001000;
+    private static final int         LAYOUT_REQUIRED        = 0x00002000;
+    static final int                 MEASURED_DIMENSION_SET = 0x00000800;
+    static final int                 DRAWABLE_STATE_DIRTY   = 0x00000400;
 
-    private boolean          ignoreRequestLayout;
-    private int              flags;
-    protected int            widthMeasureSpec;
-    protected int            heightMeasureSpec;
+    protected final int[]            EMPTY_STATE_SET        = {};
+    protected final int[]            PRESSED_STATE_SET      = { 0x010100a7 };
+
+    private boolean                  ignoreRequestLayout;
+    private int                      flags;
+    protected int                    widthMeasureSpec;
+    protected int                    heightMeasureSpec;
+    private int[]                    drawableState          = EMPTY_STATE_SET;
+    protected ViewGroup.LayoutParams layoutParams;
+    protected int                    paddingLeft;
+    protected int                    paddingRight;
+    protected int                    paddingTop;
+    protected int                    paddingBottom;
+    private Context                  c;
+    private UIView                   uiView;
+    private ViewParent               parent;
+    private OnTouchListener          listener;
+    private UIResponderDelegate      responderDelegate;
+    private int                      id;
+    private int                      measuredWidth;
+    private int                      measuredHeight;
+    private int                      left;
+    private int                      top;
+    private int                      width;
+    private int                      height;
+    private int                      minimumWidth;
+    private int                      minimumHeight;
+    private int                      visibility;
+    protected Drawable               backgroundDrawable;
 
     /**
      * Copyright (C) 2006 The Android Open Source Project
@@ -206,28 +234,6 @@ public class View {
         public void onClick(View view);
     }
 
-    protected ViewGroup.LayoutParams layoutParams;
-    protected int                    paddingLeft;
-    protected int                    paddingRight;
-    protected int                    paddingTop;
-    protected int                    paddingBottom;
-    private Context                  c;
-    private UIView                   uiView;
-    private ViewParent               parent;
-    private OnTouchListener          listener;
-    private UIResponderDelegate      responderDelegate;
-    private int                      id;
-    private int                      measuredWidth;
-    private int                      measuredHeight;
-    private int                      left;
-    private int                      top;
-    private int                      width;
-    private int                      height;
-    private int                      minimumWidth;
-    private int                      minimumHeight;
-    private int                      visibility;
-    private Drawable                 backgroundDrawable;
-
     public View(Context c) {
         init(c, new ResourceAttributes(getContext(), "", new HashMap<String, String>()));
     }
@@ -304,7 +310,7 @@ public class View {
         Assert.NOT_IMPLEMENTED();
     }
 
-    private boolean processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
+    protected boolean processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
         if (this.listener == null) {
             return false;
         }
@@ -325,6 +331,11 @@ public class View {
 
     public void xmlvmSetParent(ViewParent parent) {
         this.parent = parent;
+    }
+
+    public void xmlvmSetMeasureSpec(int widthMeasureSpec, int heightMeasureSpec) {
+        this.widthMeasureSpec = widthMeasureSpec;
+        this.heightMeasureSpec = heightMeasureSpec;
     }
 
     protected void finalize() {
@@ -372,11 +383,14 @@ public class View {
     }
 
     public void setBackgroundDrawable(Drawable drawable) {
+        backgroundDrawable = drawable;
+
         if (drawable instanceof BitmapDrawable) {
-            backgroundDrawable = drawable;
             uiView.setBackgroundImage(((BitmapDrawable) drawable).xmlvmGetImage());
+        } else if (drawable instanceof StateListDrawable) {
+            refreshBackgroundStateDrawable();
         } else {
-            // Assert.NOT_IMPLEMENTED();
+            Assert.NOT_IMPLEMENTED();
         }
     }
 
@@ -789,8 +803,31 @@ public class View {
         this.ignoreRequestLayout = ignoreRequestLayout;
     }
 
-    public void xmlvmSetMeasureSpec(int widthMeasureSpec, int heightMeasureSpec) {
-        this.widthMeasureSpec = widthMeasureSpec;
-        this.heightMeasureSpec = heightMeasureSpec;
+    public final int[] getDrawableState() {
+        return drawableState;
+    }
+
+    protected void xmlvmSetDrawableState(int[] drawableState) {
+        this.drawableState = drawableState;
+        refreshBackgroundStateDrawable();
+    }
+
+    private void refreshBackgroundStateDrawable() {
+        if (backgroundDrawable instanceof StateListDrawable) {
+            StateListDrawable d = (StateListDrawable) backgroundDrawable;
+            int i = d.getStateDrawableIndex(getDrawableState());
+            d.selectDrawable(i);
+            Drawable currentStateDrawable = d.getStateDrawable(i);
+            UIImage newImg = ((BitmapDrawable) currentStateDrawable).xmlvmGetImage();
+            UIImage currentImg = uiView.getBackgroundImage();
+            if (currentImg != newImg) {
+                boolean relayout = currentImg != null && newImg != null
+                        && !currentImg.getSize().equals(newImg.getSize());
+                uiView.setBackgroundImage(newImg);
+                if (relayout) {
+                    requestLayout();
+                }
+            }
+        }
     }
 }

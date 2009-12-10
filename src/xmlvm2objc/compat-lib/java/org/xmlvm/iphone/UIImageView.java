@@ -13,6 +13,7 @@ public class UIImageView extends UIView {
 
     public void setImage(UIImage image) {
         this.image = image;
+        setNeedsDisplay();
     }
 
     public UIImage getImage() {

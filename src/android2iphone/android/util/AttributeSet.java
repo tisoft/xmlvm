@@ -35,4 +35,6 @@ public interface AttributeSet {
     public String getIdAttribute();
 
     public int getIdAttributeResourceValue(int defaultValue);
+    
+    public int getAttributeCount();
 }

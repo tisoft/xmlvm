@@ -28,10 +28,12 @@ import org.xmlvm.iphone.NSBundle;
 import org.xmlvm.iphone.NSData;
 import org.xmlvm.iphone.UIImage;
 
+import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.internal.ActivityManager;
 import android.internal.Assert;
+import android.internal.ResourceParser;
 import android.util.Log;
 
 public class Resources {
@@ -51,21 +53,24 @@ public class Resources {
      */
     private static Map<Integer, NSData> layoutMap   = new HashMap<Integer, NSData>();
 
-    public Resources() {
+    private Context                     context;
+
+    public Resources(Context context) {
+        this.context = context;
         init();
     };
 
     public Drawable getDrawable(int resourceId) {
         Drawable d = drawableMap.get(new Integer(resourceId));
         if (d == null) {
-            String fileName = findResourceNameById(resourceId);
-            fileName = getFileNamePath(fileName) + ".png";
-            UIImage image = UIImage.imageWithContentsOfFile(fileName);
+            String fileName = getFileNamePath(findResourceNameById(resourceId));
+            UIImage image = UIImage.imageWithContentsOfFile(fileName + ".png");
             if (image != null) {
                 d = BitmapDrawable.xmlvmCreateWithImage(image);
                 drawableMap.put(new Integer(resourceId), d);
             } else {
-                Log.d("Resources", "Resources.getDrawable: Must be XML");
+                d = ResourceParser.parseDrawable(context, fileName);
+                drawableMap.put(new Integer(resourceId), d);
             }
         }
 

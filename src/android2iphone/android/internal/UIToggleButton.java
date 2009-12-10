@@ -26,7 +26,6 @@ import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UILabel;
-import org.xmlvm.iphone.UIResponderDelegate;
 import org.xmlvm.iphone.UITextAlignment;
 import org.xmlvm.iphone.UITouch;
 

@@ -61,6 +61,11 @@
 	}
 }
 
+- (UIImage*) getBackgroundImage__
+{
+	return [self->backgroundImage retain];
+}
+
 @end
 
 @implementation UIView (cat_org_xmlvm_iphone_UIView)

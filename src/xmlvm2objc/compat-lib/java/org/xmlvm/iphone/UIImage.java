@@ -9,6 +9,10 @@ public class UIImage {
 
     private BufferedImage image;
 
+    private UIImage(BufferedImage image) {
+        this.image = image;
+    }
+
     private UIImage(String filename) {
         ImageLoader loader = Simulator.getImageLoader();
         image = loader.loadImage(filename);
@@ -54,7 +58,6 @@ public class UIImage {
      * @return
      */
     public UIImage cropImage(int x, int y, int width, int height) {
-        // TODO Auto-generated method stub
-        return null;
+        return new UIImage(image.getSubimage(x, y, width, height));
     }
 }

@@ -49,4 +49,14 @@
 	return height;
 }
 
+- (int) equals___java_lang_Object: (java_lang_Object*) o
+{
+	if (o == [NSNull null] || ![o isKindOfClass: [org_xmlvm_iphone_CGSize class]]) {
+		return 0;
+	}
+		
+	org_xmlvm_iphone_CGSize* s = (org_xmlvm_iphone_CGSize*) o;
+	return self->width == s->width && self->height == s->height;
+}
+
 @end

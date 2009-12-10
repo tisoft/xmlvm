@@ -32,7 +32,7 @@ import android.internal.Assert;
 
 public class ContextWrapper extends Context {
 
-    private Resources resources = new Resources();
+    private Resources resources = new Resources(this);
 
     public SharedPreferences getSharedPreferences(String name, int mode) {
         // TODO what to do with name?

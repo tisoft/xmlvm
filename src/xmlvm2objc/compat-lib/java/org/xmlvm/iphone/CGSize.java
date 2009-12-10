@@ -19,4 +19,12 @@ public class CGSize {
         return "[" + width + "," + height + "]";
     }
 
+    public boolean equals(Object obj) {
+        if (!(obj instanceof CGSize)) {
+            return false;
+        }
+
+        CGSize size = (CGSize) obj;
+        return size.width == this.width && size.height == this.height;
+    }
 }

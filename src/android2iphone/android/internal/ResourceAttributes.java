@@ -146,4 +146,9 @@ public class ResourceAttributes implements AttributeSet {
     private String getResourceName(String resourceName) {
         return resourceName.substring(resourceName.indexOf('/') + 1);
     }
+
+    @Override
+    public int getAttributeCount() {
+        return attributeMap.size();
+    }
 }

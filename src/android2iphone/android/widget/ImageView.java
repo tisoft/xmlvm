@@ -21,12 +21,15 @@
 package android.widget;
 
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIImage;
 import org.xmlvm.iphone.UIImageView;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
 import android.internal.Assert;
 import android.util.AttributeSet;
 import android.view.View;
@@ -34,6 +37,8 @@ import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
 
 public class ImageView extends View {
+
+    protected Drawable drawable;
 
     public ImageView(Context c) {
         super(c);
@@ -51,11 +56,14 @@ public class ImageView extends View {
     }
 
     public void setImageDrawable(Drawable drawable) {
+        this.drawable = drawable;
         if (drawable instanceof BitmapDrawable) {
             getUIImageView().setImage(((BitmapDrawable) drawable).xmlvmGetImage());
             float width = getUIImageView().getImage().getSize().width;
             float height = getUIImageView().getImage().getSize().height;
             getUIImageView().setFrame(new CGRect(0, 0, width, height));
+        } else if (drawable instanceof StateListDrawable) {
+            refreshImageStateDrawable();
         } else {
             Assert.NOT_IMPLEMENTED();
         }
@@ -82,11 +90,68 @@ public class ImageView extends View {
     }
 
     @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int width = 0;
+        int height = 0;
+
+        if (drawable != null) {
+            Rect r = drawable.getBounds();
+            width = r.width();
+            height = r.height();
+        }
+
+        width = Math.max(getSuggestedMinimumWidth(), width);
+        height = Math.max(getSuggestedMinimumHeight(), height);
+        width += paddingLeft + paddingRight;
+        height += paddingTop + paddingBottom;
+
+        setMeasuredDimension(width, height);
+    }
+
+    @Override
+    protected void parseAttributes(AttributeSet attrs) {
+        super.parseAttributes(attrs);
+
+        String str = attrs.getAttributeValue(null, "src");
+        // Resolve drawable background
+        if (str != null) {
+            int srcId = attrs.getAttributeResourceValue(null, "src", -1);
+            if (srcId != -1) {
+                setImageResource(srcId);
+            }
+        }
+    }
+
+    @Override
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
         return new UIImageView(new CGRect(0, 0, 0, 0));
     }
 
     protected UIImageView getUIImageView() {
         return (UIImageView) xmlvmGetUIView();
+    }
+
+    protected void xmlvmSetDrawableState(int[] drawableState) {
+        super.xmlvmSetDrawableState(drawableState);
+        refreshImageStateDrawable();
+    }
+
+    private void refreshImageStateDrawable() {
+        if (drawable instanceof StateListDrawable) {
+            StateListDrawable d = (StateListDrawable) drawable;
+            int i = d.getStateDrawableIndex(getDrawableState());
+            d.selectDrawable(i);
+            Drawable currentStateDrawable = d.getStateDrawable(i);
+            UIImage newImg = ((BitmapDrawable) currentStateDrawable).xmlvmGetImage();
+            UIImage currentImg = getUIImageView().getImage();
+            if (currentImg != newImg) {
+                boolean relayout = currentImg != null && newImg != null
+                        && !currentImg.getSize().equals(newImg.getSize());
+                getUIImageView().setImage(newImg);
+                if (relayout) {
+                    requestLayout();
+                }
+            }
+        }
     }
 }

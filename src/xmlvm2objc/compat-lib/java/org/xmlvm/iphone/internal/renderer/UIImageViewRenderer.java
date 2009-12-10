@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIImage;
 import org.xmlvm.iphone.UIImageView;
 import org.xmlvm.iphone.internal.Simulator;
 
@@ -18,9 +19,15 @@ public class UIImageViewRenderer extends UIViewRenderer<UIImageView> {
     }
 
     public void paint() {
+        Graphics2D g = CGContext.theContext.graphicsContext;
+        CGRect rect = view.getFrame();
+        
+        UIImage backgroundImage = view.getBackgroundImage();
+        if (backgroundImage != null) {
+            backgroundImage.drawInRect(rect);
+        }
+
         if (view.getImage() != null) {
-            Graphics2D g = CGContext.theContext.graphicsContext;
-            CGRect rect = view.getFrame();
             g.drawImage(view.getImage().xmlvmGetImage(), (int) rect.origin.x, (int) rect.origin.y,
                     Simulator.getDisplay());
         }

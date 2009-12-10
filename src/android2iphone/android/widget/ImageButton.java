@@ -20,7 +20,10 @@
 
 package android.widget;
 
-import org.xmlvm.iphone.CGSize;
+import java.util.Set;
+
+import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UITouch;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -53,10 +56,13 @@ public class ImageButton extends ImageView {
         });
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        CGSize size = getUIImageView().getBackgroundImage().getSize();
-        setMeasuredDimension((int) size.width, (int) size.height);
-    }
+    protected boolean processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
+        if (action == MotionEvent.ACTION_DOWN) {
+            xmlvmSetDrawableState(PRESSED_STATE_SET);
+        } else if (action == MotionEvent.ACTION_UP) {
+            xmlvmSetDrawableState(EMPTY_STATE_SET);
+        }
 
+        return super.processTouchesEvent(action, touches, event);
+    }
 }
