@@ -550,7 +550,8 @@ public class View {
     }
 
     public void setPressed(boolean pressed) {
-        Assert.NOT_IMPLEMENTED();
+        int[] state = pressed ? PRESSED_STATE_SET : EMPTY_STATE_SET;
+        xmlvmSetDrawableState(state);
     }
 
     public int getPaddingLeft() {
