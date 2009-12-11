@@ -59,6 +59,7 @@
 		self->backgroundImage = image;
 		[self setBackgroundColor: [UIColor clearColor]];
 	}
+	[self setNeedsDisplay];
 }
 
 - (UIImage*) getBackgroundImage__
