@@ -76,6 +76,8 @@ public class OutputProcessFactory {
             return new CILByteCodeOutputProcess(arguments);
         case DEX:
             return new DexOutputProcess(arguments);
+        case DEXMLVM:
+            return new DEXmlvmOutputProcess(arguments);
         }
         Log.error("Could not create OutputProcess for target '" + target + "'.");
         return null;

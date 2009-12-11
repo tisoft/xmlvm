@@ -61,7 +61,7 @@ public class Arguments {
     private Log.Level             option_debug    = Log.Level.WARNING;
     private String                option_skeleton = null;
     private static final String[] shortUsage      = { "Usage: ", "xmlvm --in=<path> [--out=<dir>]",
-            "      --target=[xmlvm|jvm|clr|dfa|class|exe|dex|js|cpp|python|objc|iphone|qooxdoo]",
+            "      --target=[xmlvm|dexmlvm|jvm|clr|dfa|class|exe|dex|js|cpp|python|objc|iphone|qooxdoo]",
             "      [--skeleton=<type>]", "      [--lib=<name>", "      [--app-name=<app-name>]",
             "      [--resource=<path>]", "      [--qx-main=<main-class> [--qx-debug]]",
             "      [--debug=[none|error|warning|all]]", "      [--version] [--help]" };
@@ -75,6 +75,7 @@ public class Arguments {
             "",
             " --target=<target> Desired target, could be one of the following:",
             "    xmlvm            XMLVM output, depending on the input (default)",
+            "    dexmlvm          XMLVM_dex output",
             "    jvm              XMLVM_jvm output",
             "    clr              XMLVM_clr output",
             "    dfa              Data Flow Analysis on input files",
