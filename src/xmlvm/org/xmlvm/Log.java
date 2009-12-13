@@ -29,6 +29,39 @@ import java.util.Date;
  */
 public class Log {
 
+    /**
+     * The different logging levels.
+     */
+    public enum Level {
+        NONE("          ", System.out),
+        ERROR("   ERROR: ", System.err),
+        WARNING(" WARNING: ", System.out),
+        ALL("   DEBUG: ", System.out);
+
+        private final String      prefix;
+        private final PrintStream stream;
+
+        Level(String prefix, PrintStream stream) {
+            this.prefix = prefix;
+            this.stream = stream;
+        }
+
+        /**
+         * Flushes the output stream.
+         */
+        public void flush() {
+            stream.flush();
+        }
+
+        public static Level getLevel(String level) {
+            try {
+                return Level.valueOf(level.toUpperCase());
+            } catch (IllegalArgumentException ex) {
+            }
+            return null;
+        }
+    }
+
     private static final String     DATE_FORMAT = "MM/dd/yy HH:mm:ss.SSS";
     private static final DateFormat dateFormat  = new SimpleDateFormat(DATE_FORMAT);
     private static Level            level       = Level.ALL;
@@ -42,8 +75,9 @@ public class Log {
      *            Message to display
      */
     private static void display(Level l, String message) {
-        if (l.compareTo(level) <= 0 && message != null)
+        if (l.compareTo(level) <= 0 && message != null) {
             l.stream.println("[" + getDate() + "] " + l.prefix + message);
+        }
     }
 
     /**
@@ -84,26 +118,5 @@ public class Log {
     public static void setLevel(Level newLevel) {
         if (newLevel != null)
             level = newLevel;
-    }
-
-    public enum Level {
-
-        NONE("          ", System.out), ERROR("   ERROR: ", System.err), WARNING(" WARNING: ",
-                System.out), ALL("   DEBUG: ", System.out);
-        private final String      prefix;
-        private final PrintStream stream;
-
-        Level(String prefix, PrintStream stream) {
-            this.prefix = prefix;
-            this.stream = stream;
-        }
-
-        public static Level getLevel(String level) {
-            try {
-                return Level.valueOf(level.toUpperCase());
-            } catch (IllegalArgumentException ex) {
-            }
-            return null;
-        }
     }
 }
