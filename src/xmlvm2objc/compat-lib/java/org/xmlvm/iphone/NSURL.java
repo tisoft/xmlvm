@@ -5,9 +5,11 @@ import java.net.URL;
 
 public class NSURL {
 
-    private URL url;
+    private URL    url;
+    private String urlString;
 
     private NSURL(String u) {
+        this.urlString = u;
         this.url = null;
         try {
             this.url = new URL(u);
@@ -23,5 +25,9 @@ public class NSURL {
 
     public URL getURL() {
         return url;
+    }
+
+    public String xmlvmGetURLString() {
+        return this.urlString;
     }
 }

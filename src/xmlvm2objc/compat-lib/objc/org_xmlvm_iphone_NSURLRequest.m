@@ -18,21 +18,18 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.net;
 
-public class Uri {
+#import "org_xmlvm_iphone_NSURLRequest.h"
 
-    private String uri;
+// NSURLRequest
+//----------------------------------------------------------------------------
+@implementation NSURLRequest (cat_NSURLRequest)
 
-    private Uri(String uri) {
-        this.uri = uri;
-    }
-
-    public static Uri parse(String uriStr) {
-        return new Uri(uriStr);
-    }
-
-    public String xmlvmGetUri() {
-        return uri;
-    }
++ (org_xmlvm_iphone_NSURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL
+                                         :(org_xmlvm_iphone_NSURL*) url
+{
+	return [[NSURLRequest requestWithURL:url] retain];
 }
+
+@end
+

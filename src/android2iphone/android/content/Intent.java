@@ -28,6 +28,7 @@ public class Intent {
     public static final String ACTION_VIEW = "android.intent.action.VIEW";
 
     private String             action;
+    private Uri                uri;
     private Bundle             extras;
 
     public Intent(String action) {
@@ -38,32 +39,23 @@ public class Intent {
         return action;
     }
 
-    /**
-     * @param name
-     * @param uri
-     */
-    public Intent(String name, Uri uri) {
-        Assert.NOT_IMPLEMENTED();
+    public Uri xmlvmGetUri() {
+        return uri;
     }
 
-    /**
-     * @TODO Implement for real.
-     */
+    public Intent(String action, Uri uri) {
+        this.action = action;
+        this.uri = uri;
+    }
+
     public void setData(Uri uri) {
-        Assert.NOT_IMPLEMENTED();
+        this.uri = uri;
     }
 
-    /**
-     * @return
-     */
     public Bundle getExtras() {
         return extras;
     }
 
-    /**
-     * @param name
-     * @param value
-     */
     public Intent putExtra(String name, int value) {
         if (extras == null) {
             extras = new Bundle();

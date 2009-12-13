@@ -58,13 +58,24 @@ public class ActivityManager extends UIApplication {
         topActivity = null;
     }
 
+    private static String checkForBuiltinActivity(String action) {
+        if (action.equals(Intent.ACTION_VIEW)) {
+            return "android.internal.WebViewActivity";
+        }
+        return null;
+    }
+
     public static void startActivityForResult(Activity parent, Intent intent, int requestCode) {
         if (topActivity != null) {
             // Pause the current activity
             topActivity.xmlvmTransitToStatePaused();
         }
 
-        String activityName = manifest.getActivityName(intent.xmlvmGetAction());
+        String action = intent.xmlvmGetAction();
+        String activityName = manifest.getActivityName(action);
+        if (activityName == null) {
+            activityName = checkForBuiltinActivity(action);
+        }
         Class<?> androidActivityClazz;
         Activity newActivity = null;
         try {
