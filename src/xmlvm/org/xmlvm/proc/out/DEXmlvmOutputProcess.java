@@ -25,6 +25,8 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.Namespace;
@@ -47,6 +49,8 @@ import com.android.dx.dex.code.CstInsn;
 import com.android.dx.dex.code.DalvCode;
 import com.android.dx.dex.code.DalvInsn;
 import com.android.dx.dex.code.DalvInsnList;
+import com.android.dx.dex.code.Dop;
+import com.android.dx.dex.code.Dops;
 import com.android.dx.dex.code.LocalSnapshot;
 import com.android.dx.dex.code.LocalStart;
 import com.android.dx.dex.code.PositionList;
@@ -60,7 +64,6 @@ import com.android.dx.rop.code.RegisterSpecList;
 import com.android.dx.rop.code.RopMethod;
 import com.android.dx.rop.code.TranslationAdvice;
 import com.android.dx.rop.cst.Constant;
-import com.android.dx.rop.cst.CstInteger;
 import com.android.dx.rop.cst.CstMethodRef;
 import com.android.dx.rop.cst.CstType;
 import com.android.dx.ssa.Optimizer;
@@ -73,8 +76,9 @@ import com.android.dx.util.ExceptionWithContext;
  * TODO(Sascha): Work in progress!
  */
 public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProcess> {
-    private static final Namespace nsXMLVM     = XmlvmResource.xmlvmNamespace;
-    private static final Namespace nsDEX       = Namespace.getNamespace("dex",
+    private static final String    REG_PREFIX  = "reg";
+    private static final Namespace NS_XMLVM    = XmlvmResource.xmlvmNamespace;
+    private static final Namespace NS_DEX      = Namespace.getNamespace("dex",
                                                        "http://xmlvm.org/dex");
 
     private List<OutputFile>       outputFiles = new ArrayList<OutputFile>();
@@ -136,8 +140,8 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
      * Creates a basic XMLVM document.
      */
     private static Document createDocument() {
-        Element root = new Element("xmlvm", nsXMLVM);
-        root.addNamespaceDeclaration(nsDEX);
+        Element root = new Element("xmlvm", NS_XMLVM);
+        root.addNamespaceDeclaration(NS_DEX);
         Document document = new Document();
         document.addContent(root);
         return document;
@@ -183,7 +187,7 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
      * @return the generated element
      */
     private static Element processClass(CstType type, Element root) {
-        Element classElement = new Element("class", nsXMLVM);
+        Element classElement = new Element("class", NS_XMLVM);
         classElement.setAttribute("name", type.getClassType().getClassName());
         root.addContent(classElement);
         return classElement;
@@ -231,12 +235,12 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
         setAttributeIfTrue(methodElement, "isStatic", isStatic);
 
         // Create signature element.
-        Element signatureElement = new Element("signature", nsXMLVM);
+        Element signatureElement = new Element("signature", NS_XMLVM);
         methodElement.addContent(signatureElement);
         // TODO(Sascha): Add return type.
 
         // Create code element.
-        Element codeElement = new Element("code", nsXMLVM);
+        Element codeElement = new Element("code", NS_XMLVM);
         codeElement.setAttribute("language", "DEX");
         methodElement.addContent(codeElement);
 
@@ -302,40 +306,42 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
             // Ingore.
         } else if (instruction instanceof LocalStart) {
             LocalStart localStart = (LocalStart) instruction;
-            dexInstruction = new Element("local-start", nsDEX);
-            dexInstruction.setAttribute("register", localStart.getLocal().regString());
-            dexInstruction.setAttribute("type", localStart.getLocal().getTypeBearer().toString());
+            dexInstruction = new Element("local-start", NS_DEX);
+            dexInstruction.setAttribute("register", registerNameFormat(localStart.getLocal()
+                    .regString()));
+            dexInstruction.setAttribute("type", localStart.getLocal().getTypeBearer().toHuman());
             dexInstruction.setAttribute("argument", localStart.getLocal().getLocalItem().getName()
                     .toHuman());
-            Element signatureParameterElement = new Element("param", nsXMLVM);
+            Element signatureParameterElement = new Element("param", NS_XMLVM);
             signatureParameterElement.setAttribute("type", localStart.getLocal().getTypeBearer()
-                    .toString());
+                    .getType().toHuman());
             signatureElement.addContent(signatureParameterElement);
         } else if (instruction instanceof SimpleInsn) {
             SimpleInsn simpleInsn = (SimpleInsn) instruction;
             dexInstruction = new Element(sanitizeInstructionName(simpleInsn.getOpcode().getName()),
-                    nsDEX);
-            Element registersElement = new Element("registers", nsDEX);
-            dexInstruction.addContent(registersElement);
+                    NS_DEX);
+
             RegisterSpecList registers = simpleInsn.getRegisters();
             for (int i = 0; i < registers.size(); ++i) {
-                Element registerElement = new Element("register", nsDEX);
-                registerElement.setAttribute("name", registers.get(i).regString());
-                registerElement.setAttribute("type", registers.get(i).getTypeBearer().toString());
-                registersElement.addContent(registerElement);
+                String type = registers.get(i).getTypeBearer().toHuman();
+                String name = registerNameFormat(registers.get(i).regString());
+                dexInstruction.setAttribute(name, type);
             }
         } else if (instruction instanceof CstInsn) {
             CstInsn cstInsn = (CstInsn) instruction;
-            dexInstruction = new Element(sanitizeInstructionName(cstInsn.getOpcode().getName()),
-                    nsDEX);
-            dexInstruction.setAttribute("type", cstInsn.getConstant().typeName());
-            dexInstruction.setAttribute("value", cstInsn.getConstant().toHuman());
-            System.out.println(">>>>> " + cstInsn.getConstant().getClass().toString());
-            CstInteger ints;
+            if (isInvokeInstruction(cstInsn)) {
+                dexInstruction = processInvokeInstruction(cstInsn);
+            } else {
+                dexInstruction = new Element(
+                        sanitizeInstructionName(cstInsn.getOpcode().getName()), NS_DEX);
+                dexInstruction.setAttribute("type", cstInsn.getConstant().typeName());
+                dexInstruction.setAttribute("value", cstInsn.getConstant().toHuman());
+            }
+            processRegisters(cstInsn.getRegisters(), dexInstruction);
         } else {
-            System.err.print("Unknown instruction: ");
-            System.err.print("(" + instruction.getClass().getName() + ") ");
-            System.err.print(instruction.listingString("", 0, true));
+            System.out.print(">>> Unknown instruction: ");
+            System.out.print("(" + instruction.getClass().getName() + ") ");
+            System.out.print(instruction.listingString("", 0, true));
             return;
         }
         System.out.print("(" + instruction.getClass().getName() + ") ");
@@ -343,6 +349,54 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
         if (dexInstruction != null) {
             codeElement.addContent(dexInstruction);
         }
+    }
+
+    /**
+     * Takes the registers given and appends corresponding attributes to the
+     * given element.
+     */
+    private static void processRegisters(RegisterSpecList registers, Element element) {
+        for (int i = 0; i < registers.size(); ++i) {
+            String type = registers.get(i).getTypeBearer().toHuman();
+            String name = registerNameFormat(registers.get(i).regString());
+            element.setAttribute(name, type);
+        }
+    }
+
+    /**
+     * Returns whether the given instruction is an invoke instruction that can
+     * be handled by {@link #processInvokeInstruction(CstInsn)}.
+     */
+    private static boolean isInvokeInstruction(CstInsn cstInsn) {
+        Dop[] invokeInstructions = { Dops.INVOKE_VIRTUAL, Dops.INVOKE_STATIC, Dops.INVOKE_DIRECT };
+        for (Dop dop : invokeInstructions) {
+            if (dop.equals(cstInsn.getOpcode())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns an element representing the given invoke instruction.
+     */
+    private static Element processInvokeInstruction(CstInsn cstInsn) {
+        Element result = new Element(sanitizeInstructionName(cstInsn.getOpcode().getName()), NS_DEX);
+        CstMethodRef methodRef = (CstMethodRef) cstInsn.getConstant();
+        result.setAttribute("class-type", methodRef.getDefiningClass().toHuman());
+        result.setAttribute("method", methodRef.getNat().getName().toHuman());
+        result.addContent(processSignature(methodRef));
+        return result;
+    }
+
+    /**
+     * Processes the signature of the given method reference and returns a
+     * corresponding element.
+     */
+    private static Element processSignature(CstMethodRef methodRef) {
+        Element result = new Element("signature", NS_XMLVM);
+        // TODO(Sascha): Implement
+        return result;
     }
 
     private static String sanitizeInstructionName(String rawName) {
@@ -356,6 +410,28 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
     private static void setAttributeIfTrue(Element element, String attributeName, boolean value) {
         if (value) {
             element.setAttribute(attributeName, Boolean.toString(value));
+        }
+    }
+
+    /**
+     * Normalizes the register format given (like v0, v2, v3) to the form of
+     * reg0, reg, reg2.
+     * 
+     * @param vFormat
+     *            the register name in v-format
+     * @return the normalized register name in reg-format
+     */
+    private static String registerNameFormat(String vFormat) throws RuntimeException {
+        if (!vFormat.startsWith("v")) {
+            throw new RuntimeErrorException(new Error(
+                    "Register name doesn't start with 'v' prefix: " + vFormat));
+        }
+        try {
+            int registerNumber = Integer.parseInt(vFormat.substring(1));
+            return REG_PREFIX + registerNumber;
+        } catch (NumberFormatException ex) {
+            throw new RuntimeErrorException(new Error(
+                    "Couldn't extract register number from register name: " + vFormat, ex));
         }
     }
 
