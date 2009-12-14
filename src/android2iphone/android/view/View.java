@@ -808,6 +808,17 @@ public class View {
         return drawableState;
     }
 
+    protected boolean verifyDrawable(Drawable who) {
+        return who == backgroundDrawable;
+    }
+
+    protected void drawableStateChanged() {
+        Drawable d = backgroundDrawable;
+        if (d != null && d.isStateful()) {
+            d.setState(getDrawableState());
+        }
+    }
+
     protected void xmlvmSetDrawableState(int[] drawableState) {
         this.drawableState = drawableState;
         refreshBackgroundStateDrawable();

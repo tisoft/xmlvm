@@ -34,16 +34,6 @@ public class DrawableContainer extends Drawable {
         drawableContainerState = state;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see android.graphics.drawable.Drawable#getBounds()
-     */
-    @Override
-    public Rect getBounds() {
-        return new Rect(0, 0, getIntrinsicWidth(), getIntrinsicHeight());
-    }
-
     @Override
     public int getIntrinsicWidth() {
         if (drawableContainerState.isConstantSize()) {
@@ -101,7 +91,7 @@ public class DrawableContainer extends Drawable {
                 // d.setColorFilter(mColorFilter);
                 // d.setState(getState());
                 // d.setLevel(getLevel());
-                // d.setBounds(getBounds());
+                d.setBounds(getBounds());
             }
         } else {
             if (currentDrawable != null) {
@@ -119,6 +109,28 @@ public class DrawableContainer extends Drawable {
         return currentDrawable;
     }
 
+    // TODO: Padding is probably not working by now
+    @Override
+    public boolean getPadding(Rect padding) {
+        final Rect r = drawableContainerState.getConstantPadding();
+        if (r != null) {
+            padding.set(r);
+            return true;
+        }
+        if (currentDrawable != null) {
+            return currentDrawable.getPadding(padding);
+        } else {
+            return super.getPadding(padding);
+        }
+    }
+
+    @Override
+    protected void onBoundsChange(Rect bounds) {
+        if (currentDrawable != null) {
+            currentDrawable.setBounds(bounds);
+        }
+    }
+
     public abstract static class DrawableContainerState extends ConstantState {
         protected static final int      INIT_SIZE            = 10;
         private final DrawableContainer owner;
@@ -127,7 +139,10 @@ public class DrawableContainer extends Drawable {
         private int                     constantWidth;
         private int                     constantHeight;
         private int                     constantMinimumWidth;
+        private boolean                 variablePadding      = false;
+        private Rect                    constantPadding      = null;
         private int                     constantMinimumHeight;
+        private boolean                 paddingChecked       = false;
         private int                     numChildren;
         protected Drawable[]            drawables            = new Drawable[INIT_SIZE];
 
@@ -233,6 +248,36 @@ public class DrawableContainer extends Drawable {
 
         public final boolean isConstantSize() {
             return constantSize;
+        }
+
+        public final Rect getConstantPadding() {
+            if (variablePadding) {
+                return null;
+            }
+            if (constantPadding != null || paddingChecked) {
+                return constantPadding;
+            }
+
+            Rect r = null;
+            final Rect t = new Rect();
+            final int N = getChildCount();
+            final Drawable[] drawables = this.drawables;
+            for (int i = 0; i < N; i++) {
+                if (drawables[i].getPadding(t)) {
+                    if (r == null)
+                        r = new Rect(0, 0, 0, 0);
+                    if (t.left > r.left)
+                        r.left = t.left;
+                    if (t.top > r.top)
+                        r.top = t.top;
+                    if (t.right > r.right)
+                        r.right = t.right;
+                    if (t.bottom > r.bottom)
+                        r.bottom = t.bottom;
+                }
+            }
+            paddingChecked = true;
+            return (constantPadding = r);
         }
 
     }

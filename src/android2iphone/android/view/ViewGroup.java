@@ -144,6 +144,10 @@ public class ViewGroup extends View implements ViewParent {
         setIgnoreRequestLayout(false);
     }
 
+    public ViewGroup(Context context, AttributeSet attrs, int defStyle) {
+        this(context, attrs);
+    }
+
     public void addView(View child) {
         subViews.add(child);
         child.xmlvmSetParent(this);

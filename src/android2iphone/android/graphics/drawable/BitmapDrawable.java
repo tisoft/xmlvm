@@ -20,10 +20,7 @@
 
 package android.graphics.drawable;
 
-import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIImage;
-
-import android.graphics.Rect;
 
 public class BitmapDrawable extends Drawable {
 
@@ -35,14 +32,6 @@ public class BitmapDrawable extends Drawable {
 
     public static BitmapDrawable xmlvmCreateWithImage(UIImage image) {
         return new BitmapDrawable(image);
-    }
-
-    public Rect getBounds() {
-        CGSize s = image.getSize();
-        Rect r = new Rect();
-        r.right = (int) s.width;
-        r.bottom = (int) s.height;
-        return r;
     }
 
     public UIImage xmlvmGetImage() {

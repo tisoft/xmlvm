@@ -30,25 +30,35 @@ import android.util.StateSet;
  * 
  */
 public abstract class Drawable {
-    private int[] mStateSet = StateSet.WILD_CARD;
+    private static final Rect ZERO_BOUNDS_RECT = new Rect();
+    private Rect              bounds           = ZERO_BOUNDS_RECT;
+    private int[]             stateSet         = StateSet.WILD_CARD;
 
     public boolean setState(final int[] stateSet) {
-        if (!Arrays.equals(mStateSet, stateSet)) {
-            mStateSet = stateSet;
+        if (!Arrays.equals(this.stateSet, stateSet)) {
+            this.stateSet = stateSet;
             return onStateChange(stateSet);
         }
         return false;
     }
 
     public int[] getState() {
-        return mStateSet;
+        return stateSet;
     }
 
     protected boolean onStateChange(int[] state) {
         return false;
     }
 
-    public abstract Rect getBounds();
+    public final Rect getBounds() {
+        if (bounds == ZERO_BOUNDS_RECT) {
+            bounds = new Rect();
+            bounds.right = getIntrinsicWidth();
+            bounds.bottom = getIntrinsicHeight();
+        }
+
+        return bounds;
+    }
 
     /**
      * Return the intrinsic width of the underlying drawable object. Returns -1
@@ -111,4 +121,36 @@ public abstract class Drawable {
     public Drawable getCurrent() {
         return this;
     }
+
+    public boolean getPadding(Rect padding) {
+        padding.set(0, 0, 0, 0);
+        return false;
+    }
+
+    public void setBounds(int left, int top, int right, int bottom) {
+        Rect oldBounds = bounds;
+
+        if (oldBounds == ZERO_BOUNDS_RECT) {
+            oldBounds = bounds = new Rect();
+        }
+
+        if (oldBounds.left != left || oldBounds.top != top || oldBounds.right != right
+                || oldBounds.bottom != bottom) {
+            bounds.set(left, top, right, bottom);
+            onBoundsChange(bounds);
+        }
+    }
+
+    /**
+     * Specify a bounding rectangle for the Drawable. This is where the drawable
+     * will draw when its draw() method is called.
+     */
+    public void setBounds(Rect bounds) {
+        setBounds(bounds.left, bounds.top, bounds.right, bounds.bottom);
+    }
+
+    protected void onBoundsChange(Rect bounds) {
+    }
+
+    // public abstract void draw(Canvas canvas);
 }
