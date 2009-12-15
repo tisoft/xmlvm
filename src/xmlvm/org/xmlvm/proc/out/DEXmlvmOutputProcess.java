@@ -35,7 +35,6 @@ import org.jdom.output.XMLOutputter;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.in.file.XmlvmFile;
 
 import com.android.dx.cf.code.ConcreteMethod;
 import com.android.dx.cf.code.Ropper;
@@ -56,6 +55,7 @@ import com.android.dx.dex.code.LocalStart;
 import com.android.dx.dex.code.PositionList;
 import com.android.dx.dex.code.RopTranslator;
 import com.android.dx.dex.code.SimpleInsn;
+import com.android.dx.dex.code.TargetInsn;
 import com.android.dx.rop.code.AccessFlags;
 import com.android.dx.rop.code.DexTranslationAdvice;
 import com.android.dx.rop.code.LocalVariableExtractor;
@@ -66,6 +66,8 @@ import com.android.dx.rop.code.TranslationAdvice;
 import com.android.dx.rop.cst.Constant;
 import com.android.dx.rop.cst.CstMethodRef;
 import com.android.dx.rop.cst.CstType;
+import com.android.dx.rop.type.Prototype;
+import com.android.dx.rop.type.StdTypeList;
 import com.android.dx.ssa.Optimizer;
 import com.android.dx.util.ExceptionWithContext;
 
@@ -73,15 +75,19 @@ import com.android.dx.util.ExceptionWithContext;
  * This OutputProcess emits XMLVM code containing register-based DEX
  * instructions (XMLVM-DEX).
  * <p>
+ * Android's own DX compiler tool is used to parse class files and to create the
+ * register-based DEX code in-memory which is then converted to XML.
+ * <p>
  * TODO(Sascha): Work in progress!
  */
 public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProcess> {
-    private static final String    REG_PREFIX  = "reg";
-    private static final Namespace NS_XMLVM    = XmlvmResource.xmlvmNamespace;
-    private static final Namespace NS_DEX      = Namespace.getNamespace("dex",
-                                                       "http://xmlvm.org/dex");
+    private static final String    DEXMLVM_ENDING = ".dexmlvm";
+    private static final Namespace NS_XMLVM       = XmlvmResource.xmlvmNamespace;
+    private static final Namespace NS_DEX         = Namespace.getNamespace("dex",
+                                                          "http://xmlvm.org/dex");
+    private static final String    REG_PREFIX     = "reg";
 
-    private List<OutputFile>       outputFiles = new ArrayList<OutputFile>();
+    private List<OutputFile>       outputFiles    = new ArrayList<OutputFile>();
 
     public DEXmlvmOutputProcess(Arguments arguments) {
         super(arguments);
@@ -126,11 +132,12 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
         DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(),
                 relativePath, true);
         Document document = createDocument();
-        process(directClassFile, document.getRootElement());
+        String fileName = process(directClassFile, document.getRootElement());
 
         OutputFile result = new OutputFile();
         result.setLocation(arguments.option_out());
-        result.setFileName(classFile.getFileName() + XmlvmFile.XMLVM_ENDING);
+        // TODO(Sascha): Name should look like package_name_classname.dexmlvm
+        result.setFileName(fileName);
         result.setData(documentToString(document));
 
         return result;
@@ -154,8 +161,9 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
      *            the class file to process
      * @param root
      *            the root element to append the classes to
+     * @return the file name for the DEXMLVM file
      */
-    private void process(DirectClassFile cf, Element root) {
+    private String process(DirectClassFile cf, Element root) {
         cf.setAttributeFactory(StdAttributeFactory.THE_ONE);
         cf.getMagic();
 
@@ -174,6 +182,7 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
                 throw ExceptionWithContext.withContext(ex, msg);
             }
         }
+        return thisClass.getClassType().toHuman().replace('.', '_') + DEXMLVM_ENDING;
     }
 
     /**
@@ -235,9 +244,7 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
         setAttributeIfTrue(methodElement, "isStatic", isStatic);
 
         // Create signature element.
-        Element signatureElement = new Element("signature", NS_XMLVM);
-        methodElement.addContent(signatureElement);
-        // TODO(Sascha): Add return type.
+        methodElement.addContent(processSignature(meth));
 
         // Create code element.
         Element codeElement = new Element("code", NS_XMLVM);
@@ -276,10 +283,9 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
                 }
             };
             code.assignIndices(callback);
-
             DalvInsnList instructions = code.getInsns();
             for (int j = 0; j < instructions.size(); ++j) {
-                processInstruction(instructions.get(j), codeElement, signatureElement);
+                processInstruction(instructions.get(j), codeElement);
             }
         }
     }
@@ -293,11 +299,8 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
      *            the instruction to process
      * @param codeElement
      *            the element to add the instruction element to
-     * @param signatureElement
-     *            the signature element to add signature parameters to
      */
-    private static void processInstruction(DalvInsn instruction, Element codeElement,
-            Element signatureElement) {
+    private static void processInstruction(DalvInsn instruction, Element codeElement) {
 
         Element dexInstruction = null;
         if (instruction instanceof CodeAddress) {
@@ -315,7 +318,6 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
             Element signatureParameterElement = new Element("param", NS_XMLVM);
             signatureParameterElement.setAttribute("type", localStart.getLocal().getTypeBearer()
                     .getType().toHuman());
-            signatureElement.addContent(signatureParameterElement);
         } else if (instruction instanceof SimpleInsn) {
             SimpleInsn simpleInsn = (SimpleInsn) instruction;
             dexInstruction = new Element(sanitizeInstructionName(simpleInsn.getOpcode().getName()),
@@ -338,6 +340,10 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
                 dexInstruction.setAttribute("value", cstInsn.getConstant().toHuman());
             }
             processRegisters(cstInsn.getRegisters(), dexInstruction);
+        } else if (instruction instanceof TargetInsn) {
+            TargetInsn targetInsn = (TargetInsn) instruction;
+            targetInsn.getTarget();
+            // TODO(Sascha): Implement
         } else {
             System.out.print(">>> Unknown instruction: ");
             System.out.print("(" + instruction.getClass().getName() + ") ");
@@ -395,10 +401,22 @@ public class DEXmlvmOutputProcess extends OutputProcess<JavaByteCodeOutputProces
      */
     private static Element processSignature(CstMethodRef methodRef) {
         Element result = new Element("signature", NS_XMLVM);
-        // TODO(Sascha): Implement
+        Prototype prototype = methodRef.getPrototype();
+        StdTypeList parameters = prototype.getParameterTypes();
+        for (int i = 0; i < parameters.size(); ++i) {
+            Element parameterElement = new Element("parameter", NS_XMLVM);
+            parameterElement.setAttribute("type", parameters.get(i).toHuman());
+            result.addContent(parameterElement);
+        }
+        Element returnElement = new Element("return", NS_XMLVM);
+        returnElement.setAttribute("type", prototype.getReturnType().getType().toHuman());
+        result.addContent(returnElement);
         return result;
     }
 
+    /**
+     * Makes sure the instruction name is valid as an XML tag name.
+     */
     private static String sanitizeInstructionName(String rawName) {
         return rawName.replaceAll("/", "-");
     }
