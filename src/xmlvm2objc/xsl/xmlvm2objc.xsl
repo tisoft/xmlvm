@@ -281,7 +281,7 @@ int main(int argc, char* argv[])
 <xsl:if test="vm:method[@name='finalize' and 
                         not(vm:signature/vm:parameter) and 
                         vm:signature/vm:return[@type='void']]">
-    <xsl:text>    [self finalize_</xsl:text><xsl:value-of select="vm:fixname(concat(@package, '.', @name))"/><xsl:text>];
+    <xsl:text>    [self finalize_</xsl:text><xsl:value-of select="vm:fixname(concat(@package, '.', @name))"/><xsl:text>__];
 </xsl:text>
 </xsl:if>
 	<xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type)]">
