@@ -39,13 +39,18 @@
 - (void) drawRect:(CGRect)rect
 {
 	[self->backgroundImage drawInRect:rect];
-    org_xmlvm_iphone_CGRect* redrawRect = [[org_xmlvm_iphone_CGRect alloc] init];
-    redrawRect->origin->x = rect.origin.x;
-    redrawRect->origin->y = rect.origin.y;
-    redrawRect->size->width = rect.size.width;
-    redrawRect->size->height = rect.size.height;
-    [self drawRect___org_xmlvm_iphone_CGRect: redrawRect];
-    [redrawRect release];
+	if (self->drawDelegate != nil) {
+		[self->drawDelegate xmlvmDraw__];
+	}
+	else {
+		org_xmlvm_iphone_CGRect* redrawRect = [[org_xmlvm_iphone_CGRect alloc] init];
+		redrawRect->origin->x = rect.origin.x;
+		redrawRect->origin->y = rect.origin.y;
+		redrawRect->size->width = rect.size.width;
+		redrawRect->size->height = rect.size.height;
+		[self drawRect___org_xmlvm_iphone_CGRect: redrawRect];
+		[redrawRect release];
+	}
 }
 
 - (void) setBackgroundImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image
@@ -65,6 +70,14 @@
 - (UIImage*) getBackgroundImage__
 {
 	return [self->backgroundImage retain];
+}
+
+- (void) setDrawDelegate___java_lang_Object: (java_lang_Object*) delegate
+{
+	// We keep a weak reference (don't do a retain on delegate)
+	// We do this because the delegate will only exist as long as this UIView
+	// and by not doing a retain we avoid cycles
+	self->drawDelegate = delegate;
 }
 
 @end

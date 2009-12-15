@@ -21,7 +21,14 @@
 
 package android.graphics;
 
+import org.xmlvm.iphone.CGContext;
+import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.CGSize;
+import org.xmlvm.iphone.UIImage;
+
+import android.graphics.drawable.BitmapDrawable;
 import android.internal.Assert;
+import android.util.Log;
 
 /**
  * @author arno
@@ -29,40 +36,21 @@ import android.internal.Assert;
  */
 public class Canvas {
 
-    /**
-     * @param bitmap
-     * @param i
-     * @param j
-     * @param paint
-     */
-    public void drawBitmap(Bitmap bitmap, float i, float j, Paint paint) {
-        Assert.NOT_IMPLEMENTED();
+    public void drawBitmap(Bitmap bitmap, float left, float top, Paint paint) {
+        UIImage image = ((BitmapDrawable) (bitmap.getDrawable())).xmlvmGetImage();
+        CGSize size = image.getSize();
+        CGRect rect = new CGRect(left, top, size.width, size.height);
+        CGContext.UICurrentContext().drawImage(rect, image.getCGImage());
     }
 
-    /**
-     * @param bitmap
-     * @param src
-     * @param dst
-     * @param paint
-     */
     public void drawBitmap(Bitmap bitmap, Rect src, Rect dst, Paint paint) {
         Assert.NOT_IMPLEMENTED();
     }
 
-    /**
-     * @param i
-     * @param j
-     * @param k
-     * @param l
-     * @param paint
-     */
     public void drawRect(int i, int j, int k, int l, Paint paint) {
         Assert.NOT_IMPLEMENTED();
     }
 
-    /**
-     * @return
-     */
     public int save() {
         Assert.NOT_IMPLEMENTED();
         return 0;
@@ -83,8 +71,8 @@ public class Canvas {
         Assert.NOT_IMPLEMENTED();
     }
 
-    public void drawText(String texttodisplay, int i, int j, Paint paint) {
-        Assert.NOT_IMPLEMENTED();
+    public void drawText(String texttodisplay, int left, int top, Paint paint) {
+        Log.w("xmlvm", "Canvas.drawText() not implemented");
     }
 
     public void setBitmap(Bitmap bitmap) {

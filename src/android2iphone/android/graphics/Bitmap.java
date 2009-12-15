@@ -45,6 +45,10 @@ public final class Bitmap {
         drawable = res.getDrawable(resourceId);
     }
 
+    public Drawable getDrawable() {
+        return drawable;
+    }
+
     public int getWidth() {
         Rect r = drawable.getBounds();
         return r.right;

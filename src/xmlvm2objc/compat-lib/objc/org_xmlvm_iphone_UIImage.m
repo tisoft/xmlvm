@@ -75,7 +75,7 @@
 	UIImage* croppedImage = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
 	CGImageRelease(subImage);
-	return croppedImage;
+	return [croppedImage retain];
 }
 
 @end

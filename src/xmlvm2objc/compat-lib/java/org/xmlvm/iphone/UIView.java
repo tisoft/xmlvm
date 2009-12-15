@@ -1,5 +1,7 @@
 package org.xmlvm.iphone;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -21,6 +23,8 @@ public class UIView extends UIResponder {
     private boolean           userInteractionEnabled;
     private boolean           clipsToBounds;
     private CGAffineTransform transform;
+    private Object            drawDelegate;
+
     /** ---- private methods ---- */
     /* Renderer of this view */
     private UIViewRenderer<?> renderer;
@@ -42,6 +46,7 @@ public class UIView extends UIResponder {
         setUserInteractionEnabled(true);
         subviews = new ArrayList<UIView>();
         superview = null;
+        drawDelegate = null;
         setFrame(rect);
         setHidden(false);
     }
@@ -75,6 +80,10 @@ public class UIView extends UIResponder {
         setFrame(new CGRect(frame.origin.x, frame.origin.y, width, height));
     }
 
+    public void setDrawDelegate(Object delegate) {
+        drawDelegate = delegate;
+    }
+
     public void addSubview(UIView subView) {
         insertSubview(subView, subviews.size());
     }
@@ -101,7 +110,8 @@ public class UIView extends UIResponder {
     }
 
     public void removeFromSuperview() {
-        boolean notifyController = superview != null && superview instanceof UIWindow && controller != null;
+        boolean notifyController = superview != null && superview instanceof UIWindow
+                && controller != null;
         if (notifyController) {
             controller.viewWillDisappear(true);
         }
@@ -157,7 +167,7 @@ public class UIView extends UIResponder {
     public UIImage getBackgroundImage() {
         return backgroundImage;
     }
-    
+
     public void setBackgroundImage(UIImage backgroundImage) {
         this.backgroundImage = backgroundImage;
         setNeedsDisplay();
@@ -266,12 +276,41 @@ public class UIView extends UIResponder {
     public void drawRect(CGRect rect) {
         if (isHidden())
             return;
+
+        if (drawDelegate != null) {
+            // We use reflection to call a method 'xmlvmDraw' in order to avoid
+            // dependencies to the delegate
+            Class<?>[] paramTypes = {};
+            Object[] params = {};
+            Class<?> targetClass = drawDelegate.getClass();
+            Method m = null;
+            try {
+                m = targetClass.getMethod("xmlvmDraw", paramTypes);
+            } catch (SecurityException e) {
+                throw new RuntimeException(e);
+            } catch (NoSuchMethodException e) {
+                throw new RuntimeException(e);
+            }
+
+            try {
+                m.invoke(drawDelegate, params);
+            } catch (IllegalArgumentException e) {
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            } catch (InvocationTargetException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+
         renderer.initPaint();
 
         renderer.paint();
 
         CGContext.theContext.graphicsContext.translate(getFrame().origin.x, getFrame().origin.y);
-        // This is required to set the new coordinates to widget's 0,0 location
+        // This is required to set the new coordinates to widget's 0,0
+        // location
         for (UIView v : getSubviews())
             v.drawRect(rect);
         renderer.finishPaint();

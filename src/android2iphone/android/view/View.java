@@ -41,7 +41,9 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.internal.Assert;
 import android.internal.ResourceAttributes;
+import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 
 /**
  * iPhone implementation of Android's View class.
@@ -90,6 +92,8 @@ public class View {
     private int                      minimumHeight;
     private int                      visibility;
     protected Drawable               backgroundDrawable;
+    private Resources                mResources;
+    private Handler                  handler;
 
     /**
      * Copyright (C) 2006 The Android Open Source Project
@@ -248,7 +252,12 @@ public class View {
 
     private void init(Context c, AttributeSet attrs) {
         this.c = c;
+        mResources = c != null ? c.getResources() : null;
         uiView = xmlvmCreateUIView(attrs);
+
+        if (uiView instanceof UIView) {
+            uiView.setDrawDelegate(this);
+        }
 
         responderDelegate = new UIResponderDelegate() {
 
@@ -373,8 +382,7 @@ public class View {
     }
 
     public Resources getResources() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return mResources;
     }
 
     public void setBackgroundResource(int resourceId) {
@@ -412,8 +420,10 @@ public class View {
     }
 
     public boolean postDelayed(Runnable runnable, long delay) {
-        Assert.NOT_IMPLEMENTED();
-        return true;
+        if (handler == null) {
+            handler = new Handler();
+        }
+        return handler.postDelayed(runnable, delay);
     }
 
     public int getLeft() {
@@ -538,15 +548,23 @@ public class View {
     }
 
     public void scrollTo(int x, int y) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "android.view.View.scrollTo() not implemented");
     }
 
     public int getBaseline() {
         return -1;
     }
 
+    public void xmlvmDraw() {
+        Canvas canvas = new Canvas();
+        draw(canvas);
+    }
+
+    protected void draw(Canvas canvas) {
+        onDraw(canvas);
+    }
+
     protected void onDraw(Canvas canvas) {
-        Assert.NOT_IMPLEMENTED();
     }
 
     public void setPressed(boolean pressed) {

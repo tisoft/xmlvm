@@ -21,5 +21,11 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 
-@interface java_util_Vector : java_lang_Object 
+// java.util.Vector
+//----------------------------------------------------------------------------
+typedef NSMutableArray java_util_Vector;
+@interface NSMutableArray (cat_java_util_Vector)
+
+- (void) __init_java_util_Vector__;
+
 @end

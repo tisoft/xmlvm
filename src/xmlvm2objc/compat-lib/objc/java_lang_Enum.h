@@ -20,6 +20,18 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
+#import "java_lang_String.h"
 
-@interface java_lang_Enum : java_lang_Object 
+
+@interface java_lang_Enum : java_lang_Object {
+	
+	java_lang_String* name;
+	int ordinal;
+}
+
+- (void) __init_java_lang_Enum___java_lang_String_int
+                  :(java_lang_String*) name
+                  :(int) ordinal;
+- (void) dealloc;
+
 @end

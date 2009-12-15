@@ -32,6 +32,7 @@
 @interface org_xmlvm_iphone_UIView : UIView {
 
 UIImage* backgroundImage;
+id       drawDelegate;
 
 }
 
@@ -39,6 +40,7 @@ UIImage* backgroundImage;
 - (void) drawRect:(CGRect)rect;
 - (void) setBackgroundImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image;
 - (UIImage*) getBackgroundImage__;
+- (void) setDrawDelegate___java_lang_Object: (java_lang_Object*) delegate;
 
 @end
 

@@ -18,22 +18,7 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "java_lang_Enum.h"
+#import "java_io_File.h"
 
-@implementation java_lang_Enum 
-
-- (void) __init_java_lang_Enum___java_lang_String_int
-                  :(java_lang_String*) n
-                  :(int) o
-{
-	self->name = [n retain];
-	self->ordinal = o;
-}
-
-- (void) dealloc
-{
-	[self->name release];
-	[super dealloc];
-}
-
+@implementation java_io_File
 @end

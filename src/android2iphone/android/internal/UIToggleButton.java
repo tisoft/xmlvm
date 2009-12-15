@@ -25,16 +25,15 @@ import java.util.Set;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIEvent;
-import org.xmlvm.iphone.UILabel;
-import org.xmlvm.iphone.UITextAlignment;
 import org.xmlvm.iphone.UITouch;
+import org.xmlvm.iphone.UIView;
 
 /**
  * UIToggleButton is a fictitious Cocoa class that mimics Android's ToggleButton
  * widget. It is needed because Cocoa does not offer any equivalent widgets.
  * 
  */
-public class UIToggleButton extends UILabel {
+public class UIToggleButton extends UIView {
 
     private String  textOn   = "ON";
     private String  textOff  = "OFF";
@@ -43,7 +42,6 @@ public class UIToggleButton extends UILabel {
 
     public UIToggleButton() {
         super();
-        this.setTextAlignment(UITextAlignment.Center);
         this.setUserInteractionEnabled(true);
         redraw();
     }
@@ -76,5 +74,10 @@ public class UIToggleButton extends UILabel {
             this.setText(textOff);
             this.setBackgroundColor(UIColor.yellowColor);
         }
+    }
+
+    public void setText(String text) {
+        // TODO need to do something with text
+        
     }
 }

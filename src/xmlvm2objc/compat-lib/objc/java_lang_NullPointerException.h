@@ -19,40 +19,22 @@
  */
 
 
-package android.widget;
+#import "xmlvm.h"
+#import "java_lang_Exception.h"
+#import "java_lang_String.h"
 
-import android.content.Context;
-import android.internal.Assert;
-import android.util.AttributeSet;
-import android.util.Log;
 
-/**
- * @author arno
- *
- */
-public class ScrollView extends FrameLayout {
+// java.lang.NullPointerException
+//----------------------------------------------------------------------------
+// For some reason, compiling for the device doesn't like to define this
+// class as a category.
+@interface java_lang_NullPointerException : java_lang_Exception
 
-    /**
-     * @param c
-     */
-    public ScrollView(Context c) {
-        super(c);
-    }
+- (id) init;
+- (void) __init_java_lang_NullPointerException__;
+- (void) __init_java_lang_NullPointerException___java_lang_String: (java_lang_String*) msg;
+- (void) __init_java_lang_NullPointerException___java_lang_String_java_lang_Throwable: (java_lang_String*) msg: (java_lang_Throwable*) cause;
+- (java_lang_NullPointerException *) initCause___java_lang_Throwable: (java_lang_Throwable*) cause;
+- (void) printStackTrace__;
 
-    /**
-     * @param context
-     * @param attrs
-     */
-    public ScrollView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    /**
-     * @param i
-     * @param j
-     */
-    public void smoothScrollBy(int i, int j) {
-        Log.w("xmlvm", "ScrollView.smoothScrollBy() not implemented");
-    }
-
-}
+@end

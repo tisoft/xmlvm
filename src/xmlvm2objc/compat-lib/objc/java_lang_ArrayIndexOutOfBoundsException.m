@@ -18,22 +18,39 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "java_lang_Enum.h"
 
-@implementation java_lang_Enum 
+#import "java_lang_ArrayIndexOutOfBoundsException.h"
 
-- (void) __init_java_lang_Enum___java_lang_String_int
-                  :(java_lang_String*) n
-                  :(int) o
+// java.lang.ArrayIndexOutOfBoundsException
+//----------------------------------------------------------------------------
+@implementation java_lang_ArrayIndexOutOfBoundsException
+
+- (id) init
 {
-	self->name = [n retain];
-	self->ordinal = o;
+    return [self initWithName: @"java_lang_ArrayIndexOutOfBoundsException" reason: nil userInfo: nil];
 }
 
-- (void) dealloc
+- (void) __init_java_lang_ArrayIndexOutOfBoundsException__
 {
-	[self->name release];
-	[super dealloc];
+    // Do nothing
+}
+
+- (void) __init_java_lang_ArrayIndexOutOfBoundsException___java_lang_String: (java_lang_String*) msg
+{
+}
+
+- (void) __init_java_lang_ArrayIndexOutOfBoundsException___java_lang_String_java_lang_Throwable: (java_lang_String*) msg: (java_lang_Throwable*) cause
+{
+}
+
+- (java_lang_ArrayIndexOutOfBoundsException *) initCause___java_lang_Throwable: (java_lang_Throwable*) cause
+{
+	[self retain];
+	return self;
+}
+
+- (void) printStackTrace__
+{
 }
 
 @end

@@ -29,6 +29,7 @@ import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.internal.Assert;
+import android.util.Log;
 
 public class ContextWrapper extends Context {
 
@@ -69,7 +70,7 @@ public class ContextWrapper extends Context {
     }
 
     public boolean deleteFile(String name) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "ContextWrapper.deleteFile() not implemented");
         return false;
     }
 }

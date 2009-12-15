@@ -43,7 +43,7 @@
 	return retval;
 }
 
-- (CGImageRef) getCGImage__
+- (CGImageRef) getCGImage
 {
 	return image;
 }

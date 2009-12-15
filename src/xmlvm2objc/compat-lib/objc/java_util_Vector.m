@@ -20,5 +20,11 @@
 
 #import "java_util_Vector.h"
 
-@implementation java_util_Vector
+@implementation NSMutableArray (cat_java_util_Vector)
+
+- (void) __init_java_util_Vector__
+{
+}
+
 @end
+

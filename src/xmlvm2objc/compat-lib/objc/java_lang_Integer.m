@@ -66,7 +66,7 @@
 
 + (java_lang_String*) toString___int: i
 {
-	return [[NSNumber numberWithInt: i] stringValue];
+	return [[[NSNumber numberWithInt: i] stringValue] retain];
 }
 
 + (java_lang_Integer*) valueOf___int: (int) i
