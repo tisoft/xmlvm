@@ -114,12 +114,13 @@ public class TextView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // TODO: Replace with a more elaborated measurement
+        int minWidth = getSuggestedMinimumWidth();
+        int minHeight = getSuggestedMinimumHeight();
         int width = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                .getSize(widthMeasureSpec) : 2 * INSETS_X + text.length()
-                * DEFAULT_FONT_WIDTH;
+                .getSize(widthMeasureSpec) : 2 * INSETS_X + text.length() * DEFAULT_FONT_WIDTH;
         int height = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
                 .getSize(heightMeasureSpec) : 2 * INSETS_Y + DEFAULT_FONT_HEIGHT;
-        setMeasuredDimension(width, height);
+        setMeasuredDimension(Math.max(width, minWidth), Math.max(height, minHeight));
     }
 
 }
