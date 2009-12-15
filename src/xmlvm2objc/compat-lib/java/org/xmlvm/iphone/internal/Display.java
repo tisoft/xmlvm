@@ -62,8 +62,8 @@ public class Display implements ImageObserver {
         CGRect rect = new CGRect(r.x, r.y, r.width, r.height);
         UIWindow keyWindow = UIApplication.sharedApplication().getKeyWindow();
         if (keyWindow != null)
-            keyWindow.drawRect(rect);
-        statusBar.drawRect(rect);
+            keyWindow.xmlvmDrawRect(rect);
+        statusBar.xmlvmDrawRect(rect);
 
         g2d.setClip(savedClip);
     }

@@ -273,15 +273,16 @@ public class UIView extends UIResponder {
         this.clipsToBounds = clipsToBounds;
     }
 
-    public void drawRect(CGRect rect) {
+    public void xmlvmDrawRect(CGRect rect) {
         if (isHidden())
             return;
 
         if (drawDelegate != null) {
-            // We use reflection to call a method 'xmlvmDraw' in order to avoid
+            // We use reflection to call a method 'xmlvmDraw(CGRect)' in order
+            // to avoid
             // dependencies to the delegate
-            Class<?>[] paramTypes = {};
-            Object[] params = {};
+            Class<?>[] paramTypes = { CGRect.class };
+            Object[] params = { rect };
             Class<?> targetClass = drawDelegate.getClass();
             Method m = null;
             try {
@@ -311,9 +312,16 @@ public class UIView extends UIResponder {
         CGContext.theContext.graphicsContext.translate(getFrame().origin.x, getFrame().origin.y);
         // This is required to set the new coordinates to widget's 0,0
         // location
-        for (UIView v : getSubviews())
+        drawRect(rect);
+        for (UIView v : getSubviews()) {
+            v.xmlvmDrawRect(rect);
             v.drawRect(rect);
+        }
         renderer.finishPaint();
+    }
+
+    public void drawRect(CGRect rect) {
+        // Do nothing
     }
 
     protected UIViewRenderer<?> xmlvmGetRenderer() {

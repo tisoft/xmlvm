@@ -555,8 +555,8 @@ public class View {
         return -1;
     }
 
-    public void xmlvmDraw() {
-        Canvas canvas = new Canvas();
+    public void xmlvmDraw(CGRect rect) {
+        Canvas canvas = new Canvas(rect);
         draw(canvas);
     }
 

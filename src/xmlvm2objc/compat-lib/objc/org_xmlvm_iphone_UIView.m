@@ -39,18 +39,21 @@
 - (void) drawRect:(CGRect)rect
 {
 	[self->backgroundImage drawInRect:rect];
+
+	org_xmlvm_iphone_CGRect* redrawRect = [[org_xmlvm_iphone_CGRect alloc] init];
+	redrawRect->origin->x = rect.origin.x;
+	redrawRect->origin->y = rect.origin.y;
+	redrawRect->size->width = rect.size.width;
+	redrawRect->size->height = rect.size.height;
+
 	if (self->drawDelegate != nil) {
-		[self->drawDelegate xmlvmDraw__];
+		[self->drawDelegate xmlvmDraw___org_xmlvm_iphone_CGRect:redrawRect];
 	}
 	else {
-		org_xmlvm_iphone_CGRect* redrawRect = [[org_xmlvm_iphone_CGRect alloc] init];
-		redrawRect->origin->x = rect.origin.x;
-		redrawRect->origin->y = rect.origin.y;
-		redrawRect->size->width = rect.size.width;
-		redrawRect->size->height = rect.size.height;
 		[self drawRect___org_xmlvm_iphone_CGRect: redrawRect];
-		[redrawRect release];
 	}
+	
+	[redrawRect release];
 }
 
 - (void) setBackgroundImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image

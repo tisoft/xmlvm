@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.graphics;
 
 import org.xmlvm.iphone.CGContext;
@@ -32,15 +31,30 @@ import android.util.Log;
 
 /**
  * @author arno
- *
+ * 
  */
 public class Canvas {
+
+    private CGRect drawRect;
+
+    public Canvas() {
+        //TODO how to initialize drawRect?
+    }
+    
+    public Canvas(CGRect rect) {
+        this.drawRect = rect;
+    }
 
     public void drawBitmap(Bitmap bitmap, float left, float top, Paint paint) {
         UIImage image = ((BitmapDrawable) (bitmap.getDrawable())).xmlvmGetImage();
         CGSize size = image.getSize();
         CGRect rect = new CGRect(left, top, size.width, size.height);
-        CGContext.UICurrentContext().drawImage(rect, image.getCGImage());
+        CGContext context = CGContext.UICurrentContext();
+        context.storeState();
+        context.translate(0, drawRect.size.height);
+        context.scale(1, -1);
+        context.drawImage(rect, image.getCGImage());
+        context.restoreState();
     }
 
     public void drawBitmap(Bitmap bitmap, Rect src, Rect dst, Paint paint) {

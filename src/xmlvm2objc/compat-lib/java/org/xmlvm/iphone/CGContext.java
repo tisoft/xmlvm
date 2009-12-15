@@ -3,6 +3,7 @@ package org.xmlvm.iphone;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
 
 public class CGContext {
     public static final int kCGTextInvisible = 1;
@@ -16,6 +17,7 @@ public class CGContext {
     private float           ty;
     private int             textMode;
     private Rectangle       clip;
+    private AffineTransform transform;
 
     CGContext(Graphics2D g) {
         graphicsContext = g;
@@ -102,9 +104,11 @@ public class CGContext {
 
     public void storeState() {
         clip = graphicsContext.getClipBounds();
+        transform = graphicsContext.getTransform();
     }
 
     public void restoreState() {
+        graphicsContext.setTransform(transform);
         graphicsContext.setClip(clip);
     }
 

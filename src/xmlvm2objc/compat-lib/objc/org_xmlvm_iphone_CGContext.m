@@ -36,22 +36,14 @@
 }
     
 
-- (void) setFillColor___float_ARRAYTYPE: (NSMutableArray*) color
+- (void) setFillColor___float_ARRAYTYPE: (XMLVMArray*) color
 {
-    float c[4] = { [[color objectAtIndex:0] floatValue],
-                   [[color objectAtIndex:1] floatValue],
-                   [[color objectAtIndex:2] floatValue],
-                   [[color objectAtIndex:3] floatValue] };
-    CGContextSetFillColor(context, c);
+    CGContextSetFillColor(context, color->array.f);
 }
 
-- (void) setStrokeColor___float_ARRAYTYPE: (NSMutableArray*) color
+- (void) setStrokeColor___float_ARRAYTYPE: (XMLVMArray*) color
 {
-    float c[4] = { [[color objectAtIndex:0] floatValue],
-                   [[color objectAtIndex:1] floatValue],
-                   [[color objectAtIndex:2] floatValue],
-                   [[color objectAtIndex:3] floatValue] };
-    CGContextSetStrokeColor(context, c);
+    CGContextSetStrokeColor(context, color->array.f);
 }
 
 - (void) fillRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect
