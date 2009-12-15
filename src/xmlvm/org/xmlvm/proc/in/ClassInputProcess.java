@@ -384,22 +384,27 @@ public class ClassInputProcess extends InputProcess<ClassFile> {
             xml_code.setAttribute("language", "ByteCode");
             xmlMethod.addContent(xml_code);
             boolean isConstructor = bcelMethod.getName().equals("<init>");
-            int lastID = -1;
+            int lastID = 0;
+            int lastOffset = 0;
             Element var = null;
             for (int i = 0; i < lvs.length; i++) {
                 LocalVariableGen l = lvs[i];
                 int id = l.getIndex();
-                if (isConstructor && lastID == 0 && id == 2)
-                    /*
-                     * There is a gap in the variable IDs. This indicates a
-                     * missing <var> declaration for a hidden parameter.
-                     */
-                    addHiddenVarDecl(xml_code, 1);
+                String type = l.getType().toString();
+                /*
+                 * Check if there is a gap between two variable declarations.
+                 * If this is the case, it is an indication for a hidden variable.
+                 */
+                while (isConstructor && lastID + lastOffset < id) {
+                    lastID += addHiddenVarDecl(xml_code, lastID + lastOffset);
+                }
                 var = new Element("var", nsJVM);
                 var.setAttribute("name", l.getName());
                 var.setAttribute("id", String.valueOf(id));
-                var.setAttribute("type", l.getType().toString());
+                var.setAttribute("type", type);
                 xml_code.addContent(var);
+                // lastOffset is 2 for computational type 2 otherwise offset is 1
+                lastOffset = type.equals("long") || type.equals("double") ? 2 : 1;
                 lastID = id;
             }
             /*
@@ -519,8 +524,9 @@ public class ClassInputProcess extends InputProcess<ClassFile> {
          * 
          * @param xml_code
          * @param id
+         * @return 1 for computational type 1, 2 for computational type 2
          */
-        private void addHiddenVarDecl(Element xml_code, int id) {
+        private int addHiddenVarDecl(Element xml_code, int id) {
             String type = null;
             if (bcelMethod.isStatic()) {
                 Type t = bcelMethod.getArgumentTypes()[id];
@@ -545,6 +551,8 @@ public class ClassInputProcess extends InputProcess<ClassFile> {
             var.setAttribute("type", type);
             var.setAttribute("isSynthetic", "true");
             xml_code.addContent(var);
+            
+            return type.equals("long") || type.equals("double") ? 2 : 1;
         }
 
         private void emitBranchInstruction(Element xml_inst, InstructionHandle ih) {
