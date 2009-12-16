@@ -765,6 +765,12 @@ int main(int argc, char* argv[])
     _stack[_sp++].i = _op1.i &amp; _op2.i;</xsl:text>
 </xsl:template>
 
+<xsl:template match="jvm:land">
+  <xsl:text>    _op2.l = _stack[--_sp].l;
+    _op1.l = _stack[--_sp].l;
+    _stack[_sp++].l = _op1.l &amp; _op2.l;</xsl:text>
+</xsl:template>
+
 <xsl:template match="jvm:ior">
   <xsl:text>    _op2.i = _stack[--_sp].i;
     _op1.i = _stack[--_sp].i;
@@ -890,7 +896,14 @@ int main(int argc, char* argv[])
   
 <xsl:template match="jvm:i2b">
   <xsl:text>    _op1.i = _stack[--_sp].i;
-    _stack[_sp++].i = (int) (_op1.i &amp; 0xFF);</xsl:text>
+    _op1.i = (int) (_op1.i &amp; 0xFF);
+    _stack[_sp++].i = (_op1.i &amp; 0x80) ? _op1.i | 0xffffff00 : _op1.i;</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:i2s">
+  <xsl:text>    _op1.i = _stack[--_sp].i;
+    _op1.i = (int) (_op1.i &amp; 0xffff);
+    _stack[_sp++].i = (_op1.i &amp; 0x8000) ? _op1.i | 0xffff0000 : _op1.i;</xsl:text>
 </xsl:template>
 
 <xsl:template match="jvm:i2l">
@@ -963,8 +976,9 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-
-<xsl:template match="jvm:pop">
+<!-- We just decrement _sp by one for pop2 as well since XMLVM's stack already
+     allocates memory for a computational type 2 argument for each stack element. -->
+<xsl:template match="jvm:pop|jvm:pop2">
   <xsl:text>    _sp--;
 </xsl:text>
 </xsl:template>
@@ -1723,10 +1737,22 @@ int main(int argc, char* argv[])
     _stack[_sp++].i = _op1.i &lt;&lt; _op2.i;</xsl:text>
 </xsl:template>
 
+<xsl:template match="jvm:lshl">
+  <xsl:text>    _op2.i = _stack[--_sp].i;
+    _op1.l = _stack[--_sp].l;
+    _stack[_sp++].l = _op1.l &lt;&lt; _op2.i;</xsl:text>
+</xsl:template>
+
 <xsl:template match="jvm:ishr">
   <xsl:text>    _op2.i = _stack[--_sp].i;
     _op1.i = _stack[--_sp].i;
     _stack[_sp++].i = _op1.i &gt;&gt; _op2.i;</xsl:text>
+</xsl:template>
+
+<xsl:template match="jvm:lushr">
+  <xsl:text>    _op2.i = _stack[--_sp].i;
+    _op1.l = _stack[--_sp].l;
+    _stack[_sp++].l = ((unsigned long) _op1.l) &gt;&gt; _op2.i;</xsl:text>
 </xsl:template>
 
 <xsl:template match="jvm:iushr">
@@ -1799,7 +1825,7 @@ int main(int argc, char* argv[])
 
 <xsl:template match="jvm:i2c">
   <xsl:text>    _op1.i = _stack[--_sp].i;
-  _stack[_sp++].i = (short) _op1.i;</xsl:text>
+  _stack[_sp++].i = _op1.i &amp; 0xff;</xsl:text>
 </xsl:template>
 
 <xsl:template match="jvm:ladd">
