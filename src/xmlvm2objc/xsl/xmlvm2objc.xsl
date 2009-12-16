@@ -976,9 +976,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<!-- We just decrement _sp by one for pop2 as well since XMLVM's stack already
-     allocates memory for a computational type 2 argument for each stack element. -->
-<xsl:template match="jvm:pop|jvm:pop2">
+<xsl:template match="jvm:pop">
   <xsl:text>    _sp--;
 </xsl:text>
 </xsl:template>
