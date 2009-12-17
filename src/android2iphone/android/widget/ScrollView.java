@@ -21,38 +21,42 @@
 
 package android.widget;
 
-import android.content.Context;
-import android.internal.Assert;
-import android.util.AttributeSet;
-import android.util.Log;
+import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIScrollView;
+import org.xmlvm.iphone.UIView;
 
-/**
- * @author arno
- *
- */
+import android.content.Context;
+import android.util.AttributeSet;
+
 public class ScrollView extends FrameLayout {
 
-    /**
-     * @param c
-     */
+    private int scrollOffsetX = 0;
+    private int scrollOffsetY = 0;
+    
     public ScrollView(Context c) {
         super(c);
     }
 
-    /**
-     * @param context
-     * @param attrs
-     */
     public ScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    /**
-     * @param i
-     * @param j
-     */
-    public void smoothScrollBy(int i, int j) {
-        Log.w("xmlvm", "ScrollView.smoothScrollBy() not implemented");
+    @Override
+    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
+        return new UIScrollView();
+    }
+
+    public void smoothScrollBy(int dx, int dy) {
+        scrollOffsetX += dx;
+        scrollOffsetY += dy;
+        CGRect rect = xmlvmGetUIView().getBounds();
+        scrollOffsetX = Math.min(scrollOffsetX, scrollOffsetX - (int) rect.size.width);
+        scrollOffsetX = Math.max(scrollOffsetX, 0);
+        scrollOffsetY = Math.min(scrollOffsetY, scrollOffsetY - (int) rect.size.height);
+        scrollOffsetY = Math.max(scrollOffsetY, 0);
+        rect.origin.x = scrollOffsetX;
+        rect.origin.y = scrollOffsetY;
+        ((UIScrollView) xmlvmGetUIView()).scrollRectToVisible(rect, true);
     }
 
 }

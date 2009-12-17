@@ -23,6 +23,8 @@ public class UIView extends UIResponder {
     private boolean           userInteractionEnabled;
     private boolean           clipsToBounds;
     private CGAffineTransform transform;
+    protected int             scrollOffsetX;
+    protected int             scrollOffsetY;
     private Object            drawDelegate;
 
     /** ---- private methods ---- */
@@ -134,7 +136,7 @@ public class UIView extends UIResponder {
     }
 
     public CGRect getBounds() {
-        return this.bounds;
+        return new CGRect(this.bounds);
     }
 
     public void setNeedsDisplay() {
@@ -283,6 +285,8 @@ public class UIView extends UIResponder {
         // This is required to set the new coordinates to widget's 0,0
         // location
         CGContext.theContext.graphicsContext.translate(getFrame().origin.x, getFrame().origin.y);
+
+        CGContext.theContext.graphicsContext.translate(-scrollOffsetX, -scrollOffsetY);
 
         if (drawDelegate != null) {
             // We use reflection to call a method 'xmlvmDraw(CGRect)' in order
