@@ -23,8 +23,7 @@ package org.xmlvm.iphone;
 public class UIScrollView extends UIView {
 
     public void scrollRectToVisible(CGRect rect, boolean animated) {
-        scrollOffsetX = (int) rect.origin.x;
-        scrollOffsetY = (int) rect.origin.y;
+        xmlvmSetOffsets((int) rect.origin.x, (int) rect.origin.y);
         setNeedsDisplay();
     }
 

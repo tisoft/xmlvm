@@ -29,20 +29,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.internal.Assert;
 import android.util.Log;
 
-/**
- * @author arno
- * 
- */
 public class Canvas {
 
-    private CGRect drawRect;
-
     public Canvas() {
-        //TODO how to initialize drawRect?
-    }
-    
-    public Canvas(CGRect rect) {
-        this.drawRect = rect;
     }
 
     public void drawBitmap(Bitmap bitmap, float left, float top, Paint paint) {
@@ -52,7 +41,7 @@ public class Canvas {
         CGContext context = CGContext.UICurrentContext();
         context.storeState();
         context.scale(1, -1);
-        context.translate(0, -(rect.size.height + 2 * rect.origin.y));//-(image.getSize().height + drawRect.origin.y));
+        context.translate(0, -(rect.size.height + 2 * rect.origin.y));
         context.drawImage(rect, image.getCGImage());
         context.restoreState();
     }
@@ -70,17 +59,10 @@ public class Canvas {
         return 0;
     }
 
-    /**
-     * @param scaleX
-     * @param scaleY
-     */
     public void scale(float scaleX, float scaleY) {
         Assert.NOT_IMPLEMENTED();
     }
 
-    /**
-     * @param sc
-     */
     public void restoreToCount(int saveCount) {
         Assert.NOT_IMPLEMENTED();
     }

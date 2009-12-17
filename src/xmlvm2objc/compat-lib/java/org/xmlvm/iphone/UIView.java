@@ -23,8 +23,8 @@ public class UIView extends UIResponder {
     private boolean           userInteractionEnabled;
     private boolean           clipsToBounds;
     private CGAffineTransform transform;
-    protected int             scrollOffsetX;
-    protected int             scrollOffsetY;
+    private int               offsetLeft;
+    private int               offsetTop;
     private Object            drawDelegate;
 
     /** ---- private methods ---- */
@@ -286,7 +286,7 @@ public class UIView extends UIResponder {
         // location
         CGContext.theContext.graphicsContext.translate(getFrame().origin.x, getFrame().origin.y);
 
-        CGContext.theContext.graphicsContext.translate(-scrollOffsetX, -scrollOffsetY);
+        CGContext.theContext.graphicsContext.translate(-offsetLeft, -offsetTop);
 
         if (drawDelegate != null) {
             // We use reflection to call a method 'xmlvmDraw(CGRect)' in order
@@ -333,5 +333,10 @@ public class UIView extends UIResponder {
 
     protected void xmlvmSetRenderer(UIViewRenderer<?> renderer) {
         this.renderer = renderer;
+    }
+
+    public void xmlvmSetOffsets(int offsetLeft, int offsetTop) {
+        this.offsetLeft = offsetLeft;
+        this.offsetTop = offsetTop;
     }
 }
