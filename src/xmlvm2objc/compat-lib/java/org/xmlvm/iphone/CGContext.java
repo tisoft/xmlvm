@@ -127,8 +127,13 @@ public class CGContext {
     }
 
     public void drawImage(CGRect rect, CGImage image) {
+        AffineTransform savedTransform = graphicsContext.getTransform();
+        graphicsContext.scale(1, -1);
+        graphicsContext.translate(0, -(rect.size.height + 2 * rect.origin.y));
+
         graphicsContext.drawImage(image.image, (int) rect.origin.x, (int) rect.origin.y,
                 (int) rect.size.width, (int) rect.size.height, null);
+        graphicsContext.setTransform(savedTransform);
     }
 
     public void drawLayer(CGRect rect, CGLayer layer) {

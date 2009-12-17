@@ -51,8 +51,8 @@ public class Canvas {
         CGRect rect = new CGRect(left, top, size.width, size.height);
         CGContext context = CGContext.UICurrentContext();
         context.storeState();
-        context.translate(0, drawRect.size.height);
         context.scale(1, -1);
+        context.translate(0, -(rect.size.height + 2 * rect.origin.y));//-(image.getSize().height + drawRect.origin.y));
         context.drawImage(rect, image.getCGImage());
         context.restoreState();
     }

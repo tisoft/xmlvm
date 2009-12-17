@@ -277,6 +277,13 @@ public class UIView extends UIResponder {
         if (isHidden())
             return;
 
+        renderer.initPaint();
+        renderer.paint();
+
+        // This is required to set the new coordinates to widget's 0,0
+        // location
+        CGContext.theContext.graphicsContext.translate(getFrame().origin.x, getFrame().origin.y);
+
         if (drawDelegate != null) {
             // We use reflection to call a method 'xmlvmDraw(CGRect)' in order
             // to avoid
@@ -305,17 +312,9 @@ public class UIView extends UIResponder {
 
         }
 
-        renderer.initPaint();
-
-        renderer.paint();
-
-        CGContext.theContext.graphicsContext.translate(getFrame().origin.x, getFrame().origin.y);
-        // This is required to set the new coordinates to widget's 0,0
-        // location
         drawRect(rect);
         for (UIView v : getSubviews()) {
             v.xmlvmDrawRect(rect);
-            v.drawRect(rect);
         }
         renderer.finishPaint();
     }

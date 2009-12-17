@@ -69,8 +69,8 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGImageRef subImage = CGImageCreateWithImageInRect([self CGImage], cropRect);
 	CGRect myRect = CGRectMake(0.0f, 0.0f, size.width, size.height);
-	//CGContextScaleCTM(context, 1.0f, -1.0f);
-	//CGContextTranslateCTM(context, 0.0f, -size.height);
+	CGContextScaleCTM(context, 1.0f, -1.0f);
+	CGContextTranslateCTM(context, 0.0f, -size.height);
 	CGContextDrawImage(context, myRect, subImage);
 	UIImage* croppedImage = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
