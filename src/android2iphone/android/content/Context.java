@@ -27,6 +27,7 @@ import java.io.FileOutputStream;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.hardware.SensorManager;
+import android.internal.IPhoneManager;
 import android.media.AudioManager;
 import android.os.PowerManager;
 import android.view.LayoutInflater;
@@ -37,6 +38,13 @@ import android.view.LayoutInflater;
  * Interface to global information about an application environment.
  */
 public abstract class Context {
+    
+    /**
+     * Use with {@link #getSystemService(String)} to retrieve a
+     * {@link IPhoneManager} for iPhone-specific services. This is
+     * a XMLVM extension.
+     */
+    public static final String    IPHONE_SERVICE          = "iphone";
     /**
      * Use with {@link #getSystemService(String)} to retrieve a
      * {@link SensorManager} for accessing sensors.
@@ -75,6 +83,7 @@ public abstract class Context {
     private static PowerManager   powerManager            = null;
     private static AudioManager   audioManager            = null;
     private static LayoutInflater layoutInflater          = null;
+    private static IPhoneManager  iphoneManager           = null;
 
     /**
      * Return the handle to a system-level service by name. The class of the
@@ -105,6 +114,11 @@ public abstract class Context {
                 layoutInflater = new LayoutInflater(this);
             }
             return layoutInflater;
+        } else if (service.equals(IPHONE_SERVICE)) {
+            if (iphoneManager == null) {
+                iphoneManager = new IPhoneManager();
+            }
+            return iphoneManager;
         }
         return null;
     }
