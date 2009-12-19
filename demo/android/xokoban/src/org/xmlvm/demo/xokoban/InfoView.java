@@ -105,14 +105,6 @@ public class InfoView extends SplashView {
         enableAccelerometer.layout(checkboxLeft, topCheckbox, checkboxLeft + sizeCheckbox,
                 topCheckbox + sizeCheckbox);
         okButton.layout(buttonLeft, topButton, buttonLeft + widthButton, topButton + heightButton);
-        logFoo();
-    }
-
-    public void logFoo() {
-        WindowManager windowManager = (WindowManager) getContext().getSystemService("window");
-        int displayWidth = windowManager.getDefaultDisplay().getWidth();
-        int displayHeight = windowManager.getDefaultDisplay().getHeight();
-        Log.d("Resolution INFOVIEW", displayWidth + "px x " + displayHeight + "px");
     }
 
     private GameController getGameController() {
