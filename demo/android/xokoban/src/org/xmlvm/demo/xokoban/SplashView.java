@@ -21,16 +21,24 @@
 package org.xmlvm.demo.xokoban;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
-import android.widget.AbsoluteLayout;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 /**
  * A splash view shown right after the start of the application.
  */
-public class SplashView extends AbsoluteLayout  {
-    protected GameView gameView;
-    protected boolean  shown = false;
+public class SplashView extends ViewGroup {
+    protected static final int SPLASH_WIDTH  = 800;
+    protected static final int SPLASH_HEIGHT = 480;
+
+    protected WindowManager    windowManager;
+    protected GameView         gameView;
+    protected ImageView        splashImage;
+    protected boolean          shown         = false;
 
     /**
      * Creates the SplashView with a background image.
@@ -41,10 +49,18 @@ public class SplashView extends AbsoluteLayout  {
 
     protected SplashView(Context context, GameView gameView, int resourceId) {
         super(context);
+        windowManager = (WindowManager) context.getSystemService("window");
+        int displayWidth = windowManager.getDefaultDisplay().getWidth();
+        int displayHeight = windowManager.getDefaultDisplay().getHeight();
+        Log.d("Resolution", displayWidth + "px x " + displayHeight + "px");
+
+        this.setBackgroundColor(Color.GREEN);
         this.gameView = gameView;
-        ImageView splashImage = new ImageView(context);
+
+        splashImage = new ImageView(context);
         splashImage.setImageResource(resourceId);
-        addView(splashImage, 0);
+
+        addView(splashImage);
     }
 
     /**
@@ -71,5 +87,27 @@ public class SplashView extends AbsoluteLayout  {
      */
     public boolean isViewShown() {
         return shown;
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        onSplashLayout(windowManager.getDefaultDisplay().getWidth(), windowManager
+                .getDefaultDisplay().getHeight());
+    }
+
+    /**
+     * Lays out the children in this splash view. Should be overridden by
+     * sub-classes for their layouting.
+     * 
+     * @param displayWidth
+     *            the width of the display
+     * @param displayHeight
+     *            the height of the display
+     */
+    protected void onSplashLayout(int displayWidth, int displayHeight) {
+        // This only works for one aspect ratio case.
+        int splashWidth = (int) (((float) displayHeight / (float) SPLASH_HEIGHT) * (float) SPLASH_WIDTH);
+        int splashLeft = (int) ((splashWidth - displayWidth) / -2f);
+        splashImage.layout(splashLeft, 0, displayWidth - splashLeft, displayHeight);
     }
 }

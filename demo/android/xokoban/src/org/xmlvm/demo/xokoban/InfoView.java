@@ -21,8 +21,9 @@
 package org.xmlvm.demo.xokoban;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
-import android.widget.AbsoluteLayout;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 
@@ -32,24 +33,19 @@ import android.widget.CheckBox;
  */
 public class InfoView extends SplashView {
     private OnCloseHandler onCloseHandler;
+    private CheckBox       enableAccelerometer;
+    private Button         okButton;
 
     public InfoView(final Context context, GameView gameView) {
         super(context, gameView, R.drawable.splash_info);
 
-        final CheckBox enableAccelerometer = new CheckBox(context);
-        AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
-                AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                35, 250);
-        enableAccelerometer.setLayoutParams(p);
+        enableAccelerometer = new CheckBox(context);
         enableAccelerometer.setChecked(((Xokoban) context).isAccelerometerEnabled());
-        addView(enableAccelerometer);
+        addView(enableAccelerometer, 1);
 
-        Button okButton = new Button(context);
+        okButton = new Button(context);
         okButton.setText("OK");
-        p = new AbsoluteLayout.LayoutParams(AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                AbsoluteLayout.LayoutParams.WRAP_CONTENT, 270, 255);
-        okButton.setLayoutParams(p);
-        addView(okButton);
+        addView(okButton, 2);
         okButton.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -63,7 +59,7 @@ public class InfoView extends SplashView {
                 if (shown) {
                     hide();
                     onCloseHandler.onClose();
-                    
+
                     if (((Xokoban) context).isFirstRun()) {
                         ((Xokoban) context).setFirstRun(false);
                         getGameController().loadLevel(true);
@@ -79,7 +75,46 @@ public class InfoView extends SplashView {
     public void setOnCloseHandler(OnCloseHandler handler) {
         onCloseHandler = handler;
     }
-    
+
+    /**
+     * This method lays out the UI elements with the screen size in mind.
+     * 
+     * @see org.xmlvm.demo.xokoban.SplashView#onSplashLayout(int, int)
+     */
+    @Override
+    protected void onSplashLayout(int displayWidth, int displayHeight) {
+        super.onSplashLayout(displayWidth, displayHeight);
+
+        // The positions below are calculated from the 800x480 original. So this
+        // is the factor we need to use in order to get the positions on any
+        // other sized display.
+        float sizeFactor = displayHeight / 480f;
+
+        int topCheckbox = (int) (380 * sizeFactor);
+        int sizeCheckbox = (int) (60 * sizeFactor);
+        int topButton = (int) (385 * sizeFactor);
+        int heightButton = (int) (60 * sizeFactor);
+        int widthButton = (int) (90 * sizeFactor);
+
+        // Because the background image might be cropped at the sides, but for
+        // sure will also be centered, we calculate the positions relative from
+        // the center.
+        int checkboxLeft = (int) ((displayWidth / 2f) - (310f * sizeFactor));
+        int buttonLeft = (int) ((displayWidth / 2f) + (40f * sizeFactor));
+
+        enableAccelerometer.layout(checkboxLeft, topCheckbox, checkboxLeft + sizeCheckbox,
+                topCheckbox + sizeCheckbox);
+        okButton.layout(buttonLeft, topButton, buttonLeft + widthButton, topButton + heightButton);
+        logFoo();
+    }
+
+    public void logFoo() {
+        WindowManager windowManager = (WindowManager) getContext().getSystemService("window");
+        int displayWidth = windowManager.getDefaultDisplay().getWidth();
+        int displayHeight = windowManager.getDefaultDisplay().getHeight();
+        Log.d("Resolution INFOVIEW", displayWidth + "px x " + displayHeight + "px");
+    }
+
     private GameController getGameController() {
         return gameView.getGameController();
     }

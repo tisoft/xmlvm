@@ -25,6 +25,8 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
+import android.widget.FrameLayout.LayoutParams;
+import android.widget.ImageView.ScaleType;
 
 /**
  * The GameView class wraps everything that is required for displaying a game.
@@ -82,11 +84,15 @@ public class GameView {
         this.activity = activity;
         this.mover = new GamePieceMover();
 
-
         // Connect view to activity and create background
         layout = new AbsoluteLayout(activity);
         activity.setContentView(layout);
         backgroundImage = new ImageView(activity);
+        LayoutParams params = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+        params.width = activity.getWindowManager().getDefaultDisplay().getWidth();
+        params.height = activity.getWindowManager().getDefaultDisplay().getHeight();
+        backgroundImage.setScaleType(ScaleType.FIT_XY);
+        backgroundImage.setLayoutParams(params);
         backgroundImage.setImageResource(R.drawable.background);
         infoImage = new ImageView(activity);
         infoImage.setImageResource(R.drawable.info);
@@ -257,11 +263,11 @@ public class GameView {
         return (int) x < (LEVELS_ICON_SIZE + 10)
                 && (int) y > displayHeight - (LEVELS_ICON_SIZE + 10);
     }
-    
+
     private int determineTileSize(int boardWidth, int boardHeight) {
         int maxTileWidth = 480 / boardWidth;
         int maxTileHeight = 320 / boardHeight;
-        
+
         return maxTileWidth < 30 || maxTileHeight < 30 ? 20 : 30;
     }
 }
