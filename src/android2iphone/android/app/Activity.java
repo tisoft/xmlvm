@@ -160,19 +160,19 @@ public class Activity extends ContextThemeWrapper {
         state = STATE_STOPPED;
     }
 
-    public void xmlvmTransitToStateDestroyed() {
+    public void xmlvmTransitToStateDestroyed(boolean waitUntilDone) {
         switch (state) {
         case STATE_ACTIVE:
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnPause", null, false);
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnStop", null, false);
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnDestroy", null, false);
+            NSObject.performSelectorOnMainThread(this, "xmlvmOnPause", null, waitUntilDone);
+            NSObject.performSelectorOnMainThread(this, "xmlvmOnStop", null, waitUntilDone);
+            NSObject.performSelectorOnMainThread(this, "xmlvmOnDestroy", null, waitUntilDone);
             break;
         case STATE_PAUSED:
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnStop", null, false);
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnDestroy", null, false);
+            NSObject.performSelectorOnMainThread(this, "xmlvmOnStop", null, waitUntilDone);
+            NSObject.performSelectorOnMainThread(this, "xmlvmOnDestroy", null, waitUntilDone);
             break;
         case STATE_STOPPED:
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnDestroy", null, false);
+            NSObject.performSelectorOnMainThread(this, "xmlvmOnDestroy", null, waitUntilDone);
             break;
         default:
             Assert.FAIL("Bad transition from state: " + state);

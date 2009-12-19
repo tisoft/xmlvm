@@ -54,8 +54,9 @@ public class ActivityManager extends UIApplication {
 
     @Override
     public void applicationWillTerminate(UIApplication app) {
-        topActivity.xmlvmTransitToStateDestroyed();
-        topActivity = null;
+        while (topActivity != null) {
+            topActivity.xmlvmTransitToStateDestroyed(true);
+        }
     }
 
     private static String checkForBuiltinActivity(String action) {
@@ -110,7 +111,7 @@ public class ActivityManager extends UIApplication {
         if (parent != null) {
             NSObject.performSelectorOnMainThread(parent, "xmlvmOnActivityResult", null, false);
         }
-        activity.xmlvmTransitToStateDestroyed();
+        activity.xmlvmTransitToStateDestroyed(false);
         if (topActivity == activity) {
             topActivity = parent;
         }
