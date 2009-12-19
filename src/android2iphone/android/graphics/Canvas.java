@@ -21,8 +21,10 @@
 package android.graphics;
 
 import org.xmlvm.iphone.CGContext;
+import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
+import org.xmlvm.iphone.NSString;
 import org.xmlvm.iphone.UIImage;
 
 import android.graphics.drawable.BitmapDrawable;
@@ -68,7 +70,9 @@ public class Canvas {
     }
 
     public void drawText(String texttodisplay, int left, int top, Paint paint) {
-        Log.w("xmlvm", "Canvas.drawText() not implemented");
+        CGContext context = CGContext.UICurrentContext();
+        context.setFillColor(paint.xmlvmGetColor());
+        NSString.drawAtPoint(texttodisplay, new CGPoint(left, top), paint.xmlvmGetUIFont());
     }
 
     public void setBitmap(Bitmap bitmap) {

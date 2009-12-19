@@ -27,6 +27,7 @@
 @public float y;
 }
 
+- (void) __init_org_xmlvm_iphone_CGPoint___float_float:(float) x_ :(float) y_;
 - (void) _PUT_x: (float) x_;
 - (float) _GET_x;
 - (void) _PUT_y: (float) y_;

@@ -24,6 +24,12 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_CGPoint;
 
+- (void) __init_org_xmlvm_iphone_CGPoint___float_float:(float) x_ :(float) y_
+{
+	self->x = x_;
+	self->y = y_;
+}
+
 - (void) _PUT_x: (float) x_
 {
 	self->x = x_;

@@ -30,5 +30,25 @@
 	return [[NSMutableString alloc] initWithContentsOfFile: path];
 }
 
++ (void) drawAtPoint___java_lang_String_org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIFont
+               :(java_lang_String*) texttodisplay
+               :(org_xmlvm_iphone_CGPoint*) point
+               :(org_xmlvm_iphone_UIFont*) font
+{
+	CGPoint p = CGPointMake(point->x, point->y - font.ascender);
+	[((NSString*) texttodisplay) drawAtPoint:p withFont:font];
+}
+
++ (org_xmlvm_iphone_CGSize*) sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont
+               :(java_lang_String*) text
+               :(org_xmlvm_iphone_UIFont*) font
+{
+	CGSize size = [((NSString*) text) sizeWithFont:font];
+	org_xmlvm_iphone_CGSize* s = [[org_xmlvm_iphone_CGSize alloc] init];
+	s->width = size.width;
+	s->height = size.height;
+	return s;
+}
+
 @end
 

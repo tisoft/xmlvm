@@ -31,6 +31,7 @@ public class UIFont {
 
     private UIFont(String name, int fontsize) {
         int type = Font.PLAIN;
+        name = name == null ? "" : name;
         String lower = name.toLowerCase();
         if (lower.indexOf("bold") >= 0) {
             type |= Font.BOLD;
@@ -43,6 +44,10 @@ public class UIFont {
         name = name.replace("  ", " ");
         name = name.trim();
         font = new Font(name, type, fontsize);
+    }
+
+    public static UIFont systemFontOfSize(float fontSize) {
+        return new UIFont("Arial", Math.round(fontSize));
     }
 
     public UIFont fontWithSize(float fontSize) {

@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -51,5 +54,23 @@ public class NSString {
             // Do nothing
         }
         return data;
+    }
+
+    public static void drawAtPoint(String texttodisplay, CGPoint point, UIFont font) {
+        Graphics2D graphicsContext = CGContext.UICurrentContext().graphicsContext;
+        Font savedFont = graphicsContext.getFont();
+        graphicsContext.setFont(font.xmlvmGetFont());
+        graphicsContext.drawString(texttodisplay, point.x, point.y);
+        graphicsContext.setFont(savedFont);
+    }
+
+    public static CGSize sizeWithFont(String text, UIFont font) {
+        Graphics2D graphicsContext = CGContext.UICurrentContext().graphicsContext;
+        Font savedFont = graphicsContext.getFont();
+        Font awtFont = font.xmlvmGetFont();
+        graphicsContext.setFont(awtFont);
+        Rectangle2D size = awtFont.getStringBounds(text, graphicsContext.getFontRenderContext());
+        graphicsContext.setFont(savedFont);
+        return new CGSize((float) size.getWidth(), (float) size.getHeight());
     }
 }

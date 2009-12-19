@@ -29,6 +29,16 @@
 {
 }
 
++ (UIFont*) systemFontOfSize___float: (float)size
+{
+	return [[UIFont systemFontOfSize:size] retain];
+}
+
++ (UIFont*) fontWithNameSize___java_lang_String_float:(java_lang_String*)name :(float)size
+{
+	return [[UIFont fontWithName:name size:size] retain];
+}
+
 - (UIFont *) fontWithSize___float:(float)fontSize
 {
 	return [self fontWithSize: fontSize];

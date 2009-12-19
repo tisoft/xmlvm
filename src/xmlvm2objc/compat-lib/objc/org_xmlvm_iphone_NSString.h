@@ -21,7 +21,9 @@
 #import "xmlvm.h"
 #import <Foundation/Foundation.h>
 #import "java_lang_String.h"
-
+#import "org_xmlvm_iphone_CGPoint.h"
+#import "org_xmlvm_iphone_CGSize.h"
+#import "org_xmlvm_iphone_UIFont.h"
 
 
 // NSString
@@ -29,4 +31,11 @@
 typedef NSString org_xmlvm_iphone_NSString;
 @interface NSString (cat_NSString)
 + (java_lang_String*) stringWithContentsOfFile___java_lang_String: (java_lang_String*) path;
++ (void) drawAtPoint___java_lang_String_org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIFont
+               :(java_lang_String*) texttodisplay
+               :(org_xmlvm_iphone_CGPoint*) point
+               :(org_xmlvm_iphone_UIFont*) font;
++ (org_xmlvm_iphone_CGSize*) sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont
+               :(java_lang_String*) text
+               :(org_xmlvm_iphone_UIFont*) font;
 @end

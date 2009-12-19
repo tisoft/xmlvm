@@ -21,20 +21,20 @@ import android.util.Log;
 
 import java.io.File;
 
+import org.xmlvm.iphone.UIFont;
+
 /**
- * The Typeface class specifies the typeface and intrinsic style of a font.
- * This is used in the paint, along with optionally Paint settings like
- * textSize, textSkewX, textScaleX to specify
- * how text appears when drawn (and measured).
+ * The Typeface class specifies the typeface and intrinsic style of a font. This
+ * is used in the paint, along with optionally Paint settings like textSize,
+ * textSkewX, textScaleX to specify how text appears when drawn (and measured).
  */
 public class Typeface {
 
     /** The default NORMAL typeface object */
     public static final Typeface DEFAULT;
     /**
-     * The default BOLD typeface object. Note: this may be not actually be
-     * bold, depending on what fonts are installed. Call getStyle() to know
-     * for sure.
+     * The default BOLD typeface object. Note: this may be not actually be bold,
+     * depending on what fonts are installed. Call getStyle() to know for sure.
      */
     public static final Typeface DEFAULT_BOLD;
     /** The NORMAL style of the default sans serif typeface. */
@@ -44,19 +44,20 @@ public class Typeface {
     /** The NORMAL style of the default monospace typeface. */
     public static final Typeface MONOSPACE;
 
-    private static Typeface[] sDefaults;
-    
-    /* package */ int native_instance;
+    private static Typeface[]    sDefaults;
+
+    int                          mStyle;
+    String                       mFamilyName;
 
     // Style
-    public static final int NORMAL = 0;
-    public static final int BOLD = 1;
-    public static final int ITALIC = 2;
-    public static final int BOLD_ITALIC = 3;
+    public static final int      NORMAL      = 0;
+    public static final int      BOLD        = 1;
+    public static final int      ITALIC      = 2;
+    public static final int      BOLD_ITALIC = 3;
 
     /** Returns the typeface's intrinsic style attributes */
     public int getStyle() {
-        return nativeGetStyle(native_instance);
+        return mStyle;
     }
 
     /** Returns true if getStyle() has the BOLD bit set. */
@@ -70,19 +71,20 @@ public class Typeface {
     }
 
     /**
-     * Create a typeface object given a family name, and option style information.
-     * If null is passed for the name, then the "default" font will be chosen.
-     * The resulting typeface object can be queried (getStyle()) to discover what
-     * its "real" style characteristics are.
-     *
-     * @param familyName May be null. The name of the font family.
-     * @param style  The style (normal, bold, italic) of the typeface.
-     *               e.g. NORMAL, BOLD, ITALIC, BOLD_ITALIC
+     * Create a typeface object given a family name, and option style
+     * information. If null is passed for the name, then the "default" font will
+     * be chosen. The resulting typeface object can be queried (getStyle()) to
+     * discover what its "real" style characteristics are.
+     * 
+     * @param familyName
+     *            May be null. The name of the font family.
+     * @param style
+     *            The style (normal, bold, italic) of the typeface. e.g. NORMAL,
+     *            BOLD, ITALIC, BOLD_ITALIC
      * @return The best matching typeface.
      */
     public static Typeface create(String familyName, int style) {
-        Log.w("xmlvm", "android.graphics.Typeface.create() not callingnativeCreate()");
-        return new Typeface(0);//nativeCreate(familyName, style));
+        return new Typeface(familyName, style);
     }
 
     /**
@@ -90,101 +92,102 @@ public class Typeface {
      * typeface and the specified Style. Use this call if you want to pick a new
      * style from the same family of an existing typeface object. If family is
      * null, this selects from the default font's family.
-     *
-     * @param family May be null. The name of the existing type face.
-     * @param style  The style (normal, bold, italic) of the typeface.
-     *               e.g. NORMAL, BOLD, ITALIC, BOLD_ITALIC
+     * 
+     * @param family
+     *            May be null. The name of the existing type face.
+     * @param style
+     *            The style (normal, bold, italic) of the typeface. e.g. NORMAL,
+     *            BOLD, ITALIC, BOLD_ITALIC
      * @return The best matching typeface.
      */
     public static Typeface create(Typeface family, int style) {
-        int ni = 0;        
-        if (family != null) {
-            ni = family.native_instance;
-        }
-        return new Typeface(nativeCreateFromTypeface(ni, style));
+        String familyName = family == null ? null : family.mFamilyName;
+        return new Typeface(familyName, style);
     }
 
     /**
      * Returns one of the default typeface objects, based on the specified style
-     *
+     * 
      * @return the default typeface that corresponds to the style
      */
     public static Typeface defaultFromStyle(int style) {
         return sDefaults[style];
     }
-    
+
     /**
      * Create a new typeface from the specified font data.
-     * @param mgr The application's asset manager
-     * @param path  The file name of the font data in the assets directory
+     * 
+     * @param mgr
+     *            The application's asset manager
+     * @param path
+     *            The file name of the font data in the assets directory
      * @return The new typeface.
      */
     public static Typeface createFromAsset(AssetManager mgr, String path) {
-        Log.w("xmlvm", "android.graphics.Typeface.createFromAsset() not calling nativeCreateFromAsset()");
-        return new Typeface(0);//nativeCreateFromAsset(mgr, path));
+        Log.w("xmlvm", "Typeface.createFromAsset() returns default font");
+        return DEFAULT;
     }
 
     /**
      * Create a new typeface from the specified font file.
-     *
-     * @param path The path to the font data. 
+     * 
+     * @param path
+     *            The path to the font data.
      * @return The new typeface.
      */
     public static Typeface createFromFile(File path) {
-        return new Typeface(nativeCreateFromFile(path.getAbsolutePath()));
+        Log.w("xmlvm", "Typeface.createFromFile(File) returns default font");
+        return DEFAULT;
     }
 
     /**
      * Create a new typeface from the specified font file.
-     *
-     * @param path The full path to the font data. 
+     * 
+     * @param path
+     *            The full path to the font data.
      * @return The new typeface.
      */
     public static Typeface createFromFile(String path) {
-        return new Typeface(nativeCreateFromFile(path));
+        Log.w("xmlvm", "Typeface.createFromFile(String) returns default font");
+        return DEFAULT;
     }
 
     // don't allow clients to call this directly
-    private Typeface(int ni) {
-        native_instance = ni;
+    private Typeface(String familyName, int style) {
+        mFamilyName = familyName;
+        mStyle = style;
     }
-    
+
     static {
-        DEFAULT         = create((String)null, 0);
-        DEFAULT_BOLD    = create((String)null, Typeface.BOLD);
-        SANS_SERIF      = create("sans-serif", 0);
-        SERIF           = create("serif", 0);
-        MONOSPACE       = create("monospace", 0);
-        
-        sDefaults = new Typeface[] {
-            DEFAULT,
-            DEFAULT_BOLD,
-            create((String)null, Typeface.ITALIC),
-            create((String)null, Typeface.BOLD_ITALIC),
-        };
-    }
+        DEFAULT = create((String) null, 0);
+        DEFAULT_BOLD = create((String) null, Typeface.BOLD);
+        SANS_SERIF = create("sans-serif", 0);
+        SERIF = create("serif", 0);
+        MONOSPACE = create("monospace", 0);
 
-    protected void finalize() throws Throwable {
-        super.finalize();
-        nativeUnref(native_instance);
+        sDefaults = new Typeface[] { DEFAULT, DEFAULT_BOLD, create((String) null, Typeface.ITALIC),
+            create((String) null, Typeface.BOLD_ITALIC), };
     }
-
-    private static native int  nativeCreate(String familyName, int style);
-    private static native int  nativeCreateFromTypeface(int native_instance, int style); 
-    private static native void nativeUnref(int native_instance);
-    private static native int  nativeGetStyle(int native_instance);
-    private static native int  nativeCreateFromAsset(AssetManager mgr, String path);
-    private static native int nativeCreateFromFile(String path);
 
     /**
      * Set the global gamma coefficients for black and white text. This call is
      * usually a no-op in shipping products, and only exists for testing during
      * development.
-     *
-     * @param blackGamma gamma coefficient for black text
-     * @param whiteGamma gamma coefficient for white text
-     *
+     * 
+     * @param blackGamma
+     *            gamma coefficient for black text
+     * @param whiteGamma
+     *            gamma coefficient for white text
+     * 
      * @hide - this is just for calibrating devices, not for normal apps
      */
     public static native void setGammaForText(float blackGamma, float whiteGamma);
+
+    public UIFont xmlvmGenUIFont(float fontSize) {
+        // TODO what to do with mStyle?
+        if (mFamilyName == null) {
+            return UIFont.systemFontOfSize(fontSize);
+        }
+        return UIFont.fontWithNameSize(mFamilyName, fontSize);
+    }
 }

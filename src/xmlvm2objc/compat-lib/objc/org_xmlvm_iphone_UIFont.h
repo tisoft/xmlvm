@@ -19,11 +19,14 @@
  */
 
 #import "xmlvm.h"
+#import "java_lang_String.h"
 
 // UIFont
 //----------------------------------------------------------------------------
 typedef UIFont org_xmlvm_iphone_UIFont;
 @interface UIFont (cat_org_xmlvm_iphone_UIFont)
 - (void) __init_org_xmlvm_iphone_UIFont__;
++ (UIFont*) systemFontOfSize___float: (float)size;
++ (UIFont*) fontWithNameSize___java_lang_String_float:(java_lang_String*)name :(float)size;
 - (UIFont *) fontWithSize___float:(float)fontSize;
 @end
