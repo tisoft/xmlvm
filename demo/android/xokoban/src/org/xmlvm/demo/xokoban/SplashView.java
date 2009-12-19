@@ -39,6 +39,8 @@ public class SplashView extends ViewGroup {
     protected GameView         gameView;
     protected ImageView        splashImage;
     protected boolean          shown         = false;
+    protected int              displayWidth;
+    protected int              displayHeight;
 
     /**
      * Creates the SplashView with a background image.
@@ -50,8 +52,8 @@ public class SplashView extends ViewGroup {
     protected SplashView(Context context, GameView gameView, int resourceId) {
         super(context);
         windowManager = (WindowManager) context.getSystemService("window");
-        int displayWidth = windowManager.getDefaultDisplay().getWidth();
-        int displayHeight = windowManager.getDefaultDisplay().getHeight();
+        displayWidth = windowManager.getDefaultDisplay().getWidth();
+        displayHeight = windowManager.getDefaultDisplay().getHeight();
         Log.d("Resolution", displayWidth + "px x " + displayHeight + "px");
 
         this.setBackgroundColor(Color.GREEN);
@@ -69,6 +71,7 @@ public class SplashView extends ViewGroup {
     public void show() {
         gameView.addView(this);
         shown = true;
+        layout(0, 0, displayWidth, displayHeight);
     }
 
     /**
@@ -91,8 +94,11 @@ public class SplashView extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        onSplashLayout(windowManager.getDefaultDisplay().getWidth(), windowManager
-                .getDefaultDisplay().getHeight());
+        Log.d("onLayout", this.getWidth() + " x " + this.getHeight());
+        if (changed) {
+            onSplashLayout(windowManager.getDefaultDisplay().getWidth(), windowManager
+                    .getDefaultDisplay().getHeight());
+        }
     }
 
     /**

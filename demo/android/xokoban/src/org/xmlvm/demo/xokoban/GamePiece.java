@@ -22,7 +22,6 @@ package org.xmlvm.demo.xokoban;
 
 import org.xmlvm.iphone.XMLVMNoAutoReleasePool;
 
-import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
 
 /**
@@ -58,26 +57,31 @@ public abstract class GamePiece {
         }
     }
 
+    /** The threshold below which the LD tiles should be used. */
+    public static final int SIZE_THRESHOLD_SD = 20;
+    /** The threshold above which the HD tiles should be used. */
+    public static final int SIZE_THRESHOLD_HD = 50;
+
     /**
      * The size of the square piece in pixels.
      */
-    private int         tileSize;
+    private int             tileSize;
     /**
      * The x-coordinate of the GamePiece.
      */
-    protected int       x;
+    protected int           x;
     /**
      * The y-coordinate of the GamePiece.
      */
-    protected int       y;
+    protected int           y;
     /**
      * The {@link GameView} use for the current game.
      */
-    protected GameView  view;
+    protected GameView      view;
     /**
      * The {@link ImageView} used to draw the GamePiece.
      */
-    protected ImageView image;
+    protected ImageView     image;
 
     /**
      * Instantiates a GamePiece object.
@@ -100,9 +104,9 @@ public abstract class GamePiece {
         this.tileSize = tileSize;
         image = new ImageView(view.getActivity());
         if (addToFront) {
-            view.getLayout().addView(image);
+            view.addView(image);
         } else {
-            view.getLayout().addView(image, 0);
+            view.addView(image, 0);
         }
         image.setImageResource(resourceID);
         updatePosition();
@@ -125,11 +129,9 @@ public abstract class GamePiece {
      *            Adds to the y-position of the GamePiece.
      */
     protected void updatePosition(int px, int py) {
-        AbsoluteLayout.LayoutParams p = new AbsoluteLayout.LayoutParams(
-                AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                view.getOffsetLeft() + x * tileSize + px, view.getOffsetTop() + y * tileSize + py);
-        image.setLayoutParams(p);
-        view.getLayout().invalidate();
+        int left = view.getOffsetLeft() + x * tileSize + px;
+        int top = view.getOffsetTop() + y * tileSize + py;
+        image.layout(left, top, left + tileSize, top + tileSize);
     }
 
     /**

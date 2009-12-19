@@ -135,7 +135,7 @@ public class GameController implements MoveFinishedHandler, Runnable {
         x = Math.abs(x);
         y = Math.abs(y);
         float max = Math.max(x, y);
-        int newAnimationDelay = (int) (DEFAULT_DELAY_IN_MILLIS - 8 * max);
+        int newAnimationDelay = (int) (getDelayInMillis() - 8 * max);
         if (newAnimationDelay < 5)
             newAnimationDelay = 5;
         animationDelay = newAnimationDelay;
@@ -159,7 +159,7 @@ public class GameController implements MoveFinishedHandler, Runnable {
             timerIsRunning = true;
             stopMovement = false;
             timerHandler.removeCallbacks(this);
-            animationDelay = DEFAULT_DELAY_IN_MILLIS;// - (man.getTileSize() - 20) * 2;
+            animationDelay = getDelayInMillis();
             timerHandler.postDelayed(this, animationDelay);
         }
     }
@@ -171,6 +171,10 @@ public class GameController implements MoveFinishedHandler, Runnable {
      */
     public void scheduleStopMan() {
         stopMovement = true;
+    }
+
+    private int getDelayInMillis() {
+        return (int) (DEFAULT_DELAY_IN_MILLIS * (20f / man.getTileSize()));
     }
 
     /**

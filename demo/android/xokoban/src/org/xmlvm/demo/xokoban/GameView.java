@@ -21,17 +21,15 @@
 package org.xmlvm.demo.xokoban;
 
 import android.app.Activity;
-import android.view.View;
-import android.view.View.OnTouchListener;
-import android.widget.AbsoluteLayout;
+import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView.ScaleType;
 
 /**
  * The GameView class wraps everything that is required for displaying a game.
  */
-public class GameView {
+public class GameView extends ViewGroup {
 
     /** The INFO icon's size. */
     private static final int INFO_ICON_SIZE   = 25;
@@ -42,10 +40,7 @@ public class GameView {
     /** The Activity associated with this GameView. */
     private Activity         activity;
 
-    /** The content view used to display the game. */
-    private AbsoluteLayout   layout;
-
-    /** The GameController controlling the gane. */
+    /** The GameController controlling the game. */
     private GameController   gameController;
 
     /** The helper used to animate the man's moves. */
@@ -80,19 +75,18 @@ public class GameView {
      *            The application's activity.
      */
     public GameView(Activity activity) {
+        super(activity);
         // Initialization
         this.activity = activity;
         this.mover = new GamePieceMover();
 
         // Connect view to activity and create background
-        layout = new AbsoluteLayout(activity);
-        activity.setContentView(layout);
+        activity.setContentView(this);
         backgroundImage = new ImageView(activity);
         LayoutParams params = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
         params.width = activity.getWindowManager().getDefaultDisplay().getWidth();
         params.height = activity.getWindowManager().getDefaultDisplay().getHeight();
         backgroundImage.setScaleType(ScaleType.FIT_XY);
-        backgroundImage.setLayoutParams(params);
         backgroundImage.setImageResource(R.drawable.background);
         infoImage = new ImageView(activity);
         infoImage.setImageResource(R.drawable.info);
@@ -110,11 +104,13 @@ public class GameView {
         int width = board.getWidth();
         int height = board.getHeight();
         int tileSize = determineTileSize(width, height);
+
+        Log.d("GameView", "Tile Size: " + tileSize);
         offsetTop = (displayHeight - (height * tileSize)) / 2;
         offsetLeft = (displayWidth - (width * tileSize)) / 2;
 
         // Start with an empty display and show background image
-        layout.removeAllViews();
+        removeAllViews();
 
         Ball ball;
         Goal goal;
@@ -157,15 +153,9 @@ public class GameView {
             }
         }
 
-        layout.addView(backgroundImage, 0);
-
-        layout.addView(infoImage, new AbsoluteLayout.LayoutParams(
-                AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                displayWidth - INFO_ICON_SIZE - 1, displayHeight - INFO_ICON_SIZE));
-
-        layout.addView(levelsImage, new AbsoluteLayout.LayoutParams(
-                AbsoluteLayout.LayoutParams.WRAP_CONTENT, AbsoluteLayout.LayoutParams.WRAP_CONTENT,
-                0, displayHeight - LEVELS_ICON_SIZE));
+        addView(backgroundImage, 0);
+        addView(infoImage);
+        addView(levelsImage);
     }
 
     public GameController getGameController() {
@@ -179,10 +169,6 @@ public class GameView {
 
     public Activity getActivity() {
         return this.activity;
-    }
-
-    public AbsoluteLayout getLayout() {
-        return this.layout;
     }
 
     public int getOffsetLeft() {
@@ -203,33 +189,6 @@ public class GameView {
 
     public void setDisplayHeight(int displayHeight) {
         this.displayHeight = displayHeight;
-    }
-
-    /**
-     * Registers a listener that gets called when a touch event occurs.
-     */
-    public void setOnTouchListener(OnTouchListener listener) {
-        layout.setOnTouchListener(listener);
-    }
-
-    /**
-     * Adds a view to be displayed
-     * 
-     * @param view
-     *            The View to add.
-     */
-    public void addView(View view) {
-        layout.addView(view);
-    }
-
-    /**
-     * Removes a view from being shown.
-     * 
-     * @param view
-     *            The View to remove.
-     */
-    public void removeView(View view) {
-        layout.removeView(view);
     }
 
     /**
@@ -264,10 +223,36 @@ public class GameView {
                 && (int) y > displayHeight - (LEVELS_ICON_SIZE + 10);
     }
 
+    /**
+     * Depending on the screen- and board size, this method figures out which
+     * size of tiles to use.
+     * 
+     * @param boardWidth
+     *            the width of the board, measured in tiles.
+     * @param boardHeight
+     *            the height of the board, measured in tiles.
+     * 
+     * @return the size of the tiles.
+     */
     private int determineTileSize(int boardWidth, int boardHeight) {
-        int maxTileWidth = 480 / boardWidth;
-        int maxTileHeight = 320 / boardHeight;
+        int maxTileWidth = displayWidth / boardWidth;
+        int maxTileHeight = displayHeight / boardHeight;
+        int maxTileSize = Math.min(maxTileWidth, maxTileHeight);
 
-        return maxTileWidth < 30 || maxTileHeight < 30 ? 20 : 30;
+        if (maxTileSize < GamePiece.SIZE_THRESHOLD_SD) {
+            return 20;
+        } else if (maxTileSize < GamePiece.SIZE_THRESHOLD_HD) {
+            return 30;
+        } else {
+            return maxTileSize;
+        }
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        backgroundImage.layout(0, 0, displayWidth, displayHeight);
+        infoImage.layout(0, displayHeight - INFO_ICON_SIZE, INFO_ICON_SIZE, displayHeight);
+        levelsImage.layout(displayWidth - LEVELS_ICON_SIZE, displayHeight - LEVELS_ICON_SIZE,
+                displayWidth, displayHeight);
     }
 }

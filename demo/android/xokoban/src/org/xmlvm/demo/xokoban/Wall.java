@@ -30,13 +30,12 @@ public class Wall extends GamePiece {
     }
 
     private static int getResourceId(int tileSize) {
-        switch (tileSize) {
-        case 20:
+        if (tileSize <= SIZE_THRESHOLD_SD) {
             return R.drawable.wall_20;
-        case 30:
+        } else if (tileSize <= SIZE_THRESHOLD_HD) {
             return R.drawable.wall_30;
-        default:
-            return R.drawable.wall_20;
+        } else {
+            return R.drawable.wall_100;
         }
     }
 }

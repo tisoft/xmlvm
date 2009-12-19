@@ -28,15 +28,14 @@ public class Ball extends MovableGamePiece {
     public Ball(GameView view, int tileSize, int x, int y) {
         super(view, getResourceId(tileSize), tileSize, x, y);
     }
-    
+
     private static int getResourceId(int tileSize) {
-        switch (tileSize) {
-        case 20:
+        if (tileSize <= SIZE_THRESHOLD_SD) {
             return R.drawable.ball_20;
-        case 30:
+        } else if (tileSize <= SIZE_THRESHOLD_HD) {
             return R.drawable.ball_30;
-        default:
-            return R.drawable.ball_20;
+        } else {
+            return R.drawable.ball_100;
         }
     }
 }
