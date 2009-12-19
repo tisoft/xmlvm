@@ -28,7 +28,6 @@ import android.content.pm.ActivityInfo;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.PowerManager;
-import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -75,7 +74,6 @@ public class Xokoban extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // NOTE: The order of the following steps in this method is
         // significant:
         // 1. Obtain SensorManager
@@ -118,15 +116,9 @@ public class Xokoban extends Activity {
             sensorManager.registerListener(inputController, SensorManager.SENSOR_ACCELEROMETER,
                     SensorManager.SENSOR_DELAY_FASTEST);
         }
-
-        // 3) Set the GameView's display dimensions.
-        WindowManager windowManager = getWindowManager();
-        Display display = windowManager.getDefaultDisplay();
-        gameView.setDisplayWidth(display.getWidth());
-        gameView.setDisplayHeight(display.getHeight());
         gameController.showSplashScreen();
     }
-
+    
     /**
      * Sets the device to not sleep or go to standby, and keeps the display
      * bright.

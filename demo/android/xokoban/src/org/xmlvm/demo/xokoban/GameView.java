@@ -83,15 +83,16 @@ public class GameView extends ViewGroup {
         // Connect view to activity and create background
         activity.setContentView(this);
         backgroundImage = new ImageView(activity);
-        LayoutParams params = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-        params.width = activity.getWindowManager().getDefaultDisplay().getWidth();
-        params.height = activity.getWindowManager().getDefaultDisplay().getHeight();
+        displayWidth = activity.getWindowManager().getDefaultDisplay().getWidth();
+        displayHeight = activity.getWindowManager().getDefaultDisplay().getHeight();
         backgroundImage.setScaleType(ScaleType.FIT_XY);
         backgroundImage.setImageResource(R.drawable.background);
         infoImage = new ImageView(activity);
         infoImage.setImageResource(R.drawable.info);
         levelsImage = new ImageView(activity);
         levelsImage.setImageResource(R.drawable.levels);
+        Log.d("GameView", "Calling layoutStaticContent();");
+        layoutStaticContent();
     }
 
     /**
@@ -183,14 +184,6 @@ public class GameView extends ViewGroup {
         return this.mover;
     }
 
-    public void setDisplayWidth(int displayWidth) {
-        this.displayWidth = displayWidth;
-    }
-
-    public void setDisplayHeight(int displayHeight) {
-        this.displayHeight = displayHeight;
-    }
-
     /**
      * Tests whether a given coordinate is inside the info dialog logo.
      * 
@@ -248,11 +241,18 @@ public class GameView extends ViewGroup {
         }
     }
 
+    private void layoutStaticContent() {
+        if (backgroundImage != null && infoImage != null && levelsImage != null) {
+            Log.d("LayoutStaticContent", "Display: " + displayWidth + " x " + displayHeight);
+            backgroundImage.layout(0, 0, displayWidth, displayHeight);
+            infoImage.layout(0, displayHeight - INFO_ICON_SIZE, INFO_ICON_SIZE, displayHeight);
+            levelsImage.layout(displayWidth - LEVELS_ICON_SIZE, displayHeight - LEVELS_ICON_SIZE,
+                    displayWidth, displayHeight);
+        }
+    }
+
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        backgroundImage.layout(0, 0, displayWidth, displayHeight);
-        infoImage.layout(0, displayHeight - INFO_ICON_SIZE, INFO_ICON_SIZE, displayHeight);
-        levelsImage.layout(displayWidth - LEVELS_ICON_SIZE, displayHeight - LEVELS_ICON_SIZE,
-                displayWidth, displayHeight);
+        layoutStaticContent();
     }
 }

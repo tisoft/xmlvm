@@ -21,9 +21,7 @@
 package org.xmlvm.demo.xokoban;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 

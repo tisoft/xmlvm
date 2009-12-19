@@ -20,6 +20,7 @@
 
 package org.xmlvm.demo.xokoban;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -51,7 +52,7 @@ public class SplashView extends ViewGroup {
 
     protected SplashView(Context context, GameView gameView, int resourceId) {
         super(context);
-        windowManager = (WindowManager) context.getSystemService("window");
+        windowManager = ((Activity) context).getWindowManager();
         displayWidth = windowManager.getDefaultDisplay().getWidth();
         displayHeight = windowManager.getDefaultDisplay().getHeight();
         Log.d("Resolution", displayWidth + "px x " + displayHeight + "px");
@@ -111,9 +112,11 @@ public class SplashView extends ViewGroup {
      *            the height of the display
      */
     protected void onSplashLayout(int displayWidth, int displayHeight) {
-        // This only works for one aspect ratio case.
-        int splashWidth = (int) (((float) displayHeight / (float) SPLASH_HEIGHT) * (float) SPLASH_WIDTH);
-        int splashLeft = (int) ((splashWidth - displayWidth) / -2f);
-        splashImage.layout(splashLeft, 0, displayWidth - splashLeft, displayHeight);
+        if (splashImage != null) {
+            // This only works for one aspect ratio case.
+            int splashWidth = (int) (((float) displayHeight / (float) SPLASH_HEIGHT) * (float) SPLASH_WIDTH);
+            int splashLeft = (int) ((splashWidth - displayWidth) / -2f);
+            splashImage.layout(splashLeft, 0, displayWidth - splashLeft, displayHeight);
+        }
     }
 }
