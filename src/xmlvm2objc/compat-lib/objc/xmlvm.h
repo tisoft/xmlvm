@@ -68,9 +68,11 @@ typedef union {
 
 + (XMLVMArray*) createSingleDimensionWithType:(int) type andSize:(int) size;
 + (XMLVMArray*) createMultiDimensionsWithType:(int) type dimensions:(XMLVMElem*) dim count:(int)count;
++ (int) sizeOfBaseTypeInBytes:(int) type;
 - (id) objectAtIndex:(int) idx;
 - (void) replaceObjectAtIndex:(int) idx withObject:(id) obj;
 - (int) count;
+- (XMLVMArray*) clone__;
 
 @end
 

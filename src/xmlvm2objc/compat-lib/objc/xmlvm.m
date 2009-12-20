@@ -29,30 +29,7 @@
     retval->type = type;
     retval->length = size;
 
-    int sizeOfBaseType = 0;
-    // 'type' values are defined by vm:sizeOf in xmlvm2objc.xsl
-    switch (type) {
-    case 1: // boolean
-    case 2: // char
-    case 3: // byte
-    case 4: // short
-    case 5: // int
-       sizeOfBaseType = sizeof(int);
-       break;
-    case 6: // float
-       sizeOfBaseType = sizeof(float);
-       break;
-    case 7: // double
-       sizeOfBaseType = sizeof(double);
-       break;
-    case 8: // long
-       sizeOfBaseType = sizeof(long);
-       break;
-    default: // object reference
-       sizeOfBaseType = sizeof(id);
-       break;
-    }
-    
+    int sizeOfBaseType = [XMLVMArray sizeOfBaseTypeInBytes:type];
     retval->array.data = malloc(sizeOfBaseType * size);
     bzero(retval->array.data, sizeOfBaseType * size);
 
@@ -79,6 +56,36 @@
 		[slice replaceObjectAtIndex:i withObject:o];
 	}
 	return slice;
+}
+
++ (int) sizeOfBaseTypeInBytes:(int) type
+{
+	int sizeOfBaseType;
+	
+    // 'type' values are defined by vm:sizeOf in xmlvm2objc.xsl
+    switch (type) {
+    case 1: // boolean
+    case 2: // char
+    case 3: // byte
+    case 4: // short
+    case 5: // int
+       sizeOfBaseType = sizeof(int);
+       break;
+    case 6: // float
+       sizeOfBaseType = sizeof(float);
+       break;
+    case 7: // double
+       sizeOfBaseType = sizeof(double);
+       break;
+    case 8: // long
+       sizeOfBaseType = sizeof(long);
+       break;
+    default: // object reference
+       sizeOfBaseType = sizeof(id);
+       break;
+    }
+    
+    return sizeOfBaseType;
 }
 
 - (id) objectAtIndex:(int) idx
@@ -108,6 +115,28 @@
     }
     free(self->array.data);
     [super dealloc];
+}
+
+- (XMLVMArray*) clone__
+{
+    XMLVMArray *retval = [[XMLVMArray alloc] init];
+    retval->type = self->type;
+    retval->length = self->length;
+
+    int sizeOfBaseType = [XMLVMArray sizeOfBaseTypeInBytes:self->type];
+    int sizeOfArrayInBytes = sizeOfBaseType * self->length;
+    retval->array.data = malloc(sizeOfArrayInBytes);
+
+    if (type == 0) {
+        for (int i = 0; i < self->length; i++) {
+            retval->array.o[i] = [self->array.o[i] retain];
+        }
+    }
+    else {
+	    memcpy(retval->array.data, self->array.data, sizeOfArrayInBytes);
+    }
+
+    return retval;
 }
 
 @end
