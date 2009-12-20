@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 
 /**
  * A splash view shown right after the start of the application.
@@ -62,6 +63,8 @@ public class SplashView extends ViewGroup {
 
         splashImage = new ImageView(context);
         splashImage.setImageResource(resourceId);
+        splashImage.setScaleType(ScaleType.CENTER_CROP);
+        splashImage.layout(0, 0, displayWidth, displayHeight);
 
         addView(splashImage);
     }
@@ -95,28 +98,5 @@ public class SplashView extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        Log.d("onLayout", this.getWidth() + " x " + this.getHeight());
-        if (changed) {
-            onSplashLayout(windowManager.getDefaultDisplay().getWidth(), windowManager
-                    .getDefaultDisplay().getHeight());
-        }
-    }
-
-    /**
-     * Lays out the children in this splash view. Should be overridden by
-     * sub-classes for their layouting.
-     * 
-     * @param displayWidth
-     *            the width of the display
-     * @param displayHeight
-     *            the height of the display
-     */
-    protected void onSplashLayout(int displayWidth, int displayHeight) {
-        if (splashImage != null) {
-            // This only works for one aspect ratio case.
-            int splashWidth = (int) (((float) displayHeight / (float) SPLASH_HEIGHT) * (float) SPLASH_WIDTH);
-            int splashLeft = (int) ((splashWidth - displayWidth) / -2f);
-            splashImage.layout(splashLeft, 0, displayWidth - splashLeft, displayHeight);
-        }
     }
 }

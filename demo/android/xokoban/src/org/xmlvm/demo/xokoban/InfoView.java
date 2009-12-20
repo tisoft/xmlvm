@@ -65,24 +65,10 @@ public class InfoView extends SplashView {
                 }
             }
         });
+        layoutUi();
     }
-
-    /**
-     * Sets the handler that should be called when this dialog is closing.
-     */
-    public void setOnCloseHandler(OnCloseHandler handler) {
-        onCloseHandler = handler;
-    }
-
-    /**
-     * This method lays out the UI elements with the screen size in mind.
-     * 
-     * @see org.xmlvm.demo.xokoban.SplashView#onSplashLayout(int, int)
-     */
-    @Override
-    protected void onSplashLayout(int displayWidth, int displayHeight) {
-        super.onSplashLayout(displayWidth, displayHeight);
-
+    
+    private void layoutUi() {
         // The positions below are calculated from the 800x480 original. So this
         // is the factor we need to use in order to get the positions on any
         // other sized display.
@@ -103,6 +89,13 @@ public class InfoView extends SplashView {
         enableAccelerometer.layout(checkboxLeft, topCheckbox, checkboxLeft + sizeCheckbox,
                 topCheckbox + sizeCheckbox);
         okButton.layout(buttonLeft, topButton, buttonLeft + widthButton, topButton + heightButton);
+    }
+
+    /**
+     * Sets the handler that should be called when this dialog is closing.
+     */
+    public void setOnCloseHandler(OnCloseHandler handler) {
+        onCloseHandler = handler;
     }
 
     private GameController getGameController() {
