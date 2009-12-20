@@ -65,6 +65,8 @@ id       drawDelegate;
 - (void) setClearsContextBeforeDrawing___boolean :(int) clear;
 - (void) setUserInteractionEnabled___boolean:(int) uinteraction;
 - (void) setHidden___boolean:(int) uinteraction;
+- (void) setContentMode___int:(int) mode;
+- (int) getContentMode__;
 - (void) setClipsToBounds___boolean:(int) clips;
 - (org_xmlvm_iphone_CGRect*) getFrame__;
 - (org_xmlvm_iphone_UIView*) getSuperview__;

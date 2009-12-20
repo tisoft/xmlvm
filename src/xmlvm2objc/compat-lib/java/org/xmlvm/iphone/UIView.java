@@ -20,6 +20,7 @@ public class UIView extends UIResponder {
     private boolean           opaque;
     private float             alpha;
     private boolean           hidden;
+    private int               contentMode;
     private boolean           userInteractionEnabled;
     private boolean           clipsToBounds;
     private CGAffineTransform transform;
@@ -45,6 +46,7 @@ public class UIView extends UIResponder {
         this.backgroundImage = null;
         this.opaque = true;
         this.hidden = false;
+        this.contentMode = UIViewContentMode.ScaleToFill;
         setUserInteractionEnabled(true);
         subviews = new ArrayList<UIView>();
         superview = null;
@@ -248,6 +250,14 @@ public class UIView extends UIResponder {
             this.hidden = hidden;
             setNeedsDisplay();
         }
+    }
+
+    public void setContentMode(int contentMode) {
+        this.contentMode = contentMode;
+    }
+
+    public int getContentMode() {
+        return contentMode;
     }
 
     public boolean isUserInteractionEnabled() {

@@ -203,6 +203,16 @@
     [self setHidden:uinteraction];
 }
 
+- (void) setContentMode___int:(int) mode
+{
+	self.contentMode = mode;
+}
+
+- (int) getContentMode__
+{
+	return self.contentMode;
+}
+
 - (void) setClipsToBounds___boolean:(int) clips {
     [self setClipsToBounds:clips];
 }
