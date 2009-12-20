@@ -78,7 +78,6 @@ public class Xokoban extends Activity {
         // significant:
         // 1. Obtain SensorManager
         // 2. Switch to LANDSCAPE
-        // 3. Compute display dimensions
 
         // Retrieve persisted data
         prefs = getPreferences(MODE_PRIVATE);

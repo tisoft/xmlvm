@@ -232,12 +232,17 @@ public class GameView extends ViewGroup {
         int maxTileHeight = displayHeight / boardHeight;
         int maxTileSize = Math.min(maxTileWidth, maxTileHeight);
 
-        if (maxTileSize < GamePiece.SIZE_THRESHOLD_SD) {
-            return 20;
-        } else if (maxTileSize < GamePiece.SIZE_THRESHOLD_HD) {
-            return 30;
-        } else {
+        Log.d("GameView", "maxTileSize: " + maxTileSize);
+
+        // Higher resultion devices to a great job scaling to any size.
+        if (displayWidth >= 800) {
             return maxTileSize;
+        } else {
+            if (maxTileSize < GamePiece.SIZE_THRESHOLD) {
+                return 20;
+            } else {
+                return 30;
+            }
         }
     }
 

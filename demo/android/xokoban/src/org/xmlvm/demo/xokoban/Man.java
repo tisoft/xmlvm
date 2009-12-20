@@ -30,9 +30,9 @@ public class Man extends MovableGamePiece {
     }
 
     private static int getResourceId(int tileSize) {
-        if (tileSize <= SIZE_THRESHOLD_SD) {
+        if (tileSize == 20) {
             return R.drawable.man_20;
-        } else if (tileSize <= SIZE_THRESHOLD_HD) {
+        } else if (tileSize == 30) {
             return R.drawable.man_30;
         } else {
             return R.drawable.man_100;

@@ -58,9 +58,7 @@ public abstract class GamePiece {
     }
 
     /** The threshold below which the LD tiles should be used. */
-    public static final int SIZE_THRESHOLD_SD = 20;
-    /** The threshold above which the HD tiles should be used. */
-    public static final int SIZE_THRESHOLD_HD = 50;
+    public static final int SIZE_THRESHOLD = 30;
 
     /**
      * The size of the square piece in pixels.
