@@ -410,17 +410,25 @@ public class GameController implements MoveFinishedHandler, Runnable {
     @Override
     public void onMoveFinished() {
         if (isLevelFinished()) {
-            timerIsRunning = false;
-            stopMovement = true;
-            // More levels left
-            if (currentLevel < Levels.getSize() - 1) {
-                currentLevel++;
-                loadLevel(currentLevel, true);
-            }
-            // All levels finished: Congratulate and wrap to level 1
-            else {
-                showCongratulationDialog();
-            }
+            timerHandler.removeCallbacks(this);
+
+            // Let's delay ending the level so it is not too instant.
+            timerHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    timerIsRunning = false;
+                    stopMovement = true;
+                    // More levels left
+                    if (currentLevel < Levels.getSize() - 1) {
+                        currentLevel++;
+                        loadLevel(currentLevel, true);
+                    }
+                    // All levels finished: Congratulate and wrap to level 1
+                    else {
+                        showCongratulationDialog();
+                    }
+                }
+            }, 500);
             return;
         }
         if (!stopMovement) {
