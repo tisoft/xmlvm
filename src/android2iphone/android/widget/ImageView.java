@@ -24,6 +24,7 @@ import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIImage;
 import org.xmlvm.iphone.UIImageView;
 import org.xmlvm.iphone.UIView;
+import org.xmlvm.iphone.UIViewContentMode;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -151,7 +152,14 @@ public class ImageView extends View {
     }
 
     public void setScaleType(ScaleType type) {
-        Assert.NOT_IMPLEMENTED();
+        UIView view = xmlvmGetUIView();
+        switch (type) {
+        case FIT_XY:
+            view.setContentMode(UIViewContentMode.ScaleToFill);
+            break;
+        default:
+            Assert.NOT_IMPLEMENTED();
+        }
     }
 
     @Override
