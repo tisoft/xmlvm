@@ -1502,7 +1502,7 @@ int main(int argc, char* argv[])
       <xsl:text>int</xsl:text>
     </xsl:when>
     <xsl:when test="ends-with($type, '[]')">
-      <xsl:text>NSMutableArray*</xsl:text>
+      <xsl:text>XMLVMArray*</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="vm:fixname($type)"/>
