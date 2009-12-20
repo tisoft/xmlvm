@@ -34,6 +34,12 @@ public class UISwitch extends UIControl {
         return isOn;
     }
 
+    public void setFrame(CGRect rect) {
+        rect.size.width = kSwitchButtonWidth;
+        rect.size.height = kSwitchButtonHeight;
+        super.setFrame(rect);
+    }
+
     /* TODO teras: find a better way to receive this type of events */
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {

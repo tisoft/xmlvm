@@ -104,12 +104,16 @@ public class ImageView extends View {
 
     public ImageView(Context c) {
         super(c);
-
-        // ((Activity) c).getWindow().getCGRect());
+        init();
     }
 
     public ImageView(Context c, AttributeSet attrs) {
         super(c, attrs);
+        init();
+    }
+
+    private void init() {
+        setScaleType(ScaleType.CENTER);
     }
 
     public void setImageResource(int resId) {
@@ -154,11 +158,30 @@ public class ImageView extends View {
     public void setScaleType(ScaleType type) {
         UIView view = xmlvmGetUIView();
         switch (type) {
+        case CENTER:
+            view.setContentMode(UIViewContentMode.Center);
+            break;
+        case CENTER_CROP:
+            view.setContentMode(UIViewContentMode.ScaleAspectFill);
+            break;
+        case CENTER_INSIDE:
+            view.setContentMode(UIViewContentMode.ScaleAspectFit);
+            break;
+        case FIT_CENTER:
+            view.setContentMode(UIViewContentMode.ScaleAspectFill);
+            break;
+        case FIT_END:
+            Assert.NOT_IMPLEMENTED();
+            break;
+        case FIT_START:
+            Assert.NOT_IMPLEMENTED();
+            break;
         case FIT_XY:
             view.setContentMode(UIViewContentMode.ScaleToFill);
             break;
-        default:
+        case MATRIX:
             Assert.NOT_IMPLEMENTED();
+            break;
         }
     }
 
