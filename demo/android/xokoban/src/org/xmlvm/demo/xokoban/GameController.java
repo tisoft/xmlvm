@@ -135,7 +135,7 @@ public class GameController implements MoveFinishedHandler, Runnable {
         x = Math.abs(x);
         y = Math.abs(y);
         float max = Math.max(x, y);
-        int newAnimationDelay = (int) (getDelayInMillis() - 8 * max);
+        int newAnimationDelay = (int) ((getDelayInMillis() * 1.6) - (8f * max));
         if (newAnimationDelay < 5)
             newAnimationDelay = 5;
         animationDelay = newAnimationDelay;
