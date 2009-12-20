@@ -18,21 +18,39 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import "java_lang_Object.h"
-#import "java_lang_String.h"
 
+#import "java_lang_NoSuchFieldError.h"
 
-@interface java_lang_Enum : java_lang_Object {
-	
-	java_lang_String* name;
-	int ordinal;
+// java.lang.NoSuchFieldError
+//----------------------------------------------------------------------------
+@implementation java_lang_NoSuchFieldError
+
+- (id) init
+{
+    return [self initWithName: @"java_lang_NoSuchFieldError" reason: nil userInfo: nil];
 }
 
-- (void) __init_java_lang_Enum___java_lang_String_int
-                  :(java_lang_String*) name
-                  :(int) ordinal;
-- (void) dealloc;
-- (int) ordinal__;
+- (void) __init_java_lang_NoSuchFieldError__
+{
+    // Do nothing
+}
+
+- (void) __init_java_lang_NoSuchFieldError___java_lang_String: (java_lang_String*) msg
+{
+}
+
+- (void) __init_lang_NoSuchFieldError___java_lang_String_java_lang_Throwable: (java_lang_String*) msg: (java_lang_Throwable*) cause
+{
+}
+
+- (java_lang_NoSuchFieldError *) initCause___java_lang_Throwable: (java_lang_Throwable*) cause
+{
+	[self retain];
+	return self;
+}
+
+- (void) printStackTrace__
+{
+}
 
 @end

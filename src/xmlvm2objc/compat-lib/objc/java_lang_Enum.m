@@ -36,4 +36,9 @@
 	[super dealloc];
 }
 
+- (int) ordinal__
+{
+	return self->ordinal;
+}
+
 @end
