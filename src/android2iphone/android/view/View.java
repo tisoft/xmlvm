@@ -251,6 +251,7 @@ public class View {
     }
 
     private void init(Context c, AttributeSet attrs) {
+        flags |= FORCE_LAYOUT;
         this.c = c;
         mResources = c != null ? c.getResources() : null;
         uiView = xmlvmCreateUIView(attrs);
