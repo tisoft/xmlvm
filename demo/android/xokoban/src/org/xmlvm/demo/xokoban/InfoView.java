@@ -67,18 +67,18 @@ public class InfoView extends SplashView {
         });
         layoutUi();
     }
-    
+
     private void layoutUi() {
+        enableAccelerometer.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+        okButton.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+
         // The positions below are calculated from the 800x480 original. So this
         // is the factor we need to use in order to get the positions on any
         // other sized display.
         float sizeFactor = displayHeight / 480f;
 
-        int topCheckbox = (int) (380 * sizeFactor);
-        int sizeCheckbox = (int) (60 * sizeFactor);
-        int topButton = (int) (385 * sizeFactor);
-        int heightButton = (int) (60 * sizeFactor);
-        int widthButton = (int) (90 * sizeFactor);
+        int topCheckbox = (int) (370 * sizeFactor);
+        int topButton = (int) (382 * sizeFactor);
 
         // Because the background image might be cropped at the sides, but for
         // sure will also be centered, we calculate the positions relative from
@@ -86,9 +86,11 @@ public class InfoView extends SplashView {
         int checkboxLeft = (int) ((displayWidth / 2f) - (310f * sizeFactor));
         int buttonLeft = (int) ((displayWidth / 2f) + (40f * sizeFactor));
 
-        enableAccelerometer.layout(checkboxLeft, topCheckbox, checkboxLeft + sizeCheckbox,
-                topCheckbox + sizeCheckbox);
-        okButton.layout(buttonLeft, topButton, buttonLeft + widthButton, topButton + heightButton);
+        enableAccelerometer.layout(checkboxLeft, topCheckbox, checkboxLeft
+                + enableAccelerometer.getMeasuredWidth(), topCheckbox
+                + enableAccelerometer.getMeasuredHeight());
+        okButton.layout(buttonLeft, topButton, buttonLeft + okButton.getMeasuredWidth(), topButton
+                + okButton.getMeasuredHeight());
     }
 
     /**
