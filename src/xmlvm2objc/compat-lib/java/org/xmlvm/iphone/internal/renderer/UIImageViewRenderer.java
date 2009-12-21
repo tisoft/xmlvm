@@ -2,6 +2,7 @@ package org.xmlvm.iphone.internal.renderer;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 import org.xmlvm.iphone.CGContext;
@@ -90,6 +91,8 @@ public class UIImageViewRenderer extends UIViewRenderer<UIImageView> {
                 throw new RuntimeException(
                         "UIImageViewRenderer.paint(): BottomRight not implemented");
             }
+            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                    RenderingHints.VALUE_INTERPOLATION_BICUBIC);
             g.drawImage(image, (int) rect.origin.x, (int) rect.origin.y, (int) rect.size.width,
                     (int) rect.size.height, Simulator.getDisplay());
             g.setClip(clipRect.x, clipRect.y, clipRect.width, clipRect.height);
