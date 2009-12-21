@@ -23,7 +23,6 @@ package org.xmlvm.demo.xokoban;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -56,7 +55,6 @@ public class SplashView extends ViewGroup {
         windowManager = ((Activity) context).getWindowManager();
         displayWidth = windowManager.getDefaultDisplay().getWidth();
         displayHeight = windowManager.getDefaultDisplay().getHeight();
-        Log.d("Resolution", displayWidth + "px x " + displayHeight + "px");
 
         this.setBackgroundColor(Color.GREEN);
         this.gameView = gameView;

@@ -21,7 +21,6 @@
 package org.xmlvm.demo.xokoban;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
@@ -91,7 +90,6 @@ public class GameView extends ViewGroup {
         infoImage.setImageResource(R.drawable.info);
         levelsImage = new ImageView(activity);
         levelsImage.setImageResource(R.drawable.levels);
-        Log.d("GameView", "Calling layoutStaticContent();");
         layoutStaticContent();
     }
 
@@ -106,7 +104,6 @@ public class GameView extends ViewGroup {
         int height = board.getHeight();
         int tileSize = determineTileSize(width, height);
 
-        Log.d("GameView", "Tile Size: " + tileSize);
         offsetTop = (displayHeight - (height * tileSize)) / 2;
         offsetLeft = (displayWidth - (width * tileSize)) / 2;
 
@@ -232,8 +229,6 @@ public class GameView extends ViewGroup {
         int maxTileHeight = displayHeight / boardHeight;
         int maxTileSize = Math.min(maxTileWidth, maxTileHeight);
 
-        Log.d("GameView", "maxTileSize: " + maxTileSize);
-
         // Higher resultion devices to a great job scaling to any size.
         if (displayWidth >= 800) {
             return maxTileSize;
@@ -248,7 +243,6 @@ public class GameView extends ViewGroup {
 
     private void layoutStaticContent() {
         if (backgroundImage != null && infoImage != null && levelsImage != null) {
-            Log.d("LayoutStaticContent", "Display: " + displayWidth + " x " + displayHeight);
             backgroundImage.layout(0, 0, displayWidth, displayHeight);
             infoImage.layout(0, displayHeight - INFO_ICON_SIZE, INFO_ICON_SIZE, displayHeight);
             levelsImage.layout(displayWidth - LEVELS_ICON_SIZE, displayHeight - LEVELS_ICON_SIZE,

@@ -77,8 +77,7 @@ public class InfoView extends SplashView {
         // other sized display.
         float sizeFactor = displayHeight / 480f;
 
-        int topCheckbox = (int) (370 * sizeFactor);
-        int topButton = (int) (382 * sizeFactor);
+        int verticalCenter = (int) (407 * sizeFactor);
 
         // Because the background image might be cropped at the sides, but for
         // sure will also be centered, we calculate the positions relative from
@@ -86,10 +85,13 @@ public class InfoView extends SplashView {
         int checkboxLeft = (int) ((displayWidth / 2f) - (310f * sizeFactor));
         int buttonLeft = (int) ((displayWidth / 2f) + (40f * sizeFactor));
 
-        enableAccelerometer.layout(checkboxLeft, topCheckbox, checkboxLeft
-                + enableAccelerometer.getMeasuredWidth(), topCheckbox
+        int checkBoxTop = verticalCenter - (enableAccelerometer.getMeasuredHeight() / 2);
+        int buttonTop = verticalCenter - (okButton.getMeasuredHeight() / 2);
+
+        enableAccelerometer.layout(checkboxLeft, checkBoxTop, checkboxLeft
+                + enableAccelerometer.getMeasuredWidth(), checkBoxTop
                 + enableAccelerometer.getMeasuredHeight());
-        okButton.layout(buttonLeft, topButton, buttonLeft + okButton.getMeasuredWidth(), topButton
+        okButton.layout(buttonLeft, buttonTop, buttonLeft + okButton.getMeasuredWidth(), buttonTop
                 + okButton.getMeasuredHeight());
     }
 
