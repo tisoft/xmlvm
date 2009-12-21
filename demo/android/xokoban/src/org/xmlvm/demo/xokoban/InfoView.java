@@ -69,9 +69,7 @@ public class InfoView extends SplashView {
     }
 
     private void layoutUi() {
-        enableAccelerometer.requestLayout();
         enableAccelerometer.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
-        okButton.requestLayout();
         okButton.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
 
         // The positions below are calculated from the 800x480 original. So this
