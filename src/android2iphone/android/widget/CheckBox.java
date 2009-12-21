@@ -16,9 +16,14 @@ public class CheckBox extends CompoundButton {
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
         layoutParams = l;
-        AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams) l;
-        getUISwitch().setFrame(
-                new CGRect(a.x, a.y, UISwitch.kSwitchButtonWidth, UISwitch.kSwitchButtonHeight));
+
+        if (l instanceof AbsoluteLayout.LayoutParams) {
+            AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams) l;
+            getUISwitch()
+                    .setFrame(
+                            new CGRect(a.x, a.y, UISwitch.kSwitchButtonWidth,
+                                    UISwitch.kSwitchButtonHeight));
+        }
     }
 
     public boolean isChecked() {
@@ -43,5 +48,10 @@ public class CheckBox extends CompoundButton {
 
     private UISwitch getUISwitch() {
         return (UISwitch) xmlvmGetUIView();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        setMeasuredDimension((int) UISwitch.kSwitchButtonWidth, (int) UISwitch.kSwitchButtonHeight);
     }
 }
