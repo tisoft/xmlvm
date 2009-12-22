@@ -34,6 +34,21 @@
 	return [[UIFont systemFontOfSize:size] retain];
 }
 
++ (UIFont*) boldSystemFontOfSize___float: (float)size
+{
+	return [[UIFont boldSystemFontOfSize:size] retain];
+}
+
++ (UIFont*) italicSystemFontOfSize___float: (float)size
+{
+	return [[UIFont italicSystemFontOfSize:size] retain];
+}
+
++ (float) buttonFontSize__
+{
+    return [UIFont buttonFontSize];
+}
+
 + (UIFont*) fontWithNameSize___java_lang_String_float:(java_lang_String*)name :(float)size
 {
 	return [[UIFont fontWithName:name size:size] retain];

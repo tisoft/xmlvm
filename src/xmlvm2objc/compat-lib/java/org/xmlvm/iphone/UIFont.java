@@ -50,12 +50,24 @@ public class UIFont {
         return new UIFont("Arial", Math.round(fontSize));
     }
 
+    public static UIFont boldSystemFontOfSize(float fontSize) {
+        return new UIFont("Arial bold", Math.round(fontSize));
+    }
+
+    public static UIFont italicSystemFontOfSize(float fontSize) {
+        return new UIFont("Arial italic", Math.round(fontSize));
+    }
+
     public UIFont fontWithSize(float fontSize) {
         return new UIFont(font.getFontName(), Math.round(fontSize));
     }
 
     public static UIFont fontWithNameSize(String name, float fontsize) {
         return new UIFont(name, Math.round(fontsize));
+    }
+
+    public static float buttonFontSize() {
+        return 14.0f;
     }
 
     public Font xmlvmGetFont() {

@@ -1,4 +1,3 @@
-
 package org.xmlvm.iphone.internal.renderer;
 
 import java.awt.Color;
@@ -11,10 +10,10 @@ import java.awt.font.LineMetrics;
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIButton;
+import org.xmlvm.iphone.UIFont;
 
 public abstract class UIButtonRenderer extends UIViewRenderer<UIButton> {
 
-    private static final Font  DEFAULT_FONT               = new Font("Arial", Font.BOLD, 14);
     private static final Color DEFAULT_TITLE_SHADOW_COLOR = Color.DARK_GRAY;
     protected int              edgeDiameter               = 16;
     protected boolean          buttonPressed              = false;
@@ -33,7 +32,7 @@ public abstract class UIButtonRenderer extends UIViewRenderer<UIButton> {
         if (view.getTitleForState(0) == null)
             return;
 
-        Font f = view.getFont() != null ? view.getFont().xmlvmGetFont() : DEFAULT_FONT;
+        Font f = view.getFont() != null ? view.getFont().xmlvmGetFont() : getDefaultFont();
         g.setFont(f);
         Metrics m = getMetrics(g, view.getTitleForState(0), f);
 
@@ -92,4 +91,8 @@ public abstract class UIButtonRenderer extends UIViewRenderer<UIButton> {
     }
 
     protected abstract void drawButton(Graphics2D g, CGRect displayRect);
+
+    private Font getDefaultFont() {
+        return UIFont.boldSystemFontOfSize(UIFont.buttonFontSize()).xmlvmGetFont();
+    }
 }

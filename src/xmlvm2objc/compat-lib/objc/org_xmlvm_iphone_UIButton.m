@@ -35,4 +35,9 @@
     [self setTitle: label forState: state];
 }
 
+- (UIFont*) getFont__
+{
+    return [self.font retain];
+}
+
 @end
