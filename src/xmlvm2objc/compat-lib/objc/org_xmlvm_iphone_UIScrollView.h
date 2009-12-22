@@ -28,7 +28,7 @@ typedef UIScrollView org_xmlvm_iphone_UIScrollView;
 @interface UIScrollView (cat_org_xmlvm_iphone_UIScrollView)
 - (void) __init_org_xmlvm_iphone_UIScrollView__;
 - (void) __init_org_xmlvm_iphone_UIScrollView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)rect;
-- (void) scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean
-               :(org_xmlvm_iphone_CGRect*) rect
+- (void) setContentOffset___org_xmlvm_iphone_CGPoint_boolean
+               :(org_xmlvm_iphone_CGPoint*) offset
                :(int) animated;
 @end

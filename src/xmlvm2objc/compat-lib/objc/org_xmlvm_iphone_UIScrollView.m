@@ -35,11 +35,12 @@
 	[self initWithFrame: [rect getCGRect]];
 }
 
-- (void) scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean
-               :(org_xmlvm_iphone_CGRect*) rect
+- (void) setContentOffset___org_xmlvm_iphone_CGPoint_boolean
+               :(org_xmlvm_iphone_CGPoint*) offset
                :(int) animated
 {
-	[self scrollRectToVisible:[rect getCGRect] animated:animated];
+    CGPoint p = CGPointMake(offset->x, offset->y);
+    [self setContentOffset:p animated:animated];
 }
 
 @end

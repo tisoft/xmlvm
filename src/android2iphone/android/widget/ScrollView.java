@@ -20,6 +20,7 @@
 
 package android.widget;
 
+import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIScrollView;
 import org.xmlvm.iphone.UIView;
@@ -31,7 +32,7 @@ import android.view.View;
 public class ScrollView extends FrameLayout {
 
     private int viewOriginLeft = 0;
-    private int viewOriginTop = 0;
+    private int viewOriginTop  = 0;
 
     public ScrollView(Context c) {
         super(c);
@@ -58,9 +59,8 @@ public class ScrollView extends FrameLayout {
         viewOriginLeft = Math.max(0, viewOriginLeft);
         viewOriginTop = Math.min((int) rect.size.height - getHeight(), viewOriginTop);
         viewOriginTop = Math.max(0, viewOriginTop);
-        rect.origin.x = viewOriginLeft;
-        rect.origin.y = viewOriginTop;
-        ((UIScrollView) xmlvmGetUIView()).scrollRectToVisible(rect, true);
+        CGPoint offset = new CGPoint(viewOriginLeft, viewOriginTop);
+        ((UIScrollView) xmlvmGetUIView()).setContentOffset(offset, true);
     }
 
     @Override
