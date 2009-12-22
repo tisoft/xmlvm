@@ -40,8 +40,8 @@ public class UITouch {
     private AffineTransform getTransformation(UIView v) {
         AffineTransform res = new AffineTransform();
         while (v != null) {
-            AffineTransform tr = AffineTransform.getTranslateInstance(v.getFrame().origin.x, v
-                    .getFrame().origin.y);
+            AffineTransform tr = AffineTransform.getTranslateInstance(v.getFrame().origin.x
+                    - v.xmlvmGetOffsetLeft(), v.getFrame().origin.y - v.xmlvmGetOffsetTop());
             AffineTransform ta = v.xmlvmGetRenderer().getJavaAffineTransformation();
             if (ta != null)
                 ta.concatenate(tr);
