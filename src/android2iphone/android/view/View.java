@@ -23,6 +23,7 @@ package android.view;
 import java.util.HashMap;
 import java.util.Set;
 
+import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIColor;
@@ -305,7 +306,7 @@ public class View {
     }
 
     public void bringToFront() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "View.bringToFront() not implemented");
     }
 
     public ViewParent getParent() {
@@ -321,13 +322,20 @@ public class View {
     }
 
     protected boolean processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
-        if (this.listener == null) {
-            return false;
-        }
         UITouch firstTouch = touches.iterator().next();
         CGPoint point = firstTouch.locationInView(uiView);
         MotionEvent motionEvent = new MotionEvent(action, (int) point.x, (int) point.y);
+        if (onTouchEvent(motionEvent)) {
+            return true;
+        }
+        if (this.listener == null) {
+            return false;
+        }
         return this.listener.onTouch(this, motionEvent);
+    }
+
+    public boolean onTouchEvent(MotionEvent event) {
+        return false;
     }
 
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
@@ -557,7 +565,7 @@ public class View {
     }
 
     public void xmlvmDraw(CGRect rect) {
-        Canvas canvas = new Canvas();
+        Canvas canvas = new Canvas(CGContext.UICurrentContext());
         draw(canvas);
     }
 

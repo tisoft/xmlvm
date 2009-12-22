@@ -57,7 +57,7 @@ public class UIPreferencesTableRenderer extends UIViewRenderer<UIPreferencesTabl
     }
 
     public void paint() {
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         g.setBackground(new Color(220, 220, 220));
         g.clearRect((int) displayRect.origin.x, (int) displayRect.origin.y,

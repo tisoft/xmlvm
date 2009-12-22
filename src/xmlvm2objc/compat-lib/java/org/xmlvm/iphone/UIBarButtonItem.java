@@ -57,7 +57,7 @@ public class UIBarButtonItem extends UIBarItem {
         if (customView instanceof UIBarButtonItemView)
             ((UIBarButtonItemView) customView).setTitle(title, 0);
         UIButtonRenderer.Metrics m = UIButtonRenderer.getMetrics(
-                CGContext.theContext.graphicsContext, title,
+                CGContext.UICurrentContext().xmlvmGetGraphics2D(), title,
                 UIBarButtonItemRenderer.BAR_BUTTON_FONT.xmlvmGetFont());
         float cutoff = ((UIBarButtonItemRenderer) getCustomView().xmlvmGetRenderer()).isBack() ? UIBarButtonItemRenderer.CUTOFF
                 : 0;

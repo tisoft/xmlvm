@@ -31,7 +31,7 @@ public class UIProgressViewRenderer extends UIViewRenderer<UIProgressView> {
         float progress = view.getProgress();
         int style = view.getProgressViewStyle();
 
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         int x = (int) displayRect.origin.x;
         int y = (int) displayRect.origin.y;

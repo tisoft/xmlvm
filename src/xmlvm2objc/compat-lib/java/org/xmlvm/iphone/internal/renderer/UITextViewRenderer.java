@@ -19,7 +19,7 @@ public class UITextViewRenderer extends UIViewRenderer<UITextView> {
     }
 
     public void paint() {
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         g.setFont(view.getFont().xmlvmGetFont());
         CGRect displayRect = view.getFrame();
         g.setBackground(Color.WHITE);

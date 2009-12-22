@@ -31,7 +31,7 @@ public class UIViewRenderer<T extends UIView> {
     }
 
     public void initPaint() {
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         savedTransform = g.getTransform();
         savedClip = g.getClip();
         AffineTransform trans = getJavaAffineTransformation();
@@ -45,13 +45,13 @@ public class UIViewRenderer<T extends UIView> {
     }
 
     public void finishPaint() {
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         g.setTransform(savedTransform);
         g.setClip(savedClip);
     }
 
     public void paint() {
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         UIColor backgroundColor = view.getBackgroundColor();
         if (backgroundColor != UIColor.clearColor) {

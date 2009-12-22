@@ -57,7 +57,7 @@ public class NSString {
     }
 
     public static void drawAtPoint(String texttodisplay, CGPoint point, UIFont font) {
-        Graphics2D graphicsContext = CGContext.UICurrentContext().graphicsContext;
+        Graphics2D graphicsContext = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         Font savedFont = graphicsContext.getFont();
         graphicsContext.setFont(font.xmlvmGetFont());
         graphicsContext.drawString(texttodisplay, point.x, point.y);
@@ -65,7 +65,7 @@ public class NSString {
     }
 
     public static CGSize sizeWithFont(String text, UIFont font) {
-        Graphics2D graphicsContext = CGContext.UICurrentContext().graphicsContext;
+        Graphics2D graphicsContext = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         Font savedFont = graphicsContext.getFont();
         Font awtFont = font.xmlvmGetFont();
         graphicsContext.setFont(awtFont);

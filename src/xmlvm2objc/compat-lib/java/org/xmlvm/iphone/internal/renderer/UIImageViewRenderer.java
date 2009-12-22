@@ -24,7 +24,7 @@ public class UIImageViewRenderer extends UIViewRenderer<UIImageView> {
     }
 
     public void paint() {
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect rect = view.getFrame();
 
         UIImage backgroundImage = view.getBackgroundImage();

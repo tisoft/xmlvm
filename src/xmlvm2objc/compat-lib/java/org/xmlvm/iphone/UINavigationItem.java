@@ -141,7 +141,7 @@ public class UINavigationItem {
             label.setTextColor(UIColor.whiteColor);
             label.setFont(UIFont.fontWithNameSize("Arial Bold", 19));
             label.setTextAlignment(UITextAlignment.Center);
-            Metrics m = UIButtonRenderer.getMetrics(CGContext.theContext.graphicsContext, title,
+            Metrics m = UIButtonRenderer.getMetrics(CGContext.UICurrentContext().xmlvmGetGraphics2D(), title,
                     label.getFont().xmlvmGetFont());
             label.setFrame(new CGRect(0, 0, m.width, m.height));
             titleView = label;

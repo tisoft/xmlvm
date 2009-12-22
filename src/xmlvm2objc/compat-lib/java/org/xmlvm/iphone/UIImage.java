@@ -23,19 +23,23 @@ public class UIImage {
         return uiImage.image != null ? uiImage : null;
     }
 
+    public static UIImage xmlvmCreateFromBufferedImage(BufferedImage bi) {
+        return new UIImage(bi);
+    }
+
     public CGImage getCGImage() {
         return new CGImage(image);
     }
 
     public void drawInRect(CGRect rect) {
-        CGContext.theContext.graphicsContext.drawImage(image, (int) rect.origin.x,
-                (int) rect.origin.y, (int) rect.size.width, (int) rect.size.height, Simulator
-                        .getDisplay());
+        CGContext.UICurrentContext().xmlvmGetGraphics2D().drawImage(image, (int) rect.origin.x,
+                (int) rect.origin.y, (int) rect.size.width, (int) rect.size.height,
+                Simulator.getDisplay());
     }
 
     public void drawAtPoint(CGPoint point) {
-        CGContext.theContext.graphicsContext.drawImage(image, (int) point.x, (int) point.y,
-                Simulator.getDisplay());
+        CGContext.UICurrentContext().xmlvmGetGraphics2D().drawImage(image, (int) point.x,
+                (int) point.y, Simulator.getDisplay());
     }
 
     public CGSize getSize() {

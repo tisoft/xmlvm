@@ -56,7 +56,7 @@ public class Display implements ImageObserver {
         Rectangle r = new Rectangle(Device.ScreenSize);
         g2d.setClip(r);
 
-        CGContext.setGraphicsContext(g2d);
+        CGContext.xmlvmPushGraphicsContext(g2d);
         g2d.setBackground(Color.BLACK);
         g2d.clearRect(r.x, r.y, r.width, r.height);
         CGRect rect = new CGRect(r.x, r.y, r.width, r.height);
@@ -66,6 +66,7 @@ public class Display implements ImageObserver {
         statusBar.xmlvmDrawRect(rect);
 
         g2d.setClip(savedClip);
+        CGContext.xmlvmPopGraphicsContext();
     }
 
     private void deliverTouchesEvent(int phase, MouseEvent e) {

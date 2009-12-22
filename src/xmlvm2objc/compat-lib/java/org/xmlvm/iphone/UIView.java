@@ -294,9 +294,9 @@ public class UIView extends UIResponder {
 
         // This is required to set the new coordinates to widget's 0,0
         // location
-        CGContext.theContext.graphicsContext.translate(getFrame().origin.x, getFrame().origin.y);
+        CGContext.UICurrentContext().xmlvmGetGraphics2D().translate(getFrame().origin.x, getFrame().origin.y);
 
-        CGContext.theContext.graphicsContext.translate(-offsetLeft, -offsetTop);
+        CGContext.UICurrentContext().xmlvmGetGraphics2D().translate(-offsetLeft, -offsetTop);
 
         if (drawDelegate != null) {
             // We use reflection to call a method 'xmlvmDraw(CGRect)' in order
@@ -348,5 +348,13 @@ public class UIView extends UIResponder {
     public void xmlvmSetOffsets(int offsetLeft, int offsetTop) {
         this.offsetLeft = offsetLeft;
         this.offsetTop = offsetTop;
+    }
+
+    public int xmlvmGetOffsetLeft() {
+        return this.offsetLeft;
+    }
+
+    public int xmlvmGetOffsetTop() {
+        return this.offsetTop;
     }
 }

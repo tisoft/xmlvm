@@ -40,7 +40,7 @@ public class UILabelRenderer extends UIViewRenderer<UILabel> {
     public void paint() {
         super.paint();
         
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         g.setFont(view.getFont().xmlvmGetFont());
         FontMetrics fm = g.getFontMetrics();

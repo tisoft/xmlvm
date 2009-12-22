@@ -89,6 +89,11 @@
 	return [[NSString alloc] initWithString: [self substringFromIndex: from]];
 }
 
+- (int) compareTo___java_lang_String: (java_lang_String*) str
+{
+    return [self compare: str];
+}
+
 - (int) equals___java_lang_Object: (java_lang_Object*) o
 {
     if ([o isKindOfClass: [NSString class]] == NO) {

@@ -16,7 +16,7 @@ public class UIPreferencesTextTableCellRenderer extends UIViewRenderer<UIPrefere
     }
 
     public void paint() {
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         g.setColor(Color.BLACK);
         FontMetrics fm = g.getFontMetrics();

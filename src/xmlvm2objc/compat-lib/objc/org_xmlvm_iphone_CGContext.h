@@ -21,8 +21,10 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 #import "org_xmlvm_iphone_CGRect.h"
+#import "org_xmlvm_iphone_CGSize.h"
 #import "org_xmlvm_iphone_CGFont.h"
 #import "org_xmlvm_iphone_CGImage.h"
+#import "org_xmlvm_iphone_UIImage.h"
 
 @class org_xmlvm_iphone_CGLayer;
 
@@ -58,4 +60,9 @@
 
 - (void) drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage: (org_xmlvm_iphone_CGRect*)rect: (org_xmlvm_iphone_CGImage*)image;
 - (void) drawLayer___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGLayer: (org_xmlvm_iphone_CGRect*)rect: (org_xmlvm_iphone_CGLayer*)layer;
+
++ (void) UIGraphicsBeginImageContext___org_xmlvm_iphone_CGSize: (org_xmlvm_iphone_CGSize*) size;
++ (org_xmlvm_iphone_UIImage*) UIGraphicsGetImageFromCurrentImageContext__;
++ (void) UIGraphicsEndImageContext__;
+
 @end

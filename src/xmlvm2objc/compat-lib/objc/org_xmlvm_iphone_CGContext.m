@@ -169,4 +169,20 @@
 	CGContextDrawLayerInRect(context, r, l);
 }
 
++ (void) UIGraphicsBeginImageContext___org_xmlvm_iphone_CGSize: (org_xmlvm_iphone_CGSize*) size
+{
+	CGSize cgsize = CGSizeMake(size->width, size->height);
+	UIGraphicsBeginImageContext(cgsize);
+}
+
++ (org_xmlvm_iphone_UIImage*) UIGraphicsGetImageFromCurrentImageContext__
+{
+	return [UIGraphicsGetImageFromCurrentImageContext() retain];
+}
+
++ (void) UIGraphicsEndImageContext__
+{
+	UIGraphicsEndImageContext();
+}
+        
 @end

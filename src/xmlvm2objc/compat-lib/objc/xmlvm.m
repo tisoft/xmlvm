@@ -91,7 +91,7 @@
 - (id) objectAtIndex:(int) idx
 {
     id obj = self->array.o[idx];
-    return obj;
+    return [[obj retain] autorelease];
 }
 
 - (void) replaceObjectAtIndex:(int) idx withObject:(id) obj

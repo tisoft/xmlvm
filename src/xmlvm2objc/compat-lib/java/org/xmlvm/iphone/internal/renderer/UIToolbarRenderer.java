@@ -32,7 +32,7 @@ public class UIToolbarRenderer extends UIViewRenderer<UIGenericToolbar> {
     }
 
     public void paint() {
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect rect = view.getFrame();
         int x = (int) rect.origin.x;
         int y = (int) rect.origin.y;

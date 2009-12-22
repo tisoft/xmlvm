@@ -30,7 +30,7 @@ public class UIActivityIndicatorViewRenderer extends UIViewRenderer<UIActivityIn
         if (!isAnimating || ((UIActivityIndicatorView) view).isHidden()) {
             return;
         }
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect rect = view.getFrame();
         UIImage spinner = null;
         switch (((UIActivityIndicatorView) view).getActivityIndicatorViewStyle()) {

@@ -33,7 +33,7 @@ public class UISegmentedControlRenderer extends UIViewRenderer<UISegmentedContro
             return;
         int style = view.getSegmentedControlStyle();
 
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         Color selUp, selDown, unselUp, unselDown, line, selTxt, unselTxt;
         if (style == UISegmentedControlStyle.Bar) {
             g.setFont(FONT_BAR);

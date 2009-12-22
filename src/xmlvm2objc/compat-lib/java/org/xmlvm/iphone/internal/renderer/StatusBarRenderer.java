@@ -18,7 +18,7 @@ public class StatusBarRenderer extends UIViewRenderer<StatusBar> {
     public void paint() {
         if (view.getFrame().size.height == 0)
             return;
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         int x = (int) displayRect.origin.x;
         int y = (int) displayRect.origin.y;

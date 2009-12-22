@@ -22,7 +22,7 @@ public class UIPreferencesTableCellRenderer extends UIViewRenderer<UIPreferences
     }
 
     public void paint() {
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         g.setBackground(Color.WHITE);
         g.setColor(view.isGroupCell() ? Color.GRAY : Color.BLACK);

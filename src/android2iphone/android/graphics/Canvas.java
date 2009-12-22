@@ -29,23 +29,53 @@ import org.xmlvm.iphone.UIImage;
 
 import android.graphics.drawable.BitmapDrawable;
 import android.internal.Assert;
-import android.util.Log;
 
 public class Canvas {
 
+    private boolean   usesExternalCGContext;
+    private CGContext context;
+    private Bitmap    bitmap;
+
     public Canvas() {
+        context = null;
+        usesExternalCGContext = false;
+    }
+
+    public Canvas(CGContext context) {
+        this.context = context;
+        usesExternalCGContext = true;
+    }
+
+    private void createCGContext() {
+        if (usesExternalCGContext)
+            return;
+        float width = bitmap.getWidth();
+        float height = bitmap.getHeight();
+        CGContext.UIGraphicsBeginImageContext(new CGSize(width, height));
+        context = CGContext.UICurrentContext();
+        UIImage image = ((BitmapDrawable) (bitmap.getDrawable())).xmlvmGetImage();
+        context.drawImage(new CGRect(0, 0, width, height), image.getCGImage());
+    }
+
+    private void releaseCGContext() {
+        if (usesExternalCGContext)
+            return;
+        UIImage image = CGContext.UIGraphicsGetImageFromCurrentImageContext();
+        ((BitmapDrawable) bitmap.getDrawable()).xmlvmSetImage(image);
+        CGContext.UIGraphicsEndImageContext();
     }
 
     public void drawBitmap(Bitmap bitmap, float left, float top, Paint paint) {
+        createCGContext();
         UIImage image = ((BitmapDrawable) (bitmap.getDrawable())).xmlvmGetImage();
         CGSize size = image.getSize();
         CGRect rect = new CGRect(left, top, size.width, size.height);
-        CGContext context = CGContext.UICurrentContext();
         context.storeState();
         context.scale(1, -1);
         context.translate(0, -(rect.size.height + 2 * rect.origin.y));
         context.drawImage(rect, image.getCGImage());
         context.restoreState();
+        releaseCGContext();
     }
 
     public void drawBitmap(Bitmap bitmap, Rect src, Rect dst, Paint paint) {
@@ -76,7 +106,7 @@ public class Canvas {
     }
 
     public void setBitmap(Bitmap bitmap) {
-        Assert.NOT_IMPLEMENTED();
+        this.bitmap = bitmap;
     }
 
 }

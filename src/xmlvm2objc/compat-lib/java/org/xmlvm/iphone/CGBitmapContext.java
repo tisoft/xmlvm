@@ -18,7 +18,7 @@ public class CGBitmapContext extends CGContext {
     }
 
     private CGBitmapContext(int x, int y) {
-        super(null);
+        super((Graphics2D) null);
     }
 
     public void release() {

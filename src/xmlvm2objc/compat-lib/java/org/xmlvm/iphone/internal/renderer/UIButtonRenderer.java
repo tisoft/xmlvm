@@ -23,7 +23,7 @@ public abstract class UIButtonRenderer extends UIViewRenderer<UIButton> {
     }
 
     public void paint() {
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         drawButton(g, displayRect);
     }

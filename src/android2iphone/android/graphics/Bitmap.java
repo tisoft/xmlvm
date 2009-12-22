@@ -20,6 +20,10 @@
 
 package android.graphics;
 
+import org.xmlvm.iphone.CGContext;
+import org.xmlvm.iphone.CGSize;
+import org.xmlvm.iphone.UIImage;
+
 import android.content.res.Resources;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -60,8 +64,10 @@ public final class Bitmap {
     }
 
     public static Bitmap createBitmap(int width, int height, Config rgb565) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        CGContext.UIGraphicsBeginImageContext(new CGSize(width, height));
+        UIImage image = CGContext.UIGraphicsGetImageFromCurrentImageContext();
+        CGContext.UIGraphicsEndImageContext();
+        return new Bitmap(BitmapDrawable.xmlvmCreateWithImage(image));
     }
 
     public static Bitmap createBitmap(Bitmap source, int x, int y, int width, int height) {

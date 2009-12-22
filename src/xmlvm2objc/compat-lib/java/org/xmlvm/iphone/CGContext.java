@@ -4,31 +4,52 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.util.Stack;
 
 public class CGContext {
-    public static final int kCGTextInvisible = 1;
-    public static final int kCGTextFill      = 2;
+    public static final int         kCGTextInvisible = 1;
+    public static final int         kCGTextFill      = 2;
 
-    static public CGContext theContext       = null;
+    private static Stack<CGContext> contextStack     = new Stack<CGContext>();
 
-    public Graphics2D       graphicsContext;
-
-    private float           tx;
-    private float           ty;
-    private int             textMode;
-    private Rectangle       clip;
-    private AffineTransform transform;
+    private Graphics2D              graphicsContext;
+    private UIImage                 image;
+    
+    private float                   tx;
+    private float                   ty;
+    private int                     textMode;
+    private Rectangle               clip;
+    private AffineTransform         transform;
 
     CGContext(Graphics2D g) {
         graphicsContext = g;
+        image = null;
     }
 
-    public static void setGraphicsContext(Graphics2D g) {
-        theContext = new CGContext(g);
+    CGContext(UIImage image) {
+        graphicsContext = (Graphics2D) image.xmlvmGetImage().getGraphics();
+        this.image = image;
+    }
+
+    public static void xmlvmPushGraphicsContext(Graphics2D g) {
+        contextStack.push(new CGContext(g));
+    }
+
+    public static void xmlvmPushGraphicsContext(UIImage image) {
+        contextStack.push(new CGContext(image));
+    }
+
+    public static void xmlvmPopGraphicsContext() {
+        contextStack.pop();
+    }
+
+    public Graphics2D xmlvmGetGraphics2D() {
+        return graphicsContext;
     }
 
     public static CGContext UICurrentContext() {
-        return theContext;
+        return contextStack.peek();
     }
 
     public void setFillColor(float[] color) {
@@ -139,5 +160,19 @@ public class CGContext {
     public void drawLayer(CGRect rect, CGLayer layer) {
         graphicsContext.drawImage(layer.image, (int) rect.origin.x, (int) rect.origin.y,
                 (int) rect.size.width, (int) rect.size.height, null);
+    }
+
+    public static void UIGraphicsBeginImageContext(CGSize size) {
+        BufferedImage image = new BufferedImage((int) size.width, (int) size.height, BufferedImage.TYPE_USHORT_565_RGB);
+        xmlvmPushGraphicsContext(UIImage.xmlvmCreateFromBufferedImage(image));
+    }
+
+    public static UIImage UIGraphicsGetImageFromCurrentImageContext() {
+        CGContext context = UICurrentContext();
+        return context.image;
+    }
+
+    public static void UIGraphicsEndImageContext() {
+        xmlvmPopGraphicsContext();
     }
 }

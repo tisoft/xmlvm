@@ -49,7 +49,7 @@ public class UIAlertViewRenderer extends UIViewRenderer<UIAlertView> {
     }
 
     public void paint() {
-        Graphics2D g = CGContext.theContext.graphicsContext;
+        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = viewingArea; // Note!!! getFrame() refers to the
         // whole screen
         g.setColor(Color.red);
