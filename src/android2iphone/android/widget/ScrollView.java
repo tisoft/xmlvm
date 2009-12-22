@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.widget;
 
 import org.xmlvm.iphone.CGRect;
@@ -27,12 +26,13 @@ import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 
 public class ScrollView extends FrameLayout {
 
-    private int scrollOffsetX = 0;
-    private int scrollOffsetY = 0;
-    
+    private int viewOriginLeft = 0;
+    private int viewOriginTop = 0;
+
     public ScrollView(Context c) {
         super(c);
     }
@@ -47,16 +47,79 @@ public class ScrollView extends FrameLayout {
     }
 
     public void smoothScrollBy(int dx, int dy) {
-        scrollOffsetX += dx;
-        scrollOffsetY += dy;
-        CGRect rect = xmlvmGetUIView().getBounds();
-        scrollOffsetX = Math.min(scrollOffsetX, scrollOffsetX - (int) rect.size.width);
-        scrollOffsetX = Math.max(scrollOffsetX, 0);
-        scrollOffsetY = Math.min(scrollOffsetY, scrollOffsetY - (int) rect.size.height);
-        scrollOffsetY = Math.max(scrollOffsetY, 0);
-        rect.origin.x = scrollOffsetX;
-        rect.origin.y = scrollOffsetY;
+        if (getChildCount() == 0) {
+            return;
+        }
+
+        viewOriginLeft += dx;
+        viewOriginTop += dy;
+        CGRect rect = new CGRect(0, 0, getChildAt(0).getWidth(), getChildAt(0).getHeight());
+        viewOriginLeft = Math.min((int) rect.size.width - getWidth(), viewOriginLeft);
+        viewOriginLeft = Math.max(0, viewOriginLeft);
+        viewOriginTop = Math.min((int) rect.size.height - getHeight(), viewOriginTop);
+        viewOriginTop = Math.max(0, viewOriginTop);
+        rect.origin.x = viewOriginLeft;
+        rect.origin.y = viewOriginTop;
         ((UIScrollView) xmlvmGetUIView()).scrollRectToVisible(rect, true);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        // if (!mFillViewport) {
+        // return;
+        // }
+
+        final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        if (heightMode == MeasureSpec.UNSPECIFIED) {
+            return;
+        }
+
+        if (getChildCount() > 0) {
+            final View child = getChildAt(0);
+            int height = getMeasuredHeight();
+            if (child.getMeasuredHeight() < height) {
+                final FrameLayout.LayoutParams lp = (LayoutParams) child.getLayoutParams();
+
+                int childWidthMeasureSpec = getChildMeasureSpec(widthMeasureSpec, paddingLeft
+                        + paddingRight, lp.width);
+                height -= paddingTop;
+                height -= paddingBottom;
+                int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height,
+                        MeasureSpec.EXACTLY);
+
+                child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
+            }
+        }
+    }
+
+    // @Override
+    // protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    // super.onLayout(changed, l, t, r, b);
+    // mIsLayoutDirty = false;
+    // // Give a child focus if it needs it
+    // if (mChildToScrollTo != null && isViewDescendantOf(mChildToScrollTo,
+    // this)) {
+    // scrollToChild(mChildToScrollTo);
+    // }
+    // mChildToScrollTo = null;
+    //
+    // // Calling this with the present values causes it to re-clam them
+    // scrollTo(mScrollX, mScrollY);
+    // }
+
+    @Override
+    protected void measureChildWithMargins(View child, int parentWidthMeasureSpec, int widthUsed,
+            int parentHeightMeasureSpec, int heightUsed) {
+        final MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
+
+        final int childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec, paddingLeft
+                + paddingRight + lp.leftMargin + lp.rightMargin + widthUsed, lp.width);
+        final int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(lp.topMargin
+                + lp.bottomMargin, MeasureSpec.UNSPECIFIED);
+
+        child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
     }
 
 }
