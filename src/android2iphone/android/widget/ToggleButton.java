@@ -22,6 +22,7 @@ package android.widget;
 
 import java.util.Set;
 
+import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIControl;
 import org.xmlvm.iphone.UIControlDelegate;
 import org.xmlvm.iphone.UIControlEvent;
@@ -33,6 +34,7 @@ import org.xmlvm.iphone.UIView;
 import android.content.Context;
 import android.internal.UIToggleButton;
 import android.util.AttributeSet;
+import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 
 /**
@@ -92,7 +94,7 @@ public class ToggleButton extends CompoundButton {
     }
 
     public void setText(String text) {
-        this.text = text; 
+        this.text = text;
         ((UIToggleButton) xmlvmGetUIView()).setText(text);
     }
 
@@ -104,5 +106,14 @@ public class ToggleButton extends CompoundButton {
     void setTextOn(String textOn) {
         ((UIToggleButton) xmlvmGetUIView()).setTextOff(textOn);
         requestLayout();
+    }
+
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int minWidth = getSuggestedMinimumWidth();
+        int minHeight = getSuggestedMinimumHeight();
+        
+        // TODO: Also consider the button's text size to determine its size
+        setMeasuredDimension(minWidth, minHeight);
+
     }
 }
