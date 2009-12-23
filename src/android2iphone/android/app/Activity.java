@@ -390,8 +390,7 @@ public class Activity extends ContextThemeWrapper {
     }
 
     public LayoutInflater getLayoutInflater() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
     }
 
     public void finish() {
