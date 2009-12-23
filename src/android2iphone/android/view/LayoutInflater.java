@@ -21,7 +21,6 @@
 package android.view;
 
 import android.content.Context;
-import android.internal.Assert;
 import android.internal.LayoutManager;
 
 /**
@@ -63,7 +62,6 @@ public class LayoutInflater {
     }
 
     public View inflate(int resource, ViewGroup root) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return inflate(resource, root, true);
     }
 }
