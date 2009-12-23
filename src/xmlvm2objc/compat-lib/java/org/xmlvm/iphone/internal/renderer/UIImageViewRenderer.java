@@ -35,9 +35,10 @@ public class UIImageViewRenderer extends UIViewRenderer<UIImageView> {
         if (view.getImage() != null) {
             // TODO the following should probably be done in UIView using
             // affine transformations
-            Rectangle clipRect = g.getClipBounds();
-            g.setClip((int) rect.origin.x, (int) rect.origin.y, (int) rect.size.width,
-                    (int) rect.size.height);
+        	// TODO something wrong with the clipping we do here
+            //Rectangle clipRect = g.getClipBounds();
+            //g.setClip((int) rect.origin.x, (int) rect.origin.y, (int) rect.size.width,
+            //        (int) rect.size.height);
             BufferedImage image = view.getImage().xmlvmGetImage();
             CGSize imageSize = view.getImage().getSize();
             switch (view.getContentMode()) {
@@ -95,7 +96,7 @@ public class UIImageViewRenderer extends UIViewRenderer<UIImageView> {
                     RenderingHints.VALUE_INTERPOLATION_BICUBIC);
             g.drawImage(image, (int) rect.origin.x, (int) rect.origin.y, (int) rect.size.width,
                     (int) rect.size.height, Simulator.getDisplay());
-            g.setClip(clipRect.x, clipRect.y, clipRect.width, clipRect.height);
+            //g.setClip(clipRect.x, clipRect.y, clipRect.width, clipRect.height);
         }
     }
 }
