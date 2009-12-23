@@ -26,7 +26,7 @@
 @implementation java_util_Random
 
 - (double) nextDouble__ {
-	return (double)random()/2147483647.0;
+	return (double)rand()/2147483647.0;
 }
 
 - (void) __init_java_util_Random__ {
@@ -40,4 +40,8 @@
 	srand(seed);
 }
 
+- (int) nextInt___int :(int)n {
+	return (int)((double)rand() / ((double)RAND_MAX + 1) * n);
+}
+	
 @end

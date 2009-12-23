@@ -43,4 +43,14 @@
     [self setContentOffset:p animated:animated];
 }
 
+- (void) setScrollEnabled___boolean :(BOOL)enabled
+{
+	self.scrollEnabled = enabled;
+}
+
+- (BOOL) isScrollEnabled__
+{
+	return self.scrollEnabled;
+}
+
 @end

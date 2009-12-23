@@ -22,9 +22,18 @@ package org.xmlvm.iphone;
 
 public class UIScrollView extends UIView {
 
+    private boolean scrollEnabled = true;
+
     public void setContentOffset(CGPoint offset, boolean animated) {
         xmlvmSetOffsets((int) offset.x, (int) offset.y);
         setNeedsDisplay();
     }
 
+    public void setScrollEnabled(boolean scrollEnabled) {
+        this.scrollEnabled = scrollEnabled;
+    }
+
+    public boolean isScrollEnabled() {
+        return this.scrollEnabled;
+    }
 }

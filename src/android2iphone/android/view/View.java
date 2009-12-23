@@ -306,7 +306,10 @@ public class View {
     }
 
     public void bringToFront() {
-        Log.w("xmlvm", "View.bringToFront() not implemented");
+        UIView view = this.xmlvmGetUIView();
+        UIView superView = view.getSuperview();
+        if (superView != null)
+            superView.bringSubviewToFront(view);
     }
 
     public ViewParent getParent() {

@@ -31,4 +31,6 @@ typedef UIScrollView org_xmlvm_iphone_UIScrollView;
 - (void) setContentOffset___org_xmlvm_iphone_CGPoint_boolean
                :(org_xmlvm_iphone_CGPoint*) offset
                :(int) animated;
+- (void) setScrollEnabled___boolean :(BOOL)enabled;
+- (BOOL) isScrollEnabled__;
 @end

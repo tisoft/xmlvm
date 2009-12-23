@@ -44,7 +44,10 @@ public class ScrollView extends FrameLayout {
 
     @Override
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        return new UIScrollView();
+        UIScrollView view = new UIScrollView();
+        //TODO if we don't do this, the scroll view will intercept motion events.
+        view.setScrollEnabled(false);
+        return view;
     }
 
     public void smoothScrollBy(int dx, int dy) {
