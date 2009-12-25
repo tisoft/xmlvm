@@ -64,6 +64,11 @@
 	[self setFont: font];
 }
 
+- (org_xmlvm_iphone_UIFont*) getFont__
+{
+	return [self.font retain];
+}
+
 - (NSString*) getText__
 {
 	return [self.text retain];

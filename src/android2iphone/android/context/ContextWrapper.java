@@ -56,8 +56,8 @@ public class ContextWrapper extends Context {
     }
 
     public Context getApplicationContext() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        //TODO this is probably not right
+        return this;
     }
 
     public FileInputStream openFileInput(String name) throws FileNotFoundException {

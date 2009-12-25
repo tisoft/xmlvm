@@ -20,6 +20,9 @@
 
 package android.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.xmlvm.iphone.CGAffineTransform;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
@@ -42,39 +45,33 @@ public class Window {
     public static final int FEATURE_NO_TITLE = 1;
     private Activity        activity;
     private UIWindow        iWindow;
-    private CGRect          rect;
-    private View            contentView;
+    private List<View>      contentViews;
 
     public Window(Activity parent) {
         this.activity = parent;
-        UIScreen screen = UIScreen.mainScreen();
-        rect = screen.getApplicationFrame();
-        iWindow = new UIWindow(rect);
-        iWindow.setBackgroundColor(UIColor.colorWithRGBA(0.0941f, 0.0941f, 0.0941f, 1.0f));
     }
 
     public void setContentView(View view) {
-        if (contentView != null) {
-            xmlvmSetHidden(true);
-            contentView.xmlvmGetUIView().removeFromSuperview();
-            contentView.xmlvmSetParent(null);
-        }
-        contentView = view;
-        if (contentView.getLayoutParams() == null) {
-            contentView.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT,
-                    LayoutParams.FILL_PARENT));
-        }
+        xmlvmRemoveWindow();
 
-        adjustFrameSize();
-        CGRect viewRect = new CGRect(rect);
-        viewRect.origin.x = viewRect.origin.y = 0;
-        view.xmlvmGetUIView().setFrame(viewRect);
+        iWindow = new UIWindow();
+        iWindow.setBackgroundColor(UIColor.colorWithRGBA(0.0941f, 0.0941f, 0.0941f, 1.0f));
         iWindow.addSubview(view.xmlvmGetUIView());
+        contentViews.add(view);
+        adjustFrameSize();
+        xmlvmSetHidden(false);
     }
 
     public void setContentView(int id) {
         View v = LayoutManager.getLayout(activity, id, null);
         setContentView(v);
+    }
+
+    public void addContentView(View view, WindowManager.LayoutParams params) {
+        // TODO what to do with params?
+        iWindow.addSubview(view.xmlvmGetUIView());
+        contentViews.add(view);
+        layoutContentView(view);
     }
 
     public void setFlags(int flags, int mask) {
@@ -86,21 +83,26 @@ public class Window {
     }
 
     public void xmlvmSetHidden(boolean flag) {
-        if (flag) {
-            iWindow.setHidden(true);
-        } else {
-            iWindow.makeKeyAndVisible();
-            iWindow.setHidden(false);
+        if (iWindow != null) {
+            if (flag) {
+                iWindow.setHidden(true);
+            } else {
+                iWindow.makeKeyAndVisible();
+                iWindow.setHidden(false);
+            }
         }
     }
 
     public void xmlvmRemoveWindow() {
         xmlvmSetHidden(true);
-        if (contentView != null) {
-            contentView.xmlvmGetUIView().removeFromSuperview();
-            contentView.xmlvmSetParent(null);
+        if (contentViews != null) {
+            for (View view : contentViews) {
+                view.xmlvmGetUIView().removeFromSuperview();
+                view.xmlvmSetParent(null);
+            }
         }
         iWindow = null;
+        contentViews = new ArrayList<View>();
     }
 
     /**
@@ -108,16 +110,13 @@ public class Window {
      * orientation of the top-level window has changed (e.g., when the status
      * bar is made invisible).
      */
-    public void adjustFrameSize() {
-        UIScreen screen = UIScreen.mainScreen();
-        rect = screen.getApplicationFrame();
+    private void adjustFrameSize() {
+        if (iWindow == null)
+            return;
         iWindow.setTransform(null);
+        CGRect rect = getCGRect();
         iWindow.setFrame(rect);
         if (activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
-            float t = rect.size.height;
-            rect.size.height = rect.size.width;
-            rect.size.width = t;
-            iWindow.setFrame(rect);
             CGAffineTransform rotation = CGAffineTransform
                     .makeRotation((float) ((Math.PI / 180) * 90));
             // TODO Translate should be 90, 90 for visible status bar (i.e.,
@@ -126,15 +125,20 @@ public class Window {
             iWindow.setTransform(translation);
         }
 
-        if (contentView != null) {
-            layoutContentView();
+        for (View view : contentViews) {
+            layoutContentView(view);
         }
     }
 
-    private void layoutContentView() {
+    private void layoutContentView(View view) {
+        if (view.getLayoutParams() == null) {
+            view.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT,
+                    LayoutParams.FILL_PARENT));
+        }
         int widthMeasureSpec;
         int heightMeasureSpec;
-        LayoutParams lp = contentView.getLayoutParams();
+        CGRect rect = getCGRect();
+        LayoutParams lp = view.getLayoutParams();
 
         if (lp == null || lp.width == LayoutParams.FILL_PARENT) {
             widthMeasureSpec = MeasureSpec.makeMeasureSpec((int) rect.size.width,
@@ -156,14 +160,25 @@ public class Window {
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(lp.height, MeasureSpec.EXACTLY);
         }
 
-        contentView.xmlvmSetMeasureSpec(widthMeasureSpec, heightMeasureSpec);
-        contentView.requestLayout();
+        view.xmlvmSetMeasureSpec(widthMeasureSpec, heightMeasureSpec);
+        view.requestLayout();
+    }
+
+    public View xmlvmGetMainView() {
+        return contentViews.get(0);
     }
 
     /**
      * Internal. Not part of Android API.
      */
     public CGRect getCGRect() {
+        UIScreen screen = UIScreen.mainScreen();
+        CGRect rect = screen.getApplicationFrame();
+        if (activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+            float t = rect.size.height;
+            rect.size.height = rect.size.width;
+            rect.size.width = t;
+        }
         return rect;
     }
 
@@ -172,6 +187,12 @@ public class Window {
      * @return
      */
     public View findViewById(int id) {
-        return contentView.findViewById(id);
+        return contentViews.get(0).findViewById(id);
     }
+
+    public WindowManager.LayoutParams getAttributes() {
+        // TODO return proper attributes
+        return new WindowManager.LayoutParams();
+    }
+
 }

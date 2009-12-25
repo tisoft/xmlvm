@@ -20,9 +20,15 @@
 
 package android.widget;
 
+import android.app.Activity;
 import android.content.Context;
+import android.internal.ActivityManager;
 import android.internal.Assert;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.ViewGroup.LayoutParams;
 
 /**
  * @author arno
@@ -33,55 +39,63 @@ public class Toast {
     public static final int LENGTH_LONG  = 1;
     public static final int LENGTH_SHORT = 0;
 
+    private Activity        activity;
+    private View            view;
+
     public Toast(Context context) {
-        Assert.NOT_IMPLEMENTED();
+        activity = ActivityManager.getTopActivity();
     }
 
-    /**
-     * @param context
-     * @param text
-     * @param duration
-     * @return
-     */
+    public static Toast makeText(Context context, int resId, int duration) {
+        return makeText(context, "TOAST", duration);
+    }
+
     public static Toast makeText(Context context, CharSequence text, int duration) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        Toast toast = new Toast(context);
+        toast.setDuration(duration);
+        TextView textView = new TextView(context);
+        toast.setView(textView);
+        toast.setText(text);
+        return toast;
+    }
+
+    public void setText(CharSequence text) {
+        ((TextView) view).setText(text);
     }
 
     public void setView(View view) {
-        Assert.NOT_IMPLEMENTED();
+        this.view = view;
     }
 
     public void setGravity(int gravity, int xOffset, int yOffset) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "Toast.setGravity() not implemented");
     }
 
     public void setDuration(int lengthLong) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "Toast.setDuration() not implemented");
     }
 
-    /**
-     * 
-     */
     public void show() {
-        Assert.NOT_IMPLEMENTED();
+        RelativeLayout l = new RelativeLayout(activity);
+        RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT);
+        p.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
+        p.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
+        l.addView(view, p);
+        WindowManager.LayoutParams wlp = activity.getWindow().getAttributes();
+        activity.getWindow().addContentView(l, wlp);
+        Handler h = new Handler();
+        Runnable r = new Runnable() {
+
+            @Override
+            public void run() {
+                activity.setContentView(activity.getWindow().xmlvmGetMainView());
+            }
+        };
+        h.postDelayed(r, 3000);
     }
 
-    /**
-     * @param context
-     * @param resId
-     * @param duration
-     * @return
-     */
-    public static Toast makeText(Context context, int resId, int duration) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
-    }
-
-    /**
-     * @param text
-     */
-    public void setText(String text) {
+    public void cancel() {
         Assert.NOT_IMPLEMENTED();
     }
 

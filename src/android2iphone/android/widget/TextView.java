@@ -29,6 +29,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.internal.Assert;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -73,7 +74,8 @@ public class TextView extends View {
     }
 
     public final void setText(int resid) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "TextView.setText(int) not implemented");
+        getUILabel().setText("Text-ID: " + resid);
     }
 
     public void setText(String string) {
@@ -92,7 +94,7 @@ public class TextView extends View {
     }
 
     public void setTypeface(Typeface tf, int style) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("xmlvm", "TextView.setTypeface() not implemented");
     }
 
     @Override

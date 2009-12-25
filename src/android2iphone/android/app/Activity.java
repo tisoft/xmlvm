@@ -31,6 +31,7 @@ import android.content.pm.ActivityInfo;
 import android.internal.ActivityManager;
 import android.internal.Assert;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -268,6 +269,10 @@ public class Activity extends ContextThemeWrapper {
         return window.findViewById(id);
     }
 
+    public final void setVolumeControlStream(int streamType) {
+        Log.w("xmlvm", "Activity.setVolumeControlStream() not implemened");
+    }
+
     /**
      * TODO: Implement for real.
      */
@@ -359,7 +364,6 @@ public class Activity extends ContextThemeWrapper {
                     UIInterfaceOrientation.Portrait);
             break;
         }
-        window.adjustFrameSize();
     }
 
     public int getRequestedOrientation() {

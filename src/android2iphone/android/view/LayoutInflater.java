@@ -62,6 +62,6 @@ public class LayoutInflater {
     }
 
     public View inflate(int resource, ViewGroup root) {
-        return inflate(resource, root, true);
+        return inflate(resource, root, false);
     }
 }
