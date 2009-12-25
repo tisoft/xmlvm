@@ -32,7 +32,6 @@ import com.android.dx.dex.cf.CfOptions;
 import com.android.dx.dex.cf.CfTranslator;
 import com.android.dx.dex.file.ClassDefItem;
 import com.android.dx.dex.file.DexFile;
-import com.android.dx.dex.file.EncodedMethod;
 
 /**
  * This process takes Java Bytecode and turns it into the DEX format.
@@ -85,7 +84,6 @@ public class DexOutputProcess extends OutputProcess<JavaByteCodeOutputProcess> {
 
         ClassDefItem item = CfTranslator.translate(relativePath, classFile.getDataAsBytes(),
                 new CfOptions());
-        
         DexFile dexFile = new DexFile();
         dexFile.add(item);
         try {
