@@ -20,5 +20,48 @@
 
 #import "java_util_Arrays.h"
 
+static void swap(int *x,int *y)
+{
+   int temp;
+   temp = *x;
+   *x = *y;
+   *y = temp;
+}
+
+static int choose_pivot(int i, int j)
+{
+   return (i + j) / 2;
+}
+
+static void quicksort(int list[], int m, int n)
+{
+   int key, i, j, k;
+   
+   if (m < n) {
+      k = choose_pivot(m, n);
+      swap(&list[m], &list[k]);
+      key = list[m];
+      i = m+1;
+      j = n;
+      while (i <= j) {
+         while ((i <= n) && (list[i] <= key))
+                i++;
+         while ((j >= m) && (list[j] > key))
+                j--;
+         if (i < j)
+                swap(&list[i],&list[j]);
+      }
+      swap(&list[m], &list[j]);
+      quicksort(list, m, j-1);
+      quicksort(list, j+1, n);
+   }
+}
+
 @implementation java_util_Arrays
+
++ (void) sort___int_ARRAYTYPE: (XMLVMArray*) a
+{
+	quicksort(a->array.i, 0, a->length - 1);
+}
+
 @end

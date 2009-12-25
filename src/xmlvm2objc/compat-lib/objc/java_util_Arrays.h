@@ -21,5 +21,8 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 
-@interface java_util_Arrays : java_lang_Object 
+@interface java_util_Arrays : java_lang_Object
+
++ (void) sort___int_ARRAYTYPE: (XMLVMArray*) a;
+
 @end
