@@ -405,6 +405,10 @@ public class View {
     public void setBackgroundDrawable(Drawable drawable) {
         backgroundDrawable = drawable;
 
+        if (drawable == null) {
+            uiView.setBackgroundImage(null);
+            return;
+        }
         if (drawable instanceof BitmapDrawable) {
             uiView.setBackgroundImage(((BitmapDrawable) drawable).xmlvmGetImage());
         } else if (drawable instanceof StateListDrawable) {

@@ -27,6 +27,7 @@ import android.internal.Assert;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.ViewGroup.LayoutParams;
 
@@ -82,14 +83,14 @@ public class Toast {
         p.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
         p.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
         l.addView(view, p);
-        WindowManager.LayoutParams wlp = activity.getWindow().getAttributes();
-        activity.getWindow().addContentView(l, wlp);
+        final Window window = activity.getWindow();
+        window.xmlvmShowToast(l);
         Handler h = new Handler();
         Runnable r = new Runnable() {
 
             @Override
             public void run() {
-                activity.setContentView(activity.getWindow().xmlvmGetMainView());
+                window.xmlvmRemoveToast();
             }
         };
         h.postDelayed(r, 3000);

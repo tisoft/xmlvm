@@ -28,10 +28,12 @@ import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIScreen;
+import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.internal.Assert;
 import android.internal.LayoutManager;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup.LayoutParams;
@@ -46,6 +48,7 @@ public class Window {
     private Activity        activity;
     private UIWindow        iWindow;
     private List<View>      contentViews;
+    private View            toast;
 
     public Window(Activity parent) {
         this.activity = parent;
@@ -80,6 +83,23 @@ public class Window {
             UIApplication.sharedApplication().setStatusBarHidden(true);
             adjustFrameSize();
         }
+    }
+
+    public void xmlvmShowToast(View toast) {
+        Assert.CHECK(this.toast == null);
+        this.toast = toast;
+        layoutContentView(toast);
+        UIView itoast = toast.xmlvmGetUIView();
+        itoast.setUserInteractionEnabled(false);
+        iWindow.addSubview(itoast);
+    }
+
+    public void xmlvmRemoveToast() {
+        if (toast == null)
+            return;
+        UIView itoast = toast.xmlvmGetUIView();
+        itoast.removeFromSuperview();
+        toast = null;
     }
 
     public void xmlvmSetHidden(boolean flag) {

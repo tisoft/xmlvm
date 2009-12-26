@@ -82,8 +82,13 @@ public class Canvas {
         Assert.NOT_IMPLEMENTED();
     }
 
-    public void drawRect(int i, int j, int k, int l, Paint paint) {
-        Assert.NOT_IMPLEMENTED();
+    public void drawRect(float left, float top, float right, float bottom, Paint paint) {
+        createCGContext();
+        context.storeState();
+        context.setFillColor(paint.xmlvmGetColor());
+        context.fillRect(new CGRect(left, top, right - left, bottom - top));
+        context.restoreState();
+        releaseCGContext();
     }
 
     public int save() {

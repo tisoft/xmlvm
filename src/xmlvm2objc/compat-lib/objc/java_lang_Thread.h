@@ -31,6 +31,8 @@ NSThread*              thread;
 
 - (id) init;
 - (void) dealloc;
+- (void) __init_java_lang_Thread__;
+- (void) __init_java_lang_Thread___java_lang_Runnable: (id<java_lang_Runnable>) r;
 - (void) threadCallback: (id) arg;
 - (void) run__;
 - (void) start__;

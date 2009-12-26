@@ -425,7 +425,13 @@ public class Paint {
      *            true to set the fakeBoldText bit in the paint's flags, false
      *            to clear it.
      */
-    public native void setFakeBoldText(boolean fakeBoldText);
+    public void setFakeBoldText(boolean fakeBoldText) {
+        if (fakeBoldText) {
+            mFlags |= FAKE_BOLD_TEXT_FLAG;
+        } else {
+            mFlags &= ~FAKE_BOLD_TEXT_FLAG;
+        }
+    }
 
     /**
      * Whether or not the bitmap filter is activated. Filtering affects the
@@ -1530,13 +1536,13 @@ public class Paint {
     public UIFont xmlvmGetUIFont() {
         return mTypeface.xmlvmGenUIFont(mTextSize);
     }
-    
+
     public float[] xmlvmGetColor() {
         int a = (mColor >> 24) & 0xff;
         int r = (mColor >> 16) & 0xff;
         int g = (mColor >> 8) & 0xff;
         int b = mColor & 0xff;
-        float color[] = {r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f};
+        float color[] = { r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f };
         return color;
     }
 }
