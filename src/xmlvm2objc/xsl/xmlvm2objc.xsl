@@ -148,6 +148,11 @@ int main(int argc, char* argv[])
       </xsl:if>
     </xsl:for-each>
       
+    <!-- Check if there is a method equals(Object) -->
+    <xsl:if test="vm:method[@name = 'equals']">
+      <xsl:text>- (BOOL) isEqual:(id)o;
+</xsl:text>
+    </xsl:if>
     <xsl:text>
 @end
 
@@ -389,6 +394,15 @@ int main(int argc, char* argv[])
         </xsl:choose>
       </xsl:if>
     </xsl:for-each>
+
+    <!-- Check if there is a method equals(Object) -->
+    <xsl:if test="vm:method[@name = 'equals']">
+      <xsl:text>- (BOOL) isEqual:(id)o
+{
+	return [self equals___java_lang_Object:o];
+}
+</xsl:text>
+    </xsl:if>
       
     <xsl:text>
 @end
