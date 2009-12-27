@@ -73,12 +73,13 @@
 
 - (int) indexOf___java_lang_Object :(java_lang_Object*) item
 {
-	return [((NSMutableArray*) self) indexOfObject: item];
+	int i = [((NSMutableArray*) self) indexOfObject: item];
+	return i == NSNotFound ? -1 : i;
 }
 
 - (int) contains___java_lang_Object :(java_lang_Object*) item
 {
-	return [self indexOf___java_lang_Object: item] != NSNotFound;
+	return [self indexOf___java_lang_Object: item] != -1;
 }
 
 - (void) clear__

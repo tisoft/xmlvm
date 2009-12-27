@@ -97,7 +97,7 @@
 
 - (int) contains__java_lang_Object :(java_lang_Object*) item
 {
-	return [self indexOf___java_lang_Object: item] != NSNotFound;
+	return [self indexOf___java_lang_Object: item] != -1;
 }
 
 @end

@@ -65,4 +65,9 @@
 	[thread start];
 }
 
++ (void) sleep___long: (long) millis
+{
+	[NSThread sleepForTimeInterval: (double) millis / 1000.0];
+}
+
 @end

@@ -18,24 +18,39 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import "java_lang_Object.h"
-#import "java_lang_Runnable.h"
 
-@interface java_lang_Thread : java_lang_Object<java_lang_Runnable> {
+#import "java_lang_InterruptedException.h"
 
-id<java_lang_Runnable> runnable;
-NSThread*              thread;
+// java.lang.InterruptedException
+//----------------------------------------------------------------------------
+@implementation java_lang_InterruptedException
 
+- (id) init
+{
+    return [self initWithName: @"java_lang_InterruptedException" reason: nil userInfo: nil];
 }
 
-- (id) init;
-- (void) dealloc;
-- (void) __init_java_lang_Thread__;
-- (void) __init_java_lang_Thread___java_lang_Runnable: (id<java_lang_Runnable>) r;
-- (void) threadCallback: (id) arg;
-- (void) run__;
-- (void) start__;
-+ (void) sleep___long: (long) millis;
+- (void) __init_java_lang_InterruptedException__
+{
+    // Do nothing
+}
+
+- (void) __init_java_lang_InterruptedException___java_lang_String: (java_lang_String*) msg
+{
+}
+
+- (void) __init_java_lang_InterruptedException___java_lang_String_java_lang_Throwable: (java_lang_String*) msg: (java_lang_Throwable*) cause
+{
+}
+
+- (java_lang_InterruptedException *) initCause___java_lang_Throwable: (java_lang_Throwable*) cause
+{
+	[self retain];
+	return self;
+}
+
+- (void) printStackTrace__
+{
+}
 
 @end
