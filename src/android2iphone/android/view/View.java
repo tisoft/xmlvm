@@ -41,6 +41,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.internal.Assert;
+import android.internal.Dimension;
 import android.internal.ResourceAttributes;
 import android.os.Handler;
 import android.util.AttributeSet;
@@ -382,6 +383,26 @@ public class View {
             if (backgroundId != -1) {
                 setBackgroundResource(backgroundId);
             }
+        }
+        
+        int p = Dimension.resolveDimension(attrs.getAttributeValue(null, "padding"));
+        paddingLeft = paddingTop = paddingRight = paddingBottom = p;
+
+        str = attrs.getAttributeValue(null, "paddingLeft");
+        if (str != null) {
+            paddingLeft = Dimension.resolveDimension(str);
+        }
+        str = attrs.getAttributeValue(null, "paddingTop");
+        if (str != null) {
+            paddingTop = Dimension.resolveDimension(str);
+        }
+        str = attrs.getAttributeValue(null, "paddingRight");
+        if (str != null) {
+            paddingRight = Dimension.resolveDimension(str);
+        }
+        str = attrs.getAttributeValue(null, "paddingBottom");
+        if (str != null) {
+            paddingBottom = Dimension.resolveDimension(str);
         }
     }
 
