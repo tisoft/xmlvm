@@ -23,8 +23,10 @@ package org.xmlvm.proc.out;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.management.RuntimeErrorException;
@@ -57,9 +59,11 @@ import com.android.dx.dex.code.Dop;
 import com.android.dx.dex.code.Dops;
 import com.android.dx.dex.code.LocalSnapshot;
 import com.android.dx.dex.code.LocalStart;
+import com.android.dx.dex.code.OddSpacer;
 import com.android.dx.dex.code.PositionList;
 import com.android.dx.dex.code.RopTranslator;
 import com.android.dx.dex.code.SimpleInsn;
+import com.android.dx.dex.code.SwitchData;
 import com.android.dx.dex.code.TargetInsn;
 import com.android.dx.rop.code.AccessFlags;
 import com.android.dx.rop.code.DexTranslationAdvice;
@@ -75,6 +79,7 @@ import com.android.dx.rop.type.Prototype;
 import com.android.dx.rop.type.StdTypeList;
 import com.android.dx.ssa.Optimizer;
 import com.android.dx.util.ExceptionWithContext;
+import com.android.dx.util.IntList;
 
 /**
  * This OutputProcess emits XMLVM code containing register-based DEX
@@ -283,8 +288,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
             code.assignIndices(callback);
             DalvInsnList instructions = code.getInsns();
             Set<Integer> targets = extractTargets(instructions);
+            Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
             for (int j = 0; j < instructions.size(); ++j) {
-                processInstruction(instructions.get(j), codeElement, targets);
+                processInstruction(instructions.get(j), codeElement, targets, switchDataBlocks);
             }
         }
     }
@@ -301,9 +307,35 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
             if (instructions.get(i) instanceof TargetInsn) {
                 TargetInsn targetInsn = (TargetInsn) instructions.get(i);
                 targets.add(targetInsn.getTargetAddress());
+            } else if (instructions.get(i) instanceof SwitchData) {
+                SwitchData switchData = (SwitchData) instructions.get(i);
+                CodeAddress[] caseTargets = switchData.getTargets();
+                for (CodeAddress caseTarget : caseTargets) {
+                    targets.add(caseTarget.getAddress());
+                }
             }
         }
         return targets;
+    }
+
+    /**
+     * Extracts all {@link SwitchData} pseudo-instructions from the given list
+     * of instructions.
+     * 
+     * @param instructions
+     *            the list of instructions from where to extract
+     * @return a map containing all found {@link SwitchData} instructions,
+     *         indexed by address.
+     */
+    private static Map<Integer, SwitchData> extractSwitchData(DalvInsnList instructions) {
+        Map<Integer, SwitchData> result = new HashMap<Integer, SwitchData>();
+        for (int i = 0; i < instructions.size(); ++i) {
+            if (instructions.get(i) instanceof SwitchData) {
+                SwitchData switchData = (SwitchData) instructions.get(i);
+                result.put(switchData.getAddress(), switchData);
+            }
+        }
+        return result;
     }
 
     /**
@@ -319,7 +351,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
      *            the set of jump targets
      */
     private static void processInstruction(DalvInsn instruction, Element codeElement,
-            Set<Integer> targets) {
+            Set<Integer> targets, Map<Integer, SwitchData> switchDataBlocks) {
 
         Element dexInstruction = null;
 
@@ -335,6 +367,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
             // Ignore.
         } else if (instruction instanceof LocalSnapshot) {
             // Ingore.
+        } else if (instruction instanceof OddSpacer) {
+            // Ingore NOPs.
+        } else if (instruction instanceof SwitchData) {
+            // Ingore here because we already processes these and they were
+            // given to this method as an argument.
         } else if (instruction instanceof LocalStart) {
             LocalStart localStart = (LocalStart) instruction;
             dexInstruction = new Element("local-start", NS_DEX);
@@ -370,10 +407,35 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
             processRegisters(cstInsn.getRegisters(), dexInstruction);
         } else if (instruction instanceof TargetInsn) {
             TargetInsn targetInsn = (TargetInsn) instruction;
-            dexInstruction = new Element(sanitizeInstructionName(targetInsn.getOpcode().getName()),
-                    NS_DEX);
+            String instructionName = targetInsn.getOpcode().getName();
+            dexInstruction = new Element(sanitizeInstructionName(instructionName), NS_DEX);
             processRegisters(targetInsn.getRegisters(), dexInstruction);
-            dexInstruction.setAttribute("target", String.valueOf(targetInsn.getTargetAddress()));
+
+            if (instructionName.equals("packed-switch") || instructionName.equals("sparse-switch")) {
+                SwitchData switchData = switchDataBlocks.get(targetInsn.getTargetAddress());
+                if (switchData == null) {
+                    Log.error("DEXmlvmOutputProcess: Couldn't find SwitchData block.");
+                    System.exit(-1);
+                }
+                IntList cases = switchData.getCases();
+                CodeAddress[] caseTargets = switchData.getTargets();
+
+                // Sanity check.
+                if (cases.size() != caseTargets.length) {
+                    Log.error("DEXmlvmOutputProcess: SwitchData size mismatch: cases vs targets.");
+                    System.exit(-1);
+                }
+
+                for (int i = 0; i < cases.size(); ++i) {
+                    Element caseElement = new Element("case", NS_DEX);
+                    caseElement.setAttribute("key", String.valueOf(cases.get(i)));
+                    caseElement.setAttribute("label", String.valueOf(caseTargets[i].getAddress()));
+                    dexInstruction.addContent(caseElement);
+                }
+            } else {
+                dexInstruction
+                        .setAttribute("target", String.valueOf(targetInsn.getTargetAddress()));
+            }
         } else {
             System.err.print(">>> Unknown instruction: ");
             System.err.print("(" + instruction.getClass().getName() + ") ");
