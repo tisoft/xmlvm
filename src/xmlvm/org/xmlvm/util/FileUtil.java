@@ -226,6 +226,37 @@ public class FileUtil {
     }
 
     /**
+     * Reads a file and returns it contents as a byte array.
+     * 
+     * @param file
+     *            the file to read
+     */
+    public static byte[] readFileAsBytes(File file) {
+        try {
+            InputStream inputStream = new FileInputStream(file);
+            long length = file.length();
+            if (length > Integer.MAX_VALUE) {
+                Log.error("File is too large to be read as byte array: " + file.getAbsolutePath());
+                return null;
+            }
+
+            byte[] result = new byte[(int) length];
+            int read = inputStream.read(result);
+            if (read != length) {
+                Log.error("Something went wrong while reading the file.");
+                return null;
+            }
+            return result;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
      * Read the content of a file as String.
      * 
      * @param file

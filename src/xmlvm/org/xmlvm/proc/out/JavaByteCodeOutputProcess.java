@@ -103,13 +103,15 @@ import org.jdom.Namespace;
 import org.xmlvm.IllegalXMLVMException;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.in.InputProcess;
+import org.xmlvm.proc.XmlvmProcessImpl;
+import org.xmlvm.proc.XmlvmResource;
+import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.in.file.ClassFile;
 
 /**
  * This process takes XMLVM and turns it into Java ByteCode.
  */
-public class JavaByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
+public class JavaByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
     private static final class InstructionHandlerManager {
 
@@ -190,7 +192,8 @@ public class JavaByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
 
     public JavaByteCodeOutputProcess(Arguments arguments) {
         super(arguments);
-        addSupportedInput(InputProcess.class);
+        addSupportedInput(ClassToXmlvmProcess.class);
+        addSupportedInput(ExeToXmlvmProcess.class);
     }
 
     @Override
@@ -200,20 +203,23 @@ public class JavaByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
 
     @Override
     public boolean process() {
-        List<InputProcess<?>> preprocesses = preprocess();
+        List<XmlvmResourceProvider> preprocesses = preprocess();
 
-        for (InputProcess<?> process : preprocesses) {
-            try {
-                outputFiles.addAll(createBytecode(process.getXmlvm().getXmlvmDocument(), arguments
-                        .option_out()));
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                Log.error("Could not create class file for: " + process.getXmlvm().getName());
-                return false;
-            } catch (IllegalXMLVMException ex) {
-                ex.printStackTrace();
-                Log.error("Could not create class file for: " + process.getXmlvm().getName());
-                return false;
+        for (XmlvmResourceProvider process : preprocesses) {
+            List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
+            for (XmlvmResource xmlvmResource : xmlvmResources) {
+                try {
+                    outputFiles.addAll(createBytecode(xmlvmResource.getXmlvmDocument(), arguments
+                            .option_out()));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    Log.error("Could not create class file for: " + xmlvmResource.getName());
+                    return false;
+                } catch (IllegalXMLVMException ex) {
+                    ex.printStackTrace();
+                    Log.error("Could not create class file for: " + xmlvmResource.getName());
+                    return false;
+                }
             }
         }
         return true;

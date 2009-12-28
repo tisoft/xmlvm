@@ -29,48 +29,47 @@ import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.in.InputProcess;
 import org.xmlvm.proc.in.InputProcessFactory;
 import org.xmlvm.proc.out.OutputFileWriter;
-import org.xmlvm.proc.out.OutputProcess;
 import org.xmlvm.proc.out.OutputProcessFactory;
 
 public class XmlvmProcessor {
     /**
      * The processes that are being or will be processed.
      */
-    private Vector<XmlvmProcess>                  pool                   = new Vector<XmlvmProcess>();
+    private Vector<XmlvmProcess<?>>             pool                   = new Vector<XmlvmProcess<?>>();
     /**
      * The process that will handle the final processing step to produce the
      * desired output.
      */
-    private OutputProcess<? extends XmlvmProcess> targetProcess;
+    private XmlvmProcess<?>                     targetProcess;
 
-    private List<Class<? extends XmlvmProcess>>   processTypesInPipeline = new ArrayList<Class<? extends XmlvmProcess>>();
+    private List<Class<? extends XmlvmProcess>> processTypesInPipeline = new ArrayList<Class<? extends XmlvmProcess>>();
 
     public XmlvmProcessor(Arguments arguments) {
         InputProcessFactory inputProcessFactory = new InputProcessFactory(arguments);
         OutputProcessFactory outputProcessFactory = new OutputProcessFactory(arguments);
 
-        // For every given input we instantiate a new InputProcess.
-        List<InputProcess<?>> inputProcesses = inputProcessFactory.createInputProcesses(arguments
-                .option_in());
+        // For every given input we instantiate a new input process.
+        Iterable<InputProcess<?>> inputProcesses = inputProcessFactory
+                .createInputProcesses(arguments.option_in());
 
         // Add input processes to the pipeline.
         addProcesses(inputProcesses);
 
         // Set the target process.
-        setTargetProcess(outputProcessFactory.createOutputProcess(arguments.option_target(),
+        setTargetProcess(outputProcessFactory.createTargetProcess(arguments.option_target(),
                 arguments.option_out()));
     }
 
     /**
      * Run a bunch of processes.
      */
-    public void addProcesses(Iterable<? extends XmlvmProcess> iterator) {
-        for (XmlvmProcess process : iterator) {
+    public void addProcesses(Iterable<InputProcess<?>> iterator) {
+        for (XmlvmProcess<?> process : iterator) {
             addProcess(process);
         }
     }
 
-    public void addProcess(XmlvmProcess process) {
+    public void addProcess(XmlvmProcess<?> process) {
         if (process == null) {
             return;
         }
@@ -80,14 +79,14 @@ public class XmlvmProcessor {
     /**
      * Set the target process that will handle the final processing step.
      */
-    public void setTargetProcess(OutputProcess<? extends XmlvmProcess> process) {
+    public void setTargetProcess(XmlvmProcess<?> process) {
         targetProcess = process;
     }
 
     /**
      * Returns the target process.
      */
-    public OutputProcess<? extends XmlvmProcess> getTargetProcess() {
+    public XmlvmProcess<?> getTargetProcess() {
         return targetProcess;
     }
 
@@ -142,19 +141,19 @@ public class XmlvmProcessor {
      * @return Whether all processes could be included into the pipeline.
      */
     protected boolean buildProcessingPipeline() {
-        List<OutputProcess<XmlvmProcess<?>>> initialTargetProcess = new ArrayList<OutputProcess<XmlvmProcess<?>>>();
-        initialTargetProcess.add((OutputProcess<XmlvmProcess<?>>) targetProcess);
+        List<XmlvmProcess<?>> initialTargetProcess = new ArrayList<XmlvmProcess<?>>();
+        initialTargetProcess.add((XmlvmProcess<?>) targetProcess);
         return buildProcessingPipeline0(initialTargetProcess);
     }
 
-    protected boolean buildProcessingPipeline0(List<OutputProcess<XmlvmProcess<?>>> targetProcesses) {
+    protected boolean buildProcessingPipeline0(List<XmlvmProcess<?>> targetProcesses) {
         // Make sure we don't add processes that are already in the pipeline.
-        targetProcesses = filterNotYetProcessedProcessed(targetProcesses);
+        targetProcesses = filterNotYetProcessedProcesses(targetProcesses);
 
         // Make a copy so we can modify the vector while iterating.
         final XmlvmProcess<?>[] processes = pool.toArray(new XmlvmProcess<?>[0]);
 
-        for (OutputProcess<XmlvmProcess<?>> target : targetProcesses) {
+        for (XmlvmProcess<?> target : targetProcesses) {
             for (XmlvmProcess<?> process : processes) {
                 if (target.supportsAsInput(process)) {
                     pool.remove(process);
@@ -167,8 +166,8 @@ public class XmlvmProcessor {
         // supported-processes-graph to see if there is another connection that
         // will eventually include these processes.
         if (!pool.isEmpty()) {
-            for (OutputProcess<XmlvmProcess<?>> target : targetProcesses) {
-                buildProcessingPipeline0(filterOutputProcesses(target.createInputInstances()));
+            for (XmlvmProcess<?> target : targetProcesses) {
+                buildProcessingPipeline0(target.createInputInstances());
             }
             return pool.isEmpty();
         } else {
@@ -177,31 +176,16 @@ public class XmlvmProcessor {
     }
 
     /**
-     * This will filter out all non-output processes.
-     */
-    @SuppressWarnings("unchecked")
-    private List<OutputProcess<XmlvmProcess<?>>> filterOutputProcesses(List<XmlvmProcess<?>> list) {
-        List<OutputProcess<XmlvmProcess<?>>> result = new ArrayList<OutputProcess<XmlvmProcess<?>>>();
-        for (XmlvmProcess<?> process : list) {
-            if (process.isOfSuperType(OutputProcess.class)) {
-                result.add((OutputProcess<XmlvmProcess<?>>) process);
-            }
-        }
-        return result;
-    }
-
-    /**
      * This method will return a list where the processes that have already been
      * processed are filtered out.
      */
-    private List<OutputProcess<XmlvmProcess<?>>> filterNotYetProcessedProcessed(
-            List<OutputProcess<XmlvmProcess<?>>> list) {
-        List<OutputProcess<XmlvmProcess<?>>> result = new ArrayList<OutputProcess<XmlvmProcess<?>>>();
+    private List<XmlvmProcess<?>> filterNotYetProcessedProcesses(List<XmlvmProcess<?>> list) {
+        List<XmlvmProcess<?>> result = new ArrayList<XmlvmProcess<?>>();
 
         // Go through all the processes in the list ...
-        for (OutputProcess<XmlvmProcess<?>> process : list) {
+        for (XmlvmProcess<?> process : list) {
             // ... and get their types.
-            Class<? extends OutputProcess> processType = process.getClass();
+            Class<? extends XmlvmProcess> processType = process.getClass();
             // Only if we don't already have a process with this type in the
             // pipeline, we add it to the result. We also add it to the
             // processTypesInPipeline list so in the future we don't add more of

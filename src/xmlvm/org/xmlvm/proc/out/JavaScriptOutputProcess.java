@@ -25,14 +25,15 @@ import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
+import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XsltRunner;
-import org.xmlvm.proc.in.InputProcess;
 
 /**
  * This process takes XMLVM and turns it into JavaScript.
  */
-public class JavaScriptOutputProcess extends OutputProcess<InputProcess<?>> {
+public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     private static final String JS_EXTENSION = ".js";
     private List<OutputFile>    result       = new ArrayList<OutputFile>();
 
@@ -40,7 +41,8 @@ public class JavaScriptOutputProcess extends OutputProcess<InputProcess<?>> {
         super(arguments);
         // We support any InputProcess as a valid input for JavaScript
         // generation.
-        addSupportedInput(InputProcess.class);
+        addSupportedInput(ExeToXmlvmProcess.class);
+        addSupportedInput(ClassToXmlvmProcess.class);
     }
 
     @Override
@@ -50,14 +52,16 @@ public class JavaScriptOutputProcess extends OutputProcess<InputProcess<?>> {
 
     @Override
     public boolean process() {
-        List<InputProcess<?>> preprocesses = preprocess();
-        for (InputProcess<?> process : preprocesses) {
-            XmlvmResource xmlvm = process.getXmlvm();
-            Log.debug("JavaScriptOutputProcess: Processing " + xmlvm.getName());
-            OutputFile file = generateJavaScript(xmlvm);
-            file.setLocation(arguments.option_out());
-            file.setFileName(xmlvm.getName() + JS_EXTENSION);
-            result.add(file);
+        List<XmlvmResourceProvider> preprocesses = preprocess();
+        for (XmlvmResourceProvider process : preprocesses) {
+            List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
+            for (XmlvmResource xmlvm : xmlvmResources) {
+                Log.debug("JavaScriptOutputProcess: Processing " + xmlvm.getName());
+                OutputFile file = generateJavaScript(xmlvm);
+                file.setLocation(arguments.option_out());
+                file.setFileName(xmlvm.getName() + JS_EXTENSION);
+                result.add(file);
+            }
         }
         return true;
     }

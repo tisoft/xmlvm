@@ -26,6 +26,10 @@ import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
+import org.xmlvm.proc.in.InputProcess.EmptyInputProcess;
+import org.xmlvm.proc.in.InputProcess.ExeInputProcess;
+import org.xmlvm.proc.in.InputProcess.XmlvmInputProcess;
 import org.xmlvm.proc.in.file.ClassFile;
 import org.xmlvm.proc.in.file.Directory;
 import org.xmlvm.proc.in.file.ExeFile;
@@ -54,6 +58,15 @@ public class InputProcessFactory {
      */
     public List<InputProcess<?>> createInputProcesses(List<String> inputElements) {
         List<InputProcess<?>> processes = new ArrayList<InputProcess<?>>();
+
+        // If there is no input specified, we create an empty input process.
+        // This is used for processes that just create files, but don't take
+        // input. One such example is creating empty project skeletons.
+        if (inputElements.isEmpty()) {
+            processes.add(new EmptyInputProcess());
+            return processes;
+        }
+
         for (String inputElement : inputElements) {
             // If this input element is a directory, we add all the children
             // elements that are applicable.
@@ -86,8 +99,6 @@ public class InputProcessFactory {
             // XMLVM files.
         } else if (XmlvmFile.isXmlvmInput(input)) {
             return new XmlvmInputProcess(arguments, new XmlvmFile(input));
-        } else if (EmptyInputProcess.isEmptyInput(input)) {
-            return new EmptyInputProcess();
         }
         Log.warn("Unable to create InputProcesses for input: " + input);
         return null;

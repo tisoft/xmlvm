@@ -23,14 +23,14 @@ package org.xmlvm.proc.in.file;
 public class ClassFile extends XFile {
     public static final String CLASS_ENDING = ".class";
 
-    public ClassFile(String input) {
-        super(input);
+    public ClassFile(String path) {
+        super(path);
     }
 
     /**
      * Returns whether the given input is a class file.
      */
-    public static boolean isClassInput(String input) {
-        return (input.toLowerCase().endsWith(CLASS_ENDING) && isFile(input));
+    public static boolean isClassInput(String path) {
+        return (path.toLowerCase().endsWith(CLASS_ENDING) && isFile(path));
     }
 }

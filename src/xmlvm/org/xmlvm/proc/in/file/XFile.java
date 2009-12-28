@@ -23,12 +23,12 @@ package org.xmlvm.proc.in.file;
 import java.io.File;
 
 public abstract class XFile {
-    protected String input;
+    protected String path;
     protected File   file;
 
-    public XFile(String input) {
-        this.input = input;
-        this.file = new File(input);
+    public XFile(String path) {
+        this.path = path;
+        this.file = new File(path);
     }
 
     /**
@@ -41,8 +41,8 @@ public abstract class XFile {
     /**
      * Returns the input of this file.
      */
-    public String getInput() {
-        return input;
+    public String getPath() {
+        return path;
     }
 
     /**
@@ -51,7 +51,7 @@ public abstract class XFile {
      */
     @Override
     public String toString() {
-        return input;
+        return path;
     }
 
     /**

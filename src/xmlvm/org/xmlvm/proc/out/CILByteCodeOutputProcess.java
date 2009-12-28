@@ -35,7 +35,9 @@ import org.jdom.Namespace;
 import org.xmlvm.IllegalXMLVMException;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.in.InputProcess;
+import org.xmlvm.proc.XmlvmProcessImpl;
+import org.xmlvm.proc.XmlvmResource;
+import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.in.file.ExeFile;
 
 import edu.arizona.cs.mbel.emit.Emitter;
@@ -81,7 +83,7 @@ import edu.arizona.cs.mbel.signature.TypeSignature;
 /**
  * This process takes XMLCM and turns it into CIL Bytecode.
  */
-public class CILByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
+public class CILByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
     private static final class InstructionHandlerManagerCIL {
 
@@ -163,7 +165,8 @@ public class CILByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
 
     public CILByteCodeOutputProcess(Arguments arguments) {
         super(arguments);
-        addSupportedInput(InputProcess.class);
+        addSupportedInput(ClassToXmlvmProcess.class);
+        addSupportedInput(ExeToXmlvmProcess.class);
     }
 
     @Override
@@ -179,10 +182,13 @@ public class CILByteCodeOutputProcess extends OutputProcess<InputProcess<?>> {
             return false;
         }
 
-        List<InputProcess<?>> preprocesses = preprocess();
+        List<XmlvmResourceProvider> preprocesses = preprocess();
         List<Document> documents = new ArrayList<Document>();
-        for (InputProcess<?> process : preprocesses) {
-            documents.add(process.getXmlvm().getXmlvmDocument());
+        for (XmlvmResourceProvider process : preprocesses) {
+            List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
+            for (XmlvmResource xmlvmResource : xmlvmResources) {
+                documents.add(xmlvmResource.getXmlvmDocument());
+            }
         }
         try {
             outputFiles.add(createAssembly(documents, appName));

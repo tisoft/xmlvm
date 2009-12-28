@@ -29,19 +29,21 @@ import org.jdom.Document;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.in.InputProcess;
+import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.in.file.XmlvmFile;
 
 /**
- * This process takes XMLVM and output it as pure XML.
+ * This process takes XMLVM and writes it out as pure XML.
  */
-public class XmlvmOutputProcess extends OutputProcess<InputProcess<?>> {
+public class XmlvmOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     private List<OutputFile> outputFiles = new ArrayList<OutputFile>();
 
     public XmlvmOutputProcess(Arguments arguments) {
         super(arguments);
-        addSupportedInput(InputProcess.class);
+        addSupportedInput(ClassToXmlvmProcess.class);
+        addSupportedInput(ExeToXmlvmProcess.class);
     }
 
     @Override
@@ -51,10 +53,12 @@ public class XmlvmOutputProcess extends OutputProcess<InputProcess<?>> {
 
     @Override
     public boolean process() {
-        List<InputProcess<?>> preprocesses = preprocess();
-
-        for (InputProcess<?> process : preprocesses) {
-            outputFiles.add(createOutputFromDocument(process.getXmlvm()));
+        List<XmlvmResourceProvider> preprocesses = preprocess();
+        for (XmlvmResourceProvider process : preprocesses) {
+            List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
+            for (XmlvmResource xmlvm : xmlvmResources) {
+                outputFiles.add(createOutputFromDocument(xmlvm));
+            }
         }
         return true;
     }

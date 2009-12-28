@@ -31,6 +31,7 @@ import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.util.FileUtil;
 import org.xmlvm.util.InputReaderThread;
 
@@ -42,7 +43,7 @@ import com.crazilec.util.UtilCopy;
  * <p>
  * TODO(Sascha): IN DEVELOPMENT, PARDON THE DUST :)
  */
-public class Android2PalmPreOutputProcess extends OutputProcess<QooxdooOutputProcess> {
+public class Android2PalmPreOutputProcess extends XmlvmProcessImpl<QooxdooOutputProcess> {
 
     private static final String[] GENERATE_PROJECT_OPTS    = { "-p",
             "\"{title:'$PROJECT', id:org.xmlvm.$PROJECT, version:'1.0.0'}\"", "$PROJECT" };

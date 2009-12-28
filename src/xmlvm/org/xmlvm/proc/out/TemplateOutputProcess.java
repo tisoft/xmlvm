@@ -25,14 +25,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.in.InputProcess;
+import org.xmlvm.proc.XmlvmProcessImpl;
+import org.xmlvm.proc.in.InputProcess.EmptyInputProcess;
 import org.xmlvm.util.FileUtil;
 import org.xmlvm.util.JarUtil;
 
 /**
  * Creates a template project.
  */
-public class TemplateOutputProcess extends OutputProcess<InputProcess<?>> {
+public class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputProcess> {
 
     private static final String     IPHONE_TEMPL_PROJNAME  = "__PROJNAME__";
     private static final String     IPHONE_TEMPL_JAR_PATH  = "/iphone/netbeans/";
@@ -46,7 +47,7 @@ public class TemplateOutputProcess extends OutputProcess<InputProcess<?>> {
 
     public TemplateOutputProcess(Arguments arguments) {
         super(arguments);
-        addSupportedInput(InputProcess.class);
+        addSupportedInput(EmptyInputProcess.class);
     }
 
     @Override

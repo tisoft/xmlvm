@@ -29,7 +29,7 @@ import org.jdom.Namespace;
  */
 public class XmlvmResource {
     public static enum Type {
-        JVM, CLI, CLI_DFA
+        JVM, CLI, CLI_DFA, DEX
     }
 
     public static Namespace xmlvmNamespace = Namespace.getNamespace("vm", "http://xmlvm.org");

@@ -30,11 +30,12 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.Namespace;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
+import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XsltRunner;
-import org.xmlvm.proc.in.InputProcess;
 
-public class ObjectiveCOutputProcess extends OutputProcess<InputProcess<?>> {
+public class ObjectiveCOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     private static final String M_EXTENSION = ".m";
     private static final String H_EXTENSION = ".h";
     private List<OutputFile>    result      = new ArrayList<OutputFile>();
@@ -43,7 +44,8 @@ public class ObjectiveCOutputProcess extends OutputProcess<InputProcess<?>> {
         super(arguments);
         // We support any InputProcess as a valid input for JavaScript
         // generation.
-        addSupportedInput(InputProcess.class);
+        addSupportedInput(ClassToXmlvmProcess.class);
+        addSupportedInput(ExeToXmlvmProcess.class);
     }
 
     @Override
@@ -53,13 +55,15 @@ public class ObjectiveCOutputProcess extends OutputProcess<InputProcess<?>> {
 
     @Override
     public boolean process() {
-        List<InputProcess<?>> preprocesses = preprocess();
-        for (InputProcess<?> process : preprocesses) {
-            XmlvmResource xmlvm = process.getXmlvm();
-            OutputFile[] files = genObjC(xmlvm);
-            for (OutputFile file : files) {
-                file.setLocation(arguments.option_out());
-                result.add(file);
+        List<XmlvmResourceProvider> preprocesses = preprocess();
+        for (XmlvmResourceProvider process : preprocesses) {
+            List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
+            for (XmlvmResource xmlvm : xmlvmResources) {
+                OutputFile[] files = genObjC(xmlvm);
+                for (OutputFile file : files) {
+                    file.setLocation(arguments.option_out());
+                    result.add(file);
+                }
             }
         }
         return true;

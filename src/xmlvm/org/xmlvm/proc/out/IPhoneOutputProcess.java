@@ -26,11 +26,12 @@ import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.out.build.MakeFile;
 import org.xmlvm.proc.out.build.XCodeFile;
 import org.xmlvm.util.JarUtil;
 
-public class IPhoneOutputProcess extends OutputProcess<ObjectiveCOutputProcess> {
+public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProcess> {
 
     private static final String IPHONE_COMPAT_LIB_JAR  = "/iphone/compat-lib.jar";
     private static final String IPHONE_COMPAT_LIB_PATH = "src/xmlvm2objc/compat-lib/objc";

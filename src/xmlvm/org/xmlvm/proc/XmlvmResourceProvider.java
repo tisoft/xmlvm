@@ -20,18 +20,15 @@
 
 package org.xmlvm.proc;
 
+import java.util.List;
+
 /**
- * Classes implementing this interface can be informed can a process finished
- * processing.
+ * Defines classes from which a list of {@link XmlvmResource}s can be obtained.
  */
-public interface ProcessFinishedHandler {
+public interface XmlvmResourceProvider {
+
     /**
-     * Called when a process has finished.
-     * 
-     * @param process
-     *            The process that finished.
-     * @param successful
-     *            Whether the process ended successful.
+     * Returns a list of {@link XmlvmResource}s.
      */
-    public void processFinished(XmlvmProcess<?> process, boolean successful);
+    public List<XmlvmResource> getXmlvmResources();
 }

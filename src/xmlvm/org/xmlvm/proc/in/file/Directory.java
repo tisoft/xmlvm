@@ -29,16 +29,16 @@ import org.xmlvm.util.FileSet;
 public class Directory extends XFile {
     List<File> result;
 
-    public Directory(String input) {
-        super(input);
+    public Directory(String path) {
+        super(path);
         init();
     }
 
     /**
      * Returns whether the given input is a directory.
      */
-    public static boolean isDirectoryInput(String input) {
-        return (input.contains("*") || (new File(input)).isDirectory());
+    public static boolean isDirectoryInput(String path) {
+        return (path.contains("*") || (new File(path)).isDirectory());
     }
 
     /**
@@ -53,13 +53,13 @@ public class Directory extends XFile {
      * by this {@link Directory} instance.
      */
     public boolean equals(File file) {
-        File inputFile = new File(input);
+        File inputFile = new File(path);
         return inputFile.equals(file);
     }
 
     protected void init() {
         result = new ArrayList<File>();
-        FileSet fileSet = new FileSet(input);
+        FileSet fileSet = new FileSet(path);
         for (File file : fileSet) {
             // Only return actual files that match this directory request. Files
             // in sub-directories are covered if they are matched the input

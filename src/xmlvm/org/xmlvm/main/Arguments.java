@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlvm.Log;
-import org.xmlvm.proc.in.EmptyInputProcess;
 
 /**
  * This class parses the arguments given in a string array and makes them easily
@@ -60,8 +59,10 @@ public class Arguments {
     private boolean               option_qx_debug = false;
     private Log.Level             option_debug    = Log.Level.WARNING;
     private String                option_skeleton = null;
-    private static final String[] shortUsage      = { "Usage: ", "xmlvm --in=<path> [--out=<dir>]",
-            "      --target=[xmlvm|dexmlvm|jvm|clr|dfa|class|exe|dex|js|cpp|python|objc|iphone|qooxdoo]",
+    private static final String[] shortUsage      = {
+            "Usage: ",
+            "xmlvm [--in=<path> [--out=<dir>]]",
+            "      [--target=[xmlvm|dexmlvm|jvm|clr|dfa|class|exe|dex|js|cpp|python|objc|iphone|qooxdoo|palmpre]]",
             "      [--skeleton=<type>]", "      [--lib=<name>", "      [--app-name=<app-name>]",
             "      [--resource=<path>]", "      [--qx-main=<main-class> [--qx-debug]]",
             "      [--debug=[none|error|warning|all]]", "      [--version] [--help]" };
@@ -198,8 +199,9 @@ public class Arguments {
         if (option_skeleton != null)
             option_target = Targets.IPHONETEMPLATE;
         if (option_target == Targets.IPHONETEMPLATE) {
+            // Clearing all inputs will force the EmptyInputProcess to be
+            // created.
             option_in.clear();
-            option_in.add(EmptyInputProcess.DUMMY_SIGNATURE);
             if (option_app_name == null)
                 parseError("--skeleton=iphone requires option --app-name");
         }
@@ -217,7 +219,8 @@ public class Arguments {
         if (option_lib.size() > 0)
             parseError("--lib=" + option_lib.get(0) + " is not supported");
 
-        if (option_in.size() == 0)
+        // Only skeleton creation mode supports empty inputs.
+        if ((option_skeleton == null || option_skeleton.isEmpty()) && option_in.size() == 0)
             parseError("Need at least one --in argument");
         if (option_out == null)
             option_out = ".";

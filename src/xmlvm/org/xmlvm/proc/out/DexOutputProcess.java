@@ -26,6 +26,9 @@ import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.XmlvmProcess;
+import org.xmlvm.proc.XmlvmProcessImpl;
+import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
 import org.xmlvm.proc.in.file.ClassFile;
 
 import com.android.dx.dex.cf.CfOptions;
@@ -36,7 +39,7 @@ import com.android.dx.dex.file.DexFile;
 /**
  * This process takes Java Bytecode and turns it into the DEX format.
  */
-public class DexOutputProcess extends OutputProcess<JavaByteCodeOutputProcess> {
+public class DexOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
 
     private static final String DEX_ENDING  = ".dex";
 
@@ -44,6 +47,7 @@ public class DexOutputProcess extends OutputProcess<JavaByteCodeOutputProcess> {
 
     public DexOutputProcess(Arguments arguments) {
         super(arguments);
+        addSupportedInput(ClassInputProcess.class);
         addSupportedInput(JavaByteCodeOutputProcess.class);
     }
 
@@ -54,9 +58,9 @@ public class DexOutputProcess extends OutputProcess<JavaByteCodeOutputProcess> {
 
     @Override
     public boolean process() {
-        List<JavaByteCodeOutputProcess> preprocesses = preprocess();
+        List<XmlvmProcess<?>> preprocesses = preprocess();
 
-        for (JavaByteCodeOutputProcess process : preprocesses) {
+        for (XmlvmProcess<?> process : preprocesses) {
             for (OutputFile preOutputFile : process.getOutputFiles()) {
                 OutputFile outputFile = generateDexFile(preOutputFile);
                 if (outputFile == null) {
@@ -75,15 +79,17 @@ public class DexOutputProcess extends OutputProcess<JavaByteCodeOutputProcess> {
         }
         String relativePath = classFile.getFullPath()
                 .substring(arguments.option_out().length() + 1);
-        
+
         // Remove a starting slash or backslash.
         if (relativePath.startsWith("/") || relativePath.startsWith("\\")) {
             relativePath = relativePath.substring(1);
         }
         Log.debug("DExing:" + relativePath);
 
+        CfOptions options = new CfOptions();
+        options.strictNameCheck = false;
         ClassDefItem item = CfTranslator.translate(relativePath, classFile.getDataAsBytes(),
-                new CfOptions());
+                options);
         DexFile dexFile = new DexFile();
         dexFile.add(item);
         try {

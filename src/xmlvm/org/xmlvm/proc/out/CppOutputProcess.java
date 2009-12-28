@@ -25,11 +25,12 @@ import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
+import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XsltRunner;
-import org.xmlvm.proc.in.InputProcess;
 
-public class CppOutputProcess extends OutputProcess<InputProcess<?>> {
+public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     private static final String CPP_EXTENSION = ".cpp";
     private List<OutputFile>    result        = new ArrayList<OutputFile>();
 
@@ -37,7 +38,8 @@ public class CppOutputProcess extends OutputProcess<InputProcess<?>> {
         super(arguments);
         // We support any InputProcess as a valid input for JavaScript
         // generation.
-        addSupportedInput(InputProcess.class);
+        addSupportedInput(ClassToXmlvmProcess.class);
+        addSupportedInput(ExeToXmlvmProcess.class);
     }
 
     @Override
@@ -47,14 +49,16 @@ public class CppOutputProcess extends OutputProcess<InputProcess<?>> {
 
     @Override
     public boolean process() {
-        List<InputProcess<?>> preprocesses = preprocess();
-        for (InputProcess<?> process : preprocesses) {
-            XmlvmResource xmlvm = process.getXmlvm();
-            Log.debug("CppOutputProcess: Processing " + xmlvm.getName());
-            OutputFile file = generatePython(xmlvm);
-            file.setLocation(arguments.option_out());
-            file.setFileName(xmlvm.getName() + CPP_EXTENSION);
-            result.add(file);
+        List<XmlvmResourceProvider> preprocesses = preprocess();
+        for (XmlvmResourceProvider process : preprocesses) {
+            List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
+            for (XmlvmResource xmlvm : xmlvmResources) {
+                Log.debug("CppOutputProcess: Processing " + xmlvm.getName());
+                OutputFile file = generatePython(xmlvm);
+                file.setLocation(arguments.option_out());
+                file.setFileName(xmlvm.getName() + CPP_EXTENSION);
+                result.add(file);
+            }
         }
         return true;
     }

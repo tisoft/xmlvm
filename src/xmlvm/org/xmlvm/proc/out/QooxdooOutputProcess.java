@@ -32,6 +32,7 @@ import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.util.FileUtil;
 import org.xmlvm.util.InputReaderThread;
 
@@ -45,7 +46,7 @@ import com.crazilec.util.UtilCopy;
  * @author Sascha
  * 
  */
-public class QooxdooOutputProcess extends OutputProcess<JavaScriptOutputProcess> {
+public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProcess> {
     /** The path to the qooxdoo distribution. */
     private static final String QX_PATH                  = System.getenv("XMLVM_QOOXDOO_PATH");
 

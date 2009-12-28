@@ -23,15 +23,15 @@ package org.xmlvm.proc.in.file;
 public class ExeFile extends XFile {
     public static final String EXE_ENDING = ".exe";
 
-    public ExeFile(String input) {
-        super(input);
+    public ExeFile(String path) {
+        super(path);
     }
 
     /**
      * Returns whether the input is an EXE file.
      */
-    public static boolean isExeInput(String input) {
-        return (input.toLowerCase().endsWith(EXE_ENDING) && isFile(input));
+    public static boolean isExeInput(String path) {
+        return (path.toLowerCase().endsWith(EXE_ENDING) && isFile(path));
     }
 
 }

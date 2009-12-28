@@ -45,10 +45,10 @@ public class OutputProcessFactory {
     }
 
     /**
-     * Based on the given target, returns a suitable OutputProcess or null, if
+     * Based on the given target, returns a suitable target process or null, if
      * no process could be found.
      */
-    public OutputProcess<? extends XmlvmProcess> createOutputProcess(Targets target, String out) {
+    public XmlvmProcess<?> createTargetProcess(Targets target, String out) {
         switch (target) {
         case JS:
             return new JavaScriptOutputProcess(arguments);
@@ -79,7 +79,7 @@ public class OutputProcessFactory {
         case DEXMLVM:
             return new DEXmlvmOutputProcess(arguments);
         }
-        Log.error("Could not create OutputProcess for target '" + target + "'.");
+        Log.error("Could not create target process for target '" + target + "'.");
         return null;
     }
 }

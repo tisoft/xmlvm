@@ -23,11 +23,11 @@ package org.xmlvm.proc.in.file;
 public class XmlvmFile extends XFile {
     public static final String XMLVM_ENDING = ".xmlvm";
 
-    public XmlvmFile(String input) {
-        super(input);
+    public XmlvmFile(String path) {
+        super(path);
     }
 
-    public static boolean isXmlvmInput(String input) {
-        return (input.toLowerCase().endsWith(XMLVM_ENDING) && isFile(input));
+    public static boolean isXmlvmInput(String path) {
+        return (path.toLowerCase().endsWith(XMLVM_ENDING) && isFile(path));
     }
 }

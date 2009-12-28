@@ -26,6 +26,7 @@ import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmProcessor;
 import org.xmlvm.proc.out.build.MakeFile;
 import org.xmlvm.proc.out.build.XCodeFile;
@@ -37,7 +38,7 @@ import org.xmlvm.util.JarUtil;
  * compatibility classes necessary if the original application was written for
  * the Android API.
  */
-public class Android2IPhoneOutputProcess extends OutputProcess<IPhoneOutputProcess> {
+public class Android2IPhoneOutputProcess extends XmlvmProcessImpl<IPhoneOutputProcess> {
     public static final String  ANDROID_SRC_LIB               = "/src/lib/android";
 
     private static final String ANDROID_IPHONE_COMPAT_LIB_JAR = "/iphone/android-compat-lib.jar";
