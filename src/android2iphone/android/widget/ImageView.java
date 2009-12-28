@@ -125,14 +125,13 @@ public class ImageView extends View {
         this.drawable = drawable;
         if (drawable instanceof BitmapDrawable) {
             getUIImageView().setImage(((BitmapDrawable) drawable).xmlvmGetImage());
-            float width = getUIImageView().getImage().getSize().width;
-            float height = getUIImageView().getImage().getSize().height;
-            getUIImageView().setFrame(new CGRect(0, 0, width, height));
         } else if (drawable instanceof StateListDrawable) {
             refreshImageStateDrawable();
         } else {
             Assert.NOT_IMPLEMENTED();
         }
+
+        requestLayout();
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {

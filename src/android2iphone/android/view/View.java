@@ -437,6 +437,8 @@ public class View {
         } else {
             Assert.NOT_IMPLEMENTED();
         }
+        
+        requestLayout();
     }
 
     public void setBackgroundColor(int color) {
