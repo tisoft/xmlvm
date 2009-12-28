@@ -23,7 +23,9 @@ package org.xmlvm.proc.out;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.management.RuntimeErrorException;
 
@@ -280,10 +282,28 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
             };
             code.assignIndices(callback);
             DalvInsnList instructions = code.getInsns();
+            Set<Integer> targets = extractTargets(instructions);
             for (int j = 0; j < instructions.size(); ++j) {
-                processInstruction(instructions.get(j), codeElement);
+                processInstruction(instructions.get(j), codeElement, targets);
             }
         }
+    }
+
+    /**
+     * Extracts targets that are being jumped to, so we can later add labels at
+     * the corresponding positions when generating the code.
+     * 
+     * @return a set containing the addresses of all jump targets
+     */
+    private static Set<Integer> extractTargets(DalvInsnList instructions) {
+        Set<Integer> targets = new HashSet<Integer>();
+        for (int i = 0; i < instructions.size(); ++i) {
+            if (instructions.get(i) instanceof TargetInsn) {
+                TargetInsn targetInsn = (TargetInsn) instructions.get(i);
+                targets.add(targetInsn.getTargetAddress());
+            }
+        }
+        return targets;
     }
 
     /**
@@ -295,10 +315,22 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
      *            the instruction to process
      * @param codeElement
      *            the element to add the instruction element to
+     * @param targets
+     *            the set of jump targets
      */
-    private static void processInstruction(DalvInsn instruction, Element codeElement) {
+    private static void processInstruction(DalvInsn instruction, Element codeElement,
+            Set<Integer> targets) {
 
         Element dexInstruction = null;
+
+        int address = instruction.getAddress();
+        if (targets.contains(address)) {
+            Element labelElement = new Element("label", NS_DEX);
+            labelElement.setAttribute("id", String.valueOf(address));
+            codeElement.addContent(labelElement);
+            targets.remove(address);
+        }
+
         if (instruction instanceof CodeAddress) {
             // Ignore.
         } else if (instruction instanceof LocalSnapshot) {
@@ -338,13 +370,15 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
             processRegisters(cstInsn.getRegisters(), dexInstruction);
         } else if (instruction instanceof TargetInsn) {
             TargetInsn targetInsn = (TargetInsn) instruction;
-            targetInsn.getTarget();
-            // TODO(Sascha): Implement
+            dexInstruction = new Element(sanitizeInstructionName(targetInsn.getOpcode().getName()),
+                    NS_DEX);
+            processRegisters(targetInsn.getRegisters(), dexInstruction);
+            dexInstruction.setAttribute("target", String.valueOf(targetInsn.getTargetAddress()));
         } else {
-            System.out.print(">>> Unknown instruction: ");
-            System.out.print("(" + instruction.getClass().getName() + ") ");
-            System.out.print(instruction.listingString("", 0, true));
-            return;
+            System.err.print(">>> Unknown instruction: ");
+            System.err.print("(" + instruction.getClass().getName() + ") ");
+            System.err.print(instruction.listingString("", 0, true));
+            System.exit(-1);
         }
         System.out.print("(" + instruction.getClass().getName() + ") ");
         System.out.print(instruction.listingString("", 0, true));
