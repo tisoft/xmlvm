@@ -237,6 +237,7 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
                 if (val != null) {
                     f.setAttribute("value", val.toString());
                 }
+                addAnnotations(f, field.getAnnotationEntries());
             }
 
             @Override
