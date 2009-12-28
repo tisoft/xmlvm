@@ -35,6 +35,7 @@ public class Canvas {
     private boolean   usesExternalCGContext;
     private CGContext context;
     private Bitmap    bitmap;
+    private int       saveCount = 0;
 
     public Canvas() {
         context = null;
@@ -92,15 +93,27 @@ public class Canvas {
     }
 
     public int save() {
-        Assert.NOT_IMPLEMENTED();
-        return 0;
+        createCGContext();
+        context.storeState();
+        releaseCGContext();
+        return saveCount++;
+    }
+
+    public void restoreToCount(int count) {
+        while (saveCount-- != count) {
+            createCGContext();
+            context.restoreState();
+            releaseCGContext();
+        }
+    }
+
+    public void translate(float dx, float dy) {
+        createCGContext();
+        context.translate(dx, dy);
+        releaseCGContext();
     }
 
     public void scale(float scaleX, float scaleY) {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    public void restoreToCount(int saveCount) {
         Assert.NOT_IMPLEMENTED();
     }
 
@@ -113,5 +126,4 @@ public class Canvas {
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
     }
-
 }

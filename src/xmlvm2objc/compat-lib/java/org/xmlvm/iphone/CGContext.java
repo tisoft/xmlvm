@@ -27,7 +27,6 @@ public class CGContext {
     private Color                   savedColor;
     private Composite               savedComposite;
     private Font                    savedFont;
-    private boolean                 contextSaved     = false;
 
     static {
         contextStack = new Stack<CGContext>();
@@ -45,12 +44,21 @@ public class CGContext {
         this.image = image;
     }
 
+    CGContext(Graphics2D g, UIImage img) {
+        this.graphicsContext = g;
+        this.image = img;
+    }
+
     public static void xmlvmPushGraphicsContext(Graphics2D g) {
         contextStack.push(new CGContext(g));
     }
 
     public static void xmlvmPushGraphicsContext(UIImage image) {
         contextStack.push(new CGContext(image));
+    }
+
+    public static void xmlvmPushGraphicsContext(Graphics2D g, UIImage image) {
+        contextStack.push(new CGContext(g, image));
     }
 
     public static void xmlvmPopGraphicsContext() {
@@ -139,24 +147,23 @@ public class CGContext {
     }
 
     public void storeState() {
-        if (contextSaved) {
-            throw new RuntimeException("Context already saved");
-        }
-        contextSaved = true;
-        savedClip = graphicsContext.getClipBounds();
-        savedTransform = graphicsContext.getTransform();
-        savedFont = graphicsContext.getFont();
-        savedComposite = graphicsContext.getComposite();
-        savedColor = graphicsContext.getColor();
+        xmlvmPushGraphicsContext(graphicsContext, image);
+        CGContext newContext = UICurrentContext();
+        newContext.savedClip = graphicsContext.getClipBounds();
+        newContext.savedTransform = graphicsContext.getTransform();
+        newContext.savedFont = graphicsContext.getFont();
+        newContext.savedComposite = graphicsContext.getComposite();
+        newContext.savedColor = graphicsContext.getColor();
     }
 
     public void restoreState() {
-        graphicsContext.setTransform(savedTransform);
-        graphicsContext.setClip(savedClip);
-        graphicsContext.setFont(savedFont);
-        graphicsContext.setColor(savedColor);
-        graphicsContext.setComposite(savedComposite);
-        contextSaved = false;
+        CGContext oldContext = UICurrentContext();
+        graphicsContext.setTransform(oldContext.savedTransform);
+        graphicsContext.setClip(oldContext.savedClip);
+        graphicsContext.setFont(oldContext.savedFont);
+        graphicsContext.setColor(oldContext.savedColor);
+        graphicsContext.setComposite(oldContext.savedComposite);
+        xmlvmPopGraphicsContext();
     }
 
     public CGRect getClip() {
