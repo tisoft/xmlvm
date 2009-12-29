@@ -69,6 +69,10 @@ public class UIFont {
     public static float buttonFontSize() {
         return 14.0f;
     }
+    
+    public static float labelFontSize() {
+        return 16.0f;
+    }
 
     public Font xmlvmGetFont() {
         return font;

@@ -21,6 +21,8 @@
 package android.widget;
 
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.CGSize;
+import org.xmlvm.iphone.NSString;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UIView;
@@ -32,13 +34,12 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsoluteLayout.LayoutParams;
 
 public class TextView extends View {
 
     private static final int INSETS_X            = 0;
     private static final int INSETS_Y            = 0;
-    private static final int DEFAULT_FONT_WIDTH  = 10;
-    private static final int DEFAULT_FONT_HEIGHT = 18;
 
     protected String         text;
 
@@ -56,26 +57,23 @@ public class TextView extends View {
     public void setLayoutParams(ViewGroup.LayoutParams l) {
         layoutParams = l;
 
-        // TODO Fix sizes
-        int width = l.width < 0 ? 320 : l.width;
-        int height = l.height < 0 ? 30 : l.height;
-        int x = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).x : 0;
-        int y = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).y : 0;
+        int width;
+        int height;
 
-        // TODO Compute bounds depending on the text size
-        // if (width == LayoutParams.WRAP_CONTENT) {
-        // width = (int) image.getImage().getSize().width;
-        // }
-        // if (height == LayoutParams.WRAP_CONTENT) {
-        // height = (int) image.getImage().getSize().height;
-        // }
+        if (l instanceof AbsoluteLayout.LayoutParams) {
+            CGSize size = getTextSize();
+            width = l.width == LayoutParams.WRAP_CONTENT ? (int) size.width + 2 * INSETS_X: l.width;
+            height = l.height == LayoutParams.WRAP_CONTENT ? (int) size.height + 2 * INSETS_Y : l.height;
 
-        xmlvmGetUIView().setFrame(new CGRect(x, y, width, height));
+            xmlvmGetUIView().setFrame(
+                    new CGRect(((AbsoluteLayout.LayoutParams) l).x,
+                            ((AbsoluteLayout.LayoutParams) l).y, width, height));
+        }
     }
 
     public final void setText(int resid) {
         String str = getContext().getResources().getText(resid);
-        getUILabel().setText(str);
+        setText(str);
     }
 
     public void setText(String string) {
@@ -115,14 +113,24 @@ public class TextView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // TODO: Replace with a more elaborated measurement
         int minWidth = getSuggestedMinimumWidth();
         int minHeight = getSuggestedMinimumHeight();
+
+        CGSize size = getTextSize();
         int width = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                .getSize(widthMeasureSpec) : 2 * INSETS_X + text.length() * DEFAULT_FONT_WIDTH;
+                .getSize(widthMeasureSpec) : 2 * INSETS_X + (int) size.width;
         int height = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                .getSize(heightMeasureSpec) : 2 * INSETS_Y + DEFAULT_FONT_HEIGHT;
+                .getSize(heightMeasureSpec) : 2 * INSETS_Y + (int) size.height;
         setMeasuredDimension(Math.max(width, minWidth), Math.max(height, minHeight));
+    }
+
+    private CGSize getTextSize() {
+        UIFont font = ((UILabel) xmlvmGetUIView()).getFont();
+        if (font == null) {
+            font = UIFont.systemFontOfSize(UIFont.labelFontSize());
+        }
+
+        return NSString.sizeWithFont(text, font);
     }
 
 }

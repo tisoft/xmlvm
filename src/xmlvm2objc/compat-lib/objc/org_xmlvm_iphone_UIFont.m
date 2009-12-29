@@ -49,6 +49,11 @@
     return [UIFont buttonFontSize];
 }
 
++ (float) labelFontSize__
+{
+    return [UIFont labelFontSize];
+}
+
 + (UIFont*) fontWithNameSize___java_lang_String_float:(java_lang_String*)name :(float)size
 {
 	return [[UIFont fontWithName:name size:size] retain];
