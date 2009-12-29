@@ -41,6 +41,8 @@ import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcess;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
+import org.xmlvm.proc.XmlvmResourceProvider;
+import org.xmlvm.proc.XmlvmResource.Type;
 import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
 
 import com.android.dx.cf.code.ConcreteMethod;
@@ -95,14 +97,17 @@ import com.android.dx.util.IntList;
  * <p>
  * TODO(Sascha): Work in progress!
  */
-public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
-    private static final String    DEXMLVM_ENDING = ".dexmlvm";
-    private static final Namespace NS_XMLVM       = XmlvmResource.xmlvmNamespace;
-    private static final Namespace NS_DEX         = Namespace.getNamespace("dex",
-                                                          "http://xmlvm.org/dex");
-    private static final String    REG_PREFIX     = "reg";
+public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> implements
+        XmlvmResourceProvider {
+    private static final boolean   LOTS_OF_DEBUG      = true;
 
-    private List<OutputFile>       outputFiles    = new ArrayList<OutputFile>();
+    private static final String    DEXMLVM_ENDING     = ".dexmlvm";
+    private static final Namespace NS_XMLVM           = XmlvmResource.xmlvmNamespace;
+    private static final Namespace NS_DEX             = Namespace.getNamespace("dex",
+                                                              "http://xmlvm.org/dex");
+
+    private List<OutputFile>       outputFiles        = new ArrayList<OutputFile>();
+    private List<XmlvmResource>    generatedResources = new ArrayList<XmlvmResource>();
 
     public DEXmlvmOutputProcess(Arguments arguments) {
         super(arguments);
@@ -120,6 +125,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
 
     @Override
     public boolean process() {
+        generatedResources.clear();
         List<XmlvmProcess<?>> preprocesses = preprocess();
         for (XmlvmProcess<?> process : preprocesses) {
             for (OutputFile preOutputFile : process.getOutputFiles()) {
@@ -133,6 +139,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
         return true;
     }
 
+    @Override
+    public List<XmlvmResource> getXmlvmResources() {
+        return generatedResources;
+    }
+
     private OutputFile generateDEXmlvmFile(OutputFile classFile) {
         Log.debug("DExing:" + classFile.getFileName());
 
@@ -140,11 +151,14 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
                 .getFileName(), false);
 
         Document document = createDocument();
-        String fileName = process(directClassFile, document.getRootElement());
+        String className = process(directClassFile, document.getRootElement()).replace('.', '_');
+
+        generatedResources.add(new XmlvmResource(className, Type.DEX, document));
+
+        String fileName = className + DEXMLVM_ENDING;
 
         OutputFile result = new OutputFile();
         result.setLocation(arguments.option_out());
-        // TODO(Sascha): Name should look like package_name_classname.dexmlvm
         result.setFileName(fileName);
         result.setData(documentToString(document));
 
@@ -169,7 +183,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
      *            the class file to process
      * @param root
      *            the root element to append the classes to
-     * @return the file name for the DEXMLVM file
+     * @return the class name for the DEXMLVM file
      */
     private String process(DirectClassFile cf, Element root) {
         cf.setAttributeFactory(StdAttributeFactory.THE_ONE);
@@ -190,7 +204,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
                 throw ExceptionWithContext.withContext(ex, msg);
             }
         }
-        return thisClass.getClassType().toHuman().replace('.', '_') + DEXMLVM_ENDING;
+        return thisClass.getClassType().toHuman();
     }
 
     /**
@@ -236,10 +250,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
         boolean isPrivate = AccessFlags.isPrivate(accessFlags);
         boolean isNative = AccessFlags.isNative(accessFlags);
         boolean isAbstract = AccessFlags.isAbstract(accessFlags);
+        boolean isSynthetic = AccessFlags.isSynthetic(accessFlags);
         boolean isConstructor = meth.isInstanceInit() || meth.isClassInit();
 
         // Create XMLVM element for this method
-        Element methodElement = new Element("method");
+        Element methodElement = new Element("method", NS_XMLVM);
         methodElement.setAttribute("name", method.getName().getString());
         classElement.addContent(methodElement);
 
@@ -249,14 +264,13 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
         setAttributeIfTrue(methodElement, "isNative", isNative);
         setAttributeIfTrue(methodElement, "isAbstract", isAbstract);
         setAttributeIfTrue(methodElement, "isConstructor", isConstructor);
-        setAttributeIfTrue(methodElement, "isStatic", isStatic);
+        setAttributeIfTrue(methodElement, "isSynthetic", isSynthetic);
 
         // Create signature element.
         methodElement.addContent(processSignature(meth));
 
         // Create code element.
         Element codeElement = new Element("code", NS_XMLVM);
-        codeElement.setAttribute("language", "DEX");
         methodElement.addContent(codeElement);
 
         if (isNative || isAbstract) {
@@ -272,7 +286,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
 
             String canonicalName = method.getDefiningClass().getClassType().getDescriptor() + "."
                     + method.getName().getString();
-            System.out.println("\n\nMethod: " + canonicalName);
+            if (LOTS_OF_DEBUG) {
+                System.out.println("\n\nMethod: " + canonicalName);
+            }
 
             // Optimize
             rmeth = Optimizer.optimize(rmeth, paramSize, isStatic, localInfo, advice);
@@ -480,8 +496,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
             System.err.print(instruction.listingString("", 0, true));
             System.exit(-1);
         }
-        System.out.print("(" + instruction.getClass().getName() + ") ");
-        System.out.print(instruction.listingString("", 0, true));
+        if (LOTS_OF_DEBUG) {
+            System.out.print("(" + instruction.getClass().getName() + ") ");
+            System.out.print(instruction.listingString("", 0, true));
+        }
         if (dexInstruction != null) {
             codeElement.addContent(dexInstruction);
         }
@@ -492,9 +510,16 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
      * given element.
      */
     private static void processRegisters(RegisterSpecList registers, Element element) {
+        final String[] REGISTER_NAMES = { "vx", "vy", "vz" };
+
+        // Sanity check.
+        if (registers.size() > 3) {
+            Log.error("DEXmlvmOutputProcess.processRegisters: Too many registers.");
+            System.exit(-1);
+        }
         for (int i = 0; i < registers.size(); ++i) {
             // String type = registers.get(i).getTypeBearer().toHuman();
-            element.setAttribute(REG_PREFIX + i, String.valueOf(registerNumber(registers.get(i)
+            element.setAttribute(REGISTER_NAMES[i], String.valueOf(registerNumber(registers.get(i)
                     .regString())));
         }
     }
