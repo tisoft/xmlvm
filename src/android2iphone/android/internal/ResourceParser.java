@@ -21,6 +21,7 @@
 package android.internal;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -95,6 +96,61 @@ class DrawableParser extends NSXMLParserDelegate {
     }
 }
 
+class StringsParser extends NSXMLParserDelegate {
+
+    private Context              context;
+    private String               prefix;
+    private Map<String, Integer> nameToIdMap;
+    private Map<Integer, String> stringMap;
+    private Integer              currentId;
+    private StringBuffer         currentValue;
+
+    public StringsParser(Context context, Map<String, Integer> nameToIdMap) {
+        this.context = context;
+        this.nameToIdMap = nameToIdMap;
+        stringMap = new HashMap<Integer, String>();
+    }
+
+    @Override
+    public void didStartMappingPrefix(NSXMLParser parser, String prefix, String namespaceURI) {
+        if (namespaceURI.equals("http://schemas.android.com/apk/res/android")) {
+            this.prefix = prefix + ":";
+        }
+    }
+
+    @Override
+    public void didStartElement(NSXMLParser parser, String elementName, String namespaceURI,
+            String qualifiedName, Map<String, String> attributes) {
+        AttributeSet attrs = new ResourceAttributes(context, prefix, attributes);
+
+        if (qualifiedName.equals("string")) {
+            currentValue = new StringBuffer();
+            String name = attrs.getAttributeValue("", "name");
+            currentId = nameToIdMap.get("string/" + name);
+        }
+    }
+
+    @Override
+    public void didEndElement(NSXMLParser parser, String elementName, String namespaceURI,
+            String qualifiedName) {
+        if (qualifiedName.equals("string")) {
+            stringMap.put(currentId, currentValue.toString());
+            currentId = null;
+        }
+    }
+
+    @Override
+    public void foundCharacters(NSXMLParser parser, String characters) {
+        if (currentId != null) {
+            currentValue.append(characters);
+        }
+    }
+
+    Map<Integer, String> getStringMap() {
+        return stringMap;
+    }
+}
+
 public class ResourceParser {
 
     public static Drawable parseDrawable(Context context, String fileName) {
@@ -109,6 +165,21 @@ public class ResourceParser {
         }
 
         return delegate.getDrawable();
+    }
+
+    public static Map<Integer, String> parseStrings(Context context, String fileName,
+            Map<String, Integer> nameToIdMap) {
+        String filePath = NSBundle.mainBundle().pathForResource(fileName, "xml");
+        NSData content = NSData.dataWithContentsOfFile(filePath);
+
+        StringsParser delegate = new StringsParser(context, nameToIdMap);
+        NSXMLParser xmlParser = createParser(context, content, delegate);
+        boolean success = xmlParser.parse();
+        if (!success) {
+            throw new InflateException("Unable to inflate string resourcey: " + fileName + ".xml");
+        }
+
+        return delegate.getStringMap();
     }
 
     private static NSXMLParser createParser(Context context, NSData content,

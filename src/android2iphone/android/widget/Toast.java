@@ -48,7 +48,8 @@ public class Toast {
     }
 
     public static Toast makeText(Context context, int resId, int duration) {
-        return makeText(context, "TOAST", duration);
+        String str = context.getResources().getText(resId);
+        return makeText(context, str, duration);
     }
 
     public static Toast makeText(Context context, CharSequence text, int duration) {

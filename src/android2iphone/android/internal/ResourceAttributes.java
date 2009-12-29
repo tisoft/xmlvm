@@ -72,14 +72,15 @@ public class ResourceAttributes implements AttributeSet {
     public String getAttributeValue(String namespace, String attribute) {
         StringBuffer keyName = new StringBuffer();
 
-        if (namespace != null && namespace.length() > 0) {
+        if (namespace == null) {
+            keyName.append(androidNsPrefix);
+        }
+        else if (namespace.length() > 0) {
             keyName.append(namespace);
 
             if (!namespace.endsWith(":")) {
                 keyName.append(":");
             }
-        } else {
-            keyName.append(androidNsPrefix);
         }
 
         keyName.append(attribute);

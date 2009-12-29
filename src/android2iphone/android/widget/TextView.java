@@ -74,8 +74,8 @@ public class TextView extends View {
     }
 
     public final void setText(int resid) {
-        Log.w("xmlvm", "TextView.setText(int) not implemented");
-        getUILabel().setText("Text-ID: " + resid);
+        String str = getContext().getResources().getText(resid);
+        getUILabel().setText(str);
     }
 
     public void setText(String string) {

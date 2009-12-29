@@ -32,7 +32,6 @@ import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.internal.ActivityManager;
-import android.internal.Assert;
 import android.internal.ResourceParser;
 import android.util.Log;
 
@@ -52,6 +51,8 @@ public class Resources {
      * content of the XML layout file).
      */
     private static Map<Integer, NSData> layoutMap   = new HashMap<Integer, NSData>();
+
+    private static Map<Integer, String> stringMap;
 
     private Context                     context;
 
@@ -177,8 +178,27 @@ public class Resources {
      * @param id
      * @return
      */
+    public String getString(int id) {
+        if (stringMap == null) {
+            String path = getValuesDir() + "strings";
+            stringMap = ResourceParser.parseStrings(context, path, nameToIdMap);
+        }
+
+        return stringMap.get(new Integer(id));
+    }
+
     public String getText(int id) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return getString(id);
+    }
+    
+    private String getValuesDir() {
+        // TODO: The returned directory name should be locale dependant
+        // Instead of simple returning the default value the implementation
+        // should test if a directory res/values-<locale> exists
+        // return "res/values";
+
+        // Currently all resource files have to accessible in the classpath's
+        // root
+        return "";
     }
 }
