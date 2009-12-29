@@ -24,45 +24,63 @@
 
 // UIImageView
 //----------------------------------------------------------------------------
-@implementation UIImageView (cat_org_xmlvm_iphone_UIImageView);
+@implementation org_xmlvm_iphone_UIImageView
 
-/*
-- (id) init
+- (void) dealloc
 {
-    [super init];
-    imageView = [[UIImageView alloc] init];
+	[backgroundImage release];
+	[foregroundImage release];
+	[super dealloc];
 }
-*/
+
+- (void) drawRect:(CGRect) rect
+{	
+	if (backgroundImage != [NSNull null]) {
+		float x = (self.frame.size.width - backgroundImage.size.width) / 2.0;
+		float y = (self.frame.size.height - backgroundImage.size.height) / 2.0;
+		[backgroundImage drawAtPoint:CGPointMake(x, y)];
+	}
+	if (foregroundImage != [NSNull null]) {
+		float x = (self.frame.size.width - foregroundImage.size.width) / 2.0;
+		float y = (self.frame.size.height - foregroundImage.size.height) / 2.0;
+		[foregroundImage drawAtPoint:CGPointMake(x, y)];
+	}
+}
 
 - (void) __init_org_xmlvm_iphone_UIImageView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1
 {
 	[self initWithFrame: [n1 getCGRect]];
-	
+	self.backgroundColor = [UIColor clearColor];
+	self.contentMode = UIViewContentModeCenter;
 }
 
-- (void) setFrame___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*)n1
+- (void) setFrame___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*)rect
 {
-	[self setFrame: [n1 getCGRect]];
+	[self setFrame: [rect getCGRect]];
 }
 
 - (void) setBackgroundImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image
 {
-    [self setImage: image];
+	[image retain];
+	[backgroundImage release];
+	backgroundImage = image;
 }
 
 - (org_xmlvm_iphone_UIImage*) getBackgroundImage__
 {
-	return [[self image] retain];
+	return [backgroundImage retain];
 }
 
 - (void) setImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image
 {
-    [self setImage: image];
+	[image retain];
+	[foregroundImage release];
+	foregroundImage = image;
 }
 
 - (org_xmlvm_iphone_UIImage*) getImage__
 {
-    return [[self image] retain];
+    return [foregroundImage retain];
 }
 
 - (void) setNeedsDisplayInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect
@@ -71,4 +89,3 @@
 }
 
 @end
-

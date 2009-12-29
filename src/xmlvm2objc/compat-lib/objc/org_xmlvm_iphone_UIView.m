@@ -80,7 +80,7 @@
 	// We keep a weak reference (don't do a retain on delegate)
 	// We do this because the delegate will only exist as long as this UIView
 	// and by not doing a retain we avoid cycles
-	self->drawDelegate = delegate;
+	self->drawDelegate = delegate == [NSNull null] ? nil : delegate;
 }
 
 @end

@@ -23,6 +23,7 @@ package android.widget;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.NSString;
+import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UIView;
@@ -30,6 +31,7 @@ import org.xmlvm.iphone.UIView;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.internal.Assert;
+import android.internal.XMLVMTheme;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -45,9 +47,6 @@ public class TextView extends View {
 
     public TextView(Context c) {
         super(c);
-        text = "";
-        // TODO Set default color white
-        // uiLabel.setFontColor(new Color(0xffffff));
     }
 
     public TextView(Context c, AttributeSet attrs) {
@@ -99,7 +98,14 @@ public class TextView extends View {
 
     @Override
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        return new UILabel();
+        UILabel label = new UILabel();
+        
+        if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
+            label.setTextColor(UIColor.whiteColor);
+            label.setBackgroundColor(UIColor.clearColor);
+        }
+
+        return label;
     }
 
     private UILabel getUILabel() {

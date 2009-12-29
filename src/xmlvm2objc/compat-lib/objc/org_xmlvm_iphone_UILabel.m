@@ -36,9 +36,9 @@
 }
 
 
-- (void) setText___java_lang_String :(NSString*)n1
+- (void) setText___java_lang_String :(NSString*) text
 {
-    [self setText: n1];
+    [self setText: text];
 }
 
 
@@ -57,6 +57,11 @@
 		break;
 	}
     self.textAlignment = a;
+}
+
+- (void) setTextColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*) color
+{
+	self.textColor = color;
 }
 
 - (void) setFont___org_xmlvm_iphone_UIFont :(org_xmlvm_iphone_UIFont*) font

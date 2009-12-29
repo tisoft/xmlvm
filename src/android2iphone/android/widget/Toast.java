@@ -23,7 +23,6 @@ package android.widget;
 import android.app.Activity;
 import android.content.Context;
 import android.internal.ActivityManager;
-import android.internal.Assert;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +40,9 @@ public class Toast {
 
     private Activity        activity;
     private View            view;
+    private Handler         handler;
+    private Runnable        runnable;
+    private int             duration     = LENGTH_SHORT;
 
     public Toast(Context context) {
         activity = ActivityManager.getTopActivity();
@@ -72,8 +74,8 @@ public class Toast {
         Log.w("xmlvm", "Toast.setGravity() not implemented");
     }
 
-    public void setDuration(int lengthLong) {
-        Log.w("xmlvm", "Toast.setDuration() not implemented");
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public void show() {
@@ -85,19 +87,19 @@ public class Toast {
         l.addView(view, p);
         final Window window = activity.getWindow();
         window.xmlvmShowToast(l);
-        Handler h = new Handler();
-        Runnable r = new Runnable() {
+        handler = new Handler();
+        runnable = new Runnable() {
 
             @Override
             public void run() {
                 window.xmlvmRemoveToast();
             }
         };
-        h.postDelayed(r, 3000);
+        handler.postDelayed(runnable, duration == LENGTH_SHORT ? 2000 : 4000);
     }
 
     public void cancel() {
-        Assert.NOT_IMPLEMENTED();
+        handler.removeCallbacks(runnable);
     }
 
 }

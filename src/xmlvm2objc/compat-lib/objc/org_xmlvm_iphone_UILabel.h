@@ -20,16 +20,18 @@
 
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_CGRect.h"
+#import "org_xmlvm_iphone_UIColor.h"
 #import "org_xmlvm_iphone_UIFont.h"
 
-// UITextLabel
+// UILabel
 //----------------------------------------------------------------------------
 typedef UILabel org_xmlvm_iphone_UILabel;
 @interface UILabel (cat_org_xmlvm_iphone_UILabel)
 - (void) __init_org_xmlvm_iphone_UILabel__;
 - (void) __init_org_xmlvm_iphone_UILabel___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;
-- (void) setText___java_lang_String :(NSString*)n1;
+- (void) setText___java_lang_String :(NSString*) text;
 - (void) setTextAlignment___int :(int) alignment;
+- (void) setTextColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*) color;
 - (void) setFont___org_xmlvm_iphone_UIFont :(org_xmlvm_iphone_UIFont*) font;
 - (org_xmlvm_iphone_UIFont*) getFont__;
 - (NSString*) getText__;

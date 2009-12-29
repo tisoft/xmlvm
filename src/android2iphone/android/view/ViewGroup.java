@@ -30,6 +30,7 @@ import org.xmlvm.iphone.UIView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.internal.Dimension;
 import android.util.AttributeSet;
 
@@ -184,6 +185,13 @@ public class ViewGroup extends View implements ViewParent {
 
     public View getChildAt(int index) {
         return subViews.get(index);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        for (View v : subViews) {
+            v.onDraw(canvas);
+        }
     }
 
     protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
