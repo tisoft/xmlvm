@@ -62,6 +62,7 @@ import com.android.dx.dex.code.DalvInsnList;
 import com.android.dx.dex.code.Dop;
 import com.android.dx.dex.code.Dops;
 import com.android.dx.dex.code.HighRegisterPrefix;
+import com.android.dx.dex.code.LocalList;
 import com.android.dx.dex.code.LocalSnapshot;
 import com.android.dx.dex.code.LocalStart;
 import com.android.dx.dex.code.OddSpacer;
@@ -80,7 +81,9 @@ import com.android.dx.rop.code.RegisterSpecList;
 import com.android.dx.rop.code.RopMethod;
 import com.android.dx.rop.code.TranslationAdvice;
 import com.android.dx.rop.cst.Constant;
+import com.android.dx.rop.cst.CstMemberRef;
 import com.android.dx.rop.cst.CstMethodRef;
+import com.android.dx.rop.cst.CstNat;
 import com.android.dx.rop.cst.CstType;
 import com.android.dx.rop.type.Prototype;
 import com.android.dx.rop.type.StdTypeList;
@@ -99,7 +102,7 @@ import com.android.dx.util.IntList;
  */
 public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> implements
         XmlvmResourceProvider {
-    private static final boolean   LOTS_OF_DEBUG      = true;
+    private static final boolean   LOTS_OF_DEBUG      = false;
 
     private static final String    DEXMLVM_ENDING     = ".dexmlvm";
     private static final Namespace NS_XMLVM           = XmlvmResource.xmlvmNamespace;
@@ -156,7 +159,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         generatedResources.add(new XmlvmResource(className, Type.DEX, document));
 
         String fileName = className + DEXMLVM_ENDING;
-
         OutputFile result = new OutputFile();
         result.setLocation(arguments.option_out());
         result.setFileName(fileName);
@@ -263,8 +265,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         setAttributeIfTrue(methodElement, "isPrivate", isPrivate);
         setAttributeIfTrue(methodElement, "isNative", isNative);
         setAttributeIfTrue(methodElement, "isAbstract", isAbstract);
-        setAttributeIfTrue(methodElement, "isConstructor", isConstructor);
         setAttributeIfTrue(methodElement, "isSynthetic", isSynthetic);
+        setAttributeIfTrue(methodElement, "isConstructor", isConstructor);
 
         // Create signature element.
         methodElement.addContent(processSignature(meth));
@@ -308,13 +310,31 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             };
             code.assignIndices(callback);
 
-            processCatchTable(code.getCatches(), codeElement);
             DalvInsnList instructions = code.getInsns();
+            codeElement.setAttribute("register-size", String.valueOf(instructions
+                    .getRegistersSize()));
+            processLocals(code.getLocals(), codeElement);
+            processCatchTable(code.getCatches(), codeElement);
             Set<Integer> targets = extractTargets(instructions);
             Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
             for (int j = 0; j < instructions.size(); ++j) {
                 processInstruction(instructions.get(j), codeElement, targets, switchDataBlocks);
             }
+        }
+    }
+
+    /**
+     * Extracts the local variables and add {@code var} elements to the {@code
+     * code} element for each of them.
+     */
+    private static void processLocals(LocalList localList, Element codeElement) {
+        for (int i = 0; i < localList.size(); ++i) {
+            com.android.dx.dex.code.LocalList.Entry localEntry = localList.get(i);
+            Element localElement = new Element("var", NS_DEX);
+            localElement.setAttribute("name", localEntry.getName().toHuman());
+            localElement.setAttribute("register", String.valueOf(localEntry.getRegister()));
+            localElement.setAttribute("type", localEntry.getType().toHuman());
+            codeElement.addContent(localElement);
         }
     }
 
@@ -425,16 +445,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             // Ingore here because we already processes these and they were
             // given to this method as an argument.
         } else if (instruction instanceof LocalStart) {
-            LocalStart localStart = (LocalStart) instruction;
-            dexInstruction = new Element("local-start", NS_DEX);
-            dexInstruction.setAttribute("register", String.valueOf(registerNumber(localStart
-                    .getLocal().regString())));
-            dexInstruction.setAttribute("type", localStart.getLocal().getTypeBearer().toHuman());
-            dexInstruction.setAttribute("argument", localStart.getLocal().getLocalItem().getName()
-                    .toHuman());
-            Element signatureParameterElement = new Element("param", NS_XMLVM);
-            signatureParameterElement.setAttribute("type", localStart.getLocal().getTypeBearer()
-                    .getType().toHuman());
+            // As we extract the locals information up-front we don't need to
+            // handle local-start.
         } else if (instruction instanceof SimpleInsn) {
             SimpleInsn simpleInsn = (SimpleInsn) instruction;
             dexInstruction = new Element(sanitizeInstructionName(simpleInsn.getOpcode().getName()),
@@ -449,8 +461,17 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             } else {
                 dexInstruction = new Element(
                         sanitizeInstructionName(cstInsn.getOpcode().getName()), NS_DEX);
-                dexInstruction.setAttribute("type", cstInsn.getConstant().typeName());
-                dexInstruction.setAttribute("value", cstInsn.getConstant().toHuman());
+                Constant constant = cstInsn.getConstant();
+                dexInstruction.setAttribute("type", constant.typeName());
+                if (constant instanceof CstMemberRef) {
+                    CstMemberRef memberRef = (CstMemberRef) constant;
+                    CstNat nameAndType = memberRef.getNat();
+                    dexInstruction.setAttribute("member-type", nameAndType.getFieldType().getType()
+                            .toHuman());
+                    dexInstruction.setAttribute("member-name", nameAndType.getName().toHuman());
+                } else {
+                    dexInstruction.setAttribute("value", cstInsn.getConstant().toHuman());
+                }
                 processRegisters(cstInsn.getRegisters(), dexInstruction);
             }
         } else if (instruction instanceof TargetInsn) {
@@ -618,9 +639,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * corresponding element. It uses 'registers' to add register
      */
     private static Element processSignature(CstMethodRef methodRef) {
-        Element result = new Element("signature", NS_XMLVM);
         Prototype prototype = methodRef.getPrototype();
         StdTypeList parameters = prototype.getParameterTypes();
+
+        Element result = new Element("signature", NS_XMLVM);
         for (int i = 0; i < parameters.size(); ++i) {
             Element parameterElement = new Element("parameter", NS_XMLVM);
             parameterElement.setAttribute("type", parameters.get(i).toHuman());
