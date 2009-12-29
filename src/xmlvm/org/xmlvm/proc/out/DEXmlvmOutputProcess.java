@@ -50,6 +50,8 @@ import com.android.dx.cf.direct.StdAttributeFactory;
 import com.android.dx.cf.iface.Method;
 import com.android.dx.cf.iface.MethodList;
 import com.android.dx.dex.cf.CfTranslator;
+import com.android.dx.dex.code.CatchHandlerList;
+import com.android.dx.dex.code.CatchTable;
 import com.android.dx.dex.code.CodeAddress;
 import com.android.dx.dex.code.CstInsn;
 import com.android.dx.dex.code.DalvCode;
@@ -57,6 +59,7 @@ import com.android.dx.dex.code.DalvInsn;
 import com.android.dx.dex.code.DalvInsnList;
 import com.android.dx.dex.code.Dop;
 import com.android.dx.dex.code.Dops;
+import com.android.dx.dex.code.HighRegisterPrefix;
 import com.android.dx.dex.code.LocalSnapshot;
 import com.android.dx.dex.code.LocalStart;
 import com.android.dx.dex.code.OddSpacer;
@@ -65,10 +68,12 @@ import com.android.dx.dex.code.RopTranslator;
 import com.android.dx.dex.code.SimpleInsn;
 import com.android.dx.dex.code.SwitchData;
 import com.android.dx.dex.code.TargetInsn;
+import com.android.dx.dex.code.CatchTable.Entry;
 import com.android.dx.rop.code.AccessFlags;
 import com.android.dx.rop.code.DexTranslationAdvice;
 import com.android.dx.rop.code.LocalVariableExtractor;
 import com.android.dx.rop.code.LocalVariableInfo;
+import com.android.dx.rop.code.RegisterSpec;
 import com.android.dx.rop.code.RegisterSpecList;
 import com.android.dx.rop.code.RopMethod;
 import com.android.dx.rop.code.TranslationAdvice;
@@ -286,6 +291,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
                 }
             };
             code.assignIndices(callback);
+
+            processCatchTable(code.getCatches(), codeElement);
             DalvInsnList instructions = code.getInsns();
             Set<Integer> targets = extractTargets(instructions);
             Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
@@ -293,6 +300,33 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
                 processInstruction(instructions.get(j), codeElement, targets, switchDataBlocks);
             }
         }
+    }
+
+    private static void processCatchTable(CatchTable catchTable, Element codeElement) {
+        if (catchTable.size() == 0) {
+            return;
+        }
+
+        Element catchTableElement = new Element("catches", NS_DEX);
+
+        for (int i = 0; i < catchTable.size(); ++i) {
+            Entry entry = catchTable.get(i);
+            Element entryElement = new Element("entry", NS_DEX);
+            entryElement.setAttribute("start", String.valueOf(entry.getStart()));
+            entryElement.setAttribute("end", String.valueOf(entry.getEnd()));
+
+            CatchHandlerList catchHandlers = entry.getHandlers();
+            for (int j = 0; j < catchHandlers.size(); ++j) {
+                com.android.dx.dex.code.CatchHandlerList.Entry handlerEntry = catchHandlers.get(j);
+                Element handlerElement = new Element("handler", NS_DEX);
+                handlerElement.setAttribute("type", handlerEntry.getExceptionType().toHuman());
+                handlerElement.setAttribute("target", String.valueOf(handlerEntry.getHandler()));
+                entryElement.addContent(handlerElement);
+            }
+            catchTableElement.addContent(entryElement);
+        }
+
+        codeElement.addContent(catchTableElement);
     }
 
     /**
@@ -355,12 +389,14 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
 
         Element dexInstruction = null;
 
-        int address = instruction.getAddress();
-        if (targets.contains(address)) {
-            Element labelElement = new Element("label", NS_DEX);
-            labelElement.setAttribute("id", String.valueOf(address));
-            codeElement.addContent(labelElement);
-            targets.remove(address);
+        if (instruction.hasAddress()) {
+            int address = instruction.getAddress();
+            if (targets.contains(address)) {
+                Element labelElement = new Element("label", NS_DEX);
+                labelElement.setAttribute("id", String.valueOf(address));
+                codeElement.addContent(labelElement);
+                targets.remove(address);
+            }
         }
 
         if (instruction instanceof CodeAddress) {
@@ -375,8 +411,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
         } else if (instruction instanceof LocalStart) {
             LocalStart localStart = (LocalStart) instruction;
             dexInstruction = new Element("local-start", NS_DEX);
-            dexInstruction.setAttribute("register", registerNameFormat(localStart.getLocal()
-                    .regString()));
+            dexInstruction.setAttribute("register", String.valueOf(registerNumber(localStart
+                    .getLocal().regString())));
             dexInstruction.setAttribute("type", localStart.getLocal().getTypeBearer().toHuman());
             dexInstruction.setAttribute("argument", localStart.getLocal().getLocalItem().getName()
                     .toHuman());
@@ -389,11 +425,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
                     NS_DEX);
 
             RegisterSpecList registers = simpleInsn.getRegisters();
-            for (int i = 0; i < registers.size(); ++i) {
-                String type = registers.get(i).getTypeBearer().toHuman();
-                String name = registerNameFormat(registers.get(i).regString());
-                dexInstruction.setAttribute(name, type);
-            }
+            processRegisters(registers, dexInstruction);
         } else if (instruction instanceof CstInsn) {
             CstInsn cstInsn = (CstInsn) instruction;
             if (isInvokeInstruction(cstInsn)) {
@@ -403,8 +435,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
                         sanitizeInstructionName(cstInsn.getOpcode().getName()), NS_DEX);
                 dexInstruction.setAttribute("type", cstInsn.getConstant().typeName());
                 dexInstruction.setAttribute("value", cstInsn.getConstant().toHuman());
+                processRegisters(cstInsn.getRegisters(), dexInstruction);
             }
-            processRegisters(cstInsn.getRegisters(), dexInstruction);
         } else if (instruction instanceof TargetInsn) {
             TargetInsn targetInsn = (TargetInsn) instruction;
             String instructionName = targetInsn.getOpcode().getName();
@@ -436,6 +468,12 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
                 dexInstruction
                         .setAttribute("target", String.valueOf(targetInsn.getTargetAddress()));
             }
+        } else if (instruction instanceof HighRegisterPrefix) {
+            HighRegisterPrefix highRegisterPrefix = (HighRegisterPrefix) instruction;
+            SimpleInsn[] moveInstructions = highRegisterPrefix.getMoveInstructions();
+            for (SimpleInsn moveInstruction : moveInstructions) {
+                processInstruction(moveInstruction, codeElement, targets, switchDataBlocks);
+            }
         } else {
             System.err.print(">>> Unknown instruction: ");
             System.err.print("(" + instruction.getClass().getName() + ") ");
@@ -455,9 +493,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
      */
     private static void processRegisters(RegisterSpecList registers, Element element) {
         for (int i = 0; i < registers.size(); ++i) {
-            String type = registers.get(i).getTypeBearer().toHuman();
-            String name = registerNameFormat(registers.get(i).regString());
-            element.setAttribute(name, type);
+            // String type = registers.get(i).getTypeBearer().toHuman();
+            element.setAttribute(REG_PREFIX + i, String.valueOf(registerNumber(registers.get(i)
+                    .regString())));
         }
     }
 
@@ -466,8 +504,24 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
      * be handled by {@link #processInvokeInstruction(CstInsn)}.
      */
     private static boolean isInvokeInstruction(CstInsn cstInsn) {
-        Dop[] invokeInstructions = { Dops.INVOKE_VIRTUAL, Dops.INVOKE_STATIC, Dops.INVOKE_DIRECT };
+        final Dop[] invokeInstructions = { Dops.INVOKE_VIRTUAL, Dops.INVOKE_VIRTUAL_RANGE,
+                Dops.INVOKE_STATIC, Dops.INVOKE_STATIC_RANGE, Dops.INVOKE_DIRECT,
+                Dops.INVOKE_DIRECT_RANGE, Dops.INVOKE_INTERFACE, Dops.INVOKE_INTERFACE_RANGE,
+                Dops.INVOKE_SUPER, Dops.INVOKE_SUPER_RANGE };
         for (Dop dop : invokeInstructions) {
+            if (dop.equals(cstInsn.getOpcode())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns whether the given instruction is an invoke-static instruction.
+     */
+    private static boolean isInvokeStaticInstruction(CstInsn cstInsn) {
+        final Dop[] staticInvokeInstructions = { Dops.INVOKE_STATIC, Dops.INVOKE_STATIC_RANGE };
+        for (Dop dop : staticInvokeInstructions) {
             if (dop.equals(cstInsn.getOpcode())) {
                 return true;
             }
@@ -483,13 +537,60 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
         CstMethodRef methodRef = (CstMethodRef) cstInsn.getConstant();
         result.setAttribute("class-type", methodRef.getDefiningClass().toHuman());
         result.setAttribute("method", methodRef.getNat().getName().toHuman());
-        result.addContent(processSignature(methodRef));
+        RegisterSpecList registerList = cstInsn.getRegisters();
+        List<RegisterSpec> registers = new ArrayList<RegisterSpec>();
+        if (isInvokeStaticInstruction(cstInsn)) {
+            if (registerList.size() > 0) {
+                registers.add(registerList.get(0));
+            }
+        } else {
+            // For non-static invoke instruction, the first register is the
+            // instance the method is called on.
+            result.setAttribute("register", String.valueOf(registerNumber(registerList.get(0)
+                    .regString())));
+        }
+
+        // Adds the rest of the registers, if any.
+        for (int i = 1; i < registerList.size(); ++i) {
+            registers.add(registerList.get(i));
+        }
+
+        result.addContent(processParameterList(methodRef, registers));
         return result;
     }
 
     /**
      * Processes the signature of the given method reference and returns a
      * corresponding element.
+     */
+    private static Element processParameterList(CstMethodRef methodRef, List<RegisterSpec> registers) {
+        Element result = new Element("parameters", NS_DEX);
+        Prototype prototype = methodRef.getPrototype();
+        StdTypeList parameters = prototype.getParameterTypes();
+
+        // Sanity check.
+        if (parameters.size() != registers.size()) {
+            Log.error("DEXmlvmOutputProcess.processParameterList: Size mismatch: "
+                    + "registers vs parameters");
+            System.exit(-1);
+        }
+
+        for (int i = 0; i < parameters.size(); ++i) {
+            Element parameterElement = new Element("parameter", NS_DEX);
+            parameterElement.setAttribute("type", parameters.get(i).toHuman());
+            parameterElement.setAttribute("register", String.valueOf(registerNumber(registers
+                    .get(i).regString())));
+            result.addContent(parameterElement);
+        }
+        Element returnElement = new Element("return", NS_DEX);
+        returnElement.setAttribute("type", prototype.getReturnType().getType().toHuman());
+        result.addContent(returnElement);
+        return result;
+    }
+
+    /**
+     * Processes the signature of the given method reference and returns a
+     * corresponding element. It uses 'registers' to add register
      */
     private static Element processSignature(CstMethodRef methodRef) {
         Element result = new Element("signature", NS_XMLVM);
@@ -524,21 +625,21 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
     }
 
     /**
-     * Normalizes the register format given (like v0, v2, v3) to the form of
-     * reg0, reg, reg2.
+     * Extracts the number out of the register name of the format (v0, v1, v2,
+     * etc).
      * 
      * @param vFormat
      *            the register name in v-format
-     * @return the normalized register name in reg-format
+     * @return the extracted register number
      */
-    private static String registerNameFormat(String vFormat) throws RuntimeException {
+    private static int registerNumber(String vFormat) throws RuntimeException {
         if (!vFormat.startsWith("v")) {
             throw new RuntimeErrorException(new Error(
                     "Register name doesn't start with 'v' prefix: " + vFormat));
         }
         try {
             int registerNumber = Integer.parseInt(vFormat.substring(1));
-            return REG_PREFIX + registerNumber;
+            return registerNumber;
         } catch (NumberFormatException ex) {
             throw new RuntimeErrorException(new Error(
                     "Couldn't extract register number from register name: " + vFormat, ex));
