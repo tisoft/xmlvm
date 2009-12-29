@@ -63,7 +63,8 @@
 
 - (void) parser:(NSXMLParser *)parser
          foundCharacters:(NSString *)string;
-- (void) foundCharacters___java_lang_String
+- (void) foundCharacters___org_xmlvm_iphone_NSXMLParser_java_lang_String
+     :(org_xmlvm_iphone_NSXMLParser*) parser
      :(java_lang_String*) characters;
     
 @end
