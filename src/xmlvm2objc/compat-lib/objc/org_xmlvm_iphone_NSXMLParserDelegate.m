@@ -87,5 +87,16 @@
 {
 }
 
+- (void) parser:(NSXMLParser *)parser
+         foundCharacters:(NSString *)string
+{
+	[self foundCharacters___java_lang_String:string];
+}
+
+- (void) foundCharacters___java_lang_String
+     :(java_lang_String*) characters
+{
+}
+
 @end
 

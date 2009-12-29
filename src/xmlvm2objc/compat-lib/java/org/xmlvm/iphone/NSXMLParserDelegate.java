@@ -85,4 +85,13 @@ public class NSXMLParserDelegate extends DefaultHandler {
         }
         return attr;
     }
+
+    @Override
+    public void characters(char[] ch, int start, int length) {
+        String characters = String.copyValueOf(ch, start, length);
+        foundCharacters(parser, characters);
+    }
+
+    public void foundCharacters(NSXMLParser parser, String characters) {
+    }
 }

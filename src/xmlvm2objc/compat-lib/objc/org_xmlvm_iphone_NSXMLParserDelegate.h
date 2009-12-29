@@ -60,5 +60,10 @@
      :(java_lang_String*) elementName
      :(java_lang_String*) namespaceURI
      :(java_lang_String*) qualifiedName;
-         
+
+- (void) parser:(NSXMLParser *)parser
+         foundCharacters:(NSString *)string;
+- (void) foundCharacters___java_lang_String
+     :(java_lang_String*) characters;
+    
 @end
