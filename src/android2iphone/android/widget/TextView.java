@@ -38,8 +38,8 @@ import android.widget.AbsoluteLayout.LayoutParams;
 
 public class TextView extends View {
 
-    private static final int INSETS_X            = 0;
-    private static final int INSETS_Y            = 0;
+    private static final int INSETS_X = 0;
+    private static final int INSETS_Y = 0;
 
     protected String         text;
 
@@ -61,9 +61,11 @@ public class TextView extends View {
         int height;
 
         if (l instanceof AbsoluteLayout.LayoutParams) {
-            CGSize size = getTextSize();
-            width = l.width == LayoutParams.WRAP_CONTENT ? (int) size.width + 2 * INSETS_X: l.width;
-            height = l.height == LayoutParams.WRAP_CONTENT ? (int) size.height + 2 * INSETS_Y : l.height;
+            CGSize size = xmlvmGetTextSize();
+            width = l.width == LayoutParams.WRAP_CONTENT ? (int) size.width + 2 * INSETS_X
+                    : l.width;
+            height = l.height == LayoutParams.WRAP_CONTENT ? (int) size.height + 2 * INSETS_Y
+                    : l.height;
 
             xmlvmGetUIView().setFrame(
                     new CGRect(((AbsoluteLayout.LayoutParams) l).x,
@@ -116,21 +118,33 @@ public class TextView extends View {
         int minWidth = getSuggestedMinimumWidth();
         int minHeight = getSuggestedMinimumHeight();
 
-        CGSize size = getTextSize();
+        CGSize size = xmlvmGetTextSize();
         int width = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                .getSize(widthMeasureSpec) : 2 * INSETS_X + (int) size.width;
+                .getSize(widthMeasureSpec) : 2 * xmlvmGetInsetsX() + (int) size.width;
         int height = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                .getSize(heightMeasureSpec) : 2 * INSETS_Y + (int) size.height;
+                .getSize(heightMeasureSpec) : 2 * xmlvmGetInsetsY() + (int) size.height;
         setMeasuredDimension(Math.max(width, minWidth), Math.max(height, minHeight));
     }
 
-    private CGSize getTextSize() {
-        UIFont font = ((UILabel) xmlvmGetUIView()).getFont();
+    protected CGSize xmlvmGetTextSize() {
+        UIFont font = xmlvmGetUIFont();
         if (font == null) {
             font = UIFont.systemFontOfSize(UIFont.labelFontSize());
         }
 
         return NSString.sizeWithFont(text, font);
+    }
+
+    protected UIFont xmlvmGetUIFont() {
+        return ((UILabel) xmlvmGetUIView()).getFont();
+    }
+
+    protected int xmlvmGetInsetsX() {
+        return INSETS_X;
+    }
+
+    protected int xmlvmGetInsetsY() {
+        return INSETS_Y;
     }
 
 }
