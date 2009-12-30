@@ -32,6 +32,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.internal.Dimension;
+import android.internal.XMLVMTheme;
 import android.util.AttributeSet;
 
 /**
@@ -264,7 +265,7 @@ public class ViewGroup extends View implements ViewParent {
 
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
         UIView v = new UIView();
-        v.setBackgroundColor(UIColor.colorWithRGBA(0, 0, 0, 0));
+        v.setBackgroundColor(UIColor.clearColor);
         return v;
     }
 
