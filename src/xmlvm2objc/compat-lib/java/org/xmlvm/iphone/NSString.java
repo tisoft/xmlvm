@@ -71,6 +71,7 @@ public class NSString {
         graphicsContext.setFont(awtFont);
         Rectangle2D size = awtFont.getStringBounds(text, graphicsContext.getFontRenderContext());
         graphicsContext.setFont(savedFont);
-        return new CGSize((float) size.getWidth(), (float) size.getHeight());
+        return new CGSize((float) size.getWidth(), text != null && text.length() > 0 ? (float) size
+                .getHeight() : 0.0f);
     }
 }
