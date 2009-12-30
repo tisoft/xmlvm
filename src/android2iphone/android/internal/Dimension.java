@@ -18,10 +18,11 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.internal;
 
 public class Dimension {
+
+    private static final int DISPLAY_DENSITY = 160;
 
     public static int resolveDimension(String dimension) {
         // A missing dimension is interpreted as 0 pixel
@@ -33,8 +34,19 @@ public class Dimension {
             return Integer.parseInt(dimension.substring(0, dimension.length() - 2));
         }
 
+        if (dimension.length() > 2 && dimension.endsWith("dp")) {
+            return (int) (Integer.parseInt(dimension.substring(0, dimension.length() - 2)) * getDensityFactor());
+        }
+
+        if (dimension.length() > 3 && dimension.endsWith("dip")) {
+            return (int) (Integer.parseInt(dimension.substring(0, dimension.length() - 3)) * getDensityFactor());
+        }
+
         Assert.FAIL("layout dimension not supported: " + dimension);
         return 0;
     }
 
+    private static final float getDensityFactor() {
+        return ((float) DISPLAY_DENSITY) / 160.0f;
+    }
 }
