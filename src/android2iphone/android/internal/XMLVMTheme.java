@@ -29,12 +29,12 @@ public class XMLVMTheme {
     /**
      * Uses the Android theme for widgets.
      */
-    final public static int XMLVM_THEME_ANDROID = 0;
+    public static final int XMLVM_THEME_ANDROID = 0;
 
     /**
      * Uses the native theme of the destination platform.
      */
-    final public static int XMLMV_THEME_NATIVE  = 1;
+    public static final int XMLVM_THEME_NATIVE  = 1;
 
     // TODO read this parameter from some configuration file
     private static int      theme               = XMLVM_THEME_ANDROID;
