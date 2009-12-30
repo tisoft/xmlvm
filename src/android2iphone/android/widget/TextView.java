@@ -89,7 +89,11 @@ public class TextView extends View {
 
     public void setTextSize(float size) {
         UIFont font = getUILabel().getFont();
-        getUILabel().setFont(font.fontWithSize(size));
+        if (font == null) {
+            getUILabel().setFont(UIFont.systemFontOfSize(size));
+        } else {
+            getUILabel().setFont(font.fontWithSize(size));
+        }
     }
 
     public void setTypeface(Typeface tf, int style) {
@@ -99,7 +103,7 @@ public class TextView extends View {
     @Override
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
         UILabel label = new UILabel();
-        
+
         if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
             label.setTextColor(UIColor.whiteColor);
             label.setBackgroundColor(UIColor.clearColor);
@@ -143,8 +147,8 @@ public class TextView extends View {
         if (text.length() == 0) {
             textSize.height = mSize.height;
         }
-        
-        return textSize; 
+
+        return textSize;
     }
 
     protected UIFont xmlvmGetUIFont() {
