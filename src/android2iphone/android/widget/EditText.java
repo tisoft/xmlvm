@@ -29,6 +29,9 @@ import android.util.AttributeSet;
 
 public class EditText extends TextView {
 
+    private static final int INSETS_X = 3;
+    private static final int INSETS_Y = 3;
+
     public EditText(Context c) {
         super(c);
 
@@ -71,6 +74,14 @@ public class EditText extends TextView {
 
     protected UIFont xmlvmGetUIFont() {
         return ((UITextView) xmlvmGetUIView()).getFont();
+    }
+
+    protected int xmlvmGetInsetsX() {
+        return INSETS_X;
+    }
+
+    protected int xmlvmGetInsetsY() {
+        return INSETS_Y;
     }
 
 }
