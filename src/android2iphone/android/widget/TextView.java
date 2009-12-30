@@ -138,7 +138,13 @@ public class TextView extends View {
             font = UIFont.systemFontOfSize(UIFont.labelFontSize());
         }
 
-        return NSString.sizeWithFont(text, font);
+        CGSize mSize = NSString.sizeWithFont("M", font);
+        CGSize textSize = NSString.sizeWithFont(text, font);
+        if (text.length() == 0) {
+            textSize.height = mSize.height;
+        }
+        
+        return textSize; 
     }
 
     protected UIFont xmlvmGetUIFont() {
