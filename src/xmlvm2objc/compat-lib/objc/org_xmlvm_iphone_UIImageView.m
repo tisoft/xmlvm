@@ -24,24 +24,8 @@
 
 // UIImageView
 //----------------------------------------------------------------------------
-@implementation org_xmlvm_iphone_UIImageView
+@implementation UIImageView (cat_org_xmlvm_iphone_UIImageView)
 
-- (void) dealloc
-{
-	[backgroundImage release];
-	[foregroundImage release];
-	[super dealloc];
-}
-
-- (void) drawRect:(CGRect) rect
-{	
-	if (backgroundImage != [NSNull null]) {
-		[backgroundImage drawInRect:rect]; 
-	}
-	if (foregroundImage != [NSNull null]) {
-		[foregroundImage drawInRect:rect];
-	}
-}
 
 - (void) __init_org_xmlvm_iphone_UIImageView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1
 {
@@ -57,28 +41,22 @@
 
 - (void) setBackgroundImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image
 {
-	[image retain];
-	[backgroundImage release];
-	backgroundImage = image;
-	[self setNeedsDisplay];
+	self.image = image == [NSNull null] ? nil : image;
 }
 
 - (org_xmlvm_iphone_UIImage*) getBackgroundImage__
 {
-	return [backgroundImage retain];
+	return self.image == nil ? [NSNull null] : [self.image retain];
 }
 
 - (void) setImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image
 {
-	[image retain];
-	[foregroundImage release];
-	foregroundImage = image;
-	[self setNeedsDisplay];
+	self.image = image == [NSNull null] ? nil : image;
 }
 
 - (org_xmlvm_iphone_UIImage*) getImage__
 {
-    return [foregroundImage retain];
+	return self.image == nil ? [NSNull null] : [self.image retain];
 }
 
 - (void) setNeedsDisplayInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect
