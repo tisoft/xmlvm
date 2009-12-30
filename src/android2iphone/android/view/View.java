@@ -384,7 +384,7 @@ public class View {
                 setBackgroundResource(backgroundId);
             }
         }
-        
+
         int pl = Dimension.resolveDimension(attrs.getAttributeValue(null, "padding"));
         int pt = pl;
         int pr = pl;
@@ -406,7 +406,7 @@ public class View {
         if (str != null) {
             pb = Dimension.resolveDimension(str);
         }
-        
+
         setPadding(pl, pt, pr, pb);
     }
 
@@ -441,7 +441,7 @@ public class View {
         } else {
             Assert.NOT_IMPLEMENTED();
         }
-        
+
         requestLayout();
     }
 
@@ -796,6 +796,8 @@ public class View {
             this.width = right - left;
             this.height = bottom - top;
             uiView.setFrame(new CGRect(left, top, width, height));
+            uiView.setBounds(new CGRect(paddingLeft, paddingTop,
+                    width - paddingLeft - paddingRight, height - paddingTop - paddingBottom));
 
             // mPrivateFlags |= HAS_BOUNDS;
 

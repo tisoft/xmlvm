@@ -47,6 +47,7 @@ id       drawDelegate;
 @interface UIView (cat_org_xmlvm_iphone_UIView)
 - (void) __init_org_xmlvm_iphone_UIView__;
 - (void) __init_org_xmlvm_iphone_UIView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;
+- (void) setBounds___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*) bounds;
 - (org_xmlvm_iphone_CGRect*) getBounds__;
 - (void) setFrame___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*) frame;
 - (void) setLocation___float_float: (int)x :(int)y;

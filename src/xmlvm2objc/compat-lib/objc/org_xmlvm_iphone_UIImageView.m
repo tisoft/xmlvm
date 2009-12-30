@@ -36,14 +36,10 @@
 - (void) drawRect:(CGRect) rect
 {	
 	if (backgroundImage != [NSNull null]) {
-		float x = (self.frame.size.width - backgroundImage.size.width) / 2.0;
-		float y = (self.frame.size.height - backgroundImage.size.height) / 2.0;
-		[backgroundImage drawAtPoint:CGPointMake(x, y)];
+		[backgroundImage drawInRect:rect]; 
 	}
 	if (foregroundImage != [NSNull null]) {
-		float x = (self.frame.size.width - foregroundImage.size.width) / 2.0;
-		float y = (self.frame.size.height - foregroundImage.size.height) / 2.0;
-		[foregroundImage drawAtPoint:CGPointMake(x, y)];
+		[foregroundImage drawInRect:rect];
 	}
 }
 

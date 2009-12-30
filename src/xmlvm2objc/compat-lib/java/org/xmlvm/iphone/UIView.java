@@ -141,6 +141,10 @@ public class UIView extends UIResponder {
         return new CGRect(this.bounds);
     }
 
+    public void setBounds(CGRect rect) {
+        bounds = new CGRect(rect);
+    }
+
     public void setNeedsDisplay() {
         renderer.redraw();
     }
@@ -188,7 +192,7 @@ public class UIView extends UIResponder {
     public boolean touchedInsideView(Set<UITouch> touches) {
         UITouch t = touches.iterator().next();
         CGPoint p = t.locationInView(this);
-        CGRect r = this.getBounds();
+        CGRect r = this.getFrame();
         return p.x < 0 || p.y < 0 || p.x > r.size.width - 1 || p.y > r.size.height - 1 ? false
                 : true;
     }
@@ -294,7 +298,8 @@ public class UIView extends UIResponder {
 
         // This is required to set the new coordinates to widget's 0,0
         // location
-        CGContext.UICurrentContext().xmlvmGetGraphics2D().translate(getFrame().origin.x, getFrame().origin.y);
+        CGContext.UICurrentContext().xmlvmGetGraphics2D().translate(getFrame().origin.x,
+                getFrame().origin.y);
 
         CGContext.UICurrentContext().xmlvmGetGraphics2D().translate(-offsetLeft, -offsetTop);
 

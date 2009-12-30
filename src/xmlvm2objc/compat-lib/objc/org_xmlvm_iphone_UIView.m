@@ -127,6 +127,11 @@
 	return rect;
 }
 
+- (void) setBounds___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*) bounds
+{
+	self.bounds = [bounds getCGRect];
+}
+
 - (void) addSubview___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*)view
 {
     [self addSubview: view];
