@@ -18,6 +18,54 @@ public class UIResponder {
         }
     }
 
+    public void internalTouchesBegan(Set<UITouch> touches, UIEvent event) {
+        if (getResponderDelegate() != null) {
+            if (getResponderDelegate().touchesBegan(touches, event))
+                return;
+        }
+
+        touchesBegan(touches, event);
+        if (getNextResponder() != null) {
+            getNextResponder().internalTouchesBegan(touches, event);
+        }
+    }
+
+    public void internalTouchesCancelled(Set<UITouch> touches, UIEvent event) {
+        if (getResponderDelegate() != null) {
+            if (getResponderDelegate().touchesCancelled(touches, event))
+                return;
+        }
+
+        touchesCancelled(touches, event);
+        if (getNextResponder() != null) {
+            getNextResponder().internalTouchesCancelled(touches, event);
+        }
+    }
+
+    public void internalTouchesEnded(Set<UITouch> touches, UIEvent event) {
+        if (getResponderDelegate() != null) {
+            if (getResponderDelegate().touchesEnded(touches, event))
+                return;
+        }
+
+        touchesEnded(touches, event);
+        if (getNextResponder() != null) {
+            getNextResponder().internalTouchesEnded(touches, event);
+        }
+    }
+
+    public void internalTouchesMoved(Set<UITouch> touches, UIEvent event) {
+        if (getResponderDelegate() != null) {
+            if (getResponderDelegate().touchesMoved(touches, event))
+                return;
+        }
+
+        touchesMoved(touches, event);
+        if (getNextResponder() != null) {
+            getNextResponder().internalTouchesMoved(touches, event);
+        }
+    }
+
     public void touchesBegan(Set<UITouch> touches, UIEvent event) {
         // Do nothing
     }
@@ -36,9 +84,10 @@ public class UIResponder {
 
     public UIResponder getNextResponder() {
         if (this instanceof UIView) {
-            return ((UIView) this).getSuperview();
+            UIView superView = ((UIView) this).getSuperview();
+            return superView != null ? superView : UIApplication.sharedApplication();
         } else {
-            return UIApplication.sharedApplication();
+            return null;
         }
     }
 

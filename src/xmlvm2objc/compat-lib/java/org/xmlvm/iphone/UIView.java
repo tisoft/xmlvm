@@ -197,54 +197,6 @@ public class UIView extends UIResponder {
                 : true;
     }
 
-    public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-        if (getResponderDelegate() != null) {
-            if (getResponderDelegate().touchesBegan(touches, event))
-                return;
-        }
-
-        if (superview != null)
-            superview.touchesBegan(touches, event);
-        else
-            UIApplication.sharedApplication().touchesBegan(touches, event);
-    }
-
-    public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
-        if (getResponderDelegate() != null) {
-            if (getResponderDelegate().touchesCancelled(touches, event))
-                return;
-        }
-
-        if (superview != null)
-            superview.touchesCancelled(touches, event);
-        else
-            UIApplication.sharedApplication().touchesCancelled(touches, event);
-    }
-
-    public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-        if (getResponderDelegate() != null) {
-            if (getResponderDelegate().touchesEnded(touches, event))
-                return;
-        }
-
-        if (superview != null)
-            superview.touchesEnded(touches, event);
-        else
-            UIApplication.sharedApplication().touchesEnded(touches, event);
-    }
-
-    public void touchesMoved(Set<UITouch> touches, UIEvent event) {
-        if (getResponderDelegate() != null) {
-            if (getResponderDelegate().touchesMoved(touches, event))
-                return;
-        }
-
-        if (superview != null)
-            superview.touchesMoved(touches, event);
-        else
-            UIApplication.sharedApplication().touchesMoved(touches, event);
-    }
-
     public boolean isHidden() {
         return hidden;
     }
