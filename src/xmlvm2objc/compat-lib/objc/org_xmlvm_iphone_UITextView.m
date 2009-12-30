@@ -54,4 +54,9 @@
 	[self setTextColor: color];
 }
 
+- (UIFont*) getFont__
+{
+    return [self.font retain];
+}
+
 @end

@@ -31,4 +31,5 @@ typedef UITextView org_xmlvm_iphone_UITextView;
 - (void) setText___java_lang_String :(NSString*)n1;
 - (NSString*) getText__;
 - (void) setTextColor___org_xmlvm_iphone_UIColor: (org_xmlvm_iphone_UIColor*) color;
+- (UIFont*) getFont__;
 @end
