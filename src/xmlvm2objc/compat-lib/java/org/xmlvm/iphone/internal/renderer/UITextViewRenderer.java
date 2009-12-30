@@ -1,13 +1,14 @@
-
 package org.xmlvm.iphone.internal.renderer;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UITextView;
 
 public class UITextViewRenderer extends UIViewRenderer<UITextView> {
@@ -20,7 +21,8 @@ public class UITextViewRenderer extends UIViewRenderer<UITextView> {
 
     public void paint() {
         Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
-        g.setFont(view.getFont().xmlvmGetFont());
+        Font f = view.getFont() != null ? view.getFont().xmlvmGetFont() : getDefaultFont();
+        g.setFont(f);
         CGRect displayRect = view.getFrame();
         g.setBackground(Color.WHITE);
         int rectX = (int) displayRect.origin.x;
@@ -45,5 +47,9 @@ public class UITextViewRenderer extends UIViewRenderer<UITextView> {
         int y = (int) displayRect.origin.y;
         y += ((int) view.getFrame().size.height - height) / 2 + height - descent;
         g.drawString(view.getText(), x, y);
+    }
+
+    private Font getDefaultFont() {
+        return UIFont.systemFontOfSize(UIFont.labelFontSize()).xmlvmGetFont();
     }
 }

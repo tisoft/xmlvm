@@ -1,6 +1,7 @@
 
 package org.xmlvm.iphone.internal.renderer;
 
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 
@@ -8,6 +9,7 @@ import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UITextAlignment;
 
@@ -42,7 +44,8 @@ public class UILabelRenderer extends UIViewRenderer<UILabel> {
         
         Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
-        g.setFont(view.getFont().xmlvmGetFont());
+        Font f = view.getFont() != null ? view.getFont().xmlvmGetFont() : getDefaultFont();
+        g.setFont(f);
         FontMetrics fm = g.getFontMetrics();
         int width = fm.stringWidth(view.getText());
         int height = fm.getHeight();
@@ -68,4 +71,9 @@ public class UILabelRenderer extends UIViewRenderer<UILabel> {
         g.setPaint(view.getTextColor().xmlvmGetPaint());
         g.drawString(view.getText(), x, y);
     }
+    
+    private Font getDefaultFont() {
+        return UIFont.systemFontOfSize(UIFont.labelFontSize()).xmlvmGetFont();
+    }
+
 }

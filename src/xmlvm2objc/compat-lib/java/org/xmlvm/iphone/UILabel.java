@@ -16,7 +16,6 @@ public class UILabel extends UIView {
     public UILabel(CGRect rect) {
         super(rect);
         xmlvmSetRenderer(new UILabelRenderer(this));
-        setFont(UIFont.fontWithNameSize("Arial", 16));
         setTextColor(UIColor.blackColor);
         setBackgroundColor(UIColor.whiteColor);
         setTextAlignment(UITextAlignment.Left);

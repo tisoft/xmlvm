@@ -21,7 +21,6 @@ public class UITextView extends UIView {
 
     private void init() {
         xmlvmSetRenderer(new UITextViewRenderer(this));
-        font = UIFont.fontWithNameSize("Arial", 16);
         this.setText("");
         this.setTextColor(UIColor.blackColor);
         Simulator.addKeyListener(this);
