@@ -385,25 +385,29 @@ public class View {
             }
         }
         
-        int p = Dimension.resolveDimension(attrs.getAttributeValue(null, "padding"));
-        paddingLeft = paddingTop = paddingRight = paddingBottom = p;
+        int pl = Dimension.resolveDimension(attrs.getAttributeValue(null, "padding"));
+        int pt = pl;
+        int pr = pl;
+        int pb = pl;
 
         str = attrs.getAttributeValue(null, "paddingLeft");
         if (str != null) {
-            paddingLeft = Dimension.resolveDimension(str);
+            pl = Dimension.resolveDimension(str);
         }
         str = attrs.getAttributeValue(null, "paddingTop");
         if (str != null) {
-            paddingTop = Dimension.resolveDimension(str);
+            pt = Dimension.resolveDimension(str);
         }
         str = attrs.getAttributeValue(null, "paddingRight");
         if (str != null) {
-            paddingRight = Dimension.resolveDimension(str);
+            pr = Dimension.resolveDimension(str);
         }
         str = attrs.getAttributeValue(null, "paddingBottom");
         if (str != null) {
-            paddingBottom = Dimension.resolveDimension(str);
+            pb = Dimension.resolveDimension(str);
         }
+        
+        setPadding(pl, pt, pr, pb);
     }
 
     public void setId(int id) {
@@ -632,6 +636,7 @@ public class View {
         this.paddingTop = paddingTop;
         this.paddingRight = paddingRight;
         this.paddingBottom = paddingBottom;
+        requestLayout();
     }
 
     public int getMinimumWidth() {
