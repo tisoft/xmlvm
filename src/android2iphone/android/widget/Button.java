@@ -22,7 +22,6 @@ package android.widget;
 
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
-import org.xmlvm.iphone.NSString;
 import org.xmlvm.iphone.UIButton;
 import org.xmlvm.iphone.UIButtonType;
 import org.xmlvm.iphone.UIControl;
@@ -30,7 +29,6 @@ import org.xmlvm.iphone.UIControlDelegate;
 import org.xmlvm.iphone.UIControlEvent;
 import org.xmlvm.iphone.UIControlState;
 import org.xmlvm.iphone.UIFont;
-import org.xmlvm.iphone.UITextView;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
