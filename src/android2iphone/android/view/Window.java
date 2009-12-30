@@ -35,6 +35,7 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.internal.Assert;
 import android.internal.LayoutManager;
+import android.internal.XMLVMTheme;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup.LayoutParams;
 
@@ -58,7 +59,11 @@ public class Window {
         xmlvmRemoveWindow();
 
         iWindow = new UIWindow();
-        iWindow.setBackgroundColor(UIColor.colorWithRGBA(0.0941f, 0.0941f, 0.0941f, 1.0f));
+
+        if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
+            iWindow.setBackgroundColor(UIColor.colorWithRGBA(0.0941f, 0.0941f, 0.0941f, 1.0f));
+        }
+
         iWindow.addSubview(view.xmlvmGetUIView());
         contentViews.add(view);
         adjustFrameSize();
