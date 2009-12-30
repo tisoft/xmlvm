@@ -64,6 +64,7 @@
 	[image retain];
 	[backgroundImage release];
 	backgroundImage = image;
+	[self setNeedsDisplay];
 }
 
 - (org_xmlvm_iphone_UIImage*) getBackgroundImage__
@@ -76,6 +77,7 @@
 	[image retain];
 	[foregroundImage release];
 	foregroundImage = image;
+	[self setNeedsDisplay];
 }
 
 - (org_xmlvm_iphone_UIImage*) getImage__
