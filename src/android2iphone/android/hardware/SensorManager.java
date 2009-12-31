@@ -89,7 +89,7 @@ public class SensorManager implements UIAccelerometerDelegate {
             if (listener.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
                 SensorEvent event = new SensorEvent(values.length);
                 for (int i = 0; i < values.length; ++i) {
-                    event.values[i] = values[i];
+                    event.values[i] = -values[i];
                 }
                 listener.listener.onSensorChanged(event);
             }
