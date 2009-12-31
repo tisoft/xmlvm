@@ -96,8 +96,8 @@ public class Spark {
 			return;
 		}
 		// Gravity
-		vx += (Const.DV * (environment.rotY / 10f));
-		vy += (Const.DV * (-environment.rotX / 10f));
+		vx += (Const.DV * (-environment.rotX / 10f));
+		vy += (Const.DV * (environment.rotY / 10f));
 		x += (Const.T * vx);
 		y += (Const.T * vy);
 		updateImage();

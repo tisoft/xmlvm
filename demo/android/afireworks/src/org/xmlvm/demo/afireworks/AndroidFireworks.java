@@ -22,7 +22,9 @@ package org.xmlvm.demo.afireworks;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.hardware.SensorListener;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -64,7 +66,7 @@ public class AndroidFireworks extends Activity {
 	private Environment environment = new Environment();
 	private Handler updater = new Handler();
 	private Runnable updateFw;
-	
+
 	@Override
 	public void onContentChanged() {
 		WindowManager w = getWindowManager();
@@ -116,16 +118,24 @@ public class AndroidFireworks extends Activity {
 		setContentView(layout);
 		SensorManager sensorManager = (SensorManager) this
 				.getSystemService(SENSOR_SERVICE);
-		sensorManager.registerListener(new SensorListener() {
-			public void onSensorChanged(int sensor, float[] values) {
-				environment.rotX = values[1];
-				environment.rotY = values[0];
+
+		// Register the accelerometer listener.
+		sensorManager.registerListener(new SensorEventListener() {
+			@Override
+			public void onAccuracyChanged(Sensor sensor, int accuracy) {
+				// Do nothing.
 			}
 
-			public void onAccuracyChanged(int sensor, int accuracy) {
+			@Override
+			public void onSensorChanged(SensorEvent event) {
+				environment.rotX = event.values[0];
+				environment.rotY = event.values[1];
+				
 			}
-		}, SensorManager.SENSOR_ACCELEROMETER,
+		}, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
 				SensorManager.SENSOR_DELAY_FASTEST);
+
+		// Register the touch listener.
 		layout.setOnTouchListener(new OnTouchListener() {
 			private final int touchMod = 3;
 			private int touchCount = 0;
