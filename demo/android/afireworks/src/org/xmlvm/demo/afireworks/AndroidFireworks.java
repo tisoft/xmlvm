@@ -36,136 +36,143 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnTouchListener;
-import android.widget.AbsoluteLayout;
 
 /**
  * The main class/activity of the Fireworks application.
  * 
  */
 public class AndroidFireworks extends Activity {
-    /**
-     * UI Text for inviting people to visit XMLVM.org.
-     */
-    public static final String VISIT_XMLVM       = "Visit Project XMLVM.org";
-    /**
-     * UI Text for inviting people to watch the XMLVM Google TechTalk.
-     */
-    public static final String WATCH_YOUTUBE     = "Watch Google TechTalk";
-    /**
-     * The URL to XMLVM.org
-     */
-    public static final String XMLVM_URL         = "http://www.xmlvm.org";
-    /**
-     * The URL to the XMLVM YouTube video.
-     */
-    public static final String YOUTUBE_XMLVM_URL = "http://www.youtube.com/watch?v=s8nMpi5-P-I";
+	/**
+	 * UI Text for inviting people to visit XMLVM.org.
+	 */
+	public static final String VISIT_XMLVM = "Visit Project XMLVM.org";
+	/**
+	 * UI Text for inviting people to watch the XMLVM Google TechTalk.
+	 */
+	public static final String WATCH_YOUTUBE = "Watch Google TechTalk";
+	/**
+	 * The URL to XMLVM.org
+	 */
+	public static final String XMLVM_URL = "http://www.xmlvm.org";
+	/**
+	 * The URL to the XMLVM YouTube video.
+	 */
+	public static final String YOUTUBE_XMLVM_URL = "http://www.youtube.com/watch?v=s8nMpi5-P-I";
 
-    private ViewGroup          layout;
-    private Fireworks          fireworks;
-    private Environment        environment       = new Environment();
-    private Handler            updater           = new Handler();
-    private Runnable           updateFw;
+	private ViewGroup layout;
+	private Fireworks fireworks;
+	private Environment environment = new Environment();
+	private Handler updater = new Handler();
+	private Runnable updateFw;
 
-    @Override
-    public void onContentChanged() {
-        WindowManager w = getWindowManager();
-        Display d = w.getDefaultDisplay();
-        environment.windowWidth = d.getWidth();
-        environment.windowHeight = d.getHeight();
-    }
+	@Override
+	public void onContentChanged() {
+		WindowManager w = getWindowManager();
+		Display d = w.getDefaultDisplay();
+		environment.windowWidth = d.getWidth();
+		environment.windowHeight = d.getHeight();
+	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(VISIT_XMLVM).setIcon(R.drawable.xmlvm);
-        menu.add(WATCH_YOUTUBE).setIcon(R.drawable.youtube);
-        return true;
-    }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menu.add(VISIT_XMLVM).setIcon(R.drawable.xmlvm);
+		menu.add(WATCH_YOUTUBE).setIcon(R.drawable.youtube);
+		return true;
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getTitle().equals(VISIT_XMLVM)) {
-            viewUri(Uri.parse(XMLVM_URL));
-            return true;
-        } else if (item.getTitle().equals(WATCH_YOUTUBE)) {
-            viewUri(Uri.parse(YOUTUBE_XMLVM_URL));
-            return true;
-        }
-        return false;
-    }
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getTitle().equals(VISIT_XMLVM)) {
+			viewUri(Uri.parse(XMLVM_URL));
+			return true;
+		} else if (item.getTitle().equals(WATCH_YOUTUBE)) {
+			viewUri(Uri.parse(YOUTUBE_XMLVM_URL));
+			return true;
+		}
+		return false;
+	}
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        updateFw = new Runnable() {
-            public void run() {
-                fireworks.doUpdate();
-                updater.postDelayed(updateFw, 60);
-                layout.invalidate();
-            }
-        };
-        // No title bar.
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // Switch to fullscreen view, getting rid of the status bar as well.
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        layout = new AbsoluteLayout(this);
-        setContentView(layout);
-        SensorManager sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
-        sensorManager.registerListener(new SensorListener() {
-            public void onSensorChanged(int sensor, float[] values) {
-                environment.rotX = values[1];
-                environment.rotY = values[0];
-            }
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		updateFw = new Runnable() {
+			public void run() {
+				fireworks.doUpdate();
+				updater.postDelayed(updateFw, 40);
+				layout.invalidate();
+			}
+		};
+		// No title bar.
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// Switch to fullscreen view, getting rid of the status bar as well.
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		layout = new ViewGroup(this) {
+			@Override
+			protected void onLayout(boolean changed, int l, int t, int r, int b) {
+				// Nothing to be done.
+			}
+		};
+		setContentView(layout);
+		SensorManager sensorManager = (SensorManager) this
+				.getSystemService(SENSOR_SERVICE);
+		sensorManager.registerListener(new SensorListener() {
+			public void onSensorChanged(int sensor, float[] values) {
+				environment.rotX = values[1];
+				environment.rotY = values[0];
+			}
 
-            public void onAccuracyChanged(int sensor, int accuracy) {
-            }
-        }, SensorManager.SENSOR_ACCELEROMETER, SensorManager.SENSOR_DELAY_FASTEST);
-        layout.setOnTouchListener(new OnTouchListener() {
-            private final int touchMod   = 3;
-            private int       touchCount = 0;
+			public void onAccuracyChanged(int sensor, int accuracy) {
+			}
+		}, SensorManager.SENSOR_ACCELEROMETER,
+				SensorManager.SENSOR_DELAY_FASTEST);
+		layout.setOnTouchListener(new OnTouchListener() {
+			private final int touchMod = 3;
+			private int touchCount = 0;
 
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    touchCount = 0;
-                }
-                if (touchCount == 0) {
-                    fireworks.touchExplode((int) event.getX(), (int) event.getY());
-                }
-                touchCount = (touchCount + 1) % touchMod;
-                return true;
-            }
-        });
-        fireworks = new Fireworks(layout, environment);
-        updater.postDelayed(updateFw, 100);
-    }
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					touchCount = 0;
+				}
+				if (touchCount == 0) {
+					fireworks.touchExplode((int) event.getX(), (int) event
+							.getY());
+				}
+				touchCount = (touchCount + 1) % touchMod;
+				return true;
+			}
+		});
+		fireworks = new Fireworks(layout, environment);
+		updater.postDelayed(updateFw, 100);
+	}
 
-    /**
-     * Returns the main {@link ViewGroup} for the Fireworks layout.
-     */
-    public ViewGroup getLayout() {
-        return layout;
-    }
+	/**
+	 * Returns the main {@link ViewGroup} for the Fireworks layout.
+	 */
+	public ViewGroup getLayout() {
+		return layout;
+	}
 
-    /**
-     * Returns the active Environment.
-     */
-    public Environment getEnvironment() {
-        return environment;
-    }
+	/**
+	 * Returns the active Environment.
+	 */
+	public Environment getEnvironment() {
+		return environment;
+	}
 
-    private void viewUri(Uri uri) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(uri);
-        startActivity(intent);
-    }
+	private void viewUri(Uri uri) {
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(uri);
+		startActivity(intent);
+	}
 
-    /**
-     * A simple class for keepting basic environmental data.
-     */
-    public static class Environment {
-        public float rotX         = 0;
-        public float rotY         = 0;
-        public int   windowHeight = 10;
-        public int   windowWidth  = 10;
-    }
+	/**
+	 * A simple class for keepting basic environmental data.
+	 */
+	public static class Environment {
+		public float rotX = 0;
+		public float rotY = 0;
+		public int windowHeight = 10;
+		public int windowWidth = 10;
+	}
 }
