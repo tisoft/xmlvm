@@ -137,7 +137,6 @@ public class SensorManager implements UIAccelerometerDelegate {
     }
 }
 
-@Deprecated
 class RegisteredListener {
     SensorListener listener = null;
     int            sensors  = 0;
