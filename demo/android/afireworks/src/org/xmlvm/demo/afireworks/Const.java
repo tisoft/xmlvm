@@ -21,13 +21,16 @@
 package org.xmlvm.demo.afireworks;
 
 public class Const {
-    final static int   BOMB_COUNT      = 6;
-    final static int   SPARKS_PER_BOMB = 10;
+	public final static int BOMB_COUNT = 6;
+	public final static int SPARKS_PER_BOMB = 12;
 
-    final static int   IMAGE_SIZE      = 15;
+	/** The delay in milliseconds in between frames. */
+	public final static int UPDATE_DELAY = 30;
 
-    final static float MAX2V           = 70.0f;
-    final static float T               = 0.3f;
-    final static float G               = 9.81f;
-    final static float DV              = T * G;
+	final static int IMAGE_SIZE = 15;
+
+	final static float MAX2V = 70.0f;
+	final static float T = 0.3f;
+	final static float G = 9.81f;
+	final static float DV = T * G;
 }

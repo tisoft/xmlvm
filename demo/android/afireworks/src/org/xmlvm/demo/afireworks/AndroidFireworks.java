@@ -64,7 +64,7 @@ public class AndroidFireworks extends Activity {
 	private Environment environment = new Environment();
 	private Handler updater = new Handler();
 	private Runnable updateFw;
-
+	
 	@Override
 	public void onContentChanged() {
 		WindowManager w = getWindowManager();
@@ -98,7 +98,7 @@ public class AndroidFireworks extends Activity {
 		updateFw = new Runnable() {
 			public void run() {
 				fireworks.doUpdate();
-				updater.postDelayed(updateFw, 40);
+				updater.postDelayed(updateFw, Const.UPDATE_DELAY);
 				layout.invalidate();
 			}
 		};
