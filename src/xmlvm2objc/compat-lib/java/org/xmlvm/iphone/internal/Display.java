@@ -119,17 +119,17 @@ public class Display implements ImageObserver {
         switch (phase) {
         case UITouchPhase.Began:
             currentResponder = responder;
-            responder.internalTouchesBegan(touches, event);
+            responder.xmlvmInternalTouchesBegan(touches, event);
             break;
         case UITouchPhase.Moved:
-            responder.internalTouchesMoved(touches, event);
+            responder.xmlvmInternalTouchesMoved(touches, event);
             break;
         case UITouchPhase.Ended:
-            responder.internalTouchesEnded(touches, event);
+            responder.xmlvmInternalTouchesEnded(touches, event);
             currentResponder = null;
             break;
         case UITouchPhase.Cancelled:
-            responder.internalTouchesCancelled(touches, event);
+            responder.xmlvmInternalTouchesCancelled(touches, event);
             currentResponder = null;
             break;
         }
