@@ -137,8 +137,13 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 <!-- END OF TEMPLATE: CLASS -->
 
 
-<xsl:template match="vm:method[count(@isNative) = 0 or @isNative != 'true']">
-  <xsl:call-template name="emitPrototype"/>
+<xsl:template match="vm:method">
+ 	<xsl:call-template name="emitPrototype"/>
+ 	 <xsl:apply-templates/>
+</xsl:template>
+
+
+<xsl:template match="jvm:code">
   <xsl:text>
     {
       var __locals = new Array(</xsl:text>
@@ -204,7 +209,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
 
 
-<xsl:template match="vm:code[count(../@nativeInterface) = 0]">
+<xsl:template match="jvm:code[count(../@nativeInterface) = 0]">
   <xsl:text>
         var __next_label = -1;
         while (1) {
@@ -1165,7 +1170,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 -->
 
 <xsl:template name="initLocals">
-    <xsl:for-each select="vm:code/jvm:var">
+    <xsl:for-each select="jvm:code/jvm:var">
 		<xsl:choose>    
       		<xsl:when test="@name = 'this'">
       			<xsl:text>

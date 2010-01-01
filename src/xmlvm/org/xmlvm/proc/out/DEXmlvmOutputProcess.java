@@ -327,7 +327,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         methodElement.addContent(processSignature(meth));
 
         // Create code element.
-        Element codeElement = new Element("code", NS_XMLVM);
+        Element codeElement = new Element("code", NS_DEX);
         methodElement.addContent(codeElement);
 
         if (isNative || isAbstract) {
