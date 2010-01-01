@@ -527,7 +527,7 @@ public class ExeToXmlvmProcess extends XmlvmProcessImpl<ExeInputProcess> impleme
         }
 
         private void addMethodCode(MethodBody mb, Element xml) {
-            Element xml_code = new Element("code", nsXMLVM);
+            Element xml_code = new Element("code", nsCLR);
             xml.addContent(xml_code);
 
             // Add local variables

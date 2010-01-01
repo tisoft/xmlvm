@@ -152,6 +152,8 @@ public class CILByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourceProv
 
     private static final Namespace       nsXMLVM     = Namespace.getNamespace("vm",
                                                              "http://xmlvm.org");
+    private static final Namespace       nsCLR       = Namespace.getNamespace("clr",
+                                                             "http://xmlvm.org/clr");
 
     private InstructionList              instructionList;
     private InstructionHandlerManagerCIL instructionHandlerManager;
@@ -282,7 +284,7 @@ public class CILByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourceProv
             m.setMethodBody(body);
             instructionList = body.getInstructionList();
             instructionHandlerManager = new InstructionHandlerManagerCIL(instructionList);
-            Element code = method.getChild("code", nsXMLVM);
+            Element code = method.getChild("code", nsCLR);
             createCode(code);
         } catch (SignatureException e) {
             // TODO Auto-generated catch block
