@@ -129,15 +129,17 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         }
     }
 
-    private static final boolean   LOTS_OF_DEBUG      = false;
+    private static final boolean   LOTS_OF_DEBUG         = true;
 
-    private static final String    DEXMLVM_ENDING     = ".dexmlvm";
-    private static final Namespace NS_XMLVM           = XmlvmResource.xmlvmNamespace;
-    private static final Namespace NS_DEX             = Namespace.getNamespace("dex",
-                                                              "http://xmlvm.org/dex");
+    private static final String    DEXMLVM_ENDING        = ".dexmlvm";
+    private static final Namespace NS_XMLVM              = XmlvmResource.xmlvmNamespace;
+    private static final Namespace NS_DEX                = Namespace.getNamespace("dex",
+                                                                 "http://xmlvm.org/dex");
 
-    private List<OutputFile>       outputFiles        = new ArrayList<OutputFile>();
-    private List<XmlvmResource>    generatedResources = new ArrayList<XmlvmResource>();
+    private List<OutputFile>       outputFiles           = new ArrayList<OutputFile>();
+    private List<XmlvmResource>    generatedResources    = new ArrayList<XmlvmResource>();
+
+    private static Element         lastInvokeInstruction = null;
 
     public DEXmlvmOutputProcess(Arguments arguments) {
         super(arguments);
@@ -525,15 +527,32 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             // handle local-start.
         } else if (instruction instanceof SimpleInsn) {
             SimpleInsn simpleInsn = (SimpleInsn) instruction;
-            dexInstruction = new Element(sanitizeInstructionName(simpleInsn.getOpcode().getName()),
-                    NS_DEX);
+            String instructionName = simpleInsn.getOpcode().getName();
 
-            RegisterSpecList registers = simpleInsn.getRegisters();
-            processRegisters(registers, dexInstruction);
+            // If this is a move-result instruction, we don't add it
+            // explicitly, but instead add the result register to the previous
+            // invoke instruction's return.
+            if (instructionName.startsWith("move-result")) {
+                // Sanity Check
+                if (simpleInsn.getRegisters().size() != 1) {
+                    Log.error("DEXmlvmOutputProcess: Register Size doesn't fit 'move-result'.");
+                    System.exit(-1);
+                }
+                RegisterSpec register = simpleInsn.getRegisters().get(0);
+                Element returnElement = lastInvokeInstruction.getChild("parameters", NS_DEX)
+                        .getChild("return", NS_DEX);
+                returnElement.setAttribute("register", String.valueOf(registerNumber(register
+                        .regString())));
+
+            } else {
+                dexInstruction = new Element(sanitizeInstructionName(instructionName), NS_DEX);
+                processRegisters(simpleInsn.getRegisters(), dexInstruction);
+            }
         } else if (instruction instanceof CstInsn) {
             CstInsn cstInsn = (CstInsn) instruction;
             if (isInvokeInstruction(cstInsn)) {
                 dexInstruction = processInvokeInstruction(cstInsn);
+                lastInvokeInstruction = dexInstruction;
             } else {
                 dexInstruction = new Element(
                         sanitizeInstructionName(cstInsn.getOpcode().getName()), NS_DEX);
