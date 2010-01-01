@@ -35,5 +35,6 @@
                :(java_lang_Object*) dest
                :(int) destPos
                :(int) length;
++ (void) gc__;
 
 @end

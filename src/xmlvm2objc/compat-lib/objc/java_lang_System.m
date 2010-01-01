@@ -123,4 +123,9 @@ java_io_PrintStream* _STATIC_java_lang_System_out;
 	}
 }
 
++ (void) gc__
+{
+	// Do nothing
+}
+
 @end
