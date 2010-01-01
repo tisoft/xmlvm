@@ -39,9 +39,11 @@ public class PythonOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
 
     public PythonOutputProcess(Arguments arguments) {
         super(arguments);
-        // We support any InputProcess as a valid input for JavaScript
-        // generation.
-        addSupportedInput(ClassToXmlvmProcess.class);
+        if (arguments.option_use_dex()) {
+            addSupportedInput(DEXmlvmOutputProcess.class);
+        } else {
+            addSupportedInput(ClassToXmlvmProcess.class);
+        }
         addSupportedInput(ExeToXmlvmProcess.class);
     }
 

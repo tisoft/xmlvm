@@ -87,6 +87,7 @@ import com.android.dx.rop.cst.CstNat;
 import com.android.dx.rop.cst.CstType;
 import com.android.dx.rop.type.Prototype;
 import com.android.dx.rop.type.StdTypeList;
+import com.android.dx.rop.type.TypeList;
 import com.android.dx.ssa.Optimizer;
 import com.android.dx.util.ExceptionWithContext;
 import com.android.dx.util.IntList;
@@ -102,6 +103,32 @@ import com.android.dx.util.IntList;
  */
 public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> implements
         XmlvmResourceProvider {
+    /**
+     * A little helper class that contains package- and class name.
+     */
+    private static class PackagePlusClassName {
+        public String packageName = "";
+        public String className   = "";
+
+        public PackagePlusClassName(String className) {
+            this.className = className;
+        }
+
+        public PackagePlusClassName(String packageName, String className) {
+            this.packageName = packageName;
+            this.className = className;
+        }
+
+        @Override
+        public String toString() {
+            if (packageName.isEmpty()) {
+                return className;
+            } else {
+                return packageName + "." + className;
+            }
+        }
+    }
+
     private static final boolean   LOTS_OF_DEBUG      = false;
 
     private static final String    DEXMLVM_ENDING     = ".dexmlvm";
@@ -168,6 +195,23 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     }
 
     /**
+     * Converts a class name in the form of a/b/C into a
+     * {@link PackagePlusClassName} object.
+     * 
+     */
+    private static PackagePlusClassName parseClassName(String packagePlusClassName) {
+        int lastSlash = packagePlusClassName.lastIndexOf('/');
+        if (lastSlash == -1) {
+            return new PackagePlusClassName(packagePlusClassName);
+        }
+
+        String className = packagePlusClassName.substring(lastSlash + 1);
+        String packageName = packagePlusClassName.substring(0, lastSlash).replace('/', '.');
+
+        return new PackagePlusClassName(packageName, className);
+    }
+
+    /**
      * Creates a basic XMLVM document.
      */
     private static Document createDocument() {
@@ -190,9 +234,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private String process(DirectClassFile cf, Element root) {
         cf.setAttributeFactory(StdAttributeFactory.THE_ONE);
         cf.getMagic();
-
-        CstType thisClass = cf.getThisClass();
-        Element classElement = processClass(thisClass, root);
+        Element classElement = processClass(cf, root);
         MethodList methods = cf.getMethods();
         int sz = methods.size();
 
@@ -206,6 +248,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 throw ExceptionWithContext.withContext(ex, msg);
             }
         }
+        CstType thisClass = cf.getThisClass();
         return thisClass.getClassType().toHuman();
     }
 
@@ -213,15 +256,35 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * Creates an XMLVM element for the given type and appends it to the given
      * root element.
      * 
-     * @param type
-     *            the class type to create the element for
+     * @param cf
+     *            the {@link DirectClassFile} instance of this class
      * @param root
      *            the root element to append the generated element to
      * @return the generated element
      */
-    private static Element processClass(CstType type, Element root) {
+    private static Element processClass(DirectClassFile cf, Element root) {
         Element classElement = new Element("class", NS_XMLVM);
-        classElement.setAttribute("name", type.getClassType().getClassName());
+        CstType type = cf.getThisClass();
+        PackagePlusClassName parsedClassName = parseClassName(type.getClassType().getClassName());
+        classElement.setAttribute("name", parsedClassName.className);
+        classElement.setAttribute("package", parsedClassName.packageName);
+        classElement.setAttribute("extends", parseClassName(
+                cf.getSuperclass().getClassType().getClassName()).toString());
+
+        setAccessFlagAttributes(cf.getAccessFlags(), classElement);
+
+        TypeList interfaces = cf.getInterfaces();
+        if (interfaces.size() > 0) {
+            String interfaceList = "";
+            for (int i = 0; i < interfaces.size(); ++i) {
+                if (i > 0) {
+                    interfaceList += ",";
+                }
+                interfaceList += parseClassName(interfaces.getType(i).getClassName());
+            }
+            classElement.setAttribute("interfaces", interfaceList);
+        }
+
         root.addContent(classElement);
         return classElement;
     }
@@ -248,25 +311,17 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
 
         // Extract flags for this method.
         int accessFlags = method.getAccessFlags();
-        boolean isStatic = AccessFlags.isStatic(accessFlags);
-        boolean isPrivate = AccessFlags.isPrivate(accessFlags);
         boolean isNative = AccessFlags.isNative(accessFlags);
+        boolean isStatic = AccessFlags.isStatic(accessFlags);
         boolean isAbstract = AccessFlags.isAbstract(accessFlags);
-        boolean isSynthetic = AccessFlags.isSynthetic(accessFlags);
-        boolean isConstructor = meth.isInstanceInit() || meth.isClassInit();
 
         // Create XMLVM element for this method
         Element methodElement = new Element("method", NS_XMLVM);
         methodElement.setAttribute("name", method.getName().getString());
         classElement.addContent(methodElement);
 
-        // Set class attributes.
-        setAttributeIfTrue(methodElement, "isStatic", isStatic);
-        setAttributeIfTrue(methodElement, "isPrivate", isPrivate);
-        setAttributeIfTrue(methodElement, "isNative", isNative);
-        setAttributeIfTrue(methodElement, "isAbstract", isAbstract);
-        setAttributeIfTrue(methodElement, "isSynthetic", isSynthetic);
-        setAttributeIfTrue(methodElement, "isConstructor", isConstructor);
+        // Set the access flag attrobutes for this method.
+        setAccessFlagAttributes(accessFlags, methodElement);
 
         // Create signature element.
         methodElement.addContent(processSignature(meth));
@@ -321,6 +376,27 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 processInstruction(instructions.get(j), codeElement, targets, switchDataBlocks);
             }
         }
+    }
+
+    /**
+     * Sets attributes in the element according to the access flags given.
+     */
+    private static void setAccessFlagAttributes(int accessFlags, Element element) {
+        boolean isStatic = AccessFlags.isStatic(accessFlags);
+        boolean isPrivate = AccessFlags.isPrivate(accessFlags);
+        boolean isPublic = AccessFlags.isPublic(accessFlags);
+        boolean isNative = AccessFlags.isNative(accessFlags);
+        boolean isAbstract = AccessFlags.isAbstract(accessFlags);
+        boolean isSynthetic = AccessFlags.isSynthetic(accessFlags);
+        boolean isInterface = AccessFlags.isInterface(accessFlags);
+
+        setAttributeIfTrue(element, "isStatic", isStatic);
+        setAttributeIfTrue(element, "isPrivate", isPrivate);
+        setAttributeIfTrue(element, "isPublic", isPublic);
+        setAttributeIfTrue(element, "isNative", isNative);
+        setAttributeIfTrue(element, "isAbstract", isAbstract);
+        setAttributeIfTrue(element, "isSynthetic", isSynthetic);
+        setAttributeIfTrue(element, "isInterface", isInterface);
     }
 
     /**

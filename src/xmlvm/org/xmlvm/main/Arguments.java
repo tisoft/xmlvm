@@ -48,6 +48,8 @@ public class Arguments {
     public static final String    ARG_IPHONE_APP  = "--iphone-app=";
     public static final String    ARG_QX_APP      = "--qx-app=";
     public static final String    ARG_QUIET       = "--quiet";
+    // This is just temporary for activating the new DEX processing.
+    public static final String    ARG_USE_DEX     = "--use-dex";
     // The parsed values will be stored here.
     private List<String>          option_in       = new ArrayList<String>();
     private String                option_out      = null;
@@ -59,6 +61,8 @@ public class Arguments {
     private boolean               option_qx_debug = false;
     private Log.Level             option_debug    = Log.Level.WARNING;
     private String                option_skeleton = null;
+    private boolean               option_use_dex  = false;
+
     private static final String[] shortUsage      = {
             "Usage: ",
             "xmlvm [--in=<path> [--out=<dir>]]",
@@ -180,6 +184,8 @@ public class Arguments {
                 option_app_name = arg.substring(ARG_QX_APP.length());
             } else if (arg.equals(ARG_QUIET)) {
                 option_debug = Log.Level.ERROR;
+            } else if (arg.equals(ARG_USE_DEX)) {
+                option_use_dex = true;
             } else {
                 parseError("Unknown parameter: " + arg);
             }
@@ -263,6 +269,10 @@ public class Arguments {
 
     public Log.Level option_debug() {
         return option_debug;
+    }
+
+    public boolean option_use_dex() {
+        return option_use_dex;
     }
 
     private static final void printText(String[] txt, PrintStream out) {

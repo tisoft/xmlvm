@@ -42,7 +42,11 @@ public class XmlvmOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> 
 
     public XmlvmOutputProcess(Arguments arguments) {
         super(arguments);
-        addSupportedInput(ClassToXmlvmProcess.class);
+        if (arguments.option_use_dex()) {
+            addSupportedInput(DEXmlvmOutputProcess.class);
+        } else {
+            addSupportedInput(ClassToXmlvmProcess.class);
+        }
         addSupportedInput(ExeToXmlvmProcess.class);
     }
 
