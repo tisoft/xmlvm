@@ -84,6 +84,7 @@ import com.android.dx.rop.cst.Constant;
 import com.android.dx.rop.cst.CstMemberRef;
 import com.android.dx.rop.cst.CstMethodRef;
 import com.android.dx.rop.cst.CstNat;
+import com.android.dx.rop.cst.CstString;
 import com.android.dx.rop.cst.CstType;
 import com.android.dx.rop.type.Prototype;
 import com.android.dx.rop.type.StdTypeList;
@@ -564,8 +565,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     dexInstruction.setAttribute("member-type", nameAndType.getFieldType().getType()
                             .toHuman());
                     dexInstruction.setAttribute("member-name", nameAndType.getName().toHuman());
+                } else if (constant instanceof CstString) {
+                    CstString cstString = (CstString) constant;
+                    dexInstruction.setAttribute("value", cstString.getString().getString());
                 } else {
-                    dexInstruction.setAttribute("value", cstInsn.getConstant().toHuman());
+                    dexInstruction.setAttribute("value", constant.toHuman());
                 }
                 processRegisters(cstInsn.getRegisters(), dexInstruction);
             }
