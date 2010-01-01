@@ -129,7 +129,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         }
     }
 
-    private static final boolean   LOTS_OF_DEBUG         = true;
+    private static final boolean   LOTS_OF_DEBUG         = false;
 
     private static final String    DEXMLVM_ENDING        = ".dexmlvm";
     private static final Namespace NS_XMLVM              = XmlvmResource.xmlvmNamespace;
