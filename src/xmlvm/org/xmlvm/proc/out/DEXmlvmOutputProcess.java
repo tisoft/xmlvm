@@ -561,6 +561,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 dexInstruction.setAttribute("type", constant.typeName());
                 if (constant instanceof CstMemberRef) {
                     CstMemberRef memberRef = (CstMemberRef) constant;
+                    dexInstruction.setAttribute("class-type", memberRef.getDefiningClass()
+                            .getClassType().toHuman());
                     CstNat nameAndType = memberRef.getNat();
                     dexInstruction.setAttribute("member-type", nameAndType.getFieldType().getType()
                             .toHuman());
