@@ -188,6 +188,7 @@ public class Activity extends ContextThemeWrapper {
     }
 
     public void xmlvmOnCreate(Object savedInstanceState) {
+        setRequestedOrientation(screenOrientation);
         onCreate((Bundle) savedInstanceState);
     }
 
@@ -364,6 +365,10 @@ public class Activity extends ContextThemeWrapper {
                     UIInterfaceOrientation.Portrait);
             break;
         }
+    }
+
+    public void xmlvmSetRequestedOrientation(int requestedOrientation) {
+        screenOrientation = requestedOrientation;
     }
 
     public int getRequestedOrientation() {

@@ -88,11 +88,8 @@ public class Xokoban extends Activity {
         // Sets the device to not sleep or loose brightness.
         setDeviceNoSleep();
 
-        // 1) Obtain SensorManager.
+        // Obtain SensorManager.
         sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
-
-        // 2) Set the orientation to landscape programmatically.
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         // No title bar.
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);

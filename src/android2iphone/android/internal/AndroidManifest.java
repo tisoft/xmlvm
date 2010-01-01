@@ -28,11 +28,13 @@ import org.xmlvm.iphone.NSData;
 import org.xmlvm.iphone.NSXMLParser;
 import org.xmlvm.iphone.NSXMLParserDelegate;
 
+import android.content.pm.ActivityInfo;
+
 class AndroidManifestParser extends NSXMLParserDelegate {
 
-    private String          prefix = "";
-    private AndroidManifest manifest;
-    private String          currentActivity;
+    private String                   prefix = "";
+    private AndroidManifest          manifest;
+    private AndroidManifest.Activity currentActivity;
 
     public AndroidManifestParser(AndroidManifest manifest) {
         this.manifest = manifest;
@@ -52,12 +54,26 @@ class AndroidManifestParser extends NSXMLParserDelegate {
             manifest.appPackage = attributes.get("package");
         }
         if (qualifiedName.equals("activity")) {
-            currentActivity = attributes.get(prefix + "name");
-            if (currentActivity.indexOf('.') == -1) {
-                currentActivity = manifest.appPackage + '.' + currentActivity;
+            currentActivity = new AndroidManifest.Activity();
+            String className = attributes.get(prefix + "name");
+            if (className.indexOf('.') == -1) {
+                className = manifest.appPackage + '.' + className;
             }
-            if (currentActivity.charAt(0) == '.') {
-                currentActivity = manifest.appPackage + currentActivity;
+            if (className.charAt(0) == '.') {
+                className = manifest.appPackage + className;
+            }
+            currentActivity.className = className;
+
+            String screenOrientation = attributes.get(prefix + "screenOrientation");
+            if (screenOrientation == null) {
+                return;
+            }
+            if (screenOrientation.equals("landscape")) {
+                currentActivity.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+            } else if (screenOrientation.equals("portrait")) {
+                currentActivity.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+            } else {
+                Assert.NOT_IMPLEMENTED();
             }
         }
         if (qualifiedName.equals("action")) {
@@ -78,8 +94,13 @@ class AndroidManifestParser extends NSXMLParserDelegate {
  */
 public class AndroidManifest {
 
-    public String               appPackage;
-    private Map<String, String> activities = new HashMap<String, String>();
+    static class Activity {
+        public String className;
+        public int    screenOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+    }
+
+    public String                 appPackage;
+    private Map<String, Activity> activities = new HashMap<String, Activity>();
 
     public AndroidManifest() {
         String filePath = NSBundle.mainBundle().pathForResource("AndroidManifest", "xml");
@@ -92,11 +113,11 @@ public class AndroidManifest {
         // TODO what to do if success == false?
     }
 
-    public void addActivity(String action, String activityName) {
-        activities.put(action, activityName);
+    public void addActivity(String action, Activity activity) {
+        activities.put(action, activity);
     }
 
-    public String getActivityName(String action) {
+    public Activity getActivity(String action) {
         return activities.get(action);
     }
 }
