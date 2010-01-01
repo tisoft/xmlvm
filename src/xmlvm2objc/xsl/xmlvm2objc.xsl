@@ -418,7 +418,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="vm:code">
+<xsl:template match="jvm:code">
 <xsl:text>{
     XMLVMElem _stack[</xsl:text>
   <xsl:value-of select="../@stack"/>

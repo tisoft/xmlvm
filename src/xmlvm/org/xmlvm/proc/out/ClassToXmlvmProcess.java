@@ -451,7 +451,7 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
                  * Pass 2: Output code.
                  */
 
-                org.jdom.Element xml_code = new Element("code", nsXMLVM);
+                org.jdom.Element xml_code = new Element("code", nsJVM);
                 xml_code.setAttribute("language", "ByteCode");
                 xmlMethod.addContent(xml_code);
                 boolean isConstructor = bcelMethod.getName().equals("<init>");
