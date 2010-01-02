@@ -37,20 +37,17 @@ qx.Class.define("java_io_PrintStream",  {
 		},
 		
 		$print___java_lang_String: function(s) {
-			  // To be able to use this class unchanged for testing
-		      // If there is an element with id "sysout", we use it for output
-		    	var sysoutTextarea = document.getElementById("sysout");
 		    	if (s.$str == undefined){
-		        	if(sysoutTextarea != null){
-		            	  sysoutTextarea.value +=  s;
-		        	}else{
-		            	  alert("println(): " + s);
+		        	if (window.console){
+		            	  window.console.log("print(): " + s);
+		        	} else {
+		            	  alert("print(): " + s);
 		            }
-		    	}else{
-			        if(sysoutTextarea != null){
-			              document.getElementById("sysout").value += s.$str;
-			        }else{
-			              alert("println(): " + s.$str);
+		    	} else {
+		        	if (window.console){
+			              window.console.log("print(): " + s.$str);
+			        } else {
+			              alert("print(): " + s.$str);
 			        }
 		        }
 		},
