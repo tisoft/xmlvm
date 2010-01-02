@@ -305,6 +305,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             Field field = fieldList.get(i);
             Element fieldElement = new Element("field", NS_XMLVM);
             fieldElement.setAttribute("name", field.getName().toHuman());
+            fieldElement.setAttribute("type", field.getNat().getFieldType().toHuman());
             processAccessFlags(field.getAccessFlags(), fieldElement);
             classElement.addContent(fieldElement);
         }
