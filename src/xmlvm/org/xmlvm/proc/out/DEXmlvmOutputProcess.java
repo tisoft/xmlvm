@@ -49,6 +49,8 @@ import com.android.dx.cf.code.ConcreteMethod;
 import com.android.dx.cf.code.Ropper;
 import com.android.dx.cf.direct.DirectClassFile;
 import com.android.dx.cf.direct.StdAttributeFactory;
+import com.android.dx.cf.iface.Field;
+import com.android.dx.cf.iface.FieldList;
 import com.android.dx.cf.iface.Method;
 import com.android.dx.cf.iface.MethodList;
 import com.android.dx.dex.cf.CfTranslator;
@@ -238,6 +240,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         cf.setAttributeFactory(StdAttributeFactory.THE_ONE);
         cf.getMagic();
         Element classElement = processClass(cf, root);
+        processFields(cf.getFields(), classElement);
+
         MethodList methods = cf.getMethods();
         int sz = methods.size();
 
@@ -274,7 +278,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         classElement.setAttribute("extends", parseClassName(
                 cf.getSuperclass().getClassType().getClassName()).toString());
 
-        setAccessFlagAttributes(cf.getAccessFlags(), classElement);
+        processAccessFlags(cf.getAccessFlags(), classElement);
 
         TypeList interfaces = cf.getInterfaces();
         if (interfaces.size() > 0) {
@@ -290,6 +294,20 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
 
         root.addContent(classElement);
         return classElement;
+    }
+
+    /**
+     * Processes the fields and adds corresponding elements to the class
+     * element.
+     */
+    private static void processFields(FieldList fieldList, Element classElement) {
+        for (int i = 0; i < fieldList.size(); ++i) {
+            Field field = fieldList.get(i);
+            Element fieldElement = new Element("field", NS_XMLVM);
+            fieldElement.setAttribute("name", field.getName().toHuman());
+            processAccessFlags(field.getAccessFlags(), fieldElement);
+            classElement.addContent(fieldElement);
+        }
     }
 
     /**
@@ -324,7 +342,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         classElement.addContent(methodElement);
 
         // Set the access flag attrobutes for this method.
-        setAccessFlagAttributes(accessFlags, methodElement);
+        processAccessFlags(accessFlags, methodElement);
 
         // Create signature element.
         methodElement.addContent(processSignature(meth));
@@ -384,7 +402,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     /**
      * Sets attributes in the element according to the access flags given.
      */
-    private static void setAccessFlagAttributes(int accessFlags, Element element) {
+    private static void processAccessFlags(int accessFlags, Element element) {
         boolean isStatic = AccessFlags.isStatic(accessFlags);
         boolean isPrivate = AccessFlags.isPrivate(accessFlags);
         boolean isPublic = AccessFlags.isPublic(accessFlags);
