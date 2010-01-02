@@ -240,7 +240,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
 
 <!-- label -->
-<xsl:template match="jvm:label">
+<xsl:template match="jvm:label|dex:label">
     <xsl:text>
             case </xsl:text>
   <xsl:value-of select="@id"/>
@@ -1426,6 +1426,70 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>] = new java_lang_String("</xsl:text>
   <xsl:value-of select="@value" />
   <xsl:text>");</xsl:text>
+</xsl:template>
+
+
+<!--  dex:const-4, dex:const-16
+      ================  -->
+<xsl:template match="dex:const-4|dex:const-16">
+  <xsl:text>
+            __reg[</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text>] = </xsl:text>
+  <xsl:value-of select="@value" />
+  <xsl:text>;</xsl:text>
+</xsl:template>
+
+
+<!--  dex:add-int-lit8, add-int-lit16
+      ================  -->
+<xsl:template match="dex:add-int-lit8|add-int-lit16">
+  <xsl:text>
+            __reg[</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text>] = __reg[</xsl:text>
+  <xsl:value-of select="@vy" />
+  <xsl:text>] + </xsl:text>
+  <xsl:value-of select="@value" />
+  <xsl:text>;</xsl:text>
+</xsl:template>
+
+
+<!--  dex:if-lt
+      ================  -->
+<xsl:template match="dex:if-lt">
+  <xsl:text>
+            if (__reg[</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text>] &lt; __reg[</xsl:text>
+  <xsl:value-of select="@vy" />
+  <xsl:text>]){ __next_label = </xsl:text>
+  <xsl:value-of select="@target" />
+  <xsl:text>; break; }</xsl:text>
+</xsl:template>
+
+
+<!--  dex:if-gt
+      ================  -->
+<xsl:template match="dex:if-gt">
+  <xsl:text>
+            if (__reg[</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text>] &gt; __reg[</xsl:text>
+  <xsl:value-of select="@vy" />
+  <xsl:text>]){ __next_label = </xsl:text>
+  <xsl:value-of select="@target" />
+  <xsl:text>; break; }</xsl:text>
+</xsl:template>
+
+
+<!--  dex:goto
+      ========  -->
+<xsl:template match="dex:goto">
+  <xsl:text>
+            __next_label = </xsl:text>
+  <xsl:value-of select="@target" />
+  <xsl:text>; break;</xsl:text>
 </xsl:template>
 
 
