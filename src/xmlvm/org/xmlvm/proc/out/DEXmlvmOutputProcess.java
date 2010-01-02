@@ -565,8 +565,16 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                         .regString())));
 
             } else {
+                RegisterSpecList registers = simpleInsn.getRegisters();
                 dexInstruction = new Element(sanitizeInstructionName(instructionName), NS_DEX);
-                processRegisters(simpleInsn.getRegisters(), dexInstruction);
+                processRegisters(registers, dexInstruction);
+
+                // For simple instructions with only one register, we also add
+                // the type of the register. This includes the return
+                // instructions.
+                if (registers.size() == 1) {
+                    dexInstruction.setAttribute("class-type", registers.get(0).getType().toHuman());
+                }
             }
         } else if (instruction instanceof CstInsn) {
             CstInsn cstInsn = (CstInsn) instruction;
