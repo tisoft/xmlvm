@@ -1400,6 +1400,10 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 <!--  dex:sget-object
       ===============  -->
 <xsl:template match="dex:sget-object">
+  <xsl:call-template name="checkClass">
+    <xsl:with-param name="string" select="@class-type"/>
+  </xsl:call-template>
+ 
   <xsl:text>
             __reg[</xsl:text>
   <xsl:value-of select="@vx" />
@@ -1419,19 +1423,68 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>
             __reg[</xsl:text>
   <xsl:value-of select="@vx" />
-  <xsl:text>] = "</xsl:text>
+  <xsl:text>] = new java_lang_String("</xsl:text>
   <xsl:value-of select="@value" />
-  <xsl:text>";</xsl:text>
+  <xsl:text>");</xsl:text>
 </xsl:template>
 
 
-<!--  dex:invoke-virtual
+<!--  dex:invoke-****
       ================  -->
 <xsl:template match="dex:invoke-virtual|dex:invoke-direct">
+  <xsl:call-template name="checkClass">
+    <xsl:with-param name="string" select="@class-type"/>
+  </xsl:call-template>
+
   <xsl:text>
-            __reg[</xsl:text>
+            </xsl:text>
+
+  <xsl:if test="dex:parameters/dex:return/@register">
+    <xsl:text>__reg[</xsl:text>
+    <xsl:value-of select="dex:parameters/dex:return/@register" />
+    <xsl:text>] = </xsl:text>
+  </xsl:if>
+
+  <xsl:text>__reg[</xsl:text>
   <xsl:value-of select="@register" />
   <xsl:text>].</xsl:text>
+  <xsl:call-template name="emitMethodName">
+    <xsl:with-param name="name" select="@method"/>
+  </xsl:call-template>
+  <xsl:call-template name="appendSignatureDex">
+    <xsl:with-param name="signature" select="dex:parameters"/>
+  </xsl:call-template>
+  <xsl:text>(</xsl:text>
+    <xsl:for-each select="dex:parameters/dex:parameter">
+    <xsl:if test="position() != 1">
+      <xsl:text>, </xsl:text>
+    </xsl:if>
+    <xsl:text>__reg[</xsl:text>
+    <xsl:value-of select="@register"/>
+    <xsl:text>]</xsl:text>
+  </xsl:for-each>
+  <xsl:text>);</xsl:text>
+</xsl:template>
+
+
+<!--  dex:invoke-static
+      ================  -->
+<xsl:template match="dex:invoke-static">
+  <xsl:call-template name="checkClass">
+    <xsl:with-param name="string" select="@class-type"/>
+  </xsl:call-template>
+
+  <xsl:text>
+            </xsl:text>
+  <xsl:if test="dex:parameters/dex:return/@register">
+    <xsl:text>__reg[</xsl:text>
+    <xsl:value-of select="dex:parameters/dex:return/@register" />
+    <xsl:text>] = </xsl:text>
+  </xsl:if>
+  <xsl:call-template name="emitScopedName">
+    <xsl:with-param name="string" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:text>.</xsl:text>
   <xsl:call-template name="emitMethodName">
     <xsl:with-param name="name" select="@method"/>
     <xsl:with-param name="class-type" select="@class-type" />
@@ -1449,6 +1502,42 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     <xsl:text>]</xsl:text>
   </xsl:for-each>
   <xsl:text>);</xsl:text>
+</xsl:template>
+
+
+<!--  dex:new-instance
+      ================  -->
+<xsl:template match="dex:new-instance">
+  <xsl:call-template name="checkClass">
+    <xsl:with-param name="string" select="@value"/>
+  </xsl:call-template>
+  <xsl:text>
+            __reg[</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text>] = new </xsl:text>
+  <xsl:call-template name="emitScopedName">
+    <xsl:with-param name="string" select="@value"/>
+  </xsl:call-template>
+  <xsl:text>();</xsl:text>
+</xsl:template>
+
+
+<!--  dex:sput-object
+      ================  -->
+<xsl:template match="dex:sput-object">
+  <xsl:call-template name="checkClass">
+    <xsl:with-param name="string" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:text>
+            </xsl:text>
+  <xsl:call-template name="emitScopedName">
+    <xsl:with-param name="string" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:text>.$</xsl:text>
+  <xsl:value-of select="@member-name" />
+  <xsl:text> = __reg[</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text>];</xsl:text>
 </xsl:template>
 
 
