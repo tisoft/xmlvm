@@ -3,7 +3,7 @@
 <!--
  *
  *  XMLVM - An XML-based Programming Language
- *  Copyright (c) 2004-2005 by Arno Puder
+ *  Copyright (c) 2004-2010 XMLVM
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -20,18 +20,26 @@
  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
  *  For more information, visit the XMLVM Home Page at
- *  http://www.xml11.org/xmlvm/
+ *  http://www.xmlvm.org
  *
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:vm="http://xmlvm.org"
                 xmlns:jvm="http://xmlvm.org/jvm"
+                xmlns:dex="http://xmlvm.org/dex"
                 version="2.0">
 
 <xsl:output method="text" indent="no"/>
 
 <xsl:template match="vm:xmlvm">
+  <xsl:text>
+    function ERROR(text) {
+      if (window.console) {
+        window.console.log("ERROR: " + text);
+      }
+    }
+</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 
@@ -143,26 +151,6 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 </xsl:template>
 
 
-<xsl:template match="jvm:code">
-  <xsl:text>
-    {
-      var __locals = new Array(</xsl:text>
-    <xsl:value-of select="@locals"/>
-    <xsl:text>);
-      var __stack = new Array(</xsl:text>
-    <xsl:value-of select="@stack"/>
-    <xsl:text>);
-      var __sp = 0;
-      var __op1;
-      var __op2;</xsl:text>
-  <xsl:call-template name="initLocals"/>
-  <xsl:apply-templates/>
-  <xsl:text>
-    }</xsl:text>
-</xsl:template>
-
-
-
 <xsl:template match="vm:method[@isNative = 'true' or count(@nativeInterface) != 0]">
   <xsl:call-template name="emitPrototype"/>
   <xsl:text>
@@ -211,6 +199,18 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
 <xsl:template match="jvm:code[count(../@nativeInterface) = 0]">
   <xsl:text>
+    {
+      var __locals = new Array(</xsl:text>
+    <xsl:value-of select="@locals"/>
+    <xsl:text>);
+      var __stack = new Array(</xsl:text>
+    <xsl:value-of select="@stack"/>
+    <xsl:text>);
+      var __sp = 0;
+      var __op1;
+      var __op2;</xsl:text>
+  <xsl:call-template name="initLocals"/>
+  <xsl:text>
         var __next_label = -1;
         while (1) {
             switch (__next_label) {
@@ -221,6 +221,8 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
                 alert("XMLVM internal error: reached default of switch");
             }
         }</xsl:text>
+  <xsl:text>
+    }</xsl:text>        
 </xsl:template>
 
 
@@ -1161,7 +1163,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 <!--
    initLocals
    ==========
-   This function is called from the template for <method>. Its task is
+   This function is called from the template for <jvm:code>. Its task is
    to initialize the local variables. This basically means that the
    actual parameters have to be copied to __locals[i]. If the method
    is not static, 'this' will be copied to __locals[0]. This function
@@ -1170,7 +1172,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 -->
 
 <xsl:template name="initLocals">
-    <xsl:for-each select="jvm:code/jvm:var">
+    <xsl:for-each select="jvm:var">
 		<xsl:choose>    
       		<xsl:when test="@name = 'this'">
       			<xsl:text>
@@ -1341,6 +1343,165 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 </xsl:template>
 
 
+
+<!--
+ _____    _____  __    __ 
+|  _  \  | ____| \ \  / / 
+| | |  | | |__    \ \/ /  
+| | |  | |  __|    }  {   
+| |_|  | | |___   / /\ \  
+|_____/  |_____| /_/  \_\ 
+-->
+
+<xsl:template match="dex:code">
+  <xsl:text>
+    {
+        var __reg = new Array(</xsl:text>
+  <xsl:value-of select="@register-size" />
+  <xsl:text>);</xsl:text>
+  <xsl:call-template name="initLocalsDex" />
+  <xsl:text>
+        var __next_label = -1;
+        while (1) {
+          switch (__next_label) {
+            case -1:</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>
+            default:
+              alert("XMLVM internal error: reached default of switch");
+          }
+        }</xsl:text>
+  <xsl:text>
+    }</xsl:text>
+</xsl:template>
+
+<xsl:template match="dex:return-void">
+  <xsl:text>
+            return;</xsl:text>
+</xsl:template>
+
+<!--  dex:return-object
+      =================  -->
+<xsl:template match="dex:return-object">
+  <xsl:text>
+            return __reg[</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>];</xsl:text>
+</xsl:template>
+
+
+<!--  dex:var
+      =======  -->
+<xsl:template match="dex:var">
+  <!-- do nothing -->
+</xsl:template>
+
+
+<!--  dex:sget-object
+      ===============  -->
+<xsl:template match="dex:sget-object">
+  <xsl:text>
+            __reg[</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text>] = </xsl:text>
+  <xsl:call-template name="emitScopedName">
+    <xsl:with-param name="string" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:text>.$</xsl:text>
+  <xsl:value-of select="@member-name" />
+  <xsl:text>;</xsl:text>
+</xsl:template>
+
+
+<!--  dex:const-string
+      ================  -->
+<xsl:template match="dex:const-string">
+  <xsl:text>
+            __reg[</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text>] = "</xsl:text>
+  <xsl:value-of select="@value" />
+  <xsl:text>";</xsl:text>
+</xsl:template>
+
+
+<!--  dex:invoke-virtual
+      ================  -->
+<xsl:template match="dex:invoke-virtual|dex:invoke-direct">
+  <xsl:text>
+            __reg[</xsl:text>
+  <xsl:value-of select="@register" />
+  <xsl:text>].</xsl:text>
+  <xsl:call-template name="emitMethodName">
+    <xsl:with-param name="name" select="@method"/>
+    <xsl:with-param name="class-type" select="@class-type" />
+  </xsl:call-template>
+  <xsl:call-template name="appendSignatureDex">
+    <xsl:with-param name="signature" select="dex:parameters"/>
+  </xsl:call-template>
+  <xsl:text>(</xsl:text>
+    <xsl:for-each select="dex:parameters/dex:parameter">
+    <xsl:if test="position() != 1">
+      <xsl:text>, </xsl:text>
+    </xsl:if>
+    <xsl:text>__reg[</xsl:text>
+    <xsl:value-of select="@register"/>
+    <xsl:text>]</xsl:text>
+  </xsl:for-each>
+  <xsl:text>);</xsl:text>
+</xsl:template>
+
+
+<!--  initLocalsDex
+      =============  -->
+<xsl:template name="initLocalsDex">
+    <xsl:for-each select="dex:var">
+		<xsl:choose>    
+      		<xsl:when test="@name = 'this'">
+      			<xsl:text>
+        __reg[</xsl:text>
+    			<xsl:value-of select="@register" />
+    			<xsl:text>] = this;</xsl:text>
+     		</xsl:when>
+     		<xsl:otherwise>
+     			<xsl:if test="(position()-count(../dex:var[@name='this'])) &lt;= count(../../vm:signature/vm:parameter)" >
+     			  <xsl:text>
+     	__reg[</xsl:text>
+     	  		  <xsl:value-of select="@register" />
+     	  		  <xsl:text>] = __arg</xsl:text>
+     	  		  <xsl:value-of select="(position()-count(../dex:var[@name='this']))" />
+     	  		  <xsl:text>;</xsl:text>
+     			</xsl:if>
+     		</xsl:otherwise>
+     	</xsl:choose>
+    </xsl:for-each>
+</xsl:template>
+
+
+<!--  appendSignatureDex
+      ==================  -->
+<xsl:template name="appendSignatureDex">
+  <xsl:param name="signature" />
+  <xsl:choose>
+    <xsl:when test="count(dex:parameters/dex:parameter) != 0">
+      <xsl:text>__</xsl:text>
+      <xsl:for-each select="dex:parameters/dex:parameter">
+        <xsl:text>_</xsl:text>
+        <xsl:call-template name="emitScopedName">
+          <xsl:with-param name="string">
+            <xsl:call-template name="replaceString">
+              <xsl:with-param name="text" select="@type" />
+              <xsl:with-param name="replace">[]</xsl:with-param>
+              <xsl:with-param name="with">_ARRAYTYPE</xsl:with-param>
+            </xsl:call-template>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:for-each>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+
+
 <!--
    Default template. If the XMLVM file should contain an instruction
    that is not handled by this stylesheet, this default template
@@ -1353,6 +1514,5 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:value-of select="name()"/>
     <xsl:text>");</xsl:text>
 </xsl:template>
-
 
 </xsl:stylesheet>
