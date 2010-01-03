@@ -536,11 +536,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         if (instruction instanceof CodeAddress) {
             // Ignore.
         } else if (instruction instanceof LocalSnapshot) {
-            // Ingore.
+            // Ignore.
         } else if (instruction instanceof OddSpacer) {
-            // Ingore NOPs.
+            // Ignore NOPs.
         } else if (instruction instanceof SwitchData) {
-            // Ingore here because we already processes these and they were
+            // Ignore here because we already processes these and they were
             // given to this method as an argument.
         } else if (instruction instanceof LocalStart) {
             // As we extract the locals information up-front we don't need to
