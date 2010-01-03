@@ -796,8 +796,6 @@ public class View {
             this.width = right - left;
             this.height = bottom - top;
             uiView.setFrame(new CGRect(left, top, width, height));
-            uiView.setBounds(new CGRect(paddingLeft, paddingTop,
-                    width - paddingLeft - paddingRight, height - paddingTop - paddingBottom));
 
             // mPrivateFlags |= HAS_BOUNDS;
 
