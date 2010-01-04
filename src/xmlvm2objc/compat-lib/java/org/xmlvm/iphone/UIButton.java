@@ -24,6 +24,7 @@ public class UIButton extends UIControl {
 
     protected UIButton(int UIButtonType) {
         super();
+        callDelegates = false;
         this.buttonType = UIButtonType;
         switch (buttonType) {
         case UIAlertButtonRenderer.AlertViewType:

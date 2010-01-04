@@ -7,6 +7,7 @@ import org.xmlvm.iphone.internal.Simulator;
 public class UIResponder {
 
     private UIResponderDelegate delegate = null;
+    protected boolean callDelegates = true;
 
     public UIResponder() {
         Simulator.addTouchesListener(this);
@@ -19,7 +20,7 @@ public class UIResponder {
     }
 
     public void xmlvmInternalTouchesBegan(Set<UITouch> touches, UIEvent event) {
-        if (getResponderDelegate() != null) {
+        if (callDelegates && getResponderDelegate() != null) {
             if (getResponderDelegate().touchesBegan(touches, event))
                 return;
         }
@@ -31,7 +32,7 @@ public class UIResponder {
     }
 
     public void xmlvmInternalTouchesCancelled(Set<UITouch> touches, UIEvent event) {
-        if (getResponderDelegate() != null) {
+        if (callDelegates && getResponderDelegate() != null) {
             if (getResponderDelegate().touchesCancelled(touches, event))
                 return;
         }
@@ -43,7 +44,7 @@ public class UIResponder {
     }
 
     public void xmlvmInternalTouchesEnded(Set<UITouch> touches, UIEvent event) {
-        if (getResponderDelegate() != null) {
+        if (callDelegates && getResponderDelegate() != null) {
             if (getResponderDelegate().touchesEnded(touches, event))
                 return;
         }
@@ -55,7 +56,7 @@ public class UIResponder {
     }
 
     public void xmlvmInternalTouchesMoved(Set<UITouch> touches, UIEvent event) {
-        if (getResponderDelegate() != null) {
+        if (callDelegates && getResponderDelegate() != null) {
             if (getResponderDelegate().touchesMoved(touches, event))
                 return;
         }
