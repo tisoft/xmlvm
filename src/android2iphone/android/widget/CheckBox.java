@@ -6,6 +6,7 @@ import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ViewGroup;
 
 public class CheckBox extends CompoundButton {
@@ -55,4 +56,12 @@ public class CheckBox extends CompoundButton {
         setMeasuredDimension((int) UISwitch.kSwitchButtonWidth + paddingLeft + paddingRight,
                 (int) UISwitch.kSwitchButtonHeight + paddingTop + paddingBottom);
     }
+
+    @Override
+    protected void xmlvmUpdateUIView(boolean checked) {
+        // TODO Auto-generated method stub
+        Log.w("xmlvm", "CheckBox.xmlvmUpdateUIView() not implemented");
+    }
+    
+    
 }

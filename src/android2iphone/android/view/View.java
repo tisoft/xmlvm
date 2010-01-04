@@ -67,6 +67,7 @@ public class View {
 
     protected final int[]            EMPTY_STATE_SET        = {};
     protected final int[]            PRESSED_STATE_SET      = { 0x010100a7 };
+    protected final int[]            CHECKED_STATE_SET      = {};
 
     private boolean                  ignoreRequestLayout;
     private int                      flags;
@@ -96,6 +97,7 @@ public class View {
     protected Drawable               backgroundDrawable;
     private Resources                mResources;
     private Handler                  handler;
+    private OnClickListener          onClickListener;
 
     /**
      * Copyright (C) 2006 The Android Open Source Project
@@ -322,10 +324,14 @@ public class View {
     }
 
     public void setOnClickListener(OnClickListener onClickListener) {
-        Assert.NOT_IMPLEMENTED();
+        this.onClickListener = onClickListener;
     }
 
     protected boolean processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
+        if (action == MotionEvent.ACTION_UP && onClickListener != null) {
+            onClickListener.onClick(this);
+        }
+        
         UITouch firstTouch = touches.iterator().next();
         CGPoint point = firstTouch.locationInView(uiView);
         MotionEvent motionEvent = new MotionEvent(action, (int) point.x, (int) point.y);

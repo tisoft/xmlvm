@@ -20,16 +20,12 @@
 
 package android.widget;
 
-import java.util.Set;
-
-import org.xmlvm.iphone.UIEvent;
-import org.xmlvm.iphone.UIResponderDelegate;
-import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.internal.UIToggleButton;
 import android.util.AttributeSet;
+import android.view.View.OnClickListener;
 
 /**
  * @author arno
@@ -58,38 +54,10 @@ public class ToggleButton extends CompoundButton {
         return new UIToggleButton();
     }
 
-    @Override
-    public void setOnClickListener(OnClickListener listener) {
-        final OnClickListener theListener = listener;
-        ((UIToggleButton) xmlvmGetUIView()).setDelegate(new UIResponderDelegate() {
-
-            @Override
-            public boolean touchesBegan(Set<UITouch> touches, UIEvent event) {
-                return false;
-            }
-
-            @Override
-            public boolean touchesCancelled(Set<UITouch> touches, UIEvent event) {
-                return false;
-            }
-
-            @Override
-            public boolean touchesEnded(Set<UITouch> touches, UIEvent event) {
-                theListener.onClick(ToggleButton.this);
-                return true;
-            }
-
-            @Override
-            public boolean touchesMoved(Set<UITouch> touches, UIEvent event) {
-                return false;
-            }
-
-        });
-    }
-
     public void setText(String text) {
         this.text = text;
         ((UIToggleButton) xmlvmGetUIView()).setText(text);
+        requestLayout();
     }
 
     void setTextOff(String textOff) {
@@ -105,9 +73,14 @@ public class ToggleButton extends CompoundButton {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int minWidth = getSuggestedMinimumWidth();
         int minHeight = getSuggestedMinimumHeight();
-        
+
         // TODO: Also consider the button's text size to determine its size
         setMeasuredDimension(minWidth, minHeight);
-
     }
+
+    @Override
+    protected void xmlvmUpdateUIView(boolean checked) {
+        ((UIToggleButton) xmlvmGetUIView()).setSelected(checked);
+    }
+
 }

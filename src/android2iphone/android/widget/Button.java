@@ -75,15 +75,19 @@ public class Button extends TextView {
     }
 
     public void setOnClickListener(OnClickListener listener) {
-        final OnClickListener theListener = listener;
-        ((UIControl) xmlvmGetUIView()).addTarget(new UIControlDelegate() {
+        if (!(this instanceof CompoundButton)) {
+            final OnClickListener theListener = listener;
+            ((UIControl) xmlvmGetUIView()).addTarget(new UIControlDelegate() {
 
-            @Override
-            public void raiseEvent(UIControlDelegate sender, int eventType) {
-                theListener.onClick(Button.this);
-            }
+                @Override
+                public void raiseEvent(UIControlDelegate sender, int eventType) {
+                    theListener.onClick(Button.this);
+                }
 
-        }, UIControlEvent.TouchUpInside);
+            }, UIControlEvent.TouchUpInside);
+        } else {
+            super.setOnClickListener(listener);
+        }
     }
 
     @Override

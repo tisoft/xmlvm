@@ -20,18 +20,25 @@
 
 package android.widget;
 
+import java.util.Set;
+
+import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UITouch;
+
 import android.content.Context;
 import android.internal.Assert;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 
 /**
  * @author wkorn
  * 
  */
-public class CompoundButton extends Button {
+public abstract class CompoundButton extends Button {
 
-    private boolean checked = false;
-    
+    private boolean              checked           = false;
+    protected static final int[] CHECKED_STATE_SET = { 0x010100a0 };
+
     public interface OnCheckedChangeListener {
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked);
     }
@@ -51,17 +58,33 @@ public class CompoundButton extends Button {
     public void setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener listener) {
         Assert.NOT_IMPLEMENTED();
     }
-    
+
     public void setChecked(boolean checked) {
         this.checked = checked;
+        xmlvmSetDrawableState(this.checked ? CHECKED_STATE_SET : EMPTY_STATE_SET);
+        xmlvmUpdateUIView(this.checked);
     }
 
     public boolean isChecked() {
         return this.checked;
     }
-    
+
     public void toggle() {
         this.checked = !this.checked;
+        xmlvmSetDrawableState(this.checked ? CHECKED_STATE_SET : EMPTY_STATE_SET);
+        xmlvmUpdateUIView(this.checked);
+    }
+
+    protected abstract void xmlvmUpdateUIView(boolean checked);
+
+    @Override
+    protected boolean processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
+        if (action == MotionEvent.ACTION_UP) {
+            this.checked = !this.checked;
+            xmlvmSetDrawableState(this.checked ? CHECKED_STATE_SET : EMPTY_STATE_SET);
+        }
+
+        return super.processTouchesEvent(action, touches, event);
     }
 
 }

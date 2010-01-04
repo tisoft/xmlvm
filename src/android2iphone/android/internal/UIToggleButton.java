@@ -31,12 +31,12 @@ import org.xmlvm.iphone.UIView;
 /**
  * UIToggleButton is a fictitious Cocoa class that mimics Android's ToggleButton
  * widget. It is needed because Cocoa does not offer any equivalent widgets.
- * 
  */
 public class UIToggleButton extends UIView {
 
     private String  textOn   = "ON";
     private String  textOff  = "OFF";
+    private String  text     = "";
 
     private boolean selected = false;
 
@@ -77,7 +77,17 @@ public class UIToggleButton extends UIView {
     }
 
     public void setText(String text) {
-        // TODO need to do something with text
+        this.text = text;
         
+        // TODO need to do something with text
+    }
+    
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+        redraw();
+    }
+    
+    public boolean isSelected() {
+        return selected;
     }
 }
