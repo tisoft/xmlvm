@@ -130,9 +130,13 @@ public class TextView extends View {
 
         CGSize size = xmlvmGetTextSize();
         int width = MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                .getSize(widthMeasureSpec) : 2 * xmlvmGetInsetsX() + (int) size.width;
+                .getSize(widthMeasureSpec) : Math.max(2 * xmlvmGetInsetsX(), paddingLeft
+                + paddingRight)
+                + (int) size.width;
         int height = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY ? MeasureSpec
-                .getSize(heightMeasureSpec) : 2 * xmlvmGetInsetsY() + (int) size.height;
+                .getSize(heightMeasureSpec) : Math.max(2 * xmlvmGetInsetsY(), paddingTop
+                + paddingBottom)
+                + (int) size.height;
         setMeasuredDimension(Math.max(width, minWidth), Math.max(height, minHeight));
     }
 

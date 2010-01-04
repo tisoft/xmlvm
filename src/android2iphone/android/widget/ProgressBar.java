@@ -62,7 +62,8 @@ public class ProgressBar extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension(LARGE_SPINNER_SIZE, LARGE_SPINNER_SIZE);
+        setMeasuredDimension(LARGE_SPINNER_SIZE + paddingLeft + paddingRight, LARGE_SPINNER_SIZE
+                + paddingTop + paddingBottom);
     }
 
 }

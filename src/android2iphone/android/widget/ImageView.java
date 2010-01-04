@@ -195,10 +195,8 @@ public class ImageView extends View {
             height = r.height();
         }
 
-        width = Math.max(getSuggestedMinimumWidth(), width);
-        height = Math.max(getSuggestedMinimumHeight(), height);
-        width += paddingLeft + paddingRight;
-        height += paddingTop + paddingBottom;
+        width = Math.max(getSuggestedMinimumWidth(), width + paddingLeft + paddingRight);
+        height = Math.max(getSuggestedMinimumHeight(), height + paddingTop + paddingBottom);
 
         setMeasuredDimension(width, height);
     }

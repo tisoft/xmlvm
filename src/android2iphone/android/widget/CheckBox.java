@@ -52,6 +52,7 @@ public class CheckBox extends CompoundButton {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension((int) UISwitch.kSwitchButtonWidth, (int) UISwitch.kSwitchButtonHeight);
+        setMeasuredDimension((int) UISwitch.kSwitchButtonWidth + paddingLeft + paddingRight,
+                (int) UISwitch.kSwitchButtonHeight + paddingTop + paddingBottom);
     }
 }
