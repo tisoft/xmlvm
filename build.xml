@@ -61,6 +61,7 @@
 	<path id="classpath.run">
 		<pathelement location="${xmlvm.bin}" />
 		<pathelement location="src/xmlvm2objc/xsl" />
+		<pathelement location="lib/dx.jar" />
 		<pathelement location="lib/bcel.jar" />
 		<pathelement location="lib/mbel.jar" />
 		<pathelement location="lib/jdom.jar" />

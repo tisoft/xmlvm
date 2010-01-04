@@ -88,6 +88,7 @@ import com.android.dx.rop.cst.CstMethodRef;
 import com.android.dx.rop.cst.CstNat;
 import com.android.dx.rop.cst.CstString;
 import com.android.dx.rop.cst.CstType;
+import com.android.dx.rop.cst.TypedConstant;
 import com.android.dx.rop.type.Prototype;
 import com.android.dx.rop.type.StdTypeList;
 import com.android.dx.rop.type.TypeList;
@@ -306,6 +307,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             Element fieldElement = new Element("field", NS_XMLVM);
             fieldElement.setAttribute("name", field.getName().toHuman());
             fieldElement.setAttribute("type", field.getNat().getFieldType().toHuman());
+            TypedConstant value = field.getConstantValue();
+            if (value != null) {
+                fieldElement.setAttribute("value", value.toHuman());
+            }
             processAccessFlags(field.getAccessFlags(), fieldElement);
             classElement.addContent(fieldElement);
         }
@@ -390,7 +395,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             DalvInsnList instructions = code.getInsns();
             codeElement.setAttribute("register-size", String.valueOf(instructions
                     .getRegistersSize()));
-            processLocals(code.getLocals(), codeElement);
+            processLocals(code.getLocals(), meth.getPrototype().getParameterTypes(), codeElement);
             processCatchTable(code.getCatches(), codeElement);
             Set<Integer> targets = extractTargets(instructions);
             Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
@@ -425,14 +430,39 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * Extracts the local variables and add {@code var} elements to the {@code
      * code} element for each of them.
      */
-    private static void processLocals(LocalList localList, Element codeElement) {
+    private static void processLocals(LocalList localList, StdTypeList parameterTypes,
+            Element codeElement) {
+        // Pass 1: remember all registers that are used by the explicit <var> declarations
+        Set<Integer> registerList = new HashSet<Integer>();
+        for (int i = 0; i < localList.size(); i++) {
+            com.android.dx.dex.code.LocalList.Entry localEntry = localList.get(i);
+            registerList.add(localEntry.getRegister());
+        }
+
+        // Pass 2a: emit all <var> declarations
         for (int i = 0; i < localList.size(); ++i) {
             com.android.dx.dex.code.LocalList.Entry localEntry = localList.get(i);
             Element localElement = new Element("var", NS_DEX);
-            localElement.setAttribute("name", localEntry.getName().toHuman());
-            localElement.setAttribute("register", String.valueOf(localEntry.getRegister()));
+            String name = localEntry.getName().toHuman();
+            int register = localEntry.getRegister();
+            localElement.setAttribute("name", name);
+            localElement.setAttribute("register", "" + register);
             localElement.setAttribute("type", localEntry.getType().toHuman());
             codeElement.addContent(localElement);
+            if (name.equals("this")) {
+                // Pass 2b: starting from 'this', look for synthetic <var>s that are not generated
+                // by DEX. We stop generating synthetic <var> when we get to a register number
+                // that is already used by another (explicit) <var>.
+                int index = 0;
+                while (!registerList.contains(++register) && index < parameterTypes.size()) {
+                    localElement = new Element("var", NS_DEX);
+                    localElement.setAttribute("name", "__SYNTHETIC_" + index);
+                    localElement.setAttribute("register", "" + register);
+                    localElement.setAttribute("type", parameterTypes.getType(index).toHuman());
+                    codeElement.addContent(localElement);
+                    index++;
+                }
+            }
         }
     }
 
@@ -585,7 +615,14 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 dexInstruction = new Element(
                         sanitizeInstructionName(cstInsn.getOpcode().getName()), NS_DEX);
                 Constant constant = cstInsn.getConstant();
-                dexInstruction.setAttribute("type", constant.typeName());
+                // TODO hack
+                String type = constant.typeName();
+                String name = "kind";
+                if (!type.equals("field") && !type.equals("known-null") && !type.equals("type")
+                        && !type.equals("string")) {
+                    name = "type";
+                }
+                dexInstruction.setAttribute(name, constant.typeName());
                 if (constant instanceof CstMemberRef) {
                     CstMemberRef memberRef = (CstMemberRef) constant;
                     dexInstruction.setAttribute("class-type", memberRef.getDefiningClass()
@@ -596,7 +633,15 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     dexInstruction.setAttribute("member-name", nameAndType.getName().toHuman());
                 } else if (constant instanceof CstString) {
                     CstString cstString = (CstString) constant;
-                    dexInstruction.setAttribute("value", cstString.getString().getString());
+                    String valueOriginal = cstString.getString().getString();
+                    String value = "";
+                    // Convert special characters in string to octal notation
+                    for (int i = 0; i < valueOriginal.length(); i++) {
+                        char ch = valueOriginal.charAt(i);
+                        value += (ch < ' ' || ch > 'z') ? String.format("\\%03o", new Integer(ch))
+                                : ch;
+                    }
+                    dexInstruction.setAttribute("value", value);
                 } else {
                     dexInstruction.setAttribute("value", constant.toHuman());
                 }
@@ -670,6 +715,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             // String type = registers.get(i).getTypeBearer().toHuman();
             element.setAttribute(REGISTER_NAMES[i], String.valueOf(registerNumber(registers.get(i)
                     .regString())));
+            element.setAttribute(REGISTER_NAMES[i] + "-type", registers.get(i).getType().toHuman());
         }
     }
 

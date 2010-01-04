@@ -5,6 +5,7 @@
                 xmlns:xs = "http://www.w3.org/2001/XMLSchema"
                 xmlns:vm ="http://xmlvm.org"
                 xmlns:jvm="http://xmlvm.org/jvm"
+                xmlns:dex="http://xmlvm.org/dex"
                 version="2.0">
 
 <xsl:param name="pass">emitHeader</xsl:param>
@@ -1684,7 +1685,7 @@ int main(int argc, char* argv[])
   <xsl:param name="type" as="xs:string"/>
   
   <xsl:value-of select="not($type='byte' or $type='short' or $type='int' or $type='float' or $type='long' or $type='double' or
-                            $type='char' or $type='boolean')"/>
+                            $type='char' or $type='boolean' or $type='void')"/>
 </xsl:function>
 
 
@@ -1903,6 +1904,1104 @@ int main(int argc, char* argv[])
     _stack[_sp++].l = _op1.l - _op2.l;
 </xsl:text>
 </xsl:template>
+
+<!-- ********************************************************************************** -->
+<!-- ********************************************************************************** -->
+<!-- ********************************************************************************** -->
+<!-- ********************************************************************************** -->
+<!-- ********************************************************************************** -->
+<!-- ********************************************************************************** -->
+<!-- DEX Templates -->
+<!-- http://www.netmite.com/android/mydroid/dalvik/docs/dalvik-bytecode.html -->
+<!-- http://pallergabor.uw.hu/androidblog/dalvik_opcodes.html -->
+
+
+<xsl:template match="dex:code">
+<xsl:text>{
+    id        _res;
+</xsl:text>
+  <xsl:variable name="limit" select="@register-size" as="xs:integer"/>
+  <xsl:for-each select="(0 to $limit - 1)">
+    <xsl:text>    XMLVMElem _r</xsl:text>
+    <xsl:value-of select="position() - 1"/>
+    <xsl:text>;
+</xsl:text>
+  </xsl:for-each>
+  <xsl:if test="vm:useAutoReleasePool(.)">
+    <xsl:text>    NSAutoreleasePool* _pool = [[NSAutoreleasePool alloc] init];
+</xsl:text>
+  </xsl:if>
+  <xsl:call-template name="initDexLocals"/>
+  <xsl:apply-templates/>
+  <xsl:text>}
+
+
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:var">
+  <!-- Do nothing -->
+</xsl:template>
+
+
+<xsl:template match="dex:invoke-static|dex:invoke-static-range">
+  <xsl:variable name="returnTypedAccess">
+    <xsl:call-template name="emitTypedAccess">
+      <xsl:with-param name="type" select="dex:parameters/dex:return/@type"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:text>    </xsl:text>
+  <xsl:if test="dex:parameters/dex:return/@type != 'void'">
+    <xsl:choose>
+      <xsl:when test="dex:parameters/dex:return/@register">
+        <xsl:text>_r</xsl:text>
+        <xsl:value-of select="dex:parameters/dex:return/@register"/>
+        <xsl:value-of select="$returnTypedAccess"/>
+        <xsl:text> = </xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
+          <xsl:text>_res = </xsl:text>
+        </xsl:if>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
+  <xsl:text>[</xsl:text>
+  <xsl:value-of select="vm:fixname(@class-type)"/>
+  <xsl:text> </xsl:text>
+  <xsl:value-of select="@method"/>
+  <xsl:call-template name="appendDexSignature"/>
+  <xsl:for-each select="dex:parameters/dex:parameter">
+    <xsl:text>:_r</xsl:text>
+    <xsl:value-of select="@register"/>
+    <xsl:call-template name="emitTypedAccess">
+      <xsl:with-param name="type" select="@type"/>
+    </xsl:call-template>
+  </xsl:for-each>
+  <xsl:text>];
+</xsl:text>
+  <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
+    <xsl:choose>
+      <xsl:when test="dex:parameters/dex:return/@register">
+        <xsl:text>    [_r</xsl:text>
+        <xsl:value-of select="dex:parameters/dex:return/@register"/>
+        <xsl:value-of select="$returnTypedAccess"/>
+        <xsl:text> autorelease];</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>    [_res release];</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>
+</xsl:text>
+  </xsl:if>
+</xsl:template>
+
+
+<xsl:template match="dex:invoke-direct|dex:invoke-direct-range|dex:invoke-virtual|dex:invoke-virtual-range|dex:invoke-interface|dex:invoke-interface-range">
+  <xsl:variable name="returnTypedAccess">
+    <xsl:call-template name="emitTypedAccess">
+      <xsl:with-param name="type" select="dex:parameters/dex:return/@type"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:text>    </xsl:text>
+  <xsl:if test="dex:parameters/dex:return/@type != 'void'">
+    <xsl:choose>
+      <xsl:when test="dex:parameters/dex:return/@register">
+        <xsl:text>_r</xsl:text>
+        <xsl:value-of select="dex:parameters/dex:return/@register"/>
+        <xsl:value-of select="$returnTypedAccess"/>
+        <xsl:text> = </xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
+          <xsl:text>_res = </xsl:text>
+        </xsl:if>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
+  <xsl:text>[((</xsl:text>
+  
+  <xsl:variable name="baseClass">
+    <xsl:value-of select="ancestor::dex:class/@extends"/>
+  </xsl:variable>
+  <xsl:choose>
+ 	<xsl:when test="name() = 'dex:invoke-virtual' or compare(@class-type,$baseClass) != 0">
+		  <xsl:call-template name="emitType">
+		    <xsl:with-param name="type" select="@class-type"/>
+  			</xsl:call-template>
+  		<xsl:text>) _r</xsl:text>
+  		<xsl:value-of select="@register"/>
+  		<xsl:text>.o) </xsl:text>
+  	</xsl:when>
+    <xsl:otherwise>
+	  <xsl:text>super)) </xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+
+  <xsl:call-template name="emitMethodName">
+    <xsl:with-param name="name" select="@method"/>
+    <xsl:with-param name="class-type" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:call-template name="appendDexSignature"/>
+  <xsl:for-each select="dex:parameters/dex:parameter">
+    <xsl:text>:_r</xsl:text>
+    <xsl:value-of select="@register"/>
+    <xsl:call-template name="emitTypedAccess">
+      <xsl:with-param name="type" select="@type"/>
+    </xsl:call-template>
+  </xsl:for-each>
+  <xsl:text>];
+</xsl:text>
+  <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
+    <xsl:choose>
+      <xsl:when test="dex:parameters/dex:return/@register">
+        <xsl:text>    [_r</xsl:text>
+        <xsl:value-of select="dex:parameters/dex:return/@register"/>
+        <xsl:value-of select="$returnTypedAccess"/>
+        <xsl:text> autorelease];</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>    [_res release];</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>
+</xsl:text>
+  </xsl:if>
+</xsl:template>
+
+
+<xsl:template match="dex:invoke-super|dex:invoke-super-range">
+  <xsl:variable name="returnTypedAccess">
+    <xsl:call-template name="emitTypedAccess">
+      <xsl:with-param name="type" select="dex:parameters/dex:return/@type"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:text>    </xsl:text>
+  <xsl:if test="dex:parameters/dex:return/@type != 'void'">
+    <xsl:choose>
+      <xsl:when test="dex:parameters/dex:return/@register">
+        <xsl:text>_r</xsl:text>
+        <xsl:value-of select="dex:parameters/dex:return/@register"/>
+        <xsl:value-of select="$returnTypedAccess"/>
+        <xsl:text> = </xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
+          <xsl:text>_res = </xsl:text>
+        </xsl:if>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
+  <!-- TODO what to do with @register? -->
+  <xsl:text>[super </xsl:text>
+
+  <xsl:call-template name="emitMethodName">
+    <xsl:with-param name="name" select="@method"/>
+    <xsl:with-param name="class-type" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:call-template name="appendDexSignature"/>
+  <xsl:for-each select="dex:parameters/dex:parameter">
+    <xsl:text>:_r</xsl:text>
+    <xsl:value-of select="@register"/>
+    <xsl:call-template name="emitTypedAccess">
+      <xsl:with-param name="type" select="@type"/>
+    </xsl:call-template>
+  </xsl:for-each>
+  <xsl:text>];
+</xsl:text>
+  <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
+    <xsl:choose>
+      <xsl:when test="dex:parameters/dex:return/@register">
+        <xsl:text>    [_r</xsl:text>
+        <xsl:value-of select="dex:parameters/dex:return/@register"/>
+        <xsl:value-of select="$returnTypedAccess"/>
+        <xsl:text> autorelease];</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>    [_res release];</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>
+</xsl:text>
+  </xsl:if>
+</xsl:template>
+
+
+<xsl:template match="dex:monitor-enter">
+  <!-- TODO we can't map this to @synchronized {} because DEX may
+       generate multiple monitor-exit for one monitor-enter -->
+</xsl:template>
+
+
+<xsl:template match="dex:monitor-exit">
+  <!-- TODO we can't map this to @synchronized {} because DEX may
+       generate multiple monitor-exit for one monitor-enter -->
+</xsl:template>
+
+
+<xsl:template match="dex:catches">
+  <!-- TODO -->
+</xsl:template>
+
+
+<xsl:template match="dex:throw">
+  <!-- TODO -->
+</xsl:template>
+
+
+<xsl:template match="dex:move-exception">
+  <!-- TODO -->
+</xsl:template>
+
+
+<xsl:template match="dex:add-int|dex:add-int-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i + _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+  
+<xsl:template match="dex:sub-int|dex:sub-int-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i - _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+  
+<xsl:template match="dex:mul-int|dex:mul-int-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i * _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+  
+<xsl:template match="dex:div-int|dex:div-int-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i / _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+  
+<xsl:template match="dex:rem-int|dex:rem-int-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i % _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+  
+<xsl:template match="dex:add-float|dex:add-float-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.f = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f + _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.f;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:sub-float|dex:sub-float-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.f = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f - _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.f;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:div-float|dex:div-float-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.f = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f / _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.f;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:mul-float|dex:mul-float-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.f = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f * _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.f;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:add-double|dex:add-double-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.d = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.d + _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.d;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:sub-double|dex:sub-double-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.d = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.d - _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.d;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:div-double|dex:div-double-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.d = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.d / _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.d;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:mul-double|dex:mul-double-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.d = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.d * _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.d;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:return-void">
+  <xsl:if test="vm:useAutoReleasePool(.)">
+    <xsl:text>    [_pool release];
+</xsl:text>
+  </xsl:if>
+  <xsl:text>    return;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:return|dex:return-object">
+  <xsl:variable name="return-type" select="ancestor::vm:method/vm:signature/vm:return/@type"/>
+  <xsl:if test="vm:isObjectRef($return-type)">
+    <xsl:text>    [_r</xsl:text>
+    <xsl:value-of select="@vx"/>
+    <xsl:text>.o retain];
+</xsl:text>
+  </xsl:if>
+  <xsl:if test="vm:useAutoReleasePool(.)">
+    <xsl:text>    [_pool release];
+</xsl:text>
+  </xsl:if>
+  <xsl:text>    return _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="$return-type"/>
+  </xsl:call-template>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:new-instance">
+    <xsl:text>    _r</xsl:text>
+    <xsl:value-of select="@vx"/>
+    <xsl:text>.o = [[[</xsl:text>
+    <xsl:value-of select="vm:fixname(@value)"/>
+    <xsl:text> alloc] init] autorelease];
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:iget|dex:iget-wide|dex:iget-object|dex:iget-boolean">
+  <xsl:variable name="m">
+    <xsl:call-template name="emitTypedAccess">
+      <xsl:with-param name="type" select="@member-type"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:value-of select="$m"/>
+  <xsl:text> = [((</xsl:text>
+  <xsl:call-template name="emitType">
+    <xsl:with-param name="type" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:text>) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o) </xsl:text>
+  <xsl:text> _GET_</xsl:text>
+  <xsl:value-of select="vm:fixname(@member-name)"/>
+  <xsl:text>];
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:iput|dex:iput-wide|dex:iput-object|dex:iput-boolean">
+  <xsl:variable name="m">
+    <xsl:call-template name="emitTypedAccess">
+      <xsl:with-param name="type" select="@member-type"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:text>    [((</xsl:text>
+  <xsl:call-template name="emitType">
+    <xsl:with-param name="type" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:text>) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o) _PUT_</xsl:text>
+  <xsl:value-of select="vm:fixname(@member-name)"/>
+  <xsl:text>: _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:value-of select="$m"/>
+  <xsl:text>];
+</xsl:text>
+</xsl:template>
+
+
+
+<xsl:template match="dex:sget|dex:sget-object">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@member-type"/>
+  </xsl:call-template>
+  <xsl:text> = [</xsl:text>
+  <xsl:value-of select="vm:fixname(@class-type)"/>
+  <xsl:text> _GET_</xsl:text>
+  <xsl:value-of select="vm:fixname(@member-name)"/>
+  <xsl:text>];
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:sput|dex:sput-object">
+  <xsl:text>    [</xsl:text>
+  <xsl:value-of select="vm:fixname(@class-type)"/>
+  <xsl:text> _PUT_</xsl:text>
+  <xsl:value-of select="vm:fixname(@member-name)"/>
+  <xsl:text>: _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@member-type"/>
+  </xsl:call-template>
+  <xsl:text>];
+</xsl:text>
+</xsl:template>
+
+
+
+<xsl:template match="dex:const-4[@kind='known-null']"> 
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o = [NSNull null];
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:const|dex:const-4|dex:const-16|dex:const-wide|dex:const-wide-16|dex:const-high16|dex:const-wide-high16"> 
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@type"/>
+  </xsl:call-template>
+  <xsl:text> = </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xs:text>;
+</xs:text>
+</xsl:template>
+
+
+<xsl:template match="dex:const-string"> 
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o = @"</xsl:text>
+  <xsl:value-of select="@value"/>
+  <xs:text>";
+</xs:text>
+</xsl:template>
+
+
+<xsl:template match="dex:const-class"> 
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o = [[</xsl:text>
+  <xsl:value-of select="vm:fixname(@value)"/>
+  <xs:text> getClass__] autorelease];
+</xs:text>
+</xsl:template>
+
+
+<xsl:template match="dex:float-to-int">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = (int) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:float-to-double">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.d = (double) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:int-to-float">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.f = (float) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:int-to-long">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = (long) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:int-to-double">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.d = (double) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:double-to-float">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.f = (float) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.d;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:double-to-int">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = (int) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.d;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:cmpl-float">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f &gt; _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.f ? 1 : (_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f == _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.f ? 0 : -1);
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:cmpg-float">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f &gt; _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.f ? 1 : (_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f == _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.f ? 0 : -1);
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:cmpl-double">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.d &gt; _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.d ? 1 : (_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.d == _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.d ? 0 : -1);
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:cmpg-double">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.d &gt; _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.d ? 1 : (_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.d == _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.d ? 0 : -1);
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:neg-float">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.f = -_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:add-int-lit8">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i + </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:div-int-lit8">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i / </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:rem-int-lit8">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i % </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:label">
+  <xsl:text>    label</xsl:text>
+  <xsl:value-of select="@id"/>
+  <xsl:text>:;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:goto">
+  <xsl:text>    goto label</xsl:text>
+  <xsl:value-of select="@target"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:if-eqz">
+  <xsl:text>    if (_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:choose>
+    <xsl:when test="vm:isObjectRef(@vx-type)">
+      <xsl:text>.o == [NSNull null]</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="emitTypedAccess">
+        <xsl:with-param name="type" select="@vx-type"/>
+      </xsl:call-template>
+      <xsl:text> == 0</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:text>) goto label</xsl:text>
+  <xsl:value-of select="@target"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:if-nez">
+  <xsl:text>    if (_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:choose>
+    <xsl:when test="vm:isObjectRef(@vx-type)">
+      <xsl:text>.o != [NSNull null]</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="emitTypedAccess">
+        <xsl:with-param name="type" select="@vx-type"/>
+      </xsl:call-template>
+      <xsl:text> != 0</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:text>) goto label</xsl:text>
+  <xsl:value-of select="@target"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:if-gez">
+  <xsl:text>    if (_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+  <xsl:text> &gt;= 0) goto label</xsl:text>
+  <xsl:value-of select="@target"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:if-ltz">
+  <xsl:text>    if (_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+  <xsl:text> &lt; 0) goto label</xsl:text>
+  <xsl:value-of select="@target"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:if-lez">
+  <xsl:text>    if (_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+  <xsl:text> &lt;= 0) goto label</xsl:text>
+  <xsl:value-of select="@target"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:if-gtz">
+  <xsl:text>    if (_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+  <xsl:text> &gt; 0) goto label</xsl:text>
+  <xsl:value-of select="@target"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:if-ge">
+  <xsl:text>    if (_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+  <xsl:text> &gt;= _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vy-type"/>
+  </xsl:call-template>
+  <xsl:text>) goto label</xsl:text>
+  <xsl:value-of select="@target"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:if-le">
+  <xsl:text>    if (_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+  <xsl:text> &lt;= _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vy-type"/>
+  </xsl:call-template>
+  <xsl:text>) goto label</xsl:text>
+  <xsl:value-of select="@target"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:if-lt">
+  <xsl:text>    if (_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+  <xsl:text> &lt; _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vy-type"/>
+  </xsl:call-template>
+  <xsl:text>) goto label</xsl:text>
+  <xsl:value-of select="@target"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:if-eq">
+  <xsl:text>    if (_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+  <xsl:text> == _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vy-type"/>
+  </xsl:call-template>
+  <xsl:text>) goto label</xsl:text>
+  <xsl:value-of select="@target"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:if-ne">
+  <xsl:text>    if (_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+  <xsl:text> != _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vy-type"/>
+  </xsl:call-template>
+  <xsl:text>) goto label</xsl:text>
+  <xsl:value-of select="@target"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:sparse-switch|dex:packed-switch">
+  <xsl:text>    switch (_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i) {
+</xsl:text>
+  <xsl:for-each select="dex:case">
+    <xsl:text>    case </xsl:text>
+    <xsl:value-of select="@key"/>
+    <xsl:text>: goto label</xsl:text>
+    <xsl:value-of select="@label"/>
+    <xsl:text>;
+</xsl:text>
+  </xsl:for-each>
+  <xsl:text>    }
+</xsl:text>
+</xsl:template>
+
+<xsl:template match="dex:new-array">
+  <xsl:variable name="base-type" select="replace(@value, '\[\]', '')"/>
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o = [XMLVMArray createSingleDimensionWithType:</xsl:text>
+  <xsl:value-of select="vm:typeID($base-type)"/>
+  <xsl:text> andSize:_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i];
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:array-length">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = [_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o count];
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:aget|dex:aget-char">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = ((XMLVMArray*) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o)->array.i[_r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i];
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:aget-object">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o = [_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o objectAtIndex:_r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i];
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:aput|dex:aput-char">
+  <xsl:text>    ((XMLVMArray*) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o)->array.i[_r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i] = _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:aput-object">
+  <xsl:text>    [_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o replaceObjectAtIndex:_r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i withObject:_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o];
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:check-cast">
+  <!-- TODO should do a runtime type check -->
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o;
+</xsl:text>
+</xsl:template>
+
+
+
+<xsl:template match="dex:move|dex:move-object">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+
+<xsl:template name="initDexLocals">
+    <xsl:for-each select="dex:var">
+		<xsl:choose>    
+      		<xsl:when test="@name = 'this'">
+      			<xsl:text>    _r</xsl:text>
+    			<xsl:value-of select="@register" />
+    			<xsl:text>.o = self;
+</xsl:text>
+     		</xsl:when>
+     		<xsl:otherwise>
+     			<xsl:if test="(position()-count(../dex:var[@name='this'])) &lt;= count(../../vm:signature/vm:parameter)" >
+     			  <xsl:text>    _r</xsl:text>
+     	  		  <xsl:value-of select="@register" />
+     	  		  <xsl:call-template name="emitTypedAccess">
+     	  		    <xsl:with-param name="type" select="@type"/>
+     	  		  </xsl:call-template>
+     	  		  <xsl:text> = n</xsl:text>
+     	  		  <xsl:value-of select="(position()-count(../dex:var[@name='this']))" />
+     	  		  <xsl:text>;
+</xsl:text>
+     			</xsl:if>
+     		</xsl:otherwise>
+     	</xsl:choose>
+    </xsl:for-each>
+</xsl:template>
+
+
+<xsl:template name="appendDexSignature">
+  <xsl:text>__</xsl:text>
+  <xsl:choose>
+    <xsl:when test="count(dex:parameters/dex:parameter) != 0">
+      <xsl:for-each select="dex:parameters/dex:parameter">
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="replace(vm:fixname(@type), '\[\]', '_ARRAYTYPE')"/>
+      </xsl:for-each>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+
 
 
 <!--
