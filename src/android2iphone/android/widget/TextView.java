@@ -84,7 +84,7 @@ public class TextView extends View {
     }
 
     public final void setText(CharSequence text) {
-        Assert.NOT_IMPLEMENTED();
+        setText(text.toString());
     }
 
     public void setTextSize(float size) {
