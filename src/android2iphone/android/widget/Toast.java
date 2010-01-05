@@ -100,6 +100,8 @@ public class Toast {
 
     public void cancel() {
         handler.removeCallbacks(runnable);
+        Window window = activity.getWindow();
+        window.xmlvmRemoveToast();
     }
 
 }
