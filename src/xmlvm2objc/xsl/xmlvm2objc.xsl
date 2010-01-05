@@ -1954,9 +1954,9 @@ int main(int argc, char* argv[])
   <xsl:text>    </xsl:text>
   <xsl:if test="dex:parameters/dex:return/@type != 'void'">
     <xsl:choose>
-      <xsl:when test="dex:parameters/dex:return/@register">
+      <xsl:when test="dex:move-result">
         <xsl:text>_r</xsl:text>
-        <xsl:value-of select="dex:parameters/dex:return/@register"/>
+        <xsl:value-of select="dex:move-result/@vx"/>
         <xsl:value-of select="$returnTypedAccess"/>
         <xsl:text> = </xsl:text>
       </xsl:when>
@@ -1983,9 +1983,9 @@ int main(int argc, char* argv[])
 </xsl:text>
   <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
     <xsl:choose>
-      <xsl:when test="dex:parameters/dex:return/@register">
+      <xsl:when test="dex:move-result">
         <xsl:text>    [_r</xsl:text>
-        <xsl:value-of select="dex:parameters/dex:return/@register"/>
+        <xsl:value-of select="dex:move-result/@vx"/>
         <xsl:value-of select="$returnTypedAccess"/>
         <xsl:text> autorelease];</xsl:text>
       </xsl:when>
@@ -2008,9 +2008,9 @@ int main(int argc, char* argv[])
   <xsl:text>    </xsl:text>
   <xsl:if test="dex:parameters/dex:return/@type != 'void'">
     <xsl:choose>
-      <xsl:when test="dex:parameters/dex:return/@register">
+      <xsl:when test="dex:move-result">
         <xsl:text>_r</xsl:text>
-        <xsl:value-of select="dex:parameters/dex:return/@register"/>
+        <xsl:value-of select="dex:move-result/@vx"/>
         <xsl:value-of select="$returnTypedAccess"/>
         <xsl:text> = </xsl:text>
       </xsl:when>
@@ -2056,9 +2056,9 @@ int main(int argc, char* argv[])
 </xsl:text>
   <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
     <xsl:choose>
-      <xsl:when test="dex:parameters/dex:return/@register">
+      <xsl:when test="dex:move-result">
         <xsl:text>    [_r</xsl:text>
-        <xsl:value-of select="dex:parameters/dex:return/@register"/>
+        <xsl:value-of select="dex:move-result/@vx"/>
         <xsl:value-of select="$returnTypedAccess"/>
         <xsl:text> autorelease];</xsl:text>
       </xsl:when>
@@ -2081,9 +2081,9 @@ int main(int argc, char* argv[])
   <xsl:text>    </xsl:text>
   <xsl:if test="dex:parameters/dex:return/@type != 'void'">
     <xsl:choose>
-      <xsl:when test="dex:parameters/dex:return/@register">
+      <xsl:when test="dex:move-result">
         <xsl:text>_r</xsl:text>
-        <xsl:value-of select="dex:parameters/dex:return/@register"/>
+        <xsl:value-of select="dex:move-result/@vx"/>
         <xsl:value-of select="$returnTypedAccess"/>
         <xsl:text> = </xsl:text>
       </xsl:when>
@@ -2113,9 +2113,9 @@ int main(int argc, char* argv[])
 </xsl:text>
   <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
     <xsl:choose>
-      <xsl:when test="dex:parameters/dex:return/@register">
+      <xsl:when test="dex:move-result">
         <xsl:text>    [_r</xsl:text>
-        <xsl:value-of select="dex:parameters/dex:return/@register"/>
+        <xsl:value-of select="dex:move-result/@vx"/>
         <xsl:value-of select="$returnTypedAccess"/>
         <xsl:text> autorelease];</xsl:text>
       </xsl:when>
@@ -2138,6 +2138,21 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:monitor-exit">
   <!-- TODO we can't map this to @synchronized {} because DEX may
        generate multiple monitor-exit for one monitor-enter -->
+</xsl:template>
+
+
+<xsl:template match="dex:try-catch">
+  <xsl:apply-templates/>
+</xsl:template>
+
+
+<xsl:template match="dex:try">
+  <xsl:apply-templates/>
+</xsl:template>
+
+
+<xsl:template match="dex:catch">
+  <!-- TODO -->
 </xsl:template>
 
 

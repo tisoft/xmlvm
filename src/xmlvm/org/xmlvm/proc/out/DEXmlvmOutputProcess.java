@@ -143,7 +143,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private List<OutputFile>       outputFiles           = new ArrayList<OutputFile>();
     private List<XmlvmResource>    generatedResources    = new ArrayList<XmlvmResource>();
 
-    private static Element         lastInvokeInstruction = null;
+    private static Element         lastDexInstruction    = null;
 
     public DEXmlvmOutputProcess(Arguments arguments) {
         super(arguments);
@@ -675,12 +675,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     Log.error("DEXmlvmOutputProcess: Register Size doesn't fit 'move-result'.");
                     System.exit(-1);
                 }
-                RegisterSpec register = simpleInsn.getRegisters().get(0);
-                Element returnElement = lastInvokeInstruction.getChild("parameters", NS_DEX)
-                        .getChild("return", NS_DEX);
-                returnElement.setAttribute("register", String.valueOf(registerNumber(register
-                        .regString())));
-
+                RegisterSpecList registers = simpleInsn.getRegisters();
+                Element moveInstruction = new Element("move-result", NS_DEX);
+                processRegisters(registers, moveInstruction);
+                lastDexInstruction.addContent(moveInstruction);
             } else {
                 RegisterSpecList registers = simpleInsn.getRegisters();
                 dexInstruction = new Element(sanitizeInstructionName(instructionName), NS_DEX);
@@ -697,7 +695,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             CstInsn cstInsn = (CstInsn) instruction;
             if (isInvokeInstruction(cstInsn)) {
                 dexInstruction = processInvokeInstruction(cstInsn);
-                lastInvokeInstruction = dexInstruction;
             } else {
                 dexInstruction = new Element(
                         sanitizeInstructionName(cstInsn.getOpcode().getName()), NS_DEX);
@@ -782,8 +779,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             System.out.print(instruction.listingString("", 0, true));
         }
         if (dexInstruction != null) {
-            dexInstruction.setAttribute("ADDRESS", String.valueOf(instruction.getAddress()));
+            //dexInstruction.setAttribute("ADDRESS", String.valueOf(instruction.getAddress()));
             parentElement.addContent(dexInstruction);
+            lastDexInstruction = dexInstruction;
         }
     }
 
