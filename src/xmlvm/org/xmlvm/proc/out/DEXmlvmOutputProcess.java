@@ -432,35 +432,47 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      */
     private static void processLocals(LocalList localList, StdTypeList parameterTypes,
             Element codeElement) {
-        // Pass 1: remember all registers that are used by the explicit <var> declarations
+        // Pass 1: remember all registers that are used by the explicit <var>
+        // declarations
         Set<Integer> registerList = new HashSet<Integer>();
         for (int i = 0; i < localList.size(); i++) {
             com.android.dx.dex.code.LocalList.Entry localEntry = localList.get(i);
             registerList.add(localEntry.getRegister());
         }
 
+        // We use this to store the numbers of the registers that we already
+        // have a car declaration for in order to avoid duplicates.
+        List<Integer> filledRegisters = new ArrayList<Integer>();
         // Pass 2a: emit all <var> declarations
         for (int i = 0; i < localList.size(); ++i) {
             com.android.dx.dex.code.LocalList.Entry localEntry = localList.get(i);
             Element localElement = new Element("var", NS_DEX);
             String name = localEntry.getName().toHuman();
             int register = localEntry.getRegister();
-            localElement.setAttribute("name", name);
-            localElement.setAttribute("register", "" + register);
-            localElement.setAttribute("type", localEntry.getType().toHuman());
-            codeElement.addContent(localElement);
+            if (!filledRegisters.contains(register)) {
+                localElement.setAttribute("name", name);
+                localElement.setAttribute("register", "" + register);
+                localElement.setAttribute("type", localEntry.getType().toHuman());
+                codeElement.addContent(localElement);
+                filledRegisters.add(register);
+            }
             if (name.equals("this")) {
-                // Pass 2b: starting from 'this', look for synthetic <var>s that are not generated
-                // by DEX. We stop generating synthetic <var> when we get to a register number
+                // Pass 2b: starting from 'this', look for synthetic <var>s that
+                // are not generated
+                // by DEX. We stop generating synthetic <var> when we get to a
+                // register number
                 // that is already used by another (explicit) <var>.
                 int index = 0;
                 while (!registerList.contains(++register) && index < parameterTypes.size()) {
-                    localElement = new Element("var", NS_DEX);
-                    localElement.setAttribute("name", "__SYNTHETIC_" + index);
-                    localElement.setAttribute("register", "" + register);
-                    localElement.setAttribute("type", parameterTypes.getType(index).toHuman());
-                    codeElement.addContent(localElement);
-                    index++;
+                    if (!filledRegisters.contains(register)) {
+                        localElement = new Element("var", NS_DEX);
+                        localElement.setAttribute("name", "__SYNTHETIC_" + index);
+                        localElement.setAttribute("register", "" + register);
+                        localElement.setAttribute("type", parameterTypes.getType(index).toHuman());
+                        codeElement.addContent(localElement);
+                        filledRegisters.add(register);
+                        index++;
+                    }
                 }
             }
         }
