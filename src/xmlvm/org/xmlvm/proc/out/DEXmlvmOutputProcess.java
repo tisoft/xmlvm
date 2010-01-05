@@ -317,6 +317,36 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     }
 
     /**
+     * Debugging use: Builds a catch-table in XML.
+     */
+    private static void processCatchTable(CatchTable catchTable, Element codeElement) {
+        if (catchTable.size() == 0) {
+            return;
+        }
+
+        Element catchTableElement = new Element("catches", NS_DEX);
+
+        for (int i = 0; i < catchTable.size(); ++i) {
+            Entry entry = catchTable.get(i);
+            Element entryElement = new Element("entry", NS_DEX);
+            entryElement.setAttribute("start", String.valueOf(entry.getStart()));
+            entryElement.setAttribute("end", String.valueOf(entry.getEnd()));
+
+            CatchHandlerList catchHandlers = entry.getHandlers();
+            for (int j = 0; j < catchHandlers.size(); ++j) {
+                com.android.dx.dex.code.CatchHandlerList.Entry handlerEntry = catchHandlers.get(j);
+                Element handlerElement = new Element("handler", NS_DEX);
+                handlerElement.setAttribute("type", handlerEntry.getExceptionType().toHuman());
+                handlerElement.setAttribute("target", String.valueOf(handlerEntry.getHandler()));
+                entryElement.addContent(handlerElement);
+            }
+            catchTableElement.addContent(entryElement);
+        }
+
+        codeElement.addContent(catchTableElement);
+    }
+
+    /**
      * Creates an XMLVM element for the given method and appends it to the given
      * class element.
      * <p>
@@ -398,6 +428,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             processLocals(code.getLocals(), meth.getPrototype().getParameterTypes(), codeElement);
             Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
             CatchTable catches = code.getCatches();
+            processCatchTable(catches, codeElement);
             Set<Integer> targets = extractTargets(instructions, catches);
 
             // For each entry in the catch table, we create a try-catch element,
@@ -433,11 +464,29 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 DalvInsn instruction = instructions.get(i);
                 int address = instruction.getAddress();
 
-                // Labels always need to be outside the try-catch block.
+                // Determine whether to add the next instruction to the
+                // codeElement or to a try block.
+                Entry currentCatch = null;
+                for (int j = 0; j < catches.size(); ++j) {
+                    if (isInstructionInCatchRange(instruction, catches.get(j))) {
+                        instructionParent = tryElements.get(j);
+                        currentCatch = catches.get(j);
+                        break;
+                    }
+                }
+
+                // Adds a label element for each target we extracted earlier.
                 if (targets.contains(address)) {
                     Element labelElement = new Element("label", NS_DEX);
                     labelElement.setAttribute("id", String.valueOf(address));
-                    codeElement.addContent(labelElement);
+
+                    // Labels at the beginning of a try block need to be moved
+                    // in front of it.
+                    if (currentCatch != null && currentCatch.getStart() == address) {
+                        codeElement.addContent(labelElement);
+                    } else {
+                        instructionParent.addContent(labelElement);
+                    }
                     targets.remove(address);
                 }
 
@@ -449,14 +498,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     tryCatchElements.remove(address);
                 }
 
-                // Determine whether to add the next instruction to the
-                // codeElement or to a try block.
-                for (int j = 0; j < catches.size(); ++j) {
-                    if (isInstructionInCatchRange(instruction, catches.get(j))) {
-                        instructionParent = tryElements.get(j);
-                        break;
-                    }
-                }
                 processInstruction(instruction, instructionParent, switchDataBlocks);
             }
         }
@@ -741,6 +782,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             System.out.print(instruction.listingString("", 0, true));
         }
         if (dexInstruction != null) {
+            dexInstruction.setAttribute("ADDRESS", String.valueOf(instruction.getAddress()));
             parentElement.addContent(dexInstruction);
         }
     }
