@@ -20,13 +20,14 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
-#import "java_util_Iterator.h"
+#import "java_lang_String.h"
 
 
-// java.lang.reflect.Array
+// java.lang.Character
 //----------------------------------------------------------------------------
-@interface java_lang_reflect_Array : java_lang_Object
+@interface java_lang_Character : java_lang_Object
 
-+ (XMLVMArray*) newInstance___java_lang_Class_int_ARRAYTYPE:(java_lang_Class*)clazz :(XMLVMArray*)dimensions;
++ (void) initialize;
++ (java_lang_Class*) _GET_TYPE;
 
 @end

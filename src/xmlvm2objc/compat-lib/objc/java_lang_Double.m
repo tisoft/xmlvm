@@ -18,26 +18,26 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "java_lang_Integer.h"
+#import "java_lang_Double.h"
 
-@interface PrimitiveInt : java_lang_Object
+@interface PrimitiveDouble : java_lang_Object
 @end
 
-@implementation PrimitiveInt
+@implementation PrimitiveDouble
 @end
 
-static PrimitiveInt* primitiveInt;
-static java_lang_Class* primitiveIntClass;
+static PrimitiveDouble* primitiveDouble;
+static java_lang_Class* primitiveDoubleClass;
 
 
-// java.lang.Integer
+// java.lang.Double
 //----------------------------------------------------------------------------
-@implementation java_lang_Integer
+@implementation java_lang_Double
 
 + (void) initialize
 {
-	primitiveInt = [[PrimitiveInt alloc] init];
-	primitiveIntClass = [primitiveInt getClass__];
+	primitiveDouble = [[PrimitiveDouble alloc] init];
+	primitiveDoubleClass = [primitiveDouble getClass__];
 }
 
 - (id) init
@@ -49,7 +49,7 @@ static java_lang_Class* primitiveIntClass;
 
 - (id) copyWithZone:(NSZone *)zone
 {
-    java_lang_Integer* other = [[[self class] allocWithZone:zone] init];
+    java_lang_Double* other = [[[self class] allocWithZone:zone] init];
     other->number = self->number;
     return other;
 }
@@ -61,38 +61,38 @@ static java_lang_Class* primitiveIntClass;
 
 + (java_lang_Class*) _GET_TYPE
 {
-	return primitiveIntClass;
+	return primitiveDoubleClass;
 }
 
-- (void) __init_java_lang_Integer___int :(int) i
+- (void) __init_java_lang_Double___double :(double) d
 {
-	number = i;
+	number = d;
 }
 
 - (BOOL)isEqual:(id)anObject
 {
-	return [anObject isKindOfClass: [java_lang_Integer class]] && ((java_lang_Integer*) anObject)-> number == number;
+	return [anObject isKindOfClass: [java_lang_Double class]] && ((java_lang_Double*) anObject)-> number == number;
 }
 
-- (int) intValue__
+- (double) doubleValue__
 {
 	return number;
 }
 
-+ (int) parseInt___java_lang_String: (java_lang_String *) str
++ (double) parseDouble___java_lang_String: (java_lang_String *) str
 {
-	return atoi([str UTF8String]);
+	return atof([str UTF8String]);
 }
 
-+ (java_lang_String*) toString___int: i
++ (java_lang_String*) toString___double: (double) d
 {
-	return [[[NSNumber numberWithInt: i] stringValue] retain];
+	return [[[NSNumber numberWithDouble: d] stringValue] retain];
 }
 
-+ (java_lang_Integer*) valueOf___int: (int) i
++ (java_lang_Double*) valueOf___double: (double) d
 {
-	java_lang_Integer* o = [[java_lang_Integer alloc] init];
-	[o __init_java_lang_Integer___int:i];
+	java_lang_Double* o = [[java_lang_Double alloc] init];
+	[o __init_java_lang_Double___double:d];
 	return o;
 }
 

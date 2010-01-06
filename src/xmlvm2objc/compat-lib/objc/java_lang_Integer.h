@@ -22,6 +22,7 @@
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
 
+
 // java.lang.Integer
 //----------------------------------------------------------------------------
 @interface java_lang_Integer : java_lang_Object <NSCopying> {
@@ -30,9 +31,11 @@ int number;
 
 }
 
++ (void) initialize;
 - (id) init;
 - (id) copyWithZone:(NSZone *)zone;
 - (NSUInteger) hash;
++ (java_lang_Class*) _GET_TYPE;
 - (void) __init_java_lang_Integer___int :(int) i;
 - (BOOL)isEqual:(id)anObject;
 - (int) intValue__;

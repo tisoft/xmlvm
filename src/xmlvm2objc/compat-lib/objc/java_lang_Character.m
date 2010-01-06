@@ -18,15 +18,30 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import "java_lang_Object.h"
-#import "java_util_Iterator.h"
+#import "java_lang_Character.h"
+
+@interface PrimitiveCharacter : java_lang_Object
+@end
+
+@implementation PrimitiveCharacter
+@end
+
+static PrimitiveCharacter* primitiveCharacter;
+static java_lang_Class* primitiveCharacterClass;
 
 
-// java.lang.reflect.Array
+// java.lang.Character
 //----------------------------------------------------------------------------
-@interface java_lang_reflect_Array : java_lang_Object
+@implementation java_lang_Character
 
-+ (XMLVMArray*) newInstance___java_lang_Class_int_ARRAYTYPE:(java_lang_Class*)clazz :(XMLVMArray*)dimensions;
++ (void) initialize
+{
+	primitiveCharacter = [[PrimitiveCharacter alloc] init];
+	primitiveCharacterClass = [primitiveCharacter getClass__];
+}
 
++ (java_lang_Class*) _GET_TYPE
+{
+	return primitiveCharacterClass;
+}
 @end

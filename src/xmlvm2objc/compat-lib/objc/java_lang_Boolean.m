@@ -21,6 +21,16 @@
 #import "java_lang_Boolean.h"
 
 
+@interface PrimitiveBoolean : java_lang_Object
+@end
+
+@implementation PrimitiveBoolean
+@end
+
+static PrimitiveBoolean* primitiveBoolean;
+static java_lang_Class* primitiveBooleanClass;
+
+
 // java.lang.Boolean
 //----------------------------------------------------------------------------
 @implementation java_lang_Boolean
@@ -45,6 +55,11 @@
 - (void) __init_java_lang_Boolean___int :(int) i
 {
 	value = i;
+}
+
++ (java_lang_Class*) _GET_TYPE
+{
+	return primitiveBooleanClass;
 }
 
 + (BOOL) parseBoolean___java_lang_String:(java_lang_String*) str

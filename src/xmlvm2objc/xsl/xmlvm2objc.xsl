@@ -1919,6 +1919,7 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:code">
 <xsl:text>{
     id        _res;
+    id        _ex;
 </xsl:text>
   <xsl:variable name="limit" select="@register-size" as="xs:integer"/>
   <xsl:for-each select="(0 to $limit - 1)">
@@ -2147,27 +2148,45 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:try">
+  <xsl:text>    @try {
+</xsl:text>
   <xsl:apply-templates/>
+  <xsl:text>}
+</xsl:text>
 </xsl:template>
-
 
 <xsl:template match="dex:catch">
-  <!-- TODO -->
+    <xsl:text>    @catch (</xsl:text>
+    <xsl:value-of select="vm:fixname(@exception-type)"/>
+    <xsl:text>* ex) {
+        _ex = ex;
+        goto label</xsl:text>
+    <xsl:value-of select="@target"/>
+    <xsl:text>;
+    }
+</xsl:text>
 </xsl:template>
+
 
 
 <xsl:template match="dex:catches">
-  <!-- TODO -->
+  <!-- do nothing -->
 </xsl:template>
 
 
 <xsl:template match="dex:throw">
-  <!-- TODO -->
+  <xsl:text>    @throw _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o;
+</xsl:text>
 </xsl:template>
 
 
 <xsl:template match="dex:move-exception">
-  <!-- TODO -->
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o = _ex;
+</xsl:text>
 </xsl:template>
 
 
@@ -2315,6 +2334,30 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="dex:and-int|dex:and-int-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i &amp; _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:shl-int|dex:shl-int-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i &lt;&lt; _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="dex:mul-double|dex:mul-double-2addr">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
@@ -2327,6 +2370,102 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="dex:and-int-lit8|dex:and-int-lit16">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i &amp; </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:shl-int-lit8|dex:shl-int-lit16">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i &lt;&lt; </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:shr-int-lit8|dex:shr-int-lit16">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i &gt;&gt; </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:ushr-int-lit8|dex:ushr-int-lit16">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i &gt;&gt; (0x1f &amp; </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>);
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:or-int-lit8|dex:or-int-lit16">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i | </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:xor-int-lit8|dex:xor-int-lit16">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i ^ </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:or-int|dex:or-int-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i | _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+  
+<xsl:template match="dex:or-long|dex:or-long-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l | _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.l;
+</xsl:text>
+</xsl:template>
+
+  
 <xsl:template match="dex:return-void">
   <xsl:if test="vm:useAutoReleasePool(.)">
     <xsl:text>    [_pool release];
@@ -2337,7 +2476,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:return|dex:return-object">
+<xsl:template match="dex:return|dex:return-wide|dex:return-object">
   <xsl:variable name="return-type" select="ancestor::vm:method/vm:signature/vm:return/@type"/>
   <xsl:if test="vm:isObjectRef($return-type)">
     <xsl:text>    [_r</xsl:text>
@@ -2415,7 +2554,7 @@ int main(int argc, char* argv[])
 
 
 
-<xsl:template match="dex:sget|dex:sget-object">
+<xsl:template match="dex:sget|dex:sget-wide|dex:sget-boolean|dex:sget-object">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:call-template name="emitTypedAccess">
@@ -2430,7 +2569,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:sput|dex:sput-object">
+<xsl:template match="dex:sput|dex:sput-wide|dex:sput-boolean|dex:sput-object">
   <xsl:text>    [</xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text> _PUT_</xsl:text>
@@ -2446,7 +2585,7 @@ int main(int argc, char* argv[])
 
 
 
-<xsl:template match="dex:const-4[@kind='known-null']"> 
+<xsl:template match="dex:const-4[@kind='known-null']|dex:const-8[@kind='known-null']|dex:const-16[@kind='known-null']"> 
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.o = [NSNull null];
@@ -2454,7 +2593,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:const|dex:const-4|dex:const-16|dex:const-wide|dex:const-wide-16|dex:const-high16|dex:const-wide-high16"> 
+<xsl:template match="dex:const|dex:const-4|dex:const-16|dex:const-wide|dex:const-wide-16|dex:const-wide-32|dex:const-high16|dex:const-wide-high16"> 
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:call-template name="emitTypedAccess">
@@ -2533,6 +2672,36 @@ int main(int argc, char* argv[])
   <xsl:text>.d = (double) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:int-to-char">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i &amp; 0xffff;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:long-to-int">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = (int) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:long-to-float">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.f = (float) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l;
 </xsl:text>
 </xsl:template>
 
@@ -2621,6 +2790,16 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="dex:neg-int">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = -_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="dex:neg-float">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
@@ -2631,7 +2810,17 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:add-int-lit8">
+<xsl:template match="dex:neg-double">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.d = -_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.d;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:add-int-lit8|dex:add-int-lit16">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.i = _r</xsl:text>
@@ -2643,7 +2832,19 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:div-int-lit8">
+<xsl:template match="dex:mul-int-lit8|dex:mul-int-lit16">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i * </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:div-int-lit8|dex:div-int-lit16">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.i = _r</xsl:text>
@@ -2655,7 +2856,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:rem-int-lit8">
+<xsl:template match="dex:rem-int-lit8|dex:rem-int-lit16">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.i = _r</xsl:text>
@@ -2675,7 +2876,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:goto">
+<xsl:template match="dex:goto|dex:goto-16">
   <xsl:text>    goto label</xsl:text>
   <xsl:value-of select="@target"/>
   <xsl:text>;
@@ -2795,6 +2996,24 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="dex:if-gt">
+  <xsl:text>    if (_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+  <xsl:text> &gt; _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vy-type"/>
+  </xsl:call-template>
+  <xsl:text>) goto label</xsl:text>
+  <xsl:value-of select="@target"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="dex:if-le">
   <xsl:text>    if (_r</xsl:text>
   <xsl:value-of select="@vx"/>
@@ -2884,6 +3103,44 @@ int main(int argc, char* argv[])
 </xsl:text>
 </xsl:template>
 
+
+<xsl:template match="dex:filled-new-array|dex:filled-new-array-range">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="dex:move-result/@vx"/>
+  <xsl:text>.o = (id) ((XMLVMElem[]) {</xsl:text>
+  <xsl:for-each select="dex:value">
+    <xsl:text>_r</xsl:text>
+    <xsl:value-of select="@register"/>
+    <xsl:text>, </xsl:text>
+  </xsl:for-each>
+  <xsl:text>});
+</xsl:text>
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="dex:move-result/@vx"/>
+  <xsl:text>.o = [XMLVMArray createSingleDimensionWithType:5 size:</xsl:text>
+  <xsl:value-of select="count(dex:value)"/>
+  <xsl:text> andData:_r</xsl:text>
+  <xsl:value-of select="dex:move-result/@vx"/>
+  <xsl:text>.o];
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:fill-array-data">
+  <xsl:text>    [XMLVMArray fillArray:_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o withData:(</xsl:text>
+  <xsl:value-of select="@vx-type"/>
+  <xsl:text>){</xsl:text>
+  <xsl:for-each select="dex:constant">
+    <xsl:value-of select="@value"/>
+    <xsl:text>, </xsl:text>
+  </xsl:for-each>
+  <xsl:text>}];
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="dex:new-array">
   <xsl:variable name="base-type" select="replace(@value, '\[\]', '')"/>
   <xsl:text>    _r</xsl:text>
@@ -2907,12 +3164,19 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:aget|dex:aget-char">
+<xsl:template match="dex:aget|dex:aget-wide|dex:aget-boolean|dex:aget-byte|dex:aget-char">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.i = ((XMLVMArray*) _r</xsl:text>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+  <xsl:text> = ((XMLVMArray*) _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.o)->array.i[_r</xsl:text>
+  <xsl:text>.o)->array</xsl:text>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+  <xsl:text>[_r</xsl:text>
   <xsl:value-of select="@vz"/>
   <xsl:text>.i];
 </xsl:text>
@@ -2931,14 +3195,21 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:aput|dex:aput-char">
+<xsl:template match="dex:aput|dex:aput-wide|dex:aput-boolean|dex:aput-char">
   <xsl:text>    ((XMLVMArray*) _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.o)->array.i[_r</xsl:text>
+  <xsl:text>.o)->array</xsl:text>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+  <xsl:text>[_r</xsl:text>
   <xsl:value-of select="@vz"/>
   <xsl:text>.i] = _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.i;
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+  <xsl:text>;
 </xsl:text>
 </xsl:template>
 
@@ -2966,8 +3237,26 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="dex:instance-of">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = (_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o != [NSNull null] &amp;&amp; 
+        ([_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o isKindOfClass: objc_getClass("</xsl:text>
+  <xsl:value-of select="vm:fixname(@value)"/><xsl:text>")] ||
+         [_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o conformsToProtocol: objc_getProtocol("</xsl:text>
+  <xsl:value-of select="vm:fixname(@value)"/><xsl:text>")])) ? 1 : 0;
+</xsl:text>
+</xsl:template>
 
-<xsl:template match="dex:move|dex:move-object">
+
+
+<xsl:template match="dex:move|dex:move-from16|dex:move-wide|dex:move-wide-from16|dex:move-object|dex:move-object-from16">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text> = _r</xsl:text>

@@ -42,6 +42,15 @@
     return retval;
 }
 
++ (XMLVMArray*) createSingleDimensionWithType:(int) type size:(int) size andData:(void*) data
+{
+    XMLVMArray *retval = [[[XMLVMArray alloc] init] autorelease];
+    retval->type = type;
+    retval->length = size;
+    retval->array.data = data;
+    return retval;
+}
+
 + (XMLVMArray*) createMultiDimensionsWithType:(int) type dimensions:(XMLVMElem*) dim count:(int)count
 {
 	int dimensions = dim->i;
@@ -56,6 +65,13 @@
 		[slice replaceObjectAtIndex:i withObject:o];
 	}
 	return slice;
+}
+
++ (void) fillArray:(XMLVMArray*) array withData:(void*) data
+{
+    int sizeOfBaseType = [XMLVMArray sizeOfBaseTypeInBytes:array->type];
+    int n = sizeOfBaseType * array->length;
+    memcpy(array->array.data, data, n);
 }
 
 + (int) sizeOfBaseTypeInBytes:(int) type

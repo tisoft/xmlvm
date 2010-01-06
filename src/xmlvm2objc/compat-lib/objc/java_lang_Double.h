@@ -20,13 +20,27 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
-#import "java_util_Iterator.h"
+#import "java_lang_String.h"
 
 
-// java.lang.reflect.Array
+// java.lang.Double
 //----------------------------------------------------------------------------
-@interface java_lang_reflect_Array : java_lang_Object
+@interface java_lang_Double : java_lang_Object <NSCopying> {
 
-+ (XMLVMArray*) newInstance___java_lang_Class_int_ARRAYTYPE:(java_lang_Class*)clazz :(XMLVMArray*)dimensions;
+double number;
+
+}
+
++ (void) initialize;
+- (id) init;
+- (id) copyWithZone:(NSZone *)zone;
+- (NSUInteger) hash;
++ (java_lang_Class*) _GET_TYPE;
+- (void) __init_java_lang_Double___double :(double) d;
+- (BOOL)isEqual:(id)anObject;
+- (double) doubleValue__;
++ (double) parseDouble___java_lang_String: (java_lang_String *) str;
++ (java_lang_String*) toString___double: (double) d;
++ (java_lang_Double*) valueOf___double: (double) d;
 
 @end

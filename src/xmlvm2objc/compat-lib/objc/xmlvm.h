@@ -67,7 +67,9 @@ typedef union {
 }
 
 + (XMLVMArray*) createSingleDimensionWithType:(int) type andSize:(int) size;
++ (XMLVMArray*) createSingleDimensionWithType:(int) type size:(int) size andData:(void*) data;
 + (XMLVMArray*) createMultiDimensionsWithType:(int) type dimensions:(XMLVMElem*) dim count:(int)count;
++ (void) fillArray:(XMLVMArray*) array withData:(void*) data;
 + (int) sizeOfBaseTypeInBytes:(int) type;
 - (id) objectAtIndex:(int) idx;
 - (void) replaceObjectAtIndex:(int) idx withObject:(id) obj;
