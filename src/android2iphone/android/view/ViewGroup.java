@@ -188,13 +188,6 @@ public class ViewGroup extends View implements ViewParent {
         return subViews.get(index);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        for (View v : subViews) {
-            v.onDraw(canvas);
-        }
-    }
-
     protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
         return p != null;
     }
