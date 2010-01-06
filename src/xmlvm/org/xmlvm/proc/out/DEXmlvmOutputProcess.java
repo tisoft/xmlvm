@@ -667,6 +667,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      *            the element to add the instruction element to
      * @param switchDataBlocks
      *            the switch data blocks
+     * @param arrayData
+     *            the array data
      */
     private static void processInstruction(DalvInsn instruction, Element parentElement,
             Map<Integer, SwitchData> switchDataBlocks, Map<Integer, ArrayData> arrayData) {
