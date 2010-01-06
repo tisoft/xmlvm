@@ -54,6 +54,7 @@ import com.android.dx.cf.iface.FieldList;
 import com.android.dx.cf.iface.Method;
 import com.android.dx.cf.iface.MethodList;
 import com.android.dx.dex.cf.CfTranslator;
+import com.android.dx.dex.code.ArrayData;
 import com.android.dx.dex.code.CatchHandlerList;
 import com.android.dx.dex.code.CatchTable;
 import com.android.dx.dex.code.CodeAddress;
@@ -133,17 +134,17 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         }
     }
 
-    private static final boolean   LOTS_OF_DEBUG         = false;
+    private static final boolean   LOTS_OF_DEBUG      = false;
 
-    private static final String    DEXMLVM_ENDING        = ".dexmlvm";
-    private static final Namespace NS_XMLVM              = XmlvmResource.xmlvmNamespace;
-    private static final Namespace NS_DEX                = Namespace.getNamespace("dex",
-                                                                 "http://xmlvm.org/dex");
+    private static final String    DEXMLVM_ENDING     = ".dexmlvm";
+    private static final Namespace NS_XMLVM           = XmlvmResource.xmlvmNamespace;
+    private static final Namespace NS_DEX             = Namespace.getNamespace("dex",
+                                                              "http://xmlvm.org/dex");
 
-    private List<OutputFile>       outputFiles           = new ArrayList<OutputFile>();
-    private List<XmlvmResource>    generatedResources    = new ArrayList<XmlvmResource>();
+    private List<OutputFile>       outputFiles        = new ArrayList<OutputFile>();
+    private List<XmlvmResource>    generatedResources = new ArrayList<XmlvmResource>();
 
-    private static Element         lastDexInstruction    = null;
+    private static Element         lastDexInstruction = null;
 
     public DEXmlvmOutputProcess(Arguments arguments) {
         super(arguments);
@@ -427,6 +428,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     .getRegistersSize()));
             processLocals(code.getLocals(), meth.getPrototype().getParameterTypes(), codeElement);
             Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
+            Map<Integer, ArrayData> arrayData = extractArrayData(instructions);
             CatchTable catches = code.getCatches();
             processCatchTable(catches, codeElement);
             Set<Integer> targets = extractTargets(instructions, catches);
@@ -498,7 +500,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     tryCatchElements.remove(address);
                 }
 
-                processInstruction(instruction, instructionParent, switchDataBlocks);
+                processInstruction(instruction, instructionParent, switchDataBlocks, arrayData);
             }
         }
     }
@@ -635,6 +637,26 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     }
 
     /**
+     * Extracts all {@link ArrayData} pseudo-instructions from the given list of
+     * instructions.
+     * 
+     * @param instructions
+     *            the list of instructions from where to extract
+     * @return a map containing all found {@link ArrayData} instructions,
+     *         indexed by address.
+     */
+    private static Map<Integer, ArrayData> extractArrayData(DalvInsnList instructions) {
+        Map<Integer, ArrayData> result = new HashMap<Integer, ArrayData>();
+        for (int i = 0; i < instructions.size(); ++i) {
+            if (instructions.get(i) instanceof ArrayData) {
+                ArrayData arrayData = (ArrayData) instructions.get(i);
+                result.put(arrayData.getAddress(), arrayData);
+            }
+        }
+        return result;
+    }
+
+    /**
      * Creates an element for the given instruction and puts it into the given
      * code element. It is possible that no element is added for the given
      * instruction.
@@ -647,7 +669,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      *            the switch data blocks
      */
     private static void processInstruction(DalvInsn instruction, Element parentElement,
-            Map<Integer, SwitchData> switchDataBlocks) {
+            Map<Integer, SwitchData> switchDataBlocks, Map<Integer, ArrayData> arrayData) {
         Element dexInstruction = null;
 
         if (instruction instanceof CodeAddress) {
@@ -662,6 +684,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         } else if (instruction instanceof LocalStart) {
             // As we extract the locals information up-front we don't need to
             // handle local-start.
+        } else if (instruction instanceof ArrayData) {
+            // Ignore here because we already processed these and they were
+            // given to this method as an argument.
         } else if (instruction instanceof SimpleInsn) {
             SimpleInsn simpleInsn = (SimpleInsn) instruction;
             String instructionName = simpleInsn.getOpcode().getName();
@@ -677,12 +702,12 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 }
                 RegisterSpecList registers = simpleInsn.getRegisters();
                 Element moveInstruction = new Element("move-result", NS_DEX);
-                processRegisters(registers, moveInstruction);
+                addRegistersAsAttributes(registers, moveInstruction);
                 lastDexInstruction.addContent(moveInstruction);
             } else {
                 RegisterSpecList registers = simpleInsn.getRegisters();
                 dexInstruction = new Element(sanitizeInstructionName(instructionName), NS_DEX);
-                processRegisters(registers, dexInstruction);
+                addRegistersAsAttributes(registers, dexInstruction);
 
                 // For simple instructions with only one register, we also add
                 // the type of the register. This includes the return
@@ -729,13 +754,17 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 } else {
                     dexInstruction.setAttribute("value", constant.toHuman());
                 }
-                processRegisters(cstInsn.getRegisters(), dexInstruction);
+                if (cstInsn.getOpcode().getName().startsWith("filled-new-array")) {
+                    addRegistersAsChildren(cstInsn.getRegisters(), dexInstruction);
+                } else {
+                    addRegistersAsAttributes(cstInsn.getRegisters(), dexInstruction);
+                }
             }
         } else if (instruction instanceof TargetInsn) {
             TargetInsn targetInsn = (TargetInsn) instruction;
             String instructionName = targetInsn.getOpcode().getName();
             dexInstruction = new Element(sanitizeInstructionName(instructionName), NS_DEX);
-            processRegisters(targetInsn.getRegisters(), dexInstruction);
+            addRegistersAsAttributes(targetInsn.getRegisters(), dexInstruction);
 
             if (instructionName.equals("packed-switch") || instructionName.equals("sparse-switch")) {
                 SwitchData switchData = switchDataBlocks.get(targetInsn.getTargetAddress());
@@ -758,6 +787,13 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     caseElement.setAttribute("label", String.valueOf(caseTargets[i].getAddress()));
                     dexInstruction.addContent(caseElement);
                 }
+            } else if (instructionName.equals("fill-array-data")) {
+                ArrayList<Constant> data = arrayData.get(targetInsn.getTargetAddress()).getValues();
+                for (Constant c : data) {
+                    Element constant = new Element("constant", NS_DEX);
+                    constant.setAttribute("value", c.toHuman());
+                    dexInstruction.addContent(constant);
+                }
             } else {
                 dexInstruction
                         .setAttribute("target", String.valueOf(targetInsn.getTargetAddress()));
@@ -766,7 +802,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             HighRegisterPrefix highRegisterPrefix = (HighRegisterPrefix) instruction;
             SimpleInsn[] moveInstructions = highRegisterPrefix.getMoveInstructions();
             for (SimpleInsn moveInstruction : moveInstructions) {
-                processInstruction(moveInstruction, parentElement, switchDataBlocks);
+                processInstruction(moveInstruction, parentElement, switchDataBlocks, arrayData);
             }
         } else {
             System.err.print(">>> Unknown instruction: ");
@@ -779,7 +815,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             System.out.print(instruction.listingString("", 0, true));
         }
         if (dexInstruction != null) {
-            //dexInstruction.setAttribute("ADDRESS", String.valueOf(instruction.getAddress()));
+            // dexInstruction.setAttribute("ADDRESS",
+            // String.valueOf(instruction.getAddress()));
             parentElement.addContent(dexInstruction);
             lastDexInstruction = dexInstruction;
         }
@@ -789,7 +826,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * Takes the registers given and appends corresponding attributes to the
      * given element.
      */
-    private static void processRegisters(RegisterSpecList registers, Element element) {
+    private static void addRegistersAsAttributes(RegisterSpecList registers, Element element) {
         final String[] REGISTER_NAMES = { "vx", "vy", "vz" };
 
         // Sanity check.
@@ -802,6 +839,19 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             element.setAttribute(REGISTER_NAMES[i], String.valueOf(registerNumber(registers.get(i)
                     .regString())));
             element.setAttribute(REGISTER_NAMES[i] + "-type", registers.get(i).getType().toHuman());
+        }
+    }
+
+    /**
+     * Takes the registers given and appends corresponding child tags to the
+     * given element.
+     */
+    private static void addRegistersAsChildren(RegisterSpecList registers, Element element) {
+        for (int i = 0; i < registers.size(); ++i) {
+            Element reg = new Element("value", NS_DEX);
+            reg.setAttribute("register", "" + registerNumber(registers.get(i).regString()));
+            reg.setAttribute("type", registers.get(i).getType().toHuman());
+            element.addContent(reg);
         }
     }
 
