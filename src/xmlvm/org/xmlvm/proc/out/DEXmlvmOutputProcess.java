@@ -142,11 +142,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         int     address;
         boolean catchTarget;
 
-        public Target(int address) {
-            this.address = address;
-            this.catchTarget = false;
-        }
-
         public Target(int address, boolean catchTarget) {
             this.address = address;
             this.catchTarget = catchTarget;
