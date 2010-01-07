@@ -134,6 +134,40 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         }
     }
 
+    /**
+     * Little helper class for keeping a target address and the info about
+     * whether this target is jumped to by a catch handler.
+     */
+    private static class Target {
+        int     address;
+        boolean catchTarget;
+
+        public Target(int address) {
+            this.address = address;
+            this.catchTarget = false;
+        }
+
+        public Target(int address, boolean catchTarget) {
+            this.address = address;
+            this.catchTarget = catchTarget;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof Target) {
+                Target otherTarget = (Target) obj;
+                return this.address == otherTarget.address;
+            } else {
+                return false;
+            }
+        }
+
+        @Override
+        public int hashCode() {
+            return address;
+        }
+    }
+
     private static final boolean   LOTS_OF_DEBUG      = false;
 
     private static final String    DEXMLVM_ENDING     = ".dexmlvm";
@@ -431,7 +465,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             Map<Integer, ArrayData> arrayData = extractArrayData(instructions);
             CatchTable catches = code.getCatches();
             processCatchTable(catches, codeElement);
-            Set<Integer> targets = extractTargets(instructions, catches);
+            Map<Integer, Target> targets = extractTargets(instructions, catches);
 
             // For each entry in the catch table, we create a try-catch element,
             // including the try and all the catch children and append it to the
@@ -459,6 +493,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 tryCatchElements.put(catches.get(i).getStart(), tryCatchElement);
             }
 
+            Element lastTryCatchElement = null;
+
             // Process every single instruction of this method. Either add it do
             // the main code element, or to a try-catch block.
             for (int i = 0; i < instructions.size(); ++i) {
@@ -469,23 +505,49 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 // Determine whether to add the next instruction to the
                 // codeElement or to a try block.
                 Entry currentCatch = null;
-                for (int j = 0; j < catches.size(); ++j) {
-                    if (isInstructionInCatchRange(instruction, catches.get(j))) {
-                        instructionParent = tryElements.get(j);
-                        currentCatch = catches.get(j);
+                int tryElementIndex = 0;
+                for (tryElementIndex = 0; tryElementIndex < catches.size(); ++tryElementIndex) {
+                    if (isInstructionInCatchRange(instruction, catches.get(tryElementIndex))) {
+                        instructionParent = tryElements.get(tryElementIndex);
+                        currentCatch = catches.get(tryElementIndex);
                         break;
                     }
                 }
 
                 // Adds a label element for each target we extracted earlier.
-                if (targets.contains(address)) {
+                if (targets.containsKey(address)) {
                     Element labelElement = new Element("label", NS_DEX);
                     labelElement.setAttribute("id", String.valueOf(address));
 
-                    // Labels at the beginning of a try block need to be moved
-                    // in front of it.
-                    if (currentCatch != null && currentCatch.getStart() == address) {
-                        codeElement.addContent(labelElement);
+                    if (currentCatch != null) {
+                        // Labels at the beginning of a try block need to be
+                        // moved in front of it.
+                        if (currentCatch.getStart() == address) {
+                            codeElement.addContent(labelElement);
+                        } else if (targets.get(address).catchTarget) {
+                            // If we got here, it means that there is a target,
+                            // that is a catch-handler target and it is inside a
+                            // try block. We have to avoid this. So the way we
+                            // solve it is by splitting up the try block into
+                            // two, and adding the label in between.
+
+                            // First, add the label to the codeElement, so that
+                            // it is outside the try-catch block.
+                            codeElement.addContent(labelElement);
+
+                            // Then, make a copy of the previous try-catch
+                            // block, make sure its try block is empty and add
+                            // it. Then replace the previous try element in the
+                            // list so the next instructions can be added to it
+                            // instead of the previous one.
+                            Element secondTryCatchElement = (Element) lastTryCatchElement.clone();
+                            Element secondTry = secondTryCatchElement.getChild("try", NS_DEX);
+                            secondTry.removeContent();
+                            codeElement.addContent(secondTryCatchElement);
+                            tryElements.set(tryElementIndex, secondTry);
+                        } else {
+                            instructionParent.addContent(labelElement);
+                        }
                     } else {
                         instructionParent.addContent(labelElement);
                     }
@@ -498,6 +560,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     Element tryCatchElement = tryCatchElements.get(address);
                     codeElement.addContent(tryCatchElement);
                     tryCatchElements.remove(address);
+                    lastTryCatchElement = tryCatchElement;
                 }
 
                 processInstruction(instruction, instructionParent, switchDataBlocks, arrayData);
@@ -591,28 +654,37 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * 
      * @return a set containing the addresses of all jump targets
      */
-    private static Set<Integer> extractTargets(DalvInsnList instructions, CatchTable catches) {
-        Set<Integer> targets = new HashSet<Integer>();
+    private static Map<Integer, Target> extractTargets(DalvInsnList instructions, CatchTable catches) {
+        Map<Integer, Target> targets = new HashMap<Integer, Target>();
+
+        // First, add all remaining targets.
         for (int i = 0; i < instructions.size(); ++i) {
             if (instructions.get(i) instanceof TargetInsn) {
                 TargetInsn targetInsn = (TargetInsn) instructions.get(i);
-                targets.add(targetInsn.getTargetAddress());
+                targets.put(targetInsn.getTargetAddress(), new Target(
+                        targetInsn.getTargetAddress(), false));
             } else if (instructions.get(i) instanceof SwitchData) {
                 SwitchData switchData = (SwitchData) instructions.get(i);
                 CodeAddress[] caseTargets = switchData.getTargets();
                 for (CodeAddress caseTarget : caseTargets) {
-                    targets.add(caseTarget.getAddress());
+                    targets
+                            .put(caseTarget.getAddress(),
+                                    new Target(caseTarget.getAddress(), false));
                 }
             }
         }
 
-        // We also need to create labels for the exception handler targets.
+        // Then, add all catch-handler targets. We need this info, so using
+        // Map.put will potentially override an existing target, so the
+        // information about a potential catch-handler target is not lost.
         for (int i = 0; i < catches.size(); ++i) {
             CatchHandlerList handlers = catches.get(i).getHandlers();
             for (int j = 0; j < handlers.size(); ++j) {
-                targets.add(handlers.get(j).getHandler());
+                int handlerAddress = handlers.get(j).getHandler();
+                targets.put(handlerAddress, new Target(handlerAddress, true));
             }
         }
+
         return targets;
     }
 
@@ -817,8 +889,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             System.out.print(instruction.listingString("", 0, true));
         }
         if (dexInstruction != null) {
-            // dexInstruction.setAttribute("ADDRESS",
-            // String.valueOf(instruction.getAddress()));
+            if (instruction.hasAddress()) {
+                dexInstruction.setAttribute("ADDRESS", String.valueOf(instruction.getAddress()));
+            }
             parentElement.addContent(dexInstruction);
             lastDexInstruction = dexInstruction;
         }
