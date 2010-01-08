@@ -27,7 +27,7 @@ public class Dimension {
     public static int resolveDimension(String dimension) {
         // A missing dimension is interpreted as 0 pixel
         if (dimension == null || dimension.length() == 0) {
-            return 0;
+            return -1;
         }
 
         if (dimension.length() > 2 && dimension.endsWith("px")) {
@@ -43,7 +43,7 @@ public class Dimension {
         }
 
         Assert.FAIL("layout dimension not supported: " + dimension);
-        return 0;
+        return -1;
     }
 
     private static final float getDensityFactor() {

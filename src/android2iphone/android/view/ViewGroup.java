@@ -94,14 +94,22 @@ public class ViewGroup extends View implements ViewParent {
         public MarginLayoutParams(Context context, AttributeSet attrs) {
             super(context, attrs);
 
-            bottomMargin = Dimension.resolveDimension(attrs.getAttributeValue(null,
-                    "layout_marginBottom"));
-            leftMargin = Dimension.resolveDimension(attrs.getAttributeValue(null,
-                    "layout_marginLeft"));
-            rightMargin = Dimension.resolveDimension(attrs.getAttributeValue(null,
-                    "layout_marginRight"));
-            topMargin = Dimension.resolveDimension(attrs
-                    .getAttributeValue(null, "layout_marginTop"));
+            int margin = Dimension.resolveDimension(attrs.getAttributeValue(null, "layout_margin"));
+            setMargins(margin, margin, margin, margin);
+
+            margin = Dimension.resolveDimension(attrs
+                    .getAttributeValue(null, "layout_marginBottom"));
+            bottomMargin = margin > 0 ? margin : bottomMargin;
+
+            margin = Dimension.resolveDimension(attrs.getAttributeValue(null, "layout_marginLeft"));
+            leftMargin = margin > 0 ? margin : leftMargin;
+
+            margin = Dimension
+                    .resolveDimension(attrs.getAttributeValue(null, "layout_marginRight"));
+            rightMargin = margin > 0 ? margin : rightMargin;
+
+            margin = Dimension.resolveDimension(attrs.getAttributeValue(null, "layout_marginTop"));
+            topMargin = margin > 0 ? margin : topMargin;
         }
 
         public MarginLayoutParams(int width, int height) {

@@ -396,22 +396,17 @@ public class View {
         int pr = pl;
         int pb = pl;
 
-        str = attrs.getAttributeValue(null, "paddingLeft");
-        if (str != null) {
-            pl = Dimension.resolveDimension(str);
-        }
-        str = attrs.getAttributeValue(null, "paddingTop");
-        if (str != null) {
-            pt = Dimension.resolveDimension(str);
-        }
-        str = attrs.getAttributeValue(null, "paddingRight");
-        if (str != null) {
-            pr = Dimension.resolveDimension(str);
-        }
-        str = attrs.getAttributeValue(null, "paddingBottom");
-        if (str != null) {
-            pb = Dimension.resolveDimension(str);
-        }
+        int d = Dimension.resolveDimension(attrs.getAttributeValue(null, "paddingLeft"));
+        pl = d > 0 ? d : pl;
+        
+        d = Dimension.resolveDimension(attrs.getAttributeValue(null, "paddingTop"));
+        pt = d > 0 ? d : pt;
+        
+        d = Dimension.resolveDimension(attrs.getAttributeValue(null, "paddingRight"));
+        pr = d > 0 ? d : pr;
+        
+        d = Dimension.resolveDimension(attrs.getAttributeValue(null, "paddingBottom"));
+        pb = d > 0 ? d : pb;
 
         setPadding(pl, pt, pr, pb);
     }
