@@ -392,6 +392,7 @@ public class View {
         }
 
         int pl = Dimension.resolveDimension(attrs.getAttributeValue(null, "padding"));
+        pl = pl < 0 ? 0 : pl;
         int pt = pl;
         int pr = pl;
         int pb = pl;

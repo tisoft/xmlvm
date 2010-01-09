@@ -95,6 +95,7 @@ public class ViewGroup extends View implements ViewParent {
             super(context, attrs);
 
             int margin = Dimension.resolveDimension(attrs.getAttributeValue(null, "layout_margin"));
+            margin = margin < 0 ? 0 : margin;
             setMargins(margin, margin, margin, margin);
 
             margin = Dimension.resolveDimension(attrs
