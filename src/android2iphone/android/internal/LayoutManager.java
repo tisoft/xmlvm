@@ -33,6 +33,7 @@ import android.util.AttributeSet;
 import android.view.InflateException;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 class LayoutParser extends NSXMLParserDelegate {
 
@@ -157,7 +158,7 @@ class LayoutParser extends NSXMLParserDelegate {
             layoutParams = currentViewGroup.generateLayoutParams(attrs);
         } else {
             if (root == null) {
-                layoutParams = new ViewGroup.LayoutParams(context, attrs);
+                layoutParams = new FrameLayout.LayoutParams(context, attrs);
             } else {
                 layoutParams = root.generateLayoutParams(attrs);
             }

@@ -38,6 +38,7 @@ import android.internal.LayoutManager;
 import android.internal.XMLVMTheme;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.FrameLayout;
 
 /**
  * iPhone Implementation of Android's Window class.
@@ -64,8 +65,18 @@ public class Window {
             iWindow.setBackgroundColor(UIColor.colorWithRGBA(0.0941f, 0.0941f, 0.0941f, 1.0f));
         }
 
-        iWindow.addSubview(view.xmlvmGetUIView());
-        contentViews.add(view);
+        // Wrap the provided view with a FrameLayout as Android it does. Android
+        // uses this to layout the window's decoration. We do it the same way to
+        // support all FrameLayout.LayoutParams imposed on the content view.
+        FrameLayout fl = new FrameLayout(view.getContext());
+        if (view.getLayoutParams() == null) {
+            view.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.FILL_PARENT,
+                    LayoutParams.FILL_PARENT));
+        }
+        
+        fl.addView(view);
+        iWindow.addSubview(fl.xmlvmGetUIView());
+        contentViews.add(fl);
         adjustFrameSize();
         xmlvmSetHidden(false);
     }
