@@ -1503,9 +1503,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>
             </xsl:text>
 
-  <xsl:if test="dex:parameters/dex:return/@register">
+  <xsl:if test="dex:move-result/@vx">
     <xsl:text>__reg[</xsl:text>
-    <xsl:value-of select="dex:parameters/dex:return/@register" />
+    <xsl:value-of select="dex:move-result/@vx" />
     <xsl:text>] = </xsl:text>
   </xsl:if>
 
@@ -1540,9 +1540,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
   <xsl:text>
             </xsl:text>
-  <xsl:if test="dex:parameters/dex:return/@register">
+  <xsl:if test="dex:move-result/@vx">
     <xsl:text>__reg[</xsl:text>
-    <xsl:value-of select="dex:parameters/dex:return/@register" />
+    <xsl:value-of select="dex:move-result/@vx" />
     <xsl:text>] = </xsl:text>
   </xsl:if>
   <xsl:call-template name="emitScopedName">
@@ -1604,6 +1604,56 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>];</xsl:text>
 </xsl:template>
 
+<!--  dex:new-array
+      ==============  -->
+<xsl:template match="dex:new-array">
+  <xsl:text>
+            __reg[</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text>] = new Array(__reg[</xsl:text>
+  <xsl:value-of select="@vy" />
+  <xsl:text>]);</xsl:text>
+</xsl:template>
+
+<!--  dex:fill-array-data
+      ==============  -->
+<xsl:template match="dex:fill-array-data">
+  <xsl:text>
+            __reg[</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text>] = [</xsl:text>
+  <xsl:for-each select="dex:constant">
+    <xsl:value-of select="@value"/>
+    <xsl:if test="position()!=last()">
+      <xsl:text>, </xsl:text>
+    </xsl:if>
+  </xsl:for-each>
+  <xsl:text>];</xsl:text>
+</xsl:template>
+
+<!--  dex:aget
+      ========  -->
+<xsl:template match="dex:aget">
+  <xsl:text>
+            __reg[</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text>] = __reg[</xsl:text>
+  <xsl:value-of select="@vy" />
+  <xsl:text>][__reg[</xsl:text>
+  <xsl:value-of select="@vz" />
+  <xsl:text>]];</xsl:text>
+</xsl:template>
+
+<!--  dex:array-length
+      ================  -->
+<xsl:template match="dex:array-length">
+  <xsl:text>
+            __reg[</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text>] = __reg[</xsl:text>
+  <xsl:value-of select="@vy" />
+  <xsl:text>].length;</xsl:text>
+</xsl:template>
 
 <!--  initLocalsDex
       =============  -->
