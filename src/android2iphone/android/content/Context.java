@@ -131,7 +131,7 @@ public abstract class Context {
 
     public abstract FileInputStream openFileInput(String name) throws FileNotFoundException;
 
-    public abstract FileOutputStream openFileOutput(String name, int mode);
+    public abstract FileOutputStream openFileOutput(String name, int mode) throws FileNotFoundException;
 
     public abstract boolean deleteFile(String name);
 }

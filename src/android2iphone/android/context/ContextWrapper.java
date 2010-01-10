@@ -56,7 +56,7 @@ public class ContextWrapper extends Context {
     }
 
     public Context getApplicationContext() {
-        //TODO this is probably not right
+        // TODO this is probably not right
         return this;
     }
 
@@ -64,9 +64,9 @@ public class ContextWrapper extends Context {
         return new FileInputStream(name);
     }
 
-    public FileOutputStream openFileOutput(String name, int mode) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+    public FileOutputStream openFileOutput(String name, int mode) throws FileNotFoundException {
+        // TODO what to do with mode?
+        return new FileOutputStream(name);
     }
 
     public boolean deleteFile(String name) {
