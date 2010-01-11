@@ -36,7 +36,7 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
     public CppOutputProcess(Arguments arguments) {
         super(arguments);
-        if (arguments.option_use_dex()) {
+        if (!arguments.option_use_jvm()) {
             addSupportedInput(DEXmlvmOutputProcess.class);
         } else {
             addSupportedInput(ClassToXmlvmProcess.class);

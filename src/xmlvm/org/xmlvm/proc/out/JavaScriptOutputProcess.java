@@ -42,7 +42,7 @@ public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
         // We support any InputProcess as a valid input for JavaScript
         // generation.
         addSupportedInput(ExeToXmlvmProcess.class);
-        if (arguments.option_use_dex()) {
+        if (!arguments.option_use_jvm()) {
             addSupportedInput(DEXmlvmOutputProcess.class);
         } else {
             addSupportedInput(ClassToXmlvmProcess.class);
