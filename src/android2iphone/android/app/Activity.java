@@ -39,6 +39,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.ViewGroup.LayoutParams;
 
 /**
  * IPhone implementation of Android's Activity class.
@@ -264,6 +265,10 @@ public class Activity extends ContextThemeWrapper {
 
     public void setContentView(int id) {
         window.setContentView(id);
+    }
+
+    public void addContentView(View view, LayoutParams params) {
+        window.addContentView(view, params);
     }
 
     public View findViewById(int id) {

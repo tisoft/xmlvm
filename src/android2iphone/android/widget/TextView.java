@@ -30,7 +30,6 @@ import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.internal.Assert;
 import android.internal.XMLVMTheme;
 import android.util.AttributeSet;
 import android.util.Log;

@@ -20,9 +20,6 @@
 
 package android.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.xmlvm.iphone.CGAffineTransform;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
@@ -49,8 +46,10 @@ public class Window {
     public static final int FEATURE_NO_TITLE = 1;
     private Activity        activity;
     private UIWindow        iWindow;
-    private List<View>      contentViews;
     private View            toast;
+    private FrameLayout     internalView;
+    private FrameLayout     decorView;
+    private FrameLayout     contentParent;
 
     public Window(Activity parent) {
         this.activity = parent;
@@ -59,24 +58,48 @@ public class Window {
     public void setContentView(View view) {
         xmlvmRemoveWindow();
 
+        // Set default FrameLayout.LayoutParams if view does not have layout
+        // params
+        if (view.getLayoutParams() == null) {
+            view.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.FILL_PARENT,
+                    LayoutParams.FILL_PARENT));
+        }
+
+        // Create UIWindow and transparent internal FrameLayout used to layout
+        // the content views.
         iWindow = new UIWindow();
+        iWindow.setBackgroundColor(UIColor.clearColor);
+        internalView = new FrameLayout(activity);
+        internalView.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT,
+                LayoutParams.FILL_PARENT));
+        internalView.setBackgroundColor(0x80000000);
+        iWindow.addSubview(internalView.xmlvmGetUIView());
+
+        // Create DecorView used as the window for all content views
+        LayoutParams vlp = view.getLayoutParams();
+        int gravity = ((FrameLayout.LayoutParams) view.getLayoutParams()).gravity;
+        decorView = new FrameLayout(activity);
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                vlp.width == LayoutParams.FILL_PARENT ? LayoutParams.FILL_PARENT
+                        : LayoutParams.WRAP_CONTENT,
+                vlp.height == LayoutParams.FILL_PARENT ? LayoutParams.FILL_PARENT
+                        : LayoutParams.WRAP_CONTENT, gravity);
+        decorView.setLayoutParams(lp);
+        internalView.addView(decorView);
 
         if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
-            iWindow.setBackgroundColor(UIColor.colorWithRGBA(0.0941f, 0.0941f, 0.0941f, 1.0f));
+            decorView.setBackgroundColor(0xff191919);
         }
 
         // Wrap the provided view with a FrameLayout as Android it does. Android
         // uses this to layout the window's decoration. We do it the same way to
         // support all FrameLayout.LayoutParams imposed on the content view.
-        FrameLayout fl = new FrameLayout(view.getContext());
-        if (view.getLayoutParams() == null) {
-            view.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.FILL_PARENT,
-                    LayoutParams.FILL_PARENT));
-        }
-        
-        fl.addView(view);
-        iWindow.addSubview(fl.xmlvmGetUIView());
-        contentViews.add(fl);
+        contentParent = new FrameLayout(activity);
+        contentParent.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.FILL_PARENT,
+                LayoutParams.FILL_PARENT));
+        contentParent.addView(view);
+        decorView.addView(contentParent);
+
         adjustFrameSize();
         xmlvmSetHidden(false);
     }
@@ -86,10 +109,8 @@ public class Window {
         setContentView(v);
     }
 
-    public void addContentView(View view, WindowManager.LayoutParams params) {
-        // TODO what to do with params?
-        iWindow.addSubview(view.xmlvmGetUIView());
-        contentViews.add(view);
+    public void addContentView(View view, ViewGroup.LayoutParams params) {
+        contentParent.addView(view, params);
         layoutContentView(view);
     }
 
@@ -130,15 +151,17 @@ public class Window {
     }
 
     public void xmlvmRemoveWindow() {
-        xmlvmSetHidden(true);
-        if (contentViews != null) {
-            for (View view : contentViews) {
-                view.xmlvmGetUIView().removeFromSuperview();
-                view.xmlvmSetParent(null);
-            }
+        if (iWindow != null) {
+            xmlvmSetHidden(true);
+            iWindow.xmlvmDestroy();
+            iWindow = null;
+            internalView.removeAllViews();
+            internalView = null;
+            decorView.removeAllViews();
+            decorView = null;
+            contentParent.removeAllViews();
+            contentParent = null;
         }
-        iWindow = null;
-        contentViews = new ArrayList<View>();
     }
 
     /**
@@ -161,9 +184,7 @@ public class Window {
             iWindow.setTransform(translation);
         }
 
-        for (View view : contentViews) {
-            layoutContentView(view);
-        }
+        layoutContentView(internalView);
     }
 
     private void layoutContentView(View view) {
@@ -200,10 +221,6 @@ public class Window {
         view.requestLayout();
     }
 
-    public View xmlvmGetMainView() {
-        return contentViews.get(0);
-    }
-
     /**
      * Internal. Not part of Android API.
      */
@@ -223,7 +240,7 @@ public class Window {
      * @return
      */
     public View findViewById(int id) {
-        return contentViews.get(0).findViewById(id);
+        return internalView.findViewById(id);
     }
 
     public WindowManager.LayoutParams getAttributes() {
