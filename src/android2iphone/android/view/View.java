@@ -36,7 +36,6 @@ import org.xmlvm.iphone.UIView;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
@@ -448,20 +447,11 @@ public class View {
     }
 
     public void setBackgroundColor(int color) {
-        switch (color) {
-        case Color.BLUE:
-            uiView.setBackgroundColor(UIColor.blueColor);
-            break;
-        case Color.YELLOW:
-            uiView.setBackgroundColor(UIColor.yellowColor);
-            break;
-        case Color.GREEN:
-            uiView.setBackgroundColor(UIColor.greenColor);
-            break;
-        default:
-            Assert.NOT_IMPLEMENTED();
-            break;
-        }
+        float alpha = (float) (((color >> 24) & 0xff) / 255.0f);
+        float red = (float) (((color >> 16) & 0xff) / 255.0f);
+        float green = (float) (((color >> 8) & 0xff) / 255.0f);
+        float blue = (float) ((color & 0xff) / 255.0f);
+        uiView.setBackgroundColor(UIColor.colorWithRGBA(red, green, blue, alpha));
     }
 
     public boolean postDelayed(Runnable runnable, long delay) {
