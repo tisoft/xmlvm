@@ -48,4 +48,8 @@
 	[self makeKeyAndVisible];
 }
 
+- (void) xmlvmDestroy__
+{
+}
+
 @end
