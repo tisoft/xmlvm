@@ -89,4 +89,12 @@ public abstract class UIApplication extends UIResponder {
             e.printStackTrace();
         }
     }
+
+    public void xmlvmAddWindow(UIWindow window) {
+        windows.add(window);
+    }
+
+    public void xmlvmRemoveWindow(UIWindow window) {
+        windows.remove(window);
+    }
 }
