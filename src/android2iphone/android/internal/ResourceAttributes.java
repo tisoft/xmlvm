@@ -55,7 +55,16 @@ public class ResourceAttributes implements AttributeSet {
             return defaultValue;
         }
 
-        return Integer.parseInt(value);
+        int result = 0;
+        if (value.startsWith("#")) {
+            result = (int) Long.parseLong(value.substring(1), 16);
+        } else if (value.startsWith("0x")) {
+            result = (int) Long.parseLong(value.substring(2), 16);
+        } else {
+            result = Integer.parseInt(value);
+        }
+
+        return result;
     }
 
     @Override
@@ -74,8 +83,7 @@ public class ResourceAttributes implements AttributeSet {
 
         if (namespace == null) {
             keyName.append(androidNsPrefix);
-        }
-        else if (namespace.length() > 0) {
+        } else if (namespace.length() > 0) {
             keyName.append(namespace);
 
             if (!namespace.endsWith(":")) {

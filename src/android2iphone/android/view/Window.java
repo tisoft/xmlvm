@@ -30,6 +30,7 @@ import org.xmlvm.iphone.UIWindow;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.graphics.drawable.Drawable;
 import android.internal.Assert;
 import android.internal.LayoutManager;
 import android.internal.XMLVMTheme;
@@ -97,6 +98,7 @@ public class Window {
         contentParent = new FrameLayout(activity);
         contentParent.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.FILL_PARENT,
                 LayoutParams.FILL_PARENT));
+        contentParent.setBackgroundColor(0x00000000);
         contentParent.addView(view);
         decorView.addView(contentParent);
 
@@ -119,6 +121,18 @@ public class Window {
         if ((maskedFlags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0) {
             UIApplication.sharedApplication().setStatusBarHidden(true);
             adjustFrameSize();
+        }
+    }
+
+    public void setBackgroundDrawableResource(int resId) {
+        if (decorView != null) {
+            decorView.setBackgroundResource(resId);
+        }
+    }
+
+    public void setBackgroundDrawable(Drawable drawable) {
+        if (decorView != null) {
+            decorView.setBackgroundDrawable(drawable);
         }
     }
 

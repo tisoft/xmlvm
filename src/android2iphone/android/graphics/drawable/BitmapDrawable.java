@@ -22,6 +22,8 @@ package android.graphics.drawable;
 
 import org.xmlvm.iphone.UIImage;
 
+import android.graphics.Canvas;
+
 public class BitmapDrawable extends Drawable {
 
     private UIImage image;
@@ -37,7 +39,7 @@ public class BitmapDrawable extends Drawable {
     public UIImage xmlvmGetImage() {
         return image;
     }
-    
+
     public void xmlvmSetImage(UIImage image) {
         this.image = image;
     }
@@ -54,6 +56,9 @@ public class BitmapDrawable extends Drawable {
     @Override
     public int getIntrinsicHeight() {
         return (int) image.getSize().height;
+    }
+
+    public void draw(Canvas canvas) {
     }
 
 }

@@ -32,15 +32,21 @@ import org.xmlvm.iphone.NSXMLParserDelegate;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.util.AttributeSet;
 import android.view.InflateException;
 
 class DrawableParser extends NSXMLParserDelegate {
 
-    private Context  context;
-    private String   prefix;
-    private Drawable drawable;
+    private static final int UNKNOWN_DRAWABLE   = 0;
+    private static final int STATELIST_DRAWABLE = 1;
+    private static final int GRADIENT_DRAWABLE  = 2;
+
+    private Context          context;
+    private String           prefix;
+    private Drawable         drawable;
+    private int              drawableType       = UNKNOWN_DRAWABLE;
 
     public DrawableParser(Context context) {
         this.context = context;
@@ -60,13 +66,54 @@ class DrawableParser extends NSXMLParserDelegate {
 
         if (qualifiedName.equals("selector")) {
             drawable = StateListDrawable.xmlvmCreateStateListDrawable(attrs);
-        } else if (qualifiedName.equals("item")) {
-            processStateListItem(attrs);
+            drawableType = STATELIST_DRAWABLE;
+        } else if (qualifiedName.equals("shape")) {
+            drawable = GradientDrawable.xmlvmCreateGradientDrawable(attrs);
+            drawableType = GRADIENT_DRAWABLE;
+        } else {
+            switch (drawableType) {
+            case STATELIST_DRAWABLE:
+                didStartStateListDrawableElement(qualifiedName, attrs);
+                break;
+            case GRADIENT_DRAWABLE:
+                didStartGradientDrawableElement(qualifiedName, attrs);
+            }
         }
     }
 
     public void didEndElement(NSXMLParser parser, String elementName, String namespaceURI,
             String qualifiedName) {
+    }
+
+    private void didStartStateListDrawableElement(String elementName, AttributeSet attrs) {
+        if (elementName.equals("item")) {
+            processStateListItem(attrs);
+        } else {
+            throw new InflateException("Element not valid for StateListDrawable: " + elementName);
+        }
+    }
+
+    private void didStartGradientDrawableElement(String elementName, AttributeSet attrs) {
+        // TODO: Implement parsing the various gradient elements
+        if (elementName.equals("solid")) {
+            int color = attrs.getAttributeIntValue(null, "color", 0);
+            ((GradientDrawable) drawable).setColor(color);
+        }
+        else if (elementName.equals("padding")) {
+            int left = Dimension.resolveDimension(attrs.getAttributeValue(null, "left"));
+            left = left < 0 ? 0 : left;
+
+            int top = Dimension.resolveDimension(attrs.getAttributeValue(null, "top"));
+            top = top < 0 ? 0 : top;
+
+            int right = Dimension.resolveDimension(attrs.getAttributeValue(null, "right"));
+            right = right < 0 ? 0 : right;
+            
+            int bottom = Dimension.resolveDimension(attrs.getAttributeValue(null, "bottom"));
+            bottom = bottom < 0 ? 0 : bottom;
+            
+            ((GradientDrawable) drawable).xmlvmSetPadding(left, top, right, bottom);
+        }
     }
 
     private void processStateListItem(AttributeSet attrs) {

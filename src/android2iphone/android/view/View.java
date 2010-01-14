@@ -38,6 +38,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.internal.Assert;
 import android.internal.Dimension;
@@ -97,6 +98,7 @@ public class View {
     private Resources                mResources;
     private Handler                  handler;
     private OnClickListener          onClickListener;
+    private UIColor                  savedBackgroundColor   = null;
 
     /**
      * Copyright (C) 2006 The Android Open Source Project
@@ -330,7 +332,7 @@ public class View {
         if (action == MotionEvent.ACTION_UP && onClickListener != null) {
             onClickListener.onClick(this);
         }
-        
+
         UITouch firstTouch = touches.iterator().next();
         CGPoint point = firstTouch.locationInView(uiView);
         MotionEvent motionEvent = new MotionEvent(action, (int) point.x, (int) point.y);
@@ -398,13 +400,13 @@ public class View {
 
         int d = Dimension.resolveDimension(attrs.getAttributeValue(null, "paddingLeft"));
         pl = d > 0 ? d : pl;
-        
+
         d = Dimension.resolveDimension(attrs.getAttributeValue(null, "paddingTop"));
         pt = d > 0 ? d : pt;
-        
+
         d = Dimension.resolveDimension(attrs.getAttributeValue(null, "paddingRight"));
         pr = d > 0 ? d : pr;
-        
+
         d = Dimension.resolveDimension(attrs.getAttributeValue(null, "paddingBottom"));
         pb = d > 0 ? d : pb;
 
@@ -432,13 +434,22 @@ public class View {
         backgroundDrawable = drawable;
 
         if (drawable == null) {
+            if (savedBackgroundColor != null) {
+                xmlvmGetUIView().setBackgroundColor(savedBackgroundColor);
+            }
+
             uiView.setBackgroundImage(null);
             return;
         }
+
+        savedBackgroundColor = xmlvmGetUIView().getBackgroundColor();
+        xmlvmGetUIView().setBackgroundColor(UIColor.clearColor);
         if (drawable instanceof BitmapDrawable) {
             uiView.setBackgroundImage(((BitmapDrawable) drawable).xmlvmGetImage());
         } else if (drawable instanceof StateListDrawable) {
             refreshBackgroundStateDrawable();
+        } else if (drawable instanceof GradientDrawable) {
+            invalidate();
         } else {
             Assert.NOT_IMPLEMENTED();
         }
@@ -596,6 +607,14 @@ public class View {
     }
 
     protected void draw(Canvas canvas) {
+        // TODO Implement proper background drawing
+        // Currently draw() gets called AFTER the UI widget has drawn itself so
+        // this results in overwriting the aldready drawn UI widget.
+        if (backgroundDrawable != null) {
+            backgroundDrawable.setBounds(0, 0, width, height);
+            backgroundDrawable.draw(canvas);
+        }
+
         onDraw(canvas);
     }
 

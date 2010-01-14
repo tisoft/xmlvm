@@ -20,6 +20,7 @@
 
 package android.graphics.drawable;
 
+import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.internal.Assert;
 
@@ -280,5 +281,11 @@ public class DrawableContainer extends Drawable {
             return (constantPadding = r);
         }
 
+    }
+
+    public void draw(Canvas canvas) {
+        if (currentDrawable != null) {
+            currentDrawable.draw(canvas);
+        }
     }
 }

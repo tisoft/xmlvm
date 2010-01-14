@@ -22,6 +22,7 @@ package android.graphics.drawable;
 
 import java.util.Arrays;
 
+import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.util.StateSet;
 
@@ -152,5 +153,5 @@ public abstract class Drawable {
     protected void onBoundsChange(Rect bounds) {
     }
 
-    // public abstract void draw(Canvas canvas);
+    public abstract void draw(Canvas canvas);
 }

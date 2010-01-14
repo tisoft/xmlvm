@@ -64,4 +64,9 @@
 	return atol([str UTF8String]);
 }
 
++ (long) parseLong___java_lang_String_int: (java_lang_String*) str :(int) radix
+{
+    return strtoul([str UTF8String], nil, radix);
+}
+
 @end

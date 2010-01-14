@@ -37,5 +37,6 @@ long number;
 - (BOOL) isEqual:(id)anObject;
 - (long) longValue__;
 + (long) parseLong___java_lang_String: (java_lang_String *) str;
++ (long) parseLong___java_lang_String_int: (java_lang_String*) str :(int) radix;
 
 @end
