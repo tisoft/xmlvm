@@ -32,8 +32,8 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.internal.Assert;
+import android.internal.DecorView;
 import android.internal.LayoutManager;
-import android.internal.XMLVMTheme;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
@@ -49,7 +49,7 @@ public class Window {
     private UIWindow        iWindow;
     private View            toast;
     private FrameLayout     internalView;
-    private FrameLayout     decorView;
+    private DecorView       decorView;
     private FrameLayout     contentParent;
 
     public Window(Activity parent) {
@@ -79,7 +79,7 @@ public class Window {
         // Create DecorView used as the window for all content views
         LayoutParams vlp = view.getLayoutParams();
         int gravity = ((FrameLayout.LayoutParams) view.getLayoutParams()).gravity;
-        decorView = new FrameLayout(activity);
+        decorView = new DecorView(activity);
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
                 vlp.width == LayoutParams.FILL_PARENT ? LayoutParams.FILL_PARENT
                         : LayoutParams.WRAP_CONTENT,
@@ -87,10 +87,6 @@ public class Window {
                         : LayoutParams.WRAP_CONTENT, gravity);
         decorView.setLayoutParams(lp);
         internalView.addView(decorView);
-
-        if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
-            decorView.setBackgroundColor(0xff191919);
-        }
 
         // Wrap the provided view with a FrameLayout as Android it does. Android
         // uses this to layout the window's decoration. We do it the same way to

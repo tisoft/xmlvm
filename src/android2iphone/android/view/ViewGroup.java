@@ -30,9 +30,7 @@ import org.xmlvm.iphone.UIView;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.internal.Dimension;
-import android.internal.XMLVMTheme;
 import android.util.AttributeSet;
 
 /**
