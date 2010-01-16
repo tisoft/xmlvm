@@ -68,7 +68,7 @@ public class Activity extends ContextThemeWrapper {
     private Intent           intent;
     private int              requestCode;
     private int              childRequestCode;
-    private int              childResultCode     = RESULT_CANCELED;
+    private int              childResultCode;
     private Intent           childData;
     private Window           window;
     private int              screenOrientation   = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
@@ -190,6 +190,7 @@ public class Activity extends ContextThemeWrapper {
 
     public void xmlvmOnCreate(Object savedInstanceState) {
         setRequestedOrientation(screenOrientation);
+        setResult(RESULT_CANCELED);
         onCreate((Bundle) savedInstanceState);
     }
 
@@ -240,9 +241,15 @@ public class Activity extends ContextThemeWrapper {
 
     public void xmlvmOnDestroy(Object arg) {
         onDestroy();
+
+        Activity theParent = parent;
         window.xmlvmRemoveWindow();
         window = null;
         xmlvmUnlinkActivity();
+        if (theParent != null) {
+            NSObject.performSelectorOnMainThread(theParent, "xmlvmOnActivityResult", null, false);
+            theParent.xmlvmTransitToStateActive(null);
+        }
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -329,9 +336,11 @@ public class Activity extends ContextThemeWrapper {
     }
 
     public final void setResult(int resultCode, Intent data) {
-        parent.childRequestCode = requestCode;
-        parent.childResultCode = resultCode;
-        parent.childData = data;
+        if (parent != null) {
+            parent.childRequestCode = requestCode;
+            parent.childResultCode = resultCode;
+            parent.childData = data;
+        }
     }
 
     public void requestWindowFeature(int feature) {
@@ -408,7 +417,7 @@ public class Activity extends ContextThemeWrapper {
     }
 
     public void finish() {
-        ActivityManager.destroyActivity(this);
+        this.xmlvmTransitToStateDestroyed(false);
     }
 
 }

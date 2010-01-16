@@ -82,7 +82,6 @@ public abstract class Context {
     private static SensorManager  sensorManager           = null;
     private static PowerManager   powerManager            = null;
     private static AudioManager   audioManager            = null;
-    private static LayoutInflater layoutInflater          = null;
     private static IPhoneManager  iphoneManager           = null;
 
     /**
@@ -110,10 +109,7 @@ public abstract class Context {
             }
             return audioManager;
         } else if (service.equals(LAYOUT_INFLATER_SERVICE)) {
-            if (layoutInflater == null) {
-                layoutInflater = new LayoutInflater(this);
-            }
-            return layoutInflater;
+            return new LayoutInflater(this);
         } else if (service.equals(IPHONE_SERVICE)) {
             if (iphoneManager == null) {
                 iphoneManager = new IPhoneManager();

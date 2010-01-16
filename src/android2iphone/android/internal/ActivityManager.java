@@ -112,20 +112,6 @@ public class ActivityManager extends UIApplication {
         startActivityForResult(parent, intent, -1);
     }
 
-    public static void destroyActivity(Activity activity) {
-        Activity parent = activity.xmlvmGetParent();
-        if (parent != null) {
-            NSObject.performSelectorOnMainThread(parent, "xmlvmOnActivityResult", null, false);
-        }
-        activity.xmlvmTransitToStateDestroyed(false);
-        if (topActivity == activity) {
-            topActivity = parent;
-        }
-        if (parent != null) {
-            parent.xmlvmTransitToStateActive(null);
-        }
-    }
-
     public static void bootstrapMainActivity() {
         manifest = new AndroidManifest();
         startActivity(null, new Intent("android.intent.action.MAIN"));
