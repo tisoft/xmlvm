@@ -25,28 +25,8 @@
 @implementation org_xmlvm_iphone_CGSize;
 
 - (void) __init_org_xmlvm_iphone_CGSize___float_float: (float) w : (float) h {
-	width = w;
-	height = h;
-}
-
-- (void) _PUT_width: (float) w
-{
-	self->width = w;
-}
-
-- (float) _GET_width
-{
-	return width;
-}
-
-- (void) _PUT_height: (float) h
-{
-	self->height = h;
-}
-
-- (float) _GET_height
-{
-	return height;
+	width_float = w;
+	height_float = h;
 }
 
 - (int) equals___java_lang_Object: (java_lang_Object*) o
@@ -56,7 +36,7 @@
 	}
 		
 	org_xmlvm_iphone_CGSize* s = (org_xmlvm_iphone_CGSize*) o;
-	return self->width == s->width && self->height == s->height;
+	return self->width_float == s->width_float && self->height_float == s->height_float;
 }
 
 @end

@@ -28,8 +28,8 @@
 - (org_xmlvm_iphone_CGSize*) rowSizeForComponent___int :(int)n1 {
 	CGSize size = [self rowSizeForComponent:n1];
 	org_xmlvm_iphone_CGSize *s = [[org_xmlvm_iphone_CGSize alloc] init];
-	s->height = size.height;
-	s->width = size.width;
+	s->height_float = size.height;
+	s->width_float = size.width;
 	return s;
 }
 

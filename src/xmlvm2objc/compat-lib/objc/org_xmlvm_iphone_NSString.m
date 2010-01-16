@@ -35,7 +35,7 @@
                :(org_xmlvm_iphone_CGPoint*) point
                :(org_xmlvm_iphone_UIFont*) font
 {
-	CGPoint p = CGPointMake(point->x, point->y - font.ascender);
+	CGPoint p = CGPointMake(point->x_float, point->y_float - font.ascender);
 	[((NSString*) texttodisplay) drawAtPoint:p withFont:font];
 }
 
@@ -45,8 +45,8 @@
 {
 	CGSize size = [((NSString*) text) sizeWithFont:font];
 	org_xmlvm_iphone_CGSize* s = [[org_xmlvm_iphone_CGSize alloc] init];
-	s->width = size.width;
-	s->height = size.height;
+	s->width_float = size.width;
+	s->height_float = size.height;
 	return s;
 }
 

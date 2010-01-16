@@ -95,16 +95,14 @@ int main(int argc, char* argv[])
 </xsl:text>
       <!-- Emit declarations for all non-static fields -->
       <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
-        <xsl:text>@private </xsl:text>
+        <xsl:text>@public </xsl:text>
         <xsl:call-template name="emitType">
           <xsl:with-param name="type" select="@type"/>
         </xsl:call-template>
         <xsl:text> </xsl:text>
-        <xsl:value-of select="vm:fixname(../@package)"/>
-        <xsl:text>_</xsl:text>
-        <xsl:value-of select="vm:fixname(../@name)"/>
-        <xsl:text>_</xsl:text>
         <xsl:value-of select="vm:fixname(@name)"/>
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="vm:fixname(@type)"/>
         <xsl:text>;
 </xsl:text>
       </xsl:for-each>
@@ -116,11 +114,10 @@ int main(int argc, char* argv[])
     <xsl:text>+ (void) initialize;
 - (id) init;
 </xsl:text>
-    <!-- Emit declarations for getter and setter methods for all fields -->
-    <xsl:for-each select="vm:field">
+    <!-- Emit declarations for getter and setter methods for all static fields -->
+    <xsl:for-each select="vm:field[@isStatic = 'true']">
       <!-- Emit getter -->
-      <xsl:value-of select="if (@isStatic = 'true') then '+' else '-'"/>
-      <xsl:text> (</xsl:text>
+      <xsl:text>+ (</xsl:text>
       <xsl:call-template name="emitType">
         <xsl:with-param name="type" select="@type"/>
       </xsl:call-template>
@@ -129,8 +126,7 @@ int main(int argc, char* argv[])
       <xsl:text>;
 </xsl:text>
       <!-- Emit setter -->
-      <xsl:value-of select="if (@isStatic = 'true') then '+' else '-'"/>
-      <xsl:text> (void) _PUT_</xsl:text>
+      <xsl:text>+ (void) _PUT_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>: (</xsl:text>
       <xsl:call-template name="emitType">
@@ -266,11 +262,9 @@ int main(int argc, char* argv[])
       <!-- Emit declarations for all non-static member fields -->
       <xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type)]">
         <xsl:text>        </xsl:text>
-        <xsl:value-of select="vm:fixname(../@package)"/>
-        <xsl:text>_</xsl:text>
-        <xsl:value-of select="vm:fixname(../@name)"/>
-        <xsl:text>_</xsl:text>
         <xsl:value-of select="vm:fixname(@name)"/>
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="vm:fixname(@type)"/>
         <xsl:text> = (id) [NSNull null];
 </xsl:text>
       </xsl:for-each>
@@ -292,11 +286,9 @@ int main(int argc, char* argv[])
 </xsl:if>
 	<xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type)]">
 	  <xsl:text>    [</xsl:text>
-      <xsl:value-of select="vm:fixname(../@package)"/>
+      <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>_</xsl:text>
-      <xsl:value-of select="vm:fixname(../@name)"/>
-      <xsl:text>_</xsl:text>
-	  <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:value-of select="vm:fixname(@type)"/>
 	  <xsl:text> release];
 </xsl:text>
 	</xsl:for-each>
@@ -305,8 +297,8 @@ int main(int argc, char* argv[])
 
 </xsl:text>
 
-	<!-- Emit getters and setters for all fields -->
-    <xsl:for-each select="vm:field">
+	<!-- Emit getters and setters for all static fields -->
+    <xsl:for-each select="vm:field[@isStatic = 'true']">
       <!-- Emit getter -->
       <xsl:variable name="field">
         <xsl:value-of select="vm:fixname(../@package)"/>
@@ -315,8 +307,7 @@ int main(int argc, char* argv[])
         <xsl:text>_</xsl:text>
         <xsl:value-of select="vm:fixname(@name)"/>
       </xsl:variable>
-      <xsl:value-of select="if (@isStatic = 'true') then '+' else '-'"/>
-      <xsl:text> (</xsl:text>
+      <xsl:text>+ (</xsl:text>
       <xsl:call-template name="emitType">
         <xsl:with-param name="type" select="@type"/>
       </xsl:call-template>
@@ -328,7 +319,7 @@ int main(int argc, char* argv[])
       <xsl:if test="vm:isObjectRef(@type)">
         <xsl:text>[[</xsl:text>
       </xsl:if>
-      <xsl:value-of select="if (@isStatic = 'true') then '_STATIC_' else ''"/>
+      <xsl:text>_STATIC_</xsl:text>
       <xsl:value-of select="$field"/>
       <!-- For object references we need to do the retain and autorelease. It is possible
            that the object reference returned by this getter is only kept in a local
@@ -343,8 +334,7 @@ int main(int argc, char* argv[])
 
 </xsl:text>
       <!-- Emit setter -->
-      <xsl:value-of select="if (@isStatic = 'true') then '+' else '-'"/>
-      <xsl:text> (void) _PUT_</xsl:text>
+      <xsl:text>+ (void) _PUT_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>: (</xsl:text>
       <xsl:call-template name="emitType">
@@ -355,13 +345,12 @@ int main(int argc, char* argv[])
     </xsl:text>
     <xsl:if test="vm:isObjectRef(@type)">
         <xsl:text>[v retain];
-    [</xsl:text>
-        <xsl:value-of select="if (@isStatic = 'true') then '_STATIC_' else ''"/>
+    [_STATIC_</xsl:text>
         <xsl:value-of select="$field"/>
         <xsl:text> release];
     </xsl:text>
     </xsl:if>
-      <xsl:value-of select="if (@isStatic = 'true') then '_STATIC_' else ''"/>
+      <xsl:text>_STATIC_</xsl:text>
       <xsl:value-of select="$field"/>
       <xsl:text> = v;
 }
@@ -951,15 +940,31 @@ int main(int argc, char* argv[])
     </xsl:text>
   <xsl:text>_op2.o = _stack[--_sp].o;
     </xsl:text>
-  <xsl:text>[((</xsl:text>
+  <xsl:if test="vm:isObjectRef(@type)">
+    <xsl:text>[_op1.o retain];
+    </xsl:text>
+    <xsl:text>[((</xsl:text>
+    <xsl:call-template name="emitType">
+      <xsl:with-param name="type" select="@class-type"/>
+    </xsl:call-template>
+    <xsl:text>) _op2.o)-></xsl:text>
+    <xsl:value-of select="vm:fixname(@field)"/>
+    <xsl:text>_</xsl:text>
+    <xsl:value-of select="vm:fixname(@type)"/>
+    <xsl:text> release];
+    </xsl:text>
+  </xsl:if>
+  <xsl:text>((</xsl:text>
   <xsl:call-template name="emitType">
     <xsl:with-param name="type" select="@class-type"/>
   </xsl:call-template>
-  <xsl:text>) _op2.o) _PUT_</xsl:text>
+  <xsl:text>) _op2.o)-></xsl:text>
   <xsl:value-of select="vm:fixname(@field)"/>
-  <xsl:text>: _op1</xsl:text>
+  <xsl:text>_</xsl:text>
+  <xsl:value-of select="vm:fixname(@type)"/>
+  <xsl:text> = _op1</xsl:text>
   <xsl:value-of select="$m"/>
-  <xsl:text>];
+  <xsl:text>;
 </xsl:text>
 </xsl:template>
 
@@ -974,15 +979,21 @@ int main(int argc, char* argv[])
   <xsl:text>    _op1.o = _stack[--_sp].o;
     _op2</xsl:text>
   <xsl:value-of select="$m"/>
-  <xsl:text> = [((</xsl:text>
+  <xsl:text> = ((</xsl:text>
   <xsl:call-template name="emitType">
     <xsl:with-param name="type" select="@class-type"/>
   </xsl:call-template>
-  <xsl:text>) _op1.o) </xsl:text>
-  <xsl:text> _GET_</xsl:text>
+  <xsl:text>) _op1.o)-></xsl:text>
   <xsl:value-of select="vm:fixname(@field)"/>
-  <xsl:text>];
-    _stack[_sp++]</xsl:text>
+  <xsl:text>_</xsl:text>
+  <xsl:value-of select="vm:fixname(@type)"/>
+  <xsl:text>;
+    </xsl:text>
+  <xsl:if test="vm:isObjectRef(@type)">
+    <xsl:text>[[_op2.o retain] autorelease];
+    </xsl:text>
+  </xsl:if>
+  <xsl:text>_stack[_sp++]</xsl:text>
   <xsl:value-of select="$m"/>
   <xsl:text> = _op2</xsl:text>
   <xsl:value-of select="$m"/>
@@ -1581,7 +1592,7 @@ int main(int argc, char* argv[])
     <xsl:when test="count(vm:signature/vm:parameter) != 0">
       <xsl:for-each select="vm:signature/vm:parameter">
         <xsl:text>_</xsl:text>
-        <xsl:value-of select="replace(vm:fixname(@type), '\[\]', '_ARRAYTYPE')"/>
+        <xsl:value-of select="vm:fixname(@type)"/>
       </xsl:for-each>
     </xsl:when>
   </xsl:choose>
@@ -1735,7 +1746,7 @@ int main(int argc, char* argv[])
 
 <xsl:function name="vm:fixname">
   <xsl:param  name="a"/>
-  <xsl:value-of  select="replace(replace($a,'\$', '_'),'\.','_')"/>
+  <xsl:value-of  select="replace(replace(replace($a,'\$', '_'),'\.','_'), '\[\]', '_ARRAYTYPE')"/>
 </xsl:function>
   
   
@@ -2508,7 +2519,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:iget|dex:iget-wide|dex:iget-object|dex:iget-boolean">
+<xsl:template match="dex:iget|dex:iget-wide|dex:iget-boolean">
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@member-type"/>
@@ -2517,38 +2528,104 @@ int main(int argc, char* argv[])
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:value-of select="$m"/>
-  <xsl:text> = [((</xsl:text>
+  <xsl:text> = ((</xsl:text>
   <xsl:call-template name="emitType">
     <xsl:with-param name="type" select="@class-type"/>
   </xsl:call-template>
   <xsl:text>) _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.o) </xsl:text>
-  <xsl:text> _GET_</xsl:text>
+  <xsl:text>.o)-></xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
-  <xsl:text>];
+  <xsl:text>_</xsl:text>
+  <xsl:value-of select="vm:fixname(@member-type)"/>
+  <xsl:text>;
 </xsl:text>
 </xsl:template>
 
 
-<xsl:template match="dex:iput|dex:iput-wide|dex:iput-object|dex:iput-boolean">
+<xsl:template match="dex:iget-object">
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@member-type"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:text>    [((</xsl:text>
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:value-of select="$m"/>
+  <xsl:text> = [[((</xsl:text>
   <xsl:call-template name="emitType">
     <xsl:with-param name="type" select="@class-type"/>
   </xsl:call-template>
   <xsl:text>) _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.o) _PUT_</xsl:text>
+  <xsl:text>.o)-></xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
-  <xsl:text>: _r</xsl:text>
+  <xsl:text>_</xsl:text>
+  <xsl:value-of select="vm:fixname(@member-type)"/>
+  <xsl:text> retain] autorelease];
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:iput|dex:iput-wide|dex:iput-boolean">
+  <xsl:variable name="m">
+    <xsl:call-template name="emitTypedAccess">
+      <xsl:with-param name="type" select="@member-type"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:text>    ((</xsl:text>
+  <xsl:call-template name="emitType">
+    <xsl:with-param name="type" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:text>) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o)-></xsl:text>
+  <xsl:value-of select="vm:fixname(@member-name)"/>
+  <xsl:text>_</xsl:text>
+  <xsl:value-of select="vm:fixname(@member-type)"/>
+  <xsl:text> = _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:value-of select="$m"/>
-  <xsl:text>];
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+
+<xsl:template match="dex:iput-object">
+  <xsl:variable name="m">
+    <xsl:call-template name="emitTypedAccess">
+      <xsl:with-param name="type" select="@member-type"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:text>    [_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o retain];
+    [((</xsl:text>
+  <xsl:call-template name="emitType">
+    <xsl:with-param name="type" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:text>) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o)-></xsl:text>
+  <xsl:value-of select="vm:fixname(@member-name)"/>
+  <xsl:text>_</xsl:text>
+  <xsl:value-of select="vm:fixname(@member-type)"/>
+  <xsl:text> release];
+    ((</xsl:text>
+  <xsl:call-template name="emitType">
+    <xsl:with-param name="type" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:text>) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o)-></xsl:text>
+  <xsl:value-of select="vm:fixname(@member-name)"/>
+  <xsl:text>_</xsl:text>
+  <xsl:value-of select="vm:fixname(@member-type)"/>
+  <xsl:text> = _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:value-of select="$m"/>
+  <xsl:text>;
 </xsl:text>
 </xsl:template>
 

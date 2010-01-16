@@ -53,8 +53,8 @@
 - (org_xmlvm_iphone_CGSize*) getSize__
 {
     org_xmlvm_iphone_CGSize* s = [[org_xmlvm_iphone_CGSize alloc] init];
-    s->width = CGImageGetWidth( image );
-    s->height = CGImageGetHeight( image );
+    s->width_float = CGImageGetWidth(image);
+    s->height_float = CGImageGetHeight(image);
     return s;
 }
 

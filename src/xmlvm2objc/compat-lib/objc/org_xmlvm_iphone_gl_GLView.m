@@ -36,8 +36,8 @@
 {
 	[super __init_org_xmlvm_iphone_UIView___org_xmlvm_iphone_CGRect: n1];
 
-	backingWidth = n1->size->width;
-	backingHeight = n1->size->height;
+	backingWidth = n1->size_org_xmlvm_iphone_CGSize->width_float;
+	backingHeight = n1->size_org_xmlvm_iphone_CGSize->height_float;
 
 	// Get the layer
 	CAEAGLLayer *eaglLayer = (CAEAGLLayer*) self.layer;

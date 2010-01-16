@@ -28,61 +28,40 @@
 - (id) init
 {
     [super init];
-    origin = [[org_xmlvm_iphone_CGPoint alloc] init];
-    size = [[org_xmlvm_iphone_CGSize alloc] init];
+    origin_org_xmlvm_iphone_CGPoint = [[org_xmlvm_iphone_CGPoint alloc] init];
+    size_org_xmlvm_iphone_CGSize = [[org_xmlvm_iphone_CGSize alloc] init];
     return self;
 }
 
 - (void) dealloc
 {
-    [origin release];
-    [size release];
+    [origin_org_xmlvm_iphone_CGPoint release];
+    [size_org_xmlvm_iphone_CGSize release];
     [super dealloc];
 }
 
 - (CGRect) getCGRect
 {
-    return CGRectMake(origin->x, origin->y, size->width, size->height);
+    return CGRectMake(origin_org_xmlvm_iphone_CGPoint->x_float,
+					  origin_org_xmlvm_iphone_CGPoint->y_float,
+					  size_org_xmlvm_iphone_CGSize->width_float,
+					  size_org_xmlvm_iphone_CGSize->height_float);
 }
 
 - (void) __init_org_xmlvm_iphone_CGRect___float_float_float_float :(float)x :(float)y :(float)w :(float)h
 {
-    origin->x = x;
-    origin->y = y;
-    size->width = w;
-    size->height = h;
+    origin_org_xmlvm_iphone_CGPoint->x_float = x;
+    origin_org_xmlvm_iphone_CGPoint->y_float = y;
+    size_org_xmlvm_iphone_CGSize->width_float = w;
+    size_org_xmlvm_iphone_CGSize->height_float = h;
 }
 
 - (void) __init_org_xmlvm_iphone_CGRect___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)other;
 {
-    origin->x = other->origin->x;
-    origin->y = other->origin->y;
-    size->width = other->size->width;
-    size->height = other->size->height;
-}
-
-- (void) _PUT_origin: (org_xmlvm_iphone_CGPoint*) o
-{
-	[o retain];
-	[self->origin release];
-	self->origin = o;
-}
-
-- (org_xmlvm_iphone_CGPoint*) _GET_origin
-{
-	return self->origin;
-}
-
-- (void) _PUT_size: (org_xmlvm_iphone_CGSize*) s
-{
-	[s retain];
-	[self->size release];
-	self->size = s;
-}
-
-- (org_xmlvm_iphone_CGSize*) _GET_size
-{
-	return size;
+    origin_org_xmlvm_iphone_CGPoint->x_float = other->origin_org_xmlvm_iphone_CGPoint->x_float;
+    origin_org_xmlvm_iphone_CGPoint->y_float = other->origin_org_xmlvm_iphone_CGPoint->y_float;
+    size_org_xmlvm_iphone_CGSize->width_float = other->size_org_xmlvm_iphone_CGSize->width_float;
+    size_org_xmlvm_iphone_CGSize->height_float = other->size_org_xmlvm_iphone_CGSize->height_float;
 }
 
 + (org_xmlvm_iphone_CGRect*) Intersection___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect
@@ -92,10 +71,10 @@
     CGRect _r2 = [r2 getCGRect];
     CGRect _r = CGRectIntersection(_r1, _r2);
     org_xmlvm_iphone_CGRect* r = [[org_xmlvm_iphone_CGRect alloc] init];
-    r->origin->x = _r.origin.x;
-    r->origin->y = _r.origin.y;
-    r->size->width = _r.size.width;
-    r->size->height = _r.size.height;
+    r->origin_org_xmlvm_iphone_CGPoint->x_float = _r.origin.x;
+    r->origin_org_xmlvm_iphone_CGPoint->y_float = _r.origin.y;
+    r->size_org_xmlvm_iphone_CGSize->width_float = _r.size.width;
+    r->size_org_xmlvm_iphone_CGSize->height_float = _r.size.height;
     return r;
 }
 

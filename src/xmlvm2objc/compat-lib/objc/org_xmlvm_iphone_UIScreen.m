@@ -35,10 +35,10 @@
 {
 	CGRect rect = [screen bounds];
     org_xmlvm_iphone_CGRect* xmlvmCGRect = [[org_xmlvm_iphone_CGRect alloc] init];
-    xmlvmCGRect->origin->x = rect.origin.x;
-    xmlvmCGRect->origin->y = rect.origin.y;
-    xmlvmCGRect->size->width = rect.size.width;
-    xmlvmCGRect->size->height = rect.size.height;
+    xmlvmCGRect->origin_org_xmlvm_iphone_CGPoint->x_float = rect.origin.x;
+    xmlvmCGRect->origin_org_xmlvm_iphone_CGPoint->y_float = rect.origin.y;
+    xmlvmCGRect->size_org_xmlvm_iphone_CGSize->width_float = rect.size.width;
+    xmlvmCGRect->size_org_xmlvm_iphone_CGSize->height_float = rect.size.height;
     return xmlvmCGRect;
 }
 
@@ -46,10 +46,10 @@
 {
 	CGRect rect = [screen applicationFrame];
     org_xmlvm_iphone_CGRect* xmlvmCGRect = [[org_xmlvm_iphone_CGRect alloc] init];
-    xmlvmCGRect->origin->x = rect.origin.x;
-    xmlvmCGRect->origin->y = rect.origin.y;
-    xmlvmCGRect->size->width = rect.size.width;
-    xmlvmCGRect->size->height = rect.size.height;
+    xmlvmCGRect->origin_org_xmlvm_iphone_CGPoint->x_float = rect.origin.x;
+    xmlvmCGRect->origin_org_xmlvm_iphone_CGPoint->y_float = rect.origin.y;
+    xmlvmCGRect->size_org_xmlvm_iphone_CGSize->width_float = rect.size.width;
+    xmlvmCGRect->size_org_xmlvm_iphone_CGSize->height_float = rect.size.height;
     return xmlvmCGRect;
 }
 @end

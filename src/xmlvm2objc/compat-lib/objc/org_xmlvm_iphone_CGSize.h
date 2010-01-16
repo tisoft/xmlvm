@@ -25,14 +25,10 @@
 // CGSize
 //----------------------------------------------------------------------------
 @interface org_xmlvm_iphone_CGSize : java_lang_Object {
-@public float width;
-@public float height;
+@public float width_float;
+@public float height_float;
 }
 - (void) __init_org_xmlvm_iphone_CGSize___float_float: (float) w : (float) h;
-- (void) _PUT_width: (float) w;
-- (float) _GET_width;
-- (void) _PUT_height: (float) h;
-- (float) _GET_height;
 - (int) equals___java_lang_Object: (java_lang_Object*) o;
 
 @end

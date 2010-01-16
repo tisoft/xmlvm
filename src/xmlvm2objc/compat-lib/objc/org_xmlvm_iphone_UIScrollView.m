@@ -39,7 +39,7 @@
                :(org_xmlvm_iphone_CGPoint*) offset
                :(int) animated
 {
-    CGPoint p = CGPointMake(offset->x, offset->y);
+    CGPoint p = CGPointMake(offset->x_float, offset->y_float);
     [self setContentOffset:p animated:animated];
 }
 

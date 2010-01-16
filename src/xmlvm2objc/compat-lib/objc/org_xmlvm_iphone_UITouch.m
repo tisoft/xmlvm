@@ -36,8 +36,8 @@
 {
 	CGPoint p1 = [self locationInView: view];
 	org_xmlvm_iphone_CGPoint* p2 = [[org_xmlvm_iphone_CGPoint alloc] init];
-	p2->x = p1.x;
-	p2->y = p1.y;
+	p2->x_float = p1.x;
+	p2->y_float = p1.y;
 	return p2;
 }
 

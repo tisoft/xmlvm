@@ -117,8 +117,8 @@
 {
 	CGPoint pt = CGContextGetTextPosition(context);
 	org_xmlvm_iphone_CGPoint* retVal = [[org_xmlvm_iphone_CGPoint alloc] init];
-	retVal->x = pt.x;
-	retVal->y = pt.y;
+	retVal->x_float = pt.x;
+	retVal->y_float = pt.y;
 	
 	return retVal;
 }
@@ -127,10 +127,10 @@
 {
 	CGRect rect = CGContextGetClipBoundingBox(context);
 	org_xmlvm_iphone_CGRect* retVal = [[org_xmlvm_iphone_CGRect alloc] init];
-	retVal->origin->x = rect.origin.x;
-	retVal->origin->y = rect.origin.y;
-	retVal->size->width = rect.size.width;
-	retVal->size->height = rect.size.height;
+	retVal->origin_org_xmlvm_iphone_CGPoint->x_float = rect.origin.x;
+	retVal->origin_org_xmlvm_iphone_CGPoint->y_float = rect.origin.y;
+	retVal->size_org_xmlvm_iphone_CGSize->width_float = rect.size.width;
+	retVal->size_org_xmlvm_iphone_CGSize->height_float = rect.size.height;
 	
 	return retVal;
 }
@@ -171,7 +171,7 @@
 
 + (void) UIGraphicsBeginImageContext___org_xmlvm_iphone_CGSize: (org_xmlvm_iphone_CGSize*) size
 {
-	CGSize cgsize = CGSizeMake(size->width, size->height);
+	CGSize cgsize = CGSizeMake(size->width_float, size->height_float);
 	UIGraphicsBeginImageContext(cgsize);
 }
 

@@ -47,10 +47,10 @@
 - (void) drawRect:(CGRect)rect
 {
     org_xmlvm_iphone_CGRect* redrawRect = [[org_xmlvm_iphone_CGRect alloc] init];
-    redrawRect->origin->x = rect.origin.x;
-    redrawRect->origin->y = rect.origin.y;
-    redrawRect->size->width = rect.size.width;
-    redrawRect->size->height = rect.size.height;
+    redrawRect->origin_org_xmlvm_iphone_CGPoint->x_float = rect.origin.x;
+    redrawRect->origin_org_xmlvm_iphone_CGPoint->y_float = rect.origin.y;
+    redrawRect->size_org_xmlvm_iphone_CGSize->width_float = rect.size.width;
+    redrawRect->size_org_xmlvm_iphone_CGSize->height_float = rect.size.height;
     [self drawRect___org_xmlvm_iphone_CGRect: redrawRect];
     [redrawRect release];
 }

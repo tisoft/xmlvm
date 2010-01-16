@@ -41,10 +41,10 @@
 	[self->backgroundImage drawInRect:rect];
 
 	org_xmlvm_iphone_CGRect* redrawRect = [[org_xmlvm_iphone_CGRect alloc] init];
-	redrawRect->origin->x = rect.origin.x;
-	redrawRect->origin->y = rect.origin.y;
-	redrawRect->size->width = rect.size.width;
-	redrawRect->size->height = rect.size.height;
+	redrawRect->origin_org_xmlvm_iphone_CGPoint->x_float = rect.origin.x;
+	redrawRect->origin_org_xmlvm_iphone_CGPoint->y_float = rect.origin.y;
+	redrawRect->size_org_xmlvm_iphone_CGSize->width_float = rect.size.width;
+	redrawRect->size_org_xmlvm_iphone_CGSize->height_float = rect.size.height;
 
 	if (self->drawDelegate != nil) {
 		[self->drawDelegate xmlvmDraw___org_xmlvm_iphone_CGRect:redrawRect];
@@ -120,10 +120,10 @@
 - (org_xmlvm_iphone_CGRect*) getBounds__
 {
 	org_xmlvm_iphone_CGRect* rect = [[org_xmlvm_iphone_CGRect alloc] init];
-	rect->origin->x = self.bounds.origin.x;
-	rect->origin->y = self.bounds.origin.y;
-	rect->size->width = self.bounds.size.width;
-	rect->size->height = self.bounds.size.height;
+	rect->origin_org_xmlvm_iphone_CGPoint->x_float = self.bounds.origin.x;
+	rect->origin_org_xmlvm_iphone_CGPoint->y_float = self.bounds.origin.y;
+	rect->size_org_xmlvm_iphone_CGSize->width_float = self.bounds.size.width;
+	rect->size_org_xmlvm_iphone_CGSize->height_float = self.bounds.size.height;
 	return rect;
 }
 
@@ -226,10 +226,10 @@
 {
 	org_xmlvm_iphone_CGRect * res = [[org_xmlvm_iphone_CGRect alloc] init];
 	CGRect frame = [self frame];
-	res->origin->x = frame.origin.x;
-	res->origin->y = frame.origin.y;
-	res->size->width = frame.size.width;
-	res->size->height = frame.size.height;
+	res->origin_org_xmlvm_iphone_CGPoint->x_float = frame.origin.x;
+	res->origin_org_xmlvm_iphone_CGPoint->y_float = frame.origin.y;
+	res->size_org_xmlvm_iphone_CGSize->width_float = frame.size.width;
+	res->size_org_xmlvm_iphone_CGSize->height_float = frame.size.height;
 	return res;
 }
 

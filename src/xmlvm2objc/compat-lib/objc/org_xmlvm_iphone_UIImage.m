@@ -34,8 +34,8 @@
 - (org_xmlvm_iphone_CGSize*) getSize__
 {
     org_xmlvm_iphone_CGSize* s = [[org_xmlvm_iphone_CGSize alloc] init];
-    s->width = [self size].width;
-    s->height = [self size].height;
+    s->width_float = [self size].width;
+    s->height_float = [self size].height;
     return s;
 }
 
