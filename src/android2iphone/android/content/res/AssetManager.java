@@ -20,13 +20,21 @@
 
 package android.content.res;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import android.util.Log;
+
+import org.xmlvm.iphone.NSBundle;
+
 
 public/* abstract */class AssetManager {
 
     public final AssetFileDescriptor openFd(String fileName) throws IOException {
-        Log.w("xmlvm", "AssetManager.openFd() not implemented");
-        return new AssetFileDescriptor();
+        String filePath = NSBundle.mainBundle().pathForResource(fileName, null);
+        File f = new File(filePath);
+        if (!f.exists()) {
+            throw new FileNotFoundException();
+        }
+        return new AssetFileDescriptor(f);
     }
 }

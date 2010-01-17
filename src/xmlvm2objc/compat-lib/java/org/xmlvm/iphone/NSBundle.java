@@ -20,6 +20,8 @@
 
 package org.xmlvm.iphone;
 
+import java.net.URL;
+
 /**
  * @author arno
  * 
@@ -36,6 +38,11 @@ public class NSBundle {
     }
 
     public String pathForResource(String resource, String type) {
-        return resource + "." + type;
+        String fileName = new String(resource);
+        if (type != null) {
+            fileName = fileName.concat("." + type);
+        }
+        URL url = this.getClass().getResource("/" + fileName);
+        return url.getFile();
     }
 }

@@ -20,9 +20,12 @@
 
 package android.context;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+
+import org.xmlvm.iphone.NSBundle;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -70,7 +73,6 @@ public class ContextWrapper extends Context {
     }
 
     public boolean deleteFile(String name) {
-        Log.w("xmlvm", "ContextWrapper.deleteFile() not implemented");
-        return false;
+        return new File(name).delete();
     }
 }

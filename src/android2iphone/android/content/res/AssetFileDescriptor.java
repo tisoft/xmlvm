@@ -20,23 +20,35 @@
 
 package android.content.res;
 
+import java.io.File;
 import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
-import android.util.Log;
 
 public class AssetFileDescriptor {
+    
+    private File file;
+    public AssetFileDescriptor(File f) {
+        file = f;
+    }
+
     public FileDescriptor getFileDescriptor() {
-        Log.w("xmlvm", "AssetFileDescriptor.getFileDescriptor() not implemented");
-        return null;
+        try {
+            return new FileInputStream(file).getFD();
+        } catch (FileNotFoundException e) {
+            return null;
+        } catch (IOException e) {
+            return null;
+        }
     }
 
     public long getStartOffset() {
-        Log.w("xmlvm", "AssetFileDescriptor.getStartOffset() not implemented");
         return 0;
     }
 
     public long getLength() {
-        Log.w("xmlvm", "AssetFileDescriptor.getLength() not implemented");
-        return 0;
+        return file.length();
     }
 }

@@ -2,6 +2,9 @@ package org.xmlvm.iphone;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -42,6 +45,11 @@ public class NSData {
     }
 
     public static NSData dataWithContentsOfFile(String path) {
-        return new NSData(NSData.class.getResourceAsStream("/" + path));
+//        return new NSData(NSData.class.getResourceAsStream("/" + path));
+        try {
+            return new NSData(new FileInputStream(new File(path)));
+        } catch (FileNotFoundException e) {
+            return null;
+        }
     }
 }
