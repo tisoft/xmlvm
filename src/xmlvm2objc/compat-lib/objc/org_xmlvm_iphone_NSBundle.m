@@ -32,7 +32,11 @@
 - (java_lang_String*) pathForResource___java_lang_String_java_lang_String: (java_lang_String*) resource
                                                                          : (java_lang_String*) type
 {
-	return [[NSMutableString alloc] initWithString: [self pathForResource: resource ofType: (type == [NSNull null] ? nil : type)]];
+	NSString* path = [self pathForResource: resource ofType: (type == [NSNull null] ? nil : type)];
+	if (path == nil) {
+		return [NSNull null];
+	}
+	return [[NSMutableString alloc] initWithString: path];
 }
 
 @end

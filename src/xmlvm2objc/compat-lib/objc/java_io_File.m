@@ -21,4 +21,22 @@
 #import "java_io_File.h"
 
 @implementation java_io_File
+
+- (void) __init_java_io_File___java_lang_String: (java_lang_String*) fileName
+{
+	// TODO
+}
+
+- (BOOL) exists__
+{
+	// TODO
+	return TRUE;
+}
+
+- (BOOL) delete__
+{
+	// TODO
+	return FALSE;
+}
+
 @end

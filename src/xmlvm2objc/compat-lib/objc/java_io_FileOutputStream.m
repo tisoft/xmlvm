@@ -21,4 +21,10 @@
 #import "java_io_FileOutputStream.h"
 
 @implementation java_io_FileOutputStream 
+
+- (void) __init_java_io_FileOutputStream___java_lang_String: (java_lang_String*) fileName
+{
+	// TODO
+}
+
 @end

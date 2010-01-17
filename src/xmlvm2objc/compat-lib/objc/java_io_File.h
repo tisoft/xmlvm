@@ -22,5 +22,10 @@
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
 
-@interface java_io_File : java_lang_Object 
+@interface java_io_File : java_lang_Object
+
+- (void) __init_java_io_File___java_lang_String: (java_lang_String*) fileName;
+- (BOOL) exists__;
+- (BOOL) delete__;
+
 @end

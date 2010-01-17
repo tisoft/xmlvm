@@ -23,4 +23,7 @@
 #import "java_lang_String.h"
 
 @interface java_io_FileOutputStream : java_lang_Object 
+
+- (void) __init_java_io_FileOutputStream___java_lang_String: (java_lang_String*) fileName;
+
 @end
