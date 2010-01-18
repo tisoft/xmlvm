@@ -51,6 +51,7 @@ public class Window {
     private FrameLayout     internalView;
     private DecorView       decorView;
     private FrameLayout     contentParent;
+    private boolean         floating         = false;
 
     public Window(Activity parent) {
         this.activity = parent;
@@ -77,14 +78,12 @@ public class Window {
         iWindow.addSubview(internalView.xmlvmGetUIView());
 
         // Create DecorView used as the window for all content views
-        LayoutParams vlp = view.getLayoutParams();
         int gravity = ((FrameLayout.LayoutParams) view.getLayoutParams()).gravity;
         decorView = new DecorView(activity);
+        // TODO: Set DecorView's LayoutParams based on Window.isFloating()
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
-                vlp.width == LayoutParams.FILL_PARENT ? LayoutParams.FILL_PARENT
-                        : LayoutParams.WRAP_CONTENT,
-                vlp.height == LayoutParams.FILL_PARENT ? LayoutParams.FILL_PARENT
-                        : LayoutParams.WRAP_CONTENT, gravity);
+                isFloating() ? LayoutParams.WRAP_CONTENT : LayoutParams.FILL_PARENT,
+                isFloating() ? LayoutParams.WRAP_CONTENT : LayoutParams.FILL_PARENT, gravity);
         decorView.setLayoutParams(lp);
         internalView.addView(decorView);
 
@@ -258,4 +257,7 @@ public class Window {
         return new WindowManager.LayoutParams();
     }
 
+    public boolean isFloating() {
+        return floating;
+    }
 }
