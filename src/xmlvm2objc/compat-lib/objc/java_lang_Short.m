@@ -18,23 +18,55 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import "java_lang_Object.h"
-#import "java_util_IteratorImpl.h"
+#import "java_lang_Short.h"
 
 
-// java.util.Stack
+// java.lang.Short
 //----------------------------------------------------------------------------
-typedef NSMutableArray java_util_Stack;
-@interface NSMutableArray (cat_java_util_Stack)
+@implementation java_lang_Short
 
-- (void) __init_java_util_Stack__;
-- (java_util_Iterator*) iterator__;
-- (int) size__;
-- (java_lang_Object*) push___java_lang_Object :(java_lang_Object*) item;
-- (java_lang_Object*) get___int :(int) idx;
-- (java_lang_Object*) pop__;
-- (java_lang_Object*) remove___int :(int) idx;
-- (BOOL) remove___java_lang_Object :(java_lang_Object*) item;
+- (id) init
+{
+	[super init];
+	number = 0;
+	return self;
+}
+
+- (id) copyWithZone:(NSZone *)zone
+{
+    java_lang_Short* other = [[[self class] allocWithZone:zone] init];
+    other->number = self->number;
+    return other;
+}
+
+- (NSUInteger) hash
+{
+	return number;
+}
+
+- (void) __init_java_lang_Short___short :(short) s
+{
+	number = s;
+}
+
+- (BOOL)isEqual:(id)anObject
+{
+	return [anObject isKindOfClass: [java_lang_Short class]] && ((java_lang_Short*) anObject)-> number == number;
+}
+
+- (short) shortValue__
+{
+	return number;
+}
+
++ (short) parseShort___java_lang_String: (java_lang_String *) str
+{
+	return (short) atol([str UTF8String]);
+}
+
++ (short) parseShort___java_lang_String_int: (java_lang_String*) str :(int) radix
+{
+    return (short) strtoul([str UTF8String], nil, radix);
+}
 
 @end

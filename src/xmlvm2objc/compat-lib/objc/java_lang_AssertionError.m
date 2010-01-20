@@ -18,19 +18,11 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import "java_lang_Object.h"
-#import "java_lang_String.h"
+#import "java_lang_AssertionError.h"
 
+// java.lang.AssertionError
+//----------------------------------------------------------------------------
+@implementation java_lang_AssertionError
 
-@protocol java_lang_CharSequence <NSObject>
-
-- (int) charAt___int :(int) index;
-- (int) length__;
-- (id<java_lang_CharSequence>) subSequence___int_int :(int) start :(int) end;
-- (java_lang_String*) toString__;
- 
 @end
 
-@interface java_lang_CharSequence : java_lang_Object <java_lang_CharSequence>
-@end

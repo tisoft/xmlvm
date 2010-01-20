@@ -19,17 +19,19 @@
  */
 
 #import "xmlvm.h"
-#import "java_util_Iterator.h"
+#import "java_util_IteratorImpl.h"
+#import "java_util_List.h"
 
 // java.util.ArrayList
 //----------------------------------------------------------------------------
 typedef NSMutableArray java_util_ArrayList;
-@interface NSMutableArray (cat_java_util_ArrayList)
+@interface NSMutableArray (cat_java_util_ArrayList) <java_util_List>
 
 - (void) __init_java_util_ArrayList__;
 - (java_util_Iterator*) iterator__;
 - (int) size__;
 - (BOOL) add___java_lang_Object :(java_lang_Object*) item;
+- (void) add___int_java_lang_Object :(int) idx :(java_lang_Object*) item;
 - (java_lang_Object*) set___int_java_lang_Object :(java_lang_Object*) item;
 - (java_lang_Object*) get___int :(int) idx;
 - (java_lang_Object*) remove___int :(int) idx;

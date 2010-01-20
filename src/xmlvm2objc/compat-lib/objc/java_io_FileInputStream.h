@@ -21,6 +21,8 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
+#import "java_io_File.h"
+#import "java_io_FileDescriptor.h"
 
 @interface java_io_FileInputStream : java_lang_Object {
 
@@ -29,6 +31,8 @@ NSFileHandle* fd;
 }
 
 - (void) __init_java_io_FileInputStream___java_lang_String :(java_lang_String*) path;
+- (void) __init_java_io_FileInputStream___java_io_File :(java_io_File*) file;
 - (void) dealloc;
+- (java_io_FileDescriptor*) getFD__;
 
 @end

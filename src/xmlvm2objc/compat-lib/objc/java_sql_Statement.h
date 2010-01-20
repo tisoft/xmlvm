@@ -20,17 +20,7 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
-#import "java_lang_String.h"
 
+@interface java_sql_Statement : java_lang_Object
 
-@protocol java_lang_CharSequence <NSObject>
-
-- (int) charAt___int :(int) index;
-- (int) length__;
-- (id<java_lang_CharSequence>) subSequence___int_int :(int) start :(int) end;
-- (java_lang_String*) toString__;
- 
-@end
-
-@interface java_lang_CharSequence : java_lang_Object <java_lang_CharSequence>
 @end

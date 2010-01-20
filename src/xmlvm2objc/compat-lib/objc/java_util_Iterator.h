@@ -24,15 +24,12 @@
 
 // java.util.Iterator
 //----------------------------------------------------------------------------
-@interface java_util_Iterator : java_lang_Object {
+@protocol java_util_Iterator <NSObject>
 
-NSEnumerator* enumerator;
-id nextObj;
-
-}
-
-- (id) init :(NSEnumerator*) e;
 - (bool) hasNext__;
 - (java_lang_Object*) next__;
 
+@end
+
+@interface java_util_Iterator : java_lang_Object <java_util_Iterator>
 @end

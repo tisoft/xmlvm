@@ -39,4 +39,10 @@
 	return FALSE;
 }
 
+- (int) length__
+{
+	// TODO
+	return 0;
+}
+
 @end

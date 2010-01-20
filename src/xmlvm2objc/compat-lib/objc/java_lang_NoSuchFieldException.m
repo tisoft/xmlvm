@@ -18,19 +18,39 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import "java_lang_Object.h"
-#import "java_lang_String.h"
 
+#import "java_lang_NoSuchFieldException.h"
 
-@protocol java_lang_CharSequence <NSObject>
+// java.lang.NoSuchFieldException
+//----------------------------------------------------------------------------
+@implementation java_lang_NoSuchFieldException
 
-- (int) charAt___int :(int) index;
-- (int) length__;
-- (id<java_lang_CharSequence>) subSequence___int_int :(int) start :(int) end;
-- (java_lang_String*) toString__;
- 
-@end
+- (id) init
+{
+    return [self initWithName: @"java_lang_NoSuchFieldException" reason: nil userInfo: nil];
+}
 
-@interface java_lang_CharSequence : java_lang_Object <java_lang_CharSequence>
+- (void) __init_java_lang_NoSuchFieldException__
+{
+    // Do nothing
+}
+
+- (void) __init_java_lang_NoSuchFieldException___java_lang_String: (java_lang_String*) msg
+{
+}
+
+- (void) __init_java_lang_NoSuchFieldException___java_lang_String_java_lang_Throwable: (java_lang_String*) msg: (java_lang_Throwable*) cause
+{
+}
+
+- (java_lang_NoSuchFieldException *) initCause___java_lang_Throwable: (java_lang_Throwable*) cause
+{
+	[self retain];
+	return self;
+}
+
+- (void) printStackTrace__
+{
+}
+
 @end

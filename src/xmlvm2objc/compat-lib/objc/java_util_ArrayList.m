@@ -29,15 +29,9 @@
 {
 }
 
-- (void) clear__
-{
-	[self removeAllObjects];
-}
-
-
 - (java_util_Iterator*) iterator__
 {
-	return [[java_util_Iterator alloc] init: [self objectEnumerator]];
+	return [[java_util_IteratorImpl alloc] init: [self objectEnumerator]];
 }
 
 - (int) size__
@@ -49,6 +43,11 @@
 {
 	[((NSMutableArray*) self) addObject: item];
 	return TRUE;
+}
+
+- (void) add___int_java_lang_Object :(int) idx :(java_lang_Object*) item
+{
+    [((NSMutableArray*) self) insertObject :item atIndex :idx];
 }
 
 - (java_lang_Object*) set___int_java_lang_Object :(int) idx: (java_lang_Object*) item
@@ -74,6 +73,7 @@
 	return o;
 }
 
+
 - (BOOL) remove___java_lang_Object :(java_lang_Object*) item
 {
 	if ([((NSMutableArray*) self) indexOfObject: item] != NSNotFound) {
@@ -86,18 +86,18 @@
 
 - (int) indexOf___java_lang_Object :(java_lang_Object*) item
 {
-	int index = [((NSMutableArray*) self) indexOfObject: item];
-	if (index == NSNotFound) 
-	{
-		return -1;
-	}
-
-	return index;
+	int i = [((NSMutableArray*) self) indexOfObject: item];
+	return i == NSNotFound ? -1 : i;
 }
 
-- (int) contains__java_lang_Object :(java_lang_Object*) item
+- (int) contains___java_lang_Object :(java_lang_Object*) item
 {
 	return [self indexOf___java_lang_Object: item] != -1;
+}
+
+- (void) clear__
+{
+	[self removeAllObjects];
 }
 
 @end

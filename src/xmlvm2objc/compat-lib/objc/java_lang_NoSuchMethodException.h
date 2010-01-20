@@ -18,23 +18,23 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
+
 #import "xmlvm.h"
-#import "java_lang_Object.h"
-#import "java_util_IteratorImpl.h"
+#import "java_lang_Exception.h"
+#import "java_lang_String.h"
 
 
-// java.util.Stack
+// java.lang.NoSuchMethodException
 //----------------------------------------------------------------------------
-typedef NSMutableArray java_util_Stack;
-@interface NSMutableArray (cat_java_util_Stack)
+// For some reason, compiling for the device doesn't like to define this
+// class as a category.
+@interface java_lang_NoSuchMethodException : java_lang_Exception
 
-- (void) __init_java_util_Stack__;
-- (java_util_Iterator*) iterator__;
-- (int) size__;
-- (java_lang_Object*) push___java_lang_Object :(java_lang_Object*) item;
-- (java_lang_Object*) get___int :(int) idx;
-- (java_lang_Object*) pop__;
-- (java_lang_Object*) remove___int :(int) idx;
-- (BOOL) remove___java_lang_Object :(java_lang_Object*) item;
+- (id) init;
+- (void) __init_java_lang_NoSuchMethodException__;
+- (void) __init_java_lang_NoSuchMethodException___java_lang_String: (java_lang_String*) msg;
+- (void) __init_java_lang_NoSuchMethodException___java_lang_String_java_lang_Throwable: (java_lang_String*) msg: (java_lang_Throwable*) cause;
+- (java_lang_NoSuchMethodException *) initCause___java_lang_Throwable: (java_lang_Throwable*) cause;
+- (void) printStackTrace__;
 
 @end

@@ -27,5 +27,6 @@
 - (void) __init_java_io_File___java_lang_String: (java_lang_String*) fileName;
 - (BOOL) exists__;
 - (BOOL) delete__;
+- (int) length__;
 
 @end

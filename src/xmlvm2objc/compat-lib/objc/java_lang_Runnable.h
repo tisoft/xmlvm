@@ -24,3 +24,6 @@
 @protocol java_lang_Runnable <NSObject>
 - (void) run__;
 @end
+
+@interface java_lang_Runnable : java_lang_Object <java_lang_Runnable>
+@end

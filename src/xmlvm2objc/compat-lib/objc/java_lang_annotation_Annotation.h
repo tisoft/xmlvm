@@ -18,5 +18,17 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
+#import "xmlvm.h"
+#import "java_lang_Object.h"
 
-// Empty
+
+// java.lang.annotation.Annotation
+//----------------------------------------------------------------------------
+@protocol java_lang_annotation_Annotation <NSObject>
+
+// TODO
+
+@end
+
+@interface java_lang_annotation_Annotation : java_lang_Object <java_lang_annotation_Annotation>
+@end

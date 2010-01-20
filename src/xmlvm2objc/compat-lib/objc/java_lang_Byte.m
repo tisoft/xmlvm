@@ -18,23 +18,55 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import "java_lang_Object.h"
-#import "java_util_IteratorImpl.h"
+#import "java_lang_Byte.h"
 
 
-// java.util.Stack
+// java.lang.Byte
 //----------------------------------------------------------------------------
-typedef NSMutableArray java_util_Stack;
-@interface NSMutableArray (cat_java_util_Stack)
+@implementation java_lang_Byte
 
-- (void) __init_java_util_Stack__;
-- (java_util_Iterator*) iterator__;
-- (int) size__;
-- (java_lang_Object*) push___java_lang_Object :(java_lang_Object*) item;
-- (java_lang_Object*) get___int :(int) idx;
-- (java_lang_Object*) pop__;
-- (java_lang_Object*) remove___int :(int) idx;
-- (BOOL) remove___java_lang_Object :(java_lang_Object*) item;
+- (id) init
+{
+	[super init];
+	number = 0;
+	return self;
+}
+
+- (id) copyWithZone:(NSZone *)zone
+{
+    java_lang_Byte* other = [[[self class] allocWithZone:zone] init];
+    other->number = self->number;
+    return other;
+}
+
+- (NSUInteger) hash
+{
+	return number;
+}
+
+- (void) __init_java_lang_Byte___byte :(unsigned char) b
+{
+	number = b;
+}
+
+- (BOOL)isEqual:(id)anObject
+{
+	return [anObject isKindOfClass: [java_lang_Byte class]] && ((java_lang_Byte*) anObject)-> number == number;
+}
+
+- (unsigned char) byteValue__
+{
+	return number;
+}
+
++ (unsigned char) parseByte___java_lang_String: (java_lang_String *) str
+{
+	return (unsigned char) atol([str UTF8String]);
+}
+
++ (unsigned char) parseByte___java_lang_String_int: (java_lang_String*) str :(int) radix
+{
+    return (unsigned char) strtoul([str UTF8String], nil, radix);
+}
 
 @end

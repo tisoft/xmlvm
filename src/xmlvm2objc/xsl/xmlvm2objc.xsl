@@ -1512,6 +1512,12 @@ int main(int argc, char* argv[])
     <xsl:when test="$type = 'char'">
       <xsl:text>int</xsl:text>
     </xsl:when>
+    <xsl:when test="$type = 'byte'">
+      <xsl:text>int</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'short'">
+      <xsl:text>int</xsl:text>
+    </xsl:when>
     <xsl:when test="$type = 'int'">
       <xsl:text>int</xsl:text>
     </xsl:when>
@@ -1644,7 +1650,7 @@ int main(int argc, char* argv[])
     <xsl:when test="$type = 'char'">
       <xsl:text>i</xsl:text>
     </xsl:when>
-    <xsl:when test="$type = 'int' or $type = 'boolean'">
+    <xsl:when test="$type = 'int' or $type = 'boolean' or type = 'byte'">
       <xsl:text>i</xsl:text>
     </xsl:when>
     <xsl:when test="$type = 'float'">
@@ -2345,6 +2351,30 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="dex:sub-long|dex:sub-long-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l - _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.l;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:div-long|dex:div-long-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l / _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.l;
+</xsl:text>
+</xsl:template>
+
+  
 <xsl:template match="dex:and-int|dex:and-int-2addr">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
@@ -2489,6 +2519,18 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="dex:xor-int|dex:xor-int-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i ^ _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+  
 <xsl:template match="dex:or-int|dex:or-int-2addr">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
@@ -2555,7 +2597,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:iget|dex:iget-wide|dex:iget-boolean">
+<xsl:template match="dex:iget|dex:iget-wide|dex:iget-boolean|dex:iget-byte">
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@member-type"/>
@@ -2603,7 +2645,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:iput|dex:iput-wide|dex:iput-boolean">
+<xsl:template match="dex:iput|dex:iput-wide|dex:iput-boolean|dex:iput-byte">
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@member-type"/>
@@ -2919,6 +2961,22 @@ int main(int argc, char* argv[])
   <xsl:text>.d == _r</xsl:text>
   <xsl:value-of select="@vz"/>
   <xsl:text>.d ? 0 : -1);
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:cmp-long">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l &gt; _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.l ? 1 : (_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l == _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.l ? 0 : -1);
 </xsl:text>
 </xsl:template>
 
@@ -3297,7 +3355,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:aget|dex:aget-wide|dex:aget-boolean|dex:aget-byte|dex:aget-char">
+<xsl:template match="dex:aget|dex:aget-wide|dex:aget-boolean|dex:aget-byte|dex:aget-char|dex:aget-short">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:call-template name="emitTypedAccess">
@@ -3328,7 +3386,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:aput|dex:aput-wide|dex:aput-boolean|dex:aput-char|dex:aput-byte">
+<xsl:template match="dex:aput|dex:aput-wide|dex:aput-boolean|dex:aput-char|dex:aput-byte|dex:aput-short">
   <xsl:text>    ((XMLVMArray*) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.o)->array</xsl:text>

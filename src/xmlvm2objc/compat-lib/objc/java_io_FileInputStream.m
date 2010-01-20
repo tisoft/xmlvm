@@ -33,11 +33,22 @@
 	}
 }
 
+- (void) __init_java_io_FileInputStream___java_io_File :(java_io_File*) file
+{
+	// TODO
+}
+
 - (void) dealloc
 {
 	[self->fd closeFile];
 	[self->fd release];
 	[super dealloc];
 }
- 
+
+- (java_io_FileDescriptor*) getFD__
+{
+	// TODO
+	return [NSNull null];
+}
+
 @end

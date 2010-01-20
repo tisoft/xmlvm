@@ -18,7 +18,11 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "java_lang_CharSequence.h"
+#import "java_io_FileReader.h"
 
-@implementation java_lang_CharSequence
+// java.io.FileReader
+//----------------------------------------------------------------------------
+@implementation java_io_FileReader
+
 @end
+

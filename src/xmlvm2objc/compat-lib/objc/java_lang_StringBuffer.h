@@ -29,7 +29,7 @@ typedef NSMutableString java_lang_StringBuffer;
 
 - (void) __init_java_lang_StringBuilder__;
 - (void) __init_java_lang_StringBuilder___java_lang_String: (java_lang_String*) str;
-- (void) __init_java_lang_StringBuilder___java_lang_CharSequence: (java_lang_CharSequence*) str;
+- (void) __init_java_lang_StringBuilder___java_lang_CharSequence: (id<java_lang_CharSequence>) str;
 - (void) __init_java_lang_StringBuffer__;
 - (void) __init_java_lang_StringBuffer___java_lang_String: (java_lang_String*) str;
 - (java_lang_StringBuffer*) append___java_lang_String: (java_lang_String*) str;

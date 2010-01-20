@@ -18,34 +18,21 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
+#import "xmlvm.h"
 #import "java_util_Iterator.h"
 
 
-
-// java.util.Iterator
+// java.util.IteratorImpl
 //----------------------------------------------------------------------------
-@implementation java_util_Iterator
+@interface java_util_IteratorImpl : java_lang_Object <java_util_Iterator> {
 
-- (id) init :(NSEnumerator*) e
-{
-	[super init];
-	self->enumerator = e;
-	self->nextObj = [e nextObject];
-	return self;
-}
-	
+NSEnumerator* enumerator;
+id nextObj;
 
-- (bool) hasNext__
-{
-	return self->nextObj != nil;
 }
 
-- (java_lang_Object*) next__
-{
-	id next = self->nextObj;
-	self->nextObj = [enumerator nextObject];
-	[next retain];
-	return (java_lang_Object*) next;
-}
+- (id) init :(NSEnumerator*) e;
+- (bool) hasNext__;
+- (java_lang_Object*) next__;
 
 @end

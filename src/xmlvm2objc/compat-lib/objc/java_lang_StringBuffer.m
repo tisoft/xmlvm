@@ -35,7 +35,7 @@
     [self setString: str];
 }
 
-- (void) __init_java_lang_StringBuilder___java_lang_CharSequence: (java_lang_CharSequence*) str
+- (void) __init_java_lang_StringBuilder___java_lang_CharSequence: (id<java_lang_CharSequence>) str
 {
 	// TODO Implement this
 }

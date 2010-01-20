@@ -18,23 +18,34 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import "java_lang_Object.h"
 #import "java_util_IteratorImpl.h"
 
 
-// java.util.Stack
-//----------------------------------------------------------------------------
-typedef NSMutableArray java_util_Stack;
-@interface NSMutableArray (cat_java_util_Stack)
 
-- (void) __init_java_util_Stack__;
-- (java_util_Iterator*) iterator__;
-- (int) size__;
-- (java_lang_Object*) push___java_lang_Object :(java_lang_Object*) item;
-- (java_lang_Object*) get___int :(int) idx;
-- (java_lang_Object*) pop__;
-- (java_lang_Object*) remove___int :(int) idx;
-- (BOOL) remove___java_lang_Object :(java_lang_Object*) item;
+// java.util.IteratorImpl
+//----------------------------------------------------------------------------
+@implementation java_util_IteratorImpl
+
+- (id) init :(NSEnumerator*) e
+{
+	[super init];
+	self->enumerator = e;
+	self->nextObj = [e nextObject];
+	return self;
+}
+	
+
+- (bool) hasNext__
+{
+	return self->nextObj != nil;
+}
+
+- (java_lang_Object*) next__
+{
+	id next = self->nextObj;
+	self->nextObj = [enumerator nextObject];
+	[next retain];
+	return (java_lang_Object*) next;
+}
 
 @end

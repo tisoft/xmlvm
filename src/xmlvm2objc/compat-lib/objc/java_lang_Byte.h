@@ -20,21 +20,23 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
-#import "java_util_IteratorImpl.h"
+#import "java_lang_String.h"
 
-
-// java.util.Stack
+// java.lang.Byte
 //----------------------------------------------------------------------------
-typedef NSMutableArray java_util_Stack;
-@interface NSMutableArray (cat_java_util_Stack)
+@interface java_lang_Byte : java_lang_Object <NSCopying> {
 
-- (void) __init_java_util_Stack__;
-- (java_util_Iterator*) iterator__;
-- (int) size__;
-- (java_lang_Object*) push___java_lang_Object :(java_lang_Object*) item;
-- (java_lang_Object*) get___int :(int) idx;
-- (java_lang_Object*) pop__;
-- (java_lang_Object*) remove___int :(int) idx;
-- (BOOL) remove___java_lang_Object :(java_lang_Object*) item;
+unsigned char number;
+
+}
+
+- (id) init;
+- (id) copyWithZone:(NSZone *)zone;
+- (NSUInteger) hash;
+- (void) __init_java_lang_Byte___byte :(unsigned char) b;
+- (BOOL) isEqual:(id)anObject;
+- (unsigned char) byteValue__;
++ (unsigned char) parseByte___java_lang_String: (java_lang_String *) str;
++ (unsigned char) parseByte___java_lang_String_int: (java_lang_String*) str :(int) radix;
 
 @end

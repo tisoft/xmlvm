@@ -19,22 +19,17 @@
  */
 
 #import "xmlvm.h"
-#import "java_lang_Object.h"
-#import "java_util_IteratorImpl.h"
+#import "java_util_Iterator.h"
 
 
-// java.util.Stack
+// java.util.ListIterator
 //----------------------------------------------------------------------------
-typedef NSMutableArray java_util_Stack;
-@interface NSMutableArray (cat_java_util_Stack)
+@protocol java_util_ListIterator <java_util_Iterator>
 
-- (void) __init_java_util_Stack__;
-- (java_util_Iterator*) iterator__;
-- (int) size__;
-- (java_lang_Object*) push___java_lang_Object :(java_lang_Object*) item;
-- (java_lang_Object*) get___int :(int) idx;
-- (java_lang_Object*) pop__;
-- (java_lang_Object*) remove___int :(int) idx;
-- (BOOL) remove___java_lang_Object :(java_lang_Object*) item;
+- (bool) hasNext__;
+- (java_lang_Object*) next__;
 
+@end
+
+@interface java_util_ListIterator : java_util_Iterator <java_util_ListIterator>
 @end

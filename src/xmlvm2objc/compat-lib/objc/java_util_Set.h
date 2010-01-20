@@ -20,7 +20,7 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
-#import "java_util_Iterator.h"
+#import "java_util_IteratorImpl.h"
 
 
 // java.util.Set

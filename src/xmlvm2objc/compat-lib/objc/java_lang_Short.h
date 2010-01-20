@@ -20,21 +20,23 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
-#import "java_util_IteratorImpl.h"
+#import "java_lang_String.h"
 
-
-// java.util.Stack
+// java.lang.Short
 //----------------------------------------------------------------------------
-typedef NSMutableArray java_util_Stack;
-@interface NSMutableArray (cat_java_util_Stack)
+@interface java_lang_Short : java_lang_Object <NSCopying> {
 
-- (void) __init_java_util_Stack__;
-- (java_util_Iterator*) iterator__;
-- (int) size__;
-- (java_lang_Object*) push___java_lang_Object :(java_lang_Object*) item;
-- (java_lang_Object*) get___int :(int) idx;
-- (java_lang_Object*) pop__;
-- (java_lang_Object*) remove___int :(int) idx;
-- (BOOL) remove___java_lang_Object :(java_lang_Object*) item;
+short number;
+
+}
+
+- (id) init;
+- (id) copyWithZone:(NSZone *)zone;
+- (NSUInteger) hash;
+- (void) __init_java_lang_Short___short :(short) s;
+- (BOOL) isEqual:(id)anObject;
+- (short) shortValue__;
++ (short) parseShort___java_lang_String: (java_lang_String *) str;
++ (short) parseShort___java_lang_String_int: (java_lang_String*) str :(int) radix;
 
 @end
