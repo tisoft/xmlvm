@@ -30,5 +30,6 @@
 - (void) println___double: (double) d;
 - (void) println___java_lang_String: (NSString*) s;
 - (void) println__;
+- (void) print___java_lang_Object: (java_lang_Object*) o;
 
 @end

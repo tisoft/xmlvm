@@ -30,6 +30,14 @@
 	return self;
 }
 
+- (id) initWithCurrentThread
+{
+	[super init];
+	thread = [[NSThread currentThread] retain];
+	runnable = nil;
+	return self;
+}
+
 - (void) dealloc
 {
 	[thread release];
@@ -68,6 +76,11 @@
 + (void) sleep___long: (long) millis
 {
 	[NSThread sleepForTimeInterval: (double) millis / 1000.0];
+}
+
++ (java_lang_Thread*) currentThread__
+{
+	return [[java_lang_Thread alloc] initWithCurrentThread];
 }
 
 @end

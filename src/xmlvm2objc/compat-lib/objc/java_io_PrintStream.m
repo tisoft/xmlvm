@@ -57,5 +57,12 @@
 	NSLog(@" ");
 }
 
+- (void) print___java_lang_Object: (java_lang_Object*) o
+{
+	java_lang_String* s = [o toString__];
+	NSLog(@"%@", s);
+	[s release];
+}
+
 @end
 

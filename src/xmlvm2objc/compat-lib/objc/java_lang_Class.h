@@ -34,6 +34,7 @@
 }
 
 - (void) __init_java_lang_Class__;
+- (BOOL) desiredAssertionStatus__;
 - (java_lang_String*) getName__;
 + (java_lang_Class*) forName___java_lang_String :(java_lang_String*) className;
 - (NSMutableArray*) getDeclaredFields__;

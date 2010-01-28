@@ -30,6 +30,7 @@ NSThread*              thread;
 }
 
 - (id) init;
+- (id) initWithCurrentThread;
 - (void) dealloc;
 - (void) __init_java_lang_Thread__;
 - (void) __init_java_lang_Thread___java_lang_Runnable: (id<java_lang_Runnable>) r;
@@ -37,5 +38,6 @@ NSThread*              thread;
 - (void) run__;
 - (void) start__;
 + (void) sleep___long: (long) millis;
++ (java_lang_Thread*) currentThread__;
 
 @end

@@ -41,6 +41,11 @@
 {
 }
 
+- (BOOL) desiredAssertionStatus__
+{
+	return false;
+}
+
 - (java_lang_String*) getName__
 {
 	NSMutableString* mangledName = [NSMutableString stringWithCString: class_getName(clazz) encoding: NSASCIIStringEncoding];
