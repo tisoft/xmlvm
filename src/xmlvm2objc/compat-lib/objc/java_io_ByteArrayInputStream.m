@@ -22,14 +22,106 @@
 
 @implementation java_io_ByteArrayInputStream;
 
-- (int) read__
+- (void) __init_java_io_ByteArrayInputStream___byte_ARRAYTYPE_int_int :(XMLVMArray*)buf :(int)from :(int)len
 {
-	return 0;
+	self->length = len;
+	self->buffer = malloc(sizeof(char)*len);
+
+	int src=from; int dst=0;
+	while (dst<len) {
+		buffer[dst++] = buf->array.i[src++];
+	}
+	self->pos = 0;
+	self->marked = 0;
 }
 
-- (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len
+- (int) read__
 {
-	return 0;
+	if (pos>=length) {
+		return -1;
+	} else {
+		return buffer[pos++];
+	}
+}
+
+- (void) dealloc
+{
+	free(buffer);
+	[super dealloc];
+}
+
+- (int) available__
+{
+  return length - pos;
+}
+
+- (long) skip___long: (long) shift
+{
+  pos += shift;
+  if (pos >= length) {
+  	pos = length;
+  }
+  return pos;
+}
+
+- (void) mark___long: (long) max
+{
+  marked = pos;
+}
+
+- (void) mark___int: (int) max
+{
+  marked = pos;
+}
+
+
+- (void) reset__
+{
+  pos = marked;
+}
+
+- (int) read___byte_ARRAYTYPE :(XMLVMArray*)buf
+{
+  if (pos >= length) {
+  	return -1;
+  }
+  int len = [buf count];
+  int c = 0;
+  int p2 = pos;
+  while (p2 < length && c < len) {
+    buf->array.i[c++] = buffer[p2++];
+  }
+  pos = p2;
+  return c;
+}
+
+- (int) read___byte_ARRAYTYPE_int_int :(XMLVMArray*)buf :(int)offs :(int)len
+{
+  if (pos >= length) {
+  	return -1;
+  }
+  int c = 0;
+  int p2 = pos;
+  while (p2 < length && c < len) {
+    buf->array.i[offs+(c++)] = buffer[p2++];
+  }
+  pos = p2;
+  return c;
+}
+
+// duplicate of read___byte_ARRAYTYPE_int_int - needed?
+- (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) buf: (int) offs: (int) len
+{
+  if (pos >= length) {
+  	return -1;
+  }
+  int c = 0;
+  int p2 = pos;
+  while (p2 < length && c < len) {
+    buf->array.i[offs+(c++)] = buffer[p2++];
+  }
+  pos = p2;
+  return c;
 }
 
 - (java_lang_String*) readLine__
@@ -42,4 +134,3 @@
 }
 
 @end
-

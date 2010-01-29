@@ -27,6 +27,7 @@
 - (bool) available__;
 - (bool) markSupported__;
 - (void) mark___int: (int) readlimit;
+- (void) mark___long: (long) readlimit;
 - (int) read__;
 - (int) read___byte_ARRAYTYPE: (XMLVMArray *) buffer;
 - (int) read___byte_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len;

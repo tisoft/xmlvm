@@ -29,7 +29,7 @@
 
 	java_io_FileDescriptor* fd;
 	NSFileHandle *fdImpl;
-
+	unsigned long int marked;
 }
 
 - (void) __init_java_io_FileInputStream___java_io_File: (java_io_File*) f;

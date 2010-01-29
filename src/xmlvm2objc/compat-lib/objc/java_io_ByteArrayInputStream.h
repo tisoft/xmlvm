@@ -24,9 +24,15 @@
 #import "java_io_InputStream.h"
 
 
-@interface java_io_ByteArrayInputStream : java_io_InputStream
-- (int) read__;
+@interface java_io_ByteArrayInputStream : java_io_InputStream {
+  char *buffer;
+  int length;
+  int pos;
+  int marked;
+}
+
+- (void) __init_java_io_ByteArrayInputStream___byte_ARRAYTYPE_int_int :(XMLVMArray*)buf :(int)from :(int)len;
+- (void) dealloc;
 - (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len;
 - (java_lang_String *) readLine__;
-- (void) close__;
 @end

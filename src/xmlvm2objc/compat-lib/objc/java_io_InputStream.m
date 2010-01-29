@@ -42,6 +42,10 @@
 {
 }
 
+- (void) mark___long: (long) readlimit
+{
+}
+
 - (int) read__
 {
 	[self xmlvmSubclassResponsibility];

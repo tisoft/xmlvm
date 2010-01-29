@@ -63,7 +63,7 @@
 	if (data == nil) {
 		return -1;
 	}
-	const unsigned char * ptr = (const unsigned char *) [data bytes];
+	char * ptr = (char *) [data bytes];
 	if (ptr == NULL) {
 		return -1;
 	}	
@@ -73,8 +73,10 @@
 
 - (long) skip___long: (long) n
 {
-	[self->fdImpl seekToFileOffset: n];
-	return [self->fdImpl offsetInFile];
+	long initialPos = [self->fdImpl offsetInFile];
+	long newPos = n+initialPos;
+	[self->fdImpl seekToFileOffset: newPos];
+	return [self->fdImpl offsetInFile] - initialPos;
 }
 
 
@@ -96,5 +98,60 @@
 	[self->fd retain];
 	return self->fd;
 }
+
+- (bool) markSupported__
+{
+	return true;
+}
+
+- (void) mark___int: (int) max
+{
+	marked = [self->fdImpl offsetInFile];
+}
+
+- (void) mark___long: (long) max
+{
+	marked = [self->fdImpl offsetInFile];
+}
+
+- (void) reset__
+{
+	[self->fdImpl seekToFileOffset: marked];
+}
+
+- (int) read___byte_ARRAYTYPE :(XMLVMArray*)buf
+{
+	int len = [buf count];
+	NSData *data = [self->fdImpl readDataOfLength: len];
+	if (data == nil) {
+		return -1;
+	}
+	char * ptr = (char *) [data bytes];
+	if (ptr == NULL) {
+		return -1;
+	} else {
+		for (int i = 0; i < [data length]; i++) {
+			buf->array.i[i] = ptr[i];
+		}
+		return [data length];
+	}
+}	
+
+- (int) read___byte_ARRAYTYPE_int_int :(XMLVMArray*)buf :(int)offs :(int)len
+{
+	NSData *data = [self->fdImpl readDataOfLength: len];
+	if (data == nil) {
+		return -1;
+	}
+	char * ptr = (char *) [data bytes];
+	if (ptr == NULL) {
+		return -1;
+	}	else {
+		for (int i = 0; i < [data length]; i++) {
+			buf->array.i[offs+i] = ptr[i];
+		}
+		return [data length];
+	}
+}	
 
 @end
