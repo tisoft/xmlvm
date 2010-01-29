@@ -30,6 +30,13 @@
     [self setString: str];
 }
 
+- (void) __init_java_lang_String___byte_ARRAYTYPE: (XMLVMArray*) bytes
+{
+	for(int i = 0; i < bytes->length; i++) {
+		[self appendFormat:@"%c", (char) bytes->array.i[i]];
+	}
+}
+
 + (java_lang_String*) valueOf___int: (int) i
 {
     NSNumber* n = [NSNumber numberWithInt: i];
@@ -54,6 +61,15 @@
         return [[NSString alloc] initWithString: (NSString*) o];
     }
     return [[NSString alloc] initWithString: @"Unkown type in valueOf___java_lang_Object"];
+}
+
+- (XMLVMArray*) getBytes__
+{
+	XMLVMArray *bytes = [XMLVMArray createSingleDimensionWithType: 3 andSize: self.length];
+	for (int i = 0; i < self.length; i++) {
+		bytes->array.i[i] = [self characterAtIndex:i];
+	}
+	return [bytes retain];
 }
 
 - (unichar) charAt___int: (int) idx

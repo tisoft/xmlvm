@@ -27,10 +27,12 @@ typedef NSMutableString java_lang_String;
 @interface NSMutableString (cat_java_lang_String) 
 
 - (void) __init_java_lang_String___java_lang_String: (java_lang_String*) str;
+- (void) __init_java_lang_String___byte_ARRAYTYPE: (XMLVMArray*) bytes;
 + (java_lang_String*) valueOf___int: (int) i;
 + (java_lang_String*) valueOf___float: (float) f;
 + (java_lang_String*) valueOf___double: (double) d;
 + (java_lang_String*) valueOf___java_lang_Object: (java_lang_Object*) o;
+- (XMLVMArray*) getBytes__;
 - (unichar) charAt___int: (int) idx;
 - (int) lastIndexOf___int: (int) ch;
 - (int) endsWith___java_lang_String: (java_lang_String*) s;
