@@ -25,17 +25,14 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_gl_EAGLContext;
 
+- (void) __init_org_xmlvm_iphone_gl_EAGLContext___int: (int) api
+{
+	self->context = [[EAGLContext alloc] initWithAPI:api];
+}
 
 + (void) setCurrentContext___org_xmlvm_iphone_gl_EAGLContext: (org_xmlvm_iphone_gl_EAGLContext*) context
 {
-	[EAGLContext setCurrentContext: context->context];
-}
-
-- (void) __init_org_xmlvm_iphone_gl_EAGLContext___int: (int) api
-{	
-	[self init];
-	
-	self->context = [[EAGLContext alloc] initWithAPI:api];
+	[EAGLContext setCurrentContext: [context->context retain]];
 }
 
 - (void) presentRenderBuffer___int: (int) buffer
@@ -43,14 +40,10 @@
 	[self->context presentRenderbuffer:buffer];
 }
 
-- (void) release
-{
-	[self->context release];
-}
-
 - (void) dealloc
 {
-	[self release];
+	[self->context release];
+	[super dealloc];
 }
 
 - (void) renderBufferStorage___int_org_xmlvm_iphone_gl_EAGLDrawable: (int) buffer: (org_xmlvm_iphone_gl_EAGLDrawable*) drawable
@@ -59,5 +52,3 @@
 }
 
 @end
-
-
