@@ -56,6 +56,7 @@ public class XCodeFile extends BuildFile {
         resourcefiles.put("xml", "text.xml");
         resourcefiles.put("jpg", "image.jpeg");
         resourcefiles.put("png", "image.png");
+        resourcefiles.put("mp3", "audio.mpeg");
         resourcefiles.put("txt", "text");
         resourcefiles.put("plist", "text.plist");
     }
