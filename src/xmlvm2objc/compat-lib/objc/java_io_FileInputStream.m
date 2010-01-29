@@ -26,29 +26,75 @@
 
 - (void) __init_java_io_FileInputStream___java_lang_String :(java_lang_String*) path
 {
-	self->fd = [NSFileHandle fileHandleForReadingAtPath:path];
-	if (self->fd == nil) {
+	self->fdImpl = [NSFileHandle fileHandleForReadingAtPath:path];
+	if (fdImpl == nil) {
 		java_io_FileNotFoundException* ex = [[java_io_FileNotFoundException alloc] init];
 		@throw ex;
 	}
+	[self->fdImpl retain];
+	self->fd = [[java_io_FileDescriptor alloc] init];
+	[fd __init_java_io_FileDescriptor___NSFileHandle: self->fdImpl];
 }
 
-- (void) __init_java_io_FileInputStream___java_io_File :(java_io_File*) file
+- (void) __init_java_io_FileInputStream___java_io_FileDescriptor :(java_io_FileDescriptor*) fdpar
 {
-	// TODO
+	self->fd = fdpar;
+	self->fdImpl = [self->fd getFileHandle];
+	[self->fd retain];
+	[self->fdImpl retain];
+}
+
+- (void) __init_java_io_FileInputStream___java_io_File: (java_io_File*) f 
+{
+	[self __init_java_io_FileInputStream___java_lang_String: [[f getCanonicalPath__] autorelease]];
 }
 
 - (void) dealloc
 {
-	[self->fd closeFile];
-	[self->fd release];
+	if (self->fd != nil) {
+		[self close__];
+	}
 	[super dealloc];
+}
+
+- (int) read__
+{
+	NSData *data = [self->fdImpl readDataOfLength: 1];
+	if (data == nil) {
+		return -1;
+	}
+	const unsigned char * ptr = (const unsigned char *) [data bytes];
+	if (ptr == NULL) {
+		return -1;
+	}	
+	int i = ptr[0];
+	return i;
+}
+
+- (long) skip___long: (long) n
+{
+	[self->fdImpl seekToFileOffset: n];
+	return [self->fdImpl offsetInFile];
+}
+
+
+- (void) close__
+{
+	if (self->fd == nil) {
+		return;
+	}
+	[self->fd invalidate];
+	[self->fd release];
+	[self->fdImpl closeFile];
+	[self->fdImpl release];
+	self->fd = nil;
+	self->fdImpl = nil;
 }
 
 - (java_io_FileDescriptor*) getFD__
 {
-	// TODO
-	return [NSNull null];
+	[self->fd retain];
+	return self->fd;
 }
 
 @end

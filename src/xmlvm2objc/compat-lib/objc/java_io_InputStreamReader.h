@@ -20,19 +20,19 @@
 
 #import "xmlvm.h"
 #import "java_io_Reader.h"
-#import "org_xmlvm_iphone_NSStringInputStream.h"
 #import "java_io_InputStream.h"
+#import "java_lang_String.h"
 
 @interface java_io_InputStreamReader : java_io_Reader {
-	org_xmlvm_iphone_NSStringInputStream *target;
+	java_io_InputStream *target;
+	java_lang_String *encoding;
 }
 
-- (void) __init_java_io_InputStreamReader___java_io_InputStream: (java_io_InputStream *) input;
-- (void) __init_java_io_InputStreamReader___java_io_InputStream_java_lang_String: (java_io_InputStream*) input: (java_lang_String*) encoding;
+static const char LF;
+static const char CR;
 
-- (int) read___char_ARRAYTYPE_int_int: (NSMutableArray *) buffer: (int) pos: (int) len;
-- (bool) ready__;
+- (void) __init_java_io_InputStreamReader___java_io_InputStream: (java_io_InputStream *) input;
+- (void) __init_java_io_InputStreamReader___java_io_InputStream_java_lang_String: (java_io_InputStream*) input: (java_lang_String*) enc;
 - (java_lang_String*) readLine__;
-- (void) close__;
 
 @end

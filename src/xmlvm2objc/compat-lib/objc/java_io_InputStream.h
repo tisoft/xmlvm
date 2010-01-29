@@ -23,7 +23,14 @@
 #import "java_lang_String.h"
 
 @interface java_io_InputStream : java_lang_Object 
+- (void) __init_java_io_InputStream__;
+- (bool) available__;
+- (bool) markSupported__;
+- (void) mark___int: (int) readlimit;
 - (int) read__;
-- (bool) ready__;
-- (java_lang_String *) readLine__;
+- (int) read___byte_ARRAYTYPE: (XMLVMArray *) buffer;
+- (int) read___byte_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len;
+- (void) close__;
+- (void) reset__;
+- (long) skip___long: (long) n;
 @end

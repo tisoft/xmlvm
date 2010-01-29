@@ -22,6 +22,14 @@
 
 // java.net.URL
 //----------------------------------------------------------------------------
-@implementation java_net_URL;
+@implementation NSURLRef (cat_java_net_URL)
+
+- (void) __init_java_net_URL___java_lang_String: (java_lang_String*) urlString
+{
+	NSURL *url = [NSURL URLWithString: urlString];
+	NSURLRef *r = (NSURLRef*) self;
+	[r setRef: url];
+}
+
 @end
 

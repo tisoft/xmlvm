@@ -21,4 +21,39 @@
 #import "java_io_FileDescriptor.h"
 
 @implementation java_io_FileDescriptor 
+
+- (void) __init_java_io_FileDescriptor__
+{
+}
+
+- (void) __init_java_io_FileDescriptor___NSFileHandle: (NSFileHandle *) fdImpl
+{
+	self->fd = fdImpl;
+	[fdImpl retain];
+}
+
+- (void) dealloc
+{
+	[self invalidate];
+	[super dealloc];
+}
+
+- (bool) valid__
+{
+	return fd != nil;
+}
+
+- (NSFileHandle*) getFileHandle
+{
+	return fd;
+}
+
+- (void) invalidate
+{
+	if (fd != nil) {
+		[fd release];
+		fd = nil;
+	}
+}
+
 @end

@@ -22,19 +22,66 @@
 
 // java.io.Reader
 //----------------------------------------------------------------------------
-@implementation java_io_Reader;
+@implementation java_io_Reader
 
-- (int) read___char_ARRAYTYPE_int_int: (NSMutableArray *) buffer: (int) pos: (int) len {
+- (void) __init_java_io_Reader
+{
 }
 
-- (bool) ready__ {
+- (void) __init_java_io_Reader___java_lang_Object: (java_lang_Object*) lock
+{
 }
 
-- (java_lang_String*) readLine__ {
+- (int) read__
+{
+	return -1;
 }
 
-- (void) close__ {
+- (int) read___char_ARRAYTYPE: (XMLVMArray *) buffer
+{
+	return [self read___char_ARRAYTYPE_int_int: buffer:	0: [buffer count]];
 }
+
+- (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len
+{
+	int i = 0;
+	for (i = 0; i < len; ++i) {
+		int c = [self read__];
+		if (c == -1) {
+			break;
+		}
+		buffer->array.i[pos + i] = c;
+	}
+	return i > 0 ? i : -1;	
+}
+
+- (bool) ready__
+{
+	return true;
+}
+
+- (void) mark___int: (int) readAheadLimit
+{
+}
+
+
+- (BOOL) markSupported__
+{
+	return false;
+}
+
+- (long) skip___long: (long) n
+{
+	return 0;
+}
+
+- (void) reset__
+{
+}
+
+- (void) close__
+{
+}	
 
 @end
 

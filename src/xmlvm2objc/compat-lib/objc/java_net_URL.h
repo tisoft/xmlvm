@@ -20,6 +20,12 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
+#import "java_net_URI.h"
 
-@interface java_net_URL : java_lang_Object 
+typedef NSURL java_net_URL;
+
+@interface NSURLRef (cat_java_net_URL) 
+
+- (void) __init_java_net_URL___java_lang_String:(java_lang_String *)url;
+
 @end

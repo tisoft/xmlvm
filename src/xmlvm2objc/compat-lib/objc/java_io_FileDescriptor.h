@@ -21,5 +21,15 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 
-@interface java_io_FileDescriptor : java_lang_Object 
+@interface java_io_FileDescriptor : java_lang_Object {
+	NSFileHandle *fd;
+}
+
+- (void) __init_java_io_FileDescriptor__;
+- (void) __init_java_io_FileDescriptor___NSFileHandle: (NSFileHandle *) fd;
+- (bool) valid__;
+- (void) dealloc;
+- (NSFileHandle*) getFileHandle;
+- (void) invalidate;
+
 @end

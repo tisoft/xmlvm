@@ -22,11 +22,20 @@
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
 
+
 @interface java_io_Reader : java_lang_Object 
 
-- (int) read___char_ARRAYTYPE_int_int: (NSMutableArray *) buffer: (int) pos: (int) len;
+- (void) __init_java_io_Reader;
+- (void) __init_java_io_Reader___java_lang_Object: (java_lang_Object*) lock;
+
+- (int) read__;
+- (int) read___char_ARRAYTYPE: (XMLVMArray *) buffer;
+- (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len;
 - (bool) ready__;
-- (java_lang_String*) readLine__;
+- (void) mark___int: (int) readAheadLimit;
+- (BOOL) markSupported__;
+- (long) skip___long: (long) n;
+- (void) reset__;
 - (void) close__;
 
 @end

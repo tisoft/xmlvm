@@ -19,31 +19,66 @@
  */
 
 #import "java_io_InputStreamReader.h"
+#import "java_lang_StringBuffer.h"
 
 // java.io.InputStreamReader
 //----------------------------------------------------------------------------
-@implementation java_io_InputStreamReader;
+@implementation java_io_InputStreamReader
 
-- (int) read___char_ARRAYTYPE_int_int: (NSMutableArray *) buffer: (int) pos: (int) len {	
+static const char LF = '\n';
+static const char CR = '\r';
+
+- (void) __init_java_io_InputStreamReader___java_io_InputStream: (java_io_InputStream*) input
+{
+	[self __init_java_io_InputStreamReader___java_io_InputStream_java_lang_String: input : @"ASCII"];
 }
 
-- (void) __init_java_io_InputStreamReader___java_io_InputStream: (java_io_InputStream*) input {
-	target = (org_xmlvm_iphone_NSStringInputStream *) input;
+- (void) __init_java_io_InputStreamReader___java_io_InputStream_java_lang_String: (java_io_InputStream*) input: (java_lang_String*) enc
+{
+	target = input;
+	encoding = enc;
+	[target retain];
+	[encoding retain];
 }
 
-- (void) __init_java_io_InputStreamReader___java_io_InputStream_java_lang_String: (java_io_InputStream*) input: (java_lang_String*) encoding {
-	target = (org_xmlvm_iphone_NSStringInputStream *) input;
+- (int) read__
+{
+	return [target read__]; //TODO: works only for ASCII
+}
+	 
+- (void) dealloc
+{
+	[target release];
+	[encoding release];
+	[super dealloc];
 }
 
-- (bool) ready__ {
-	return [target ready];
+- (void) close__
+{
+	[target close__];
 }
 
-- (java_lang_String*) readLine__ {
-	return [target readLine];
-}
-
-- (void) close__ {
+- (java_lang_String*) readLine__
+{
+	java_lang_StringBuffer* b = [[java_lang_StringBuffer alloc] init];
+	int i;
+	while ((i = [self read__]) != -1 && ((char) i) != LF) {
+		if (i < 0) {
+			i += 256;
+		}
+		[b append___char: (char) i];
+	}
+	if ([b length] == 0 && i == -1) {
+		[b release];
+		return [NSNull null];
+	}
+	java_lang_String* result = [b toString__];
+	[b release];
+	int j = [result indexOf___int: CR];
+	if (j > -1) {
+		return [[result substring___int_int: 0: j] retain];
+	}
+	return [result retain];
 }
 
 @end

@@ -19,16 +19,52 @@
  */
 
 #import "java_io_OutputStream.h"
+#import "java_lang_IllegalArgumentException.h"
 
 // java.io.OutputStream
 //----------------------------------------------------------------------------
-@implementation java_io_OutputStream;
+@implementation java_io_OutputStream
 
-/*
-- (int) read__ {
-	return 0;
+- (void) __init_java_io_OutputStream__
+{
 }
-*/
+
+- (void) write___int: (int) i
+{
+	[self xmlvmSubclassResponsibility];
+}
+
+- (void) write___byte_ARRAYTYPE: (XMLVMArray *) data
+{
+	int arrlen = [data count];
+	for (int i = 0; i < arrlen; ++i) {
+		int c = data->array.i[i];
+		[self write___int: c];
+	}
+}
+
+- (void) write___byte_ARRAYTYPE_int_int: (XMLVMArray *) data: (int) pos: (int) len
+{
+	int arrlen = [data count];
+	if (arrlen < pos + len) {
+		id exc_id = [[[java_lang_IllegalArgumentException alloc] init] autorelease];
+		java_lang_IllegalArgumentException *exc = (java_lang_IllegalArgumentException*) exc_id;
+		[exc __init_java_lang_IllegalArgumentException__];
+		@throw exc_id;
+	}
+	for (int i = pos; i < len + pos; ++i) {
+		int c = data->array.i[i];
+		[self write___int: c];
+	}
+}
+
+- (void) flush__
+{
+}
+
+- (void) close__
+{
+}
 
 @end
 
