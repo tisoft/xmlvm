@@ -47,7 +47,7 @@
 
 - (void) __init_java_io_File___java_lang_String: (java_lang_String*) pathname
 {
-	path = [pathname copyWithZone: NULL];
+	path = [[pathname copyWithZone: NULL] retain];
 }
 
 - (void) __init_java_io_File___java_io_File_java_lang_String: (java_io_File*) dir: (java_lang_String*) name

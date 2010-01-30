@@ -33,6 +33,7 @@ import android.internal.Assert;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -321,6 +322,11 @@ public class Activity extends ContextThemeWrapper {
      */
     public boolean onOptionsItemSelected(MenuItem item) {
         return true;
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+        return false;
     }
 
     public void startActivity(Intent intent) {

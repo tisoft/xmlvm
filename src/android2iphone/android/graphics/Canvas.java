@@ -55,7 +55,11 @@ public class Canvas {
         CGContext.UIGraphicsBeginImageContext(new CGSize(width, height));
         context = CGContext.UICurrentContext();
         UIImage image = ((BitmapDrawable) (bitmap.getDrawable())).xmlvmGetImage();
+        context.storeState();
+        context.scale(1, -1);
+        context.translate(0, -height);
         context.drawImage(new CGRect(0, 0, width, height), image.getCGImage());
+        context.restoreState();
     }
 
     private void releaseCGContext() {
@@ -114,13 +118,16 @@ public class Canvas {
     }
 
     public void scale(float scaleX, float scaleY) {
-        Assert.NOT_IMPLEMENTED();
+        createCGContext();
+        context.scale(scaleX, scaleY);
+        releaseCGContext();
     }
 
     public void drawText(String texttodisplay, int left, int top, Paint paint) {
-        CGContext context = CGContext.UICurrentContext();
+        createCGContext();
         context.setFillColor(paint.xmlvmGetColor());
         NSString.drawAtPoint(texttodisplay, new CGPoint(left, top), paint.xmlvmGetUIFont());
+        releaseCGContext();
     }
 
     public void setBitmap(Bitmap bitmap) {

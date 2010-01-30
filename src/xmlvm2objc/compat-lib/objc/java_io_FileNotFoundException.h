@@ -20,7 +20,7 @@
 
 
 #import "xmlvm.h"
-#import "java_lang_Exception.h"
+#import "java_io_IOException.h"
 #import "java_lang_String.h"
 
 
@@ -28,7 +28,7 @@
 //----------------------------------------------------------------------------
 // For some reason, compiling for the device doesn't like to define this
 // class as a category.
-@interface java_io_FileNotFoundException : java_lang_Exception
+@interface java_io_FileNotFoundException : java_io_IOException
 
 - (id) init;
 - (void) __init_java_io_FileNotFoundException__;

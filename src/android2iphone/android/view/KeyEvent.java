@@ -18,9 +18,9 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.view;
 
 public class KeyEvent {
 
+    final public static int KEYCODE_BACK = 4;
 }
