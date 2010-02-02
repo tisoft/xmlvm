@@ -73,9 +73,11 @@ public class ActivityManager extends UIApplication {
         }
 
         String action = intent.xmlvmGetAction();
+        String activityName = null;
         AndroidManifest.Activity activityInfo = manifest.getActivity(action);
-        String activityName = activityInfo.className;
-        if (activityName == null) {
+        if (activityInfo != null) {
+            activityName = activityInfo.className;
+        } else {
             activityName = checkForBuiltinActivity(action);
         }
         Class<?> androidActivityClazz;
@@ -93,11 +95,11 @@ public class ActivityManager extends UIApplication {
         newActivity.xmlvmSetParent(parent);
         newActivity.xmlvmSetRequestCode(requestCode);
         newActivity.xmlvmSetIntent(intent);
-        
+
         if (activityInfo != null) {
             newActivity.xmlvmSetRequestedOrientation(activityInfo.screenOrientation);
         }
-        
+
         // The first activity will be launched via UIApplication.main and
         // subsequent call to applicationDidFinishLaunching. Only for following
         // activities we call xmlvmOnCreate() here directly.
