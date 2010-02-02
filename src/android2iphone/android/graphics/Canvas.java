@@ -30,12 +30,14 @@ import org.xmlvm.iphone.UIImage;
 import android.graphics.drawable.BitmapDrawable;
 import android.internal.Assert;
 
+//TODO all methods in this class should be synchronized in order to avoid race conditions when accessing lastCanvasUsed
 public class Canvas {
 
-    private boolean   usesExternalCGContext;
-    private CGContext context;
-    private Bitmap    bitmap;
-    private int       saveCount = 0;
+    private static Canvas lastCanvasUsed = null;
+    private boolean       usesExternalCGContext;
+    private CGContext     context;
+    private Bitmap        bitmap;
+    private int           saveCount      = 0;
 
     public Canvas() {
         context = null;
@@ -48,6 +50,13 @@ public class Canvas {
     }
 
     private void createCGContext() {
+        if (lastCanvasUsed == this) {
+            return;
+        }
+        if (lastCanvasUsed != null) {
+            lastCanvasUsed.deferredReleaseCGContext();
+        }
+        lastCanvasUsed = this;
         if (usesExternalCGContext)
             return;
         float width = bitmap.getWidth();
@@ -62,12 +71,21 @@ public class Canvas {
         context.restoreState();
     }
 
-    private void releaseCGContext() {
+    private void deferredReleaseCGContext() {
         if (usesExternalCGContext)
             return;
         UIImage image = CGContext.UIGraphicsGetImageFromCurrentImageContext();
         ((BitmapDrawable) bitmap.getDrawable()).xmlvmSetImage(image);
         CGContext.UIGraphicsEndImageContext();
+    }
+
+    private void releaseCGContext() {
+        // if (usesExternalCGContext)
+        // return;
+        // UIImage image =
+        // CGContext.UIGraphicsGetImageFromCurrentImageContext();
+        // ((BitmapDrawable) bitmap.getDrawable()).xmlvmSetImage(image);
+        // CGContext.UIGraphicsEndImageContext();
     }
 
     public void drawBitmap(Bitmap bitmap, float left, float top, Paint paint) {
@@ -104,11 +122,11 @@ public class Canvas {
     }
 
     public void restoreToCount(int count) {
+        createCGContext();
         while (saveCount-- != count) {
-            createCGContext();
             context.restoreState();
-            releaseCGContext();
         }
+        releaseCGContext();
     }
 
     public void translate(float dx, float dy) {
