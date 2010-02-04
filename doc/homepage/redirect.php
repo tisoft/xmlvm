@@ -7,6 +7,8 @@
         return "http://www.bluecarat.eu";
       } else if ($url == "@ixokoban") {
         return "http://sourceforge.net/mailarchive/forum.php?thread_name=4B20C662.2070008%40puder.org&forum_name=xmlvm-users";
+      } else if ($url == "@mtimes") {
+        return "http://mobile-times.de/sprecher";
       }
     }
     return $url;
