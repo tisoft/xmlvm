@@ -27,6 +27,7 @@
 typedef NSObject java_lang_Object;
 
 @interface NSObject (cat_java_lang_Object) 
+//- (id) autorelease;
 - (void) __init_java_lang_Object__;
 - (java_lang_Class*) getClass__;
 - (java_lang_String*) getName__;

@@ -96,27 +96,35 @@
 	return classWrapper;
 }
 
-- (NSMutableArray*) getDeclaredFields__
+- (XMLVMArray*) getDeclaredFields__
 {
-	unsigned int count, i;
+	unsigned int count, field_count, i;
 
-	NSMutableArray* fields = [[NSMutableArray alloc] init];
     Method* m = class_copyMethodList(object_getClass(clazz), &count);
+	field_count = 0;
+	for (i = 0; i < count; i++) {
+		NSString* name = [NSString stringWithCString: sel_getName(method_getName(m[i])) encoding: NSASCIIStringEncoding];
+		if ([name hasPrefix: @"_GET_"]) {
+			field_count++;
+		}
+	}
+	XMLVMArray* fields = [XMLVMArray createSingleDimensionWithType:0 andSize:field_count];
+	int idx = 0;
 	for (i = 0; i < count; i++) {
 		NSString* name = [NSString stringWithCString: sel_getName(method_getName(m[i])) encoding: NSASCIIStringEncoding];
 		if ([name hasPrefix: @"_GET_"]) {
 			NSString* fieldName = [name substringFromIndex: 5];
 			// TODO the isStatic: TRUE is not necessarily true. We also return instance members here
             java_lang_reflect_Field* f = [[java_lang_reflect_Field alloc] initWithName: fieldName isStatic: TRUE];
-			[fields addObject: f];
+			fields->array.o[idx++] = [f retain];
 			//[fieldName release];
 		}
 	}
     free(m);
-	return fields;
+	return [fields retain];
 }
 
-- (java_lang_reflect_Constructor*) getConstructor___java_lang_Class_ARRAYTYPE :(NSMutableArray*) signature
+- (java_lang_reflect_Constructor*) getConstructor___java_lang_Class_ARRAYTYPE :(XMLVMArray*) signature
 {
 	unsigned int count, i;
 
@@ -126,7 +134,7 @@
 	[mangledConstructorName appendString: @"__"];
 	
 	for (i = 0; i < [signature count]; i++) {
-		NSMutableString* t = [[signature objectAtIndex:i] getName__];
+		NSMutableString* t = [signature->array.o[i] getName__];
 		NSMutableString* mt = [t stringByReplacingOccurrencesOfString: @"." withString: @"_"];
 		[t release];
 		[mangledConstructorName appendString:@"_"];

@@ -53,12 +53,14 @@
       
 int main(int argc, char* argv[])
 {
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     [</xsl:text>
     <xsl:variable name="cl" as="node()" select="vm:class/vm:method[@name = 'main']/.."/>
     <xsl:value-of select="vm:fixname($cl/@package)"/>
     <xsl:text>_</xsl:text>
     <xsl:value-of select="$cl/@name"/>
     <xsl:text> main___java_lang_String_ARRAYTYPE: nil];
+    [pool release];
 	return 0;						 
 }
   
@@ -3377,11 +3379,14 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:aget-object">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o = [_r</xsl:text>
+  <xsl:text>.o = ((XMLVMArray*) _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.o objectAtIndex:_r</xsl:text>
+  <xsl:text>.o)->array.o[_r</xsl:text>
   <xsl:value-of select="@vz"/>
   <xsl:text>.i];
+    [[_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o retain] autorelease];
 </xsl:text>
 </xsl:template>
 
@@ -3407,12 +3412,20 @@ int main(int argc, char* argv[])
 
 <xsl:template match="dex:aput-object">
   <xsl:text>    [_r</xsl:text>
-  <xsl:value-of select="@vy"/>
-  <xsl:text>.o replaceObjectAtIndex:_r</xsl:text>
-  <xsl:value-of select="@vz"/>
-  <xsl:text>.i withObject:_r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o];
+  <xsl:text>.o retain];
+    [((XMLVMArray*) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o)->array.o[_r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i] release];
+    ((XMLVMArray*) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.o)->array.o[_r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i] = _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o;
 </xsl:text>
 </xsl:template>
 

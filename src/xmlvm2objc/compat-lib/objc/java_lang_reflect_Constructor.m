@@ -26,7 +26,7 @@
 //----------------------------------------------------------------------------
 @implementation java_lang_reflect_Constructor;
 
-- (id) initWithClass: (java_lang_Class*) c andSignature: (NSMutableArray*) s andMangledConstructorName: (NSMutableString*) n
+- (id) initWithClass: (java_lang_Class*) c andSignature: (XMLVMArray*) s andMangledConstructorName: (NSMutableString*) n
 {
 	[super init];
 	self->clazz = [c retain];
@@ -43,7 +43,7 @@
 	[super dealloc];
 }
 
-- (java_lang_Object*) newInstance___java_lang_Object_ARRAYTYPE: (NSMutableArray*) params
+- (java_lang_Object*) newInstance___java_lang_Object_ARRAYTYPE: (XMLVMArray*) params
 {
 	int i;
 	
@@ -57,7 +57,7 @@
 	[inv setSelector: sel];
 	
 	for (i = 0; i < [params count]; i++) {
-		java_lang_Object* obj = [params objectAtIndex:i];
+		java_lang_Object* obj = params->array.o[i];
 		// The +2 is to offset self and _cmd
 		[inv setArgument:&obj atIndex:i + 2];
 	}

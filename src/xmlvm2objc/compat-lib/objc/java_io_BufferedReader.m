@@ -28,7 +28,7 @@
 	target = reader;
 }
 
-- (int) read___char_ARRAYTYPE_int_int: (NSMutableArray *) buffer: (int) pos: (int) len {
+- (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len {
 	return [target read___char_ARRAYTYPE_int_int: buffer: pos: len];
 }
 

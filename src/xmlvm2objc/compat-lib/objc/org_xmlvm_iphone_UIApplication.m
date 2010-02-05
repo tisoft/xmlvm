@@ -90,7 +90,7 @@
     [self setIdleTimerDisabled: flag];
 }
 
-+ (void) main___java_lang_String_ARRAYTYPE_java_lang_Class :(NSMutableArray*) args :(java_lang_Class*) app
++ (void) main___java_lang_String_ARRAYTYPE_java_lang_Class :(XMLVMArray*) args :(java_lang_Class*) app
 {
     // TODO: change args array to argc, argc
   	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];

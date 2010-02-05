@@ -37,8 +37,8 @@
 - (BOOL) desiredAssertionStatus__;
 - (java_lang_String*) getName__;
 + (java_lang_Class*) forName___java_lang_String :(java_lang_String*) className;
-- (NSMutableArray*) getDeclaredFields__;
+- (XMLVMArray*) getDeclaredFields__;
 - (NSObject*) newInstance__;
-- (java_lang_reflect_Constructor*) getConstructor___java_lang_Class_ARRAYTYPE :(NSMutableArray*) signature;
+- (java_lang_reflect_Constructor*) getConstructor___java_lang_Class_ARRAYTYPE :(XMLVMArray*) signature;
 
 @end

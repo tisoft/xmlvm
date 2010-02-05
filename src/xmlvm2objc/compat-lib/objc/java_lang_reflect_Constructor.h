@@ -30,14 +30,14 @@
 @interface java_lang_reflect_Constructor : java_lang_Object {
 
 	java_lang_Class* clazz;
-	NSMutableArray*  signature;
+	XMLVMArray*      signature;
 	NSMutableString* mangledConstructorName;
 
 }
 
 
-- (id) initWithClass: (java_lang_Class*) c andSignature: (NSMutableArray*) s andMangledConstructorName: (NSMutableString*) n;
+- (id) initWithClass: (java_lang_Class*) c andSignature: (XMLVMArray*) s andMangledConstructorName: (NSMutableString*) n;
 - (void) dealloc;
-- (java_lang_Object*) newInstance___java_lang_Object_ARRAYTYPE: (NSMutableArray*) params;
+- (java_lang_Object*) newInstance___java_lang_Object_ARRAYTYPE: (XMLVMArray*) params;
 
 @end

@@ -38,6 +38,6 @@
 - (void) setStatusBarHidden___boolean:(bool) flag;
 - (void) setStatusBarOrientation___int: (int) orientation;
 - (void) setIdleTimerDisabled___boolean: (bool) flag;
-+ (void) main___java_lang_String_ARRAYTYPE_java_lang_Class :(NSMutableArray*) args :(java_lang_Class*) app;
++ (void) main___java_lang_String_ARRAYTYPE_java_lang_Class :(XMLVMArray*) args :(java_lang_Class*) app;
 - (java_util_List *) getWindows__;
 @end

@@ -22,9 +22,15 @@
 #import "java_lang_Class.h"
 #import "java_lang_String.h"
 
+
 // java.lang.Object
 //----------------------------------------------------------------------------
 @implementation NSObject (cat_java_lang_Object)
+
+//- (id) autorelease
+//{
+//	return self;
+//}
 
 - (java_lang_String*) getName__
 {
