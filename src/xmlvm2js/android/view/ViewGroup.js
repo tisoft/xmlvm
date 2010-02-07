@@ -14,6 +14,8 @@ qx.Class.define("android_view_ViewGroup", {
       margin: 0});
   },
   members: {
+	  $$init____android_content_Context: function(context) {
+      },
       $addView___android_view_View: function(view) {
         this.qx.add(view.getQX(), {});
       },

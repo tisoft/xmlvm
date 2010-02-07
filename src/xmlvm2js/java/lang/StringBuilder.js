@@ -50,8 +50,16 @@ qx.Class.define("java_lang_StringBuilder", {
       if((d % 1) == 0) {
         tempValue += ".0";
       }
-      this.$str += "" + $tempValue;
+      this.$str += "" + tempValue;
       return this;
+  	},
+  	$append___float: function(f) {
+        var tempValue = "" + f;
+        if((f % 1) == 0) {
+          tempValue += ".0";
+        }
+        this.$str += "" + tempValue;
+        return this;
   	}
   }
 });
