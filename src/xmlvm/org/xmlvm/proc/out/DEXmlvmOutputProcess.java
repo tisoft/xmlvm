@@ -103,8 +103,6 @@ import com.android.dx.util.IntList;
  * <p>
  * Android's own DX compiler tool is used to parse class files and to create the
  * register-based DEX code in-memory which is then converted to XML.
- * <p>
- * TODO(Sascha): Work in progress!
  */
 public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> implements
         XmlvmResourceProvider {
@@ -455,6 +453,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             DalvInsnList instructions = code.getInsns();
             codeElement.setAttribute("register-size", String.valueOf(instructions
                     .getRegistersSize()));
+            // processLocals2(instructions.getRegistersSize(), isStatic,
+            // parseClassName(
+            // cf.getThisClass().getClassType().getClassName()).toString(), meth
+            // .getPrototype().getParameterTypes(), codeElement);
             processLocals(code.getLocals(), meth.getPrototype().getParameterTypes(), codeElement);
             Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
             Map<Integer, ArrayData> arrayData = extractArrayData(instructions);
@@ -596,6 +598,33 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * Extracts the local variables and add {@code var} elements to the {@code
      * code} element for each of them.
      */
+    private static void processLocals2(int registerSize, boolean isStatic, String classType,
+            StdTypeList parameterTypes, Element codeElement) {
+
+        // The parameters are stored in the last N registers.
+        int paramsStartRegister = registerSize - parameterTypes.size();
+
+        // If the method is not static, the reference to "this" is stored right
+        // before the parameters.
+        if (!isStatic) {
+            Element thisVarElement = new Element("var", NS_DEX);
+            thisVarElement.setAttribute("name", "this");
+            thisVarElement.setAttribute("register", String.valueOf(paramsStartRegister - 1));
+            thisVarElement.setAttribute("type", classType);
+            codeElement.addContent(thisVarElement);
+        }
+
+        // Then store all the parameters in the registers.
+        for (int i = 0; i < parameterTypes.size(); ++i) {
+            com.android.dx.rop.type.Type paramType = parameterTypes.get(i);
+            Element varElement = new Element("var", NS_DEX);
+            varElement.setAttribute("name", "var-register-" + (paramsStartRegister + i));
+            varElement.setAttribute("register", String.valueOf(paramsStartRegister + i));
+            varElement.setAttribute("type", paramType.getType().toHuman());
+            codeElement.addContent(varElement);
+        }
+    }
+
     private static void processLocals(LocalList localList, StdTypeList parameterTypes,
             Element codeElement) {
         // Pass 1: remember all registers that are used by the explicit <var>
@@ -607,7 +636,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         }
 
         // We use this to store the numbers of the registers that we already
-        // have a car declaration for in order to avoid duplicates.
+        // have a var declaration for in order to avoid duplicates.
         List<Integer> filledRegisters = new ArrayList<Integer>();
         // Pass 2a: emit all <var> declarations
         for (int i = 0; i < localList.size(); ++i) {
@@ -905,7 +934,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             System.exit(-1);
         }
         for (int i = 0; i < registers.size(); ++i) {
-            // String type = registers.get(i).getTypeBearer().toHuman();
             element.setAttribute(REGISTER_NAMES[i], String.valueOf(registerNumber(registers.get(i)
                     .regString())));
             element.setAttribute(REGISTER_NAMES[i] + "-type", registers.get(i).getType().toHuman());
