@@ -25,10 +25,8 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.management.RuntimeErrorException;
 
@@ -66,7 +64,6 @@ import com.android.dx.dex.code.DalvInsnList;
 import com.android.dx.dex.code.Dop;
 import com.android.dx.dex.code.Dops;
 import com.android.dx.dex.code.HighRegisterPrefix;
-import com.android.dx.dex.code.LocalList;
 import com.android.dx.dex.code.LocalSnapshot;
 import com.android.dx.dex.code.LocalStart;
 import com.android.dx.dex.code.OddSpacer;
