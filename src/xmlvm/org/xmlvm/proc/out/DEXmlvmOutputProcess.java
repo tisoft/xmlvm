@@ -23,6 +23,7 @@ package org.xmlvm.proc.out;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -453,11 +454,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             DalvInsnList instructions = code.getInsns();
             codeElement.setAttribute("register-size", String.valueOf(instructions
                     .getRegistersSize()));
-            // processLocals2(instructions.getRegistersSize(), isStatic,
-            // parseClassName(
-            // cf.getThisClass().getClassType().getClassName()).toString(), meth
-            // .getPrototype().getParameterTypes(), codeElement);
-            processLocals(code.getLocals(), meth.getPrototype().getParameterTypes(), codeElement);
+            processLocals(instructions.getRegistersSize(), isStatic, parseClassName(
+                    cf.getThisClass().getClassType().getClassName()).toString(), meth
+                    .getPrototype().getParameterTypes(), codeElement);
             Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
             Map<Integer, ArrayData> arrayData = extractArrayData(instructions);
             CatchTable catches = code.getCatches();
@@ -598,77 +597,43 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * Extracts the local variables and add {@code var} elements to the {@code
      * code} element for each of them.
      */
-    private static void processLocals2(int registerSize, boolean isStatic, String classType,
+    private static void processLocals(int registerSize, boolean isStatic, String classType,
             StdTypeList parameterTypes, Element codeElement) {
 
         // The parameters are stored in the last N registers.
-        int paramsStartRegister = registerSize - parameterTypes.size();
-
         // If the method is not static, the reference to "this" is stored right
         // before the parameters.
+
+        // Then store all the parameters in the registers.
+        List<Element> varElements = new ArrayList<Element>();
+        // We go through the list of parameters backwards, as we need to change
+        // the indeces, depending on whether we find category 2 types. In the
+        // end, the list is reverted.
+        int j = 0;
+        for (int i = parameterTypes.size() - 1; i >= 0; --i, ++j) {
+            com.android.dx.rop.type.Type paramType = parameterTypes.get(i);
+            Element varElement = new Element("var", NS_DEX);
+            if (paramType.isCategory2()) {
+                j++;
+            }
+            varElement.setAttribute("name", "var-register-" + (registerSize - 1 - j));
+            varElement.setAttribute("register", String.valueOf(registerSize - 1 - j));
+            varElement.setAttribute("type", paramType.getType().toHuman());
+            varElements.add(varElement);
+        }
+
         if (!isStatic) {
             Element thisVarElement = new Element("var", NS_DEX);
             thisVarElement.setAttribute("name", "this");
-            thisVarElement.setAttribute("register", String.valueOf(paramsStartRegister - 1));
+            thisVarElement.setAttribute("register", String.valueOf(registerSize - j - 1));
             thisVarElement.setAttribute("type", classType);
-            codeElement.addContent(thisVarElement);
+            varElements.add(thisVarElement);
         }
 
-        // Then store all the parameters in the registers.
-        for (int i = 0; i < parameterTypes.size(); ++i) {
-            com.android.dx.rop.type.Type paramType = parameterTypes.get(i);
-            Element varElement = new Element("var", NS_DEX);
-            varElement.setAttribute("name", "var-register-" + (paramsStartRegister + i));
-            varElement.setAttribute("register", String.valueOf(paramsStartRegister + i));
-            varElement.setAttribute("type", paramType.getType().toHuman());
+        // Reverse the list and append it to the code element.
+        Collections.reverse(varElements);
+        for (Element varElement : varElements) {
             codeElement.addContent(varElement);
-        }
-    }
-
-    private static void processLocals(LocalList localList, StdTypeList parameterTypes,
-            Element codeElement) {
-        // Pass 1: remember all registers that are used by the explicit <var>
-        // declarations
-        Set<Integer> registerList = new HashSet<Integer>();
-        for (int i = 0; i < localList.size(); i++) {
-            com.android.dx.dex.code.LocalList.Entry localEntry = localList.get(i);
-            registerList.add(localEntry.getRegister());
-        }
-
-        // We use this to store the numbers of the registers that we already
-        // have a var declaration for in order to avoid duplicates.
-        List<Integer> filledRegisters = new ArrayList<Integer>();
-        // Pass 2a: emit all <var> declarations
-        for (int i = 0; i < localList.size(); ++i) {
-            com.android.dx.dex.code.LocalList.Entry localEntry = localList.get(i);
-            Element localElement = new Element("var", NS_DEX);
-            String name = localEntry.getName().toHuman();
-            int register = localEntry.getRegister();
-            if (!filledRegisters.contains(register)) {
-                localElement.setAttribute("name", name);
-                localElement.setAttribute("register", "" + register);
-                localElement.setAttribute("type", localEntry.getType().toHuman());
-                codeElement.addContent(localElement);
-                filledRegisters.add(register);
-            }
-            if (name.equals("this")) {
-                // Pass 2b: starting from 'this', look for synthetic <var>s that
-                // are not generated by DEX. We stop generating synthetic <var>
-                // when we get to a register number that is already used by
-                // another (explicit) <var>.
-                int index = 0;
-                while (!registerList.contains(++register) && index < parameterTypes.size()) {
-                    if (!filledRegisters.contains(register)) {
-                        localElement = new Element("var", NS_DEX);
-                        localElement.setAttribute("name", "__SYNTHETIC_" + index);
-                        localElement.setAttribute("register", "" + register);
-                        localElement.setAttribute("type", parameterTypes.getType(index).toHuman());
-                        codeElement.addContent(localElement);
-                        filledRegisters.add(register);
-                        index++;
-                    }
-                }
-            }
         }
     }
 
