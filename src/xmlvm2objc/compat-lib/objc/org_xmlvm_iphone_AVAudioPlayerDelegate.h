@@ -25,7 +25,7 @@
 @class org_xmlvm_iphone_AVAudioPlayer;
 
 
-@protocol org_xmlvm_iphone_AVAudioPlayerDelegate
+@protocol org_xmlvm_iphone_AVAudioPlayerDelegate <NSObject>
 
 - (void) audioPlayerDidFinishPlaying___org_xmlvm_iphone_AVAudioPlayer_boolean
 			: (org_xmlvm_iphone_AVAudioPlayer*) player
@@ -41,4 +41,7 @@
 - (void) audioPlayerEndInterruption___org_xmlvm_iphone_AVAudioPlayer
 			: (org_xmlvm_iphone_AVAudioPlayer*) player;
 
+@end
+
+@interface org_xmlvm_iphone_AVAudioPlayerDelegate : java_lang_Object <org_xmlvm_iphone_AVAudioPlayerDelegate>
 @end
