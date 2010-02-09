@@ -151,6 +151,12 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 </xsl:template>
 
 
+<xsl:template match="vm:method[@isAbstract = 'true']">
+ 	<xsl:call-template name="emitPrototype"/>
+ 	<xsl:text>{}</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="vm:method[@isNative = 'true' or count(@nativeInterface) != 0]">
   <xsl:call-template name="emitPrototype"/>
   <xsl:text>
@@ -747,6 +753,15 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   </xsl:text>
 </xsl:template>
 
+<!-- ixor -->
+<xsl:template match="jvm:ixor">
+  <xsl:text>
+    __value1    = __stack[--__sp];
+    __value2    = __stack[--__sp];
+    __stack[__sp++] = (__value1 ^ __value2);
+  </xsl:text>
+</xsl:template>
+
 <!-- iand -->
 <xsl:template match="jvm:iand">
   <xsl:text>
@@ -760,10 +775,18 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 <xsl:template match="jvm:instanceof">
   <xsl:text>
     __objectref    = __stack[--__sp];
-    __stack[__sp++] = (__objectref instanceof </xsl:text>
-    <xsl:call-template name="emitScopedName">
-      <xsl:with-param name="string" select="@type"/>
-    </xsl:call-template>
+    __stack[__sp++] = (__objectref</xsl:text>
+    <xsl:choose>
+      <xsl:when test="contains(@type, '[]')">
+        <xsl:text>.constructor.toString().indexOf("Array") != -1</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text> instanceof </xsl:text>
+        <xsl:call-template name="emitScopedName">
+          <xsl:with-param name="string" select="@type"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:text>) ? 1 : 0;</xsl:text>
 </xsl:template>
 
@@ -774,9 +797,18 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   </xsl:call-template>
   <xsl:text>
     __objectref    = __stack[__sp - 1];
-    if (!(__objectref instanceof </xsl:text>  <xsl:call-template name="emitScopedName">
-      <xsl:with-param name="string" select="@type"/>
-  </xsl:call-template>
+    if (!(__objectref instanceof java_lang_null) &amp;&amp; !(__objectref</xsl:text>
+    <xsl:choose>
+      <xsl:when test="contains(@type, '[]')">
+        <xsl:text>.constructor.toString().indexOf("Array") != -1</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text> instanceof </xsl:text>
+        <xsl:call-template name="emitScopedName">
+          <xsl:with-param name="string" select="@type"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:text>)) {throw (new java_lang_ClassCastException).$$init_java_lang_ClassCastException___java_lang_String("ClassCastException");}</xsl:text>
 </xsl:template>
 
@@ -1018,8 +1050,11 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     </xsl:when>
     <xsl:otherwise>
       <xsl:text>
-            ERROR('ldc-error: </xsl:text>
-            <xsl:value-of select="@type"/><xsl:text>   value: </xsl:text><xsl:value-of select="@value"/><xsl:text>');</xsl:text>
+        __stack[__sp++] = new java_lang_Class("</xsl:text>
+      <xsl:call-template name="emitScopedName">
+        <xsl:with-param name="string" select="@type"/>
+      </xsl:call-template>
+      <xsl:text>");</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

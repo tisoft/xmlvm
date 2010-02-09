@@ -33,7 +33,10 @@ qx.Class.define("java_io_PrintStream",  {
 				this.$println___java_lang_String("false");
 		},
 		$println___java_lang_Object: function(obj) {
-			this.$println___java_lang_String(obj + "\n");
+			this.$println___java_lang_String(obj.$toString());
+		},
+		$print___java_lang_Object: function(obj) {
+			this.$print___java_lang_String(obj.$toString());
 		},
 		
 		$print___java_lang_String: function(s) {

@@ -11,7 +11,8 @@ qx.Class.define("java_lang_Object", {
       //alert("java.lang.Object initialized");
     },
     $getClass : function() {
-    	return java_lang_Object;
+    	var qxClassName = Object.prototype.toString.call(this).match(/^\[object\s(.*)\]$/)[1];
+    	return new java_lang_Class(qxClassName);
     },
     $toString: function() {
     	return new java_lang_String(this.toHashCode());
