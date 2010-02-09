@@ -37,6 +37,7 @@
 #import <UIKit/UILabel.h>
 #import <UIKit/UITextField.h>
 #import <UIKit/UISwitch.h>
+#import <AVFoundation/AVAudioPlayer.h>
 #import <math.h>
 
 

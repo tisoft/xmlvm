@@ -25,8 +25,15 @@
 // NSErrorHolder
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_NSErrorHolder;
+
 - (void) __init_org_xmlvm_iphone_NSErrorHolder__
 {
     [self init];
 }
+
+- (java_lang_String*) description__
+{
+	return [error description__];
+}
+
 @end

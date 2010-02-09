@@ -9,18 +9,29 @@ public class NSURL {
     private String urlString;
 
     private NSURL(String u) {
+        System.out.println("URL: " + u);
         this.urlString = u;
         this.url = null;
         try {
-            this.url = new URL(u);
+            if (u.startsWith("jar://")) {
+                this.url = new URL("jar", "", u.substring("jar://".length()));
+            } else {
+                this.url = new URL(u);
+            }
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-    static public NSURL URLWithString(String u) {
+    public static NSURL URLWithString(String u) {
         return new NSURL(u);
+    }
+
+    public static NSURL fileURLWithPath(String path) {
+        String newPath = path.startsWith("file:") ? newPath = path.substring(5) : path;
+        String str = newPath.indexOf('!') < 0 ? "file://" : "jar://";
+        return new NSURL(str + newPath);
     }
 
     public URL getURL() {

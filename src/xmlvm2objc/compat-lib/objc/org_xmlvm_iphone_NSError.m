@@ -20,4 +20,35 @@
 
 #import "org_xmlvm_iphone_NSError.h"
 
-// empty
+@implementation NSError (cat_org_xmlvm_iphone_NSError)
+
++ (org_xmlvm_iphone_NSError*) error___java_lang_String_int_java_util_Map
+		: (java_lang_String*) domain
+		: (int) code
+		: (java_util_Map*) userInfo
+{
+	return [[NSError errorWithDomain: domain code: code userInfo: userInfo] retain];
+}
+
+- (java_lang_String*) description__
+{
+	return [[self description] retain];
+}
+
+
+- (int) code__
+{
+	return [self code];
+}
+
+- (java_lang_String*) domain__
+{
+	return [[self domain] retain];
+}
+
+- (java_util_Map*) userInfo__
+{
+	return [[self userInfo] retain];
+}
+
+@end

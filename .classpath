@@ -15,6 +15,7 @@
 	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/objc"/>
 	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/java"/>
 	<classpathentry kind="src" path="demo/iphone/iremote/src"/>
+	<classpathentry kind="src" path="demo/iphone/isound/src"/>
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/portrait/src"/>
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/upsidedown/src"/>
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/landscape/src"/>
@@ -32,13 +33,12 @@
 	<classpathentry kind="src" path="demo/android/xokoban/gen"/>
 	<classpathentry kind="src" path="demo/android/helloworld/gen"/>
 	<classpathentry kind="src" path="demo/android/helloworld/src"/>
+	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="lib" path="lib/bcel.jar"/>
 	<classpathentry kind="lib" path="lib/jakarta-regexp.jar"/>
 	<classpathentry kind="lib" path="lib/jdom.jar"/>
 	<classpathentry kind="lib" path="lib/mbel.jar"/>
 	<classpathentry kind="lib" path="lib/dx.jar"/>
-	<classpathentry kind="src" path="src/test/java"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/czlUtil.jar"/>
 	<classpathentry kind="lib" path="lib/yuicompressor-2.1.2.jar"/>
 	<classpathentry kind="lib" path="lib/EventBinaries.jar"/>
@@ -49,5 +49,10 @@
 	<classpathentry kind="lib" path="lib/commons-logging-adapters-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-api-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/lwjgl.jar"/>
+	<classpathentry kind="lib" path="lib/basicplayer3.0.jar"/>
+	<classpathentry kind="lib" path="lib/jl1.0.jar"/>
+	<classpathentry kind="lib" path="lib/mp3spi1.9.4.jar"/>
+	<classpathentry kind="lib" path="lib/tritonus_share.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

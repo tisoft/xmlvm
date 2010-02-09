@@ -20,23 +20,103 @@
 
 #import "org_xmlvm_iphone_AVAudioPlayer.h"
 
-// AVAudioPlayer
-//----------------------------------------------------------------------------
-@implementation org_xmlvm_iphone_AVAudioPlayer;
+@implementation AVAudioPlayerDelegateWrapper
 
-- (void) __init_org_xmlvm_iphone_AVAudioPlayer__ {
+- (id) initWithDelegate: (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) d
+{
+	[super init];
+	self->delegate = d;
+	return self;
 }
 
-- (void) load___java_lang_String: (java_lang_String*) ref {	
-	NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:ref];
-	NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: filePath];
-	player = [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL error: nil];
-	[player prepareToPlay];
-	[player setVolume: 1.0];
+- (void) dealloc
+{
+	[delegate release];
+	[super dealloc];
 }
 
-- (void) playSound__ {
-	[player play];
+
+- (void) audioPlayerDidFinishPlaying
+			: (AVAudioPlayer*) player successfully
+			: (BOOL) flag
+{
+	[delegate audioPlayerDidFinishPlaying___org_xmlvm_iphone_AVAudioPlayer_boolean
+			: player
+			: flag];
+}
+
+- (void) audioPlayerDecodeErrorDidOccur
+			: (AVAudioPlayer*) player error
+			: (NSError*) error
+{
+	[delegate audioPlayerDecodeErrorDidOccur___org_xmlvm_iphone_AVAudioPlayer_org_xmlvm_iphone_NSError
+			: player
+			: error];
+}
+			
+- (void) audioPlayerBeginInterruption
+			: (AVAudioPlayer*) player
+{
+	[delegate audioPlayerBeginInterruption___org_xmlvm_iphone_AVAudioPlayer
+			: player];
+}
+
+- (void) audioPlayerEndInterruption
+			: (AVAudioPlayer*) player
+{
+	[delegate audioPlayerEndInterruption___org_xmlvm_iphone_AVAudioPlayer
+			: player];
+}
+
+- (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) getDelegate
+{
+	return delegate;
 }
 
 @end
+
+
+@implementation AVAudioPlayer (cat_org_xmlvm_iphone_AVAudioPlayer)
+
++ (AVAudioPlayer*) initWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder
+			: (org_xmlvm_iphone_NSURL*) url
+			: (org_xmlvm_iphone_NSErrorHolder*) outError
+{
+	return [[AVAudioPlayer alloc] initWithContentsOfURL: url error: &(outError->error)];
+}
+			
+- (void) play__
+{
+	[self play];
+}
+
+- (void) stop__
+{
+	[self stop];
+}
+
+- (void) setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate
+			: (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) delegate
+{
+	AVAudioPlayerDelegateWrapper* wrapper = [[AVAudioPlayerDelegateWrapper alloc] initWithDelegate: delegate];
+	self.delegate = wrapper;
+}
+			
+- (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) getDelegate__
+{
+	return [[self.delegate getDelegate] retain];
+}
+
+- (void) setNumberOfLoops___int
+			: (int) numberOfLoops
+{
+	self.numberOfLoops = numberOfLoops;
+}
+			
+- (int) getNumberOfLoops__
+{
+	return self.numberOfLoops;
+}
+		
+@end
+

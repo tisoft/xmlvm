@@ -20,6 +20,7 @@
 	<property name="xmlvm.android-compat-lib.java" value="${xmlvm.android-compat-lib}/java" />
 	<property name="xmlvm.android-compat-lib.objc" value="${xmlvm.android-compat-lib}/objc" />
 
+	<property name="xmlvm.isound" value="build/demo/iphone/isound" />
 	<property name="xmlvm.ifireworks" value="build/demo/iphone/ifireworks" />
 	<property name="xmlvm.iremote" value="build/demo/iphone/iremote" />
 	<property name="xmlvm.ihelloworld" value="build/demo/iphone/ihelloworld" />
@@ -56,6 +57,7 @@
 		<pathelement location="lib/czlUtil.jar" />
 		<pathelement location="lib/saxon9.jar" />
 		<pathelement location="lib/lwjgl.jar" />
+		<pathelement location="lib/basicplayer3.0.jar" />
 	</path>
 
 	<path id="classpath.run">
@@ -228,11 +230,11 @@
 
 	<target name="build-iphoneDemo" depends="all-ihelloworld,
                                              build-iglnehelesson4,cc-iglnehelesson4,
-											 cc-ifireworks,cc-iremote,
+											 cc-ifireworks,cc-iremote,cc-isound,
 											 sim-afireworks-jar,cc-sim-afireworks,sim-xokoban-jar,cc-sim-xokoban,sim-sayhello-jar,cc-sim-sayhello">
 	</target>
 
-	<target name="all-cc" depends="all-ihelloworld,cc-ifireworks,cc-iremote,cc-sim-afireworks,cc-sim-aremote,cc-sim-sayhello,cc-sim-xokoban"/>
+	<target name="all-cc" depends="all-ihelloworld,cc-ifireworks,cc-iremote,cc-isound,cc-sim-afireworks,cc-sim-aremote,cc-sim-sayhello,cc-sim-xokoban"/>
 
 	<target name="all-ihelloworld" depends="cc-ihelloworld-portrait,cc-ihelloworld-landscape,cc-ihelloworld-fullscreen,cc-ihelloworld-upsidedown"/>
 	
@@ -422,6 +424,43 @@
 				<include name="*.png/" />
 			</fileset>
 		</jar>
+	</target>
+
+	<target name="build-isound" depends="build-objc-compat-lib">
+		<mkdir dir="${xmlvm.isound}" />
+		<javac srcdir="demo/iphone/isound/src" destdir="${xmlvm.isound}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<mkdir dir="${xmlvm.demo}/iphone/isound/java" />
+		<jar destfile="${xmlvm.demo}/iphone/isound/java/isound.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Implementation-Vendor" value="xmlvm.org" />
+				<attribute name="Main-Class" value="org.xmlvm.demo.isound.ISound" />
+				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../../lib/lwjgl.jar ../../../../../lib/basicplayer3.0.jar ../../../../../lib/jl1.0.jar ../../../../../lib/mp3spi1.9.4.jar ../../../../../lib/tritonus_share.jar ../../../../../lib/commons-logging-api-1.1.jar" />
+			</manifest>
+			<fileset dir="${xmlvm.isound}" />
+			<fileset dir="var/iphone">
+				<include name="*.png/" />
+			</fileset>
+			<fileset dir="demo/iphone/isound/res">
+				<include name="*.mp3" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="cc-isound" depends="xmlvmjar,build-isound">
+		<mkdir dir="${xmlvm.demo}/iphone/isound/iphone" />
+		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
+			<arg value="--out=${xmlvm.demo}/iphone/isound/iphone" />
+			<arg value="--target=iphone" />
+			<arg value="--app-name=iSound" />
+			<arg value="--in=${xmlvm.isound}/" />
+			<arg value="--resource=demo/iphone/isound/res"/>
+		</java>
 	</target>
 
 	<target name="build-ifireworks" depends="build-objc-compat-lib">

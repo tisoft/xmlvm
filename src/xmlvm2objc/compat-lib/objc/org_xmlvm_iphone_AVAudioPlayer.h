@@ -19,17 +19,57 @@
  */
 
 #import "xmlvm.h"
-#import <UIKit/UIKit.h>
-#import <AVFoundation/AVAudioPlayer.h>
-#import "java_lang_Object.h"
-#import "java_lang_String.h"
+#import "org_xmlvm_iphone_AVAudioPlayerDelegate.h"
+#import "org_xmlvm_iphone_NSURL.h"
+#import "org_xmlvm_iphone_NSErrorHolder.h"
 
-// CGDataProvider
-//----------------------------------------------------------------------------
-@interface org_xmlvm_iphone_AVAudioPlayer : java_lang_Object {
-AVAudioPlayer *player;
+@interface AVAudioPlayerDelegateWrapper : NSObject<AVAudioPlayerDelegate> {
+	id<org_xmlvm_iphone_AVAudioPlayerDelegate> delegate;
 }
-- (void) __init_org_xmlvm_iphone_AVAudioPlayer__;
-- (void) load___java_lang_String: (java_lang_String*) ref;
-- (void) playSound__;
+
+- (id) initWithDelegate: (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) d;
+
+- (void) dealloc;
+
+- (void) audioPlayerDidFinishPlaying
+			: (AVAudioPlayer*) player succesfully
+			: (BOOL) flag;
+
+- (void) audioPlayerDecodeErrorDidOccur
+			: (AVAudioPlayer*) player error
+			: (NSError*) error;
+			
+- (void) audioPlayerBeginInterruption
+			: (AVAudioPlayer*) player;
+
+- (void) audioPlayerEndInterruption
+			: (AVAudioPlayer*) player;
+
+- (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) getDelegate;
+
 @end
+
+
+typedef AVAudioPlayer org_xmlvm_iphone_AVAudioPlayer;
+@interface AVAudioPlayer (cat_org_xmlvm_iphone_AVAudioPlayer)
+
++ (AVAudioPlayer*) initWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder
+			: (org_xmlvm_iphone_NSURL*) url
+			: (org_xmlvm_iphone_NSErrorHolder*) outError;
+			
+- (void) play__;
+
+- (void) stop__;
+
+- (void) setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate
+			: (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) delegate;
+			
+- (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) getDelegate__;
+
+- (void) setNumberOfLoops___int
+			: (int) numberOfLoops;
+			
+- (int) getNumberOfLoops__;
+		
+@end
+

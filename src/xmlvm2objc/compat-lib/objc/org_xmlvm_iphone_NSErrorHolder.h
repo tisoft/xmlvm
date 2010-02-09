@@ -20,10 +20,16 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
+#import "org_xmlvm_iphone_NSError.h"
 
 
 // NSErrorHolder
 //----------------------------------------------------------------------------
-@interface org_xmlvm_iphone_NSErrorHolder : java_lang_Object
+@interface org_xmlvm_iphone_NSErrorHolder : java_lang_Object {
+@public org_xmlvm_iphone_NSError* error;
+}
+
 - (void) __init_org_xmlvm_iphone_NSErrorHolder__;
+- (java_lang_String*) description__;
+
 @end

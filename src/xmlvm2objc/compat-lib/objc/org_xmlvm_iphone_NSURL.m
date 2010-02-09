@@ -33,5 +33,11 @@
 {
     return [[NSURL URLWithString: url] retain];
 }
+
++ (NSURL*) fileURLWithPath___java_lang_String: (java_lang_String*) path;
+{
+	return [[NSURL fileURLWithPath: path] retain];
+}
+
 @end
 

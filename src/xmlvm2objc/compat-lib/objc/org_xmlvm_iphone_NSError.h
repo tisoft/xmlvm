@@ -19,8 +19,23 @@
  */
 
 #import "xmlvm.h"
+#import "java_lang_String.h"
+#import "java_util_Map.h"
 
 
 // NSError
 //----------------------------------------------------------------------------
 typedef NSError org_xmlvm_iphone_NSError;
+@interface NSError (cat_org_xmlvm_iphone_NSError)
+
++ (org_xmlvm_iphone_NSError*) error___java_lang_String_int_java_util_Map
+		: (java_lang_String*) domain
+		: (int) code
+		: (java_util_Map*) userInfo;
+
+- (java_lang_String*) description__;
+- (int) code__;
+- (java_lang_String*) domain__;
+- (java_util_Map*) userInfo__;
+
+@end
