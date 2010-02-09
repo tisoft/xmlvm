@@ -42,7 +42,7 @@ public class UIView extends UIResponder {
     public UIView(CGRect rect) {
         xmlvmSetRenderer(new UIViewRenderer<UIView>(this));
         this.bounds = null;
-        this.backgroundColor = UIColor.clearColor;
+        this.backgroundColor = UIColor.blackColor;
         this.backgroundImage = null;
         this.opaque = true;
         this.hidden = false;

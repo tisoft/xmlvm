@@ -23,6 +23,7 @@ public class UISwitch extends UIControl {
         super(new CGRect(rect.origin.x, rect.origin.y, kSwitchButtonWidth, kSwitchButtonHeight));
         xmlvmSetRenderer(new UISwitchRenderer(this));
         setOn(false);
+        setBackgroundColor(UIColor.clearColor);
     }
 
     public void setOn(boolean on) {
