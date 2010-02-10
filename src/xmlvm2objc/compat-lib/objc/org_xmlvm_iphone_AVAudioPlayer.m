@@ -82,7 +82,7 @@
 			: (org_xmlvm_iphone_NSURL*) url
 			: (org_xmlvm_iphone_NSErrorHolder*) outError
 {
-	return [[AVAudioPlayer alloc] initWithContentsOfURL: url error: &(outError->error)];
+	return [[AVAudioPlayer alloc] initWithContentsOfURL: url error: &(outError->error_org_xmlvm_iphone_NSError)];
 }
 			
 - (void) play__

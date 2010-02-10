@@ -28,12 +28,18 @@
 
 - (void) __init_org_xmlvm_iphone_NSErrorHolder__
 {
-    [self init];
 }
+
+- (void) dealloc
+{
+	[error_org_xmlvm_iphone_NSError release];
+	[super dealloc];
+}
+
 
 - (java_lang_String*) description__
 {
-	return [error description__];
+	return [error_org_xmlvm_iphone_NSError description__];
 }
 
 @end

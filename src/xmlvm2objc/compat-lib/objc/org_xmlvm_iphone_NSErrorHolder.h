@@ -26,10 +26,11 @@
 // NSErrorHolder
 //----------------------------------------------------------------------------
 @interface org_xmlvm_iphone_NSErrorHolder : java_lang_Object {
-@public org_xmlvm_iphone_NSError* error;
+@public org_xmlvm_iphone_NSError* error_org_xmlvm_iphone_NSError;
 }
 
 - (void) __init_org_xmlvm_iphone_NSErrorHolder__;
+- (void) dealloc;
 - (java_lang_String*) description__;
 
 @end
