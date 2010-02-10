@@ -591,8 +591,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     }
 
     /**
-     * Extracts the local variables and add {@code var} elements to the {@code
-     * code} element for each of them.
+     * Adds local {@code var} elements to the {@code code} element for each
+     * parameter and the {@code this} reference, if applicable.
      */
     private static void processLocals(int registerSize, boolean isStatic, String classType,
             StdTypeList parameterTypes, Element codeElement) {
@@ -601,10 +601,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         // If the method is not static, the reference to "this" is stored right
         // before the parameters.
 
-        // Then store all the parameters in the registers.
         List<Element> varElements = new ArrayList<Element>();
+
         // We go through the list of parameters backwards, as we need to change
-        // the indeces, depending on whether we find category 2 types. In the
+        // the indexes, depending on whether we find category 2 types. In the
         // end, the list is reverted.
         int j = 0;
         for (int i = parameterTypes.size() - 1; i >= 0; --i, ++j) {
@@ -619,6 +619,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             varElements.add(varElement);
         }
 
+        // Add the 'this' reference right before the parameters, if the method
+        // is not static.
         if (!isStatic) {
             Element thisVarElement = new Element("var", NS_DEX);
             thisVarElement.setAttribute("name", "this");
