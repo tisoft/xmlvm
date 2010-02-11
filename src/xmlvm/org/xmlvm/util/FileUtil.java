@@ -284,7 +284,6 @@ public class FileUtil {
      */
     public static String readFileAsString(File file) {
         try {
-            FileInputStream is;
             return readStringFromStream(new FileInputStream(file));
         } catch (FileNotFoundException e) {
             Log.error("Could not read file: " + file.getAbsolutePath());
