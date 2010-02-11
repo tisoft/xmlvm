@@ -38,9 +38,21 @@ import org.xmlvm.proc.NewMain;
 
 public class JarUtil {
 
-    public static boolean copy(String fromJar, String toPath) {
+    /**
+     * Copies a file from within the OneJar JAR archive to the given file system
+     * path while keeping its name.
+     * 
+     * @param resourceName
+     *            The name of the resource to copy.
+     * @param toPath
+     *            The destination directory where the resource should be copied
+     *            to.
+     * @return Whether the operation was successful.
+     */
+    public static boolean copyFromArchive(String resourceName, String toPath) {
         try {
-            JarInputStream libFiles = new JarInputStream(NewMain.class.getResourceAsStream(fromJar));
+            JarInputStream libFiles = new JarInputStream(NewMain.class
+                    .getResourceAsStream(resourceName));
             if (!toPath.endsWith(File.separator))
                 toPath += File.separator;
             File dir = new File(toPath);
