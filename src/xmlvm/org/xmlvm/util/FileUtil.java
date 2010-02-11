@@ -190,23 +190,23 @@ public class FileUtil {
      * it is not found, then it tries to locate this resource on the file. In
      * any case it returns a BufferedReader of this resource.
      * 
-     * This method is usefil to read text-line resources either from a JAR file
+     * This method is useful to read text-line resources either from a JAR file
      * or a local file.
      * 
-     * @param JARResource
-     *            The name of the resource inside the JAR file
-     * @param FileResource
-     *            The filename of the resource as a local file
+     * @param jarResource
+     *            The name of the resource inside the JAR file.
+     * @param fileResource
+     *            The filename of the resource as a local file.
      * @return the BufferedReader of this resource, or null if resource was not
      *         found in either places.
      */
-    public static BufferedReader findReaderResource(String JARResource, String FileResource) {
+    public static BufferedReader findReaderResource(String jarResource, String fileResource) {
         BufferedReader in = null;
         try {
-            if (JarUtil.resourceExists(JARResource))
-                in = JarUtil.getFile(JARResource);
+            if (JarUtil.resourceExists(jarResource))
+                in = JarUtil.getFile(jarResource);
             else
-                in = new BufferedReader(new FileReader(FileResource));
+                in = new BufferedReader(new FileReader(fileResource));
         } catch (FileNotFoundException ex) {
         }
         return in;
@@ -218,20 +218,24 @@ public class FileUtil {
      * it is not found, then it tries to locate this resource on the file. In
      * any case it returns a BufferedInputStream of this resource.
      * 
-     * This method is usefil to read binary resources (e.g. images) either from
+     * This method is useful to read binary resources (e.g. images) either from
      * a JAR file or a local file.
      * 
-     * @param JARResource
-     * @param FileResource
-     * @return
+     * 
+     * @param jarResource
+     *            The name of the resource inside the JAR file.
+     * @param fileResource
+     *            The filename of the resource as a local file.
+     * @return the BufferedInputStream of this resource, or null if resource was
+     *         not found in either places.
      */
-    public static BufferedInputStream findStreamResource(String JARResource, String FileResource) {
+    public static BufferedInputStream findStreamResource(String jarResource, String fileResource) {
         BufferedInputStream in = null;
         try {
-            if (JarUtil.resourceExists(JARResource))
-                in = JarUtil.getStream(JARResource);
+            if (JarUtil.resourceExists(jarResource))
+                in = JarUtil.getStream(jarResource);
             else
-                in = new BufferedInputStream(new FileInputStream(FileResource));
+                in = new BufferedInputStream(new FileInputStream(fileResource));
         } catch (FileNotFoundException ex) {
         }
         return in;
@@ -249,7 +253,7 @@ public class FileUtil {
      * Reads a file and returns it contents as a byte array.
      * 
      * @param file
-     *            the file to read
+     *            The file to read.
      */
     public static byte[] readFileAsBytes(File file) {
         try {
@@ -295,8 +299,8 @@ public class FileUtil {
      * Read the content of an {@link InputStream} as String.
      * 
      * @param stream
-     *            the stream to read from
-     * @return the content of the stream or an empty string, if an error occurs.
+     *            The stream to read from.
+     * @return The content of the stream or an empty string, if an error occurs.
      */
     public static String readStringFromStream(InputStream stream) {
         final int READ_BUFFER = 4096;
@@ -322,10 +326,10 @@ public class FileUtil {
      * Writes a string to a file.
      * 
      * @param file
-     *            the file to write to
+     *            The file to write to.
      * @param content
-     *            the content to write to the file
-     * @return whether the writing was successful
+     *            The content to write to the file.
+     * @return Whether the writing was successful.
      */
     public static boolean writeStringToFile(File file, String content) {
         try {
@@ -343,8 +347,8 @@ public class FileUtil {
      * Recursively deletes the given directory.
      * 
      * @param path
-     *            the directory to delete.
-     * @return whether the process was successful.
+     *            The directory to delete.
+     * @return Whether the process was successful.
      */
     public static boolean deleteDirectory(File path) {
         if (path.exists()) {
