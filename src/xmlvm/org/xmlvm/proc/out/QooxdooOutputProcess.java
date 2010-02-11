@@ -163,15 +163,15 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
      */
     private String makeAbsoluteCanonicalPath(String destinationParam) {
         String result = destinationParam;
-        // If the path is absolute, everything is fine.
         if (!result.startsWith(File.separator)) {
             // If the path is relative, we make it absolute by putting the
-            // current
-            // path in front.
+            // current path in front.
             String currentPath = (new File("")).getAbsolutePath();
             result = currentPath + File.separator + destinationParam;
         }
 
+        // Using getCanonicalPath resolves symlinks as well, which is done by
+        // the qooxdoo generate.py patcher as well.
         try {
             result = (new File(result)).getCanonicalPath();
         } catch (IOException e) {
