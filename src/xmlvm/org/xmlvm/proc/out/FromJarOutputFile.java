@@ -70,6 +70,6 @@ public class FromJarOutputFile extends OutputFile {
      */
     @Override
     public boolean write() {
-        return JarUtil.copy(sourcePath, getFullPath());
+        return JarUtil.copyFromArchive(sourcePath, getFullPath());
     }
 }
