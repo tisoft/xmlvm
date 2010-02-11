@@ -107,7 +107,7 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
 
     @Override
     public boolean process() {
-        tempDestination = makeAbsolutePath(arguments.option_out()) + File.separator
+        tempDestination = makeAbsoluteCanonicalPath(arguments.option_out()) + File.separator
                 + TEMP_CACHE_SUBDIR;
         mainMethod = arguments.option_qx_main();
         applicationName = arguments.option_app_name();
@@ -158,19 +158,27 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
     }
 
     /**
-     * Makes sure the given path is absolute. If the path is already absolute,
-     * it will be returned unchanged.
+     * Makes sure the given path is absolute and canonical. If the path is
+     * already absolute and canonical, it is returned unchanged.
      */
-    private String makeAbsolutePath(String destinationParam) {
+    private String makeAbsoluteCanonicalPath(String destinationParam) {
+        String result = destinationParam;
         // If the path is absolute, everything is fine.
-        if (destinationParam.startsWith(File.separator)) {
-            return destinationParam;
+        if (!result.startsWith(File.separator)) {
+            // If the path is relative, we make it absolute by putting the
+            // current
+            // path in front.
+            String currentPath = (new File("")).getAbsolutePath();
+            result = currentPath + File.separator + destinationParam;
         }
 
-        // If the path is relative, we make it absolute by putting the current
-        // path in front.
-        String currentPath = (new File("")).getAbsolutePath();
-        return currentPath + File.separator + destinationParam;
+        try {
+            result = (new File(result)).getCanonicalPath();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return destinationParam;
+        }
+        return result;
     }
 
     /**
