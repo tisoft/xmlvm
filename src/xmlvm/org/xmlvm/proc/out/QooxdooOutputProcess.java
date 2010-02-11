@@ -107,7 +107,8 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
 
     @Override
     public boolean process() {
-        tempDestination = arguments.option_out() + File.separator + TEMP_CACHE_SUBDIR;
+        tempDestination = makeAbsolutePath(arguments.option_out()) + File.separator
+                + TEMP_CACHE_SUBDIR;
         mainMethod = arguments.option_qx_main();
         applicationName = arguments.option_app_name();
 
@@ -157,6 +158,22 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
     }
 
     /**
+     * Makes sure the given path is absolute. If the path is already absolute,
+     * it will be returned unchanged.
+     */
+    private String makeAbsolutePath(String destinationParam) {
+        // If the path is absolute, everything is fine.
+        if (destinationParam.startsWith(File.separator)) {
+            return destinationParam;
+        }
+
+        // If the path is relative, we make it absolute by putting the current
+        // path in front.
+        String currentPath = (new File("")).getAbsolutePath();
+        return currentPath + File.separator + destinationParam;
+    }
+
+    /**
      * Executed Qooxdoo's generator to build the application.
      * 
      * @throws XmlvmBuilderException
@@ -165,8 +182,10 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
         String buildType = arguments.option_qx_debug() ? " source" : " build";
         Log.debug("Qooxdoo build type: '" + buildType + " '");
         try {
-            Process process = createPythonProcess(tempDestination + "/" + QX_TEMP_APP_NAME + "/"
-                    + QX_GENERATOR_SCRIPT_NAME + buildType);
+            System.out.println("Current Path: " + (new File("")).getAbsolutePath());
+            String tempProjectDir = tempDestination + File.separatorChar + QX_TEMP_APP_NAME;
+            Process process = createPythonProcess(tempProjectDir + File.separatorChar
+                    + QX_GENERATOR_SCRIPT_NAME + buildType, new File(tempProjectDir));
             printOutputOfProcess(process, "Qooxdoo Generator");
             int exitCode = process.waitFor();
             if (exitCode != 0) {
@@ -214,7 +233,7 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
     private boolean initQxSkeleton() {
         try {
             Process process = createPythonProcess(QX_CREATOR_SCRIPT + " --name " + QX_TEMP_APP_NAME
-                    + " --out " + tempDestination);
+                    + " --out " + tempDestination, null);
             printOutputOfProcess(process, "CREATOR");
             int exitCode = process.waitFor();
             if (exitCode != 0) {
@@ -318,8 +337,9 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
      * @return A process object to monitor.
      * @throws IOException
      */
-    private static Process createPythonProcess(String arguments) throws IOException {
-        return Runtime.getRuntime().exec("python " + arguments);
+    private static Process createPythonProcess(String arguments, File workingDir)
+            throws IOException {
+        return Runtime.getRuntime().exec("python " + arguments, null, workingDir);
     }
 
     /**
