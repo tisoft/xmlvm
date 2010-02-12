@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ * Copyright (c) 2004-2010 XMLVM --- An XML-based Programming Language
  * 
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -33,13 +33,12 @@ public class Log {
      * The different logging levels.
      */
     public enum Level {
-        NONE("          ", System.out),
-        ERROR("   ERROR: ", System.err),
-        WARNING(" WARNING: ", System.out),
-        ALL("   DEBUG: ", System.out);
+        NONE("          ", System.out), ERROR("   ERROR: ", System.err), WARNING(" WARNING: ",
+                System.out), ALL("   DEBUG: ", System.out);
 
         private final String      prefix;
         private final PrintStream stream;
+
 
         Level(String prefix, PrintStream stream) {
             this.prefix = prefix;
@@ -62,17 +61,19 @@ public class Log {
         }
     }
 
+
     private static final String     DATE_FORMAT = "MM/dd/yy HH:mm:ss.SSS";
     private static final DateFormat dateFormat  = new SimpleDateFormat(DATE_FORMAT);
     private static Level            level       = Level.ALL;
+
 
     /**
      * Display log message, if it is in the correct log level
      * 
      * @param l
-     *            Desired level
+     *            desired logging level
      * @param message
-     *            Message to display
+     *            message to display
      */
     private static void display(Level l, String message) {
         if (l.compareTo(level) <= 0 && message != null) {
@@ -83,8 +84,20 @@ public class Log {
     /**
      * Logs an error message
      * 
+     * @param tag
+     *            a tag displayed in front of the message
      * @param message
-     *            The error message.
+     *            the error message
+     */
+    public static void error(String tag, String message) {
+        display(Level.ERROR, tag + ": " + message);
+    }
+
+    /**
+     * Logs an error message
+     * 
+     * @param message
+     *            the error message
      */
     public static void error(String message) {
         display(Level.ERROR, message);
@@ -93,8 +106,20 @@ public class Log {
     /**
      * Logs a debug message
      * 
+     * @param tag
+     *            a tag displayed in front of the message
      * @param message
-     *            The debug message.
+     *            the debug message
+     */
+    public static void debug(String tag, String message) {
+        display(Level.ALL, tag + ": " + message);
+    }
+
+    /**
+     * Logs a debug message
+     * 
+     * @param message
+     *            the debug message
      */
     public static void debug(String message) {
         display(Level.ALL, message);
@@ -104,8 +129,21 @@ public class Log {
      * Logs a warning to {@link System.out}. If quiet mode is enabled, this
      * message will not be logged.
      * 
+     * @param tag
+     *            a tag displayed in front of the message
      * @param message
-     *            The warning message.
+     *            the warning message
+     */
+    public static void warn(String tag, String message) {
+        display(Level.WARNING, tag + ": " + message);
+    }
+
+    /**
+     * Logs a warning to {@link System.out}. If quiet mode is enabled, this
+     * message will not be logged.
+     * 
+     * @param message
+     *            the warning message
      */
     public static void warn(String message) {
         display(Level.WARNING, message);
