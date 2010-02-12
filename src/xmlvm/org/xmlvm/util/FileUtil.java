@@ -39,8 +39,19 @@ import org.xmlvm.Log;
  * Various utilities around handling files.
  */
 public class FileUtil {
-    public static void main(String[] args) {
-        System.out.println("Bin-Dir: " + getBinDirectory());
+
+    /**
+     * Returns whether the file or directory with the given name exists.
+     * <p>
+     * This implementation of fileExists searches inside the OneJar as well as
+     * on the file system and operates therefore transparent.
+     * 
+     * @param name
+     *            The name of the file or directory to check.
+     * @return Whether the file or directory exists.
+     */
+    public static boolean fileExists(String name) {
+        return (FileUtil.class.getResourceAsStream("/" + name) != null || (new File(name)).exists());
     }
 
     /**
