@@ -600,11 +600,11 @@ public class Main {
         String to = args.option_out();
         if (!to.endsWith(File.separator))
             to += File.separator;
-        JarUtil.copy("/iphone/compat-lib.jar", to);
+        JarUtil.copyFromArchive("/iphone/compat-lib.jar", to);
 
         // Check if we need to copy the Android compat libs (--android2iphone)
         if (args.option_android2iphone()) {
-            JarUtil.copy("/iphone/android-compat-lib.jar", to);
+            JarUtil.copyFromArchive("/iphone/android-compat-lib.jar", to);
         }
         // Create MakeVars
         Writer makeVars = new BufferedWriter(new FileWriter(to + "MakeVars"));
