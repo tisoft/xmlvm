@@ -117,7 +117,9 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
         tempQxSourcePath = tempDestination + "/" + QX_TEMP_APP_NAME + "/source/class";
 
         // Sanity checks the environment.
-        peformSanityChecks();
+        if (!peformSanityChecks()) {
+            return false;
+        }
 
         // Make sure the output directory is all set.
         if (!isDestinationNotEmpty()) {
