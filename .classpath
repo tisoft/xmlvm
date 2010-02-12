@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="src/xmlvm"/>
 	<classpathentry kind="src" path="demo/java-desktop"/>
 	<classpathentry kind="src" path="src/android2iphone"/>
-	<classpathentry kind="src" path="src/demo/java"/>
 	<classpathentry kind="src" path="src/xmlvm2cpp"/>
 	<classpathentry kind="src" path="src/xmlvm2js"/>
 	<classpathentry kind="src" path="src/clr2jvm/xsl"/>
