@@ -193,6 +193,15 @@
 			<fileset file="var/iphone/Info.plist" />
 		</copy>
 
+		<mkdir dir="${xmlvm.build}/xmlvm2js" />
+		<jar destfile="${xmlvm.build}/xmlvm2js/xmlvm2js.jar">
+			<fileset dir="src/xmlvm2js/" />
+		</jar>
+
+		<copy todir="${xmlvm.build}/xmlvm2js">
+			<fileset file="src/xmlvm2js/Application.js.template" />
+		</copy>
+
 		<copy todir="${xmlvm.bin}/iphone/netbeans">
 			<fileset dir="var/iphone/netbeans/" />
 		</copy>
