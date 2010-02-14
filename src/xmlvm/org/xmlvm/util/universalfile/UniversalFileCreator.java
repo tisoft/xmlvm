@@ -18,15 +18,14 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package org.xmlvm.util;
+package org.xmlvm.util.universalfile;
 
-import org.xmlvm.Log;
-
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.jar.JarInputStream;
+
+import org.xmlvm.Log;
 
 /**
  * When XMLVM is packaged, everything lives in a single jar, the One-JAR
@@ -37,33 +36,11 @@ import java.util.jar.JarInputStream;
  * to be accessed in very different ways. The Universal File is a transparent
  * API on top of this.
  */
-public class UniversalFile {
+public class UniversalFileCreator {
 
-    private static final String TAG          = "UniversalFile";
+    private static final String TAG = "UniversalFileCreator";
 
-    /** The name of the resource of the file or directory inside the One-JAR. */
-    private String              oneJarResource;
-
-    /** The name of the location on the file system. */
-    private String              fileSystemLocation;
-
-    /** Whether this is a directory. If false, this instance is a file. */
-    private boolean             isDirectory  = false;
-
-    /** Whether this resource is accessed from within the One-JAR. */
-    private boolean             isOneJarMode = false;
-
-    /** Is not-null, if this instance represents a file system resource. */
-    private File                fileSystemResource;
-
-    /** Is not-null, if this instance represents a One-JAR resource. */
-    private BufferedInputStream jarResourceStream;
-
-    /** Is not-null, if this instance represents a directory One-JAR resource. */
-    private JarInputStream      jarInputStream;
-
-
-    private UniversalFile() {
+    private UniversalFileCreator() {
         // Do not allow instantiation.
     }
 
@@ -73,11 +50,11 @@ public class UniversalFile {
      * @param oneJarResource
      *            the name of the resource of this file within the One-JAR
      * @param fileSystemLocation
-     *            the name of this file on the filesystem
+     *            the name of this file on the file system
      * @return An instance representing this file.
      */
     public static UniversalFile createFile(String oneJarResource, String fileSystemLocation) {
-        return create(oneJarResource, fileSystemLocation, true);
+        return create(oneJarResource, fileSystemLocation, false);
     }
 
     /**
@@ -87,7 +64,7 @@ public class UniversalFile {
      *            this needs to be a jar resource within the One-JAR that holds
      *            the contents of the directory
      * @param fileSystemLocation
-     *            the location of that directory on the filesystem
+     *            the location of that directory on the file system
      * @return An instance representing this directory.
      */
     public static UniversalFile createDirectory(String oneJarResourceJar, String fileSystemLocation) {
@@ -97,55 +74,30 @@ public class UniversalFile {
     /**
      * Create a {@link UniversalFile} instance and perform sanity checks.
      * 
-     * @return A valid instance or {@code null} if sanity checks failed.
+     * @param oneJarResource
+     *            the name of the resource of the file or directory inside the
+     *            One-JAR
+     * @param fileSystemLocation
+     *            the name of the location on the file system.
+     * @param isDirectory
+     *            whether this is a directory. If false, this instance is a file
+     * 
+     * @return A valid instance or {@code null} if resource could not be found
+     *         or sanity checks failed.
      */
     private static UniversalFile create(String oneJarResource, String fileSystemLocation,
             boolean isDirectory) {
-        UniversalFile result = new UniversalFile();
-        result.oneJarResource = oneJarResource;
-        result.fileSystemLocation = fileSystemLocation;
-        result.isDirectory = false;
-        if (!result.loadAndPerformSanityChecks()) {
-            Log.error(TAG, "Could not create Universal file. See errors above.");
-            return null;
-        }
-        return result;
-    }
 
-    /**
-     * Copies this universal file to the given file system path.
-     * 
-     * @param path
-     *            the destination to where this file is copied to
-     * @return Whether the operation was successful.
-     */
-    public boolean copyTo(String path) {
-        return true;
-    }
+        // Whether this resource is accessed from within the One-JAR.
+        boolean isOneJarMode = false;
 
-    /**
-     * Returns whether this instance represents a directory. If {@code false},
-     * it represents a file.
-     */
-    public boolean isDirectory() {
-        return isDirectory;
-    }
-
-    /**
-     * Loads the given resource and performs sanity checks.
-     * 
-     * @return Returns whether this file is sane. This means, that the resources
-     *         given exist and make sense.
-     */
-    private boolean loadAndPerformSanityChecks() {
         boolean resourceFound = false;
 
-        InputStream stream = UniversalFile.class.getResourceAsStream(oneJarResource);
+        InputStream stream = UniversalFileCreator.class.getResourceAsStream(oneJarResource);
         File file = new File(fileSystemLocation);
 
         // Check whether the One-JAR resource exists.
         if (stream != null) {
-            jarResourceStream = new BufferedInputStream(stream);
             isOneJarMode = true;
             resourceFound = true;
         }
@@ -159,10 +111,10 @@ public class UniversalFile {
         if (!resourceFound) {
             Log.error(TAG, "Could not find either resource: " + "(One-JAR resource: "
                     + oneJarResource + " / file system resource: " + fileSystemLocation + ")");
-            return false;
+            return null;
         }
 
-        if (isOneJarMode && isDirectory()) {
+        if (isOneJarMode && isDirectory) {
             // If this resource is taken from the One-JAR and represents a
             // directory, the resource must be a JAR archive.
             if (!oneJarResource.toLowerCase().endsWith(".jar")) {
@@ -170,41 +122,42 @@ public class UniversalFile {
                         "For a directory, the One-JAR resource must be a jar archive, but is: "
                                 + oneJarResource);
                 // TODO(sascha): Validate JAR archive.
-                return false;
+                return null;
             }
         }
 
         if (!isOneJarMode) {
-            if (file.isDirectory() != isDirectory()) {
-                if (isDirectory()) {
+            if (file.isDirectory() != isDirectory) {
+                if (isDirectory) {
                     Log.error(TAG, "Attempt to create directory, but file system resource is not"
                             + " a directory: " + fileSystemLocation);
                 } else {
                     Log.error(TAG, "Attempt to create file, but file system resource is not"
                             + " a file: " + fileSystemLocation);
                 }
-                return false;
+                return null;
             }
         }
 
-        // Set the appropriate members.
+        // Return the appropriate instance.
         if (isOneJarMode) {
-            if (isDirectory()) {
+            if (isDirectory) {
                 try {
-                    jarInputStream = new JarInputStream(stream);
+                    return new UniversalFileFromJarFile(oneJarResource, new JarInputStream(stream));
                 } catch (IOException e) {
                     Log.error(TAG, "Could not create JarInputStream for One-JAR resource: "
                             + oneJarResource);
-                    return false;
+                    return null;
                 }
             } else {
-                jarResourceStream = new BufferedInputStream(stream);
+                return new UniversalFileFromStreamResource(oneJarResource, stream);
             }
         } else {
-            fileSystemResource = file;
+            if (isDirectory) {
+                return new UniversalFileFromFileSystemDirectory(file);
+            } else {
+                return new UniversalFileFromFileSystemFile(file);
+            }
         }
-
-        return true;
     }
-
 }

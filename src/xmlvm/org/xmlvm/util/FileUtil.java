@@ -22,6 +22,8 @@ package org.xmlvm.util;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -47,11 +49,11 @@ public class FileUtil {
      * on the file system and operates therefore transparent.
      * 
      * @param name
-     *            The name of the file or directory to check.
+     *            The name of the file or directory to check
      * @return Whether the file or directory exists.
      */
     public static boolean fileExists(String name) {
-        return (FileUtil.class.getResourceAsStream("/" + name) != null || (new File(name)).exists());
+        return (FileUtil.class.getResourceAsStream(name) != null || (new File(name)).exists());
     }
 
     /**
@@ -261,34 +263,19 @@ public class FileUtil {
     }
 
     /**
-     * Reads a file and returns it contents as a byte array.
+     * Read the content of a file as bytes.
      * 
      * @param file
-     *            The file to read.
+     *            the file to read
+     * @return The content of the file.
      */
     public static byte[] readFileAsBytes(File file) {
         try {
-            InputStream inputStream = new FileInputStream(file);
-            long length = file.length();
-            if (length > Integer.MAX_VALUE) {
-                Log.error("File is too large to be read as byte array: " + file.getAbsolutePath());
-                return null;
-            }
-
-            byte[] result = new byte[(int) length];
-            int read = inputStream.read(result);
-            if (read != length) {
-                Log.error("Something went wrong while reading the file.");
-                return null;
-            }
-            return result;
-
+            return readBytesFromStream(new FileInputStream(file));
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            Log.error("Could not read file: " + file.getAbsolutePath());
+            return new byte[0];
         }
-        return null;
     }
 
     /**
@@ -304,6 +291,34 @@ public class FileUtil {
             Log.error("Could not read file: " + file.getAbsolutePath());
             return "";
         }
+    }
+
+    /**
+     * Reads a file and returns it contents as a byte array.
+     * 
+     * @param file
+     *            The file to read.
+     */
+    public static byte[] readBytesFromStream(InputStream stream) {
+        if (stream == null) {
+            return new byte[0];
+        }
+
+        ByteArrayOutputStream byteArrayStream = new ByteArrayOutputStream();
+
+        final int READ_BUFFER = 4096;
+        byte b[] = new byte[READ_BUFFER];
+        int l = 0;
+        try {
+            while ((l = stream.read(b)) > 0) {
+                byteArrayStream.write(b, 0, l);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return new byte[0];
+        }
+
+        return byteArrayStream.toByteArray();
     }
 
     /**

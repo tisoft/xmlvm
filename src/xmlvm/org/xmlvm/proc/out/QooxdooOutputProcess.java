@@ -22,8 +22,6 @@ package org.xmlvm.proc.out;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileFilter;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -35,18 +33,18 @@ import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.util.FileUtil;
 import org.xmlvm.util.InputReaderThread;
-
-import com.crazilec.util.UtilCopy;
+import org.xmlvm.util.universalfile.UniversalFile;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
+import org.xmlvm.util.universalfile.UniversalFileFilter;
 
 /**
  * This process takes JavaScript outputs and creates a Qooxdoo project from
  * them.
  */
-/**
- * @author Sascha
- * 
- */
 public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProcess> {
+
+    private static final String TAG                      = "QooxdooOutputProcess";
+
     /** The path to the qooxdoo distribution. */
     private static final String QX_PATH                  = System.getenv("XMLVM_QOOXDOO_PATH");
 
@@ -70,9 +68,13 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
     private static final String QX_TEMP_APP_NAME         = "temp_qx_app";
 
     /** The path to the XMLVM emulation library. */
-    private static final String JS_EMULATION_LIB_PATH    = "./src/xmlvm2js";
-    private static final String APPLICATION_JS_PATH      = JS_EMULATION_LIB_PATH
-                                                                 + "/Application.js.template";
+    private UniversalFile       applicationJsTemplate    = UniversalFileCreator
+                                                                 .createFile(
+                                                                         "/xmlvm2js/Application.js.template",
+                                                                         "./src/xmlvm2js/Application.js.template");
+    private UniversalFile       jsEmulationLibrary       = UniversalFileCreator.createDirectory(
+                                                                 "/xmlvm2js/xmlvm2js.jar",
+                                                                 "./src/xmlvm2js");
 
     /**
      * This is where the temporary computation output is put. The directory will
@@ -127,7 +129,7 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
                 return false;
             }
         } else {
-            Log.debug("A valid Qooxdoo destination directory seems to exist.");
+            Log.debug(TAG, "A valid Qooxdoo destination directory seems to exist.");
         }
 
         // Change the path of the JavaScript files so they are copied into the
@@ -146,13 +148,13 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
     public boolean postProcess() {
         // TODO(Sascha): Is there a way to do this at processing, rather than
         // post-processing time?
-        Log.debug("QX: Copying compatibility library ...");
-        if (!prepareJsEmulationLibrary(new File(JS_EMULATION_LIB_PATH), new File(tempQxSourcePath))) {
+        Log.debug(TAG, "Copying compatibility library ...");
+        if (!prepareJsEmulationLibrary(jsEmulationLibrary, new File(tempQxSourcePath))) {
             return false;
         }
         // TODO(Sascha): Is there a way to do this at processing, rather than
         // post-processing time?
-        Log.debug("QX: Injecting custom Application.js ...");
+        Log.debug(TAG, "Injecting custom Application.js ...");
         if (!injectCustomApplicationJs(tempQxSourcePath)) {
             return false;
         }
@@ -190,7 +192,7 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
      */
     private boolean executeGenerator() {
         String buildType = arguments.option_qx_debug() ? " source" : " build";
-        Log.debug("Qooxdoo build type: '" + buildType + " '");
+        Log.debug(TAG, "Qooxdoo build type: '" + buildType + " '");
         try {
             System.out.println("Current Path: " + (new File("")).getAbsolutePath());
             String tempProjectDir = tempDestination + File.separatorChar + QX_TEMP_APP_NAME;
@@ -199,14 +201,14 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
             printOutputOfProcess(process, "Qooxdoo Generator");
             int exitCode = process.waitFor();
             if (exitCode != 0) {
-                Log.error("Error while executing python. Exit Code: " + exitCode);
+                Log.error(TAG, "Error while executing python. Exit Code: " + exitCode);
                 return false;
             }
         } catch (IOException e) {
-            Log.error("Error while executing python: " + e.getMessage());
+            Log.error(TAG, "Error while executing python: " + e.getMessage());
             return false;
         } catch (InterruptedException e) {
-            Log.error("Error while executing python: " + e.getMessage());
+            Log.error(TAG, "Error while executing python: " + e.getMessage());
             return false;
         }
         return true;
@@ -218,20 +220,19 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
      * @return whether the process was successful
      */
     private boolean prepareDestinationDirectory() {
-        Log.debug("Preparation of destination directory:  " + arguments.option_out() + " ...");
+        Log.debug(TAG, "Preparation of destination directory:  " + arguments.option_out() + " ...");
         // Create destination and temporary destination directories, if they do
         // not already exist. If they do exist, remove their contents.
         for (String directory : new String[] { arguments.option_out(), tempDestination }) {
             File dir = new File(directory);
             if (dir.exists()) {
                 if (!FileUtil.deleteDirectory(dir)) {
-                    Log.error("Couldn't clear destination directory");
+                    Log.error(TAG, "Couldn't clear destination directory");
                 }
             }
             dir.mkdirs();
         }
-        // STEP 2: Executing qooxdoo application creator.
-        Log.debug("Executing qooxdoo application creator ...");
+        Log.debug(TAG, "Executing qooxdoo application creator ...");
         return initQxSkeleton();
     }
 
@@ -247,14 +248,14 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
             printOutputOfProcess(process, "CREATOR");
             int exitCode = process.waitFor();
             if (exitCode != 0) {
-                Log.error("Error while executing python. Exit Code: " + exitCode);
+                Log.error(TAG, "Error while executing python. Exit Code: " + exitCode);
                 return false;
             }
         } catch (IOException e) {
-            Log.error("Error while executing python: " + e.getMessage());
+            Log.error(TAG, "Error while executing python: " + e.getMessage());
             return false;
         } catch (InterruptedException e) {
-            Log.error("Error while executing python: " + e.getMessage());
+            Log.error(TAG, "Error while executing python: " + e.getMessage());
             return false;
         }
         return true;
@@ -269,36 +270,40 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
     private boolean peformSanityChecks() {
         // Check whether qooxdoo-path exists.
         if (QX_PATH == null) {
-            Log.error("QX directory is not defined. Please define it using XMLVM_QOOXDOO_PATH");
+            Log
+                    .error(TAG,
+                            "QX directory is not defined. Please define it using XMLVM_QOOXDOO_PATH");
             return false;
         }
         if (!(new File(QX_PATH)).isDirectory()) {
-            Log.error("QX directory cannot be found: " + QX_PATH);
+            Log.error(TAG, "QX directory cannot be found: " + QX_PATH);
             return false;
         }
         // Check whether creator script is present.
         if (!(new File(QX_CREATOR_SCRIPT)).isFile()) {
-            Log.error("QX creator cannot be found: " + QX_CREATOR_SCRIPT);
+            Log.error(TAG, "QX creator cannot be found: " + QX_CREATOR_SCRIPT);
             return false;
         }
         // Check whether Python is present
         if (!isPythonPresent()) {
-            Log.error("Python executable cannot be found. Make sure python.exe is on your PATH.");
+            Log.error(TAG,
+                    "Python executable cannot be found. Make sure python.exe is on your PATH.");
             return false;
         }
         // Check whether JS emulation library is present.
-        if (!(new File(JS_EMULATION_LIB_PATH)).isDirectory()) {
-            Log.error("Emulation library cannot be found: " + JS_EMULATION_LIB_PATH);
+        if (jsEmulationLibrary == null) {
+            Log.error(TAG, "Emulation library cannot be found.");
             return false;
+
         }
         // Check whether the custom Application.js template is present
-        if (!(new File(APPLICATION_JS_PATH)).isFile()) {
-            Log.error("Custom Application.js file not found: " + APPLICATION_JS_PATH);
+        if (applicationJsTemplate == null) {
+            Log.error(TAG, "Custom Application.js file not found.");
             return false;
         }
         // Check whether mainMethod is defined and has the required format
         if (mainMethod == null || mainMethod.indexOf('.') == -1) {
-            Log.error(Arguments.ARG_QX_MAIN + " must be of format: <ClassName>.(main|Main)");
+            Log.error(TAG, Arguments.ARG_QX_MAIN + " must be of format: <ClassName>.(main|Main)");
             return false;
         }
         // If the destination directory exists and has content, we check whether
@@ -308,9 +313,10 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
                     + QX_GENERATOR_SCRIPT_NAME;
             File generateScriptFile = new File(generateScript);
             if (!generateScriptFile.isFile()) {
-                Log.error("Output directory exists, but doesn't seem to be a valid QX project as "
-                        + "the following file could not be found: "
-                        + generateScriptFile.getAbsolutePath());
+                Log.error(TAG,
+                        "Output directory exists, but doesn't seem to be a valid QX project as "
+                                + "the following file could not be found: "
+                                + generateScriptFile.getAbsolutePath());
                 return false;
             }
         }
@@ -384,10 +390,12 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
      * 
      * @return whether the operation was successful.
      */
-    private boolean prepareJsEmulationLibrary(File basePath, File destination) {
+    private boolean prepareJsEmulationLibrary(UniversalFile basePath, File destination) {
         // Check, whether the destination directory actually exists.
         if (!destination.isDirectory()) {
-            Log.error("Destination directory does not exist: " + destination.getAbsolutePath());
+            Log
+                    .error(TAG, "Destination directory does not exist: "
+                            + destination.getAbsolutePath());
             return false;
         }
         // Recursively rename and copy all JS files.
@@ -408,27 +416,29 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
      * 
      * @return whether the operation was successful.
      */
-    private boolean renameAndCopyJsFiles(File absoluteBasePath, File basePath, File destination) {
+    private boolean renameAndCopyJsFiles(UniversalFile absoluteBasePath, UniversalFile basePath,
+            File destination) {
         // Accepts files
-        FileFilter jsFileFilter = new FileFilter() {
-            public boolean accept(File pathname) {
-                return !pathname.isDirectory() && pathname.getName().toLowerCase().endsWith(".js");
+        UniversalFileFilter jsFileFilter = new UniversalFileFilter() {
+            public boolean accept(UniversalFile pathname) {
+                return !pathname.isDirectory()
+                        && pathname.getAbsoluteName().toLowerCase().endsWith(".js");
             }
         };
         // Accepts directories
-        FileFilter directoryFilter = new FileFilter() {
-            public boolean accept(File pathname) {
+        UniversalFileFilter directoryFilter = new UniversalFileFilter() {
+            public boolean accept(UniversalFile pathname) {
                 return pathname.isDirectory();
             }
         };
         // Go through all files in this directory ...
-        for (File entry : basePath.listFiles(jsFileFilter)) {
+        for (UniversalFile entry : basePath.listFiles(jsFileFilter)) {
             if (!renameAndCopyJsFile(absoluteBasePath, entry, destination)) {
                 return false;
             }
         }
-        // ... then recursively go through subdirectories.
-        for (File entry : basePath.listFiles(directoryFilter)) {
+        // ... then recursively go through sub-directories.
+        for (UniversalFile entry : basePath.listFiles(directoryFilter)) {
             if (!renameAndCopyJsFiles(absoluteBasePath, entry, destination)) {
                 return false;
             }
@@ -447,20 +457,21 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
      * 
      * @return whether the operation was successful.
      */
-    private boolean renameAndCopyJsFile(File absoluteBasePath, File jsFile, File destination) {
+    private boolean renameAndCopyJsFile(UniversalFile absoluteBasePath, UniversalFile jsFile,
+            File destination) {
         // +1 to remove trailing slash.
         String cutPath = jsFile.getAbsolutePath().substring(
                 absoluteBasePath.getAbsolutePath().length() + 1);
         String outputFileName = cutPath.replace(File.separatorChar, '_');
         try {
-            UtilCopy uc = new UtilCopy();
-            uc.binCopy(destination.getAbsolutePath() + File.separator + outputFileName, jsFile
-                    .getAbsolutePath());
-        } catch (FileNotFoundException e) {
-            Log.error("Error while copying file: " + e.getMessage());
-            return false;
+            String destinationPath = destination.getAbsolutePath() + File.separator
+                    + outputFileName;
+            if (!jsFile.saveFileAs(destinationPath)) {
+                Log.error(TAG, "Could not save file to: " + destinationPath);
+                return false;
+            }
         } catch (Exception e) {
-            Log.error("Error while copying file: " + e.getMessage());
+            Log.error(TAG, "Error while copying file: " + e.getMessage());
             return false;
         }
         return true;
@@ -475,7 +486,7 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
      * @return whether the operation was successful.
      */
     private boolean injectCustomApplicationJs(String jsClassPath) {
-        String applicationJs = FileUtil.readFileAsString(new File(APPLICATION_JS_PATH));
+        String applicationJs = applicationJsTemplate.getFileAsString();
 
         // We replace the variables in the template with the requires values.
         applicationJs = applicationJs.replace("{{XMLVM_TEMP_PROJECT_NAME}}", QX_TEMP_APP_NAME);
@@ -486,7 +497,7 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
             writer.write(applicationJs);
             writer.close();
         } catch (IOException e) {
-            Log.error("Couldn't not write: " + filename);
+            Log.error(TAG, "Couldn't not write: " + filename);
             return false;
         }
         return true;
