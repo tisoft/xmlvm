@@ -35,6 +35,7 @@ import org.xmlvm.Log;
 public abstract class UniversalFile {
     private static final String TAG = "UniversalFile";
 
+
     /**
      * Returns the absolute name of this {@link UniversalFile}
      */
