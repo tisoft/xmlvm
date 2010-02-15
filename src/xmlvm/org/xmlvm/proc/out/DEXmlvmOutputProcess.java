@@ -111,6 +111,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         public String packageName = "";
         public String className   = "";
 
+
         public PackagePlusClassName(String className) {
             this.className = className;
         }
@@ -130,17 +131,19 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         }
     }
 
+
     /**
      * Little helper class for keeping a target address and the info about
-     * whether this target is jumped to by a catch handler.
+     * whether this target should split a try-catch block.
      */
     private static class Target {
         int     address;
-        boolean catchTarget;
+        boolean requiresSplit;
 
-        public Target(int address, boolean catchTarget) {
+
+        public Target(int address, boolean requiresSplit) {
             this.address = address;
-            this.catchTarget = catchTarget;
+            this.requiresSplit = requiresSplit;
         }
 
         @Override
@@ -159,6 +162,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         }
     }
 
+
     private static final boolean   LOTS_OF_DEBUG      = false;
 
     private static final String    DEXMLVM_ENDING     = ".dexmlvm";
@@ -170,6 +174,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private List<XmlvmResource>    generatedResources = new ArrayList<XmlvmResource>();
 
     private static Element         lastDexInstruction = null;
+
 
     public DEXmlvmOutputProcess(Arguments arguments) {
         super(arguments);
@@ -517,7 +522,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                         // moved in front of it.
                         if (currentCatch.getStart() == address) {
                             codeElement.addContent(labelElement);
-                        } else if (targets.get(address).catchTarget) {
+                        } else if (targets.get(address).requiresSplit) {
+                            System.out.println("********* NEED SPLITTING *******");
+                            System.out.println(labelElement.toString() + " - "
+                                    + labelElement.getAttributeValue("id"));
                             // If we got here, it means that there is a target,
                             // that is a catch-handler target and it is inside a
                             // try block. We have to avoid this. So the way we
@@ -539,6 +547,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                             codeElement.addContent(secondTryCatchElement);
                             tryElements.set(tryElementIndex, secondTry);
                         } else {
+                            System.out.println("******* NO SPLITTING *******");
+                            System.out.println(labelElement.toString() + " - "
+                                    + labelElement.getAttributeValue("id"));
                             instructionParent.addContent(labelElement);
                         }
                     } else {
@@ -645,13 +656,17 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private static Map<Integer, Target> extractTargets(DalvInsnList instructions, CatchTable catches) {
         Map<Integer, Target> targets = new HashMap<Integer, Target>();
 
-        // First, add all remaining targets.
+        // First, add non-catch targets.
         for (int i = 0; i < instructions.size(); ++i) {
+            // If the target is generic, we have to assume it might jump into a
+            // catch block, so we require splitting.
             if (instructions.get(i) instanceof TargetInsn) {
                 TargetInsn targetInsn = (TargetInsn) instructions.get(i);
                 targets.put(targetInsn.getTargetAddress(), new Target(
-                        targetInsn.getTargetAddress(), false));
+                        targetInsn.getTargetAddress(), true));
             } else if (instructions.get(i) instanceof SwitchData) {
+                // Switches should always be within the same block, no no
+                // splitting should be required.
                 SwitchData switchData = (SwitchData) instructions.get(i);
                 CodeAddress[] caseTargets = switchData.getTargets();
                 for (CodeAddress caseTarget : caseTargets) {
