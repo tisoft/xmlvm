@@ -101,6 +101,10 @@ public class UniversalFileFromJarFile extends UniversalFile {
 
     private void put(UniversalFileDirectory addToDir, String name, InputStream stream) {
         int index;
+
+        // A JAR file is a compressed ZIP file that only gives back a list of
+        // all files contained in it. It doesn't allow hierarchical requests.
+        // Therefore, each file is here put into its correct hierarchical path.
         while ((index = name.indexOf("/")) != -1) {
             String subDirName = name.substring(0, index);
             if (!subDirName.isEmpty()) {
