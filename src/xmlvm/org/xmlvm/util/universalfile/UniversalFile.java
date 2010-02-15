@@ -37,12 +37,7 @@ public abstract class UniversalFile {
 
 
     /**
-     * Returns the absolute name of this {@link UniversalFile}
-     */
-    public abstract String getAbsoluteName();
-
-    /**
-     * Returns the absolute path of this file.
+     * Returns the absolute path of this {@link UniversalFile}
      */
     public abstract String getAbsolutePath();
 

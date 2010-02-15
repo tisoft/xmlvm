@@ -423,7 +423,7 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
         UniversalFileFilter jsFileFilter = new UniversalFileFilter() {
             public boolean accept(UniversalFile pathname) {
                 return !pathname.isDirectory()
-                        && pathname.getAbsoluteName().toLowerCase().endsWith(".js");
+                        && pathname.getAbsolutePath().toLowerCase().endsWith(".js");
             }
         };
         // Accepts directories

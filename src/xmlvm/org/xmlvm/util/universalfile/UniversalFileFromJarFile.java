@@ -48,11 +48,6 @@ public class UniversalFileFromJarFile extends UniversalFile {
     }
 
     @Override
-    public String getAbsoluteName() {
-        return absoluteName;
-    }
-
-    @Override
     public String getAbsolutePath() {
         return absoluteName;
     }
@@ -111,7 +106,7 @@ public class UniversalFileFromJarFile extends UniversalFile {
                 UniversalFileDirectory subDirectory = addToDir.getDirectory(subDirName);
                 if (subDirectory == null) {
 
-                    subDirectory = new UniversalFileDirectory(addToDir.getAbsoluteName()
+                    subDirectory = new UniversalFileDirectory(addToDir.getAbsolutePath()
                             + File.separator + subDirName);
                     addToDir.add(subDirectory);
                 }
@@ -119,7 +114,7 @@ public class UniversalFileFromJarFile extends UniversalFile {
             }
             name = name.substring(index + 1);
         }
-        addToDir.add(new UniversalFileFromStreamResource(addToDir.getAbsoluteName()
+        addToDir.add(new UniversalFileFromStreamResource(addToDir.getAbsolutePath()
                 + File.separator + name, stream));
     }
 }

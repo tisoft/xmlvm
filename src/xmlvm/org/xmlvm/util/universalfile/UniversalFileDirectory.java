@@ -38,11 +38,6 @@ public class UniversalFileDirectory extends UniversalFile {
     }
 
     @Override
-    public String getAbsoluteName() {
-        return absoluteName;
-    }
-
-    @Override
     public String getAbsolutePath() {
         return absoluteName;
     }
@@ -84,7 +79,7 @@ public class UniversalFileDirectory extends UniversalFile {
      */
     public UniversalFileDirectory getDirectory(String name) {
         for (UniversalFile file : files) {
-            if (file.isDirectory() && (file.getAbsoluteName().endsWith(File.separator + name))) {
+            if (file.isDirectory() && (file.getAbsolutePath().endsWith(File.separator + name))) {
                 return (UniversalFileDirectory) file;
             }
         }

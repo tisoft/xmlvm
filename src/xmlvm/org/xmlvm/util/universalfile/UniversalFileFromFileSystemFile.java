@@ -37,11 +37,6 @@ public class UniversalFileFromFileSystemFile extends UniversalFile {
     }
 
     @Override
-    public String getAbsoluteName() {
-        return file.getAbsolutePath();
-    }
-
-    @Override
     public String getAbsolutePath() {
         return file.getAbsolutePath();
     }

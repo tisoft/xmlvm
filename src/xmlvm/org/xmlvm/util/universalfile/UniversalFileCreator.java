@@ -30,7 +30,7 @@ import org.xmlvm.Log;
 /**
  * When XMLVM is packaged, everything lives in a single jar, the One-JAR
  * <p>
- * For details, see {@link http://one-jar.sourceforge.net}
+ * For details, see {@link "http://one-jar.sourceforge.net"}
  * <p>
  * As XMLVM can also be used in a non-packaged mode, files and directories need
  * to be accessed in very different ways. The Universal File is a transparent

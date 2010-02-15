@@ -20,10 +20,9 @@
 
 package org.xmlvm.util.universalfile;
 
-import java.io.File;
-import java.io.InputStream;
-
 import org.xmlvm.util.FileUtil;
+
+import java.io.InputStream;
 
 /**
  * A {@link UniversalFile} that is based on an {@link InputStream};
@@ -37,11 +36,6 @@ public class UniversalFileFromStreamResource extends UniversalFile {
     UniversalFileFromStreamResource(String absoluteName, InputStream stream) {
         this.absoluteName = absoluteName;
         this.stream = stream;
-    }
-
-    @Override
-    public String getAbsoluteName() {
-        return absoluteName;
     }
 
     @Override
