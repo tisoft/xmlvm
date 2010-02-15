@@ -21,22 +21,20 @@
 package org.xmlvm.util.universalfile;
 
 import java.io.File;
-import java.io.InputStream;
-
-import org.xmlvm.util.FileUtil;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * A {@link UniversalFile} that is based on an {@link InputStream};
+ * A simple {@link UniversalFile} type representing a directory. The contents
+ * are given directly.
  */
-public class UniversalFileFromStreamResource extends UniversalFile {
-    private InputStream stream;
+public class UniversalFileDirectory extends UniversalFile {
+    private String              absoluteName;
+    private List<UniversalFile> files = new ArrayList<UniversalFile>();
 
-    private String      absoluteName;
 
-
-    UniversalFileFromStreamResource(String absoluteName, InputStream stream) {
+    public UniversalFileDirectory(String absoluteName) {
         this.absoluteName = absoluteName;
-        this.stream = stream;
     }
 
     @Override
@@ -51,21 +49,45 @@ public class UniversalFileFromStreamResource extends UniversalFile {
 
     @Override
     public byte[] getFileAsBytes() {
-        return FileUtil.readBytesFromStream(stream);
+        return null;
     }
 
     @Override
     public String getFileAsString() {
-        return FileUtil.readStringFromStream(stream);
+        return null;
     }
 
     @Override
     public boolean isDirectory() {
-        return false;
+        return true;
     }
 
     @Override
     public UniversalFile[] listFiles() {
-        return new UniversalFile[0];
+        return files.toArray(new UniversalFile[0]);
+    }
+
+    /**
+     * Adds a universal file as a child.
+     */
+    public void add(UniversalFile file) {
+        files.add(file);
+    }
+
+    /**
+     * Returns the sub-directory with the given name or {@code null}, if not
+     * found.
+     * 
+     * @param name
+     *            the name of the sub-directory.
+     * @return The instance or{@code null}.
+     */
+    public UniversalFileDirectory getDirectory(String name) {
+        for (UniversalFile file : files) {
+            if (file.isDirectory() && (file.getAbsoluteName().endsWith(File.separator + name))) {
+                return (UniversalFileDirectory) file;
+            }
+        }
+        return null;
     }
 }

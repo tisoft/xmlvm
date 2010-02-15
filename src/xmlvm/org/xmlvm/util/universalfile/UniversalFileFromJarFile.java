@@ -20,9 +20,11 @@
 
 package org.xmlvm.util.universalfile;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.InputStream;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.JarInputStream;
@@ -33,10 +35,12 @@ import org.xmlvm.Log;
  * A {@link UniversalFile} based on a {@link JarFile}.
  */
 public class UniversalFileFromJarFile extends UniversalFile {
-    private static final String TAG = "UniversalFileFromJarFile";
+    private static final String    TAG = "UniversalFileFromJarFile";
 
-    private String              absoluteName;
-    private JarInputStream      jarStream;
+    private String                 absoluteName;
+    private JarInputStream         jarStream;
+    private UniversalFileDirectory directory;
+
 
     UniversalFileFromJarFile(String absoluteName, JarInputStream jarStream) {
         this.absoluteName = absoluteName;
@@ -70,15 +74,48 @@ public class UniversalFileFromJarFile extends UniversalFile {
 
     @Override
     public UniversalFile[] listFiles() {
-        List<UniversalFile> result = new ArrayList<UniversalFile>();
+        if (directory == null) {
+            directory = initialize();
+        }
+        return directory.listFiles();
+    }
+
+    private UniversalFileDirectory initialize() {
+        UniversalFileDirectory result = new UniversalFileDirectory(absoluteName);
         JarEntry entry;
         try {
+            byte data[] = new byte[4096];
             while ((entry = jarStream.getNextJarEntry()) != null) {
-
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                int len = 0;
+                while ((len = jarStream.read(data)) != -1) {
+                    outputStream.write(data, 0, len);
+                }
+                put(result, entry.getName(), new ByteArrayInputStream(outputStream.toByteArray()));
             }
         } catch (IOException e) {
             Log.error(TAG, "Error reading JAR file.");
         }
-        return result.toArray(new UniversalFile[0]);
+        return result;
+    }
+
+    private void put(UniversalFileDirectory addToDir, String name, InputStream stream) {
+        int index;
+        while ((index = name.indexOf("/")) != -1) {
+            String subDirName = name.substring(0, index);
+            if (!subDirName.isEmpty()) {
+                UniversalFileDirectory subDirectory = addToDir.getDirectory(subDirName);
+                if (subDirectory == null) {
+
+                    subDirectory = new UniversalFileDirectory(addToDir.getAbsoluteName()
+                            + File.separator + subDirName);
+                    addToDir.add(subDirectory);
+                }
+                addToDir = subDirectory;
+            }
+            name = name.substring(index + 1);
+        }
+        addToDir.add(new UniversalFileFromStreamResource(addToDir.getAbsoluteName()
+                + File.separator + name, stream));
     }
 }

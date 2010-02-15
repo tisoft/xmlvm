@@ -96,6 +96,7 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
     /** The files to be returned by this process */
     private List<OutputFile>    outputFiles              = new ArrayList<OutputFile>();
 
+
     public QooxdooOutputProcess(Arguments arguments) {
         super(arguments);
         // We only support JavaScript inputs.
@@ -451,11 +452,7 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
      * pathname from a given root path, so the file name matches the class name
      * within the file.
      * 
-     * @param absoluteBasePath
-     * @param jsFile
-     * @param destination
-     * 
-     * @return whether the operation was successful.
+     * @return Whether the operation was successful.
      */
     private boolean renameAndCopyJsFile(UniversalFile absoluteBasePath, UniversalFile jsFile,
             File destination) {
