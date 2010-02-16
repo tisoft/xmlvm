@@ -523,9 +523,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                         if (currentCatch.getStart() == address) {
                             codeElement.addContent(labelElement);
                         } else if (targets.get(address).requiresSplit) {
-                            System.out.println("********* NEED SPLITTING *******");
-                            System.out.println(labelElement.toString() + " - "
-                                    + labelElement.getAttributeValue("id"));
                             // If we got here, it means that there is a target,
                             // that is a catch-handler target and it is inside a
                             // try block. We have to avoid this. So the way we
@@ -547,9 +544,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                             codeElement.addContent(secondTryCatchElement);
                             tryElements.set(tryElementIndex, secondTry);
                         } else {
-                            System.out.println("******* NO SPLITTING *******");
-                            System.out.println(labelElement.toString() + " - "
-                                    + labelElement.getAttributeValue("id"));
                             instructionParent.addContent(labelElement);
                         }
                     } else {
