@@ -69,7 +69,16 @@ qx.Class.define("android_view_View", {
       },
       onClick: function(event) {
         this.clickListener.$onClick___android_view_View(this.qx);
+      },
+      $layout___int_int_int_int: function(left, top, right, bottom) {
+    	  this.qx.setMarginLeft(parseInt(left));
+    	  this.qx.setMarginTop(parseInt(top));
+//    	  if (params.$width >=0) {
+//    		  this.qx.setWidth(params.$width);
+//    	  }
+//    	  if (params.$height >=0) {
+//    		  this.qx.setHeight(params.$height);
+//    	  }
       }
-
   }
 });

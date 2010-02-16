@@ -11,10 +11,10 @@ qx.Class.define("android_hardware_SensorManager", {
     	  // TODO
       },
       $getDefaultSensor___int: function(type) {
-    	  ERROR("MISSING: SensorManager.getDefaultSensor___int");
+    	  WARN("Missing: SensorManager.getDefaultSensor___int");
       },
       $registerListener___android_hardware_SensorEventListener_android_hardware_Sensor_int: function(listener, sensor, rate) {
-    	  ERROR("MISSING: SensorManager.registerListener___android_hardware_SensorEventListener_android_hardware_Sensor_int");
+    	  WARN("Missing: SensorManager.registerListener___android_hardware_SensorEventListener_android_hardware_Sensor_int");
       }
   }
 });
