@@ -892,9 +892,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             System.out.print(instruction.listingString("", 0, true));
         }
         if (dexInstruction != null) {
-            if (instruction.hasAddress()) {
-                dexInstruction.setAttribute("ADDRESS", String.valueOf(instruction.getAddress()));
-            }
+//            if (instruction.hasAddress()) {
+//                dexInstruction.setAttribute("DEBUG-ADDRESS", String.valueOf(instruction.getAddress()));
+//            }
             parentElement.addContent(dexInstruction);
             lastDexInstruction = dexInstruction;
         }
