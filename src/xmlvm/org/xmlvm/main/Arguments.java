@@ -66,7 +66,7 @@ public class Arguments {
     private static final String[] shortUsage      = {
             "Usage: ",
             "xmlvm [--in=<path> [--out=<dir>]]",
-            "      [--target=[xmlvm|dexmlvm|jvm|clr|dfa|class|exe|dex|js|cpp|python|objc|iphone|qooxdoo|palmpre]]",
+            "      [--target=[xmlvm|dexmlvm|jvm|clr|dfa|class|exe|dex|js|cpp|python|objc|iphone|qooxdoo|webos]]",
             "      [--skeleton=<type>]", "      [--lib=<name>", "      [--app-name=<app-name>]",
             "      [--resource=<path>]", "      [--qx-main=<main-class> [--qx-debug]]",
             "      [--debug=[none|error|warning|all]]", "      [--version] [--help]" };
@@ -93,7 +93,7 @@ public class Arguments {
             "    objc             Objective C source code",
             "    iphone           iPhone Objective-C",
             "    qooxdoo          JavaScript Qooxdoo web application",
-            "    palmpre          Palm Pre Javascript",
+            "    webos            WebOS JavaScript Project",
             " --skeleton=<type> Skeleton to create a new template project:",
             "    iphone            iPhone project skeleton",
             " --lib=<name>      Extra libraries required for the specified target:",
@@ -218,9 +218,9 @@ public class Arguments {
             option_lib.remove("android");
             if (option_target == Targets.IPHONE)
                 option_target = Targets.IPHONEANDROID;
-            else if (option_target == Targets.PREANDROID) {
+            else if (option_target == Targets.WEBOS) {
             } else
-                parseError("--lib=android is meaningless when not --target=[iphone|palmpre]");
+                parseError("--lib=android is meaningless when not --target=[iphone|webos]");
         }
         if (option_lib.size() > 0)
             parseError("--lib=" + option_lib.get(0) + " is not supported");
@@ -230,9 +230,9 @@ public class Arguments {
             parseError("Need at least one --in argument");
         if (option_out == null)
             option_out = ".";
-        if ((option_target == Targets.IPHONE || option_target == Targets.IPHONEANDROID || option_target == Targets.PREANDROID)
+        if ((option_target == Targets.IPHONE || option_target == Targets.IPHONEANDROID || option_target == Targets.WEBOS)
                 && option_app_name == null)
-            parseError("--target=[iphone|palmpre] requires option --app-name");
+            parseError("--target=[iphone|webos] requires option --app-name");
         if (option_target == Targets.QOOXDOO && option_app_name != null && option_qx_main == null)
             parseError("--target=qooxdoo with --qx-app requires --qx-main");
         if (option_debug == null)
