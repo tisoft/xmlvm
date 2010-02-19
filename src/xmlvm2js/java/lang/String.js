@@ -73,7 +73,7 @@ qx.Class.define("java_lang_String", {
   	 $split___java_lang_String: function(regex) {
   	 	var s = this.$str.split(regex.$str);
   	 	var result = new Array();
-  	 	for(i=0; i<s.length; ++i) {
+  	 	for(var i = 0; i < s.length; ++i) {
   	 		result.push(new java_lang_String(s[i]));
   	 	}
   	 	return result;
@@ -84,7 +84,8 @@ qx.Class.define("java_lang_String", {
         return d >= 0 && this.$str.lastIndexOf(pattern.$str) === d;
   	 },
   	 $replace___java_lang_CharSequence_java_lang_CharSequence: function(replace, by) {
-  	 	var toEval = "var result = this.$str.replace(/"+replace.$str+"/g, \"" + by.$str +"\");";
+  		var result;
+  	 	var toEval = "result = this.$str.replace(/"+replace.$str+"/g, \"" + by.$str +"\");";
   	 	eval(toEval);
   	 	return new java_lang_String(result);
   	 },
