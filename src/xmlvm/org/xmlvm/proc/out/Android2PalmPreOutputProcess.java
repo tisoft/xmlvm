@@ -74,7 +74,6 @@ public class Android2PalmPreOutputProcess extends XmlvmProcessImpl<QooxdooOutput
 
     @Override
     public boolean process() {
-        // TODO(Sascha): Use generic "app-name" argument in the future.
         appName = arguments.option_app_name();
         sceneName = appName + "Scene";
         compiledQxBuildPath = arguments.option_out() + File.separatorChar + "temp_cache"
@@ -111,7 +110,6 @@ public class Android2PalmPreOutputProcess extends XmlvmProcessImpl<QooxdooOutput
         if (!palmPackage()) {
             return false;
         }
-        Log.debug("Palm Pre processing successful.");
         return true;
     }
 

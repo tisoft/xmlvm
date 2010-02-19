@@ -36,6 +36,7 @@ enum XmlvmProcessId {
             "qooxdoo");
     String name;
 
+
     private XmlvmProcessId(String name) {
         this.name = name;
     }
@@ -46,11 +47,15 @@ enum XmlvmProcessId {
     }
 }
 
+
 /**
  * Common implementation for all XMLVM Processes. Actual processes extend this
  * class.
  */
 public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
+
+    private static final String            TAG             = "XmlvmProcessImpl";
+
     private List<XmlvmProcess<?>>          preprocesses    = new ArrayList<XmlvmProcess<?>>();
 
     /**
@@ -59,6 +64,9 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
     protected List<Class<XmlvmProcess<?>>> supportedInputs = new ArrayList<Class<XmlvmProcess<?>>>();
 
     protected Arguments                    arguments;
+
+    protected boolean                      isProcessed     = false;
+
 
     public XmlvmProcessImpl(Arguments arguments) {
         Log.debug("Instantiated: " + this.getClass().getName());
@@ -170,8 +178,16 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
             }
             if (process.isActive()) {
                 // TODO(haeberling): Maybe replace by preprocess? This way
-                // processes don't have to call preprocess themselves anymore.
+                // processes don't have to call preprocess themselves
+                // anymore.
                 process.process();
+                if (process instanceof XmlvmProcessImpl) {
+                    // Mark the process as processed.
+                    ((XmlvmProcessImpl) process).isProcessed = true;
+                } else {
+                    Log.error(TAG, "Internal Error: Preprocess found that is not an "
+                            + "XmlvmProcessImpl instance.");
+                }
             }
         }
         return (List<T>) preprocesses;
@@ -180,7 +196,7 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
     @Override
     public boolean postProcessPreProcesses() {
         for (XmlvmProcess<?> process : preprocesses) {
-            if (process.isActive()) {
+            if (process.isProcessed()) {
                 if (!process.postProcessPreProcesses()) {
                     return false;
                 }
@@ -199,5 +215,10 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean isProcessed() {
+        return isProcessed;
     }
 }

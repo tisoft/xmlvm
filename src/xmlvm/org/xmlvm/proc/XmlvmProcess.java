@@ -79,16 +79,22 @@ public interface XmlvmProcess<T> {
     public List<T> preprocess();
 
     /**
-     * Runs {@link #postProcess()} on all preprocesses.
+     * Runs {@link #postProcess()} on all preprocesses that have been processed.
      */
     public boolean postProcessPreProcesses();
 
     /**
      * Returns whether this process is active. An active process will be
-     * processes. To be active a process needs to have at least one active
+     * processed. To be active a process needs to have at least one active
      * pre-process. Exception are InputProcesses, which are active by default.
+     * Once the processed is processed, the process is not active anymore.
      */
     public boolean isActive();
+
+    /**
+     * Returns whether this process has been processed.
+     */
+    public boolean isProcessed();
 
     public List<OutputFile> getOutputFiles();
 }
