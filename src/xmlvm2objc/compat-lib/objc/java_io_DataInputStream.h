@@ -28,4 +28,6 @@
 - (void) __init_java_io_DataInputStream___java_io_InputStream: (java_io_InputStream*) stream;
 - (void) dealloc;
 
+- (float) readFloat__;
+- (double) readDouble__;
 @end

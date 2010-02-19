@@ -111,4 +111,14 @@
 	return x >  y ? y : x;
 }
 
++ (float) round___float: (float) a
+{
+	return roundf(a);
+}
+
++ (double) round___double: (double) a
+{
+	return round(a);
+}
+
 @end

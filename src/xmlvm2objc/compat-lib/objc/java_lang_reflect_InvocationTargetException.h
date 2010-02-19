@@ -18,47 +18,23 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
- 
-#import "java_io_DataInputStream.h"
 
-// java.io.DataInputStream
+#import "xmlvm.h"
+#import "java_lang_Exception.h"
+#import "java_lang_String.h"
+
+
+// java.lang.reflect.InvocationTargetException
 //----------------------------------------------------------------------------
-@implementation java_io_DataInputStream
+// For some reason, compiling for the device doesn't like to define this
+// class as a category.
+@interface java_lang_reflect_InvocationTargetException : java_lang_Exception
 
-- (void) __init_java_io_DataInputStream___java_io_InputStream: (java_io_InputStream*) stream
-{
-	target = [stream retain];
-}
-
-- (void) dealloc
-{
-	[target release];
-	[super dealloc];
-}
-
-- (int) read__
-{
-	return [target read__];
-}
-
-- (void) close__
-{
-	[target close__];
-}
-
-- (float) readFloat__
-{
-	// TODO: Implement this
-	NSLog(@">>>TODO: readFloat__ has to be implemented ...");
-	return 0.0f;
-}
-
-- (double) readDouble__
-{
-	// TODO: Implement this
-	NSLog(@">>>TODO: readDouble__ has to be implemented ...");
-	return 0.0;
-}
+- (id) init;
+- (void) __init_java_lang_reflect_InvocationTargetException__;
+- (void) __init_java_lang_reflect_InvocationTargetException___java_lang_String: (java_lang_String*) msg;
+- (void) __init_java_lang_reflect_InvocationTargetException___java_lang_String_java_lang_Throwable: (java_lang_String*) msg: (java_lang_Throwable*) cause;
+- (java_lang_reflect_InvocationTargetException*) initCause___java_lang_Throwable: (java_lang_Throwable*) cause;
+- (void) printStackTrace__;
 
 @end
-

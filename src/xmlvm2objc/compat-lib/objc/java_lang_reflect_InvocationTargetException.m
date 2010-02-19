@@ -18,31 +18,39 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import "java_lang_Object.h"
 
-// java.lang.Math
+#import "java_lang_reflect_InvocationTargetException.h"
+
+// java.lang.reflect.InvocationTargetException
 //----------------------------------------------------------------------------
-@interface java_lang_Math : java_lang_Object
+@implementation java_lang_reflect_InvocationTargetException
 
-+ (double) random__;
-+ (float) pow___float_float: (float) x : (float) y;
-+ (double) pow___double_double: (double) x : (double) y;
-+ (double) sqrt___double: (double) x;
-+ (double) asin___double: (double) x;
-+ (double) sin___double: (double) a;
-+ (double) cos___double: (double) a;
-+ (double) tan___double: (double) a;
-+ (double) atan2___double_double: (double) y :(double) x;
-+ (int) abs___int: (int) i;
-+ (float) abs___float: (float) f;
-+ (float) max___float_float :(float) x :(float) y;
-+ (double) max___double_double :(double) x :(double) y;
-+ (int) max___int_int :(int) x :(int) y;
-+ (float) min___float_float :(float) x :(float) y;
-+ (double) min___double_double :(double) x :(double) y;
-+ (int) min___int_int :(int) x :(int) y;
-+ (float) round___float: (float) a;
-+ (double) round___double: (double) a;
+- (id) init
+{
+    return [self initWithName: @"java_lang_reflect_InvocationTargetException" reason: nil userInfo: nil];
+}
+
+- (void) __init_java_lang_reflect_InvocationTargetException__
+{
+    // Do nothing
+}
+
+- (void) __init_java_lang_reflect_InvocationTargetException___java_lang_String: (java_lang_String*) msg
+{
+}
+
+- (void) __init_java_lang_reflect_InvocationTargetException___java_lang_String_java_lang_Throwable: (java_lang_String*) msg: (java_lang_Throwable*) cause
+{
+}
+
+- (java_lang_reflect_InvocationTargetException*) initCause___java_lang_Throwable: (java_lang_Throwable*) cause
+{
+	[self retain];
+	return self;
+}
+
+- (void) printStackTrace__
+{
+}
+
 @end
-
