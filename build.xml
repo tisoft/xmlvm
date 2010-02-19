@@ -210,6 +210,7 @@
 			<fileset file="var/iphone/battery.png"/>
 			<fileset file="var/iphone/chassis.png"/>
 			<fileset file="var/iphone/wifi.png"/>
+			<fileset file="var/iphone/*.gif"/>
 		</copy>
 
 		<jar destfile="${xmlvm.build.main}/main.jar" basedir="${xmlvm.bin}">
