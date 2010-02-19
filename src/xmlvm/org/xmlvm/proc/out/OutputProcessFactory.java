@@ -65,7 +65,7 @@ public class OutputProcessFactory {
         case IPHONEANDROID:
             return new Android2IPhoneOutputProcess(arguments);
         case WEBOS:
-            return new Android2PalmPreOutputProcess(arguments);
+            return new WebOsOutputProcess(arguments);
         case XMLVM:
             return new XmlvmOutputProcess(arguments);
         case IPHONETEMPLATE:

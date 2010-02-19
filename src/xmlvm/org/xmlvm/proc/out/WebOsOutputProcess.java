@@ -38,12 +38,10 @@ import org.xmlvm.util.InputReaderThread;
 import com.crazilec.util.UtilCopy;
 
 /**
- * Takes the output of a {@link QooxdooOutputProcess} and makes sure an app
- * developed on the Android can be run on a Palm Pre.
- * <p>
- * TODO(Sascha): IN DEVELOPMENT, PARDON THE DUST :)
+ * Takes the output of a {@link QooxdooOutputProcess} and packages the Qooxdoo
+ * app into a Palm Pre application.
  */
-public class Android2PalmPreOutputProcess extends XmlvmProcessImpl<QooxdooOutputProcess> {
+public class WebOsOutputProcess extends XmlvmProcessImpl<QooxdooOutputProcess> {
 
     private static final String[] GENERATE_PROJECT_OPTS    = { "-p",
             "\"{title:'$PROJECT', id:org.xmlvm.$PROJECT, version:'1.0.0'}\"", "$PROJECT" };
@@ -61,7 +59,8 @@ public class Android2PalmPreOutputProcess extends XmlvmProcessImpl<QooxdooOutput
     private String                sceneName                = "";
     private String                compiledQxBuildPath      = "";
 
-    public Android2PalmPreOutputProcess(Arguments arguments) {
+
+    public WebOsOutputProcess(Arguments arguments) {
         super(arguments);
         // We only support QooxdooOutputProcesses as input.
         addSupportedInput(QooxdooOutputProcess.class);
@@ -175,7 +174,7 @@ public class Android2PalmPreOutputProcess extends XmlvmProcessImpl<QooxdooOutput
         }
 
         // Read template we use to create a custom stage assistant file.
-        InputStream stageAssistantTemplate = Android2PalmPreOutputProcess.class
+        InputStream stageAssistantTemplate = WebOsOutputProcess.class
                 .getResourceAsStream(STAGE_ASSISTANT_TEMPLATE);
         if (stageAssistantTemplate == null) {
             Log.error("Stage assistant template file could not be read.");
@@ -258,7 +257,7 @@ public class Android2PalmPreOutputProcess extends XmlvmProcessImpl<QooxdooOutput
         }
 
         // Read template we use to create a custom stage assistant file.
-        InputStream indexHtmlTemplate = Android2PalmPreOutputProcess.class
+        InputStream indexHtmlTemplate = WebOsOutputProcess.class
                 .getResourceAsStream(INDEX_HTML_TEMPLATE);
 
         if (indexHtmlTemplate == null) {
