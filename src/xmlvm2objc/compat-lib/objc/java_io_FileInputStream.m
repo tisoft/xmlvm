@@ -26,22 +26,19 @@
 
 - (void) __init_java_io_FileInputStream___java_lang_String :(java_lang_String*) path
 {
-	self->fdImpl = [NSFileHandle fileHandleForReadingAtPath:path];
-	if (fdImpl == nil) {
+	NSFileHandle* fh = [NSFileHandle fileHandleForReadingAtPath:path];
+	if (fh == nil) {
 		java_io_FileNotFoundException* ex = [[java_io_FileNotFoundException alloc] init];
 		@throw ex;
 	}
-	[self->fdImpl retain];
 	self->fd = [[java_io_FileDescriptor alloc] init];
-	[fd __init_java_io_FileDescriptor___NSFileHandle: self->fdImpl];
+	[fd __init_java_io_FileDescriptor___NSFileHandle: fh];
 }
 
 - (void) __init_java_io_FileInputStream___java_io_FileDescriptor :(java_io_FileDescriptor*) fdpar
 {
 	self->fd = fdpar;
-	self->fdImpl = [self->fd getFileHandle];
 	[self->fd retain];
-	[self->fdImpl retain];
 }
 
 - (void) __init_java_io_FileInputStream___java_io_File: (java_io_File*) f 
@@ -51,15 +48,14 @@
 
 - (void) dealloc
 {
-	if (self->fd != nil) {
-		[self close__];
-	}
+	[self->fd release];
 	[super dealloc];
 }
 
 - (int) read__
 {
-	NSData *data = [self->fdImpl readDataOfLength: 1];
+	NSFileHandle* fh = [self->fd getFileHandle];
+	NSData *data = [fh readDataOfLength: 1];
 	if (data == nil) {
 		return -1;
 	}
@@ -73,10 +69,11 @@
 
 - (long) skip___long: (long) n
 {
-	long initialPos = [self->fdImpl offsetInFile];
+	NSFileHandle* fh = [self->fd getFileHandle];
+	long initialPos = [fh offsetInFile];
 	long newPos = n+initialPos;
-	[self->fdImpl seekToFileOffset: newPos];
-	return [self->fdImpl offsetInFile] - initialPos;
+	[fh seekToFileOffset: newPos];
+	return [fh offsetInFile] - initialPos;
 }
 
 
@@ -85,12 +82,9 @@
 	if (self->fd == nil) {
 		return;
 	}
-	[self->fd invalidate];
-	[self->fd release];
-	[self->fdImpl closeFile];
-	[self->fdImpl release];
-	self->fd = nil;
-	self->fdImpl = nil;
+	
+	NSFileHandle* fh = [self->fd getFileHandle];
+	[fh closeFile];
 }
 
 - (java_io_FileDescriptor*) getFD__
@@ -106,23 +100,27 @@
 
 - (void) mark___int: (int) max
 {
-	marked = [self->fdImpl offsetInFile];
+	NSFileHandle* fh = [self->fd getFileHandle];
+	marked = [fh offsetInFile];
 }
 
 - (void) mark___long: (long) max
 {
-	marked = [self->fdImpl offsetInFile];
+	NSFileHandle* fh = [self->fd getFileHandle];
+	marked = [fh offsetInFile];
 }
 
 - (void) reset__
 {
-	[self->fdImpl seekToFileOffset: marked];
+	NSFileHandle* fh = [self->fd getFileHandle];
+	[fh seekToFileOffset: marked];
 }
 
 - (int) read___byte_ARRAYTYPE :(XMLVMArray*)buf
 {
+	NSFileHandle* fh = [self->fd getFileHandle];
 	int len = [buf count];
-	NSData *data = [self->fdImpl readDataOfLength: len];
+	NSData *data = [fh readDataOfLength: len];
 	if (data == nil) {
 		return -1;
 	}
@@ -139,7 +137,8 @@
 
 - (int) read___byte_ARRAYTYPE_int_int :(XMLVMArray*)buf :(int)offs :(int)len
 {
-	NSData *data = [self->fdImpl readDataOfLength: len];
+	NSFileHandle* fh = [self->fd getFileHandle];
+	NSData *data = [fh readDataOfLength: len];
 	if (data == nil) {
 		return -1;
 	}

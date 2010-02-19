@@ -28,13 +28,13 @@
 
 - (void) __init_java_io_FileDescriptor___NSFileHandle: (NSFileHandle *) fdImpl
 {
-	self->fd = fdImpl;
-	[fdImpl retain];
+	fd = fdImpl;
+	[fd retain];
 }
 
 - (void) dealloc
 {
-	[self invalidate];
+	[fd release];
 	[super dealloc];
 }
 
@@ -50,10 +50,8 @@
 
 - (void) invalidate
 {
-	if (fd != nil) {
-		[fd release];
-		fd = nil;
-	}
+	[fd release];
+	fd = nil;
 }
 
 @end

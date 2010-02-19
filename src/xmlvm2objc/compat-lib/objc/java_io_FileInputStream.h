@@ -28,7 +28,6 @@
 @interface java_io_FileInputStream : java_io_InputStream {
 
 	java_io_FileDescriptor* fd;
-	NSFileHandle *fdImpl;
 	unsigned long int marked;
 }
 
