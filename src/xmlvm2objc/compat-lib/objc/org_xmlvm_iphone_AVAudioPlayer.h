@@ -19,6 +19,7 @@
  */
 
 #import "xmlvm.h"
+#import "java_io_FileDescriptor.h"
 #import "org_xmlvm_iphone_AVAudioPlayerDelegate.h"
 #import "org_xmlvm_iphone_NSURL.h"
 #import "org_xmlvm_iphone_NSErrorHolder.h"
@@ -57,9 +58,17 @@ typedef AVAudioPlayer org_xmlvm_iphone_AVAudioPlayer;
 			: (org_xmlvm_iphone_NSURL*) url
 			: (org_xmlvm_iphone_NSErrorHolder*) outError;
 			
++ (AVAudioPlayer*) initWithContentsOfFileDescriptor___java_io_FileDescriptor_long_long_org_xmlvm_iphone_NSErrorHolder
+			: (java_io_FileDescriptor*) fd
+			: (long) offset
+			: (long) length
+			: (org_xmlvm_iphone_NSErrorHolder*) outError;
+
 - (void) play__;
 
 - (void) stop__;
+
+- (void) pause__;
 
 - (void) setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate
 			: (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) delegate;
@@ -70,6 +79,15 @@ typedef AVAudioPlayer org_xmlvm_iphone_AVAudioPlayer;
 			: (int) numberOfLoops;
 			
 - (int) getNumberOfLoops__;
+
+- (BOOL) isPlaying__;
+
+- (void) setCurrentTime___double
+            : (double) currentTime;
+
+- (double) getCurrentTime__;
+
+- (void) prepareToPlay__;
 		
 @end
 

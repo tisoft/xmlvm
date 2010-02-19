@@ -21,19 +21,30 @@
 package android.media;
 
 import java.io.FileDescriptor;
+import java.io.IOException;
 
-import android.internal.Assert;
+import org.xmlvm.iphone.AVAudioPlayer;
+import org.xmlvm.iphone.NSErrorHolder;
+
 import android.util.Log;
 
 public class MediaPlayer {
 
+    private AVAudioPlayer player  = null;
+    private boolean       looping = false;
+
     public boolean isPlaying() {
-        Log.w("xmlvm", "MediaPlayer.isPlaying() not implemented");
-        return false;
+        return player != null && player.isPlaying();
     }
 
-    public void setDataSource(FileDescriptor fd, long offset, long length) {
-        Log.w("xmlvm", "MediaPlayer.setDataSource() not implemented");
+    public void setDataSource(FileDescriptor fd, long offset, long length) throws IOException {
+        NSErrorHolder error = new NSErrorHolder();
+        player = AVAudioPlayer.initWithContentsOfFileDescriptor(fd, offset, length, error);
+        if (player == null) {
+            throw new IOException(error.description());
+        }
+
+        player.setNumberOfLoops(looping ? -1 : 0);
     }
 
     public void setAudioStreamType(int streamtype) {
@@ -41,26 +52,56 @@ public class MediaPlayer {
     }
 
     public void prepare() {
-        Log.w("xmlvm", "MediaPlayer.prepare() not implemented");
+        if (player == null) {
+            throw new IllegalStateException("Player not initialized");
+        }
     }
 
     public void setLooping(boolean looping) {
-        Log.w("xmlvm", "MediaPlayer.setLooping() not implemented");
+        this.looping = looping;
+        if (player != null) {
+            player.setNumberOfLoops(looping ? -1 : 0);
+        }
     }
 
     public void setVolume(float leftVolume, float rightVolume) {
         Log.w("xmlvm", "MediaPlayer.setVolume() not implemented");
     }
 
-    public void start() {
-        Log.w("xmlvm", "MediaPlayer.start() not implemented");
+    public void start() throws IllegalStateException {
+        if (player != null) {
+            player.play();
+        } else {
+            throw new IllegalStateException("Player not initialized");
+        }
     }
 
     public void stop() {
-        Log.w("xmlvm", "MediaPlayer.stop() not implemented");
+        if (player != null) {
+            player.setCurrentTime(0.0);
+            player.stop();
+        } else {
+            throw new IllegalStateException("Player not initialized");
+        }
+    }
+
+    public void pause() {
+        if (player != null) {
+            player.stop();
+        } else {
+            throw new IllegalStateException("Player not initialized");
+        }
+    }
+
+    public void seekTo(int msec) {
+        if (player != null) {
+            player.setCurrentTime(Math.round(msec / 1000));
+        } else {
+            throw new IllegalStateException("Player not initialized");
+        }
     }
 
     public void release() {
-        Log.w("xmlvm", "MediaPlayer.release() not implemented");
+        player = null;
     }
 }

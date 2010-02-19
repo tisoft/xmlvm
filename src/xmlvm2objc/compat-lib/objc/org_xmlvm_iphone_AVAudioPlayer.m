@@ -82,9 +82,26 @@
 			: (org_xmlvm_iphone_NSURL*) url
 			: (org_xmlvm_iphone_NSErrorHolder*) outError
 {
-	return [[AVAudioPlayer alloc] initWithContentsOfURL: url error: &(outError->error_org_xmlvm_iphone_NSError)];
+	return [[[AVAudioPlayer alloc] initWithContentsOfURL: url error: &(outError->error_org_xmlvm_iphone_NSError)] retain];
 }
-			
+
++ (AVAudioPlayer*) initWithContentsOfFileDescriptor___java_io_FileDescriptor_long_long_org_xmlvm_iphone_NSErrorHolder
+			: (java_io_FileDescriptor*) fd
+			: (long) offset
+			: (long) length
+			: (org_xmlvm_iphone_NSErrorHolder*) outError
+{
+	NSFileHandle* fileHandle = [fd getFileHandle];
+	if (offset > 0 ) {
+		[fileHandle seekToFileOffset: offset];
+	}
+	
+	NSData* data = [fileHandle readDataOfLength: length];
+	AVAudioPlayer *player = [[[AVAudioPlayer alloc] initWithData: data error: &(outError->error_org_xmlvm_iphone_NSError)] retain];
+	[outError->error_org_xmlvm_iphone_NSError retain];
+	return player != nil ? player : [NSNull null];
+}
+
 - (void) play__
 {
 	[self play];
@@ -93,6 +110,11 @@
 - (void) stop__
 {
 	[self stop];
+}
+
+- (void) pause__
+{
+	[self pause];
 }
 
 - (void) setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate
@@ -117,6 +139,27 @@
 {
 	return self.numberOfLoops;
 }
-		
+
+- (BOOL) isPlaying__
+{
+	return self.playing;
+}
+
+- (void) setCurrentTime___double
+            : (double) currentTime
+{
+	self.currentTime = currentTime;
+}
+
+- (double) getCurrentTime__
+{
+	return self.currentTime;
+}
+
+- (void) prepareToPlay__
+{
+	[self prepareToPlay];
+}
+
 @end
 

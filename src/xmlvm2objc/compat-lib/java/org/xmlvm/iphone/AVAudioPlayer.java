@@ -20,6 +20,10 @@
 
 package org.xmlvm.iphone;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 
@@ -33,10 +37,10 @@ public class AVAudioPlayer {
 
     class Listener implements BasicPlayerListener {
 
-        private AVAudioPlayer player;
+        private AVAudioPlayer avAudioPlayer;
 
-        Listener(AVAudioPlayer player) {
-            this.player = player;
+        Listener(AVAudioPlayer avAudioPlayer) {
+            this.avAudioPlayer = avAudioPlayer;
         }
 
         @Override
@@ -54,40 +58,68 @@ public class AVAudioPlayer {
         @Override
         public void stateUpdated(BasicPlayerEvent event) {
             if (event.getCode() == BasicPlayerEvent.STOPPED) {
-                if (!stopRequested && loopsLeft != 0) {
-                    if (loopsLeft > 0) {
-                        loopsLeft--;
+                try {
+                    if (!stopRequested) {
+                        if (url != null) {
+                            player.open(url);
+                        } else {
+                            ByteArrayInputStream bis = new ByteArrayInputStream(data);
+                            player.open(bis);
+                        }
                     }
+                    
+                    if (!stopRequested && loopsLeft != 0) {
+                        if (loopsLeft > 0) {
+                            loopsLeft--;
+                        }
+                        player.play();
+                    } else {
+                        playing = false;
+                        if (delegate != null) {
+                            delegate.audioPlayerDidFinishPlaying(avAudioPlayer, true);
+                        }
+                    }
+                } catch (BasicPlayerException exc) {
+                    System.err.println("Unable to start next playback loop: " + exc.getMessage());
+                    exc.printStackTrace();
 
-                    try {
-                        controller.open(url);
-                        controller.play();
-                    } catch (BasicPlayerException exc) {
-                        System.err.println("Unable to start next playback loop: "
-                                + exc.getMessage());
-                        exc.printStackTrace();
-                    }
-                } else {
-                    delegate.audioPlayerDidFinishPlaying(player, true);
                 }
             }
-        }
 
+        }
     };
 
     private int                   numberOfLoops = 0;
     private int                   loopsLeft     = 0;
-    private BasicController       controller    = null;
+    private BasicPlayer           player        = null;
     private boolean               stopRequested = false;
     private URL                   url           = null;
     private AVAudioPlayerDelegate delegate      = null;
+    private boolean               playing       = false;
+    private byte[]                data          = null;
 
     private AVAudioPlayer(URL url) throws BasicPlayerException {
         this.url = url;
-        BasicPlayer player = new BasicPlayer();
-        controller = player;
+        player = new BasicPlayer();
         player.addBasicPlayerListener(new Listener(this));
-        controller.open(this.url);
+        player.open(this.url);
+    }
+
+    private AVAudioPlayer(FileDescriptor fd, long offset, long length) throws BasicPlayerException,
+            IOException {
+
+        FileInputStream fis = new FileInputStream(fd);
+        if (offset > 0) {
+            fis.skip(offset);
+        }
+
+        data = new byte[(int) length];
+        fis.read(data, 0, (int) length);
+
+        ByteArrayInputStream bis = new ByteArrayInputStream(data, 0, (int) length);
+        player = new BasicPlayer();
+        player.addBasicPlayerListener(new Listener(this));
+        player.open(bis);
     }
 
     public static AVAudioPlayer initWithContentsOfURL(NSURL url, NSErrorHolder error) {
@@ -101,11 +133,31 @@ public class AVAudioPlayer {
         }
     }
 
+    public static AVAudioPlayer initWithContentsOfFileDescriptor(FileDescriptor fd, long offset,
+            long length, NSErrorHolder error) {
+        try {
+            AVAudioPlayer player = new AVAudioPlayer(fd, offset, length);
+            error.error = null;
+            return player;
+        } catch (BasicPlayerException exc) {
+            error.error = new NSError(exc.getMessage(), -1, null);
+            return null;
+        } catch (IOException exc) {
+            error.error = new NSError(exc.getMessage(), -1, null);
+            return null;
+        }
+    }
+
     public void play() {
         try {
-            loopsLeft = numberOfLoops;
             stopRequested = false;
-            controller.play();
+            if (player.getStatus() == BasicPlayer.PAUSED) {
+                player.resume();
+            } else {
+                loopsLeft = numberOfLoops;
+                player.play();
+            }
+            playing = true;
         } catch (BasicPlayerException exc) {
             System.err.println("Unable to start playback: " + exc.getMessage());
             exc.printStackTrace();
@@ -115,11 +167,26 @@ public class AVAudioPlayer {
     public void stop() {
         try {
             stopRequested = true;
-            controller.stop();
+            player.stop();
+            playing = false;
         } catch (BasicPlayerException exc) {
             System.err.println("Unable to stop playback: " + exc.getMessage());
             exc.printStackTrace();
         }
+    }
+
+    public void pause() {
+        try {
+            player.pause();
+            playing = false;
+        } catch (BasicPlayerException exc) {
+            System.err.println("Unable to pause playback: " + exc.getMessage());
+            exc.printStackTrace();
+        }
+    }
+
+    public void prepareToPlay() {
+        // Intentionally left empty
     }
 
     public int getNumberOfLoops() {
@@ -137,5 +204,40 @@ public class AVAudioPlayer {
 
     public void setDelegate(AVAudioPlayerDelegate delegate) {
         this.delegate = delegate;
+    }
+
+    public boolean isPlaying() {
+        return playing;
+    }
+
+    public void setCurrentTime(double currentTime) {
+        // Currently only restarting from the beginning is supported
+        int status = player.getStatus();
+
+        try {
+            if (status == BasicPlayer.PLAYING) {
+                stop();
+            }
+            if (url != null) {
+                player.open(url);
+            } else {
+                ByteArrayInputStream bis = new ByteArrayInputStream(data);
+                player.open(bis);
+            }
+
+            if (status == BasicPlayer.PLAYING) {
+                player.play();
+            }
+        } catch (BasicPlayerException exc) {
+            System.err.println("Unable to restart playback: " + exc.getMessage());
+            exc.printStackTrace();
+
+        }
+    }
+
+    public double getCurrentTime() {
+        // Since setting the current time is not supported getCurrentTime
+        // always reports 0.0 (the beginning of the track)
+        return 0.0d;
     }
 }
