@@ -244,12 +244,16 @@ public class Activity extends ContextThemeWrapper {
         onDestroy();
 
         Activity theParent = parent;
+        Activity theChild = child;
         window.xmlvmRemoveWindow();
         window = null;
         xmlvmUnlinkActivity();
         if (theParent != null) {
             NSObject.performSelectorOnMainThread(theParent, "xmlvmOnActivityResult", null, false);
-            theParent.xmlvmTransitToStateActive(null);
+            // Transition the parent to active only if there is no child
+            if (theChild == null) {
+                theParent.xmlvmTransitToStateActive(null);
+            }
         }
     }
 

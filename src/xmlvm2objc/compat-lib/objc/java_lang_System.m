@@ -128,4 +128,9 @@ java_io_PrintStream* _STATIC_java_lang_System_out;
 	// Do nothing
 }
 
++ (int) identityHashCode___java_lang_Object: (java_lang_Object*) o
+{
+	return [o hash];
+}
+
 @end

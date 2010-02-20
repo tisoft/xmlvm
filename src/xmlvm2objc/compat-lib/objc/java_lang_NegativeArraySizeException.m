@@ -18,24 +18,39 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import "java_lang_Object.h"
-#import "java_io_PrintStream.h"
 
-@interface java_lang_System : java_lang_Object
+#import "java_lang_NegativeArraySizeException.h"
 
-+ (void) initialize;
-+ (java_io_PrintStream*) _GET_out;
-+ (void) _PUT_out: (java_io_PrintStream*) v;
-+ (long) currentTimeMillis__;
-+ (java_lang_String *) setProperty___java_lang_String_java_lang_String: (java_lang_String *) s1: (java_lang_String *) s2;
-+ (void) arraycopy___java_lang_Object_int_java_lang_Object_int_int
-               :(java_lang_Object*) src
-               :(int) srcPos
-               :(java_lang_Object*) dest
-               :(int) destPos
-               :(int) length;
-+ (void) gc__;
-+ (int) identityHashCode___java_lang_Object: (java_lang_Object*) o;
+// java.lang.NegativeArraySizeException
+//----------------------------------------------------------------------------
+@implementation java_lang_NegativeArraySizeException
+
+- (id) init
+{
+    return [self initWithName: @"java_lang_NegativeArraySizeException" reason: nil userInfo: nil];
+}
+
+- (void) __init_java_lang_NegativeArraySizeException__
+{
+    // Do nothing
+}
+
+- (void) __init_java_lang_NegativeArraySizeException___java_lang_String: (java_lang_String*) msg
+{
+}
+
+- (void) __init_java_lang_NegativeArraySizeException___java_lang_String_java_lang_Throwable: (java_lang_String*) msg: (java_lang_Throwable*) cause
+{
+}
+
+- (java_lang_NegativeArraySizeException *) initCause___java_lang_Throwable: (java_lang_Throwable*) cause
+{
+	[self retain];
+	return self;
+}
+
+- (void) printStackTrace__
+{
+}
 
 @end

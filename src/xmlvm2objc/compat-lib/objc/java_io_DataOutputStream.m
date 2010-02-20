@@ -26,13 +26,39 @@
 
 - (void) __init_java_io_DataOutputStream___java_io_OutputStream: (java_io_OutputStream*) stream
 {
-	target = stream;
+	target = [stream retain];
 }
 
 - (void) dealloc
 {
-	[target dealloc];
+	[target release];
 	[super dealloc];
+}
+
+- (void) writeInt___int: (int) v
+{
+	unsigned char* p = (unsigned char*) &v;
+	for (int i = 0; i < 4; i++) {
+		[target write___int:*p++];
+	}
+}
+
+- (void) writeDouble___double: (double) v
+{
+	unsigned char* p = (unsigned char*) &v;
+	for (int i = 0; i < 8; i++) {
+		[target write___int:*p++];
+	}
+}
+
+- (void) writeByte___int: (int) v
+{
+	[target write___int:v];
+}
+
+- (void) writeBoolean___boolean: (int) v
+{
+	[target write___int:v];
 }
 
 - (void) write___int: (int) i

@@ -28,8 +28,7 @@
 
 - (void) __init_java_io_FileDescriptor___NSFileHandle: (NSFileHandle *) fdImpl
 {
-	fd = fdImpl;
-	[fd retain];
+	fd = [fdImpl retain];
 }
 
 - (void) dealloc
@@ -40,18 +39,18 @@
 
 - (bool) valid__
 {
-	return fd != nil;
+	return fd != [NSNull null];
 }
 
 - (NSFileHandle*) getFileHandle
 {
-	return fd;
+	return [fd retain];
 }
 
 - (void) invalidate
 {
 	[fd release];
-	fd = nil;
+	fd = [NSNull null];
 }
 
 @end

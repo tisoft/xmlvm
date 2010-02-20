@@ -26,6 +26,13 @@
 }
 
 - (void) __init_java_io_DataOutputStream___java_io_OutputStream: (java_io_OutputStream *) stream;
+- (void) writeInt___int: (int) v;
+- (void) writeDouble___double: (double) v;
+- (void) writeByte___int: (int) v;
+- (void) writeBoolean___boolean: (int) v;
+- (void) write___int: (int) i;
+- (void) close__;
+- (void) flush__;
 - (void) dealloc;
 
 @end

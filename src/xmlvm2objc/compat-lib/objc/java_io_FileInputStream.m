@@ -37,8 +37,7 @@
 
 - (void) __init_java_io_FileInputStream___java_io_FileDescriptor :(java_io_FileDescriptor*) fdpar
 {
-	self->fd = fdpar;
-	[self->fd retain];
+	self->fd = [fdpar retain];
 }
 
 - (void) __init_java_io_FileInputStream___java_io_File: (java_io_File*) f 
@@ -79,7 +78,7 @@
 
 - (void) close__
 {
-	if (self->fd == nil) {
+	if (self->fd == [NSNull null]) {
 		return;
 	}
 	
@@ -89,8 +88,7 @@
 
 - (java_io_FileDescriptor*) getFD__
 {
-	[self->fd retain];
-	return self->fd;
+	return [self->fd retain];
 }
 
 - (bool) markSupported__
