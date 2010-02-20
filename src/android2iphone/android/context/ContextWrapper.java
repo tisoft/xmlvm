@@ -25,14 +25,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-import org.xmlvm.iphone.NSBundle;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
-import android.internal.Assert;
-import android.util.Log;
 
 public class ContextWrapper extends Context {
 

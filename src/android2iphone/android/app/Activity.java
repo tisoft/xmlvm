@@ -31,7 +31,6 @@ import android.content.pm.ActivityInfo;
 import android.internal.ActivityManager;
 import android.internal.Assert;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
