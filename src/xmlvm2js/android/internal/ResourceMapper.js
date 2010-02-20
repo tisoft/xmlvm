@@ -24,8 +24,8 @@ qx.Class.define("android_internal_ResourceMapper", {
          var clazz = qx.Class.getByName(rClassName);
          for (var m in clazz) {
     		if (clazz[m] == resourceId) {
-    			// String off leading '$'
-    			return m.substring(1);
+    			// String off leading '$$$'
+    			return m.substring(3);
     		}
          }
          return "";

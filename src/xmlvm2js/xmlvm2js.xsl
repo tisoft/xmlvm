@@ -79,7 +79,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     }</xsl:text>
     <xsl:for-each select="vm:field[count(@isStatic)=1 and @isStatic='true']">
 			<xsl:text>,
-    $</xsl:text>
+    $$$</xsl:text>
 			<xsl:value-of select="@name" /><xsl:text>: </xsl:text>
 			<xsl:value-of select="if (@value) then @value else 0"/>
 	</xsl:for-each>
@@ -1928,7 +1928,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:call-template name="emitScopedName">
     <xsl:with-param name="string" select="@class-type"/>
   </xsl:call-template>
-  <xsl:text>.$</xsl:text>
+  <xsl:text>.$$$</xsl:text>
   <xsl:value-of select="@member-name" />
   <xsl:text>;</xsl:text>
 </xsl:template>
@@ -1945,7 +1945,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:call-template name="emitScopedName">
     <xsl:with-param name="string" select="@class-type"/>
   </xsl:call-template>
-  <xsl:text>.$</xsl:text>
+  <xsl:text>.$$$</xsl:text>
   <xsl:value-of select="@member-name" />
   <xsl:text> = __r</xsl:text>
   <xsl:value-of select="@vx" />
@@ -1961,7 +1961,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:value-of select="@vx" />
   <xsl:text> = __r</xsl:text>
   <xsl:value-of select="@vy" />
-  <xsl:text>.$</xsl:text>
+  <xsl:text>.$$$</xsl:text>
   <xsl:value-of select="@member-name" />
   <xsl:text>;</xsl:text>
 </xsl:template>
@@ -1973,7 +1973,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>
             __r</xsl:text>
   <xsl:value-of select="@vy" />
-  <xsl:text>.$</xsl:text>
+  <xsl:text>.$$$</xsl:text>
   <xsl:value-of select="@member-name" />
   <xsl:text> = __r</xsl:text>
   <xsl:value-of select="@vx" />
@@ -2266,6 +2266,60 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
             default: default_case = true; break;
             }
             if (!default_case) break;</xsl:text>
+</xsl:template>
+
+
+<!--  dex:try-catch
+      =============  -->
+<xsl:template match="dex:try-catch">
+  <xsl:apply-templates/>
+</xsl:template>
+
+
+<!--  dex:try
+      =======  -->
+<xsl:template match="dex:try">
+  <xsl:text>
+            var __ex;
+            try {
+</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>
+            }</xsl:text>
+</xsl:template>
+
+
+<!--  dex:catch
+      =========  -->
+<xsl:template match="dex:catch">
+    <xsl:text>
+            catch (ex) {
+              __ex = ex;
+              __next_label = </xsl:text>
+    <xsl:value-of select="@target"/>
+    <xsl:text>;
+              break;
+            }</xsl:text>
+</xsl:template>
+
+
+<!--  dex:move-exception
+      ==================  -->
+<xsl:template match="dex:move-exception">
+  <xsl:text>    __r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> = __ex;
+</xsl:text>
+</xsl:template>
+
+
+<!--  dex:throw
+      =========  -->
+<xsl:template match="dex:throw">
+  <xsl:text>
+            throw __r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>;</xsl:text>
 </xsl:template>
 
 
