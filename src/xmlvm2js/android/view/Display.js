@@ -4,6 +4,7 @@ qx.Class.define("android_view_Display", {
   	this.base(arguments);
   },
   statics: {
+	  $$$DEFAULT_DISPLAY: 0,
 	  orientation: 1
   },
   members: {

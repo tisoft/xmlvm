@@ -6,34 +6,34 @@ qx.Class.define("java_awt_BorderLayout", {
   },
   statics:
   {
-    $NORTH: "NORTH",
-    $SOUTH: "SOUTH",
-    $EAST: "EAST",
-    $WEST: "WEST",
-    $CENTER: "CENTER",
-    $BEFORE_FIRST_LINE: "BEFORE_FIRST_LINE",
-    $AFTER_LAST_LINE: "AFTER_LAST_LINE",
-    $BEFORE_LINE_BEGINS: "BEFORE_LINE_BEGINS",
-    $AFTER_LINE_ENDS: "AFTER_LINE_ENDS",
-    $PAGE_START: "PAGE_START",
-    $PAGE_END: "PAGE_END",
-    $LINE_START: "LINE_START",
-    $LINE_END: "LINE_END"
+    $$$NORTH: "NORTH",
+    $$$SOUTH: "SOUTH",
+    $$$EAST: "EAST",
+    $$$WEST: "WEST",
+    $$$CENTER: "CENTER",
+    $$$BEFORE_FIRST_LINE: "BEFORE_FIRST_LINE",
+    $$$AFTER_LAST_LINE: "AFTER_LAST_LINE",
+    $$$BEFORE_LINE_BEGINS: "BEFORE_LINE_BEGINS",
+    $$$AFTER_LINE_ENDS: "AFTER_LINE_ENDS",
+    $$$PAGE_START: "PAGE_START",
+    $$$PAGE_END: "PAGE_END",
+    $$$LINE_START: "LINE_START",
+    $$$LINE_END: "LINE_END"
   }, //statics
 
   members:
   {
-    $hgap: 0,
-    $vgap: 0,
-    $north: 0,
-    $west: 0,
-    $east: 0,
-    $south: 0,
-    $center: 0,
-    $firstLine: 0,
-    $lastLine: 0,
-    $firstItem: 0,
-    $lastItem: 0,
+    $$$hgap: 0,
+    $$$vgap: 0,
+    $$$north: 0,
+    $$$west: 0,
+    $$$east: 0,
+    $$$south: 0,
+    $$$center: 0,
+    $$$firstLine: 0,
+    $$$lastLine: 0,
+    $$$firstItem: 0,
+    $$$lastItem: 0,
     $$init_ : function()
     {
 		this.layout = new qx.ui.layout.Grid();

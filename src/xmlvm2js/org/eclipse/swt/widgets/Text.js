@@ -1,7 +1,7 @@
 qx.Class.define("org_eclipse_swt_widgets_Text",{
 	extend: org_eclipse_swt_widgets_Scrollable,
 	construct: function(){
-		this.qxComponent = new qx.ui.
+		// this.qxComponent = new qx.ui.
 	},
 	members:
 	{

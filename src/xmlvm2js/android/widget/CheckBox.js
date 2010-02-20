@@ -8,10 +8,10 @@ qx.Class.define("android_widget_CheckBox", {
     $$init____android_content_Context: function(context) {
     },
     $setChecked___boolean: function(flag) {
-    	this.qx.setChecked(flag == 1);
+    	this.qx.setValue(flag == 1);
     },
     $isChecked: function() {
-    	return this.qx.isChecked() ? 1 : 0;
+    	return this.qx.getValue();
     }
   }
 });

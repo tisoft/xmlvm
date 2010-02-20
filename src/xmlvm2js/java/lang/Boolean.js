@@ -4,12 +4,12 @@ qx.Class.define("java_lang_Boolean", {
 	},
 	members:
 	{
-		$value: 0,
+		$$$value: 0,
 		$$init____boolean: function(initValue) {
-			this.$value = initValue;
+			this.$$$value = initValue;
 		},
 		$toString: function() {
-			if(this.$value != 0)
+			if(this.$$$value != 0)
 				return "true";
 			else
 				return "false";	

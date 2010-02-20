@@ -7,8 +7,8 @@ qx.Class.define("java_awt_Color", {
 	},
 	statics:
 	{
-		$BLACK: 0,
-		$WHITE: 0
+		$$$BLACK: 0,
+		$$$WHITE: 0
 	},
 	members:
 	{

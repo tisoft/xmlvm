@@ -1,8 +1,8 @@
 qx.Class.define("java_awt_event_ItemEvent", {
 	extend: java_lang_Object,
 	statics: {
-		SELECTED: 1,
-		DESELECTED: 2
+	    $$SELECTED: 1,
+	    $$DESELECTED: 2
 	},
 	members:
 	{

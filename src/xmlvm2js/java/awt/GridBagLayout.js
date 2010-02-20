@@ -6,24 +6,24 @@ qx.Class.define("java_awt_GridBagLayout", {
   },
   statics:
   {
-    $EMPIRICMULTIPLIER: 0,
-    $MAXGRIDSIZE: 0,
-    $MINSIZE: 0,
-    $PREFERREDSIZE: 0,
-    $serialVersionUID: 0
+    $$$EMPIRICMULTIPLIER: 0,
+    $$$MAXGRIDSIZE: 0,
+    $$$MINSIZE: 0,
+    $$$PREFERREDSIZE: 0,
+    $$$serialVersionUID: 0
   }, //statics
 
   members:
   {
-    $comptable: 0,
-    $defaultConstraints: 0,
-    $layoutInfo: 0,
-    $columnWidths: 0,
-    $rowHeights: 0,
-    $columnWeights: 0,
-    $rowWeights: 0,
-    $componentAdjusting: 0,
-    $rightToLeft: 0,
+    $$$comptable: 0,
+    $$$defaultConstraints: 0,
+    $$$layoutInfo: 0,
+    $$$columnWidths: 0,
+    $$$rowHeights: 0,
+    $$$columnWeights: 0,
+    $$$rowWeights: 0,
+    $$$componentAdjusting: 0,
+    $$$rightToLeft: 0,
     $$init_ : function()
     {
         this.layout = new qx.ui.layout.Grid();
@@ -39,19 +39,19 @@ qx.Class.define("java_awt_GridBagLayout", {
         var component = __arg1.getQX();
         var constraints = __arg2;
         var qxConstraints = {};
-        var row = constraints.$gridy;
-        var col = constraints.$gridx;
-        var rowSpan = constraints.$gridheight;
-        var colSpan = constraints.$gridwidth;
+        var row = constraints.$$$gridy;
+        var col = constraints.$$$gridx;
+        var rowSpan = constraints.$$$gridheight;
+        var colSpan = constraints.$$$gridwidth;
         qxConstraints.row = row;
         qxConstraints.column = col;
         qxConstraints.rowSpan = rowSpan;
         qxConstraints.colSpan = colSpan;
         var componentConstraints = {
-                       marginTop: constraints.$insets.$top,
-                       marginBottom: constraints.$insets.$bottom,
-                       marginLeft: constraints.$insets.$left,
-                       marginRight: constraints.$insets.$right};
+                       marginTop: constraints.$$$insets.$$$top,
+                       marginBottom: constraints.$$$insets.$$$bottom,
+                       marginLeft: constraints.$$$insets.$$$left,
+                       marginRight: constraints.$$$insets.$$$right};
         if (constraints.$fill == 1) {
           // BOTH
           componentConstraints.allowGrowX = true;
@@ -70,7 +70,7 @@ qx.Class.define("java_awt_GridBagLayout", {
           componentConstraints.alignX = 'center';
           componentConstraints.alignY = 'middle';
         }
-        else if (constraints.$anchor == 17) {
+        else if (constraints.$$$anchor == 17) {
           // WEST
           componentConstraints.alignX = 'left';
         }
@@ -78,7 +78,7 @@ qx.Class.define("java_awt_GridBagLayout", {
           console.log("Unknown anchor: " + constraints.$anchor);
         }
         
-        var colWeight = (constraints.$weightx * 100) / colSpan;
+        var colWeight = (constraints.$$$weightx * 100) / colSpan;
         for (var i = col; i < col + colSpan; i++) {
           if (this.maxColWeight[i] == undefined) {
             this.maxColWeight[i] = colWeight;
@@ -100,7 +100,7 @@ qx.Class.define("java_awt_GridBagLayout", {
           }
         }
         
-        var rowWeight = (constraints.$weighty * 100) / rowSpan;
+        var rowWeight = (constraints.$$$weighty * 100) / rowSpan;
         for (var i = row; i < row + rowSpan; i++) {
           if (this.maxRowWeight[i] == undefined) {
             this.maxRowWeight[i] = rowWeight;

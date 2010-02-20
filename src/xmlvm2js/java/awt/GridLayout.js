@@ -6,29 +6,29 @@ qx.Class.define("java_awt_GridLayout", {
   },
   statics:
   {
-    $serialVersionUID: 0
+    $$$serialVersionUID: 0
   }, //statics
 
   members:
   {
-    $hgap: 0,
-    $vgap: 0,
-    $rows: 0,
-    $cols: 0,
-    $componentCount: 0,
+    $$$hgap: 0,
+    $$$vgap: 0,
+    $$$rows: 0,
+    $$$cols: 0,
+    $$$componentCount: 0,
     $$init_ : function()
     {
    		this.layout = new qx.ui.layout.Grid();
-   		this.$componentCount = 0;
-   		this.$rows = 1;
-   		this.$cols = 0;
+   		this.$$$componentCount = 0;
+   		this.$$$rows = 1;
+   		this.$$$cols = 0;
     },
     $$init____int_int : function( __arg1,  __arg2)
     {
    		this.layout = new qx.ui.layout.Grid();
-   		this.$componentCount = 0;
-   		this.$rows = __arg1;
-   		this.$cols = __arg2;
+   		this.$$$componentCount = 0;
+   		this.$$$rows = __arg1;
+   		this.$$$cols = __arg2;
     },
     $$init____int_int_int_int : function( __arg1,  __arg2,  __arg3,  __arg4)
     {
@@ -42,13 +42,13 @@ qx.Class.define("java_awt_GridLayout", {
     {
         var currentRow = 0;
         var currentCol = 0;
-        if (this.$rows == 0) {
-        	currentRow = this.$componentCount / this.$cols;
-        	currentCol = this.$componentCount % this.$cols;
+        if (this.$$$rows == 0) {
+        	currentRow = this.$$$componentCount / this.$$$cols;
+        	currentCol = this.$$$componentCount % this.$$$cols;
         }
         else {
-        	currentRow = this.$componentCount % this.$rows;
-        	currentCol = this.$componentCount / this.$rows;
+        	currentRow = this.$$$componentCount % this.$$$rows;
+        	currentCol = this.$$$componentCount / this.$$$rows;
         }
         this.$componentCount++;
         var constraints = __arg2;
@@ -56,8 +56,8 @@ qx.Class.define("java_awt_GridLayout", {
           __arg1.getQX().set({allowGrowX: true, allowGrowY: true});
           this.layout.setColumnFlex(currentCol, 1);
 		  this.layout.setRowFlex(currentRow, 1);
-		  if (this.$hgap > 0 && currentCol > 0)
-		    __arg1.getQX().setMarginLeft(this.$hgap);
+		  if (this.$$$hgap > 0 && currentCol > 0)
+		    __arg1.getQX().setMarginLeft(this.$$$hgap);
           return {row: currentRow, column: currentCol};
         }
         else {
@@ -67,11 +67,11 @@ qx.Class.define("java_awt_GridLayout", {
     },
     $getRows : function()
     {
-        return this.$rows;
+        return this.$$$rows;
     },
     $setRows___int : function( __arg1)
     {
-        this.$rows = __arg1;
+        this.$$$rows = __arg1;
     },
     $getColumns : function()
     {
@@ -87,7 +87,7 @@ qx.Class.define("java_awt_GridLayout", {
     },
     $setHgap___int : function( __arg1)
     {
-        this.$hgap = __arg1;
+        this.$$$hgap = __arg1;
     },
     $getVgap : function()
     {

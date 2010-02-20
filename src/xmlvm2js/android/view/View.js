@@ -79,6 +79,20 @@ qx.Class.define("android_view_View", {
 //    	  if (params.$height >=0) {
 //    		  this.qx.setHeight(params.$height);
 //    	  }
+      },
+      $setBackgroundColor___int: function(color) {
+    	  WARN("View.$setBackgroundColor___int not implemented yet.");
+    	  // TODO: Implement.
+      },
+      $measure___int_int: function(widthMeasureSpec, heightMeasureSpec) {
+    	  WARN("View.$measure___int_int not implemented yet.");
+    	  // TODO: Implement.
+      },
+      $getMeasuredHeight: function() {
+    	  return this.qx.getHeight();
+      },
+      $getMeasuredWidth: function() {
+    	  return this.qx.getWidth();
       }
   }
 });

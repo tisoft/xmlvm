@@ -6,23 +6,23 @@ qx.Class.define("java_awt_FlowLayout", {
   },
   statics:
   {
-    $LEFT: 0,
-    $CENTER: 0,
-    $RIGHT: 0,
-    $LEADING: 0,
-    $TRAILING: 0,
-    $serialVersionUID: 0,
-    $currentSerialVersion: 0
+    $$$LEFT: 0,
+    $$$CENTER: 0,
+    $$$RIGHT: 0,
+    $$$LEADING: 0,
+    $$$TRAILING: 0,
+    $$$serialVersionUID: 0,
+    $$$currentSerialVersion: 0
   }, //statics
 
   members:
   {
-    $align: 0,
-    $newAlign: 0,
-    $hgap: 0,
-    $vgap: 0,
-    $alignOnBaseline: 0,
-    $serialVersionOnStream: 0,
+    $$$align: 0,
+    $$$newAlign: 0,
+    $$$hgap: 0,
+    $$$vgap: 0,
+    $$$alignOnBaseline: 0,
+    $$$serialVersionOnStream: 0,
     $$init_ : function()
     {
         this.layout = new qx.ui.layout.HBox();
