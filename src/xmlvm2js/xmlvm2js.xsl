@@ -90,11 +90,12 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 	</xsl:for-each>
 	<xsl:if test="@extends = 'android.app.Activity'">
 	  <xsl:text>,
-    // $main___java_lang_String_ARRAYTYPE: function(args) {
-      // Dummy main.
-      //org_xmlvm_demo_xokoban_Xokoban.launchActivity(null, null);
-      //org_xmlvm_demo_afireworks_AndroidFireworks.launchActivity(null, null);
-    // },
+    $main___java_lang_String_ARRAYTYPE: function(args) {
+      </xsl:text><xsl:call-template name="getPackgePlusClassName">
+	    <xsl:with-param name="package" select="@package"/>
+	    <xsl:with-param name="classname" select="@name"/>
+	  </xsl:call-template><xsl:text>.launchActivity(null, null);
+    },
     launchActivity: function(stageAssistant, sceneAssistant) {
         android_internal_MojoProxy.theStageAssistant = stageAssistant;
         android_internal_MojoProxy.theSceneAssistant = sceneAssistant;
@@ -1534,6 +1535,21 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>);</xsl:text>
 </xsl:template>
 
+
+<!--  dex:div-int-lit*
+      ================  -->
+<xsl:template match="dex:div-int-lit8|dex:div-int-lit16">
+  <xsl:text>
+            __r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> = Math.floor(__r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text> / </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>);</xsl:text>
+</xsl:template>
+
+
 <!--  dex:div-*
       ================  -->
 <xsl:template match="dex:div-double|dex:div-double-2addr|dex:div-float|dex:div-float-2addr">
@@ -1701,9 +1717,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 </xsl:template>
 
 
-<!--  dex:invoke-virtual
-      ================  -->
-<xsl:template match="dex:invoke-virtual">
+<!--  dex:invoke-virtual*, dex:invoke-virtual*
+      ========================================  -->
+<xsl:template match="dex:invoke-virtual|dex:invoke-virtual-range|dex:invoke-interface|dex:invoke-interface-range">
   <xsl:call-template name="checkClass">
     <xsl:with-param name="string" select="@class-type"/>
   </xsl:call-template>
@@ -1735,10 +1751,10 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>);</xsl:text>
 </xsl:template>
 
-<!--  dex:invoke-direct
-      ================
+<!--  dex:invoke-direct*
+      ==================
       This is used to call super-constructors. Hence the special handling. -->
-<xsl:template match="dex:invoke-direct">
+<xsl:template match="dex:invoke-direct|dex:invoke-direct-range">
   <xsl:call-template name="checkClass">
     <xsl:with-param name="string" select="@class-type"/>
   </xsl:call-template>
@@ -1918,9 +1934,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 </xsl:template>
 
 
-<!--  dex:sput-object
-      ================  -->
-<xsl:template match="dex:sput-object">
+<!--  dex:sput-*
+      ==========  -->
+<xsl:template match="dex:sput|dex:sput-wide|dex:sput-boolean|dex:sput-object">
   <xsl:call-template name="checkClass">
     <xsl:with-param name="string" select="@class-type"/>
   </xsl:call-template>
@@ -2221,6 +2237,36 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>;</xsl:text>
 </xsl:template>
 
+
+<!--  dex:catches
+      ===========  -->
+<xsl:template match="dex:catches">
+  <!-- do nothing -->
+</xsl:template>
+
+
+<!--  dex:*-switch
+      ============  -->
+<xsl:template match="dex:sparse-switch|dex:packed-switch">
+  <xsl:text>
+            var default_case = false;
+            switch (__r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>) {
+</xsl:text>
+  <xsl:for-each select="dex:case">
+    <xsl:text>
+            case </xsl:text>
+    <xsl:value-of select="@key"/>
+    <xsl:text>: __next_label = </xsl:text>
+    <xsl:value-of select="@label"/>
+    <xsl:text>; break;</xsl:text>
+  </xsl:for-each>
+  <xsl:text>
+            default: default_case = true; break;
+            }
+            if (!default_case) break;</xsl:text>
+</xsl:template>
 
 
 <!--  initLocalsDex
