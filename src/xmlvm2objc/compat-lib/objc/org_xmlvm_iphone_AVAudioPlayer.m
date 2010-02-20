@@ -161,5 +161,15 @@
 	[self prepareToPlay];
 }
 
+- (void) setVolume___float: (float) volume
+{
+	self.volume = volume;
+}
+
+- (float) getVolume__
+{
+	return self.volume;
+}
+
 @end
 

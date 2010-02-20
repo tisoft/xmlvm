@@ -75,19 +75,21 @@ typedef AVAudioPlayer org_xmlvm_iphone_AVAudioPlayer;
 			
 - (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) getDelegate__;
 
-- (void) setNumberOfLoops___int
-			: (int) numberOfLoops;
+- (void) setNumberOfLoops___int: (int) numberOfLoops;
 			
 - (int) getNumberOfLoops__;
 
 - (BOOL) isPlaying__;
 
-- (void) setCurrentTime___double
-            : (double) currentTime;
+- (void) setCurrentTime___double: (double) currentTime;
 
 - (double) getCurrentTime__;
 
 - (void) prepareToPlay__;
 		
+- (void) setVolume___float: (float) volume;
+
+- (float) getVolume__;
+
 @end
 

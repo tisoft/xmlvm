@@ -26,8 +26,6 @@ import java.io.IOException;
 import org.xmlvm.iphone.AVAudioPlayer;
 import org.xmlvm.iphone.NSErrorHolder;
 
-import android.util.Log;
-
 public class MediaPlayer {
 
     private AVAudioPlayer player  = null;
@@ -48,7 +46,8 @@ public class MediaPlayer {
     }
 
     public void setAudioStreamType(int streamtype) {
-        Log.w("xmlvm", "MediaPlayer.setAudioStreamType() not implemented");
+        // There's nothing appropriate on the iPhone so this implementation
+        // will remain empty
     }
 
     public void prepare() {
@@ -65,7 +64,11 @@ public class MediaPlayer {
     }
 
     public void setVolume(float leftVolume, float rightVolume) {
-        Log.w("xmlvm", "MediaPlayer.setVolume() not implemented");
+        if (player != null) {
+            player.setVolume((leftVolume + rightVolume) / 2.0f);
+        } else {
+            throw new IllegalStateException("Player not initialized");
+        }
     }
 
     public void start() throws IllegalStateException {

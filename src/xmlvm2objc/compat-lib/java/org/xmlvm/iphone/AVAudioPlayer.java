@@ -67,7 +67,7 @@ public class AVAudioPlayer {
                             player.open(bis);
                         }
                     }
-                    
+
                     if (!stopRequested && loopsLeft != 0) {
                         if (loopsLeft > 0) {
                             loopsLeft--;
@@ -231,7 +231,6 @@ public class AVAudioPlayer {
         } catch (BasicPlayerException exc) {
             System.err.println("Unable to restart playback: " + exc.getMessage());
             exc.printStackTrace();
-
         }
     }
 
@@ -240,4 +239,18 @@ public class AVAudioPlayer {
         // always reports 0.0 (the beginning of the track)
         return 0.0d;
     }
+
+    public void setVolume(float volume) {
+        try {
+            player.setGain(volume);
+        } catch (BasicPlayerException exc) {
+            System.err.println("Unable to set volume: " + exc.getMessage());
+            exc.printStackTrace();
+        }
+    }
+
+    public float getVolume() {
+        return player.getGainValue();
+    }
+
 }

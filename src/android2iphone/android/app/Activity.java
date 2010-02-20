@@ -288,7 +288,8 @@ public class Activity extends ContextThemeWrapper {
     }
 
     public final void setVolumeControlStream(int streamType) {
-        Log.w("xmlvm", "Activity.setVolumeControlStream() not implemened");
+        // There's nothing appropriate on the iPhone so this implementation
+        // will remain empty
     }
 
     /**
