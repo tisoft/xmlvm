@@ -15,5 +15,5 @@
 <booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.xmlvm.demo.isound.ISound"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="xmlvm"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.util.logging.config.file=logging.properties"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.util.logging.config.file=var/iphone/logging.properties"/>
 </launchConfiguration>
