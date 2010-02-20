@@ -60,4 +60,9 @@
 	return self == o;
 }
 
+- (int) hashCode__
+{
+	return [self hash];
+}
+
 @end

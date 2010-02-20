@@ -33,5 +33,6 @@ typedef NSObject java_lang_Object;
 - (java_lang_String*) getName__;
 - (int) intValue__;
 - (int) equals___java_lang_Object: (java_lang_Object*) o;
+- (int) hashCode__;
 
 @end
