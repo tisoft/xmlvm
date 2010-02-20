@@ -20,7 +20,6 @@
 
 package android.content;
 
-import android.internal.Assert;
 import android.net.Uri;
 import android.os.Bundle;
 
