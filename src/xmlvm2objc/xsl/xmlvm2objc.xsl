@@ -2176,8 +2176,16 @@ int main(int argc, char* argv[])
 
 <xsl:template match="dex:catch">
     <xsl:text>    @catch (</xsl:text>
-    <xsl:value-of select="vm:fixname(@exception-type)"/>
-    <xsl:text>* ex) {
+    <xsl:choose>
+      <xsl:when test="@exception-type = 'java.lang.Object'">
+        <xsl:text>id</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="vm:fixname(@exception-type)"/>
+        <xsl:text>*</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text> ex) {
         _ex = ex;
         goto label</xsl:text>
     <xsl:value-of select="@target"/>
