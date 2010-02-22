@@ -20,6 +20,7 @@
 
 package org.xmlvm.util.universalfile;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -37,14 +38,43 @@ public abstract class UniversalFile {
 
 
     /**
+     * Returns the name of this file. The returned value is analog to
+     * {@link File#getName()}.
+     */
+    public String getName() {
+        String path = getAbsolutePath();
+
+        if (path.isEmpty()) {
+            return "";
+        }
+
+        // Check for both Unix- and Window-style separators.
+        int startAt = Math.max(path.lastIndexOf('/'), path.lastIndexOf('\\')) + 1;
+        if (startAt <= 0) {
+            return "";
+        }
+        return path.substring(startAt);
+    }
+
+    /**
      * Returns the absolute path of this {@link UniversalFile}
      */
     public abstract String getAbsolutePath();
 
     /**
-     * Returns whether this file entry is a directory.
+     * Returns whether this file is a directory.
      */
     public abstract boolean isDirectory();
+
+    /**
+     * Returns whether this file is a file.
+     */
+    public abstract boolean isFile();
+
+    /**
+     * Returns whether this file exists.
+     */
+    public abstract boolean exists();
 
     /**
      * If this file entry is a directory, this returns the files contained in
@@ -109,5 +139,13 @@ public abstract class UniversalFile {
             Log.error(TAG, "Could not save file at: " + path + "(" + e.getMessage() + ")");
         }
         return false;
+    }
+
+    /**
+     * Returns the absolute path of this file.
+     */
+    @Override
+    public String toString() {
+        return getAbsolutePath();
     }
 }

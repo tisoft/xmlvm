@@ -22,19 +22,35 @@ package org.xmlvm.proc.in.file;
 
 import java.io.File;
 
-public abstract class XFile {
-    protected String path;
-    protected File   file;
+import org.xmlvm.proc.in.InputProcess;
+import org.xmlvm.util.universalfile.UniversalFile;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
 
-    public XFile(String path) {
-        this.path = path;
-        this.file = new File(path);
+/**
+ * A file used as an input for the {@link InputProcess} instances.
+ */
+public abstract class XFile {
+    protected UniversalFile file;
+
+
+    /**
+     * Creates an {@link XFile} instance from a file system location.
+     */
+    public XFile(File location) {
+        file = UniversalFileCreator.createFile(location);
+    }
+
+    /**
+     * Creates an {@link XFile} from a {@link UniversalFile} resource.
+     */
+    public XFile(UniversalFile file) {
+        this.file = file;
     }
 
     /**
      * Returns the file as {@link File}.
      */
-    public File getFile() {
+    public UniversalFile getFile() {
         return file;
     }
 
@@ -42,16 +58,16 @@ public abstract class XFile {
      * Returns the input of this file.
      */
     public String getPath() {
-        return path;
+        return file.getAbsolutePath();
     }
 
     /**
      * Returns a String representation of this file. Currently this is the same
-     * as {@link #getInput}
+     * as {@link #getPath}
      */
     @Override
     public String toString() {
-        return path;
+        return getPath();
     }
 
     /**

@@ -20,17 +20,23 @@
 
 package org.xmlvm.proc.in.file;
 
+import org.xmlvm.util.universalfile.UniversalFile;
+
+/**
+ * An {@link XFile} class for class files.
+ */
 public class ClassFile extends XFile {
     public static final String CLASS_ENDING = ".class";
 
-    public ClassFile(String path) {
+
+    public ClassFile(UniversalFile path) {
         super(path);
     }
 
     /**
      * Returns whether the given input is a class file.
      */
-    public static boolean isClassInput(String path) {
-        return (path.toLowerCase().endsWith(CLASS_ENDING) && isFile(path));
+    public static boolean isClassInput(UniversalFile file) {
+        return file.isFile() && file.getAbsolutePath().toLowerCase().endsWith(CLASS_ENDING);
     }
 }

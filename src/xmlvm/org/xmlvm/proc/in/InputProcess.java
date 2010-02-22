@@ -31,7 +31,6 @@ import org.xmlvm.proc.in.file.ExeFile;
 import org.xmlvm.proc.in.file.XFile;
 import org.xmlvm.proc.in.file.XmlvmFile;
 import org.xmlvm.proc.out.OutputFile;
-import org.xmlvm.util.FileUtil;
 
 /**
  * An input process is created of every input file or resource.
@@ -107,7 +106,7 @@ public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl<Xml
         isActive = false;
         return true;
     }
-
+    
     /**
      * If the input file is a file, this method returns a list with one element
      * containing an OutputFile that contains the contents of the input XFile.
@@ -118,7 +117,7 @@ public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl<Xml
             Log.warn("InputProcess.getOutputFiles(): Input File does not exist or is not a file.");
             return null;
         }
-        byte[] fileContents = FileUtil.readFileAsBytes(input.getFile());
+        byte[] fileContents = input.getFile().getFileAsBytes();
         OutputFile outputFile = new OutputFile();
         outputFile.setData(fileContents);
         outputFile.setLocation(arguments.option_out());

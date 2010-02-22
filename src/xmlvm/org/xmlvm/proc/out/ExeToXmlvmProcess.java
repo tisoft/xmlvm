@@ -20,10 +20,10 @@
 
 package org.xmlvm.proc.out;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
@@ -41,6 +41,7 @@ import org.xmlvm.proc.XmlvmResource.Type;
 import org.xmlvm.proc.in.InputProcess;
 import org.xmlvm.proc.in.InputProcess.ExeInputProcess;
 import org.xmlvm.proc.in.file.ExeFile;
+import org.xmlvm.util.universalfile.UniversalFile;
 
 import edu.arizona.cs.mbel.instructions.ADD;
 import edu.arizona.cs.mbel.instructions.ADD_OVF;
@@ -124,6 +125,7 @@ public class ExeToXmlvmProcess extends XmlvmProcessImpl<ExeInputProcess> impleme
 
     private List<XmlvmResource> xmlvmResources = new ArrayList<XmlvmResource>();
 
+
     public ExeToXmlvmProcess(Arguments arguments) {
         super(arguments);
         addSupportedInput(ExeInputProcess.class);
@@ -156,6 +158,7 @@ public class ExeToXmlvmProcess extends XmlvmProcessImpl<ExeInputProcess> impleme
         return null;
     }
 
+
     private static class ExeToXmlvmTask {
 
         private static final Namespace                nsXMLVM                 = Namespace
@@ -171,17 +174,18 @@ public class ExeToXmlvmProcess extends XmlvmProcessImpl<ExeInputProcess> impleme
         private Hashtable<String, String>             nestedClassNamespaceMap = new Hashtable<String, String>();
         private String                                enumBaseType            = "";
 
-        private File                                  exeFile;
+        private UniversalFile                         exeFile;
 
-        public ExeToXmlvmTask(File exeFile) {
+
+        public ExeToXmlvmTask(UniversalFile exeFile) {
             this.exeFile = exeFile;
         }
 
         public XmlvmResource parse() {
             Log.debug("ExeInputProcess.process()");
             try {
-                FileInputStream fin;
-                fin = new FileInputStream(exeFile);
+                InputStream fin;
+                fin = new ByteArrayInputStream(exeFile.getFileAsBytes());
                 ClassParser parser = new ClassParser(fin);
                 Module cilClass = parser.parseModule();
                 Document xmlvmDoc = genXMLVM(cilClass);

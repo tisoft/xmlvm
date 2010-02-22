@@ -57,6 +57,16 @@ public class UniversalFileFromFileSystemFile extends UniversalFile {
     }
 
     @Override
+    public boolean isFile() {
+        return true;
+    }
+
+    @Override
+    public boolean exists() {
+        return file.exists();
+    }
+
+    @Override
     public UniversalFile[] listFiles() {
         return new UniversalFile[0];
     }

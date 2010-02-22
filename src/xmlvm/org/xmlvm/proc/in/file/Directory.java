@@ -26,11 +26,15 @@ import java.util.List;
 
 import org.xmlvm.util.FileSet;
 
+/**
+ * An {@link XFile} class for a directory.
+ */
 public class Directory extends XFile {
     List<File> result;
 
+
     public Directory(String path) {
-        super(path);
+        super(new File(path));
         init();
     }
 
@@ -53,13 +57,12 @@ public class Directory extends XFile {
      * by this {@link Directory} instance.
      */
     public boolean equals(File file) {
-        File inputFile = new File(path);
-        return inputFile.equals(file);
+        return this.file.equals(file);
     }
 
     protected void init() {
         result = new ArrayList<File>();
-        FileSet fileSet = new FileSet(path);
+        FileSet fileSet = new FileSet(file.getAbsolutePath());
         for (File file : fileSet) {
             // Only return actual files that match this directory request. Files
             // in sub-directories are covered if they are matched the input

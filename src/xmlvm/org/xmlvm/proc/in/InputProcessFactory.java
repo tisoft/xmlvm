@@ -34,6 +34,8 @@ import org.xmlvm.proc.in.file.ClassFile;
 import org.xmlvm.proc.in.file.Directory;
 import org.xmlvm.proc.in.file.ExeFile;
 import org.xmlvm.proc.in.file.XmlvmFile;
+import org.xmlvm.util.universalfile.UniversalFile;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 /**
  * Used for creating input processes.
@@ -43,6 +45,7 @@ public class InputProcessFactory {
      * The arguments that should be given to the created processes.
      */
     private Arguments arguments;
+
 
     public InputProcessFactory(Arguments arguments) {
         this.arguments = arguments;
@@ -72,8 +75,13 @@ public class InputProcessFactory {
             // elements that are applicable.
             if (Directory.isDirectoryInput(inputElement)) {
                 processes.addAll(createInputProcessesForDirectory(new Directory(inputElement)));
+            } else if (ZipArchiveExtractor.isZipArchive(inputElement)) {
+                for (UniversalFile file : ZipArchiveExtractor.createFilesForArchive(inputElement)) {
+                    processes.add(createInputProcess(file));
+                }
             } else {
-                processes.add(createInputProcess(inputElement));
+                processes.add(createInputProcess(UniversalFileCreator.createFile(new File(
+                        inputElement))));
             }
         }
         return processes;
@@ -89,15 +97,15 @@ public class InputProcessFactory {
      * @return A {@link InputProcess} that is able to process the given input or
      *         null, if no process was found for the given input.
      */
-    protected InputProcess<?> createInputProcess(String input) {
-        // CLASS files.
+    protected InputProcess<?> createInputProcess(UniversalFile input) {
         if (ClassFile.isClassInput(input)) {
+            // CLASS files.
             return new ClassInputProcess(arguments, new ClassFile(input));
-            // EXE files.
         } else if (ExeFile.isExeInput(input)) {
+            // EXE files.
             return new ExeInputProcess(arguments, new ExeFile(input));
-            // XMLVM files.
         } else if (XmlvmFile.isXmlvmInput(input)) {
+            // XMLVM files.
             return new XmlvmInputProcess(arguments, new XmlvmFile(input));
         }
         Log.warn("Unable to create InputProcesses for input: " + input);
@@ -105,24 +113,11 @@ public class InputProcessFactory {
     }
 
     /**
-     * This method decides which concrete subclass of InputProcesses should be
-     * instantiated, depending on the given input {@link File}.
-     * 
-     * @param input
-     *            The file to be processed.
-     * @return A {@link InputProcess} that is able to process the given input or
-     *         null, if no process was found for the given input.
-     */
-    protected InputProcess<?> createInputProcess(File input) {
-        return createInputProcess(input.getAbsolutePath());
-    }
-
-    /**
      * Create InputProcesses for all applicable elements for this directory.
      * 
      * @param input
-     *            The directory to proces.
-     * @return All InputProcesses for the applicabe elements.
+     *            The directory to process.
+     * @return All InputProcesses for the applicable elements.
      */
     protected List<InputProcess<?>> createInputProcessesForDirectory(Directory input) {
         List<InputProcess<?>> result = new ArrayList<InputProcess<?>>();
@@ -131,7 +126,7 @@ public class InputProcessFactory {
             // We don't want to process ourself.
             if (!input.equals(file)) {
                 // Add process to the processor.
-                result.add(createInputProcess(file));
+                result.add(createInputProcess(UniversalFileCreator.createFile(file)));
             }
         }
         return result;

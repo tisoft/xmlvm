@@ -20,18 +20,24 @@
 
 package org.xmlvm.proc.in.file;
 
+import org.xmlvm.util.universalfile.UniversalFile;
+
+/**
+ * An {@link XFile} class for exe files.
+ */
 public class ExeFile extends XFile {
     public static final String EXE_ENDING = ".exe";
 
-    public ExeFile(String path) {
+
+    public ExeFile(UniversalFile path) {
         super(path);
     }
 
     /**
      * Returns whether the input is an EXE file.
      */
-    public static boolean isExeInput(String path) {
-        return (path.toLowerCase().endsWith(EXE_ENDING) && isFile(path));
+    public static boolean isExeInput(UniversalFile file) {
+        return file.isFile() && file.getAbsolutePath().toLowerCase().endsWith(EXE_ENDING);
     }
 
 }

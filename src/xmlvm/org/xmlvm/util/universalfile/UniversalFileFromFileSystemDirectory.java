@@ -57,6 +57,16 @@ public class UniversalFileFromFileSystemDirectory extends UniversalFile {
     }
 
     @Override
+    public boolean isFile() {
+        return false;
+    }
+
+    @Override
+    public boolean exists() {
+        return directory.exists();
+    }
+
+    @Override
     public UniversalFile[] listFiles() {
         List<UniversalFile> result = new ArrayList<UniversalFile>();
         File files[] = directory.listFiles();

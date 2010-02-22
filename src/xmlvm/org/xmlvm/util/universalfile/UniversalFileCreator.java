@@ -46,6 +46,39 @@ public class UniversalFileCreator {
     }
 
     /**
+     * Creates a {@link UniversalFile} from a file system resource.
+     * 
+     * @param location
+     *            the file system resource around which the
+     *            {@link UniversalFile} should be wrapped
+     * @return The {@link UniversalFile} instance for the given location.
+     */
+    public static UniversalFile createFile(File location) {
+        if (location.isDirectory()) {
+            return new UniversalFileFromFileSystemDirectory(location);
+        } else if (location.isFile()) {
+            return new UniversalFileFromFileSystemFile(location);
+        } else {
+            Log.error(TAG, "Location is neither a File nor a directory: "
+                    + location.getAbsolutePath());
+            return null;
+        }
+    }
+
+    /**
+     * Creates a {@link UniversalFile} from an {@link InputStream} resource.
+     * 
+     * @param name
+     *            the absolute name of the resource
+     * @param stream
+     *            the stream containing the data of the resource
+     * @return The {@link UniversalFile} instance.
+     */
+    public static UniversalFile createFile(String absoluteName, InputStream stream) {
+        return new UniversalFileFromStreamResource(absoluteName, stream);
+    }
+
+    /**
      * Creates a {@link UniversalFile} instance for a single file.
      * 
      * @param oneJarResource

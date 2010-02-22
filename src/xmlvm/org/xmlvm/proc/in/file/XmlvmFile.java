@@ -20,14 +20,23 @@
 
 package org.xmlvm.proc.in.file;
 
+import org.xmlvm.util.universalfile.UniversalFile;
+
+/**
+ * An {@link XFile} for XMLVM files.
+ */
 public class XmlvmFile extends XFile {
     public static final String XMLVM_ENDING = ".xmlvm";
 
-    public XmlvmFile(String path) {
+
+    public XmlvmFile(UniversalFile path) {
         super(path);
     }
 
-    public static boolean isXmlvmInput(String path) {
-        return (path.toLowerCase().endsWith(XMLVM_ENDING) && isFile(path));
+    /**
+     * Returns whether the input is an XMLVM file.
+     */
+    public static boolean isXmlvmInput(UniversalFile file) {
+        return file.isFile() && file.getAbsolutePath().toLowerCase().endsWith(XMLVM_ENDING);
     }
 }

@@ -58,6 +58,16 @@ public class UniversalFileDirectory extends UniversalFile {
     }
 
     @Override
+    public boolean isFile() {
+        return false;
+    }
+
+    @Override
+    public boolean exists() {
+        return true;
+    }
+
+    @Override
     public UniversalFile[] listFiles() {
         return files.toArray(new UniversalFile[0]);
     }

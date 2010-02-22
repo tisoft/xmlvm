@@ -59,6 +59,16 @@ public class UniversalFileFromStreamResource extends UniversalFile {
     }
 
     @Override
+    public boolean isFile() {
+        return true;
+    }
+
+    @Override
+    public boolean exists() {
+        return true;
+    }
+
+    @Override
     public UniversalFile[] listFiles() {
         return new UniversalFile[0];
     }

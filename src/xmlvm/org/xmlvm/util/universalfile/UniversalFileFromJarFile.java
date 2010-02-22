@@ -68,6 +68,16 @@ public class UniversalFileFromJarFile extends UniversalFile {
     }
 
     @Override
+    public boolean isFile() {
+        return false;
+    }
+
+    @Override
+    public boolean exists() {
+        return true;
+    }
+
+    @Override
     public UniversalFile[] listFiles() {
         if (directory == null) {
             directory = initialize();
@@ -105,7 +115,6 @@ public class UniversalFileFromJarFile extends UniversalFile {
             if (!subDirName.isEmpty()) {
                 UniversalFileDirectory subDirectory = addToDir.getDirectory(subDirName);
                 if (subDirectory == null) {
-
                     subDirectory = new UniversalFileDirectory(addToDir.getAbsolutePath()
                             + File.separator + subDirName);
                     addToDir.add(subDirectory);
