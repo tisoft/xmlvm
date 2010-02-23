@@ -111,6 +111,7 @@ public class MediaPlayer {
     }
 
     public void release() {
+        player.stop();
         player = null;
     }
 
