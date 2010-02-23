@@ -34,7 +34,7 @@ public class Intent {
         this.action = action;
     }
 
-    public String xmlvmGetAction() {
+    public String getAction() {
         return action;
     }
 

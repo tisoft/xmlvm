@@ -20,7 +20,8 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
-#import "java_lang_String.h"
+
+@class java_lang_String;
 
 
 @protocol java_lang_CharSequence <NSObject>

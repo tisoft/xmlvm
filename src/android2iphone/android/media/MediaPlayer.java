@@ -26,7 +26,13 @@ import java.io.IOException;
 import org.xmlvm.iphone.AVAudioPlayer;
 import org.xmlvm.iphone.NSErrorHolder;
 
+import android.util.Log;
+
 public class MediaPlayer {
+
+    public static interface OnCompletionListener {
+        abstract void onCompletion(MediaPlayer mp);
+    }
 
     private AVAudioPlayer player  = null;
     private boolean       looping = false;
@@ -106,5 +112,12 @@ public class MediaPlayer {
 
     public void release() {
         player = null;
+    }
+
+    /**
+     * @param onCompletionListener
+     */
+    public void setOnCompletionListener(OnCompletionListener onCompletionListener) {
+        Log.w("xmlvm", "MediaPlayer.setOnCompletionListener() not implemented");
     }
 }

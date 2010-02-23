@@ -24,6 +24,7 @@ import org.xmlvm.iphone.NSObject;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIInterfaceOrientation;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -66,6 +67,7 @@ public class Activity extends ContextThemeWrapper {
     private Activity         parent;
     private Activity         child;
     private Intent           intent;
+    private ComponentName    componentName;
     private int              requestCode;
     private int              childRequestCode;
     private int              childResultCode;
@@ -91,6 +93,10 @@ public class Activity extends ContextThemeWrapper {
 
     public void xmlvmSetIntent(Intent intent) {
         this.intent = intent;
+    }
+
+    public void xmlvmSetComponentName(ComponentName componentName) {
+        this.componentName = componentName;
     }
 
     private void xmlvmUnlinkActivity() {
@@ -420,6 +426,10 @@ public class Activity extends ContextThemeWrapper {
      */
     protected Intent getIntent() {
         return intent;
+    }
+
+    public ComponentName getComponentName() {
+        return componentName;
     }
 
     public LayoutInflater getLayoutInflater() {

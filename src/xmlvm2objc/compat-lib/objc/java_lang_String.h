@@ -20,6 +20,7 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
+#import "java_lang_CharSequence.h"
 
 
 typedef NSMutableString java_lang_String;
@@ -35,6 +36,7 @@ typedef NSMutableString java_lang_String;
 - (XMLVMArray*) getBytes__;
 - (unichar) charAt___int: (int) idx;
 - (int) lastIndexOf___int: (int) ch;
+- (int) contains___java_lang_CharSequence: (java_lang_CharSequence*) str;
 - (int) endsWith___java_lang_String: (java_lang_String*) s;
 - (java_lang_String*) substring___int_int: (int) from :(int) to;
 - (java_lang_String*) substring___int: (int) from;

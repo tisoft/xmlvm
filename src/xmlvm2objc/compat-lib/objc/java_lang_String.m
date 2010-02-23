@@ -87,6 +87,11 @@
 	return i;
 }
 
+- (int) contains___java_lang_CharSequence: (java_lang_CharSequence*) str
+{
+	return [self rangeOfString:str].location != NSNotFound;
+}
+
 - (int) endsWith___java_lang_String: (java_lang_String*) s
 {
 	return [self hasSuffix: s] == YES ? 1 : 0;

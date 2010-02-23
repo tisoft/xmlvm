@@ -20,10 +20,10 @@
 
 package android.internal;
 
-import org.xmlvm.iphone.NSObject;
 import org.xmlvm.iphone.UIApplication;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
 
 /**
@@ -72,7 +72,7 @@ public class ActivityManager extends UIApplication {
             topActivity.xmlvmTransitToStatePaused();
         }
 
-        String action = intent.xmlvmGetAction();
+        String action = intent.getAction();
         String activityName = null;
         AndroidManifest.Activity activityInfo = manifest.getActivity(action);
         if (activityInfo != null) {
@@ -95,7 +95,16 @@ public class ActivityManager extends UIApplication {
         newActivity.xmlvmSetParent(parent);
         newActivity.xmlvmSetRequestCode(requestCode);
         newActivity.xmlvmSetIntent(intent);
-
+        
+        int i = activityName.lastIndexOf('.');
+        String pkg = null;
+        String cls = activityName;
+        if (i != -1) {
+            pkg = activityName.substring(0, i);
+            cls = activityName.substring(i + 1);
+        }
+        newActivity.xmlvmSetComponentName(new ComponentName(pkg, cls));
+        
         if (activityInfo != null) {
             newActivity.xmlvmSetRequestedOrientation(activityInfo.screenOrientation);
         }

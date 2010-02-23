@@ -65,6 +65,7 @@ typedef union {
     @public XMLVMElemPtr array;
     @public int          type;
     @public int          length;
+    @public BOOL         ownsData;
 }
 
 + (XMLVMArray*) createSingleDimensionWithType:(int) type andSize:(int) size;

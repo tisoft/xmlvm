@@ -29,6 +29,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.internal.ActivityManager;
 
 public class ContextWrapper extends Context {
 
@@ -42,6 +43,10 @@ public class ContextWrapper extends Context {
     @Override
     public Resources getResources() {
         return resources;
+    }
+
+    public String getPackageName() {
+        return ActivityManager.getApplicationPackageName();
     }
 
     /*

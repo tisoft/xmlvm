@@ -28,6 +28,7 @@
     XMLVMArray *retval = [[[XMLVMArray alloc] init] autorelease];
     retval->type = type;
     retval->length = size;
+	retval->ownsData = YES;
 
     int sizeOfBaseType = [XMLVMArray sizeOfBaseTypeInBytes:type];
     retval->array.data = malloc(sizeOfBaseType * size);
@@ -48,6 +49,7 @@
     retval->type = type;
     retval->length = size;
     retval->array.data = data;
+	retval->ownsData = NO;
     return retval;
 }
 
@@ -129,7 +131,9 @@
             [self->array.o[i] release];
         }
     }
-    free(self->array.data);
+	if (self->ownsData == YES) {
+        free(self->array.data);
+	}
     [super dealloc];
 }
 
@@ -138,6 +142,7 @@
     XMLVMArray *retval = [[XMLVMArray alloc] init];
     retval->type = self->type;
     retval->length = self->length;
+    retval->ownsData = YES;
 
     int sizeOfBaseType = [XMLVMArray sizeOfBaseTypeInBytes:self->type];
     int sizeOfArrayInBytes = sizeOfBaseType * self->length;
