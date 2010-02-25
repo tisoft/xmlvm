@@ -24,12 +24,45 @@ import java.io.FileDescriptor;
 import java.io.IOException;
 
 import org.xmlvm.iphone.AVAudioPlayer;
+import org.xmlvm.iphone.AVAudioPlayerDelegate;
+import org.xmlvm.iphone.NSError;
 import org.xmlvm.iphone.NSErrorHolder;
 
 import android.util.Log;
 
 public class MediaPlayer {
+    
+    private OnCompletionListener onCompletionListener = null;
 
+    class AudioPlayerDelegate implements AVAudioPlayerDelegate {
+        
+        private MediaPlayer mediaPlayer;
+        
+        public AudioPlayerDelegate(MediaPlayer mediaPlayer) {
+            this.mediaPlayer = mediaPlayer;
+        }
+
+        @Override
+        public void audioPlayerBeginInterruption(AVAudioPlayer player) {
+        }
+
+        @Override
+        public void audioPlayerDecodeErrorDidOccur(AVAudioPlayer player, NSError error) {
+        }
+        
+        @Override
+        public void audioPlayerDidFinishPlaying(AVAudioPlayer player, boolean successfully) {
+            if (onCompletionListener != null) {
+                onCompletionListener.onCompletion(mediaPlayer);
+            }
+        }
+
+        @Override
+        public void audioPlayerEndInterruption(AVAudioPlayer player) {
+        }
+        
+    }
+    
     public static interface OnCompletionListener {
         abstract void onCompletion(MediaPlayer mp);
     }
@@ -49,6 +82,7 @@ public class MediaPlayer {
         }
 
         player.setNumberOfLoops(looping ? -1 : 0);
+        player.setDelegate(new AudioPlayerDelegate(this));
     }
 
     public void setAudioStreamType(int streamtype) {
@@ -112,6 +146,7 @@ public class MediaPlayer {
 
     public void release() {
         player.stop();
+        player.setDelegate(null);
         player = null;
     }
 
@@ -119,6 +154,6 @@ public class MediaPlayer {
      * @param onCompletionListener
      */
     public void setOnCompletionListener(OnCompletionListener onCompletionListener) {
-        Log.w("xmlvm", "MediaPlayer.setOnCompletionListener() not implemented");
+        this.onCompletionListener = onCompletionListener;
     }
 }

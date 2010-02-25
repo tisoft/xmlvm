@@ -25,7 +25,7 @@
 - (id) initWithDelegate: (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) d
 {
 	[super init];
-	self->delegate = d;
+	self->delegate = [d retain];
 	return self;
 }
 
@@ -120,8 +120,13 @@
 - (void) setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate
 			: (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) delegate
 {
-	AVAudioPlayerDelegateWrapper* wrapper = [[AVAudioPlayerDelegateWrapper alloc] initWithDelegate: delegate];
-	self.delegate = wrapper;
+	if (delegate != [NSNull null]) {
+		AVAudioPlayerDelegateWrapper* wrapper = [[AVAudioPlayerDelegateWrapper alloc] initWithDelegate: delegate];
+		self.delegate = wrapper;
+	}
+	else {
+		self.delegate = nil;
+	}
 }
 			
 - (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) getDelegate__
