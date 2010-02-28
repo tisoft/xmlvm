@@ -32,7 +32,9 @@ import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.internal.ActivityManager;
+import android.internal.Assert;
 import android.internal.ResourceParser;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 public class Resources {
@@ -200,5 +202,15 @@ public class Resources {
         // Currently all resource files have to accessible in the classpath's
         // root
         return "";
+    }
+    
+    public DisplayMetrics getDisplayMetrics() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+    
+    public Configuration getConfiguration() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
     }
 }

@@ -46,6 +46,8 @@ import android.internal.ResourceAttributes;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.widget.AbsListView;
 
 /**
  * iPhone implementation of Android's View class.
@@ -55,25 +57,25 @@ import android.util.Log;
 
 public class View {
 
-    public static final int          NO_ID                  = 0xffffffff;
-    public static final int          VISIBLE                = 0;
-    public static final int          INVISIBLE              = 4;
-    public static final int          GONE                   = 8;
+    public static final int          NO_ID                      = 0xffffffff;
+    public static final int          VISIBLE                    = 0;
+    public static final int          INVISIBLE                  = 4;
+    public static final int          GONE                       = 8;
 
-    private static final int         FORCE_LAYOUT           = 0x00001000;
-    private static final int         LAYOUT_REQUIRED        = 0x00002000;
-    static final int                 MEASURED_DIMENSION_SET = 0x00000800;
-    static final int                 DRAWABLE_STATE_DIRTY   = 0x00000400;
+    private static final int         FORCE_LAYOUT               = 0x00001000;
+    private static final int         LAYOUT_REQUIRED            = 0x00002000;
+    static final int                 MEASURED_DIMENSION_SET     = 0x00000800;
+    static final int                 DRAWABLE_STATE_DIRTY       = 0x00000400;
 
-    protected final int[]            EMPTY_STATE_SET        = {};
-    protected final int[]            PRESSED_STATE_SET      = { 0x010100a7 };
-    protected final int[]            CHECKED_STATE_SET      = {};
+    protected final int[]            EMPTY_STATE_SET            = {};
+    protected final int[]            PRESSED_STATE_SET          = { 0x010100a7 };
+    protected final int[]            CHECKED_STATE_SET          = {};
 
     private boolean                  ignoreRequestLayout;
     private int                      flags;
     protected int                    widthMeasureSpec;
     protected int                    heightMeasureSpec;
-    private int[]                    drawableState          = EMPTY_STATE_SET;
+    private int[]                    drawableState              = EMPTY_STATE_SET;
     protected ViewGroup.LayoutParams layoutParams;
     protected int                    paddingLeft;
     protected int                    paddingRight;
@@ -98,7 +100,21 @@ public class View {
     private Resources                mResources;
     private Handler                  handler;
     private OnClickListener          onClickListener;
-    private UIColor                  savedBackgroundColor   = null;
+    private UIColor                  savedBackgroundColor       = null;
+
+    /**
+     * <p>
+     * Enables low quality mode for the drawing cache.
+     * </p>
+     */
+    public static final int          DRAWING_CACHE_QUALITY_LOW  = 0x00080000;
+
+    /**
+     * <p>
+     * Enables high quality mode for the drawing cache.
+     * </p>
+     */
+    public static final int          DRAWING_CACHE_QUALITY_HIGH = 0x00100000;
 
     /**
      * Copyright (C) 2006 The Android Open Source Project
@@ -253,6 +269,10 @@ public class View {
         setIgnoreRequestLayout(true);
         parseAttributes(attrs);
         setIgnoreRequestLayout(false);
+    }
+
+    public View(Context c, AttributeSet attrs, int defStyle) {
+        Assert.NOT_IMPLEMENTED();
     }
 
     private void init(Context c, AttributeSet attrs) {
@@ -914,5 +934,25 @@ public class View {
                 }
             }
         }
+    }
+
+    public void setDrawingCacheQuality(int quality) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void setOnScrollListener(AbsListView.OnScrollListener listener) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void setClickable(boolean clickable) {
+        Assert.NOT_IMPLEMENTED();
+    }
+    
+    public void startAnimation(Animation animation) {
+        Assert.NOT_IMPLEMENTED();
+    }
+    
+    public void setEnabled(boolean enabled) {
+        Assert.NOT_IMPLEMENTED();
     }
 }

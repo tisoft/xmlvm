@@ -112,6 +112,11 @@ public class ImageView extends View {
         init();
     }
 
+    public ImageView(Context c, AttributeSet attrs, int defStyle) {
+        super(c, attrs, defStyle);
+        Assert.NOT_IMPLEMENTED();
+    }
+
     private void init() {
         setScaleType(ScaleType.CENTER);
     }

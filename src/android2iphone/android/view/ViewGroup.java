@@ -30,6 +30,7 @@ import org.xmlvm.iphone.UIView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.internal.Assert;
 import android.internal.Dimension;
 import android.util.AttributeSet;
 
@@ -136,6 +137,8 @@ public class ViewGroup extends View implements ViewParent {
             this.bottomMargin = bottomMargin;
         }
     }
+
+    public static final int PERSISTENT_ANIMATION_CACHE = 1;
 
     public ViewGroup(Context c) {
         super(c);
@@ -407,5 +410,9 @@ public class ViewGroup extends View implements ViewParent {
         }
 
         return MeasureSpec.makeMeasureSpec(size, mode);
+    }
+
+    public void setPersistentDrawingCache(int drawingCacheToKeep) {
+        Assert.NOT_IMPLEMENTED();
     }
 }

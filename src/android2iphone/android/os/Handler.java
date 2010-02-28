@@ -23,10 +23,19 @@ package android.os;
 import org.xmlvm.iphone.NSObject;
 import org.xmlvm.iphone.NSTimer;
 
+import android.internal.Assert;
+
 public class Handler {
     Runnable toRun = null;
     NSTimer  timer = null;
     float    delay;
+
+    public Handler() {
+    }
+
+    public Handler(Looper looper) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     public void run(NSTimer timer) {
         toRun.run();
@@ -53,5 +62,22 @@ public class Handler {
 
     public void xmlvmStartTimer(Object ticks) {
         timer = new NSTimer(delay, this, "run", null, false);
+    }
+
+    public void handleMessage(Message msg) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void dispatchMessage(Message msg) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void sendMessage(Message message) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public boolean sendMessageDelayed(Message msg, long delayMillis) {
+        Assert.NOT_IMPLEMENTED();
+        return false;
     }
 }

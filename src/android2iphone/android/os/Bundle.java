@@ -22,6 +22,8 @@ package android.os;
 
 import java.util.HashMap;
 
+import android.internal.Assert;
+
 public class Bundle {
 
     private HashMap<String, Object> map = new HashMap<String, Object>();
@@ -34,4 +36,30 @@ public class Bundle {
         map.put(name, value);
     }
 
+    public boolean getBoolean(String name) {
+        Assert.NOT_IMPLEMENTED();
+        return false;
+    }
+
+    public void putBoolean(String name, boolean value) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public double getDouble(String name) {
+        Assert.NOT_IMPLEMENTED();
+        return 0.0;
+    }
+
+    public void putDouble(String name, double value) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public String getString(String name) {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
+    public void putString(String name, String value) {
+        Assert.NOT_IMPLEMENTED();
+    }
 }

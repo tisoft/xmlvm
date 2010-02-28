@@ -20,6 +20,8 @@
 
 package android.view;
 
+import android.internal.Assert;
+
 public class MenuItem {
   private String title = "";
 
@@ -38,5 +40,10 @@ public class MenuItem {
 
   public String getTitle() {
     return title;
+  }
+  
+  public int getItemId() {
+      Assert.NOT_IMPLEMENTED();
+      return 0;
   }
 }

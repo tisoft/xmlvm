@@ -20,6 +20,7 @@
 
 package android.content;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -27,6 +28,7 @@ import java.io.FileOutputStream;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.hardware.SensorManager;
+import android.internal.Assert;
 import android.internal.IPhoneManager;
 import android.media.AudioManager;
 import android.os.PowerManager;
@@ -38,6 +40,34 @@ import android.view.LayoutInflater;
  * Interface to global information about an application environment.
  */
 public abstract class Context {
+
+    /**
+     * Flag for {@link #bindService}: automatically create the service as long
+     * as the binding exists. Note that while this will create the service, its
+     * {@link android.app.Service#onStart} method will still only be called due
+     * to an explicit call to {@link #startService}. Even without that, though,
+     * this still provides you with access to the service object while the
+     * service is created.
+     * 
+     * <p>
+     * Specifying this flag also tells the system to treat the service as being
+     * as important as your own process -- that is, when deciding which process
+     * should be killed to free memory, the service will only be considered a
+     * candidate as long as the processes of any such bindings is also a
+     * candidate to be killed. This is to avoid situations where the service is
+     * being continually created and killed due to low memory.
+     */
+    public static final int      BIND_AUTO_CREATE        = 0x0001;
+
+    /**
+     * Use with {@link #getSystemService} to retrieve a
+     * {@link android.location.LocationManager} for controlling location
+     * updates.
+     * 
+     * @see #getSystemService
+     * @see android.location.LocationManager
+     */
+    public static final String   LOCATION_SERVICE        = "location";
 
     /**
      * Use with {@link #getSystemService(String)} to retrieve a
@@ -133,4 +163,15 @@ public abstract class Context {
             throws FileNotFoundException;
 
     public abstract boolean deleteFile(String name);
+    
+    public String getString(int resId) {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+    
+    public void bindService(Intent intent, ServiceConnection conn, int flags) {
+        Assert.NOT_IMPLEMENTED();
+    }
+    
+    public abstract File getFileStreamPath(String name);
 }

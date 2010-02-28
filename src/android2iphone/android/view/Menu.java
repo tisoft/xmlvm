@@ -20,8 +20,15 @@
 
 package android.view;
 
+import android.internal.Assert;
+
+// TODO This should actually be an interface!
 public class Menu {
-  public MenuItem add(String title) {
-    return new MenuItem(title);
-  }
+    public MenuItem add(String title) {
+        return new MenuItem(title);
+    }
+
+    public void removeItem(int id) {
+        Assert.NOT_IMPLEMENTED();
+    }
 }

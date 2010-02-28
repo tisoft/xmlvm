@@ -29,6 +29,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.internal.ActivityManager;
 import android.internal.Assert;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -440,4 +442,21 @@ public class Activity extends ContextThemeWrapper {
         this.xmlvmTransitToStateDestroyed(false);
     }
 
+    public void onConfigurationChanged(Configuration newConfig) {
+        Assert.NOT_IMPLEMENTED();
+    }
+    
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        Assert.NOT_IMPLEMENTED();
+        return false;
+    }
+    
+    public MenuInflater getMenuInflater() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+    
+    public void setTitle(CharSequence title) {
+        Assert.NOT_IMPLEMENTED();
+    }
 }

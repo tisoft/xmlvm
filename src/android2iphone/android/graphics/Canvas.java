@@ -151,4 +151,8 @@ public class Canvas {
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
     }
+
+    public void drawTextOnPath(String text, Path textPathSingleLine, int i, int j, Paint textPaint) {
+        Assert.NOT_IMPLEMENTED();
+    }
 }

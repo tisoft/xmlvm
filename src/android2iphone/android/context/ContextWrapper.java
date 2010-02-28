@@ -25,11 +25,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.internal.ActivityManager;
+import android.internal.Assert;
+import android.os.Looper;
 
 public class ContextWrapper extends Context {
 
@@ -75,5 +78,20 @@ public class ContextWrapper extends Context {
 
     public boolean deleteFile(String name) {
         return new File(name).delete();
+    }
+
+    public Looper getMainLooper() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
+    public ContentResolver getContentResolver() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
+    public File getFileStreamPath(String name) {
+        Assert.NOT_IMPLEMENTED();
+        return null;
     }
 }

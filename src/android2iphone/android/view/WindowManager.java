@@ -38,6 +38,7 @@ public class WindowManager {
     }
 
     public static class LayoutParams {
+        public static final int FLAG_BLUR_BEHIND = 4;
         public static final int FLAG_FULLSCREEN = 1024;
     }
 }

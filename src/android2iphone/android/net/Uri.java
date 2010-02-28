@@ -20,6 +20,8 @@
 
 package android.net;
 
+import android.internal.Assert;
+
 public class Uri {
 
     private String uri;
@@ -34,5 +36,10 @@ public class Uri {
 
     public String xmlvmGetUri() {
         return uri;
+    }
+    
+    public static Uri withAppendedPath(Uri baseUri, String pathSegment) {
+        Assert.NOT_IMPLEMENTED();
+        return null;
     }
 }

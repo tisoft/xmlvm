@@ -5,6 +5,7 @@ import org.xmlvm.iphone.UIAlertViewDelegate;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.internal.Assert;
 
 public class AlertDialog extends Dialog implements DialogInterface {
 
@@ -32,12 +33,31 @@ public class AlertDialog extends Dialog implements DialogInterface {
         public AlertDialog create() {
             return new AlertDialog(this);
         }
+
+        public Builder setMessage(CharSequence message) {
+            Assert.NOT_IMPLEMENTED();
+            return this;
+        }
+
+        public Builder setNegativeButton(CharSequence text, DialogInterface.OnClickListener listener) {
+            Assert.NOT_IMPLEMENTED();
+            return this;
+        }
+        
+        public AlertDialog show() {
+            Assert.NOT_IMPLEMENTED();
+            return null;
+        }
     }
 
     private UIAlertView       alertView;
     private Builder           builder;
     private String[]          buttonTitles = new String[3];
     private OnClickListener[] listeners    = new OnClickListener[3];
+
+    protected AlertDialog(Context context) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     protected AlertDialog(Builder builder) {
         // TODO: We shouldn't need to do this. XMLVM doesn't not initialize the
@@ -93,7 +113,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
         }
         if (listener != null) {
             int index = 0;
-            switch(buttonIndex) {
+            switch (buttonIndex) {
             case 0:
                 index = DialogInterface.BUTTON1;
                 break;

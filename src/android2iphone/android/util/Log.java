@@ -20,6 +20,8 @@
 
 package android.util;
 
+import android.internal.Assert;
+
 public class Log {
 
     public static final int ASSERT  = 7;
@@ -33,8 +35,18 @@ public class Log {
         return log("E", tag, message);
     }
 
+    public static int e(String tag, String message, Throwable tr) {
+        Assert.NOT_IMPLEMENTED();
+        return -1;
+    }
+
     public static int w(String tag, String message) {
         return log("W", tag, message);
+    }
+
+    public static int w(String tag, String message, Throwable t) {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
     }
 
     public static int i(String tag, String message) {
