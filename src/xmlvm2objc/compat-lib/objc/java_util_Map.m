@@ -61,4 +61,9 @@
 	return keys;
 }
 
+- (int) size__
+{
+	return [self count];
+}
+
 @end
