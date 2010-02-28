@@ -24,43 +24,61 @@
 //----------------------------------------------------------------------------
 @implementation java_io_PrintStream;
 
-- (void) println___boolean: (int) i
+- (void) __init_java_io_PrintStream___java_io_OutputStream: (java_io_OutputStream*) s
 {
-    NSLog(@"%@", (i == NO) ? @"false" : @"true");
+	self->os = [s retain];
 }
 
+- (void) dealloc
+{
+	[self->os release];
+	[super dealloc];
+}
+
+- (void) writeString: (NSString*) str
+{
+	for (int i = 0; i < [str length]; i++) {
+		[self->os write___int:[str characterAtIndex:i]];
+	}
+}
+
+- (void) println___boolean: (int) i
+{
+	[self writeString: (i == NO) ? @"false" : @"true"];
+}
 
 - (void) println___int: (int) i
 {
-    NSLog(@"%d", i);
+    [self writeString:[NSString stringWithFormat:@"%d", i]];
 }
 
 
 - (void) println___float: (float) f
 {
-    NSLog(@"%f", f);
+	[self writeString:[NSString stringWithFormat:@"%f", f]];
 }
 
 
 - (void) println___double: (double) d
 {
-    NSLog(@"%lf", d);
+    [self writeString:[NSString stringWithFormat:@"%lf", d]];
 }
 
 
 - (void) println___java_lang_String: (NSString*) s
 {
-    NSLog(@"%@", s);    // safer with text containing %? strings
+	[self writeString:s];
 }
 
-- (void) println__ {
-	NSLog(@" ");
+- (void) println__
+{
+	[self writeString:@"\n"];
 }
 
 - (void) print___java_lang_Object: (java_lang_Object*) o
 {
 	java_lang_String* s = [o toString__];
-	NSLog(@"%@", s);
+	[self writeString:s];
 	[s release];
 }
 

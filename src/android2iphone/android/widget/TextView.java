@@ -42,7 +42,7 @@ public class TextView extends View {
     private static final int INSETS_X = 0;
     private static final int INSETS_Y = 0;
 
-    protected String         text;
+    protected String         text = "";
 
     public TextView(Context c) {
         super(c);
@@ -84,6 +84,10 @@ public class TextView extends View {
 
     public final void setText(CharSequence text) {
         setText(text.toString());
+    }
+
+    public final void append(CharSequence text) {
+        setText(this.text + text.toString());
     }
 
     public void setTextSize(float size) {

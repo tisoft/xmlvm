@@ -19,6 +19,8 @@
  */
 
 #import "xmlvm.h"
+#import "java_util_Collection.h"
+#import "java_util_Iterator.h"
 
 
 // java.util.HashMap
@@ -28,5 +30,8 @@ typedef NSMutableDictionary java_util_HashMap;
 
 - (void) __init_java_util_HashMap__;
 - (void) __init_java_util_HashMap___int: (int) size;
+- (void) clear__;
+- (java_util_Collection*) values__;
+- (java_util_Iterator*) iterator__;
 
 @end

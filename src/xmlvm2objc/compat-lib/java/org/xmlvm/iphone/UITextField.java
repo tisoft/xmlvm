@@ -84,4 +84,8 @@ public class UITextField extends UIView {
             text += key;
         Simulator.redrawDisplay();
     }
+
+    public void setPlaceholder(String hint) {
+        // TODO Auto-generated method stub
+    }
 }

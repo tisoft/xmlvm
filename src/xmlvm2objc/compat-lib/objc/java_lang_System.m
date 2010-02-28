@@ -22,6 +22,43 @@
 #import "java_lang_RuntimeException.h"
 
 
+@interface ConsoleOutputStream : java_io_OutputStream {
+@private NSString* log;
+}
+- (id) init;
+- (void) dealloc;
+- (void) write___int: (int) b;
+@end
+
+@implementation ConsoleOutputStream
+
+- (id) init
+{
+	[super init];
+	log = [[NSMutableString alloc] init];
+	return self;
+}
+
+- (void) dealloc
+{
+	[log release];
+	[super dealloc];
+}
+
+- (void) write___int: (int) b
+{
+	if (b == '\n') {
+		NSLog(log);
+		[log setText:@""];
+	}
+	else {
+	    [log appendString: [NSString stringWithFormat:@"%c", b]];
+	}
+}
+
+@end
+
+
 // java.lang.System
 //----------------------------------------------------------------------------
 java_io_PrintStream* _STATIC_java_lang_System_out;
@@ -43,7 +80,10 @@ java_io_PrintStream* _STATIC_java_lang_System_out;
 
 + (void) initialize
 {
+	ConsoleOutputStream* console = [[ConsoleOutputStream alloc] init];
     java_io_PrintStream* v = [[[java_io_PrintStream alloc] init] autorelease];
+	[v __init_java_io_PrintStream___java_io_OutputStream:console];
+	[console release];
     [java_lang_System _PUT_out: v];
 }
 
@@ -57,6 +97,11 @@ java_io_PrintStream* _STATIC_java_lang_System_out;
     [v retain];
     [_STATIC_java_lang_System_out release];
     _STATIC_java_lang_System_out = v;
+}
+
++ (void) setOut___java_io_PrintStream: (java_io_PrintStream*) ps
+{
+	[java_lang_System _PUT_out:ps];
 }
 
 /*

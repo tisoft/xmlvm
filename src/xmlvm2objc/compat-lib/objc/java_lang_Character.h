@@ -29,5 +29,6 @@
 
 + (void) initialize;
 + (java_lang_Class*) _GET_TYPE;
++ (java_lang_String*) toString___char: (char) c;
 
 @end

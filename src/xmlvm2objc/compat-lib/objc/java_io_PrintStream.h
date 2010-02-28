@@ -20,10 +20,15 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
+#import "java_io_OutputStream.h"
 
 
-@interface java_io_PrintStream : java_lang_Object 
+@interface java_io_PrintStream : java_lang_Object {
+@private java_io_OutputStream* os;
+}
 
+- (void) dealloc;
+- (void) writeString: (NSString*) str;
 - (void) println___boolean: (int) i;
 - (void) println___int: (int) i;
 - (void) println___float: (float) f;

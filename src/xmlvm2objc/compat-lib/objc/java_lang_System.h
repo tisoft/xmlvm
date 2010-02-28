@@ -27,6 +27,7 @@
 + (void) initialize;
 + (java_io_PrintStream*) _GET_out;
 + (void) _PUT_out: (java_io_PrintStream*) v;
++ (void) setOut___java_io_PrintStream: (java_io_PrintStream*) ps;
 + (long) currentTimeMillis__;
 + (java_lang_String *) setProperty___java_lang_String_java_lang_String: (java_lang_String *) s1: (java_lang_String *) s2;
 + (void) arraycopy___java_lang_Object_int_java_lang_Object_int_int

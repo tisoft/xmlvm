@@ -71,5 +71,15 @@
 	}
 	self.borderStyle = s;
 }
-		
+
+- (void) setPlaceholder___java_lang_String: (java_lang_String*) p
+{
+	self.placeholder = p;
+}
+
+- (org_xmlvm_iphone_UIFont*) getFont__
+{
+	return [self.font retain];
+}
+
 @end

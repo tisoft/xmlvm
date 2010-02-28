@@ -43,7 +43,10 @@
                :(java_lang_String*) text
                :(org_xmlvm_iphone_UIFont*) font
 {
-	CGSize size = [((NSString*) text) sizeWithFont:font];
+	CGSize size = CGSizeMake(0, 0);
+	if (text != [NSNull null]) {
+		size = [((NSString*) text) sizeWithFont:font];
+	}
 	org_xmlvm_iphone_CGSize* s = [[org_xmlvm_iphone_CGSize alloc] init];
 	s->width_float = size.width;
 	s->height_float = size.height;

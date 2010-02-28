@@ -44,4 +44,11 @@ static java_lang_Class* primitiveCharacterClass;
 {
 	return primitiveCharacterClass;
 }
+
++ (java_lang_String*) toString___char: (char) c
+{
+	NSString* s = [NSString stringWithFormat:@"%c", c];
+	return [s retain];
+}
+
 @end

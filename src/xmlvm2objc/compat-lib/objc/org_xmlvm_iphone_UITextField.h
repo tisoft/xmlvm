@@ -19,8 +19,11 @@
  */
 
 #import "xmlvm.h"
+#import "java_lang_String.h"
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_UIColor.h"
+#import "org_xmlvm_iphone_UIFont.h"
+
 
 // UITextField
 //----------------------------------------------------------------------------
@@ -32,4 +35,6 @@ typedef UITextField org_xmlvm_iphone_UITextField;
 - (NSString*) getText__;
 - (void) setTextColor___org_xmlvm_iphone_UIColor: (org_xmlvm_iphone_UIColor*) color;
 - (void) setBorderStyle___int :(int) style;
+- (void) setPlaceholder___java_lang_String: (java_lang_String*) p;
+- (org_xmlvm_iphone_UIFont*) getFont__;
 @end

@@ -19,6 +19,7 @@
  */
 
 #import "java_util_HashMap.h"
+#import "java_util_IteratorImpl.h"
 
 
 // java.util.HashMap
@@ -31,6 +32,21 @@
 
 - (void) __init_java_util_HashMap___int: (int) size
 {
+}
+
+- (void) clear__
+{
+	[self removeAllObjects];
+}
+
+- (java_util_Collection*) values__
+{
+	return [self retain];
+}
+
+- (java_util_Iterator*) iterator__
+{
+	return [[java_util_IteratorImpl alloc] init: [self objectEnumerator]];
 }
 
 @end

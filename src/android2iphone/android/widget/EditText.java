@@ -20,11 +20,14 @@
 
 package android.widget;
 
+import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIFont;
-import org.xmlvm.iphone.UITextView;
+import org.xmlvm.iphone.UITextBorderStyle;
+import org.xmlvm.iphone.UITextField;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
+import android.internal.XMLVMTheme;
 import android.util.AttributeSet;
 
 public class EditText extends TextView {
@@ -35,22 +38,22 @@ public class EditText extends TextView {
     public EditText(Context c) {
         super(c);
 
-        getUITextView().setText("");
+        getUITextField().setText("");
     }
 
     public EditText(Context c, AttributeSet attrs) {
         super(c, attrs);
-        getUITextView().setText("");
+        getUITextField().setText("");
         parseAttributes(attrs);
     }
 
     public Object getText() {
-        return getUITextView().getText();
+        return getUITextField().getText();
     }
 
     public void setText(String string) {
         text = string;
-        getUITextView().setText(string);
+        getUITextField().setText(string);
         requestLayout();
     }
 
@@ -59,13 +62,22 @@ public class EditText extends TextView {
 
     }
 
-    @Override
-    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        return new UITextView();
+    public void setHint(CharSequence hint) {
+        getUITextField().setPlaceholder(hint.toString());
     }
 
-    private UITextView getUITextView() {
-        return (UITextView) xmlvmGetUIView();
+    @Override
+    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
+        UITextField field = new UITextField();
+        if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
+            field.setBackgroundColor(UIColor.whiteColor);
+            field.setBorderStyle(UITextBorderStyle.Bezel);
+        }
+        return field;
+    }
+
+    private UITextField getUITextField() {
+        return (UITextField) xmlvmGetUIView();
     }
 
     protected void parseAttributes(AttributeSet attrs) {
@@ -73,7 +85,7 @@ public class EditText extends TextView {
     }
 
     protected UIFont xmlvmGetUIFont() {
-        return ((UITextView) xmlvmGetUIView()).getFont();
+        return getUITextField().getFont();
     }
 
     protected int xmlvmGetInsetsX() {
