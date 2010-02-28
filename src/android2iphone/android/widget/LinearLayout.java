@@ -40,8 +40,8 @@ import android.view.ViewGroup;
  * </p>
  */
 public class LinearLayout extends ViewGroup {
-    public static final int  HORIZONTAL                 = 0;
-    public static final int  VERTICAL                   = 1;
+    public static final int  HORIZONTAL             = 0;
+    public static final int  VERTICAL               = 1;
 
     /**
      * Whether the children of this layout are baseline aligned. Only applicable
@@ -63,10 +63,10 @@ public class LinearLayout extends ViewGroup {
      * baseline of this layout as we measure vertically; for horizontal linear
      * layouts, the offset of 0 is appropriate.
      */
-    private int              mBaselineChildTop          = 0;
+    private int              mBaselineChildTop      = 0;
 
     private int              mOrientation;
-    private int              mGravity                   = Gravity.LEFT | Gravity.TOP;
+    private int              mGravity               = Gravity.LEFT | Gravity.TOP;
     private int              mTotalLength;
 
     private float            mWeightSum;
@@ -74,19 +74,27 @@ public class LinearLayout extends ViewGroup {
     private int[]            mMaxAscent;
     private int[]            mMaxDescent;
 
-    private static final int VERTICAL_GRAVITY_COUNT     = 4;
+    private static final int VERTICAL_GRAVITY_COUNT = 4;
 
-    private static final int INDEX_CENTER_VERTICAL      = 0;
-    private static final int INDEX_TOP                  = 1;
-    private static final int INDEX_BOTTOM               = 2;
-    private static final int INDEX_FILL                 = 3;
+    private static final int INDEX_CENTER_VERTICAL  = 0;
+    private static final int INDEX_TOP              = 1;
+    private static final int INDEX_BOTTOM           = 2;
+    private static final int INDEX_FILL             = 3;
 
     public LinearLayout(Context context) {
         super(context);
+        init(context, null);
     }
 
     public LinearLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(context, attrs);
+    }
+
+    private void init(Context c, AttributeSet attrs) {
+        if (attrs != null && attrs.getAttributeCount() > 0) {
+            parseAttributes(attrs);
+        }
     }
 
     /**
@@ -1234,9 +1242,8 @@ public class LinearLayout extends ViewGroup {
         return p instanceof LinearLayout.LayoutParams;
     }
 
-    @Override
-    protected void parseAttributes(AttributeSet attrs) {
-        super.parseAttributes(attrs);
+    private void parseAttributes(AttributeSet attrs) {
+        setIgnoreRequestLayout(true);
 
         String str = attrs.getAttributeValue(null, "orientation");
         setOrientation("vertical".equals(str) ? VERTICAL : HORIZONTAL);
@@ -1248,6 +1255,8 @@ public class LinearLayout extends ViewGroup {
         if (!baselineAligned) {
             setBaselineAligned(baselineAligned);
         }
+
+        setIgnoreRequestLayout(false);
     }
 
     /**

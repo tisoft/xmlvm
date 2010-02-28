@@ -104,12 +104,12 @@ public class ImageView extends View {
 
     public ImageView(Context c) {
         super(c);
-        init();
+        init(c, null);
     }
 
     public ImageView(Context c, AttributeSet attrs) {
         super(c, attrs);
-        init();
+        init(c, attrs);
     }
 
     public ImageView(Context c, AttributeSet attrs, int defStyle) {
@@ -117,8 +117,12 @@ public class ImageView extends View {
         Assert.NOT_IMPLEMENTED();
     }
 
-    private void init() {
+    private void init(Context c, AttributeSet attrs) {
         setScaleType(ScaleType.CENTER);
+
+        if (attrs != null && attrs.getAttributeCount() > 0) {
+            parseAttributes(attrs);
+        }
     }
 
     public void setImageResource(int resId) {
@@ -206,9 +210,8 @@ public class ImageView extends View {
         setMeasuredDimension(width, height);
     }
 
-    @Override
-    protected void parseAttributes(AttributeSet attrs) {
-        super.parseAttributes(attrs);
+    private void parseAttributes(AttributeSet attrs) {
+        setIgnoreRequestLayout(true);
 
         String str = attrs.getAttributeValue(null, "src");
         // Resolve drawable background
@@ -218,6 +221,8 @@ public class ImageView extends View {
                 setImageResource(srcId);
             }
         }
+
+        setIgnoreRequestLayout(false);
     }
 
     @Override

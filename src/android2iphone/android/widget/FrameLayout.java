@@ -56,6 +56,7 @@ public class FrameLayout extends ViewGroup {
 
     public FrameLayout(Context context) {
         super(context);
+        init(context, null);
     }
 
     public FrameLayout(Context context, AttributeSet attrs) {
@@ -64,6 +65,13 @@ public class FrameLayout extends ViewGroup {
 
     public FrameLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        init(context, attrs);
+    }
+
+    private void init(Context c, AttributeSet attrs) {
+        if (attrs != null && attrs.getAttributeCount() > 0) {
+            parseAttributes(attrs);
+        }
     }
 
     /**
@@ -147,10 +155,10 @@ public class FrameLayout extends ViewGroup {
      */
     public void setForeground(Drawable drawable) {
         if (mForeground != drawable) {
-//            if (mForeground != null) {
-//                mForeground.setCallback(null);
-//                unscheduleDrawable(mForeground);
-//            }
+            // if (mForeground != null) {
+            // mForeground.setCallback(null);
+            // unscheduleDrawable(mForeground);
+            // }
 
             mForeground = drawable;
             mForegroundPaddingLeft = 0;
@@ -159,8 +167,8 @@ public class FrameLayout extends ViewGroup {
             mForegroundPaddingBottom = 0;
 
             if (drawable != null) {
-//                setWillNotDraw(false);
-//                drawable.setCallback(this);
+                // setWillNotDraw(false);
+                // drawable.setCallback(this);
                 if (drawable.isStateful()) {
                     drawable.setState(getDrawableState());
                 }
@@ -174,7 +182,7 @@ public class FrameLayout extends ViewGroup {
                     }
                 }
             } else {
-//                setWillNotDraw(true);
+                // setWillNotDraw(true);
             }
             requestLayout();
             invalidate();
@@ -313,36 +321,26 @@ public class FrameLayout extends ViewGroup {
      * {@inheritDoc}
      */
     /*
-    @Override
-    public void draw(Canvas canvas) {
-        super.draw(canvas);
-
-        if (mForeground != null) {
-            final Drawable foreground = mForeground;
-
-            if (mForegroundBoundsChanged) {
-                mForegroundBoundsChanged = false;
-                final Rect selfBounds = mSelfBounds;
-                final Rect overlayBounds = mOverlayBounds;
-
-                final int w = getRight() - getLeft();
-                final int h = getBottom() - getTop();
-
-                if (mForegroundInPadding) {
-                    selfBounds.set(0, 0, w, h);
-                } else {
-                    selfBounds.set(paddingLeft, paddingTop, w - paddingRight, h - paddingBottom);
-                }
-
-                Gravity.apply(mForegroundGravity, foreground.getIntrinsicWidth(), foreground
-                        .getIntrinsicHeight(), selfBounds, overlayBounds);
-                foreground.setBounds(overlayBounds);
-            }
-
-            foreground.draw(canvas);
-        }
-    }
-    */
+     * @Override public void draw(Canvas canvas) { super.draw(canvas);
+     * 
+     * if (mForeground != null) { final Drawable foreground = mForeground;
+     * 
+     * if (mForegroundBoundsChanged) { mForegroundBoundsChanged = false; final
+     * Rect selfBounds = mSelfBounds; final Rect overlayBounds = mOverlayBounds;
+     * 
+     * final int w = getRight() - getLeft(); final int h = getBottom() -
+     * getTop();
+     * 
+     * if (mForegroundInPadding) { selfBounds.set(0, 0, w, h); } else {
+     * selfBounds.set(paddingLeft, paddingTop, w - paddingRight, h -
+     * paddingBottom); }
+     * 
+     * Gravity.apply(mForegroundGravity, foreground.getIntrinsicWidth(),
+     * foreground .getIntrinsicHeight(), selfBounds, overlayBounds);
+     * foreground.setBounds(overlayBounds); }
+     * 
+     * foreground.draw(canvas); } }
+     */
 
     /**
      * Determines whether to measure all children or just those in the VISIBLE
@@ -453,9 +451,8 @@ public class FrameLayout extends ViewGroup {
         }
     }
 
-    @Override
-    protected void parseAttributes(AttributeSet attrs) {
-        super.parseAttributes(attrs);
+    private void parseAttributes(AttributeSet attrs) {
+        setIgnoreRequestLayout(true);
 
         mForegroundGravity = Gravity.parseGravity(attrs
                 .getAttributeValue(null, "foregroundGravity"), Gravity.FILL);
@@ -476,5 +473,7 @@ public class FrameLayout extends ViewGroup {
         setMeasureAllChildren(b);
         mForegroundInPadding = attrs
                 .getAttributeBooleanValue(null, "foregroundInsidePadding", true);
+
+        setIgnoreRequestLayout(false);
     }
 }

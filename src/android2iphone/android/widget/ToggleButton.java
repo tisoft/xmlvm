@@ -25,7 +25,6 @@ import org.xmlvm.iphone.UIView;
 import android.content.Context;
 import android.internal.UIToggleButton;
 import android.util.AttributeSet;
-import android.view.View.OnClickListener;
 
 /**
  * @author arno
@@ -35,18 +34,28 @@ public class ToggleButton extends CompoundButton {
 
     public ToggleButton(Context c) {
         super(c);
+        init(c, null);
     }
 
     public ToggleButton(Context c, AttributeSet attrs) {
         super(c, attrs);
+        init(c, attrs);
     }
 
-    protected void parseAttributes(AttributeSet attrs) {
-        super.parseAttributes(attrs);
+    private void init(Context c, AttributeSet attrs) {
+        if (attrs != null && attrs.getAttributeCount() > 0) {
+            parseAttributes(attrs);
+        }
+    }
+    private void parseAttributes(AttributeSet attrs) {
+        setIgnoreRequestLayout(true);
+        
         String value = attrs.getAttributeValue(null, "textOn");
         setTextOn(value != null ? value : "");
         value = attrs.getAttributeValue(null, "textOff");
         setTextOff(value != null ? value : "");
+        
+        setIgnoreRequestLayout(false);
     }
 
     @Override

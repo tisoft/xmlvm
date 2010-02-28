@@ -44,14 +44,22 @@ public class TextView extends View {
     private static final int INSETS_X = 0;
     private static final int INSETS_Y = 0;
 
-    protected String         text = "";
+    protected String         text     = "";
 
     public TextView(Context c) {
         super(c);
+        init(c, null);
     }
 
     public TextView(Context c, AttributeSet attrs) {
         super(c, attrs);
+        init(c, attrs);
+    }
+
+    private void init(Context c, AttributeSet attrs) {
+        if (attrs != null && attrs.getAttributeCount() > 0) {
+            parseAttributes(attrs);
+        }
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
@@ -121,11 +129,13 @@ public class TextView extends View {
         return (UILabel) xmlvmGetUIView();
     }
 
-    protected void parseAttributes(AttributeSet attrs) {
-        super.parseAttributes(attrs);
+    private void parseAttributes(AttributeSet attrs) {
+        setIgnoreRequestLayout(true);
 
         String value = attrs.getAttributeValue(null, "text");
         setText(value != null ? value : "");
+
+        setIgnoreRequestLayout(false);
     }
 
     @Override

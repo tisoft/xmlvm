@@ -260,15 +260,11 @@ public class View {
     }
 
     public View(Context c) {
-        init(c, new ResourceAttributes(getContext(), "", new HashMap<String, String>()));
+        init(c, null);
     }
 
     public View(Context c, AttributeSet attrs) {
         init(c, attrs);
-
-        setIgnoreRequestLayout(true);
-        parseAttributes(attrs);
-        setIgnoreRequestLayout(false);
     }
 
     public View(Context c, AttributeSet attrs, int defStyle) {
@@ -311,6 +307,10 @@ public class View {
 
         uiView.setDelegate(responderDelegate);
         uiView.setUserInteractionEnabled(true);
+        
+        if (attrs != null && attrs.getAttributeCount() > 0) {
+            parseAttributes(attrs);
+        }
     }
 
     public ViewGroup.LayoutParams getLayoutParams() {
@@ -391,7 +391,9 @@ public class View {
         uiView.setDelegate(null);
     }
 
-    protected void parseAttributes(AttributeSet attrs) {
+    private void parseAttributes(AttributeSet attrs) {
+        setIgnoreRequestLayout(true);
+        
         setId(attrs.getIdAttributeResourceValue(0));
 
         String str = attrs.getAttributeValue(null, "visibility");
@@ -431,6 +433,8 @@ public class View {
         pb = d > 0 ? d : pb;
 
         setPadding(pl, pt, pr, pb);
+        
+        setIgnoreRequestLayout(false);
     }
 
     public void setId(int id) {

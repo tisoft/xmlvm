@@ -37,14 +37,20 @@ public class EditText extends TextView {
 
     public EditText(Context c) {
         super(c);
-
-        getUITextField().setText("");
+        init(c, null);
     }
 
     public EditText(Context c, AttributeSet attrs) {
         super(c, attrs);
+        init(c, attrs);
+    }
+
+    private void init(Context c, AttributeSet attrs) {
         getUITextField().setText("");
-        parseAttributes(attrs);
+
+        if (attrs != null && attrs.getAttributeCount() > 0) {
+            parseAttributes(attrs);
+        }
     }
 
     public Object getText() {
@@ -80,8 +86,12 @@ public class EditText extends TextView {
         return (UITextField) xmlvmGetUIView();
     }
 
-    protected void parseAttributes(AttributeSet attrs) {
-        super.parseAttributes(attrs);
+    private void parseAttributes(AttributeSet attrs) {
+        setIgnoreRequestLayout(true);
+
+        // Implementation of attribute parsing
+
+        setIgnoreRequestLayout(false);
     }
 
     protected UIFont xmlvmGetUIFont() {

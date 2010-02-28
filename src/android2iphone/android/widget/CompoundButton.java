@@ -45,14 +45,26 @@ public abstract class CompoundButton extends Button {
 
     public CompoundButton(Context c) {
         super(c);
+        init(c, null);
     }
 
     public CompoundButton(Context c, AttributeSet attrs) {
         super(c, attrs);
+        init(c, attrs);
     }
 
-    protected void parseAttributes(AttributeSet attrs) {
-        super.parseAttributes(attrs);
+    private void init(Context c, AttributeSet attrs) {
+        if (attrs != null && attrs.getAttributeCount() > 0) {
+            parseAttributes(attrs);
+        }
+    }
+
+    private void parseAttributes(AttributeSet attrs) {
+        setIgnoreRequestLayout(true);
+
+        // Implementation of attribute parsing
+
+        setIgnoreRequestLayout(false);
     }
 
     public void setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener listener) {
