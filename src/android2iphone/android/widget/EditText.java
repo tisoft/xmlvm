@@ -37,19 +37,19 @@ public class EditText extends TextView {
 
     public EditText(Context c) {
         super(c);
-        init(c, null);
+        initEditText(c, null);
     }
 
     public EditText(Context c, AttributeSet attrs) {
         super(c, attrs);
-        init(c, attrs);
+        initEditText(c, attrs);
     }
 
-    private void init(Context c, AttributeSet attrs) {
+    private void initEditText(Context c, AttributeSet attrs) {
         getUITextField().setText("");
 
         if (attrs != null && attrs.getAttributeCount() > 0) {
-            parseAttributes(attrs);
+            parseEditTextAttributes(attrs);
         }
     }
 
@@ -86,7 +86,7 @@ public class EditText extends TextView {
         return (UITextField) xmlvmGetUIView();
     }
 
-    private void parseAttributes(AttributeSet attrs) {
+    private void parseEditTextAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
 
         // Implementation of attribute parsing

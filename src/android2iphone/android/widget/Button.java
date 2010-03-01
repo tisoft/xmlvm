@@ -42,17 +42,17 @@ public class Button extends TextView {
 
     public Button(Context c) {
         super(c);
-        init(c, null);
+        initButton(c, null);
     }
 
     public Button(Context c, AttributeSet attrs) {
         super(c, attrs);
-        init(c, attrs);
+        initButton(c, attrs);
     }
 
-    private void init(Context c, AttributeSet attrs) {
+    private void initButton(Context c, AttributeSet attrs) {
         if (attrs != null && attrs.getAttributeCount() > 0) {
-            parseAttributes(attrs);
+            parseButtonAttributes(attrs);
         }
     }
 
@@ -103,7 +103,7 @@ public class Button extends TextView {
         return UIButton.buttonWithType(UIButtonType.RoundedRect);
     }
 
-    private void parseAttributes(AttributeSet attrs) {
+    private void parseButtonAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
 
         // Implementation of attribute parsing

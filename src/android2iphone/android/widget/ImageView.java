@@ -104,12 +104,12 @@ public class ImageView extends View {
 
     public ImageView(Context c) {
         super(c);
-        init(c, null);
+        initImageView(c, null);
     }
 
     public ImageView(Context c, AttributeSet attrs) {
         super(c, attrs);
-        init(c, attrs);
+        initImageView(c, attrs);
     }
 
     public ImageView(Context c, AttributeSet attrs, int defStyle) {
@@ -117,11 +117,11 @@ public class ImageView extends View {
         Assert.NOT_IMPLEMENTED();
     }
 
-    private void init(Context c, AttributeSet attrs) {
+    private void initImageView(Context c, AttributeSet attrs) {
         setScaleType(ScaleType.CENTER);
 
         if (attrs != null && attrs.getAttributeCount() > 0) {
-            parseAttributes(attrs);
+            parseImageViewAttributes(attrs);
         }
     }
 
@@ -210,7 +210,7 @@ public class ImageView extends View {
         setMeasuredDimension(width, height);
     }
 
-    private void parseAttributes(AttributeSet attrs) {
+    private void parseImageViewAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
 
         String str = attrs.getAttributeValue(null, "src");

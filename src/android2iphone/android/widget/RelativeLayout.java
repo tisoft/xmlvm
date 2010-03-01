@@ -156,17 +156,17 @@ public class RelativeLayout extends ViewGroup {
 
     public RelativeLayout(Context context) {
         super(context);
-        init(context, null);
+        initRelativeLayout(context, null);
     }
 
     public RelativeLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context, attrs);
+        initRelativeLayout(context, attrs);
     }
 
-    private void init(Context c, AttributeSet attrs) {
+    private void initRelativeLayout(Context c, AttributeSet attrs) {
         if (attrs != null && attrs.getAttributeCount() > 0) {
-            parseAttributes(attrs);
+            parseRelativeLayoutAttributes(attrs);
         }
     }
 
@@ -922,7 +922,7 @@ public class RelativeLayout extends ViewGroup {
         return new LayoutParams(p);
     }
 
-    private void parseAttributes(AttributeSet attrs) {
+    private void parseRelativeLayoutAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
 
         setGravity(Gravity.parseGravity(attrs.getAttributeValue(null, "gravity"), 0));

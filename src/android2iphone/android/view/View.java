@@ -260,18 +260,18 @@ public class View {
     }
 
     public View(Context c) {
-        init(c, null);
+        initView(c, null);
     }
 
     public View(Context c, AttributeSet attrs) {
-        init(c, attrs);
+        initView(c, attrs);
     }
 
     public View(Context c, AttributeSet attrs, int defStyle) {
         Assert.NOT_IMPLEMENTED();
     }
 
-    private void init(Context c, AttributeSet attrs) {
+    private void initView(Context c, AttributeSet attrs) {
         flags |= FORCE_LAYOUT;
         this.c = c;
         mResources = c != null ? c.getResources() : null;
@@ -309,7 +309,7 @@ public class View {
         uiView.setUserInteractionEnabled(true);
         
         if (attrs != null && attrs.getAttributeCount() > 0) {
-            parseAttributes(attrs);
+            parseViewAttributes(attrs);
         }
     }
 
@@ -391,7 +391,7 @@ public class View {
         uiView.setDelegate(null);
     }
 
-    private void parseAttributes(AttributeSet attrs) {
+    private void parseViewAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
         
         setId(attrs.getIdAttributeResourceValue(0));

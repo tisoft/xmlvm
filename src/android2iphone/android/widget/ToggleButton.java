@@ -34,20 +34,20 @@ public class ToggleButton extends CompoundButton {
 
     public ToggleButton(Context c) {
         super(c);
-        init(c, null);
+        initToggleButton(c, null);
     }
 
     public ToggleButton(Context c, AttributeSet attrs) {
         super(c, attrs);
-        init(c, attrs);
+        initToggleButton(c, attrs);
     }
 
-    private void init(Context c, AttributeSet attrs) {
+    private void initToggleButton(Context c, AttributeSet attrs) {
         if (attrs != null && attrs.getAttributeCount() > 0) {
-            parseAttributes(attrs);
+            parseToggleButtonAttributes(attrs);
         }
     }
-    private void parseAttributes(AttributeSet attrs) {
+    private void parseToggleButtonAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
         
         String value = attrs.getAttributeValue(null, "textOn");

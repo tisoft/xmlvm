@@ -38,12 +38,12 @@ public class ProgressBar extends View {
 
     public ProgressBar(Context c) {
         super(c);
-        init(c, null);
+        initProgressBar(c, null);
     }
 
     public ProgressBar(Context c, AttributeSet attrs) {
         super(c, attrs);
-        init(c, attrs);
+        initProgressBar(c, attrs);
     }
 
     @Override
@@ -55,13 +55,13 @@ public class ProgressBar extends View {
         return activityIndicator;
     }
 
-    private void init(Context c, AttributeSet attrs) {
+    private void initProgressBar(Context c, AttributeSet attrs) {
         if (attrs != null && attrs.getAttributeCount() > 0) {
-            parseAttributes(attrs);
+            parseProgressBarAttributes(attrs);
         }
     }
 
-    private void parseAttributes(AttributeSet attrs) {
+    private void parseProgressBarAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
         
         // Implementation of attribute parsing

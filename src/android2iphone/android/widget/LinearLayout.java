@@ -83,17 +83,17 @@ public class LinearLayout extends ViewGroup {
 
     public LinearLayout(Context context) {
         super(context);
-        init(context, null);
+        initLinearLayout(context, null);
     }
 
     public LinearLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context, attrs);
+        initLinearLayout(context, attrs);
     }
 
-    private void init(Context c, AttributeSet attrs) {
+    private void initLinearLayout(Context c, AttributeSet attrs) {
         if (attrs != null && attrs.getAttributeCount() > 0) {
-            parseAttributes(attrs);
+            parseLinearLayoutAttributes(attrs);
         }
     }
 
@@ -1242,7 +1242,7 @@ public class LinearLayout extends ViewGroup {
         return p instanceof LinearLayout.LayoutParams;
     }
 
-    private void parseAttributes(AttributeSet attrs) {
+    private void parseLinearLayoutAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
 
         String str = attrs.getAttributeValue(null, "orientation");

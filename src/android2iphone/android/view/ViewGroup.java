@@ -142,26 +142,26 @@ public class ViewGroup extends View implements ViewParent {
 
     public ViewGroup(Context c) {
         super(c);
-        init(c, null);
+        initViewGroup(c, null);
     }
 
     public ViewGroup(Context c, AttributeSet attrs) {
         super(c, attrs);
-        init(c, attrs);
+        initViewGroup(c, attrs);
     }
 
     public ViewGroup(Context context, AttributeSet attrs, int defStyle) {
         this(context, attrs);
     }
 
-    private void init(Context c, AttributeSet attrs) {
+    private void initViewGroup(Context c, AttributeSet attrs) {
         this.subViews = new ArrayList<View>();
 
         CGRect rect = ((Activity) c).getWindow().getCGRect();
         this.xmlvmGetUIView().setFrame(rect);
 
         if (attrs != null && attrs.getAttributeCount() > 0) {
-            parseAttributes(attrs);
+            parseViewGroupAttributes(attrs);
         }
     }
 
@@ -243,7 +243,7 @@ public class ViewGroup extends View implements ViewParent {
         return new LayoutParams(getContext(), attrs);
     }
 
-    private void parseAttributes(AttributeSet attrs) {
+    private void parseViewGroupAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
 
         // Implementation of attribute parsing

@@ -56,7 +56,7 @@ public class FrameLayout extends ViewGroup {
 
     public FrameLayout(Context context) {
         super(context);
-        init(context, null);
+        initFrameLayout(context, null);
     }
 
     public FrameLayout(Context context, AttributeSet attrs) {
@@ -65,12 +65,12 @@ public class FrameLayout extends ViewGroup {
 
     public FrameLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init(context, attrs);
+        initFrameLayout(context, attrs);
     }
 
-    private void init(Context c, AttributeSet attrs) {
+    private void initFrameLayout(Context c, AttributeSet attrs) {
         if (attrs != null && attrs.getAttributeCount() > 0) {
-            parseAttributes(attrs);
+            parseFrameLayoutAttributes(attrs);
         }
     }
 
@@ -451,7 +451,7 @@ public class FrameLayout extends ViewGroup {
         }
     }
 
-    private void parseAttributes(AttributeSet attrs) {
+    private void parseFrameLayoutAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
 
         mForegroundGravity = Gravity.parseGravity(attrs

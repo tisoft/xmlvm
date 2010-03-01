@@ -45,21 +45,21 @@ public abstract class CompoundButton extends Button {
 
     public CompoundButton(Context c) {
         super(c);
-        init(c, null);
+        initCompoundButton(c, null);
     }
 
     public CompoundButton(Context c, AttributeSet attrs) {
         super(c, attrs);
-        init(c, attrs);
+        initCompoundButton(c, attrs);
     }
 
-    private void init(Context c, AttributeSet attrs) {
+    private void initCompoundButton(Context c, AttributeSet attrs) {
         if (attrs != null && attrs.getAttributeCount() > 0) {
-            parseAttributes(attrs);
+            parseCompoundButtonAttributes(attrs);
         }
     }
 
-    private void parseAttributes(AttributeSet attrs) {
+    private void parseCompoundButtonAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
 
         // Implementation of attribute parsing
