@@ -39,6 +39,9 @@ import android.util.Log;
 
 public class Resources {
 
+    /** The name of the directory holding the application's resources. */
+    private static final String         RES_DIR     = "res";
+
     /** A map holding the mapping from IDs to variable names. */
     private Map<Integer, String>        idToNameMap = new HashMap<Integer, String>();
 
@@ -83,8 +86,10 @@ public class Resources {
     public NSData getLayout(int resourceId) {
         NSData theFile = layoutMap.get(new Integer(resourceId));
         if (theFile == null) {
-            String fileName = getFileNamePath(findResourceNameById(resourceId));
-            String filePath = NSBundle.mainBundle().pathForResource(fileName, "xml");
+            String resourceName = getResourceName(findResourceNameById(resourceId));
+            String resourceDir = getResourceDirectory(findResourceNameById(resourceId));
+            String filePath = NSBundle.mainBundle().pathForResource(resourceName, "xml",
+                    resourceDir);
             theFile = NSData.dataWithContentsOfFile(filePath);
             layoutMap.put(new Integer(resourceId), theFile);
         }
@@ -169,11 +174,18 @@ public class Resources {
     }
 
     private String getFileNamePath(String filePath) {
-        int i = filePath.lastIndexOf('/');
-        String fileName = filePath.substring(i + 1);
-        return fileName;
+        return RES_DIR + "/" + filePath;
+    }
 
-        // return RES_DIR + "/" + filePath;
+    private String getResourceName(String filePath) {
+        int i = filePath.lastIndexOf('/');
+        return i >= 0 ? filePath.substring(i + 1) : filePath;
+    }
+
+    private String getResourceDirectory(String filePath) {
+        String fileName = RES_DIR + "/" + filePath;
+        int i = fileName.lastIndexOf('/');
+        return i >= 0 ? fileName.substring(0, i) : null;
     }
 
     /**
@@ -192,7 +204,7 @@ public class Resources {
     public String getText(int id) {
         return getString(id);
     }
-    
+
     private String getValuesDir() {
         // TODO: The returned directory name should be locale dependant
         // Instead of simple returning the default value the implementation
@@ -201,14 +213,14 @@ public class Resources {
 
         // Currently all resource files have to accessible in the classpath's
         // root
-        return "";
+        return RES_DIR + "/values/";
     }
-    
+
     public DisplayMetrics getDisplayMetrics() {
         Assert.NOT_IMPLEMENTED();
         return null;
     }
-    
+
     public Configuration getConfiguration() {
         Assert.NOT_IMPLEMENTED();
         return null;

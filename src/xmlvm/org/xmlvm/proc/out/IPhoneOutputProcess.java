@@ -35,11 +35,12 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
 
     private static final String IPHONE_COMPAT_LIB_JAR  = "/iphone/compat-lib.jar";
     private static final String IPHONE_COMPAT_LIB_PATH = "src/xmlvm2objc/compat-lib/objc";
-    private static final String IPHONE_SRC             = "/src";
     private List<OutputFile>    result                 = new ArrayList<OutputFile>();
+    public static final String  IPHONE_SRC             = "/src/xmlvm";
     public static final String  IPHONE_SRC_LIB         = IPHONE_SRC + "/lib/iphone";
     public static final String  IPHONE_SRC_APP         = IPHONE_SRC + "/app";
-    public static final String  IPHONE_RESOURCES       = "/resources";
+    public static final String  IPHONE_RESOURCES_SYS   = "/resources/sys";
+    public static final String  IPHONE_RESOURCES_APP   = "/resources/app";
 
     public IPhoneOutputProcess(Arguments arguments) {
         super(arguments);
@@ -94,10 +95,10 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
             String line = null;
             while ((line = infoIn.readLine()) != null) {
                 line = line.replaceAll("XMLVM_APP", arguments.option_app_name());
-                infoOut.append(line + "\n");
+                infoOut.append(line).append("\n");
             }
             OutputFile infoPlistFile = new OutputFile(infoOut.toString());
-            infoPlistFile.setLocation(arguments.option_out());
+            infoPlistFile.setLocation(arguments.option_out() + IPHONE_RESOURCES_SYS);
             infoPlistFile.setFileName(arguments.option_app_name() + "-Info.plist");
             result.add(infoPlistFile);
         } catch (IOException ex) {
@@ -108,7 +109,9 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
         /* Add resources, as defined */
         for (String resourcedir : arguments.option_resource()) {
             List<ResourceOutputFile> resources = ResourceOutputFile.listResources(resourcedir,
-                    arguments.option_out() + IPHONE_RESOURCES);
+                    arguments.option_out() + IPHONE_RESOURCES_APP,
+                    arguments.option_out() + IPHONE_SRC_APP
+                    );
             result.addAll(resources);
         }
 

@@ -98,8 +98,7 @@ class DrawableParser extends NSXMLParserDelegate {
         if (elementName.equals("solid")) {
             int color = attrs.getAttributeIntValue(null, "color", 0);
             ((GradientDrawable) drawable).setColor(color);
-        }
-        else if (elementName.equals("padding")) {
+        } else if (elementName.equals("padding")) {
             int left = Dimension.resolveDimension(attrs.getAttributeValue(null, "left"));
             left = left < 0 ? 0 : left;
 
@@ -108,10 +107,10 @@ class DrawableParser extends NSXMLParserDelegate {
 
             int right = Dimension.resolveDimension(attrs.getAttributeValue(null, "right"));
             right = right < 0 ? 0 : right;
-            
+
             int bottom = Dimension.resolveDimension(attrs.getAttributeValue(null, "bottom"));
             bottom = bottom < 0 ? 0 : bottom;
-            
+
             ((GradientDrawable) drawable).xmlvmSetPadding(left, top, right, bottom);
         }
     }
@@ -201,7 +200,9 @@ class StringsParser extends NSXMLParserDelegate {
 public class ResourceParser {
 
     public static Drawable parseDrawable(Context context, String fileName) {
-        String filePath = NSBundle.mainBundle().pathForResource(fileName, "xml");
+        String resourceName = getResourceName(fileName);
+        String resourceDir = getResourceDirectory(fileName);
+        String filePath = NSBundle.mainBundle().pathForResource(resourceName, "xml", resourceDir);
         NSData content = NSData.dataWithContentsOfFile(filePath);
 
         DrawableParser delegate = new DrawableParser(context);
@@ -216,7 +217,9 @@ public class ResourceParser {
 
     public static Map<Integer, String> parseStrings(Context context, String fileName,
             Map<String, Integer> nameToIdMap) {
-        String filePath = NSBundle.mainBundle().pathForResource(fileName, "xml");
+        String resourceName = getResourceName(fileName);
+        String resourceDir = getResourceDirectory(fileName);
+        String filePath = NSBundle.mainBundle().pathForResource(resourceName, "xml", resourceDir);
         NSData content = NSData.dataWithContentsOfFile(filePath);
 
         StringsParser delegate = new StringsParser(context, nameToIdMap);
@@ -237,6 +240,16 @@ public class ResourceParser {
         xmlParser.setDelegate(delegate);
 
         return xmlParser;
+    }
+
+    private static String getResourceName(String resourcePath) {
+        int i = resourcePath.lastIndexOf('/');
+        return i >= 0 ? resourcePath.substring(i + 1) : resourcePath;
+    }
+
+    private static String getResourceDirectory(String resourcePath) {
+        int i = resourcePath.lastIndexOf('/');
+        return i >= 0 ? resourcePath.substring(0, i) : null;
     }
 
 }

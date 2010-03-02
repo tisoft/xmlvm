@@ -7,23 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3 /* Foundation.framework */; };
-		4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5 /* UIKit.framework */; };
-		6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7 /* CoreGraphics.framework */; };
-		28 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29 /* AVFoundation.framework */; };
-		30 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31 /* QuartzCore.framework */; };
-		32 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33 /* OpenGLES.framework */; };
 __BUILDREFS__/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1 /* __PROJNAME__.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = __PROJNAME__.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		29 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		31 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		33 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		8 /* __PROJNAME__-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "__PROJNAME__-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = SOURCE_ROOT; };
+		8 /* __PROJNAME__-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "__PROJNAME__-Info.plist" ; path = "sys/__PROJNAME__-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 __FILEREFS__/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,13 +19,7 @@ __FILEREFS__/* End PBXFileReference section */
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2 /* Foundation.framework in Frameworks */,
-				4 /* UIKit.framework in Frameworks */,
-				6 /* CoreGraphics.framework in Frameworks */,
-				28 /* AVFoundation.framework in Frameworks */,
-				30 /* QuartzCore.framework in Frameworks */,
-				32 /* OpenGLES.framework in Frameworks */,
-			);
+__BUILDFRAMS__			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -48,7 +30,7 @@ __FILEREFS__/* End PBXFileReference section */
 			children = (
 __APPSRC__			);
 			name = Application;
-			path = src/app;
+			path = src/xmlvm/app;
 			sourceTree = "<group>";
 		};
 		25 /* Library */ = {
@@ -65,7 +47,7 @@ __APPSRC__			);
 			children = (
 __IPHONESRC__			);
 			name = iPhone;
-			path = src/lib/iphone;
+			path = src/xmlvm/lib/iphone;
 			sourceTree = "<group>";
 		};
 		26 /* Android */ = {
@@ -73,7 +55,7 @@ __IPHONESRC__			);
 			children = (
 __ANDROIDSRC__			);
 			name = Android;
-			path = src/lib/android;
+			path = src/xmlvm/lib/android;
 			sourceTree = "<group>";
 		};
 		11 /* MainGroup */ = {
@@ -100,13 +82,7 @@ __RESOURCES__				8 /* __PROJNAME__-Info.plist */,
 		13 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5 /* UIKit.framework */,
-				3 /* Foundation.framework */,
-				7 /* CoreGraphics.framework */,
-				29 /* AVFoundation.framework */,
-				31 /* QuartzCore.framework */,
-				33 /* OpenGLES.framework */,
-			);
+__FRAMEWORKS__			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
@@ -125,9 +101,10 @@ __RESOURCES__				8 /* __PROJNAME__-Info.plist */,
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15 /* Build configuration list for PBXNativeTarget "__PROJNAME__" */;
 			buildPhases = (
-				16 /* Resources */,
+				16 /* Other Resources */,
 				17 /* Sources */,
 				9 /* Frameworks */,
+				34 /* XMLVM Resources */,
 			);
 			buildRules = (
 			);
@@ -164,6 +141,22 @@ __RESOURCES_BUILD__			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		34 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "if [ -d ${SOURCE_ROOT}/resources/app ] ; then\n\tRESDEST=${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\n\tmkdir -p ${RESDEST}\t\n\tcp -r ${SOURCE_ROOT}/resources/app/* ${RESDEST}/\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		17 /* Sources */ = {
@@ -210,7 +203,7 @@ __SRC_BUILD__			);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				INFOPLIST_FILE = "__PROJNAME__-Info.plist";
+				INFOPLIST_FILE = "resources/sys/__PROJNAME__-Info.plist";
 				PRODUCT_NAME = __PROJNAME__;
 			};
 			name = Debug;
@@ -221,7 +214,7 @@ __SRC_BUILD__			);
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				INFOPLIST_FILE = "__PROJNAME__-Info.plist";
+				INFOPLIST_FILE = "resources/sys/__PROJNAME__-Info.plist";
 				PRODUCT_NAME = __PROJNAME__;
 			};
 			name = Release;

@@ -469,7 +469,7 @@
 			<arg value="--target=iphone" />
 			<arg value="--app-name=iSound" />
 			<arg value="--in=${xmlvm.isound}/" />
-			<arg value="--resource=demo/iphone/isound/res"/>
+			<arg value="--resource=demo/iphone/isound/res/"/>
 		</java>
 	</target>
 
@@ -506,7 +506,7 @@
 			<arg value="--target=iphone" />
 			<arg value="--app-name=iFireworks" />
 			<arg value="--in=${xmlvm.ifireworks}/" />
-			<arg value="--resource=demo/iphone/ifireworks/ires"/>
+			<arg value="--resource=demo/iphone/ifireworks/ires/"/>
 		</java>
 	</target>
 
@@ -534,11 +534,9 @@
 			<fileset dir="var/iphone">
 				<include name="*.png/" />
 			</fileset>
-			<fileset dir="demo/android/afireworks/res/drawable">
-				<include name="star*.png" />
-			</fileset>
 			<fileset dir="demo/android/afireworks">
 				<include name="*.xml" />
+				<include name="res/**" />
 			</fileset>
 		</jar>
 	</target>
@@ -551,7 +549,7 @@
 			<arg value="--target=android-on-iphone" />
 			<arg value="--app-name=aFireworks" />
 			<arg value="--in=${xmlvm.afireworks}/" />
-			<arg value="--resource=demo/android/afireworks/res/drawable"/>
+			<arg value="--resource=demo/android/afireworks/res"/>
 			<arg value="--resource=demo/android/afireworks/AndroidManifest.xml"/>
 		</java>
 	</target>
@@ -619,11 +617,9 @@
 			<fileset dir="var/iphone">
 				<include name="*.png/" />
 			</fileset>
-			<fileset dir="demo/android/xokoban/res/drawable">
-				<include name="*.png" />
-			</fileset>
 			<fileset dir="demo/android/xokoban">
 				<include name="*.xml" />
+				<include name="res/**" />
 			</fileset>
 		</jar>
 	</target>
@@ -636,7 +632,7 @@
 			<arg value="--target=android-on-iphone" />
 			<arg value="--app-name=Xokoban" />
 			<arg value="--in=${xmlvm.xokoban}/" />
-			<arg value="--resource=demo/android/xokoban/res/drawable" />
+			<arg value="--resource=demo/android/xokoban/res" />
 			<arg value="--resource=demo/android/xokoban/AndroidManifest.xml" />
 		</java>
 	</target>
@@ -667,12 +663,7 @@
 			</fileset>
 			<fileset dir="demo/android/sayhello">
 				<include name="*.xml" />
-			</fileset>
-			<fileset dir="demo/android/sayhello/res/drawable">
-				<include name="*.png" />
-			</fileset>
-			<fileset dir="demo/android/sayhello/res/layout">
-				<include name="*.xml" />
+				<include name="res/**" />
 			</fileset>
 		</jar>
 	</target>
@@ -685,9 +676,8 @@
 			<arg value="--target=android-on-iphone" />
 			<arg value="--app-name=SayHello" />
 			<arg value="--in=${xmlvm.sayhello}/" />
-			<arg value="--resource=demo/android/sayhello/res/layout"/>
-			<arg value="--resource=demo/android/sayhello/res/drawable"/>
 			<arg value="--resource=demo/android/sayhello/AndroidManifest.xml"/>
+			<arg value="--resource=demo/android/sayhello/res"/>
 		</java>
 	</target>
 

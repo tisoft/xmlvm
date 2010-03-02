@@ -158,6 +158,11 @@ public class FileUtil {
      */
     public static boolean copyFile(File source, File destination) {
         try {
+            if (source.equals(destination)) {
+                Log.debug("Ignoring copying of file " + source.getPath() + ": destination is same as source.");
+                return true;
+            }
+            Log.debug("Copying " + source.getPath() + " to " + destination.getPath());
             return copyStreams(new FileInputStream(source), new FileOutputStream(destination));
         } catch (FileNotFoundException ex) {
         }

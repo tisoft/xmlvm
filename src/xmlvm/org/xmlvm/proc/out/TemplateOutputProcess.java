@@ -38,11 +38,18 @@ public class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputProcess> {
     private static final String     IPHONE_TEMPL_PROJNAME  = "__PROJNAME__";
     private static final String     IPHONE_TEMPL_JAR_PATH  = "/iphone/netbeans/";
     private static final String     IPHONE_TEMPL_FILE_PATH = "var/iphone/netbeans/";
-    private static final String[][] Files                  = { { "Main.java", "src/xmlvm/" },
-            { "build-impl.xml", "nbproject/" }, { "build.xml", "" },
-            { "genfiles.properties", "nbproject/" }, { "manifest.mf", "" },
-            { "project.properties", "nbproject/" }, { "project.xml", "nbproject/" },
-            { ".project", "" }, { ".classpath", "" }      };
+    private static final String[][] Files                  = {
+            { "Main.java", "src/java/xmlvm/" },
+            { "build.xml", "" },
+            { "manifest.mf", "" },
+            { "build-impl.xml", "nbproject/" },
+            { "xcode.xml", "nbproject/"},
+            { "genfiles.properties", "nbproject/" },
+            { "project.properties", "nbproject/" },
+            { "project.xml", "nbproject/" },
+            { ".project", "" },
+            { ".classpath", "" }
+            };
     private List<OutputFile>        result                 = new ArrayList<OutputFile>();
 
     public TemplateOutputProcess(Arguments arguments) {

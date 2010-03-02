@@ -37,12 +37,21 @@ public class NSBundle {
         return mainBundle;
     }
 
-    public String pathForResource(String resource, String type) {
+    public String pathForResource(String resource, String type, String directory) {
         String fileName = new String(resource);
         if (type != null) {
             fileName = fileName.concat("." + type);
         }
+        
+        if (directory != null) {
+            fileName = directory + "/" + fileName;
+        }
+        
         URL url = this.getClass().getResource("/" + fileName);
         return url.getFile();
+    }
+    
+    public String pathForResource(String resource, String type) {
+        return pathForResource(resource, type, null);
     }
 }

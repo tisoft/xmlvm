@@ -221,9 +221,9 @@ public class Arguments {
             else if (option_target == Targets.WEBOS) {
             } else
                 parseError("--lib=android is meaningless when not --target=[iphone|webos]");
-        }
-        if (option_lib.size() > 0)
-            parseError("--lib=" + option_lib.get(0) + " is not supported");
+            }
+        if (option_lib.size() > 0 && option_target != Targets.IPHONE)
+            parseError("--lib=" + option_lib.get(0) + " is not supported for this target");
 
         // Only skeleton creation mode supports empty inputs.
         if ((option_skeleton == null || option_skeleton.isEmpty()) && option_in.size() == 0)
@@ -273,6 +273,10 @@ public class Arguments {
 
     public boolean option_use_jvm() {
         return option_use_jvm;
+    }
+
+    public List<String> option_lib() {
+        return option_lib;
     }
 
     private static final void printText(String[] txt, PrintStream out) {

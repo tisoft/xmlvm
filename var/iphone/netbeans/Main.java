@@ -3,7 +3,6 @@
  */
 package xmlvm;
 
-import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UIScreen;
@@ -14,17 +13,15 @@ import org.xmlvm.iphone.UIWindow;
 public class Main extends UIApplication {
 
     public void applicationDidFinishLaunching(UIApplication app) {
-        UIScreen mainscreen = UIScreen.mainScreen();
-        CGRect rect = mainscreen.getApplicationFrame();
-        UIWindow window = new UIWindow(rect);
+        UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
 
-        rect.origin.x = rect.origin.y = 0;
-        UIView mainView = new UIView(rect);
+        UIView mainView = new UIView(window.getFrame());
         window.addSubview(mainView);
 
-        UILabel title = new UILabel(rect);
+        UILabel title = new UILabel(window.getFrame());
         title.setText("Hello World!");
         title.setTextAlignment(UITextAlignment.Center);
+        
         mainView.addSubview(title);
 
         window.makeKeyAndVisible();

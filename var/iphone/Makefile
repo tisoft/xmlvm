@@ -12,7 +12,7 @@ DEPLOY_DIR=$(HOME)/Library/Application\ Support/iPhone\ Simulator/User/Applicati
 DEPLOY_UUID=$(PRODUCT_NAME)
  
 
-SRCROOT=src
+SRCROOT=src/xmlvm
 RESOURCES=resources
 
 BUILT_PRODUCTS_DIR=build
@@ -46,7 +46,7 @@ EXECUTABLE_NAME=$(PRODUCT_NAME)
 
 SOURCES_ABS=$(addprefix ./,$(ALL_SOURCES))
 
-INFOPLIST_ABS=$(addprefix ./,$(INFOPLIST_FILE))
+INFOPLIST_ABS=$(addprefix ./resources/sys/,$(INFOPLIST_FILE))
 
 OBJECTS=\
 	$(patsubst $(SRCROOT)/%.c,%.o,$(filter %.c,$(ALL_SOURCES))) \

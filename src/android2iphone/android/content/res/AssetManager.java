@@ -29,12 +29,29 @@ import org.xmlvm.iphone.NSBundle;
 
 public/* abstract */class AssetManager {
 
+    private static final String ASSETS_DIR = "assets/";
+    
     public final AssetFileDescriptor openFd(String fileName) throws IOException {
-        String filePath = NSBundle.mainBundle().pathForResource(fileName, null);
+        String resourceName = getResourceName(fileName);
+        String resourceDir = getResourceDirectory(fileName);
+        String filePath = NSBundle.mainBundle().pathForResource(resourceName, null, resourceDir);
         File f = new File(filePath);
         if (!f.exists()) {
             throw new FileNotFoundException();
         }
         return new AssetFileDescriptor(f);
     }
+    
+    private String getResourceName(String filePath) {
+        int i = filePath.lastIndexOf('/');
+        return i >= 0 ? filePath.substring(i + 1) : filePath;
+    }
+
+    private String getResourceDirectory(String filePath) {
+        String fileName = ASSETS_DIR + filePath;
+        int i = fileName.lastIndexOf('/');
+        return i >= 0 ? fileName.substring(0, i) : null;
+    }
+
+
 }

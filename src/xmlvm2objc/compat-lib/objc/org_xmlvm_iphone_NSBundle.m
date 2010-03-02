@@ -39,5 +39,17 @@
 	return [[NSMutableString alloc] initWithString: path];
 }
 
+- (java_lang_String*) pathForResource___java_lang_String_java_lang_String_java_lang_String
+																		 : (java_lang_String*) resource
+                                                                         : (java_lang_String*) type
+                                                                         : (java_lang_String*) directory
+{
+	NSString* path = [self pathForResource: resource ofType: (type == [NSNull null] ? nil : type) inDirectory: (directory == [NSNull null] ? nil : directory)];
+	if (path == nil) {
+		return [NSNull null];
+	}
+	return [[NSMutableString alloc] initWithString: path];
+}
+
 @end
 

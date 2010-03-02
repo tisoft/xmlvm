@@ -10,6 +10,7 @@
 <project name="__PROJNAME__" default="default" basedir=".">
     <description>Builds, tests, and runs the project __PROJNAME__.</description>
     <import file="nbproject/build-impl.xml"/>
+    <import file="nbproject/xcode.xml"/>
     <!--
 
     There exist several targets which are by default empty and which can be 
@@ -72,31 +73,6 @@
 
     -->
 
-    <uptodate property="native.notrequired" targetfile="build/${ant.project.name}/${ant.project.name}.xcodeproj/project.pbxproj">
-        <srcfiles dir= "./src" includes="**/*.java"/>
-        <srcfiles dir="./lib" includes="xmlvm.jar"/>
-    </uptodate>
-    <target name="native" depends="compile" unless="native.notrequired">
-        <echo message="Building native code"/>
-        <java jar="lib/xmlvm.jar" fork="true">
-            <arg value="--in=build/classes"/>
-            <arg value="--out=build/${ant.project.name}"/>
-            <arg value="--target=iphone"/>
-            <arg value="--app-name=${ant.project.name}"/>
-        </java>
-    </target>
-
-    <target name="compile-native" depends="native">
-        <exec executable="make" dir="build/${ant.project.name}">
-            <arg value="compile"/>
-        </exec>
-    </target>
-
-    <target name="run-native" depends="compile-native">
-        <exec executable="make" dir="build/${ant.project.name}">
-            <arg value="deploy"/>
-            <arg value="run"/>
-        </exec>
-    </target>
+	<target name="-post-compile" depends="-copy-resources"/>
 
 </project>

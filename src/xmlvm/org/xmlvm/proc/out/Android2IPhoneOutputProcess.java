@@ -39,7 +39,7 @@ import org.xmlvm.util.JarUtil;
  * the Android API.
  */
 public class Android2IPhoneOutputProcess extends XmlvmProcessImpl<IPhoneOutputProcess> {
-    public static final String  ANDROID_SRC_LIB               = "/src/lib/android";
+    public static final String  ANDROID_SRC_LIB               = IPhoneOutputProcess.IPHONE_SRC + "/lib/android";
 
     private static final String ANDROID_IPHONE_COMPAT_LIB_JAR = "/iphone/android-compat-lib.jar";
     private List<OutputFile>    result                        = new ArrayList<OutputFile>();
