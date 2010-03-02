@@ -35,11 +35,13 @@ import java.io.OutputStream;
 import java.io.Writer;
 
 import org.xmlvm.Log;
+import org.xmlvm.util.universalfile.UniversalFile;
 
 /**
  * Various utilities around handling files.
  */
 public class FileUtil {
+    private static final String TAG = "FileUtil";
 
     /**
      * Returns whether the file or directory with the given name exists.
@@ -76,6 +78,41 @@ public class FileUtil {
             }
         }
         return copyFiles(sourceFile.listFiles(), destination);
+    }
+
+    /**
+     * Copies the given source directory to the given destination.
+     * 
+     * @param source
+     *            the source directory to copy from
+     * @param destination
+     *            where to copy the files to
+     * @param recursive
+     *            whether the files should be copied recursively
+     * @return Whether the operation was successful.
+     */
+    public static boolean copyDirectory(UniversalFile source, String destination, boolean recursive) {
+        if (!source.isDirectory()) {
+            Log.error(TAG, "CopyDirectory: Source is not a directory: " + source);
+            return false;
+        }
+
+        if (destination.endsWith(File.separator)) {
+            destination = destination.substring(0, destination.length() - 1);
+        }
+
+        for (UniversalFile file : source.listFiles()) {
+            System.out.println("File: " + file);
+            if (file.isDirectory() && recursive) {
+                String subPath = destination
+                        + file.getAbsolutePath().substring(source.getAbsolutePath().length());
+                copyDirectory(file, subPath, recursive);
+            } else if (file.isFile()) {
+                System.out.println("Copying");
+                file.saveFileAs(destination + File.separator + file.getName());
+            }
+        }
+        return true;
     }
 
     /**
