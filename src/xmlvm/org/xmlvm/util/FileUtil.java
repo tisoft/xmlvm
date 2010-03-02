@@ -102,13 +102,11 @@ public class FileUtil {
         }
 
         for (UniversalFile file : source.listFiles()) {
-            System.out.println("File: " + file);
             if (file.isDirectory() && recursive) {
                 String subPath = destination
                         + file.getAbsolutePath().substring(source.getAbsolutePath().length());
                 copyDirectory(file, subPath, recursive);
             } else if (file.isFile()) {
-                System.out.println("Copying");
                 file.saveFileAs(destination + File.separator + file.getName());
             }
         }
