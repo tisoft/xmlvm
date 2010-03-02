@@ -39,7 +39,6 @@
 	<classpathentry kind="lib" path="lib/jdom.jar"/>
 	<classpathentry kind="lib" path="lib/mbel.jar"/>
 	<classpathentry kind="lib" path="lib/dx.jar"/>
-	<classpathentry kind="lib" path="lib/czlUtil.jar"/>
 	<classpathentry kind="lib" path="lib/yuicompressor-2.1.2.jar"/>
 	<classpathentry kind="lib" path="lib/EventBinaries.jar"/>
 	<classpathentry kind="lib" path="lib/saxon9.jar"/>

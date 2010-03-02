@@ -129,6 +129,11 @@ public abstract class UniversalFile {
      */
     public boolean saveFileAs(String path) {
         try {
+            // Make sure the destination directory exists.
+            File parent = (new File(path)).getParentFile();
+            if (!parent.exists() && !parent.mkdirs()) {
+                return false;
+            }
             FileOutputStream outputStream = new FileOutputStream(path);
             outputStream.write(getFileAsBytes());
             outputStream.close();

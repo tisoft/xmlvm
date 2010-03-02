@@ -22,7 +22,6 @@ package org.xmlvm.proc.out;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -34,14 +33,15 @@ import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.util.FileUtil;
 import org.xmlvm.util.InputReaderThread;
-
-import com.crazilec.util.UtilCopy;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 /**
  * Takes the output of a {@link QooxdooOutputProcess} and packages the Qooxdoo
  * app into a Palm Pre application.
  */
 public class WebOsOutputProcess extends XmlvmProcessImpl<QooxdooOutputProcess> {
+
+    private static final String   TAG                      = "WebOsOutputProcess";
 
     private static final String[] GENERATE_PROJECT_OPTS    = { "-p",
             "\"{title:'$PROJECT', id:org.xmlvm.$PROJECT, version:'1.0.0'}\"", "$PROJECT" };
@@ -218,8 +218,9 @@ public class WebOsOutputProcess extends XmlvmProcessImpl<QooxdooOutputProcess> {
             Log.error("Could not find setup method declaration in scene assistant file.");
             return false;
         }
-        sceneAssistantFileContent = parts[0] + setupMethodDeclarationPattern
-                + "\n  org_xmlvm_demo_xokoban_Xokoban.launchActivity(theStageAssistant, this);"
+        sceneAssistantFileContent = parts[0]
+                + setupMethodDeclarationPattern
+                + "\n  org_xmlvm_demo_afireworks_AndroidFireworks.launchActivity(theStageAssistant, this);"
                 + parts[1];
 
         return FileUtil.writeStringToFile(sceneAssistantFile, sceneAssistantFileContent);
@@ -229,15 +230,14 @@ public class WebOsOutputProcess extends XmlvmProcessImpl<QooxdooOutputProcess> {
      * Copies the compiled JS files into the Palm Pre project.
      */
     private boolean copyCompiledJsFiles() {
-        Log.debug("Copying compiled JS files into project.");
-        UtilCopy copy = new UtilCopy();
+        Log.debug(TAG, "Copying compiled JS files into project.");
         String appDir = arguments.option_out() + File.separatorChar + appName;
-        try {
-            copy.xCopy(appDir, compiledQxBuildPath + File.separatorChar + "build");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+        String buildDir = compiledQxBuildPath + File.separatorChar + "build";
+
+        if (!FileUtil.copyDirectory(UniversalFileCreator.createFile(new File(buildDir)), appDir,
+                true)) {
+            Log.error(TAG, "Could not copy compiled JS files from: " + buildDir + " to " + appDir);
+            return false;
         }
         return true;
     }
@@ -280,31 +280,28 @@ public class WebOsOutputProcess extends XmlvmProcessImpl<QooxdooOutputProcess> {
      * Copies the given resources into the project.
      */
     private boolean copyResources() {
-        Log.debug("Copying resources...");
+        Log.debug(TAG, "Copying resources...");
         String destination = arguments.option_out() + File.separatorChar + appName
                 + File.separatorChar;
 
         for (String resource : arguments.option_resource()) {
             File resourceFile = new File(resource);
             if (!resourceFile.exists()) {
-                Log.warn("Resource doesn't exist: " + resourceFile.getAbsolutePath());
+                Log.warn(TAG, "Resource doesn't exist: " + resourceFile.getAbsolutePath());
                 continue;
             }
             if (resourceFile.isFile()) {
                 if (!FileUtil
                         .copyFile(resourceFile, new File(destination + resourceFile.getName()))) {
-                    Log.warn("Could not copy file: " + resourceFile.getAbsolutePath());
+                    Log.warn(TAG, "Could not copy file: " + resourceFile.getAbsolutePath());
                     continue;
                 }
             } else if (resourceFile.isDirectory()) {
-                try {
-                    (new UtilCopy()).xCopy(destination, resourceFile.getAbsolutePath());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                if (!FileUtil.copyDirectory(UniversalFileCreator.createFile(resourceFile),
+                        destination, true)) {
+                    Log.warn(TAG, "Could not copy directory: " + resourceFile.getAbsolutePath());
+                    continue;
                 }
-                continue;
             }
         }
         return true;
