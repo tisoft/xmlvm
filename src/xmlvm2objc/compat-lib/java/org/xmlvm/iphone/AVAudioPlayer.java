@@ -39,6 +39,7 @@ public class AVAudioPlayer {
 
         private AVAudioPlayer avAudioPlayer;
 
+
         Listener(AVAudioPlayer avAudioPlayer) {
             this.avAudioPlayer = avAudioPlayer;
         }
@@ -89,6 +90,7 @@ public class AVAudioPlayer {
         }
     };
 
+
     private int                   numberOfLoops = 0;
     private int                   loopsLeft     = 0;
     private BasicPlayer           player        = null;
@@ -98,11 +100,26 @@ public class AVAudioPlayer {
     private boolean               playing       = false;
     private byte[]                data          = null;
 
+
     private AVAudioPlayer(URL url) throws BasicPlayerException {
         this.url = url;
         player = new BasicPlayer();
         player.addBasicPlayerListener(new Listener(this));
-        player.open(this.url);
+
+        // If this marker appears in the path, then the resource needs to be
+        // loaded out of a JAR file. We expect it in this case to be the JAR
+        // file the app is run from.
+        final String IN_JAR_MARKER = ".jar!";
+
+        String urlStr = url.toString();
+        // If the URL appears to be inside the jar the app is run from, then
+        // load it via getResourceAsStream().
+        if (urlStr.contains(IN_JAR_MARKER)) {
+            int startOfResource = urlStr.indexOf(IN_JAR_MARKER) + IN_JAR_MARKER.length();
+            player.open(AVAudioPlayer.class.getResourceAsStream(urlStr.substring(startOfResource)));
+        } else {
+            player.open(this.url);
+        }
     }
 
     private AVAudioPlayer(FileDescriptor fd, long offset, long length) throws BasicPlayerException,
