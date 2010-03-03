@@ -72,6 +72,10 @@ public class NSXMLParser {
     }
 
     public boolean parse() {
+        if (data == null) {
+            return false;
+        }
+
         try {
             saxParser = saxParserFactory.newSAXParser();
             saxParser.parse(data.getInputStream(), delegate);

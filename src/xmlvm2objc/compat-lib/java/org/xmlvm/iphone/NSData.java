@@ -33,6 +33,7 @@ public class NSData {
 
     private String data;
 
+
     public NSData(InputStream in) {
         readData(in);
     }
@@ -65,11 +66,20 @@ public class NSData {
     }
 
     public static NSData dataWithContentsOfFile(String path) {
-//        return new NSData(NSData.class.getResourceAsStream("/" + path));
-        try {
-            return new NSData(new FileInputStream(new File(path)));
-        } catch (FileNotFoundException e) {
-            return null;
+        // If this marker appears in the path, then the resource needs to be
+        // loaded out of a JAR file. We expect it in this case to be the JAR
+        // file the app is run from.
+        final String IN_JAR_MARKER = ".jar!";
+
+        if (path.contains(IN_JAR_MARKER)) {
+            int startOfResource = path.indexOf(IN_JAR_MARKER) + IN_JAR_MARKER.length();
+            return new NSData(NSData.class.getResourceAsStream(path.substring(startOfResource)));
+        } else {
+            try {
+                return new NSData(new FileInputStream(new File(path)));
+            } catch (FileNotFoundException e) {
+                return null;
+            }
         }
     }
 }
