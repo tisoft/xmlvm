@@ -23,6 +23,13 @@
 
 // java.util.Locale
 //----------------------------------------------------------------------------
-@interface java_util_Locale : java_lang_Object
+@interface java_util_Locale : java_lang_Object {
+	java_lang_String *prefLang;
+}
+
+- (id) init:(java_lang_String*)prefLang;
+- (void) dealloc;
++ (java_util_Locale*) getDefault__;
+- (java_lang_String*) toString__;
 
 @end

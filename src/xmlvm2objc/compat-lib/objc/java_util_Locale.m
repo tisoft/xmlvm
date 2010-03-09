@@ -25,4 +25,33 @@
 //----------------------------------------------------------------------------
 @implementation java_util_Locale
 
+- (id) init :(java_lang_String*)prefLang
+{
+	if (self = [super init]) {
+  	self->prefLang=[prefLang retain];
+	}
+	return self;
+}
+
+- (void) dealloc;
+{
+	[prefLang release];
+	[super dealloc];
+}
+
++ (java_util_Locale*) getDefault__
+{
+	NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
+	NSArray* languages = [defs objectForKey:@"AppleLanguages"];
+	NSString* preferredLang = [languages objectAtIndex:0];
+
+	java_util_Locale *l = [[java_util_Locale alloc] init:preferredLang];
+	return l;
+}
+
+- (java_lang_String*) toString__
+{
+  return [prefLang retain];
+}
+
 @end

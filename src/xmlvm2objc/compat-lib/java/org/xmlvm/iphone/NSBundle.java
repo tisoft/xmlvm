@@ -38,25 +38,26 @@ public class NSBundle {
     }
 
     public String pathForResource(String resource, String type, String directory) {
-        // resource is not allowed to contain a path component. In this case null
+        // resource is not allowed to contain a path component. In this case
+        // null
         // has to be returned
         if (resource.indexOf('/') != -1) {
             return null;
         }
-        
+
         String fileName = new String(resource);
         if (type != null) {
             fileName = fileName.concat("." + type);
         }
-        
+
         if (directory != null) {
             fileName = directory + "/" + fileName;
         }
-        
+
         URL url = this.getClass().getResource("/" + fileName);
-        return url.getFile();
+        return url != null ? url.getFile() : null;
     }
-    
+
     public String pathForResource(String resource, String type) {
         return pathForResource(resource, type, null);
     }

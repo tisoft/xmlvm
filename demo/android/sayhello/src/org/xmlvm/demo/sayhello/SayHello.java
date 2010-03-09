@@ -15,12 +15,13 @@ public class SayHello extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         Button sayHelloButton = (Button) findViewById(R.id.sayHello);
+        sayHelloButton.setText(R.string.app_name);
         sayHelloButton.setOnClickListener(new OnClickListener() {
 
             public void onClick(View view) {
                 EditText name = (EditText) findViewById(R.id.name);
                 TextView helloLabel = (TextView) findViewById(R.id.helloLabel);
-                helloLabel.setText("Hello, " + name.getText() + "!");
+                helloLabel.setText(getString(R.string.hello) + name.getText() + "!");
             }
 
         });

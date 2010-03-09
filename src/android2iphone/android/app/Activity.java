@@ -445,18 +445,22 @@ public class Activity extends ContextThemeWrapper {
     public void onConfigurationChanged(Configuration newConfig) {
         Assert.NOT_IMPLEMENTED();
     }
-    
+
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         Assert.NOT_IMPLEMENTED();
         return false;
     }
-    
+
     public MenuInflater getMenuInflater() {
         Assert.NOT_IMPLEMENTED();
         return null;
     }
-    
+
     public void setTitle(CharSequence title) {
         Assert.NOT_IMPLEMENTED();
+    }
+
+    public String getString(int id) {
+        return this.getResources().getText(id);
     }
 }

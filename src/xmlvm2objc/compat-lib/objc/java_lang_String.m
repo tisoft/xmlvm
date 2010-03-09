@@ -37,6 +37,13 @@
 	}
 }
 
+- (void) __init_java_lang_String___char_ARRAYTYPE: (XMLVMArray*) chars
+{
+	for(int i = 0; i < chars->length; i++) {
+		[self appendFormat:@"%c", (char) chars->array.i[i]];
+	}
+}
+
 + (java_lang_String*) valueOf___int: (int) i
 {
     NSNumber* n = [NSNumber numberWithInt: i];
@@ -134,6 +141,12 @@
     return self;
 }
 
+- (java_lang_String*) toLowerCase__
+{
+    return [[NSMutableString alloc] initWithString:[self lowercaseString]];
+}
+
+
 - (int) startsWith___java_lang_String: (java_lang_String*) s {
 	return [self hasPrefix: s] == YES ? 1 : 0;
 }
@@ -169,6 +182,29 @@
 - (int) length__
 {
 	return [self length];
+}
+
+- (java_lang_String*) replaceAll___java_lang_String_java_lang_String :(java_lang_String*)a :(java_lang_String*)b {
+	NSMutableString *m = [[NSMutableString alloc] initWithString:self];
+	NSRange range;
+	range.location = 0;
+	range.length = [m length__];
+
+	[m replaceOccurrencesOfString:a withString:b options:(NSLiteralSearch) range:range];
+	return m;
+}
+
+- (XMLVMArray*) split___java_lang_String :(java_lang_String*)s
+{
+	NSMutableArray *chunks = [self componentsSeparatedByString:s];
+	int length = [chunks count];
+
+	XMLVMArray *result = [XMLVMArray createSingleDimensionWithType: 0 andSize: length]; // object reference array
+	for (int i=0; i<length; i++) {
+		result->array.o[i] = [[chunks objectAtIndex: i] retain];
+	}
+
+	return [result retain];
 }
 
 @end

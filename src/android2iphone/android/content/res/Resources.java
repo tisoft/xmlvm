@@ -23,6 +23,7 @@ package android.content.res;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Locale;
 
 import org.xmlvm.iphone.NSBundle;
 import org.xmlvm.iphone.NSData;
@@ -40,26 +41,27 @@ import android.util.Log;
 public class Resources {
 
     /** The name of the directory holding the application's resources. */
-    private static final String         RES_DIR     = "res";
+    private static final String           RES_DIR     = "res";
 
     /** A map holding the mapping from IDs to variable names. */
-    private Map<Integer, String>        idToNameMap = new HashMap<Integer, String>();
+    private Map<Integer, String>          idToNameMap = new HashMap<Integer, String>();
 
     /** A map holding the mapping from variable names to IDs. */
-    private Map<String, Integer>        nameToIdMap = new HashMap<String, Integer>();
+    private Map<String, Integer>          nameToIdMap = new HashMap<String, Integer>();
 
     /** A map holding the mapping from resourceId to Drawable. */
-    private Map<Integer, Drawable>      drawableMap = new HashMap<Integer, Drawable>();
+    private Map<Integer, Drawable>        drawableMap = new HashMap<Integer, Drawable>();
 
     /**
      * A map holding the mapping from resourceId to NSData (representing the
      * content of the XML layout file).
      */
-    private static Map<Integer, NSData> layoutMap   = new HashMap<Integer, NSData>();
+    private static Map<Integer, NSData>   layoutMap   = new HashMap<Integer, NSData>();
 
-    private static Map<Integer, String> stringMap;
+    private static Map<Integer, String>   stringMap;
+    private static Map<Integer, String[]> stringArrayMap;
 
-    private Context                     context;
+    private Context                       context;
 
     public Resources(Context context) {
         this.context = context;
@@ -171,6 +173,7 @@ public class Resources {
         initResources("id");
         initResources("layout");
         initResources("string");
+        initResources("array");
     }
 
     private String getFileNamePath(String filePath) {
@@ -194,11 +197,20 @@ public class Resources {
      */
     public String getString(int id) {
         if (stringMap == null) {
-            String path = getValuesDir() + "strings";
+            String path = getValuesDir() + "/" + "strings";
             stringMap = ResourceParser.parseStrings(context, path, nameToIdMap);
         }
 
         return stringMap.get(new Integer(id));
+    }
+
+    public String[] getTextArray(int id) {
+        if (stringArrayMap == null) {
+            String path = getValuesDir();
+            stringArrayMap = ResourceParser.parseStringArrays(context, path, nameToIdMap);
+        }
+
+        return stringArrayMap.get(new Integer(id));
     }
 
     public String getText(int id) {
@@ -206,14 +218,20 @@ public class Resources {
     }
 
     private String getValuesDir() {
-        // TODO: The returned directory name should be locale dependant
-        // Instead of simple returning the default value the implementation
-        // should test if a directory res/values-<locale> exists
-        // return "res/values";
-
-        // Currently all resource files have to accessible in the classpath's
-        // root
-        return RES_DIR + "/values/";
+        String locale = Locale.getDefault().toString();
+        String path = RES_DIR + "/values-" + locale.replaceAll("-", "_");
+        String resP = NSBundle.mainBundle().pathForResource("strings", "xml", path);
+        if (resP == null) {
+            String[] p = locale.split("-"); // just use language
+            if (p.length >= 2) {
+                path = RES_DIR + "/values-" + p[0];
+                resP = NSBundle.mainBundle().pathForResource("strings", "xml", path);
+            }
+        }
+        if (resP == null) {
+            path = RES_DIR + "/values"; // default values, should always exist
+        }
+        return path;
     }
 
     public DisplayMetrics getDisplayMetrics() {
