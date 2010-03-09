@@ -40,7 +40,6 @@ public class UITextField extends UIView {
         font = UIFont.fontWithNameSize("Arial", 16);
         setText("");
         setTextColor(UIColor.blackColor);
-        Simulator.addKeyListener(this);
     }
 
     public void setText(String text) {

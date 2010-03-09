@@ -213,8 +213,15 @@ public class UIView extends UIResponder {
         UITouch t = touches.iterator().next();
         CGPoint p = t.locationInView(this);
         CGRect r = this.getFrame();
-        return p.x < 0 || p.y < 0 || p.x > r.size.width - 1 || p.y > r.size.height - 1 ? false
+
+        boolean touched = p.x < 0 || p.y < 0 || p.x > r.size.width - 1 || p.y > r.size.height - 1 ? false
                 : true;
+        
+        if (touched) {
+        	Simulator.addKeyListener(this);
+        }
+        
+        return touched;
     }
 
     public boolean isHidden() {
