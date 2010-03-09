@@ -23,6 +23,7 @@
 #import "java_lang_Character.h"
 #import "java_lang_Integer.h"
 #import "java_lang_Double.h"
+#import "java_lang_Float.h"
 #import "java_lang_RuntimeException.h"
 
 
@@ -40,6 +41,8 @@
 		baseTypeId = 2;
 	} else if (clazz == [java_lang_Integer _GET_TYPE]) {
 		baseTypeId = 5;
+	} else if (clazz == [java_lang_Float _GET_TYPE]) {
+		baseTypeId = 6;
 	} else if (clazz == [java_lang_Double _GET_TYPE]) {
 		baseTypeId = 7;
 	} else {

@@ -20,10 +20,24 @@
 
 #import "java_lang_Float.h"
 
+@interface PrimitiveFloat : java_lang_Object
+@end
+
+@implementation PrimitiveFloat
+@end
+
+static PrimitiveFloat* primitiveFloat;
+static java_lang_Class* primitiveFloatClass;
 
 // java.lang.Float
 //----------------------------------------------------------------------------
 @implementation java_lang_Float
+
++ (void) initialize
+{
+  primitiveFloat = [[PrimitiveFloat alloc] init];
+  primitiveFloatClass = [primitiveFloat getClass__];
+}
 
 - (id) init
 {
@@ -44,7 +58,7 @@
 	return number;
 }
 
-- (void) __init_java_lang_Flaot___float :(float) f
+- (void) __init_java_lang_Float___float :(float) f
 {
 	number = f;
 }
@@ -64,4 +78,7 @@
 	return atof([str UTF8String]);
 }
 
-@end
++ (java_lang_Class*) _GET_TYPE
+{
+	return primitiveFloatClass;
+}
