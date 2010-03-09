@@ -219,10 +219,11 @@ public class Resources {
 
     private String getValuesDir() {
         String locale = Locale.getDefault().toString();
-        String path = RES_DIR + "/values-" + locale.replaceAll("-", "_");
+        locale = locale.replaceAll("-", "_");
+        String path = RES_DIR + "/values-" + locale;
         String resP = NSBundle.mainBundle().pathForResource("strings", "xml", path);
         if (resP == null) {
-            String[] p = locale.split("-"); // just use language
+            String[] p = locale.split("_"); // just use language
             if (p.length >= 2) {
                 path = RES_DIR + "/values-" + p[0];
                 resP = NSBundle.mainBundle().pathForResource("strings", "xml", path);
