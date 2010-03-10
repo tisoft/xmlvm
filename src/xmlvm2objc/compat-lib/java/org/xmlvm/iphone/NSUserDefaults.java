@@ -25,10 +25,11 @@ import java.util.Map;
 
 public class NSUserDefaults {
 
+    private static NSUserDefaults nsUserDefaults = new NSUserDefaults();
     private Map<String, Object> preferences = new HashMap<String, Object>();
 
     public static NSUserDefaults standardUserDefaults() {
-        return new NSUserDefaults();
+        return nsUserDefaults;
     }
 
     public Object objectForKey(String key) {
