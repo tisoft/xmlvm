@@ -87,6 +87,7 @@ public class UISlider extends UIControl {
     }
 
     /* TODO: again here with event handling */
+    @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
         UITouch t = touches.iterator().next();
         CGPoint p = t.locationInView(this);

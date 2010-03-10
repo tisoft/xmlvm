@@ -111,7 +111,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         public String packageName = "";
         public String className   = "";
 
-
         public PackagePlusClassName(String className) {
             this.className = className;
         }
@@ -131,7 +130,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         }
     }
 
-
     /**
      * Little helper class for keeping a target address and the info about
      * whether this target should split a try-catch block.
@@ -139,7 +137,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private static class Target {
         int     address;
         boolean requiresSplit;
-
 
         public Target(int address, boolean requiresSplit) {
             this.address = address;
@@ -162,7 +159,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         }
     }
 
-
     private static final boolean   LOTS_OF_DEBUG      = false;
 
     private static final String    DEXMLVM_ENDING     = ".dexmlvm";
@@ -174,7 +170,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private List<XmlvmResource>    generatedResources = new ArrayList<XmlvmResource>();
 
     private static Element         lastDexInstruction = null;
-
 
     public DEXmlvmOutputProcess(Arguments arguments) {
         super(arguments);
@@ -886,9 +881,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             System.out.print(instruction.listingString("", 0, true));
         }
         if (dexInstruction != null) {
-//            if (instruction.hasAddress()) {
-//                dexInstruction.setAttribute("DEBUG-ADDRESS", String.valueOf(instruction.getAddress()));
-//            }
+            // if (instruction.hasAddress()) {
+            // dexInstruction.setAttribute("DEBUG-ADDRESS",
+            // String.valueOf(instruction.getAddress()));
+            // }
             parentElement.addContent(dexInstruction);
             lastDexInstruction = dexInstruction;
         }

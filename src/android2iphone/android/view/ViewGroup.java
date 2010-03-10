@@ -275,6 +275,7 @@ public class ViewGroup extends View implements ViewParent {
         return xmlvmViewMap;
     }
 
+    @Override
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
         UIView v = new UIView();
         v.setBackgroundColor(UIColor.clearColor);

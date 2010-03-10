@@ -56,6 +56,7 @@ public class Button extends TextView {
         }
     }
 
+    @Override
     public void setLayoutParams(ViewGroup.LayoutParams l) {
         layoutParams = l;
 
@@ -75,6 +76,7 @@ public class Button extends TextView {
         }
     }
 
+    @Override
     public void setText(String text) {
         this.text = text;
         UIView view = xmlvmGetUIView();
@@ -82,6 +84,7 @@ public class Button extends TextView {
         requestLayout();
     }
 
+    @Override
     public void setOnClickListener(OnClickListener listener) {
         if (!(this instanceof CompoundButton)) {
             final OnClickListener theListener = listener;
@@ -111,14 +114,17 @@ public class Button extends TextView {
         setIgnoreRequestLayout(false);
     }
 
+    @Override
     protected UIFont xmlvmGetUIFont() {
         return ((UIButton) xmlvmGetUIView()).getFont();
     }
 
+    @Override
     protected int xmlvmGetInsetsX() {
         return INSETS_X;
     }
 
+    @Override
     protected int xmlvmGetInsetsY() {
         return INSETS_Y;
     }

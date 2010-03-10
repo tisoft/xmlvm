@@ -33,7 +33,6 @@ public class NSData {
 
     private String data;
 
-
     public NSData(InputStream in) {
         readData(in);
     }
@@ -61,6 +60,7 @@ public class NSData {
         return new ByteArrayInputStream(data.getBytes());
     }
 
+    @Override
     public String toString() {
         return this.data;
     }

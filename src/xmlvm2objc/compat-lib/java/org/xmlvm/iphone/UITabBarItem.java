@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.xmlvm.iphone;
 
 import org.xmlvm.iphone.internal.UITabBarItemView;
@@ -56,6 +55,7 @@ public class UITabBarItem extends UIBarItem {
         this.badgeValue = badgeValue;
     }
 
+    @Override
     public void setTitle(String title) {
         view.setTitle(title, 0);
         super.setTitle(title);

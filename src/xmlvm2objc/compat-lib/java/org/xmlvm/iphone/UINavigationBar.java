@@ -105,6 +105,7 @@ public class UINavigationBar extends UIGenericToolbar {
         return items;
     }
 
+    @Override
     protected void updateViews() {
         UINavigationItem item = getTopItem();
         if (item == null)

@@ -35,10 +35,12 @@ public class CGSize {
         this.height = height;
     }
 
+    @Override
     public String toString() {
         return "[" + width + "," + height + "]";
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof CGSize)) {
             return false;

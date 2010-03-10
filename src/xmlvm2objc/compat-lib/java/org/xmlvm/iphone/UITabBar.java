@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.xmlvm.iphone;
 
 import java.util.ArrayList;
@@ -114,6 +113,7 @@ public class UITabBar extends UIGenericBar {
         return false;
     }
 
+    @Override
     protected void updateViews() {
         if (items == null || items.size() < 1)
             return;

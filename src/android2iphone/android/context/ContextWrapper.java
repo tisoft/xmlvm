@@ -38,6 +38,7 @@ public class ContextWrapper extends Context {
 
     private Resources resources = new Resources(this);
 
+    @Override
     public SharedPreferences getSharedPreferences(String name, int mode) {
         // TODO what to do with name?
         return new SharedPreferences(mode);
@@ -48,6 +49,7 @@ public class ContextWrapper extends Context {
         return resources;
     }
 
+    @Override
     public String getPackageName() {
         return ActivityManager.getApplicationPackageName();
     }
@@ -67,15 +69,18 @@ public class ContextWrapper extends Context {
         return this;
     }
 
+    @Override
     public FileInputStream openFileInput(String name) throws FileNotFoundException {
         return new FileInputStream(name);
     }
 
+    @Override
     public FileOutputStream openFileOutput(String name, int mode) throws FileNotFoundException {
         // TODO what to do with mode?
         return new FileOutputStream(name);
     }
 
+    @Override
     public boolean deleteFile(String name) {
         return new File(name).delete();
     }

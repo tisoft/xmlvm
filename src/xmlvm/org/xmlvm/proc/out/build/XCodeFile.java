@@ -86,6 +86,7 @@ public class XCodeFile extends BuildFile {
     }
 
     /* Produce Xcode project file */
+    @Override
     public String composeBuildFiles(List<OutputFile> allfiles, Arguments arguments) {
         String projname = arguments.option_app_name();
 
@@ -100,7 +101,8 @@ public class XCodeFile extends BuildFile {
         proj.injectFiles(TEMPL_APP_SRC, FILTER_APP);
         proj.injectFiles(TEMPL_IPHONE_SRC, FILTER_IPHONE);
         proj.injectFiles(TEMPL_ANDROID_SRC, FILTER_ANDROID);
-//        proj.injectFiles(TEMPL_RESOURCES, FILTER_RESOURCES);  // Do not inject files, a special bash script will take care of this
+        // proj.injectFiles(TEMPL_RESOURCES, FILTER_RESOURCES); // Do not inject
+        // files, a special bash script will take care of this
         proj.finalizeObject();
 
         OutputFile makefile = new OutputFile(proj.data);
@@ -112,11 +114,11 @@ public class XCodeFile extends BuildFile {
 
     private class XCodeProj {
 
-        static final int FIRST_ID = 1000;
+        static final int        FIRST_ID = 1000;
         /* */
-        String           data;
-        int              nextid;
-        List<OutputFile> allfiles;
+        String                  data;
+        int                     nextid;
+        List<OutputFile>        allfiles;
         /* Requested libraries */
         private HashSet<String> libraries;
 
@@ -129,7 +131,7 @@ public class XCodeFile extends BuildFile {
             if (allfiles == null)
                 throw new RuntimeException("Null files given to XCodeProj");
             this.allfiles = allfiles;
-            
+
             /* Creating default library list */
             libraries = new HashSet<String>();
             libraries.add("Foundation.framework");
@@ -144,8 +146,8 @@ public class XCodeFile extends BuildFile {
 
         private void finalizeObject() {
             data = data.replace(TEMPL_FILEREFS, "").replace(TEMPL_BUILDREFS, "").replace(
-                    TEMPL_RESOURCES_BUILD, "").replace(TEMPL_SRC_BUILD, "")
-                    .replace(TEMPL_RESOURCES, "").replace(TEMPL_BUILDFRAMS, "")
+                    TEMPL_RESOURCES_BUILD, "").replace(TEMPL_SRC_BUILD, "").replace(
+                    TEMPL_RESOURCES, "").replace(TEMPL_BUILDFRAMS, "")
                     .replace(TEMPL_FRAMEWORKS, "");
         }
 
@@ -197,8 +199,10 @@ public class XCodeFile extends BuildFile {
                     filerefs.append("; path = ").append(path).append(lib);
                     filerefs.append("; sourceTree = SDKROOT; };\n");
                     /* Add references frameworks */
-                    buildframs.append("\t\t\t\t").append(buildid).append(" /* ").append(lib).append(" in Frameworks */,\n");
-                    frameworks.append("\t\t\t\t").append(fileid).append(" /* ").append(lib).append(" */,\n");
+                    buildframs.append("\t\t\t\t").append(buildid).append(" /* ").append(lib)
+                            .append(" in Frameworks */,\n");
+                    frameworks.append("\t\t\t\t").append(fileid).append(" /* ").append(lib).append(
+                            " */,\n");
                 }
             }
             data = data.replace(TEMPL_FILEREFS, filerefs.toString() + TEMPL_FILEREFS);
@@ -306,12 +310,9 @@ public class XCodeFile extends BuildFile {
             }
 
             public String toString() {
-                return "[type=" + type
-                        + (isSource ? ", Source" : "")
-                        + (isResource ? ", Resource" : "")
-                        + (isValid ? ", Valid" : "")
-                        +(isBuildable?", Buildable":"")
-                        +"]";
+                return "[type=" + type + (isSource ? ", Source" : "")
+                        + (isResource ? ", Resource" : "") + (isValid ? ", Valid" : "")
+                        + (isBuildable ? ", Buildable" : "") + "]";
             }
         }
     }

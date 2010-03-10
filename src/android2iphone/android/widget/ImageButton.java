@@ -40,6 +40,7 @@ public class ImageButton extends ImageView {
         super(c, attrs);
     }
 
+    @Override
     public void setOnClickListener(OnClickListener listener) {
         final OnClickListener theListener = listener;
         this.setOnTouchListener(new OnTouchListener() {
@@ -56,6 +57,7 @@ public class ImageButton extends ImageView {
         });
     }
 
+    @Override
     protected boolean processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
         if (action == MotionEvent.ACTION_DOWN) {
             xmlvmSetDrawableState(PRESSED_STATE_SET);

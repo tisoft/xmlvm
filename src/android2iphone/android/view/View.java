@@ -20,7 +20,6 @@
 
 package android.view;
 
-import java.util.HashMap;
 import java.util.Set;
 
 import org.xmlvm.iphone.CGContext;
@@ -42,7 +41,6 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.internal.Assert;
 import android.internal.Dimension;
-import android.internal.ResourceAttributes;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -307,7 +305,7 @@ public class View {
 
         uiView.setDelegate(responderDelegate);
         uiView.setUserInteractionEnabled(true);
-        
+
         if (attrs != null && attrs.getAttributeCount() > 0) {
             parseViewAttributes(attrs);
         }
@@ -387,13 +385,14 @@ public class View {
         this.heightMeasureSpec = heightMeasureSpec;
     }
 
+    @Override
     protected void finalize() {
         uiView.setDelegate(null);
     }
 
     private void parseViewAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
-        
+
         setId(attrs.getIdAttributeResourceValue(0));
 
         String str = attrs.getAttributeValue(null, "visibility");
@@ -433,7 +432,7 @@ public class View {
         pb = d > 0 ? d : pb;
 
         setPadding(pl, pt, pr, pb);
-        
+
         setIgnoreRequestLayout(false);
     }
 
@@ -951,11 +950,11 @@ public class View {
     public void setClickable(boolean clickable) {
         Assert.NOT_IMPLEMENTED();
     }
-    
+
     public void startAnimation(Animation animation) {
         Assert.NOT_IMPLEMENTED();
     }
-    
+
     public void setEnabled(boolean enabled) {
         Assert.NOT_IMPLEMENTED();
     }

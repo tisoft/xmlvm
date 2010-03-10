@@ -283,6 +283,7 @@ public class DrawableContainer extends Drawable {
 
     }
 
+    @Override
     public void draw(Canvas canvas) {
         if (currentDrawable != null) {
             currentDrawable.draw(canvas);

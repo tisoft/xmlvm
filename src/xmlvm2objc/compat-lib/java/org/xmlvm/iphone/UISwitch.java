@@ -55,6 +55,7 @@ public class UISwitch extends UIControl {
         return isOn;
     }
 
+    @Override
     public void setFrame(CGRect rect) {
         rect.size.width = kSwitchButtonWidth;
         rect.size.height = kSwitchButtonHeight;

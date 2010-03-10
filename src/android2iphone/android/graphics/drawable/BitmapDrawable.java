@@ -58,6 +58,7 @@ public class BitmapDrawable extends Drawable {
         return (int) image.getSize().height;
     }
 
+    @Override
     public void draw(Canvas canvas) {
     }
 

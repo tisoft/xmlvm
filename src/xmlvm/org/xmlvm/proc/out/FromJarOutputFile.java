@@ -50,6 +50,7 @@ public class FromJarOutputFile extends OutputFile {
      * 
      * @return Array with the output files
      */
+    @Override
     public File[] getAffectedSourceFiles() {
         List<String> filenames = JarUtil.list(sourcePath);
         if (filenames == null)

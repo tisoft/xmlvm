@@ -143,7 +143,8 @@ public class ImageView extends View {
         requestLayout();
     }
 
-    public void setLayoutParams(ViewGroup.LayoutParams l) {
+    @Override
+	public void setLayoutParams(ViewGroup.LayoutParams l) {
         layoutParams = l;
         int width = l.width;
         int height = l.height;
@@ -234,6 +235,7 @@ public class ImageView extends View {
         return (UIImageView) xmlvmGetUIView();
     }
 
+    @Override
     protected void xmlvmSetDrawableState(int[] drawableState) {
         super.xmlvmSetDrawableState(drawableState);
         refreshImageStateDrawable();

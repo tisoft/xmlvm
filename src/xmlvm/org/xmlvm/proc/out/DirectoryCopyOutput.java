@@ -48,6 +48,7 @@ public class DirectoryCopyOutput extends OutputFile {
     /**
      * Returns a list of files that will be copied.
      */
+    @Override
     public File[] getAffectedSourceFiles() {
         File sourceFile = new File(sourceDirectory);
 

@@ -39,7 +39,6 @@ public class AVAudioPlayer {
 
         private AVAudioPlayer avAudioPlayer;
 
-
         Listener(AVAudioPlayer avAudioPlayer) {
             this.avAudioPlayer = avAudioPlayer;
         }
@@ -90,7 +89,6 @@ public class AVAudioPlayer {
         }
     };
 
-
     private int                   numberOfLoops = 0;
     private int                   loopsLeft     = 0;
     private BasicPlayer           player        = null;
@@ -99,7 +97,6 @@ public class AVAudioPlayer {
     private AVAudioPlayerDelegate delegate      = null;
     private boolean               playing       = false;
     private byte[]                data          = null;
-
 
     private AVAudioPlayer(URL url) throws BasicPlayerException {
         this.url = url;
@@ -227,6 +224,12 @@ public class AVAudioPlayer {
         return playing;
     }
 
+    /**
+     * 
+     * @param currentTime
+     *            Unused, as currently only restarting from the beginning is
+     *            supported
+     */
     public void setCurrentTime(double currentTime) {
         // Currently only restarting from the beginning is supported
         int status = player.getStatus();

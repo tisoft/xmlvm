@@ -29,6 +29,7 @@ public class IllegalXMLVMException extends Exception {
         this.reason = reason;
     }
 
+    @Override
     public String toString() {
         return "IllegalXMLVMException: " + reason;
     }

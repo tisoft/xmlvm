@@ -191,6 +191,11 @@ public class Activity extends ContextThemeWrapper {
         state = STATE_DESTROYED;
     }
 
+    /**
+     * 
+     * @param savedInstanceState
+     *            unused as of now
+     */
     protected void onCreate(Bundle savedInstanceState) {
         window = new Window(this);
         onContentChanged();
@@ -264,9 +269,21 @@ public class Activity extends ContextThemeWrapper {
         }
     }
 
+    /**
+     * 
+     * @param requestCode
+     * @param resultCode
+     *            unused as of now
+     * @param data
+     */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 
+    /**
+     * 
+     * @param result
+     *            unused as of now
+     */
     public void xmlvmOnActivityResult(Object result) {
         onActivityResult(childRequestCode, childResultCode, childData);
     }
@@ -294,6 +311,12 @@ public class Activity extends ContextThemeWrapper {
         return window.findViewById(id);
     }
 
+    /**
+     * Unimplemented on iPhone
+     * 
+     * @param streamType
+     *            unused
+     */
     public final void setVolumeControlStream(int streamType) {
         // There's nothing appropriate on the iPhone so this implementation
         // will remain empty

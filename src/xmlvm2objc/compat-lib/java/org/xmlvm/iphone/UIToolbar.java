@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.xmlvm.iphone;
 
 import static org.xmlvm.iphone.internal.renderer.UIToolbarRenderer.BOTTOM_OFFSET;
@@ -64,6 +63,7 @@ public class UIToolbar extends UIGenericToolbar {
         updateViews();
     }
 
+    @Override
     protected void updateViews() {
         if (items == null)
             return;

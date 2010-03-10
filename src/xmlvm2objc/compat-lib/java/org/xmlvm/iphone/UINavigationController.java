@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.xmlvm.iphone;
 
 import static org.xmlvm.iphone.internal.renderer.UIToolbarRenderer.HEIGHT_NOPROMT;
@@ -50,6 +49,7 @@ public final class UINavigationController extends UIViewController {
         pushViewController(rootViewController, false);
     }
 
+    @Override
     protected CGRect requestInternalFrame() {
         return new CGRect(getTopViewController().getView().getFrame());
     }
@@ -183,6 +183,7 @@ public final class UINavigationController extends UIViewController {
             delegate.didShowViewController(this, getTopViewController(), animated);
     }
 
+    @Override
     protected void updateViews() {
         /* Calculate metrics */
         CGRect frame = getView().getFrame();

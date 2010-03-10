@@ -1,7 +1,26 @@
+/*
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ * 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
+ * Ave, Cambridge, MA 02139, USA.
+ * 
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ */
+
 package org.xmlvm.iphone.internal.renderer;
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
@@ -23,6 +42,7 @@ public class UIImageViewRenderer extends UIViewRenderer<UIImageView> {
         super(view);
     }
 
+    @Override
     public void paint() {
         Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect rect = view.getFrame();
@@ -35,10 +55,11 @@ public class UIImageViewRenderer extends UIViewRenderer<UIImageView> {
         if (view.getImage() != null) {
             // TODO the following should probably be done in UIView using
             // affine transformations
-        	// TODO something wrong with the clipping we do here
-            //Rectangle clipRect = g.getClipBounds();
-            //g.setClip((int) rect.origin.x, (int) rect.origin.y, (int) rect.size.width,
-            //        (int) rect.size.height);
+            // TODO something wrong with the clipping we do here
+            // Rectangle clipRect = g.getClipBounds();
+            // g.setClip((int) rect.origin.x, (int) rect.origin.y, (int)
+            // rect.size.width,
+            // (int) rect.size.height);
             BufferedImage image = view.getImage().xmlvmGetImage();
             CGSize imageSize = view.getImage().getSize();
             switch (view.getContentMode()) {
@@ -96,7 +117,8 @@ public class UIImageViewRenderer extends UIViewRenderer<UIImageView> {
                     RenderingHints.VALUE_INTERPOLATION_BICUBIC);
             g.drawImage(image, (int) rect.origin.x, (int) rect.origin.y, (int) rect.size.width,
                     (int) rect.size.height, Simulator.getDisplay());
-            //g.setClip(clipRect.x, clipRect.y, clipRect.width, clipRect.height);
+            // g.setClip(clipRect.x, clipRect.y, clipRect.width,
+            // clipRect.height);
         }
     }
 }

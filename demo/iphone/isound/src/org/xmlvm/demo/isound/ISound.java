@@ -47,6 +47,7 @@ public class ISound extends UIApplication implements AVAudioPlayerDelegate {
     private boolean       playing = false;
     private AVAudioPlayer audioPlayer;
 
+    @Override
     public void applicationDidFinishLaunching(UIApplication app) {
         setupUI();
     }

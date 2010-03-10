@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.xmlvm.iphone;
 
 import java.util.ArrayList;
@@ -47,6 +46,7 @@ public class UITabBarController extends UIViewController {
         selectedIndex = 0;
     }
 
+    @Override
     protected CGRect requestInternalFrame() {
         return new CGRect(getSelectedViewController().getView().getFrame());
     }
@@ -120,6 +120,7 @@ public class UITabBarController extends UIViewController {
         updateViews();
     }
 
+    @Override
     protected void updateViews() {
         /* Calculate metrics */
         UIView master = getView();

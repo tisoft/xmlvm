@@ -62,6 +62,7 @@ public class TextView extends View {
         }
     }
 
+    @Override
     public void setLayoutParams(ViewGroup.LayoutParams l) {
         layoutParams = l;
 

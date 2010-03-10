@@ -71,6 +71,7 @@ public final class Rect {
         bottom = r.bottom;
     }
 
+    @Override
     public boolean equals(Object obj) {
         Rect r = (Rect) obj;
         if (r != null) {
@@ -79,6 +80,7 @@ public final class Rect {
         return false;
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(32);
         sb.append("Rect(");

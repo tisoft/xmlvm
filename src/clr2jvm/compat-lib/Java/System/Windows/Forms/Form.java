@@ -1,18 +1,44 @@
+/*
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ * 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
+ * Ave, Cambridge, MA 02139, USA.
+ * 
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ */
+
 
 package System.Windows.Forms;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Panel;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.UIManager;
 
 import org.xmlvm.clr.WinFormsLayoutManager;
 
 import System.EventArgs;
-import System.String;
-import System.Drawing.Color;
-import System.Drawing.Size;
 import System.EventHandler;
+import System.String;
+import System.Drawing.Size;
 
 public class Form
     extends ContainerControl
@@ -105,7 +131,8 @@ public class Form
 
         topLevelFrame.addComponentListener(new ComponentAdapter() {
 
-            public void componentResized(ComponentEvent e)
+            @Override
+			public void componentResized(ComponentEvent e)
             {
                 Frame f = (Frame) e.getSource();
                 int newWidth = f.getWidth() < f.getMinimumSize().width ? f
@@ -118,7 +145,8 @@ public class Form
 
         topLevelFrame.addWindowListener(new WindowAdapter() {
 
-            public void windowClosing(WindowEvent e)
+            @Override
+			public void windowClosing(WindowEvent e)
             {
                 System.exit(0);
             }

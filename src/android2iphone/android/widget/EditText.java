@@ -57,6 +57,7 @@ public class EditText extends TextView {
         return getUITextField().getText();
     }
 
+    @Override
     public void setText(String string) {
         text = string;
         getUITextField().setText(string);
@@ -94,14 +95,17 @@ public class EditText extends TextView {
         setIgnoreRequestLayout(false);
     }
 
+    @Override
     protected UIFont xmlvmGetUIFont() {
         return getUITextField().getFont();
     }
 
+    @Override
     protected int xmlvmGetInsetsX() {
         return INSETS_X;
     }
 
+    @Override
     protected int xmlvmGetInsetsY() {
         return INSETS_Y;
     }

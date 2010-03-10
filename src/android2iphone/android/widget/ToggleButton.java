@@ -47,14 +47,15 @@ public class ToggleButton extends CompoundButton {
             parseToggleButtonAttributes(attrs);
         }
     }
+
     private void parseToggleButtonAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
-        
+
         String value = attrs.getAttributeValue(null, "textOn");
         setTextOn(value != null ? value : "");
         value = attrs.getAttributeValue(null, "textOff");
         setTextOff(value != null ? value : "");
-        
+
         setIgnoreRequestLayout(false);
     }
 
@@ -63,6 +64,7 @@ public class ToggleButton extends CompoundButton {
         return new UIToggleButton();
     }
 
+    @Override
     public void setText(String text) {
         this.text = text;
         ((UIToggleButton) xmlvmGetUIView()).setText(text);
@@ -79,6 +81,7 @@ public class ToggleButton extends CompoundButton {
         requestLayout();
     }
 
+    @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int minWidth = getSuggestedMinimumWidth();
         int minHeight = getSuggestedMinimumHeight();

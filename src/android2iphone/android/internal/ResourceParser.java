@@ -81,6 +81,7 @@ class DrawableParser extends NSXMLParserDelegate {
         }
     }
 
+    @Override
     public void didEndElement(NSXMLParser parser, String elementName, String namespaceURI,
             String qualifiedName) {
     }
@@ -234,7 +235,7 @@ class StringArraysParser extends NSXMLParserDelegate {
             // System.out.println("cId="+currentId); }
             currentIdx = -1;
             currentValue = new StringBuffer[100]; // TODO: at most 100 values
-                                                  // for array
+            // for array
         } else if (qualifiedName.equals("item")) {
             currentIdx++;
             inItem = true;

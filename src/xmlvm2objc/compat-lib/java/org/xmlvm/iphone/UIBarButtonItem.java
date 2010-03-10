@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.xmlvm.iphone;
 
 import java.util.HashSet;
@@ -72,13 +71,14 @@ public class UIBarButtonItem extends UIBarItem {
         setTitle(title);
     }
 
+    @Override
     public void setTitle(String title) {
         super.setTitle(title);
         if (customView instanceof UIBarButtonItemView)
             ((UIBarButtonItemView) customView).setTitle(title, 0);
-        UIButtonRenderer.Metrics m = UIButtonRenderer.getMetrics(
-                CGContext.UICurrentContext().xmlvmGetGraphics2D(), title,
-                UIBarButtonItemRenderer.BAR_BUTTON_FONT.xmlvmGetFont());
+        UIButtonRenderer.Metrics m = UIButtonRenderer.getMetrics(CGContext.UICurrentContext()
+                .xmlvmGetGraphics2D(), title, UIBarButtonItemRenderer.BAR_BUTTON_FONT
+                .xmlvmGetFont());
         float cutoff = ((UIBarButtonItemRenderer) getCustomView().xmlvmGetRenderer()).isBack() ? UIBarButtonItemRenderer.CUTOFF
                 : 0;
         setWidth(m.width + UIBarButtonItemRenderer.TEXT_INSET * 2 + cutoff);

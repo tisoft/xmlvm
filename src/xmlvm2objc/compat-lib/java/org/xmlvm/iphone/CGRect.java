@@ -58,6 +58,7 @@ public class CGRect {
         return rect.size.width <= 0.0f || rect.size.height <= 0.0f;
     }
 
+    @Override
     public String toString() {
         return "[" + origin.toString() + size.toString() + "]";
     }
