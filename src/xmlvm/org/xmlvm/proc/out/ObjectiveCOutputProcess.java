@@ -151,6 +151,10 @@ public class ObjectiveCOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
                 if (a != null) {
                     seen.add(a.getValue());
                 }
+                a = ((Element) cur).getAttribute("value");
+                if (a != null) {
+                    seen.add(a.getValue());
+                }
             } else {
                 System.out.println(cur);
             }
