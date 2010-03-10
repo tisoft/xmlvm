@@ -96,9 +96,22 @@ public class SharedPreferences {
          *         chain put calls together.
          */
         public SharedPreferences.Editor putString(String key, String value) {
-            Assert.NOT_IMPLEMENTED();
+            preferences.setObject(value, key);
             return this;
         }
+
+        /**
+         * Remove a String value from the preferences editor, to be written back
+         * once commit() is called.
+         * 
+         * @return Returns a reference to the same Editor object, so you can
+         *         chain put calls together.
+         */
+        public SharedPreferences.Editor remove(String key) {
+            preferences.remove(key);
+            return this;
+        }
+
     }
 
     public SharedPreferences(int mode) {
@@ -175,7 +188,9 @@ public class SharedPreferences {
      * Retrieve a String value from the preferences.
      */
     public String getString(String key, String defValue) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        if (!contains(key)) {
+            return defValue;
+        }
+        return preferences.stringForKey(key);
     }
 }

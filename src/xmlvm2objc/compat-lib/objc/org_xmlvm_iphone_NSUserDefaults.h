@@ -41,4 +41,5 @@ typedef NSUserDefaults org_xmlvm_iphone_NSUserDefaults;
 - (org_xmlvm_iphone_NSData*) dataForKey___java_lang_String :(java_lang_String*) key;
 - (java_lang_String*) stringForKey___java_lang_String :(java_lang_String*) key;
 - (BOOL) synchronize__;
+- (void) remove___java_lang_String :(java_lang_String*) key;
 @end

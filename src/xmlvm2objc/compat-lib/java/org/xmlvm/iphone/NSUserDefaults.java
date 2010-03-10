@@ -26,7 +26,7 @@ import java.util.Map;
 public class NSUserDefaults {
 
     private static NSUserDefaults nsUserDefaults = new NSUserDefaults();
-    private Map<String, Object> preferences = new HashMap<String, Object>();
+    private Map<String, Object>   preferences    = new HashMap<String, Object>();
 
     public static NSUserDefaults standardUserDefaults() {
         return nsUserDefaults;
@@ -75,4 +75,8 @@ public class NSUserDefaults {
     public String stringForKey(String key) {
         return (String) preferences.get(key);
     }
-}
+
+    public void remove(String key) {
+        preferences.remove(key);
+    }
+};

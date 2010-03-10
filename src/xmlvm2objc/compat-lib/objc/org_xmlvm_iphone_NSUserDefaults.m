@@ -94,4 +94,9 @@
 	return [self synchronize];
 }
 
+- (void) remove___java_lang_String :(java_lang_String*) key
+{
+	[self removeObjectForKey:key];
+}
+
 @end
