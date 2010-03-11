@@ -82,7 +82,7 @@
 			: (org_xmlvm_iphone_NSURL*) url
 			: (org_xmlvm_iphone_NSErrorHolder*) outError
 {
-	return [[[AVAudioPlayer alloc] initWithContentsOfURL: url error: &(outError->error_org_xmlvm_iphone_NSError)] retain];
+	return [[AVAudioPlayer alloc] initWithContentsOfURL: url error: &(outError->error_org_xmlvm_iphone_NSError)];
 }
 
 + (AVAudioPlayer*) initWithContentsOfFileDescriptor___java_io_FileDescriptor_long_long_org_xmlvm_iphone_NSErrorHolder
@@ -97,7 +97,7 @@
 	}
 	
 	NSData* data = [fileHandle readDataOfLength: length];
-	AVAudioPlayer *player = [[[AVAudioPlayer alloc] initWithData: data error: &(outError->error_org_xmlvm_iphone_NSError)] retain];
+	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData: data error: &(outError->error_org_xmlvm_iphone_NSError)];
 	[outError->error_org_xmlvm_iphone_NSError retain];
 	return player != nil ? player : [NSNull null];
 }
