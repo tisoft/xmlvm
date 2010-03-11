@@ -30,91 +30,92 @@ import org.xmlvm.iphone.internal.SimulatorDesktop;
 
 public abstract class UIApplication extends UIResponder {
 
-    private boolean              idleTimerDisabled;
-    private static UIApplication instance;
-    List<UIWindow>               windows;
-    UIWindow                     keyWindow;
+	private boolean idleTimerDisabled;
+	private static UIApplication instance;
+	List<UIWindow> windows;
+	UIWindow keyWindow;
 
-    public UIApplication() {
-        super(false);
-        instance = this;
-        setIdleTimerDisabled(false);
-        if (!Simulator.initialized)
-            // We run on the desktop
-            new SimulatorDesktop();
-        Simulator.addTouchesListener(this);
-        setStatusBarOrientation(UIInterfaceOrientation.Portrait);
-        windows = new ArrayList<UIWindow>();
-    }
+	public UIApplication() {
+		super(false);
+		windows = new ArrayList<UIWindow>();
+		instance = this;
+		setIdleTimerDisabled(false);
+		if (!Simulator.initialized) {
+			// We run on the desktop
+			new SimulatorDesktop();
+		}
+		Simulator.addTouchesListener(this);
+		setStatusBarOrientation(UIInterfaceOrientation.Portrait);
+	}
 
-    public static UIApplication sharedApplication() {
-        return instance;
-    }
+	public static UIApplication sharedApplication() {
+		return instance;
+	}
 
-    public void setIdleTimerDisabled(boolean flag) {
-        this.idleTimerDisabled = flag;
-    }
+	public void setIdleTimerDisabled(boolean flag) {
+		this.idleTimerDisabled = flag;
+	}
 
-    public boolean isIdleTimerDisabled() {
-        return this.idleTimerDisabled;
-    }
+	public boolean isIdleTimerDisabled() {
+		return this.idleTimerDisabled;
+	}
 
-    public void setKeyWindow(UIWindow window) {
-        if (!windows.contains(window))
-            windows.add(window);
-        keyWindow = window;
-        Simulator.redrawDisplay();
-    }
+	public void setKeyWindow(UIWindow window) {
+		if (!windows.contains(window))
+			windows.add(window);
+		keyWindow = window;
+		Simulator.redrawDisplay();
+	}
 
-    public UIWindow getKeyWindow() {
-        return keyWindow;
-    }
+	public UIWindow getKeyWindow() {
+		return keyWindow;
+	}
 
-    public List<UIWindow> getWindows() {
-        return new ArrayList<UIWindow>(windows);
-    }
+	public List<UIWindow> getWindows() {
+		return new ArrayList<UIWindow>(windows);
+	}
 
-    public abstract void applicationDidFinishLaunching(UIApplication app);
+	public abstract void applicationDidFinishLaunching(UIApplication app);
 
-    public void applicationWillTerminate(UIApplication app) {
-    }
+	public void applicationWillTerminate(UIApplication app) {
+	}
 
-    public void applicationDidBecomeActive(UIApplication app) {
-    }
+	public void applicationDidBecomeActive(UIApplication app) {
+	}
 
-    public void applicationWillResignActive(UIApplication app) {
-    }
+	public void applicationWillResignActive(UIApplication app) {
+	}
 
-    public void setStatusBarOrientation(int orientation) {
-        Simulator.setStatusBarOrientation(orientation);
-    }
+	public void setStatusBarOrientation(int orientation) {
+		Simulator.setStatusBarOrientation(orientation);
+	}
 
-    public void setStatusBarHidden(boolean flag) {
-        Simulator.setStatusBarHidden(flag);
-    }
+	public void setStatusBarHidden(boolean flag) {
+		Simulator.setStatusBarHidden(flag);
+	}
 
-    public static void main(String[] args, Class appClass) {
-        try {
-            final UIApplication theApp = (UIApplication) appClass.newInstance();
-            Runnable r = new Runnable() {
+	public static void main(String[] args, Class appClass) {
+		try {
+			final UIApplication theApp = (UIApplication) appClass.newInstance();
+			Runnable r = new Runnable() {
 
-                public void run() {
-                    theApp.applicationDidFinishLaunching(theApp);
-                }
-            };
+				public void run() {
+					theApp.applicationDidFinishLaunching(theApp);
+				}
+			};
 
-            SwingUtilities.invokeLater(r);
-        } catch (Throwable e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+			SwingUtilities.invokeLater(r);
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-    public void xmlvmAddWindow(UIWindow window) {
-        windows.add(window);
-    }
+	public void xmlvmAddWindow(UIWindow window) {
+		windows.add(window);
+	}
 
-    public void xmlvmRemoveWindow(UIWindow window) {
-        windows.remove(window);
-    }
+	public void xmlvmRemoveWindow(UIWindow window) {
+		windows.remove(window);
+	}
 }
