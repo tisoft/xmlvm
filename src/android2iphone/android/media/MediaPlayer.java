@@ -28,8 +28,6 @@ import org.xmlvm.iphone.AVAudioPlayerDelegate;
 import org.xmlvm.iphone.NSError;
 import org.xmlvm.iphone.NSErrorHolder;
 
-import android.util.Log;
-
 public class MediaPlayer {
     
     private OnCompletionListener onCompletionListener = null;
