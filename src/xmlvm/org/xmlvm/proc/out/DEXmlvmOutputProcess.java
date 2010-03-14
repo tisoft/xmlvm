@@ -80,6 +80,7 @@ import com.android.dx.rop.code.LocalVariableInfo;
 import com.android.dx.rop.code.RegisterSpec;
 import com.android.dx.rop.code.RegisterSpecList;
 import com.android.dx.rop.code.RopMethod;
+import com.android.dx.rop.code.SourcePosition;
 import com.android.dx.rop.code.TranslationAdvice;
 import com.android.dx.rop.cst.Constant;
 import com.android.dx.rop.cst.CstMemberRef;
@@ -87,6 +88,7 @@ import com.android.dx.rop.cst.CstMethodRef;
 import com.android.dx.rop.cst.CstNat;
 import com.android.dx.rop.cst.CstString;
 import com.android.dx.rop.cst.CstType;
+import com.android.dx.rop.cst.CstUtf8;
 import com.android.dx.rop.cst.TypedConstant;
 import com.android.dx.rop.type.Prototype;
 import com.android.dx.rop.type.StdTypeList;
@@ -388,7 +390,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      */
     private static void processMethod(Method method, DirectClassFile cf, Element classElement) {
         final boolean localInfo = true;
-        final int positionInfo = PositionList.NONE;
+        final int positionInfo = PositionList.LINES;
 
         CstMethodRef meth = new CstMethodRef(method.getDefiningClass(), method.getNat());
 
@@ -488,6 +490,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
 
             Element lastTryCatchElement = null;
 
+            // Used inside processInstruction to mark source file lines as
+            // already added, so they don't get added twice.
+            List<Integer> sourceLinesAlreadyPut = new ArrayList<Integer>();
             // Process every single instruction of this method. Either add it do
             // the main code element, or to a try-catch block.
             for (int i = 0; i < instructions.size(); ++i) {
@@ -556,7 +561,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     lastTryCatchElement = tryCatchElement;
                 }
 
-                processInstruction(instruction, instructionParent, switchDataBlocks, arrayData);
+                processInstruction(instruction, instructionParent, switchDataBlocks, arrayData,
+                        sourceLinesAlreadyPut);
             }
         }
     }
@@ -733,13 +739,26 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      *            the switch data blocks
      * @param arrayData
      *            the array data
+     * @param sourceLinesAlreadyPut
+     *            a bin for putting used source lines number in.
      */
     private static void processInstruction(DalvInsn instruction, Element parentElement,
-            Map<Integer, SwitchData> switchDataBlocks, Map<Integer, ArrayData> arrayData) {
+            Map<Integer, SwitchData> switchDataBlocks, Map<Integer, ArrayData> arrayData,
+            List<Integer> sourceLinesAlreadyPut) {
         Element dexInstruction = null;
 
         if (instruction instanceof CodeAddress) {
-            // Ignore.
+            // We put debug information about source code positions into the
+            // code so that we can control the debugger.
+            SourcePosition sourcePosition = instruction.getPosition();
+            CstUtf8 sourceFile = sourcePosition.getSourceFile();
+            int sourceLine = sourcePosition.getLine();
+            if (sourceFile != null && !sourceLinesAlreadyPut.contains(sourceLine)) {
+                dexInstruction = new Element("source-position", NS_XMLVM);
+                dexInstruction.setAttribute("file", sourceFile.toHuman());
+                dexInstruction.setAttribute("line", String.valueOf(sourceLine));
+                sourceLinesAlreadyPut.add(sourceLine);
+            }
         } else if (instruction instanceof LocalSnapshot) {
             // Ignore.
         } else if (instruction instanceof OddSpacer) {
@@ -868,7 +887,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             HighRegisterPrefix highRegisterPrefix = (HighRegisterPrefix) instruction;
             SimpleInsn[] moveInstructions = highRegisterPrefix.getMoveInstructions();
             for (SimpleInsn moveInstruction : moveInstructions) {
-                processInstruction(moveInstruction, parentElement, switchDataBlocks, arrayData);
+                processInstruction(moveInstruction, parentElement, switchDataBlocks, arrayData,
+                        sourceLinesAlreadyPut);
             }
         } else {
             System.err.print(">>> Unknown instruction: ");
