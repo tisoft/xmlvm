@@ -1458,6 +1458,12 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <!-- do nothing -->
 </xsl:template>
 
+<!--  vm:source-position
+      =======  -->
+<xsl:template match="vm:source-position">
+  <!-- TODO -->
+</xsl:template>
+
 
 <!--  dex:const-string
       ================  -->

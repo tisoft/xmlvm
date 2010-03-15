@@ -1964,6 +1964,10 @@ int main(int argc, char* argv[])
   <!-- Do nothing -->
 </xsl:template>
 
+<xsl:template match="vm:source-position">
+  <!-- TODO -->
+</xsl:template>
+
 
 <xsl:template match="dex:invoke-static|dex:invoke-static-range">
   <xsl:variable name="returnTypedAccess">
