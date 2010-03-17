@@ -1,3 +1,6 @@
+<?php
+	include("../header.html");
+?>
 <style>
   pre {
     width:480px;
@@ -7,12 +10,8 @@
   }
 </style>
 <?php
-	include("../header.html");
-?>
-<?php
 	include("../nav.html");
 ?>	
-
 <tr>
   <td id="main_content_td">
     <div id="main_content">
