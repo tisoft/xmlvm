@@ -9,6 +9,10 @@
         return "http://sourceforge.net/mailarchive/forum.php?thread_name=4B20C662.2070008%40puder.org&forum_name=xmlvm-users";
       } else if ($url == "@mtimes") {
         return "http://mobile-times.de/sprecher";
+      } else if ($url == "@mathema") {
+        return "http://www.mathema.de/events/mobile-developer-day/inhalte/";
+      } else if ($url == "@techtalk") {
+        return "http://www.youtube.com/watch?v=TG-NIt2O5J8";
       }
     }
     return $url;
