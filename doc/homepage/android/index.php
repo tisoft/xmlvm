@@ -55,6 +55,10 @@ method <tt>addTarget()</tt>. The code below will be cross-compiled to
 Objective-C:
 </p>
 
+<div style="float:right"><object width="320" height="265"><param name="movie" value="http://www.youtube.com/v/TG-NIt2O5J8&hl=en_US&fs=1&color1=0x5d1719&color2=0xcd311b"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/TG-NIt2O5J8&hl=en_US&fs=1&color1=0x5d1719&color2=0xcd311b" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="320" height="265"></embed></object>
+<a href="http://xmlvm.org/slides/android2iphone-google-mtv.pdf" style="margin-top:4px;" target="_blank"><br/>Download the slides as PDF</a>
+</div>
+
 <div class="code_block">
 <p>
 <?php
