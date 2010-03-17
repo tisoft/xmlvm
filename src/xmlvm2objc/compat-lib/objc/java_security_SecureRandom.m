@@ -18,19 +18,7 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.view;
+#import "java_security_SecureRandom.h"
 
-public class WindowManager {
-
-    /**
-     * TODO: Implement for real.
-     */
-    public Display getDefaultDisplay() {
-        return new Display();
-    }
-
-    public static class LayoutParams {
-        public static final int FLAG_BLUR_BEHIND = 4;
-        public static final int FLAG_FULLSCREEN = 1024;
-    }
-}
+@implementation java_security_SecureRandom
+@end

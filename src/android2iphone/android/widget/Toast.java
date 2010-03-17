@@ -38,14 +38,13 @@ public class Toast {
     public static final int LENGTH_LONG  = 1;
     public static final int LENGTH_SHORT = 0;
 
-    private Activity        activity;
     private View            view;
+    private Window          window;
     private Handler         handler;
     private Runnable        runnable;
     private int             duration     = LENGTH_SHORT;
 
     public Toast(Context context) {
-        activity = ActivityManager.getTopActivity();
     }
 
     public static Toast makeText(Context context, int resId, int duration) {
@@ -79,13 +78,14 @@ public class Toast {
     }
 
     public void show() {
+        Activity activity = ActivityManager.getTopActivity();
         RelativeLayout l = new RelativeLayout(activity);
         RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT);
         p.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
         p.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
         l.addView(view, p);
-        final Window window = activity.getWindow();
+        window = activity.getWindow();
         window.xmlvmShowToast(l);
         handler = new Handler();
         runnable = new Runnable() {
@@ -99,9 +99,15 @@ public class Toast {
     }
 
     public void cancel() {
-        handler.removeCallbacks(runnable);
-        Window window = activity.getWindow();
-        window.xmlvmRemoveToast();
+        if (handler != null) {
+            handler.removeCallbacks(runnable);
+        }
+        handler = null;
+        runnable = null;
+        if (window != null) {
+            window.xmlvmRemoveToast();
+        }
+        window = null;
     }
 
 }

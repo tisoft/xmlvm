@@ -326,7 +326,7 @@ public class Activity extends ContextThemeWrapper {
      * TODO: Implement for real.
      */
     public WindowManager getWindowManager() {
-        return new WindowManager(this);
+        return new WindowManager();
     }
 
     /**

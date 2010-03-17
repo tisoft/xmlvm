@@ -18,22 +18,15 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import "java_lang_Object.h"
-#import "java_lang_String.h"
-#import "java_io_InputStream.h"
+package android.telephony;
 
+import android.internal.Assert;
 
-@interface java_io_ByteArrayInputStream : java_io_InputStream {
-  char *buffer;
-  int length;
-  int pos;
-  int marked;
+public class TelephonyManager {
+
+    public String getDeviceId() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
 }
-
-- (void) __init_java_io_ByteArrayInputStream___byte_ARRAYTYPE_int_int :(XMLVMArray*)buf :(int)from :(int)len;
-- (void) __init_java_io_ByteArrayInputStream___byte_ARRAYTYPE: (XMLVMArray*)buf;
-- (void) dealloc;
-- (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len;
-- (java_lang_String *) readLine__;
-@end

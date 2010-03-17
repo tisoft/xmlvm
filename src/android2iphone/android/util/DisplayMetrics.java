@@ -18,12 +18,12 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.util;
 
 public class DisplayMetrics {
 
-    public int widthPixels;
-    public int heightPixels;
+    public int   widthPixels;
+    public int   heightPixels;
+    public float density;
 
 }

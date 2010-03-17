@@ -24,16 +24,6 @@
 //----------------------------------------------------------------------------
 @implementation java_io_ByteArrayOutputStream
 
-
-- (id) init
-{
-	if (self = [super init]) {
-		buffer = [NSMutableData dataWithCapacity: DEFAULT_CAPACITY];
-		[buffer retain];
-	}
-	return self;
-}
-
 - (void) dealloc
 {
 	[buffer release];
@@ -42,11 +32,26 @@
 
 - (void) __init_java_io_ByteArrayOutputStream__
 {
+	buffer = [NSMutableData dataWithCapacity: DEFAULT_CAPACITY];
+	[buffer retain];
+}
+
+- (void) __init_java_io_ByteArrayOutputStream___int: (int) size
+{
+	buffer = [NSMutableData dataWithCapacity: size];
+	[buffer retain];
 }
 
 - (void) write___int:(int)i
 {
 	[buffer appendByte___int:i];	
+}
+
+- (void) writeTo___java_io_OutputStream: (java_io_OutputStream*) os
+{
+	XMLVMArray* data = [self toByteArray__];
+	[os write___byte_ARRAYTYPE:data];
+	[data release];
 }
 
 - (XMLVMArray *) toByteArray__
@@ -61,6 +66,11 @@
 	}
 	[result retain];
 	return result;
+}
+
+- (void) reset__
+{
+	[buffer setLength:0];
 }
 
 @end

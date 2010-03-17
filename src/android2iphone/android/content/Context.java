@@ -33,6 +33,7 @@ import android.internal.IPhoneManager;
 import android.media.AudioManager;
 import android.os.PowerManager;
 import android.view.LayoutInflater;
+import android.view.WindowManager;
 
 /**
  * <i>(XMLVM Compatibility Class)</i>
@@ -108,10 +109,13 @@ public abstract class Context {
 
     public static final String   LAYOUT_INFLATER_SERVICE = "layout_inflater";
     public static final String   AUDIO_SERVICE           = "audio";
+    public static final String   WINDOW_SERVICE          = "window";
+    public static final String   TELEPHONY_SERVICE       = "telephony";
 
     private static SensorManager sensorManager           = null;
     private static PowerManager  powerManager            = null;
     private static AudioManager  audioManager            = null;
+    private static WindowManager windowManager           = null;
     private static IPhoneManager iphoneManager           = null;
 
     /**
@@ -133,6 +137,11 @@ public abstract class Context {
                 powerManager = new PowerManager();
             }
             return powerManager;
+        } else if (service.equals(WINDOW_SERVICE)) {
+            if (windowManager == null) {
+                windowManager = new WindowManager();
+            }
+            return windowManager;
         } else if (service.equals(AUDIO_SERVICE)) {
             if (audioManager == null) {
                 audioManager = new AudioManager();
@@ -149,6 +158,8 @@ public abstract class Context {
         return null;
     }
 
+    public abstract Context getApplicationContext();
+
     public abstract SharedPreferences getSharedPreferences(String name, int mode);
 
     public abstract Resources getResources();
@@ -163,15 +174,20 @@ public abstract class Context {
             throws FileNotFoundException;
 
     public abstract boolean deleteFile(String name);
-    
+
     public String getString(int resId) {
         Assert.NOT_IMPLEMENTED();
         return null;
     }
-    
+
     public void bindService(Intent intent, ServiceConnection conn, int flags) {
         Assert.NOT_IMPLEMENTED();
     }
-    
+
     public abstract File getFileStreamPath(String name);
+
+    public ContentResolver getContentResolver() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
 }

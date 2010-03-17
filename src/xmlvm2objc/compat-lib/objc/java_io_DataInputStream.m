@@ -46,6 +46,28 @@
 	[target close__];
 }
 
+- (int) readInt__
+{
+	int d;
+	unsigned char* p = (unsigned char*) &d;
+	
+	for (int i = 0; i < 4; i++) {
+		int v = [target read__];
+		*p++ = (unsigned char) v;
+	}
+	return d;
+}
+
+- (int) readByte__
+{
+	return [self readInt__];
+}
+
+- (bool) readBoolean__
+{
+	return [self readInt__] != 0;
+}
+
 - (float) readFloat__
 {
 	float f;

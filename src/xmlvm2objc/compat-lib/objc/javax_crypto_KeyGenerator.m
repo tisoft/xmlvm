@@ -18,19 +18,7 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.view;
+#import "javax_crypto_KeyGenerator.h"
 
-public class WindowManager {
-
-    /**
-     * TODO: Implement for real.
-     */
-    public Display getDefaultDisplay() {
-        return new Display();
-    }
-
-    public static class LayoutParams {
-        public static final int FLAG_BLUR_BEHIND = 4;
-        public static final int FLAG_FULLSCREEN = 1024;
-    }
-}
+@implementation javax_crypto_KeyGenerator
+@end

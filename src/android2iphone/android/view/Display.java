@@ -22,23 +22,23 @@ package android.view;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.internal.ActivityManager;
+import android.util.DisplayMetrics;
+
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIScreen;
 
 public class Display {
-    private Activity activity;
-
-    public Display(Activity activity) {
-        this.activity = activity;
-    }
 
     /**
      * Return the current width of the screen TODO: Implement for real. This is
      * only a dummy.
      */
     public int getWidth() {
+        Activity activity = ActivityManager.getTopActivity();
         CGSize s = UIScreen.mainScreen().getBounds().size;
-        return (int)(activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? s.height : s.width);
+        return (int) (activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? s.height
+                : s.width);
     }
 
     /**
@@ -46,7 +46,16 @@ public class Display {
      * only a dummy.
      */
     public int getHeight() {
+        Activity activity = ActivityManager.getTopActivity();
         CGSize s = UIScreen.mainScreen().getBounds().size;
-        return (int)(activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? s.width : s.height);
+        return (int) (activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? s.width
+                : s.height);
+    }
+
+    public void getMetrics(DisplayMetrics metrics) {
+        CGSize size = UIScreen.mainScreen().getBounds().size;
+        metrics.heightPixels = (int) size.height;
+        metrics.widthPixels = (int) size.width;
+        metrics.density = 1;
     }
 }

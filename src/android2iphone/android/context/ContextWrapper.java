@@ -64,6 +64,7 @@ public class ContextWrapper extends Context {
         return new AssetManager();
     }
 
+    @Override
     public Context getApplicationContext() {
         // TODO this is probably not right
         return this;

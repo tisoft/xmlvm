@@ -28,9 +28,12 @@
 
 static int const DEFAULT_CAPACITY;
 
-- (id) init;
 - (void) dealloc;
 - (void) __init_java_io_ByteArrayOutputStream__;
+- (void) __init_java_io_ByteArrayOutputStream___int: (int) size;
+- (void) writeTo___java_io_OutputStream: (java_io_OutputStream*) os;
+- (void) write___int:(int)i;
 - (XMLVMArray *) toByteArray__;
+- (void) reset__;
 
 @end

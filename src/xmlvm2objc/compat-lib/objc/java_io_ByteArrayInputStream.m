@@ -27,12 +27,18 @@
 	self->length = len;
 	self->buffer = malloc(sizeof(char)*len);
 
-	int src=from; int dst=0;
-	while (dst<len) {
+	int src = from;
+	int dst = 0;
+	while (dst < len) {
 		buffer[dst++] = buf->array.i[src++];
 	}
 	self->pos = 0;
 	self->marked = 0;
+}
+
+- (void) __init_java_io_ByteArrayInputStream___byte_ARRAYTYPE: (XMLVMArray*)buf
+{
+	[self __init_java_io_ByteArrayInputStream___byte_ARRAYTYPE_int_int:buf :0 :[buf count]];
 }
 
 - (int) read__
@@ -50,7 +56,7 @@
 	[super dealloc];
 }
 
-- (int) available__
+- (bool) available__
 {
   return length - pos;
 }

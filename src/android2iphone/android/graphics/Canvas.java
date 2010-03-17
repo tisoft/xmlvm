@@ -141,7 +141,7 @@ public class Canvas {
         releaseCGContext();
     }
 
-    public void drawText(String texttodisplay, int left, int top, Paint paint) {
+    public void drawText(String texttodisplay, float left, float top, Paint paint) {
         createCGContext();
         context.setFillColor(paint.xmlvmGetColor());
         NSString.drawAtPoint(texttodisplay, new CGPoint(left, top), paint.xmlvmGetUIFont());

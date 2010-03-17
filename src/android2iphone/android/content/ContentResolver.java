@@ -21,11 +21,18 @@
 
 package android.content;
 
+import android.database.Cursor;
 import android.internal.Assert;
 import android.net.Uri;
 
 public abstract class ContentResolver {
     
+    public final Cursor query(Uri uri, String[] projection, String selection,
+            String[] selectionArgs, String sortOrder) {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
     public Uri insert(Uri url, ContentValues values) {
         Assert.NOT_IMPLEMENTED();
         return null;
