@@ -33,5 +33,6 @@ typedef UIImage org_xmlvm_iphone_UIImage;
 - (void) drawInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect;
 - (void) drawAtPoint___int_int :(int)x :(int)y;
 - (org_xmlvm_iphone_CGImage*) getCGImage__;
+- (void) cropImage: (id) dataPtr;
 - (org_xmlvm_iphone_UIImage *) cropImage___int_int_int_int: (int) x :(int) y :(int) width :(int) height;
 @end

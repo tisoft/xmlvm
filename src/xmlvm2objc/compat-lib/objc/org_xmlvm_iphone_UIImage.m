@@ -20,6 +20,15 @@
 
 #import "org_xmlvm_iphone_UIImage.h"
 
+@interface CroppedImageArgs : NSObject {
+@public	CGRect cropRect;
+@public	UIImage* croppedImage;
+}
+@end
+
+@implementation CroppedImageArgs
+@end
+
 
 // UIImage
 //----------------------------------------------------------------------------
@@ -61,9 +70,13 @@
 	return retval;
 }
 
-- (org_xmlvm_iphone_UIImage *) cropImage___int_int_int_int: (int) x :(int) y :(int) width :(int) height
+/*
+ * We perform the cropping on the main thread in case the cropping is
+ * done in a thread. Quartz is not thread-safe.
+ */
+- (void) cropImage: (id) args
 {
-	CGRect cropRect = CGRectMake(x, y, width, height);
+	CGRect cropRect = ((CroppedImageArgs*) args)->cropRect;
 	CGSize size = cropRect.size;
 	UIGraphicsBeginImageContext(size);
 	CGContextRef context = UIGraphicsGetCurrentContext();
@@ -71,11 +84,24 @@
 	CGRect myRect = CGRectMake(0.0f, 0.0f, size.width, size.height);
 	CGContextScaleCTM(context, 1.0f, -1.0f);
 	CGContextTranslateCTM(context, 0.0f, -size.height);
+	CGContextFlush(context);
 	CGContextDrawImage(context, myRect, subImage);
+	CGContextFlush(context);
 	UIImage* croppedImage = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
+	[croppedImage retain];
 	CGImageRelease(subImage);
-	return [croppedImage retain];
+	((CroppedImageArgs *) args)->croppedImage = croppedImage;
+}
+
+- (org_xmlvm_iphone_UIImage *) cropImage___int_int_int_int: (int) x :(int) y :(int) width :(int) height
+{
+	CroppedImageArgs* args = [[CroppedImageArgs alloc] init];
+	args->cropRect = CGRectMake(x, y, width, height);
+	[self performSelectorOnMainThread:@selector(cropImage:) withObject:args waitUntilDone:TRUE];
+	UIImage* croppedImage = args->croppedImage;
+	[args release];
+	return croppedImage;
 }
 
 @end
