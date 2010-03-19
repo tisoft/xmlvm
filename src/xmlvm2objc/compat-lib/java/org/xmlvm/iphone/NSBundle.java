@@ -20,6 +20,7 @@
 
 package org.xmlvm.iphone;
 
+import java.net.URISyntaxException;
 import java.net.URL;
 
 /**
@@ -55,7 +56,11 @@ public class NSBundle {
         }
 
         URL url = this.getClass().getResource("/" + fileName);
-        return url != null ? url.getFile() : null;
+        try {
+            return url != null ? url.toURI().getPath() : null;
+        } catch (URISyntaxException exc) {
+            return null;
+        }
     }
 
     public String pathForResource(String resource, String type) {
