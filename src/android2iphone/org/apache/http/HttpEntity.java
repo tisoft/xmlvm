@@ -21,10 +21,11 @@
 
 package org.apache.http;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 public interface HttpEntity {
 
     public InputStream getContent();
-    public void consumeContent();
+    public void consumeContent() throws IOException;
 }
