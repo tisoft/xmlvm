@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.apache.http.impl.client;
 
 import org.apache.http.HttpResponse;
@@ -30,6 +29,10 @@ import org.apache.http.params.HttpParams;
 import android.internal.Assert;
 
 public class DefaultHttpClient implements HttpClient {
+
+    public DefaultHttpClient() {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     public DefaultHttpClient(ClientConnectionManager cm, HttpParams parames) {
         Assert.NOT_IMPLEMENTED();
