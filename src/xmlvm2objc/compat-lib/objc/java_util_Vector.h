@@ -27,5 +27,6 @@ typedef NSMutableArray java_util_Vector;
 @interface NSMutableArray (cat_java_util_Vector)
 
 - (void) __init_java_util_Vector__;
+- (void) __init_java_util_Vector___int: (int) size;
 
 @end

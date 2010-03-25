@@ -60,12 +60,12 @@
 
 - (int) readByte__
 {
-	return [self readInt__];
+	return [target read__];
 }
 
 - (bool) readBoolean__
 {
-	return [self readInt__] != 0;
+	return [target read__] != 0;
 }
 
 - (float) readFloat__

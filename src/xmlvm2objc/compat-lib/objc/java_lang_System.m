@@ -23,7 +23,7 @@
 
 
 @interface ConsoleOutputStream : java_io_OutputStream {
-@private NSString* log;
+@private NSMutableString* log;
 }
 - (id) init;
 - (void) dealloc;
@@ -49,7 +49,7 @@
 {
 	if (b == '\n') {
 		NSLog(log);
-		[log setText:@""];
+		[log setString:@""];
 	}
 	else {
 	    [log appendString: [NSString stringWithFormat:@"%c", b]];

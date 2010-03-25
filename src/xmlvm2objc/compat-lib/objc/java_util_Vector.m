@@ -26,5 +26,9 @@
 {
 }
 
+- (void) __init_java_util_Vector___int: (int) size
+{
+}
+
 @end
 

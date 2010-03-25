@@ -1652,7 +1652,7 @@ int main(int argc, char* argv[])
     <xsl:when test="$type = 'char'">
       <xsl:text>i</xsl:text>
     </xsl:when>
-    <xsl:when test="$type = 'int' or $type = 'boolean' or type = 'byte'">
+    <xsl:when test="$type = 'int' or $type = 'boolean' or $type = 'byte'">
       <xsl:text>i</xsl:text>
     </xsl:when>
     <xsl:when test="$type = 'float'">

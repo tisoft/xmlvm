@@ -28,5 +28,6 @@
 @interface java_lang_reflect_Array : java_lang_Object
 
 + (XMLVMArray*) newInstance___java_lang_Class_int_ARRAYTYPE:(java_lang_Class*)clazz :(XMLVMArray*)dimensions;
++ (void) set___java_lang_Object_int_java_lang_Object:(XMLVMArray*) array :(int) index :(java_lang_Object*) obj;
 
 @end

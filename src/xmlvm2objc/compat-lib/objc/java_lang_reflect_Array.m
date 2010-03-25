@@ -52,4 +52,18 @@
 	return [[XMLVMArray createMultiDimensionsWithType:baseTypeId dimensions:dimensions->array.data count:dimensions->length] retain];
 }
 
++ (void) set___java_lang_Object_int_java_lang_Object:(XMLVMArray*) array :(int) index :(java_lang_Object*) obj
+{
+	if (array->type == 0) {
+		[obj retain];
+		[array->array.o[index] release];
+		array->array.o[index] = obj;
+	}
+	else {
+		// TODO
+		// primitive types need to be unwrapped
+		@throw [[NSException alloc] init];
+	}
+}
+
 @end

@@ -42,6 +42,12 @@
 	}
 }
 
+- (void) writeStringLn: (NSString*) str
+{
+	[self writeString:str];
+	[self writeString:@"\n"];
+}
+
 - (void) println___boolean: (int) i
 {
 	[self writeString: (i == NO) ? @"false" : @"true"];
@@ -49,25 +55,25 @@
 
 - (void) println___int: (int) i
 {
-    [self writeString:[NSString stringWithFormat:@"%d", i]];
+    [self writeStringLn:[NSString stringWithFormat:@"%d", i]];
 }
 
 
 - (void) println___float: (float) f
 {
-	[self writeString:[NSString stringWithFormat:@"%f", f]];
+	[self writeStringLn:[NSString stringWithFormat:@"%f", f]];
 }
 
 
 - (void) println___double: (double) d
 {
-    [self writeString:[NSString stringWithFormat:@"%lf", d]];
+    [self writeStringLn:[NSString stringWithFormat:@"%lf", d]];
 }
 
 
 - (void) println___java_lang_String: (NSString*) s
 {
-	[self writeString:s];
+	[self writeStringLn:s];
 }
 
 - (void) println__
