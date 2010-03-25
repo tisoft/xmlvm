@@ -30,6 +30,7 @@ import java.util.Map;
 
 import javax.management.RuntimeErrorException;
 
+import org.jdom.DataConversionException;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.Namespace;
@@ -43,6 +44,9 @@ import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XmlvmResource.Type;
 import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
+import org.xmlvm.refcount.ReferenceCounting;
+import org.xmlvm.refcount.InstructionProcessor;
+import org.xmlvm.refcount.ReferenceCountingException;
 
 import com.android.dx.cf.code.ConcreteMethod;
 import com.android.dx.cf.code.Ropper;
@@ -208,6 +212,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         return generatedResources;
     }
 
+    @SuppressWarnings("unchecked")
     private OutputFile generateDEXmlvmFile(OutputFile classFile) {
         Log.debug("DExing:" + classFile.getFileName());
 
@@ -216,6 +221,35 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
 
         Document document = createDocument();
         String className = process(directClassFile, document.getRootElement()).replace('.', '_');
+
+        // We now need to mark up the code with retains/releases.
+        ReferenceCounting refC = new ReferenceCounting();
+
+        String jClassName = document.getRootElement().getChild("class", InstructionProcessor.vm)
+                .getAttributeValue("name");
+        Log.debug("ref", "Processing class: " + jClassName);
+
+        List<Element> methods = (List<Element>) document.getRootElement().getChild("class",
+                InstructionProcessor.vm).getChildren("method", InstructionProcessor.vm);
+        for (Element e : methods) {
+            Log.debug("ref", "Processing method: " + e.getAttributeValue("name"));
+
+            try {
+                refC.process(e);
+            } catch (ReferenceCountingException ex) {
+                Log.error("ref", "Processing method: " + e.getAttributeValue("name"));
+                Log.error("ref", "Failed while processing: " + ex.getMessage() + " in "
+                        + jClassName);
+                return null;
+            } catch (DataConversionException ex) {
+                Log.error("ref", "Processing method: " + e.getAttributeValue("name"));
+                Log.error("ref", "Failed while processing: " + ex.getMessage() + " in "
+                        + jClassName);
+                return null;
+            }
+            Log.debug("ref", "Done with " + e.getAttributeValue("name"));
+        }
+        Log.debug("ref", "Done processing methods!");
 
         generatedResources.add(new XmlvmResource(className, Type.DEX, document));
 

@@ -48,6 +48,7 @@ public class ObjectiveCOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
             addSupportedInput(ClassToXmlvmProcess.class);
         }
         addSupportedInput(ExeToXmlvmProcess.class);
+        addSupportedInput(XmlvmToXmlvmProcess.class);
     }
 
     @Override

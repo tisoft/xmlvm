@@ -116,12 +116,11 @@
 			NSString* fieldName = [name substringFromIndex: 5];
 			// TODO the isStatic: TRUE is not necessarily true. We also return instance members here
             java_lang_reflect_Field* f = [[java_lang_reflect_Field alloc] initWithName: fieldName isStatic: TRUE];
-			fields->array.o[idx++] = [f retain];
-			//[fieldName release];
+			fields->array.o[idx++] = f;
 		}
 	}
     free(m);
-	return [fields retain];
+	return fields;
 }
 
 - (java_lang_reflect_Constructor*) getConstructor___java_lang_Class_ARRAYTYPE :(XMLVMArray*) signature

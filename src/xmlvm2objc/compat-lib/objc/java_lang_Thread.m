@@ -58,8 +58,10 @@
 
 - (void) threadCallback: (id) arg
 {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	[runnable run__];
 	[self release];
+	[pool release];
 }
 
 - (void) run__

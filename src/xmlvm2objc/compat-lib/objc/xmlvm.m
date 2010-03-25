@@ -25,7 +25,7 @@
 
 + (XMLVMArray*) createSingleDimensionWithType:(int) type andSize:(int) size
 {
-    XMLVMArray *retval = [[[XMLVMArray alloc] init] autorelease];
+    XMLVMArray *retval = [[XMLVMArray alloc] init];
     retval->type = type;
     retval->length = size;
 	retval->ownsData = YES;
@@ -45,7 +45,7 @@
 
 + (XMLVMArray*) createSingleDimensionWithType:(int) type size:(int) size andData:(void*) data
 {
-    XMLVMArray *retval = [[[XMLVMArray alloc] init] autorelease];
+    XMLVMArray *retval = [[XMLVMArray alloc] init];
     retval->type = type;
     retval->length = size;
     retval->array.data = data;
@@ -109,7 +109,7 @@
 - (id) objectAtIndex:(int) idx
 {
     id obj = self->array.o[idx];
-    return [[obj retain] autorelease];
+    return [obj retain];
 }
 
 - (void) replaceObjectAtIndex:(int) idx withObject:(id) obj

@@ -43,7 +43,7 @@
 	if (![f exists__]) {
 		[f createNewFile__];
 	}
-	self->fdImpl = [NSFileHandle fileHandleForWritingAtPath: [[f getCanonicalPath__] autorelease]];
+	self->fdImpl = [NSFileHandle fileHandleForWritingAtPath: [f getCanonicalPath__]];
 	if (fdImpl == nil) {
 		java_io_FileNotFoundException* ex = [[java_io_FileNotFoundException alloc] init];
 		@throw ex;

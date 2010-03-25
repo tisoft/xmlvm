@@ -18,46 +18,28 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "java_lang_Object.h"
-#import "java_lang_Class.h"
-#import "java_lang_String.h"
+package org.xmlvm.refcount;
 
+import org.jdom.DataConversionException;
 
-// java.lang.Object
-//----------------------------------------------------------------------------
-@implementation NSObject (cat_java_lang_Object)
+/**
+ * A class representing any fatal errors detected during the reference counting
+ * process.
+ */
+@SuppressWarnings("serial")
+public class ReferenceCountingException extends Exception {
 
-- (java_lang_String*) getName__
-{
-	java_lang_String* name = (java_lang_String*) [[self getClass__] getName__];
-	[name retain];
-	return name;
+    String message;
+
+    public ReferenceCountingException(DataConversionException convertEx) {
+        this.message = convertEx.getMessage();
+    }
+
+    public ReferenceCountingException(String description) {
+        this.message = description;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }
-
-- (void) __init_java_lang_Object__
-{
-}
-
-- (java_lang_Class*) getClass__
-{
-	java_lang_Class* wrapperClass = [[java_lang_Class alloc] init];
-	wrapperClass->clazz = [self class];
-	return wrapperClass;
-}
-
-- (int) intValue__
-{
-	return 0;
-}
-
-- (int) equals___java_lang_Object: (java_lang_Object*) o
-{
-	return self == o;
-}
-
-- (int) hashCode__
-{
-	return [self hash];
-}
-
-@end

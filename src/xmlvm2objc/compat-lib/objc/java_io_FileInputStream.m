@@ -42,7 +42,7 @@
 
 - (void) __init_java_io_FileInputStream___java_io_File: (java_io_File*) f 
 {
-	[self __init_java_io_FileInputStream___java_lang_String: [[f getCanonicalPath__] autorelease]];
+	[self __init_java_io_FileInputStream___java_lang_String: [f getCanonicalPath__] ];
 }
 
 - (void) dealloc

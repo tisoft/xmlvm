@@ -137,6 +137,14 @@ int main(int argc, char* argv[])
       <xsl:text>) v</xsl:text>
       <xsl:text>;
 </xsl:text>
+      <!-- Emit releaser -->
+      <xsl:if test="vm:isObjectRef(@type)">
+        <xsl:text>+ (void) _RELEASE_</xsl:text>
+        <xsl:value-of select="vm:fixname(@name)"/>
+        <xsl:text>;
+</xsl:text>
+      </xsl:if>
+      
     </xsl:for-each>
     <!-- Emit declarations for all methods -->
     <xsl:for-each select="vm:method">
@@ -318,19 +326,8 @@ int main(int argc, char* argv[])
       <xsl:text>
 {
     return </xsl:text>
-      <xsl:if test="vm:isObjectRef(@type)">
-        <xsl:text>[[</xsl:text>
-      </xsl:if>
       <xsl:text>_STATIC_</xsl:text>
       <xsl:value-of select="$field"/>
-      <!-- For object references we need to do the retain and autorelease. It is possible
-           that the object reference returned by this getter is only kept in a local
-           variable (which, in contrast to an instance variable, is not retained). If
-           this member is then over-written later, it might be possible that the
-           reference held by the local variable become invalid. -->
-      <xsl:if test="vm:isObjectRef(@type)">
-        <xsl:text> retain] autorelease]</xsl:text>
-      </xsl:if>
       <xsl:text>;
 }
 
@@ -345,19 +342,27 @@ int main(int argc, char* argv[])
       <xsl:text>) v
 {
     </xsl:text>
-    <xsl:if test="vm:isObjectRef(@type)">
-        <xsl:text>[v retain];
-    [_STATIC_</xsl:text>
-        <xsl:value-of select="$field"/>
-        <xsl:text> release];
-    </xsl:text>
-    </xsl:if>
       <xsl:text>_STATIC_</xsl:text>
       <xsl:value-of select="$field"/>
       <xsl:text> = v;
 }
 
 </xsl:text>
+
+      <!-- Emit releaser -->
+<xsl:if test="vm:isObjectRef(@type)">
+      <xsl:text>+ (void) _RELEASE_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>
+{
+    </xsl:text>
+      <xsl:text>[_STATIC_</xsl:text>
+      <xsl:value-of select="$field"/>
+      <xsl:text> release];
+}
+
+</xsl:text>
+</xsl:if>
     </xsl:for-each>
     
     <xsl:for-each select="vm:method">
@@ -1312,10 +1317,6 @@ int main(int argc, char* argv[])
   <xsl:text>];
 </xsl:text>
   <xsl:if test="vm:signature/vm:return/@type != 'void'">
-    <xsl:if test="vm:isObjectRef(vm:signature/vm:return/@type)">
-      <xsl:text>    [_op1.o autorelease];
-</xsl:text>
-    </xsl:if>
     <xsl:text>    _stack[_sp++]</xsl:text>
     <xsl:value-of select="$returnTypedAccess"/>
     <xsl:text> = _op1</xsl:text>
@@ -1376,10 +1377,6 @@ int main(int argc, char* argv[])
   <xsl:text>];
 </xsl:text>
   <xsl:if test="vm:signature/vm:return/@type != 'void'">
-    <xsl:if test="vm:isObjectRef(vm:signature/vm:return/@type)">
-      <xsl:text>    [_op1.o autorelease];
-</xsl:text>
-    </xsl:if>
     <xsl:text>    _stack[_sp++]</xsl:text>
     <xsl:value-of select="$returnTypedAccess"/>
     <xsl:text> = _op1</xsl:text>
@@ -1747,7 +1744,7 @@ int main(int argc, char* argv[])
   <xsl:param name="type" as="node()"/>
   
   <xsl:variable name="flag" select="$type/ancestor::vm:class/vm:annotations/vm:annotation[@type='org.xmlvm.iphone.XMLVMNoAutoReleasePool']"/>
-  <xsl:value-of select="not($flag = '')"/>
+  <xsl:value-of select="not(false())"/>
 </xsl:function>
 
 
@@ -1937,7 +1934,7 @@ int main(int argc, char* argv[])
 
 <xsl:template match="dex:code">
 <xsl:text>{
-    id        _res;
+    XMLVMElem _rtmp;
     id        _ex;
 </xsl:text>
   <xsl:variable name="limit" select="@register-size" as="xs:integer"/>
@@ -1945,12 +1942,9 @@ int main(int argc, char* argv[])
     <xsl:text>    XMLVMElem _r</xsl:text>
     <xsl:value-of select="position() - 1"/>
     <xsl:text>;
+    _r</xsl:text><xsl:value-of select="position() - 1"/>.o = [NSNull null];<xsl:text>
 </xsl:text>
   </xsl:for-each>
-  <xsl:if test="vm:useAutoReleasePool(.)">
-    <xsl:text>    NSAutoreleasePool* _pool = [[NSAutoreleasePool alloc] init];
-</xsl:text>
-  </xsl:if>
   <xsl:call-template name="initDexLocals"/>
   <xsl:apply-templates/>
   <xsl:text>}
@@ -1986,7 +1980,7 @@ int main(int argc, char* argv[])
       </xsl:when>
       <xsl:otherwise>
         <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
-          <xsl:text>_res = </xsl:text>
+          <xsl:text>_rtmp.o = </xsl:text>
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
@@ -2005,21 +1999,6 @@ int main(int argc, char* argv[])
   </xsl:for-each>
   <xsl:text>];
 </xsl:text>
-  <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
-    <xsl:choose>
-      <xsl:when test="dex:move-result">
-        <xsl:text>    [_r</xsl:text>
-        <xsl:value-of select="dex:move-result/@vx"/>
-        <xsl:value-of select="$returnTypedAccess"/>
-        <xsl:text> autorelease];</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>    [_res release];</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
-    <xsl:text>
-</xsl:text>
-  </xsl:if>
 </xsl:template>
 
 
@@ -2040,7 +2019,7 @@ int main(int argc, char* argv[])
       </xsl:when>
       <xsl:otherwise>
         <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
-          <xsl:text>_res = </xsl:text>
+          <xsl:text>_rtmp.o = </xsl:text>
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
@@ -2078,21 +2057,6 @@ int main(int argc, char* argv[])
   </xsl:for-each>
   <xsl:text>];
 </xsl:text>
-  <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
-    <xsl:choose>
-      <xsl:when test="dex:move-result">
-        <xsl:text>    [_r</xsl:text>
-        <xsl:value-of select="dex:move-result/@vx"/>
-        <xsl:value-of select="$returnTypedAccess"/>
-        <xsl:text> autorelease];</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>    [_res release];</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
-    <xsl:text>
-</xsl:text>
-  </xsl:if>
 </xsl:template>
 
 
@@ -2113,7 +2077,7 @@ int main(int argc, char* argv[])
       </xsl:when>
       <xsl:otherwise>
         <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
-          <xsl:text>_res = </xsl:text>
+          <xsl:text>_rtmp.o = </xsl:text>
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
@@ -2135,21 +2099,6 @@ int main(int argc, char* argv[])
   </xsl:for-each>
   <xsl:text>];
 </xsl:text>
-  <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
-    <xsl:choose>
-      <xsl:when test="dex:move-result">
-        <xsl:text>    [_r</xsl:text>
-        <xsl:value-of select="dex:move-result/@vx"/>
-        <xsl:value-of select="$returnTypedAccess"/>
-        <xsl:text> autorelease];</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>    [_res release];</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
-    <xsl:text>
-</xsl:text>
-  </xsl:if>
 </xsl:template>
 
 
@@ -2594,31 +2543,17 @@ int main(int argc, char* argv[])
 
   
 <xsl:template match="dex:return-void">
-  <xsl:if test="vm:useAutoReleasePool(.)">
-    <xsl:text>    [_pool release];
-</xsl:text>
-  </xsl:if>
   <xsl:text>    return;
 </xsl:text>
 </xsl:template>
 
 
 <xsl:template match="dex:return|dex:return-wide|dex:return-object">
-  <xsl:variable name="return-type" select="ancestor::vm:method/vm:signature/vm:return/@type"/>
-  <xsl:if test="vm:isObjectRef($return-type)">
-    <xsl:text>    [_r</xsl:text>
-    <xsl:value-of select="@vx"/>
-    <xsl:text>.o retain];
-</xsl:text>
-  </xsl:if>
-  <xsl:if test="vm:useAutoReleasePool(.)">
-    <xsl:text>    [_pool release];
-</xsl:text>
-  </xsl:if>
+  <xsl:variable name="return-type" select="ancestor::vm:method/vm:signature/vm:return/@type" />
   <xsl:text>    return _r</xsl:text>
-  <xsl:value-of select="@vx"/>
+  <xsl:value-of select="@vx" />
   <xsl:call-template name="emitTypedAccess">
-    <xsl:with-param name="type" select="$return-type"/>
+    <xsl:with-param name="type" select="$return-type" />
   </xsl:call-template>
   <xsl:text>;
 </xsl:text>
@@ -2626,11 +2561,11 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:new-instance">
-    <xsl:text>    _r</xsl:text>
-    <xsl:value-of select="@vx"/>
-    <xsl:text>.o = [[[</xsl:text>
-    <xsl:value-of select="vm:fixname(@value)"/>
-    <xsl:text> alloc] init] autorelease];
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text>.o = [[</xsl:text>
+  <xsl:value-of select="vm:fixname(@value)" />
+  <xsl:text> alloc] init];
 </xsl:text>
 </xsl:template>
 
@@ -2662,23 +2597,23 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:iget-object">
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
-      <xsl:with-param name="type" select="@member-type"/>
+      <xsl:with-param name="type" select="@member-type" />
     </xsl:call-template>
   </xsl:variable>
   <xsl:text>    _r</xsl:text>
-  <xsl:value-of select="@vx"/>
-  <xsl:value-of select="$m"/>
-  <xsl:text> = [[((</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:value-of select="$m" />
+  <xsl:text> = ((</xsl:text>
   <xsl:call-template name="emitType">
-    <xsl:with-param name="type" select="@class-type"/>
+    <xsl:with-param name="type" select="@class-type" />
   </xsl:call-template>
   <xsl:text>) _r</xsl:text>
-  <xsl:value-of select="@vy"/>
+  <xsl:value-of select="@vy" />
   <xsl:text>.o)-></xsl:text>
-  <xsl:value-of select="vm:fixname(@member-name)"/>
+  <xsl:value-of select="vm:fixname(@member-name)" />
   <xsl:text>_</xsl:text>
-  <xsl:value-of select="vm:fixname(@member-type)"/>
-  <xsl:text> retain] autorelease];
+  <xsl:value-of select="vm:fixname(@member-type)" />
+  <xsl:text>;
 </xsl:text>
 </xsl:template>
 
@@ -2707,40 +2642,76 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="vm:tmp-equals-r">
+  <xsl:text>    _rtmp.o =  _r</xsl:text>
+  <xsl:value-of select="@reg" />
+  <xsl:text>.o;
+</xsl:text>
+</xsl:template>
+  
+
+<xsl:template match="vm:comment">
+  <xsl:text>    //INFO: </xsl:text>
+    <xsl:value-of select="@text" />
+  <xsl:text>
+  </xsl:text>
+</xsl:template>
+
+<xsl:template match="vm:reg-release">
+  <xsl:text>    [_r</xsl:text>
+  <xsl:value-of select="@reg" />
+  <xsl:text>.o release]; _r</xsl:text>
+  <xsl:value-of select="@reg" />
+  <xsl:text>.o = [NSNull null];
+</xsl:text>
+</xsl:template>
+
+<xsl:template match="vm:reg-retain">
+  <xsl:text>    [_r</xsl:text>
+  <xsl:value-of select="@reg" />
+  <xsl:text>.o retain];
+</xsl:text>
+</xsl:template>
+  
+<xsl:template match="vm:i-release">
+    <xsl:variable name="m">
+      <xsl:call-template name="emitTypedAccess">
+        <xsl:with-param name="type" select="@member-type" />
+      </xsl:call-template>
+    </xsl:variable>
+  <xsl:text>    [((</xsl:text>
+  <xsl:call-template name="emitType">
+    <xsl:with-param name="type" select="@class-type" />
+  </xsl:call-template>
+  <xsl:text>) _r</xsl:text>
+  <xsl:value-of select="@vy" />
+  <xsl:text>.o)-></xsl:text>
+  <xsl:value-of select="vm:fixname(@member-name)" />
+  <xsl:text>_</xsl:text>
+  <xsl:value-of select="vm:fixname(@member-type)" />
+  <xsl:text> release];
+</xsl:text>
+</xsl:template>
 
 <xsl:template match="dex:iput-object">
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
-      <xsl:with-param name="type" select="@member-type"/>
+      <xsl:with-param name="type" select="@member-type" />
     </xsl:call-template>
   </xsl:variable>
-  <xsl:text>    [_r</xsl:text>
-  <xsl:value-of select="@vx"/>
-  <xsl:text>.o retain];
-    [((</xsl:text>
+  <xsl:text>    ((</xsl:text>
   <xsl:call-template name="emitType">
-    <xsl:with-param name="type" select="@class-type"/>
+    <xsl:with-param name="type" select="@class-type" />
   </xsl:call-template>
   <xsl:text>) _r</xsl:text>
-  <xsl:value-of select="@vy"/>
+  <xsl:value-of select="@vy" />
   <xsl:text>.o)-></xsl:text>
-  <xsl:value-of select="vm:fixname(@member-name)"/>
+  <xsl:value-of select="vm:fixname(@member-name)" />
   <xsl:text>_</xsl:text>
-  <xsl:value-of select="vm:fixname(@member-type)"/>
-  <xsl:text> release];
-    ((</xsl:text>
-  <xsl:call-template name="emitType">
-    <xsl:with-param name="type" select="@class-type"/>
-  </xsl:call-template>
-  <xsl:text>) _r</xsl:text>
-  <xsl:value-of select="@vy"/>
-  <xsl:text>.o)-></xsl:text>
-  <xsl:value-of select="vm:fixname(@member-name)"/>
-  <xsl:text>_</xsl:text>
-  <xsl:value-of select="vm:fixname(@member-type)"/>
+  <xsl:value-of select="vm:fixname(@member-type)" />
   <xsl:text> = _r</xsl:text>
-  <xsl:value-of select="@vx"/>
-  <xsl:value-of select="$m"/>
+  <xsl:value-of select="@vx" />
+  <xsl:value-of select="$m" />
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -2761,6 +2732,14 @@ int main(int argc, char* argv[])
 </xsl:text>
 </xsl:template>
 
+<xsl:template match="vm:s-release">
+    <xsl:text>    [</xsl:text>
+    <xsl:value-of select="vm:fixname(@class-type)" />
+    <xsl:text> _RELEASE_</xsl:text>
+    <xsl:value-of select="vm:fixname(@member-name)" />
+    <xsl:text>];
+</xsl:text>
+</xsl:template>
 
 <xsl:template match="dex:sput|dex:sput-wide|dex:sput-boolean|dex:sput-object">
   <xsl:text>    [</xsl:text>
@@ -2812,9 +2791,9 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:const-class"> 
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o = [[</xsl:text>
+  <xsl:text>.o = [</xsl:text>
   <xsl:value-of select="vm:fixname(@value)"/>
-  <xs:text> getClass__] autorelease];
+  <xs:text> getClass__];
 </xs:text>
 </xsl:template>
 
@@ -3414,15 +3393,12 @@ int main(int argc, char* argv[])
 
 <xsl:template match="dex:aget-object">
   <xsl:text>    _r</xsl:text>
-  <xsl:value-of select="@vx"/>
+  <xsl:value-of select="@vx" />
   <xsl:text>.o = ((XMLVMArray*) _r</xsl:text>
-  <xsl:value-of select="@vy"/>
+  <xsl:value-of select="@vy" />
   <xsl:text>.o)->array.o[_r</xsl:text>
-  <xsl:value-of select="@vz"/>
+  <xsl:value-of select="@vz" />
   <xsl:text>.i];
-    [[_r</xsl:text>
-  <xsl:value-of select="@vx"/>
-  <xsl:text>.o retain] autorelease];
 </xsl:text>
 </xsl:template>
 
@@ -3445,22 +3421,22 @@ int main(int argc, char* argv[])
 </xsl:text>
 </xsl:template>
 
-
+<xsl:template match="vm:a-release">
+    <xsl:text>[((XMLVMArray*) _r</xsl:text>
+    <xsl:value-of select="@vy" />
+    <xsl:text>.o)->array.o[_r</xsl:text>
+    <xsl:value-of select="@vz" />
+    <xsl:text>.i] release];
+</xsl:text>
+</xsl:template>
+  
 <xsl:template match="dex:aput-object">
-  <xsl:text>    [_r</xsl:text>
-  <xsl:value-of select="@vx"/>
-  <xsl:text>.o retain];
-    [((XMLVMArray*) _r</xsl:text>
-  <xsl:value-of select="@vy"/>
+  <xsl:text>((XMLVMArray*) _r</xsl:text>
+  <xsl:value-of select="@vy" />
   <xsl:text>.o)->array.o[_r</xsl:text>
-  <xsl:value-of select="@vz"/>
-  <xsl:text>.i] release];
-    ((XMLVMArray*) _r</xsl:text>
-  <xsl:value-of select="@vy"/>
-  <xsl:text>.o)->array.o[_r</xsl:text>
-  <xsl:value-of select="@vz"/>
+  <xsl:value-of select="@vz" />
   <xsl:text>.i] = _r</xsl:text>
-  <xsl:value-of select="@vx"/>
+  <xsl:value-of select="@vx" />
   <xsl:text>.o;
 </xsl:text>
 </xsl:template>

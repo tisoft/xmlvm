@@ -47,7 +47,7 @@
 {
 	int arrlen = [data count];
 	if (arrlen < pos + len) {
-		id exc_id = [[[java_lang_IllegalArgumentException alloc] init] autorelease];
+		id exc_id = [[java_lang_IllegalArgumentException alloc] init];
 		java_lang_IllegalArgumentException *exc = (java_lang_IllegalArgumentException*) exc_id;
 		[exc __init_java_lang_IllegalArgumentException__];
 		@throw exc_id;
