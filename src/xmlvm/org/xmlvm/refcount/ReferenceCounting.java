@@ -131,6 +131,9 @@ public class ReferenceCounting {
             // need to release.
             List<Element> toAddBefore = new ArrayList<Element>();
             List<Element> toAddAfter = new ArrayList<Element>();
+            // Release last -- because other wise we can get into odd situations
+            // where we don't to a required retain before the release.
+            List<Element> toReleaseLast = new ArrayList<Element>();
 
             RegisterSet toFree;
             if (e.getKey().getName().startsWith("return")) {
@@ -165,7 +168,7 @@ public class ReferenceCounting {
 
                     Element releaseTmp = new Element(InstructionProcessor.cmd_release, vm);
                     releaseTmp.setAttribute("reg", tmpRegNameSuffix);
-                    toAddAfter.add(releaseTmp);
+                    toReleaseLast.add(releaseTmp);
                 } else {
                     // No need to use tmp
                     Element release = new Element(InstructionProcessor.cmd_release, vm);
@@ -174,17 +177,7 @@ public class ReferenceCounting {
                 }
             }
 
-            // This handles the case where xmlvm2objc.xsl has set the temp reg
-            // to a value because a function call was made, but the result was
-            // not used by the program.
-            if (useInfo.freeTmpAfter) {
-
-                Element releaseTmp = new Element(InstructionProcessor.cmd_release, vm);
-                releaseTmp.setAttribute("reg", tmpRegNameSuffix);
-                toAddAfter.add(releaseTmp);
-                needsTmpReg = true;
-
-            }
+           
             if (useInfo.putRelease != null) {
                 if (!useInfo.usesAsObj().and(useInfo.AllWrites()).isEmpty()) {
                     needsTmpReg = true;
@@ -204,6 +197,19 @@ public class ReferenceCounting {
                 toAddAfter.add(retain);
             }
 
+            // This handles the case where xmlvm2objc.xsl has set the temp reg
+            // to a value because a function call was made, but the result was
+            // not used by the program.
+            if (useInfo.freeTmpAfter) {
+
+                Element releaseTmp = new Element(InstructionProcessor.cmd_release, vm);
+                releaseTmp.setAttribute("reg", tmpRegNameSuffix);
+                toAddAfter.add(releaseTmp);
+                needsTmpReg = true;
+
+            }
+            toAddAfter.addAll(toReleaseLast);
+            
             // At this point toAddBefore and toAddAfter have been filled with
             // whatever instructions we need to add before and after this
             // specific element. The helper function adds them.
