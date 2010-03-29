@@ -100,6 +100,8 @@ java_io_PrintStream* _STATIC_java_lang_System_out;
 
 + (void) setOut___java_io_PrintStream: (java_io_PrintStream*) ps
 {
+	[ps retain];
+    [_STATIC_java_lang_System_out release];
 	[java_lang_System _PUT_out:ps];
 }
 
