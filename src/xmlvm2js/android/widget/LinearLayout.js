@@ -18,39 +18,20 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-qx.Class.define("java_util_HashMap", {
-  extend: java_lang_Object,
+qx.Class.define("android_widget_LinearLayout", {
+  extend: android_view_ViewGroup,
   construct: function() {
-  	this.jsArray = new Array();
-  	this.jsKeys = new Array();
+    this.base(arguments);
+    this.qx = new qx.ui.container.Composite(new qx.ui.layout.VBox());
+    this.qx.set({allowGrowX: true, allowGrowY: true,
+        allowShrinkX: true, allowShrinkY: true,
+        margin: 0});
   },
-  members:
-  {
-  	jsArray: 0,
-  	jsKeys: 0,
-  	$put___java_lang_Object_java_lang_Object: function(key, value) {
-  		this.jsArray[key.$toString().$str] = value;
-  		this.jsKeys[key.$toString().$str] = key;
-  	},
-  	$get___java_lang_Object: function(key) {
-  	  var temp = this.jsArray[key.$toString().$str];
-  	  if (temp == undefined) {
-  	    return new java_lang_null;
-  	  } else {
-  	    return temp;
-  	  }
-  	},
-  	$keySet: function() {
-  		var keys = new Array();
-  		var i = 0;
-  		for (var key in this.jsKeys) {
-  			keys[i++] = this.jsKeys[key];
-  		}
-  		return new java_util_Set(keys);
-  	},
-  	$clear: function() {
-  		this.jsArray = new Array();
-  		this.jsKeys = new Array();
-  	}
+  members: {
+    $$init____android_content_Context: function(context) {
+    },
+    $setOrientation___int : function(orientation) {
+    	// TODO
+    }
   }
 });

@@ -30,13 +30,21 @@ qx.Class.define("android_view_View", {
       },
       $setLayoutParams___android_view_ViewGroup$LayoutParams: function(params) {
           // TODO: Width and height may have special case like -1 and -2 ...
-    	  this.qx.setMarginLeft(params.$x);
-    	  this.qx.setMarginTop(params.$y);
-    	  if (params.$width >=0) {
-    		  this.qx.setWidth(params.$width);
+    	  this.qx.setMarginLeft(params.$$$left);
+    	  this.qx.setMarginTop(params.$$$top);
+    	  this.qx.setMarginRight(params.$$$right);
+    	  this.qx.setMarginBottom(params.$$$bottom);
+    	  if (params.$$$width >= 0) {
+    		  this.qx.setWidth(params.$$$width);
     	  }
-    	  if (params.$height >=0) {
-    		  this.qx.setHeight(params.$height);
+    	  if (params.$$$width == -1 /* FILL_PARENT */) {
+    		  this.qx.setAllowGrowX(true);
+    	  }
+    	  if (params.$$$height >= 0) {
+    		  this.qx.setHeight(params.$$$height);
+    	  }
+    	  if (params.$$$height == -1 /* FILL_PARENT */) {
+    		  this.qx.setAllowGrowY(true);
     	  }
       },
       $getLayoutParams: function() {

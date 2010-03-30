@@ -32,29 +32,49 @@ qx.Class.define("android_view_ViewGroup", {
     this.qx.set({allowGrowX: true, allowGrowY: true,
       allowShrinkX: true, allowShrinkY: true,
       margin: 0});
+    this.subviews = new Array();
   },
   members: {
+	  subviews: 0,
 	  $$init____android_content_Context: function(context) {
       },
       $addView___android_view_View: function(view) {
         this.qx.add(view.getQX(), {});
+        this.subviews[this.subviews.length] = view;
       },
       $addView___android_view_View_android_view_ViewGroup$LayoutParams: function(view, params) {
         this.qx.add(view.getQX(), {});
         view.$setLayoutParams___android_view_ViewGroup$LayoutParams(params);
+        this.subviews[this.subviews.length] = view;
       },
       $addView___android_view_View_int: function(view, index) {
 	      //this.qx.addAt(view.getQX(), qxIndex, {});
 	      this.qx.add(view.getQX(), {});
     	  var qxIndex = -(this.qx.getChildren().length - index);
     	  view.getQX().setZIndex(qxIndex);
+          this.subviews[this.subviews.length] = view;
 	  },
       $removeView___android_view_View: function(view) {
 	      this.qx.remove(view.getQX());
+	      // TODO need to remove view from this.subviews
 	  },
 	  $removeAllViews: function() {
 		  this.qx.removeAll();
+          this.subviews = new Array();
+	  },
+	  $findViewById___int: function(id) {
+//	      for (var v in this.subviews) {
+//	    	  if (v.id != undefined && v.id == id) {
+//	    		  return v;
+//	    	  }
+//	      }
+		  for (var i = 0; i < this.subviews.length; i++) {
+			  var view = this.subviews[i];
+			  if (view.id != undefined && view.id == id) {
+				  return view;
+			  }
+		  }
+	      return java_lang_null;
 	  }
-	  
   }
 });

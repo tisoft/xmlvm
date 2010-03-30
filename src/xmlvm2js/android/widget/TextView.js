@@ -18,39 +18,24 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-qx.Class.define("java_util_HashMap", {
-  extend: java_lang_Object,
+qx.Class.define("android_widget_TextView", {
+  extend: android_view_View, // TODO not the correct base class
   construct: function() {
-  	this.jsArray = new Array();
-  	this.jsKeys = new Array();
+    this.base(arguments);
+    this.qx = new qx.ui.basic.Label();
+    this.qx.set({textColor: "white"});
   },
-  members:
-  {
-  	jsArray: 0,
-  	jsKeys: 0,
-  	$put___java_lang_Object_java_lang_Object: function(key, value) {
-  		this.jsArray[key.$toString().$str] = value;
-  		this.jsKeys[key.$toString().$str] = key;
-  	},
-  	$get___java_lang_Object: function(key) {
-  	  var temp = this.jsArray[key.$toString().$str];
-  	  if (temp == undefined) {
-  	    return new java_lang_null;
-  	  } else {
-  	    return temp;
-  	  }
-  	},
-  	$keySet: function() {
-  		var keys = new Array();
-  		var i = 0;
-  		for (var key in this.jsKeys) {
-  			keys[i++] = this.jsKeys[key];
-  		}
-  		return new java_util_Set(keys);
-  	},
-  	$clear: function() {
-  		this.jsArray = new Array();
-  		this.jsKeys = new Array();
-  	}
+  members: {
+    $$init____android_content_Context: function(context) {
+    },
+    $setText___java_lang_CharSequence: function(text) {
+       this.qx.set({value: text.$str});
+    },
+    $setText___java_lang_String: function(text) {
+        this.qx.set({value: text.$str});
+    },
+    $append___java_lang_CharSequence: function(text) {
+    	this.qx.setValue(this.qx.getValue() + text.$str);
+    }
   }
 });

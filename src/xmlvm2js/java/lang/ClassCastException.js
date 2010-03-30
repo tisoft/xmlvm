@@ -25,7 +25,10 @@ qx.Class.define("java_lang_ClassCastException", {
 	},
 	members:
 	{
-		message: new java_lang_String("");
+		message: new java_lang_String(""),
+		$$init_java_lang_ClassCastException___java_lang_String: function(msg) {
+			this.message = msg;
+	    }
 	}
 	
 });

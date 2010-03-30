@@ -24,6 +24,10 @@ qx.Class.define("java_io_PrintStream",  {
 	},
 	members: 
 	{
+		os: 0,
+		$$init____java_io_OutputStream: function(os) {
+			this.os = os;
+	    },
 		$println___java_lang_String: function(s) {
 			if (s.$str == undefined){
     			this.$print___java_lang_String(s + "\n");
@@ -58,20 +62,11 @@ qx.Class.define("java_io_PrintStream",  {
 		$print___java_lang_Object: function(obj) {
 			this.$print___java_lang_String(obj.$toString());
 		},
-		
 		$print___java_lang_String: function(s) {
 		    	if (s.$str == undefined){
-		        	if (window.console){
-		            	  window.console.log("print(): " + s);
-		        	} else {
-		            	  alert("print(): " + s);
-		            }
+		    		this.print(s);
 		    	} else {
-		        	if (window.console){
-			              window.console.log("print(): " + s.$str);
-			        } else {
-			              alert("print(): " + s.$str);
-			        }
+		    		this.print(s.$str);
 		        }
 		},
 		$print___char: function(c){
@@ -94,6 +89,21 @@ qx.Class.define("java_io_PrintStream",  {
 				this.$print___java_lang_String("true");
 			else
 				this.$print___java_lang_String("false");
+		},
+		print: function(s) {
+			if (this.os == 0) {
+				if (window.console) {
+					window.console.log(s);
+				} else {
+					alert(s);
+				}
+			} else {
+				var str = "" + s;
+				for (var i = 0; i < str.length; i++) {
+					var ch = str.charCodeAt(i);
+					this.os.$write___int(ch);
+				}
+			}
 		}
 	}
 });

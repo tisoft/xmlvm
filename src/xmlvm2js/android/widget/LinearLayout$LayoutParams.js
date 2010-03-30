@@ -18,39 +18,27 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-qx.Class.define("java_util_HashMap", {
+qx.Class.define("android_widget_LinearLayout$LayoutParams", {
   extend: java_lang_Object,
   construct: function() {
-  	this.jsArray = new Array();
-  	this.jsKeys = new Array();
+    this.base(arguments);
   },
-  members:
-  {
-  	jsArray: 0,
-  	jsKeys: 0,
-  	$put___java_lang_Object_java_lang_Object: function(key, value) {
-  		this.jsArray[key.$toString().$str] = value;
-  		this.jsKeys[key.$toString().$str] = key;
-  	},
-  	$get___java_lang_Object: function(key) {
-  	  var temp = this.jsArray[key.$toString().$str];
-  	  if (temp == undefined) {
-  	    return new java_lang_null;
-  	  } else {
-  	    return temp;
-  	  }
-  	},
-  	$keySet: function() {
-  		var keys = new Array();
-  		var i = 0;
-  		for (var key in this.jsKeys) {
-  			keys[i++] = this.jsKeys[key];
-  		}
-  		return new java_util_Set(keys);
-  	},
-  	$clear: function() {
-  		this.jsArray = new Array();
-  		this.jsKeys = new Array();
-  	}
+  members: {
+    $$$width: 0,
+    $$$height: 0,
+    $$$left: 0,
+    $$$top: 0,
+    $$$right: 0,
+    $$$bottom: 0,
+    $$init____int_int: function(width, height) {
+      this.$$$width = width;
+      this.$$$height = height;
+    },
+    $setMargins___int_int_int_int: function(left, top, right, bottom) {
+    	this.$$$left = left;
+    	this.$$$top = top;
+    	this.$$$right = right;
+    	this.$$$bottom = bottom;
+    }
   }
 });

@@ -296,17 +296,22 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
 
 
-<!-- d2i, f2i -->
-<xsl:template match="jvm:d2i|jvm:f2i">
+<!-- l2i, d2i, f2i -->
+<xsl:template match="jvm:l2i|jvm:d2i|jvm:f2i">
 <xsl:text>
     __value = __stack[--__sp];
     ___result = Math.floor(__value);
     __stack[__sp++] = ___result;</xsl:text>
 </xsl:template>
+
+
+
 <!-- i2l, i2d, i2f, d2f -->
 <xsl:template match="jvm:i2l|jvm:d2f|jvm:i2d|jvm:i2f">
     <!-- do nothing -->
 </xsl:template>
+
+
 
 <!-- i2b -->
 <xsl:template match="jvm:i2b">
@@ -317,6 +322,15 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     __stack[__sp++] = ___result;</xsl:text>
 </xsl:template>
 
+
+
+<!-- i2c -->
+<xsl:template match="jvm:i2c">
+<xsl:text>
+    __value = __stack[--__sp];
+    ___result = __value &amp; 0xff;
+    __stack[__sp++] = ___result;</xsl:text>
+</xsl:template>
 
 
 
@@ -374,7 +388,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 <xsl:template match="jvm:getfield">
     <xsl:text>
             __op1 = __stack[--__sp];
-            __stack[__sp++] = __op1.$</xsl:text>
+            __stack[__sp++] = __op1.$$$</xsl:text>
     <xsl:value-of select="@field"/>
     <xsl:text>;</xsl:text>
 </xsl:template>
@@ -394,7 +408,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:call-template name="emitScopedName">
     <xsl:with-param name="string" select="@class-type"/>
   </xsl:call-template>
-  <xsl:text>.$</xsl:text>
+  <xsl:text>.$$$</xsl:text>
   <xsl:value-of select="@field"/>
   <xsl:text>;</xsl:text>
 </xsl:template>
@@ -661,8 +675,8 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 </xsl:template>
 
 
-<!-- irem -->
-<xsl:template match="jvm:irem">
+<!-- irem, lrem -->
+<xsl:template match="jvm:irem|jvm:lrem">
   <xsl:text>
           __value2 = __stack[--__sp];
           __value1 = __stack[--__sp];
@@ -709,8 +723,8 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
 
 
-<!-- imul, dmul -->
-<xsl:template match="jvm:imul|jvm:dmul|jvm:fmul">
+<!-- imul, lmul, dmul, fmul -->
+<xsl:template match="jvm:imul|jvm:lmul|jvm:dmul|jvm:fmul">
   <xsl:text>
             __op2 = __stack[--__sp];
             __op1 = __stack[--__sp];
@@ -1113,7 +1127,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     <xsl:text>
             __op2 = __stack[--__sp];
             __op1 = __stack[--__sp];
-            __op1.$</xsl:text>
+            __op1.$$$</xsl:text>
     <xsl:value-of select="@field"/>
     <xsl:text> = __op2;</xsl:text>
 </xsl:template>
@@ -1132,7 +1146,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:call-template name="emitScopedName">
     <xsl:with-param name="string" select="@class-type"/>
   </xsl:call-template>
-  <xsl:text>.$</xsl:text>
+  <xsl:text>.$$$</xsl:text>
   <xsl:value-of select="@field"/>
   <xsl:text> = __stack[--__sp];</xsl:text>
 </xsl:template>

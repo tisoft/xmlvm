@@ -22,7 +22,7 @@ qx.Class.define("android_app_Activity", {
   extend: android_content_Context, // TODO not quite right base class
   construct: function() {
     this.base(arguments);
-    this.qxComposite = new qx.ui.container.Composite(new qx.ui.layout.Basic());
+    this.qxComposite = new qx.ui.container.Composite(new qx.ui.layout.Grow());
     // TODO: Hardcoded
     this.qxComposite.setUserBounds(0, 0, 320, 480);
     // Android has a black background as default

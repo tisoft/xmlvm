@@ -23,6 +23,7 @@ qx.Class.define("android_widget_Button", {
   construct: function() {
     this.base(arguments);
     this.qx = new qx.ui.form.Button();
+    this.qx.set({allowGrowX: false, allowGrowY: false});
   },
   members: {
     $$init____android_content_Context: function(context) {
