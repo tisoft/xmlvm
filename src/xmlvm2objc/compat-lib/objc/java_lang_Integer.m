@@ -19,6 +19,7 @@
  */
 
 #import "java_lang_Integer.h"
+#import "java_lang_RuntimeException.h"
 
 @interface PrimitiveInt : java_lang_Object
 @end
@@ -84,7 +85,12 @@ static java_lang_Class* primitiveIntClass;
 	return atoi([str UTF8String]);
 }
 
-+ (java_lang_String*) toString___int: i
+- (java_lang_String*) toString__
+{
+	return [java_lang_Integer toString___int:number];
+}
+
++ (java_lang_String*) toString___int: (int) i
 {
 	return [[[NSNumber numberWithInt: i] stringValue] retain];
 }
@@ -94,6 +100,29 @@ static java_lang_Class* primitiveIntClass;
 	java_lang_Integer* o = [[java_lang_Integer alloc] init];
 	[o __init_java_lang_Integer___int:i];
 	return o;
+}
+
+static BOOL instanceof(id obj, const char *className) {
+	return obj != [NSNull null] &&
+		([obj isKindOfClass: objc_getClass(className)] ||
+			[obj conformsToProtocol: objc_getProtocol(className)]);	
+}
+
+//Signature from java_lang_Comparable
+- (int) compareTo___java_lang_Object: (java_lang_Object*) obj {
+	if (!instanceof(obj, "java_lang_Integer")) {
+//TODO throw a java_lang_ClassCastException (doesn't exist yet) instead of a java_lang_RuntimeException
+		java_lang_RuntimeException* ex = [[java_lang_RuntimeException alloc] init];
+		[ex __init_java_lang_RuntimeException___java_lang_String:[NSMutableString stringWithString:@"ClassCastException"]];
+		@throw ex;
+	}
+	return [self compareTo___java_lang_Integer:(java_lang_Integer*)obj];
+}
+
+- (int) compareTo___java_lang_Integer: (java_lang_Integer*) i {
+	long thisVal = [self intValue__];
+	long anotherVal = [i intValue__];
+	return (thisVal < anotherVal ? -1 : (thisVal == anotherVal ? 0 : 1));
 }
 
 @end

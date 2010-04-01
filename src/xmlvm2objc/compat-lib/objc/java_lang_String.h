@@ -31,9 +31,11 @@ typedef NSMutableString java_lang_String;
 - (void) __init_java_lang_String___byte_ARRAYTYPE: (XMLVMArray*) bytes;
 - (void) __init_java_lang_String___char_ARRAYTYPE: (XMLVMArray*) chars;
 + (java_lang_String*) valueOf___int: (int) i;
++ (java_lang_String*) valueOf___long: (long) l;
 + (java_lang_String*) valueOf___float: (float) f;
 + (java_lang_String*) valueOf___double: (double) d;
 + (java_lang_String*) valueOf___java_lang_Object: (java_lang_Object*) o;
+- (void) getChars___int_int_char_ARRAYTYPE_int:(int)srcBegin:(int)srcEnd:(XMLVMArray*)dst:(int)dstBegin;
 - (java_lang_String*) replaceAll___java_lang_String_java_lang_String :(java_lang_String*)a :(java_lang_String*)b;
 - (XMLVMArray*) split___java_lang_String :(java_lang_String*)s;
 - (XMLVMArray*) getBytes__;
@@ -53,4 +55,5 @@ typedef NSMutableString java_lang_String;
 - (int) indexOf___int: (int) ch;
 - (int) startsWith___java_lang_String: (java_lang_String*) s;
 - (int) length__;
+- (java_lang_String*) trim__;
 @end

@@ -77,4 +77,10 @@ static java_lang_Class* primitiveBooleanClass;
 	return value;
 }
 
++ (java_lang_Boolean*) valueOf___java_lang_String:(java_lang_String*) s {
+	java_lang_Boolean* result = [[java_lang_Boolean alloc] init];
+	[result __init_java_lang_Boolean___boolean:[java_lang_Boolean parseBoolean___java_lang_String:s]];
+	return result;
+}
+
 @end

@@ -21,10 +21,11 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
+#import "java_lang_Comparable.h"
 
 // java.lang.Long
 //----------------------------------------------------------------------------
-@interface java_lang_Long : java_lang_Object <NSCopying> {
+@interface java_lang_Long : java_lang_Object <NSCopying, java_lang_Comparable> {
 
 long number;
 
@@ -38,5 +39,8 @@ long number;
 - (long) longValue__;
 + (long) parseLong___java_lang_String: (java_lang_String *) str;
 + (long) parseLong___java_lang_String_int: (java_lang_String*) str :(int) radix;
++ (java_lang_Long*) valueOf___long: (long) l;
+- (int) compareTo___java_lang_Object: (java_lang_Object*) obj;
+- (int) compareTo___java_lang_Long: (java_lang_Long*) l;
 
 @end

@@ -21,11 +21,11 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
-
+#import "java_lang_Comparable.h"
 
 // java.lang.Integer
 //----------------------------------------------------------------------------
-@interface java_lang_Integer : java_lang_Object <NSCopying> {
+@interface java_lang_Integer : java_lang_Object <NSCopying, java_lang_Comparable> {
 
 int number;
 
@@ -40,7 +40,10 @@ int number;
 - (BOOL)isEqual:(id)anObject;
 - (int) intValue__;
 + (int) parseInt___java_lang_String: (java_lang_String *) str;
-+ (java_lang_String*) toString___int: i;
+- (java_lang_String*) toString__;
++ (java_lang_String*) toString___int: (int) i;
 + (java_lang_Integer*) valueOf___int: (int) i;
+- (int) compareTo___java_lang_Object: (java_lang_Object*) obj;
+- (int) compareTo___java_lang_Integer: (java_lang_Integer*) i;
 
 @end

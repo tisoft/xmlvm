@@ -19,7 +19,8 @@
  */
 
 #import "java_lang_String.h"
-
+#import "java_lang_RuntimeException.h"
+#import "java_lang_System.h"
 
 // java.lang.String
 //----------------------------------------------------------------------------
@@ -50,6 +51,11 @@
     return [[NSString alloc] initWithString: [n stringValue]];
 }
 
++ (java_lang_String*) valueOf___long: (long) l {
+    NSNumber* n = [NSNumber numberWithLong: l];
+    return [[NSString alloc] initWithString: [n stringValue]];
+}
+
 + (java_lang_String*) valueOf___float: (float) f
 {
     NSNumber* n = [NSNumber numberWithFloat: f];
@@ -68,6 +74,34 @@
         return [[NSString alloc] initWithString: (NSString*) o];
     }
     return [[NSString alloc] initWithString: @"Unkown type in valueOf___java_lang_Object"];
+}
+
+- (void) getChars___int_int_char_ARRAYTYPE_int:(int)srcBegin:(int)srcEnd:(XMLVMArray*)dst:(int)dstBegin {
+	if (srcBegin < 0) {
+		java_lang_RuntimeException* ex = [[java_lang_RuntimeException alloc] init];
+		[ex __init_java_lang_RuntimeException___java_lang_String:[NSMutableString stringWithString:@"Out of bounds: srcBegin"]];
+		@throw ex;
+	}
+	if (srcEnd > [self length__]) {
+		java_lang_RuntimeException* ex = [[java_lang_RuntimeException alloc] init];
+		[ex __init_java_lang_RuntimeException___java_lang_String:[NSMutableString stringWithString:@"Out of bounds: srcEnd"]];
+		@throw ex;
+	}
+	if (srcBegin > srcEnd) {
+		java_lang_RuntimeException* ex = [[java_lang_RuntimeException alloc] init];
+		[ex __init_java_lang_RuntimeException___java_lang_String:[NSMutableString stringWithString:@"Out of bounds: srcEnd - srcBegin"]];
+		@throw ex;
+	}
+
+	int offset = 0;
+
+	int j = dstBegin;
+	int n = offset + srcEnd;
+	int i = offset + srcBegin; //srcPos
+
+	while (i < n) {
+		dst->array.i[j++] = (char)[self characterAtIndex:i++];
+	}
 }
 
 - (XMLVMArray*) getBytes__
@@ -205,6 +239,20 @@
 	}
 
 	return [result retain];
+}
+
+- (java_lang_String*) trim__ {
+	int len = [self length];
+	int st = 0;
+	int off = 0; //this should be initialized from "offset"
+
+	while (st < len && [self charAt___int:off + st] <= ' ') {
+		st++;
+	}
+	while (st < len && [self charAt___int:off + len - 1] <= ' ') {
+		len--;
+	}
+	return (st > 0 || len < [self length]) ? [self substring___int_int:st:len] : [self retain];
 }
 
 @end

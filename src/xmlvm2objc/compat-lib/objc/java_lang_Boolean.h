@@ -38,5 +38,6 @@ int value;
 + (BOOL) parseBoolean___java_lang_String:(java_lang_String*) str;
 - (BOOL)isEqual:(id)anObject;
 - (int) booleanValue__;
++ (java_lang_Boolean*) valueOf___java_lang_String:(java_lang_String*) s;
 
 @end

@@ -19,7 +19,7 @@
  */
 
 #import "java_lang_Long.h"
-
+#import "java_lang_RuntimeException.h"
 
 // java.lang.Long
 //----------------------------------------------------------------------------
@@ -67,6 +67,35 @@
 + (long) parseLong___java_lang_String_int: (java_lang_String*) str :(int) radix
 {
     return strtoul([str UTF8String], nil, radix);
+}
+
++ (java_lang_Long*) valueOf___long: (long) l {
+	java_lang_Long* result = [[java_lang_Long alloc] init];
+	[result __init_java_lang_Long___long:l];
+	return result;	
+}
+
+static BOOL instanceof(id obj, const char *className) {
+	return obj != [NSNull null] &&
+		([obj isKindOfClass: objc_getClass(className)] ||
+			[obj conformsToProtocol: objc_getProtocol(className)]);	
+}
+
+//Signature from java_lang_Comparable
+- (int) compareTo___java_lang_Object: (java_lang_Object*) obj {
+	if (!instanceof(obj, "java_lang_Long")) {
+//TODO throw a java_lang_ClassCastException (doesn't exist yet) instead of a java_lang_RuntimeException
+		java_lang_RuntimeException* ex = [[java_lang_RuntimeException alloc] init];
+		[ex __init_java_lang_RuntimeException___java_lang_String:[NSMutableString stringWithString:@"ClassCastException"]];
+		@throw ex;
+	}
+	return [self compareTo___java_lang_Long:(java_lang_Long*)obj];
+}
+
+- (int) compareTo___java_lang_Long: (java_lang_Long*) l {
+	long thisVal = [self longValue__];
+	long anotherVal = [l longValue__];
+	return (thisVal < anotherVal ? -1 : (thisVal == anotherVal ? 0 : 1));
 }
 
 @end
