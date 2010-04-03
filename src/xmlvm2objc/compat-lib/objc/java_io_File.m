@@ -47,7 +47,15 @@
 
 - (void) __init_java_io_File___java_lang_String: (java_lang_String*) pathname
 {
-	path = [[pathname copyWithZone: NULL] retain];
+	if ([pathname characterAtIndex:0] != '/') {
+		// For relative paths, prepend the base directory of <App>/Documents/
+		// http://developer.apple.com/iphone/library/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/FilesandNetworking/FilesandNetworking.html
+		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+		NSString *documentsDirectory = [paths objectAtIndex:0];
+		path = [[documentsDirectory stringByAppendingFormat:@"/%@", pathname] retain];
+	} else {
+		path = [[pathname copyWithZone: NULL] retain];
+	}
 }
 
 - (void) __init_java_io_File___java_io_File_java_lang_String: (java_io_File*) dir: (java_lang_String*) name

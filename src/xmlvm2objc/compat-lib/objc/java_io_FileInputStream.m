@@ -26,13 +26,10 @@
 
 - (void) __init_java_io_FileInputStream___java_lang_String :(java_lang_String*) path
 {
-	NSFileHandle* fh = [NSFileHandle fileHandleForReadingAtPath:path];
-	if (fh == nil) {
-		java_io_FileNotFoundException* ex = [[java_io_FileNotFoundException alloc] init];
-		@throw ex;
-	}
-	self->fd = [[java_io_FileDescriptor alloc] init];
-	[fd __init_java_io_FileDescriptor___NSFileHandle: fh];
+	java_io_File *fi = [[java_io_File alloc] init];
+	[fi __init_java_io_File___java_lang_String: path];
+	[self __init_java_io_FileInputStream___java_io_File: fi];
+	[fi release];
 }
 
 - (void) __init_java_io_FileInputStream___java_io_FileDescriptor :(java_io_FileDescriptor*) fdpar
@@ -42,7 +39,14 @@
 
 - (void) __init_java_io_FileInputStream___java_io_File: (java_io_File*) f 
 {
-	[self __init_java_io_FileInputStream___java_lang_String: [f getCanonicalPath__] ];
+	NSFileHandle *fdImpl;
+	fdImpl = [NSFileHandle fileHandleForReadingAtPath: [f getCanonicalPath__]];
+	if (fdImpl == nil) {
+		java_io_FileNotFoundException* ex = [[java_io_FileNotFoundException alloc] init];
+		@throw ex;
+	}
+	self->fd = [[java_io_FileDescriptor alloc] init];
+	[fd __init_java_io_FileDescriptor___NSFileHandle: fdImpl];
 }
 
 - (void) dealloc
