@@ -152,6 +152,10 @@ public class CGContext {
         }
     }
 
+    public void setShadowWithColor(float dx, float dy, float blur_radius, float[] color) {
+        // TODO
+    }
+
     public void showTextAtPoint(float x, float y, String str) {
         tx = x;
         ty = y;

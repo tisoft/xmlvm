@@ -103,6 +103,13 @@
 	CGContextSetFontSize(context, size);
 }
 
+- (void) setShadowWithColor___float_float_float_float_ARRAYTYPE: (float) dx :(float) dy :(float) blur_radius :(XMLVMArray*) color
+{
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	CGContextSetShadowWithColor(context, CGSizeMake(dx, dy), blur_radius, CGColorCreate(colorSpace, color->array.f));
+	CGColorSpaceRelease(colorSpace);
+}
+
 - (void) showTextAtPoint___float_float_java_lang_String: (float)x: (float)y: (NSString*)text
 {
     CGContextShowTextAtPoint(context, x, y, [text UTF8String], [text length]);

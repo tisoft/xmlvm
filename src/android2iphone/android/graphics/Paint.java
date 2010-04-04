@@ -22,6 +22,7 @@ package android.graphics;
  import android.text.SpannedString;
  import android.text.GraphicsOperations;
  */
+import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.NSString;
 import org.xmlvm.iphone.UIFont;
 
@@ -52,6 +53,12 @@ public class Paint {
     private Align            mAlign;
     private int              mColor;
     private float            mTextSize;
+
+    // Shadow layer
+    private float            mShadowRadius;
+    private float            mShadowDX;
+    private float            mShadowDY;
+    private float[]          mShadowColor;
 
     /** bit mask for the flag enabling antialiasing */
     public static final int  ANTI_ALIAS_FLAG       = 0x01;
@@ -247,6 +254,10 @@ public class Paint {
             mAlign = src.mAlign;
             mColor = src.mColor;
             mTextSize = src.mTextSize;
+            this.mShadowRadius = src.mShadowRadius;
+            this.mShadowDX = src.mShadowDX;
+            this.mShadowDY = src.mShadowDY;
+            this.mShadowColor = src.mShadowColor;
         }
     }
 
@@ -843,7 +854,14 @@ public class Paint {
      * radius is 0, then the shadow layer is removed.
      */
     public void setShadowLayer(float radius, float dx, float dy, int color) {
-        Log.w("xmlvm", "android.graphics.Pain.setShadowLayer() not implemented");
+        mShadowRadius = radius;
+        mShadowDX = dx;
+        mShadowDY = dy;
+        int a = (color >> 24) & 0xff;
+        int r = (color >> 16) & 0xff;
+        int g = (color >> 8) & 0xff;
+        int b = color & 0xff;
+        mShadowColor = new float[]{ r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f };
     }
 
     /**
@@ -1544,5 +1562,11 @@ public class Paint {
         int b = mColor & 0xff;
         float color[] = { r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f };
         return color;
+    }
+
+    public void xmlvmSetCGContextParameters(CGContext context) {
+        if (mShadowRadius != 0) {
+            context.setShadowWithColor(mShadowDX, mShadowDY, mShadowRadius, mShadowColor);
+        }
     }
 }

@@ -46,9 +46,9 @@
 - (void) rotate___float :(float)ang;
 - (void) scale___float_float :(float) sx :(float) sy;
 - (void) setAlpha___float :(float)alpha;
-
 - (void) setFont___org_xmlvm_iphone_CGFont: (org_xmlvm_iphone_CGFont*)font;
 - (void) setFontSize___float :(float)size;
+- (void) setShadowWithColor___float_float_float_float_ARRAYTYPE: (float) dx :(float) dy :(float) blur_radius :(XMLVMArray*) color;
 - (void) showTextAtPoint___float_float_java_lang_String: (float)x: (float)y: (NSString*)text;
 - (void) showText___java_lang_String: (NSString*)text;
 - (org_xmlvm_iphone_CGPoint*) getTextPosition__;

@@ -96,6 +96,7 @@ public class Canvas {
         context.storeState();
         context.scale(1, -1);
         context.translate(0, -(rect.size.height + 2 * rect.origin.y));
+        xmlvmSetCGContextPaintParameters(paint);
         context.drawImage(rect, image.getCGImage());
         context.restoreState();
         releaseCGContext();
@@ -108,7 +109,9 @@ public class Canvas {
     public void drawRect(float left, float top, float right, float bottom, Paint paint) {
         createCGContext();
         context.storeState();
+        // TODO the setFillColor() should be done in xmlvmSetCGContextPaintParameters()
         context.setFillColor(paint.xmlvmGetColor());
+        xmlvmSetCGContextPaintParameters(paint);
         context.fillRect(new CGRect(left, top, right - left, bottom - top));
         context.restoreState();
         releaseCGContext();
@@ -154,5 +157,11 @@ public class Canvas {
 
     public void drawTextOnPath(String text, Path textPathSingleLine, int i, int j, Paint textPaint) {
         Assert.NOT_IMPLEMENTED();
+    }
+
+    private void xmlvmSetCGContextPaintParameters(Paint paint) {
+        if (paint != null) {
+            paint.xmlvmSetCGContextParameters(context);
+        }
     }
 }
