@@ -79,4 +79,24 @@
 	return [self.text retain];
 }
 
+- (int) getLineBreakMode__
+{
+	return [self getLineBreakMode];
+}
+
+- (void) setLineBreakMode___int: (int) lineBreakMode
+{
+	[self setLineBreakMode: lineBreakMode];
+}
+
+- (int) getNumberOfLines__
+{
+	return [self getNumberOfLines];
+}
+
+- (void) setNumberOfLines___int: (int) numberOfLines
+{
+	[self setNumberOfLines: numberOfLines];
+}
+
 @end

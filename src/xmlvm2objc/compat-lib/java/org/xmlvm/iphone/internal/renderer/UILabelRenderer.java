@@ -23,6 +23,9 @@ package org.xmlvm.iphone.internal.renderer;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.text.BreakIterator;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
@@ -30,6 +33,7 @@ import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UILabel;
+import org.xmlvm.iphone.UILineBreakMode;
 import org.xmlvm.iphone.UITextAlignment;
 
 public class UILabelRenderer extends UIViewRenderer<UILabel> {
@@ -63,37 +67,86 @@ public class UILabelRenderer extends UIViewRenderer<UILabel> {
         super.paint();
 
         Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
-        CGRect displayRect = view.getFrame();
         Font f = view.getFont() != null ? view.getFont().xmlvmGetFont() : getDefaultFont();
         g.setFont(f);
         FontMetrics fm = g.getFontMetrics();
-        int width = fm.stringWidth(view.getText());
-        int height = fm.getHeight();
-        int descent = fm.getDescent();
-        // TODO Centering hard coded for now
-        int x = (int) displayRect.origin.x;
-        int y = (int) displayRect.origin.y;
-        switch (view.getTextAlignment()) {
-        case UITextAlignment.Left:
-            // Do nothing
-            break;
-        case UITextAlignment.Center:
-            x += ((int) view.getFrame().size.width - width) / 2;
-            break;
-        }
-        y += ((int) view.getFrame().size.height - height) / 2 + height - descent;
 
-        if (shadowColor != null) {
-            g.setPaint(shadowColor.xmlvmGetPaint());
-            g.drawString(view.getText(), x + shadowOffset.width, y + shadowOffset.height);
+        List<String> lines = null;
+        switch (view.getLineBreakMode()) {
+        case UILineBreakMode.WordWrap:
+            lines = splitIntoLines((int) view.getFrame().size.width, fm);
+            renderText(lines, g, fm);
+            break;
+        default:
+            lines = new ArrayList<String>();
+            lines.add(view.getText());
+            renderText(lines, g, fm);
         }
 
-        g.setPaint(view.getTextColor().xmlvmGetPaint());
-        g.drawString(view.getText(), x, y);
     }
 
     private Font getDefaultFont() {
         return UIFont.systemFontOfSize(UIFont.labelFontSize()).xmlvmGetFont();
     }
 
+    private void renderText(List<String> lines, Graphics2D g, FontMetrics fm) {
+        CGRect displayRect = view.getFrame();
+        int height = fm.getHeight();
+        int ascent = fm.getAscent();
+        int linesToDisplay = view.getNumberOfLines() == 0 ? lines.size() : view.getNumberOfLines();
+
+        for (int i = 0; i < lines.size() && i < linesToDisplay; i++) {
+            String line = lines.get(i);
+            int width = fm.stringWidth(line);
+            int x = (int) displayRect.origin.x;
+            int y = (int) displayRect.origin.y;
+
+            switch (view.getTextAlignment()) {
+            case UITextAlignment.Left:
+                // Do nothing
+                break;
+            case UITextAlignment.Center:
+                x += ((int) view.getFrame().size.width - width) / 2;
+                break;
+            }
+            y += ((int) view.getFrame().size.height - linesToDisplay * height) / 2 + ascent + i
+                    * height;
+
+            if (shadowColor != null) {
+                g.setPaint(shadowColor.xmlvmGetPaint());
+                g.drawString(line, x + shadowOffset.width, y + shadowOffset.height);
+            }
+
+            g.setPaint(view.getTextColor().xmlvmGetPaint());
+            g.drawString(line, x, y);
+        }
+
+    }
+
+    private List<String> splitIntoLines(int width, FontMetrics fm) {
+        List<String> result = new ArrayList<String>();
+        StringBuffer buf = new StringBuffer();
+        BreakIterator boundary = BreakIterator.getLineInstance();
+        boundary.setText(view.getText());
+        int start = boundary.first();
+        int end = boundary.next();
+        int lineLength = 0;
+
+        while (end != BreakIterator.DONE) {
+            String word = view.getText().substring(start, end);
+            lineLength += fm.stringWidth(word);
+            if (lineLength >= width) {
+                result.add(buf.toString());
+                lineLength = fm.stringWidth(word);
+                buf = new StringBuffer();
+            }
+
+            buf.append(word);
+            start = end;
+            end = boundary.next();
+        }
+
+        result.add(buf.toString());
+        return result;
+    }
 }

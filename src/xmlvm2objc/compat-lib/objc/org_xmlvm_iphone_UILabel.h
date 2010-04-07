@@ -35,4 +35,8 @@ typedef UILabel org_xmlvm_iphone_UILabel;
 - (void) setFont___org_xmlvm_iphone_UIFont :(org_xmlvm_iphone_UIFont*) font;
 - (org_xmlvm_iphone_UIFont*) getFont__;
 - (NSString*) getText__;
+- (int) getLineBreakMode__;
+- (void) setLineBreakMode___int: (int) lineBreakMode;
+- (int) getNumberOfLines__;
+- (void) setNumberOfLines___int: (int) numberOfLines;
 @end

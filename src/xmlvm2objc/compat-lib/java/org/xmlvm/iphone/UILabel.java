@@ -28,6 +28,8 @@ public class UILabel extends UIView {
     private UIFont  font;
     private UIColor textColor;
     private int     textAlignment;
+    private int     lineBreakMode = UILineBreakMode.TailTruncation;
+    private int     numberOfLines = 1;
 
     public UILabel() {
         this(new CGRect(0, 0, 0, 0));
@@ -77,5 +79,21 @@ public class UILabel extends UIView {
 
     public int getTextAlignment() {
         return textAlignment;
+    }
+
+    public int getLineBreakMode() {
+        return lineBreakMode;
+    }
+
+    public void setLineBreakMode(int lineBreakMode) {
+        this.lineBreakMode = lineBreakMode;
+    }
+
+    public int getNumberOfLines() {
+        return numberOfLines;
+    }
+
+    public void setNumberOfLines(int numberOfLines) {
+        this.numberOfLines = numberOfLines;
     }
 }
