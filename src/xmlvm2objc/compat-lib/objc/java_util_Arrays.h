@@ -20,9 +20,19 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
+#import "java_util_Comparator.h"
+#import "java_util_List.h"
 
 @interface java_util_Arrays : java_lang_Object
 
+//Private
++ (void) mergeSort:(XMLVMArray*) src: (XMLVMArray*) dest: (int) low: (int) high: (int) off;
++ (void) mergeSortWithComparator:(XMLVMArray*) src: (XMLVMArray*) dest: (int) low: (int) high: (int) off: (java_util_Comparator*)c;
+
+//Public
 + (void) sort___int_ARRAYTYPE: (XMLVMArray*) a;
++ (void) sort___java_lang_Object_ARRAYTYPE: (XMLVMArray*) a;
++ (void) sort___java_lang_Object_ARRAYTYPE_java_util_Comparator: (XMLVMArray*) a: (java_util_Comparator*) c;
++ (java_util_List*) asList___java_lang_Object_ARRAYTYPE:(XMLVMArray*) a;
 
 @end

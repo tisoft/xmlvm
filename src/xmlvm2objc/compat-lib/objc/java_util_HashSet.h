@@ -20,14 +20,21 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
-#import "java_util_Iterator.h"
-
+#import "java_util_Set.h"
+#import "java_util_Collection.h"
 
 // java.util.HashSet
 //----------------------------------------------------------------------------
 typedef NSMutableSet java_util_HashSet;
+
 @interface NSMutableSet (cat_java_util_HashSet)
 
 - (void) __init_java_util_HashSet__;
+- (void) __init_java_util_HashSet___java_util_Collection:(java_util_Collection*)c;
+
+- (BOOL) add___java_lang_Object:(java_lang_Object*)e;
+- (int) size__;
+- (void) clear__;
+- (java_util_Iterator*) iterator__;
 
 @end

@@ -20,17 +20,12 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
-#import "java_util_Iterator.h"
+#import "java_util_List.h"
+#import "java_util_Comparator.h"
 
+@interface java_util_Collections : java_lang_Object
 
-// java.util.Collection
-//----------------------------------------------------------------------------
-@protocol java_util_Collection <NSObject>
++ (void) sort___java_util_List: (java_util_List*) list;
++ (void) sort___java_util_List_java_util_Comparator: (java_util_List*) list: (java_util_Comparator*) c;
 
-- (int) size__;
-- (java_util_Iterator*) iterator__;
-
-@end
-
-@interface java_util_Collection : java_lang_Object <java_util_Collection>
 @end

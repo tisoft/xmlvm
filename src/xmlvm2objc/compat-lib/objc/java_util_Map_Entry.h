@@ -20,17 +20,14 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
-#import "java_util_Iterator.h"
 
-
-// java.util.Collection
-//----------------------------------------------------------------------------
-@protocol java_util_Collection <NSObject>
-
-- (int) size__;
-- (java_util_Iterator*) iterator__;
-
+@protocol java_util_Map_Entry <NSObject>
+- (int) equals___java_lang_Object:(java_lang_Object*)o;
+- (java_lang_Object*) getKey__;
+- (java_lang_Object*) getValue__;
+- (int) hashCode__;
+- (java_lang_Object*) setValue___java_lang_Object:(java_lang_Object*)value;
 @end
 
-@interface java_util_Collection : java_lang_Object <java_util_Collection>
+@interface java_util_Map_Entry : java_lang_Object <java_util_Map_Entry>
 @end

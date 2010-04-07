@@ -19,6 +19,14 @@
  */
 
 #import "xmlvm.h"
+#import "java_lang_Object.h"
 
-@protocol java_util_Comparator
+@protocol java_util_Comparator <NSObject>
+
+- (int) compare___java_lang_Object_java_lang_Object:(java_lang_Object*)o1:(java_lang_Object*)o2;
+- (BOOL) equals___java_lang_Object:(java_lang_Object*)obj;
+
+@end
+
+@interface java_util_Comparator : java_lang_Object <java_util_Comparator>
 @end

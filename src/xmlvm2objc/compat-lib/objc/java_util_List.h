@@ -21,18 +21,18 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 #import "java_util_Iterator.h"
-
+#import "java_util_Collection.h"
 
 // java.util.List
 //----------------------------------------------------------------------------
-@protocol java_util_List <NSObject>
+@protocol java_util_List <java_util_Collection>
 
 - (java_util_Iterator*) iterator__;
 - (int) size__;
 - (BOOL) add___java_lang_Object :(java_lang_Object*) item;
 - (void) add___int_java_lang_Object :(int) idx :(java_lang_Object*) item;
+- (BOOL) addAll___java_util_Collection: (java_util_Collection*) c;
 - (java_lang_Object*) set___int_java_lang_Object :(int) idx: (java_lang_Object*) item;
-- (java_lang_Object*) set___int_java_lang_Object :(java_lang_Object*) item;
 - (java_lang_Object*) get___int :(int) idx;
 - (java_lang_Object*) remove___int :(int) idx;
 - (BOOL) remove___java_lang_Object :(java_lang_Object*) item;
