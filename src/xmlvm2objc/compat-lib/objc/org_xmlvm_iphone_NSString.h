@@ -38,4 +38,9 @@ typedef NSString org_xmlvm_iphone_NSString;
 + (org_xmlvm_iphone_CGSize*) sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont
                :(java_lang_String*) text
                :(org_xmlvm_iphone_UIFont*) font;
++ (org_xmlvm_iphone_CGSize*) sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont_org_xmlvm_iphone_CGSize_int
+               :(java_lang_String*) text
+               :(org_xmlvm_iphone_UIFont*) font
+               :(org_xmlvm_iphone_CGSize*) constraint
+               :(int) lineBreakMode;
 @end

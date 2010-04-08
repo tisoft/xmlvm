@@ -135,7 +135,7 @@ public class UILabelRenderer extends UIViewRenderer<UILabel> {
         while (end != BreakIterator.DONE) {
             String word = view.getText().substring(start, end);
             lineLength += fm.stringWidth(word);
-            if (lineLength >= width) {
+            if (lineLength > width) {
                 result.add(buf.toString());
                 lineLength = fm.stringWidth(word);
                 buf = new StringBuffer();

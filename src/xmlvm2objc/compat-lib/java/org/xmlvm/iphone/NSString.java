@@ -21,6 +21,7 @@
 package org.xmlvm.iphone;
 
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
@@ -28,6 +29,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.BreakIterator;
 
 /**
  * @author arno
@@ -74,4 +76,53 @@ public class NSString {
         return new CGSize((float) size.getWidth(), text != null && text.length() > 0 ? (float) size
                 .getHeight() : 0.0f);
     }
+
+    public static CGSize sizeWithFont(String text, UIFont font, CGSize size, int lineBreakMode) {
+        Graphics2D graphicsContext = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        FontMetrics fm = graphicsContext.getFontMetrics(font.xmlvmGetFont());
+
+        CGSize result = null;
+        switch (lineBreakMode) {
+        case UILineBreakMode.WordWrap:
+            if (fm.stringWidth(text) <= size.width) {
+                result = new CGSize(fm.stringWidth(text), text != null && text.length() > 0 ? fm
+                        .getHeight() : 0.0f);
+            } else {
+                int numLines = countLines(text, size.width, fm);
+                result = new CGSize(size.width, Math.min(numLines * fm.getHeight(), size.height));
+            }
+            break;
+
+        default:
+            result = new CGSize(fm.stringWidth(text), text != null && text.length() > 0 ? fm
+                    .getHeight() : 0.0f);
+        }
+
+        return result;
+    }
+
+    private static int countLines(String text, float width, FontMetrics fm) {
+        int lines = 0;
+        BreakIterator boundary = BreakIterator.getLineInstance();
+        boundary.setText(text);
+        int start = boundary.first();
+        int end = boundary.next();
+        int lineLength = 0;
+
+        while (end != BreakIterator.DONE) {
+            String word = text.substring(start, end);
+            lineLength += fm.stringWidth(word);
+            if (lineLength > width) {
+                lines++;
+                lineLength = fm.stringWidth(word);
+            }
+
+            start = end;
+            end = boundary.next();
+        }
+
+        lines++;
+        return lines;
+    }
+
 }

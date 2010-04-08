@@ -26,6 +26,9 @@ import org.xmlvm.iphone.NSString;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UILabel;
+import org.xmlvm.iphone.UILineBreakMode;
+import org.xmlvm.iphone.UIScreen;
+import org.xmlvm.iphone.UITextAlignment;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
@@ -117,6 +120,9 @@ public class TextView extends View {
     @Override
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
         UILabel label = new UILabel();
+        label.setNumberOfLines(0);
+        label.setLineBreakMode(UILineBreakMode.WordWrap);
+        label.setTextAlignment(UITextAlignment.Center);
 
         if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
             label.setTextColor(UIColor.whiteColor);
@@ -157,18 +163,37 @@ public class TextView extends View {
     }
 
     protected CGSize xmlvmGetTextSize() {
+        UIScreen screen = UIScreen.mainScreen();
+        CGRect rect = screen.getApplicationFrame();
+        CGSize totalPaddings = computeTotalPadding();
+        CGSize constraints = new CGSize(rect.size.width - totalPaddings.width, rect.size.height
+                - totalPaddings.height);
+
         UIFont font = xmlvmGetUIFont();
         if (font == null) {
             font = UIFont.systemFontOfSize(UIFont.labelFontSize());
         }
 
         CGSize mSize = NSString.sizeWithFont("M", font);
-        CGSize textSize = NSString.sizeWithFont(text, font);
+        CGSize textSize = NSString.sizeWithFont(text, font, constraints, UILineBreakMode.WordWrap);
         if (text.length() == 0) {
             textSize.height = mSize.height;
         }
 
         return textSize;
+    }
+
+    private CGSize computeTotalPadding() {
+        View v = this;
+        CGSize result = new CGSize(0, 0);
+
+        do {
+            result.width += (v.getPaddingLeft() + v.getPaddingRight());
+            result.height += (v.getPaddingTop() + v.getPaddingBottom());
+            v = (View) v.getParent();
+        } while (v != null);
+
+        return result;
     }
 
     protected UIFont xmlvmGetUIFont() {

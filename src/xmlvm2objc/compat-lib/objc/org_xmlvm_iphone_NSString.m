@@ -53,5 +53,22 @@
 	return s;
 }
 
++ (org_xmlvm_iphone_CGSize*) sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont_org_xmlvm_iphone_CGSize_int
+               :(java_lang_String*) text
+               :(org_xmlvm_iphone_UIFont*) font
+               :(org_xmlvm_iphone_CGSize*) constraint
+               :(int) lineBreakMode
+{
+	CGSize size = CGSizeMake(0, 0);
+	CGSize c = CGSizeMake(constraint->width_float, constraint->height_float);
+	if (text != [NSNull null]) {
+		size = [((NSString*) text) sizeWithFont:font constrainedToSize:c lineBreakMode:lineBreakMode];
+	}
+	org_xmlvm_iphone_CGSize* s = [[org_xmlvm_iphone_CGSize alloc] init];
+	s->width_float = size.width;
+	s->height_float = size.height;
+	return s;
+}
+
 @end
 
