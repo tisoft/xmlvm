@@ -22,8 +22,8 @@
 	</pluginRepositories>
 
 	<modules>
-        <module>pom/compat-lib</module>
-		<module>pom/base</module>
+        <module>src/xmlvm2objc/compat-lib</module>
+		<module>src/xmlvm</module>
 	</modules>
 
 </project>
