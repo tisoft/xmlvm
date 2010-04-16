@@ -62,6 +62,7 @@
 // java.lang.System
 //----------------------------------------------------------------------------
 java_io_PrintStream* _STATIC_java_lang_System_out;
+java_io_InputStream* _STATIC_java_lang_System_in;
 
 @implementation java_lang_System;
 
@@ -80,11 +81,15 @@ java_io_PrintStream* _STATIC_java_lang_System_out;
 
 + (void) initialize
 {
+	// System.out
 	ConsoleOutputStream* console = [[ConsoleOutputStream alloc] init];
     java_io_PrintStream* v = [[java_io_PrintStream alloc] init];
 	[v __init_java_io_PrintStream___java_io_OutputStream:console];
 	[console release];
     [java_lang_System _PUT_out: v];
+	
+	// TODO System.in
+    [java_lang_System _PUT_in: [NSNull null]];	
 }
 
 + (java_io_PrintStream*) _GET_out
@@ -103,6 +108,16 @@ java_io_PrintStream* _STATIC_java_lang_System_out;
 	[ps retain];
     [_STATIC_java_lang_System_out release];
 	[java_lang_System _PUT_out:ps];
+}
+
++ (void) _PUT_in: (java_io_InputStream*) v
+{
+    _STATIC_java_lang_System_in = v;
+}
+
++ (java_io_InputStream*) _GET_in
+{
+    return _STATIC_java_lang_System_in;
 }
 
 /*

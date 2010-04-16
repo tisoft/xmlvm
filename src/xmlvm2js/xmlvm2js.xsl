@@ -161,8 +161,15 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
 
 <xsl:template match="vm:method">
- 	<xsl:call-template name="emitPrototype"/>
- 	 <xsl:apply-templates/>
+  <xsl:choose>
+    <xsl:when test="not(vm:isDuplicateMethod(.))">
+      <xsl:call-template name="emitPrototype"/>
+      <xsl:apply-templates/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>duplicateMethod: 0</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 
@@ -1405,6 +1412,34 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
 <xsl:value-of select="$classname"/>
 </xsl:template>
+
+
+<!--  javac will sometimes generate two methods that only differ in their return type.
+      This can happen e.g. with type erasures. Function vm:isDuplicateMethod will determine
+      if the given method is a duplicate that is not needed when generating JavaScript.
+      A method is a duplicate if it is (1) synthetic, (2) a method with the same name exists
+      in the class, and (3) signatures only differ in their return types.  -->
+<xsl:function name="vm:isDuplicateMethod" as="xs:boolean">
+  <xsl:param name="method" as="node()"/>
+
+  <xsl:choose>
+    <xsl:when test="not($method/@isSynthetic = 'true')">
+      <xsl:value-of select="false()"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="name" select="$method/@name"/>
+      <xsl:variable name="methodsWithSameName" select="$method/../vm:method[@name = $name]"/>
+      <xsl:variable name="duplicateMethods">
+        <xsl:for-each select="$methodsWithSameName">
+          <xsl:if test="deep-equal($method/vm:signature/vm:parameter, ./vm:signature/vm:parameter)">
+            <xsl:copy-of select="."/>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:variable>
+      <xsl:value-of select="count($duplicateMethods/vm:method) gt 1"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
 
 
 

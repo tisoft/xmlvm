@@ -21,6 +21,8 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 #import "java_io_PrintStream.h"
+#import "java_io_InputStream.h"
+
 
 @interface java_lang_System : java_lang_Object
 
@@ -28,6 +30,8 @@
 + (java_io_PrintStream*) _GET_out;
 + (void) _PUT_out: (java_io_PrintStream*) v;
 + (void) setOut___java_io_PrintStream: (java_io_PrintStream*) ps;
++ (void) _PUT_in: (java_io_InputStream*) v;
++ (java_io_InputStream*) _GET_in;
 + (long) currentTimeMillis__;
 + (java_lang_String *) setProperty___java_lang_String_java_lang_String: (java_lang_String *) s1: (java_lang_String *) s2;
 + (void) arraycopy___java_lang_Object_int_java_lang_Object_int_int
