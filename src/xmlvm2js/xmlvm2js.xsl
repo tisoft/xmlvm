@@ -1457,20 +1457,38 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     {</xsl:text>
     
   <!--  Declare the registers - START. -->
-  <xsl:text>
-        var </xsl:text>
-  <xsl:variable name="limit" select="@register-size" as="xs:integer"/>
-  <xsl:for-each select="(0 to $limit - 1)">
-    <xsl:text>__r</xsl:text>
-    <xsl:value-of select="position() - 1"/>
-    <xsl:if test="position()!=last()">
-      <xsl:text>, </xsl:text>
+  <xsl:for-each select="vm:define-register">
+    <xsl:text>
+        var __r</xsl:text>
+    <xsl:value-of select="@num"/>
+    <xsl:text>;</xsl:text>
+  </xsl:for-each>
+  <xsl:for-each select="vm:setup-helper-variables">
+    <xsl:text>    var __rtmp;
+</xsl:text>
+  <xsl:if test="@useException = 'true'">
+    <xsl:text>    var        __ex;
+</xsl:text>
+  </xsl:if>
+  </xsl:for-each>
+  <!--  Declare the registers - END. -->
+
+  <xsl:for-each select="vm:move-argument">
+    <xsl:text>
+        __r</xsl:text>
+    <xsl:value-of select="@vx"/>
+    <xsl:if test="@sourceArg = 'self'">
+      <xsl:text> = this;
+</xsl:text>
+    </xsl:if>
+    <xsl:if test="@sourceArg != 'self'">
+      <xsl:text> = __arg</xsl:text>
+      <xsl:value-of select="@sourceArg"/>
+      <xsl:text>;
+</xsl:text>
     </xsl:if>
   </xsl:for-each>
-  <xsl:text>;</xsl:text>
-  <!--  Declare the registers - END. -->
   
-  <xsl:call-template name="initLocalsDex" />
   <xsl:text>
         var __next_label = -1;
         while (1) {
@@ -1486,6 +1504,72 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     }</xsl:text>
 </xsl:template>
 
+<xsl:template match="vm:define-register">
+  <!-- Do nothing -->
+</xsl:template>
+
+<xsl:template match="vm:move-argument">
+  <!-- Do nothing -->
+</xsl:template>
+
+<xsl:template match= "vm:setup-helper-variables">
+  <!-- Do nothing -->
+</xsl:template>
+
+<xsl:template match="vm:tmp-equals-r">
+  <xsl:text>    __rtmp =  __r</xsl:text>
+  <xsl:value-of select="@reg" />
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+<xsl:template match="vm:comment">
+  <xsl:text>    //INFO: </xsl:text>
+    <xsl:value-of select="@text" />
+  <xsl:text>
+  </xsl:text>
+</xsl:template>
+
+<xsl:template match="vm:reg-release">
+  <!-- Do nothing -->
+</xsl:template>
+
+<xsl:template match="vm:reg-retain">
+  <!-- Do nothing -->
+</xsl:template>
+  
+<xsl:template match="vm:i-release">
+  <!-- Do nothing -->
+</xsl:template>
+
+<xsl:template match="vm:s-release">
+  <!-- Do nothing -->
+</xsl:template>
+
+<xsl:template match="vm:set-null">
+  <!-- Do nothing -->
+</xsl:template>
+
+<xsl:template match="dex:const-class"> 
+  <xsl:call-template name="checkClass">
+    <xsl:with-param name="string" select="@value"/>
+  </xsl:call-template>
+  <xsl:call-template name="checkClass">
+    <xsl:with-param name="string" select="'java_lang_Class'"/>
+  </xsl:call-template>
+  <xsl:text>    __r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> = new java_lang_Class("</xsl:text>
+  <xsl:call-template name="emitScopedName">
+    <xsl:with-param name="string" select="@value"/>
+  </xsl:call-template>
+  <xs:text>");
+</xs:text>
+</xsl:template>
+
+
+<!--  dex:return-void
+      ===============  -->
 <xsl:template match="dex:return-void">
   <xsl:text>
             return;</xsl:text>
@@ -1700,9 +1784,22 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
       ==========  -->
 <xsl:template match="dex:if-nez">
   <xsl:text>
-            if (__r</xsl:text>
-  <xsl:value-of select="@vx" />
-  <xsl:text> != 0 ){ __next_label = </xsl:text>
+            if (</xsl:text>
+  <xsl:choose>
+    <xsl:when test="vm:isObjectRef(@vx-type)">
+      <xsl:text>!((__r</xsl:text>
+      <xsl:value-of select="@vx"/>
+      <xsl:text> instanceof java_lang_null) || (__r</xsl:text>
+      <xsl:value-of select="@vx"/>
+      <xsl:text> == 0))</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>__r</xsl:text>
+      <xsl:value-of select="@vx"/>
+      <xsl:text> != 0</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:text>){ __next_label = </xsl:text>
   <xsl:value-of select="@target" />
   <xsl:text>; break; }</xsl:text>
 </xsl:template>
@@ -1711,9 +1808,22 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
       ==========  -->
 <xsl:template match="dex:if-eqz">
   <xsl:text>
-            if (__r</xsl:text>
-  <xsl:value-of select="@vx" />
-  <xsl:text> == 0 ){ __next_label = </xsl:text>
+            if (</xsl:text>
+  <xsl:choose>
+    <xsl:when test="vm:isObjectRef(@vx-type)">
+      <xsl:text>(__r</xsl:text>
+      <xsl:value-of select="@vx"/>
+      <xsl:text> instanceof java_lang_null) || (__r</xsl:text>
+      <xsl:value-of select="@vx"/>
+      <xsl:text> == 0)</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>__r</xsl:text>
+      <xsl:value-of select="@vx"/>
+      <xsl:text> == 0</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:text>){ __next_label = </xsl:text>
   <xsl:value-of select="@target" />
   <xsl:text>; break; }</xsl:text>
 </xsl:template>
@@ -1969,9 +2079,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 </xsl:template>
 
 
-<!--  dex:sget-object
-      ===============  -->
-<xsl:template match="dex:sget-object">
+<!--  dex:sget-*
+      ==========  -->
+<xsl:template match="dex:sget|dex:sget-wide|dex:sget-boolean|dex:sget-object">
   <xsl:call-template name="checkClass">
     <xsl:with-param name="string" select="@class-type"/>
   </xsl:call-template>
@@ -2024,7 +2134,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
 <!--  dex:iput*
       ================  -->
-<xsl:template match="dex:iput|dex:iput-wide|dex:iput-object|dex:iput-boolean">
+<xsl:template match="dex:iput|dex:iput-wide|dex:iput-object|dex:iput-boolean|dex:iput-byte">
   <xsl:text>
             __r</xsl:text>
   <xsl:value-of select="@vy" />
@@ -2197,12 +2307,39 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>;</xsl:text>
 </xsl:template>
 
+<!--  dex:check-cast
+      ==============  -->
 <xsl:template match="dex:check-cast">
   <!-- TODO should do a runtime type check -->
   <xsl:text>
-            WARN("check-cast disabled");</xsl:text>  
+            __r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> = __r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>;</xsl:text>
 </xsl:template>
 
+<!--  dex:instnce-of
+      ==============  -->
+<xsl:template match="dex:instance-of">
+  <xsl:text>
+            __r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> = (__r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:choose>
+    <xsl:when test="contains(@value, '[]')">
+      <xsl:text>.constructor.toString().indexOf("Array") != -1</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text> instanceof </xsl:text>
+      <xsl:call-template name="emitScopedName">
+        <xsl:with-param name="string" select="@value"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:text>) ? 1 : 0;</xsl:text>
+</xsl:template>
 
 <!--  dex:cmpg-*
       TODO: Implement NaN bias.
@@ -2335,12 +2472,12 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
       =======  -->
 <xsl:template match="dex:try">
   <xsl:text>
-            var __ex;
-            try {
+            //var __ex;
+            //try {
 </xsl:text>
   <xsl:apply-templates/>
   <xsl:text>
-            }</xsl:text>
+            //}</xsl:text>
 </xsl:template>
 
 
@@ -2348,20 +2485,20 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
       =========  -->
 <xsl:template match="dex:catch">
     <xsl:text>
-            catch (ex) {
+            /*catch (ex) {
               __ex = ex;
               __next_label = </xsl:text>
     <xsl:value-of select="@target"/>
     <xsl:text>;
               break;
-            }</xsl:text>
+            }*/</xsl:text>
 </xsl:template>
 
 
 <!--  dex:move-exception
       ==================  -->
 <xsl:template match="dex:move-exception">
-  <xsl:text>    __r</xsl:text>
+  <xsl:text>    //TODO __r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text> = __ex;
 </xsl:text>
@@ -2378,30 +2515,15 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 </xsl:template>
 
 
-<!--  initLocalsDex
-      =============  -->
-<xsl:template name="initLocalsDex">
-    <xsl:for-each select="dex:var">
-		<xsl:choose>    
-      		<xsl:when test="@name = 'this'">
-      			<xsl:text>
-        __r</xsl:text>
-    			<xsl:value-of select="@register" />
-    			<xsl:text> = this;</xsl:text>
-     		</xsl:when>
-     		<xsl:otherwise>
-     			<xsl:if test="(position()-count(../dex:var[@name='this'])) &lt;= count(../../vm:signature/vm:parameter)" >
-     			  <xsl:text>
-        __r</xsl:text>
-     	  		  <xsl:value-of select="@register" />
-     	  		  <xsl:text> = __arg</xsl:text>
-     	  		  <xsl:value-of select="(position()-count(../dex:var[@name='this']))" />
-     	  		  <xsl:text>;</xsl:text>
-     			</xsl:if>
-     		</xsl:otherwise>
-     	</xsl:choose>
-    </xsl:for-each>
-</xsl:template>
+<!--  isObjectRef
+      ===========  -->
+<xsl:function name="vm:isObjectRef" as="xs:boolean">
+  <xsl:param name="type" as="xs:string"/>
+  
+  <xsl:value-of select="not($type='byte' or $type='short' or $type='int' or $type='float' or $type='long' or $type='double' or
+                            $type='char' or $type='boolean' or $type='void')"/>
+</xsl:function>
+
 
 
 <!--  appendSignatureDex
