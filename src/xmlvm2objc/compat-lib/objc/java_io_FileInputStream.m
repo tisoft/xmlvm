@@ -82,7 +82,7 @@
 
 - (void) close__
 {
-	if (self->fd == [NSNull null]) {
+	if (self->fd == JAVA_NULL) {
 		return;
 	}
 	

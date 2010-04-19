@@ -87,7 +87,7 @@
 	id k = [key conformsToProtocol: @protocol(NSCopying)] ? key : [NSValue valueWithPointer: key];
 	id value = [self objectForKey: k];
 	if (value == nil) {
-		return [NSNull null];
+		return JAVA_NULL;
 	}
 	[value retain];
 	return (java_lang_Object*) value;

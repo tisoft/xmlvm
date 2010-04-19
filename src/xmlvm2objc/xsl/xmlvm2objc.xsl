@@ -54,6 +54,7 @@
 int main(int argc, char* argv[])
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	xmlvm_init();
     [</xsl:text>
     <xsl:variable name="cl" as="node()" select="vm:class/vm:method[@name = 'main']/.."/>
     <xsl:value-of select="vm:fixname($cl/@package)"/>
@@ -242,7 +243,7 @@ int main(int argc, char* argv[])
           <xsl:value-of select="vm:fixname(../@name)"/>
           <xsl:text>_</xsl:text>
           <xsl:value-of select="vm:fixname(@name)"/>
-          <xsl:text> = (id) [NSNull null];</xsl:text>
+          <xsl:text> = (id) JAVA_NULL;</xsl:text>
         </xsl:for-each>
     	<!-- If there is a Java class initializer, call it. -->
         <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
@@ -275,7 +276,7 @@ int main(int argc, char* argv[])
         <xsl:value-of select="vm:fixname(@name)"/>
         <xsl:text>_</xsl:text>
         <xsl:value-of select="vm:fixname(@type)"/>
-        <xsl:text> = (id) [NSNull null];
+        <xsl:text> = (id) JAVA_NULL;
 </xsl:text>
       </xsl:for-each>
     <xsl:text>    }
@@ -641,7 +642,7 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="jvm:aconst_null">
-  <xsl:text>    _stack[_sp++].o = [NSNull null];
+  <xsl:text>    _stack[_sp++].o = JAVA_NULL;
 </xsl:text>
 </xsl:template>
 
@@ -1135,7 +1136,7 @@ int main(int argc, char* argv[])
 
 <xsl:template match="jvm:ifnull">
   <xsl:text>    _op1.o = _stack[--_sp].o;
-    if (_op1.o == [NSNull null]) goto label</xsl:text>
+    if (_op1.o == JAVA_NULL) goto label</xsl:text>
   <xsl:value-of select="@label"/>
   <xsl:text>;
 </xsl:text>
@@ -1144,7 +1145,7 @@ int main(int argc, char* argv[])
 
 <xsl:template match="jvm:ifnonnull">
   <xsl:text>    _op1.o = _stack[--_sp].o;
-    if (_op1.o != [NSNull null]) goto label</xsl:text>
+    if (_op1.o != JAVA_NULL) goto label</xsl:text>
   <xsl:value-of select="@label"/>
   <xsl:text>;
 </xsl:text>
@@ -1496,7 +1497,7 @@ int main(int argc, char* argv[])
 
 <xsl:template match="jvm:instanceof">
   <xsl:text>    _op1.o = _stack[--_sp].o;
-    _stack[_sp++].i = _op1.o != [NSNull null] &amp;&amp; 
+    _stack[_sp++].i = _op1.o != JAVA_NULL &amp;&amp; 
         ([_op1.o isKindOfClass: objc_getClass("</xsl:text><xsl:value-of select="vm:fixname(@type)"/><xsl:text>")] ||
          [_op1.o conformsToProtocol: objc_getProtocol("</xsl:text><xsl:value-of select="vm:fixname(@type)"/><xsl:text>")]);
 </xsl:text>
@@ -1944,7 +1945,7 @@ int main(int argc, char* argv[])
 
 <xsl:template match="vm:set-null">
   <xsl:text>    _r</xsl:text><xsl:value-of select="@num"/>
-  <xsl:text>.o = [NSNull null];
+  <xsl:text>.o = JAVA_NULL;
 </xsl:text>
 </xsl:template>
 
@@ -1977,7 +1978,7 @@ int main(int argc, char* argv[])
  	</xsl:when>
  	
  	<xsl:when test = "@vartype = 'exception'">
-        <xsl:text>    id        _ex = [NSNull null];
+        <xsl:text>    id        _ex = JAVA_NULL;
 </xsl:text>
  	</xsl:when>
   </xsl:choose>
@@ -2186,7 +2187,7 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:throw">
   <xsl:text>    [_ex release];
     _ex = _r</xsl:text> <xsl:value-of select="@vx"/>.o<xsl:text>;
-   _r</xsl:text><xsl:value-of select="@vx"/><xsl:text>.o = [NSNull null];
+   _r</xsl:text><xsl:value-of select="@vx"/><xsl:text>.o = JAVA_NULL;
     @throw _ex;
   </xsl:text>
 </xsl:template>
@@ -2195,7 +2196,7 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:move-exception">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o = _ex; _ex = [NSNull null];
+  <xsl:text>.o = _ex; _ex = JAVA_NULL;
 </xsl:text>
 </xsl:template>
 
@@ -2796,7 +2797,7 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:const-4[@kind='known-null']|dex:const-8[@kind='known-null']|dex:const-16[@kind='known-null']"> 
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o = [NSNull null];
+  <xsl:text>.o = JAVA_NULL;
 </xsl:text>
 </xsl:template>
 
@@ -3133,7 +3134,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="@vx"/>
   <xsl:choose>
     <xsl:when test="vm:isObjectRef(@vx-type)">
-      <xsl:text>.o == [NSNull null]</xsl:text>
+      <xsl:text>.o == JAVA_NULL</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="emitTypedAccess">
@@ -3154,7 +3155,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="@vx"/>
   <xsl:choose>
     <xsl:when test="vm:isObjectRef(@vx-type)">
-      <xsl:text>.o != [NSNull null]</xsl:text>
+      <xsl:text>.o != JAVA_NULL</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="emitTypedAccess">
@@ -3494,7 +3495,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="@vx"/>
   <xsl:text>.i = (_r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.o != [NSNull null] &amp;&amp; 
+  <xsl:text>.o != JAVA_NULL &amp;&amp; 
         ([_r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.o isKindOfClass: objc_getClass("</xsl:text>

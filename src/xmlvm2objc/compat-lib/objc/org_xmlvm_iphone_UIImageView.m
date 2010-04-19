@@ -41,22 +41,22 @@
 
 - (void) setBackgroundImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image
 {
-	self.image = image == [NSNull null] ? nil : image;
+	self.image = image == JAVA_NULL ? nil : image;
 }
 
 - (org_xmlvm_iphone_UIImage*) getBackgroundImage__
 {
-	return self.image == nil ? [NSNull null] : [self.image retain];
+	return self.image == nil ? JAVA_NULL : [self.image retain];
 }
 
 - (void) setImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image
 {
-	self.image = image == [NSNull null] ? nil : image;
+	self.image = image == JAVA_NULL ? nil : image;
 }
 
 - (org_xmlvm_iphone_UIImage*) getImage__
 {
-	return self.image == nil ? [NSNull null] : [self.image retain];
+	return self.image == nil ? JAVA_NULL : [self.image retain];
 }
 
 - (void) setNeedsDisplayInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect

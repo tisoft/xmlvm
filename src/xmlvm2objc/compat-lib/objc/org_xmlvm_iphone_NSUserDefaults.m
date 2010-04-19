@@ -35,7 +35,7 @@
 {
 	id obj = [self objectForKey: key];
 	if (obj == nil)
-	    return [NSNull null];
+	    return JAVA_NULL;
 	[obj retain];
 	return obj;
 }

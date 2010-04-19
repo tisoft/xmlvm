@@ -121,7 +121,7 @@ static NSMutableDictionary* delegates;
 - (void) setDelegate___org_xmlvm_iphone_UIResponderDelegate
              :(id<org_xmlvm_iphone_UIResponderDelegate>) delegate
 {
-    if (delegate != [NSNull null]) {
+    if (delegate != JAVA_NULL) {
         [delegates setObject: delegate forKey: [NSValue valueWithPointer: self]];
     }
     else {

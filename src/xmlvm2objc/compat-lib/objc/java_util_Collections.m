@@ -33,13 +33,13 @@
 }
 
 + (void) sort___java_util_List: (java_util_List*) list {
-	[java_util_Collections sort___java_util_List_java_util_Comparator:list:(java_util_Comparator*)[NSNull null]];
+	[java_util_Collections sort___java_util_List_java_util_Comparator:list:(java_util_Comparator*)JAVA_NULL];
 }
 
 + (void) sort___java_util_List_java_util_Comparator: (java_util_List*) list: (java_util_Comparator*) c {
 	XMLVMArray* a = [java_util_Collections toArray:list];
 
-	if (c == (java_util_Comparator*)[NSNull null]) {
+	if (c == (java_util_Comparator*)JAVA_NULL) {
 		[java_util_Arrays sort___java_lang_Object_ARRAYTYPE:a];
 	} else {
 		[java_util_Arrays sort___java_lang_Object_ARRAYTYPE_java_util_Comparator:a:c];

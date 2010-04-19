@@ -60,7 +60,7 @@
 {
 	[image retain];
 	[self->backgroundImage release];
-	if (image == [NSNull null]) {
+	if (image == JAVA_NULL) {
 		self->backgroundImage = nil;
 	}
 	else {
@@ -80,7 +80,7 @@
 	// We keep a weak reference (don't do a retain on delegate)
 	// We do this because the delegate will only exist as long as this UIView
 	// and by not doing a retain we avoid cycles
-	self->drawDelegate = delegate == [NSNull null] ? nil : delegate;
+	self->drawDelegate = delegate == JAVA_NULL ? nil : delegate;
 }
 
 @end
@@ -164,7 +164,7 @@
 
 - (void) setTransform___org_xmlvm_iphone_CGAffineTransform :(org_xmlvm_iphone_CGAffineTransform*)trans
 {
-	if (trans == [NSNull null])
+	if (trans == JAVA_NULL)
  		[self setTransform: CGAffineTransformIdentity];
  	else
     	[self setTransform: trans->transform];

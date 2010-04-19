@@ -28,7 +28,7 @@
 
 - (void) __init_org_xmlvm_iphone_NSErrorHolder__
 {
-	error_org_xmlvm_iphone_NSError = [NSNull null];
+	error_org_xmlvm_iphone_NSError = JAVA_NULL;
 }
 
 - (void) dealloc

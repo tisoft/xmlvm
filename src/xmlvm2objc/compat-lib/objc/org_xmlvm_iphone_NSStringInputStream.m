@@ -44,7 +44,7 @@
 
 - (java_lang_String *) readLine__ {
 	if ([self ready] == 0) {
-		return [NSNull null];
+		return JAVA_NULL;
 	}
 
 	java_lang_String *ret = [[java_lang_String alloc] init];

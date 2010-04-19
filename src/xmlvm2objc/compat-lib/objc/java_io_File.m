@@ -165,7 +165,7 @@
 	NSFileManager *man = [NSFileManager defaultManager];
 	NSArray *files = [man contentsOfDirectoryAtPath: path error: NULL];
 	if (files == nil) {
-		return [NSNull null];
+		return JAVA_NULL;
 	}
 	int count = [files count];
 	XMLVMArray* f = [XMLVMArray createSingleDimensionWithType: 9 andSize: count];
@@ -184,7 +184,7 @@
 	
 	NSArray *files = [man contentsOfDirectoryAtPath: path error: NULL];
 	if (files == nil) {
-		return [NSNull null];
+		return JAVA_NULL;
 	}
 	
 	NSMutableArray *arr = [NSMutableArray arrayWithCapacity: [files count]];
@@ -212,7 +212,7 @@
 	NSFileManager *man = [NSFileManager defaultManager];
 	NSArray *files = [man contentsOfDirectoryAtPath: path error: NULL];
 	if (files == nil) {
-		return [NSNull null];
+		return JAVA_NULL;
 	}
 	int count = [files count];
 	XMLVMArray* f = [XMLVMArray createSingleDimensionWithType: 9 andSize: count];

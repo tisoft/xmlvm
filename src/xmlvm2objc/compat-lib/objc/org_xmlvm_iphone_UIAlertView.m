@@ -36,13 +36,13 @@
 	// We would need to save the delegate in a member which we can't do as
 	// long as UIAlertView is a category. Perhaps the UIAlertView cleans up?
 	[delegate retain];
-	if (title == (id) [NSNull null]) {
+	if (title == (id) JAVA_NULL) {
 		title = nil;
 	}
-	if (message == (id) [NSNull null]) {
+	if (message == (id) JAVA_NULL) {
 		message = nil;
 	}
-	if (cancelButtonTitle == (id) [NSNull null]) {
+	if (cancelButtonTitle == (id) JAVA_NULL) {
 		cancelButtonTitle = nil;
 	}
 	[self initWithTitle:title message:message delegate:delegate cancelButtonTitle:cancelButtonTitle otherButtonTitles: nil];

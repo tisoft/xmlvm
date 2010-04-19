@@ -99,7 +99,7 @@
 	NSData* data = [fileHandle readDataOfLength: length];
 	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData: data error: &(outError->error_org_xmlvm_iphone_NSError)];
 	[outError->error_org_xmlvm_iphone_NSError retain];
-	return player != nil ? player : [NSNull null];
+	return player != nil ? player : JAVA_NULL;
 }
 
 - (void) play__
@@ -120,7 +120,7 @@
 - (void) setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate
 			: (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) delegate
 {
-	if (delegate != [NSNull null]) {
+	if (delegate != JAVA_NULL) {
 		AVAudioPlayerDelegateWrapper* wrapper = [[AVAudioPlayerDelegateWrapper alloc] initWithDelegate: delegate];
 		self.delegate = wrapper;
 	}

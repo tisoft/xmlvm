@@ -19,7 +19,7 @@
 }
 
 - (void) __init_org_xmlvm_iphone_UIBarButtonItem___java_lang_String_int_org_xmlvm_iphone_UIBarButtonItemDelegate :(java_lang_String*)title :(int)style :(org_xmlvm_iphone_UIBarButtonItemDelegate*)bbdelegate {
-	if (bbdelegate == [NSNull null]) {
+	if (bbdelegate == JAVA_NULL) {
 		[self initWithTitle:title style:style target:nil action:nil];
 	} else {
 		[bbdelegate retain];

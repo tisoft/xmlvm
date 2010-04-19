@@ -31,7 +31,7 @@
 
 - (void) addObserver___java_util_Observer: (java_util_Observer*) o {
 	@synchronized(self) {
-		if (o == (java_util_Observer*)[NSNull null]) {
+		if (o == (java_util_Observer*)JAVA_NULL) {
 			java_lang_NullPointerException* ex = [[java_lang_NullPointerException alloc] init];
 			[ex __init_java_lang_NullPointerException__];
 			@throw ex;
@@ -52,7 +52,7 @@
 }
 
 - (void) notifyObservers__ {
-	[self notifyObservers___java_lang_Object:[NSNull null]];
+	[self notifyObservers___java_lang_Object:JAVA_NULL];
 }
 
 - (void) notifyObservers___java_lang_Object: (java_lang_Object*) arg {

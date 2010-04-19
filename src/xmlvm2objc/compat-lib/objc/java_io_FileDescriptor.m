@@ -39,7 +39,7 @@
 
 - (bool) valid__
 {
-	return fd != [NSNull null];
+	return fd != JAVA_NULL;
 }
 
 - (NSFileHandle*) getFileHandle
@@ -50,7 +50,7 @@
 - (void) invalidate
 {
 	[fd release];
-	fd = [NSNull null];
+	fd = JAVA_NULL;
 }
 
 @end

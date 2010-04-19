@@ -132,7 +132,7 @@
 
 - (java_lang_String*) readLine__
 {
-	return [NSNull null];
+	return JAVA_NULL;
 }
 
 - (void) close__

@@ -70,7 +70,7 @@ static const char CR = '\r';
 	}
 	if ([b length] == 0 && i == -1) {
 		[b release];
-		return [NSNull null];
+		return JAVA_NULL;
 	}
 	java_lang_String* result = [b toString__];
 	[b release];

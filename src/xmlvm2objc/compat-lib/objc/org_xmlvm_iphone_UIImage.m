@@ -37,7 +37,7 @@
 + (org_xmlvm_iphone_UIImage*) imageWithContentsOfFile___java_lang_String :(NSString*)path
 {
 	org_xmlvm_iphone_UIImage *toRet = [[UIImage imageNamed:path] retain];
-	return toRet != nil ? toRet : [NSNull null];
+	return toRet != nil ? toRet : JAVA_NULL;
 }
 
 - (org_xmlvm_iphone_CGSize*) getSize__

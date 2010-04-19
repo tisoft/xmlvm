@@ -31,7 +31,7 @@
 
 - (int) equals___java_lang_Object: (java_lang_Object*) o
 {
-	if (o == [NSNull null] || ![o isKindOfClass: [org_xmlvm_iphone_CGSize class]]) {
+	if (o == JAVA_NULL || ![o isKindOfClass: [org_xmlvm_iphone_CGSize class]]) {
 		return 0;
 	}
 		

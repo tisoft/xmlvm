@@ -89,7 +89,7 @@ java_io_InputStream* _STATIC_java_lang_System_in;
     [java_lang_System _PUT_out: v];
 	
 	// TODO System.in
-    [java_lang_System _PUT_in: [NSNull null]];	
+    [java_lang_System _PUT_in: JAVA_NULL];	
 }
 
 + (java_io_PrintStream*) _GET_out

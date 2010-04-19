@@ -41,6 +41,7 @@
 #import <math.h>
 
 
+void xmlvm_init();
 
 typedef union {
     id      o;
@@ -59,6 +60,8 @@ typedef union {
 	void*   data;
 } XMLVMElemPtr;
 
+
+extern id JAVA_NULL;
 
 @interface XMLVMArray : NSObject // TODO should be java_lang_Object
 {

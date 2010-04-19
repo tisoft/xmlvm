@@ -64,7 +64,7 @@ static java_lang_Class* primitiveBooleanClass;
 
 + (BOOL) parseBoolean___java_lang_String:(java_lang_String*) str
 {
-	return str != [NSNull null] && [str caseInsensitiveCompare:@"true"] == 0;
+	return str != JAVA_NULL && [str caseInsensitiveCompare:@"true"] == 0;
 }
 
 - (BOOL)isEqual:(id)anObject

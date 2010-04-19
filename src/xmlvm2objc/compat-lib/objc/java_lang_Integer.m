@@ -103,7 +103,7 @@ static java_lang_Class* primitiveIntClass;
 }
 
 static BOOL instanceof(id obj, const char *className) {
-	return obj != [NSNull null] &&
+	return obj != JAVA_NULL &&
 		([obj isKindOfClass: objc_getClass(className)] ||
 			[obj conformsToProtocol: objc_getProtocol(className)]);	
 }

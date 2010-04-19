@@ -21,6 +21,14 @@
 
 #import "xmlvm.h"
 
+id JAVA_NULL;
+
+void xmlvm_init()
+{
+	JAVA_NULL = [NSNull null];
+}
+
+
 @implementation XMLVMArray
 
 + (XMLVMArray*) createSingleDimensionWithType:(int) type andSize:(int) size
@@ -36,7 +44,7 @@
 
     if (type == 0) {
         for (int i = 0; i < size; i++) {
-            retval->array.o[i] = [NSNull null];
+            retval->array.o[i] = JAVA_NULL;
         }
     }
 

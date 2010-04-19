@@ -13,7 +13,7 @@
 
 - (org_xmlvm_iphone_UIBarButtonItem*) getBackBarButtonItem__ { 
 	org_xmlvm_iphone_UIBarButtonItem* button = self.backBarButtonItem;
-	return button == nil ? [NSNull null] : [button retain];
+	return button == nil ? JAVA_NULL : [button retain];
 }
 
 - (void) setBackBarButtonItem___org_xmlvm_iphone_UIBarButtonItem :(org_xmlvm_iphone_UIBarButtonItem*)n1 { 
@@ -34,7 +34,7 @@
 
 - (org_xmlvm_iphone_UIBarButtonItem*) getLeftBarButtonItem__ { 
 	org_xmlvm_iphone_UIBarButtonItem* button = self.leftBarButtonItem;
-	return button == nil ? [NSNull null] : [button retain];
+	return button == nil ? JAVA_NULL : [button retain];
 }
 
 - (void) setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem :(org_xmlvm_iphone_UIBarButtonItem*)n1 { 
@@ -55,7 +55,7 @@
 
 - (org_xmlvm_iphone_UIBarButtonItem*) getRightBarButtonItem__ { 
 	org_xmlvm_iphone_UIBarButtonItem * button = self.rightBarButtonItem;
-	return button == nil ? [NSNull null] : [button retain];
+	return button == nil ? JAVA_NULL : [button retain];
 }
 
 - (void) setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem :(org_xmlvm_iphone_UIBarButtonItem*)n1 { 
