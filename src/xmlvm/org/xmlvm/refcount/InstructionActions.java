@@ -31,7 +31,7 @@ import java.util.List;
  */
 public class InstructionActions {
 
-    /*
+    /**
      * The registers that hold objects when the CPU executes this instruction.
      */
     public RegisterSet getObjectRegs() {
@@ -42,7 +42,7 @@ public class InstructionActions {
         return allEnteredHolding;
     }
 
-    /*
+    /**
      * The registers that do not hold objects (hold primitives) when the CPUI
      * executes this instruction.
      */
@@ -54,7 +54,7 @@ public class InstructionActions {
         return allEnteredNotHolding;
     }
 
-    /*
+    /**
      * If along some code paths, we arrived with an object in a register and on
      * another path a primitive in the register, this will tell us so.
      */
@@ -62,14 +62,14 @@ public class InstructionActions {
         return getObjectRegs().and(getNonObjectRegs());
     }
 
-    /*
+    /**
      * Each time we hit this instruction through a code path, it adds info about
      * the object/non object usage to these lists.
      */
     public List<RegisterSet>  enteredHoldingObj = new ArrayList<RegisterSet>();
     public List<RegisterSet>  enteredNot        = new ArrayList<RegisterSet>();
 
-    /*
+    /**
      * The information produced by the InstructionProcessor.
      */
     public InstructionUseInfo useInfo;

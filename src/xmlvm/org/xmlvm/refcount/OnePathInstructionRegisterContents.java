@@ -35,15 +35,15 @@ public class OnePathInstructionRegisterContents {
         this.noObj = noObj;
     }
 
-    /*
+    /**
      * The instruction in question
      */
     public Element     instruction;
-    /*
+    /**
      * The set of registers that hold objects on this particular execution path
      */
     public RegisterSet hasObj;
-    /*
+    /**
      * The set of registers that do not hold objects on this particular
      * execution path
      */

@@ -37,17 +37,17 @@ import org.jdom.Attribute;
  * correctly. Forgetting to set it will cause bugs later on.
  */
 public class InstructionProcessor {
-    /*
+    /**
      * Causes an increment for the reference count of the object in "reg"
      * Example: <vm:reg-retain reg="1" />
      */
-    public static String    cmd_release      = "reg-release";
-    /*
+    public final static String    cmd_release                        = "reg-release";
+    /**
      * Causes a decrement for the reference count of the object in "reg"
      * Example: <vm:reg-retain reg="0" />
      */
-    public static String    cmd_retain       = "reg-retain";
-    /*
+    public final static String    cmd_retain                         = "reg-retain";
+    /**
      * Causes a decrement for the reference count of an instance pointer in a
      * class. The supplied attributes are identical to that of any other
      * instance referencing instruction. Example: <vm:i-release kind="field"
@@ -55,8 +55,8 @@ public class InstructionProcessor {
      * member-name="parent" vx="1" vx-type="android.app.Activity" vy="0"
      * vy-type="android.app.Activity" />
      */
-    public static String    cmd_i_release    = "i-release";
-    /*
+    public final static String    cmd_i_release                      = "i-release";
+    /**
      * Causes a decrement for the reference count of an static pointer in a
      * class. The supplied attributes are identical to that of any other static
      * referencing instruction. Example: <vm:s-release kind="field"
@@ -64,8 +64,8 @@ public class InstructionProcessor {
      * member-type="android.os.PowerManager" member-name="powerManager" vx="0"
      * vx-type="null" />
      */
-    public static String    cmd_s_release    = "s-release";
-    /*
+    public final static String    cmd_s_release                      = "s-release";
+    /**
      * Causes a decrement for the reference count of an object in an array. The
      * supplied attributes are that which are sufficient to access the array in
      * the xsl transform. Example: <vm:a-release vx="4"
@@ -73,22 +73,51 @@ public class InstructionProcessor {
      * vy-type="android.content.DialogInterface$OnClickListener[]" vz="1"
      * vz-type="int" />
      */
-    public static String    cmd_a_release    = "a-release";
-    /*
+    public final static String    cmd_a_release                      = "a-release";
+    /**
      * Sets the temp register equal to the value of another register. Example:
      * <vm:tmp-equals-r reg="0" />
      */
-    public static String    cmd_tmp_equals_r = "tmp-equals-r";
-    /*
-     * Informs the XSL transform that a particular method will need a single
-     * temp register. Example: <dex:code register-size="7"> <vm:define-temp />
-     * </dex:code>
+    public final static String    cmd_tmp_equals_r                   = "tmp-equals-r";
+    /**
+     * Define a register, give it a name. Three types allowed: 'register' stores
+     * a variable, 'temp' a holder register that is used by XMLVM (rather than
+     * dex) to store things. 'exception' stores a reference to an exception
      */
-    public static String    cmd_comment      = "comment";
+    public final static String    cmd_define_register                = "define-register";
 
-    public static Namespace dex              = Namespace
-                                                     .getNamespace("dex", "http://xmlvm.org/dex");
-    public static Namespace vm               = Namespace.getNamespace("vm", "http://xmlvm.org");
+    /**
+     * @see cmd_define_register
+     */
+    public final static String    cmd_define_register_attr_register  = "register";
+    /**
+     * @see cmd_define_register
+     */
+    public final static String    cmd_define_register_attr_temp      = "temp";
+
+    /**
+     * @see cmd_define_register
+     */
+    public final static String    cmd_define_register_attr_exception = "exception";
+    /**
+     * Set a register to null
+     */
+    public final static String    cmd_set_null                       = "set-null";
+    /**
+     * init locals from arguments
+     */
+    public final static String    cmd_move_argument                  = "move-argument";
+    /**
+     * Insert a comment in the generated code
+     */
+    public final static String    cmd_comment                        = "comment";
+
+    public final static Namespace dex                                = Namespace
+                                                                             .getNamespace("dex",
+                                                                                     "http://xmlvm.org/dex");
+    public final static Namespace vm                                 = Namespace.getNamespace("vm",
+                                                                             "http://xmlvm.org");
+
 
     /*
      * Most of the time, the destination register in dex is VX, this is a helper
@@ -145,7 +174,7 @@ public class InstructionProcessor {
 
     public static Pattern nonObjTypes       = Pattern.compile("^" + nonObjTypesString);
 
-    /*
+    /**
      * We try and match the instruction to an action given our list of regex.
      * Returns whether we were able to find a match and fill in the i. If it
      * returns false, the caller must look for a more specific handler.
@@ -268,8 +297,8 @@ public class InstructionProcessor {
     static public void process_move_exception(Element element, InstructionUseInfo i)
             throws DataConversionException {
         i.isWrite = true;
-        i.requiresRetain.orEq(i.writesObj());
-
+        //Exceptions don't require retains as they use the retain count the
+    	//exception had when it was thrown
     }
 
     static public void process_move_object(Element element, InstructionUseInfo i)

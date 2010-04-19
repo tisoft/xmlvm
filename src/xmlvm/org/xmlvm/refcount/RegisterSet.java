@@ -31,14 +31,14 @@ public class RegisterSet implements java.lang.Iterable<Integer> {
 
     private BitSet map = new BitSet();
 
-    /*
+    /**
      * |= operator
      */
     public void orEq(RegisterSet other) {
         this.map.or(other.map);
     }
 
-    /*
+    /**
      * & operator
      */
     public RegisterSet and(RegisterSet other) {
@@ -48,14 +48,14 @@ public class RegisterSet implements java.lang.Iterable<Integer> {
         return toRet;
     }
 
-    /*
+    /**
      * &= operator
      */
     public void andEq(RegisterSet other) {
         this.map.and(other.map);
     }
 
-    /*
+    /**
      * | operator
      */
     public RegisterSet or(RegisterSet other) {
@@ -71,16 +71,19 @@ public class RegisterSet implements java.lang.Iterable<Integer> {
         return toRet;
     }
 
-    /*
+    /**
      * &= ~val
      */
     public void andEqNot(RegisterSet other) {
-        RegisterSet tmp = other.clone();
-        tmp.map.flip(0, this.map.length());
+       
+    	RegisterSet tmp = other.clone();
+        int lenForOp = Math.max(this.map.length(), other.map.length());
+        tmp.map.flip(0, lenForOp);
         this.andEq(tmp);
+ 
     }
 
-    /*
+    /**
      * &~
      */
     public RegisterSet andNot(RegisterSet other) {
@@ -89,21 +92,34 @@ public class RegisterSet implements java.lang.Iterable<Integer> {
         return toRet;
     }
 
-    /*
+    /**
      * Adds register i to the map.
      */
     public void add(int i) {
         this.map.set(i);
     }
-
-    /*
+    
+    /**
+     * remove i from the reg set
+     */
+    public void clear(int i){
+    	this.map.clear(i);
+    }
+    /**
+     * Removes register i from the map
+     */
+    public void remove(int i) {
+        this.map.clear(i);
+    }
+    
+    /**
      * Do we have any registers set?
      */
     public boolean isEmpty() {
         return map.isEmpty();
     }
 
-    /*
+    /**
      * Create a regmap given a register index.
      */
     public static RegisterSet from(int i) {
@@ -112,15 +128,19 @@ public class RegisterSet implements java.lang.Iterable<Integer> {
         return toRet;
     }
 
+    /**
+     * Produce a string like R1 R2 R5 etc...
+     */
     public String toString() {
         StringBuilder toRet = new StringBuilder();
-        for (int x = 0; x < map.length(); x++) {
+        for(int x:this)
+        {
             toRet.append("R" + x + " ");
         }
         return toRet.toString();
     }
 
-    /*
+    /**
      * return an empty register map
      */
     public static RegisterSet none() {
@@ -194,4 +214,11 @@ public class RegisterSet implements java.lang.Iterable<Integer> {
     public Iterator<Integer> iterator() {
         return new BitSetIterator(this);
     }
+
+	/**
+	 * Contains this register?
+	 */
+	public boolean has(int oneReg) {
+		return this.map.get(oneReg);
+	}
 }

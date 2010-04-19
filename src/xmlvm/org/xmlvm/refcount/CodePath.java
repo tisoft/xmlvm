@@ -35,24 +35,24 @@ public class CodePath {
         this.parent = parent;
     }
 
-    /*
+    /**
      * Every code path gets a unique id.
      */
     public int                                      id;
-    /*
+    /**
      * A pointer to its parent
      */
     public CodePath                                 parent;
-    /*
+    /**
      * And the instructions that are in it.
      */
     public List<OnePathInstructionRegisterContents> path        = new ArrayList<OnePathInstructionRegisterContents>();
-    /*
+    /**
      * as well as any sub paths (created by things like branches)
      */
     public List<CodePath>                           subPaths    = new ArrayList<CodePath>();
 
-    /*
+    /**
      * For future use.
      */
     public RegisterSet                              wantsObject = RegisterSet.none();

@@ -1934,25 +1934,54 @@ int main(int argc, char* argv[])
 
 <xsl:template match="dex:code">
 <xsl:text>{
-    XMLVMElem _rtmp;
-    id        _ex;
 </xsl:text>
-  <xsl:variable name="limit" select="@register-size" as="xs:integer"/>
-  <xsl:for-each select="(0 to $limit - 1)">
-    <xsl:text>    XMLVMElem _r</xsl:text>
-    <xsl:value-of select="position() - 1"/>
-    <xsl:text>;
-    _r</xsl:text><xsl:value-of select="position() - 1"/>.o = [NSNull null];<xsl:text>
-</xsl:text>
-  </xsl:for-each>
-  <xsl:call-template name="initDexLocals"/>
+
   <xsl:apply-templates/>
   <xsl:text>}
-
-
 </xsl:text>
 </xsl:template>
 
+
+<xsl:template match="vm:set-null">
+  <xsl:text>    _r</xsl:text><xsl:value-of select="@num"/>
+  <xsl:text>.o = [NSNull null];
+</xsl:text>
+</xsl:template>
+
+<xsl:template match="vm:move-argument">
+  <xsl:text>    _r</xsl:text><xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="@vx-type"/>
+  </xsl:call-template>
+ <xsl:if test="@sourceArg = 'self'">
+   <xsl:text> = self;
+</xsl:text>
+ </xsl:if>
+ <xsl:if test="@sourceArg != 'self'">
+   <xsl:text> = n</xsl:text><xsl:value-of select="@sourceArg"/>
+ <xsl:text>;
+</xsl:text>
+ </xsl:if>
+</xsl:template>
+
+<xsl:template match="vm:define-register">
+  <xsl:choose>
+ 	<xsl:when test = "@vartype = 'register'">
+ 	  <xsl:text>    XMLVMElem _r</xsl:text><xsl:value-of select="@num"/><xsl:text>;
+</xsl:text>
+ 	</xsl:when>
+ 	
+ 	  <xsl:when test = "@vartype = 'temp'">
+        <xsl:text>    XMLVMElem _rtmp;
+</xsl:text>
+ 	</xsl:when>
+ 	
+ 	<xsl:when test = "@vartype = 'exception'">
+        <xsl:text>    id        _ex = [NSNull null];
+</xsl:text>
+ 	</xsl:when>
+  </xsl:choose>
+</xsl:template>
 
 <xsl:template match="dex:var">
   <!-- Do nothing -->
@@ -2155,17 +2184,18 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:throw">
-  <xsl:text>    @throw _r</xsl:text>
-  <xsl:value-of select="@vx"/>
-  <xsl:text>.o;
-</xsl:text>
+  <xsl:text>    [_ex release];
+    _ex = _r</xsl:text> <xsl:value-of select="@vx"/>.o<xsl:text>;
+   _r</xsl:text><xsl:value-of select="@vx"/><xsl:text>.o = [NSNull null];
+    @throw _ex;
+  </xsl:text>
 </xsl:template>
 
 
 <xsl:template match="dex:move-exception">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o = _ex;
+  <xsl:text>.o = _ex; _ex = [NSNull null];
 </xsl:text>
 </xsl:template>
 
@@ -2543,12 +2573,20 @@ int main(int argc, char* argv[])
 
   
 <xsl:template match="dex:return-void">
+  <xsl:if test="@catchesException = 'true'">
+    <xsl:text>    [_ex release];
+</xsl:text>
+  </xsl:if>
   <xsl:text>    return;
 </xsl:text>
 </xsl:template>
 
 
 <xsl:template match="dex:return|dex:return-wide|dex:return-object">
+  <xsl:if test="@catchesException = 'true'">
+    <xsl:text>    [_ex release];
+</xsl:text>
+  </xsl:if>
   <xsl:variable name="return-type" select="ancestor::vm:method/vm:signature/vm:return/@type" />
   <xsl:text>    return _r</xsl:text>
   <xsl:value-of select="@vx" />
@@ -2660,9 +2698,7 @@ int main(int argc, char* argv[])
 <xsl:template match="vm:reg-release">
   <xsl:text>    [_r</xsl:text>
   <xsl:value-of select="@reg" />
-  <xsl:text>.o release]; _r</xsl:text>
-  <xsl:value-of select="@reg" />
-  <xsl:text>.o = [NSNull null];
+  <xsl:text>.o release];
 </xsl:text>
 </xsl:template>
 
@@ -3483,31 +3519,6 @@ int main(int argc, char* argv[])
 
 
 
-<xsl:template name="initDexLocals">
-    <xsl:for-each select="dex:var">
-		<xsl:choose>    
-      		<xsl:when test="@name = 'this'">
-      			<xsl:text>    _r</xsl:text>
-    			<xsl:value-of select="@register" />
-    			<xsl:text>.o = self;
-</xsl:text>
-     		</xsl:when>
-     		<xsl:otherwise>
-     			<xsl:if test="(position()-count(../dex:var[@name='this'])) &lt;= count(../../vm:signature/vm:parameter)" >
-     			  <xsl:text>    _r</xsl:text>
-     	  		  <xsl:value-of select="@register" />
-     	  		  <xsl:call-template name="emitTypedAccess">
-     	  		    <xsl:with-param name="type" select="@type"/>
-     	  		  </xsl:call-template>
-     	  		  <xsl:text> = n</xsl:text>
-     	  		  <xsl:value-of select="(position()-count(../dex:var[@name='this']))" />
-     	  		  <xsl:text>;
-</xsl:text>
-     			</xsl:if>
-     		</xsl:otherwise>
-     	</xsl:choose>
-    </xsl:for-each>
-</xsl:template>
 
 
 <xsl:template name="appendDexSignature">

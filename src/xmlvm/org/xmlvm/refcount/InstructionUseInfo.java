@@ -33,12 +33,12 @@ import org.jdom.Attribute;
  * This class contains information about how an instruction uses registers.
  */
 public class InstructionUseInfo {
-    /*
+    /**
      * The instruction that we collect information about
      */
     Element Instruction;
 
-    /*
+    /**
      * On construction, we check for the normal vx vy vz register usage patterns
      * present in DEX, adding them to our info store if they exist.
      */
@@ -53,14 +53,14 @@ public class InstructionUseInfo {
         possibleWrites.add("vx");
     }
 
-    /*
+    /**
      * Meaning that we are doing something like aput, which means we will need
      * to potentially insert a release before we overwrite the pointer in the
      * array.
      */
     public Element putRelease = null;
 
-    /*
+    /**
      * Given a register attribute and a type attribute, this method adds both to
      * this classes list of register usage. It also determines whether the usage
      * is object or not object depending on the type. In order for all of the
@@ -80,12 +80,16 @@ public class InstructionUseInfo {
         }
     }
 
-    /*
+    /**
      * If this instruction is a write instruction, the name of the register that
      * is being written into.
      */
     public List<String> possibleWrites = new ArrayList<String>();
 
+    /**
+     * Returns the registers which this instruction writes objects
+     * into
+     */
     public RegisterSet writesObj() throws DataConversionException {
         if (isWrite) {
             for (Attribute key : typeIsObj.keySet()) {
@@ -102,7 +106,7 @@ public class InstructionUseInfo {
 
     }
 
-    /*
+    /**
      * The list of registers this instruction writes with non objects
      */
     public RegisterSet writesNonObj() throws DataConversionException {
@@ -120,7 +124,7 @@ public class InstructionUseInfo {
         return RegisterSet.none();
     }
 
-    /*
+    /**
      * The list of registers this instruction uses as objects
      */
     public RegisterSet usesAsObj() throws DataConversionException {
@@ -144,7 +148,7 @@ public class InstructionUseInfo {
 
     }
 
-    /*
+    /**
      * The list of registers this instruction uses as non objects
      */
     public RegisterSet usesAsNonObj() throws DataConversionException {
@@ -168,41 +172,51 @@ public class InstructionUseInfo {
 
     }
 
-    /*
+    /**
+	 * What registers should be freed after this instruction
+     */
+    public RegisterSet                 willFree = RegisterSet.none();
+    
+    /**
+	 * What registers should be nulled after any free
+     */
+    public RegisterSet                 willNull = RegisterSet.none();
+    
+    /**
      * The list of registers that require a retain after this instruction
      * executes.
      */
     public RegisterSet                 requiresRetain = RegisterSet.none();
 
-    /*
+    /**
      * Whether or not we need to free the temp register after this instruction
      */
     public boolean                     freeTmpAfter;
-    /*
+    /**
      * Whether or not this instruction writes any registers.
      */
     public boolean                     isWrite;
 
-    /*
+    /**
      * Given a register name, is it referring to an object or a non object?
      */
     public HashMap<Attribute, Boolean> typeIsObj      = new HashMap<Attribute, Boolean>();
 
-    /*
+    /**
      * The all registers (non object or object) used by this instruction
      */
-    public RegisterSet UsedReg() throws DataConversionException {
+    public RegisterSet usedReg() throws DataConversionException {
         return usesAsNonObj().or(usesAsObj());
     }
 
     /*
      * All registers written (non object or object) by this instruction
      */
-    public RegisterSet AllWrites() throws DataConversionException {
+    public RegisterSet allWrites() throws DataConversionException {
         return writesObj().or(writesNonObj());
     }
 
-    /*
+    /**
      * Complete dump of all registers used by this instruction
      */
     public String toString() {

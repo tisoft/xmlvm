@@ -33,6 +33,10 @@ import org.jdom.DataConversionException;
 import org.jdom.Element;
 import org.jdom.Namespace;
 import org.xmlvm.Log;
+import org.xmlvm.refcount.optimizations.RegisterSizeAndNullingOptimization;
+import org.xmlvm.refcount.optimizations.ExcessRetainsOptimization;
+import org.xmlvm.refcount.optimizations.RefCountOptimization;
+import org.xmlvm.refcount.optimizations.DeferredNullingOptimization;
 
 /**
  * Overview:
@@ -76,7 +80,7 @@ public class ReferenceCounting {
     Namespace vm               = InstructionProcessor.vm;
     String    tmpRegNameSuffix = "tmp";
 
-    /*
+    /**
      * The entry point to this class. This function takes a method element and
      * processes it, adding instructions to release and retain objects as
      * needed. For the command set that it adds, see the InstructionProcessor
@@ -99,10 +103,45 @@ public class ReferenceCounting {
         Element codeElement = method.getChild("code", dex);
 
         int numReg = codeElement.getAttribute("register-size").getIntValue();
-        processRecStart(numReg, (List<Element>) codeElement.getChildren());
+        processRecStart(numReg, (List<Element>) codeElement.getChildren(), codeElement);
     }
 
-    /*
+    /** 
+     * Set the expected frees that we must do before any optimizations have
+     * removed them.
+     */
+	private void setWillFree(Map<Element, InstructionActions> beenTo)
+			throws ReferenceCountingException, DataConversionException {
+		{
+			for (Map.Entry<Element, InstructionActions> e : beenTo.entrySet()) {
+				RegisterSet objectRegs = e.getValue().getObjectRegs();
+
+				if (!e.getValue().getConflict().isEmpty()) {
+					throw new ReferenceCountingException(
+							"Ambigious register contents possible: Conflict: "
+									+ e.getValue().getConflict());
+				}
+
+				InstructionUseInfo useInfo = e.getValue().useInfo;
+				RegisterSet toFree;
+				if (e.getKey().getName().startsWith("return")) {
+					// we want to free everything except what this instruction
+					// uses.
+					toFree = objectRegs.andNot(useInfo.usedReg());
+				} else {
+					// we free any register reference that is overwritten by
+					// this
+					// instruction
+					toFree = objectRegs.and(useInfo.allWrites());
+				}
+				useInfo.willFree = toFree;
+				useInfo.willNull = toFree.clone();
+				
+			}
+		}
+	}
+	
+    /**
      * This is the last step in the release/retain markup process. It processes
      * all of the DEX instructions that we have traversed in a method, looking
      * at how they have been marked up. Based on how they have been marked up it
@@ -116,8 +155,7 @@ public class ReferenceCounting {
         boolean needsTmpReg = false;
 
         for (Map.Entry<Element, InstructionActions> e : beenTo.entrySet()) {
-            RegisterSet objectRegs = e.getValue().getObjectRegs();
-
+  
             if (!e.getValue().getConflict().isEmpty()) {
                 throw new ReferenceCountingException(
                         "Ambigious register contents possible: Conflict: "
@@ -134,16 +172,8 @@ public class ReferenceCounting {
             // Release last -- because other wise we can get into odd situations
             // where we don't to a required retain before the release.
             List<Element> toReleaseLast = new ArrayList<Element>();
-
             RegisterSet toFree;
-            if (e.getKey().getName().startsWith("return")) {
-                // we want to free everything except what this instruction uses.
-                toFree = objectRegs.andNot(useInfo.UsedReg());
-            } else {
-                // we free any register reference that is overwritten by this
-                // instruction
-                toFree = objectRegs.and(useInfo.AllWrites());
-            }
+            toFree = useInfo.willFree;
             // for the registers we want to free
             for (int oneReg : toFree) {
                 // If we use the object in the instruction as an argument and
@@ -156,7 +186,7 @@ public class ReferenceCounting {
                 // Example of false case:
                 // f1 = func(f1);
                 // [release f1]
-                if (!useInfo.usesAsObj().and(useInfo.AllWrites()).isEmpty()) {
+                if (!useInfo.usesAsObj().and(useInfo.allWrites()).isEmpty()) {
                     if (useInfo.freeTmpAfter) {
                         throw new ReferenceCountingException("Conflict, tmp register used twice.");
                     }
@@ -169,17 +199,30 @@ public class ReferenceCounting {
                     Element releaseTmp = new Element(InstructionProcessor.cmd_release, vm);
                     releaseTmp.setAttribute("reg", tmpRegNameSuffix);
                     toReleaseLast.add(releaseTmp);
+                    
+                    Element nullTmp = new Element(InstructionProcessor.cmd_set_null, vm);
+                    nullTmp.setAttribute("num", tmpRegNameSuffix);
+                    toReleaseLast.add(nullTmp);
+                    
                 } else {
                     // No need to use tmp
                     Element release = new Element(InstructionProcessor.cmd_release, vm);
                     release.setAttribute("reg", oneReg + "");
                     toAddBefore.add(release);
+                    
+                    
+                    if( useInfo.willNull.has(oneReg)){
+	                    Element nullTmp = new Element(InstructionProcessor.cmd_set_null, vm);
+	                    nullTmp.setAttribute("num", oneReg + "");
+	                    toAddBefore.add(nullTmp);
+	                    
+                    }
                 }
             }
 
            
             if (useInfo.putRelease != null) {
-                if (!useInfo.usesAsObj().and(useInfo.AllWrites()).isEmpty()) {
+                if (!useInfo.usesAsObj().and(useInfo.allWrites()).isEmpty()) {
                     needsTmpReg = true;
                     throw new ReferenceCountingException(
                             "We do not handle the case where a release is "
@@ -196,6 +239,7 @@ public class ReferenceCounting {
                 retain.setAttribute("reg", oneReg + "");
                 toAddAfter.add(retain);
             }
+            
 
             // This handles the case where xmlvm2objc.xsl has set the temp reg
             // to a value because a function call was made, but the result was
@@ -219,7 +263,7 @@ public class ReferenceCounting {
         return needsTmpReg;
     }
 
-    /*
+    /**
      * This is here because the jdom XML API is dumb enough that it cannot
      * easily find the element before element X, or the element after element X.
      * 
@@ -248,17 +292,17 @@ public class ReferenceCounting {
         throw new ReferenceCountingException("Impossible");
     }
 
-    /*
+    /**
      * label id to label element. Used for construction of code paths.
      */
     Map<Integer, Element> labels      = new HashMap<Integer, Element>();
-    /*
+    /**
      * What is the next and previous element for a particular element ?
      */
     Map<Element, Element> nextElement = new HashMap<Element, Element>();
     Map<Element, Element> prevElement = new HashMap<Element, Element>();
 
-    /*
+    /**
      * Represents a single run of the reference counter. We have this because we
      * currently use a two pass implementation and don't want any interactions
      * between the passes.
@@ -315,7 +359,7 @@ public class ReferenceCounting {
     }
 
     @SuppressWarnings("unchecked")
-    private void processRecStart(int numReg, List<Element> toProcess)
+    private void processRecStart(int numReg, List<Element> toProcess, Element codeElement)
             throws DataConversionException, ReferenceCountingException {
         addToNextPrevElement(toProcess);
         for (Element x : toProcess) {
@@ -353,14 +397,66 @@ public class ReferenceCounting {
         }
         Log.debug("ref", "Conflict is: " + curRun.allConflict);
 
+        setWillFree(curRun.beenTo);
+        
+        // Start going through optimizations before generating change
+        RefCountOptimization.ReturnValue ret = 
+        	new RegisterSizeAndNullingOptimization().Process(curRun.allCodePaths, curRun.beenTo,
+        			codeElement);     
+        
+        new DeferredNullingOptimization().Process(curRun.allCodePaths, curRun.beenTo,
+    			codeElement);     
+      
+        new ExcessRetainsOptimization().Process(curRun.allCodePaths, curRun.beenTo,
+    			codeElement);     
+        toProcess.addAll(0, ret.functionInit);
+        
+        addExTempReg(toProcess);
+        
+        
         // Now we want to follow the paths to find unambiguous ones so that we
         // can determine
         // where to do release/retain to prevent ambiguity.
         // we do this by tracking which branch we are on by explicitly
         // constructing paths through the code during
         // our normal traversal.
-        processReleaseRetain(curRun.beenTo);
+        boolean usesTemp = processReleaseRetain(curRun.beenTo);
+        if(usesTemp)
+        {
+            Element setupTmp = new Element(InstructionProcessor.cmd_define_register,
+                    InstructionProcessor.vm);
+            setupTmp.setAttribute("vartype", InstructionProcessor.cmd_define_register_attr_temp);
+            toProcess.add(0, setupTmp);
+        }
 
+    }
+
+    /**
+     * Adds definition for exception register if needed.
+     */
+    private void addExTempReg(List<Element> toProcess) {
+        boolean useEx = false;
+        boolean useTmp = false;
+        for (Element e : curRun.beenTo.keySet()) {
+            if (e.getName().equals("throw") || e.getName().equals("try-catch")) {
+                useEx = true;
+            }
+        
+            if (useEx && useTmp) {
+                break; // early quit
+            }
+        }
+        if (useEx) {
+            Element setupEx = new Element(InstructionProcessor.cmd_define_register,
+                    InstructionProcessor.vm);
+            setupEx.setAttribute("vartype", InstructionProcessor.cmd_define_register_attr_exception);
+            toProcess.add(0, setupEx);
+        }
+        for (Element e : curRun.beenTo.keySet()) {
+            if (e.getName().startsWith("return")) {
+                e.setAttribute("catchesException", useEx + "");
+            }
+        }
     }
 
     /**
@@ -401,7 +497,7 @@ public class ReferenceCounting {
         }
     }
 
-    /*
+    /**
      * In certain cases, DEX will create a code path where we think we need to
      * do a release of an object on a particular register which may or may not
      * hold an object depending on the particular path through the code taken at
@@ -472,7 +568,7 @@ public class ReferenceCounting {
         return numReg;
     }
 
-    /*
+    /**
      * Given a parent code path, create a child.
      */
     private CodePath createNewCodePath(CodePath curPath) {
@@ -485,7 +581,7 @@ public class ReferenceCounting {
         return c;
     }
 
-    /*
+    /**
      * Class representing collected parameters for one execution of the body of
      * ProcessWhileCallsToDo
      */
@@ -496,7 +592,7 @@ public class ReferenceCounting {
         CodePath    codePath;
     }
 
-    /*
+    /**
      * Helper to add to the list of recursive calls to do.
      */
     private void processRecAdd(RegisterSet regHoldingObject, RegisterSet regNotHoldingObject,
@@ -509,7 +605,7 @@ public class ReferenceCounting {
         this.curRun.callsToDo.add(oneCall);
     }
 
-    /*
+    /**
      * This function creates a representation of the different execution paths
      * through the method. At the same time, it gathers information on how
      * particular instructions are making use of registers. This is an
@@ -611,7 +707,7 @@ public class ReferenceCounting {
         Log.debug("ref", "Max recusrive depth " + maxSize);
     }
 
-    /*
+    /**
      * This thing is used to determine whether or not our recursion keeps going
      * It terminates the recursion if we have been to this instruction with the
      * exact same state before. We return information collected about the
@@ -678,7 +774,7 @@ public class ReferenceCounting {
         return toRet;
     }
 
-    /*
+    /**
      * This function creates a InstructionUseInfo based on the current element
      * TODO: if anyone really cares this can be made faster by not using
      * reflection.
