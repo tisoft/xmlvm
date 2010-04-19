@@ -1458,18 +1458,22 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     
   <!--  Declare the registers - START. -->
   <xsl:for-each select="vm:define-register">
-    <xsl:text>
-        var __r</xsl:text>
-    <xsl:value-of select="@num"/>
-    <xsl:text>;</xsl:text>
-  </xsl:for-each>
-  <xsl:for-each select="vm:setup-helper-variables">
-    <xsl:text>    var __rtmp;
+    <xsl:choose>
+      <xsl:when test = "@vartype = 'register'">
+        <xsl:text>
+        var __r</xsl:text><xsl:value-of select="@num"/>
+      </xsl:when>
+      <xsl:when test = "@vartype = 'temp'">
+        <xsl:text>
+        var __rtmp</xsl:text>
+      </xsl:when>
+      <xsl:when test = "@vartype = 'exception'">
+        <xsl:text>
+        var __ex</xsl:text>
+      </xsl:when>
+    </xsl:choose>
+    <xsl:text>;
 </xsl:text>
-  <xsl:if test="@useException = 'true'">
-    <xsl:text>    var        __ex;
-</xsl:text>
-  </xsl:if>
   </xsl:for-each>
   <!--  Declare the registers - END. -->
 
@@ -1509,10 +1513,6 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 </xsl:template>
 
 <xsl:template match="vm:move-argument">
-  <!-- Do nothing -->
-</xsl:template>
-
-<xsl:template match= "vm:setup-helper-variables">
   <!-- Do nothing -->
 </xsl:template>
 
