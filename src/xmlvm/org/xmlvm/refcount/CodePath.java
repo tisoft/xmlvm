@@ -59,4 +59,25 @@ public class CodePath {
     public RegisterSet                              givesObject = RegisterSet.none();
     public RegisterSet                              shouldFree  = RegisterSet.none();
 
+
+    private void toStringRec(int depth, StringBuilder toRet) {
+        char[] tabs = new char[depth];
+        for (int x = 0; x < tabs.length; x++) {
+            tabs[x] = '\t';
+        }
+        String tabsString = new String(tabs);
+        toRet.append(tabsString + "ID " + id + " subpaths " + subPaths.size() + "\n");
+        for (OnePathInstructionRegisterContents inst : path) {
+            toRet.append(tabsString + inst.instruction.getName() + "\n");
+        }
+        for (CodePath p : this.subPaths) {
+            p.toStringRec(depth + 1, toRet);
+        }
+    }
+
+    public String toString() {
+        StringBuilder toRet = new StringBuilder();
+        toStringRec(0, toRet);
+        return toRet.toString();
+    }
 }

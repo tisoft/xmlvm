@@ -758,9 +758,6 @@ public class ReferenceCounting {
         if (enteredNotHolding && enteredHolding) {
             // We were here before with the exact same state: time to terminate
             // the search along this path.
-
-            c.path.clear(); // we can clear it because the other path that got
-            // here should take care of things
             return null;
         }
         // Add info about the state we were in when we got to here along this
