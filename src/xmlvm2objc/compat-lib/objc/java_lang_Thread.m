@@ -20,7 +20,14 @@
 
 #import "java_lang_Thread.h"
 
+static NSMutableDictionary* threadMap;
+
 @implementation java_lang_Thread 
+
++ (void) initialize
+{
+	threadMap = [[NSMutableDictionary alloc] init];
+}
 
 - (id) init
 {
@@ -35,11 +42,13 @@
 	[super init];
 	thread = [[NSThread currentThread] retain];
 	runnable = nil;
+	[threadMap setObject:self forKey:[NSValue valueWithNonretainedObject:thread]];
 	return self;
 }
 
 - (void) dealloc
 {
+	[threadMap removeObjectForKey:[NSValue valueWithNonretainedObject:thread]];
 	[thread release];
 	[runnable release];
 	[super dealloc];
@@ -82,7 +91,9 @@
 
 + (java_lang_Thread*) currentThread__
 {
-	return [[java_lang_Thread alloc] initWithCurrentThread];
+	NSValue* key = [NSValue valueWithNonretainedObject:[NSThread currentThread]];
+	java_lang_Thread* javaCurrentThread = [threadMap objectForKey:key];
+	return javaCurrentThread != nil ? [javaCurrentThread retain] : [[java_lang_Thread alloc] initWithCurrentThread];
 }
 
 @end

@@ -29,6 +29,7 @@ NSThread*              thread;
 
 }
 
++ (void) initialize;
 - (id) init;
 - (id) initWithCurrentThread;
 - (void) dealloc;
