@@ -20,6 +20,7 @@
 
 #import "java_io_FileOutputStream.h"
 #import "java_io_FileNotFoundException.h"
+#import "java_lang_IllegalArgumentException.h"
 
 // java.io.FileOutputStream
 //----------------------------------------------------------------------------
@@ -70,6 +71,19 @@
 	unsigned char b = (unsigned char) c & 0xFF;
 	NSData *data = [NSData dataWithBytes: &b  length : 1];
 	[self->fdImpl writeData: data];
+}
+
+- (void) write___byte_ARRAYTYPE_int_int: (XMLVMArray *) data: (int) pos: (int) len
+{
+	int arrlen = [data count];
+	if (arrlen < pos + len) {
+		id exc_id = [[java_lang_IllegalArgumentException alloc] init];
+		java_lang_IllegalArgumentException *exc = (java_lang_IllegalArgumentException*) exc_id;
+		[exc __init_java_lang_IllegalArgumentException__];
+		@throw exc_id;
+	}
+	NSData *bytes = [NSData dataWithBytes: data->array.b + pos length:len];
+	[self->fdImpl writeData: bytes];
 }
 
 - (void) close__

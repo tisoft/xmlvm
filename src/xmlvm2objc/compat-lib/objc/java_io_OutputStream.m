@@ -37,10 +37,7 @@
 - (void) write___byte_ARRAYTYPE: (XMLVMArray *) data
 {
 	int arrlen = [data count];
-	for (int i = 0; i < arrlen; ++i) {
-		int c = data->array.b[i];
-		[self write___int: c];
-	}
+	[self write___byte_ARRAYTYPE_int_int:data :0 :arrlen];
 }
 
 - (void) write___byte_ARRAYTYPE_int_int: (XMLVMArray *) data: (int) pos: (int) len
