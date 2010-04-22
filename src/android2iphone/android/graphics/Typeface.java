@@ -183,10 +183,11 @@ public class Typeface {
      */
     public static native void setGammaForText(float blackGamma, float whiteGamma);
 
-    public UIFont xmlvmGenUIFont(float fontSize) {
+    public UIFont xmlvmGenUIFont(float fontSize, int flags) {
         // TODO what to do with mStyle?
         if (mFamilyName == null) {
-            return UIFont.systemFontOfSize(fontSize);
+            return (flags & Paint.FAKE_BOLD_TEXT_FLAG) != 0 ? UIFont.boldSystemFontOfSize(fontSize)
+                    : UIFont.systemFontOfSize(fontSize);
         }
         return UIFont.fontWithNameSize(mFamilyName, fontSize);
     }
