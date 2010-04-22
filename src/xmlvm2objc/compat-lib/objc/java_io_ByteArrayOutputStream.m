@@ -62,7 +62,7 @@
 	unsigned char * buf = (unsigned char *) [buffer mutableBytes];
 	
 	for (int i = 0; i < length; ++i) {
-		result->array.i[i] = *(buf+i); 
+		result->array.b[i] = *(buf+i); 
 	}
 	[result retain];
 	return result;

@@ -34,14 +34,14 @@
 - (void) __init_java_lang_String___byte_ARRAYTYPE: (XMLVMArray*) bytes
 {
 	for(int i = 0; i < bytes->length; i++) {
-		[self appendFormat:@"%c", (char) bytes->array.i[i]];
+		[self appendFormat:@"%c", (char) bytes->array.b[i]];
 	}
 }
 
 - (void) __init_java_lang_String___char_ARRAYTYPE: (XMLVMArray*) chars
 {
 	for(int i = 0; i < chars->length; i++) {
-		[self appendFormat:@"%c", (char) chars->array.i[i]];
+		[self appendFormat:@"%c", (char) chars->array.c[i]];
 	}
 }
 
@@ -100,7 +100,7 @@
 	int i = offset + srcBegin; //srcPos
 
 	while (i < n) {
-		dst->array.i[j++] = (char)[self characterAtIndex:i++];
+		dst->array.b[j++] = [self characterAtIndex:i++];
 	}
 }
 
@@ -108,7 +108,7 @@
 {
 	XMLVMArray *bytes = [XMLVMArray createSingleDimensionWithType: 3 andSize: self.length];
 	for (int i = 0; i < self.length; i++) {
-		bytes->array.i[i] = [self characterAtIndex:i];
+		bytes->array.b[i] = [self characterAtIndex:i];
 	}
 	return [bytes retain];
 }

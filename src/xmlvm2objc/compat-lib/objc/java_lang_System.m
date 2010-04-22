@@ -165,7 +165,8 @@ java_io_InputStream* _STATIC_java_lang_System_in;
 			d = -1;
 		}
 	}
-	if (srcArr->type == 0) {
+	switch (srcArr->type) {
+	case 0:
 		// We copy object references
 		for (int i = 0; i < length; i++) {
 			id o = [srcArr objectAtIndex:srcPos];
@@ -173,14 +174,39 @@ java_io_InputStream* _STATIC_java_lang_System_in;
 			srcPos += d;
 			destPos += d;
 		}
-	}
-	else {
-		// We copy a primitive type
+		break;
+    case 1: // boolean
+    case 3: // byte
+		for (int i = 0; i < length; i++) {
+			destArr->array.b[destPos] = srcArr->array.b[srcPos];
+			srcPos += d;
+			destPos += d;
+		}
+        break;
+    case 2: // char
+    case 4: // short
+		for (int i = 0; i < length; i++) {
+			destArr->array.s[destPos] = srcArr->array.s[srcPos];
+			srcPos += d;
+			destPos += d;
+		}
+        break;
+    case 5: // int
+    case 6: // float
+		for (int i = 0; i < length; i++) {
+			destArr->array.i[destPos] = srcArr->array.i[srcPos];
+			srcPos += d;
+			destPos += d;
+		}
+        break;
+    case 7: // double
+    case 8: // long
 		for (int i = 0; i < length; i++) {
 			destArr->array.l[destPos] = srcArr->array.l[srcPos];
 			srcPos += d;
 			destPos += d;
 		}
+        break;
 	}
 }
 

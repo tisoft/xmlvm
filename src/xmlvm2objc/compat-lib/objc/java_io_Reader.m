@@ -50,7 +50,7 @@
 		if (c == -1) {
 			break;
 		}
-		buffer->array.i[pos + i] = c;
+		buffer->array.c[pos + i] = c;
 	}
 	return i > 0 ? i : -1;	
 }

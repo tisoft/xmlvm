@@ -131,7 +131,7 @@
 		return -1;
 	} else {
 		for (int i = 0; i < [data length]; i++) {
-			buf->array.i[i] = ptr[i];
+			buf->array.b[i] = ptr[i];
 		}
 		return [data length];
 	}
@@ -149,7 +149,7 @@
 		return -1;
 	}	else {
 		for (int i = 0; i < [data length]; i++) {
-			buf->array.i[offs+i] = ptr[i];
+			buf->array.b[offs+i] = ptr[i];
 		}
 		return [data length];
 	}

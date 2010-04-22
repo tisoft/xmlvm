@@ -1647,10 +1647,7 @@ int main(int argc, char* argv[])
   
   <xsl:text>.</xsl:text>
   <xsl:choose>
-    <xsl:when test="$type = 'char'">
-      <xsl:text>i</xsl:text>
-    </xsl:when>
-    <xsl:when test="$type = 'int' or $type = 'boolean' or $type = 'byte'">
+    <xsl:when test="$type = 'boolean' or $type = 'byte' or $type = 'char' or $type = 'short' or $type = 'int'">
       <xsl:text>i</xsl:text>
     </xsl:when>
     <xsl:when test="$type = 'float'">
@@ -1660,6 +1657,39 @@ int main(int argc, char* argv[])
       <xsl:text>d</xsl:text>
     </xsl:when>
     <xsl:when test="$type = 'long'">
+      <xsl:text>l</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>o</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+
+<xsl:template name="emitTypedArrayAccess">
+  <xsl:param name="type"/>
+  
+  <xsl:text>.</xsl:text>
+  <xsl:choose>
+    <xsl:when test="$type = 'boolean[]' or $type = 'byte[]'">
+      <xsl:text>b</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'char[]'">
+      <xsl:text>c</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'short[]'">
+      <xsl:text>s</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'int[]'">
+      <xsl:text>i</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'float[]'">
+      <xsl:text>f</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'double[]'">
+      <xsl:text>d</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'long[]'">
       <xsl:text>l</xsl:text>
     </xsl:when>
     <xsl:otherwise>
@@ -3418,8 +3448,8 @@ int main(int argc, char* argv[])
   <xsl:text> = ((XMLVMArray*) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.o)->array</xsl:text>
-  <xsl:call-template name="emitTypedAccess">
-    <xsl:with-param name="type" select="@vx-type"/>
+  <xsl:call-template name="emitTypedArrayAccess">
+    <xsl:with-param name="type" select="@vy-type"/>
   </xsl:call-template>
   <xsl:text>[_r</xsl:text>
   <xsl:value-of select="@vz"/>
@@ -3444,8 +3474,8 @@ int main(int argc, char* argv[])
   <xsl:text>    ((XMLVMArray*) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.o)->array</xsl:text>
-  <xsl:call-template name="emitTypedAccess">
-    <xsl:with-param name="type" select="@vx-type"/>
+  <xsl:call-template name="emitTypedArrayAccess">
+    <xsl:with-param name="type" select="@vy-type"/>
   </xsl:call-template>
   <xsl:text>[_r</xsl:text>
   <xsl:value-of select="@vz"/>

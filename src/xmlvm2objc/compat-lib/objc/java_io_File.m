@@ -34,7 +34,7 @@
 {
 	java_io_File* f = [[java_io_File alloc] init];
 	[f __init_java_io_File___java_lang_String: @"/"];
-	XMLVMArray* arr = [XMLVMArray createSingleDimensionWithType: 9 andSize: 1];
+	XMLVMArray* arr = [XMLVMArray createSingleDimensionWithType: 0 andSize: 1];
 	[arr retain];
 	arr->array.o[0] = f;
 	return arr;
@@ -168,7 +168,7 @@
 		return JAVA_NULL;
 	}
 	int count = [files count];
-	XMLVMArray* f = [XMLVMArray createSingleDimensionWithType: 9 andSize: count];
+	XMLVMArray* f = [XMLVMArray createSingleDimensionWithType: 0 andSize: count];
 	[f retain];
 	for (int i = 0; i < count; ++i) {
 		java_lang_String* s = [files objectAtIndex: i];
@@ -196,7 +196,7 @@
 	
 	int count = [arr count];
 	
-	XMLVMArray* f = [XMLVMArray createSingleDimensionWithType: 9 andSize: count];
+	XMLVMArray* f = [XMLVMArray createSingleDimensionWithType: 0 andSize: count];
 	[f retain];
 	for (int i = 0; i < count; ++i) {
 		java_lang_String* s = [arr objectAtIndex: i];
@@ -215,7 +215,7 @@
 		return JAVA_NULL;
 	}
 	int count = [files count];
-	XMLVMArray* f = [XMLVMArray createSingleDimensionWithType: 9 andSize: count];
+	XMLVMArray* f = [XMLVMArray createSingleDimensionWithType: 0 andSize: count];
 	[f retain];
 	for (int i = 0; i < count; ++i) {
 		java_lang_String* s = [files objectAtIndex: i];
@@ -244,7 +244,7 @@
 	
 	int count = [arr count];
 	
-	XMLVMArray* f = [XMLVMArray createSingleDimensionWithType: 9 andSize: count];
+	XMLVMArray* f = [XMLVMArray createSingleDimensionWithType: 0 andSize: count];
 	[f retain];
 	for (int i = 0; i < count; ++i) {
 		java_lang_String* s = [arr objectAtIndex: i];

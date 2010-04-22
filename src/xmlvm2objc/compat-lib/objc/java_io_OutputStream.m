@@ -38,7 +38,7 @@
 {
 	int arrlen = [data count];
 	for (int i = 0; i < arrlen; ++i) {
-		int c = data->array.i[i];
+		int c = data->array.b[i];
 		[self write___int: c];
 	}
 }
@@ -53,7 +53,7 @@
 		@throw exc_id;
 	}
 	for (int i = pos; i < len + pos; ++i) {
-		int c = data->array.i[i];
+		int c = data->array.b[i];
 		[self write___int: c];
 	}
 }

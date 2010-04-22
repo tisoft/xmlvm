@@ -65,7 +65,7 @@
 		if (c == -1) {
 			break;
 		}
-		buffer->array.i[pos + i] = c;
+		buffer->array.b[pos + i] = c;
 	}
 	return i > 0 ? i : -1;
 }

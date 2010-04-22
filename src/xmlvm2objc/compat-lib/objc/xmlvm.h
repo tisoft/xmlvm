@@ -52,12 +52,15 @@ typedef union {
 } XMLVMElem;
 
 typedef union {
-    id*     o;
-    int*    i;
-    float*  f;
-    double* d;
-    long*   l;
-	void*   data;
+    id*             o;
+    char*           b;
+    unsigned short* c;
+    short*          s;
+    int*            i;
+    float*          f;
+    double*         d;
+    long*           l;
+	void*           data;
 } XMLVMElemPtr;
 
 

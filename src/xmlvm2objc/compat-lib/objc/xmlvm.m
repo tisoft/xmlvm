@@ -91,9 +91,13 @@ void xmlvm_init()
     // 'type' values are defined by vm:sizeOf in xmlvm2objc.xsl
     switch (type) {
     case 1: // boolean
-    case 2: // char
     case 3: // byte
+       sizeOfBaseType = sizeof(char);
+       break;
+    case 2: // char
     case 4: // short
+       sizeOfBaseType = sizeof(short);
+       break;
     case 5: // int
        sizeOfBaseType = sizeof(int);
        break;

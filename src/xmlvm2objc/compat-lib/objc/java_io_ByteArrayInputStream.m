@@ -30,7 +30,7 @@
 	int src = from;
 	int dst = 0;
 	while (dst < len) {
-		buffer[dst++] = buf->array.i[src++];
+		buffer[dst++] = buf->array.b[src++];
 	}
 	self->pos = 0;
 	self->marked = 0;
@@ -95,7 +95,7 @@
   int c = 0;
   int p2 = pos;
   while (p2 < length && c < len) {
-    buf->array.i[c++] = buffer[p2++];
+    buf->array.b[c++] = buffer[p2++];
   }
   pos = p2;
   return c;
@@ -109,7 +109,7 @@
   int c = 0;
   int p2 = pos;
   while (p2 < length && c < len) {
-    buf->array.i[offs+(c++)] = buffer[p2++];
+    buf->array.b[offs+(c++)] = buffer[p2++];
   }
   pos = p2;
   return c;
@@ -124,7 +124,7 @@
   int c = 0;
   int p2 = pos;
   while (p2 < length && c < len) {
-    buf->array.i[offs+(c++)] = buffer[p2++];
+    buf->array.c[offs+(c++)] = buffer[p2++];
   }
   pos = p2;
   return c;
