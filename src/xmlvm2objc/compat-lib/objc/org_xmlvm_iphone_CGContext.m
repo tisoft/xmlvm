@@ -38,7 +38,9 @@
 
 - (void) setFillColor___float_ARRAYTYPE: (XMLVMArray*) color
 {
-    CGContextSetFillColor(context, color->array.f);
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	CGContextSetFillColorWithColor(context, CGColorCreate(colorSpace, color->array.f));
+	CGColorSpaceRelease(colorSpace);
 }
 
 - (void) setStrokeColor___float_ARRAYTYPE: (XMLVMArray*) color
