@@ -23,19 +23,22 @@ qx.Class.define("android_widget_TextView", {
   construct: function() {
     this.base(arguments);
     this.qx = new qx.ui.basic.Label();
-    this.qx.set({textColor: "white"});
+    this.qx.set({textColor: "white", rich:true});
   },
   members: {
     $$init____android_content_Context: function(context) {
     },
     $setText___java_lang_CharSequence: function(text) {
-       this.qx.set({value: text.$str});
+       this.qx.set({value: this.convertToHTML(text.$str)});
     },
     $setText___java_lang_String: function(text) {
-        this.qx.set({value: text.$str});
+        this.qx.set({value: this.convertToHTML(text.$str)});
     },
     $append___java_lang_CharSequence: function(text) {
-    	this.qx.setValue(this.qx.getValue() + text.$str);
+    	this.qx.setValue(this.qx.getValue() + this.convertToHTML(text.$str));
+    },
+    convertToHTML: function(text) {
+    	return text.replace("\n", "<br>");
     }
   }
 });

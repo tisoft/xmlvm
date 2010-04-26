@@ -18,40 +18,38 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-qx.Class.define("java_util_HashMap", {
+qx.Class.define("java_lang_Byte", {
   extend: java_lang_Object,
-  construct: function() {
-  	this.jsArray = new Array();
-  	this.jsKeys = new Array();
+  statics:
+  {
+  	$parseByte___java_lang_String: function(s) {
+  		return s.$str * 1;
+  	},
+  	$valueOf___byte: function(v) {
+		var result = new java_lang_Byte();
+		result.$$init____byte(v);
+		return result;
+	},
+  	$valueOf___java_lang_String: function(v) {
+		var result = new java_lang_Byte();
+		result.$$init____byte(v.$str * 1);
+		return result;
+	}
   },
   members:
   {
-  	jsArray: 0,
-  	jsKeys: 0,
-  	$put___java_lang_Object_java_lang_Object: function(key, value) {
-  		this.jsArray[key.$toString().$str] = value;
-  		this.jsKeys.push(key);
-  	},
-  	$get___java_lang_Object: function(key) {
-  	  var temp = this.jsArray[key.$toString().$str];
-  	  if (temp == undefined) {
-  	    return new java_lang_null;
-  	  } else {
-  	    return temp;
-  	  }
-  	},
-  	$keySet: function() {
-  		return new java_util_Set(this.jsKeys);
-  	},
-  	$values: function() {
-  		return new java_util_Collection(this.jsArray);
-  	},
-  	$size: function() {
-  		return this.jsKeys.length;
-  	},
-  	$clear: function() {
-  		this.jsArray = new Array();
-  		this.jsKeys = new Array();
-  	}
+  	value: 0,
+	$$init____byte: function(initValue) {
+		this.value = initValue;
+	},
+	$toString: function() {
+		return new java_lang_String("" + this.value);
+	},
+	$intValue: function() {
+		return this.value;
+	},
+	$byteValue: function() {
+		return this.value;
+	}
   }
 });

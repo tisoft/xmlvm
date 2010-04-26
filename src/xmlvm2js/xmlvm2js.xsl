@@ -1472,8 +1472,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
         var __ex</xsl:text>
       </xsl:when>
     </xsl:choose>
-    <xsl:text>;
-</xsl:text>
+    <xsl:text>;</xsl:text>
   </xsl:for-each>
   <!--  Declare the registers - END. -->
 
@@ -1546,7 +1545,19 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <!-- Do nothing -->
 </xsl:template>
 
+<xsl:template match="vm:a-release">
+  <!-- Do nothing -->
+</xsl:template>
+
 <xsl:template match="vm:set-null">
+  <!-- Do nothing -->
+</xsl:template>
+
+<xsl:template match="dex:monitor-enter">
+  <!-- Do nothing -->
+</xsl:template>
+
+<xsl:template match="dex:monitor-exit">
   <!-- Do nothing -->
 </xsl:template>
 
@@ -1650,7 +1661,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
 <!--  dex:mul-*
       ================  -->
-<xsl:template match="dex:mul-int|dex:mul-2addr|dex:mul-double|dex:mul-double-2addr|dex:mul-float|dex:mul-float-2addr|dex:mul-long|dex:mul-long-2addr">
+<xsl:template match="dex:mul-int|dex:mul-int-2addr|dex:mul-double|dex:mul-double-2addr|dex:mul-float|dex:mul-float-2addr|dex:mul-long|dex:mul-long-2addr">
   <xsl:text>
             __r</xsl:text>
   <xsl:value-of select="@vx" />
@@ -1658,6 +1669,19 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:value-of select="@vy" />
   <xsl:text> * __r</xsl:text>
   <xsl:value-of select="@vz" />
+  <xsl:text>;</xsl:text>
+</xsl:template>
+
+<!--  dex:mul-int-lit*
+      ================  -->
+<xsl:template match="dex:mul-int-lit8|dex:mul-int-lit16">
+  <xsl:text>
+            __r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> = __r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text> * </xsl:text>
+  <xsl:value-of select="@value"/>
   <xsl:text>;</xsl:text>
 </xsl:template>
 
@@ -1791,7 +1815,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
       <xsl:value-of select="@vx"/>
       <xsl:text> instanceof java_lang_null) || (__r</xsl:text>
       <xsl:value-of select="@vx"/>
-      <xsl:text> == 0))</xsl:text>
+      <xsl:text> == null))</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:text>__r</xsl:text>
@@ -1815,7 +1839,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
       <xsl:value-of select="@vx"/>
       <xsl:text> instanceof java_lang_null) || (__r</xsl:text>
       <xsl:value-of select="@vx"/>
-      <xsl:text> == 0)</xsl:text>
+      <xsl:text> == null)</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:text>__r</xsl:text>
@@ -1990,9 +2014,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 </xsl:template>
 
 
-<!--  dex:invoke-super
-      ================ -->
-<xsl:template match="dex:invoke-super">
+<!--  dex:invoke-super*
+      ================= -->
+<xsl:template match="dex:invoke-super|dex:invoke-super-range">
   <xsl:call-template name="checkClass">
     <xsl:with-param name="string" select="@class-type"/>
   </xsl:call-template>
@@ -2025,9 +2049,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 </xsl:template>
 
 
-<!--  dex:invoke-static
-      ================  -->
-<xsl:template match="dex:invoke-static">
+<!--  dex:invoke-static*
+      ==================  -->
+<xsl:template match="dex:invoke-static|dex:invoke-static-range">
   <xsl:call-template name="checkClass">
     <xsl:with-param name="string" select="@class-type"/>
   </xsl:call-template>
@@ -2120,7 +2144,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
 <!--  dex:iget*
       ===============  -->
-<xsl:template match="dex:iget|dex:iget-wide|dex:iget-object|dex:iget-boolean">
+<xsl:template match="dex:iget|dex:iget-wide|dex:iget-object|dex:iget-boolean|dex:iget-byte">
   <xsl:text>
             __r</xsl:text>
   <xsl:value-of select="@vx" />
@@ -2210,6 +2234,27 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>.length;</xsl:text>
 </xsl:template>
 
+<!--  dex:int-to-byte
+      ===============  -->
+<xsl:template match="dex:int-to-byte">
+  <xsl:text>
+            __r</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text> = __r</xsl:text>
+  <xsl:value-of select="@vy" />
+  <xsl:text> &amp; 0xff;</xsl:text>
+  <xsl:text>
+            __r</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text> = (__r</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text> > 127) ? __r</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text> | 0xffffff00 : __r</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text>;</xsl:text>
+</xsl:template>
+
 
 <!--  dex:int-to-short
       ================  -->
@@ -2219,43 +2264,39 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:value-of select="@vx" />
   <xsl:text> = __r</xsl:text>
   <xsl:value-of select="@vy" />
-  <xsl:text>;</xsl:text>
-</xsl:template>
-
-
-<!--  dex:long-to-int
-      ================  -->
-<xsl:template match="dex:long-to-int">
+  <xsl:text> &amp; 0xffff;</xsl:text>
   <xsl:text>
             __r</xsl:text>
   <xsl:value-of select="@vx" />
-  <xsl:text> = __r</xsl:text>
-  <xsl:value-of select="@vy" />
+  <xsl:text> = (__r</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text> > 0x7fff) ? __r</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text> | 0xffff0000 : __r</xsl:text>
+  <xsl:value-of select="@vx" />
   <xsl:text>;</xsl:text>
 </xsl:template>
 
-
-<!--  dex:double-to-int
-      ================  -->
-<xsl:template match="dex:double-to-int">
-  <xsl:text>
-            __r</xsl:text>
-  <xsl:value-of select="@vx" />
+<!--  dex:int-to-char
+      ===============  -->
+<xsl:template match="dex:int-to-char">
+  <xsl:text>    
+           __r</xsl:text>
+  <xsl:value-of select="@vx"/>
   <xsl:text> = __r</xsl:text>
-  <xsl:value-of select="@vy" />
-  <xsl:text>;</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text> &amp; 0xffff;</xsl:text>
 </xsl:template>
 
-
-<!--  dex:float-to-int
-      ================  -->
-<xsl:template match="dex:float-to-int">
+<!--  dex:*-to-int
+      ============  -->
+<xsl:template match="dex:long-to-int|dex:double-to-int|dex:float-to-int">
   <xsl:text>
             __r</xsl:text>
   <xsl:value-of select="@vx" />
-  <xsl:text> = __r</xsl:text>
+  <xsl:text> = Math.floor(__r</xsl:text>
   <xsl:value-of select="@vy" />
-  <xsl:text>;</xsl:text>
+  <xsl:text>);</xsl:text>
 </xsl:template>
 
 
@@ -2341,6 +2382,23 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>) ? 1 : 0;</xsl:text>
 </xsl:template>
 
+<!--  dex:cmp-long
+      ============  -->
+<xsl:template match="dex:cmp-long">
+  <xsl:text>
+           __r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> = __r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text> &gt; __r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text> ? 1 : (__r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text> == __r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text> ? 0 : -1);</xsl:text>
+</xsl:template>
+
 <!--  dex:cmpg-*
       TODO: Implement NaN bias.
       =========================  -->
@@ -2401,10 +2459,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>;</xsl:text>
 </xsl:template>
 
-
-<!--  dex:rem-int*
+<!--  dex:rem-*
       ============  -->
-<xsl:template match="dex:rem-int|dex:rem-int-2addr">
+<xsl:template match="dex:rem-int|dex:rem-int-2addr|dex:rem-long|dex:rem-long-2addr">
   <xsl:text>
            __r</xsl:text>
   <xsl:value-of select="@vx"/>
@@ -2429,6 +2486,70 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>;</xsl:text>
 </xsl:template>
 
+<!--  dex:and-int*
+      ===========  -->
+<xsl:template match="dex:and-int|dex:and-int-2addr">
+  <xsl:text>
+           __r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> = __r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text> &amp; __r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>;</xsl:text>
+</xsl:template>
+
+<!--  dex:and-int-lit*
+      ================  -->
+<xsl:template match="dex:and-int-lit8|dex:and-int-lit16">
+  <xsl:text>
+           __r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> = __r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text> &amp; </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>;</xsl:text>
+</xsl:template>
+
+<!--  dex:or-int-lit*
+      ===============  -->
+<xsl:template match="dex:or-int-lit8|dex:or-int-lit16">
+  <xsl:text>
+           __r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> = __r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text> | </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>;</xsl:text>
+</xsl:template>
+
+<!--  dex:xor-int*
+      ============  -->
+<xsl:template match="dex:xor-int|dex:xor-int-2addr">
+  <xsl:text>
+           __r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> = __r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text> ^ __r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>;</xsl:text>
+</xsl:template>
+
+<!--  dex:xor-int-lit*
+      ================  -->
+<xsl:template match="dex:xor-int-lit8|dex:xor-int-lit16">
+  <xsl:text>
+           __r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> = __r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text> ^ </xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>;</xsl:text>
+</xsl:template>
 
 <!--  dex:catches
       ===========  -->

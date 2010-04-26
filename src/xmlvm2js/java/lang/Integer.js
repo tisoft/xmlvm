@@ -29,19 +29,24 @@ qx.Class.define("java_lang_Integer", {
 		var result = new java_lang_Integer();
 		result.$$init____int(v);
 		return result;
+	},
+  	$valueOf___java_lang_String: function(v) {
+		var result = new java_lang_Integer();
+		result.$$init____int(v.$str * 1);
+		return result;
 	}
   },
   members:
   {
-  	$value: 0,
+  	value: 0,
 	$$init____int: function(initValue) {
-		this.$value = initValue;
+		this.value = initValue;
 	},
 	$toString: function() {
-		return this.$value;
+		return new java_lang_String("" + this.value);
 	},
 	$intValue: function() {
-		return this.$value;
+		return this.value;
 	}
   }
 });

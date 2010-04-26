@@ -35,6 +35,7 @@ typedef NSMutableDictionary java_util_HashMap;
 - (void) __init_java_util_HashMap___int: (int) size;
 - (void) clear__;
 - (java_util_Collection*) values__;
+- (java_util_Iterator*) iterator__;
 - (int) size__;
 - (java_util_Set*) keySet__;
 - (java_util_Set*) entrySet__;

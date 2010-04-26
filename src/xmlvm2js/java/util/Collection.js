@@ -18,40 +18,16 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-qx.Class.define("java_util_HashMap", {
+qx.Class.define("java_util_Collection", {
   extend: java_lang_Object,
-  construct: function() {
-  	this.jsArray = new Array();
-  	this.jsKeys = new Array();
+  construct: function(jsArray) {
+	this.jsArray = jsArray;
   },
   members:
   {
-  	jsArray: 0,
-  	jsKeys: 0,
-  	$put___java_lang_Object_java_lang_Object: function(key, value) {
-  		this.jsArray[key.$toString().$str] = value;
-  		this.jsKeys.push(key);
-  	},
-  	$get___java_lang_Object: function(key) {
-  	  var temp = this.jsArray[key.$toString().$str];
-  	  if (temp == undefined) {
-  	    return new java_lang_null;
-  	  } else {
-  	    return temp;
-  	  }
-  	},
-  	$keySet: function() {
-  		return new java_util_Set(this.jsKeys);
-  	},
-  	$values: function() {
-  		return new java_util_Collection(this.jsArray);
-  	},
-  	$size: function() {
-  		return this.jsKeys.length;
-  	},
-  	$clear: function() {
-  		this.jsArray = new Array();
-  		this.jsKeys = new Array();
-  	}
+	jsArray:0,
+	$iterator: function() {
+	  return new java_util_Iterator(this.jsArray);
+    }
   }
 });

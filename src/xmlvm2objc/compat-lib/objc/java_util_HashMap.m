@@ -52,6 +52,11 @@
 	return [self retain];
 }
 
+- (java_util_Iterator*) iterator__
+{
+	return [[java_util_IteratorImpl alloc] init: [self objectEnumerator]];
+}
+
 - (int) size__
 {
 	return [self count];
