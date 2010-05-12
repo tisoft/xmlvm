@@ -22,21 +22,12 @@ package org.xmlvm.iphone;
 
 import java.util.Set;
 
-import org.xmlvm.iphone.internal.Simulator;
-
 public class UIResponder {
 
     private UIResponderDelegate delegate = null;
     protected boolean callDelegates = true;
 
     public UIResponder() {
-        Simulator.addTouchesListener(this);
-    }
-
-    public UIResponder(boolean add) {
-        if (add) {
-            Simulator.addTouchesListener(this);
-        }
     }
 
     public void xmlvmInternalTouchesBegan(Set<UITouch> touches, UIEvent event) {

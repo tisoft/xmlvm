@@ -135,10 +135,6 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
         display.addKeyListener(listener);
     }
 
-    public void addTouchesListener(UIResponder listener) {
-        display.addTouchesListener(listener);
-    }
-
     public float getStatusBarHeight() {
         return statusBar.getStatusBarHeight();
     }

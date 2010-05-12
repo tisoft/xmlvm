@@ -29,7 +29,6 @@ public class Display implements ImageObserver {
     private StatusBar         statusBar;
     private Gestures          gestures;
     private UIView            keyListener;
-    private List<UIResponder> touchesListener;
     private Device            device;
     private UIResponder       currentResponder;
 
@@ -38,7 +37,6 @@ public class Display implements ImageObserver {
         gestures = new Gestures();
         statusBar = null;
         keyListener = null;
-        touchesListener = new ArrayList<UIResponder>();
         // this.addKeyListener(this);
     }
 
@@ -189,10 +187,6 @@ public class Display implements ImageObserver {
     public void addKeyListener(UIView listener) {
         // TODO right now only one key listener is allowed!
         this.keyListener = listener;
-    }
-
-    public void addTouchesListener(UIResponder listener) {
-        touchesListener.add(listener);
     }
 
     @Override

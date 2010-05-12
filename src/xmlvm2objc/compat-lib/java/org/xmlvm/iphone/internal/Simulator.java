@@ -45,10 +45,6 @@ public class Simulator {
         simulatorGUI.addKeyListener(listener);
     }
 
-    static public void addTouchesListener(UIResponder listener) {
-        simulatorGUI.addTouchesListener(listener);
-    }
-
     static public float getStatusBarHeight() {
         return simulatorGUI.getStatusBarHeight();
     }

@@ -36,7 +36,6 @@ public abstract class UIApplication extends UIResponder {
     UIWindow                     keyWindow;
 
     public UIApplication() {
-        super(false);
         windows = new ArrayList<UIWindow>();
         instance = this;
         setIdleTimerDisabled(false);
@@ -44,7 +43,6 @@ public abstract class UIApplication extends UIResponder {
             // We run on the desktop
             new SimulatorDesktop();
         }
-        Simulator.addTouchesListener(this);
         setStatusBarOrientation(UIInterfaceOrientation.Portrait);
     }
 

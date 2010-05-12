@@ -74,12 +74,6 @@ public class SimulatorGUI extends JPanel {
         device.addKeyListener(listener);
     }
 
-    public void addTouchesListener(UIResponder listener) {
-        if (device != null) {
-            device.addTouchesListener(listener);
-        }
-    }
-
     public float getStatusBarHeight() {
         return device.getStatusBarHeight();
     }
