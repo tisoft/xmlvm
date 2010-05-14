@@ -18,22 +18,14 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-qx.Class.define("android_content_Context", {
+qx.Class.define("android_view_inputmethod_InputMethodManager", {
   extend: java_lang_Object,
   construct: function() {
   	this.base(arguments);
   },
   members: {
-	$getSystemService___java_lang_String: function(service) {
-    	if (service.$str == "sensor") {
-    		return new android_hardware_SensorManager();
-    	}
-    	if (service.$str == "power") {
-    		return new android_os_PowerManager();
-    	}
-    	if (service.$str == "input_method") {
-    		return new android_view_inputmethod_InputMethodManager();
-    	}
+	$hideSoftInputFromWindow___android_os_IBinder_int: function(windowToken, flags) {
+	    return true;
     }
   }
 });

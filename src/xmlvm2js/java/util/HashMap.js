@@ -44,7 +44,11 @@ qx.Class.define("java_util_HashMap", {
   		return new java_util_Set(this.jsKeys);
   	},
   	$values: function() {
-  		return new java_util_Collection(this.jsArray);
+  		var values = new Array();
+  		for (var v in this.jsArray) {
+  			values.push(this.jsArray[v]);
+  		}
+  		return new java_util_Collection(values);
   	},
   	$size: function() {
   		return this.jsKeys.length;

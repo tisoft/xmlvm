@@ -18,27 +18,11 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-qx.Class.define("java_lang_Object", {
-  extend: qx.core.Object,
-  statics:
-  {
-  	$$clinit_: function() {
-  	}
-  },
-  members:
-  {
-	implementsInterface: function(clazz) {
-	  return false;
-    },
-    $$init_: function() {
-      //alert("java.lang.Object initialized");
-    },
-    $getClass : function() {
-    	var qxClassName = Object.prototype.toString.call(this).match(/^\[object\s(.*)\]$/)[1];
-    	return new java_lang_Class(qxClassName);
-    },
-    $toString: function() {
-    	return new java_lang_String(this.toHashCode());
-    }
-  }
+qx.Class.define("java_io_Serializable",  {
+	extend: java_lang_Object,
+	construct: function() {
+	},
+	members: 
+	{
+	}
 });

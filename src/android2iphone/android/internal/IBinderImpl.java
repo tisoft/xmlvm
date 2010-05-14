@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004-2010 XMLVM --- An XML-based Programming Language
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
  * 
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -18,22 +18,20 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-qx.Class.define("android_content_Context", {
-  extend: java_lang_Object,
-  construct: function() {
-  	this.base(arguments);
-  },
-  members: {
-	$getSystemService___java_lang_String: function(service) {
-    	if (service.$str == "sensor") {
-    		return new android_hardware_SensorManager();
-    	}
-    	if (service.$str == "power") {
-    		return new android_os_PowerManager();
-    	}
-    	if (service.$str == "input_method") {
-    		return new android_view_inputmethod_InputMethodManager();
-    	}
+package android.internal;
+
+import android.os.IBinder;
+import android.view.View;
+
+public class IBinderImpl implements IBinder {
+
+    private View view;
+
+    public IBinderImpl(View view) {
+        this.view = view;
     }
-  }
-});
+
+    public View getView() {
+        return view;
+    }
+}

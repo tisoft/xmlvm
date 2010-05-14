@@ -74,9 +74,30 @@ java_io_InputStream* _STATIC_java_lang_System_in;
  */
 + (long) currentTimeMillis__
 {
-    double result = trunc(([NSDate timeIntervalSinceReferenceDate] - 268300000) * 1000);
-	result -= 2168640000;
-    return (int) result;
+    static NSDate* now_time;
+    static double  sec_since_1970;
+    
+    if (now_time == nil) {
+        now_time = [[NSDate date] retain];
+        sec_since_1970 = [now_time timeIntervalSince1970];
+    }
+    double seconds = [[NSDate date] timeIntervalSinceDate:now_time];
+    long result = (long) floor(((sec_since_1970 + seconds) * 1000.0) + 0.5);
+    return result;
+}
+
++ (long) nanoTime__
+{
+    static NSDate* now_time;
+    
+    if (now_time == nil) {
+        now_time = [[NSDate date] retain];
+    }
+    double time = [now_time timeIntervalSinceNow];
+    time *= -1000.0; // milli
+    time *= 1000.0; // micro
+    time *= 1000.0; // nano
+    return (long) floor(time + 0.5);
 }
 
 + (void) initialize

@@ -34,6 +34,7 @@ import android.media.AudioManager;
 import android.os.PowerManager;
 import android.view.LayoutInflater;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 /**
  * <i>(XMLVM Compatibility Class)</i>
@@ -58,7 +59,7 @@ public abstract class Context {
      * candidate to be killed. This is to avoid situations where the service is
      * being continually created and killed due to low memory.
      */
-    public static final int      BIND_AUTO_CREATE        = 0x0001;
+    public static final int           BIND_AUTO_CREATE        = 0x0001;
 
     /**
      * Use with {@link #getSystemService} to retrieve a
@@ -68,26 +69,31 @@ public abstract class Context {
      * @see #getSystemService
      * @see android.location.LocationManager
      */
-    public static final String   LOCATION_SERVICE        = "location";
+    public static final String        LOCATION_SERVICE        = "location";
 
     /**
      * Use with {@link #getSystemService(String)} to retrieve a
      * {@link IPhoneManager} for iPhone-specific services. This is a XMLVM
      * extension.
      */
-    public static final String   IPHONE_SERVICE          = "iphone";
+    public static final String        IPHONE_SERVICE          = "iphone";
     /**
      * Use with {@link #getSystemService(String)} to retrieve a
      * {@link SensorManager} for accessing sensors.
      */
-    public static final String   SENSOR_SERVICE          = "sensor";
+    public static final String        SENSOR_SERVICE          = "sensor";
     /**
      * Use with {@link #getSystemService(String)} to retrieve a
      * {@link PowerManager} for controlling power management, including
      * "wake locks," which let you keep the device on while you're running long
      * tasks.
      */
-    public static final String   POWER_SERVICE           = "power";
+    public static final String        POWER_SERVICE           = "power";
+    /**
+     * Use with {@link #getSystemService(String)} to retrieve a
+     * {@link InputMethodManager} for accessing input methods.
+     */
+    public static final String        INPUT_METHOD_SERVICE    = "input_method";
 
     // *** File creation modes *** //
     /**
@@ -95,28 +101,29 @@ public abstract class Context {
      * accessed by the calling application (or all applications sharing the same
      * user ID).
      */
-    public static final int      MODE_PRIVATE            = 0;
+    public static final int           MODE_PRIVATE            = 0;
     /**
      * File creation mode: allow all other applications to have read access to
      * the created file.
      */
-    public static final int      MODE_WORLD_READABLE     = 1;
+    public static final int           MODE_WORLD_READABLE     = 1;
     /**
      * File creation mode: allow all other applications to have write access to
      * the created file.
      */
-    public static final int      MODE_WORLD_WRITEABLE    = 2;
+    public static final int           MODE_WORLD_WRITEABLE    = 2;
 
-    public static final String   LAYOUT_INFLATER_SERVICE = "layout_inflater";
-    public static final String   AUDIO_SERVICE           = "audio";
-    public static final String   WINDOW_SERVICE          = "window";
-    public static final String   TELEPHONY_SERVICE       = "telephony";
+    public static final String        LAYOUT_INFLATER_SERVICE = "layout_inflater";
+    public static final String        AUDIO_SERVICE           = "audio";
+    public static final String        WINDOW_SERVICE          = "window";
+    public static final String        TELEPHONY_SERVICE       = "telephony";
 
-    private static SensorManager sensorManager           = null;
-    private static PowerManager  powerManager            = null;
-    private static AudioManager  audioManager            = null;
-    private static WindowManager windowManager           = null;
-    private static IPhoneManager iphoneManager           = null;
+    private static SensorManager      sensorManager           = null;
+    private static PowerManager       powerManager            = null;
+    private static AudioManager       audioManager            = null;
+    private static WindowManager      windowManager           = null;
+    private static InputMethodManager inputMethodManager      = null;
+    private static IPhoneManager      iphoneManager           = null;
 
     /**
      * Return the handle to a system-level service by name. The class of the
@@ -142,6 +149,11 @@ public abstract class Context {
                 windowManager = new WindowManager();
             }
             return windowManager;
+        } else if (service.equals(INPUT_METHOD_SERVICE)) {
+            if (inputMethodManager == null) {
+                inputMethodManager = new InputMethodManager();
+            }
+            return inputMethodManager;
         } else if (service.equals(AUDIO_SERVICE)) {
             if (audioManager == null) {
                 audioManager = new AudioManager();

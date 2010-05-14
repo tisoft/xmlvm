@@ -22,9 +22,19 @@ qx.Class.define("java_lang_System", {
   extend: java_lang_Object,
   statics:
   {
+	startTime: 0,
   	$$$out :  new java_io_PrintStream(),
   	$currentTimeMillis: function() {
   		return (new Date()).getTime();
+  	},
+  	$nanoTime: function() {
+  		if (java_lang_System.startTime == 0) {
+  			java_lang_System.startTime = (new Date()).getTime();
+  		}
+  		var now = (new Date()).getTime();
+  		// The +1 is there so we don't return 0 from this method.
+  		var nano = (now - java_lang_System.startTime + 1) * 1000000;
+  		return nano;
   	},
   	$setOut___java_io_PrintStream: function(ps) {
   		java_lang_System.$$$out = ps;

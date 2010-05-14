@@ -41,7 +41,9 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.internal.Assert;
 import android.internal.Dimension;
+import android.internal.IBinderImpl;
 import android.os.Handler;
+import android.os.IBinder;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.animation.Animation;
@@ -336,6 +338,10 @@ public class View {
 
     public ViewParent getParent() {
         return parent;
+    }
+
+    public IBinder getWindowToken() {
+        return new IBinderImpl(this);
     }
 
     public void setOnTouchListener(OnTouchListener listener) {

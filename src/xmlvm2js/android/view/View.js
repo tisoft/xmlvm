@@ -121,6 +121,10 @@ qx.Class.define("android_view_View", {
       },
       $getMeasuredWidth: function() {
     	  return this.qx.getWidth();
+      },
+      $getWindowToken: function() {
+    	  // TODO
+    	  return null;
       }
   }
 });

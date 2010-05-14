@@ -73,6 +73,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   },
   statics:
   {
+    INTERFACES: [</xsl:text>
+  <xsl:call-template name="emitScopedName"><xsl:with-param name="string" select="@interfaces"/></xsl:call-template>
+  <xsl:text>],
     initClass: function() {
       this.classInitialized = true;
       //__clinit_();
@@ -133,22 +136,26 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   }, //statics
 
   members:
-  {</xsl:text>
+  {
+    implementsInterface: function(clazz) {
+      for (var i in </xsl:text>
+<xsl:call-template name="getPackgePlusClassName"><xsl:with-param name="package" select="@package"/><xsl:with-param name="classname" select="@name"/></xsl:call-template>
+<xsl:text>.INTERFACES) {
+        if ("" + clazz == "" + </xsl:text>
+<xsl:call-template name="getPackgePlusClassName"><xsl:with-param name="package" select="@package"/><xsl:with-param name="classname" select="@name"/></xsl:call-template>
+<xsl:text>.INTERFACES[i]) return true;
+      }
+      return arguments.callee.base.apply(this, arguments);
+    }</xsl:text>
     <xsl:for-each select="vm:field[count(@isStatic)=0 or @isStatic='false']">
-			<xsl:if test="position() != 1">
-				<xsl:text>,</xsl:text>
-			</xsl:if>
-			<xsl:text>
+      <xsl:text>,
     $</xsl:text>
-			<xsl:value-of select="@name" /><xsl:text>: </xsl:text>
-			<xsl:value-of select="if (@value) then @value else 0"/>
+      <xsl:value-of select="@name" /><xsl:text>: </xsl:text>
+      <xsl:value-of select="if (@value) then @value else 0"/>
 	</xsl:for-each>
     <xsl:for-each select="vm:method[count(@isStatic)=0 or @isStatic='false']">
-		<!-- Only if there are non-static vm:fields, add the comma in front of the first non-static method-->
-		<xsl:if test="(count(../vm:field[count(@isStatic)=0 or @isStatic='false']) != 0) or position() > 1" >
-			<xsl:text>,</xsl:text>
-		</xsl:if>
-		<xsl:apply-templates select="."/>
+      <xsl:text>,</xsl:text>
+      <xsl:apply-templates select="."/>
 	</xsl:for-each>
 <xsl:text>
   } //members
@@ -1808,22 +1815,17 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
       ==========  -->
 <xsl:template match="dex:if-nez">
   <xsl:text>
-            if (</xsl:text>
-  <xsl:choose>
-    <xsl:when test="vm:isObjectRef(@vx-type)">
-      <xsl:text>!((__r</xsl:text>
+            if (!((__r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> == 0)</xsl:text>
+  <xsl:if test="vm:isObjectRef(@vx-type)">
+      <xsl:text> || (__r</xsl:text>
       <xsl:value-of select="@vx"/>
       <xsl:text> instanceof java_lang_null) || (__r</xsl:text>
       <xsl:value-of select="@vx"/>
-      <xsl:text> == null))</xsl:text>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:text>__r</xsl:text>
-      <xsl:value-of select="@vx"/>
-      <xsl:text> != 0</xsl:text>
-    </xsl:otherwise>
-  </xsl:choose>
-  <xsl:text>){ __next_label = </xsl:text>
+      <xsl:text> == null)</xsl:text>
+  </xsl:if>
+  <xsl:text>)) { __next_label = </xsl:text>
   <xsl:value-of select="@target" />
   <xsl:text>; break; }</xsl:text>
 </xsl:template>
@@ -1832,22 +1834,17 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
       ==========  -->
 <xsl:template match="dex:if-eqz">
   <xsl:text>
-            if (</xsl:text>
-  <xsl:choose>
-    <xsl:when test="vm:isObjectRef(@vx-type)">
-      <xsl:text>(__r</xsl:text>
+            if ((__r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text> == 0)</xsl:text>
+  <xsl:if test="vm:isObjectRef(@vx-type)">
+      <xsl:text> || (__r</xsl:text>
       <xsl:value-of select="@vx"/>
       <xsl:text> instanceof java_lang_null) || (__r</xsl:text>
       <xsl:value-of select="@vx"/>
       <xsl:text> == null)</xsl:text>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:text>__r</xsl:text>
-      <xsl:value-of select="@vx"/>
-      <xsl:text> == 0</xsl:text>
-    </xsl:otherwise>
-  </xsl:choose>
-  <xsl:text>){ __next_label = </xsl:text>
+  </xsl:if>
+  <xsl:text>) { __next_label = </xsl:text>
   <xsl:value-of select="@target" />
   <xsl:text>; break; }</xsl:text>
 </xsl:template>
@@ -2306,9 +2303,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>
             __r</xsl:text>
   <xsl:value-of select="@vx" />
-  <xsl:text> = __r</xsl:text>
+  <xsl:text> = Math.floor(__r</xsl:text>
   <xsl:value-of select="@vy" />
-  <xsl:text>;</xsl:text>
+  <xsl:text>);</xsl:text>
 </xsl:template>
 
 
@@ -2318,13 +2315,14 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>
             __r</xsl:text>
   <xsl:value-of select="@vx" />
-  <xsl:text> = __r</xsl:text>
+  <xsl:text> = Math.floor(__r</xsl:text>
   <xsl:value-of select="@vy" />
-  <xsl:text>;</xsl:text>
+  <xsl:text>);</xsl:text>
 </xsl:template>
 
 
 <!--  dex:double-to-float
+      TODO: probably not correct
       ================  -->
 <xsl:template match="dex:double-to-float">
   <xsl:text>
@@ -2332,14 +2330,13 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:value-of select="@vx" />
   <xsl:text> = __r</xsl:text>
   <xsl:value-of select="@vy" />
-  <xsl:text>;</xsl:text>
+  <xsl:text> * 1.0;</xsl:text>
 </xsl:template>
 
 
-<!--  dex:int-to-long|dex:int-to-float|dex:int-to-double|dex:long-to-double|dex:long-to-float|dex:float-to-double
-      (Upcasting should not be an issue)
+<!--  dex:int-to-long
       ================  -->
-<xsl:template match="dex:int-to-long|dex:int-to-float|dex:int-to-double|dex:long-to-double|dex:long-to-float|dex:float-to-double">
+<xsl:template match="dex:int-to-long">
   <xsl:text>
             __r</xsl:text>
   <xsl:value-of select="@vx" />
@@ -2347,6 +2344,20 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:value-of select="@vy" />
   <xsl:text>;</xsl:text>
 </xsl:template>
+
+
+<!--  dex:int-to-float|dex:int-to-double|dex:long-to-double|dex:long-to-float|dex:float-to-double
+      (Upcasting should not be an issue)
+      ================  -->
+<xsl:template match="dex:int-to-float|dex:int-to-double|dex:long-to-double|dex:long-to-float|dex:float-to-double">
+  <xsl:text>
+            __r</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text> = __r</xsl:text>
+  <xsl:value-of select="@vy" />
+  <xsl:text> * 1.0;</xsl:text>
+</xsl:template>
+
 
 <!--  dex:check-cast
       ==============  -->
@@ -2377,6 +2388,13 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
       <xsl:call-template name="emitScopedName">
         <xsl:with-param name="string" select="@value"/>
       </xsl:call-template>
+      <xsl:text> || __r</xsl:text>
+      <xsl:value-of select="@vy"/>
+      <xsl:text>.implementsInterface(</xsl:text>
+      <xsl:call-template name="emitScopedName">
+        <xsl:with-param name="string" select="@value"/>
+      </xsl:call-template>
+      <xsl:text>)</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
   <xsl:text>) ? 1 : 0;</xsl:text>

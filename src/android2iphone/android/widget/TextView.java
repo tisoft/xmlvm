@@ -122,7 +122,7 @@ public class TextView extends View {
         UILabel label = new UILabel();
         label.setNumberOfLines(0);
         label.setLineBreakMode(UILineBreakMode.WordWrap);
-        label.setTextAlignment(UITextAlignment.Center);
+        label.setTextAlignment(UITextAlignment.Left);
 
         if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
             label.setTextColor(UIColor.whiteColor);
