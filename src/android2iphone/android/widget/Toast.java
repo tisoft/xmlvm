@@ -20,12 +20,17 @@
 
 package android.widget;
 
+import org.xmlvm.iphone.UIFont;
+import org.xmlvm.iphone.UILabel;
+import org.xmlvm.iphone.UITextAlignment;
+
 import android.app.Activity;
 import android.content.Context;
 import android.internal.ActivityManager;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.ViewGroup.LayoutParams;
 
@@ -78,6 +83,7 @@ public class Toast {
     }
 
     public void show() {
+        setViewAttributes(view);
         Activity activity = ActivityManager.getTopActivity();
         RelativeLayout l = new RelativeLayout(activity);
         RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
@@ -108,6 +114,20 @@ public class Toast {
             window.xmlvmRemoveToast();
         }
         window = null;
+    }
+    
+    private void setViewAttributes(View v) {
+        if (v instanceof TextView) {
+            UILabel l = (UILabel) v.xmlvmGetUIView();
+            l.setTextAlignment(UITextAlignment.Center);
+            l.setFont(UIFont.boldSystemFontOfSize(16));
+        }
+        else if (v instanceof ViewGroup) {
+            ViewGroup vg = (ViewGroup) v;
+            for (int i = 0; i < vg.getChildCount(); i++ ) {
+                setViewAttributes(vg.getChildAt(i));
+            }
+        }
     }
 
 }
