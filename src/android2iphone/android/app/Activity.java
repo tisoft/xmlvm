@@ -20,6 +20,8 @@
 
 package android.app;
 
+import java.lang.ref.WeakReference;
+
 import org.xmlvm.iphone.NSObject;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIInterfaceOrientation;
@@ -51,38 +53,38 @@ import android.view.ViewGroup.LayoutParams;
  */
 public class Activity extends ContextThemeWrapper {
 
-    public static final int  RESULT_CANCELED     = 0;
-    public static final int  RESULT_OK           = -1;
+    public static final int         RESULT_CANCELED     = 0;
+    public static final int         RESULT_OK           = -1;
 
     /*
      * States according to {@link
      * http://developer.motorola.com/docstools/library
      * /Android_Applications_for_Java_ME_Developers/}
      */
-    private static final int STATE_UNINITIALIZED = 0;
-    private static final int STATE_ACTIVE        = 1;
-    private static final int STATE_PAUSED        = 2;
-    private static final int STATE_STOPPED       = 3;
-    private static final int STATE_DESTROYED     = 4;
+    private static final int        STATE_UNINITIALIZED = 0;
+    private static final int        STATE_ACTIVE        = 1;
+    private static final int        STATE_PAUSED        = 2;
+    private static final int        STATE_STOPPED       = 3;
+    private static final int        STATE_DESTROYED     = 4;
 
-    private int              state               = STATE_UNINITIALIZED;
-    private Activity         parent;
-    private Activity         child;
-    private Intent           intent;
-    private ComponentName    componentName;
-    private int              requestCode;
-    private int              childRequestCode;
-    private int              childResultCode;
-    private Intent           childData;
-    private Window           window;
-    private int              screenOrientation   = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+    private int                     state               = STATE_UNINITIALIZED;
+    private WeakReference<Activity> parent;
+    private Activity                child;
+    private Intent                  intent;
+    private ComponentName           componentName;
+    private int                     requestCode;
+    private int                     childRequestCode;
+    private int                     childResultCode;
+    private Intent                  childData;
+    private Window                  window;
+    private int                     screenOrientation   = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
 
     public void xmlvmSetParent(Activity parent) {
-        this.parent = parent;
+        this.parent = new WeakReference<Activity>(parent);
     }
 
     public Activity xmlvmGetParent() {
-        return this.parent;
+        return this.parent == null ? null : this.parent.get();
     }
 
     public void xmlvmSetRequestCode(int requestCode) {
@@ -102,6 +104,7 @@ public class Activity extends ContextThemeWrapper {
     }
 
     private void xmlvmUnlinkActivity() {
+        Activity parent = xmlvmGetParent();
         if (child == null) {
             // We have no child so set the parent as the new top activity
             ActivityManager.setTopActivity(parent);
@@ -110,7 +113,7 @@ public class Activity extends ContextThemeWrapper {
             parent.child = child;
         }
         if (child != null) {
-            child.parent = parent;
+            child.parent = new WeakReference<Activity>(parent);
         }
         parent = null;
         child = null;
@@ -255,7 +258,7 @@ public class Activity extends ContextThemeWrapper {
     public void xmlvmOnDestroy(Object arg) {
         onDestroy();
 
-        Activity theParent = parent;
+        Activity theParent = xmlvmGetParent();
         Activity theChild = child;
         window.xmlvmRemoveWindow();
         window = null;
@@ -377,6 +380,7 @@ public class Activity extends ContextThemeWrapper {
     }
 
     public final void setResult(int resultCode, Intent data) {
+        Activity parent = xmlvmGetParent();
         if (parent != null) {
             parent.childRequestCode = requestCode;
             parent.childResultCode = resultCode;
