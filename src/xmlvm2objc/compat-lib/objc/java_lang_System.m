@@ -75,15 +75,15 @@ java_io_InputStream* _STATIC_java_lang_System_in;
 + (long) currentTimeMillis__
 {
     static NSDate* now_time;
-    static double  sec_since_1970;
-    
+    static long    msec_since_1970;
+
     if (now_time == nil) {
         now_time = [[NSDate date] retain];
-        sec_since_1970 = [now_time timeIntervalSince1970];
+        msec_since_1970 = ([now_time timeIntervalSince1970] * 1000) + .5;
     }
-    double seconds = [[NSDate date] timeIntervalSinceDate:now_time];
-    long result = (long) floor(((sec_since_1970 + seconds) * 1000.0) + 0.5);
-    return result;
+    long sinceNow = ([[NSDate date] timeIntervalSinceDate:now_time] * 1000) + .5;
+	
+    return sinceNow + msec_since_1970;
 }
 
 + (long) nanoTime__
