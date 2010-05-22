@@ -28,7 +28,7 @@
 + (org_xmlvm_iphone_NSURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL
                                          :(org_xmlvm_iphone_NSURL*) url
 {
-	return [[NSURLRequest requestWithURL:url] retain];
+	return_XMLVM_SELECTOR(NSURLRequest requestWithURL:url)
 }
 
 @end

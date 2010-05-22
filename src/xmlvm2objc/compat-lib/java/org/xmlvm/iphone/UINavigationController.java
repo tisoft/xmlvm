@@ -29,7 +29,7 @@ import java.util.ArrayList;
  * 
  * @author teras
  */
-public final class UINavigationController extends UIViewController {
+public class UINavigationController extends UIViewController {
 
     private ArrayList<UIViewController>    items;
     private UINavigationControllerDelegate delegate;

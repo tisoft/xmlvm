@@ -41,7 +41,6 @@ public class UniversalFileFromJarFile extends UniversalFile {
     private JarInputStream         jarStream;
     private UniversalFileDirectory directory;
 
-
     UniversalFileFromJarFile(String absoluteName, JarInputStream jarStream) {
         this.absoluteName = absoluteName;
         this.jarStream = jarStream;

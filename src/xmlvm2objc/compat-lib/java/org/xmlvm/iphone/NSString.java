@@ -25,37 +25,80 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringBufferInputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.BreakIterator;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author arno
  * 
  */
-public class NSString {
+public class NSString extends NSObject {
 
     private NSString() {
     }
 
     public static String stringWithContentsOfFile(String path) {
-        String data = "";
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
-            String line = null;
-            while ((line = in.readLine()) != null) {
-                data += line;
-                data += System.getProperty("line.separator");
-            }
-            in.close();
-        } catch (FileNotFoundException e) {
-            // Do nothing
-        } catch (IOException e) {
-            // Do nothing
+            return stringWithContentsOfReader(new FileReader(path));
+        } catch (FileNotFoundException ex) {
+            return null;
         }
-        return data;
+    }
+
+    public static String stringWithContentsOfURL(NSURL url, int NSStringEncoding) {
+        return stringWithContentsOfURL(url.xmlvmGetURL(), org.xmlvm.iphone.NSStringEncoding
+                .convertIntToString(NSStringEncoding));
+    }
+
+    public static String stringWithContentsOfURL(NSURL url) {
+        return stringWithContentsOfURL(url.xmlvmGetURL(), "UTF-8");
+    }
+
+    public static NSData dataUsingEncoding(String string, int NSStringEncoding) {
+        // TODO : honor NSStringEncoding under java
+        return new NSData(new StringBufferInputStream(string));
+    }
+
+    private static String stringWithContentsOfURL(URL url, String encoding) {
+        try {
+            return stringWithContentsOfReader(new InputStreamReader(url.openStream(), encoding));
+        } catch (IOException ex) {
+            return null;
+        }
+    }
+
+    private static String stringWithContentsOfReader(Reader reader) {
+        StringBuffer out = new StringBuffer();
+        String data = null;
+        try {
+            BufferedReader in = new BufferedReader(reader);
+            while ((data = in.readLine()) != null)
+                out.append(data).append("\n");
+            in.close();
+        } catch (MalformedURLException mue) {
+        } catch (IOException ioe) {
+        } catch (Exception e) {
+        }
+        return out.toString();
+    }
+
+    public static ArrayList<String> componentsSeparatedByString(String stringtodivide,
+            String separator) {
+        return new ArrayList<String>(Arrays.asList(stringtodivide.split(separator)));
+    }
+
+    public static String initWithData(NSData data, int NSStringEncoding) {
+        // TODO : Java implementation
+        return null;
     }
 
     public static void drawAtPoint(String texttodisplay, CGPoint point, UIFont font) {

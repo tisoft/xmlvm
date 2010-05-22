@@ -32,7 +32,7 @@ import org.xml.sax.SAXException;
  * @author arno
  * 
  */
-public class NSXMLParser {
+public class NSXMLParser extends NSObject {
 
     private NSData              data;
     private NSXMLParserDelegate delegate;

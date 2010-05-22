@@ -24,10 +24,27 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_CGPoint;
 
+- (org_xmlvm_iphone_CGPoint*) initWithCGPoint:(CGPoint) point
+{
+	[self __init_org_xmlvm_iphone_CGPoint___float_float: point.x :point.y];
+	return self;
+}
+
+- (CGPoint) getCGPoint
+{
+	return CGPointMake(x_float, y_float);
+}
+
 - (void) __init_org_xmlvm_iphone_CGPoint___float_float:(float) x_ :(float) y_
 {
 	self->x_float = x_;
 	self->y_float = y_;
+}
+
+- (NSString*) toString__
+{
+	NSString* res = [[NSString alloc] initWithFormat:@"[%f, %f]", self->x_float, self->y_float];
+	return res;
 }
 
 @end

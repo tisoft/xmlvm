@@ -1,0 +1,120 @@
+/*
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
+ * Ave, Cambridge, MA 02139, USA.
+ *
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ */
+package org.xmlvm.iphone;
+
+/**
+ * 
+ * @author teras
+ */
+public class UIDatePicker extends UIControl {
+
+    private NSCalendar calendar;
+    private NSDate     date;
+    private NSLocale   locale;
+    private NSTimeZone timeZone;
+    private int        datePickerMode;
+    private NSDate     maximumDate;
+    private NSDate     minimumDate;
+    private int        minuteInterval;
+    private double     countDownDuration;
+
+    public UIDatePicker() {
+        this(new CGRect(0, 0, 0, 0));
+    }
+
+    public UIDatePicker(CGRect rect) {
+        super(rect);
+    }
+
+    public NSCalendar getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(NSCalendar calendar) {
+        this.calendar = calendar;
+    }
+
+    public double getCountDownDuration() {
+        return countDownDuration;
+    }
+
+    public void setCountDownDuration(double countDownDuration) {
+        this.countDownDuration = countDownDuration;
+    }
+
+    public NSDate getDate() {
+        return date;
+    }
+
+    public void setDate(NSDate date) {
+        this.date = date;
+    }
+
+    public int getDatePickerMode() {
+        return datePickerMode;
+    }
+
+    public void setDatePickerMode(int uiDatePickerMode) {
+        this.datePickerMode = uiDatePickerMode;
+    }
+
+    public NSLocale getLocale() {
+        return locale;
+    }
+
+    public void setLocale(NSLocale locale) {
+        this.locale = locale;
+    }
+
+    public NSDate getMaximumDate() {
+        return maximumDate;
+    }
+
+    public void setMaximumDate(NSDate maximumDate) {
+        this.maximumDate = maximumDate;
+    }
+
+    public NSDate getMinimumDate() {
+        return minimumDate;
+    }
+
+    public void setMinimumDate(NSDate minimumDate) {
+        this.minimumDate = minimumDate;
+    }
+
+    public int getMinuteInterval() {
+        return minuteInterval;
+    }
+
+    public void setMinuteInterval(int minuteInterval) {
+        this.minuteInterval = minuteInterval;
+    }
+
+    public NSTimeZone getTimeZone() {
+        return timeZone;
+    }
+
+    public void setTimeZone(NSTimeZone timeZone) {
+        this.timeZone = timeZone;
+    }
+
+    public void setDate(NSDate date, boolean animated) {
+    }
+}

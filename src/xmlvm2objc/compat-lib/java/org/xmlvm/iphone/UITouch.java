@@ -24,7 +24,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
 
-public class UITouch {
+public class UITouch extends NSObject {
 
     private int    phase;
     private UIView view;

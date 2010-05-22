@@ -17,9 +17,40 @@
  * 
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
-
 package org.xmlvm.iphone;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CALayer {
 
+    HashMap<String, CAAnimation> animation;
+
+    public static CALayer layer() {
+        return new CALayer();
+    }
+
+    public CALayer() {
+        animation = new HashMap<String, CAAnimation>();
+    }
+
+    public void addAnimation(CAAnimation animation, String key) {
+        this.animation.put(key, animation);
+    }
+
+    public CAAnimation animationForKey(String key) {
+        return animation.get(key);
+    }
+
+    public void removeAllAnimations() {
+        animation.clear();
+    }
+
+    public void removeAnimationForKey(String key) {
+        animation.remove(key);
+    }
+
+    public ArrayList<String> animationKeys() {
+        return new ArrayList<String>(animation.keySet());
+    }
 }

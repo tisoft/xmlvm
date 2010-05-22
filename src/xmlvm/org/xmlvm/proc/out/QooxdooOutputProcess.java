@@ -96,7 +96,6 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
     /** The files to be returned by this process */
     private List<OutputFile>    outputFiles              = new ArrayList<OutputFile>();
 
-
     public QooxdooOutputProcess(Arguments arguments) {
         super(arguments);
         // We only support JavaScript inputs.

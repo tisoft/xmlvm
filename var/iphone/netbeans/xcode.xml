@@ -2,6 +2,10 @@
 
 <project basedir=".." default="emulator" name="xcode">
 
+	<property file="nbproject/xcode.properties"/>
+
+	<taskdef name="updater" classpath="lib/xmlvm.jar" classname="org.xmlvm.ant.Updater" onerror="report"/>
+
     <uptodate property="native.notrequired" targetfile="build/${ant.project.name}/${ant.project.name}.xcodeproj/project.pbxproj">
         <srcfiles dir= "./src" includes="**/*.java"/>
         <srcfiles dir="./lib" includes="xmlvm.jar"/>
@@ -16,42 +20,82 @@
         </java>
     </target>
 
-
-	<condition property="xcodeproject.exists">
-		<available file="${ant.project.name}.xcodeproj/project.pbxproj"/>
+	<condition property="resources.app.exists">
+		<available file="resources/app" type="dir"/>
 	</condition>
-	<condition property="resouces.app.exists">
-		<available file="resouces/app" type="dir"/>
+	<condition property="source.objc.exists">
+		<available file="src/objc" type="dir"/>
 	</condition>
 	<property name="emulator.deploy.dir" value="${user.home}/Library/Application Support/iPhone Simulator/User/Applications"/>
 	<property name="emulator.deploy.uuid" value="${ant.project.name}"/>
 
+	<target name="-copy-resources" if="resources.app.exists">
+		<copy todir="build/resources">
+			<fileset dir="resources/app"/>
+		</copy>
+	</target>
 
-	<target name="-generate-xcproj" depends="compile">
-		<antcall target="-xcode-clean-impl"/>
+	<target name="-copy-objectivec" if="source.objc.exists">
+		<copy todir="src/xcode/app">
+			<fileset dir="src/objc"/>
+		</copy>
+	</target>
+
+
+	<target name="-pre-xproject"/>
+	<target name="-post-xproject"/>
+	<target name="-post-updater"/>
+
+	<target name="xproject" depends="compile,-pre-xproject,-do-xproject,-post-xproject,-xproject-updater,-post-updater" description="Create XCode project."/>
+
+	<target name="-do-xproject">
+		<!-- build arguments -->
+		<condition property="bundle.version.value" value="${bundle.version}" else="1.0">
+			<isset property="bundle.version"/>
+		</condition>
+		<condition property="bundle.identifier.value" value="${bundle.identifier}" else="org.xmlvm.iphone.${ant.project.name}">
+			<isset property="bundle.identifier"/>
+		</condition>
+		<condition property="bundle.displayname.value" value="${bundle.displayname}" else="${ant.project.name}">
+			<isset property="bundle.displayname"/>
+		</condition>
+		<condition property="statusbarhidden.value" value="${statusbarhidden}" else="${false}">
+			<isset property="statusbarhidden"/>
+		</condition>
+		<condition property="prerenderedicon.value" value="${prerenderedicon}" else="${false}">
+			<isset property="prerenderedicon"/>
+		</condition>
+		<condition property="xmlvm.lib.value" value="${xmlvm.lib}" else="">
+			<isset property="xmlvm.lib"/>
+		</condition>
+		<condition property="xmlvm.resource.value" value="${xmlvm.resource}" else="">
+			<isset property="xmlvm.resource"/>
+		</condition>
+		<!-- create target -->
+		<delete dir="build/xcode"/>
 		<echo message="Creating Xcode project"/>
-		<java jar="lib/xmlvm.jar" fork="true">
+		<java jar="lib/xmlvm.jar" fork="true" failonerror="true">
 			<arg value="--in=build/classes"/>
+			<arg value="--out=build/xcode"/>
 			<arg value="--target=iphone"/>
 			<arg value="--app-name=${ant.project.name}"/>
+			<arg value="--lib=${xmlvm.lib.value}"/>
+			<arg value="--resource=${xmlvm.resource.value}"/>
+			<arg value="-DBundleIdentifier=${bundle.identifier.value}"/>
+			<arg value="-DBundleVersion=${bundle.version.value}"/>
+			<arg value="-DBundleDisplayName=${bundle.displayname.value}"/>
+			<arg value="-DStatusBarHidden=${statusbarhidden.value}"/>
+			<arg value="-DPrerenderedIcon=${prerenderedicon.value}"/>
 		</java>
 	</target>
 
-	<target name="-generate-xcproj-conditionally" unless="xcodeproject.exists">
-		<antcall target="-generate-xcproj"/>
+	<target name="-xproject-updater">
+		<updater src="build/xcode/${ant.project.name}.xcodeproj" dest="${ant.project.name}.xcodeproj"/>
+		<updater src="build/xcode/src/xcode" dest="src/xcode"/>
+		<updater src="build/xcode/resources" dest="resources" clean="no"/>
 	</target>
 
-	<target name="xproject" depends="-generate-xcproj-conditionally">
-		<delete dir="src/xmlvm/app"/>
-		<echo message="Updating Xcode project"/>
-		<java jar="lib/xmlvm.jar" fork="true">
-			<arg value="--in=build/classes"/>
-			<arg value="--out=src/xmlvm/app"/>
-			<arg value="--target=objc"/>
-		</java>
-	</target>
-
-	<target name="xcompile" depends="xproject">
+	<target name="xcompile" description="Compile XCode project." depends="xproject">
 		<exec executable="xcodebuild" failonerror="true">
 			<arg value="-parallelizeTargets"/>
 			<arg value="-sdk"/>
@@ -61,7 +105,7 @@
 		</exec>
 	</target>
 
-    <target name="xrun" depends="xcompile">
+    <target name="xrun" description="Execute application in iPhone Simulator." depends="xcompile">
 		<mkdir dir="${emulator.deploy.dir}"/>
 		<echo file="${emulator.deploy.dir}/${emulator.deploy.uuid}.sb" message="(version 1)${line.separator}(debug deny)${line.separator}(allow default)"/>
 		<copy todir="${emulator.deploy.dir}/${emulator.deploy.uuid}/${ant.project.name}.app">
@@ -71,20 +115,11 @@
 		<exec executable="open"> <arg value="/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app"/> </exec>
     </target>
 
-	<target name="-xcode-clean-impl">
-		<delete dir="src/xmlvm"/>
+	<target name="-xcode-clean">
+		<delete dir="src/xcode"/>
 		<delete dir="${ant.project.name}.xcodeproj"/>
 		<delete file="Makefile"/>
 		<delete dir="resources/sys"/>
 	</target>
-
-	<target name="-copy-resources" if="resouces.app.exists">
-		<copy todir="build/resources">
-			<fileset dir="resources/app"/>
-		</copy>
-	</target>
-
-	<target name="xclean" depends="clean,-xcode-clean-impl"/>
-	<target name="xrebuild" depends="xclean,-generate-xcproj"/>
 
 </project>

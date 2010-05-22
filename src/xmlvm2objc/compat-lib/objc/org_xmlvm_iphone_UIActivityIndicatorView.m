@@ -26,11 +26,13 @@
 
 - (void) __init_org_xmlvm_iphone_UIActivityIndicatorView__
 {
+	// Either this, or set activityIndicatorViewStyle and size accordingly
 	[self initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
 }
 
 - (void) __init_org_xmlvm_iphone_UIActivityIndicatorView___int :(int)style
 {
+	// Either this, or set activityIndicatorViewStyle and size accordingly
 	[self initWithActivityIndicatorStyle:style];
 }
 

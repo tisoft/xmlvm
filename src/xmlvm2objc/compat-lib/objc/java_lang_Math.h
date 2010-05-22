@@ -44,5 +44,6 @@
 + (int) min___int_int :(int) x :(int) y;
 + (float) round___float: (float) a;
 + (double) round___double: (double) a;
++ (double) floor___double:(double) a;
 @end
 

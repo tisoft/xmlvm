@@ -20,6 +20,7 @@
 
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_NSNotification.h"
+#import "org_xmlvm_iphone_NSURL.h"
 #import "java_util_List.h"
 
 // UIApplication
@@ -37,7 +38,11 @@
 - (void) applicationWillResignActive:(org_xmlvm_iphone_UIApplication*) app;
 - (void) setStatusBarHidden___boolean:(bool) flag;
 - (void) setStatusBarOrientation___int: (int) orientation;
+- (void) setStatusBarStyle___int: (int) style;
+- (void) setStatusBarStyle___int_boolean: (int) style :(int) animated;
+- (int) getStatusBarStyle__;
 - (void) setIdleTimerDisabled___boolean: (bool) flag;
 + (void) main___java_lang_String_ARRAYTYPE_java_lang_Class :(XMLVMArray*) args :(java_lang_Class*) app;
 - (java_util_List *) getWindows__;
+- (BOOL) openURL___org_xmlvm_iphone_NSURL:(org_xmlvm_iphone_NSURL*)url;
 @end

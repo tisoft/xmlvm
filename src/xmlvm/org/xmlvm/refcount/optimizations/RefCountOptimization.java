@@ -31,8 +31,8 @@ import org.xmlvm.refcount.InstructionActions;
 import org.xmlvm.refcount.ReferenceCountingException;
 
 /**
- * A growing interface used to add optimizations to the reference 
- * counting module.
+ * A growing interface used to add optimizations to the reference counting
+ * module.
  */
 public interface RefCountOptimization {
 
@@ -44,9 +44,9 @@ public interface RefCountOptimization {
     }
 
     /**
-     * This interface allows an implementor to make changes to nulling
-     * releases and retains as it desires, based on all the processing
-     * that as already occurred.
+     * This interface allows an implementor to make changes to nulling releases
+     * and retains as it desires, based on all the processing that as already
+     * occurred.
      */
     public ReturnValue Process(List<CodePath> allCodePaths,
             Map<Element, InstructionActions> beenTo, Element codeElement)

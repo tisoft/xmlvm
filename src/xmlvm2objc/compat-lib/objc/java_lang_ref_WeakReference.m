@@ -20,20 +20,32 @@
 
 #import "java_lang_ref_WeakReference.h"
 
+@implementation java_lang_ref_WeakReference 
 
-// java.lang.ref.WeakReference
-//----------------------------------------------------------------------------
-@implementation java_lang_ref_WeakReference
-
-- (void) __init_java_lang_ref_WeakReference___java_lang_Object: (java_lang_Object*) ref
+- (void) __init_java_lang_ref_WeakReference___java_lang_Object:(java_lang_Object*) ref
 {
-	// Do NOT retain the argument
-	self->referent = ref;
+	referent = ( (ref==JAVA_NULL) ? nil : ref);
 }
 
 - (java_lang_Object*) get__
 {
-	return [self->referent retain];
+	return (referent==nil)?JAVA_NULL : [referent retain];
 }
+
+- (void) clear__
+{
+	referent = nil;
+}
+
+- (int) enqueue__
+{
+	return NO;
+}
+
+- (int) isEnqueued__
+{
+	return NO;
+}
+
 
 @end

@@ -40,8 +40,8 @@ public class UIControl extends UIView {
         delegates = new HashMap<Integer, UIControlDelegate>();
     }
 
-    public void addTarget(UIControlDelegate delegate, int UIControlEvent) {
-        delegates.put(UIControlEvent, delegate);
+    public void addTarget(UIControlDelegate delegate, int uiControlEvent) {
+        delegates.put(uiControlEvent, delegate);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class UIControl extends UIView {
                     .iterator(); it.hasNext();) {
                 Map.Entry<Integer, UIControlDelegate> e = it.next();
                 if ((e.getKey().intValue() & TouchUpInside) > 0)
-                    e.getValue().raiseEvent(e.getValue(), UIControlEvent.TouchUpInside);
+                    e.getValue().raiseEvent(this, UIControlEvent.TouchUpInside);
             }
         }
     }

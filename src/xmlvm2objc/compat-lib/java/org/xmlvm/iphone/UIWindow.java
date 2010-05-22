@@ -28,7 +28,6 @@ public class UIWindow extends UIView {
 
     public UIWindow(CGRect rect) {
         super(rect);
-        UIApplication.sharedApplication().xmlvmAddWindow(this);
     }
 
     public void makeKeyAndVisible() {
@@ -36,8 +35,24 @@ public class UIWindow extends UIView {
             return;
         UIApplication.sharedApplication().setKeyWindow(this);
     }
-    
-    public void xmlvmDestroy() {
-        UIApplication.sharedApplication().xmlvmRemoveWindow(this);
+
+    public CGPoint convertPointToWindow(CGPoint point, UIWindow window) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public CGPoint convertPointFromWindow(CGPoint point, UIWindow window) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public CGRect convertRectToWindow(CGRect point, UIWindow window) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public CGRect convertRectFromWindow(CGRect point, UIWindow window) {
+        // TODO : Java implementation
+        return null;
     }
 }

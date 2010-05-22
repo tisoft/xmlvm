@@ -30,59 +30,59 @@
 
 + (org_xmlvm_iphone_UIColor*) colorWithPatternImage___org_xmlvm_iphone_UIImage :(org_xmlvm_iphone_UIImage*) image
 {
-	return [[UIColor colorWithPatternImage: image] retain];
+	return_XMLVM_SELECTOR(UIColor colorWithPatternImage: image)
 }
 
 + (org_xmlvm_iphone_UIColor *) _GET_blackColor
-{ return [UIColor blackColor];}
+	{ return_XMLVM_SELECTOR(UIColor blackColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_darkGrayColor
-{ return [UIColor darkGrayColor];}
+	{ return_XMLVM_SELECTOR(UIColor darkGrayColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_lightGrayColor
-{ return [UIColor lightGrayColor];}
+	{ return_XMLVM_SELECTOR(UIColor lightGrayColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_whiteColor
-{ return [UIColor whiteColor];}
+	{ return_XMLVM_SELECTOR(UIColor whiteColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_grayColor
-{ return [UIColor grayColor];}
+	{ return_XMLVM_SELECTOR(UIColor grayColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_redColor
-{ return [UIColor redColor];}
+	{ return_XMLVM_SELECTOR(UIColor redColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_greenColor
-{ return [UIColor greenColor];}
+	{ return_XMLVM_SELECTOR(UIColor greenColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_blueColor
-{ return [UIColor blueColor];}
+	{ return_XMLVM_SELECTOR(UIColor blueColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_cyanColor
-{ return [UIColor cyanColor];}
+	{ return_XMLVM_SELECTOR(UIColor cyanColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_yellowColor
-{ return [UIColor yellowColor];}
+	{ return_XMLVM_SELECTOR(UIColor yellowColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_magentaColor
-{ return [UIColor magentaColor];}
+	{ return_XMLVM_SELECTOR(UIColor magentaColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_orangeColor
-{ return [UIColor orangeColor];}
+	{ return_XMLVM_SELECTOR(UIColor orangeColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_purpleColor
-{ return [UIColor purpleColor];}
+	{ return_XMLVM_SELECTOR(UIColor purpleColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_brownColor
-{ return [UIColor brownColor];}
+	{ return_XMLVM_SELECTOR(UIColor brownColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_clearColor
-{ return [UIColor clearColor];}
+	{ return_XMLVM_SELECTOR(UIColor clearColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_lightTextColor
-{ return [UIColor lightTextColor];}
+	{ return_XMLVM_SELECTOR(UIColor lightTextColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_darkTextColor
-{ return [UIColor darkTextColor];}
+	{ return_XMLVM_SELECTOR(UIColor darkTextColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_groupTableViewBackgroundColor
-{ return [UIColor groupTableViewBackgroundColor];}
+	{ return_XMLVM_SELECTOR(UIColor groupTableViewBackgroundColor)}
 + (org_xmlvm_iphone_UIColor *) _GET_viewFlipsideBackgroundColor
-{ return [UIColor viewFlipsideBackgroundColor];}
+	{ return_XMLVM_SELECTOR(UIColor viewFlipsideBackgroundColor)}
 
 
 + (org_xmlvm_iphone_UIColor*) colorWithRGBA___float_float_float_float:(float)red :(float)green :(float)blue :(float)alpha {
-	return [[UIColor colorWithRed:red green:green blue:blue alpha:alpha] retain];
+	return_XMLVM_SELECTOR(UIColor colorWithRed:red green:green blue:blue alpha:alpha);
 }
 
 + (org_xmlvm_iphone_UIColor*) colorWithWhiteAlpha___float_float:(float) white :(float)alpha {
-    return [[UIColor colorWithWhite:white alpha:alpha] retain];
+    return_XMLVM_SELECTOR(UIColor colorWithWhite:white alpha:alpha);
 }
 
 + (org_xmlvm_iphone_UIColor*) colorWithHSBA___float_float_float_float:(float)hue :(float)saturation :(float)brightness :(float)alpha {
-    return [[UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha] retain];
+    return_XMLVM_SELECTOR(UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha);
 }
 
 @end

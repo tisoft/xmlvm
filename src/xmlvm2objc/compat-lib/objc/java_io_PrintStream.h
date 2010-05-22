@@ -27,6 +27,7 @@
 @private java_io_OutputStream* os;
 }
 
+- (void) __init_java_io_PrintStream___java_io_OutputStream: (java_io_OutputStream*) s;
 - (void) dealloc;
 - (void) writeString: (NSString*) str;
 - (void) writeStringLn: (NSString*) str;
@@ -35,7 +36,13 @@
 - (void) println___float: (float) f;
 - (void) println___double: (double) d;
 - (void) println___java_lang_String: (NSString*) s;
+- (void) println___java_lang_Object: (java_lang_Object*) o;
 - (void) println__;
+- (void) print___boolean: (int) i;
+- (void) print___int: (int) i;
+- (void) print___float: (float) f;
+- (void) print___double: (double) d;
+- (void) print___java_lang_String: (NSString*) s;
 - (void) print___java_lang_Object: (java_lang_Object*) o;
 
 @end

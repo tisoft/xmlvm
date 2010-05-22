@@ -33,6 +33,8 @@ static java_lang_String* _separator = @"/";
 + (java_lang_String*) _GET_separator;
 + (XMLVMArray*) listRoots__;
 
++ (java_io_File*) createTempFile___java_lang_String_java_lang_String:(java_lang_String*)prefix :(java_lang_String*)suffix;
+
 - (void) __init_java_io_File___java_net_URI: (java_net_URI*) uri;
 - (void) __init_java_io_File___java_lang_String: (java_lang_String*) pathname;
 - (void) __init_java_io_File___java_io_File_java_lang_String: (java_io_File*) dir: (java_lang_String*) name;
@@ -59,5 +61,6 @@ static java_lang_String* _separator = @"/";
 - (java_lang_String*) getCanonicalPath__;
 - (long) getUsableSpace__;
 - (bool) renameTo___java_io_File: (java_io_File*) f;
+- (java_io_File*) getParentFile__;
 
 @end

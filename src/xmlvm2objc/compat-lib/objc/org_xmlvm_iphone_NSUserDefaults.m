@@ -28,16 +28,12 @@
 
 + (org_xmlvm_iphone_NSUserDefaults*) standardUserDefaults__
 {
-	return [[NSUserDefaults standardUserDefaults] retain];
+	return_XMLVM_SELECTOR(NSUserDefaults standardUserDefaults)
 }
 
 - (java_lang_Object*) objectForKey___java_lang_String: (java_lang_String*) key
 {
-	id obj = [self objectForKey: key];
-	if (obj == nil)
-	    return JAVA_NULL;
-	[obj retain];
-	return obj;
+	return_XMLVM(objectForKey:key)
 }
 
 - (void) setObject___java_lang_Object_java_lang_String: (java_lang_Object*) value :(java_lang_String*) key
@@ -52,7 +48,7 @@
 
 - (int) integerForKey___java_lang_String :(java_lang_String*) key
 {
-	return [self integerForKey: key];
+	return [self integerForKey:key];
 }
 
 - (void) setBool___boolean_java_lang_String :(int) value :(java_lang_String*) key
@@ -77,26 +73,22 @@
 
 - (org_xmlvm_iphone_NSData*) dataForKey___java_lang_String :(java_lang_String*) key
 {
-	org_xmlvm_iphone_NSData* data = [self dataForKey: key];
-	[data retain];
-	return data;
+	return_XMLVM(dataForKey:key)
 }
 
 - (java_lang_String*) stringForKey___java_lang_String :(java_lang_String*) key
 {	
-	java_lang_String* data = [self stringForKey: key];
-	[data retain];
-	return data;
-}
-
-- (BOOL) synchronize__
-{
-	return [self synchronize];
+	return_XMLVM(stringForKey:key)
 }
 
 - (void) remove___java_lang_String :(java_lang_String*) key
 {
 	[self removeObjectForKey:key];
+}
+
+- (BOOL) synchronize__
+{
+	return [self synchronize];
 }
 
 @end

@@ -46,7 +46,6 @@ public class InputProcessFactory {
      */
     private Arguments arguments;
 
-
     public InputProcessFactory(Arguments arguments) {
         this.arguments = arguments;
     }

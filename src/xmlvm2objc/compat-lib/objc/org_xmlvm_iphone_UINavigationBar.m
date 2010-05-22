@@ -1,31 +1,48 @@
-
-/** @author teras */
+/*
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
+ * Ave, Cambridge, MA 02139, USA.
+ *
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ */
 
 #import "org_xmlvm_iphone_UINavigationBar.h"
 #import "org_xmlvm_iphone_UINavigationBarDelegate.h"
 #import "org_xmlvm_iphone_UINavigationItem.h"
 
+/** @author teras */
 
 @implementation UINavigationBar (cat_org_xmlvm_iphone_UINavigationBar)
 
 - (void) __init_org_xmlvm_iphone_UINavigationBar__ { 
-	[self init];
 }
 
 - (void) __init_org_xmlvm_iphone_UINavigationBar___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1 { 
-	[self initWithFrame:[n1 getCGRect]];
+	[self setFrame:[n1 getCGRect]];
 }
 
 - (int) getBarStyle__ {
-	return self.barStyle;
+	return [self barStyle];
 }
 
 - (void) setBarStyle___int :(int)n1 {
-	self.barStyle = n1;
+	[self setBarStyle:n1];
 }
 
 - (org_xmlvm_iphone_UIColor*) getTintColor__ {
-	return [self.tintColor retain];
+	return_XMLVM(tintColor)
 }
 
 - (void) setTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*)n1 {
@@ -45,7 +62,7 @@
 }
 
 - (org_xmlvm_iphone_UINavigationItem*) popNavigationItemAnimated___boolean :(int)anim { 
-	return [self popNavigationItemAnimated:anim];
+	return_XMLVM(popNavigationItemAnimated:anim)
 }
 
 - (void) setItems___java_util_ArrayList :(java_util_ArrayList*)n1 { 
@@ -57,24 +74,23 @@
 }
 
 - (org_xmlvm_iphone_UINavigationBarDelegate*) getNavigationBarDelegate__ { 
-	return [self.delegate retain];
+	return_XMLVM(delegate)
 }
 
-- (void) setDelegate___org_xmlvm_iphone_UINavigationBarDelegate :(org_xmlvm_iphone_UINavigationBarDelegate*)n1 { 
-	self.delegate = n1;
+- (void) setDelegate___org_xmlvm_iphone_UINavigationBarDelegate :(org_xmlvm_iphone_UINavigationBarDelegate*)newdelegate { 
+	XMLVM_PROPERTY(delegate,newdelegate)
 }
 
 - (org_xmlvm_iphone_UINavigationItem*) getTopItem__ { 
-	return self.topItem;
+	return_XMLVM(topItem)
 }
 
 - (org_xmlvm_iphone_UINavigationItem*) getBackitem__ { 
-	return self.backItem;
+	return_XMLVM(backItem)
 }
 
 - (java_util_ArrayList*) getItems__ { 
-	// TODO teras: why there is an error here?
-	return self.items;
+	return_XMLVM(items)
 }
 
 

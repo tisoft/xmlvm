@@ -32,7 +32,7 @@
 
 + (org_xmlvm_iphone_UIApplication*) sharedApplication__
 {
-	return [[UIApplication sharedApplication] retain];
+	return_XMLVM_SELECTOR(UIApplication sharedApplication)
 }
 
 - (void) applicationDidBecomeActive___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app
@@ -85,6 +85,21 @@
 	[self setStatusBarOrientation: orientation];
 }
 
+- (void) setStatusBarStyle___int: (int) style 
+{
+	[self setStatusBarStyle:style];
+}
+
+- (void) setStatusBarStyle___int_boolean: (int) style :(int) animated
+{
+	[self setStatusBarStyle:style animated:animated];
+}
+
+- (int) getStatusBarStyle__
+{
+	return [self statusBarStyle];
+}
+
 - (void) setIdleTimerDisabled___boolean: (bool) flag
 {
     [self setIdleTimerDisabled: flag];
@@ -103,7 +118,12 @@
 
 - (java_util_List *) getWindows__
 {
-	return [self.windows retain];
+	return_XMLVM(windows)
+}
+
+- (BOOL) openURL___org_xmlvm_iphone_NSURL:(org_xmlvm_iphone_NSURL*)url
+{
+	return [self openURL:url];
 }
 
 @end

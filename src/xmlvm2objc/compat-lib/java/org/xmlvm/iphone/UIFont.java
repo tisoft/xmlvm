@@ -25,7 +25,7 @@ import java.awt.Font;
  * @author teras
  * 
  */
-public class UIFont {
+public class UIFont extends NSObject {
 
     private final Font font;
 
@@ -69,7 +69,7 @@ public class UIFont {
     public static float buttonFontSize() {
         return 14.0f;
     }
-    
+
     public static float labelFontSize() {
         return 16.0f;
     }

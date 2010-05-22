@@ -24,10 +24,22 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_CGSize;
 
+- (org_xmlvm_iphone_CGSize*) initWithCGSize:(CGSize) size
+{
+	[self __init_org_xmlvm_iphone_CGSize___float_float:size.width :size.height];
+	return self;
+}
+
 - (void) __init_org_xmlvm_iphone_CGSize___float_float: (float) w : (float) h {
 	width_float = w;
 	height_float = h;
 }
+
+- (CGSize) getCGSize
+{
+	return CGSizeMake(width_float, height_float);
+}
+
 
 - (int) equals___java_lang_Object: (java_lang_Object*) o
 {
@@ -37,6 +49,12 @@
 		
 	org_xmlvm_iphone_CGSize* s = (org_xmlvm_iphone_CGSize*) o;
 	return self->width_float == s->width_float && self->height_float == s->height_float;
+}
+
+- (NSString*) toString__
+{
+	NSString* res = [[NSString alloc] initWithFormat:@"[%f, %f]", self->width_float, self->height_float];
+	return res;
 }
 
 @end

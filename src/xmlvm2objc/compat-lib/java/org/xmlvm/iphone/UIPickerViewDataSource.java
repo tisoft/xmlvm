@@ -18,16 +18,15 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.xmlvm.iphone;
 
 /**
  * 
  * @author teras
  */
-public interface UIPickerViewDataSource {
+public abstract class UIPickerViewDataSource extends NSObject {
 
-    public int numberOfComponentsInPickerView(UIPickerView view);
+    public abstract int numberOfComponentsInPickerView(UIPickerView view);
 
-    public int numberOfRowsInComponent(UIPickerView view, int component);
+    public abstract int numberOfRowsInComponent(UIPickerView view, int component);
 }

@@ -36,7 +36,7 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
     private static final String IPHONE_COMPAT_LIB_JAR  = "/iphone/compat-lib.jar";
     private static final String IPHONE_COMPAT_LIB_PATH = "src/xmlvm2objc/compat-lib/objc";
     private List<OutputFile>    result                 = new ArrayList<OutputFile>();
-    public static final String  IPHONE_SRC             = "/src/xmlvm";
+    public static final String  IPHONE_SRC             = "/src/xcode";
     public static final String  IPHONE_SRC_LIB         = IPHONE_SRC + "/lib/iphone";
     public static final String  IPHONE_SRC_APP         = IPHONE_SRC + "/app";
     public static final String  IPHONE_RESOURCES_SYS   = "/resources/sys";
@@ -94,6 +94,16 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
             StringBuffer infoOut = new StringBuffer();
             String line = null;
             while ((line = infoIn.readLine()) != null) {
+                line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER", arguments
+                        .option_property("bundleidentifier"));
+                line = line.replaceAll("PROPERTY_BUNDLEVERSION", arguments
+                        .option_property("bundleversion"));
+                line = line.replaceAll("PROPERTY_BUNDLEDISPLAYNAME", arguments
+                        .option_property("bundledisplayname"));
+                line = line.replaceAll("PROPERTY_STATUSBARHIDDEN", arguments.option_property(
+                        "statusbarhidden").toLowerCase().equals("true") ? "true" : "false");
+                line = line.replaceAll("PROPERTY_PRERENDEREDICON", arguments.option_property(
+                        "prerenderedicon").toLowerCase().equals("true") ? "true" : "false");
                 line = line.replaceAll("XMLVM_APP", arguments.option_app_name());
                 infoOut.append(line).append("\n");
             }
@@ -109,9 +119,8 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
         /* Add resources, as defined */
         for (String resourcedir : arguments.option_resource()) {
             List<ResourceOutputFile> resources = ResourceOutputFile.listResources(resourcedir,
-                    arguments.option_out() + IPHONE_RESOURCES_APP,
-                    arguments.option_out() + IPHONE_SRC_APP
-                    );
+                    arguments.option_out() + IPHONE_RESOURCES_APP, arguments.option_out()
+                            + IPHONE_SRC_APP);
             result.addAll(resources);
         }
 

@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.xmlvm.iphone;
 
 import java.util.ArrayList;
@@ -34,6 +33,8 @@ public class UIViewController extends UIResponder {
     private UIView                     view;
     private String                     title;
     private boolean                    wantsFullScreenLayout;
+    private UINavigationItem           navigationItem;
+    private UIBarButtonItem            editButtonItem;
     private boolean                    editing;
     private boolean                    hidesBottomBarWhenPushed;
     private UITabBarItem               tabBarItem;
@@ -183,6 +184,14 @@ public class UIViewController extends UIResponder {
         return null;
     }
 
+    public UINavigationItem getNavigationItem() {
+        return navigationItem;
+    }
+
+    public UIBarButtonItem editButtonItem() {
+        return editButtonItem;
+    }
+
     public boolean isEditing() {
         return editing;
     }
@@ -242,5 +251,13 @@ public class UIViewController extends UIResponder {
         this.toolbarItems = items;
         if (pcontroller != null)
             pcontroller.updateViews();
+    }
+
+    public void presentModalViewController(UIViewController modalViewController, boolean animated) {
+        // TODO : Java implementation
+    }
+
+    public void dismissModalViewControllerAnimated(boolean animated) {
+        // TODO : Java implementation
     }
 }

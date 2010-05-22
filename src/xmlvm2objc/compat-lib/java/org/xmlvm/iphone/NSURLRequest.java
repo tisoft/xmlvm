@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-public class NSURLRequest {
+public class NSURLRequest extends NSObject {
 
     private NSURL url;
 

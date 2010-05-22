@@ -20,7 +20,7 @@
 
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_UITextField.h"
-
+#import "org_xmlvm_iphone_UITextFieldDelegate.h"
 
 // UITextField
 //----------------------------------------------------------------------------
@@ -28,12 +28,11 @@
 
 - (void) __init_org_xmlvm_iphone_UITextField__
 {
-	[self initWithFrame: CGRectZero];
 }
 
 - (void) __init_org_xmlvm_iphone_UITextField___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1
 {
-	[self initWithFrame: [n1 getCGRect]];
+	[self setFrame:[n1 getCGRect]];
 }
 
 
@@ -44,7 +43,7 @@
 
 - (NSString*) getText__
 {
-    return [[self text] retain];
+	return_XMLVM(text)
 }
 
 - (void) setTextColor___org_xmlvm_iphone_UIColor: (org_xmlvm_iphone_UIColor*) color
@@ -79,7 +78,104 @@
 
 - (org_xmlvm_iphone_UIFont*) getFont__
 {
-	return [self.font retain];
+	return_XMLVM(font)
+}
+
+- (void) setFont___org_xmlvm_iphone_UIFont: (org_xmlvm_iphone_UIFont*)fnt
+{
+	[self setFont:fnt];
+}
+
+- (void) setDelegate___org_xmlvm_iphone_UITextFieldDelegate:(org_xmlvm_iphone_UITextFieldDelegate*)newdelegate
+{
+	XMLVM_PROPERTY(delegate,newdelegate)
+}
+
+- (org_xmlvm_iphone_UITextFieldDelegate*) getUITextFieldDelegate__
+{
+	return_XMLVM(delegate)
+}
+
+// UITextInputTraits bindings with java
+
+- (int) getAutocapitalizationType__
+{
+	return [self autocorrectionType];
+}
+
+- (void) setAutocapitalizationType___int :(int)capitalization
+{
+	[self setAutocapitalizationType:capitalization];
+}
+
+- (int) getAutocorrectionType__
+{
+	return [self autocorrectionType];
+}
+
+- (void) setAutocorrectionType___int :(int)correction
+{
+	[self setAutocorrectionType:correction];
+}
+
+- (int) isEnablesReturnKeyAutomatically__
+{
+	return [self enablesReturnKeyAutomatically];
+}
+
+- (void) setEnablesReturnKeyAutomatically___boolean :(int)returnkey
+{
+	[self setEnablesReturnKeyAutomatically:returnkey];
+}
+
+- (int) getKeyboardAppearance__
+{
+	return [self keyboardAppearance];
+}
+
+- (void) setKeyboardAppearance___int :(int)appearance
+{
+	[self setKeyboardAppearance:appearance];
+}
+
+- (int) getKeyboardType__
+{
+	return [self keyboardType];
+}
+
+- (void) setKeyboardType___int :(int)keyboardtype
+{
+	[self setKeyboardType:keyboardtype];
+}
+
+- (int) getReturnKeyType__
+{
+	return [self returnKeyType];
+}
+
+- (void) setReturnKeyType___int :(int)returntype
+{
+	[self setReturnKeyType:returntype];
+}
+
+- (int) isSecureTextEntry__
+{
+	return [self isSecureTextEntry];
+}
+
+- (void) setSecureTextEntry___boolean :(int)secure
+{
+	[self setSecureTextEntry:secure];
+}
+
+- (void) setAdjustsFontSizeToFitWidth___boolean:(int) value
+{
+	[self setAdjustsFontSizeToFitWidth:value];
+}
+
+- (int) isAdjustsFontSizeToFitWidth__
+{
+	return [self adjustsFontSizeToFitWidth];
 }
 
 @end

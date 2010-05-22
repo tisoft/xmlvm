@@ -22,7 +22,7 @@ package org.xmlvm.iphone;
 
 import org.xmlvm.iphone.internal.Simulator;
 
-public class UIAccelerometer {
+public class UIAccelerometer extends NSObject {
 
     private static UIAccelerometer  sharedAccelerometer = new UIAccelerometer();
 

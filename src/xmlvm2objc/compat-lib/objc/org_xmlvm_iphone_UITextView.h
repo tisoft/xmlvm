@@ -21,6 +21,7 @@
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_UIColor.h"
+#import "org_xmlvm_iphone_UIFont.h"
 
 // UITextField
 //----------------------------------------------------------------------------
@@ -32,4 +33,24 @@ typedef UITextView org_xmlvm_iphone_UITextView;
 - (NSString*) getText__;
 - (void) setTextColor___org_xmlvm_iphone_UIColor: (org_xmlvm_iphone_UIColor*) color;
 - (UIFont*) getFont__;
+- (void) setFont___org_xmlvm_iphone_UIFont: (org_xmlvm_iphone_UIFont*)fnt;
+- (int) isEditable__;
+- (void) setEditable___boolean :(int)edit;
+
+// UITextInputTraits bindings with java
+- (int) getAutocapitalizationType__;
+- (void) setAutocapitalizationType___int :(int)capitalization;
+- (int) getAutocorrectionType__;
+- (void) setAutocorrectionType___int :(int)correction;
+- (int) isEnablesReturnKeyAutomatically__;
+- (void) setEnablesReturnKeyAutomatically___boolean :(int)returnkey;
+- (int) getKeyboardAppearance__;
+- (void) setKeyboardAppearance___int :(int)appearance;
+- (int) getKeyboardType__;
+- (void) setKeyboardType___int :(int)keyboardtype;
+- (int) getReturnKeyType__;
+- (void) setReturnKeyType___int :(int)returntype;
+- (int) isSecureTextEntry__;
+- (void) setSecureTextEntry___boolean :(int)secure;
+
 @end

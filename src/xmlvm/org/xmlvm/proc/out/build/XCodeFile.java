@@ -23,9 +23,9 @@ package org.xmlvm.proc.out.build;
 import java.io.FileFilter;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
+import java.util.Set;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.Android2IPhoneOutputProcess;
@@ -114,13 +114,11 @@ public class XCodeFile extends BuildFile {
 
     private class XCodeProj {
 
-        static final int        FIRST_ID = 1000;
+        static final int FIRST_ID = 1000;
         /* */
-        String                  data;
-        int                     nextid;
-        List<OutputFile>        allfiles;
-        /* Requested libraries */
-        private HashSet<String> libraries;
+        String           data;
+        int              nextid;
+        List<OutputFile> allfiles;
 
         private XCodeProj(String name, List<OutputFile> allfiles) throws IOException {
             data = readData(IPHONE_XCODE_IN_JAR_RESOURCE, IPHONE_XCODE_PATH);
@@ -132,15 +130,6 @@ public class XCodeFile extends BuildFile {
                 throw new RuntimeException("Null files given to XCodeProj");
             this.allfiles = allfiles;
 
-            /* Creating default library list */
-            libraries = new HashSet<String>();
-            libraries.add("Foundation.framework");
-            libraries.add("UIKit.framework");
-            libraries.add("CoreGraphics.framework");
-            libraries.add("AVFoundation.framework");
-            libraries.add("OpenGLES.framework");
-            libraries.add("QuartzCore.framework");
-
             nextid = FIRST_ID;
         }
 
@@ -151,7 +140,7 @@ public class XCodeFile extends BuildFile {
                     .replace(TEMPL_FRAMEWORKS, "");
         }
 
-        private void injectLibraries(List<String> libs) {
+        private void injectLibraries(Set<String> libraries) {
             StringBuffer filerefs = new StringBuffer();
             StringBuffer buildrefs = new StringBuffer();
             StringBuffer buildframs = new StringBuffer();
@@ -161,9 +150,6 @@ public class XCodeFile extends BuildFile {
             String path = "";
 
             /* add user specified libraries to system libraries */
-            for (String lib : libs) {
-                libraries.add(lib);
-            }
             boolean valid_lib;
             /* Parse libraries */
             int buildid = 99998;

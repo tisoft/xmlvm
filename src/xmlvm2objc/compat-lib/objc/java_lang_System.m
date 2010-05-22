@@ -22,38 +22,15 @@
 #import "java_lang_RuntimeException.h"
 
 
-@interface ConsoleOutputStream : java_io_OutputStream {
-@private NSMutableString* log;
-}
-- (id) init;
-- (void) dealloc;
+@interface ConsoleOutputStream : java_io_OutputStream 
 - (void) write___int: (int) b;
 @end
 
 @implementation ConsoleOutputStream
 
-- (id) init
-{
-	[super init];
-	log = [[NSMutableString alloc] init];
-	return self;
-}
-
-- (void) dealloc
-{
-	[log release];
-	[super dealloc];
-}
-
 - (void) write___int: (int) b
 {
-	if (b == '\n') {
-		NSLog(log);
-		[log setString:@""];
-	}
-	else {
-	    [log appendString: [NSString stringWithFormat:@"%c", b]];
-	}
+	printf("%c",b);
 }
 
 @end

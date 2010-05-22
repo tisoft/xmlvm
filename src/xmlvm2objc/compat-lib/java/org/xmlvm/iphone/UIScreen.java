@@ -25,7 +25,7 @@ import java.awt.Rectangle;
 import org.xmlvm.iphone.internal.Device;
 import org.xmlvm.iphone.internal.Simulator;
 
-public class UIScreen {
+public class UIScreen extends NSObject {
 
     private final static UIScreen mainScreen;
     private final static CGRect   bounds;
@@ -39,7 +39,7 @@ public class UIScreen {
     // Prevent someone from instantiating this class
     private UIScreen() {
     }
-    
+
     public static UIScreen mainScreen() {
         return mainScreen;
     }

@@ -30,7 +30,7 @@
                :(org_xmlvm_iphone_NSMutableURLRequest*) req
                :(org_xmlvm_iphone_NSURLConnectionDelegate*) delegate
 {
-	return [[NSURLConnection connectionWithRequest:req delegate:delegate] retain];
+	return_XMLVM_SELECTOR(NSURLConnection connectionWithRequest:req delegate:delegate)
 }
 
 + (NSData*) sendSynchronousRequest___org_xmlvm_iphone_NSMutableURLRequest_org_xmlvm_iphone_NSHTTPURLResponseHolder_org_xmlvm_iphone_NSErrorHolder
@@ -40,11 +40,7 @@
 {
     NSHTTPURLResponse* resp;
     NSError* err;
-    NSData* data;
-    data = [NSURLConnection sendSynchronousRequest:req
-                            returningResponse:&resp
-                            error:&err];
     // TODO need to wrap resp and err in Holder classes
-    return data;
+	return_XMLVM_SELECTOR(NSURLConnection sendSynchronousRequest:req returningResponse:&resp error:&err)
 }
 @end

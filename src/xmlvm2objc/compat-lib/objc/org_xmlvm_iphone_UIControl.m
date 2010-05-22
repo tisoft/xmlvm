@@ -30,16 +30,18 @@
 
 - (void) __init_org_xmlvm_iphone_UIControl___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*) rect
 {
-	[self initWithFrame: [rect getCGRect]];
+	[self setFrame: [rect getCGRect]];
 }
+
+
+// DELEGATE
 
 - (void) addTarget___org_xmlvm_iphone_UIControlDelegate_int
                    :(id<org_xmlvm_iphone_UIControlDelegate>) delegate
                    :(int) controlEvents
 {
-	// TODO better memory management
 	[delegate retain];
-	[self addTarget:delegate action:@selector(raiseEvent___org_xmlvm_iphone_UIControlDelegate_int::)
+	[self addTarget:delegate action:@selector(raiseEvent___org_xmlvm_iphone_UIControl_int::)
 	      forControlEvents:controlEvents];
 }
 

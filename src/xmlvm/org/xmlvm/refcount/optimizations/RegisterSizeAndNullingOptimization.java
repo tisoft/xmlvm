@@ -39,7 +39,7 @@ public class RegisterSizeAndNullingOptimization implements RefCountOptimization 
      * Takes care of defining registers for argument variables and moving the
      * argument into the register. Determines which registers we need to null
      * out in the start of the function in order to preserve reference counting
-     * semantics.  
+     * semantics.
      * 
      * Also (eventually) will pick register sizes to be 8 or 4 byte depending on
      * usage in the future.
@@ -64,7 +64,8 @@ public class RegisterSizeAndNullingOptimization implements RefCountOptimization 
         for (int regId : allRegs) {
             Element initElem = new Element(InstructionProcessor.cmd_define_register,
                     InstructionProcessor.vm);
-            initElem.setAttribute("vartype", InstructionProcessor.cmd_define_register_attr_register);
+            initElem
+                    .setAttribute("vartype", InstructionProcessor.cmd_define_register_attr_register);
             initElem.setAttribute("num", regId + "");
             toRet.functionInit.add(initElem);
         }

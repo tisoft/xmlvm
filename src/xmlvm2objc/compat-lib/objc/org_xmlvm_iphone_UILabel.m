@@ -27,12 +27,11 @@
 
 - (void) __init_org_xmlvm_iphone_UILabel__
 {
-	[self initWithFrame: CGRectZero];
 }
 
 - (void) __init_org_xmlvm_iphone_UILabel___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1
 {
-	[self initWithFrame: [n1 getCGRect]];
+	[self setFrame: [n1 getCGRect]];
 }
 
 
@@ -71,17 +70,17 @@
 
 - (org_xmlvm_iphone_UIFont*) getFont__
 {
-	return [self.font retain];
+	return_XMLVM(font)
 }
 
 - (NSString*) getText__
 {
-	return [self.text retain];
+	return_XMLVM(text)
 }
 
 - (int) getLineBreakMode__
 {
-	return [self getLineBreakMode];
+	return [self lineBreakMode];
 }
 
 - (void) setLineBreakMode___int: (int) lineBreakMode
@@ -91,12 +90,43 @@
 
 - (int) getNumberOfLines__
 {
-	return [self getNumberOfLines];
+	return [self numberOfLines];
 }
 
 - (void) setNumberOfLines___int: (int) numberOfLines
 {
 	[self setNumberOfLines: numberOfLines];
+}
+
+- (void) setShadowColor___org_xmlvm_iphone_UIColor:(org_xmlvm_iphone_UIColor*) scolor
+{
+	[self setShadowColor:scolor];
+}
+
+- (org_xmlvm_iphone_UIColor*) getShadowColor__
+{
+	return_XMLVM(shadowColor)
+}
+
+- (void) setShadowOffset___org_xmlvm_iphone_CGSize:(org_xmlvm_iphone_CGSize*) offset
+{
+	[self setShadowOffset:[offset getCGSize]];
+}
+
+- (org_xmlvm_iphone_CGSize*) getShadowOffset__
+{
+	return [[org_xmlvm_iphone_CGSize alloc] initWithCGSize:[self shadowOffset]];
+}
+
+
+- (void) setAdjustsFontSizeToFitWidth___boolean:(int) value
+{
+	[self setAdjustsFontSizeToFitWidth:value];
+}
+
+- (int) isAdjustsFontSizeToFitWidth__
+{
+	return [self adjustsFontSizeToFitWidth];
 }
 
 @end

@@ -29,6 +29,7 @@
 @implementation UIProgressView (cat_org_xmlvm_iphone_UIProgressView)
 
 - (void) __init_org_xmlvm_iphone_UIProgressView___int:(int) style {
+	// Either this, or set progressViewStyle and height accordingly
 	[self initWithProgressViewStyle:style];
 }
 

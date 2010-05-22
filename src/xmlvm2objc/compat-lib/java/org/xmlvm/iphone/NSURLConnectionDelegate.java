@@ -20,12 +20,16 @@
 
 package org.xmlvm.iphone;
 
-public class NSURLConnectionDelegate {
+public class NSURLConnectionDelegate extends NSObject {
     public void connectionDidFinishLoading(NSURLConnection connection) {
         // Do nothing
     }
 
     public void connectionDidFailWithError(NSURLConnection connection, NSError error) {
+        // Do nothing
+    }
+
+    public void connectionDidReceiveData(NSURLConnection connection, NSData data) {
         // Do nothing
     }
 }

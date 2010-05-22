@@ -26,17 +26,13 @@
 @implementation NSBundle (cat_NSBundle)
 + (NSBundle*) mainBundle__
 {
-	return [[NSBundle mainBundle] retain];
+	return_XMLVM(mainBundle)
 }
 
 - (java_lang_String*) pathForResource___java_lang_String_java_lang_String: (java_lang_String*) resource
                                                                          : (java_lang_String*) type
 {
-	NSString* path = [self pathForResource: resource ofType: (type == JAVA_NULL ? nil : type)];
-	if (path == nil) {
-		return JAVA_NULL;
-	}
-	return [[NSMutableString alloc] initWithString: path];
+	return_XMLVM(pathForResource: resource ofType: (type == JAVA_NULL ? nil : type))
 }
 
 - (java_lang_String*) pathForResource___java_lang_String_java_lang_String_java_lang_String
@@ -44,11 +40,12 @@
                                                                          : (java_lang_String*) type
                                                                          : (java_lang_String*) directory
 {
-	NSString* path = [self pathForResource: resource ofType: (type == JAVA_NULL ? nil : type) inDirectory: (directory == JAVA_NULL ? nil : directory)];
-	if (path == nil) {
-		return JAVA_NULL;
-	}
-	return [[NSMutableString alloc] initWithString: path];
+	return_XMLVM(pathForResource: resource ofType: (type == JAVA_NULL ? nil : type) inDirectory: (directory == JAVA_NULL ? nil : directory))
+}
+
+- (NSString*) bundlePath__
+{
+	return_XMLVM(bundlePath)
 }
 
 @end

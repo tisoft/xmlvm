@@ -22,13 +22,15 @@
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_CGSize.h"
 #import "org_xmlvm_iphone_CGImage.h"
-
+#import "org_xmlvm_iphone_NSData.h"
 
 // UIImage
 //----------------------------------------------------------------------------
 typedef UIImage org_xmlvm_iphone_UIImage;
 @interface UIImage (cat_org_xmlvm_iphone_UIImage)
 + (org_xmlvm_iphone_UIImage*) imageWithContentsOfFile___java_lang_String :(NSString*)n1;
++ (org_xmlvm_iphone_UIImage*) imageWithData___org_xmlvm_iphone_NSData: (org_xmlvm_iphone_NSData*) data;
+- (org_xmlvm_iphone_UIImage*) stretchableImage___int_int :(int)leftCapWidth :(int)topCapHeight;
 - (org_xmlvm_iphone_CGSize*) getSize__;
 - (void) drawInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect;
 - (void) drawAtPoint___int_int :(int)x :(int)y;

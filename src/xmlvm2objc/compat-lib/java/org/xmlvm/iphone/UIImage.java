@@ -25,7 +25,7 @@ import java.awt.image.BufferedImage;
 import org.xmlvm.iphone.internal.ImageLoader;
 import org.xmlvm.iphone.internal.Simulator;
 
-public class UIImage {
+public class UIImage extends NSObject {
 
     private BufferedImage image;
 
@@ -41,6 +41,16 @@ public class UIImage {
     public static UIImage imageWithContentsOfFile(String filename) {
         UIImage uiImage = new UIImage(filename);
         return uiImage.image != null ? uiImage : null;
+    }
+
+    public static UIImage imageWithData(NSData data) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public UIImage stretchableImage(int leftCapWidth, int topCapHeight) {
+        // TODO : Java implementation
+        return null;
     }
 
     public static UIImage xmlvmCreateFromBufferedImage(BufferedImage bi) {

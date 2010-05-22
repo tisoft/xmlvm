@@ -60,7 +60,7 @@ typedef union {
     float*          f;
     double*         d;
     long*           l;
-	void*           data;
+      void*           data;
 } XMLVMElemPtr;
 
 
@@ -88,3 +88,26 @@ extern id JAVA_NULL;
 
 
 void ERROR(char* msg);
+
+// Use this macro to safely set a n obj-c value, in case Java has given a null pointer
+#define XMLVM_VALUE(VALUE) ((VALUE==JAVA_NULL)?nil:VALUE)
+
+// Return the value of an obj-c property. This value is retained.  If the value is nil, null is returned to java
+#define return_XMLVM(ITEMNAME) return_XMLVM_SELECTOR(self ITEMNAME)
+// Same as return_XMLVM_SELECTOR, but also define the actual selector
+#define return_XMLVM_SELECTOR(SELECTOR) id __xmlvm_item = [SELECTOR]; return ((__xmlvm_item == nil) ? JAVA_NULL : [__xmlvm_item retain]) ;
+
+// Set a property and retain it. Usually this is called when a delegate is given as a parameter. This object will automatically be released when this object will be released
+#define XMLVM_PROPERTY(PROPERTY,VALUE) XMLVM_PROPERTY_WITHCOMMAND(PROPERTY,VALUE,self.PROPERTY = __retainable)
+// Like XMLVM_PROPERTY but specify the exact command to execute to set this property (if any) 
+#define XMLVM_PROPERTY_WITHCOMMAND(PROPERTY,VALUE,COMMAND) id __retainable=(VALUE==JAVA_NULL)?nil:VALUE; COMMAND; static char PROPERTY_key; objc_setAssociatedObject(self, &PROPERTY_key, __retainable, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+// Under iPhone simulator there is a bug, in which associations are not supported. This is a workaround, which actually leaves a memory leak, but it doesn't harm (much).
+#if TARGET_IPHONE_SIMULATOR
+#define objc_setAssociatedObject(A,B,ITEM,D) [ITEM retain];
+#define OBJC_ASSOCIATION_RETAIN_NONATOMIC 1
+#endif
+
+
+// This is used to support optional protocol implementation in Java. Declare that an ObjC selector exists ONLY if the JAVA selector exists. CHECK is the current selector being asked.
+#define XMLVM_REROUTE(CHECK,OBJC,JAVA) if (sel_isEqual(CHECK, @selector(OBJC))) return [super respondsToSelector:@selector(JAVA)];

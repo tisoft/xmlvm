@@ -52,6 +52,6 @@
 - (void) setDelegate___org_xmlvm_iphone_UIResponderDelegate
              :(id<org_xmlvm_iphone_UIResponderDelegate>) delegate;
 
-- (BOOL) resignFirstResponder__;
-
+- (int)resignFirstResponder__;
+             
 @end

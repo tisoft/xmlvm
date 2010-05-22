@@ -19,6 +19,7 @@
  */
 
 #import "org_xmlvm_iphone_UIView.h"
+#import "org_xmlvm_iphone_UIWindow.h"
 
 // UIView
 //----------------------------------------------------------------------------
@@ -89,13 +90,11 @@
 
 - (void) __init_org_xmlvm_iphone_UIView__
 {
-	srand(time(NULL));
 }
 
 - (void) __init_org_xmlvm_iphone_UIView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1
 {
-	[self initWithFrame: [n1 getCGRect]];	
-	srand(time(NULL));
+	[self setFrame: [n1 getCGRect]];	
 }
 
 - (void) setFrame___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*) frame
@@ -150,6 +149,11 @@
 	[self removeFromSuperview];
 }
 
+- (void) sendSubviewToBack___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) subView
+{
+	[self sendSubviewToBack:subView];
+}
+
 - (void) bringSubviewToFront___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) view
 {
 	[self bringSubviewToFront: view];
@@ -157,17 +161,12 @@
 
 - (java_util_List*) getSubviews__
 {
-	java_util_List* views = [self subviews];
-	[views retain];
-	return views;
+	return_XMLVM(subviews)
 }
 
 - (void) setTransform___org_xmlvm_iphone_CGAffineTransform :(org_xmlvm_iphone_CGAffineTransform*)trans
 {
-	if (trans == JAVA_NULL)
- 		[self setTransform: CGAffineTransformIdentity];
- 	else
-    	[self setTransform: trans->transform];
+	[self setTransform:((trans==JAVA_NULL) ? CGAffineTransformIdentity : trans->transform)];
 }
 
 - (void) setNeedsDisplay__
@@ -186,9 +185,24 @@
 	// Will not be called because overridden in derived class
 }
 
+- (int) isOpaque__
+{
+	return [self isOpaque];
+}
+
 - (void) setOpaque___boolean :(int)opaque
 {
 	[self setOpaque:opaque];
+}
+
+- (int) isHidden__
+{
+	return [self isHidden];
+}
+
+- (void) setHidden___boolean :(int) hid
+{
+	[self setHidden:hid];
 }
 
 - (void) setBackgroundColor___org_xmlvm_iphone_UIColor:(org_xmlvm_iphone_UIColor*) col {
@@ -202,10 +216,6 @@
 
 - (void) setUserInteractionEnabled___boolean:(int) uinteraction {
     [self setUserInteractionEnabled:uinteraction];
-}
-
-- (void) setHidden___boolean:(int) uinteraction {
-    [self setHidden:uinteraction];
 }
 
 - (void) setContentMode___int:(int) mode
@@ -235,12 +245,12 @@
 
 - (org_xmlvm_iphone_UIView*) getSuperview__
 {
-	return [self.superview retain];
+	return_XMLVM(superview)
 }
 
 - (org_xmlvm_iphone_UIColor*) getBackgroundColor__
 {
-	return [self.backgroundColor retain];
+	return_XMLVM(backgroundColor)
 }
 
 - (float) getAlpha__
@@ -253,5 +263,132 @@
 	[self setAlpha:n1];
 }
 
+- (int) getTag__
+{
+	return [self tag];
+}
+
+
+- (void) setTag___int :(int)tag
+{
+	[self setTag:tag];
+}
+
+- (org_xmlvm_iphone_UIWindow*) getWindow__
+{
+	return_XMLVM(window)
+}
+
+- (org_xmlvm_iphone_CALayer*) getLayer__
+{
+	return_XMLVM(layer)
+}
+
+
+- (void) sizeToFit__
+{
+	[self sizeToFit];
+}
+
+- (org_xmlvm_iphone_CGSize*) sizeThatFits___org_xmlvm_iphone_CGSize:(org_xmlvm_iphone_CGSize*) size
+{
+	return [[org_xmlvm_iphone_CGSize alloc] initWithCGSize:[self sizeThatFits:[size getCGSize]]];
+}
+
+
+- (org_xmlvm_iphone_CGPoint*) convertPointFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIView*) view
+{
+	CGPoint to = [self convertPoint:[point getCGPoint] fromView:view];
+	return [[org_xmlvm_iphone_CGPoint alloc] initWithCGPoint:to];
+}
+
+- (org_xmlvm_iphone_CGPoint*) convertPointToView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIView*) view
+{
+	CGPoint to = [self convertPoint:[point getCGPoint] toView:view];
+	return [[org_xmlvm_iphone_CGPoint alloc] initWithCGPoint:to];
+}
+
+- (org_xmlvm_iphone_CGRect*) convertRectFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGRect*)rect :(org_xmlvm_iphone_UIView*) view
+{
+	CGRect to = [self convertRect:[rect getCGRect] fromView:view];
+	return [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:to];
+}
+
+- (org_xmlvm_iphone_CGRect*) convertRectToView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGRect*)rect :(org_xmlvm_iphone_UIView*) view
+{
+	CGRect to = [self convertRect:[rect getCGRect] toView:view];
+	return [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:to];
+}
+
+// View animations
++ (void) beginAnimations___java_lang_String :(NSString*)animationID
+{
+	[UIView beginAnimations:animationID context:NULL];
+}
+
++ (void) commitAnimations__
+{
+	[UIView commitAnimations];
+}
+
++ (void) setAnimationStartDate___org_xmlvm_iphone_NSDate :(org_xmlvm_iphone_NSDate*)startTime
+{
+	[UIView setAnimationStartDate:startTime];
+}
+
++ (void) setAnimationsEnabled___boolean :(BOOL)enabled
+{
+	[UIView setAnimationsEnabled:enabled];
+}
+
++ (void) setAnimationDuration___double :(double)duration
+{
+	[UIView setAnimationDuration:duration];
+}
+
++ (void) setAnimationDelay___double :(double)delay
+{
+	[UIView setAnimationDelay:delay];
+}
+
++ (void) setAnimationCurve___int :(int)curve
+{
+	[UIView setAnimationCurve:curve];
+}
+
++ (void) setAnimationRepeatCount___float :(float)repeatCount
+{
+	[UIView setAnimationRepeatCount:repeatCount];
+}
+
++ (void) setAnimationRepeatAutoreverses___boolean :(int)repeatAutoreverses
+{
+	[UIView setAnimationRepeatAutoreverses:repeatAutoreverses];
+}
+
++ (void) setAnimationBeginsFromCurrentState___boolean :(int)fromCurrentState
+{
+	[UIView setAnimationBeginsFromCurrentState:fromCurrentState];
+}
+
++ (void) setAnimationTransitionForView___int_org_xmlvm_iphone_UIView_boolean :(int)transition :(org_xmlvm_iphone_UIView*)view :(BOOL)cache
+{
+	[UIView setAnimationTransition:transition forView:view cache:cache];
+}
+
++ (int) areAnimationsEnabled__
+{
+	return [UIView areAnimationsEnabled];
+}
+
+
+// DELEGATE
++ (void) setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate :(org_xmlvm_iphone_UIViewAnimationDelegate*)animdelegate
+{
+	[animdelegate retain];
+	[UIView setAnimationDelegate:animdelegate];
+	[UIView setAnimationWillStartSelector:@selector(animationWillStart)];
+	[UIView setAnimationDidStopSelector:@selector(animationDidStop)];
+}
 
 @end

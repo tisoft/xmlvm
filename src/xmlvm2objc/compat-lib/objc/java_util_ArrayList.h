@@ -43,5 +43,6 @@ typedef NSMutableArray java_util_ArrayList;
 - (int) indexOf___java_lang_Object :(java_lang_Object*) item;
 - (int) contains___java_lang_Object :(java_lang_Object*) item;
 - (void) clear__;
+- (BOOL) isEmpty__;
 
 @end

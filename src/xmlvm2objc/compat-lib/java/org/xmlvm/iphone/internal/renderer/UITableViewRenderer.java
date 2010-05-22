@@ -107,8 +107,13 @@ public class UITableViewRenderer extends UIViewRenderer<UITableView> {
             for (int row = 0; row < numOfRowsInSection; row++) {
                 idx.setRow(row);
                 UITableViewCell cell = datasource.cellForRowAtIndexPath(view, idx);
-                float preferredHeight = delegate == null ? 50.0f : delegate
-                        .heightForRowAtIndexPath(view, idx);
+                float preferredHeight;
+                try {
+                    preferredHeight = delegate.heightForRowAtIndexPath(view, idx);
+                } catch (NullPointerException ex) { // Also catch
+                    // OptionalSelectorException
+                    preferredHeight = view.getRowHeight();
+                }
                 CGRect rect = new CGRect(leftEdge, y, width, preferredHeight);
                 cell.setFrame(rect);
                 cell.layoutSubviews();

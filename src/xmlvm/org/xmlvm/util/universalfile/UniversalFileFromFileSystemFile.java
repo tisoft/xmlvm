@@ -31,7 +31,6 @@ public class UniversalFileFromFileSystemFile extends UniversalFile {
 
     private File file;
 
-
     UniversalFileFromFileSystemFile(File file) {
         this.file = file;
     }

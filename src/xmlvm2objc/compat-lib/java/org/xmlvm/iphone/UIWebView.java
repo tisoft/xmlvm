@@ -24,10 +24,15 @@ import org.xmlvm.iphone.internal.renderer.UIWebViewRenderer;
 
 public class UIWebView extends UIView {
 
-    private NSURLRequest request;
+    private NSURLRequest      request;
+    private UIWebViewDelegate delegate = null;
 
     public UIWebView() {
-        super();
+        this(new CGRect(0, 0, 0, 0));
+    }
+
+    public UIWebView(CGRect rect) {
+        super(rect);
         xmlvmSetRenderer(new UIWebViewRenderer(this));
     }
 
@@ -35,7 +40,24 @@ public class UIWebView extends UIView {
         this.request = request;
     }
 
+    public void loadHTMLString(String string, NSURL baseURL) {
+        // TODO : Java implementation
+    }
+
     public NSURLRequest xmlvmGetRequest() {
         return request;
+    }
+
+    public String stringByEvaluatingJavaScriptFromString(String script) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public UIWebViewDelegate getWebViewDelegate() {
+        return delegate;
+    }
+
+    public void setDelegate(UIWebViewDelegate delegate) {
+        this.delegate = delegate;
     }
 }

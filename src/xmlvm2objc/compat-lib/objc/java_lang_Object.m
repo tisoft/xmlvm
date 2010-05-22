@@ -27,9 +27,9 @@
 //----------------------------------------------------------------------------
 @implementation NSObject (cat_java_lang_Object)
 
-- (java_lang_String*) getName__
+- (NSString*) getName__
 {
-	java_lang_String* name = (java_lang_String*) [[self getClass__] getName__];
+	NSString* name = [[self getClass__] getName__];
 	[name retain];
 	return name;
 }
@@ -58,6 +58,11 @@
 - (int) hashCode__
 {
 	return [self hash];
+}
+
+- (NSString*) toString__
+{
+	return_XMLVM(description)
 }
 
 @end

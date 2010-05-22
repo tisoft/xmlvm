@@ -29,9 +29,35 @@
 {
 }
 
+- (void) __init_org_xmlvm_iphone_UIWebView___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect
+{
+	[self setFrame:[rect getCGRect]];
+}
+
+
 - (void) loadRequest___org_xmlvm_iphone_NSURLRequest: (org_xmlvm_iphone_NSURLRequest*) request
 {
 	[self loadRequest:request];
+}
+
+- (void) loadHTMLString___java_lang_String_org_xmlvm_iphone_NSURL: (NSString*)string :(org_xmlvm_iphone_NSURL*)baseURL
+{
+	[self loadHTMLString:string baseURL:XMLVM_VALUE(baseURL)];
+}
+
+- (java_lang_String*) stringByEvaluatingJavaScriptFromString___java_lang_String: (java_lang_String*)script
+{
+	return_XMLVM(stringByEvaluatingJavaScriptFromString:script)
+}
+
+- (void) setDelegate___org_xmlvm_iphone_UIWebViewDelegate:(org_xmlvm_iphone_UIWebViewDelegate*)newdelegate
+{
+	XMLVM_PROPERTY(delegate,newdelegate)
+}
+
+- (org_xmlvm_iphone_UIWebViewDelegate*) getWebViewDelegate__
+{
+	return_XMLVM(delegate)
 }
 
 @end

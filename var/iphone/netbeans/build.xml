@@ -75,4 +75,6 @@
 
 	<target name="-post-compile" depends="-copy-resources"/>
 
+	<target name="-post-clean" depends="-xcode-clean"/>
+
 </project>

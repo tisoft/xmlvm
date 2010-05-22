@@ -99,5 +99,17 @@
 {
 }
 
+- (void)parser:(NSXMLParser *)parser
+	foundCDATA:(NSData *)CDATABlock
+{
+	[self foundCDATA___org_xmlvm_iphone_NSXMLParser_org_xmlvm_iphone_NSData:parser :CDATABlock];
+}
+
+- (void) foundCDATA___org_xmlvm_iphone_NSXMLParser_org_xmlvm_iphone_NSData
+     :(org_xmlvm_iphone_NSXMLParser*)parser
+     :(org_xmlvm_iphone_NSData*)CDATABlock
+{
+}
+
 @end
 

@@ -118,7 +118,8 @@ public class UIAlertView extends UIView {
     }
 
     private void buttonClicked(int buttonIndex) {
-        delegate.clickedButtonAtIndex(this, buttonIndex);
+        if (delegate != null)
+            delegate.clickedButtonAtIndex(this, buttonIndex);
         removeFromSuperview();
         setNeedsDisplay();
     }
@@ -132,7 +133,7 @@ public class UIAlertView extends UIView {
         }
 
         @Override
-        public void raiseEvent(UIControlDelegate sender, int eventType) {
+        public void raiseEvent(UIControl sender, int eventType) {
             buttonClicked(buttonIndex);
         }
     }

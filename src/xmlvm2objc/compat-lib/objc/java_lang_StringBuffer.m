@@ -52,6 +52,8 @@
 
 - (java_lang_StringBuffer*) append___java_lang_String: (java_lang_String*) str
 {
+	if (str==JAVA_NULL)
+		str = @"null";
     [self appendString: str];
     [self retain];
     return self;
@@ -59,7 +61,10 @@
 
 - (java_lang_StringBuffer*) append___java_lang_Object: (java_lang_Object*) obj
 {
-    [self appendString: [obj toString__]];
+	if (obj==JAVA_NULL)
+		[self appendString:@"null"];
+	else 
+		[self appendString: [obj toString__]];
     [self retain];
     return self;
 }
@@ -93,6 +98,13 @@
 - (java_lang_StringBuffer*) append___float: (float) f
 {
 	[self appendString: [NSString stringWithFormat: @"%1.1f", f]];
+    [self retain];
+	return self;
+}
+
+- (java_lang_StringBuffer*) append___double: (double) d
+{
+	[self appendString: [NSString stringWithFormat: @"%f", d]];
     [self retain];
 	return self;
 }

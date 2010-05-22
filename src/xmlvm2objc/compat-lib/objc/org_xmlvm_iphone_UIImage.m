@@ -36,8 +36,17 @@
 
 + (org_xmlvm_iphone_UIImage*) imageWithContentsOfFile___java_lang_String :(NSString*)path
 {
-	org_xmlvm_iphone_UIImage *toRet = [[UIImage imageNamed:path] retain];
-	return toRet != nil ? toRet : JAVA_NULL;
+	return_XMLVM_SELECTOR(UIImage imageNamed:path)
+}
+
++ (org_xmlvm_iphone_UIImage*) imageWithData___org_xmlvm_iphone_NSData: (org_xmlvm_iphone_NSData*) data
+{
+	return_XMLVM_SELECTOR(UIImage imageWithData:data)
+}
+
+- (org_xmlvm_iphone_UIImage*) stretchableImage___int_int :(int)leftCapWidth :(int)topCapHeight
+{
+	return_XMLVM(stretchableImageWithLeftCapWidth:leftCapWidth topCapHeight:topCapHeight)
 }
 
 - (org_xmlvm_iphone_CGSize*) getSize__

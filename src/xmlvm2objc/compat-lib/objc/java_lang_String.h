@@ -22,7 +22,6 @@
 #import "java_lang_Object.h"
 #import "java_lang_CharSequence.h"
 
-
 typedef NSMutableString java_lang_String;
 
 @interface NSMutableString (cat_java_lang_String) 
@@ -36,6 +35,8 @@ typedef NSMutableString java_lang_String;
 + (java_lang_String*) valueOf___double: (double) d;
 + (java_lang_String*) valueOf___java_lang_Object: (java_lang_Object*) o;
 - (void) getChars___int_int_char_ARRAYTYPE_int:(int)srcBegin:(int)srcEnd:(XMLVMArray*)dst:(int)dstBegin;
+- (java_lang_String*) replace___char_char:(unichar)from :(unichar)to;
+- (java_lang_String*) replace___java_lang_CharSequence_java_lang_CharSequence:(java_lang_CharSequence*)from :(java_lang_CharSequence*)to;
 - (java_lang_String*) replaceAll___java_lang_String_java_lang_String :(java_lang_String*)a :(java_lang_String*)b;
 - (XMLVMArray*) split___java_lang_String :(java_lang_String*)s;
 - (XMLVMArray*) getBytes__;
@@ -50,10 +51,12 @@ typedef NSMutableString java_lang_String;
 - (int) equalsIgnoreCase___java_lang_String: (java_lang_String*) s;
 - (java_lang_String*) toString__;
 - (java_lang_String*) toLowerCase__;
+- (java_lang_String*) toUpperCase__;
 - (int) lastIndexOf___java_lang_String: (java_lang_String*) s;
 - (int) indexOf___java_lang_String: (java_lang_String*) s;
 - (int) indexOf___int: (int) ch;
 - (int) startsWith___java_lang_String: (java_lang_String*) s;
 - (int) length__;
 - (java_lang_String*) trim__;
+- (int) isEmpty__;
 @end

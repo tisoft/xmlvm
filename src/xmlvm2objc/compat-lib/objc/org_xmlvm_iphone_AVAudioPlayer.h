@@ -23,6 +23,7 @@
 #import "org_xmlvm_iphone_AVAudioPlayerDelegate.h"
 #import "org_xmlvm_iphone_NSURL.h"
 #import "org_xmlvm_iphone_NSErrorHolder.h"
+#import "org_xmlvm_iphone_NSData.h"
 
 @interface AVAudioPlayerDelegateWrapper : NSObject<AVAudioPlayerDelegate> {
 	id<org_xmlvm_iphone_AVAudioPlayerDelegate> delegate;
@@ -90,6 +91,11 @@ typedef AVAudioPlayer org_xmlvm_iphone_AVAudioPlayer;
 - (void) setVolume___float: (float) volume;
 
 - (float) getVolume__;
+
+- (int) getNumberOfChannels__;
+- (double) getDuration__;
+- (org_xmlvm_iphone_NSURL*) getURL__;
+- (org_xmlvm_iphone_NSData*) getData__;
 
 @end
 

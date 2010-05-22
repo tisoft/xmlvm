@@ -20,6 +20,7 @@
 
 package org.xmlvm.iphone;
 
+import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 
@@ -27,7 +28,7 @@ import java.net.URL;
  * @author arno
  * 
  */
-public class NSBundle {
+public class NSBundle extends NSObject {
 
     private static NSBundle mainBundle = new NSBundle();
 
@@ -40,8 +41,7 @@ public class NSBundle {
 
     public String pathForResource(String resource, String type, String directory) {
         // resource is not allowed to contain a path component. In this case
-        // null
-        // has to be returned
+        // null has to be returned
         if (resource.indexOf('/') != -1) {
             return null;
         }
@@ -57,13 +57,24 @@ public class NSBundle {
 
         URL url = this.getClass().getResource("/" + fileName);
         try {
-            return url != null ? url.toURI().getPath() : null;
-        } catch (URISyntaxException exc) {
-            return null;
+            if (url != null) {
+                return url.toURI().getPath();
+            }
+        } catch (URISyntaxException ex) {
         }
+        File res = new File(new File(getClass().getResource("/").getFile()).getParent()
+                + File.separator + "resources" + File.separator + fileName);
+        if (res.exists()) {
+            return res.getPath();
+        }
+        return null;
     }
 
     public String pathForResource(String resource, String type) {
         return pathForResource(resource, type, null);
+    }
+
+    public String bundlePath() {
+        return getClass().getResource("/").getPath();
     }
 }

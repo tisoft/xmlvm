@@ -44,10 +44,10 @@ public class ExcessRetainsOptimization implements RefCountOptimization {
             this.useInfo = useInfo;
             this.index = index;
         }
+
         public InstructionUseInfo useInfo;
         public int                index;
     }
-
 
     @Override
     public ReturnValue Process(List<CodePath> allCodePaths,

@@ -162,7 +162,6 @@ public class Window {
     public void xmlvmRemoveWindow() {
         if (iWindow != null) {
             xmlvmSetHidden(true);
-            iWindow.xmlvmDestroy();
             iWindow = null;
             internalView.removeAllViews();
             internalView = null;

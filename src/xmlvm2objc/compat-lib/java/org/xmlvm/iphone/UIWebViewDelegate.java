@@ -20,13 +20,13 @@
 
 package org.xmlvm.iphone;
 
-public class UIWebViewDelegate {
+public class UIWebViewDelegate extends NSObject {
     public void didFailLoadWithError(UIWebView webView, NSError error) {
 
     }
 
     public boolean shouldStartLoadWithRequest(UIWebView webView, NSURLRequest request,
-            UIWebViewNavigationType navigationType) {
+            int uiWebViewNavigationType) {
         return true;
     }
 

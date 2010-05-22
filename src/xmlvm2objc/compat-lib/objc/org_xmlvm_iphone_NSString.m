@@ -27,7 +27,24 @@
 
 + (java_lang_String*) stringWithContentsOfFile___java_lang_String: (java_lang_String*) path
 {
-	return [[NSMutableString alloc] initWithContentsOfFile: path];
+	return_XMLVM_SELECTOR(NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL)
+}
+
++ (java_lang_String*) stringWithContentsOfURL___org_xmlvm_iphone_NSURL:(org_xmlvm_iphone_NSURL*)url
+{
+	return_XMLVM_SELECTOR(NSString stringWithContentsOfURL:url)
+}
+
++ (java_lang_String*) stringWithContentsOfURL___org_xmlvm_iphone_NSURL_int
+               : (org_xmlvm_iphone_NSURL*) url
+               : (int)encoding
+{
+	return_XMLVM_SELECTOR(NSString stringWithContentsOfURL:url encoding:encoding error:NULL)
+}
+
++ (java_util_ArrayList*) componentsSeparatedByString___java_lang_String_java_lang_String :(java_lang_String*)source :(java_lang_String*)separator
+{
+    return_XMLVM_SELECTOR(source componentsSeparatedByString:separator)
 }
 
 + (void) drawAtPoint___java_lang_String_org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIFont
@@ -68,6 +85,17 @@
 	s->width_float = size.width;
 	s->height_float = size.height;
 	return s;
+}
+
+
++ (org_xmlvm_iphone_NSData*) dataUsingEncoding___java_lang_String_int:(java_lang_String*)string :(int)encoding
+{
+	return_XMLVM_SELECTOR(string dataUsingEncoding:encoding)
+}
+
++ (java_lang_String*) initWithData___org_xmlvm_iphone_NSData_int:(org_xmlvm_iphone_NSData*) data :(int)encoding
+{
+	return [[NSString alloc] initWithData:data encoding:encoding];
 }
 
 @end

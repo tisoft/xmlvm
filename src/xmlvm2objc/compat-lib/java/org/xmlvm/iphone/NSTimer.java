@@ -25,7 +25,7 @@ import java.lang.reflect.Method;
 
 import javax.swing.SwingUtilities;
 
-public class NSTimer implements Runnable {
+public class NSTimer extends NSObject implements Runnable {
 
     private Object  target;
     private String  method;

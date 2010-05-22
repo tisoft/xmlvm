@@ -36,7 +36,7 @@ public class NewMain {
      * XMLVM entry point.
      */
     public static void main(String[] args) {
-        
+
         // Initialize arguments.
         Arguments arguments = new Arguments(args);
 

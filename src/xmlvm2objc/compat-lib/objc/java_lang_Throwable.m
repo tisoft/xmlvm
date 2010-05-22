@@ -37,16 +37,12 @@
 
 - (NSString *) getMessage__
 {
-	NSString* reason = [self reason];
-	[reason retain];
-    return reason;
+	return_XMLVM(reason)
 }
 
 - (NSString *) toString__
 {
-	NSString* name = [self name];
-	[name retain];
-    return name;
+	return_XMLVM(name)
 }
 
 - (void) printStackTrace__

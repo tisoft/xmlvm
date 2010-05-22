@@ -66,5 +66,11 @@
 - (void) foundCharacters___org_xmlvm_iphone_NSXMLParser_java_lang_String
      :(org_xmlvm_iphone_NSXMLParser*) parser
      :(java_lang_String*) characters;
-    
+
+- (void)parser:(NSXMLParser *)parser
+	    foundCDATA:(NSData *)CDATABlock;
+- (void) foundCDATA___org_xmlvm_iphone_NSXMLParser_org_xmlvm_iphone_NSData
+     :(org_xmlvm_iphone_NSXMLParser*)parser
+     :(org_xmlvm_iphone_NSData*)CDATABlock;
+
 @end

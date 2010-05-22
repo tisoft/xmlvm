@@ -32,7 +32,6 @@ import org.xmlvm.util.FileSet;
 public class Directory extends XFile {
     List<File> result;
 
-
     public Directory(String path) {
         super(new File(path));
         init();

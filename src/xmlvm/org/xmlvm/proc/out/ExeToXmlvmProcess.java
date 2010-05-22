@@ -125,7 +125,6 @@ public class ExeToXmlvmProcess extends XmlvmProcessImpl<ExeInputProcess> impleme
 
     private List<XmlvmResource> xmlvmResources = new ArrayList<XmlvmResource>();
 
-
     public ExeToXmlvmProcess(Arguments arguments) {
         super(arguments);
         addSupportedInput(ExeInputProcess.class);
@@ -158,7 +157,6 @@ public class ExeToXmlvmProcess extends XmlvmProcessImpl<ExeInputProcess> impleme
         return null;
     }
 
-
     private static class ExeToXmlvmTask {
 
         private static final Namespace                nsXMLVM                 = Namespace
@@ -175,7 +173,6 @@ public class ExeToXmlvmProcess extends XmlvmProcessImpl<ExeInputProcess> impleme
         private String                                enumBaseType            = "";
 
         private UniversalFile                         exeFile;
-
 
         public ExeToXmlvmTask(UniversalFile exeFile) {
             this.exeFile = exeFile;

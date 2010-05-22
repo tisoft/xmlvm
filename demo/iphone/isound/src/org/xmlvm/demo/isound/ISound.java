@@ -31,6 +31,7 @@ import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIButton;
 import org.xmlvm.iphone.UIButtonType;
 import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIControl;
 import org.xmlvm.iphone.UIControlDelegate;
 import org.xmlvm.iphone.UIControlEvent;
 import org.xmlvm.iphone.UIControlState;
@@ -73,7 +74,7 @@ public class ISound extends UIApplication implements AVAudioPlayerDelegate {
         button.addTarget(new UIControlDelegate() {
 
             @Override
-            public void raiseEvent(UIControlDelegate sender, int eventType) {
+            public void raiseEvent(UIControl sender, int eventType) {
                 if (playing) {
                     button.setTitle("Start playing ...", UIControlState.Normal);
                     playing = false;
@@ -106,7 +107,7 @@ public class ISound extends UIApplication implements AVAudioPlayerDelegate {
         loopSwitch.addTarget(new UIControlDelegate() {
 
             @Override
-            public void raiseEvent(UIControlDelegate sender, int eventType) {
+            public void raiseEvent(UIControl sender, int eventType) {
                 audioPlayer.setNumberOfLoops(loopSwitch.isOn() ? -1 : 0);
             }
 

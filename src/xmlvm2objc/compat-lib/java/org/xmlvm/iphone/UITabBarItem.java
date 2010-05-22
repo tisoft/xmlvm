@@ -35,7 +35,7 @@ public class UITabBarItem extends UIBarItem {
         view = new UITabBarItemView(this);
         view.addTarget(new UIControlDelegate() {
 
-            public void raiseEvent(UIControlDelegate sender, int eventType) {
+            public void raiseEvent(UIControl sender, int eventType) {
                 buttonClicked();
             }
         }, UIControlEvent.TouchUpInside);

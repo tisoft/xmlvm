@@ -96,7 +96,7 @@ public class UIPickerViewRenderer extends UIViewRenderer<UIPickerView> {
         g.translate(x + INSET + 1, y + INSET + 1);
         for (int i = 0; i < view.getNumberOfComponents(); i++) {
             paintComponent(g, i, h - 2 * INSET - 2);
-            g.translate(view.getDelegate().widthForComponent(view, i), 0);
+            g.translate(view.rowSizeForComponent(i).width, 0);
         }
         g.setTransform(trans);
         // Paint edges of components
@@ -105,7 +105,7 @@ public class UIPickerViewRenderer extends UIViewRenderer<UIPickerView> {
     private void paintComponent(Graphics2D g, int component, int height) {
         if (component == selectedComponent) {
             g.setColor(new Color(0, 255, 0, 30));
-            g.fillRect(0, 0, (int) view.getDelegate().widthForComponent(view, component), height);
+            g.fillRect(0, 0, (int) view.rowSizeForComponent(component).width, height);
         }
     }
 

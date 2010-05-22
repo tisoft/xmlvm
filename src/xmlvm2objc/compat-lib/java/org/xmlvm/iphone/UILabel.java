@@ -28,8 +28,11 @@ public class UILabel extends UIView {
     private UIFont  font;
     private UIColor textColor;
     private int     textAlignment;
-    private int     lineBreakMode = UILineBreakMode.TailTruncation;
-    private int     numberOfLines = 1;
+    private int     lineBreakMode             = UILineBreakMode.TailTruncation;
+    private int     numberOfLines             = 1;
+    private CGSize  shadowOffset              = new CGSize(0, 1);
+    private UIColor shadowColor               = null;
+    private boolean adjustsFontSizeToFitWidth = false;
 
     public UILabel() {
         this(new CGRect(0, 0, 0, 0));
@@ -72,8 +75,8 @@ public class UILabel extends UIView {
         return textColor;
     }
 
-    public void setTextAlignment(int UITextAlignment) {
-        this.textAlignment = UITextAlignment;
+    public void setTextAlignment(int uiTextAlignment) {
+        this.textAlignment = uiTextAlignment;
         this.setNeedsDisplay();
     }
 
@@ -95,5 +98,29 @@ public class UILabel extends UIView {
 
     public void setNumberOfLines(int numberOfLines) {
         this.numberOfLines = numberOfLines;
+    }
+
+    public CGSize getShadowOffset() {
+        return shadowOffset;
+    }
+
+    public void setShadowOffset(CGSize shadowOffset) {
+        this.shadowOffset = shadowOffset;
+    }
+
+    public UIColor getShadowColor() {
+        return shadowColor;
+    }
+
+    public void setShadowColor(UIColor shadowColor) {
+        this.shadowColor = shadowColor;
+    }
+
+    public boolean isAdjustsFontSizeToFitWidth() {
+        return adjustsFontSizeToFitWidth;
+    }
+
+    public void setAdjustsFontSizeToFitWidth(boolean adjustsFontSizeToFitWidth) {
+        this.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth;
     }
 }

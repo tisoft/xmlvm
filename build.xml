@@ -138,6 +138,8 @@
 		</javac>
 	</target>
 
+	<target name="jar" depends="xmlvmjar"/>
+
 	<target name="xmlvmjar" depends="cc-android-compat-lib">
 
 		<copy todir="${xmlvm.build.lib}">
@@ -173,6 +175,12 @@
 			</patternset>
 		</unjar>
 
+		<javac srcdir="src/tools/ant/xcode-updater/" destdir="${xmlvm.build}" debug="${debug}">
+			<include name="**/*.java" />
+		</javac>
+		<delete file="${xmlvm.build}/org/apache/tools/ant/BuildException.class"/>
+		<delete file="${xmlvm.build}/org/apache/tools/ant/Task.class"/>
+
 		<copy todir="${xmlvm.bin}" flatten="true">
 			<fileset dir="src">
 				<include name="**/*.xsl" />
@@ -206,7 +214,7 @@
 			<fileset dir="var/iphone/netbeans/" />
 		</copy>
 
-		<copy todir="${xmlvm.build}">
+		<copy todir="${xmlvm.build}/resources/images">
 			<fileset file="var/iphone/battery.png"/>
 			<fileset file="var/iphone/chassis.png"/>
 			<fileset file="var/iphone/wifi.png"/>
@@ -239,7 +247,7 @@
 
 
 	<target name="build-iphoneDemo" depends="all-ihelloworld,
-                                             build-iglnehelesson4,cc-iglnehelesson4,
+											 build-iglnehelesson4,cc-iglnehelesson4,
 											 cc-ifireworks,cc-iremote,cc-isound,
 											 sim-afireworks-jar,cc-sim-afireworks,sim-xokoban-jar,cc-sim-xokoban,sim-sayhello-jar,cc-sim-sayhello">
 	</target>

@@ -22,14 +22,18 @@
 #import "org_xmlvm_iphone_NSData.h"
 
 
-
 // NSData
 //----------------------------------------------------------------------------
 @implementation NSData (cat_org_xmlvm_iphone_NSData)
 
 + (NSData*) dataWithContentsOfFile___java_lang_String: (java_lang_String*) path
 {
-	return [[NSData dataWithContentsOfFile: path] retain];
+	return_XMLVM_SELECTOR(NSData dataWithContentsOfFile:path)
+}
+
++ (NSData*) dataWithContentsOfURL___org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSURL*) url
+{
+	return_XMLVM_SELECTOR(NSData dataWithContentsOfURL:url)
 }
 
 - (int) getByte___int: (int) index;
@@ -41,5 +45,21 @@
 {
     return [[NSMutableString alloc] initWithData:self encoding:NSUTF8StringEncoding];
 }
+
+- (java_lang_String*) toString___int: (int) encoding
+{
+    return [[NSMutableString alloc] initWithData:self encoding:encoding];
+}
+
+- (int) writeToFile___java_lang_String_boolean:(java_lang_String*)path :(int)atomically
+{
+	return [self writeToFile:path atomically:atomically];
+}
+
+- (int) length__
+{
+	return [self length];
+}
+
 @end
 

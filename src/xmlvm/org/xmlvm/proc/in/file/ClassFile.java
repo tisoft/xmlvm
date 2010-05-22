@@ -28,7 +28,6 @@ import org.xmlvm.util.universalfile.UniversalFile;
 public class ClassFile extends XFile {
     public static final String CLASS_ENDING = ".class";
 
-
     public ClassFile(UniversalFile path) {
         super(path);
     }

@@ -25,7 +25,7 @@ id JAVA_NULL;
 
 void xmlvm_init()
 {
-	JAVA_NULL = [NSNull null];
+      JAVA_NULL = [NSNull null];
 }
 
 

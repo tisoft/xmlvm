@@ -21,14 +21,15 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 
-
-// java.lang.ref.WeakReference
-//----------------------------------------------------------------------------
 @interface java_lang_ref_WeakReference : java_lang_Object {
-    java_lang_Object* referent;
+@private
+	java_lang_Object * referent;
 }
 
-- (void) __init_java_lang_ref_WeakReference___java_lang_Object: (java_lang_Object*) ref;
+- (void) __init_java_lang_ref_WeakReference___java_lang_Object:(java_lang_Object*) ref;
 - (java_lang_Object*) get__;
+- (void) clear__;
+- (int) enqueue__;
+- (int) isEnqueued__;
 
 @end

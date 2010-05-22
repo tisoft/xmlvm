@@ -23,6 +23,7 @@
 #import "java_util_Iterator.h"
 #import "java_util_Set.h"
 #import "java_lang_Object.h"
+#import "java_util_Map.h"
 
 
 // java.util.HashMap

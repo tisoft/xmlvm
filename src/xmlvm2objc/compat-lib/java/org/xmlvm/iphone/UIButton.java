@@ -42,11 +42,11 @@ public class UIButton extends UIControl {
     private UIColor titleShadowColor;
     private CGSize  titleShadowOffset;
 
-    protected UIButton(int UIButtonType) {
+    protected UIButton(int uiButtonType) {
         super();
         callDelegates = false;
         setBackgroundColor(UIColor.clearColor);
-        this.buttonType = UIButtonType;
+        this.buttonType = uiButtonType;
         switch (buttonType) {
         case UIAlertButtonRenderer.AlertViewType:
             xmlvmSetRenderer(new UIAlertButtonRenderer(this));
@@ -60,8 +60,8 @@ public class UIButton extends UIControl {
         }
     }
 
-    public static UIButton buttonWithType(int UIButtonType) {
-        return new UIButton(UIButtonType);
+    public static UIButton buttonWithType(int uiButtonType) {
+        return new UIButton(uiButtonType);
     }
 
     public void setFont(UIFont font) {
@@ -77,13 +77,26 @@ public class UIButton extends UIControl {
         return buttonType;
     }
 
-    public void setTitle(String title, int state) {
+    public void setTitle(String title, int uiControlState) {
         this.title = title;
         setNeedsDisplay();
     }
 
-    public String getTitleForState(int state) {
+    public void setBackgroundImage(UIImage img, int uiControlState) {
+        // TODO : Java implementation
+    }
+
+    public String getTitleForState(int uiControlState) {
         return title;
+    }
+
+    public void setImage(UIImage image, int uiControlState) {
+        // TODO : Java implementation
+    }
+
+    public UIImage imageForState(int uiControlState) {
+        // TODO : Java implementation
+        return null;
     }
 
     public void setTitleColor(UIColor titleColor, int state) {
@@ -121,7 +134,8 @@ public class UIButton extends UIControl {
         }
     }
 
-    //TODO UIButton should make use of UIControl and not the raw interface of UIResponder
+    // TODO UIButton should make use of UIControl and not the raw interface of
+    // UIResponder
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
         UIButtonRenderer gui = (UIButtonRenderer) xmlvmGetRenderer();
@@ -130,7 +144,7 @@ public class UIButton extends UIControl {
                     .iterator(); it.hasNext();) {
                 Map.Entry<Integer, UIControlDelegate> e = it.next();
                 if ((e.getKey().intValue() & TouchUpInside) > 0)
-                    e.getValue().raiseEvent(e.getValue(), UIControlEvent.TouchUpInside);
+                    e.getValue().raiseEvent(this, UIControlEvent.TouchUpInside);
             }
         gui.setButtonPressed(false);
         setNeedsDisplay();

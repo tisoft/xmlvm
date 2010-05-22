@@ -1,4 +1,3 @@
-
 package org.xmlvm.proc.out;
 
 import java.io.File;
@@ -9,7 +8,7 @@ import org.xmlvm.util.FileUtil;
 
 /**
  * This output file is responsible to copy resources to a project
- *
+ * 
  * @author teras
  */
 public class ResourceOutputFile extends OutputFile {
@@ -56,13 +55,15 @@ public class ResourceOutputFile extends OutputFile {
      * are taken into account
      * 
      * @param fromPath
-     *            Source directory. If it is receeded by "/" then the contents of this directory will be copied.
-     *            if not, the directory as a whole will be copied.
+     *            Source directory. If it is receeded by "/" then the contents
+     *            of this directory will be copied. if not, the directory as a
+     *            whole will be copied.
      * @param toPath
      *            Destination directory
      * @return list of resource files found in source directory
      */
-    public static List<ResourceOutputFile> listResources(String fromPath, String toResPath, String toAppPath) {
+    public static List<ResourceOutputFile> listResources(String fromPath, String toResPath,
+            String toAppPath) {
         ArrayList<ResourceOutputFile> list = new ArrayList<ResourceOutputFile>();
         File from = new File(fromPath);
         if (from.isFile() || fromPath.endsWith(File.separator)) {
@@ -75,16 +76,20 @@ public class ResourceOutputFile extends OutputFile {
 
     /**
      * Recursively add resource files
+     * 
      * @param from
-     *              The file to copy from - if it is a directory, copy all contents
+     *            The file to copy from - if it is a directory, copy all
+     *            contents
      * @param toPath
-     *              Output directory
+     *            Output directory
      * @param use_directory
-     *              If this flag is set, then the directory name is used when creating output file list
+     *            If this flag is set, then the directory name is used when
+     *            creating output file list
      * @param list
-     *              A list where all files to be copied are stored
+     *            A list where all files to be copied are stored
      */
-    private static void addEntries(File from, String toResPath, String toAppPath, boolean use_directory, ArrayList<ResourceOutputFile> list) {
+    private static void addEntries(File from, String toResPath, String toAppPath,
+            boolean use_directory, ArrayList<ResourceOutputFile> list) {
         if (from.isFile()) {
             addSingleEntry(from.getParent(), toResPath, toAppPath, from.getName(), list);
         } else if (from.isDirectory()) {
@@ -100,12 +105,10 @@ public class ResourceOutputFile extends OutputFile {
         }
     }
 
-    private static void addSingleEntry(String parent, String toResPath, String toAppPath, String name, ArrayList<ResourceOutputFile> list) {
-        if (name.endsWith(".c")
-                || name.endsWith(".h")
-                || name.endsWith(".cpp")
-                || name.endsWith(".c++")
-                || name.endsWith(".m")) {
+    private static void addSingleEntry(String parent, String toResPath, String toAppPath,
+            String name, ArrayList<ResourceOutputFile> list) {
+        if (name.endsWith(".c") || name.endsWith(".h") || name.endsWith(".cpp")
+                || name.endsWith(".c++") || name.endsWith(".m")) {
             list.add(new ResourceOutputFile(parent, toAppPath, name));
         } else {
             list.add(new ResourceOutputFile(parent, toResPath, name));

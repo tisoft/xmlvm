@@ -23,13 +23,12 @@ package org.xmlvm.iphone;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class NSURL {
+public class NSURL extends NSObject {
 
     private URL    url;
     private String urlString;
 
     private NSURL(String u) {
-        System.out.println("URL: " + u);
         this.urlString = u;
         this.url = null;
         try {
@@ -54,11 +53,15 @@ public class NSURL {
         return new NSURL(str + newPath);
     }
 
-    public URL getURL() {
+    public String absoluteString() {
+        return urlString;
+    }
+
+    public URL xmlvmGetURL() {
         return url;
     }
 
     public String xmlvmGetURLString() {
-        return this.urlString;
+        return urlString;
     }
 }

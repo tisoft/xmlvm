@@ -44,7 +44,6 @@ public class ZipArchiveExtractor {
 
     private static final String[] SUPPORTED_TYPES = { "zip", "jar" };
 
-
     /**
      * Returns whether the file is an archive that this class can handle.
      * 

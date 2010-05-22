@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-abstract public class UITableViewDataSource {
+abstract public class UITableViewDataSource extends NSObject {
     abstract public UITableViewCell cellForRowAtIndexPath(UITableView table, NSIndexPath idx);
 
     public int numberOfSectionsInTableView(UITableView table) {
@@ -31,5 +31,8 @@ abstract public class UITableViewDataSource {
 
     public String titleForHeaderInSection(UITableView table, int section) {
         return null;
+    }
+
+    public void commitEditingStyle(UITableView table, int editingStyle, NSIndexPath indexPath) {
     }
 }

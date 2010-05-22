@@ -25,13 +25,20 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_UITableViewDataSource
 
+// This is a trick to only take into account selectors that have already been overloaded 
+- (BOOL)respondsToSelector:(SEL)aSelector {
+	XMLVM_REROUTE(aSelector,tableView:commitEditingStyle:forRowAtIndexPath:,commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath:::)
+    return [super respondsToSelector:aSelector];
+}
+
 - (void) __init_org_xmlvm_iphone_UITableViewDataSource__
 {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return [self cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :tableView :indexPath];
+	UITableViewCell * cell = [self cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :tableView :indexPath];
+	return XMLVM_VALUE(cell);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -46,15 +53,22 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	return [self titleForHeaderInSection___org_xmlvm_iphone_UITableView_int :tableView :(int) section];
+	NSString * title = [self titleForHeaderInSection___org_xmlvm_iphone_UITableView_int :tableView :(int) section];
+	return XMLVM_VALUE(title);
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[self commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath:tableView :editingStyle :indexPath];
 }
 
 
 // Will be over-ridden in derived class
 - (org_xmlvm_iphone_UITableViewCell*) cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath
-      :(UITableView*) table
-      :(org_xmlvm_iphone_NSIndexPath*) idx
+:(UITableView*) table
+:(org_xmlvm_iphone_NSIndexPath*) idx
 {
+	return JAVA_NULL;
 }
 
 // Will be over-ridden in derived class
@@ -70,11 +84,11 @@
 }
 
 // Might be over-ridden in derived class
-- (java_lang_String *) titleForHeaderInSection___org_xmlvm_iphone_UITableView_int :(UITableView*) tableView
-                                                                                  :(int) section
+- (java_lang_String *) titleForHeaderInSection___org_xmlvm_iphone_UITableView_int :(UITableView*) tableView :(int) section
 {
-	return nil;
+	return JAVA_NULL;
 }
 
+// Note: it is important this object to be incomplete, or else smart usage of selectors will not be possible
 @end
 

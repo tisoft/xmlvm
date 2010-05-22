@@ -91,7 +91,7 @@ public class Button extends TextView {
             ((UIControl) xmlvmGetUIView()).addTarget(new UIControlDelegate() {
 
                 @Override
-                public void raiseEvent(UIControlDelegate sender, int eventType) {
+                public void raiseEvent(UIControl sender, int eventType) {
                     theListener.onClick(Button.this);
                 }
 

@@ -1,4 +1,3 @@
-
 package org.xmlvm.iphone.internal.renderer;
 
 import java.awt.Color;

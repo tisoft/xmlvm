@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-abstract public class UIAlertViewDelegate {
+abstract public class UIAlertViewDelegate extends NSObject {
 
     abstract public void clickedButtonAtIndex(UIAlertView alertView, int buttonIndex);
 }

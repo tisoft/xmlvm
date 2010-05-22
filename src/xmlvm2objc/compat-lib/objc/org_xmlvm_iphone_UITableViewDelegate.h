@@ -20,7 +20,8 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
-
+#import "org_xmlvm_iphone_UITableViewCell.h"
+#import "org_xmlvm_iphone_NSIndexPath.h"
 
 // UITableViewDelegate
 //----------------------------------------------------------------------------
@@ -28,9 +29,23 @@
 
 - (void) __init_org_xmlvm_iphone_UITableViewDelegate__;
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void) willDisplayCellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_UITableViewCell_org_xmlvm_iphone_NSIndexPath :(UITableView*)tableview :(UITableViewCell*)cell :(NSIndexPath*)path;
+- (void) accessoryButtonTappedForRowWithIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :(UITableView*)tableview :(NSIndexPath*)path;
+- (void) didSelectRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :(UITableView*)tableview :(NSIndexPath*)path;
+- (void) didDeselectRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :(UITableView*)tableview :(NSIndexPath*)path;
+- (void) willBeginEditingRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :(UITableView*)tableview :(NSIndexPath*)path;
+- (void) didEndEditingRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :(UITableView*)tableview :(NSIndexPath*)path;
+- (int) shouldIndentWhileEditingRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :(UITableView*)tableview :(NSIndexPath*)path;
+- (int) editingStyleForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :(UITableView*)tableview :(NSIndexPath*)path;
 
-- (float) heightForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :(UITableView*) tableView :(NSIndexPath *)indexPath;
+// Unsafe selectors. DO NOT IMPLEMENT.
+// They SHOULD produce errors "incomplete implementation of class, or else dynamic callback will not be possible
+- (float) heightForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :(UITableView*)n1 :(NSIndexPath*)n2;
+- (org_xmlvm_iphone_UIView*) viewForHeaderInSection___org_xmlvm_iphone_UITableView_int :(UITableView*)n1 :(int)n2;
+- (org_xmlvm_iphone_UIView*) viewForFooterInSection___org_xmlvm_iphone_UITableView_int :(UITableView*)n1 :(int)n2;
+- (float) heightForHeaderInSection___org_xmlvm_iphone_UITableView_int :(UITableView*)n1 :(int)n2;
+- (float) heightForFooterInSection___org_xmlvm_iphone_UITableView_int :(UITableView*)n1 :(int)n2;
+- (java_lang_String*) titleForDeleteConfirmationButtonForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :(UITableView*)n1 :(NSIndexPath*)n2;
 
 @end
 

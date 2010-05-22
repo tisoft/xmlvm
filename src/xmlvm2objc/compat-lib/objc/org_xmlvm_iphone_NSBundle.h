@@ -36,4 +36,6 @@ typedef NSBundle org_xmlvm_iphone_NSBundle;
 																		 : (java_lang_String*) resource
                                                                          : (java_lang_String*) type
                                                                          : (java_lang_String*) directory;
+- (NSString*) bundlePath__;
+
 @end

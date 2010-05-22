@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.xmlvm.iphone;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ import java.util.ArrayList;
  * 
  * @author teras
  */
-public abstract class UITabBarControllerDelegate {
+public abstract class UITabBarControllerDelegate extends NSObject {
 
     public boolean shouldSelectViewController(UITabBarController controller, UIViewController view) {
         return true;

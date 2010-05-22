@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-abstract public class UIPreferencesTableDataSource {
+abstract public class UIPreferencesTableDataSource extends NSObject {
 
     abstract public int numberOfGroupsInPreferencesTable(UIPreferencesTable aTable);
 

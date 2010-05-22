@@ -70,7 +70,7 @@ static void quicksort(int list[], int m, int n)
 @implementation java_util_Arrays
 
 + (void) mergeSort:(XMLVMArray*) src: (XMLVMArray*) dest: (int) low: (int) high: (int) off {
-	[java_util_Arrays mergeSortWithComparator:src:dest:low:high:off:(java_util_Comparator*)JAVA_NULL];
+	[java_util_Arrays mergeSortWithComparator:src:dest:low:high:off:JAVA_NULL];
 }
 
 + (void) mergeSortWithComparator:(XMLVMArray*) src: (XMLVMArray*) dest: (int) low: (int) high: (int) off: (java_util_Comparator*)c {
@@ -87,7 +87,7 @@ static void quicksort(int list[], int m, int n)
 				int compareVal = 0;
 				java_lang_Object* c1 = dest->array.o[j-1];
 				java_lang_Object* c2 = dest->array.o[j];
-				if (c == (java_util_Comparator*)JAVA_NULL) {
+				if (c == JAVA_NULL) {
 					compareVal = [(java_lang_Comparable*)c1 compareTo___java_lang_Object:c2];
 				} else {
 					compareVal = [c compare___java_lang_Object_java_lang_Object:c1:c2];
@@ -121,7 +121,7 @@ static void quicksort(int list[], int m, int n)
 	int compareVal = 0;
 	java_lang_Object* c1 = src->array.o[mid-1];
 	java_lang_Object* c2 = src->array.o[mid];
-	if (c == (java_util_Comparator*)JAVA_NULL) {
+	if (c == JAVA_NULL) {
 		compareVal = [(java_lang_Comparable*)c1 compareTo___java_lang_Object:c2];
 	} else {
 		compareVal = [c compare___java_lang_Object_java_lang_Object:c1:c2];
@@ -136,7 +136,7 @@ static void quicksort(int list[], int m, int n)
 		int compareVal2 = 0;
 		java_lang_Object* c3 = src->array.o[p];
 		java_lang_Object* c4 = src->array.o[q];
-		if (c == (java_util_Comparator*)JAVA_NULL) {
+		if (c == JAVA_NULL) {
 			compareVal2 = [(java_lang_Comparable*)c3 compareTo___java_lang_Object:c4];
 		} else {
 			compareVal2 = [c compare___java_lang_Object_java_lang_Object:c3:c4];
@@ -155,12 +155,12 @@ static void quicksort(int list[], int m, int n)
 }
 
 + (void) sort___java_lang_Object_ARRAYTYPE: (XMLVMArray*) a {
-	[java_util_Arrays sort___java_lang_Object_ARRAYTYPE_java_util_Comparator:a:(java_util_Comparator*)JAVA_NULL];
+	[java_util_Arrays sort___java_lang_Object_ARRAYTYPE_java_util_Comparator:a:JAVA_NULL];
 }
 
 + (void) sort___java_lang_Object_ARRAYTYPE_java_util_Comparator: (XMLVMArray*) a: (java_util_Comparator*) c {
 	XMLVMArray* aux = [a clone__];
-	if (c == (java_util_Comparator*)JAVA_NULL) {
+	if (c == JAVA_NULL) {
 		[java_util_Arrays mergeSort:aux:a:0:[a count]:0];
 	} else {
 		[java_util_Arrays mergeSortWithComparator:aux:a:0:[a count]:0:c];

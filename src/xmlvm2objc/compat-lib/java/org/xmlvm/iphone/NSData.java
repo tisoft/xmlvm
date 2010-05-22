@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class NSData {
+public class NSData extends NSObject {
 
     private String data;
 
@@ -65,6 +65,10 @@ public class NSData {
         return this.data;
     }
 
+    public String toString(int encoding) {
+        return this.data;
+    }
+
     public static NSData dataWithContentsOfFile(String path) {
         // If this marker appears in the path, then the resource needs to be
         // loaded out of a JAR file. We expect it in this case to be the JAR
@@ -81,5 +85,19 @@ public class NSData {
                 return null;
             }
         }
+    }
+
+    public static NSData dataWithContentsOfURL(NSURL url) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public boolean writeToFile(String path, boolean atomically) {
+        // TODO : Java implementation
+        return false;
+    }
+
+    public int length() {
+        return data.length();
     }
 }

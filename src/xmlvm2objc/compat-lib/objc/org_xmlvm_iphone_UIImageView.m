@@ -29,9 +29,9 @@
 
 - (void) __init_org_xmlvm_iphone_UIImageView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1
 {
-	[self initWithFrame: [n1 getCGRect]];
-	self.backgroundColor = [UIColor clearColor];
-	self.contentMode = UIViewContentModeCenter;
+	[self setFrame: [n1 getCGRect]];
+	[self setBackgroundColor:[UIColor clearColor]];
+	[self setContentMode:UIViewContentModeCenter];
 }
 
 - (void) setFrame___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*)rect
@@ -46,7 +46,7 @@
 
 - (org_xmlvm_iphone_UIImage*) getBackgroundImage__
 {
-	return self.image == nil ? JAVA_NULL : [self.image retain];
+	return_XMLVM(image)
 }
 
 - (void) setImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image
@@ -56,7 +56,7 @@
 
 - (org_xmlvm_iphone_UIImage*) getImage__
 {
-	return self.image == nil ? JAVA_NULL : [self.image retain];
+	return_XMLVM(image)
 }
 
 - (void) setNeedsDisplayInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect

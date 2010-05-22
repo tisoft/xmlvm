@@ -19,10 +19,16 @@
  */
 package org.xmlvm.main;
 
+import java.io.File;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
+import java.util.Set;
+import java.util.StringTokenizer;
 import org.xmlvm.Log;
 
 /**
@@ -50,18 +56,22 @@ public class Arguments {
     public static final String    ARG_QUIET       = "--quiet";
     // This is just temporary for activating the new DEX processing.
     public static final String    ARG_USE_JVM     = "--use-jvm";
+    // This argument will store various properties to XMLVM
+    // An example of these values can be found in the long help
+    public static final String    ARG_PROPERTY    = "-D";
     // The parsed values will be stored here.
     private List<String>          option_in       = new ArrayList<String>();
     private String                option_out      = null;
     private Targets               option_target   = Targets.NONE;
-    private List<String>          option_resource = new ArrayList<String>();
-    private List<String>          option_lib      = new ArrayList<String>();
+    private Set<String>           option_resource = new HashSet<String>();
+    private Set<String>           option_lib      = new HashSet<String>();
     private String                option_app_name = null;
     private String                option_qx_main  = null;
     private boolean               option_qx_debug = false;
     private Log.Level             option_debug    = Log.Level.WARNING;
     private String                option_skeleton = null;
     private boolean               option_use_jvm  = false;
+    private Map<String, String>   option_property = new HashMap<String, String>();
 
     private static final String[] shortUsage      = {
             "Usage: ",
@@ -94,16 +104,29 @@ public class Arguments {
             "    iphone           iPhone Objective-C",
             "    qooxdoo          JavaScript Qooxdoo web application",
             "    webos            WebOS JavaScript Project",
+            "",
             " --skeleton=<type> Skeleton to create a new template project:",
             "    iphone            iPhone project skeleton",
-            " --lib=<name>      Extra libraries required for the specified target:",
+            "",
+            " --lib=<libraries> Comma separated list of extra libraries required for the specified target:",
             "    android          Support of android applications",
+            "    <LIB>.dylib      iPhone dynamic library <LIB>",
+            "    <LIB>.Framework  iPhone framework <LIB>",
+            "",
             " --app-name=<name> Application name, required for iphone, android-on-iphone and qooxdoo targets",
             "",
-            " --resource=<path> External non parsable files. Used in iphone and android-on-iphone templates to register auxilliary files",
+            " --resource=<path> "
+                    + (File.pathSeparatorChar == ':' ? "Colon" : "Semicolon")
+                    + " separated list of external non parsable files and directories. Used in iphone and android-on-iphone templates to register auxilliary files. If this argument ends with '/', then the contents of this directory will be copied. If it is a directory and does not end with '/', then a verbatim copy of the directory will be performed.",
             "", " --qx-main=<class> Entry point of Qooxdoo application", "",
             " --qx-debug        Create debug information of Qooxdoo target", "",
-            " --debug=<level>   Debug information level",
+            " -Dkey=value       Set an XMLVM property",
+            "    BundleIdentifier  The value of CFBundleIdentifier in Info.plist",
+            "    BundleVersion     The value of CFBundleVersion in Info.plist",
+            "    BundleDisplayName The value of CFBundleDisplayName in Info.plist",
+            "    PrerenderedIcon   The iPhone application icon is already pre-rendered",
+            "    StatusBarHidden   Hide (value is 'true') or display (value is 'false' status bar",
+            "", " --debug=<level>   Debug information level",
             "    none             Be completely quiet, no information is printed",
             "    error            Only errors will be printed",
             "    warning          Warning and errors will be printed",
@@ -139,6 +162,22 @@ public class Arguments {
      * Creates a new instance that will parse the arguments of the given array.
      */
     public Arguments(String[] argv) {
+        // Add default properties
+        option_property.put("bundleidentifier", "org.xmlvm.iphone.XMLVM_APP");
+        option_property.put("bundleversion", "1.0");
+        option_property.put("bundledisplayname", "XMLVM_APP");
+        option_property.put("statusbarhidden", "false");
+        option_property.put("prerenderedicon", "false");
+        // Add default libraries
+        option_lib.add("Foundation.framework");
+        option_lib.add("UIKit.framework");
+        option_lib.add("CoreGraphics.framework");
+        option_lib.add("AVFoundation.framework");
+        option_lib.add("OpenGLES.framework");
+        option_lib.add("QuartzCore.framework");
+        option_lib.add("MessageUI.framework");
+        option_lib.add("MediaPlayer.framework");
+
         // Read command line arguments
         for (int i = 0; i < argv.length; i++) {
             String arg = argv[i];
@@ -156,9 +195,10 @@ public class Arguments {
                 if (option_target == null)
                     parseError("Unkown target: " + target);
             } else if (arg.startsWith(ARG_RESOURCE)) {
-                option_resource.add(arg.substring(ARG_RESOURCE.length()));
+                parseListArgument(arg.substring(ARG_RESOURCE.length()), option_resource,
+                        File.pathSeparator);
             } else if (arg.startsWith(ARG_LIB)) {
-                option_lib.add(arg.substring(ARG_LIB.length()));
+                parseListArgument(arg.substring(ARG_LIB.length()), option_lib, ",");
             } else if (arg.startsWith(ARG_APP_NAME)) {
                 option_app_name = arg.substring(ARG_APP_NAME.length());
             } else if (arg.startsWith(ARG_QX_MAIN)) {
@@ -186,6 +226,14 @@ public class Arguments {
                 option_debug = Log.Level.ERROR;
             } else if (arg.equals(ARG_USE_JVM)) {
                 option_use_jvm = true;
+            } else if (arg.startsWith(ARG_PROPERTY)) {
+                String value = arg.substring(ARG_PROPERTY.length());
+                int equal = value.indexOf("=");
+                if (equal < 1) {
+                    parseError("Unable to parse kay/value: " + value);
+                }
+                option_property.put(value.substring(0, equal).toLowerCase(), value
+                        .substring(equal + 1));
             } else {
                 parseError("Unknown parameter: " + arg);
             }
@@ -199,9 +247,9 @@ public class Arguments {
         if (option_skeleton != null && option_target != Targets.NONE) {
             parseError("Only one argument of '--target' or '--project-skeleton' is allowed");
         }
-        if (option_skeleton != null && option_lib.size() > 0) {
-            parseError("Argument '--project-skeleton' does not support '--lib'");
-        }
+        // if (option_skeleton != null && option_lib.size() > 0) {
+        // parseError("Argument '--project-skeleton' does not support '--lib'");
+        // }
         if (option_skeleton != null)
             option_target = Targets.IPHONETEMPLATE;
         if (option_target == Targets.IPHONETEMPLATE) {
@@ -219,14 +267,17 @@ public class Arguments {
             if (option_target == Targets.IPHONE)
                 option_target = Targets.IPHONEANDROID;
             else if (option_target == Targets.WEBOS) {
-            } else
+            } else {
                 parseError("--lib=android is meaningless when not --target=[iphone|webos]");
             }
-        if (option_lib.size() > 0 && option_target != Targets.IPHONE)
-            parseError("--lib=" + option_lib.get(0) + " is not supported for this target");
+        }
+        // // Due to default libraries provided, this check can not be performed
+        // if (option_lib.size() > 0 && option_target != Targets.IPHONE)
+        // parseError("--lib=" + option_lib.iterator().next() +
+        // " is not supported for this target");
 
         // Only skeleton creation mode supports empty inputs.
-        if ((option_skeleton == null || option_skeleton.isEmpty()) && option_in.size() == 0)
+        if ((option_skeleton == null || option_skeleton.equals("")) && option_in.size() == 0)
             parseError("Need at least one --in argument");
         if (option_out == null)
             option_out = ".";
@@ -239,6 +290,30 @@ public class Arguments {
             parseError("Unknown --debug level");
     }
 
+    private final static void parseListArgument(String argument, Set<String> option,
+            String separator) {
+        StringTokenizer tk = new StringTokenizer(argument, separator);
+        while (tk.hasMoreTokens()) {
+            String entry = tk.nextToken().trim();
+            if (!entry.equals("")) {
+                boolean status = true;
+                if (entry.startsWith("+")) {
+                    entry = entry.substring(1);
+                } else if (entry.startsWith("-")) {
+                    status = false;
+                    entry = entry.substring(1);
+                }
+                if (!entry.equals("")) {
+                    if (status) {
+                        option.add(entry);
+                    } else {
+                        option.remove(entry);
+                    }
+                }
+            }
+        }
+    }
+
     public List<String> option_in() {
         return option_in;
     }
@@ -247,7 +322,7 @@ public class Arguments {
         return option_out;
     }
 
-    public List<String> option_resource() {
+    public Set<String> option_resource() {
         return option_resource;
     }
 
@@ -275,8 +350,12 @@ public class Arguments {
         return option_use_jvm;
     }
 
-    public List<String> option_lib() {
+    public Set<String> option_lib() {
         return option_lib;
+    }
+
+    public String option_property(String key) {
+        return option_property.get(key);
     }
 
     private static final void printText(String[] txt, PrintStream out) {

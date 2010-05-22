@@ -129,7 +129,7 @@ static NSMutableDictionary* delegates;
     }
 }
 
-- (BOOL) resignFirstResponder__
+- (int)resignFirstResponder__
 {
 	return [self resignFirstResponder];
 }

@@ -35,10 +35,10 @@ public class UIProgressView extends UIControl {
     private float progress          = 0f;
     private int   progressViewStyle = 1;
 
-    public UIProgressView(int UIProgressViewStyle) {
+    public UIProgressView(int uiProgressViewStyle) {
         super(new CGRect(0, 0, kProgressViewWidth, kProgressViewHeight));
         xmlvmSetRenderer(new UIProgressViewRenderer(this));
-        progressViewStyle = UIProgressViewStyle;
+        progressViewStyle = uiProgressViewStyle;
     }
 
     public void setProgress(float val) {

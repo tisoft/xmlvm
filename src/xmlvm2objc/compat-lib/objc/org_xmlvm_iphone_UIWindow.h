@@ -20,6 +20,7 @@
 
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_CGRect.h"
+#import "org_xmlvm_iphone_CGPoint.h"
 #import "org_xmlvm_iphone_UIView.h"
 #import "org_xmlvm_iphone_UIApplication.h"
 
@@ -31,5 +32,8 @@ typedef UIWindow org_xmlvm_iphone_UIWindow;
 - (void) __init_org_xmlvm_iphone_UIWindow___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;
 - (void) addSubview___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*)view;
 - (void) makeKeyAndVisible__;
-- (void) xmlvmDestroy__;
+- (org_xmlvm_iphone_CGPoint*) convertPointFromWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIWindow*) window;
+- (org_xmlvm_iphone_CGPoint*) convertPointToWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIWindow*) window;
+- (org_xmlvm_iphone_CGRect*) convertRectFromWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow:(org_xmlvm_iphone_CGRect*)rect :(org_xmlvm_iphone_UIWindow*) window;
+- (org_xmlvm_iphone_CGRect*) convertRectToWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow:(org_xmlvm_iphone_CGRect*)rect :(org_xmlvm_iphone_UIWindow*) window;
 @end

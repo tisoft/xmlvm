@@ -33,6 +33,7 @@
 #import "</xsl:text>
       <xsl:value-of select="$header"/>
       <xsl:text>"
+#import "org_xmlvm_iphone_NSObject.h"
 
 </xsl:text>
       <xsl:call-template name="emitImplementation"/>
@@ -303,7 +304,14 @@ int main(int argc, char* argv[])
 	  <xsl:text> release];
 </xsl:text>
 	</xsl:for-each>
-	<xsl:text>    [super dealloc];
+	<xsl:text>    if (strcmp(object_getClassName(self), "</xsl:text>
+    	<xsl:value-of select="vm:fixname(@package)"/>
+    	<xsl:text>_</xsl:text>
+    	<xsl:value-of select="vm:fixname(@name)"/>
+    	<xsl:text>") == 0) {
+        [self dealloc__];
+    }
+    [super dealloc];
 }
 
 </xsl:text>

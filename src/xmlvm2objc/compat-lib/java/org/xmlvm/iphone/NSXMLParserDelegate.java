@@ -94,4 +94,7 @@ public class NSXMLParserDelegate extends DefaultHandler {
 
     public void foundCharacters(NSXMLParser parser, String characters) {
     }
+
+    public void foundCDATA(NSXMLParser parser, NSData CDATABlock) {
+    }
 }

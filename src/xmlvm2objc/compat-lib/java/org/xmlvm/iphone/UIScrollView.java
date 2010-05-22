@@ -22,11 +22,27 @@ package org.xmlvm.iphone;
 
 public class UIScrollView extends UIView {
 
-    private boolean scrollEnabled = true;
+    private boolean              scrollEnabled                  = true;
+    private boolean              pagingEnabled                  = false;
+    private CGSize               contentSize                    = new CGSize(0, 0);
+    private boolean              showsHorizontalScrollIndicator = true;
+    private boolean              showsVerticalScrollIndicator   = true;
+    private boolean              scrollsToTop                   = true;
+    private UIScrollViewDelegate delegate                       = null;
+
+    public void setContentOffset(CGPoint offset) {
+        setContentOffset(offset, false);
+    }
 
     public void setContentOffset(CGPoint offset, boolean animated) {
+        // ERROR: this should be done with properties!
         xmlvmSetOffsets((int) offset.x, (int) offset.y);
         setNeedsDisplay();
+    }
+
+    public CGPoint getContentOffset() {
+        // TODO : Java implementation
+        return null;
     }
 
     public void setScrollEnabled(boolean scrollEnabled) {
@@ -35,5 +51,57 @@ public class UIScrollView extends UIView {
 
     public boolean isScrollEnabled() {
         return this.scrollEnabled;
+    }
+
+    public boolean isPagingEnabled() {
+        return pagingEnabled;
+    }
+
+    public void setPagingEnabled(boolean pagingEnabled) {
+        this.pagingEnabled = pagingEnabled;
+    }
+
+    public CGSize getContentSize() {
+        return contentSize;
+    }
+
+    public void setContentSize(CGSize contentSize) {
+        this.contentSize = contentSize;
+    }
+
+    public UIScrollViewDelegate getDelegate() {
+        return delegate;
+    }
+
+    public void setDelegate(UIScrollViewDelegate delegate) {
+        this.delegate = delegate;
+    }
+
+    public boolean isScrollsToTop() {
+        return scrollsToTop;
+    }
+
+    public void setScrollsToTop(boolean scrollsToTop) {
+        this.scrollsToTop = scrollsToTop;
+    }
+
+    public boolean isShowsHorizontalScrollIndicator() {
+        return showsHorizontalScrollIndicator;
+    }
+
+    public void setShowsHorizontalScrollIndicator(boolean showsHorizontalScrollIndicator) {
+        this.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator;
+    }
+
+    public boolean isShowsVerticalScrollIndicator() {
+        return showsVerticalScrollIndicator;
+    }
+
+    public void setShowsVerticalScrollIndicator(boolean showsVerticalScrollIndicator) {
+        this.showsVerticalScrollIndicator = showsVerticalScrollIndicator;
+    }
+
+    public void scrollRectToVisible(CGRect rect, boolean animated) {
+        // TODO : Java implementation
     }
 }

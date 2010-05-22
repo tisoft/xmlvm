@@ -42,6 +42,12 @@ public class UISegmentedControl extends UIControl {
     private int               selection = -1;
     private ArrayList<String> titles    = new ArrayList<String>();
     private int               style     = UISegmentedControlStyle.Plain;
+    private UIColor           tintColor = null;                         // TODO
+
+    // :
+    // implement
+    // under
+    // Java
 
     public UISegmentedControl() {
         this(new CGRect(0, 0, 0, 0));
@@ -108,12 +114,20 @@ public class UISegmentedControl extends UIControl {
         return style;
     }
 
-    public void setSegmentedControlStyle(int style) {
-        this.style = style;
+    public void setSegmentedControlStyle(int uiSegmentedControlStyle) {
+        this.style = uiSegmentedControlStyle;
         // frame.size.height = (style ==
         // UISegmentedControlStyle.UISegmentedControlStyleBar) ?
         // kSegmentedControlHeightBar : kSegmentedControlHeightDefault;
         setNeedsDisplay();
+    }
+
+    public UIColor getTintColor() {
+        return tintColor;
+    }
+
+    public void setTintColor(UIColor tintColor) {
+        this.tintColor = tintColor;
     }
 
     /* TODO teras: again should remove this type of code */
@@ -131,7 +145,7 @@ public class UISegmentedControl extends UIControl {
                 .hasNext();) {
             Map.Entry<Integer, UIControlDelegate> e = it.next();
             if ((e.getKey().intValue() & TouchUpInside) > 0) {
-                e.getValue().raiseEvent(e.getValue(), UIControlEvent.TouchUpInside);
+                e.getValue().raiseEvent(this, UIControlEvent.TouchUpInside);
             }
         }
         if (newselection != selection) {
@@ -144,7 +158,7 @@ public class UISegmentedControl extends UIControl {
                 .hasNext();) {
             Map.Entry<Integer, UIControlDelegate> e = it.next();
             if ((e.getKey().intValue() & ValueChanged) > 0) {
-                e.getValue().raiseEvent(e.getValue(), UIControlEvent.ValueChanged);
+                e.getValue().raiseEvent(this, UIControlEvent.ValueChanged);
             }
         }
     }

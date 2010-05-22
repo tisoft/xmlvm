@@ -29,17 +29,13 @@ public class UIActivityIndicatorView extends UIView {
     private UIActivityIndicatorViewRenderer renderer;
 
     public UIActivityIndicatorView() {
-        init();
+        this(UIActivityIndicatorViewStyle.White);
     }
 
-    public UIActivityIndicatorView(int activityIndicatorViewStyle) {
-        init();
-        this.setActivityIndicatorViewStyle(activityIndicatorViewStyle);
-    }
-
-    private void init() {
+    public UIActivityIndicatorView(int uiActivityIndicatorViewStyle) {
         renderer = new UIActivityIndicatorViewRenderer(this);
         xmlvmSetRenderer(renderer);
+        this.setActivityIndicatorViewStyle(uiActivityIndicatorViewStyle);
     }
 
     public void setActivityIndicatorViewStyle(int style) {

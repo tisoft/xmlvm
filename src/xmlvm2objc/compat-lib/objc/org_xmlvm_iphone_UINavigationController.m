@@ -1,27 +1,50 @@
-
-/** @author teras */
+/*
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
+ * Ave, Cambridge, MA 02139, USA.
+ *
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ */
 
 #import "org_xmlvm_iphone_UINavigationController.h"
 #import "org_xmlvm_iphone_UINavigationControllerDelegate.h"
 
+/** @author teras */
 
-@implementation UINavigationController (cat_org_xmlvm_iphone_UINavigationController)
+@implementation org_xmlvm_iphone_UINavigationController
+UIVIEWCONTROLLER_CALLBACKS
+@end
 
+
+
+@implementation UINavigationController (cat_org_xmlvm_iphone_UINavigationControllerImpl)
 
 - (void) __init_org_xmlvm_iphone_UINavigationController___org_xmlvm_iphone_UIViewController :(org_xmlvm_iphone_UIViewController*)viewc {
 	[self initWithRootViewController:viewc];
 }
 
 - (org_xmlvm_iphone_UIViewController*) getTopViewController__ {
-	return [self.topViewController retain];
+	return_XMLVM(topViewController)
 }
 
 - (org_xmlvm_iphone_UIViewController*) getVisibleViewController__ {
-	return [self.visibleViewController retain];
+	return_XMLVM(visibleViewController)
 }
 
 - (java_util_ArrayList*) getViewControllers__ {
-	return [self.viewControllers retain];
+	return_XMLVM(viewControllers)
 }
 
 - (void) setViewControllers___java_util_ArrayList :(java_util_ArrayList*)list {
@@ -37,15 +60,15 @@
 }
 
 - (org_xmlvm_iphone_UIViewController*) popViewControllerAnimated___boolean :(int)anim {
-	return [[self popViewControllerAnimated:anim] retain];
+	return_XMLVM(popViewControllerAnimated:anim);
 }
 
 - (java_util_ArrayList*) popToRootViewControllerAnimated___boolean :(int)anim {
-	return [[self popToRootViewControllerAnimated:anim] retain];
+	return_XMLVM(popToRootViewControllerAnimated:anim)
 }
 
 - (java_util_ArrayList*) popToViewController___org_xmlvm_iphone_UIViewController_boolean :(org_xmlvm_iphone_UIViewController*)viewc :(int)anim {
-	return [[self popToViewController:viewc animated:anim] retain]; 
+	return_XMLVM(popToViewController:viewc animated:anim)
 }
 
 - (int) isNavigationBarHidden__ {
@@ -61,7 +84,7 @@
 }
 
 - (org_xmlvm_iphone_UINavigationBar*) getNavigationBar__ {
-	return [self.navigationBar retain];
+	return_XMLVM(navigationBar)
 }
 
 - (int) isToolbarHidden__ {
@@ -77,18 +100,16 @@
 }
 
 - (org_xmlvm_iphone_UIToolbar*) getToolbar__ {
-	return [self.toolbar retain];
+	return_XMLVM(toolbar)
 }
 
-- (void) setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate :(org_xmlvm_iphone_UINavigationControllerDelegate*)del {
-	self.delegate = del;
+- (void) setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate :(org_xmlvm_iphone_UINavigationControllerDelegate*)newdelegate {
+	XMLVM_PROPERTY(delegate, newdelegate)
 }
 
 - (org_xmlvm_iphone_UINavigationControllerDelegate*) getNavigationDelegate__ {
-	return [self.delegate retain];
+	return_XMLVM(delegate)
 }
-
-
 
 @end
 

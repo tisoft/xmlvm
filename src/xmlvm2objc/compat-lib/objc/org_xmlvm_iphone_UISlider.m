@@ -29,12 +29,10 @@
 @implementation UISlider(cat_org_xmlvm_iphone_UISlider)
 
 - (void) __init_org_xmlvm_iphone_UISlider {
-    [self initWithFrame : CGRectZero];
 }
 
 -(void) __init_org_xmlvm_iphone_UISlider___org_xmlvm_iphone_CGRect : (org_xmlvm_iphone_CGRect*) r {
-    CGRect rect = [r getCGRect];
-    [self initWithFrame : rect];
+    [self setFrame:[r getCGRect]];
 }
 
 -(float) getValue__ {

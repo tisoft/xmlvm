@@ -87,8 +87,7 @@ public class InstructionUseInfo {
     public List<String> possibleWrites = new ArrayList<String>();
 
     /**
-     * Returns the registers which this instruction writes objects
-     * into
+     * Returns the registers which this instruction writes objects into
      */
     public RegisterSet writesObj() throws DataConversionException {
         if (isWrite) {
@@ -173,15 +172,15 @@ public class InstructionUseInfo {
     }
 
     /**
-	 * What registers should be freed after this instruction
+     * What registers should be freed after this instruction
      */
-    public RegisterSet                 willFree = RegisterSet.none();
-    
+    public RegisterSet                 willFree       = RegisterSet.none();
+
     /**
-	 * What registers should be nulled after any free
+     * What registers should be nulled after any free
      */
-    public RegisterSet                 willNull = RegisterSet.none();
-    
+    public RegisterSet                 willNull       = RegisterSet.none();
+
     /**
      * The list of registers that require a retain after this instruction
      * executes.

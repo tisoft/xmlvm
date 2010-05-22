@@ -22,7 +22,7 @@ package org.xmlvm.iphone;
 
 import java.net.URL;
 
-public class NSMutableURLRequest {
+public class NSMutableURLRequest extends NSObject {
 
     private NSURL url;
 
@@ -30,7 +30,7 @@ public class NSMutableURLRequest {
         this.url = url;
     }
 
-    public URL getURL() {
-        return url.getURL();
+    public URL xmlvmGetURL() {
+        return url.xmlvmGetURL();
     }
 }

@@ -17,10 +17,115 @@
  * 
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
-
 package org.xmlvm.iphone;
 
-abstract public class UITableViewDelegate {
+import org.xmlvm.iphone.internal.OptionalSelectorException;
 
-    abstract public float heightForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath);
+abstract public class UITableViewDelegate extends NSObject {
+
+    public void willDisplayCellForRowAtIndexPath(UITableView tableview, UITableViewCell cell,
+            NSIndexPath indexPath) {
+    }
+
+    public void accessoryButtonTappedForRowWithIndexPath(UITableView tableview,
+            NSIndexPath indexPath) {
+    }
+
+    public void didSelectRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
+    }
+
+    public void didDeselectRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
+    }
+
+    public void willBeginEditingRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
+    }
+
+    public void didEndEditingRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
+    }
+
+    public boolean shouldIndentWhileEditingRowAtIndexPath(UITableView tableview,
+            NSIndexPath indexPath) {
+        return true;
+    }
+
+    public int editingStyleForRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
+        return UITableViewCellEditingStyle.Delete;
+    }
+
+    /**
+     * This is an optional method.
+     * 
+     * @see org.xmlvm.iphone.internal.OptionalSelectorException
+     */
+    public float heightForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath) {
+        throw new OptionalSelectorException();
+    }
+
+    /**
+     * This is an optional method.
+     * 
+     * @see org.xmlvm.iphone.internal.OptionalSelectorException
+     */
+    public UIView viewForHeaderInSection(UITableView tableview, int section) {
+        throw new OptionalSelectorException();
+    }
+
+    /**
+     * This is an optional method.
+     * 
+     * @see org.xmlvm.iphone.internal.OptionalSelectorException
+     */
+    public UIView viewForFooterInSection(UITableView tableview, int section) {
+        throw new OptionalSelectorException();
+    }
+
+    /**
+     * This is an optional method.
+     * 
+     * @see org.xmlvm.iphone.internal.OptionalSelectorException
+     */
+    public float heightForHeaderInSection(UITableView tableview, int section) {
+        throw new OptionalSelectorException();
+    }
+
+    /**
+     * This is an optional method.
+     * 
+     * @see org.xmlvm.iphone.internal.OptionalSelectorException
+     */
+    public float heightForFooterInSection(UITableView tableview, int section) {
+        throw new OptionalSelectorException();
+    }
+
+    /**
+     * This is an optional method.
+     * 
+     * @see org.xmlvm.iphone.internal.OptionalSelectorException
+     */
+    public String titleForDeleteConfirmationButtonForRowAtIndexPath(UITableView tableview,
+            NSIndexPath indexPath) {
+        throw new OptionalSelectorException();
+    }
+
+    // public int indentationLevelForRowAtIndexPath(UITableView tableview,
+    // NSIndexPath indexPath) {
+    // return 0;
+    // }
+    //
+    // public NSIndexPath willSelectRowAtIndexPath(UITableView tableview,
+    // NSIndexPath indexPath) {
+    // return null;
+    // }
+    //
+    // public NSIndexPath willDeselectRowAtIndexPath(UITableView tableview,
+    // NSIndexPath indexPath) {
+    // return null;
+    // }
+    //
+    // public NSIndexPath targetIndexPathForMoveFromRowAtIndexPath(UITableView
+    // tableview, NSIndexPath sourceIndexPath, NSIndexPath
+    // proposedDestinationIndexPath) {
+    // return null;
+    // }
+    //
 }

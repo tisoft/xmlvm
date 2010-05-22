@@ -26,21 +26,75 @@
 //@implementation UITableViewCell (cat_org_xmlvm_iphone_UITableViewCell)
 @implementation org_xmlvm_iphone_UITableViewCell
 
+
 - (void) __init_org_xmlvm_iphone_UITableViewCell__
 {
-	[self initWithFrame: CGRectZero reuseIdentifier: nil];
+	[self __init_org_xmlvm_iphone_UITableViewCell___int_java_lang_String:UITableViewCellStyleDefault :nil];
 }
 
-- (void) __init_org_xmlvm_iphone_UITableViewCell___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect
+- (void) __init_org_xmlvm_iphone_UITableViewCell___int_java_lang_String :(int)style :(NSString*)reuseIdentifier
 {
-	[self initWithFrame: [rect getCGRect] reuseIdentifier: nil];
+	[self initWithStyle:style reuseIdentifier:reuseIdentifier];
 }
+
 
 - (org_xmlvm_iphone_UIView*) getContentView__
 {
-	org_xmlvm_iphone_UIView* view = [self contentView];
-	[view retain];
-	return view;
+	return_XMLVM(contentView)
+}
+
+- (void) setBackgroundView___org_xmlvm_iphone_UIView : (org_xmlvm_iphone_UIView*) backgroundView
+{
+	[self setBackgroundView:backgroundView];
+}
+
+- (org_xmlvm_iphone_UIView*) getBackgroundView__
+{
+	return_XMLVM(backgroundView)
+}
+
+- (void) setSelectedBackgroundView___org_xmlvm_iphone_UIView : (org_xmlvm_iphone_UIView*) selectedBackgroundView
+{
+	[self setSelectedBackgroundView:selectedBackgroundView];
+}
+
+- (org_xmlvm_iphone_UIView*) getSelectedBackgroundView__
+{
+	return_XMLVM(selectedBackgroundView)
+}
+
+- (org_xmlvm_iphone_UILabel*) getTextLabel__
+{
+	return_XMLVM(textLabel)
+}
+
+- (org_xmlvm_iphone_UILabel*) getDetailTextLabel__
+{
+	return_XMLVM(detailTextLabel)
+}
+
+- (org_xmlvm_iphone_UIImageView*) getImageView__
+{
+	return_XMLVM(imageView)
+}
+
+- (void) setSelected___boolean :(int)selected
+{
+	[self setSelected:selected];
+}
+
+- (int) isSelected__
+{
+	return [self isSelected];
+}
+
+- (UITableViewCellEditingStyle) editingStyle {
+	return [self getEditingStyle__];
+}
+
+- (int) getEditingStyle__
+{
+	return UITableViewCellEditingStyleNone;
 }
 
 - (void) layoutSubviews
@@ -51,6 +105,16 @@
 - (void) layoutSubviews__
 {
 	[super layoutSubviews];
+}
+
+- (org_xmlvm_iphone_UIView*) getAccessoryView__
+{
+	return_XMLVM(accessoryView)
+}
+
+- (void) setAccessoryView___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*)acc
+{
+	[self setAccessoryView:acc];
 }
 
 @end

@@ -36,7 +36,6 @@ import org.xmlvm.Log;
 public abstract class UniversalFile {
     private static final String TAG = "UniversalFile";
 
-
     /**
      * Returns the name of this file. The returned value is analog to
      * {@link File#getName()}.

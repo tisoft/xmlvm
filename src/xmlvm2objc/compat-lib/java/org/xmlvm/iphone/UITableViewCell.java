@@ -23,19 +23,16 @@ package org.xmlvm.iphone;
 public class UITableViewCell extends UIView {
 
     protected boolean selected = false;
+    private UIView    accessoryView;
 
     public UITableViewCell() {
+        this(UITableViewCellStyle.Default, null);
+    }
+
+    public UITableViewCell(int uiTableViewCellStyle, String reuseIdentifier) {
         super(new CGRect(0, 0, 0, 0));
-        init();
-    }
-
-    public UITableViewCell(CGRect rect) {
-        super(rect);
-        init();
-    }
-
-    private void init() {
-        this.setBackgroundColor(UIColor.clearColor);
+        setBackgroundColor(UIColor.clearColor);
+        accessoryView = null;
     }
 
     public void setSelected(boolean sel) {
@@ -46,7 +43,53 @@ public class UITableViewCell extends UIView {
         return selected;
     }
 
+    public int getEditingStyle() {
+        return UITableViewCellEditingStyle.None;
+    }
+
     public UIView getContentView() {
         return this;
     }
+
+    public void setBackgroundView(UIView backgroundView) {
+        // TODO : Java implementation
+    }
+
+    public UIView getBackgroundView() {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public void setSelectedBackgroundView(UIView selectedBackgroundView) {
+        // TODO : Java implementation
+    }
+
+    public UIView getSelectedBackgroundView() {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public UILabel getTextLabel() {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public UILabel getDetailTextLabel() {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public UIImageView getImageView() {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public UIView getAccessoryView() {
+        return accessoryView;
+    }
+
+    public void setAccessoryView(UIView accessoryView) {
+        this.accessoryView = accessoryView;
+    }
+
 }

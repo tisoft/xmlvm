@@ -30,9 +30,10 @@ typedef NSObject java_lang_Object;
 //- (id) autorelease;
 - (void) __init_java_lang_Object__;
 - (java_lang_Class*) getClass__;
-- (java_lang_String*) getName__;
+- (NSString*) getName__;
 - (int) intValue__;
 - (int) equals___java_lang_Object: (java_lang_Object*) o;
 - (int) hashCode__;
+- (NSString*) toString__;
 
 @end

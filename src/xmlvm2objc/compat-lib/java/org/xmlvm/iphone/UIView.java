@@ -47,6 +47,8 @@ public class UIView extends UIResponder {
     private int               offsetLeft;
     private int               offsetTop;
     private Object            drawDelegate;
+    private int               tag;
+    private CALayer           layer;
 
     /** ---- private methods ---- */
     /* Renderer of this view */
@@ -73,6 +75,8 @@ public class UIView extends UIResponder {
         drawDelegate = null;
         setFrame(rect);
         setHidden(false);
+        tag = 0;
+        layer = CALayer.layer();
     }
 
     public UIView() {
@@ -110,6 +114,13 @@ public class UIView extends UIResponder {
 
     public void addSubview(UIView subView) {
         insertSubview(subView, subviews.size());
+    }
+
+    public void sendSubviewToBack(UIView subView) {
+        if (!subviews.contains(subView)) {
+            subviews.remove(subView);
+            subviews.add(0, subView);
+        }
     }
 
     public void insertSubview(UIView subView, int idx) {
@@ -154,6 +165,14 @@ public class UIView extends UIResponder {
         return superview;
     }
 
+    public UIWindow getWindow() {
+        UIView current = this;
+        while (!(current instanceof UIWindow)) {
+            current = current.superview;
+        }
+        return (UIWindow) current;
+    }
+
     public void layoutSubviews() {
     }
 
@@ -173,8 +192,12 @@ public class UIView extends UIResponder {
         this.opaque = opaque;
     }
 
+    public boolean isOpaque() {
+        return opaque;
+    }
+
     public void setClearsContextBeforeDrawing(boolean clear) {
-        // TODO
+        // TODO : Java implementation
     }
 
     public void keyTyped(char key) {
@@ -216,11 +239,11 @@ public class UIView extends UIResponder {
 
         boolean touched = p.x < 0 || p.y < 0 || p.x > r.size.width - 1 || p.y > r.size.height - 1 ? false
                 : true;
-        
+
         if (touched) {
-        	Simulator.addKeyListener(this);
+            Simulator.addKeyListener(this);
         }
-        
+
         return touched;
     }
 
@@ -235,8 +258,8 @@ public class UIView extends UIResponder {
         }
     }
 
-    public void setContentMode(int contentMode) {
-        this.contentMode = contentMode;
+    public void setContentMode(int uiViewContentMode) {
+        this.contentMode = uiViewContentMode;
     }
 
     public int getContentMode() {
@@ -266,6 +289,102 @@ public class UIView extends UIResponder {
 
     public void setClipsToBounds(boolean clipsToBounds) {
         this.clipsToBounds = clipsToBounds;
+    }
+
+    public int getTag() {
+        return tag;
+    }
+
+    public void setTag(int tag) {
+        this.tag = tag;
+    }
+
+    public CGPoint convertPointToView(CGPoint point, UIView view) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public CGPoint convertPointFromView(CGPoint point, UIView view) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public CGRect convertRectToView(CGRect point, UIView view) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public CGRect convertRectFromView(CGRect point, UIView view) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public CALayer getLayer() {
+        return layer;
+    }
+
+    /* View animations */
+    public static void beginAnimations(String animationID) {
+        // TODO : Java implementation
+    }
+
+    public static void commitAnimations() {
+        // TODO : Java implementation
+    }
+
+    public static void setAnimationStartDate(NSDate startTime) {
+        // TODO : Java implementation
+    }
+
+    public static void setAnimationsEnabled(boolean enabled) {
+        // TODO : Java implementation
+    }
+
+    public static void setAnimationDuration(double duration) {
+        // TODO : Java implementation
+    }
+
+    public static void setAnimationDelay(double delay) {
+        // TODO : Java implementation
+    }
+
+    public static void setAnimationCurve(int uiViewAnimationCurve) {
+        // TODO : Java implementation
+    }
+
+    public static void setAnimationRepeatCount(float repeatCount) {
+        // TODO : Java implementation
+    }
+
+    public static void setAnimationRepeatAutoreverses(boolean repeatAutoreverses) {
+        // TODO : Java implementation
+    }
+
+    public static void setAnimationBeginsFromCurrentState(boolean fromCurrentState) {
+        // TODO : Java implementation
+    }
+
+    public static void setAnimationTransitionForView(int uiViewAnimationTransition, UIView view,
+            boolean cache) {
+        // TODO : Java implementation
+    }
+
+    public static boolean areAnimationsEnabled() {
+        // TODO : Java implementation
+        return true;
+    }
+
+    public static void setAnimationDelegate(UIViewAnimationDelegate delegate) {
+        // TODO : Java implementation
+    }
+
+    public CGSize sizeThatFits(CGSize size) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public void sizeToFit() {
+        // TODO : Java implementation
     }
 
     public void xmlvmDrawRect(CGRect rect) {

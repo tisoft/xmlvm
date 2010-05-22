@@ -114,18 +114,18 @@
 - (java_lang_String*) getRawPath__
 {
 	// TODO: Return encoded string
-	return [[self path] retain];
+	return_XMLVM(path)
 }
 
 - (java_lang_String*) getPath__
 {
 	
-	return [[self path] retain];
+	return_XMLVM(path)
 }
 
 - (java_lang_String*) toString__
 {
-	return [[self absoluteString] retain];
+	return_XMLVM(absoluteString)
 }
 
 @end

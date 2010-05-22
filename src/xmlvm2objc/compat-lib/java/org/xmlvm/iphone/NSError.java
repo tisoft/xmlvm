@@ -22,7 +22,7 @@ package org.xmlvm.iphone;
 
 import java.util.Map;
 
-public class NSError {
+public class NSError extends NSObject {
     private String              domain;
     private int                 code;
     private Map<Object, Object> userInfo;

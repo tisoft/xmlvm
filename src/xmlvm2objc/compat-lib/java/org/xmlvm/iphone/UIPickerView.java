@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.xmlvm.iphone;
 
 import org.xmlvm.iphone.internal.renderer.UIPickerViewRenderer;
@@ -28,6 +27,8 @@ import org.xmlvm.iphone.internal.renderer.UIPickerViewRenderer;
  * @author teras
  */
 public class UIPickerView extends UIView {
+    private final static float     ROWHEIGHT = 10;
+    private final static float     ROWWIDTH  = 320 - 2 * UIPickerViewRenderer.INSET - 2;
 
     private UIPickerViewDataSource dataSource;
     private UIPickerViewDelegate   delegate;
@@ -46,7 +47,7 @@ public class UIPickerView extends UIView {
         if (dataSource != null)
             return dataSource.numberOfComponentsInPickerView(this);
         else
-            return 0;
+            return 1;
     }
 
     public int numberOfRowsInComponent(int component) {
@@ -57,12 +58,18 @@ public class UIPickerView extends UIView {
     }
 
     public CGSize rowSizeForComponent(int component) {
-        if (delegate != null) {
-            CGSize size = new CGSize(delegate.widthForComponent(this, component), delegate
-                    .rowHeightForComponent(this, component));
-            return size;
+        float width, height;
+        try {
+            width = delegate.widthForComponent(this, component);
+        } catch (NullPointerException ex) {
+            width = ROWWIDTH / getNumberOfComponents();
         }
-        return new CGSize(0, 0);
+        try {
+            height = delegate.rowHeightForComponent(this, component);
+        } catch (NullPointerException ex) {
+            height = ROWWIDTH;
+        }
+        return new CGSize(width, height);
     }
 
     public void reloadAllComponents() {
@@ -76,17 +83,22 @@ public class UIPickerView extends UIView {
     }
 
     public int selectedRowInComponent(int component) {
+        // TODO : Java implementation
         return 0;
     }
 
     public void selectRow(int row, int component, boolean animated) {
-
+        // TODO : Java implementation
     }
 
     public UIView viewForRow(int row, int component) {
-        if (delegate != null)
-            return delegate.viewForRow(this, row, component, null);
-        return null;
+        UIView view;
+        try {
+            view = delegate.viewForRow(this, row, component, null);
+        } catch (NullPointerException ex) {
+            view = null;
+        }
+        return view;
     }
 
     public UIPickerViewDataSource getDataSource() {

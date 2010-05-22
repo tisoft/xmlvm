@@ -25,10 +25,19 @@ import org.xmlvm.iphone.internal.renderer.UITextFieldRenderer;
 
 public class UITextField extends UIView {
 
-    private String  text;
-    private UIFont  font;
-    private UIColor textColor;
-    private int     borderStyle;
+    private int                 autocapitalizationType        = UITextAutocapitalizationType.None;
+    private int                 autocorrectionType            = UITextAutocorrectionType.Default;
+    private boolean             enablesReturnKeyAutomatically = false;
+    private int                 keyboardAppearance            = UIKeyboardAppearance.Default;
+    private int                 keyboardType                  = UIKeyboardType.Default;
+    private int                 returnKeyType                 = UIReturnKeyType.Default;
+    private boolean             secureTextEntry               = false;
+    private String              text;
+    private UIFont              font;
+    private UIColor             textColor;
+    private int                 borderStyle;
+    private UITextFieldDelegate delegate;
+    private boolean             adjustsFontSizeToFitWidth     = false;
 
     public UITextField() {
         this(new CGRect(0, 0, 0, 0));
@@ -40,6 +49,62 @@ public class UITextField extends UIView {
         font = UIFont.fontWithNameSize("Arial", 16);
         setText("");
         setTextColor(UIColor.blackColor);
+    }
+
+    public int getAutocapitalizationType() {
+        return autocapitalizationType;
+    }
+
+    public void setAutocapitalizationType(int UITextAutocapitalizationType) {
+        this.autocapitalizationType = UITextAutocapitalizationType;
+    }
+
+    public int getAutocorrectionType() {
+        return autocorrectionType;
+    }
+
+    public void setAutocorrectionType(int UITextAutocorrectionType) {
+        this.autocorrectionType = UITextAutocorrectionType;
+    }
+
+    public boolean isEnablesReturnKeyAutomatically() {
+        return enablesReturnKeyAutomatically;
+    }
+
+    public void setEnablesReturnKeyAutomatically(boolean enablesReturnKeyAutomatically) {
+        this.enablesReturnKeyAutomatically = enablesReturnKeyAutomatically;
+    }
+
+    public int getKeyboardAppearance() {
+        return keyboardAppearance;
+    }
+
+    public void setKeyboardAppearance(int UIKeyboardAppearance) {
+        this.keyboardAppearance = UIKeyboardAppearance;
+    }
+
+    public int getKeyboardType() {
+        return keyboardType;
+    }
+
+    public void setKeyboardType(int UIKeyboardType) {
+        this.keyboardType = UIKeyboardType;
+    }
+
+    public int getReturnKeyType() {
+        return returnKeyType;
+    }
+
+    public void setReturnKeyType(int UIReturnKeyType) {
+        this.returnKeyType = UIReturnKeyType;
+    }
+
+    public boolean isSecureTextEntry() {
+        return secureTextEntry;
+    }
+
+    public void setSecureTextEntry(boolean secureTextEntry) {
+        this.secureTextEntry = secureTextEntry;
     }
 
     public void setText(String text) {
@@ -58,8 +123,8 @@ public class UITextField extends UIView {
         return textColor;
     }
 
-    public void setBorderStyle(int style) {
-        this.borderStyle = style;
+    public void setBorderStyle(int uiTextBorderStyle) {
+        this.borderStyle = uiTextBorderStyle;
     }
 
     public int getBorderStyle() {
@@ -74,6 +139,14 @@ public class UITextField extends UIView {
         this.font = font;
     }
 
+    public boolean isAdjustsFontSizeToFitWidth() {
+        return adjustsFontSizeToFitWidth;
+    }
+
+    public void setAdjustsFontSizeToFitWidth(boolean adjustsFontSizeToFitWidth) {
+        this.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth;
+    }
+
     /* TODO teras: this has to be removed from here */
     @Override
     public void keyTyped(char key) {
@@ -86,5 +159,13 @@ public class UITextField extends UIView {
 
     public void setPlaceholder(String hint) {
         // TODO Auto-generated method stub
+    }
+
+    public void setDelegate(UITextFieldDelegate delegate) {
+        this.delegate = delegate;
+    }
+
+    public UITextFieldDelegate getUITextFieldDelegate() {
+        return delegate;
     }
 }

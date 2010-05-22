@@ -106,7 +106,7 @@ public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl<Xml
         isActive = false;
         return true;
     }
-    
+
     /**
      * If the input file is a file, this method returns a list with one element
      * containing an OutputFile that contains the contents of the input XFile.

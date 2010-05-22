@@ -59,7 +59,6 @@ public class CodePath {
     public RegisterSet                              givesObject = RegisterSet.none();
     public RegisterSet                              shouldFree  = RegisterSet.none();
 
-
     private void toStringRec(int depth, StringBuilder toRet) {
         char[] tabs = new char[depth];
         for (int x = 0; x < tabs.length; x++) {

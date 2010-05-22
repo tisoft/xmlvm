@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-public class NSIndexPath {
+public class NSIndexPath extends NSObject {
 
     private int section;
     private int row;

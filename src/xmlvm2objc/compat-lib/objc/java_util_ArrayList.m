@@ -126,4 +126,9 @@
 	[self removeAllObjects];
 }
 
+- (BOOL) isEmpty__
+{
+	return [self count]==0;
+}
+
 @end

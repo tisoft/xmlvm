@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-public class NSErrorHolder {
+public class NSErrorHolder extends NSObject {
     public NSError error;
 
     public String description() {

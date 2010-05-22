@@ -72,4 +72,15 @@ public class NSObject {
         }
     }
 
+    public void retain() {
+        // Thank you GC!
+    }
+
+    public void release() {
+        // Thank you GC!
+    }
+
+    public void dealloc() {
+        // Thank you GC!
+    }
 }

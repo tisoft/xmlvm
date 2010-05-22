@@ -28,15 +28,13 @@
 @implementation UISegmentedControl (cat_org_xmlvm_iphone_UISegmentedControl)
 
 - (void) __init_org_xmlvm_iphone_UISegmentedControl {
-    [self initWithFrame: CGRectZero];
 }
 
 - (void) __init_org_xmlvm_iphone_UISegmentedControl___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) r {
-    CGRect rect = [r getCGRect];
-    [self initWithFrame: rect];
+    [self setFrame:[r getCGRect]];
 }
 
-- (void) insertSegmentWithTitle___java_lang_String_int_boolean:(java_lang_String *) title :(int)segment :(int)animated; {
+- (void) insertSegmentWithTitle___java_lang_String_int_boolean:(NSString *) title :(int)segment :(int)animated; {
 	[self insertSegmentWithTitle:title atIndex:segment animated:animated];
 }
 
@@ -48,11 +46,11 @@
 	[self setSegmentedControlStyle:style];
 }
 
-- (void) setTitle___java_lang_String_int:(java_lang_String *)title :(int)index {
+- (void) setTitle___java_lang_String_int:(NSString *)title :(int)index {
 	[self setTitle:title forSegmentAtIndex:index];
 }
 
-- (java_lang_String *) getTitleForSegmentAtIndex___int:(int) index {
+- (NSString *) getTitleForSegmentAtIndex___int:(int) index {
 	return [self titleForSegmentAtIndex:index];
 }
 
@@ -75,6 +73,17 @@
 
 - (int) getSegmentedControlStyle__ {
 	return self.segmentedControlStyle;
+}
+
+- (UIColor*) getTintColor__
+{
+	return_XMLVM(tintColor)
+}
+
+
+- (void) setTintColor___org_xmlvm_iphone_UIColor :(UIColor*) tint
+{
+	[self setTintColor:tint];
 }
 
 

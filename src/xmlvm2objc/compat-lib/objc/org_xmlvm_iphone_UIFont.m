@@ -31,17 +31,17 @@
 
 + (UIFont*) systemFontOfSize___float: (float)size
 {
-	return [[UIFont systemFontOfSize:size] retain];
+	return_XMLVM_SELECTOR(UIFont systemFontOfSize:size)
 }
 
 + (UIFont*) boldSystemFontOfSize___float: (float)size
 {
-	return [[UIFont boldSystemFontOfSize:size] retain];
+	return_XMLVM_SELECTOR(UIFont boldSystemFontOfSize:size)
 }
 
 + (UIFont*) italicSystemFontOfSize___float: (float)size
 {
-	return [[UIFont italicSystemFontOfSize:size] retain];
+	return_XMLVM_SELECTOR(UIFont italicSystemFontOfSize:size)
 }
 
 + (float) buttonFontSize__
@@ -56,12 +56,12 @@
 
 + (UIFont*) fontWithNameSize___java_lang_String_float:(java_lang_String*)name :(float)size
 {
-	return [[UIFont fontWithName:name size:size] retain];
+	return_XMLVM_SELECTOR(UIFont fontWithName:name size:size)
 }
 
 - (UIFont *) fontWithSize___float:(float)fontSize
 {
-	return [self fontWithSize: fontSize];
+	return_XMLVM(fontWithSize: fontSize)
 }
 
 @end

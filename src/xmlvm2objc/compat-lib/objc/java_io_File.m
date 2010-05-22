@@ -20,6 +20,7 @@
 
 #import "java_io_File.h"
 #import "java_lang_StringBuffer.h"
+#import "java_lang_IllegalArgumentException.h"
 
 // java.io.File
 //----------------------------------------------------------------------------
@@ -38,6 +39,37 @@
 	[arr retain];
 	arr->array.o[0] = f;
 	return arr;
+}
+
++ (java_io_File*) createTempFile___java_lang_String_java_lang_String:(java_lang_String*)prefix :(java_lang_String*)suffix
+{
+	if (suffix==JAVA_NULL)
+		suffix = @".tmp";
+	if (prefix==JAVA_NULL || [prefix length]<3) {
+		java_lang_IllegalArgumentException* ex = [[[java_lang_IllegalArgumentException alloc] init] autorelease];
+		[ex __init_java_lang_IllegalArgumentException__];
+		@throw ex;
+	}
+	
+	// Create file template
+	NSString * nsformat = [[NSString alloc] initWithFormat:@"%@%@XXXXXXXX%@", NSTemporaryDirectory(), prefix, suffix];
+	const char * format = [nsformat UTF8String];
+	[nsformat release];
+	
+	// Create temporary file name
+	int size = strlen(format);
+	char * template = malloc(size);
+	strncpy(template, format, size+1);
+	mkstemps(template, [suffix length]);
+
+	// Create actual temporary file
+	NSString * nsresult = [[NSString alloc] initWithUTF8String:template];
+	free(template);
+	java_io_File * result = [[java_io_File alloc] init];
+	[result __init_java_io_File___java_lang_String:(java_lang_String*)nsresult];
+	[nsresult release];
+	
+	return result;
 }
 
 - (void) __init_java_io_File___java_net_URI: (java_net_URI*) uri
@@ -220,7 +252,7 @@
 	for (int i = 0; i < count; ++i) {
 		java_lang_String* s = [files objectAtIndex: i];
 		java_io_File* fi = [[java_io_File alloc] init];
-		[fi __init_java_io_File___java_io_File_java_lang_String: self : path];
+		[fi __init_java_io_File___java_io_File_java_lang_String: self : s];
 		f->array.o[i] = [fi retain];
 	}
 	return f;
@@ -311,6 +343,13 @@
 {
 	NSFileManager *man = [NSFileManager defaultManager];
 	return [man moveItemAtPath: path toPath: [f getCanonicalPath__] error: NULL];
+}
+
+- (java_io_File*) getParentFile__
+{
+	java_io_File * result = [[java_io_File alloc] init];
+	[result __init_java_io_File___java_lang_String:(java_lang_String*)[path stringByDeletingLastPathComponent]];
+	return result;
 }
 
 @end

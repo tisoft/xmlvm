@@ -27,9 +27,7 @@
 
 - (org_xmlvm_iphone_UIView*) getView__
 {
-	org_xmlvm_iphone_UIView* view = [self view];
-	[view retain];
-	return view;
+	return_XMLVM(view)
 }
 
 - (org_xmlvm_iphone_CGPoint*) locationInView___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) view

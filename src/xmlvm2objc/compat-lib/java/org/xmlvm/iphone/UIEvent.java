@@ -20,6 +20,6 @@
 
 package org.xmlvm.iphone;
 
-public class UIEvent {
+public class UIEvent extends NSObject {
 
 }

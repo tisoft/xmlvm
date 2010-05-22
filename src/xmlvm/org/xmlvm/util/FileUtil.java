@@ -159,7 +159,8 @@ public class FileUtil {
     public static boolean copyFile(File source, File destination) {
         try {
             if (source.equals(destination)) {
-                Log.debug("Ignoring copying of file " + source.getPath() + ": destination is same as source.");
+                Log.debug("Ignoring copying of file " + source.getPath()
+                        + ": destination is same as source.");
                 return true;
             }
             Log.debug("Copying " + source.getPath() + " to " + destination.getPath());

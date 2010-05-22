@@ -41,27 +41,28 @@ public class UIBarButtonItem extends UIBarItem {
     private int                     style;
     private float                   width;
 
-    public UIBarButtonItem(int UIBarButtonSystemItem, Object target, String action) {
+    public UIBarButtonItem(int uiBarButtonSystemItem, final UIBarButtonItemDelegate action) {
     }
 
-    public UIBarButtonItem(UIView v) {
+    public UIBarButtonItem(UIView customview) {
     }
 
-    public UIBarButtonItem(UIImage image, int UIBarButtonItemStyle, Object targe, String action) {
+    public UIBarButtonItem(UIImage image, int uiBarButtonItemStyle,
+            final UIBarButtonItemDelegate action) {
     }
 
-    public UIBarButtonItem(String title, int UIBarButtonItemStyle,
+    public UIBarButtonItem(String title, int uiBarButtonItemStyle,
             final UIBarButtonItemDelegate action) {
         possibleTitles = new HashSet<String>();
         possibleTitles.add(title);
-        style = UIBarButtonItemStyle;
+        style = uiBarButtonItemStyle;
         this.width = 50;
 
         UIBarButtonItemView b = new UIBarButtonItemView(this, false);
         b.addTarget(new UIControlDelegate() {
 
             @Override
-            public void raiseEvent(UIControlDelegate sender, int eventType) {
+            public void raiseEvent(UIControl sender, int eventType) {
                 if (action != null)
                     action.clicked();
             }

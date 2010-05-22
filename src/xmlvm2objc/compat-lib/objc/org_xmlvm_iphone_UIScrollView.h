@@ -20,7 +20,9 @@
 
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_CGRect.h"
-
+#import "org_xmlvm_iphone_CGPoint.h"
+#import "org_xmlvm_iphone_CGSize.h"
+@class org_xmlvm_iphone_UIScrollViewDelegate;
 
 // UIScrollView
 //----------------------------------------------------------------------------
@@ -31,6 +33,22 @@ typedef UIScrollView org_xmlvm_iphone_UIScrollView;
 - (void) setContentOffset___org_xmlvm_iphone_CGPoint_boolean
                :(org_xmlvm_iphone_CGPoint*) offset
                :(int) animated;
-- (void) setScrollEnabled___boolean :(BOOL)enabled;
-- (BOOL) isScrollEnabled__;
+- (void) setContentOffset___org_xmlvm_iphone_CGPoint:(org_xmlvm_iphone_CGPoint*) offset;
+- (void) setContentOffset___org_xmlvm_iphone_CGPoint_boolean:(org_xmlvm_iphone_CGPoint*) offset :(int)animated;
+- (int) isScrollEnabled__;
+- (void) setScrollEnabled___boolean :(int)enabled;
+- (int) isPagingEnabled__;
+- (void) setPagingEnabled___boolean :(int)enabled;
+- (org_xmlvm_iphone_CGSize*) getContentSize__;
+- (void) setContentSize___org_xmlvm_iphone_CGSize :(org_xmlvm_iphone_CGSize*)size;
+- (org_xmlvm_iphone_UIScrollViewDelegate*) getDelegate__;
+- (void) setDelegate___org_xmlvm_iphone_UIScrollViewDelegate :(org_xmlvm_iphone_UIScrollViewDelegate*)delegate;
+- (int) isScrollsToTop__;
+- (void) setScrollsToTop___boolean :(int)totop;
+- (int) isShowsHorizontalScrollIndicator__;
+- (void) setShowsHorizontalScrollIndicator___boolean :(int)indicator;
+- (int) isShowsVerticalScrollIndicator__;
+- (void) setShowsVerticalScrollIndicator___boolean :(int)indicator;
+- (void) scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean:(org_xmlvm_iphone_CGRect*)rect :(int) animated;
+- (org_xmlvm_iphone_CGPoint*) getContentOffset__;
 @end

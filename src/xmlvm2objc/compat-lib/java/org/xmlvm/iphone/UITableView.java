@@ -20,22 +20,29 @@
 
 package org.xmlvm.iphone;
 
+import java.util.ArrayList;
 import org.xmlvm.iphone.internal.renderer.UITableViewRenderer;
 
 public class UITableView extends UIView {
 
     private UITableViewDataSource dataSource;
     private UITableViewDelegate   delegate;
+    private UIColor               separatorColor;
+    private int                   separatorStyle;
+    private boolean               editing;
+    private boolean               allowsSelection;
+    private float                 rowHeight;
 
     public UITableView(CGRect rect) {
         this(rect, UITableViewStyle.Plain);
     }
 
-    public UITableView(CGRect rect, int style) {
+    public UITableView(CGRect rect, int uiTableViewStyle) {
         super(rect);
         xmlvmSetRenderer(new UITableViewRenderer(this));
         dataSource = null;
         delegate = null;
+        rowHeight = 50f;
     }
 
     public void setDataSource(UITableViewDataSource dataSource) {
@@ -54,5 +61,71 @@ public class UITableView extends UIView {
 
     public UITableViewDelegate getTableViewDelegate() {
         return delegate;
+    }
+
+    public UITableViewCell dequeueReusableCellWithIdentifier(String identifier) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public void deleteRowsAtIndexPaths(ArrayList<NSIndexPath> indexPaths, boolean animation) {
+        // TODO : Java implementation
+    }
+
+    public void reloadData() {
+        // TODO : Java implementation
+    }
+
+    public void reloadRowsAtIndexPaths(ArrayList<NSIndexPath> indexPaths,
+            int uiTableViewRowAnimation) {
+        // TODO : Java implementation
+    }
+
+    public void deselectRowAtIndexPath(NSIndexPath indexPath, boolean animation) {
+        // TODO : Java implementation
+    }
+
+    public UIColor getSeparatorColor() {
+        return separatorColor;
+    }
+
+    public void setSeparatorColor(UIColor separatorColor) {
+        this.separatorColor = separatorColor;
+    }
+
+    public int getSeparatorStyle() {
+        return separatorStyle;
+    }
+
+    public void setSeparatorStyle(int uiTableViewCellSeparatorStyle) {
+        this.separatorStyle = uiTableViewCellSeparatorStyle;
+    }
+
+    public boolean isAllowsSelection() {
+        return allowsSelection;
+    }
+
+    public void setAllowsSelection(boolean allowsSelection) {
+        this.allowsSelection = allowsSelection;
+    }
+
+    public boolean isEditing() {
+        return editing;
+    }
+
+    public void setEditing(boolean editing) {
+        setEditing(editing, false);
+    }
+
+    public void setEditing(boolean editing, boolean animated) {
+        this.editing = editing;
+    }
+
+    public float getRowHeight() {
+        return rowHeight;
+    }
+
+    public void setRowHeight(float rowHeight) {
+        this.rowHeight = rowHeight;
     }
 }

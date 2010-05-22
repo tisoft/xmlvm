@@ -29,6 +29,11 @@
 {
 }
 
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+	[self connectionDidReceiveData___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSData: connection :data];
+}
+
 - (void) connectionDidFinishLoading :(NSURLConnection*) connection
 {
 	[self connectionDidFinishLoading___org_xmlvm_iphone_NSURLConnection: connection];
@@ -37,6 +42,11 @@
 - (void) connection: (NSURLConnection*) connection didFailWithError :(NSError*) error
 {
 	[self connectionDidFailWithError___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSError: connection :error];
+}
+
+- (void) connectionDidReceiveData___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSData :(org_xmlvm_iphone_NSURLConnection*)connection :(org_xmlvm_iphone_NSData*)data
+{
+	// Do nothing
 }
 
 - (void) connectionDidFinishLoading___org_xmlvm_iphone_NSURLConnection :(org_xmlvm_iphone_NSURLConnection*) connection

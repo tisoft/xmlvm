@@ -1,47 +1,54 @@
+/*
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
+ * Ave, Cambridge, MA 02139, USA.
+ *
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ */
+
+#import "org_xmlvm_iphone_UIViewController.h"
+
+//#import "org_xmlvm_iphone_UINavigationController.h"
+//#import "org_xmlvm_iphone_UITabBarController.h"
+#import "org_xmlvm_iphone_UITabBarItem.h"
+//
 
 /** @author teras */
 
-#import "org_xmlvm_iphone_UIViewController.h"
-#import "org_xmlvm_iphone_UINavigationController.h"
+
+@implementation org_xmlvm_iphone_UIViewController
+UIVIEWCONTROLLER_CALLBACKS
+@end
 
 
-@implementation UIViewController (cat_org_xmlvm_iphone_UIViewController);
+@implementation UIViewController (cat_org_xmlvm_iphone_UIViewControllerImpl);
 
 - (void) __init_org_xmlvm_iphone_UIViewController__ {
-	//[self init];
-}
-
-- (void) loadView {
-	[self loadView__];
-}
-- (void) loadView__ {
-	UIView * v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
-	self.view = v;
-	[v release];
 }
 
 - (int) isViewLoaded__ {
 	return [self isViewLoaded];
 }
 
-- (void) viewDidLoad {
-	[self viewDidLoad__];
-}
-- (void) viewDidLoad__ {
-}
-
-- (void) viewDidUnload {
-	[self viewDidUnload__];
-}
-- (void) viewDidUnload__ {
-}
 
 - (org_xmlvm_iphone_UIView*) rotatingHeaderView__ {
-	return [self.rotatingHeaderView retain];
+	return_XMLVM(rotatingHeaderView)
 }
 
 - (org_xmlvm_iphone_UIView*) rotatingFooterView__ {
-	return [self.rotatingFooterView retain];
+	return_XMLVM(rotatingFooterView)
 }
 
 - (void) didReceiveMemoryWarning {
@@ -50,7 +57,7 @@
 - (void) didReceiveMemoryWarning__ {
 }
 
-- (int) wantsFullScreenLayout {
+- (BOOL) wantsFullScreenLayout {
 	return [self wantsFullScreenLayout__];
 }
 - (int) wantsFullScreenLayout__ {
@@ -70,48 +77,15 @@
 }
 
 - (org_xmlvm_iphone_UITabBarController*) getTabBarController__ {
-	return [self.tabBarController retain];
+	return_XMLVM(tabBarController)
 }
 
 - (org_xmlvm_iphone_UITabBarItem*) getTabBarItem__ {
-	return [self.tabBarItem retain];
+	return_XMLVM(tabBarItem)
 }
 
 - (void) setTabBarItem___org_xmlvm_iphone_UITabBarItem :(org_xmlvm_iphone_UITabBarItem*)n1 {
-	self.tabBarItem = n1;
-}
-
-
-
-- (void) viewWillAppear:(BOOL)anim {
-	[self viewWillAppear___boolean:anim];
-}
-- (void) viewWillAppear___boolean :(int)anim {
-}
-
-- (void) viewWillDisappear:(BOOL)anim {
-	[self viewWillDisappear___boolean:anim];
-}
-- (void) viewWillDisappear___boolean :(int)anim {
-}
-
-- (void) viewDidAppear:(BOOL)anim {
-	[self viewDidAppear___boolean:anim];
-}
-- (void) viewDidAppear___boolean :(int)anim{
-}
-
-- (void) viewDidDisappear:(BOOL)anim {
-	[self viewDidDisappear___boolean:anim];
-}
-- (void) viewDidDisappear___boolean :(int)anim{
-}
-
--(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
-	return [self shouldAutorotateToInterfaceOrientation___int:orientation];
-}
-- (int) shouldAutorotateToInterfaceOrientation___int :(int)orientation {
-	return NO;
+	[self setTabBarItem:n1];
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)n2 {
@@ -151,7 +125,7 @@
 }
 
 - (org_xmlvm_iphone_UIView*) getView__ {
-	return [self.view retain];
+	return_XMLVM(view)
 }
 
 - (void) setView___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*)n1 {
@@ -159,7 +133,7 @@
 }
 
 - (java_lang_String*) getTitle__ {
-	return [self.title retain];
+	return_XMLVM(title)
 }
 
 - (void) setTitle___java_lang_String :(java_lang_String*)n1 {
@@ -171,12 +145,22 @@
 }
 
 - (org_xmlvm_iphone_UINavigationController*) getNavigationController__ {
-	// TODO teras: why there's a warning here?
-	return [self.navigationController retain]; 
+	return_XMLVM(navigationController) 
 }
 
+- (org_xmlvm_iphone_UINavigationItem*) getNavigationItem__
+{
+	return_XMLVM(navigationItem)
+}
+
+- (org_xmlvm_iphone_UIBarButtonItem*) editButtonItem__
+{
+	return_XMLVM(editButtonItem)
+}
+
+
 - (void) setEditing___boolean :(int)n1 {
-	self.editing = n1;
+	[self setEditing:n1];
 }
 
 - (void) setEditing___boolean_boolean :(int)n1 :(int)n2 {
@@ -188,17 +172,26 @@
 }
 
 - (java_util_ArrayList*) getToolbarItems__ {
-	return [self.toolbarItems retain];
+	return_XMLVM(toolbarItems)
 }
 
 - (void) setToolbarItems___java_util_ArrayList :(java_util_ArrayList*)n1 {
-	self.toolbarItems = n1;
+	[self setToolbarItems:n1];
 }
 
 - (void) setToolbarItems___java_util_ArrayList_boolean :(java_util_ArrayList*)n1 :(int)animated {
 	[self setToolbarItems:n1 animated:animated];
 }
 
+- (void) presentModalViewController___org_xmlvm_iphone_UIViewController_boolean :(org_xmlvm_iphone_UIViewController*)modalViewController :(int)animated 
+{
+	[self presentModalViewController:modalViewController animated:animated];
+}
+
+- (void) dismissModalViewControllerAnimated___boolean :(int)animated
+{
+	[self dismissModalViewControllerAnimated:animated];
+}
 
 
 @end

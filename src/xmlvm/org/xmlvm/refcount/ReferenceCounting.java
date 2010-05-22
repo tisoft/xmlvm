@@ -106,41 +106,41 @@ public class ReferenceCounting {
         processRecStart(numReg, (List<Element>) codeElement.getChildren(), codeElement);
     }
 
-    /** 
+    /**
      * Set the expected frees that we must do before any optimizations have
      * removed them.
      */
-	private void setWillFree(Map<Element, InstructionActions> beenTo)
-			throws ReferenceCountingException, DataConversionException {
-		{
-			for (Map.Entry<Element, InstructionActions> e : beenTo.entrySet()) {
-				RegisterSet objectRegs = e.getValue().getObjectRegs();
+    private void setWillFree(Map<Element, InstructionActions> beenTo)
+            throws ReferenceCountingException, DataConversionException {
+        {
+            for (Map.Entry<Element, InstructionActions> e : beenTo.entrySet()) {
+                RegisterSet objectRegs = e.getValue().getObjectRegs();
 
-				if (!e.getValue().getConflict().isEmpty()) {
-					throw new ReferenceCountingException(
-							"Ambigious register contents possible: Conflict: "
-									+ e.getValue().getConflict());
-				}
+                if (!e.getValue().getConflict().isEmpty()) {
+                    throw new ReferenceCountingException(
+                            "Ambigious register contents possible: Conflict: "
+                                    + e.getValue().getConflict());
+                }
 
-				InstructionUseInfo useInfo = e.getValue().useInfo;
-				RegisterSet toFree;
-				if (e.getKey().getName().startsWith("return")) {
-					// we want to free everything except what this instruction
-					// uses.
-					toFree = objectRegs.andNot(useInfo.usedReg());
-				} else {
-					// we free any register reference that is overwritten by
-					// this
-					// instruction
-					toFree = objectRegs.and(useInfo.allWrites());
-				}
-				useInfo.willFree = toFree;
-				useInfo.willNull = toFree.clone();
-				
-			}
-		}
-	}
-	
+                InstructionUseInfo useInfo = e.getValue().useInfo;
+                RegisterSet toFree;
+                if (e.getKey().getName().startsWith("return")) {
+                    // we want to free everything except what this instruction
+                    // uses.
+                    toFree = objectRegs.andNot(useInfo.usedReg());
+                } else {
+                    // we free any register reference that is overwritten by
+                    // this
+                    // instruction
+                    toFree = objectRegs.and(useInfo.allWrites());
+                }
+                useInfo.willFree = toFree;
+                useInfo.willNull = toFree.clone();
+
+            }
+        }
+    }
+
     /**
      * This is the last step in the release/retain markup process. It processes
      * all of the DEX instructions that we have traversed in a method, looking
@@ -155,7 +155,7 @@ public class ReferenceCounting {
         boolean needsTmpReg = false;
 
         for (Map.Entry<Element, InstructionActions> e : beenTo.entrySet()) {
-  
+
             if (!e.getValue().getConflict().isEmpty()) {
                 throw new ReferenceCountingException(
                         "Ambigious register contents possible: Conflict: "
@@ -199,28 +199,26 @@ public class ReferenceCounting {
                     Element releaseTmp = new Element(InstructionProcessor.cmd_release, vm);
                     releaseTmp.setAttribute("reg", tmpRegNameSuffix);
                     toReleaseLast.add(releaseTmp);
-                    
+
                     Element nullTmp = new Element(InstructionProcessor.cmd_set_null, vm);
                     nullTmp.setAttribute("num", tmpRegNameSuffix);
                     toReleaseLast.add(nullTmp);
-                    
+
                 } else {
                     // No need to use tmp
                     Element release = new Element(InstructionProcessor.cmd_release, vm);
                     release.setAttribute("reg", oneReg + "");
                     toAddBefore.add(release);
-                    
-                    
-                    if( useInfo.willNull.has(oneReg)){
-	                    Element nullTmp = new Element(InstructionProcessor.cmd_set_null, vm);
-	                    nullTmp.setAttribute("num", oneReg + "");
-	                    toAddBefore.add(nullTmp);
-	                    
+
+                    if (useInfo.willNull.has(oneReg)) {
+                        Element nullTmp = new Element(InstructionProcessor.cmd_set_null, vm);
+                        nullTmp.setAttribute("num", oneReg + "");
+                        toAddBefore.add(nullTmp);
+
                     }
                 }
             }
 
-           
             if (useInfo.putRelease != null) {
                 if (!useInfo.usesAsObj().and(useInfo.allWrites()).isEmpty()) {
                     needsTmpReg = true;
@@ -239,7 +237,6 @@ public class ReferenceCounting {
                 retain.setAttribute("reg", oneReg + "");
                 toAddAfter.add(retain);
             }
-            
 
             // This handles the case where xmlvm2objc.xsl has set the temp reg
             // to a value because a function call was made, but the result was
@@ -253,7 +250,7 @@ public class ReferenceCounting {
 
             }
             toAddAfter.addAll(toReleaseLast);
-            
+
             // At this point toAddBefore and toAddAfter have been filled with
             // whatever instructions we need to add before and after this
             // specific element. The helper function adds them.
@@ -398,22 +395,18 @@ public class ReferenceCounting {
         Log.debug("ref", "Conflict is: " + curRun.allConflict);
 
         setWillFree(curRun.beenTo);
-        
+
         // Start going through optimizations before generating change
-        RefCountOptimization.ReturnValue ret = 
-        	new RegisterSizeAndNullingOptimization().Process(curRun.allCodePaths, curRun.beenTo,
-        			codeElement);     
-        
-        new DeferredNullingOptimization().Process(curRun.allCodePaths, curRun.beenTo,
-    			codeElement);     
-      
-        new ExcessRetainsOptimization().Process(curRun.allCodePaths, curRun.beenTo,
-    			codeElement);     
+        RefCountOptimization.ReturnValue ret = new RegisterSizeAndNullingOptimization().Process(
+                curRun.allCodePaths, curRun.beenTo, codeElement);
+
+        new DeferredNullingOptimization().Process(curRun.allCodePaths, curRun.beenTo, codeElement);
+
+        new ExcessRetainsOptimization().Process(curRun.allCodePaths, curRun.beenTo, codeElement);
         toProcess.addAll(0, ret.functionInit);
-        
+
         addExTempReg(toProcess);
-        
-        
+
         // Now we want to follow the paths to find unambiguous ones so that we
         // can determine
         // where to do release/retain to prevent ambiguity.
@@ -421,8 +414,7 @@ public class ReferenceCounting {
         // constructing paths through the code during
         // our normal traversal.
         boolean usesTemp = processReleaseRetain(curRun.beenTo);
-        if(usesTemp)
-        {
+        if (usesTemp) {
             Element setupTmp = new Element(InstructionProcessor.cmd_define_register,
                     InstructionProcessor.vm);
             setupTmp.setAttribute("vartype", InstructionProcessor.cmd_define_register_attr_temp);
@@ -441,7 +433,7 @@ public class ReferenceCounting {
             if (e.getName().equals("throw") || e.getName().equals("try-catch")) {
                 useEx = true;
             }
-        
+
             if (useEx && useTmp) {
                 break; // early quit
             }
@@ -449,7 +441,9 @@ public class ReferenceCounting {
         if (useEx) {
             Element setupEx = new Element(InstructionProcessor.cmd_define_register,
                     InstructionProcessor.vm);
-            setupEx.setAttribute("vartype", InstructionProcessor.cmd_define_register_attr_exception);
+            setupEx
+                    .setAttribute("vartype",
+                            InstructionProcessor.cmd_define_register_attr_exception);
             toProcess.add(0, setupEx);
         }
         for (Element e : curRun.beenTo.keySet()) {

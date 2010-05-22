@@ -27,7 +27,7 @@
 
 + (org_xmlvm_iphone_UIButton*) buttonWithType___int :(int) buttonType
 {
-	return [[UIButton buttonWithType: buttonType] retain];
+	return_XMLVM_SELECTOR(UIButton buttonWithType: buttonType)
 }
 
 - (void) setTitle___java_lang_String_int :(NSString*) label :(int) state
@@ -35,9 +35,34 @@
     [self setTitle: label forState: state];
 }
 
-- (UIFont*) getFont__
+- (void) setTitleColor___org_xmlvm_iphone_UIColor_int:(org_xmlvm_iphone_UIColor*)color :(int)state
 {
-    return [self.font retain];
+	[self setTitleColor:color forState:state];
+}
+
+- (void) setImage___org_xmlvm_iphone_UIImage_int :(org_xmlvm_iphone_UIImage*) image :(int) state
+{
+	[self setImage:image forState:state];
+}
+
+- (org_xmlvm_iphone_UIImage*) imageForState___int :(int) state
+{
+	return_XMLVM(imageForState:state)
+}
+
+- (void) setBackgroundImage___org_xmlvm_iphone_UIImage_int: (org_xmlvm_iphone_UIImage*)image :(int)state
+{
+	[self setBackgroundImage:image forState:state];
+}
+
+- (void) setFont___org_xmlvm_iphone_UIFont:(org_xmlvm_iphone_UIFont*)font
+{
+	[[self titleLabel] setFont:font];
+}
+
+- (org_xmlvm_iphone_UIFont*) getFont__
+{
+    return_XMLVM_SELECTOR([self titleLabel] font)
 }
 
 @end

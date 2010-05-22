@@ -20,9 +20,9 @@
 
 #import "xmlvm.h"
 
-
 // UIControlDelegate
 //----------------------------------------------------------------------------
 @protocol org_xmlvm_iphone_UIControlDelegate
-- (void) raiseEvent___org_xmlvm_iphone_UIControlDelegate_int: (id<org_xmlvm_iphone_UIControlDelegate>) sender :(int) eventType;
+- (void) raiseEvent___org_xmlvm_iphone_UIControl_int: (id) sender :(int) eventType;
+- (id) retain;
 @end

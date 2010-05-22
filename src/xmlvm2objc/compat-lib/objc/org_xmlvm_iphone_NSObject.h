@@ -34,4 +34,9 @@ typedef NSObject org_xmlvm_iphone_NSObject;
               :(java_lang_Object*) arg
               :(BOOL) waitUntilDone;
 
+- (void) __init_org_xmlvm_iphone_NSObject__;
+- (void) release__;
+- (NSObject*) retain__;
+- (void) dealloc__;
+
 @end

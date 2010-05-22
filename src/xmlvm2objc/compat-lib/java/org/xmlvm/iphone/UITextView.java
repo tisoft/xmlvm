@@ -25,25 +25,85 @@ import org.xmlvm.iphone.internal.renderer.UITextViewRenderer;
 
 public class UITextView extends UIView {
 
+    private boolean editable;
+    private int     autocapitalizationType        = UITextAutocapitalizationType.None;
+    private int     autocorrectionType            = UITextAutocorrectionType.Default;
+    private boolean enablesReturnKeyAutomatically = false;
+    private int     keyboardAppearance            = UIKeyboardAppearance.Default;
+    private int     keyboardType                  = UIKeyboardType.Default;
+    private int     returnKeyType                 = UIReturnKeyType.Default;
+    private boolean secureTextEntry               = false;
     private String  text;
     private UIFont  font;
     private UIColor textColor;
 
+    public UITextView() {
+        this(new CGRect(0, 0, 0, 0));
+    }
+
     public UITextView(CGRect rect) {
         super(rect);
-        init();
-    }
-
-    public UITextView() {
-        super(new CGRect(0, 0, 0, 0));
-        init();
-    }
-
-    private void init() {
         xmlvmSetRenderer(new UITextViewRenderer(this));
         this.setText("");
         this.setTextColor(UIColor.blackColor);
+        editable = true;
         Simulator.addKeyListener(this);
+    }
+
+    public int getAutocapitalizationType() {
+        return autocapitalizationType;
+    }
+
+    public void setAutocapitalizationType(int UITextAutocapitalizationType) {
+        this.autocapitalizationType = UITextAutocapitalizationType;
+    }
+
+    public int getAutocorrectionType() {
+        return autocorrectionType;
+    }
+
+    public void setAutocorrectionType(int UITextAutocorrectionType) {
+        this.autocorrectionType = UITextAutocorrectionType;
+    }
+
+    public boolean isEnablesReturnKeyAutomatically() {
+        return enablesReturnKeyAutomatically;
+    }
+
+    public void setEnablesReturnKeyAutomatically(boolean enablesReturnKeyAutomatically) {
+        this.enablesReturnKeyAutomatically = enablesReturnKeyAutomatically;
+    }
+
+    public int getKeyboardAppearance() {
+        return keyboardAppearance;
+    }
+
+    public void setKeyboardAppearance(int UIKeyboardAppearance) {
+        this.keyboardAppearance = UIKeyboardAppearance;
+    }
+
+    public int getKeyboardType() {
+        return keyboardType;
+    }
+
+    public void setKeyboardType(int UIKeyboardType) {
+        this.keyboardType = UIKeyboardType;
+    }
+
+    public int getReturnKeyType() {
+        return returnKeyType;
+    }
+
+    public void setReturnKeyType(int UIReturnKeyType) {
+        this.returnKeyType = UIReturnKeyType;
+    }
+
+    public boolean isSecureTextEntry() {
+        return secureTextEntry;
+    }
+
+    public void setSecureTextEntry(boolean secureTextEntry) {
+        this.secureTextEntry = secureTextEntry;
     }
 
     public UIFont getFont() {
@@ -70,7 +130,7 @@ public class UITextView extends UIView {
         return textColor;
     }
 
-    /* TODO teras: this has to be removed from here */
+    /* TODO : this has to be removed from here */
     @Override
     public void keyTyped(char key) {
         if (key == '\b' && !text.equals(""))
@@ -78,5 +138,13 @@ public class UITextView extends UIView {
         else
             text += key;
         Simulator.redrawDisplay();
+    }
+
+    public boolean isEditable() {
+        return editable;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
     }
 }

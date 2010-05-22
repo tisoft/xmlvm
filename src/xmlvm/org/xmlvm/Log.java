@@ -39,7 +39,6 @@ public class Log {
         private final String      prefix;
         private final PrintStream stream;
 
-
         Level(String prefix, PrintStream stream) {
             this.prefix = prefix;
             this.stream = stream;
@@ -61,11 +60,9 @@ public class Log {
         }
     }
 
-
     private static final String     DATE_FORMAT = "MM/dd/yy HH:mm:ss.SSS";
     private static final DateFormat dateFormat  = new SimpleDateFormat(DATE_FORMAT);
     private static Level            level       = Level.ALL;
-
 
     /**
      * Display log message, if it is in the correct log level

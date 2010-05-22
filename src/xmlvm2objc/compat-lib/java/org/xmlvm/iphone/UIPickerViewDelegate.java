@@ -18,34 +18,52 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.xmlvm.iphone;
 
-import org.xmlvm.iphone.internal.renderer.UIPickerViewRenderer;
+import org.xmlvm.iphone.internal.OptionalSelectorException;
 
 /**
  * 
  * @author teras
  */
-public abstract class UIPickerViewDelegate {
+public abstract class UIPickerViewDelegate extends NSObject {
 
-    private final static float ROWHEIGHT = 10;
-    private final static float ROWWIDTH  = 320 - 2 * UIPickerViewRenderer.INSET - 2;
-
+    /**
+     * This is an optional method.
+     * 
+     * @see org.xmlvm.iphone.internal.OptionalSelectorException
+     */
     public float rowHeightForComponent(UIPickerView view, int component) {
-        return ROWHEIGHT;
+        throw new OptionalSelectorException();
     }
 
+    /**
+     * This is an optional method.
+     * 
+     * @see org.xmlvm.iphone.internal.OptionalSelectorException
+     */
     public float widthForComponent(UIPickerView view, int component) {
-        return ROWWIDTH / view.getNumberOfComponents();
+        throw new OptionalSelectorException();
     }
 
+    /**
+     * This is an optional method.
+     * 
+     * @see org.xmlvm.iphone.internal.OptionalSelectorException
+     */
     public UIView viewForRow(UIPickerView view, int row, int component, UIView reusedView) {
-        return null;
+        throw new OptionalSelectorException();
+    }
+
+    /**
+     * This is an optional method.
+     * 
+     * @see org.xmlvm.iphone.internal.OptionalSelectorException
+     */
+    public String titleForRow(UIPickerView view, int row, int component) {
+        throw new OptionalSelectorException();
     }
 
     public void didSelectRow(UIPickerView view, int row, int component) {
     }
-
-    public abstract String titleForRow(UIPickerView view, int row, int component);
 }

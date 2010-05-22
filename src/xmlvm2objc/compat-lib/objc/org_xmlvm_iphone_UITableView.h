@@ -22,7 +22,9 @@
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_UITableViewDataSource.h"
 #import "org_xmlvm_iphone_UITableViewDelegate.h"
-
+#import "org_xmlvm_iphone_UITableViewCell.h"
+#import "org_xmlvm_iphone_UIColor.h"
+#import "java_util_ArrayList.h"
 
 // UITableView
 //----------------------------------------------------------------------------
@@ -32,4 +34,20 @@ typedef UITableView org_xmlvm_iphone_UITableView;
 - (void) __init_org_xmlvm_iphone_UITableView___org_xmlvm_iphone_CGRect_int :(org_xmlvm_iphone_CGRect*) rect :(int) style;
 - (void) setDataSource___org_xmlvm_iphone_UITableViewDataSource :(org_xmlvm_iphone_UITableViewDataSource*) source;
 - (void) setDelegate___org_xmlvm_iphone_UITableViewDelegate :(org_xmlvm_iphone_UITableViewDelegate*) delegate;
+- (void) setSeparatorColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*)separatorColor;
+- (org_xmlvm_iphone_UIColor*) getSeparatorColor__;
+- (void) setSeparatorStyle___int :(int)separatorStyle;
+- (int) getSeparatorStyle__;
+- (int) isAllowsSelection__;
+- (void) setAllowsSelection___boolean :(int)allowsel;
+- (void) setRowHeight___float: (float)height;
+- (float) getRowHeight__;
+- (int) isEditing__;
+- (void) setEditing___boolean :(int)edit;
+- (void) setEditing___boolean_boolean :(int)edit :(int)animated;
+- (void) deleteRowsAtIndexPaths___java_util_ArrayList_boolean:(NSArray *)indexPaths :(int)animation;
+- (void) reloadData__;
+- (void) reloadRowsAtIndexPaths___java_util_ArrayList_int:(java_util_ArrayList*)indexPaths :(int)animation;
+- (org_xmlvm_iphone_UITableViewCell*) dequeueReusableCellWithIdentifier___java_lang_String :(NSString*)identifier;
+- (void) deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean:(org_xmlvm_iphone_NSIndexPath*)indexPath :(int)animation;
 @end

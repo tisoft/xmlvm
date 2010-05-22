@@ -24,20 +24,27 @@
 // NSURL
 //----------------------------------------------------------------------------
 @implementation NSURL (cat_NSURL)
+
++ (NSURL*) URLWithString___java_lang_String: (java_lang_String*) url
+{
+    return_XMLVM_SELECTOR(NSURL URLWithString: url)
+}
+
++ (NSURL*) fileURLWithPath___java_lang_String: (java_lang_String*) path;
+{
+	return_XMLVM_SELECTOR(NSURL fileURLWithPath: path)
+}
+
 - (void) __init_org_xmlvm_iphone_NSURL___java_lang_String: (java_lang_String*) url
 {
     [self initWithString: url];
 }
 
-+ (NSURL*) URLWithString___java_lang_String: (java_lang_String*) url
+- (NSString*) absoluteString__
 {
-    return [[NSURL URLWithString: url] retain];
+	return_XMLVM(absoluteString)
 }
 
-+ (NSURL*) fileURLWithPath___java_lang_String: (java_lang_String*) path;
-{
-	return [[NSURL fileURLWithPath: path] retain];
-}
 
 @end
 

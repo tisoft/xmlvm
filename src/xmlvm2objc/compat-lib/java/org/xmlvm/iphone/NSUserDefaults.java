@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NSUserDefaults {
+public class NSUserDefaults extends NSObject {
 
     private static NSUserDefaults nsUserDefaults = new NSUserDefaults();
     private Map<String, Object>   preferences    = new HashMap<String, Object>();

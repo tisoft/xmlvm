@@ -30,7 +30,7 @@ __BUILDFRAMS__			);
 			children = (
 __APPSRC__			);
 			name = Application;
-			path = src/xmlvm/app;
+			path = src/xcode/app;
 			sourceTree = "<group>";
 		};
 		25 /* Library */ = {
@@ -47,7 +47,7 @@ __APPSRC__			);
 			children = (
 __IPHONESRC__			);
 			name = iPhone;
-			path = src/xmlvm/lib/iphone;
+			path = src/xcode/lib/iphone;
 			sourceTree = "<group>";
 		};
 		26 /* Android */ = {
@@ -55,7 +55,7 @@ __IPHONESRC__			);
 			children = (
 __ANDROIDSRC__			);
 			name = Android;
-			path = src/xmlvm/lib/android;
+			path = src/xcode/lib/android;
 			sourceTree = "<group>";
 		};
 		11 /* MainGroup */ = {
@@ -169,6 +169,23 @@ __SRC_BUILD__			);
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		29 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEPLOYMENT_POSTPROCESSING = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.1;
+				SEPARATE_STRIP = YES;
+			};
+			name = AppStore;
+		};
 		22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -187,13 +204,27 @@ __SRC_BUILD__			);
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.1;
+				SEPARATE_STRIP = YES;
 			};
 			name = Release;
+		};
+		28 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "resources/sys/__PROJNAME__-Info.plist";
+				PRODUCT_NAME = __PROJNAME__;
+			};
+			name = AppStore;
 		};
 		20 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -227,6 +258,7 @@ __SRC_BUILD__			);
 			buildConfigurations = (
 				22 /* Debug */,
 				23 /* Release */,
+				29 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -236,6 +268,7 @@ __SRC_BUILD__			);
 			buildConfigurations = (
 				20 /* Debug */,
 				21 /* Release */,
+				28 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

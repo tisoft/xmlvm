@@ -75,12 +75,12 @@ public class RegisterSet implements java.lang.Iterable<Integer> {
      * &= ~val
      */
     public void andEqNot(RegisterSet other) {
-       
-    	RegisterSet tmp = other.clone();
+
+        RegisterSet tmp = other.clone();
         int lenForOp = Math.max(this.map.length(), other.map.length());
         tmp.map.flip(0, lenForOp);
         this.andEq(tmp);
- 
+
     }
 
     /**
@@ -98,20 +98,21 @@ public class RegisterSet implements java.lang.Iterable<Integer> {
     public void add(int i) {
         this.map.set(i);
     }
-    
+
     /**
      * remove i from the reg set
      */
-    public void clear(int i){
-    	this.map.clear(i);
+    public void clear(int i) {
+        this.map.clear(i);
     }
+
     /**
      * Removes register i from the map
      */
     public void remove(int i) {
         this.map.clear(i);
     }
-    
+
     /**
      * Do we have any registers set?
      */
@@ -133,8 +134,7 @@ public class RegisterSet implements java.lang.Iterable<Integer> {
      */
     public String toString() {
         StringBuilder toRet = new StringBuilder();
-        for(int x:this)
-        {
+        for (int x : this) {
             toRet.append("R" + x + " ");
         }
         return toRet.toString();
@@ -215,10 +215,10 @@ public class RegisterSet implements java.lang.Iterable<Integer> {
         return new BitSetIterator(this);
     }
 
-	/**
-	 * Contains this register?
-	 */
-	public boolean has(int oneReg) {
-		return this.map.get(oneReg);
-	}
+    /**
+     * Contains this register?
+     */
+    public boolean has(int oneReg) {
+        return this.map.get(oneReg);
+    }
 }

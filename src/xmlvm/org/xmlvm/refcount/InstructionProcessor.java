@@ -118,7 +118,6 @@ public class InstructionProcessor {
     public final static Namespace vm                                 = Namespace.getNamespace("vm",
                                                                              "http://xmlvm.org");
 
-
     /*
      * Most of the time, the destination register in dex is VX, this is a helper
      * function to get the register index for VX.
@@ -297,8 +296,8 @@ public class InstructionProcessor {
     static public void process_move_exception(Element element, InstructionUseInfo i)
             throws DataConversionException {
         i.isWrite = true;
-        //Exceptions don't require retains as they use the retain count the
-    	//exception had when it was thrown
+        // Exceptions don't require retains as they use the retain count the
+        // exception had when it was thrown
     }
 
     static public void process_move_object(Element element, InstructionUseInfo i)

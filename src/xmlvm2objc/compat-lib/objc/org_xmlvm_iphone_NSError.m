@@ -27,12 +27,12 @@
 		: (int) code
 		: (java_util_Map*) userInfo
 {
-	return [[NSError errorWithDomain: domain code: code userInfo: userInfo] retain];
+	return_XMLVM_SELECTOR(NSError errorWithDomain: domain code: code userInfo: userInfo)
 }
 
 - (java_lang_String*) description__
 {
-	return [[self description] retain];
+	return_XMLVM(description)
 }
 
 
@@ -43,12 +43,12 @@
 
 - (java_lang_String*) domain__
 {
-	return [[self domain] retain];
+	return_XMLVM(domain)
 }
 
 - (java_util_Map*) userInfo__
 {
-	return [[self userInfo] retain];
+	return_XMLVM(userInfo)
 }
 
 @end

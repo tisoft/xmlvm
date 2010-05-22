@@ -22,10 +22,10 @@ package org.xmlvm.iphone;
 
 import java.util.Set;
 
-public class UIResponder {
+public class UIResponder extends NSObject {
 
-    private UIResponderDelegate delegate = null;
-    protected boolean callDelegates = true;
+    private UIResponderDelegate delegate      = null;
+    protected boolean           callDelegates = true;
 
     public UIResponder() {
     }

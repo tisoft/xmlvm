@@ -24,7 +24,6 @@ import java.io.ByteArrayInputStream;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Map;
 
 import javazoom.jlgui.basicplayer.BasicController;
@@ -33,7 +32,7 @@ import javazoom.jlgui.basicplayer.BasicPlayerEvent;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 import javazoom.jlgui.basicplayer.BasicPlayerListener;
 
-public class AVAudioPlayer {
+public class AVAudioPlayer extends NSObject {
 
     class Listener implements BasicPlayerListener {
 
@@ -61,7 +60,7 @@ public class AVAudioPlayer {
                 try {
                     if (!stopRequested) {
                         if (url != null) {
-                            player.open(url);
+                            player.open(url.xmlvmGetURL());
                         } else {
                             ByteArrayInputStream bis = new ByteArrayInputStream(data);
                             player.open(bis);
@@ -93,12 +92,12 @@ public class AVAudioPlayer {
     private int                   loopsLeft     = 0;
     private BasicPlayer           player        = null;
     private boolean               stopRequested = false;
-    private URL                   url           = null;
+    private NSURL                 url           = null;
     private AVAudioPlayerDelegate delegate      = null;
     private boolean               playing       = false;
     private byte[]                data          = null;
 
-    private AVAudioPlayer(URL url) throws BasicPlayerException {
+    private AVAudioPlayer(NSURL url) throws BasicPlayerException {
         this.url = url;
         player = new BasicPlayer();
         player.addBasicPlayerListener(new Listener(this));
@@ -115,7 +114,7 @@ public class AVAudioPlayer {
             int startOfResource = urlStr.indexOf(IN_JAR_MARKER) + IN_JAR_MARKER.length();
             player.open(AVAudioPlayer.class.getResourceAsStream(urlStr.substring(startOfResource)));
         } else {
-            player.open(this.url);
+            player.open(this.url.xmlvmGetURL());
         }
     }
 
@@ -138,7 +137,7 @@ public class AVAudioPlayer {
 
     public static AVAudioPlayer initWithContentsOfURL(NSURL url, NSErrorHolder error) {
         try {
-            AVAudioPlayer player = new AVAudioPlayer(url.getURL());
+            AVAudioPlayer player = new AVAudioPlayer(url);
             error.error = null;
             return player;
         } catch (BasicPlayerException exc) {
@@ -239,7 +238,7 @@ public class AVAudioPlayer {
                 stop();
             }
             if (url != null) {
-                player.open(url);
+                player.open(url.xmlvmGetURL());
             } else {
                 ByteArrayInputStream bis = new ByteArrayInputStream(data);
                 player.open(bis);
@@ -273,4 +272,22 @@ public class AVAudioPlayer {
         return player.getGainValue();
     }
 
+    public int getNumberOfChannels() {
+        // TODO : implement the actual number of channels
+        return 2;
+    }
+
+    public double getDuration() {
+        // TODO : implement the actual duration time
+        return 0;
+    }
+
+    public NSURL getURL() {
+        return url;
+    }
+
+    public NSData getData() {
+        // TODO : Java implementation
+        return null;
+    }
 }

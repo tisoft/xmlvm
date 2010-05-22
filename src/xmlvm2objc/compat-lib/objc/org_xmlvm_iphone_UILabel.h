@@ -20,6 +20,7 @@
 
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_CGRect.h"
+#import "org_xmlvm_iphone_CGSize.h"
 #import "org_xmlvm_iphone_UIColor.h"
 #import "org_xmlvm_iphone_UIFont.h"
 
@@ -39,4 +40,10 @@ typedef UILabel org_xmlvm_iphone_UILabel;
 - (void) setLineBreakMode___int: (int) lineBreakMode;
 - (int) getNumberOfLines__;
 - (void) setNumberOfLines___int: (int) numberOfLines;
+- (void) setShadowColor___org_xmlvm_iphone_UIColor:(org_xmlvm_iphone_UIColor*) scolor;
+- (org_xmlvm_iphone_UIColor*) getShadowColor__;
+- (void) setShadowOffset___org_xmlvm_iphone_CGSize:(org_xmlvm_iphone_CGSize*) offset;
+- (org_xmlvm_iphone_CGSize*) getShadowOffset__;
+- (void) setAdjustsFontSizeToFitWidth___boolean:(int) value;
+- (int) isAdjustsFontSizeToFitWidth__;
 @end

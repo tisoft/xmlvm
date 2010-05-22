@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
 import java.awt.Color;
 import java.awt.Paint;
 
-public class UIColor {
+public class UIColor extends NSObject {
 
     private Paint               color;
     private UIImage             patternImage;
@@ -94,7 +94,7 @@ public class UIColor {
     public Paint xmlvmGetPaint() {
         return color;
     }
-    
+
     public UIImage xmlvmGetPatternImage() {
         return patternImage;
     }

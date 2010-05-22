@@ -23,7 +23,7 @@
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_UIColor.h"
 #import "org_xmlvm_iphone_UIFont.h"
-
+@class org_xmlvm_iphone_UITextFieldDelegate;
 
 // UITextField
 //----------------------------------------------------------------------------
@@ -37,4 +37,26 @@ typedef UITextField org_xmlvm_iphone_UITextField;
 - (void) setBorderStyle___int :(int) style;
 - (void) setPlaceholder___java_lang_String: (java_lang_String*) p;
 - (org_xmlvm_iphone_UIFont*) getFont__;
+- (void) setFont___org_xmlvm_iphone_UIFont: (org_xmlvm_iphone_UIFont*)fnt;
+- (void) setDelegate___org_xmlvm_iphone_UITextFieldDelegate:(org_xmlvm_iphone_UITextFieldDelegate*)newdelegate;
+- (org_xmlvm_iphone_UITextFieldDelegate*) getUITextFieldDelegate__;
+
+// UITextInputTraits bindings with java
+- (int) getAutocapitalizationType__;
+- (void) setAutocapitalizationType___int :(int)capitalization;
+- (int) getAutocorrectionType__;
+- (void) setAutocorrectionType___int :(int)correction;
+- (int) isEnablesReturnKeyAutomatically__;
+- (void) setEnablesReturnKeyAutomatically___boolean :(int)returnkey;
+- (int) getKeyboardAppearance__;
+- (void) setKeyboardAppearance___int :(int)appearance;
+- (int) getKeyboardType__;
+- (void) setKeyboardType___int :(int)keyboardtype;
+- (int) getReturnKeyType__;
+- (void) setReturnKeyType___int :(int)returntype;
+- (int) isSecureTextEntry__;
+- (void) setSecureTextEntry___boolean :(int)secure;
+- (void) setAdjustsFontSizeToFitWidth___boolean:(int) value;
+- (int) isAdjustsFontSizeToFitWidth__;
+
 @end

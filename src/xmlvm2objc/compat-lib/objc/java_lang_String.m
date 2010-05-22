@@ -28,7 +28,7 @@
 
 - (void) __init_java_lang_String___java_lang_String: (java_lang_String*) str
 {
-    [self setString: str];
+	[self setString: str];
 }
 
 - (void) __init_java_lang_String___byte_ARRAYTYPE: (XMLVMArray*) bytes
@@ -47,33 +47,33 @@
 
 + (java_lang_String*) valueOf___int: (int) i
 {
-    NSNumber* n = [NSNumber numberWithInt: i];
-    return [[NSString alloc] initWithString: [n stringValue]];
+	NSNumber* n = [NSNumber numberWithInt: i];
+	return [[NSString alloc] initWithString: [n stringValue]];
 }
 
 + (java_lang_String*) valueOf___long: (long) l {
-    NSNumber* n = [NSNumber numberWithLong: l];
-    return [[NSString alloc] initWithString: [n stringValue]];
+	NSNumber* n = [NSNumber numberWithLong: l];
+	return [[NSString alloc] initWithString: [n stringValue]];
 }
 
 + (java_lang_String*) valueOf___float: (float) f
 {
-    NSNumber* n = [NSNumber numberWithFloat: f];
-    return [[NSString alloc] initWithString: [n stringValue]];
+	NSNumber* n = [NSNumber numberWithFloat: f];
+	return [[NSString alloc] initWithString: [n stringValue]];
 }
 
 + (java_lang_String*) valueOf___double: (double) d
 {
-    NSNumber* n = [NSNumber numberWithDouble: d];
-    return [[NSString alloc] initWithString: [n stringValue]];
+	NSNumber* n = [NSNumber numberWithDouble: d];
+	return [[NSString alloc] initWithString: [n stringValue]];
 }
 
 + (java_lang_String*) valueOf___java_lang_Object: (java_lang_Object*) o
 {
-    if ([o isKindOfClass: [NSString class]] == YES) {
-        return [[NSString alloc] initWithString: (NSString*) o];
-    }
-    return [[NSString alloc] initWithString: @"Unkown type in valueOf___java_lang_Object"];
+	if ([o isKindOfClass: [NSString class]] == YES) {
+		return [[NSString alloc] initWithString: (NSString*) o];
+	}
+	return [[NSString alloc] initWithString: @"Unkown type in valueOf___java_lang_Object"];
 }
 
 - (void) getChars___int_int_char_ARRAYTYPE_int:(int)srcBegin:(int)srcEnd:(XMLVMArray*)dst:(int)dstBegin {
@@ -143,25 +143,25 @@
 	NSRange range;
 	range.location = from;
 	range.length = to - from;
-	return [[NSString alloc] initWithString: [self substringWithRange: range]];
+	return_XMLVM(substringWithRange: range)
 }
 
 - (java_lang_String*) substring___int: (int) from
 {
-	return [[NSString alloc] initWithString: [self substringFromIndex: from]];
+	return_XMLVM(substringFromIndex: from)
 }
 
 - (int) compareTo___java_lang_String: (java_lang_String*) str
 {
-    return [self compare: str];
+	return [self compare: str];
 }
 
 - (int) equals___java_lang_Object: (java_lang_Object*) o
 {
-    if ([o isKindOfClass: [NSString class]] == NO) {
-        return 0;
-    }
-    return [self compare: (NSString*) o] == 0;
+	if ([o isKindOfClass: [NSString class]] == NO) {
+		return 0;
+	}
+	return [self compare: (NSString*) o] == 0;
 }
 
 - (int) equalsIgnoreCase___java_lang_String: (java_lang_String*) s
@@ -171,15 +171,18 @@
 
 - (java_lang_String*) toString__
 {
-    [self retain];
-    return self;
+	return_XMLVM(self)
 }
 
 - (java_lang_String*) toLowerCase__
 {
-    return [[NSMutableString alloc] initWithString:[self lowercaseString]];
+	return_XMLVM(lowercaseString)
 }
 
+ - (java_lang_String*) toUpperCase__
+ {
+	return_XMLVM(uppercaseString)
+ }
 
 - (int) startsWith___java_lang_String: (java_lang_String*) s {
 	return [self hasPrefix: s] == YES ? 1 : 0;
@@ -218,6 +221,18 @@
 	return [self length];
 }
 
+- (java_lang_String*) replace___char_char:(unichar)from :(unichar)to
+{
+	NSString * res = [self stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%C",from] withString:[NSString stringWithFormat:@"%C",to]];
+	return [res retain];
+}
+
+- (java_lang_String*) replace___java_lang_CharSequence_java_lang_CharSequence:(java_lang_CharSequence*)from :(java_lang_CharSequence*)to
+{
+	NSString * res = [self stringByReplacingOccurrencesOfString:from withString:to];
+	return [res retain];
+}
+
 - (java_lang_String*) replaceAll___java_lang_String_java_lang_String :(java_lang_String*)a :(java_lang_String*)b {
 	NSMutableString *m = [[NSMutableString alloc] initWithString:self];
 	NSRange range;
@@ -230,7 +245,7 @@
 
 - (XMLVMArray*) split___java_lang_String :(java_lang_String*)s
 {
-	NSMutableArray *chunks = [self componentsSeparatedByString:s];
+	NSArray *chunks = [self componentsSeparatedByString:s];
 	int length = [chunks count];
 
 	XMLVMArray *result = [XMLVMArray createSingleDimensionWithType: 0 andSize: length]; // object reference array
@@ -253,6 +268,11 @@
 		len--;
 	}
 	return (st > 0 || len < [self length]) ? [self substring___int_int:st:len] : [self retain];
+}
+
+- (int) isEmpty__
+{
+	return [self length] > 0;
 }
 
 @end

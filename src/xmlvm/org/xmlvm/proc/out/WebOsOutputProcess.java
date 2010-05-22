@@ -59,7 +59,6 @@ public class WebOsOutputProcess extends XmlvmProcessImpl<QooxdooOutputProcess> {
     private String                sceneName                = "";
     private String                compiledQxBuildPath      = "";
 
-
     public WebOsOutputProcess(Arguments arguments) {
         super(arguments);
         // We only support QooxdooOutputProcesses as input.

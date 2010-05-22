@@ -20,6 +20,9 @@
 
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_CGRect.h"
+#import "org_xmlvm_iphone_UIImage.h"
+#import "org_xmlvm_iphone_UIFont.h"
+#import "org_xmlvm_iphone_UIColor.h"
 
 // UIButton
 //----------------------------------------------------------------------------
@@ -27,5 +30,10 @@ typedef UIButton org_xmlvm_iphone_UIButton;
 @interface UIButton (cat_org_xmlvm_iphone_UIButton)
 + (org_xmlvm_iphone_UIButton*) buttonWithType___int :(int) buttonType;
 - (void) setTitle___java_lang_String_int :(NSString*) label :(int) state;
-- (UIFont*) getFont__;
+- (void) setTitleColor___org_xmlvm_iphone_UIColor_int:(org_xmlvm_iphone_UIColor*)color :(int)state;
+- (void) setImage___org_xmlvm_iphone_UIImage_int :(org_xmlvm_iphone_UIImage*) image :(int) state;
+- (org_xmlvm_iphone_UIImage*) imageForState___int :(int) state;
+- (void) setBackgroundImage___org_xmlvm_iphone_UIImage_int: (org_xmlvm_iphone_UIImage*)image :(int)state;
+- (void) setFont___org_xmlvm_iphone_UIFont:(org_xmlvm_iphone_UIFont*)font;
+- (org_xmlvm_iphone_UIFont*) getFont__;
 @end

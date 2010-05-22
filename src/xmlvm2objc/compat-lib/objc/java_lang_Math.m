@@ -121,4 +121,9 @@
 	return round(a);
 }
 
++ (double) floor___double:(double) a
+{
+	return floor(a);
+}
+
 @end

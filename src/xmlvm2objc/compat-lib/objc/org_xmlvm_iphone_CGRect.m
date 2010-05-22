@@ -25,12 +25,12 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_CGRect;
 
-- (id) init
++ (id) alloc
 {
-    [super init];
-    origin_org_xmlvm_iphone_CGPoint = [[org_xmlvm_iphone_CGPoint alloc] init];
-    size_org_xmlvm_iphone_CGSize = [[org_xmlvm_iphone_CGSize alloc] init];
-    return self;
+	org_xmlvm_iphone_CGRect * this = [super alloc];
+    this->origin_org_xmlvm_iphone_CGPoint = [org_xmlvm_iphone_CGPoint alloc];
+    this->size_org_xmlvm_iphone_CGSize = [org_xmlvm_iphone_CGSize alloc];
+	return this;
 }
 
 - (void) dealloc
@@ -38,6 +38,21 @@
     [origin_org_xmlvm_iphone_CGPoint release];
     [size_org_xmlvm_iphone_CGSize release];
     [super dealloc];
+}
+
+- (id) init
+{
+    [super init];
+	[origin_org_xmlvm_iphone_CGPoint init];
+	[origin_org_xmlvm_iphone_CGPoint init];
+    return self;
+}
+
+- (org_xmlvm_iphone_CGRect*) initWithCGRect:(CGRect) rect
+{
+	[self __init_org_xmlvm_iphone_CGRect___float_float_float_float: 
+			rect.origin.x :rect.origin.y :rect.size.width : rect.size.height];
+	return self;
 }
 
 - (CGRect) getCGRect
@@ -62,6 +77,12 @@
     origin_org_xmlvm_iphone_CGPoint->y_float = other->origin_org_xmlvm_iphone_CGPoint->y_float;
     size_org_xmlvm_iphone_CGSize->width_float = other->size_org_xmlvm_iphone_CGSize->width_float;
     size_org_xmlvm_iphone_CGSize->height_float = other->size_org_xmlvm_iphone_CGSize->height_float;
+}
+
+- (NSString*) toString__
+{
+	NSString* res = [[NSString alloc] initWithFormat:@"[%@%@]", [origin_org_xmlvm_iphone_CGPoint toString__], [size_org_xmlvm_iphone_CGSize toString__]];
+	return res;
 }
 
 + (org_xmlvm_iphone_CGRect*) Intersection___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect

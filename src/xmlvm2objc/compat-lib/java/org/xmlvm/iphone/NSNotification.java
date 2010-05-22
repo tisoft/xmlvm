@@ -20,6 +20,6 @@
 
 package org.xmlvm.iphone;
 
-public class NSNotification {
+public class NSNotification extends NSObject {
 
 }

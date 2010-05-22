@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class NSURLConnection {
+public class NSURLConnection extends NSObject {
 
     private Thread thread;
 
@@ -34,7 +34,8 @@ public class NSURLConnection {
                 NSHTTPURLResponseHolder resp = new NSHTTPURLResponseHolder();
                 NSErrorHolder error = new NSErrorHolder();
                 NSData data = sendSynchronousRequest(req, resp, error);
-                // TODO need to do something with NSData and NSError
+                // TODO need to do something with NSError
+                delegate.connectionDidReceiveData(NSURLConnection.this, data);
                 delegate.connectionDidFinishLoading(NSURLConnection.this);
             }
         });
@@ -44,7 +45,7 @@ public class NSURLConnection {
     static public NSData sendSynchronousRequest(NSMutableURLRequest req,
             NSHTTPURLResponseHolder resp, NSErrorHolder error) {
         NSData data = null;
-        URL url = req.getURL();
+        URL url = req.xmlvmGetURL();
         URLConnection conn;
         try {
             conn = url.openConnection();

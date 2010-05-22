@@ -28,7 +28,6 @@ import org.xmlvm.util.universalfile.UniversalFile;
 public class XmlvmFile extends XFile {
     public static final String XMLVM_ENDING = ".xmlvm";
 
-
     public XmlvmFile(UniversalFile path) {
         super(path);
     }

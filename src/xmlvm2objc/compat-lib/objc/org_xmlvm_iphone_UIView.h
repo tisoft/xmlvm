@@ -22,10 +22,12 @@
 #import "java_util_List.h"
 #import "java_lang_String.h"
 #import "org_xmlvm_iphone_CGRect.h"
+#import "org_xmlvm_iphone_CGSize.h"
 #import "org_xmlvm_iphone_CGAffineTransform.h"
-#import "org_xmlvm_iphone_CALayer.h"
-#import "org_xmlvm_iphone_gl_CAEAGLLayer.h"
 #import "org_xmlvm_iphone_UIColor.h"
+#import "org_xmlvm_iphone_NSDate.h"
+#import "org_xmlvm_iphone_UIViewAnimationDelegate.h"
+#import "org_xmlvm_iphone_CALayer.h"
 
 // UIView
 //----------------------------------------------------------------------------
@@ -33,7 +35,6 @@
 
 UIImage* backgroundImage;
 id       drawDelegate;
-
 }
 
 - (void) dealloc;
@@ -55,13 +56,17 @@ id       drawDelegate;
 - (void) addSubview___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) view;
 - (void) insertSubview___org_xmlvm_iphone_UIView_int :(org_xmlvm_iphone_UIView*) view :(int) idx;
 - (void) removeFromSuperview__;
+- (void) sendSubviewToBack___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) subView;
 - (void) bringSubviewToFront___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) view;
 - (java_util_List*) getSubviews__;
 - (void) setTransform___org_xmlvm_iphone_CGAffineTransform :(org_xmlvm_iphone_CGAffineTransform*)transform;
 - (void) setNeedsDisplay__;
 - (void) setNeedsDisplayInRect___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)rect;
 - (void) drawRect___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)rect;
+- (int) isOpaque__;
 - (void) setOpaque___boolean :(int) opaque;
+- (int) isHidden__;
+- (void) setHidden___boolean :(int) hid;
 - (void) setBackgroundColor___org_xmlvm_iphone_UIColor:(org_xmlvm_iphone_UIColor*) col;
 - (void) setClearsContextBeforeDrawing___boolean :(int) clear;
 - (void) setUserInteractionEnabled___boolean:(int) uinteraction;
@@ -74,5 +79,29 @@ id       drawDelegate;
 - (org_xmlvm_iphone_UIColor*) getBackgroundColor__;
 - (float) getAlpha__;
 - (void) setAlpha___float :(float)n1;
+- (int) getTag__;
+- (void) setTag___int :(int)tag;
+- (UIWindow*) getWindow__;
+- (org_xmlvm_iphone_CALayer*) getLayer__;
+- (void) sizeToFit__;
+- (org_xmlvm_iphone_CGSize*) sizeThatFits___org_xmlvm_iphone_CGSize:(org_xmlvm_iphone_CGSize*) size;
+- (org_xmlvm_iphone_CGPoint*) convertPointFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIView*) view;
+- (org_xmlvm_iphone_CGPoint*) convertPointToView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIView*) view;
+- (org_xmlvm_iphone_CGRect*) convertRectFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGRect*)rect :(org_xmlvm_iphone_UIView*) view;
+- (org_xmlvm_iphone_CGRect*) convertRectToView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGRect*)rect :(org_xmlvm_iphone_UIView*) view;
+// View animations
++ (void) beginAnimations___java_lang_String :(NSString*)animationID;
++ (void) commitAnimations__;
++ (void) setAnimationStartDate___org_xmlvm_iphone_NSDate :(org_xmlvm_iphone_NSDate*)startTime;
++ (void) setAnimationsEnabled___boolean :(BOOL)enabled;
++ (void) setAnimationDuration___double :(double)duration;
++ (void) setAnimationDelay___double :(double)delay;
++ (void) setAnimationCurve___int :(int)curve;
++ (void) setAnimationRepeatCount___float :(float)repeatCount;
++ (void) setAnimationRepeatAutoreverses___boolean :(int)repeatAutoreverses;
++ (void) setAnimationBeginsFromCurrentState___boolean :(int)fromCurrentState;
++ (void) setAnimationTransitionForView___int_org_xmlvm_iphone_UIView_boolean :(int)transition :(org_xmlvm_iphone_UIView*)view :(BOOL)cache;
++ (int) areAnimationsEnabled__;
++ (void) setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate :(org_xmlvm_iphone_UIViewAnimationDelegate*)animdelegate;
 
 @end

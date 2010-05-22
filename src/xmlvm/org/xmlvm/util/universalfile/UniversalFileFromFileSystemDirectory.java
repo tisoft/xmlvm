@@ -31,7 +31,6 @@ public class UniversalFileFromFileSystemDirectory extends UniversalFile {
 
     private File directory;
 
-
     UniversalFileFromFileSystemDirectory(File directory) {
         this.directory = directory;
     }

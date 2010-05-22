@@ -37,6 +37,8 @@
 
 - (void) writeString: (NSString*) str
 {
+	if (str==JAVA_NULL)
+		str=@"null";
 	for (int i = 0; i < [str length]; i++) {
 		[self->os write___int:[str characterAtIndex:i]];
 	}
@@ -50,7 +52,7 @@
 
 - (void) println___boolean: (int) i
 {
-	[self writeString: (i == NO) ? @"false" : @"true"];
+	[self writeStringLn: (i == NO) ? @"false" : @"true"];
 }
 
 - (void) println___int: (int) i
@@ -76,17 +78,54 @@
 	[self writeStringLn:s];
 }
 
+- (void) println___java_lang_Object: (java_lang_Object*) o
+{
+	[self print___java_lang_Object:o];
+	[self println__];
+}
+
 - (void) println__
 {
 	[self writeString:@"\n"];
 }
 
+- (void) print___boolean: (int) i
+{
+	[self writeString: ((i == NO) ? @"false" : @"true")];
+}
+
+- (void) print___int: (int) i
+{
+    [self writeString:[NSString stringWithFormat:@"%d", i]];
+}
+
+
+- (void) print___float: (float) f
+{
+	[self writeString:[NSString stringWithFormat:@"%f", f]];
+}
+
+
+- (void) print___double: (double) d
+{
+    [self writeString:[NSString stringWithFormat:@"%lf", d]];
+}
+
+
+- (void) print___java_lang_String: (NSString*) s
+{
+	[self writeString:s];
+}
+
 - (void) print___java_lang_Object: (java_lang_Object*) o
 {
-	java_lang_String* s = [o toString__];
-	[self writeString:s];
-	[s release];
+	if (o==JAVA_NULL)
+		[self writeString:(java_lang_String*)o];
+	else {
+		NSString* s= [o toString__];
+		[self writeString:s];
+		[s release];
+	}
 }
 
 @end
-

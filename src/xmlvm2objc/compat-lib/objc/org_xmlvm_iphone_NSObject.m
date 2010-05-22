@@ -42,4 +42,22 @@
         waitUntilDone:waitUntilDone];
 }
 
+- (void) __init_org_xmlvm_iphone_NSObject__
+{
+}
+
+- (void) release__
+{
+	[self release];
+}
+
+- (NSObject*) retain__
+{
+	return [self retain];
+}
+
+- (void) dealloc__
+{
+}
+
 @end

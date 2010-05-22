@@ -2,14 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIStatusBarHidden</key>
+	<PROPERTY_STATUSBARHIDDEN/>
+	<key>UIPrerenderedIcon</key>
+	<PROPERTY_PRERENDEREDICON/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
-	<string>XMLVM_APP</string>
+	<string>PROPERTY_BUNDLEDISPLAYNAME</string>
 	<key>CFBundleExecutable</key>
 	<string>XMLVM_APP</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.xmlvm.iphone.XMLVM_APP</string>
+	<string>PROPERTY_BUNDLEIDENTIFIER</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -19,7 +23,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>PROPERTY_BUNDLEVERSION</string>
 	<key>DTPlatformName</key>
 	<string>iphonesimulator</string>
 	<key>DTSDKName</key>

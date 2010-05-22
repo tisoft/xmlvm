@@ -21,9 +21,10 @@
 
 /** @author teras */
 
-#include "xmlvm.h"
-#include "org_xmlvm_iphone_CGRect.h"
-
+#import "xmlvm.h"
+#import "org_xmlvm_iphone_CGRect.h"
+#import "org_xmlvm_iphone_UIColor.h"
+#import "java_lang_String.h"
 
 // UISegmentedControl
 //----------------------------------------------------------------------------
@@ -41,6 +42,8 @@ typedef UISegmentedControl org_xmlvm_iphone_UISegmentedControl;
 - (void) removeAllSegments__;
 - (int) getSelectedSegmentIndex__;
 - (int) getSegmentedControlStyle__;
+- (org_xmlvm_iphone_UIColor*) getTintColor__;
+- (void) setTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*) tint;
 
 @end
 

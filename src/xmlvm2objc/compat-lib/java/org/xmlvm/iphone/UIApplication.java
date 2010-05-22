@@ -34,6 +34,7 @@ public abstract class UIApplication extends UIResponder {
     private static UIApplication instance;
     List<UIWindow>               windows;
     UIWindow                     keyWindow;
+    private int                  statusBarStyle;
 
     public UIApplication() {
         windows = new ArrayList<UIWindow>();
@@ -92,6 +93,23 @@ public abstract class UIApplication extends UIResponder {
         Simulator.setStatusBarHidden(flag);
     }
 
+    public int getStatusBarStyle() {
+        return statusBarStyle;
+    }
+
+    public void setStatusBarStyle(int uiStatusBarStyle) {
+        this.statusBarStyle = uiStatusBarStyle;
+    }
+
+    public void setStatusBarStyle(int uiStatusBarStyle, boolean animated) {
+        this.statusBarStyle = uiStatusBarStyle;
+    }
+
+    public boolean openURL(NSURL url) {
+        // TODO : Java implementation
+        return true;
+    }
+
     public static void main(String[] args, Class appClass) {
         try {
             final UIApplication theApp = (UIApplication) appClass.newInstance();
@@ -107,13 +125,5 @@ public abstract class UIApplication extends UIResponder {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    }
-
-    public void xmlvmAddWindow(UIWindow window) {
-        windows.add(window);
-    }
-
-    public void xmlvmRemoveWindow(UIWindow window) {
-        windows.remove(window);
     }
 }

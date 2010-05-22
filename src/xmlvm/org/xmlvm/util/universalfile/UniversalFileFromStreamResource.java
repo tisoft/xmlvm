@@ -32,7 +32,6 @@ public class UniversalFileFromStreamResource extends UniversalFile {
 
     private String      absoluteName;
 
-
     UniversalFileFromStreamResource(String absoluteName, InputStream stream) {
         this.absoluteName = absoluteName;
         this.stream = stream;

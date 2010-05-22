@@ -99,7 +99,7 @@
 	NSData* data = [fileHandle readDataOfLength: length];
 	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData: data error: &(outError->error_org_xmlvm_iphone_NSError)];
 	[outError->error_org_xmlvm_iphone_NSError retain];
-	return player != nil ? player : JAVA_NULL;
+	return XMLVM_VALUE(player);
 }
 
 - (void) play__
@@ -131,13 +131,13 @@
 			
 - (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) getDelegate__
 {
-	return [[self.delegate getDelegate] retain];
+	return_XMLVM(delegate)
 }
 
 - (void) setNumberOfLoops___int
 			: (int) numberOfLoops
 {
-	self.numberOfLoops = numberOfLoops;
+	[self setNumberOfLoops:numberOfLoops];
 }
 			
 - (int) getNumberOfLoops__
@@ -174,6 +174,26 @@
 - (float) getVolume__
 {
 	return self.volume;
+}
+
+- (int) getNumberOfChannels__
+{
+	return [self numberOfChannels];
+}
+
+- (double) getDuration__
+{
+	return [self duration];
+}
+
+- (org_xmlvm_iphone_NSURL*) getURL__
+{
+	return_XMLVM(url)
+}
+
+- (org_xmlvm_iphone_NSData*) getData__
+{
+	return_XMLVM(data)
 }
 
 @end

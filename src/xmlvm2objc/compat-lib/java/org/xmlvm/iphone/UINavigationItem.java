@@ -18,7 +18,6 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.xmlvm.iphone;
 
 import org.xmlvm.iphone.internal.renderer.UIBarButtonItemRenderer;
@@ -29,7 +28,7 @@ import org.xmlvm.iphone.internal.renderer.UIButtonRenderer.Metrics;
  * 
  * @author teras
  */
-public class UINavigationItem {
+public class UINavigationItem extends NSObject {
 
     private String          title;
     private String          prompt;
@@ -104,7 +103,7 @@ public class UINavigationItem {
     }
 
     public void setLeftBarButtonItem(UIBarButtonItem leftBarButtonItem) {
-        setLeftBarButtonItem(leftBarButtonItem);
+        setLeftBarButtonItem(leftBarButtonItem, false);
     }
 
     public void setLeftBarButtonItem(UIBarButtonItem leftBarButtonItem, boolean animated) {
@@ -161,8 +160,8 @@ public class UINavigationItem {
             label.setTextColor(UIColor.whiteColor);
             label.setFont(UIFont.fontWithNameSize("Arial Bold", 19));
             label.setTextAlignment(UITextAlignment.Center);
-            Metrics m = UIButtonRenderer.getMetrics(CGContext.UICurrentContext().xmlvmGetGraphics2D(), title,
-                    label.getFont().xmlvmGetFont());
+            Metrics m = UIButtonRenderer.getMetrics(CGContext.UICurrentContext()
+                    .xmlvmGetGraphics2D(), title, label.getFont().xmlvmGetFont());
             label.setFrame(new CGRect(0, 0, m.width, m.height));
             titleView = label;
         }
