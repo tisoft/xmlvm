@@ -402,7 +402,8 @@ public class ReferenceCounting {
 
         new DeferredNullingOptimization().Process(curRun.allCodePaths, curRun.beenTo, codeElement);
 
-        new ExcessRetainsOptimization().Process(curRun.allCodePaths, curRun.beenTo, codeElement);
+        //TODO fix this optimization
+        //new ExcessRetainsOptimization().Process(curRun.allCodePaths, curRun.beenTo, codeElement);
         toProcess.addAll(0, ret.functionInit);
 
         addExTempReg(toProcess);
