@@ -23,6 +23,7 @@ package org.xmlvm.refcount;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -407,7 +408,8 @@ public class ReferenceCounting {
         toProcess.addAll(0, ret.functionInit);
 
         addExTempReg(toProcess);
-
+        
+        clearReleaseRetainOnSyntheticMembers(curRun, codeElement);
         // Now we want to follow the paths to find unambiguous ones so that we
         // can determine
         // where to do release/retain to prevent ambiguity.
@@ -423,6 +425,44 @@ public class ReferenceCounting {
         }
 
     }
+
+	/*
+	 * Synthetics help create cycles so we don't do releases or retains on them.
+	 */
+	@SuppressWarnings("unchecked")
+	private void clearReleaseRetainOnSyntheticMembers(RunState curRun,
+			Element codeElement) throws DataConversionException {
+		// Find the synthetic members of the class;
+		Element classElement = codeElement.getParentElement()
+				.getParentElement();
+
+		HashSet<String> hashSet = new HashSet<String>();
+
+		for (Element elem : (List<Element>) classElement.getChildren()) {
+			if (elem.getName().equals("field")
+					&& elem.getAttribute("isSynthetic") != null
+					&& elem.getAttributeValue("isSynthetic").equals("true")) {
+				hashSet.add(elem.getAttributeValue("name"));
+			}
+		}
+
+		for (Map.Entry<Element, InstructionActions> e : curRun.beenTo
+				.entrySet()) {
+
+			String instructionElementName = e.getKey().getName();
+			if ((instructionElementName.equals("iput-object") || instructionElementName
+					.equals("iput"))
+					&& e.getKey().getAttribute("member-name") != null
+					&& hashSet.contains(e.getKey().getAttributeValue(
+							"member-name"))) {
+				InstructionUseInfo useInfo = e.getValue().useInfo;
+				// We don't want to release what was in there because it was not
+				// retained
+				useInfo.putRelease = null;
+				useInfo.requiresRetain = RegisterSet.none();
+			}
+		}
+	}
 
     /**
      * Adds definition for exception register if needed.
