@@ -51,7 +51,7 @@ public class NSBundle extends NSObject {
             fileName = fileName.concat("." + type);
         }
 
-        if (directory != null) {
+        if (directory != null && !directory.equals("")) {
             fileName = directory + "/" + fileName;
         }
 
