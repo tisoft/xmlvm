@@ -441,7 +441,8 @@ public class ReferenceCounting {
 		for (Element elem : (List<Element>) classElement.getChildren()) {
 			if (elem.getName().equals("field")
 					&& elem.getAttribute("isSynthetic") != null
-					&& elem.getAttributeValue("isSynthetic").equals("true")) {
+					&& elem.getAttributeValue("isSynthetic").equals("true")
+					&& elem.getAttributeValue("name").startsWith("this$")) {
 				hashSet.add(elem.getAttributeValue("name"));
 			}
 		}

@@ -296,7 +296,8 @@ int main(int argc, char* argv[])
     <xsl:text>    [self finalize_</xsl:text><xsl:value-of select="vm:fixname(concat(@package, '.', @name))"/><xsl:text>__];
 </xsl:text>
 </xsl:if>
-	<xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type)]">
+	<xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type) and
+	                      not(@isSynthetic = 'true' and starts-with(@name, 'this$'))]">
 	  <xsl:text>    [</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>_</xsl:text>
