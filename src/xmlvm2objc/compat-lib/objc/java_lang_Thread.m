@@ -84,6 +84,12 @@ static NSMutableDictionary* threadMap;
 	[thread start];
 }
 
+- (void) join__
+{
+	// TODO
+	NSLog(@"java_lang_Thread.join() not implemented");
+}
+
 + (void) sleep___long: (long) millis
 {
 	[NSThread sleepForTimeInterval: (double) millis / 1000.0];

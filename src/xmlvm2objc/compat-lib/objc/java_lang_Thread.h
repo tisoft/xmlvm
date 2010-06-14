@@ -38,6 +38,7 @@ NSThread*              thread;
 - (void) threadCallback: (id) arg;
 - (void) run__;
 - (void) start__;
+- (void) join__;
 + (void) sleep___long: (long) millis;
 + (java_lang_Thread*) currentThread__;
 
