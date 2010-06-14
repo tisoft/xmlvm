@@ -32,5 +32,16 @@ qx.Class.define("java_lang_Thread", {
   		}
   		return java_lang_Thread.dummyThread;
   	}
+  },
+  members:
+  {
+  	$run: function() {
+  	},
+  	$start: function() {
+  		this.$run();
+  	},
+  	$join: function() {
+  		// TODO
+  	}
   }
 });

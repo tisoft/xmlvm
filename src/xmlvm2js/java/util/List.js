@@ -20,7 +20,26 @@
 
 qx.Class.define("java_util_List", {
   extend: java_lang_Object,
+  construct: function() {
+  	this.jsArray = new Array();
+  },
   members:
   {
+	jsArray: 0,
+	setJsArray: function(jsArray) {
+		this.jsArray = jsArray;
+	},
+	$size: function() {
+		return this.jsArray.length;
+	},
+	$get___int: function(i) {
+		return this.jsArray[i];
+	},
+	$add___java_lang_Object: function(obj) {
+		this.jsArray.push(obj);
+	},
+	$add___int_java_lang_Object: function(index, obj) {
+		this.jsArray.splice(index, 0, obj);
+	}
   }
 });
