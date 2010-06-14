@@ -42,13 +42,7 @@ public class ObjectiveCOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
 
     public ObjectiveCOutputProcess(Arguments arguments) {
         super(arguments);
-        if (!arguments.option_use_jvm()) {
-            addSupportedInput(DEXmlvmOutputProcess.class);
-        } else {
-            addSupportedInput(ClassToXmlvmProcess.class);
-        }
-        addSupportedInput(ExeToXmlvmProcess.class);
-        addSupportedInput(XmlvmToXmlvmProcess.class);
+        addAllXmlvmEmittingProcessesAsInput();
     }
 
     @Override

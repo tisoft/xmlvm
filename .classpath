@@ -34,6 +34,7 @@
 	<classpathentry kind="src" path="demo/android/helloworld/gen"/>
 	<classpathentry kind="src" path="demo/android/helloworld/src"/>
 	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/xmlvm2c"/>
 	<classpathentry kind="lib" path="lib/bcel.jar"/>
 	<classpathentry kind="lib" path="lib/jakarta-regexp.jar"/>
 	<classpathentry kind="lib" path="lib/jdom.jar"/>

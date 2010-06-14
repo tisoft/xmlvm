@@ -56,6 +56,8 @@ public class OutputProcessFactory {
             return new PythonOutputProcess(arguments);
         case CPP:
             return new CppOutputProcess(arguments);
+        case C:
+            return new COutputProcess(arguments);
         case OBJC:
             return new ObjectiveCOutputProcess(arguments);
         case QOOXDOO:

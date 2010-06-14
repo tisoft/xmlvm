@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ * Copyright (c) 2004-2010 XMLVM --- An XML-based Programming Language
  * 
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -31,15 +31,20 @@ import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XsltRunner;
 
 /**
- * This process takes XMLVM and turns it into JavaScript.
+ * The C backend / output process.
  */
-public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
-    private static final String JS_EXTENSION = ".js";
-    private List<OutputFile>    result       = new ArrayList<OutputFile>();
+public class COutputProcess extends XmlvmProcessImpl<XmlvmVtableAnnotationProcess> {
+    private static final String TAG         = COutputProcess.class.getSimpleName();
+    private static final String C_EXTENSION = ".c";
 
-    public JavaScriptOutputProcess(Arguments arguments) {
+    private List<OutputFile>    result      = new ArrayList<OutputFile>();
+
+    public COutputProcess(Arguments arguments) {
         super(arguments);
-        addAllXmlvmEmittingProcessesAsInput();
+
+        // We need the special Vtable information in order to be able to produce
+        // C code.
+        addSupportedInput(XmlvmVtableAnnotationProcess.class);
     }
 
     @Override
@@ -49,21 +54,21 @@ public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
 
     @Override
     public boolean process() {
-        List<XmlvmResourceProvider> preprocesses = preprocess();
+        List<XmlvmVtableAnnotationProcess> preprocesses = preprocess();
         for (XmlvmResourceProvider process : preprocesses) {
             List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
             for (XmlvmResource xmlvm : xmlvmResources) {
-                Log.debug("JavaScriptOutputProcess: Processing " + xmlvm.getName());
-                OutputFile file = generateJavaScript(xmlvm);
+                Log.debug(TAG, "Processing " + xmlvm.getName());
+                OutputFile file = generateCpp(xmlvm);
                 file.setLocation(arguments.option_out());
-                file.setFileName(xmlvm.getName() + JS_EXTENSION);
+                file.setFileName(xmlvm.getName() + C_EXTENSION);
                 result.add(file);
             }
         }
         return true;
     }
 
-    protected OutputFile generateJavaScript(XmlvmResource xmlvm) {
-        return XsltRunner.runXSLT("xmlvm2js.xsl", xmlvm.getXmlvmDocument());
+    protected OutputFile generateCpp(XmlvmResource xmlvm) {
+        return XsltRunner.runXSLT("xmlvm2c.xsl", xmlvm.getXmlvmDocument());
     }
 }

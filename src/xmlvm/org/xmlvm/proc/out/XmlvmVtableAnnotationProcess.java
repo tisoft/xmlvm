@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ * Copyright (c) 2004-2010 XMLVM --- An XML-based Programming Language
  * 
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -23,28 +23,23 @@ package org.xmlvm.proc.out;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResourceProvider;
-import org.xmlvm.proc.XsltRunner;
 
 /**
- * This process takes XMLVM and turns it into JavaScript.
+ * Processes XMLVM documents and adds vtable information that is required by
+ * some output processes, like the C backend.
  */
-public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
-    private static final String JS_EXTENSION = ".js";
-    private List<OutputFile>    result       = new ArrayList<OutputFile>();
+public class XmlvmVtableAnnotationProcess extends XmlvmProcessImpl<XmlvmResourceProvider> implements
+        XmlvmResourceProvider {
+    
+    List<XmlvmResource> result = new ArrayList<XmlvmResource>();
 
-    public JavaScriptOutputProcess(Arguments arguments) {
+    public XmlvmVtableAnnotationProcess(Arguments arguments) {
         super(arguments);
         addAllXmlvmEmittingProcessesAsInput();
-    }
-
-    @Override
-    public List<OutputFile> getOutputFiles() {
-        return result;
     }
 
     @Override
@@ -53,17 +48,26 @@ public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
         for (XmlvmResourceProvider process : preprocesses) {
             List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
             for (XmlvmResource xmlvm : xmlvmResources) {
-                Log.debug("JavaScriptOutputProcess: Processing " + xmlvm.getName());
-                OutputFile file = generateJavaScript(xmlvm);
-                file.setLocation(arguments.option_out());
-                file.setFileName(xmlvm.getName() + JS_EXTENSION);
-                result.add(file);
+
+                // *************************************************************
+                // * TODO(Arno): Do whatever you need with the XMLVM resources *
+                // * to add the vtable information.                            *
+                // *************************************************************
+
+                result.add(xmlvm);
             }
         }
         return true;
     }
 
-    protected OutputFile generateJavaScript(XmlvmResource xmlvm) {
-        return XsltRunner.runXSLT("xmlvm2js.xsl", xmlvm.getXmlvmDocument());
+    @Override
+    public List<XmlvmResource> getXmlvmResources() {
+        return result;
     }
+
+    @Override
+    public List<OutputFile> getOutputFiles() {
+        return null;
+    }
+
 }

@@ -39,12 +39,7 @@ public class PythonOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
 
     public PythonOutputProcess(Arguments arguments) {
         super(arguments);
-        if (!arguments.option_use_jvm()) {
-            addSupportedInput(DEXmlvmOutputProcess.class);
-        } else {
-            addSupportedInput(ClassToXmlvmProcess.class);
-        }
-        addSupportedInput(ExeToXmlvmProcess.class);
+        addAllXmlvmEmittingProcessesAsInput();
     }
 
     @Override

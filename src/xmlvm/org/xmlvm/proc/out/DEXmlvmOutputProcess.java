@@ -166,6 +166,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     }
 
     private static final boolean   LOTS_OF_DEBUG      = false;
+    private static final boolean   REF_LOGGING        = false;
 
     private static final String    DEXMLVM_ENDING     = ".dexmlvm";
     private static final Namespace NS_XMLVM           = XmlvmResource.xmlvmNamespace;
@@ -227,12 +228,16 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
 
         String jClassName = document.getRootElement().getChild("class", InstructionProcessor.vm)
                 .getAttributeValue("name");
-        Log.debug("ref", "Processing class: " + jClassName);
+        if (REF_LOGGING) {
+            Log.debug("ref", "Processing class: " + jClassName);
+        }
 
         List<Element> methods = (List<Element>) document.getRootElement().getChild("class",
                 InstructionProcessor.vm).getChildren("method", InstructionProcessor.vm);
         for (Element e : methods) {
-            Log.debug("ref", "Processing method: " + e.getAttributeValue("name"));
+            if (REF_LOGGING) {
+                Log.debug("ref", "Processing method: " + e.getAttributeValue("name"));
+            }
 
             try {
                 refC.process(e);
@@ -247,9 +252,13 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                         + jClassName);
                 return null;
             }
-            Log.debug("ref", "Done with " + e.getAttributeValue("name"));
+            if (REF_LOGGING) {
+                Log.debug("ref", "Done with " + e.getAttributeValue("name"));
+            }
         }
-        Log.debug("ref", "Done processing methods!");
+        if (REF_LOGGING) {
+            Log.debug("ref", "Done processing methods!");
+        }
 
         generatedResources.add(new XmlvmResource(className, Type.DEX, document));
 

@@ -35,7 +35,6 @@ import org.jdom.Element;
 import org.jdom.Namespace;
 import org.xmlvm.Log;
 import org.xmlvm.refcount.optimizations.RegisterSizeAndNullingOptimization;
-import org.xmlvm.refcount.optimizations.ExcessRetainsOptimization;
 import org.xmlvm.refcount.optimizations.RefCountOptimization;
 import org.xmlvm.refcount.optimizations.DeferredNullingOptimization;
 

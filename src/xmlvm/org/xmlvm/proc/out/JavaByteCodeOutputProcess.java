@@ -192,8 +192,7 @@ public class JavaByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourcePro
 
     public JavaByteCodeOutputProcess(Arguments arguments) {
         super(arguments);
-        addSupportedInput(ClassToXmlvmProcess.class);
-        addSupportedInput(ExeToXmlvmProcess.class);
+        addAllXmlvmEmittingProcessesAsInput();
     }
 
     @Override

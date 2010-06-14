@@ -36,12 +36,7 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
     public CppOutputProcess(Arguments arguments) {
         super(arguments);
-        if (!arguments.option_use_jvm()) {
-            addSupportedInput(DEXmlvmOutputProcess.class);
-        } else {
-            addSupportedInput(ClassToXmlvmProcess.class);
-        }
-        addSupportedInput(ExeToXmlvmProcess.class);
+        addAllXmlvmEmittingProcessesAsInput();
     }
 
     @Override
@@ -56,7 +51,7 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
             List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
             for (XmlvmResource xmlvm : xmlvmResources) {
                 Log.debug("CppOutputProcess: Processing " + xmlvm.getName());
-                OutputFile file = generatePython(xmlvm);
+                OutputFile file = generateCpp(xmlvm);
                 file.setLocation(arguments.option_out());
                 file.setFileName(xmlvm.getName() + CPP_EXTENSION);
                 result.add(file);
@@ -65,7 +60,7 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         return true;
     }
 
-    protected OutputFile generatePython(XmlvmResource xmlvm) {
+    protected OutputFile generateCpp(XmlvmResource xmlvm) {
         return XsltRunner.runXSLT("xmlvm2cpp.xsl", xmlvm.getXmlvmDocument());
     }
 }

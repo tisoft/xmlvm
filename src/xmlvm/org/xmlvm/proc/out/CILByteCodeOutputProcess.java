@@ -167,8 +167,7 @@ public class CILByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourceProv
 
     public CILByteCodeOutputProcess(Arguments arguments) {
         super(arguments);
-        addSupportedInput(ClassToXmlvmProcess.class);
-        addSupportedInput(ExeToXmlvmProcess.class);
+        addAllXmlvmEmittingProcessesAsInput();
     }
 
     @Override

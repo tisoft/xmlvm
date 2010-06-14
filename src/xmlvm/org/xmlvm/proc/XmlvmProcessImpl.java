@@ -26,6 +26,10 @@ import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.out.ClassToXmlvmProcess;
+import org.xmlvm.proc.out.DEXmlvmOutputProcess;
+import org.xmlvm.proc.out.ExeToXmlvmProcess;
+import org.xmlvm.proc.out.XmlvmToXmlvmProcess;
 
 /**
  * A collection of possible process IDs.
@@ -92,6 +96,19 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
             Log.error("You tried to add a supported input that is not of the same type as the "
                     + "generic type you've specified in the process.");
         }
+    }
+
+    /**
+     * Adds all processes that emit XMLVM as potential input processes.
+     */
+    protected void addAllXmlvmEmittingProcessesAsInput() {
+        if (!arguments.option_use_jvm()) {
+            addSupportedInput(DEXmlvmOutputProcess.class);
+        } else {
+            addSupportedInput(ClassToXmlvmProcess.class);
+        }
+        addSupportedInput(ExeToXmlvmProcess.class);
+        addSupportedInput(XmlvmToXmlvmProcess.class);
     }
 
     @Override
