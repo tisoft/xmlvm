@@ -20,6 +20,7 @@
 
 package android.view;
 
+import java.lang.ref.WeakReference;
 import java.util.Set;
 
 import org.xmlvm.iphone.CGContext;
@@ -57,64 +58,64 @@ import android.widget.AbsListView;
 
 public class View {
 
-    public static final int          NO_ID                      = 0xffffffff;
-    public static final int          VISIBLE                    = 0;
-    public static final int          INVISIBLE                  = 4;
-    public static final int          GONE                       = 8;
+    public static final int           NO_ID                      = 0xffffffff;
+    public static final int           VISIBLE                    = 0;
+    public static final int           INVISIBLE                  = 4;
+    public static final int           GONE                       = 8;
 
-    private static final int         FORCE_LAYOUT               = 0x00001000;
-    private static final int         LAYOUT_REQUIRED            = 0x00002000;
-    static final int                 MEASURED_DIMENSION_SET     = 0x00000800;
-    static final int                 DRAWABLE_STATE_DIRTY       = 0x00000400;
+    private static final int          FORCE_LAYOUT               = 0x00001000;
+    private static final int          LAYOUT_REQUIRED            = 0x00002000;
+    static final int                  MEASURED_DIMENSION_SET     = 0x00000800;
+    static final int                  DRAWABLE_STATE_DIRTY       = 0x00000400;
 
-    protected final int[]            EMPTY_STATE_SET            = {};
-    protected final int[]            PRESSED_STATE_SET          = { 0x010100a7 };
-    protected final int[]            CHECKED_STATE_SET          = {};
+    protected final int[]             EMPTY_STATE_SET            = {};
+    protected final int[]             PRESSED_STATE_SET          = { 0x010100a7 };
+    protected final int[]             CHECKED_STATE_SET          = {};
 
-    private boolean                  ignoreRequestLayout;
-    private int                      flags;
-    protected int                    widthMeasureSpec;
-    protected int                    heightMeasureSpec;
-    private int[]                    drawableState              = EMPTY_STATE_SET;
-    protected ViewGroup.LayoutParams layoutParams;
-    protected int                    paddingLeft;
-    protected int                    paddingRight;
-    protected int                    paddingTop;
-    protected int                    paddingBottom;
-    private Context                  c;
-    private UIView                   uiView;
-    private ViewParent               parent;
-    private OnTouchListener          listener;
-    private UIResponderDelegate      responderDelegate;
-    private int                      id;
-    private int                      measuredWidth;
-    private int                      measuredHeight;
-    private int                      left;
-    private int                      top;
-    private int                      width;
-    private int                      height;
-    private int                      minimumWidth;
-    private int                      minimumHeight;
-    private int                      visibility;
-    protected Drawable               backgroundDrawable;
-    private Resources                mResources;
-    private Handler                  handler;
-    private OnClickListener          onClickListener;
-    private UIColor                  savedBackgroundColor       = null;
+    private boolean                   ignoreRequestLayout;
+    private int                       flags;
+    protected int                     widthMeasureSpec;
+    protected int                     heightMeasureSpec;
+    private int[]                     drawableState              = EMPTY_STATE_SET;
+    protected ViewGroup.LayoutParams  layoutParams;
+    protected int                     paddingLeft;
+    protected int                     paddingRight;
+    protected int                     paddingTop;
+    protected int                     paddingBottom;
+    private Context                   c;
+    private UIView                    uiView;
+    private WeakReference<ViewParent> parent;
+    private OnTouchListener           listener;
+    private UIResponderDelegate       responderDelegate;
+    private int                       id;
+    private int                       measuredWidth;
+    private int                       measuredHeight;
+    private int                       left;
+    private int                       top;
+    private int                       width;
+    private int                       height;
+    private int                       minimumWidth;
+    private int                       minimumHeight;
+    private int                       visibility;
+    protected Drawable                backgroundDrawable;
+    private Resources                 mResources;
+    private Handler                   handler;
+    private OnClickListener           onClickListener;
+    private UIColor                   savedBackgroundColor       = null;
 
     /**
      * <p>
      * Enables low quality mode for the drawing cache.
      * </p>
      */
-    public static final int          DRAWING_CACHE_QUALITY_LOW  = 0x00080000;
+    public static final int           DRAWING_CACHE_QUALITY_LOW  = 0x00080000;
 
     /**
      * <p>
      * Enables high quality mode for the drawing cache.
      * </p>
      */
-    public static final int          DRAWING_CACHE_QUALITY_HIGH = 0x00100000;
+    public static final int           DRAWING_CACHE_QUALITY_HIGH = 0x00100000;
 
     /**
      * Copyright (C) 2006 The Android Open Source Project
@@ -337,7 +338,7 @@ public class View {
     }
 
     public ViewParent getParent() {
-        return parent;
+        return parent == null ? null : parent.get();
     }
 
     public IBinder getWindowToken() {
@@ -383,7 +384,7 @@ public class View {
     }
 
     public void xmlvmSetParent(ViewParent parent) {
-        this.parent = parent;
+        this.parent = new WeakReference<ViewParent>(parent);
     }
 
     public void xmlvmSetMeasureSpec(int widthMeasureSpec, int heightMeasureSpec) {
@@ -603,8 +604,8 @@ public class View {
     public void requestLayout() {
         if (!getIgnoreRequestLayout()) {
             flags |= FORCE_LAYOUT;
-            if (parent != null && !parent.isLayoutRequested()) {
-                parent.requestLayout();
+            if (getParent() != null && !getParent().isLayoutRequested()) {
+                getParent().requestLayout();
             } else {
                 measure(widthMeasureSpec, heightMeasureSpec);
                 layout(getLeft(), getTop(), getMeasuredWidth(), getMeasuredHeight());
