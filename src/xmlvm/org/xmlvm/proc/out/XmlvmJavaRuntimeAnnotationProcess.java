@@ -23,52 +23,51 @@ package org.xmlvm.proc.out;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResourceProvider;
-import org.xmlvm.proc.XsltRunner;
 
 /**
- * The C backend / output process.
+ * Processes XMLVM documents and adds vtable information that is required by
+ * some output processes, like the C backend.
  */
-public class COutputProcess extends XmlvmProcessImpl<XmlvmJavaRuntimeAnnotationProcess> {
-    private static final String TAG         = COutputProcess.class.getSimpleName();
-    private static final String C_EXTENSION = ".c";
+public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmResourceProvider> implements
+        XmlvmResourceProvider {
+    
+    List<XmlvmResource> result = new ArrayList<XmlvmResource>();
 
-    private List<OutputFile>    result      = new ArrayList<OutputFile>();
-
-    public COutputProcess(Arguments arguments) {
+    public XmlvmJavaRuntimeAnnotationProcess(Arguments arguments) {
         super(arguments);
-
-        // We need the special Vtable information in order to be able to produce
-        // C code.
-        addSupportedInput(XmlvmJavaRuntimeAnnotationProcess.class);
-    }
-
-    @Override
-    public List<OutputFile> getOutputFiles() {
-        return result;
+        addAllXmlvmEmittingProcessesAsInput();
     }
 
     @Override
     public boolean process() {
-        List<XmlvmJavaRuntimeAnnotationProcess> preprocesses = preprocess();
+        List<XmlvmResourceProvider> preprocesses = preprocess();
         for (XmlvmResourceProvider process : preprocesses) {
             List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
             for (XmlvmResource xmlvm : xmlvmResources) {
-                Log.debug(TAG, "Processing " + xmlvm.getName());
-                OutputFile file = generateCpp(xmlvm);
-                file.setLocation(arguments.option_out());
-                file.setFileName(xmlvm.getName() + C_EXTENSION);
-                result.add(file);
+
+                // *************************************************************
+                // * TODO(Arno): Do whatever you need with the XMLVM resources *
+                // * to add the vtable information.                            *
+                // *************************************************************
+
+                result.add(xmlvm);
             }
         }
         return true;
     }
 
-    protected OutputFile generateCpp(XmlvmResource xmlvm) {
-        return XsltRunner.runXSLT("xmlvm2c.xsl", xmlvm.getXmlvmDocument());
+    @Override
+    public List<XmlvmResource> getXmlvmResources() {
+        return result;
     }
+
+    @Override
+    public List<OutputFile> getOutputFiles() {
+        return null;
+    }
+
 }
