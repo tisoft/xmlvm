@@ -25,8 +25,10 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.management.RuntimeErrorException;
 
@@ -221,7 +223,12 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 .getFileName(), false);
 
         Document document = createDocument();
-        String className = process(directClassFile, document.getRootElement()).replace('.', '_');
+
+        // This is for auxiliary analysis. We record all the types that are
+        // referenced.
+        Set<String> referencedTypes = new HashSet<String>();
+        String className = process(directClassFile, document.getRootElement(), referencedTypes)
+                .replace('.', '_');
 
         // We now need to mark up the code with retains/releases.
         ReferenceCounting refC = new ReferenceCounting();
@@ -260,7 +267,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             Log.debug("ref", "Done processing methods!");
         }
 
-        generatedResources.add(new XmlvmResource(className, Type.DEX, document));
+        generatedResources.add(new XmlvmResource(className, Type.DEX, document, referencedTypes));
 
         String fileName = className + DEXMLVM_ENDING;
         OutputFile result = new OutputFile();
@@ -306,13 +313,15 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      *            the class file to process
      * @param root
      *            the root element to append the classes to
+     * @param referencedTypes
+     *            will be filled with the types references in this class file
      * @return the class name for the DEXMLVM file
      */
-    private String process(DirectClassFile cf, Element root) {
+    private String process(DirectClassFile cf, Element root, Set<String> referencedTypes) {
         cf.setAttributeFactory(StdAttributeFactory.THE_ONE);
         cf.getMagic();
-        Element classElement = processClass(cf, root);
-        processFields(cf.getFields(), classElement);
+        Element classElement = processClass(cf, root, referencedTypes);
+        processFields(cf.getFields(), classElement, referencedTypes);
 
         MethodList methods = cf.getMethods();
         int sz = methods.size();
@@ -320,7 +329,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         for (int i = 0; i < sz; i++) {
             Method one = methods.get(i);
             try {
-                processMethod(one, cf, classElement);
+                processMethod(one, cf, classElement, referencedTypes);
             } catch (RuntimeException ex) {
                 String msg = "...while processing " + one.getName().toHuman() + " "
                         + one.getDescriptor().toHuman();
@@ -339,16 +348,21 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      *            the {@link DirectClassFile} instance of this class
      * @param root
      *            the root element to append the generated element to
+     * @param referencedTypes
+     *            will be filled with the types references in this class file
      * @return the generated element
      */
-    private static Element processClass(DirectClassFile cf, Element root) {
+    private static Element processClass(DirectClassFile cf, Element root,
+            Set<String> referencedTypes) {
         Element classElement = new Element("class", NS_XMLVM);
         CstType type = cf.getThisClass();
         PackagePlusClassName parsedClassName = parseClassName(type.getClassType().getClassName());
         classElement.setAttribute("name", parsedClassName.className);
         classElement.setAttribute("package", parsedClassName.packageName);
-        classElement.setAttribute("extends", parseClassName(
-                cf.getSuperclass().getClassType().getClassName()).toString());
+        String superClassName = parseClassName(cf.getSuperclass().getClassType().getClassName())
+                .toString();
+        classElement.setAttribute("extends", superClassName);
+        referencedTypes.add(superClassName);
 
         processAccessFlags(cf.getAccessFlags(), classElement);
 
@@ -359,7 +373,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 if (i > 0) {
                     interfaceList += ",";
                 }
-                interfaceList += parseClassName(interfaces.getType(i).getClassName());
+                String interfaceName = parseClassName(interfaces.getType(i).getClassName())
+                        .toString();
+                interfaceList += interfaceName;
+                referencedTypes.add(interfaceName);
             }
             classElement.setAttribute("interfaces", interfaceList);
         }
@@ -372,12 +389,15 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * Processes the fields and adds corresponding elements to the class
      * element.
      */
-    private static void processFields(FieldList fieldList, Element classElement) {
+    private static void processFields(FieldList fieldList, Element classElement,
+            Set<String> referencedTypes) {
         for (int i = 0; i < fieldList.size(); ++i) {
             Field field = fieldList.get(i);
             Element fieldElement = new Element("field", NS_XMLVM);
             fieldElement.setAttribute("name", field.getName().toHuman());
-            fieldElement.setAttribute("type", field.getNat().getFieldType().toHuman());
+            String fieldType = field.getNat().getFieldType().toHuman();
+            fieldElement.setAttribute("type", fieldType);
+            referencedTypes.add(fieldType);
             TypedConstant value = field.getConstantValue();
             if (value != null) {
                 fieldElement.setAttribute("value", value.toHuman());
@@ -390,7 +410,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     /**
      * Debugging use: Builds a catch-table in XML.
      */
-    private static void processCatchTable(CatchTable catchTable, Element codeElement) {
+    private static void processCatchTable(CatchTable catchTable, Element codeElement,
+            Set<String> referencedTypes) {
         if (catchTable.size() == 0) {
             return;
         }
@@ -407,7 +428,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             for (int j = 0; j < catchHandlers.size(); ++j) {
                 com.android.dx.dex.code.CatchHandlerList.Entry handlerEntry = catchHandlers.get(j);
                 Element handlerElement = new Element("handler", NS_DEX);
-                handlerElement.setAttribute("type", handlerEntry.getExceptionType().toHuman());
+                String exceptionType = handlerEntry.getExceptionType().toHuman();
+                handlerElement.setAttribute("type", exceptionType);
+                referencedTypes.add(exceptionType);
                 handlerElement.setAttribute("target", String.valueOf(handlerEntry.getHandler()));
                 entryElement.addContent(handlerElement);
             }
@@ -430,8 +453,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      *            the class element to append the generated element to
      * @param cf
      *            the class file where this method was originally defined in
+     * @param referencedTypes
+     *            will be filled with the types references in this class file
      */
-    private static void processMethod(Method method, DirectClassFile cf, Element classElement) {
+    private static void processMethod(Method method, DirectClassFile cf, Element classElement,
+            Set<String> referencedTypes) {
         final boolean localInfo = true;
         final int positionInfo = PositionList.LINES;
 
@@ -452,7 +478,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         processAccessFlags(accessFlags, methodElement);
 
         // Create signature element.
-        methodElement.addContent(processSignature(meth));
+        methodElement.addContent(processSignature(meth, referencedTypes));
 
         // Create code element.
         Element codeElement = new Element("code", NS_DEX);
@@ -498,11 +524,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     .getRegistersSize()));
             processLocals(instructions.getRegistersSize(), isStatic, parseClassName(
                     cf.getThisClass().getClassType().getClassName()).toString(), meth
-                    .getPrototype().getParameterTypes(), codeElement);
+                    .getPrototype().getParameterTypes(), codeElement, referencedTypes);
             Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
             Map<Integer, ArrayData> arrayData = extractArrayData(instructions);
             CatchTable catches = code.getCatches();
-            processCatchTable(catches, codeElement);
+            processCatchTable(catches, codeElement, referencedTypes);
             Map<Integer, Target> targets = extractTargets(instructions, catches);
 
             // For each entry in the catch table, we create a try-catch element,
@@ -605,7 +631,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 }
 
                 processInstruction(instruction, instructionParent, switchDataBlocks, arrayData,
-                        sourceLinesAlreadyPut);
+                        sourceLinesAlreadyPut, referencedTypes);
             }
         }
     }
@@ -644,7 +670,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * parameter and the {@code this} reference, if applicable.
      */
     private static void processLocals(int registerSize, boolean isStatic, String classType,
-            StdTypeList parameterTypes, Element codeElement) {
+            StdTypeList parameterTypes, Element codeElement, Set<String> referencedTypes) {
 
         // The parameters are stored in the last N registers.
         // If the method is not static, the reference to "this" is stored right
@@ -664,7 +690,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             }
             varElement.setAttribute("name", "var-register-" + (registerSize - 1 - j));
             varElement.setAttribute("register", String.valueOf(registerSize - 1 - j));
-            varElement.setAttribute("type", paramType.getType().toHuman());
+            String localsType = paramType.getType().toHuman();
+            varElement.setAttribute("type", localsType);
+            referencedTypes.add(localsType);
             varElements.add(varElement);
         }
 
@@ -784,11 +812,27 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      *            the array data
      * @param sourceLinesAlreadyPut
      *            a bin for putting used source lines number in.
+     * @param referencedTypes
+     *            will be filled with the types references in this class file
      */
     private static void processInstruction(DalvInsn instruction, Element parentElement,
             Map<Integer, SwitchData> switchDataBlocks, Map<Integer, ArrayData> arrayData,
-            List<Integer> sourceLinesAlreadyPut) {
+            List<Integer> sourceLinesAlreadyPut, Set<String> referencedTypes) {
         Element dexInstruction = null;
+
+        RegisterSpecList registers = instruction.getRegisters();
+        for (int i = 0; i < registers.size(); ++i) {
+            RegisterSpec register = registers.get(i);
+            String descriptor = register.getType().getDescriptor();
+            String registerType = register.getType().toHuman();
+            // Sometimes a register type name starts with some info about the
+            // register. We need to cut this out.
+            if (descriptor.startsWith("N")) {
+                referencedTypes.add(registerType.substring(registerType.indexOf('L') + 1));
+            } else {
+                referencedTypes.add(registerType);
+            }
+        }
 
         if (instruction instanceof CodeAddress) {
             // We put debug information about source code positions into the
@@ -828,12 +872,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     Log.error("DEXmlvmOutputProcess: Register Size doesn't fit 'move-result'.");
                     System.exit(-1);
                 }
-                RegisterSpecList registers = simpleInsn.getRegisters();
                 Element moveInstruction = new Element("move-result", NS_DEX);
                 addRegistersAsAttributes(registers, moveInstruction);
                 lastDexInstruction.addContent(moveInstruction);
             } else {
-                RegisterSpecList registers = simpleInsn.getRegisters();
                 dexInstruction = new Element(sanitizeInstructionName(instructionName), NS_DEX);
                 addRegistersAsAttributes(registers, dexInstruction);
 
@@ -862,11 +904,14 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 dexInstruction.setAttribute(name, constant.typeName());
                 if (constant instanceof CstMemberRef) {
                     CstMemberRef memberRef = (CstMemberRef) constant;
-                    dexInstruction.setAttribute("class-type", memberRef.getDefiningClass()
-                            .getClassType().toHuman());
+                    String definingClassType = memberRef.getDefiningClass().getClassType()
+                            .toHuman();
+                    dexInstruction.setAttribute("class-type", definingClassType);
+                    referencedTypes.add(definingClassType);
                     CstNat nameAndType = memberRef.getNat();
-                    dexInstruction.setAttribute("member-type", nameAndType.getFieldType().getType()
-                            .toHuman());
+                    String memberType = nameAndType.getFieldType().getType().toHuman();
+                    dexInstruction.setAttribute("member-type", memberType);
+                    referencedTypes.add(memberType);
                     dexInstruction.setAttribute("member-name", nameAndType.getName().toHuman());
                 } else if (constant instanceof CstString) {
                     CstString cstString = (CstString) constant;
@@ -931,7 +976,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             SimpleInsn[] moveInstructions = highRegisterPrefix.getMoveInstructions();
             for (SimpleInsn moveInstruction : moveInstructions) {
                 processInstruction(moveInstruction, parentElement, switchDataBlocks, arrayData,
-                        sourceLinesAlreadyPut);
+                        sourceLinesAlreadyPut, referencedTypes);
             }
         } else {
             System.err.print(">>> Unknown instruction: ");
@@ -1078,18 +1123,22 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * Processes the signature of the given method reference and returns a
      * corresponding element. It uses 'registers' to add register
      */
-    private static Element processSignature(CstMethodRef methodRef) {
+    private static Element processSignature(CstMethodRef methodRef, Set<String> referencedTypes) {
         Prototype prototype = methodRef.getPrototype();
         StdTypeList parameters = prototype.getParameterTypes();
 
         Element result = new Element("signature", NS_XMLVM);
         for (int i = 0; i < parameters.size(); ++i) {
             Element parameterElement = new Element("parameter", NS_XMLVM);
-            parameterElement.setAttribute("type", parameters.get(i).toHuman());
+            String parameterType = parameters.get(i).toHuman();
+            parameterElement.setAttribute("type", parameterType);
+            referencedTypes.add(parameterType);
             result.addContent(parameterElement);
         }
         Element returnElement = new Element("return", NS_XMLVM);
-        returnElement.setAttribute("type", prototype.getReturnType().getType().toHuman());
+        String returnType = prototype.getReturnType().getType().toHuman();
+        returnElement.setAttribute("type", returnType);
+        referencedTypes.add(returnType);
         result.addContent(returnElement);
         return result;
     }

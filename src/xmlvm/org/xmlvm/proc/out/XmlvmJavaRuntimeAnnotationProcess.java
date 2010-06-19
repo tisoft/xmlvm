@@ -21,8 +21,11 @@
 package org.xmlvm.proc.out;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
@@ -32,10 +35,11 @@ import org.xmlvm.proc.XmlvmResourceProvider;
  * Processes XMLVM documents and adds vtable information that is required by
  * some output processes, like the C backend.
  */
-public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmResourceProvider> implements
-        XmlvmResourceProvider {
-    
-    List<XmlvmResource> result = new ArrayList<XmlvmResource>();
+public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
+        implements XmlvmResourceProvider {
+    private final static String TAG    = XmlvmJavaRuntimeAnnotationProcess.class.getSimpleName();
+
+    List<XmlvmResource>         result = new ArrayList<XmlvmResource>();
 
     public XmlvmJavaRuntimeAnnotationProcess(Arguments arguments) {
         super(arguments);
@@ -48,10 +52,22 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
         for (XmlvmResourceProvider process : preprocesses) {
             List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
             for (XmlvmResource xmlvm : xmlvmResources) {
+                Log.debug(TAG, "***********************************");
+                Log.debug(TAG, "XMLVM Resource: " + xmlvm.getName());
+                Log.debug(TAG, "Referenced types:");
+
+                Set<String> types = xmlvm.getReferencedTypes();
+                eliminateArrayTypes(types);
+
+                for (String type : types) {
+                    if (!isBasicType(type)) {
+                        Log.debug("  -> " + type);
+                    }
+                }
 
                 // *************************************************************
                 // * TODO(Arno): Do whatever you need with the XMLVM resources *
-                // * to add the vtable information.                            *
+                // * to add the vtable information. *
                 // *************************************************************
 
                 result.add(xmlvm);
@@ -70,4 +86,33 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
         return null;
     }
 
+    private boolean isBasicType(String typeName) {
+        final Set<String> basicTypes = new HashSet<String>();
+        basicTypes.add("void");
+        basicTypes.add("int");
+        basicTypes.add("float");
+        basicTypes.add("long");
+        basicTypes.add("double");
+        basicTypes.add("boolean");
+        basicTypes.add("null");
+        return basicTypes.contains(typeName);
+    }
+
+    private void eliminateArrayTypes(Set<String> types) {
+        Set<String> add = new HashSet<String>();
+        Set<String> remove = new HashSet<String>();
+
+        for (String typeName : types) {
+            if (typeName.endsWith("[]")) {
+                remove.add(typeName);
+                add.add(typeName.substring(0, typeName.length() - 2));
+            }
+        }
+        for (String typeName : remove) {
+            types.remove(typeName);
+        }
+        for (String typeName : add) {
+            types.add(typeName);
+        }
+    }
 }

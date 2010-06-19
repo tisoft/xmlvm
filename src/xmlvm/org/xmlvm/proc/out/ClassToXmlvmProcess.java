@@ -160,7 +160,7 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
             }
             new DescendingVisitor(clazz, visitor).visit();
             return new XmlvmResource(visitor.getClassName().replace('.', '_'),
-                    org.xmlvm.proc.XmlvmResource.Type.JVM, visitor.getXmlvmDocument());
+                    org.xmlvm.proc.XmlvmResource.Type.JVM, visitor.getXmlvmDocument(), null);
         }
 
         /**

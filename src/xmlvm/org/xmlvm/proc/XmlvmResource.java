@@ -20,6 +20,8 @@
 
 package org.xmlvm.proc;
 
+import java.util.Set;
+
 import org.jdom.Document;
 import org.jdom.Namespace;
 
@@ -32,27 +34,46 @@ public class XmlvmResource {
         JVM, CLI, CLI_DFA, DEX
     }
 
-    public static Namespace xmlvmNamespace = Namespace.getNamespace("vm", "http://xmlvm.org");
+    public static Namespace    xmlvmNamespace = Namespace.getNamespace("vm", "http://xmlvm.org");
 
-    private String          name;
-    private Type            type;
-    private Document        xmlvmDocument;
+    private final String       name;
+    private final Type         type;
+    private final Document     xmlvmDocument;
+    private final Set<String> referencedTypes;
 
-    public XmlvmResource(String name, Type type, Document xmlvmDocument) {
+    public XmlvmResource(String name, Type type, Document xmlvmDocument,
+            Set<String> referencedTypes) {
         this.name = name;
         this.type = type;
         this.xmlvmDocument = xmlvmDocument;
+        this.referencedTypes = referencedTypes;
     }
 
+    /**
+     * Returns the XMLVM document of this resource.
+     */
     public Document getXmlvmDocument() {
         return xmlvmDocument;
     }
 
+    /**
+     * Returns the type of this XMLVM resource.
+     */
     public Type getType() {
         return type;
     }
 
+    /**
+     * Returns the name of this XMLVM resource.
+     */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Returns the names of all types that are referenced in this resource.
+     */
+    public Set<String> getReferencedTypes() {
+        return referencedTypes;
     }
 }

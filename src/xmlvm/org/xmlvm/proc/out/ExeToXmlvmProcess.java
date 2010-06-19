@@ -188,7 +188,7 @@ public class ExeToXmlvmProcess extends XmlvmProcessImpl<ExeInputProcess> impleme
                 Document xmlvmDoc = genXMLVM(cilClass);
                 String className = exeFile.getName().substring(0,
                         exeFile.getName().length() - ExeFile.EXE_ENDING.length());
-                return new XmlvmResource(className, Type.CLI, xmlvmDoc);
+                return new XmlvmResource(className, Type.CLI, xmlvmDoc, null);
             } catch (FileNotFoundException e) {
                 Log.error("File not found: " + exeFile.getAbsolutePath());
             } catch (IOException e) {
