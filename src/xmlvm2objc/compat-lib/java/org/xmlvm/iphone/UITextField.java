@@ -32,6 +32,7 @@ public class UITextField extends UIView {
     private int                 keyboardType                  = UIKeyboardType.Default;
     private int                 returnKeyType                 = UIReturnKeyType.Default;
     private boolean             secureTextEntry               = false;
+    private int                 textAlignment                 = UITextAlignment.Left;
     private String              text;
     private UIFont              font;
     private UIColor             textColor;
@@ -147,6 +148,14 @@ public class UITextField extends UIView {
         this.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth;
     }
 
+    public int getTextAlignment() {
+        return textAlignment;
+    }
+
+    public void setTextAlignment(int uiTextAlignment) {
+        this.textAlignment = uiTextAlignment;
+    }
+
     /* TODO teras: this has to be removed from here */
     @Override
     public void keyTyped(char key) {
@@ -165,7 +174,7 @@ public class UITextField extends UIView {
         this.delegate = delegate;
     }
 
-    public UITextFieldDelegate getUITextFieldDelegate() {
+    public UITextFieldDelegate getDelegate() {
         return delegate;
     }
 }

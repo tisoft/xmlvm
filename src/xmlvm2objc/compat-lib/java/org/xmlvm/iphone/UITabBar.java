@@ -46,7 +46,7 @@ public class UITabBar extends UIGenericBar {
         xmlvmSetRenderer(new UITabBarRenderer(this));
     }
 
-    public UITabBarDelegate getTabBarDelegate() {
+    public UITabBarDelegate getDelegate() {
         return delegate;
     }
 

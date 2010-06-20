@@ -141,10 +141,10 @@ public class XCodeFile extends BuildFile {
         }
 
         private void injectLibraries(Set<String> libraries) {
-            StringBuffer filerefs = new StringBuffer();
-            StringBuffer buildrefs = new StringBuffer();
-            StringBuffer buildframs = new StringBuffer();
-            StringBuffer frameworks = new StringBuffer();
+            StringBuilder filerefs = new StringBuilder();
+            StringBuilder buildrefs = new StringBuilder();
+            StringBuilder buildframs = new StringBuilder();
+            StringBuilder frameworks = new StringBuilder();
 
             String filetype = "";
             String path = "";
@@ -198,11 +198,11 @@ public class XCodeFile extends BuildFile {
         }
 
         private void injectFiles(String template, FileFilter filter) {
-            StringBuffer filerefs = new StringBuffer();
-            StringBuffer buildrefs = new StringBuffer();
-            StringBuffer display = new StringBuffer();
-            StringBuffer source = new StringBuffer();
-            StringBuffer resource = new StringBuffer();
+            StringBuilder filerefs = new StringBuilder();
+            StringBuilder buildrefs = new StringBuilder();
+            StringBuilder display = new StringBuilder();
+            StringBuilder source = new StringBuilder();
+            StringBuilder resource = new StringBuilder();
 
             if (template == null || template.equals(""))
                 return;
@@ -295,6 +295,7 @@ public class XCodeFile extends BuildFile {
                 }
             }
 
+            @Override
             public String toString() {
                 return "[type=" + type + (isSource ? ", Source" : "")
                         + (isResource ? ", Resource" : "") + (isValid ? ", Valid" : "")

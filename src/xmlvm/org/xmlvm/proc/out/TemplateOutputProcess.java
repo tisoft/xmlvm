@@ -23,6 +23,7 @@ package org.xmlvm.proc.out;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessImpl;
@@ -36,13 +37,17 @@ import org.xmlvm.util.JarUtil;
 public class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputProcess> {
 
     private static final String     IPHONE_TEMPL_PROJNAME  = "__PROJNAME__";
+    private static final String     IPHONE_TEMPL_TRIMSEED  = "__XMLVMTRIMMERSEED__";
     private static final String     IPHONE_TEMPL_JAR_PATH  = "/iphone/netbeans/";
     private static final String     IPHONE_TEMPL_FILE_PATH = "var/iphone/netbeans/";
     private static final String[][] Files                  = { { "Main.java", "src/java/xmlvm/" },
             { "build.xml", "" }, { "manifest.mf", "" }, { "build-impl.xml", "nbproject/" },
             { "xcode.xml", "nbproject/" }, { "xcode.properties", "nbproject/" },
             { "genfiles.properties", "nbproject/" }, { "project.properties", "nbproject/" },
-            { "project.xml", "nbproject/" }, { ".project", "" }, { ".classpath", "" } };
+            { "project.xml", "nbproject/" }, { ".project", "" }, { ".classpath", "" },
+            { "demo.png", "resources/app" } };
+    private static final String[]   EmptyConfigFiles       = { "NetBeans.properties", "Xcode.properties"};
+    private static final String     ConfigLocation         = "nbproject/configs";
     private List<OutputFile>        result                 = new ArrayList<OutputFile>();
 
     public TemplateOutputProcess(Arguments arguments) {
@@ -60,9 +65,16 @@ public class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputProcess> {
         String projname = arguments.option_app_name();
         String outpath = arguments.option_out() + "/";
 
-        for (int i = 0; i < Files.length; i++) {
-            if (!addFile(Files[i][0], outpath + Files[i][1], projname))
+        for (String[] file : Files) {
+            if (!addFile(file[0], outpath + file[1], projname)) {
                 return false;
+            }
+        }
+        for (String file : EmptyConfigFiles) {
+            OutputFile config = new OutputFile("");
+            config.setFileName(file);
+            config.setLocation(outpath + ConfigLocation);
+            result.add(config);
         }
 
         File jarlib = new File(JarUtil.findSelfJar());
@@ -80,7 +92,12 @@ public class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputProcess> {
         if (!file.setDataFromStream(FileUtil.findStreamResource(IPHONE_TEMPL_JAR_PATH + filename,
                 IPHONE_TEMPL_FILE_PATH + filename)))
             return false;
-        file.setData(file.getData().replace(IPHONE_TEMPL_PROJNAME, projname));
+        if (!filename.endsWith(".png")) {
+            file.setData(file.getData().replace(IPHONE_TEMPL_PROJNAME, projname));
+        }
+        if (filename.equals("xcode.properties")) {
+            file.setData(file.getData().replace(IPHONE_TEMPL_TRIMSEED, String.valueOf(new Random().nextLong())));
+        }
         result.add(file);
         return true;
     }

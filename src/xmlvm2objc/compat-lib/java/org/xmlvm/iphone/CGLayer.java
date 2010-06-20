@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-public class CGLayer {
+public class CGLayer extends NSObject {
     BufferedImage image;
 
     public static CGLayer createWithContext(CGContext context, CGSize size) {

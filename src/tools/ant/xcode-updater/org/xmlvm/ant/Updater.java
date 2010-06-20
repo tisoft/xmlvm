@@ -22,16 +22,19 @@ package org.xmlvm.ant;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
+import org.xmlvm.ant.utils.Log;
 
 /**
- *
+ * This is an ant task which updates only files that have changed. Thus it is
+ * possible to compile only files that have actually changed, and not all files
+ * every time.
  * @author teras
  */
 public class Updater extends Task {
@@ -40,18 +43,35 @@ public class Updater extends Task {
     private File dest;
     private boolean clean = false;
 
+    /**
+     * Set the destination directory where changed files will be put
+     * @param dest
+     */
     public void setDest(File dest) {
         this.dest = dest;
     }
 
+    /**
+     * Set the source directory of files, to check if they have changed
+     * @param src
+     */
     public void setSrc(File src) {
         this.src = src;
     }
 
+    /**
+     * Clean the destination directory of files that do not exist any more in
+     * the source directory
+     * @param clean
+     */
     public void setClean(boolean clean) {
         this.clean = clean;
     }
 
+    @Override
+    /**
+     * Execute the ant task
+     */
     public void execute() throws BuildException {
         if (src == null) {
             throw new BuildException("Src directory should be defined.");
@@ -71,23 +91,23 @@ public class Updater extends Task {
             throw new RuntimeException("Unable to find file " + from.getPath());
         }
         if (!to.exists()) {
-            LLog.debug("Copying from " + from.getPath() + " to " + to.getPath());
+            Log.debug("Copying from " + from.getPath() + " to " + to.getPath());
             copy(from, to);
             return;
         }
 
         if (from.isFile() && to.isFile()) {
             if (!equals(from, to)) {
-                LLog.debug("Copying different files from " + from.getPath() + " to " + to.getPath());
+                Log.debug("Copying different files from " + from.getPath() + " to " + to.getPath());
                 delete(to);
                 copy(from, to);
             }
         } else if (from.isFile()) {
-            LLog.debug("Adding file " + from.getPath() + " to " + to.getPath());
+            Log.debug("Adding file " + from.getPath() + " to " + to.getPath());
             delete(to);
             copy(from, to);
         } else if (to.isFile()) {
-            LLog.debug("Copying directory " + from.getPath() + " to file " + to.getPath());
+            Log.debug("Copying directory " + from.getPath() + " to file " + to.getPath());
             delete(to);
             copy(from, to);
         } else {
@@ -150,7 +170,7 @@ public class Updater extends Task {
             for (int i = 0; i < list.length; i++) {
                 if (!delete(list[i])) {
                     status = false;
-                    LLog.error("Unable to delete " + list[i].getPath());
+                    Log.error("Unable to delete " + list[i].getPath());
                 }
             }
         }
@@ -166,14 +186,14 @@ public class Updater extends Task {
         try {
             File f = new File(path, filename);
             if (f != null) {
-                in = new BufferedReader(new FileReader(f));
+                in = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8"));
                 String line;
                 while ((line = in.readLine()) != null) {
                     data.append(line).append('\n');
                 }
             }
         } catch (IOException ex) {
-            LLog.error(ex.getMessage());
+            Log.error(ex.getMessage());
         } finally {
             try {
                 if (in != null) {
@@ -185,7 +205,7 @@ public class Updater extends Task {
         return data.toString();
     }
 
-    public static boolean write(String outfile, String data) {
+    private static boolean write(String outfile, String data) {
         boolean status = false;
         BufferedWriter out = null;
         try {
@@ -193,7 +213,7 @@ public class Updater extends Task {
             out.append(data);
             status = true;
         } catch (IOException ex) {
-            LLog.error(ex.getMessage());
+            Log.error(ex.getMessage());
         } finally {
             try {
                 if (out != null) {
@@ -203,65 +223,5 @@ public class Updater extends Task {
             }
         }
         return status;
-    }
-
-    public static class LLog {
-
-        public enum Level {
-
-            NONE(System.out),
-            ERROR(System.err),
-            WARNING(System.out),
-            ALL(System.out);
-            private final PrintStream stream;
-
-            Level(PrintStream stream) {
-                this.stream = stream;
-            }
-
-            /**
-             * Flushes the output stream.
-             */
-            public void flush() {
-                stream.flush();
-            }
-
-            public static Level getLevel(String level) {
-                try {
-                    return Level.valueOf(level.toUpperCase());
-                } catch (IllegalArgumentException ex) {
-                }
-                return null;
-            }
-        }
-        private static Level level = Level.ERROR;
-
-        private static void display(Level l, String message) {
-            if (l.compareTo(level) <= 0 && message != null) {
-                l.stream.println(message);
-            }
-        }
-
-        public static void error(String message) {
-            display(Level.ERROR, message);
-        }
-
-        public static void debug(String message) {
-            display(Level.ALL, message);
-        }
-
-        public static void warn(String tag, String message) {
-            display(Level.WARNING, tag + ": " + message);
-        }
-
-        public static void warn(String message) {
-            display(Level.WARNING, message);
-        }
-
-        public static void setLevel(Level newLevel) {
-            if (newLevel != null) {
-                level = newLevel;
-            }
-        }
     }
 }

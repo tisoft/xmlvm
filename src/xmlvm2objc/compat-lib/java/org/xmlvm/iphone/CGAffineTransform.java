@@ -27,7 +27,7 @@ package org.xmlvm.iphone;
 
 import java.awt.geom.AffineTransform;
 
-public class CGAffineTransform {
+public class CGAffineTransform extends NSObject {
 
     private AffineTransform transform;
 

@@ -38,6 +38,8 @@ typedef UITextField org_xmlvm_iphone_UITextField;
 - (void) setPlaceholder___java_lang_String: (java_lang_String*) p;
 - (org_xmlvm_iphone_UIFont*) getFont__;
 - (void) setFont___org_xmlvm_iphone_UIFont: (org_xmlvm_iphone_UIFont*)fnt;
+- (void) setTextAlignment___int:(int) al;
+- (int) getTextAlignment__;
 - (void) setDelegate___org_xmlvm_iphone_UITextFieldDelegate:(org_xmlvm_iphone_UITextFieldDelegate*)newdelegate;
 - (org_xmlvm_iphone_UITextFieldDelegate*) getUITextFieldDelegate__;
 

@@ -62,6 +62,16 @@
 	[self setFont:fnt];
 }
 
+- (void) setTextAlignment___int:(int) al
+{
+	[self setTextAlignment:al];
+}
+
+- (int) getTextAlignment__
+{
+	return [self textAlignment];
+}
+
 - (int) isEditable__
 {
 	return [self isEditable];

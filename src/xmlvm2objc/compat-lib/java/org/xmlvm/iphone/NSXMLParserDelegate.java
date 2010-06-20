@@ -17,7 +17,6 @@
  * 
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
-
 package org.xmlvm.iphone;
 
 import java.util.HashMap;
@@ -30,71 +29,76 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author arno
  * 
  */
-public class NSXMLParserDelegate extends DefaultHandler {
+public class NSXMLParserDelegate extends NSObject {
 
-    private NSXMLParser parser;
+	private NSXMLParser parser;
+	DefaultHandler handler = new DefaultHandler() {
 
-    public void setParser(NSXMLParser parser) {
-        this.parser = parser;
-    }
+		@Override
+		public void startPrefixMapping(String prefix, String uri) {
+			if (parser.shouldReportNamespacePrefixes()) {
+				didStartMappingPrefix(parser, prefix, uri);
+			}
+		}
 
-    @Override
-    public void startPrefixMapping(String prefix, String uri) {
-        if (parser.shouldReportNamespacePrefixes()) {
-            didStartMappingPrefix(parser, prefix, uri);
-        }
-    }
+		@Override
+		public void endPrefixMapping(String prefix) {
+			if (parser.shouldReportNamespacePrefixes()) {
+				didEndMappingPrefix(parser, prefix);
+			}
+		}
 
-    public void didStartMappingPrefix(NSXMLParser parser, String prefix, String namespaceURI) {
+		@Override
+		public void startElement(String uri, String localName, String qName,
+				Attributes attributes) {
+			didStartElement(parser, localName, uri, qName,
+					convertAttributes(attributes));
+		}
 
-    }
+		@Override
+		public void endElement(String uri, String localName, String qName) {
+			didEndElement(parser, localName, uri, qName);
+		}
 
-    @Override
-    public void endPrefixMapping(String prefix) {
-        if (parser.shouldReportNamespacePrefixes()) {
-            didEndMappingPrefix(parser, prefix);
-        }
-    }
+		@Override
+		public void characters(char[] ch, int start, int length) {
+			String characters = String.copyValueOf(ch, start, length);
+			foundCharacters(parser, characters);
+		}
 
-    public void didEndMappingPrefix(NSXMLParser parser, String prefix) {
+		private Map<String, String> convertAttributes(Attributes attributes) {
+			Map<String, String> attr = new HashMap<String, String>();
+			for (int i = 0; i < attributes.getLength(); i++) {
+				attr.put(attributes.getQName(i), attributes.getValue(i));
+			}
+			return attr;
+		}
+	};
 
-    }
+	public void didStartMappingPrefix(NSXMLParser parser, String prefix,
+			String namespaceURI) {
+	}
 
-    @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) {
-        didStartElement(parser, localName, uri, qName, convertAttributes(attributes));
-    }
+	public void didEndMappingPrefix(NSXMLParser parser, String prefix) {
+	}
 
-    public void didStartElement(NSXMLParser parser, String elementName, String namespaceURI,
-            String qualifiedName, Map<String, String> attributes) {
-    }
+	public void didStartElement(NSXMLParser parser, String elementName,
+			String namespaceURI, String qualifiedName,
+			Map<String, String> attributes) {
+	}
 
-    @Override
-    public void endElement(String uri, String localName, String qName) {
-        didEndElement(parser, localName, uri, qName);
-    }
+	public void didEndElement(NSXMLParser parser, String elementName,
+			String namespaceURI, String qualifiedName) {
+	}
 
-    public void didEndElement(NSXMLParser parser, String elementName, String namespaceURI,
-            String qualifiedName) {
-    }
+	public void foundCharacters(NSXMLParser parser, String characters) {
+	}
 
-    private Map<String, String> convertAttributes(Attributes attributes) {
-        Map<String, String> attr = new HashMap<String, String>();
-        for (int i = 0; i < attributes.getLength(); i++) {
-            attr.put(attributes.getQName(i), attributes.getValue(i));
-        }
-        return attr;
-    }
+	public void foundCDATA(NSXMLParser parser, NSData CDATABlock) {
+		// TODO : call me from DefaultHandler
+	}
 
-    @Override
-    public void characters(char[] ch, int start, int length) {
-        String characters = String.copyValueOf(ch, start, length);
-        foundCharacters(parser, characters);
-    }
-
-    public void foundCharacters(NSXMLParser parser, String characters) {
-    }
-
-    public void foundCDATA(NSXMLParser parser, NSData CDATABlock) {
-    }
+	void setParser(NSXMLParser parser) {
+		this.parser = parser;
+	}
 }

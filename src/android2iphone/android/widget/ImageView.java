@@ -33,9 +33,13 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.internal.Assert;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
+import java.util.Set;
+import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UITouch;
 
 public class ImageView extends View {
 
@@ -228,7 +232,28 @@ public class ImageView extends View {
 
     @Override
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        return new UIImageView(new CGRect(0, 0, 0, 0));
+        return new UIImageView(new CGRect(0, 0, 0, 0)) {
+
+            @Override
+            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+            }
+
+            @Override
+            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+            }
+
+            @Override
+            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+            }
+
+            @Override
+            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+            }
+        };
     }
 
     protected UIImageView getUIImageView() {

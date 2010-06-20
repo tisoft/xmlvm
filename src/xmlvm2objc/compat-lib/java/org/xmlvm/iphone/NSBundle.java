@@ -25,10 +25,13 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 /**
- * @author arno
+ * @author arno, teras
  * 
  */
 public class NSBundle extends NSObject {
+    private static final String SYSRES_JAR = "/sys_resources";
+    private static final String APPRES_FILE = File.separator + "resources" + File.separator + "app" + File.separator;
+
 
     private static NSBundle mainBundle = new NSBundle();
 
@@ -46,27 +49,51 @@ public class NSBundle extends NSObject {
             return null;
         }
 
-        String fileName = new String(resource);
-        if (type != null) {
-            fileName = fileName.concat("." + type);
-        }
-
+        /* Calculate file name */
+        String filename = type == null ? resource : resource + "." + type;
         if (directory != null && !directory.equals("")) {
-            fileName = directory + "/" + fileName;
+            filename = directory + "/" + filename;
         }
 
-        URL url = this.getClass().getResource("/" + fileName);
+        /* First check as a local file */
         try {
-            if (url != null) {
-                return url.toURI().getPath();
+            File res = new File(new File(getClass().getResource("/").getFile()).getParentFile().getParent()
+                    + APPRES_FILE + filename);
+            if (res.exists()) {
+                return "file://"+res.getAbsolutePath();
             }
-        } catch (URISyntaxException ex) {
+        } catch (Exception ex) {
         }
-        File res = new File(new File(getClass().getResource("/").getFile()).getParent()
-                + File.separator + "resources" + File.separator + fileName);
-        if (res.exists()) {
-            return res.getPath();
+        
+        /* Check also if it is simply on the root directory of the project */
+        try {
+            File res = new File(getClass().getResource("/" + filename).getFile());
+            if (res.exists()) {
+                return res.toURI().toString();
+            }
+        } catch (Exception ex) {
         }
+
+        /* Then check as a file inside the jar */
+        String jarfilename = filename.startsWith("/") ? filename : "/" + filename;
+        try {
+            String path = getClass().getResource(jarfilename).toURI().toURL().toString();
+            if (path != null) {
+                return path;
+            }
+        } catch (Exception ex) {
+        }
+
+        /* Then check as a system jar resource file */
+        try {
+            String path = getClass().getResource(SYSRES_JAR + jarfilename).toURI().toURL().toString();
+            if (path != null) {
+                return path;
+            }
+        } catch (Exception ex) {
+        }
+
+        /* Not found */
         return null;
     }
 
@@ -76,5 +103,15 @@ public class NSBundle extends NSObject {
 
     public String bundlePath() {
         return getClass().getResource("/").getPath();
+    }
+    
+    static String getFilenameFromURI(String path) {
+        if (path.startsWith("file:///")) {
+            return path.substring("file://".length());
+        }
+        if (path.startsWith("file:/")) {
+            return path.substring("file:".length());
+        }
+        return path;
     }
 }

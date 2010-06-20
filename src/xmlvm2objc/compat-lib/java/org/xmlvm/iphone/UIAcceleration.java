@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-public class UIAcceleration {
+public class UIAcceleration extends NSObject {
 
     private double x;
     private double y;

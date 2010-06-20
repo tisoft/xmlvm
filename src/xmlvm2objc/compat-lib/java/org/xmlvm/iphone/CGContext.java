@@ -30,7 +30,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.Stack;
 
-public class CGContext {
+public class CGContext extends NSObject {
     public static final int         kCGTextInvisible = 1;
     public static final int         kCGTextFill      = 2;
 

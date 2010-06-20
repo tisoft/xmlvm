@@ -45,6 +45,7 @@ public class NSObject {
                     throw new RuntimeException(e);
                 }
                 try {
+                    m.setAccessible(true);  // This is required, since in Obj-C "private" modifier does not exist
                     m.invoke(target, params);
                 } catch (IllegalArgumentException e) {
                     throw new RuntimeException(e);
@@ -72,7 +73,8 @@ public class NSObject {
         }
     }
 
-    public void retain() {
+    public NSObject retain() {
+        return this;
         // Thank you GC!
     }
 

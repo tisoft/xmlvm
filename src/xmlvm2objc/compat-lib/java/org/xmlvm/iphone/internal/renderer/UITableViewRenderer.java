@@ -76,7 +76,7 @@ public class UITableViewRenderer extends UIViewRenderer<UITableView> {
     }
 
     public void reloadData() {
-        UITableViewDelegate delegate = view.getTableViewDelegate();
+        UITableViewDelegate delegate = view.getDelegate();
         UITableViewDataSource datasource = view.getTableViewDataSource();
 
         view.getSubviews().clear();

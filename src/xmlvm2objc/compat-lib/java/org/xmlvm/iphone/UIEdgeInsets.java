@@ -24,7 +24,7 @@ package org.xmlvm.iphone;
  * 
  * @author teras
  */
-public class UIEdgeInsets {
+public class UIEdgeInsets extends NSObject {
 
     public float top, left, bottom, right;
 

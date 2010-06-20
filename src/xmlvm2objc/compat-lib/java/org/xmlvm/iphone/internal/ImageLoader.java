@@ -1,10 +1,8 @@
 package org.xmlvm.iphone.internal;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -12,11 +10,7 @@ import org.xmlvm.iphone.NSBundle;
 
 public class ImageLoader {
 
-    private static final String IMG_IN_JAR_PATH = "/resources/images/";
-
     public BufferedImage loadImage(String imageName) {
-        URL location = null;
-
         // Split image name into parts
         int lastdot = imageName.lastIndexOf('.');
         int lastpath = imageName.lastIndexOf('/');
@@ -32,32 +26,17 @@ public class ImageLoader {
         }
         type = imageName.substring(lastdot + 1);
 
-        // First try to load it as a local file
         String path = NSBundle.mainBundle().pathForResource(resource, type, directory);
-        if (path != null) {
-            try {
-                location = new File(path).toURI().toURL();
-            } catch (MalformedURLException ex) {
-            }
-        }
-
-        // Then search it inside the JAR
-        if (location == null) {
-            location = this.getClass().getResource(IMG_IN_JAR_PATH + imageName);
-        }
-
-        // Not found
-        if (location == null) {
+        if (path == null) {
+            // Not found
             System.err.println("Unable to locate image with name " + imageName);
             return null;
         }
-
         // Perform the actual loading
         try {
-            return ImageIO.read(location);
+            return ImageIO.read(new URL(path));
         } catch (IOException e) {
-            System.err.println("I/O error when reading image with name " + imageName + " :"
-                    + e.getMessage());
+            System.err.println("I/O error when reading image with name " + imageName + " : " + e.getMessage());
         }
         return null;
     }

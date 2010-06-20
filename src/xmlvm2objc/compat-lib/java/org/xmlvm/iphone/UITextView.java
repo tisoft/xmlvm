@@ -33,6 +33,7 @@ public class UITextView extends UIView {
     private int     keyboardType                  = UIKeyboardType.Default;
     private int     returnKeyType                 = UIReturnKeyType.Default;
     private boolean secureTextEntry               = false;
+    private int     textAlignment                 = UITextAlignment.Left;
     private String  text;
     private UIFont  font;
     private UIColor textColor;
@@ -128,6 +129,14 @@ public class UITextView extends UIView {
 
     public UIColor getTextColor() {
         return textColor;
+    }
+
+    public int getTextAlignment() {
+        return textAlignment;
+    }
+
+    public void setTextAlignment(int uiTextAlignment) {
+        this.textAlignment = uiTextAlignment;
     }
 
     /* TODO : this has to be removed from here */

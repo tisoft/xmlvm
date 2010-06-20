@@ -54,6 +54,7 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
     }
 
     @Override
+    @SuppressWarnings("CallToThreadDumpStack")
     public boolean process() {
         List<ObjectiveCOutputProcess> preprocesses = preprocess();
 
@@ -91,7 +92,7 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
             // TODO: Copy non-in-JAR file version in case we are not in JAR-file
             // mode.
             BufferedReader infoIn = JarUtil.getFile("/iphone/Info.plist");
-            StringBuffer infoOut = new StringBuffer();
+            StringBuilder infoOut = new StringBuilder();
             String line = null;
             while ((line = infoIn.readLine()) != null) {
                 line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER", arguments

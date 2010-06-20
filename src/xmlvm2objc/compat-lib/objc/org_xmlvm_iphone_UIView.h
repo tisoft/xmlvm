@@ -28,6 +28,7 @@
 #import "org_xmlvm_iphone_NSDate.h"
 #import "org_xmlvm_iphone_UIViewAnimationDelegate.h"
 #import "org_xmlvm_iphone_CALayer.h"
+#import "org_xmlvm_iphone_UIResponder.h"
 
 // UIView
 //----------------------------------------------------------------------------
@@ -84,6 +85,10 @@ id       drawDelegate;
 - (UIWindow*) getWindow__;
 - (org_xmlvm_iphone_CALayer*) getLayer__;
 - (void) sizeToFit__;
+- (void) setAutoresizingMask___int:(int)mask;
+- (int) getAutoresizingMask__;
+- (void) setAutoresizesSubviews___boolean:(int)aresize;
+- (int) isAutoresizesSubviews__;
 - (org_xmlvm_iphone_CGSize*) sizeThatFits___org_xmlvm_iphone_CGSize:(org_xmlvm_iphone_CGSize*) size;
 - (org_xmlvm_iphone_CGPoint*) convertPointFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIView*) view;
 - (org_xmlvm_iphone_CGPoint*) convertPointToView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIView*) view;
@@ -103,5 +108,4 @@ id       drawDelegate;
 + (void) setAnimationTransitionForView___int_org_xmlvm_iphone_UIView_boolean :(int)transition :(org_xmlvm_iphone_UIView*)view :(BOOL)cache;
 + (int) areAnimationsEnabled__;
 + (void) setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate :(org_xmlvm_iphone_UIViewAnimationDelegate*)animdelegate;
-
 @end

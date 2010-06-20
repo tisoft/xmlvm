@@ -290,6 +290,26 @@
 	[self sizeToFit];
 }
 
+- (void) setAutoresizingMask___int:(int)mask
+{
+	[self setAutoresizingMask:mask];
+}
+
+- (int) getAutoresizingMask__
+{
+	return [self autoresizingMask];
+}
+
+- (void) setAutoresizesSubviews___boolean:(int)aresize
+{
+	[self setAutoresizesSubviews:aresize];
+}
+
+- (int) isAutoresizesSubviews__
+{
+	return [self autoresizesSubviews];
+}
+
 - (org_xmlvm_iphone_CGSize*) sizeThatFits___org_xmlvm_iphone_CGSize:(org_xmlvm_iphone_CGSize*) size
 {
 	return [[org_xmlvm_iphone_CGSize alloc] initWithCGSize:[self sizeThatFits:[size getCGSize]]];

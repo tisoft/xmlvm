@@ -49,6 +49,8 @@ public class UIView extends UIResponder {
     private Object            drawDelegate;
     private int               tag;
     private CALayer           layer;
+    private int               autoresizingMask;
+    private boolean           autoresizesSubviews;
 
     /** ---- private methods ---- */
     /* Renderer of this view */
@@ -77,6 +79,8 @@ public class UIView extends UIResponder {
         setHidden(false);
         tag = 0;
         layer = CALayer.layer();
+        autoresizingMask = UIViewAutoresizing.None;
+        autoresizesSubviews = true;
     }
 
     public UIView() {
@@ -321,6 +325,22 @@ public class UIView extends UIResponder {
 
     public CALayer getLayer() {
         return layer;
+    }
+
+    public int getAutoresizingMask() {
+        return autoresizingMask;
+    }
+
+    public void setAutoresizingMask(int uiViewAutoresizing) {
+        this.autoresizingMask = uiViewAutoresizing;
+    }
+
+    public boolean isAutoresizesSubviews() {
+        return autoresizesSubviews;
+    }
+
+    public void setAutoresizesSubviews(boolean autoresizesSubviews) {
+        this.autoresizesSubviews = autoresizesSubviews;
     }
 
     /* View animations */

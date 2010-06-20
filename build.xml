@@ -34,7 +34,7 @@
 
 	<property name="xmlvm.opengl" value="build/demo/android/opengl" />
 
-
+	<property name="xmlvm.demo.classpath" value="${basedir}/dist/xmlvm.jar"/>
 
 	<property name="debug" value="yes" />
 	<property name="doc.dir" value="doc" />
@@ -214,7 +214,7 @@
 			<fileset dir="var/iphone/netbeans/" />
 		</copy>
 
-		<copy todir="${xmlvm.build}/resources/images">
+		<copy todir="${xmlvm.build}/sys_resources">
 			<fileset file="var/iphone/battery.png"/>
 			<fileset file="var/iphone/chassis.png"/>
 			<fileset file="var/iphone/wifi.png"/>
@@ -270,12 +270,9 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="org.xmlvm.demo.ihelloworld.portrait.HelloWorld" />
-				<attribute name="Class-Path" value="../../../../../lib/objc-compat.jar ../../../../../../lib/lwjgl.jar" />
+				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
 			</manifest>
 			<fileset dir="${xmlvm.ihelloworld}/portrait" />
-			<fileset dir="var/iphone">
-				<include name="*.png/" />
-			</fileset>
 		</jar>
 	</target>
 
@@ -303,12 +300,9 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="org.xmlvm.iphone.demo.gl.nehelesson4.NeHeLesson4" />
-				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../../lib/lwjgl.jar" />
+				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
 			</manifest>
 			<fileset dir="${xmlvm.iglnehelesson4}" />
-			<fileset dir="var/iphone">
-				<include name="*.png/" />
-			</fileset>
 		</jar>
 	</target>
 
@@ -336,12 +330,9 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="org.xmlvm.demo.ihelloworld.upsidedown.HelloWorld" />
-				<attribute name="Class-Path" value="../../../../../lib/objc-compat.jar ../../../../../../lib/lwjgl.jar" />
+				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
 			</manifest>
 			<fileset dir="${xmlvm.ihelloworld}/upsidedown" />
-			<fileset dir="var/iphone">
-				<include name="*.png/" />
-			</fileset>
 		</jar>
 	</target>
 
@@ -369,12 +360,9 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="org.xmlvm.demo.ihelloworld.landscape.HelloWorld" />
-				<attribute name="Class-Path" value="../../../../../lib/objc-compat.jar ../../../../../../lib/lwjgl.jar" />
+				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
 			</manifest>
 			<fileset dir="${xmlvm.ihelloworld}/landscape" />
-			<fileset dir="var/iphone">
-				<include name="*.png/" />
-			</fileset>
 		</jar>
 	</target>
 
@@ -402,12 +390,9 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="org.xmlvm.demo.ihelloworld.fullscreen.HelloWorld" />
-				<attribute name="Class-Path" value="../../../../../lib/objc-compat.jar ../../../../../../lib/lwjgl.jar" />
+				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
 			</manifest>
 			<fileset dir="${xmlvm.ihelloworld}/fullscreen" />
-			<fileset dir="var/iphone">
-				<include name="*.png/" />
-			</fileset>
 		</jar>
 	</target>
 
@@ -435,12 +420,9 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="org.xmlvm.test.iphone.widgets.button.UIButtonTest" />
-				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../../lib/lwjgl.jar" />
+				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
 			</manifest>
 			<fileset dir="${xmlvm.widgets}/button" />
-			<fileset dir="var/iphone">
-				<include name="*.png/" />
-			</fileset>
 		</jar>
 	</target>
 
@@ -458,12 +440,9 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="org.xmlvm.demo.isound.ISound" />
-				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../../lib/lwjgl.jar ../../../../../lib/basicplayer3.0.jar ../../../../../lib/jl1.0.jar ../../../../../lib/mp3spi1.9.4.jar ../../../../../lib/tritonus_share.jar ../../../../../lib/commons-logging-api-1.1.jar" />
+				<attribute name="Class-Path" value="${xmlvm.demo.classpath} ../../../../../lib/basicplayer3.0.jar ../../../../../lib/jl1.0.jar ../../../../../lib/mp3spi1.9.4.jar ../../../../../lib/tritonus_share.jar ../../../../../lib/commons-logging-api-1.1.jar" />
 			</manifest>
 			<fileset dir="${xmlvm.isound}" />
-			<fileset dir="var/iphone">
-				<include name="*.png/" />
-			</fileset>
 			<fileset dir="demo/iphone/isound/res">
 				<include name="*.mp3" />
 			</fileset>
@@ -495,12 +474,9 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="org.xmlvm.demo.ifireworks.Main" />
-				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../../lib/lwjgl.jar" />
+				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
 			</manifest>
 			<fileset dir="${xmlvm.ifireworks}" />
-			<fileset dir="var/iphone">
-				<include name="*.png/" />
-			</fileset>
 			<fileset dir="demo/iphone/ifireworks/ires">
 				<include name="*.png" />
 			</fileset>
@@ -536,12 +512,9 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="android.internal.AndroidAppLauncher" />
-				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../lib/android-compat.jar ../../../../../lib/lwjgl.jar" />
+				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
 			</manifest>
 			<fileset dir="${xmlvm.afireworks}" />
-			<fileset dir="var/iphone">
-				<include name="*.png/" />
-			</fileset>
 			<fileset dir="demo/android/afireworks">
 				<include name="*.xml" />
 				<include name="res/**" />
@@ -580,12 +553,9 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="org.xmlvm.iphone.internal.AndroidAppLauncher" />
-				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../lib/android-compat.jar ../../../../../lib/lwjgl.jar" />
+				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
 			</manifest>
 			<fileset dir="${xmlvm.aremote}" />
-			<fileset dir="var/iphone">
-				<include name="*.png/" />
-			</fileset>
 		</jar>
 	</target>
 
@@ -619,12 +589,9 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="android.internal.AndroidAppLauncher" />
-				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../lib/android-compat.jar ../../../../../lib/lwjgl.jar" />
+				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
 			</manifest>
 			<fileset dir="${xmlvm.xokoban}" />
-			<fileset dir="var/iphone">
-				<include name="*.png/" />
-			</fileset>
 			<fileset dir="demo/android/xokoban">
 				<include name="*.xml" />
 				<include name="res/**" />
@@ -663,12 +630,9 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="android.internal.AndroidAppLauncher" />
-				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../lib/android-compat.jar ../../../../../lib/lwjgl.jar" />
+				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
 			</manifest>
 			<fileset dir="${xmlvm.sayhello}" />
-			<fileset dir="var/iphone">
-				<include name="*.png/" />
-			</fileset>
 			<fileset dir="demo/android/sayhello">
 				<include name="*.xml" />
 				<include name="res/**" />
@@ -703,12 +667,9 @@
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Implementation-Vendor" value="xmlvm.org" />
 				<attribute name="Main-Class" value="org.xmlvm.demo.iremote.Main" />
-				<attribute name="Class-Path" value="../../../../lib/objc-compat.jar ../../../../../lib/lwjgl.jar" />
+				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
 			</manifest>
 			<fileset dir="${xmlvm.iremote}" />
-			<fileset dir="var/iphone">
-				<include name="*.png/" />
-			</fileset>
 		</jar>
 	</target>
 

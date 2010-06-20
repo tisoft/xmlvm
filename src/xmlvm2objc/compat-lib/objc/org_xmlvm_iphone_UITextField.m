@@ -86,6 +86,16 @@
 	[self setFont:fnt];
 }
 
+- (void) setTextAlignment___int:(int) al
+{
+	[self setTextAlignment:al];
+}
+
+- (int) getTextAlignment__
+{
+	return [self textAlignment];
+}
+
 - (void) setDelegate___org_xmlvm_iphone_UITextFieldDelegate:(org_xmlvm_iphone_UITextFieldDelegate*)newdelegate
 {
 	XMLVM_PROPERTY(delegate,newdelegate)

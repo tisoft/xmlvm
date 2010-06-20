@@ -33,6 +33,21 @@
 	return this;
 }
 
++ (org_xmlvm_iphone_CGRect*) Null__
+{
+	return [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:CGRectNull];
+}
+
++ (org_xmlvm_iphone_CGRect*) Zero__
+{
+	return [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:CGRectZero];
+}
+
++ (org_xmlvm_iphone_CGRect*) Infinite__
+{
+	return [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:CGRectInfinite];
+}
+
 - (void) dealloc
 {
     [origin_org_xmlvm_iphone_CGPoint release];
@@ -79,6 +94,24 @@
     size_org_xmlvm_iphone_CGSize->height_float = other->size_org_xmlvm_iphone_CGSize->height_float;
 }
 
+- (BOOL) isNull__
+{
+    CGRect rect = [self getCGRect];
+    return CGRectIsNull(rect);
+}
+
+- (BOOL) isEmpty__
+{
+    CGRect rect = [self getCGRect];
+    return CGRectIsEmpty(rect);
+}
+
+- (BOOL) isInfinite__
+{
+    CGRect rect = [self getCGRect];
+    return CGRectIsInfinite(rect);
+}
+
 - (NSString*) toString__
 {
 	NSString* res = [[NSString alloc] initWithFormat:@"[%@%@]", [origin_org_xmlvm_iphone_CGPoint toString__], [size_org_xmlvm_iphone_CGSize toString__]];
@@ -97,12 +130,6 @@
     r->size_org_xmlvm_iphone_CGSize->width_float = _r.size.width;
     r->size_org_xmlvm_iphone_CGSize->height_float = _r.size.height;
     return r;
-}
-
-+ (BOOL) IsNull___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)r
-{
-    CGRect rect = [r getCGRect];
-    return CGRectIsNull(rect);
 }
 
 @end

@@ -83,7 +83,7 @@ public class UINavigationBar extends UIGenericToolbar {
         updateViews();
     }
 
-    public UINavigationBarDelegate getNavigationBarDelegate() {
+    public UINavigationBarDelegate getDelegate() {
         return delegate;
     }
 

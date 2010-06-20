@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-public class CGPoint {
+public class CGPoint extends NSObject {
 
     public float x;
     public float y;
@@ -38,5 +38,14 @@ public class CGPoint {
     @Override
     public String toString() {
         return "[" + x + "," + y + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof CGPoint)) {
+            return false;
+        }
+        CGPoint p = (CGPoint) o;
+        return p.x == x && p.y == y;
     }
 }

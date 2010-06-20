@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
  * 
  * @author teras
  */
-public abstract class CAAnimation implements CAAction, CAMediaTiming {
+public abstract class CAAnimation extends NSObject implements CAAction, CAMediaTiming {
 
     private boolean  removedOnCompletion;
     private NSObject delegate;

@@ -25,13 +25,12 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringBufferInputStream;
-import java.net.MalformedURLException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.text.BreakIterator;
 import java.util.ArrayList;
@@ -48,10 +47,11 @@ public class NSString extends NSObject {
 
     public static String stringWithContentsOfFile(String path) {
         try {
-            return stringWithContentsOfReader(new FileReader(path));
-        } catch (FileNotFoundException ex) {
-            return null;
+            return stringWithContentsOfReader(new InputStreamReader(new FileInputStream(NSBundle.getFilenameFromURI(path)), "UTF-8"));
+        } catch (UnsupportedEncodingException ex) {
+        } catch (IOException ex) {
         }
+        return null;
     }
 
     public static String stringWithContentsOfURL(NSURL url, int NSStringEncoding) {
@@ -77,18 +77,21 @@ public class NSString extends NSObject {
     }
 
     private static String stringWithContentsOfReader(Reader reader) {
-        StringBuffer out = new StringBuffer();
+        StringBuilder out = new StringBuilder();
         String data = null;
         try {
             BufferedReader in = new BufferedReader(reader);
             while ((data = in.readLine()) != null)
                 out.append(data).append("\n");
             in.close();
-        } catch (MalformedURLException mue) {
-        } catch (IOException ioe) {
         } catch (Exception e) {
         }
         return out.toString();
+    }
+
+    public static String stringByAddingPercentEscapesUsingEncoding(String URL, int nsStringEncoding) {
+        // TODO : Java implementation
+        return null;
     }
 
     public static ArrayList<String> componentsSeparatedByString(String stringtodivide,

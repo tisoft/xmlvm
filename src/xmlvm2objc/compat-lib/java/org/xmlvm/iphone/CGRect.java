@@ -22,7 +22,11 @@ package org.xmlvm.iphone;
 
 import java.awt.Rectangle;
 
-public class CGRect {
+public class CGRect extends NSObject {
+
+    private static final CGRect NULL = new CGRect(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, 0, 0);
+    private static final CGRect ZERO = new CGRect(0, 0, 0, 0);
+    private static final CGRect INFINITE = new CGRect(-Float.MAX_VALUE, -Float.MAX_VALUE, Float.MAX_VALUE, Float.MAX_VALUE);
 
     public CGPoint origin;
     public CGSize  size;
@@ -45,6 +49,18 @@ public class CGRect {
         size.height = other.size.height;
     }
 
+    public static CGRect Null() {
+        return new CGRect(NULL);
+    }
+
+    public static CGRect Zero() {
+        return new CGRect(ZERO);
+    }
+
+    public static CGRect Infinite() {
+        return new CGRect(INFINITE);
+    }
+
     public static CGRect Intersection(CGRect r1, CGRect r2) {
         Rectangle _r1 = new Rectangle((int) r1.origin.x, (int) r1.origin.y, (int) r1.size.width,
                 (int) r1.size.height);
@@ -54,12 +70,29 @@ public class CGRect {
         return new CGRect(_r3.x, _r3.y, _r3.width, _r3.height);
     }
 
-    public static boolean IsNull(CGRect rect) {
-        return rect.size.width <= 0.0f || rect.size.height <= 0.0f;
+    public boolean isNull() {
+        return equals(NULL);
+    }
+
+    public boolean isEmpty() {
+        return equals(ZERO);
+    }
+
+    public boolean isInfinite() {
+        return equals(INFINITE);
     }
 
     @Override
     public String toString() {
         return "[" + origin.toString() + size.toString() + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof CGRect)) {
+            return false;
+        }
+        CGRect r = (CGRect)o;
+        return origin.equals(r.origin) && size.equals(r.size);
     }
 }

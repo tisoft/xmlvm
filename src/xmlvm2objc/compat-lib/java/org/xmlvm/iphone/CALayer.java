@@ -22,7 +22,7 @@ package org.xmlvm.iphone;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CALayer {
+public class CALayer extends NSObject {
 
     HashMap<String, CAAnimation> animation;
 

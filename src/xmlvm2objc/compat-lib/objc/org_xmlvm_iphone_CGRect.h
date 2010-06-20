@@ -28,14 +28,20 @@
 @public org_xmlvm_iphone_CGSize* size_org_xmlvm_iphone_CGSize;
 }
 + (id) alloc;
++ (org_xmlvm_iphone_CGRect*) Null__;
++ (org_xmlvm_iphone_CGRect*) Zero__;
++ (org_xmlvm_iphone_CGRect*) Infinite__;
+
 - (id) init;
 - (void) dealloc;
 - (org_xmlvm_iphone_CGRect*) initWithCGRect:(CGRect) rect;
 - (CGRect) getCGRect;
 - (void) __init_org_xmlvm_iphone_CGRect___float_float_float_float :(float)x :(float)y :(float)w :(float)h;
 - (void) __init_org_xmlvm_iphone_CGRect___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)other;
+- (BOOL) isNull__;
+- (BOOL) isEmpty__;
+- (BOOL) isInfinite__;
 - (NSString*) toString__;
 + (org_xmlvm_iphone_CGRect*) Intersection___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect
        :(org_xmlvm_iphone_CGRect*)r1 :(org_xmlvm_iphone_CGRect*)r2;
-+ (BOOL) IsNull___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)r;
 @end

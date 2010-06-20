@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
  * 
  * @author teras
  */
-public class NSDateComponents {
+public class NSDateComponents extends NSObject {
 
     private final static int kCFCalendarComponentsWrap = (1 << 0);
     public final static int  Wrap                      = kCFCalendarComponentsWrap;

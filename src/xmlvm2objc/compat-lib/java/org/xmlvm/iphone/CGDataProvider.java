@@ -22,7 +22,7 @@ package org.xmlvm.iphone;
 
 import java.io.InputStream;
 
-public class CGDataProvider {
+public class CGDataProvider extends NSObject {
 
     public InputStream in;
 

@@ -39,6 +39,8 @@ import org.xmlvm.iphone.internal.renderer.StatusBarRenderer;
 public class StatusBar extends UIView {
 
     public static final int      STATUS_BAR_HEIGHT = 20;
+    public static final String   BATTERY_IMG       = "battery.png";
+    public static final String   WIFI_IMG          = "wifi.png";
     /* */
     private float                fullHeight;
     private int                  orientation;
@@ -46,11 +48,15 @@ public class StatusBar extends UIView {
     public UILabel               timeLabel;
     public UIImageView           wifiIcon;
     public UIImageView           batteryIcon;
-    private static final UIImage batteryImage      = UIImage.imageWithContentsOfFile("battery.png");
-    private static final UIImage wifiImage         = UIImage.imageWithContentsOfFile("wifi.png");
+    private static final UIImage batteryImage      = UIImage.imageWithContentsOfFile(BATTERY_IMG);
+    private static final UIImage wifiImage         = UIImage.imageWithContentsOfFile(WIFI_IMG);
 
     public StatusBar(CGRect rect) {
         super(rect);
+        if (batteryImage == null || wifiImage == null) {
+            System.err.println("Unable to locate system images. Exiting.");
+            System.exit(1);
+        }
         fullHeight = getFrame().size.height;
         addIPodLabel(rect);
         addWifiIcon(rect);

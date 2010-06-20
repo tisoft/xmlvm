@@ -34,6 +34,8 @@ typedef UITextView org_xmlvm_iphone_UITextView;
 - (void) setTextColor___org_xmlvm_iphone_UIColor: (org_xmlvm_iphone_UIColor*) color;
 - (UIFont*) getFont__;
 - (void) setFont___org_xmlvm_iphone_UIFont: (org_xmlvm_iphone_UIFont*)fnt;
+- (void) setTextAlignment___int:(int) al;
+- (int) getTextAlignment__;
 - (int) isEditable__;
 - (void) setEditable___boolean :(int)edit;
 

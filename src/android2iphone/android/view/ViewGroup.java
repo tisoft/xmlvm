@@ -33,6 +33,9 @@ import android.content.Context;
 import android.internal.Assert;
 import android.internal.Dimension;
 import android.util.AttributeSet;
+import java.util.Set;
+import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UITouch;
 
 /**
  * iPhone implementation of Android's ViewGroup class.
@@ -277,7 +280,28 @@ public class ViewGroup extends View implements ViewParent {
 
     @Override
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        UIView v = new UIView();
+        UIView v = new UIView() {
+
+            @Override
+            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+            }
+
+            @Override
+            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+            }
+
+            @Override
+            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+            }
+
+            @Override
+            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+            }
+        };
         v.setBackgroundColor(UIColor.clearColor);
         return v;
     }

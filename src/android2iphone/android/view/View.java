@@ -29,7 +29,6 @@ import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UIImage;
-import org.xmlvm.iphone.UIResponderDelegate;
 import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
@@ -86,7 +85,6 @@ public class View {
     private UIView                    uiView;
     private WeakReference<ViewParent> parent;
     private OnTouchListener           listener;
-    private UIResponderDelegate       responderDelegate;
     private int                       id;
     private int                       measuredWidth;
     private int                       measuredHeight;
@@ -281,32 +279,6 @@ public class View {
         if (uiView instanceof UIView) {
             uiView.setDrawDelegate(this);
         }
-
-        responderDelegate = new UIResponderDelegate() {
-
-            @Override
-            public boolean touchesBegan(Set<UITouch> touches, UIEvent event) {
-                return processTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
-            }
-
-            @Override
-            public boolean touchesMoved(Set<UITouch> touches, UIEvent event) {
-                return processTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
-            }
-
-            @Override
-            public boolean touchesCancelled(Set<UITouch> touches, UIEvent event) {
-                return processTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
-            }
-
-            @Override
-            public boolean touchesEnded(Set<UITouch> touches, UIEvent event) {
-                return processTouchesEvent(MotionEvent.ACTION_UP, touches, event);
-            }
-
-        };
-
-        uiView.setDelegate(responderDelegate);
         uiView.setUserInteractionEnabled(true);
 
         if (attrs != null && attrs.getAttributeCount() > 0) {
@@ -364,10 +336,13 @@ public class View {
         if (onTouchEvent(motionEvent)) {
             return true;
         }
-        if (this.listener == null) {
-            return false;
+        if (listener != null && listener.onTouch(this, motionEvent)) {
+            return true;
         }
-        return this.listener.onTouch(this, motionEvent);
+        if (getParent() != null && (getParent() instanceof View)) {
+            return ((View) getParent()).processTouchesEvent(action, touches, event);
+        }
+        return false;
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -375,7 +350,28 @@ public class View {
     }
 
     protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        UIView v = new UIView();
+        UIView v = new UIView() {
+
+            @Override
+            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+            }
+
+            @Override
+            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+            }
+
+            @Override
+            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+            }
+
+            @Override
+            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+                processTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+            }
+        };
         return v;
     }
 
@@ -390,11 +386,6 @@ public class View {
     public void xmlvmSetMeasureSpec(int widthMeasureSpec, int heightMeasureSpec) {
         this.widthMeasureSpec = widthMeasureSpec;
         this.heightMeasureSpec = heightMeasureSpec;
-    }
-
-    @Override
-    protected void finalize() {
-        uiView.setDelegate(null);
     }
 
     private void parseViewAttributes(AttributeSet attrs) {

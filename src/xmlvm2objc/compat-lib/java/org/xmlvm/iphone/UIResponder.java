@@ -24,58 +24,9 @@ import java.util.Set;
 
 public class UIResponder extends NSObject {
 
-    private UIResponderDelegate delegate      = null;
     protected boolean           callDelegates = true;
 
     public UIResponder() {
-    }
-
-    public void xmlvmInternalTouchesBegan(Set<UITouch> touches, UIEvent event) {
-        if (callDelegates && getResponderDelegate() != null) {
-            if (getResponderDelegate().touchesBegan(touches, event))
-                return;
-        }
-
-        touchesBegan(touches, event);
-        if (getNextResponder() != null) {
-            getNextResponder().xmlvmInternalTouchesBegan(touches, event);
-        }
-    }
-
-    public void xmlvmInternalTouchesCancelled(Set<UITouch> touches, UIEvent event) {
-        if (callDelegates && getResponderDelegate() != null) {
-            if (getResponderDelegate().touchesCancelled(touches, event))
-                return;
-        }
-
-        touchesCancelled(touches, event);
-        if (getNextResponder() != null) {
-            getNextResponder().xmlvmInternalTouchesCancelled(touches, event);
-        }
-    }
-
-    public void xmlvmInternalTouchesEnded(Set<UITouch> touches, UIEvent event) {
-        if (callDelegates && getResponderDelegate() != null) {
-            if (getResponderDelegate().touchesEnded(touches, event))
-                return;
-        }
-
-        touchesEnded(touches, event);
-        if (getNextResponder() != null) {
-            getNextResponder().xmlvmInternalTouchesEnded(touches, event);
-        }
-    }
-
-    public void xmlvmInternalTouchesMoved(Set<UITouch> touches, UIEvent event) {
-        if (callDelegates && getResponderDelegate() != null) {
-            if (getResponderDelegate().touchesMoved(touches, event))
-                return;
-        }
-
-        touchesMoved(touches, event);
-        if (getNextResponder() != null) {
-            getNextResponder().xmlvmInternalTouchesMoved(touches, event);
-        }
     }
 
     public void touchesBegan(Set<UITouch> touches, UIEvent event) {
@@ -106,13 +57,5 @@ public class UIResponder extends NSObject {
     public boolean resignFirstResponder() {
         // Do nothing
         return true;
-    }
-
-    public UIResponderDelegate getResponderDelegate() {
-        return delegate;
-    }
-
-    public void setDelegate(UIResponderDelegate delegate) {
-        this.delegate = delegate;
     }
 }

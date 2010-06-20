@@ -8,9 +8,7 @@ import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.ImageObserver;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.xmlvm.iphone.CGContext;
@@ -123,17 +121,17 @@ public class Display implements ImageObserver {
         switch (phase) {
         case UITouchPhase.Began:
             currentResponder = responder;
-            responder.xmlvmInternalTouchesBegan(touches, event);
+            responder.touchesBegan(touches, event);
             break;
         case UITouchPhase.Moved:
-            responder.xmlvmInternalTouchesMoved(touches, event);
+            responder.touchesMoved(touches, event);
             break;
         case UITouchPhase.Ended:
-            responder.xmlvmInternalTouchesEnded(touches, event);
+            responder.touchesEnded(touches, event);
             currentResponder = null;
             break;
         case UITouchPhase.Cancelled:
-            responder.xmlvmInternalTouchesCancelled(touches, event);
+            responder.touchesCancelled(touches, event);
             currentResponder = null;
             break;
         }

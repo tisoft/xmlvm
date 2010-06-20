@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-public class CGSize {
+public class CGSize extends NSObject {
 
     public float width;
     public float height;

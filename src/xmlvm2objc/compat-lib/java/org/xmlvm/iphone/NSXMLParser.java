@@ -78,7 +78,7 @@ public class NSXMLParser extends NSObject {
 
         try {
             saxParser = saxParserFactory.newSAXParser();
-            saxParser.parse(data.getInputStream(), delegate);
+            saxParser.parse(data.getInputStream(), delegate.handler);
         } catch (ParserConfigurationException e) {
             return false;
         } catch (SAXException e) {

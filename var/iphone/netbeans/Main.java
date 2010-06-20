@@ -3,7 +3,11 @@
  */
 package xmlvm;
 
+import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
+import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIImage;
+import org.xmlvm.iphone.UIImageView;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UITextAlignment;
@@ -16,13 +20,18 @@ public class Main extends UIApplication {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
 
         UIView mainView = new UIView(window.getFrame());
+        mainView.setBackgroundColor(UIColor.whiteColor);
         window.addSubview(mainView);
 
-        UILabel title = new UILabel(window.getFrame());
-        title.setText("Hello World!");
+        UILabel title = new UILabel(new CGRect(0, 150, 320, 40));
+        title.setText("Hello");
         title.setTextAlignment(UITextAlignment.Center);
-        
+
+        UIImageView img = new UIImageView(new CGRect(60, 200, 200, 140));
+        img.setImage(UIImage.imageWithContentsOfFile("demo.png"));
+
         mainView.addSubview(title);
+        mainView.addSubview(img);
 
         window.makeKeyAndVisible();
     }

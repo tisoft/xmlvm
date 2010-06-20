@@ -88,7 +88,7 @@ public class OutputFile {
     /**
      * Sets the content of this file.
      */
-    public void setData(String data) {
+    public final void setData(String data) {
         if (data == null)
             this.data = null;
         else
@@ -102,7 +102,7 @@ public class OutputFile {
     /**
      * Sets the content of this file.
      */
-    public void setData(byte[] data) {
+    public final void setData(byte[] data) {
         this.data = data;
     }
 

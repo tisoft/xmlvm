@@ -163,7 +163,7 @@ public class UINavigationController extends UIViewController {
         this.delegate = delegate;
     }
 
-    public UINavigationControllerDelegate getNavigationDelegate() {
+    public UINavigationControllerDelegate getDelegate() {
         return this.delegate;
     }
 

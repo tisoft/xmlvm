@@ -53,7 +53,8 @@
 
 - (NSObject*) retain__
 {
-	return [self retain];
+	// Yes, we DO need a double retain, since the first retain will be undo from the java code!
+	return [[self retain] retain];
 }
 
 - (void) dealloc__

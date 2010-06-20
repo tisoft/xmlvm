@@ -28,7 +28,7 @@ import org.xmlvm.iphone.internal.UIGenericBar;
  * 
  * @author teras
  */
-public abstract class UIBarItem {
+public abstract class UIBarItem extends NSObject {
 
     private boolean      enabled;
     private UIImage      image;

@@ -25,43 +25,43 @@ import java.net.URL;
 
 public class NSURL extends NSObject {
 
-    private URL    url;
-    private String urlString;
+    private URL url;
 
-    private NSURL(String u) {
-        this.urlString = u;
-        this.url = null;
+    private NSURL(String u) throws MalformedURLException {
         try {
-            if (u.startsWith("jar://")) {
-                this.url = new URL("jar", "", u.substring("jar://".length()));
-            } else {
-                this.url = new URL(u);
-            }
-        } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            url = new URL(u);
+            return;
+        } catch (Exception e) {
         }
+        try {
+            url = new URL("file://" + u);
+            return;
+        } catch (Exception e) {
+        }
+        throw new MalformedURLException();
     }
 
     public static NSURL URLWithString(String u) {
-        return new NSURL(u);
+        try {
+            return new NSURL(u);
+        } catch (MalformedURLException ex) {
+        }
+        return null;
     }
 
     public static NSURL fileURLWithPath(String path) {
-        String newPath = path.startsWith("file:") ? newPath = path.substring(5) : path;
-        String str = newPath.indexOf('!') < 0 ? "file://" : "jar://";
-        return new NSURL(str + newPath);
+        try {
+            return new NSURL(path);
+        } catch (MalformedURLException ex) {
+        }
+        return null;
     }
 
     public String absoluteString() {
-        return urlString;
+        return url.toString();
     }
 
     public URL xmlvmGetURL() {
         return url;
-    }
-
-    public String xmlvmGetURLString() {
-        return urlString;
     }
 }

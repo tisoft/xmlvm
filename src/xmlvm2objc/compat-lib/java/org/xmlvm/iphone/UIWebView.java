@@ -53,7 +53,7 @@ public class UIWebView extends UIView {
         return null;
     }
 
-    public UIWebViewDelegate getWebViewDelegate() {
+    public UIWebViewDelegate getDelegate() {
         return delegate;
     }
 

@@ -27,7 +27,7 @@ import java.io.InputStream;
 import org.xmlvm.iphone.internal.ImageLoader;
 import org.xmlvm.iphone.internal.Simulator;
 
-public class CGImage {
+public class CGImage extends NSObject {
     public BufferedImage image;
 
     private CGImage(InputStream in) {

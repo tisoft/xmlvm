@@ -22,7 +22,7 @@ package org.xmlvm.iphone;
 
 import java.awt.Font;
 
-public class CGFont {
+public class CGFont extends NSObject {
     public Font font;
 
     private CGFont(Font font) {

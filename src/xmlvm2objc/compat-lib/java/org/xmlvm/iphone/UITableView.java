@@ -59,7 +59,7 @@ public class UITableView extends UIView {
         ((UITableViewRenderer) xmlvmGetRenderer()).reloadData();
     }
 
-    public UITableViewDelegate getTableViewDelegate() {
+    public UITableViewDelegate getDelegate() {
         return delegate;
     }
 

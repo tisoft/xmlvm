@@ -9,7 +9,6 @@
 <!-- in the project's Project Properties dialog box.-->
 <project name="__PROJNAME__" default="default" basedir=".">
     <description>Builds, tests, and runs the project __PROJNAME__.</description>
-    <import file="nbproject/build-impl.xml"/>
     <import file="nbproject/xcode.xml"/>
     <!--
 
@@ -72,8 +71,6 @@
     nbproject/build-impl.xml file. 
 
     -->
-
-	<target name="-post-compile" depends="-copy-resources"/>
 
 	<target name="-post-clean" depends="-xcode-clean"/>
 

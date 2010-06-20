@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
  * 
  * @author teras
  */
-public class NSRange {
+public class NSRange extends NSObject {
 
     public int location;
     public int length;

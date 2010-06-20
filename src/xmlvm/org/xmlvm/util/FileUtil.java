@@ -27,11 +27,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
 import org.xmlvm.Log;
@@ -259,8 +260,9 @@ public class FileUtil {
             if (JarUtil.resourceExists(jarResource))
                 in = JarUtil.getFile(jarResource);
             else
-                in = new BufferedReader(new FileReader(fileResource));
+                in = new BufferedReader(new InputStreamReader(new FileInputStream(fileResource), "UTF-8"));
         } catch (FileNotFoundException ex) {
+        } catch (UnsupportedEncodingException ex) {
         }
         return in;
     }
@@ -370,7 +372,7 @@ public class FileUtil {
      */
     public static String readStringFromStream(InputStream stream) {
         final int READ_BUFFER = 4096;
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         byte b[] = new byte[READ_BUFFER];
         int l = 0;
         try {
@@ -399,7 +401,7 @@ public class FileUtil {
      */
     public static boolean writeStringToFile(File file, String content) {
         try {
-            FileWriter stageAssistantWriter = new FileWriter(file);
+            OutputStreamWriter stageAssistantWriter = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
             stageAssistantWriter.write(content);
             stageAssistantWriter.close();
         } catch (IOException e) {
