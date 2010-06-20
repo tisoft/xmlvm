@@ -1,15 +1,21 @@
-
 package org.xmlvm.demo.ifireworks;
 
+import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIScreen;
 
-public class Const
-{
+public class Const {
+
+    static {
+        CGRect rect = UIScreen.mainScreen().getApplicationFrame();
+        HEIGHT = (int) rect.size.height;
+        WIDTH = (int) rect.size.width;
+    }
+    
+    static int         HEIGHT;
+    static int         WIDTH;
 
     final static int   BOMB_COUNT      = 6;
     final static int   SPARKS_PER_BOMB = 10;
-
-    final static int   HEIGHT          = 480;
-    final static int   WIDTH           = 320;
 
     final static int   IMAGE_SIZE      = 15;
 
