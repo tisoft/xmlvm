@@ -21,6 +21,7 @@
 package org.xmlvm.util.universalfile;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.jar.JarInputStream;
@@ -97,7 +98,8 @@ public class UniversalFileCreator {
      *            this needs to be a jar resource within the One-JAR that holds
      *            the contents of the directory
      * @param fileSystemLocation
-     *            the location of that directory on the file system
+     *            the location of that directory on the file system. Can be a
+     *            directory or a JAR file itself.
      * @return An instance representing this directory.
      */
     public static UniversalFile createDirectory(String oneJarResourceJar, String fileSystemLocation) {
@@ -128,6 +130,8 @@ public class UniversalFileCreator {
 
         InputStream stream = UniversalFileCreator.class.getResourceAsStream(oneJarResource);
         File file = new File(fileSystemLocation);
+
+        boolean fileSystemIsJar = file.isFile() && file.getName().toLowerCase().endsWith(".jar");
 
         // Check whether the One-JAR resource exists.
         if (stream != null) {
@@ -160,10 +164,10 @@ public class UniversalFileCreator {
         }
 
         if (!isOneJarMode) {
-            if (file.isDirectory() != isDirectory) {
-                if (isDirectory) {
+            if (file.isDirectory() != isDirectory && fileSystemIsJar != isDirectory) {
+                if (isDirectory && !fileSystemIsJar) {
                     Log.error(TAG, "Attempt to create directory, but file system resource is not"
-                            + " a directory: " + fileSystemLocation);
+                            + " a directory or JAR file: " + fileSystemLocation);
                 } else {
                     Log.error(TAG, "Attempt to create file, but file system resource is not"
                             + " a file: " + fileSystemLocation);
@@ -187,7 +191,17 @@ public class UniversalFileCreator {
             }
         } else {
             if (isDirectory) {
-                return new UniversalFileFromFileSystemDirectory(file);
+                if (fileSystemIsJar) {
+                    try {
+                        return new UniversalFileFromJarFile(fileSystemLocation, new JarInputStream(
+                                new FileInputStream(fileSystemLocation)));
+                    } catch (IOException e) {
+                        Log.error(TAG, "Could not read: " + fileSystemLocation);
+                    }
+                    return null;
+                } else {
+                    return new UniversalFileFromFileSystemDirectory(file);
+                }
             } else {
                 return new UniversalFileFromFileSystemFile(file);
             }

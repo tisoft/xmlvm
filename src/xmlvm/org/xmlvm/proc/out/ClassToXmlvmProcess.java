@@ -160,7 +160,8 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
             }
             new DescendingVisitor(clazz, visitor).visit();
             return new XmlvmResource(visitor.getClassName().replace('.', '_'),
-                    org.xmlvm.proc.XmlvmResource.Type.JVM, visitor.getXmlvmDocument(), null);
+                    visitor.superClassName, org.xmlvm.proc.XmlvmResource.Type.JVM, visitor
+                            .getXmlvmDocument(), null);
         }
 
         /**
@@ -180,6 +181,7 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
             private Element                               xmlMethod;
             private Method                                bcelMethod;
             private String                                className;
+            private String                                superClassName;
             private Hashtable<InstructionHandle, Integer> map;
 
             public BcelVisitor() {
@@ -211,6 +213,7 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
                     xmlClass.setAttribute("package", package_name);
                 addAccessModifiers(xmlClass, clazz.getAccessFlags());
                 xmlClass.setAttribute("extends", clazz.getSuperclassName());
+                superClassName = clazz.getSuperclassName();
                 String[] interfaces = clazz.getInterfaceNames();
                 if (interfaces.length != 0) {
                     String allInterfaces = "";

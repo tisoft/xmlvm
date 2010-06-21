@@ -35,6 +35,9 @@ import org.xmlvm.proc.in.InputProcess.XmlvmInputProcess;
 
 /**
  * This {@link InputProcess} can read .xmlvm files as input.
+ * 
+ * TODO(Sascha): This produces {@link XmlvmResource}s with wrong name, type and
+ * super type name.
  */
 public class XmlvmToXmlvmProcess extends XmlvmProcessImpl<XmlvmInputProcess> implements
         XmlvmResourceProvider {
@@ -62,7 +65,7 @@ public class XmlvmToXmlvmProcess extends XmlvmProcessImpl<XmlvmInputProcess> imp
                 e.printStackTrace();
             }
 
-            XmlvmResource resource = new XmlvmResource("someName",
+            XmlvmResource resource = new XmlvmResource("someName", null,
                     org.xmlvm.proc.XmlvmResource.Type.DEX, doc, null);
 
             if (resource == null) {

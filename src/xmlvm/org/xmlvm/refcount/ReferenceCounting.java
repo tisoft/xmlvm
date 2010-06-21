@@ -33,10 +33,9 @@ import org.jdom.Attribute;
 import org.jdom.DataConversionException;
 import org.jdom.Element;
 import org.jdom.Namespace;
-import org.xmlvm.Log;
-import org.xmlvm.refcount.optimizations.RegisterSizeAndNullingOptimization;
-import org.xmlvm.refcount.optimizations.RefCountOptimization;
 import org.xmlvm.refcount.optimizations.DeferredNullingOptimization;
+import org.xmlvm.refcount.optimizations.RefCountOptimization;
+import org.xmlvm.refcount.optimizations.RegisterSizeAndNullingOptimization;
 
 /**
  * Overview:
@@ -392,7 +391,8 @@ public class ReferenceCounting {
             doMarkup(toProcess);
 
         }
-        Log.debug("ref", "Conflict is: " + curRun.allConflict);
+
+        refLog("Conflict is: " + curRun.allConflict);
 
         setWillFree(curRun.beenTo);
 
@@ -402,12 +402,13 @@ public class ReferenceCounting {
 
         new DeferredNullingOptimization().Process(curRun.allCodePaths, curRun.beenTo, codeElement);
 
-        //TODO fix this optimization
-        //new ExcessRetainsOptimization().Process(curRun.allCodePaths, curRun.beenTo, codeElement);
+        // TODO fix this optimization
+        // new ExcessRetainsOptimization().Process(curRun.allCodePaths,
+        // curRun.beenTo, codeElement);
         toProcess.addAll(0, ret.functionInit);
 
         addExTempReg(toProcess);
-        
+
         clearReleaseRetainOnSyntheticMembers(curRun, codeElement);
         // Now we want to follow the paths to find unambiguous ones so that we
         // can determine
@@ -425,44 +426,40 @@ public class ReferenceCounting {
 
     }
 
-	/*
-	 * Synthetics help create cycles so we don't do releases or retains on them.
-	 */
-	@SuppressWarnings("unchecked")
-	private void clearReleaseRetainOnSyntheticMembers(RunState curRun,
-			Element codeElement) throws DataConversionException {
-		// Find the synthetic members of the class;
-		Element classElement = codeElement.getParentElement()
-				.getParentElement();
+    /*
+     * Synthetics help create cycles so we don't do releases or retains on them.
+     */
+    @SuppressWarnings("unchecked")
+    private void clearReleaseRetainOnSyntheticMembers(RunState curRun, Element codeElement)
+            throws DataConversionException {
+        // Find the synthetic members of the class;
+        Element classElement = codeElement.getParentElement().getParentElement();
 
-		HashSet<String> hashSet = new HashSet<String>();
+        HashSet<String> hashSet = new HashSet<String>();
 
-		for (Element elem : (List<Element>) classElement.getChildren()) {
-			if (elem.getName().equals("field")
-					&& elem.getAttribute("isSynthetic") != null
-					&& elem.getAttributeValue("isSynthetic").equals("true")
-					&& elem.getAttributeValue("name").startsWith("this$")) {
-				hashSet.add(elem.getAttributeValue("name"));
-			}
-		}
+        for (Element elem : (List<Element>) classElement.getChildren()) {
+            if (elem.getName().equals("field") && elem.getAttribute("isSynthetic") != null
+                    && elem.getAttributeValue("isSynthetic").equals("true")
+                    && elem.getAttributeValue("name").startsWith("this$")) {
+                hashSet.add(elem.getAttributeValue("name"));
+            }
+        }
 
-		for (Map.Entry<Element, InstructionActions> e : curRun.beenTo
-				.entrySet()) {
+        for (Map.Entry<Element, InstructionActions> e : curRun.beenTo.entrySet()) {
 
-			String instructionElementName = e.getKey().getName();
-			if ((instructionElementName.equals("iput-object") || instructionElementName
-					.equals("iput"))
-					&& e.getKey().getAttribute("member-name") != null
-					&& hashSet.contains(e.getKey().getAttributeValue(
-							"member-name"))) {
-				InstructionUseInfo useInfo = e.getValue().useInfo;
-				// We don't want to release what was in there because it was not
-				// retained
-				useInfo.putRelease = null;
-				useInfo.requiresRetain = RegisterSet.none();
-			}
-		}
-	}
+            String instructionElementName = e.getKey().getName();
+            if ((instructionElementName.equals("iput-object") || instructionElementName
+                    .equals("iput"))
+                    && e.getKey().getAttribute("member-name") != null
+                    && hashSet.contains(e.getKey().getAttributeValue("member-name"))) {
+                InstructionUseInfo useInfo = e.getValue().useInfo;
+                // We don't want to release what was in there because it was not
+                // retained
+                useInfo.putRelease = null;
+                useInfo.requiresRetain = RegisterSet.none();
+            }
+        }
+    }
 
     /**
      * Adds definition for exception register if needed.
@@ -514,15 +511,14 @@ public class ReferenceCounting {
      */
     @SuppressWarnings("unchecked")
     private void printInstSeq(List<Element> toProcess) {
-        Log.debug("ref", "All " + toProcess.size() + " instructions been to "
-                + curRun.beenTo.size());
+        refLog("All " + toProcess.size() + " instructions been to " + curRun.beenTo.size());
         for (Element x : toProcess) {
             if (curRun.beenTo.containsKey(x)) {
                 String startStr = curRun.beenTo.get(x).useInfo + "";
                 if (x.getName().equals("label")) {
-                    Log.debug("ref", startStr + " ID = " + x.getAttributeValue("id"));
+                    refLog(startStr + " ID = " + x.getAttributeValue("id"));
                 } else {
-                    Log.debug("ref", startStr + "");
+                    refLog(startStr + "");
                 }
 
                 if (x.getName().equals("try-catch")) {
@@ -579,7 +575,7 @@ public class ReferenceCounting {
                 }
             }
 
-            Log.debug("ref", reg + " -> o:" + regObj + ":" + regNonObj);
+            refLog(reg + " -> o:" + regObj + ":" + regNonObj);
 
             // Go through all the instructions in the method, replacing any
             // that use the conflicted value with the new register or the old
@@ -739,7 +735,7 @@ public class ReferenceCounting {
                 processRecAdd(ourObjUse, ourNonObjUse, nextInstruction, codePath);
             }
         }
-        Log.debug("ref", "Max recusrive depth " + maxSize);
+        refLog("Max recusrive depth " + maxSize);
     }
 
     /**
@@ -831,6 +827,10 @@ public class ReferenceCounting {
             }
         }
         return use;
+    }
+
+    private static void refLog(String message) {
+        // Log.debug("ref", message);
     }
 
 }

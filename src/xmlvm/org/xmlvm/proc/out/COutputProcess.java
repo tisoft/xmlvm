@@ -58,6 +58,9 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmJavaRuntimeAnnotationP
         for (XmlvmResourceProvider process : preprocesses) {
             List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
             for (XmlvmResource xmlvm : xmlvmResources) {
+                if (xmlvm == null) {
+                    continue;
+                }
                 Log.debug(TAG, "Processing " + xmlvm.getName());
                 OutputFile file = generateCpp(xmlvm);
                 file.setLocation(arguments.option_out());

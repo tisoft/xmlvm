@@ -46,8 +46,8 @@ import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XmlvmResource.Type;
 import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
-import org.xmlvm.refcount.ReferenceCounting;
 import org.xmlvm.refcount.InstructionProcessor;
+import org.xmlvm.refcount.ReferenceCounting;
 import org.xmlvm.refcount.ReferenceCountingException;
 
 import com.android.dx.cf.code.ConcreteMethod;
@@ -112,6 +112,20 @@ import com.android.dx.util.IntList;
  */
 public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> implements
         XmlvmResourceProvider {
+
+    /**
+     * Pair of type name and its super type name.
+     */
+    private static class TypePlusSuperType {
+        public final String typeName;
+        public final String superTypeName;
+
+        public TypePlusSuperType(String typeName, String superTypeName) {
+            this.typeName = typeName;
+            this.superTypeName = superTypeName;
+        }
+    }
+
     /**
      * A little helper class that contains package- and class name.
      */
@@ -227,8 +241,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         // This is for auxiliary analysis. We record all the types that are
         // referenced.
         Set<String> referencedTypes = new HashSet<String>();
-        String className = process(directClassFile, document.getRootElement(), referencedTypes)
-                .replace('.', '_');
+        TypePlusSuperType type = process(directClassFile, document.getRootElement(),
+                referencedTypes);
+        String className = type.typeName.replace('.', '_');
 
         // We now need to mark up the code with retains/releases.
         ReferenceCounting refC = new ReferenceCounting();
@@ -267,7 +282,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             Log.debug("ref", "Done processing methods!");
         }
 
-        generatedResources.add(new XmlvmResource(className, Type.DEX, document, referencedTypes));
+        generatedResources.add(new XmlvmResource(className, type.superTypeName, Type.DEX, document,
+                referencedTypes));
 
         String fileName = className + DEXMLVM_ENDING;
         OutputFile result = new OutputFile();
@@ -317,7 +333,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      *            will be filled with the types references in this class file
      * @return the class name for the DEXMLVM file
      */
-    private String process(DirectClassFile cf, Element root, Set<String> referencedTypes) {
+    private TypePlusSuperType process(DirectClassFile cf, Element root, Set<String> referencedTypes) {
         cf.setAttributeFactory(StdAttributeFactory.THE_ONE);
         cf.getMagic();
         Element classElement = processClass(cf, root, referencedTypes);
@@ -336,8 +352,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 throw ExceptionWithContext.withContext(ex, msg);
             }
         }
-        CstType thisClass = cf.getThisClass();
-        return thisClass.getClassType().toHuman();
+
+        String className = classElement.getAttributeValue("name");
+        String superClassName = classElement.getAttributeValue("extends");
+        return new TypePlusSuperType(className, superClassName);
     }
 
     /**
@@ -359,8 +377,14 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         PackagePlusClassName parsedClassName = parseClassName(type.getClassType().getClassName());
         classElement.setAttribute("name", parsedClassName.className);
         classElement.setAttribute("package", parsedClassName.packageName);
-        String superClassName = parseClassName(cf.getSuperclass().getClassType().getClassName())
-                .toString();
+        String superClassName = "";
+        
+        // This can happen for java.lang.Object.
+        if (cf.getSuperclass() != null) {
+            superClassName = parseClassName(cf.getSuperclass().getClassType().getClassName())
+                    .toString();
+        }
+
         classElement.setAttribute("extends", superClassName);
         referencedTypes.add(superClassName);
 

@@ -102,6 +102,29 @@ public abstract class UniversalFile {
     }
 
     /**
+     * If this universal file is a directory, this method returns a file or
+     * directory contained in it that matches the given name. Else, returns
+     * null.
+     * 
+     * @param name
+     *            the name of the file or directory.
+     * @return the matched universal file or <code>null</code>.
+     */
+    public UniversalFile getEntry(String name) {
+        if (!isDirectory()) {
+            return null;
+        }
+        UniversalFile[] allFiles = listFiles();
+
+        for (UniversalFile file : allFiles) {
+            if (file.getName().equals(name)) {
+                return file;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Reads the file represented by this source and returns it as bytes.
      * <p>
      * This should only be called if {@link #isDirectory()} is {@code false}.

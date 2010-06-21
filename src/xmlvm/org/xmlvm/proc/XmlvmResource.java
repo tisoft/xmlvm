@@ -28,22 +28,28 @@ import org.jdom.Namespace;
 /**
  * This class describes a XMLVM resource, that is e.g. produces by
  * InputProcesses.
+ * 
+ * TODO(Sascha): Some aspects in this class don't properly reflect the CLI input
+ * type. E.g., a CLI resource can have multiple types and therefore multiple
+ * super types.
  */
 public class XmlvmResource {
     public static enum Type {
         JVM, CLI, CLI_DFA, DEX
     }
 
-    public static Namespace    xmlvmNamespace = Namespace.getNamespace("vm", "http://xmlvm.org");
+    public static Namespace   xmlvmNamespace = Namespace.getNamespace("vm", "http://xmlvm.org");
 
-    private final String       name;
-    private final Type         type;
-    private final Document     xmlvmDocument;
+    private final String      name;
+    private final String      superTypeName;
+    private final Type        type;
+    private final Document    xmlvmDocument;
     private final Set<String> referencedTypes;
 
-    public XmlvmResource(String name, Type type, Document xmlvmDocument,
+    public XmlvmResource(String name, String superTypeName, Type type, Document xmlvmDocument,
             Set<String> referencedTypes) {
         this.name = name;
+        this.superTypeName = superTypeName;
         this.type = type;
         this.xmlvmDocument = xmlvmDocument;
         this.referencedTypes = referencedTypes;
@@ -75,5 +81,12 @@ public class XmlvmResource {
      */
     public Set<String> getReferencedTypes() {
         return referencedTypes;
+    }
+
+    /**
+     * Returns the name of the super class type.
+     */
+    public String getSuperTypeName() {
+        return superTypeName;
     }
 }
