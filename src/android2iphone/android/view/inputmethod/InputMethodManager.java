@@ -31,8 +31,11 @@ public final class InputMethodManager {
 
     public boolean hideSoftInputFromWindow(IBinder windowToken, int flags) {
         if ((flags & HIDE_NOT_ALWAYS) != 0) {
-            resignFirstResponderForViewHierarchy(((IBinderImpl) windowToken).getView()
-                    .xmlvmGetUIView());
+            UIView view = ((IBinderImpl) windowToken).getView().xmlvmGetUIView();
+            while (view.getSuperview() != null) {
+                view = view.getSuperview();
+            }
+            resignFirstResponderForViewHierarchy(view);
         }
         return false;
     }
