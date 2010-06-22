@@ -57,7 +57,7 @@ public class TableRow extends LinearLayout {
      */
     public TableRow(Context context) {
         super(context);
-//        initTableRow();
+        initTableRow();
     }
 
     /**
@@ -69,18 +69,21 @@ public class TableRow extends LinearLayout {
      */
     public TableRow(Context context, AttributeSet attrs) {
         super(context, attrs);
-//        initTableRow();
+        initTableRow();
     }
 
-//    private void initTableRow() {
+    private void initTableRow() {
+        if (getLayoutParams() == null) {
+            setLayoutParams(new TableRow.LayoutParams());
+        }
 //        OnHierarchyChangeListener oldListener = mOnHierarchyChangeListener;
 //        mChildrenTracker = new ChildrenTracker();
 //        if (oldListener != null) {
 //            mChildrenTracker.setOnHierarchyChangeListener(oldListener);
 //        }
 //        super.setOnHierarchyChangeListener(mChildrenTracker);
-//    }
-//
+    }
+
 //    /**
 //     * {@inheritDoc}
 //     */
