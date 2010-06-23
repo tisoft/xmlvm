@@ -36,7 +36,10 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
     public CppOutputProcess(Arguments arguments) {
         super(arguments);
-        addAllXmlvmEmittingProcessesAsInput();
+
+        // We need the special Vtable information in order to be able to produce
+        // C code.
+        addSupportedInput(XmlvmJavaRuntimeAnnotationProcess.class);
     }
 
     @Override

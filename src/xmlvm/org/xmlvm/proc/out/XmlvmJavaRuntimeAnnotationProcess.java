@@ -43,12 +43,13 @@ import org.xmlvm.proc.XmlvmResourceProvider;
  */
 public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
         implements XmlvmResourceProvider {
-    private final static String TAG         = XmlvmJavaRuntimeAnnotationProcess.class
-                                                    .getSimpleName();
+    private final static String TAG             = XmlvmJavaRuntimeAnnotationProcess.class
+                                                        .getSimpleName();
 
-    List<XmlvmResource>         result      = new ArrayList<XmlvmResource>();
-    Map<String, String>         wasLoadedBy = new HashMap<String, String>();
+    List<XmlvmResource>         result          = new ArrayList<XmlvmResource>();
+    Map<String, String>         wasLoadedBy     = new HashMap<String, String>();
     BufferedWriter              statsWriter;
+    private boolean             writeDepsToHtml = false;
 
     public XmlvmJavaRuntimeAnnotationProcess(Arguments arguments) {
         super(arguments);
@@ -57,11 +58,13 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
 
     @Override
     public boolean process() {
-        try {
-            statsWriter = new BufferedWriter(new FileWriter("stats.html"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
+        if (writeDepsToHtml) {
+            try {
+                statsWriter = new BufferedWriter(new FileWriter("stats.html"));
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
         }
 
         List<XmlvmResourceProvider> preprocesses = preprocess();
@@ -75,8 +78,10 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
             }
         }
 
-        // Make sure we have all types that are referenced loaded.
-        while (!loadReferencedTypes(xmlvmResources)) {
+        if (!arguments.option_exp_no_deps()) {
+            // Make sure we have all types that are referenced loaded.
+            while (!loadReferencedTypes(xmlvmResources)) {
+            }
         }
 
         Map<String, String> dependencies = new HashMap<String, String>();
@@ -87,18 +92,20 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
             }
         }
 
-        for (String type : dependencies.keySet()) {
+        if (writeDepsToHtml) {
+            for (String type : dependencies.keySet()) {
+                try {
+                    statsWriter.write("<br/><br/>Dependencies of: <b>" + type + "</b><br/>");
+                    statsWriter.write(dependencies.get(type));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             try {
-                statsWriter.write("<br/><br/>Dependencies of: <b>" + type + "</b><br/>");
-                statsWriter.write(dependencies.get(type));
+                statsWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        try {
-            statsWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         result.addAll(xmlvmResources.values());
