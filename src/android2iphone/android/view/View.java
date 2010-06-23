@@ -81,7 +81,7 @@ public class View {
     protected int                     paddingRight;
     protected int                     paddingTop;
     protected int                     paddingBottom;
-    private Context                   c;
+    private WeakReference<Context>    c;
     private UIView                    uiView;
     private WeakReference<ViewParent> parent;
     private OnTouchListener           listener;
@@ -272,7 +272,7 @@ public class View {
 
     private void initView(Context c, AttributeSet attrs) {
         flags |= FORCE_LAYOUT;
-        this.c = c;
+        this.c = new WeakReference<Context>(c);
         mResources = c != null ? c.getResources() : null;
         uiView = xmlvmCreateUIView(attrs);
 
@@ -299,7 +299,7 @@ public class View {
     }
 
     public final Context getContext() {
-        return c;
+        return c == null ? null : c.get();
     }
 
     public void bringToFront() {

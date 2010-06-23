@@ -20,6 +20,7 @@
 
 package android.content.res;
 
+import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -61,10 +62,10 @@ public class Resources {
     private static Map<Integer, String>   stringMap;
     private static Map<Integer, String[]> stringArrayMap;
 
-    private Context                       context;
+    private WeakReference<Context>        context;
 
     public Resources(Context context) {
-        this.context = context;
+        this.context = new WeakReference<Context>(context);
         init();
     };
 
@@ -77,7 +78,7 @@ public class Resources {
                 d = BitmapDrawable.xmlvmCreateWithImage(image);
                 drawableMap.put(new Integer(resourceId), d);
             } else {
-                d = ResourceParser.parseDrawable(context, fileName);
+                d = ResourceParser.parseDrawable(getContext(), fileName);
                 drawableMap.put(new Integer(resourceId), d);
             }
         }
@@ -198,7 +199,7 @@ public class Resources {
     public String getString(int id) {
         if (stringMap == null) {
             String path = getValuesDir() + "/" + "strings";
-            stringMap = ResourceParser.parseStrings(context, path, nameToIdMap);
+            stringMap = ResourceParser.parseStrings(getContext(), path, nameToIdMap);
         }
 
         return stringMap.get(new Integer(id));
@@ -207,7 +208,7 @@ public class Resources {
     public String[] getTextArray(int id) {
         if (stringArrayMap == null) {
             String path = getValuesDir();
-            stringArrayMap = ResourceParser.parseStringArrays(context, path, nameToIdMap);
+            stringArrayMap = ResourceParser.parseStringArrays(getContext(), path, nameToIdMap);
         }
 
         return stringArrayMap.get(new Integer(id));
@@ -243,5 +244,9 @@ public class Resources {
     public Configuration getConfiguration() {
         Assert.NOT_IMPLEMENTED();
         return null;
+    }
+
+    private Context getContext() {
+        return context == null ? null : context.get();
     }
 }
