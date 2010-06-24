@@ -21,9 +21,14 @@
 package org.xmlvm.proc.out;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
-import org.xmlvm.Log;
+import org.jdom.Attribute;
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.Namespace;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
@@ -32,11 +37,12 @@ import org.xmlvm.proc.XsltRunner;
 
 public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     private static final String CPP_EXTENSION = ".cpp";
+    private static final String H_EXTENSION   = ".h";
     private List<OutputFile>    result        = new ArrayList<OutputFile>();
 
     public CppOutputProcess(Arguments arguments) {
         super(arguments);
-
+        // addAllXmlvmEmittingProcessesAsInput();
         // We need the special Vtable information in order to be able to produce
         // C code.
         addSupportedInput(XmlvmJavaRuntimeAnnotationProcess.class);
@@ -53,17 +59,117 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         for (XmlvmResourceProvider process : preprocesses) {
             List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
             for (XmlvmResource xmlvm : xmlvmResources) {
-                Log.debug("CppOutputProcess: Processing " + xmlvm.getName());
-                OutputFile file = generateCpp(xmlvm);
-                file.setLocation(arguments.option_out());
-                file.setFileName(xmlvm.getName() + CPP_EXTENSION);
-                result.add(file);
+                OutputFile[] files = genCpp(xmlvm);
+                for (OutputFile file : files) {
+                    file.setLocation(arguments.option_out());
+                    result.add(file);
+                }
             }
         }
         return true;
     }
 
-    protected OutputFile generateCpp(XmlvmResource xmlvm) {
-        return XsltRunner.runXSLT("xmlvm2cpp.xsl", xmlvm.getXmlvmDocument());
+    /**
+     * From the given XmlvmResource creates a header as well as cpp-file.
+     */
+    public OutputFile[] genCpp(XmlvmResource xmlvm) {
+        Document doc = xmlvm.getXmlvmDocument();
+        // The filename will be the name of the first class
+        Namespace nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
+        Element clazz = doc.getRootElement().getChild("class", nsXMLVM);
+        String namespaceName = clazz.getAttributeValue("package");
+        String inheritsFrom = clazz.getAttributeValue("extends").replace('.', '_')
+                .replace('$', '_');
+        String className = clazz.getAttributeValue("name").replace('$', '_');
+        String fileNameStem = (namespaceName + "." + className).replace('.', '_');
+        String headerFileName = fileNameStem + H_EXTENSION;
+        String mFileName = fileNameStem + CPP_EXTENSION;
+
+        StringBuffer headerBuffer = new StringBuffer();
+        headerBuffer.append("#import \"xmlvm.h\"\n");
+        for (String i : getTypesForHeader(doc)) {
+            if (i.equals(inheritsFrom)) {
+                headerBuffer.append("#import \"" + i + ".h\"\n");
+            }
+        }
+        String interfaces = clazz.getAttributeValue("interfaces");
+        if (interfaces != null) {
+            for (String i : interfaces.split(",")) {
+                headerBuffer
+                        .append("#import \"" + i.replace('.', '_').replace('$', '_') + ".h\"\n");
+            }
+        }
+        headerBuffer.append("\n// For circular include:\n");
+        for (String i : getTypesForHeader(doc)) {
+            headerBuffer.append("class " + i + ";\n");
+        }
+        OutputFile headerFile = XsltRunner.runXSLT("xmlvm2cpp.xsl", doc, new String[][] {
+                { "pass", "emitHeader" }, { "header", headerFileName } });
+        headerFile.setData(headerBuffer.toString() + headerFile.getData());
+        headerFile.setFileName(headerFileName);
+
+        StringBuffer mBuffer = new StringBuffer();
+        for (String i : getTypesForHeader(doc)) {
+            String toIgnore = (namespaceName + "_" + className).replace('.', '_');
+            if (!i.equals(inheritsFrom) && !i.equals(toIgnore)) {
+                mBuffer.append("#import \"" + i + ".h\"\n");
+            }
+        }
+
+        OutputFile mFile = XsltRunner.runXSLT("xmlvm2cpp.xsl", doc, new String[][] {
+                { "pass", "emitImplementation" }, { "header", headerFileName } });
+        mFile.setData(mBuffer.toString() + mFile.getData());
+        mFile.setFileName(mFileName);
+
+        return new OutputFile[] { headerFile, mFile };
+    }
+
+    private List<String> getTypesForHeader(Document doc) {
+        HashSet<String> seen = new HashSet<String>();
+        @SuppressWarnings("unchecked")
+        Iterator i = doc.getDescendants();
+        while (i.hasNext()) {
+            Object cur = i.next();
+            if (cur instanceof Element) {
+                Attribute a = ((Element) cur).getAttribute("type");
+                if (a != null) {
+                    seen.add(a.getValue());
+                }
+                a = ((Element) cur).getAttribute("extends");
+                if (a != null) {
+                    seen.add(a.getValue());
+                }
+                a = ((Element) cur).getAttribute("interfaces");
+                if (a != null) {
+                    for (String iface : a.getValue().split(",")) {
+                        seen.add(iface);
+                    }
+                }
+                a = ((Element) cur).getAttribute("class-type");
+                if (a != null) {
+                    seen.add(a.getValue());
+                }
+                if (((Element) cur).getName().equals("const-class")) {
+                    a = ((Element) cur).getAttribute("value");
+                    if (a != null) {
+                        seen.add(a.getValue());
+                    }
+                }
+            } else {
+                System.out.println(cur);
+            }
+        }
+        HashSet<String> bad = new HashSet<String>();
+        for (String t : new String[] { "char", "float", "double", "int", "void", "boolean",
+                "short", "byte", "float", "long" }) {
+            bad.add(t);
+        }
+        List<String> toRet = new ArrayList<String>();
+        for (String t : seen) {
+            if (!bad.contains(t) && t.indexOf("[]") == -1) {
+                toRet.add(t.replace('.', '_').replace('$', '_'));
+            }
+        }
+        return toRet;
     }
 }
