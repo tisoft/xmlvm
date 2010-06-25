@@ -22,6 +22,10 @@
 
 class java_lang_Object {
 public:
+
+// Needed to make this class polymorphic
+virtual void __dummy() {}
+
 void __init_java_lang_Object__()
 {
 }

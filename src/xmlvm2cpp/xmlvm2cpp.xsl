@@ -80,17 +80,20 @@ int main(int argc, char* argv[])
     <xsl:value-of select="vm:fixname(@package)"/>
     <xsl:text>_</xsl:text>
     <xsl:value-of select="vm:fixname(@name)"/>
-    <xsl:text> : public </xsl:text>
-    <xsl:value-of select="vm:fixname(@extends)"/>
+    <xsl:if test="not(@isInterface = 'true')">
+      <xsl:text> : public </xsl:text>
+      <xsl:value-of select="vm:fixname(@extends)"/>
+    </xsl:if>
     <xsl:if test="@interfaces">
-      <xsl:text>, public </xsl:text>
+      <xsl:value-of select="if (@isInterface = 'true') then ':' else ','"/>
+      <xsl:text> public </xsl:text>
       <xsl:value-of select="vm:fixname(replace(@interfaces, ',', ', public '))"/>
     </xsl:if>
-    <xsl:text>
+      <xsl:text> {
+public:
 </xsl:text>
     <xsl:if test="not(@isInterface = 'true')">
-      <xsl:text>{
-public:
+      <xsl:text>
 static int __class_initialized;
 static void __init_class();
 </xsl:text>
@@ -819,25 +822,12 @@ static void __init_class();
     </xsl:choose>
   </xsl:if>
   <xsl:text>((</xsl:text>
-  
-  <xsl:variable name="baseClass">
-    <xsl:value-of select="ancestor::dex:class/@extends"/>
-  </xsl:variable>
-  <xsl:choose>
- 	<xsl:when test="name() = 'dex:invoke-virtual' or compare(@class-type,$baseClass) != 0">
-		  <xsl:call-template name="emitType">
-		    <xsl:with-param name="type" select="@class-type"/>
-  			</xsl:call-template>
-  		<xsl:text>) _r</xsl:text>
-  		<xsl:value-of select="@register"/>
-  		<xsl:text>.o)</xsl:text>
-  	</xsl:when>
-    <xsl:otherwise>
-	  <xsl:text>super))</xsl:text>
-    </xsl:otherwise>
-  </xsl:choose>
-
-  <xsl:text>-&gt;</xsl:text>
+  <xsl:call-template name="emitType">
+    <xsl:with-param name="type" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:text>) _r</xsl:text>
+  <xsl:value-of select="@register"/>
+  <xsl:text>.o)-&gt;</xsl:text>
   <xsl:call-template name="emitMethodName">
     <xsl:with-param name="name" select="@method"/>
     <xsl:with-param name="class-type" select="@class-type"/>
@@ -888,22 +878,39 @@ static void __init_class();
       </xsl:otherwise>
     </xsl:choose>
   </xsl:if>
-  <!-- TODO what to do with @register? -->
-  <xsl:text>[super </xsl:text>
-
+  <xsl:text>((</xsl:text>
+  <xsl:call-template name="emitType">
+    <xsl:with-param name="type" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:text>) _r</xsl:text>
+  <xsl:value-of select="@register"/>
+  <xsl:text>.o)-&gt;</xsl:text>
+  <xsl:value-of select="vm:fixname(@class-type)"/>
+  <xsl:text>::</xsl:text>
   <xsl:call-template name="emitMethodName">
     <xsl:with-param name="name" select="@method"/>
     <xsl:with-param name="class-type" select="@class-type"/>
   </xsl:call-template>
   <xsl:call-template name="appendDexSignature"/>
+  <xsl:text>(</xsl:text>
   <xsl:for-each select="dex:parameters/dex:parameter">
-    <xsl:text>:_r</xsl:text>
+    <xsl:if test="position() != 1">
+      <xsl:text>, </xsl:text>
+    </xsl:if>
+    <xsl:if test="vm:isObjectRef(@type)">
+      <xsl:text>(</xsl:text>
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="@type"/>
+      </xsl:call-template>
+      <xsl:text>) </xsl:text>
+    </xsl:if>
+    <xsl:text>_r</xsl:text>
     <xsl:value-of select="@register"/>
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@type"/>
     </xsl:call-template>
   </xsl:for-each>
-  <xsl:text>];
+  <xsl:text>);
 </xsl:text>
 </xsl:template>
 
@@ -2275,14 +2282,13 @@ static void __init_class();
   <xsl:text>.i = (_r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.o != JAVA_NULL &amp;&amp; 
-        ([_r</xsl:text>
+        (dynamic_cast&lt;</xsl:text>
+  <xsl:value-of select="vm:fixname(@value)"/>
+  <xsl:text>*&gt;(_r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.o isKindOfClass: objc_getClass("</xsl:text>
-  <xsl:value-of select="vm:fixname(@value)"/><xsl:text>")] ||
-         [_r</xsl:text>
-  <xsl:value-of select="@vy"/>
-  <xsl:text>.o conformsToProtocol: objc_getProtocol("</xsl:text>
-  <xsl:value-of select="vm:fixname(@value)"/><xsl:text>")])) ? 1 : 0;
+  <xsl:text>.o) != (</xsl:text>
+  <xsl:value-of select="vm:fixname(@value)"/>
+  <xsl:text>*) 0)) ? 1 : 0;
 </xsl:text>
 </xsl:template>
 
