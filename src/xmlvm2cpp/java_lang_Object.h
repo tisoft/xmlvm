@@ -21,10 +21,15 @@
 #import "xmlvm.h"
 
 class java_lang_Object {
+private:
+    int retainCount;
+    
 public:
+java_lang_Object() {
+    retainCount = 1;
+}
 
-// Needed to make this class polymorphic
-virtual void __dummy() {}
+virtual ~java_lang_Object() {}
 
 void __init_java_lang_Object__()
 {
@@ -32,11 +37,16 @@ void __init_java_lang_Object__()
 
 java_lang_Object* __retain()
 {
+    retainCount++;
     return this;
 }
 
 void __release()
 {
+    retainCount--;
+    if (retainCount == 0) {
+        delete this;
+    }
 }
 
 };

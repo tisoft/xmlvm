@@ -104,6 +104,14 @@ static void __init_class();
       <xsl:text>();
 </xsl:text>
 
+      <!-- Emit destructor -->
+      <xsl:text>virtual ~</xsl:text>
+      <xsl:value-of select="vm:fixname(@package)"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>();
+</xsl:text>
+
       <!-- Emit declarations for all non-static fields -->
       <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
         <xsl:call-template name="emitType">
@@ -271,19 +279,18 @@ static void __init_class();
 </xsl:text>
 
     <!-- Emit destructor -->
-    <xsl:text>/*</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>::~</xsl:text>
-    <xsl:value-of select="vm:fixname(@name)"/>
+    <xsl:value-of select="$clname"/>
     <xsl:text>()
 {
 </xsl:text>
-<xsl:if test="vm:method[@name='finalize' and 
+    <xsl:if test="vm:method[@name='finalize' and 
                         not(vm:signature/vm:parameter) and 
                         vm:signature/vm:return[@type='void']]">
-    <xsl:text>    this->finalize_</xsl:text><xsl:value-of select="vm:fixname(concat(@package, '.', @name))"/><xsl:text>__();
+      <xsl:text>    this->finalize_</xsl:text><xsl:value-of select="vm:fixname(concat(@package, '.', @name))"/><xsl:text>__();
 </xsl:text>
-</xsl:if>
+    </xsl:if>
 	<xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type) and
 	                      not(@isSynthetic = 'true' and starts-with(@name, 'this$'))]">
 	  <xsl:text>    </xsl:text>
@@ -294,8 +301,6 @@ static void __init_class();
 </xsl:text>
 	</xsl:for-each>
 	<xsl:text>}
-</xsl:text>
-<xsl:text>*/
 </xsl:text>
 
 	<!-- Emit getters and setters for all static fields -->
