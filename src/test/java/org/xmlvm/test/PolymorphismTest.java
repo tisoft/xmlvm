@@ -103,6 +103,10 @@ public class PolymorphismTest {
         }
     }
 
+    private static void doCast(Object o) {
+        ((PolymorphismTest) o).publicMethod();
+    }
+    
     public static void main(String[] args) {
         PolymorphismTest a = new PolymorphismTest();
         a.print();
@@ -135,6 +139,7 @@ public class PolymorphismTest {
         Derived b = new Derived();
         b.print();
         Log(b.publicMember);
+        Log(((PolymorphismTest) b).publicMember);
         b.superMethod();
         if (b instanceof PolymorphismTest) {
             Log("instanceof PolymorphismTest");
@@ -154,5 +159,7 @@ public class PolymorphismTest {
         if (c instanceof DerivedIface) {
             Log("instanceof DerivedIface");
         }
+        Log("===============");
+        doCast(b);
     }
 }
