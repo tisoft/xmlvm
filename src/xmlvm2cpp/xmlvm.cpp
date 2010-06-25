@@ -28,19 +28,30 @@ java_lang_Object* JAVA_NULL;
 void xmlvm_init()
 {
     JAVA_NULL = new java_lang_Object();  // TODO should be java_lang_null
+    JAVA_NULL->retainCount = -1;
 }
 
-/*
-@implementation XMLVMArray
 
-+ (XMLVMArray*) createSingleDimensionWithType:(int) type andSize:(int) size
+XMLVMArray::~XMLVMArray()
 {
-    XMLVMArray *retval = [[XMLVMArray alloc] init];
+    if (type == 0) {
+        for (int i = 0; i < length; i++) {
+            array.o[i]->__release();
+        }
+    }
+	if (ownsData == true) {
+        free(array.data);
+	}
+}
+
+XMLVMArray* XMLVMArray::createSingleDimension(int type, int size)
+{
+    XMLVMArray *retval = new XMLVMArray();
     retval->type = type;
     retval->length = size;
-	retval->ownsData = YES;
+	retval->ownsData = true;
 
-    int sizeOfBaseType = [XMLVMArray sizeOfBaseTypeInBytes:type];
+    int sizeOfBaseType = XMLVMArray::sizeOfBaseTypeInBytes(type);
     retval->array.data = malloc(sizeOfBaseType * size);
     bzero(retval->array.data, sizeOfBaseType * size);
 
@@ -53,130 +64,113 @@ void xmlvm_init()
     return retval;
 }
 
-+ (XMLVMArray*) createSingleDimensionWithType:(int) type size:(int) size andData:(void*) data
+XMLVMArray* XMLVMArray::createSingleDimension(int type, int size, void* data)
 {
-    XMLVMArray *retval = [[XMLVMArray alloc] init];
+    XMLVMArray *retval = new XMLVMArray();
     retval->type = type;
     retval->length = size;
     retval->array.data = data;
-	retval->ownsData = NO;
+	retval->ownsData = false;
     return retval;
 }
 
-+ (XMLVMArray*) createMultiDimensionsWithType:(int) type dimensions:(XMLVMElem*) dim count:(int)count
+XMLVMArray* XMLVMArray::createMultiDimensions(int type, XMLVMElem* dim, int count)
 {
 	int dimensions = dim->i;
 	dim++;
 	count--;
 	if (count == 0) {
-		return [XMLVMArray createSingleDimensionWithType:type andSize:dimensions];
+		return XMLVMArray::createSingleDimension(type, dimensions);
 	}
-	XMLVMArray* slice = [XMLVMArray createSingleDimensionWithType:0 andSize:dimensions];
+	XMLVMArray* slice = XMLVMArray::createSingleDimension(0, dimensions);
 	for (int i = 0; i < dimensions; i++) {
-		id o = [XMLVMArray createMultiDimensionsWithType:type dimensions:dim count:count];
-		[slice replaceObjectAtIndex:i withObject:o];
+		XMLVMArray* o = XMLVMArray::createMultiDimensions(type, dim, count);
+		slice->replaceObjectAtIndex(i, o);
 	}
 	return slice;
 }
 
-+ (void) fillArray:(XMLVMArray*) array withData:(void*) data
+void XMLVMArray::fillArray(XMLVMArray* array, void* data)
 {
-    int sizeOfBaseType = [XMLVMArray sizeOfBaseTypeInBytes:array->type];
+    int sizeOfBaseType = XMLVMArray::sizeOfBaseTypeInBytes(array->type);
     int n = sizeOfBaseType * array->length;
     memcpy(array->array.data, data, n);
 }
 
-+ (int) sizeOfBaseTypeInBytes:(int) type
+int XMLVMArray::sizeOfBaseTypeInBytes(int type)
 {
 	int sizeOfBaseType;
 	
-    // 'type' values are defined by vm:sizeOf in xmlvm2objc.xsl
+    // 'type' values are defined by vm:sizeOf in xmlvm2cpp.xsl
     switch (type) {
     case 1: // boolean
     case 3: // byte
-       sizeOfBaseType = sizeof(char);
+       sizeOfBaseType = sizeof(JAVA_ARRAY_BYTE);
        break;
     case 2: // char
     case 4: // short
-       sizeOfBaseType = sizeof(short);
+       sizeOfBaseType = sizeof(JAVA_ARRAY_SHORT);
        break;
     case 5: // int
-       sizeOfBaseType = sizeof(int);
+       sizeOfBaseType = sizeof(JAVA_ARRAY_INT);
        break;
     case 6: // float
-       sizeOfBaseType = sizeof(float);
+       sizeOfBaseType = sizeof(JAVA_ARRAY_FLOAT);
        break;
     case 7: // double
-       sizeOfBaseType = sizeof(double);
+       sizeOfBaseType = sizeof(JAVA_ARRAY_DOUBLE);
        break;
     case 8: // long
-       sizeOfBaseType = sizeof(long);
+       sizeOfBaseType = sizeof(JAVA_ARRAY_LONG);
        break;
     default: // object reference
-       sizeOfBaseType = sizeof(id);
+       sizeOfBaseType = sizeof(void*);
        break;
     }
     
     return sizeOfBaseType;
 }
 
-- (id) objectAtIndex:(int) idx
+java_lang_Object* XMLVMArray::objectAtIndex(int idx)
 {
-    id obj = self->array.o[idx];
-    return [obj retain];
+    java_lang_Object* obj = array.o[idx];
+    return obj->__retain();
 }
 
-- (void) replaceObjectAtIndex:(int) idx withObject:(id) obj
+void XMLVMArray::replaceObjectAtIndex(int idx, java_lang_Object* obj)
 {
-    [obj retain];
-    [self->array.o[idx] release];
-    self->array.o[idx] = obj;
+    obj->__retain();
+    array.o[idx]->__release();
+    array.o[idx] = obj;
 }
 
-- (int) count
+int XMLVMArray::count()
 {
     return length;
 }
 
-- (void) dealloc
+XMLVMArray* XMLVMArray::clone__()
 {
-    if (self->type == 0) {
-        for (int i = 0; i < length; i++) {
-            [self->array.o[i] release];
-        }
-    }
-	if (self->ownsData == YES) {
-        free(self->array.data);
-	}
-    [super dealloc];
-}
+    XMLVMArray *retval = new XMLVMArray();
+    retval->type = type;
+    retval->length = length;
+    retval->ownsData = true;
 
-- (XMLVMArray*) clone__
-{
-    XMLVMArray *retval = [[XMLVMArray alloc] init];
-    retval->type = self->type;
-    retval->length = self->length;
-    retval->ownsData = YES;
-
-    int sizeOfBaseType = [XMLVMArray sizeOfBaseTypeInBytes:self->type];
-    int sizeOfArrayInBytes = sizeOfBaseType * self->length;
+    int sizeOfBaseType = XMLVMArray::sizeOfBaseTypeInBytes(type);
+    int sizeOfArrayInBytes = sizeOfBaseType * length;
     retval->array.data = malloc(sizeOfArrayInBytes);
 
     if (type == 0) {
-        for (int i = 0; i < self->length; i++) {
-            retval->array.o[i] = [self->array.o[i] retain];
+        for (int i = 0; i < length; i++) {
+            retval->array.o[i] = array.o[i]->__retain();
         }
     }
     else {
-	    memcpy(retval->array.data, self->array.data, sizeOfArrayInBytes);
+	    memcpy(retval->array.data, array.data, sizeOfArrayInBytes);
     }
 
     return retval;
 }
-
-@end
-
-*/
 
 void ERROR(char* msg)
 {

@@ -21,7 +21,7 @@
 #import "xmlvm.h"
 
 class java_lang_Object {
-private:
+public:
     int retainCount;
     
 public:
@@ -37,15 +37,17 @@ void __init_java_lang_Object__()
 
 java_lang_Object* __retain()
 {
-    retainCount++;
+    if (retainCount != -1) retainCount++;
     return this;
 }
 
 void __release()
 {
-    retainCount--;
-    if (retainCount == 0) {
-        delete this;
+    if (retainCount != -1) {
+        retainCount--;
+        if (retainCount == 0) {
+            delete this;
+        }
     }
 }
 

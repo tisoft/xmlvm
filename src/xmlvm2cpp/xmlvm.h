@@ -25,15 +25,25 @@
 
 void xmlvm_init();
 
-typedef void JAVA_VOID;
-typedef int JAVA_BOOL;
-typedef int JAVA_CHAR;
-typedef int JAVA_BYTE;
-typedef int JAVA_SHORT;
-typedef int JAVA_INT;
-typedef long JAVA_LONG;
-typedef float JAVA_FLOAT;
+typedef void   JAVA_VOID;
+typedef int    JAVA_BOOL;
+typedef int    JAVA_CHAR;
+typedef int    JAVA_BYTE;
+typedef int    JAVA_SHORT;
+typedef int    JAVA_INT;
+typedef long   JAVA_LONG;
+typedef float  JAVA_FLOAT;
 typedef double JAVA_DOUBLE;
+
+
+typedef char              JAVA_ARRAY_BYTE;
+typedef unsigned short    JAVA_ARRAY_CHAR;
+typedef short             JAVA_ARRAY_SHORT;
+typedef int               JAVA_ARRAY_INT;
+typedef long              JAVA_ARRAY_LONG;
+typedef float             JAVA_ARRAY_FLOAT;
+typedef double            JAVA_ARRAY_DOUBLE;
+typedef java_lang_Object* JAVA_ARRAY_OBJECT;
 
 
 typedef union {
@@ -45,15 +55,15 @@ typedef union {
 } XMLVMElem;
 
 typedef union {
-    void**          o;
-    char*           b;
-    unsigned short* c;
-    short*          s;
-    int*            i;
-    float*          f;
-    double*         d;
-    long*           l;
-      void*           data;
+    JAVA_ARRAY_OBJECT* o;
+    JAVA_ARRAY_BYTE*   b;
+    JAVA_ARRAY_CHAR*   c;
+    JAVA_ARRAY_SHORT*  s;
+    JAVA_ARRAY_INT*    i;
+    JAVA_ARRAY_FLOAT*  f;
+    JAVA_ARRAY_DOUBLE* d;
+    JAVA_ARRAY_LONG*   l;
+    void*              data;
 } XMLVMElemPtr;
 
 
@@ -67,17 +77,16 @@ public:
     int          length;
     bool         ownsData;
 
-/*
-+ (XMLVMArray*) createSingleDimensionWithType:(int) type andSize:(int) size;
-+ (XMLVMArray*) createSingleDimensionWithType:(int) type size:(int) size andData:(void*) data;
-+ (XMLVMArray*) createMultiDimensionsWithType:(int) type dimensions:(XMLVMElem*) dim count:(int)count;
-+ (void) fillArray:(XMLVMArray*) array withData:(void*) data;
-+ (int) sizeOfBaseTypeInBytes:(int) type;
-- (id) objectAtIndex:(int) idx;
-- (void) replaceObjectAtIndex:(int) idx withObject:(id) obj;
-- (int) count;
-- (XMLVMArray*) clone__;
-*/
+virtual ~XMLVMArray();
+static XMLVMArray* createSingleDimension(int type, int size);
+static XMLVMArray* createSingleDimension(int type, int size, void* data);
+static XMLVMArray* createMultiDimensions(int type, XMLVMElem* dimensions, int count);
+static void fillArray(XMLVMArray* array, void* data);
+static int sizeOfBaseTypeInBytes(int type);
+java_lang_Object* objectAtIndex(int idx);
+void replaceObjectAtIndex(int idx, java_lang_Object* obj);
+int count();
+XMLVMArray* clone__();
 };
 
 

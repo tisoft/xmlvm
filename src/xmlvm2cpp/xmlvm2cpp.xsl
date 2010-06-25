@@ -2153,26 +2153,26 @@ static void __init_class();
 </xsl:text>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
-  <xsl:text>.o = [XMLVMArray createSingleDimensionWithType:5 size:</xsl:text>
+  <xsl:text>.o = XMLVMArray::createSingleDimension(5, </xsl:text>
   <xsl:value-of select="count(dex:value)"/>
-  <xsl:text> andData:_r</xsl:text>
+  <xsl:text>, _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
-  <xsl:text>.o];
+  <xsl:text>.o);
 </xsl:text>
 </xsl:template>
 
 
 <xsl:template match="dex:fill-array-data">
-  <xsl:text>    [XMLVMArray fillArray:_r</xsl:text>
+  <xsl:text>    XMLVMArray::fillArray((XMLVMArray*) _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o withData:(</xsl:text>
+  <xsl:text>.o, (</xsl:text>
   <xsl:value-of select="@vx-type"/>
   <xsl:text>){</xsl:text>
   <xsl:for-each select="dex:constant">
     <xsl:value-of select="@value"/>
     <xsl:text>, </xsl:text>
   </xsl:for-each>
-  <xsl:text>}];
+  <xsl:text>});
 </xsl:text>
 </xsl:template>
 
@@ -2181,11 +2181,11 @@ static void __init_class();
   <xsl:variable name="base-type" select="replace(@value, '\[\]', '')"/>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o = [XMLVMArray createSingleDimensionWithType:</xsl:text>
+  <xsl:text>.o = XMLVMArray::createSingleDimension(</xsl:text>
   <xsl:value-of select="vm:typeID($base-type)"/>
-  <xsl:text> andSize:_r</xsl:text>
+  <xsl:text>, _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.i];
+  <xsl:text>.i);
 </xsl:text>
 </xsl:template>
 
@@ -2193,9 +2193,9 @@ static void __init_class();
 <xsl:template match="dex:array-length">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.i = [_r</xsl:text>
+  <xsl:text>.i = ((XMLVMArray*) _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.o count];
+  <xsl:text>.o)->count();
 </xsl:text>
 </xsl:template>
 
@@ -2250,11 +2250,11 @@ static void __init_class();
 </xsl:template>
 
 <xsl:template match="vm:a-release">
-    <xsl:text>[((XMLVMArray*) _r</xsl:text>
+    <xsl:text>((XMLVMArray*) _r</xsl:text>
     <xsl:value-of select="@vy" />
     <xsl:text>.o)->array.o[_r</xsl:text>
     <xsl:value-of select="@vz" />
-    <xsl:text>.i] release];
+    <xsl:text>.i]-&gt;__release();
 </xsl:text>
 </xsl:template>
   

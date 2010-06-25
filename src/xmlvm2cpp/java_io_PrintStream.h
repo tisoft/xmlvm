@@ -34,5 +34,8 @@ void println___int(int i) {
     std::cout << i << std::endl;
 }
 
+void println___float(float f) {
+    std::cout << f << std::endl;
+}
 };
 
