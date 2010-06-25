@@ -18,20 +18,14 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
+
 #import "xmlvm.h"
-#import "java_lang_Object.h"
-#import "java_lang_String.h"
-#import <iostream>
+#import "java_lang_Exception.h"
 
-class java_io_PrintStream : public java_lang_Object {
+
+class java_lang_NullPointerException : public java_lang_Exception {
 public:
-void println___java_lang_String(java_lang_String* s)
-{
-    std::cout << s->str << std::endl;
-}
-
-void println___int(int i) {
-    std::cout << i << std::endl;
+void __init_java_lang_NullPointerException__() {
 }
 
 };

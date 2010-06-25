@@ -83,17 +83,24 @@ int main(int argc, char* argv[])
     <xsl:text> : public </xsl:text>
     <xsl:value-of select="vm:fixname(@extends)"/>
     <xsl:if test="@interfaces">
-      <xsl:text> ,</xsl:text>
-      <xsl:value-of select="vm:fixname(@interfaces)"/>
+      <xsl:text>, public </xsl:text>
+      <xsl:value-of select="vm:fixname(replace(@interfaces, ',', ', public '))"/>
     </xsl:if>
     <xsl:text>
 </xsl:text>
     <xsl:if test="not(@isInterface = 'true')">
       <xsl:text>{
 public:
-static void __clinit();
-void __init();
+static int __class_initialized;
+static void __init_class();
 </xsl:text>
+      <!-- Emit default constructor -->
+      <xsl:value-of select="vm:fixname(@package)"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>();
+</xsl:text>
+
       <!-- Emit declarations for all non-static fields -->
       <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
         <xsl:call-template name="emitType">
@@ -164,56 +171,66 @@ void __init();
 
 <xsl:template name="emitImplementation">
   <xsl:for-each select="vm:class[not(@isInterface = 'true')]">
-    <!-- Emit global variable definition for all static fields -->
-    <xsl:for-each select="vm:field[@isStatic = 'true']">
-      <xsl:call-template name="emitType">
-        <xsl:with-param name="type" select="@type"/>
-      </xsl:call-template>
-      <xsl:text> _STATIC_</xsl:text>
-      <xsl:value-of select="vm:fixname(../@package)"/>
-      <xsl:text>_</xsl:text>
-      <xsl:value-of select="vm:fixname(../@name)"/>
-      <xsl:text>_</xsl:text>
-      <xsl:value-of select="vm:fixname(@name)"/>
-      <xsl:if test="@value">
-        <xsl:text> = </xsl:text>
-        <!-- TODO String values need to be surrounded by quotes and escaped properly. -->
-        <xsl:if test="@type = 'java.lang.String'">
-          <xsl:text>new java_lang_String(</xsl:text>
-        </xsl:if>
-        <xsl:value-of select="@value"/>
-        <xsl:if test="@type = 'java.lang.String'">
-          <xsl:text>)</xsl:text>
-        </xsl:if>
-      </xsl:if>
-      <xsl:text>;
-</xsl:text>
-    </xsl:for-each>
-
+  
     <xsl:variable name="clname">
         <xsl:value-of select="vm:fixname(@package)"/>
         <xsl:text>_</xsl:text>
         <xsl:value-of select="vm:fixname(@name)"/>
     </xsl:variable>
 
+    <xsl:text>int </xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>::__class_initialized = 0;
+
+</xsl:text>
+
+    <!-- Emit global variable definition for all static fields -->
+    <xsl:for-each select="vm:field[@isStatic = 'true']">
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="@type"/>
+      </xsl:call-template>
+      <xsl:text> _STATIC_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:if test="@value">
+        <xsl:text> = </xsl:text>
+        <!-- TODO String values need to be surrounded by quotes and escaped properly. -->
+        <xsl:if test="@type = 'java.lang.String'">
+          <xsl:text>new java_lang_String("</xsl:text>
+        </xsl:if>
+        <xsl:value-of select="@value"/>
+        <xsl:if test="@type = 'java.lang.String'">
+          <xsl:text>")</xsl:text>
+        </xsl:if>
+      </xsl:if>
+      <xsl:text>;
+</xsl:text>
+    </xsl:for-each>
+
     <!-- Emit class initializers -->
     <xsl:text>void </xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>::__clinit()
+    <xsl:text>::__init_class()
 {
+    __class_initialized = 1;
 </xsl:text>
         <xsl:for-each select="vm:field[@isStatic = 'true' and vm:isObjectRef(@type)]">
           <xsl:text>
-        _STATIC_</xsl:text>
+    _STATIC_</xsl:text>
           <xsl:value-of select="vm:fixname(../@package)"/>
           <xsl:text>_</xsl:text>
           <xsl:value-of select="vm:fixname(../@name)"/>
           <xsl:text>_</xsl:text>
           <xsl:value-of select="vm:fixname(@name)"/>
-          <xsl:text> = JAVA_NULL;</xsl:text>
+          <xsl:text> = (</xsl:text>
+          <xsl:value-of select="vm:fixname(@type)"/>
+          <xsl:text>*) JAVA_NULL;</xsl:text>
         </xsl:for-each>
     	<!-- If there is a Java class initializer, call it. -->
         <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
+          <xsl:text>
+    </xsl:text>
           <xsl:value-of select="vm:fixname(@package)"/>
           <xsl:text>_</xsl:text>
           <xsl:value-of select="vm:fixname(@name)"/>
@@ -228,11 +245,13 @@ void __init();
 
 </xsl:text>
     
-    <!-- Emit init method for member initialization -->
-    <xsl:text>void </xsl:text>
+    <!-- Emit default constructor for member initialization -->
     <xsl:value-of select="$clname"/>
-    <xsl:text>::__init()
+    <xsl:text>::</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>()
 {
+    if (!__class_initialized) __init_class();
 </xsl:text>
       <!-- Emit declarations for all non-static member fields -->
       <xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type)]">
@@ -291,10 +310,11 @@ void __init();
       </xsl:call-template>
       <xsl:text> </xsl:text>
       <xsl:value-of select="$clname"/>
-      <xsl:text> _GET_</xsl:text>
+      <xsl:text>::_GET_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>()
 {
+    if (!__class_initialized) __init_class();
     return </xsl:text>
       <xsl:text>_STATIC_</xsl:text>
       <xsl:value-of select="$field"/>
@@ -304,7 +324,7 @@ void __init();
 </xsl:text>
       <!-- Emit setter -->
       <xsl:text>void </xsl:text>
-      <xsl:value-of select="@clname"/>
+      <xsl:value-of select="$clname"/>
       <xsl:text>::_PUT_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>(</xsl:text>
@@ -313,6 +333,7 @@ void __init();
       </xsl:call-template>
       <xsl:text> v)
 {
+    if (!__class_initialized) __init_class();
     </xsl:text>
       <xsl:text>_STATIC_</xsl:text>
       <xsl:value-of select="$field"/>
@@ -324,7 +345,7 @@ void __init();
       <!-- Emit releaser -->
 <xsl:if test="vm:isObjectRef(@type)">
       <xsl:text>void </xsl:text>
-      <xsl:value-of select="@clname"/>
+      <xsl:value-of select="$clname"/>
       <xsl:text>::_RELEASE_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>()
@@ -332,7 +353,7 @@ void __init();
     </xsl:text>
       <xsl:text>_STATIC_</xsl:text>
       <xsl:value-of select="$field"/>
-      <xsl:text>.__release();
+      <xsl:text>-&gt;__release();
 }
 
 </xsl:text>
@@ -340,23 +361,16 @@ void __init();
     </xsl:for-each>
     
     <xsl:for-each select="vm:method">
-      <xsl:if test="not(vm:isDuplicateMethod(.))">
+      <xsl:if test="not(vm:isDuplicateMethod(.)) and not(../.[@isInterface = 'true'] or @isAbstract = 'true')">
         <xsl:call-template name="emitMethodSignature">
           <xsl:with-param name="forDeclaration" select="0"/>
         </xsl:call-template>
         <xsl:text>
 </xsl:text>
         <xsl:choose>
-          <xsl:when test="../.[@isInterface = 'true'] or @isAbstract = 'true'">
-          <xsl:text>{
-}
-
-</xsl:text>
-          </xsl:when>
           <xsl:when test="@isNative = 'true'">
             <xsl:text>{
-    NSException* ex = [[NSException alloc] initWithName:@"Native method not implemented" reason:nil userInfo:nil];
-    @throw ex;
+    ERROR("Native method not implemented");
 }
 
 </xsl:text>
@@ -383,26 +397,6 @@ void __init();
 
 <xsl:template match="vm:signature">
   <!-- Do nothing -->
-</xsl:template>
-
-
-<xsl:template match="jvm:code">
-<xsl:text>{
-    XMLVMElem _stack[</xsl:text>
-  <xsl:value-of select="../@stack"/>
-  <xsl:text>];
-    XMLVMElem _locals[</xsl:text>
-  <xsl:value-of select="../@locals"/>
-  <xsl:text>];
-    int _sp = 0;
-    XMLVMElem _op1, _op2, _op3;
-</xsl:text>
-  <xsl:call-template name="initLocals"/>
-  <xsl:apply-templates/>
-  <xsl:text>}
-
-
-</xsl:text>
 </xsl:template>
 
 
@@ -516,6 +510,12 @@ void __init();
       <xsl:value-of select="position()"/>
     </xsl:for-each>
     <xsl:text>)</xsl:text>
+    <xsl:if test="../@isInterface = 'true' and $forDeclaration = 1">
+      <xsl:text> = 0</xsl:text>
+    </xsl:if>
+  </xsl:if>
+  <xsl:if test="@name = '&lt;clinit&gt;'">
+    <xsl:text>()</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -533,43 +533,6 @@ void __init();
 </xsl:template>
 
     
-<!--
-   initLocals
-   ==========
-   This function is called from the template for <code>. Its task is
-   to initialize the local variables. This basically means that the
-   actual parameters have to be copied to _locals[i]. If the method
-   is not static, 'this' will be copied to _locals[0].
--->
-
-<xsl:template name="initLocals">
-    <xsl:for-each select="jvm:var">
-		<xsl:choose>    
-      		<xsl:when test="@name = 'this'">
-      			<xsl:text>    _locals[</xsl:text>
-    			<xsl:value-of select="@id" />
-    			<xsl:text>].o = self;
-</xsl:text>
-     		</xsl:when>
-     		<xsl:otherwise>
-     			<xsl:if test="(position()-count(../jvm:var[@name='this'])) &lt;= count(../../vm:signature/vm:parameter)" >
-     			  <xsl:text>    _locals[</xsl:text>
-     	  		  <xsl:value-of select="@id" />
-     	  		  <xsl:text>]</xsl:text>
-     	  		  <xsl:call-template name="emitTypedAccess">
-     	  		    <xsl:with-param name="type" select="@type"/>
-     	  		  </xsl:call-template>
-     	  		  <xsl:text> = n</xsl:text>
-     	  		  <xsl:value-of select="(position()-count(../jvm:var[@name='this']))" />
-     	  		  <xsl:text>;
-</xsl:text>
-     			</xsl:if>
-     		</xsl:otherwise>
-     	</xsl:choose>
-    </xsl:for-each>
-</xsl:template>
-
-
 <xsl:template name="emitTypedAccess">
   <xsl:param name="type"/>
   
@@ -709,167 +672,6 @@ void __init();
   <!-- Ignore annotations -->
 </xsl:template>
 
-<!-- Kev Adds -->
-<xsl:template match="jvm:ishl">
-  <xsl:text>    _op2.i = _stack[--_sp].i;
-    _op1.i = _stack[--_sp].i;
-    _stack[_sp++].i = _op1.i &lt;&lt; _op2.i;</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:lshl">
-  <xsl:text>    _op2.i = _stack[--_sp].i;
-    _op1.l = _stack[--_sp].l;
-    _stack[_sp++].l = _op1.l &lt;&lt; _op2.i;</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:ishr">
-  <xsl:text>    _op2.i = _stack[--_sp].i;
-    _op1.i = _stack[--_sp].i;
-    _stack[_sp++].i = _op1.i &gt;&gt; _op2.i;</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:lushr">
-  <xsl:text>    _op2.i = _stack[--_sp].i;
-    _op1.l = _stack[--_sp].l;
-    _stack[_sp++].l = ((unsigned long) _op1.l) &gt;&gt; _op2.i;</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:iushr">
-  <xsl:text>    _op2.i = _stack[--_sp].i;
-    _op1.i = _stack[--_sp].i;
-    _stack[_sp++].i = ((unsigned int) _op1.i) &gt;&gt; _op2.i;</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:dup2">
-  <xsl:text>    _op1 = _stack[_sp - 2];
-    _op2 = _stack[_sp - 1];
-
-    _stack[_sp++] = _op1;    
-    _stack[_sp++] = _op2;
-</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:if_icmpgt">
-  <xsl:text>    _op2.i = _stack[--_sp].i;
-    _op1.i = _stack[--_sp].i;
-    if (_op1.i &gt; _op2.i) goto label</xsl:text>
-  <xsl:value-of select="@label"/>
-  <xsl:text>;
-</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:dcmpl">
-  <xsl:text>    _op2.f = (float) _stack[--_sp].d;
-    _op1.f = (float) _stack[--_sp].d;
-    _op3.i = -1;
-    if (_op1.f &gt; _op2.f)
-      _op3.i = 1;
-    else if (_op1.f == _op2.f)
-      _op3.i = 0;
-    else if (_op1.f &lt; _op2.f)
-      _op3.i = -1;
-    _stack[_sp++].i = _op3.i;
-</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:lcmp">
-    <xsl:text>    _op2.l = _stack[--_sp].l;
-    _op1.l = _stack[--_sp].l;
-    _op3.i = 1;
-    if (_op1.l &gt; _op2.l)
-      _op3.i = 1;
-    else if (_op1.l == _op2.l)
-      _op3.i = 0;
-    else if (_op1.l &lt; _op2.l)
-      _op3.i = -1;
-    _stack[_sp++].i = _op3.i;
-</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:monitorenter">
-  <xsl:text>    _op1.o = _stack[--_sp].o;
-  	@synchronized(_op1.o) {
-</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:monitorexit">
-  <xsl:text>    }
-</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:l2i">
-  <xsl:text>    _op1.l = _stack[--_sp].l;
-  _stack[_sp++].i = (int) _op1.l;</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:i2c">
-  <xsl:text>    _op1.i = _stack[--_sp].i;
-  _stack[_sp++].i = _op1.i &amp; 0xff;</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:ladd">
-  <xsl:text>    _op2.l = _stack[--_sp].l;
-    _op1.l = _stack[--_sp].l;
-    _stack[_sp++].l = _op1.l + _op2.l;</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:lmul">
-  <xsl:text>    _op2.l = _stack[--_sp].l;
-    _op1.l = _stack[--_sp].l;
-    _stack[_sp++].l = _op1.l * _op2.l;</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:ldiv">
-  <xsl:text>    _op2.l = _stack[--_sp].l;
-    _op1.l = _stack[--_sp].l;
-    _stack[_sp++].l = _op1.l / _op2.l;</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:lrem">
-  <xsl:text>    _op2.l = _stack[--_sp].l;
-    _op1.l = _stack[--_sp].l;
-    _stack[_sp++].l = _op1.l % _op2.l;</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:lor">
-  <xsl:text>    _op2.l = _stack[--_sp].l;
-    _op1.l = _stack[--_sp].l;
-    _stack[_sp++].l = _op1.l | _op2.l;</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:dup_x2">
-  <xsl:text>    _op1.i = _stack[--_sp].i;
-    _op2.i = _stack[--_sp].i;
-    _op3.i = _stack[--_sp].i;
-    _stack[_sp++].i = _op1.l;
-    _stack[_sp++].i = _op3.l;
-    _stack[_sp++].i = _op2.l;
-    _stack[_sp++].i = _op1.l;</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:lstore">
-  <xsl:text>    _op1.l = _stack[--_sp].l;
-    _locals[</xsl:text>
-  <xsl:value-of select="@index"/>
-  <xsl:text>].l = _op1.l;
-</xsl:text>
-</xsl:template>
-
-<!-- natte adds -->
-
-<xsl:template match="jvm:dsub">
-    <xsl:text>    _op2.d = _stack[--_sp].d;
-    _op1.d = _stack[--_sp].d;
-    _stack[_sp++].d = _op1.d - _op2.d;
-</xsl:text>
-</xsl:template>
-
-<xsl:template match="jvm:lsub">
-    <xsl:text>    _op2.l = _stack[--_sp].l;
-    _op1.l = _stack[--_sp].l;
-    _stack[_sp++].l = _op1.l - _op2.l;
-</xsl:text>
-</xsl:template>
 
 <!-- ********************************************************************************** -->
 <!-- ********************************************************************************** -->
@@ -885,7 +687,10 @@ void __init();
 <xsl:template match="dex:code">
 <xsl:text>{
 </xsl:text>
-
+  <xsl:if test="../@isStatic = 'true'">
+    <xsl:text>    if (!__class_initialized) __init_class();
+</xsl:text>
+  </xsl:if>
   <xsl:apply-templates/>
   <xsl:text>}
 </xsl:text>
@@ -927,7 +732,7 @@ void __init();
  	</xsl:when>
  	
  	<xsl:when test = "@vartype = 'exception'">
-        <xsl:text>    id        _ex = JAVA_NULL;
+        <xsl:text>    java_lang_Object* _ex = JAVA_NULL;
 </xsl:text>
  	</xsl:when>
   </xsl:choose>
@@ -964,19 +769,29 @@ void __init();
       </xsl:otherwise>
     </xsl:choose>
   </xsl:if>
-  <xsl:text>[</xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)"/>
-  <xsl:text> </xsl:text>
+  <xsl:text>::</xsl:text>
   <xsl:value-of select="@method"/>
   <xsl:call-template name="appendDexSignature"/>
+  <xsl:text>(</xsl:text>
   <xsl:for-each select="dex:parameters/dex:parameter">
-    <xsl:text>:_r</xsl:text>
+    <xsl:if test="position() != 1">
+      <xsl:text>, </xsl:text>
+    </xsl:if>
+    <xsl:if test="vm:isObjectRef(@type)">
+      <xsl:text>(</xsl:text>
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="@type"/>
+      </xsl:call-template>
+      <xsl:text>) </xsl:text>
+    </xsl:if>
+    <xsl:text>_r</xsl:text>
     <xsl:value-of select="@register"/>
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@type"/>
     </xsl:call-template>
   </xsl:for-each>
-  <xsl:text>];
+  <xsl:text>);
 </xsl:text>
 </xsl:template>
 
@@ -1111,7 +926,7 @@ void __init();
 
 
 <xsl:template match="dex:try">
-  <xsl:text>    @try {
+  <xsl:text>    try {
 </xsl:text>
   <xsl:apply-templates/>
   <xsl:text>}
@@ -1119,16 +934,9 @@ void __init();
 </xsl:template>
 
 <xsl:template match="dex:catch">
-    <xsl:text>    @catch (</xsl:text>
-    <xsl:choose>
-      <xsl:when test="@exception-type = 'java.lang.Object'">
-        <xsl:text>id</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="vm:fixname(@exception-type)"/>
-        <xsl:text>*</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:text>    catch (</xsl:text>
+    <xsl:value-of select="vm:fixname(@exception-type)"/>
+    <xsl:text>*</xsl:text>
     <xsl:text> ex) {
         _ex = ex;
         goto label</xsl:text>
@@ -1146,11 +954,15 @@ void __init();
 
 
 <xsl:template match="dex:throw">
-  <xsl:text>    [_ex release];
+  <xsl:text>    _ex-&gt;__release();
     _ex = _r</xsl:text> <xsl:value-of select="@vx"/>.o<xsl:text>;
-   _r</xsl:text><xsl:value-of select="@vx"/><xsl:text>.o = JAVA_NULL;
-    @throw _ex;
-  </xsl:text>
+    _r</xsl:text><xsl:value-of select="@vx"/><xsl:text>.o = JAVA_NULL;
+    throw((</xsl:text>
+  <xsl:call-template name="emitType">
+    <xsl:with-param name="type" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:text>) _ex);
+</xsl:text>
 </xsl:template>
 
 
@@ -1536,7 +1348,7 @@ void __init();
   
 <xsl:template match="dex:return-void">
   <xsl:if test="@catchesException = 'true'">
-    <xsl:text>    [_ex release];
+    <xsl:text>    _ex-&gt;__release();
 </xsl:text>
   </xsl:if>
   <xsl:text>    return;
@@ -1546,7 +1358,7 @@ void __init();
 
 <xsl:template match="dex:return|dex:return-wide|dex:return-object">
   <xsl:if test="@catchesException = 'true'">
-    <xsl:text>    [_ex release];
+    <xsl:text>    _ex-&gt;__release();
 </xsl:text>
   </xsl:if>
   <xsl:variable name="return-type" select="ancestor::vm:method/vm:signature/vm:return/@type" />
@@ -1563,9 +1375,11 @@ void __init();
 <xsl:template match="dex:new-instance">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx" />
-  <xsl:text>.o = [[</xsl:text>
+  <xsl:text>.o = new </xsl:text>
   <xsl:value-of select="vm:fixname(@value)" />
-  <xsl:text> alloc] init];
+  <xsl:text>::</xsl:text>
+  <xsl:value-of select="vm:fixname(@value)" />
+  <xsl:text>();
 </xsl:text>
 </xsl:template>
 
@@ -1677,7 +1491,7 @@ void __init();
         <xsl:with-param name="type" select="@member-type" />
       </xsl:call-template>
     </xsl:variable>
-  <xsl:text>    [((</xsl:text>
+  <xsl:text>    ((</xsl:text>
   <xsl:call-template name="emitType">
     <xsl:with-param name="type" select="@class-type" />
   </xsl:call-template>
@@ -1687,7 +1501,7 @@ void __init();
   <xsl:value-of select="vm:fixname(@member-name)" />
   <xsl:text>_</xsl:text>
   <xsl:value-of select="vm:fixname(@member-type)" />
-  <xsl:text> release];
+  <xsl:text>-&gt;__release();
 </xsl:text>
 </xsl:template>
 
@@ -1731,25 +1545,29 @@ void __init();
 </xsl:template>
 
 <xsl:template match="vm:s-release">
-    <xsl:text>    [</xsl:text>
+    <xsl:text>    </xsl:text>
     <xsl:value-of select="vm:fixname(@class-type)" />
-    <xsl:text> _RELEASE_</xsl:text>
+    <xsl:text>::_RELEASE_</xsl:text>
     <xsl:value-of select="vm:fixname(@member-name)" />
-    <xsl:text>];
+    <xsl:text>();
 </xsl:text>
 </xsl:template>
 
 <xsl:template match="dex:sput|dex:sput-wide|dex:sput-boolean|dex:sput-object">
-  <xsl:text>    [</xsl:text>
+  <xsl:text>    </xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)"/>
-  <xsl:text> _PUT_</xsl:text>
+  <xsl:text>::_PUT_</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
-  <xsl:text>: _r</xsl:text>
+  <xsl:text>((</xsl:text>
+  <xsl:call-template name="emitType">
+    <xsl:with-param name="type" select="@member-type"/>
+  </xsl:call-template>
+  <xsl:text>) _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:call-template name="emitTypedAccess">
     <xsl:with-param name="type" select="@member-type"/>
   </xsl:call-template>
-  <xsl:text>];
+  <xsl:text>);
 </xsl:text>
 </xsl:template>
 
@@ -1789,9 +1607,9 @@ void __init();
 <xsl:template match="dex:const-class"> 
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o = [</xsl:text>
+  <xsl:text>.o = </xsl:text>
   <xsl:value-of select="vm:fixname(@value)"/>
-  <xs:text> getClass__];
+  <xs:text>-&gt;getClass__();
 </xs:text>
 </xsl:template>
 

@@ -21,18 +21,41 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
-#import <iostream>
 
-class java_io_PrintStream : public java_lang_Object {
+class java_lang_Integer : public java_lang_Object {
 public:
-void println___java_lang_String(java_lang_String* s)
-{
-    std::cout << s->str << std::endl;
+
+int number;
+
+void __init_java_lang_Integer___int(int n) {
+  number = n;
 }
 
-void println___int(int i) {
-    std::cout << i << std::endl;
+java_lang_String* toString__() {
+    java_lang_String* s = new java_lang_String();
+    s->str = new char[20];
+    sprintf((char*) s->str, "%d", number);
+    return s;
 }
+
+/*
++ (void) initialize;
+- (id) init;
+- (id) copyWithZone:(NSZone *)zone;
+- (NSUInteger) hash;
++ (java_lang_Class*) _GET_TYPE;
+- (void) __init_java_lang_Integer___int :(int) i;
+- (BOOL)isEqual:(id)anObject;
+- (int) intValue__;
++ (int) parseInt___java_lang_String: (java_lang_String *) str;
+- (java_lang_String*) toString__;
++ (java_lang_String*) toString___int: (int) i;
++ (java_lang_Integer*) valueOf___int: (int) i;
+- (int) compareTo___java_lang_Object: (java_lang_Object*) obj;
+- (int) compareTo___java_lang_Integer: (java_lang_Integer*) i;
+
+@end
+*/
 
 };
 

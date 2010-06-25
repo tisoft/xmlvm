@@ -27,7 +27,7 @@ java_lang_Object* JAVA_NULL;
 
 void xmlvm_init()
 {
-      JAVA_NULL = (java_lang_Object*) 0;
+    JAVA_NULL = new java_lang_Object();  // TODO should be java_lang_null
 }
 
 /*

@@ -19,13 +19,34 @@
  */
 
 #import "xmlvm.h"
+#import <cstdio>
+#import <cstring>
+
+
 
 class java_lang_String : public java_lang_Object {
 public:
   const char* str;
 
+  java_lang_String() {
+    str = "";
+  }
+
   java_lang_String(const char* s) {
     str = s;
   }
+
+  static java_lang_String* valueOf___int(int i) {
+    java_lang_String* s = new java_lang_String();
+    s->str = new char[20];
+    sprintf((char*) s->str, "%d", i);
+    return s;
+  }
+
+  int length__() {
+    return strlen(str);
+  }
+
+
 };
 

@@ -25,6 +25,17 @@
 
 void xmlvm_init();
 
+typedef void JAVA_VOID;
+typedef int JAVA_BOOL;
+typedef int JAVA_CHAR;
+typedef int JAVA_BYTE;
+typedef int JAVA_SHORT;
+typedef int JAVA_INT;
+typedef long JAVA_LONG;
+typedef float JAVA_FLOAT;
+typedef double JAVA_DOUBLE;
+
+
 typedef union {
     java_lang_Object*  o;
     int     i;
