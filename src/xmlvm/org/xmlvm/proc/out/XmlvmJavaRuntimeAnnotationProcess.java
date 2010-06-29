@@ -74,7 +74,7 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
         for (XmlvmResourceProvider process : preprocesses) {
             List<XmlvmResource> resources = process.getXmlvmResources();
             for (XmlvmResource resource : resources) {
-                xmlvmResources.put(resource.getName(), resource);
+                xmlvmResources.put(resource.getFullName(), resource);
             }
         }
 
@@ -88,7 +88,8 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
         // Build a dependency graph.
         for (XmlvmResource resource : xmlvmResources.values()) {
             if (resource != null) {
-                dependencies.put(resource.getName(), getDependencyList(resource.getName()));
+
+                dependencies.put(resource.getFullName(), getDependencyList(resource.getFullName()));
             }
         }
 
@@ -186,7 +187,7 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
                 continue;
             }
             Log.debug("***********************************");
-            Log.debug("XMLVM Resource: " + resource.getName());
+            Log.debug("XMLVM Resource: " + resource.getFullName());
             Log.debug("Super-type    : " + resource.getSuperTypeName());
             Log.debug("Referenced types:");
 
@@ -198,7 +199,7 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
                     if (resources.keySet().contains(referencedType)) {
                         Log.debug(" OK   -> " + referencedType);
                     } else {
-                        wasLoadedBy.put(referencedType, resource.getName());
+                        wasLoadedBy.put(referencedType, resource.getFullName());
                         toLoad.add(referencedType);
                         Log.debug(" LOAD -> " + referencedType);
                     }

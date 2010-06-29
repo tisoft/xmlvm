@@ -58,10 +58,12 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         for (XmlvmResourceProvider process : preprocesses) {
             List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
             for (XmlvmResource xmlvm : xmlvmResources) {
-                OutputFile[] files = genCpp(xmlvm);
-                for (OutputFile file : files) {
-                    file.setLocation(arguments.option_out());
-                    result.add(file);
+                if (xmlvm != null) {
+                    OutputFile[] files = genCpp(xmlvm);
+                    for (OutputFile file : files) {
+                        file.setLocation(arguments.option_out());
+                        result.add(file);
+                    }
                 }
             }
         }
@@ -75,8 +77,7 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         Document doc = xmlvm.getXmlvmDocument();
         // The filename will be the name of the first class
         String namespaceName = xmlvm.getPackageName();
-        String inheritsFrom = xmlvm.getSuperTypeName().replace('.', '_')
-                .replace('$', '_');
+        String inheritsFrom = xmlvm.getSuperTypeName().replace('.', '_').replace('$', '_');
         String className = xmlvm.getName().replace('$', '_');
         String fileNameStem = (namespaceName + "." + className).replace('.', '_');
         String headerFileName = fileNameStem + H_EXTENSION;

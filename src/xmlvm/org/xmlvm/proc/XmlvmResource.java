@@ -78,6 +78,18 @@ public class XmlvmResource {
     }
 
     /**
+     * Returns the full name, which is the normal name prefixed by the package.
+     */
+    public String getFullName() {
+        String fullResourceName = getPackageName();
+        if (!fullResourceName.isEmpty()) {
+            fullResourceName += ".";
+        }
+        fullResourceName += getName();
+        return fullResourceName;
+    }
+
+    /**
      * Returns the names of all types that are referenced in this resource.
      */
     public Set<String> getReferencedTypes() {
