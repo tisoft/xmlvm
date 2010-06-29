@@ -23,6 +23,7 @@ package org.xmlvm.proc;
 import java.util.Set;
 
 import org.jdom.Document;
+import org.jdom.Element;
 import org.jdom.Namespace;
 
 /**
@@ -88,5 +89,23 @@ public class XmlvmResource {
      */
     public String getSuperTypeName() {
         return superTypeName;
+    }
+
+    /**
+     * Returns the name of the package, this resource is in.
+     * <p>
+     * E.g. "java.lang"
+     */
+    public String getPackageName() {
+        Element clazz = xmlvmDocument.getRootElement().getChild("class", xmlvmNamespace);
+        return clazz.getAttributeValue("package");
+    }
+
+    /**
+     * Returns a comma-separated list of interfaces this resources implements.
+     */
+    public String getInterfaces() {
+        Element clazz = xmlvmDocument.getRootElement().getChild("class", xmlvmNamespace);
+        return clazz.getAttributeValue("interfaces");
     }
 }

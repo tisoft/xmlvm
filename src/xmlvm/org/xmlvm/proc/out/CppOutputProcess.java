@@ -28,7 +28,6 @@ import java.util.List;
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
-import org.jdom.Namespace;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
@@ -75,12 +74,10 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     public OutputFile[] genCpp(XmlvmResource xmlvm) {
         Document doc = xmlvm.getXmlvmDocument();
         // The filename will be the name of the first class
-        Namespace nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
-        Element clazz = doc.getRootElement().getChild("class", nsXMLVM);
-        String namespaceName = clazz.getAttributeValue("package");
-        String inheritsFrom = clazz.getAttributeValue("extends").replace('.', '_')
+        String namespaceName = xmlvm.getPackageName();
+        String inheritsFrom = xmlvm.getSuperTypeName().replace('.', '_')
                 .replace('$', '_');
-        String className = clazz.getAttributeValue("name").replace('$', '_');
+        String className = xmlvm.getName().replace('$', '_');
         String fileNameStem = (namespaceName + "." + className).replace('.', '_');
         String headerFileName = fileNameStem + H_EXTENSION;
         String mFileName = fileNameStem + CPP_EXTENSION;
@@ -92,7 +89,7 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                 headerBuffer.append("#import \"" + i + ".h\"\n");
             }
         }
-        String interfaces = clazz.getAttributeValue("interfaces");
+        String interfaces = xmlvm.getInterfaces();
         if (interfaces != null) {
             for (String i : interfaces.split(",")) {
                 headerBuffer
@@ -127,7 +124,7 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     private List<String> getTypesForHeader(Document doc) {
         HashSet<String> seen = new HashSet<String>();
         @SuppressWarnings("unchecked")
-        Iterator i = doc.getDescendants();
+        Iterator<Object> i = doc.getDescendants();
         while (i.hasNext()) {
             Object cur = i.next();
             if (cur instanceof Element) {

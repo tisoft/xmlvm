@@ -56,7 +56,9 @@ public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
                 Log.debug("JavaScriptOutputProcess: Processing " + xmlvm.getName());
                 OutputFile file = generateJavaScript(xmlvm);
                 file.setLocation(arguments.option_out());
-                file.setFileName(xmlvm.getName() + JS_EXTENSION);
+                String packageName = xmlvm.getPackageName().replace('.', '_');
+                String resourceName = xmlvm.getName().replace('$', '_');
+                file.setFileName(packageName + '_' + resourceName + JS_EXTENSION);
                 result.add(file);
             }
         }
