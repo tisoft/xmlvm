@@ -134,7 +134,7 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                     seen.add(a.getValue());
                 }
                 a = ((Element) cur).getAttribute("extends");
-                if (a != null) {
+                if (a != null && !a.getValue().equals("")) {
                     seen.add(a.getValue());
                 }
                 a = ((Element) cur).getAttribute("interfaces");

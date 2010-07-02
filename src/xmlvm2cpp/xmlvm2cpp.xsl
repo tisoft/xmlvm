@@ -9,7 +9,7 @@
                 version="2.0">
 
 <xsl:param name="pass">emitHeader</xsl:param>
-<xsl:param name="header">default.h</xsl:param>
+<xsl:param name="header">xmlvm.h</xsl:param>
 
 <xsl:output method="text" indent="no"/>
 
@@ -81,13 +81,29 @@ int main(int argc, char* argv[])
     <xsl:text>_</xsl:text>
     <xsl:value-of select="vm:fixname(@name)"/>
     <xsl:if test="not(@isInterface = 'true')">
-      <xsl:text> : public </xsl:text>
-      <xsl:value-of select="vm:fixname(@extends)"/>
+      <xsl:text> :</xsl:text>
+      <xsl:if test="@interfaces">
+        <xsl:text> virtual</xsl:text>
+      </xsl:if>
+      <xsl:text> public </xsl:text>
+      <xsl:value-of select="if (@extends='') then 'XMLVMRootObject' else vm:fixname(@extends)"/>
     </xsl:if>
     <xsl:if test="@interfaces">
+      <!-- Only use virtual inheritance if we inherit from more than one C++ class. -->
+      <!-- The number of C++ classes is the sum of the base class plus all interfaces. -->
+      <xsl:variable name="needsVirtualInheritance" select="(@isInterface = 'true' and contains(@interfaces, ',')) or
+                                                           not(@isInterface = 'true')"/>
       <xsl:value-of select="if (@isInterface = 'true') then ':' else ','"/>
-      <xsl:text> public </xsl:text>
-      <xsl:value-of select="vm:fixname(replace(@interfaces, ',', ', public '))"/>
+      <xsl:choose>
+        <xsl:when test="$needsVirtualInheritance">
+          <xsl:text> virtual public </xsl:text>
+          <xsl:value-of select="vm:fixname(replace(@interfaces, ',', ', virtual public '))"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text> public </xsl:text>
+          <xsl:value-of select="vm:fixname(replace(@interfaces, ',', ', public '))"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
       <xsl:text> {
 public:
@@ -166,11 +182,6 @@ static void __init_class();
       </xsl:if>
     </xsl:for-each>
       
-    <!-- Check if there is a method equals(Object) -->
-    <xsl:if test="vm:method[@name = 'equals']">
-      <xsl:text>- (BOOL) isEqual:(id)o;
-</xsl:text>
-    </xsl:if>
     <xsl:text>
 };
 
@@ -395,15 +406,6 @@ static void __init_class();
         </xsl:choose>
       </xsl:if>
     </xsl:for-each>
-
-    <!-- Check if there is a method equals(Object) -->
-    <xsl:if test="vm:method[@name = 'equals']">
-      <xsl:text>- (BOOL) isEqual:(id)o
-{
-	return [self equals___java_lang_Object:o];
-}
-</xsl:text>
-    </xsl:if>
   </xsl:for-each>
   
 </xsl:template>
@@ -524,7 +526,7 @@ static void __init_class();
       <xsl:value-of select="position()"/>
     </xsl:for-each>
     <xsl:text>)</xsl:text>
-    <xsl:if test="../@isInterface = 'true' and $forDeclaration = 1">
+    <xsl:if test="(../@isInterface = 'true' and $forDeclaration = 1) or @isAbstract = 'true'">
       <xsl:text> = 0</xsl:text>
     </xsl:if>
   </xsl:if>
@@ -1624,9 +1626,12 @@ static void __init_class();
 <xsl:template match="dex:const-string"> 
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o = new java_lang_String("</xsl:text>
+  <xsl:text>.o = new java_lang_String();
+    ((java_lang_String*) _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o)-&gt;__init_java_lang_String___char_ARRAYTYPE(XMLVMArray::createFromString("</xsl:text>
   <xsl:value-of select="@value"/>
-  <xs:text>");
+  <xs:text>"));
 </xs:text>
 </xsl:template>
 

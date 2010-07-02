@@ -23,11 +23,11 @@
 #import <iostream>
 
 
-java_lang_Object* JAVA_NULL;
+XMLVMRootObject* JAVA_NULL;
 
 void xmlvm_init()
 {
-    JAVA_NULL = new java_lang_Object();  // TODO should be java_lang_null
+    JAVA_NULL = new XMLVMRootObject();  // TODO should be java_lang_null
     JAVA_NULL->retainCount = -1;
 }
 
@@ -49,7 +49,7 @@ XMLVMArray* XMLVMArray::createSingleDimension(int type, int size)
     XMLVMArray *retval = new XMLVMArray();
     retval->type = type;
     retval->length = size;
-	retval->ownsData = true;
+    retval->ownsData = true;
 
     int sizeOfBaseType = XMLVMArray::sizeOfBaseTypeInBytes(type);
     retval->array.data = malloc(sizeOfBaseType * size);
@@ -70,7 +70,7 @@ XMLVMArray* XMLVMArray::createSingleDimension(int type, int size, void* data)
     retval->type = type;
     retval->length = size;
     retval->array.data = data;
-	retval->ownsData = false;
+    retval->ownsData = false;
     return retval;
 }
 
@@ -88,6 +88,16 @@ XMLVMArray* XMLVMArray::createMultiDimensions(int type, XMLVMElem* dim, int coun
 		slice->replaceObjectAtIndex(i, o);
 	}
 	return slice;
+}
+
+XMLVMArray* XMLVMArray::createFromString(const char* str)
+{
+    XMLVMArray *retval = new XMLVMArray();
+    retval->type = 2; // CHAR
+    retval->length = strlen(str);
+    retval->array.data = (void*) str;
+    retval->ownsData = false;
+    return retval;
 }
 
 void XMLVMArray::fillArray(XMLVMArray* array, void* data)
@@ -131,13 +141,13 @@ int XMLVMArray::sizeOfBaseTypeInBytes(int type)
     return sizeOfBaseType;
 }
 
-java_lang_Object* XMLVMArray::objectAtIndex(int idx)
+XMLVMRootObject* XMLVMArray::objectAtIndex(int idx)
 {
-    java_lang_Object* obj = array.o[idx];
+    XMLVMRootObject* obj = array.o[idx];
     return obj->__retain();
 }
 
-void XMLVMArray::replaceObjectAtIndex(int idx, java_lang_Object* obj)
+void XMLVMArray::replaceObjectAtIndex(int idx, XMLVMRootObject* obj)
 {
     obj->__retain();
     array.o[idx]->__release();

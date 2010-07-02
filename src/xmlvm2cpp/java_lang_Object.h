@@ -20,36 +20,11 @@
 
 #import "xmlvm.h"
 
-class java_lang_Object {
+class java_lang_Object : public XMLVMRootObject {
 public:
-    int retainCount;
-    
-public:
-java_lang_Object() {
-    retainCount = 1;
-}
-
-virtual ~java_lang_Object() {}
-
-void __init_java_lang_Object__()
-{
-}
-
-java_lang_Object* __retain()
-{
-    if (retainCount != -1) retainCount++;
-    return this;
-}
-
-void __release()
-{
-    if (retainCount != -1) {
-        retainCount--;
-        if (retainCount == 0) {
-            delete this;
-        }
+    void __init_java_lang_Object__()
+    {
     }
-}
 
 };
 

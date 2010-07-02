@@ -18,7 +18,7 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
+#import "java_lang_Object.h"
 #import <cstdio>
 #import <cstring>
 
@@ -32,10 +32,14 @@ public:
     str = "";
   }
 
-  java_lang_String(const char* s) {
-    str = s;
+  virtual void __init_java_lang_String___char_ARRAYTYPE(XMLVMArray* s) {
+    str = new char[s->length + 1];
+    for (int i = 0; i < s->length; i++) {
+        ((char*) str)[i] = s->array.b[i];
+    }
+    ((char*) str)[s->length] = '\0';
   }
-
+  
   static java_lang_String* valueOf___int(int i) {
     java_lang_String* s = new java_lang_String();
     s->str = new char[20];

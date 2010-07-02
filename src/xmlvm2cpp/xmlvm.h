@@ -20,13 +20,46 @@
 
 
 #import <math.h>
-#import "java_lang_Object.h"
+
+
+class java_lang_Object;
 
 
 void xmlvm_init();
 
+class XMLVMRootObject {
+private:
+    virtual void __dummy() {}
+
+public:
+    int retainCount;
+    
+public:
+    XMLVMRootObject() {
+        retainCount = 1;
+    }
+
+    virtual ~XMLVMRootObject() {}
+
+    XMLVMRootObject* __retain() {
+        if (retainCount != -1) retainCount++;
+        return this;
+    }
+
+    void __release() {
+        if (retainCount != -1) {
+            retainCount--;
+            if (retainCount == 0) {
+                delete this;
+            }
+        }
+    }
+
+};
+
+
 typedef void   JAVA_VOID;
-typedef int    JAVA_BOOL;
+typedef int    JAVA_BOOLEAN;
 typedef int    JAVA_CHAR;
 typedef int    JAVA_BYTE;
 typedef int    JAVA_SHORT;
@@ -43,11 +76,11 @@ typedef int               JAVA_ARRAY_INT;
 typedef long              JAVA_ARRAY_LONG;
 typedef float             JAVA_ARRAY_FLOAT;
 typedef double            JAVA_ARRAY_DOUBLE;
-typedef java_lang_Object* JAVA_ARRAY_OBJECT;
+typedef XMLVMRootObject*  JAVA_ARRAY_OBJECT;
 
 
 typedef union {
-    java_lang_Object*  o;
+    XMLVMRootObject*  o;
     int     i;
     float   f;
     double  d;
@@ -67,9 +100,10 @@ typedef union {
 } XMLVMElemPtr;
 
 
-extern java_lang_Object* JAVA_NULL;
+extern XMLVMRootObject* JAVA_NULL;
 
-class XMLVMArray : public java_lang_Object
+
+class XMLVMArray : public XMLVMRootObject
 {
 public:
     XMLVMElemPtr array;
@@ -77,16 +111,17 @@ public:
     int          length;
     bool         ownsData;
 
-virtual ~XMLVMArray();
-static XMLVMArray* createSingleDimension(int type, int size);
-static XMLVMArray* createSingleDimension(int type, int size, void* data);
-static XMLVMArray* createMultiDimensions(int type, XMLVMElem* dimensions, int count);
-static void fillArray(XMLVMArray* array, void* data);
-static int sizeOfBaseTypeInBytes(int type);
-java_lang_Object* objectAtIndex(int idx);
-void replaceObjectAtIndex(int idx, java_lang_Object* obj);
-int count();
-XMLVMArray* clone__();
+    virtual ~XMLVMArray();
+    static XMLVMArray* createSingleDimension(int type, int size);
+    static XMLVMArray* createSingleDimension(int type, int size, void* data);
+    static XMLVMArray* createMultiDimensions(int type, XMLVMElem* dimensions, int count);
+    static XMLVMArray* createFromString(const char* str);
+    static void fillArray(XMLVMArray* array, void* data);
+    static int sizeOfBaseTypeInBytes(int type);
+    XMLVMRootObject* objectAtIndex(int idx);
+    void replaceObjectAtIndex(int idx, XMLVMRootObject* obj);
+    int count();
+    XMLVMArray* clone__();
 };
 
 
