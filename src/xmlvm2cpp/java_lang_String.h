@@ -24,7 +24,7 @@
 
 
 
-class java_lang_String : public java_lang_Object {
+class java_lang_String : virtual public java_lang_Object {
 public:
   const char* str;
 

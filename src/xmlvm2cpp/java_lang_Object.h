@@ -20,7 +20,7 @@
 
 #import "xmlvm.h"
 
-class java_lang_Object : public XMLVMRootObject {
+class java_lang_Object : virtual public XMLVMRootObject {
 public:
     void __init_java_lang_Object__()
     {

@@ -88,6 +88,7 @@ int main(int argc, char* argv[])
       <xsl:text> public </xsl:text>
       <xsl:value-of select="if (@extends='') then 'XMLVMRootObject' else vm:fixname(@extends)"/>
     </xsl:if>
+
     <xsl:if test="@interfaces">
       <!-- Only use virtual inheritance if we inherit from more than one C++ class. -->
       <!-- The number of C++ classes is the sum of the base class plus all interfaces. -->
@@ -683,7 +684,58 @@ static void __init_class();
   <xsl:value-of  select="replace(replace(replace($a,'\$', '_'),'\.','_'), '\[\]', '_ARRAYTYPE')"/>
 </xsl:function>
   
-  
+
+<xsl:function name="vm:cast">
+  <xsl:param name="type"/>
+  <xsl:choose>
+    <xsl:when test="vm:isObjectRef($type)">
+      <xsl:text>dynamic_cast&lt;</xsl:text>
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="$type"/>
+      </xsl:call-template>
+      <xsl:text>&gt;</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>(</xsl:text>
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="$type"/>
+      </xsl:call-template>
+      <xsl:text>)</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
+
+
+<xsl:function name="vm:cast-register">
+  <xsl:param name="type"/>
+  <xsl:param name="reg"/>
+  <xsl:choose>
+    <xsl:when test="vm:isObjectRef($type)">
+      <xsl:text>dynamic_cast&lt;</xsl:text>
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="$type"/>
+      </xsl:call-template>
+      <xsl:text>&gt;(_r</xsl:text>
+      <xsl:value-of select="$reg"/>
+      <xsl:text>.o)</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>((</xsl:text>
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="$type"/>
+      </xsl:call-template>
+      <xsl:text>) _r</xsl:text>
+      <xsl:value-of select="$reg"/>
+      <xsl:text>.</xsl:text>
+      <xsl:call-template name="emitTypedAccess">
+        <xsl:with-param name="type" select="$type"/>
+      </xsl:call-template>
+      <xsl:text>)</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
+
+
 <xsl:template match="vm:annotations">
   <!-- Ignore annotations -->
 </xsl:template>
@@ -795,17 +847,14 @@ static void __init_class();
       <xsl:text>, </xsl:text>
     </xsl:if>
     <xsl:if test="vm:isObjectRef(@type)">
-      <xsl:text>(</xsl:text>
-      <xsl:call-template name="emitType">
-        <xsl:with-param name="type" select="@type"/>
-      </xsl:call-template>
-      <xsl:text>) </xsl:text>
+      <xsl:value-of select="vm:cast(@type)"/>
     </xsl:if>
-    <xsl:text>_r</xsl:text>
+    <xsl:text>(_r</xsl:text>
     <xsl:value-of select="@register"/>
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@type"/>
     </xsl:call-template>
+    <xsl:text>)</xsl:text>
   </xsl:for-each>
   <xsl:text>);
 </xsl:text>
@@ -834,13 +883,9 @@ static void __init_class();
       </xsl:otherwise>
     </xsl:choose>
   </xsl:if>
-  <xsl:text>((</xsl:text>
-  <xsl:call-template name="emitType">
-    <xsl:with-param name="type" select="@class-type"/>
-  </xsl:call-template>
-  <xsl:text>) _r</xsl:text>
-  <xsl:value-of select="@register"/>
-  <xsl:text>.o)-&gt;</xsl:text>
+  <xsl:text>(</xsl:text>
+  <xsl:value-of select="vm:cast-register(@class-type, @register)"/>
+  <xsl:text>)-&gt;</xsl:text>
   <xsl:call-template name="emitMethodName">
     <xsl:with-param name="name" select="@method"/>
     <xsl:with-param name="class-type" select="@class-type"/>
@@ -852,17 +897,14 @@ static void __init_class();
       <xsl:text>, </xsl:text>
     </xsl:if>
     <xsl:if test="vm:isObjectRef(@type)">
-      <xsl:text>(</xsl:text>
-      <xsl:call-template name="emitType">
-        <xsl:with-param name="type" select="@type"/>
-      </xsl:call-template>
-      <xsl:text>) </xsl:text>
+      <xsl:value-of select="vm:cast(@type)"/>
     </xsl:if>
-    <xsl:text>_r</xsl:text>
+    <xsl:text>(_r</xsl:text>
     <xsl:value-of select="@register"/>
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@type"/>
     </xsl:call-template>
+    <xsl:text>)</xsl:text>
   </xsl:for-each>
   <xsl:text>);
 </xsl:text>
@@ -891,13 +933,9 @@ static void __init_class();
       </xsl:otherwise>
     </xsl:choose>
   </xsl:if>
-  <xsl:text>((</xsl:text>
-  <xsl:call-template name="emitType">
-    <xsl:with-param name="type" select="@class-type"/>
-  </xsl:call-template>
-  <xsl:text>) _r</xsl:text>
-  <xsl:value-of select="@register"/>
-  <xsl:text>.o)-&gt;</xsl:text>
+  <xsl:text>(</xsl:text>
+  <xsl:value-of select="vm:cast-register(@class-type, @register)"/>
+  <xsl:text>)-&gt;</xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text>::</xsl:text>
   <xsl:call-template name="emitMethodName">
@@ -911,17 +949,14 @@ static void __init_class();
       <xsl:text>, </xsl:text>
     </xsl:if>
     <xsl:if test="vm:isObjectRef(@type)">
-      <xsl:text>(</xsl:text>
-      <xsl:call-template name="emitType">
-        <xsl:with-param name="type" select="@type"/>
-      </xsl:call-template>
-      <xsl:text>) </xsl:text>
+      <xsl:value-of select="vm:cast(@type)"/>
     </xsl:if>
-    <xsl:text>_r</xsl:text>
+    <xsl:text>(_r</xsl:text>
     <xsl:value-of select="@register"/>
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@type"/>
     </xsl:call-template>
+    <xsl:text>)</xsl:text>
   </xsl:for-each>
   <xsl:text>);
 </xsl:text>
@@ -1413,13 +1448,9 @@ static void __init_class();
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:value-of select="$m"/>
-  <xsl:text> = ((</xsl:text>
-  <xsl:call-template name="emitType">
-    <xsl:with-param name="type" select="@class-type"/>
-  </xsl:call-template>
-  <xsl:text>) _r</xsl:text>
-  <xsl:value-of select="@vy"/>
-  <xsl:text>.o)-></xsl:text>
+  <xsl:text> = </xsl:text>
+  <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
+  <xsl:text>-></xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
   <xsl:text>_</xsl:text>
   <xsl:value-of select="vm:fixname(@member-type)"/>
@@ -1437,13 +1468,9 @@ static void __init_class();
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx" />
   <xsl:value-of select="$m" />
-  <xsl:text> = ((</xsl:text>
-  <xsl:call-template name="emitType">
-    <xsl:with-param name="type" select="@class-type" />
-  </xsl:call-template>
-  <xsl:text>) _r</xsl:text>
-  <xsl:value-of select="@vy" />
-  <xsl:text>.o)-></xsl:text>
+  <xsl:text> = </xsl:text>
+  <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
+  <xsl:text>-></xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)" />
   <xsl:text>_</xsl:text>
   <xsl:value-of select="vm:fixname(@member-type)" />
@@ -1452,29 +1479,25 @@ static void __init_class();
 </xsl:template>
 
 
-  <xsl:template match="dex:iput|dex:iput-wide|dex:iput-boolean|dex:iput-byte">
-    <xsl:variable name="m">
-      <xsl:call-template name="emitTypedAccess">
-        <xsl:with-param name="type" select="@member-type"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:text>    ((</xsl:text>
-    <xsl:call-template name="emitType">
-      <xsl:with-param name="type" select="@class-type"/>
+<xsl:template match="dex:iput|dex:iput-wide|dex:iput-boolean|dex:iput-byte">
+  <xsl:variable name="m">
+    <xsl:call-template name="emitTypedAccess">
+      <xsl:with-param name="type" select="@member-type"/>
     </xsl:call-template>
-    <xsl:text>) _r</xsl:text>
-    <xsl:value-of select="@vy"/>
-    <xsl:text>.o)-></xsl:text>
-    <xsl:value-of select="vm:fixname(@member-name)"/>
-    <xsl:text>_</xsl:text>
-    <xsl:value-of select="vm:fixname(@member-type)"/>
-    <xsl:text> = </xsl:text>
-    <xsl:text> _r</xsl:text>
-    <xsl:value-of select="@vx"/>
-    <xsl:value-of select="$m"/>
-    <xsl:text>;
+  </xsl:variable>
+  <xsl:text>    </xsl:text>
+  <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
+  <xsl:text>-></xsl:text>
+  <xsl:value-of select="vm:fixname(@member-name)"/>
+  <xsl:text>_</xsl:text>
+  <xsl:value-of select="vm:fixname(@member-type)"/>
+  <xsl:text> = </xsl:text>
+  <xsl:text> _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:value-of select="$m"/>
+  <xsl:text>;
 </xsl:text>
-  </xsl:template>
+</xsl:template>
 
 
 <xsl:template match="vm:tmp-equals-r">
@@ -1512,13 +1535,9 @@ static void __init_class();
         <xsl:with-param name="type" select="@member-type" />
       </xsl:call-template>
     </xsl:variable>
-  <xsl:text>    ((</xsl:text>
-  <xsl:call-template name="emitType">
-    <xsl:with-param name="type" select="@class-type" />
-  </xsl:call-template>
-  <xsl:text>) _r</xsl:text>
-  <xsl:value-of select="@vy" />
-  <xsl:text>.o)-></xsl:text>
+  <xsl:text>   </xsl:text>
+  <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
+  <xsl:text>-></xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)" />
   <xsl:text>_</xsl:text>
   <xsl:value-of select="vm:fixname(@member-type)" />
@@ -1527,32 +1546,14 @@ static void __init_class();
 </xsl:template>
 
 <xsl:template match="dex:iput-object">
-  <xsl:variable name="m">
-    <xsl:call-template name="emitTypedAccess">
-      <xsl:with-param name="type" select="@member-type" />
-    </xsl:call-template>
-  </xsl:variable>
-  <xsl:text>    ((</xsl:text>
-  <xsl:call-template name="emitType">
-    <xsl:with-param name="type" select="@class-type" />
-  </xsl:call-template>
-  <xsl:text>) _r</xsl:text>
-  <xsl:value-of select="@vy" />
-  <xsl:text>.o)-></xsl:text>
+  <xsl:text>    </xsl:text>
+  <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
+  <xsl:text>-></xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)" />
   <xsl:text>_</xsl:text>
   <xsl:value-of select="vm:fixname(@member-type)" />
   <xsl:text> = </xsl:text>
-  
-  <xsl:text>(</xsl:text>
-  <xsl:call-template name="emitType">
-    <xsl:with-param name="type" select="@member-type"/>
-  </xsl:call-template>
-  <xsl:text>) </xsl:text>
-  
-  <xsl:text>_r</xsl:text>
-  <xsl:value-of select="@vx" />
-  <xsl:value-of select="$m" />
+  <xsl:value-of select="vm:cast-register(@member-type, @vx)"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -1587,15 +1588,8 @@ static void __init_class();
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text>::_PUT_</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
-  <xsl:text>((</xsl:text>
-  <xsl:call-template name="emitType">
-    <xsl:with-param name="type" select="@member-type"/>
-  </xsl:call-template>
-  <xsl:text>) _r </xsl:text>
-  <xsl:value-of select="@vx"/>
-  <xsl:call-template name="emitTypedAccess">
-    <xsl:with-param name="type" select="@member-type"/>
-  </xsl:call-template>
+  <xsl:text>(</xsl:text>
+  <xsl:value-of select="vm:cast-register(@member-type, @vx)"/>
   <xsl:text>);
 </xsl:text>
 </xsl:template>
@@ -1627,9 +1621,9 @@ static void __init_class();
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.o = new java_lang_String();
-    ((java_lang_String*) _r</xsl:text>
-  <xsl:value-of select="@vx"/>
-  <xsl:text>.o)-&gt;__init_java_lang_String___char_ARRAYTYPE(XMLVMArray::createFromString("</xsl:text>
+    </xsl:text>
+  <xsl:value-of select="vm:cast-register('java.lang.String', @vx)"/>
+  <xsl:text>->__init_java_lang_String___char_ARRAYTYPE(XMLVMArray::createFromString("</xsl:text>
   <xsl:value-of select="@value"/>
   <xs:text>"));
 </xs:text>
@@ -1641,7 +1635,7 @@ static void __init_class();
   <xsl:value-of select="@vx"/>
   <xsl:text>.o = </xsl:text>
   <xsl:value-of select="vm:fixname(@value)"/>
-  <xs:text>-&gt;getClass__();
+  <xs:text>->getClass__();
 </xs:text>
 </xsl:template>
 
@@ -2163,7 +2157,7 @@ static void __init_class();
 <xsl:template match="dex:filled-new-array|dex:filled-new-array-range">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
-  <xsl:text>.o = (id) ((XMLVMElem[]) {</xsl:text>
+  <xsl:text>.o = ((XMLVMElem[]) {</xsl:text>
   <xsl:for-each select="dex:value">
     <xsl:text>_r</xsl:text>
     <xsl:value-of select="@register"/>
@@ -2183,9 +2177,9 @@ static void __init_class();
 
 
 <xsl:template match="dex:fill-array-data">
-  <xsl:text>    XMLVMArray::fillArray((XMLVMArray*) _r</xsl:text>
-  <xsl:value-of select="@vx"/>
-  <xsl:text>.o, (</xsl:text>
+  <xsl:text>    XMLVMArray::fillArray(</xsl:text>
+  <xsl:value-of select="vm:cast-register('XMLVMArray', @vx)"/>
+  <xsl:text>, (</xsl:text>
   <xsl:value-of select="@vx-type"/>
   <xsl:text>){</xsl:text>
   <xsl:for-each select="dex:constant">
@@ -2213,9 +2207,9 @@ static void __init_class();
 <xsl:template match="dex:array-length">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.i = ((XMLVMArray*) _r</xsl:text>
-  <xsl:value-of select="@vy"/>
-  <xsl:text>.o)->count();
+  <xsl:text>.i = </xsl:text>
+  <xsl:value-of select="vm:cast-register('XMLVMArray', @vy)"/>
+  <xsl:text>->count();
 </xsl:text>
 </xsl:template>
 
@@ -2226,9 +2220,9 @@ static void __init_class();
   <xsl:call-template name="emitTypedAccess">
     <xsl:with-param name="type" select="@vx-type"/>
   </xsl:call-template>
-  <xsl:text> = ((XMLVMArray*) _r</xsl:text>
-  <xsl:value-of select="@vy"/>
-  <xsl:text>.o)->array</xsl:text>
+  <xsl:text> = </xsl:text>
+  <xsl:value-of select="vm:cast-register('XMLVMArray', @vy)"/>
+  <xsl:text>->array</xsl:text>
   <xsl:call-template name="emitTypedArrayAccess">
     <xsl:with-param name="type" select="@vy-type"/>
   </xsl:call-template>
@@ -2242,9 +2236,9 @@ static void __init_class();
 <xsl:template match="dex:aget-object">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx" />
-  <xsl:text>.o = ((XMLVMArray*) _r</xsl:text>
-  <xsl:value-of select="@vy" />
-  <xsl:text>.o)->array.o[_r</xsl:text>
+  <xsl:text>.o = </xsl:text>
+  <xsl:value-of select="vm:cast-register('XMLVMArray', @vy)"/>
+  <xsl:text>->array.o[_r</xsl:text>
   <xsl:value-of select="@vz" />
   <xsl:text>.i];
 </xsl:text>
@@ -2252,9 +2246,9 @@ static void __init_class();
 
 
 <xsl:template match="dex:aput|dex:aput-wide|dex:aput-boolean|dex:aput-char|dex:aput-byte|dex:aput-short">
-  <xsl:text>    ((XMLVMArray*) _r</xsl:text>
-  <xsl:value-of select="@vy"/>
-  <xsl:text>.o)->array</xsl:text>
+  <xsl:text>    </xsl:text>
+  <xsl:value-of select="vm:cast-register('XMLVMArray', @vy)"/>
+  <xsl:text>->array</xsl:text>
   <xsl:call-template name="emitTypedArrayAccess">
     <xsl:with-param name="type" select="@vy-type"/>
   </xsl:call-template>
@@ -2270,18 +2264,18 @@ static void __init_class();
 </xsl:template>
 
 <xsl:template match="vm:a-release">
-    <xsl:text>((XMLVMArray*) _r</xsl:text>
-    <xsl:value-of select="@vy" />
-    <xsl:text>.o)->array.o[_r</xsl:text>
-    <xsl:value-of select="@vz" />
-    <xsl:text>.i]-&gt;__release();
+  <xsl:text>    </xsl:text>
+  <xsl:value-of select="vm:cast-register('XMLVMArray', @vy)"/>
+  <xsl:text>->array.o[_r</xsl:text>
+  <xsl:value-of select="@vz" />
+  <xsl:text>.i]->__release();
 </xsl:text>
 </xsl:template>
   
 <xsl:template match="dex:aput-object">
-  <xsl:text>((XMLVMArray*) _r</xsl:text>
-  <xsl:value-of select="@vy" />
-  <xsl:text>.o)->array.o[_r</xsl:text>
+  <xsl:text>    </xsl:text>
+  <xsl:value-of select="vm:cast-register('XMLVMArray', @vy)"/>
+  <xsl:text>->array.o[_r</xsl:text>
   <xsl:value-of select="@vz" />
   <xsl:text>.i] = _r</xsl:text>
   <xsl:value-of select="@vx" />

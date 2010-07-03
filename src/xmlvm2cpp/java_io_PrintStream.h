@@ -23,7 +23,7 @@
 #import "java_lang_String.h"
 #import <iostream>
 
-class java_io_PrintStream : public java_lang_Object {
+class java_io_PrintStream : virtual public java_lang_Object {
 public:
 void println___java_lang_String(java_lang_String* s)
 {
