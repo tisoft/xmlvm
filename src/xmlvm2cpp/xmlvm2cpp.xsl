@@ -726,7 +726,6 @@ static void __init_class();
       </xsl:call-template>
       <xsl:text>) _r</xsl:text>
       <xsl:value-of select="$reg"/>
-      <xsl:text>.</xsl:text>
       <xsl:call-template name="emitTypedAccess">
         <xsl:with-param name="type" select="$type"/>
       </xsl:call-template>
