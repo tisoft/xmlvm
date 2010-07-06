@@ -1172,6 +1172,18 @@ static void __init_class();
 </xsl:template>
 
 
+<xsl:template match="dex:add-long|dex:add-long-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l + _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.l;
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="dex:sub-long|dex:sub-long-2addr">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
@@ -1316,6 +1328,30 @@ static void __init_class();
 </xsl:template>
 
 
+<xsl:template match="dex:shr-int|dex:shr-int-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i &gt;&gt; (0x1f &amp; _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i);
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:shr-long|dex:shr-long-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l &gt;&gt; (0x3f &amp; _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.l);
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="dex:ushr-int-lit8|dex:ushr-int-lit16">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
@@ -1324,6 +1360,18 @@ static void __init_class();
   <xsl:text>.i &gt;&gt; (0x1f &amp; </xsl:text>
   <xsl:value-of select="@value"/>
   <xsl:text>);
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:ushr-int|dex:ushr-int-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = ((unsigned int) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i) &gt;&gt; (0x1f &amp; ((unsigned int) _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i));
 </xsl:text>
 </xsl:template>
 
@@ -1372,6 +1420,18 @@ static void __init_class();
   <xsl:text>.i ^ _r</xsl:text>
   <xsl:value-of select="@vz"/>
   <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+  
+<xsl:template match="dex:xor-long|dex:xor-long-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l ^ _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.l;
 </xsl:text>
 </xsl:template>
 
@@ -1438,7 +1498,7 @@ static void __init_class();
 </xsl:template>
 
 
-<xsl:template match="dex:iget|dex:iget-wide|dex:iget-boolean|dex:iget-byte">
+<xsl:template match="dex:iget|dex:iget-wide|dex:iget-boolean|dex:iget-byte|dex:iget-char|dex:iget-short">
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@member-type"/>
@@ -1478,7 +1538,7 @@ static void __init_class();
 </xsl:template>
 
 
-<xsl:template match="dex:iput|dex:iput-wide|dex:iput-boolean|dex:iput-byte">
+<xsl:template match="dex:iput|dex:iput-wide|dex:iput-boolean|dex:iput-byte|dex:iput-char|dex:iput-short">
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@member-type"/>
@@ -1559,7 +1619,7 @@ static void __init_class();
 
 
 
-<xsl:template match="dex:sget|dex:sget-wide|dex:sget-boolean|dex:sget-object">
+<xsl:template match="dex:sget|dex:sget-wide|dex:sget-boolean|dex:sget-char|dex:sget-object">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:call-template name="emitTypedAccess">
@@ -1582,7 +1642,7 @@ static void __init_class();
 </xsl:text>
 </xsl:template>
 
-<xsl:template match="dex:sput|dex:sput-wide|dex:sput-boolean|dex:sput-object">
+<xsl:template match="dex:sput|dex:sput-wide|dex:sput-boolean|dex:sput-char|dex:sput-object">
   <xsl:text>    </xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text>::_PUT_</xsl:text>
@@ -1642,7 +1702,17 @@ static void __init_class();
 <xsl:template match="dex:float-to-int">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.i = (int) _r</xsl:text>
+  <xsl:text>.i = (JAVA_INT) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:float-to-long">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = (JAVA_LONG) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.f;
 </xsl:text>
@@ -1652,7 +1722,7 @@ static void __init_class();
 <xsl:template match="dex:float-to-double">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.d = (double) _r</xsl:text>
+  <xsl:text>.d = (JAVA_DOUBLE) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.f;
 </xsl:text>
@@ -1682,7 +1752,7 @@ static void __init_class();
 <xsl:template match="dex:int-to-float">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.f = (float) _r</xsl:text>
+  <xsl:text>.f = (JAVA_FLOAT) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.i;
 </xsl:text>
@@ -1692,7 +1762,7 @@ static void __init_class();
 <xsl:template match="dex:int-to-long">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.l = (long) _r</xsl:text>
+  <xsl:text>.l = (JAVA_LONG) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.i;
 </xsl:text>
@@ -1702,7 +1772,7 @@ static void __init_class();
 <xsl:template match="dex:int-to-double">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.d = (double) _r</xsl:text>
+  <xsl:text>.d = (JAVA_DOUBLE) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.i;
 </xsl:text>
@@ -1722,7 +1792,7 @@ static void __init_class();
 <xsl:template match="dex:long-to-int">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.i = (int) _r</xsl:text>
+  <xsl:text>.i = (JAVA_INT) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.l;
 </xsl:text>
@@ -1732,9 +1802,29 @@ static void __init_class();
 <xsl:template match="dex:long-to-float">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.f = (float) _r</xsl:text>
+  <xsl:text>.f = (JAVA_FLOAT) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.l;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:long-to-double">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.d = (JAVA_DOUBLE) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:double-to-long">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = (JAVA_LONG) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.d;
 </xsl:text>
 </xsl:template>
 
@@ -1742,7 +1832,7 @@ static void __init_class();
 <xsl:template match="dex:double-to-float">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.f = (float) _r</xsl:text>
+  <xsl:text>.f = (JAVA_FLOAT) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.d;
 </xsl:text>
@@ -1752,7 +1842,7 @@ static void __init_class();
 <xsl:template match="dex:double-to-int">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.i = (int) _r</xsl:text>
+  <xsl:text>.i = (JAVA_INT) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.d;
 </xsl:text>
@@ -1845,6 +1935,16 @@ static void __init_class();
   <xsl:text>.i = -_r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:neg-long">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = -_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l;
 </xsl:text>
 </xsl:template>
 
