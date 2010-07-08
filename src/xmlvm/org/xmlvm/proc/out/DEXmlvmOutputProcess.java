@@ -120,11 +120,13 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         public final String typeName;
         public final String superTypeName;
 
+
         public TypePlusSuperType(String typeName, String superTypeName) {
             this.typeName = typeName;
             this.superTypeName = superTypeName;
         }
     }
+
 
     /**
      * A little helper class that contains package- and class name.
@@ -132,6 +134,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private static class PackagePlusClassName {
         public String packageName = "";
         public String className   = "";
+
 
         public PackagePlusClassName(String className) {
             this.className = className;
@@ -152,6 +155,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         }
     }
 
+
     /**
      * Little helper class for keeping a target address and the info about
      * whether this target should split a try-catch block.
@@ -159,6 +163,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private static class Target {
         int     address;
         boolean requiresSplit;
+
 
         public Target(int address, boolean requiresSplit) {
             this.address = address;
@@ -181,11 +186,12 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         }
     }
 
+
     private static final boolean   LOTS_OF_DEBUG      = false;
     private static final boolean   REF_LOGGING        = false;
 
     private static final String    DEXMLVM_ENDING     = ".dexmlvm";
-    private static final Namespace NS_XMLVM           = XmlvmResource.xmlvmNamespace;
+    private static final Namespace NS_XMLVM           = XmlvmResource.nsXMLVM;
     private static final Namespace NS_DEX             = Namespace.getNamespace("dex",
                                                               "http://xmlvm.org/dex");
 
@@ -193,6 +199,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private List<XmlvmResource>    generatedResources = new ArrayList<XmlvmResource>();
 
     private static Element         lastDexInstruction = null;
+
 
     public DEXmlvmOutputProcess(Arguments arguments) {
         super(arguments);
@@ -233,8 +240,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private OutputFile generateDEXmlvmFile(OutputFile classFile) {
         Log.debug("DExing:" + classFile.getFileName());
 
-        DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(), classFile
-                .getFileName(), false);
+        DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(),
+                classFile.getFileName(), false);
 
         Document document = createDocument();
 
@@ -246,7 +253,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         String className = type.typeName.replace('.', '_');
 
         // We now need to mark up the code with retains/releases.
-        ReferenceCounting refC = new ReferenceCounting();
+        ReferenceCounting refCounting = new ReferenceCounting();
 
         String jClassName = document.getRootElement().getChild("class", InstructionProcessor.vm)
                 .getAttributeValue("name");
@@ -254,15 +261,16 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             Log.debug("ref", "Processing class: " + jClassName);
         }
 
-        List<Element> methods = (List<Element>) document.getRootElement().getChild("class",
-                InstructionProcessor.vm).getChildren("method", InstructionProcessor.vm);
+        List<Element> methods = (List<Element>) document.getRootElement()
+                .getChild("class", InstructionProcessor.vm)
+                .getChildren("method", InstructionProcessor.vm);
         for (Element e : methods) {
             if (REF_LOGGING) {
                 Log.debug("ref", "Processing method: " + e.getAttributeValue("name"));
             }
 
             try {
-                refC.process(e);
+                refCounting.process(e);
             } catch (ReferenceCountingException ex) {
                 Log.error("ref", "Processing method: " + e.getAttributeValue("name"));
                 Log.error("ref", "Failed while processing: " + ex.getMessage() + " in "
@@ -378,7 +386,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         classElement.setAttribute("name", parsedClassName.className);
         classElement.setAttribute("package", parsedClassName.packageName);
         String superClassName = "";
-        
+
         // This can happen for java.lang.Object.
         if (cf.getSuperclass() != null) {
             superClassName = parseClassName(cf.getSuperclass().getClassType().getClassName())
@@ -544,11 +552,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             code.assignIndices(callback);
 
             DalvInsnList instructions = code.getInsns();
-            codeElement.setAttribute("register-size", String.valueOf(instructions
-                    .getRegistersSize()));
-            processLocals(instructions.getRegistersSize(), isStatic, parseClassName(
-                    cf.getThisClass().getClassType().getClassName()).toString(), meth
-                    .getPrototype().getParameterTypes(), codeElement, referencedTypes);
+            codeElement.setAttribute("register-size",
+                    String.valueOf(instructions.getRegistersSize()));
+            processLocals(instructions.getRegistersSize(), isStatic,
+                    parseClassName(cf.getThisClass().getClassType().getClassName()).toString(),
+                    meth.getPrototype().getParameterTypes(), codeElement, referencedTypes);
             Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
             Map<Integer, ArrayData> arrayData = extractArrayData(instructions);
             CatchTable catches = code.getCatches();
@@ -574,8 +582,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     Element catchElement = new Element("catch", NS_DEX);
                     catchElement.setAttribute("exception-type", handlers.get(j).getExceptionType()
                             .toHuman());
-                    catchElement.setAttribute("target", String
-                            .valueOf(handlers.get(j).getHandler()));
+                    catchElement.setAttribute("target",
+                            String.valueOf(handlers.get(j).getHandler()));
                     tryCatchElement.addContent(catchElement);
                 }
                 tryCatchElements.put(catches.get(i).getStart(), tryCatchElement);
@@ -760,9 +768,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 SwitchData switchData = (SwitchData) instructions.get(i);
                 CodeAddress[] caseTargets = switchData.getTargets();
                 for (CodeAddress caseTarget : caseTargets) {
-                    targets
-                            .put(caseTarget.getAddress(),
-                                    new Target(caseTarget.getAddress(), false));
+                    targets.put(caseTarget.getAddress(), new Target(caseTarget.getAddress(), false));
                 }
             }
         }
@@ -1035,8 +1041,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             System.exit(-1);
         }
         for (int i = 0; i < registers.size(); ++i) {
-            element.setAttribute(REGISTER_NAMES[i], String.valueOf(registerNumber(registers.get(i)
-                    .regString())));
+            element.setAttribute(REGISTER_NAMES[i],
+                    String.valueOf(registerNumber(registers.get(i).regString())));
             element.setAttribute(REGISTER_NAMES[i] + "-type", registers.get(i).getType().toHuman());
         }
     }
@@ -1101,8 +1107,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         } else {
             // For non-static invoke instruction, the first register is the
             // instance the method is called on.
-            result.setAttribute("register", String.valueOf(registerNumber(registerList.get(0)
-                    .regString())));
+            result.setAttribute("register",
+                    String.valueOf(registerNumber(registerList.get(0).regString())));
         }
 
         // Adds the rest of the registers, if any.
@@ -1133,8 +1139,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         for (int i = 0; i < parameters.size(); ++i) {
             Element parameterElement = new Element("parameter", NS_DEX);
             parameterElement.setAttribute("type", parameters.get(i).toHuman());
-            parameterElement.setAttribute("register", String.valueOf(registerNumber(registers
-                    .get(i).regString())));
+            parameterElement.setAttribute("register",
+                    String.valueOf(registerNumber(registers.get(i).regString())));
             result.addContent(parameterElement);
         }
         Element returnElement = new Element("return", NS_DEX);

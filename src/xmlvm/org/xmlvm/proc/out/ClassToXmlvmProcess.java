@@ -172,9 +172,8 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
          * heavily.
          */
         class BcelVisitor extends EmptyVisitor {
-            private final Namespace                       nsXMLVM = XmlvmResource.xmlvmNamespace;
-            private final Namespace                       nsJVM   = Namespace.getNamespace("jvm",
-                                                                          "http://xmlvm.org/jvm");
+            private final Namespace                       nsXMLVM = XmlvmResource.nsXMLVM;
+            private final Namespace                       nsJVM   = XmlvmResource.nsJVM;
 
             private Element                               xmlvmRoot;
             private Element                               xmlClass;

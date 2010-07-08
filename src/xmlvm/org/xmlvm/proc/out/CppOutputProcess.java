@@ -21,9 +21,12 @@
 package org.xmlvm.proc.out;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.jdom.Attribute;
 import org.jdom.Document;
@@ -31,13 +34,19 @@ import org.jdom.Element;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
+import org.xmlvm.proc.XmlvmResource.XmlvmMethod;
 import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XsltRunner;
 
 public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
-    private static final String CPP_EXTENSION = ".cpp";
-    private static final String H_EXTENSION   = ".h";
-    private List<OutputFile>    result        = new ArrayList<OutputFile>();
+    private final static String        TAG           = CppOutputProcess.class.getSimpleName();
+
+    private static final String        CPP_EXTENSION = ".cpp";
+    private static final String        H_EXTENSION   = ".h";
+    private List<OutputFile>           result        = new ArrayList<OutputFile>();
+
+    private Map<String, XmlvmResource> resourcePool  = new HashMap<String, XmlvmResource>();
+
 
     public CppOutputProcess(Arguments arguments) {
         super(arguments);
@@ -55,19 +64,66 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     @Override
     public boolean process() {
         List<XmlvmResourceProvider> preprocesses = preprocess();
+
+        // Collect all XmlvmResource instances.
         for (XmlvmResourceProvider process : preprocesses) {
             List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
             for (XmlvmResource xmlvm : xmlvmResources) {
                 if (xmlvm != null) {
-                    OutputFile[] files = genCpp(xmlvm);
-                    for (OutputFile file : files) {
-                        file.setLocation(arguments.option_out());
-                        result.add(file);
-                    }
+                    resourcePool.put(xmlvm.getFullName(), xmlvm);
                 }
             }
         }
+
+        fixInterfaces();
+
+        // Process all collected resources.
+        for (XmlvmResource xmlvm : resourcePool.values()) {
+            OutputFile[] files = genCpp(xmlvm);
+            for (OutputFile file : files) {
+                file.setLocation(arguments.option_out());
+                result.add(file);
+            }
+        }
         return true;
+    }
+
+    /**
+     * Removes methods from interfaces, if a super-interface already implements
+     * it.
+     */
+    private void fixInterfaces() {
+        for (XmlvmResource resource : resourcePool.values()) {
+            if (resource.isInterface()) {
+                fixInterface(resource);
+            }
+        }
+    }
+
+    private void fixInterface(XmlvmResource resource) {
+        System.out.println("Fixing interface: " + resource.getFullName());
+        Set<XmlvmMethod> superMethods = new HashSet<XmlvmMethod>();
+        getMethodsFromSuperInterfaces(resource, superMethods);
+        System.out.println("Methods from super interfaces: " + superMethods.size());
+        Set<XmlvmMethod> methods = resource.getMethods();
+
+        for (XmlvmMethod method : methods) {
+            if (superMethods.contains(method)) {
+                System.out.println("Found a method I need to remove: " + method);
+                resource.removeMethod(method);
+            }
+        }
+    }
+
+    private void getMethodsFromSuperInterfaces(XmlvmResource resource, Set<XmlvmMethod> methods) {
+        if (resource.getInterfaces() != null && !resource.getInterfaces().isEmpty()) {
+            String[] superInterfaces = resource.getInterfaces().split(",");
+            for (String superInterface : superInterfaces) {
+                XmlvmResource superResource = resourcePool.get(superInterface);
+                methods.addAll(superResource.getMethods());
+                getMethodsFromSuperInterfaces(superResource, methods);
+            }
+        }
     }
 
     /**

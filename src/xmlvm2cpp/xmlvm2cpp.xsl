@@ -92,8 +92,9 @@ int main(int argc, char* argv[])
     <xsl:if test="@interfaces">
       <!-- Only use virtual inheritance if we inherit from more than one C++ class. -->
       <!-- The number of C++ classes is the sum of the base class plus all interfaces. -->
-      <xsl:variable name="needsVirtualInheritance" select="(@isInterface = 'true' and contains(@interfaces, ',')) or
-                                                           not(@isInterface = 'true')"/>
+      <!--   <xsl:variable name="needsVirtualInheritance" select="(@isInterface = 'true' and contains(@interfaces, ',')) or
+                                                           not(@isInterface = 'true')"/> -->
+      <xsl:variable name="needsVirtualInheritance"  select="'true'"/>
       <xsl:value-of select="if (@isInterface = 'true') then ':' else ','"/>
       <xsl:choose>
         <xsl:when test="$needsVirtualInheritance">
