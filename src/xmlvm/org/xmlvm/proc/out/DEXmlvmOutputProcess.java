@@ -919,7 +919,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         } else if (instruction instanceof CstInsn) {
             CstInsn cstInsn = (CstInsn) instruction;
             if (isInvokeInstruction(cstInsn)) {
-                dexInstruction = processInvokeInstruction(cstInsn);
+                dexInstruction = processInvokeInstruction(cstInsn, referencedTypes);
             } else {
                 dexInstruction = new Element(
                         sanitizeInstructionName(cstInsn.getOpcode().getName()), NS_DEX);
@@ -1093,10 +1093,12 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     /**
      * Returns an element representing the given invoke instruction.
      */
-    private static Element processInvokeInstruction(CstInsn cstInsn) {
+    private static Element processInvokeInstruction(CstInsn cstInsn, Set<String> referencedTypes) {
         Element result = new Element(sanitizeInstructionName(cstInsn.getOpcode().getName()), NS_DEX);
         CstMethodRef methodRef = (CstMethodRef) cstInsn.getConstant();
-        result.setAttribute("class-type", methodRef.getDefiningClass().toHuman());
+        String classType = methodRef.getDefiningClass().toHuman();
+        referencedTypes.add(classType);
+        result.setAttribute("class-type", classType);
         result.setAttribute("method", methodRef.getNat().getName().toHuman());
         RegisterSpecList registerList = cstInsn.getRegisters();
         List<RegisterSpec> registers = new ArrayList<RegisterSpec>();
