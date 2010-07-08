@@ -83,7 +83,7 @@ int main(int argc, char* argv[])
     <xsl:if test="not(@isInterface = 'true')">
       <xsl:text> :</xsl:text>
       <xsl:if test="@interfaces">
-        <xsl:text> virtual</xsl:text>
+        <xsl:text> /*virtual*/</xsl:text>
       </xsl:if>
       <xsl:text> public </xsl:text>
       <xsl:value-of select="if (@extends='') then 'XMLVMRootObject' else vm:fixname(@extends)"/>
@@ -800,7 +800,7 @@ static void __init_class();
  	</xsl:when>
  	
  	<xsl:when test = "@vartype = 'exception'">
-        <xsl:text>    java_lang_Object* _ex = JAVA_NULL;
+        <xsl:text>    XMLVMRootObject* _ex = JAVA_NULL;
 </xsl:text>
  	</xsl:when>
   </xsl:choose>
@@ -1477,11 +1477,8 @@ static void __init_class();
 </xsl:text>
   </xsl:if>
   <xsl:variable name="return-type" select="ancestor::vm:method/vm:signature/vm:return/@type" />
-  <xsl:text>    return _r</xsl:text>
-  <xsl:value-of select="@vx" />
-  <xsl:call-template name="emitTypedAccess">
-    <xsl:with-param name="type" select="$return-type" />
-  </xsl:call-template>
+  <xsl:text>    return </xsl:text>
+  <xsl:value-of select="vm:cast-register($return-type, @vx)"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
