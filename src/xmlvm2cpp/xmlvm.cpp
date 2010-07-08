@@ -28,17 +28,19 @@ XMLVMRootObject* JAVA_NULL;
 void xmlvm_init()
 {
     JAVA_NULL = new XMLVMRootObject();  // TODO should be java_lang_null
-    JAVA_NULL->retainCount = -1;
+    //JAVA_NULL->retainCount = -1;
 }
 
 
 XMLVMArray::~XMLVMArray()
 {
+/*
     if (type == 0) {
         for (int i = 0; i < length; i++) {
             array.o[i]->__release();
         }
     }
+*/
 	if (ownsData == true) {
         free(array.data);
 	}
@@ -144,13 +146,13 @@ int XMLVMArray::sizeOfBaseTypeInBytes(int type)
 XMLVMRootObject* XMLVMArray::objectAtIndex(int idx)
 {
     XMLVMRootObject* obj = array.o[idx];
-    return obj->__retain();
+    return obj;//->__retain();
 }
 
 void XMLVMArray::replaceObjectAtIndex(int idx, XMLVMRootObject* obj)
 {
-    obj->__retain();
-    array.o[idx]->__release();
+    //obj->__retain();
+    //array.o[idx]->__release();
     array.o[idx] = obj;
 }
 
@@ -172,7 +174,7 @@ XMLVMArray* XMLVMArray::clone__()
 
     if (type == 0) {
         for (int i = 0; i < length; i++) {
-            retval->array.o[i] = array.o[i]->__retain();
+            //retval->array.o[i] = array.o[i]->__retain();
         }
     }
     else {

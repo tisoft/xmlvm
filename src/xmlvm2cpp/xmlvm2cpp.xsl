@@ -312,7 +312,7 @@ static void __init_class();
     </xsl:if>
 	<xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type) and
 	                      not(@isSynthetic = 'true' and starts-with(@name, 'this$'))]">
-	  <xsl:text>    </xsl:text>
+	  <xsl:text>    //</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>_</xsl:text>
       <xsl:value-of select="vm:fixname(@type)"/>
@@ -377,7 +377,7 @@ static void __init_class();
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>()
 {
-    </xsl:text>
+    //</xsl:text>
       <xsl:text>_STATIC_</xsl:text>
       <xsl:value-of select="$field"/>
       <xsl:text>-&gt;__release();
@@ -1009,7 +1009,7 @@ static void __init_class();
 
 
 <xsl:template match="dex:throw">
-  <xsl:text>    _ex-&gt;__release();
+  <xsl:text>    //_ex-&gt;__release();
     _ex = _r</xsl:text> <xsl:value-of select="@vx"/>.o<xsl:text>;
     _r</xsl:text><xsl:value-of select="@vx"/><xsl:text>.o = JAVA_NULL;
     throw((</xsl:text>
@@ -1463,7 +1463,7 @@ static void __init_class();
   
 <xsl:template match="dex:return-void">
   <xsl:if test="@catchesException = 'true'">
-    <xsl:text>    _ex-&gt;__release();
+    <xsl:text>    //_ex-&gt;__release();
 </xsl:text>
   </xsl:if>
   <xsl:text>    return;
@@ -1473,7 +1473,7 @@ static void __init_class();
 
 <xsl:template match="dex:return|dex:return-wide|dex:return-object">
   <xsl:if test="@catchesException = 'true'">
-    <xsl:text>    _ex-&gt;__release();
+    <xsl:text>    //_ex-&gt;__release();
 </xsl:text>
   </xsl:if>
   <xsl:variable name="return-type" select="ancestor::vm:method/vm:signature/vm:return/@type" />
@@ -1573,14 +1573,14 @@ static void __init_class();
 </xsl:template>
 
 <xsl:template match="vm:reg-release">
-  <xsl:text>    _r</xsl:text>
+  <xsl:text>    //_r</xsl:text>
   <xsl:value-of select="@reg" />
   <xsl:text>.o-&gt;__release();
 </xsl:text>
 </xsl:template>
 
 <xsl:template match="vm:reg-retain">
-  <xsl:text>    _r</xsl:text>
+  <xsl:text>    //_r</xsl:text>
   <xsl:value-of select="@reg" />
   <xsl:text>.o-&gt;__retain();
 </xsl:text>
@@ -1592,7 +1592,7 @@ static void __init_class();
         <xsl:with-param name="type" select="@member-type" />
       </xsl:call-template>
     </xsl:variable>
-  <xsl:text>   </xsl:text>
+  <xsl:text>    //</xsl:text>
   <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
   <xsl:text>-></xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)" />
@@ -1632,7 +1632,7 @@ static void __init_class();
 </xsl:template>
 
 <xsl:template match="vm:s-release">
-    <xsl:text>    </xsl:text>
+    <xsl:text>    //</xsl:text>
     <xsl:value-of select="vm:fixname(@class-type)" />
     <xsl:text>::_RELEASE_</xsl:text>
     <xsl:value-of select="vm:fixname(@member-name)" />
@@ -2361,7 +2361,7 @@ static void __init_class();
 </xsl:template>
 
 <xsl:template match="vm:a-release">
-  <xsl:text>    </xsl:text>
+  <xsl:text>    //</xsl:text>
   <xsl:value-of select="vm:cast-register('XMLVMArray', @vy)"/>
   <xsl:text>->array.o[_r</xsl:text>
   <xsl:value-of select="@vz" />

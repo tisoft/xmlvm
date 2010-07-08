@@ -31,6 +31,7 @@ class XMLVMRootObject {
 private:
     virtual void __dummy() {}
 
+/*
 public:
     int retainCount;
     
@@ -54,6 +55,7 @@ public:
             }
         }
     }
+*/
 
 };
 
