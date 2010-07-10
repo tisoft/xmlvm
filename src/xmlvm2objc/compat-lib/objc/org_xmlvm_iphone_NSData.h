@@ -31,6 +31,7 @@ typedef NSData org_xmlvm_iphone_NSData;
 + (NSData*) dataWithContentsOfFile___java_lang_String: (java_lang_String*) path;
 + (NSData*) dataWithContentsOfURL___org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSURL*) url;
 - (int) getByte___int: (int) index;
+- (XMLVMArray*) getBytes__;
 - (java_lang_String*) toString__;
 - (java_lang_String*) toString___int: (int) encoding;
 - (int) writeToFile___java_lang_String_boolean:(java_lang_String*)path :(int)atomically;

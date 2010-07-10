@@ -118,6 +118,7 @@
   		</uptodate>
 		<antcall target="cc-android-compat-lib.impl"/>
 	</target>
+	
 	<target name="cc-android-compat-lib.impl" unless="cc-android-compat-lib.notrequired">
 		<echo message="Building android compatibility lib"/>
 		<mkdir dir="${xmlvm.android-compat-lib.objc}" />

@@ -18,31 +18,21 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "java_io_BufferedReader.h"
+package org.apache.http.conn.impl;
 
-// java.io.BufferedReader
-//----------------------------------------------------------------------------
-@implementation java_io_BufferedReader
+import org.apache.http.conn.ClientConnectionManager;
 
-- (void) __init_java_io_BufferedReader___java_io_Reader: (java_io_Reader*) reader {
-	target = reader;
+import android.util.Log;
+
+/**
+ * @author arno
+ * 
+ */
+public class ClientConnectionManagerImpl implements ClientConnectionManager {
+
+    @Override
+    public void shutdown() {
+        Log.w("xmlvm", "org.apache.http.conn.ClientConnectionManager not implemented");
+    }
+
 }
-
-- (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len {
-	return [target read___char_ARRAYTYPE_int_int: buffer: pos: len];
-}
-
-- (bool) ready__ {
-	return [target ready__];
-}
-
-- (java_lang_String*) readLine__ {
-	return [target readLine__];
-}
-
-- (void) close__ {
-	[target close__];
-}
-
-@end
-

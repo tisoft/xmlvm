@@ -18,18 +18,27 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.apache.http.client;
 
+import java.io.IOException;
+
+import org.apache.http.HttpHost;
+import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HttpContext;
 
 public interface HttpClient {
-    
+
     public HttpParams getParams();
-    public HttpResponse execute(HttpUriRequest method);
+
+    public HttpResponse execute(HttpUriRequest method) throws IOException, ClientProtocolException;
+
+    public HttpResponse execute(HttpHost target, HttpRequest request, HttpContext context)
+    throws IOException, ClientProtocolException;
+
     public ClientConnectionManager getConnectionManager();
 
 }

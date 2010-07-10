@@ -18,15 +18,30 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package org.apache.http;
 
-import android.internal.Assert;
-
 public class HttpHost {
-    
-    public HttpHost(String host, int port, String theme) {
-        Assert.NOT_IMPLEMENTED();
+
+    private String host;
+    private int    port;
+    private String protocol;
+
+    public HttpHost(String host, int port, String protocol) {
+        this.host = host;
+        this.port = port;
+        this.protocol = protocol;
+    }
+
+    public String getHostName() {
+        return host;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public String getProtocol() {
+        return protocol;
     }
 
 }

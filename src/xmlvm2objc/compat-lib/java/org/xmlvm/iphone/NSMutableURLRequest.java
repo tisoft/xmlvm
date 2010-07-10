@@ -33,4 +33,9 @@ public class NSMutableURLRequest extends NSObject {
     public URL xmlvmGetURL() {
         return url.xmlvmGetURL();
     }
+
+    public void addValueForHTTPHeaderField(String value, String headerField) {
+        // TODO Auto-generated method stub
+
+    }
 }

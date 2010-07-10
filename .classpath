@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/xmlvm"/>
-	<classpathentry kind="src" path="demo/java-desktop"/>
-	<classpathentry kind="src" path="src/android2iphone"/>
+	<classpathentry kind="src" path="src/xmlvm2c"/>
 	<classpathentry kind="src" path="src/xmlvm2cpp"/>
 	<classpathentry kind="src" path="src/xmlvm2js"/>
 	<classpathentry kind="src" path="src/clr2jvm/xsl"/>
-	<classpathentry kind="src" path="src/test/cs"/>
 	<classpathentry kind="src" path="src/clr2jvm/compat-lib/Java"/>
 	<classpathentry kind="src" path="src/clr2jvm/compat-lib/c_sharp"/>
 	<classpathentry kind="src" path="src/jvm2clr/xsl"/>
@@ -14,6 +12,8 @@
 	<classpathentry kind="src" path="src/xmlvm2objc/xsl"/>
 	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/objc"/>
 	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/java"/>
+	<classpathentry kind="src" path="src/android2iphone"/>
+	<classpathentry kind="src" path="demo/java-desktop"/>
 	<classpathentry kind="src" path="demo/iphone/iremote/src"/>
 	<classpathentry kind="src" path="demo/iphone/isound/src"/>
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/portrait/src"/>
@@ -21,7 +21,6 @@
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/landscape/src"/>
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/fullscreen/src"/>
 	<classpathentry kind="src" path="demo/iphone/gl/nehelesson4/src"/>
-	<classpathentry kind="src" path="src/test/iphone"/>
 	<classpathentry kind="src" path="demo/iphone/ifireworks/src"/>
 	<classpathentry kind="src" path="demo/android/aremote/src"/>
 	<classpathentry kind="src" path="demo/android/sayhello/gen"/>
@@ -34,7 +33,8 @@
 	<classpathentry kind="src" path="demo/android/helloworld/gen"/>
 	<classpathentry kind="src" path="demo/android/helloworld/src"/>
 	<classpathentry kind="src" path="src/test/java"/>
-	<classpathentry kind="src" path="src/xmlvm2c"/>
+	<classpathentry kind="src" path="src/test/iphone"/>
+	<classpathentry kind="src" path="src/test/cs"/>
 	<classpathentry kind="lib" path="lib/bcel.jar"/>
 	<classpathentry kind="lib" path="lib/jakarta-regexp.jar"/>
 	<classpathentry kind="lib" path="lib/jdom.jar"/>
@@ -43,8 +43,6 @@
 	<classpathentry kind="lib" path="lib/yuicompressor-2.1.2.jar"/>
 	<classpathentry kind="lib" path="lib/EventBinaries.jar"/>
 	<classpathentry kind="lib" path="lib/saxon9.jar"/>
-	<classpathentry kind="lib" path="lib/commons-codec-1.3.jar"/>
-	<classpathentry kind="lib" path="lib/commons-httpclient-3.1-rc1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-adapters-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-api-1.1.jar"/>
@@ -54,5 +52,7 @@
 	<classpathentry kind="lib" path="lib/mp3spi1.9.4.jar"/>
 	<classpathentry kind="lib" path="lib/tritonus_share.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/httpclient-4.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/httpcore-4.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

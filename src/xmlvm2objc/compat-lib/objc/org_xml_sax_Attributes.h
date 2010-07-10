@@ -18,31 +18,14 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "java_io_BufferedReader.h"
+#import "xmlvm.h"
+#import "java_lang_Object.h"
 
-// java.io.BufferedReader
+
+// org_xml_sax_Attributes
 //----------------------------------------------------------------------------
-@implementation java_io_BufferedReader
-
-- (void) __init_java_io_BufferedReader___java_io_Reader: (java_io_Reader*) reader {
-	target = reader;
-}
-
-- (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len {
-	return [target read___char_ARRAYTYPE_int_int: buffer: pos: len];
-}
-
-- (bool) ready__ {
-	return [target ready__];
-}
-
-- (java_lang_String*) readLine__ {
-	return [target readLine__];
-}
-
-- (void) close__ {
-	[target close__];
-}
-
+@protocol org_xml_sax_Attributes <NSObject>
 @end
 
+@interface org_xml_sax_Attributes : java_lang_Object <org_xml_sax_Attributes>
+@end

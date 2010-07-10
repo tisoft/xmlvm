@@ -100,4 +100,8 @@ public class NSData extends NSObject {
     public int length() {
         return data.length();
     }
+
+    public byte[] getBytes() {
+        return data.getBytes();
+    }
 }

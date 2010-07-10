@@ -18,37 +18,40 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package org.apache.http.client.methods;
+package org.apache.http.impl;
 
-import java.net.URI;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.xmlvm.iphone.NSData;
+import org.xmlvm.iphone.NSErrorHolder;
+import org.xmlvm.iphone.NSHTTPURLResponseHolder;
 
 import android.internal.Assert;
 
 /**
- * @author wkorn
+ * @author arno
  * 
  */
-public class HttpGet extends HttpRequestBase implements HttpUriRequest {
+public class HttpResponseImpl implements HttpResponse {
 
-    private String uri;
+    private NSHTTPURLResponseHolder response;
+    private NSErrorHolder           error;
+    private NSData                  data;
 
-    public HttpGet() {
-        Assert.NOT_IMPLEMENTED();
+    public HttpResponseImpl(NSHTTPURLResponseHolder response, NSErrorHolder error, NSData data) {
+        this.response = response;
+        this.error = error;
+        this.data = data;
     }
 
-    public HttpGet(URI uri) {
-        Assert.NOT_IMPLEMENTED();
+    @Override
+    public HttpEntity getEntity() {
+        return new HttpEntityImpl(data);
     }
 
-    public HttpGet(String uri) {
-        this.uri = uri;
-    }
-
-    public String getURI() {
-        return uri;
-    }
-
-    public String getResponseBodyAsString() {
+    @Override
+    public StatusLine getStatusLine() {
         Assert.NOT_IMPLEMENTED();
         return null;
     }

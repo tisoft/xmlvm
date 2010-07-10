@@ -18,31 +18,26 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "java_io_BufferedReader.h"
+package org.apache.http.protocol;
 
-// java.io.BufferedReader
-//----------------------------------------------------------------------------
-@implementation java_io_BufferedReader
+import java.util.HashMap;
 
-- (void) __init_java_io_BufferedReader___java_io_Reader: (java_io_Reader*) reader {
-	target = reader;
+/**
+ * @author arno
+ * 
+ */
+public class BasicHttpContext implements HttpContext {
+
+    private HashMap<String, Object> attributes = new HashMap<String, Object>();
+
+    @Override
+    public void setAttribute(String id, Object obj) {
+        attributes.put(id, obj);
+    }
+
+    @Override
+    public Object getAttribute(String id) {
+        return attributes.get(id);
+    }
+
 }
-
-- (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len {
-	return [target read___char_ARRAYTYPE_int_int: buffer: pos: len];
-}
-
-- (bool) ready__ {
-	return [target ready__];
-}
-
-- (java_lang_String*) readLine__ {
-	return [target readLine__];
-}
-
-- (void) close__ {
-	[target close__];
-}
-
-@end
-

@@ -41,6 +41,11 @@
     return (int) ((unsigned char *) [self bytes])[index];
 }
 
+- (XMLVMArray*) getBytes__
+{
+	return [XMLVMArray createSingleDimensionWithType:3/*byte*/ size:[self length] andData:(void*)[self bytes]];
+}
+	
 - (java_lang_String*) toString__
 {
     return [[NSMutableString alloc] initWithData:self encoding:NSUTF8StringEncoding];

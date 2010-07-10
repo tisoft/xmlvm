@@ -18,31 +18,11 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "java_io_BufferedReader.h"
+#import "java_io_StringReader.h"
 
-// java.io.BufferedReader
+// java.io.StringReader
 //----------------------------------------------------------------------------
-@implementation java_io_BufferedReader
-
-- (void) __init_java_io_BufferedReader___java_io_Reader: (java_io_Reader*) reader {
-	target = reader;
-}
-
-- (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len {
-	return [target read___char_ARRAYTYPE_int_int: buffer: pos: len];
-}
-
-- (bool) ready__ {
-	return [target ready__];
-}
-
-- (java_lang_String*) readLine__ {
-	return [target readLine__];
-}
-
-- (void) close__ {
-	[target close__];
-}
+@implementation java_io_StringReader
 
 @end
 
