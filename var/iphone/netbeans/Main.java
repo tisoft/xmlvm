@@ -1,10 +1,11 @@
 /*
  * XMLVM demo template of Hello World application
  */
-package xmlvm;
+package iphone;
 
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
+import org.xmlvm.iphone.UIApplicationDelegate;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIImage;
 import org.xmlvm.iphone.UIImageView;
@@ -14,8 +15,9 @@ import org.xmlvm.iphone.UITextAlignment;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
 
-public class Main extends UIApplication {
+public class Main extends UIApplicationDelegate {
 
+    @Override
     public void applicationDidFinishLaunching(UIApplication app) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
 
@@ -37,6 +39,6 @@ public class Main extends UIApplication {
     }
 
     public static void main(String[] args) {
-        UIApplication.main(args, Main.class);
+        UIApplication.main(args, null, Main.class);
     }
 }

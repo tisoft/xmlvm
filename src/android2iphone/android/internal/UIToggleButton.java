@@ -23,7 +23,6 @@ package android.internal;
 import java.util.Set;
 
 import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
@@ -42,8 +41,8 @@ public class UIToggleButton extends UIView {
 
     public UIToggleButton() {
         super();
-        this.setUserInteractionEnabled(true);
-        redraw();
+        setUserInteractionEnabled(true);
+        updateVisuals();
     }
 
     public UIToggleButton(CGRect rect) {
@@ -53,26 +52,24 @@ public class UIToggleButton extends UIView {
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
         this.selected = !this.selected;
-        redraw();
+        updateVisuals();
     }
 
     public void setTextOff(String textOff) {
         this.textOff = textOff;
-        redraw();
+        updateVisuals();
     }
 
     public void setTextOn(String textOn) {
         this.textOn = textOn;
-        redraw();
+        updateVisuals();
     }
 
-    private void redraw() {
+    private void updateVisuals() {
         if (selected) {
             this.setText(textOn);
-            this.setBackgroundColor(UIColor.greenColor);
         } else {
             this.setText(textOff);
-            this.setBackgroundColor(UIColor.yellowColor);
         }
     }
 
@@ -84,7 +81,7 @@ public class UIToggleButton extends UIView {
     
     public void setSelected(boolean selected) {
         this.selected = selected;
-        redraw();
+        updateVisuals();
     }
     
     public boolean isSelected() {

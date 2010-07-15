@@ -29,7 +29,6 @@ import java.awt.Shape;
 
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UISegmentedControl;
 import org.xmlvm.iphone.UISegmentedControlStyle;
 
@@ -83,7 +82,7 @@ public class UISegmentedControlRenderer extends UIViewRenderer<UISegmentedContro
         int w = (int) displayRect.size.width;
         int h = (int) displayRect.size.height;
 
-        if (view.getBackgroundColor() != UIColor.clearColor) {
+        if (view.getBackgroundColor() != null) {
             g.setPaint(view.getBackgroundColor().xmlvmGetPaint());
             g.fillRect(x, y, w, h);
         }

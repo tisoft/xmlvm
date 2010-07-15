@@ -47,7 +47,7 @@ public class NSString extends NSObject {
 
     public static String stringWithContentsOfFile(String path) {
         try {
-            return stringWithContentsOfReader(new InputStreamReader(new FileInputStream(NSBundle.getFilenameFromURI(path)), "UTF-8"));
+            return stringWithContentsOfReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
         } catch (UnsupportedEncodingException ex) {
         } catch (IOException ex) {
         }

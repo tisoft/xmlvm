@@ -22,11 +22,13 @@ package org.xmlvm.iphone;
 
 import java.awt.Color;
 import java.awt.Paint;
+import java.awt.TexturePaint;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 
 public class UIColor extends NSObject {
 
     private Paint               color;
-    private UIImage             patternImage;
     public final static UIColor blackColor                    = new UIColor(Color.BLACK);
     public final static UIColor darkGrayColor                 = new UIColor(Color.DARK_GRAY);
     public final static UIColor lightGrayColor                = new UIColor(Color.LIGHT_GRAY);
@@ -53,10 +55,6 @@ public class UIColor extends NSObject {
         if (c == null)
             c = clearColor.xmlvmGetPaint();
         color = c;
-    }
-
-    private UIColor(UIImage patternImage) {
-        this.patternImage = patternImage;
     }
 
     private UIColor(int RGB, float alpha) {
@@ -88,14 +86,12 @@ public class UIColor extends NSObject {
     }
 
     public static UIColor colorWithPatternImage(UIImage patternImage) {
-        return new UIColor(patternImage);
+        BufferedImage img = patternImage.xmlvmGetImage();
+        Paint paint = new TexturePaint(img, new Rectangle2D.Float(0,0,img.getWidth(), img.getHeight()));
+        return new UIColor(paint);
     }
 
     public Paint xmlvmGetPaint() {
         return color;
-    }
-
-    public UIImage xmlvmGetPatternImage() {
-        return patternImage;
     }
 }

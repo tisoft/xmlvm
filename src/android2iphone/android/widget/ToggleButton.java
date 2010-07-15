@@ -20,11 +20,15 @@
 
 package android.widget;
 
-import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.internal.UIToggleButton;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
+import java.util.Set;
+import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UITouch;
+import org.xmlvm.iphone.UIView;
 
 /**
  * @author arno
@@ -60,24 +64,45 @@ public class ToggleButton extends CompoundButton {
     }
 
     @Override
-    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        return new UIToggleButton();
+    protected UIView xmlvmNewUIView(AttributeSet attrs) {
+        return new UIToggleButton() {
+
+            @Override
+            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+            }
+
+            @Override
+            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+            }
+
+            @Override
+            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+            }
+
+            @Override
+            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+            }
+        };
     }
 
     @Override
     public void setText(String text) {
         this.text = text;
-        ((UIToggleButton) xmlvmGetUIView()).setText(text);
+        ((UIToggleButton) xmlvmGetViewHandler().getContentView()).setText(text);
         requestLayout();
     }
 
     void setTextOff(String textOff) {
-        ((UIToggleButton) xmlvmGetUIView()).setTextOff(textOff);
+        ((UIToggleButton) xmlvmGetViewHandler().getContentView()).setTextOff(textOff);
         requestLayout();
     }
 
     void setTextOn(String textOn) {
-        ((UIToggleButton) xmlvmGetUIView()).setTextOff(textOn);
+        ((UIToggleButton) xmlvmGetViewHandler().getContentView()).setTextOff(textOn);
         requestLayout();
     }
 
@@ -92,7 +117,7 @@ public class ToggleButton extends CompoundButton {
 
     @Override
     protected void xmlvmUpdateUIView(boolean checked) {
-        ((UIToggleButton) xmlvmGetUIView()).setSelected(checked);
+        ((UIToggleButton) xmlvmGetViewHandler().getContentView()).setSelected(checked);
     }
 
 }

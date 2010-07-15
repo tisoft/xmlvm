@@ -16,7 +16,7 @@ public class UIBarButtonItemView extends UIBarItemView {
         xmlvmSetRenderer(new UIBarButtonItemRenderer(item, this));
         setTitleColor(UIColor.whiteColor, 0);
         setTitleShadowColor(UIColor.grayColor, 0);
-        setTitleShadowOffset(new CGSize(0, -1), 0);
+        setTitleShadowOffset(new CGSize(0, -1));
     }
 
     public void setBack(boolean back) {

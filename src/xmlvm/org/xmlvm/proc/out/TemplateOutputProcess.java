@@ -40,7 +40,7 @@ public class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputProcess> {
     private static final String     IPHONE_TEMPL_TRIMSEED  = "__XMLVMTRIMMERSEED__";
     private static final String     IPHONE_TEMPL_JAR_PATH  = "/iphone/netbeans/";
     private static final String     IPHONE_TEMPL_FILE_PATH = "var/iphone/netbeans/";
-    private static final String[][] Files                  = { { "Main.java", "src/java/xmlvm/" },
+    private static final String[][] Files                  = { { "Main.java", "src/java/iphone/" },
             { "build.xml", "" }, { "manifest.mf", "" }, { "build-impl.xml", "nbproject/" },
             { "xcode.xml", "nbproject/" }, { "xcode.properties", "nbproject/" },
             { "genfiles.properties", "nbproject/" }, { "project.properties", "nbproject/" },

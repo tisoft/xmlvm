@@ -20,8 +20,6 @@
 
 package org.xmlvm.iphone;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -36,7 +34,6 @@ public class UIView extends UIResponder {
     private List<UIView>      subviews;
     private UIView            superview;
     private UIColor           backgroundColor;
-    private UIImage           backgroundImage;
     private boolean           opaque;
     private float             alpha;
     private boolean           hidden;
@@ -46,7 +43,6 @@ public class UIView extends UIResponder {
     private CGAffineTransform transform;
     private int               offsetLeft;
     private int               offsetTop;
-    private Object            drawDelegate;
     private int               tag;
     private CALayer           layer;
     private int               autoresizingMask;
@@ -66,15 +62,13 @@ public class UIView extends UIResponder {
     public UIView(CGRect rect) {
         xmlvmSetRenderer(new UIViewRenderer<UIView>(this));
         this.bounds = null;
-        this.backgroundColor = UIColor.blackColor;
-        this.backgroundImage = null;
+        this.backgroundColor = null;
         this.opaque = true;
         this.hidden = false;
         this.contentMode = UIViewContentMode.ScaleToFill;
         setUserInteractionEnabled(true);
         subviews = new ArrayList<UIView>();
         superview = null;
-        drawDelegate = null;
         setFrame(rect);
         setHidden(false);
         tag = 0;
@@ -112,10 +106,6 @@ public class UIView extends UIResponder {
         setFrame(new CGRect(frame.origin.x, frame.origin.y, width, height));
     }
 
-    public void setDrawDelegate(Object delegate) {
-        drawDelegate = delegate;
-    }
-
     public void addSubview(UIView subView) {
         insertSubview(subView, subviews.size());
     }
@@ -149,8 +139,9 @@ public class UIView extends UIResponder {
     }
 
     public void removeFromSuperview() {
-        boolean notifyController = superview != null && superview instanceof UIWindow
-                && controller != null;
+        if (superview == null)
+            return;
+        boolean notifyController = superview instanceof UIWindow && controller != null;
         if (notifyController) {
             controller.viewWillDisappear(true);
         }
@@ -213,18 +204,7 @@ public class UIView extends UIResponder {
     }
 
     public void setBackgroundColor(UIColor backgroundColor) {
-        if (backgroundColor == null)
-            backgroundColor = UIColor.clearColor;
         this.backgroundColor = backgroundColor;
-        setNeedsDisplay();
-    }
-
-    public UIImage getBackgroundImage() {
-        return backgroundImage;
-    }
-
-    public void setBackgroundImage(UIImage backgroundImage) {
-        this.backgroundImage = backgroundImage;
         setNeedsDisplay();
     }
 
@@ -274,7 +254,7 @@ public class UIView extends UIResponder {
         return userInteractionEnabled;
     }
 
-    public void setUserInteractionEnabled(boolean userInteractionEnabled) {
+    public final void setUserInteractionEnabled(boolean userInteractionEnabled) {
         this.userInteractionEnabled = userInteractionEnabled;
     }
 
@@ -410,45 +390,13 @@ public class UIView extends UIResponder {
     public void xmlvmDrawRect(CGRect rect) {
         if (isHidden())
             return;
-
         renderer.initPaint();
         renderer.paint();
-
         // This is required to set the new coordinates to widget's 0,0
         // location
         CGContext.UICurrentContext().xmlvmGetGraphics2D().translate(getFrame().origin.x,
                 getFrame().origin.y);
-
         CGContext.UICurrentContext().xmlvmGetGraphics2D().translate(-offsetLeft, -offsetTop);
-
-        if (drawDelegate != null) {
-            // We use reflection to call a method 'xmlvmDraw(CGRect)' in order
-            // to avoid
-            // dependencies to the delegate
-            Class<?>[] paramTypes = { CGRect.class };
-            Object[] params = { rect };
-            Class<?> targetClass = drawDelegate.getClass();
-            Method m = null;
-            try {
-                m = targetClass.getMethod("xmlvmDraw", paramTypes);
-            } catch (SecurityException e) {
-                throw new RuntimeException(e);
-            } catch (NoSuchMethodException e) {
-                throw new RuntimeException(e);
-            }
-
-            try {
-                m.invoke(drawDelegate, params);
-            } catch (IllegalArgumentException e) {
-                throw new RuntimeException(e);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            } catch (InvocationTargetException e) {
-                throw new RuntimeException(e);
-            }
-
-        }
-
         drawRect(rect);
         for (UIView v : getSubviews()) {
             v.xmlvmDrawRect(rect);
@@ -464,7 +412,7 @@ public class UIView extends UIResponder {
         return renderer;
     }
 
-    protected void xmlvmSetRenderer(UIViewRenderer<?> renderer) {
+    protected final void xmlvmSetRenderer(UIViewRenderer<?> renderer) {
         this.renderer = renderer;
     }
 

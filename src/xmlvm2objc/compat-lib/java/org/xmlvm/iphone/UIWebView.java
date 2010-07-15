@@ -60,4 +60,7 @@ public class UIWebView extends UIView {
     public void setDelegate(UIWebViewDelegate delegate) {
         this.delegate = delegate;
     }
+
+    public void reload() {
+    }
 }

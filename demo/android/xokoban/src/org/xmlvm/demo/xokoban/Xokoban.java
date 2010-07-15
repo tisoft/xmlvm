@@ -24,7 +24,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.ActivityInfo;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.PowerManager;

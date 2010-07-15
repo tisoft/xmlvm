@@ -18,19 +18,17 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.context;
+package android.content;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
-import android.internal.ActivityManager;
+import android.internal.AndroidAppLauncher;
+import android.internal.AndroidManifest;
 import android.internal.Assert;
 import android.os.Looper;
 
@@ -51,7 +49,7 @@ public class ContextWrapper extends Context {
 
     @Override
     public String getPackageName() {
-        return ActivityManager.getApplicationPackageName();
+        return AndroidManifest.getPackageName();
     }
 
     /*
@@ -67,7 +65,7 @@ public class ContextWrapper extends Context {
     @Override
     public Context getApplicationContext() {
         // TODO this is probably not right
-        return this;
+        return AndroidAppLauncher.getApplication();
     }
 
     @Override

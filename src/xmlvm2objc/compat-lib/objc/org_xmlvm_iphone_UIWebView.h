@@ -36,4 +36,5 @@ typedef UIWebView org_xmlvm_iphone_UIWebView;
 - (java_lang_String*) stringByEvaluatingJavaScriptFromString___java_lang_String: (java_lang_String*)script;
 - (void) setDelegate___org_xmlvm_iphone_UIWebViewDelegate:(org_xmlvm_iphone_UIWebViewDelegate*)newdelegate;
 - (org_xmlvm_iphone_UIWebViewDelegate*) getWebViewDelegate__;
+- (void) reload__;
 @end

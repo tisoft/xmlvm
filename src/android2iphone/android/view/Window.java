@@ -23,7 +23,6 @@ package android.view;
 import org.xmlvm.iphone.CGAffineTransform;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
-import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
@@ -70,12 +69,11 @@ public class Window {
         // Create UIWindow and transparent internal FrameLayout used to layout
         // the content views.
         iWindow = new UIWindow();
-        iWindow.setBackgroundColor(UIColor.clearColor);
         internalView = new FrameLayout(activity);
         internalView.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT,
                 LayoutParams.FILL_PARENT));
         internalView.setBackgroundColor(0x80000000);
-        iWindow.addSubview(internalView.xmlvmGetUIView());
+        iWindow.addSubview(internalView.xmlvmGetViewHandler().getMetricsView());
 
         // Create DecorView used as the window for all content views
         int gravity = ((FrameLayout.LayoutParams) view.getLayoutParams()).gravity;
@@ -135,7 +133,7 @@ public class Window {
         Assert.CHECK(this.toast == null);
         this.toast = toast;
         layoutContentView(toast);
-        UIView itoast = toast.xmlvmGetUIView();
+        UIView itoast = toast.xmlvmGetViewHandler().getMetricsView();
         itoast.setUserInteractionEnabled(false);
         iWindow.addSubview(itoast);
     }
@@ -143,7 +141,7 @@ public class Window {
     public void xmlvmRemoveToast() {
         if (toast == null)
             return;
-        UIView itoast = toast.xmlvmGetUIView();
+        UIView itoast = toast.xmlvmGetViewHandler().getMetricsView();
         itoast.removeFromSuperview();
         toast = null;
     }

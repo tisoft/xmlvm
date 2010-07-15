@@ -75,10 +75,12 @@ static java_lang_Class* primitiveFloatClass;
 
 + (float) parseFloat___java_lang_String: (java_lang_String *) str
 {
-	return atof([str UTF8String]);
+	return strtof([str UTF8String], NULL);
 }
 
 + (java_lang_Class*) _GET_TYPE
 {
 	return primitiveFloatClass;
 }
+
+@end

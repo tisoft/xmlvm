@@ -108,7 +108,7 @@ public class FileUtilities {
             return iphone;
         }
         File android = new File(androidDir(path) + File.separator + filename);
-        if (iphone.exists()) {
+        if (android.exists()) {
             return android;
         }
         Log.warn("File not located in rich path " + path + ": " + filename);

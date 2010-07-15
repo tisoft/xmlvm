@@ -22,11 +22,11 @@ package org.xmlvm.demo.ihelloworld.upsidedown;
 
 import org.xmlvm.iphone.*;
 
-public class HelloWorld extends UIApplication {
+public class HelloWorld extends UIApplicationDelegate {
 
     @Override
     public void applicationDidFinishLaunching(UIApplication app) {
-        this.setStatusBarOrientation(UIInterfaceOrientation.PortraitUpsideDown);
+        app.setStatusBarOrientation(UIInterfaceOrientation.PortraitUpsideDown);
         UIScreen screen = UIScreen.mainScreen();
         CGRect rect = screen.getApplicationFrame();
         UIWindow window = new UIWindow(rect);
@@ -46,7 +46,7 @@ public class HelloWorld extends UIApplication {
     }
 
     public static void main(String[] args) {
-        UIApplication.main(args, HelloWorld.class);
+        UIApplication.main(args, null, HelloWorld.class);
     }
 
 }

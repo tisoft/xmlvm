@@ -20,6 +20,7 @@
 
 package android.content;
 
+import android.app.Activity;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -28,6 +29,7 @@ import java.io.FileOutputStream;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.hardware.SensorManager;
+import android.internal.AndroidManifest;
 import android.internal.Assert;
 import android.internal.IPhoneManager;
 import android.media.AudioManager;
@@ -200,6 +202,57 @@ public abstract class Context {
 
     public ContentResolver getContentResolver() {
         Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
+    public void startActivityForResult(Intent intent, int requestCode) {
+        String action = intent.getAction();
+        String activityName = AndroidManifest.getActivityClassName(action);
+        if (activityName == null)
+            activityName = checkForBuiltinActivity(action);
+        Activity newActivity = getActivityClass(activityName);
+
+        newActivity.xmlvmSetRequestCode(requestCode);
+        newActivity.xmlvmSetIntent(intent);
+
+        int i = activityName.lastIndexOf('.');
+        String pkg = null;
+        String cls = activityName;
+        if (i != -1) {
+            pkg = activityName.substring(0, i);
+            cls = activityName.substring(i + 1);
+        }
+        newActivity.xmlvmSetComponentName(new ComponentName(pkg, cls));
+        newActivity.xmlvmSetRequestedOrientation(AndroidManifest.getActivityScreenOrientation(action));
+
+        if (this instanceof Activity)
+            newActivity.xmlvmSetParent((Activity) this);
+        newActivity.xmlvmCreate(null);
+    }
+
+    public void startActivity(Intent intent) {
+        startActivityForResult(intent, -1);
+    }
+
+    private static Activity getActivityClass(String activityName) {
+        Class<?> androidActivityClazz;
+        Activity newActivity = null;
+        try {
+            androidActivityClazz = Class.forName(activityName);
+            newActivity = (Activity) androidActivityClazz.newInstance();
+        } catch (ClassNotFoundException e) {
+            Assert.FAIL("Couldn't start activity");
+        } catch (InstantiationException e) {
+            Assert.FAIL("Couldn't start activity");
+        } catch (IllegalAccessException e) {
+            Assert.FAIL("Couldn't start activity");
+        }
+        return newActivity;
+    }
+
+    private static String checkForBuiltinActivity(String action) {
+        if (action.equals(Intent.ACTION_VIEW))
+            return "android.internal.WebViewActivity";
         return null;
     }
 }

@@ -56,15 +56,27 @@
 		<condition property="xmlvm.trimmer.template.value" value="${xmlvm.trimmer.template}" else="My">
 			<isset property="xmlvm.trimmer.template"/>
 		</condition>
-		<trimmer home="build/xcode" seed="${xmlvm.trimmer.seed}" shorten="true" cleanup="yes" template="${xmlvm.trimmer.template.value}"/>
+		<condition property="xmlvm.project.value" value="${xmlvm.project}" else="iphone">
+			<isset property="xmlvm.project"/>
+		</condition>
+		<trimmer home="build/xcode" seed="${xmlvm.trimmer.seed}" shorten="true" cleanup="yes" template="${xmlvm.trimmer.template.value}" target="${xmlvm.project}"/>
 	</target>
 
 	<target name="-do-xproject">
 		<!-- build arguments -->
+		<condition property="xmlvm.project.value" value="${xmlvm.project}" else="iphone">
+			<isset property="xmlvm.project"/>
+		</condition>
+		<condition property="xmlvm.lib.value" value="${xmlvm.lib}" else="">
+			<isset property="xmlvm.lib"/>
+		</condition>
+		<condition property="xmlvm.resource.value" value="${xmlvm.resource}" else="">
+			<isset property="xmlvm.resource"/>
+		</condition>
 		<condition property="bundle.version.value" value="${bundle.version}" else="1.0">
 			<isset property="bundle.version"/>
 		</condition>
-		<condition property="bundle.identifier.value" value="${bundle.identifier}" else="org.xmlvm.iphone.${ant.project.name}">
+		<condition property="bundle.identifier.value" value="${bundle.identifier}" else="com.mycompany.${ant.project.name}">
 			<isset property="bundle.identifier"/>
 		</condition>
 		<condition property="bundle.displayname.value" value="${bundle.displayname}" else="${ant.project.name}">
@@ -76,11 +88,8 @@
 		<condition property="prerenderedicon.value" value="${prerenderedicon}" else="${false}">
 			<isset property="prerenderedicon"/>
 		</condition>
-		<condition property="xmlvm.lib.value" value="${xmlvm.lib}" else="">
-			<isset property="xmlvm.lib"/>
-		</condition>
-		<condition property="xmlvm.resource.value" value="${xmlvm.resource}" else="">
-			<isset property="xmlvm.resource"/>
+		<condition property="applicationexits.value" value="${applicationexits}" else="true">
+			<isset property="applicationexits"/>
 		</condition>
 		<!-- create target -->
 		<delete dir="build/xcode"/>
@@ -92,11 +101,13 @@
 			<arg value="--app-name=${ant.project.name}"/>
 			<arg value="--lib=${xmlvm.lib.value}"/>
 			<arg value="--resource=${xmlvm.resource.value}"/>
+			<arg value="-DXcodeProject=${xmlvm.project.value}"/>
 			<arg value="-DBundleIdentifier=${bundle.identifier.value}"/>
 			<arg value="-DBundleVersion=${bundle.version.value}"/>
 			<arg value="-DBundleDisplayName=${bundle.displayname.value}"/>
 			<arg value="-DStatusBarHidden=${statusbarhidden.value}"/>
 			<arg value="-DPrerenderedIcon=${prerenderedicon.value}"/>
+			<arg value="-DApplicationExits=${applicationexits.value}"/>
 		</java>
 	</target>
 

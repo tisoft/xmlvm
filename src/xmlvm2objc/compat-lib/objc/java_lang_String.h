@@ -37,6 +37,7 @@ typedef NSMutableString java_lang_String;
 - (void) getChars___int_int_char_ARRAYTYPE_int:(int)srcBegin:(int)srcEnd:(XMLVMArray*)dst:(int)dstBegin;
 - (java_lang_String*) replace___char_char:(unichar)from :(unichar)to;
 - (java_lang_String*) replace___java_lang_CharSequence_java_lang_CharSequence:(java_lang_CharSequence*)from :(java_lang_CharSequence*)to;
+- (java_lang_String*) replaceFirst___java_lang_String_java_lang_String:(java_lang_String*)regex :(java_lang_String*)replacement;
 - (java_lang_String*) replaceAll___java_lang_String_java_lang_String :(java_lang_String*)a :(java_lang_String*)b;
 - (XMLVMArray*) split___java_lang_String :(java_lang_String*)s;
 - (XMLVMArray*) getBytes__;

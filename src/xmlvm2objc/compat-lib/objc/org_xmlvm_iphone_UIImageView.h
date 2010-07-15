@@ -24,9 +24,12 @@
 
 // UIImageView
 //----------------------------------------------------------------------------
-typedef UIImageView org_xmlvm_iphone_UIImageView;
-@interface UIImageView (cat_org_xmlvm_iphone_UIImageView)
+@interface org_xmlvm_iphone_UIImageView : UIImageView 
+- (void) drawRect___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*)rect;
+@end
 
+@interface UIImageView (cat_org_xmlvm_iphone_UIImageView)
+- (void) __init_org_xmlvm_iphone_UIImageView__;
 - (void) __init_org_xmlvm_iphone_UIImageView___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect;
 - (void) setBackgroundImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image;
 - (org_xmlvm_iphone_UIImage*) getBackgroundImage__;

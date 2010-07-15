@@ -22,7 +22,7 @@ package org.xmlvm.demo.ifireworks;
 
 import org.xmlvm.iphone.*;
 
-public class Main extends UIApplication implements UIAccelerometerDelegate {
+public class Main extends UIApplicationDelegate implements UIAccelerometerDelegate {
 
     UIWindow        window;
     UIView          mainView;
@@ -30,7 +30,7 @@ public class Main extends UIApplication implements UIAccelerometerDelegate {
 
     @Override
     public void applicationDidFinishLaunching(UIApplication app) {
-        this.setStatusBarHidden(true);
+        app.setStatusBarHidden(true);
 
         UIScreen screen = UIScreen.mainScreen();
         window = new UIWindow(screen.getApplicationFrame());
@@ -53,7 +53,7 @@ public class Main extends UIApplication implements UIAccelerometerDelegate {
     }
 
     public static void main(String[] args) {
-        UIApplication.main(args, Main.class);
+        UIApplication.main(args, null, Main.class);
     }
 
 }

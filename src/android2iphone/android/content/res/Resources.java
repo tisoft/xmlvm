@@ -33,7 +33,7 @@ import org.xmlvm.iphone.UIImage;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.internal.ActivityManager;
+import android.internal.AndroidManifest;
 import android.internal.Assert;
 import android.internal.ResourceParser;
 import android.util.DisplayMetrics;
@@ -82,7 +82,6 @@ public class Resources {
                 drawableMap.put(new Integer(resourceId), d);
             }
         }
-
         return d;
     }
 
@@ -124,7 +123,7 @@ public class Resources {
     }
 
     public String getResourcePackageName(int resourceId) {
-        return ActivityManager.getApplicationPackageName();
+        return AndroidManifest.getPackageName();
     }
 
     public String getResourceTypeName(int resourceId) {
@@ -134,7 +133,7 @@ public class Resources {
 
     public String getResourceName(int resourceId) {
         String str = findResourceNameById(resourceId);
-        return str == null ? null : ActivityManager.getApplicationPackageName() + ':' + str;
+        return str == null ? null : AndroidManifest.getPackageName() + ':' + str;
     }
 
     private String findResourceNameById(int resourceId) {
@@ -149,7 +148,7 @@ public class Resources {
 
     private void initResources(String resourceClass) {
         try {
-            String activityPackageName = ActivityManager.getApplicationPackageName();
+            String activityPackageName = AndroidManifest.getPackageName();
             String rClassName = activityPackageName + ".R$" + resourceClass;
             Class<?> rClazz = Class.forName(rClassName);
             Field[] fields = rClazz.getDeclaredFields();
@@ -161,7 +160,7 @@ public class Resources {
             }
         } catch (Throwable t) {
             Log.i("Resources", "Unable to resolve resources for "
-                    + ActivityManager.getApplicationPackageName() + ": " + resourceClass);
+                    + AndroidManifest.getPackageName() + ": " + resourceClass);
         }
     }
 

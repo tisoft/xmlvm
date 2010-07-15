@@ -27,7 +27,6 @@ import java.awt.image.BufferedImage;
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
-import org.xmlvm.iphone.UIImage;
 import org.xmlvm.iphone.UIImageView;
 import org.xmlvm.iphone.UIViewContentMode;
 import org.xmlvm.iphone.internal.Simulator;
@@ -46,11 +45,6 @@ public class UIImageViewRenderer extends UIViewRenderer<UIImageView> {
     public void paint() {
         Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect rect = view.getFrame();
-
-        UIImage backgroundImage = view.getBackgroundImage();
-        if (backgroundImage != null) {
-            backgroundImage.drawInRect(rect);
-        }
 
         if (view.getImage() != null) {
             // TODO the following should probably be done in UIView using

@@ -22,7 +22,6 @@
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_CGPoint.h"
 #import "org_xmlvm_iphone_UIView.h"
-#import "org_xmlvm_iphone_UIApplication.h"
 
 // UIWindow
 //----------------------------------------------------------------------------

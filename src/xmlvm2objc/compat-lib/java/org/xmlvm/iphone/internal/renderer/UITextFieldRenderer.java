@@ -20,54 +20,117 @@
 
 package org.xmlvm.iphone.internal.renderer;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.FontMetrics;
+import java.awt.Font;
+import java.awt.GradientPaint;
 import java.awt.Graphics2D;
-
-import org.xmlvm.iphone.CGContext;
+import java.awt.Insets;
+import java.awt.Paint;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIColor;
+
+import org.xmlvm.iphone.CGSize;
+import org.xmlvm.iphone.UILineBreakMode;
 import org.xmlvm.iphone.UITextBorderStyle;
 import org.xmlvm.iphone.UITextField;
 
-public class UITextFieldRenderer extends UIViewRenderer<UITextField> {
+/**
+ *
+ * @author teras
+ */
+public class UITextFieldRenderer extends UITextRenderer<UITextField> {
 
-    private static final int TEXT_LEFT_INSET = 5;
+    private static final Insets INSETS       = new Insets(1, 8, 1, 8);
+    private static final int    ROUND_WIDTH  = 12;
+    private static final Color  BEZEL_OUT    = new Color(128, 128, 128, 255);
+    private static final Color  BEZEL_IN     = new Color(179, 179, 179, 255);
+    private static final Color  ROUND_UP     = new Color(161, 163, 166, 255);
+    private static final Color  ROUND_DOWN   = new Color(228, 230, 234);
 
     public UITextFieldRenderer(UITextField view) {
         super(view);
     }
 
     @Override
-    public void paint() {
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
-        g.setFont(view.getFont().xmlvmGetFont());
-        CGRect displayRect = view.getFrame();
-        g.setBackground(Color.WHITE);
-        int rectX = (int) displayRect.origin.x;
-        int rectY = (int) displayRect.origin.y;
-        int rectWidth = (int) displayRect.size.width;
-        int rectHeight = (int) displayRect.size.height;
-        if (view.getBackgroundColor() != UIColor.clearColor) {
-            g.setPaint(view.getBackgroundColor().xmlvmGetPaint());
-            g.fillRect(rectX, rectY, rectWidth, rectHeight);
-        }
+    Paint getShadowColor() {
+        return null;
+    }
 
-        g.clearRect(rectX, rectY, rectWidth, rectHeight);
-        switch (view.getBorderStyle()) {
-        case UITextBorderStyle.Bezel:
-            g.setColor(Color.GRAY);
-            g.draw3DRect(rectX, rectY, rectWidth, rectHeight, false);
-            break;
+    @Override
+    CGSize getShadowOffset() {
+        return null;
+    }
+
+    @Override
+    Font getFont() {
+        return getSafeFont(((UITextField) view).getFont());
+    }
+
+    @Override
+    int getLineBreakMode() {
+        return UILineBreakMode.TailTruncation;
+    }
+
+    @Override
+    int getTextAlignment() {
+        return ((UITextField) view).getTextAlignment();
+    }
+
+    @Override
+    String getText() {
+        return ((UITextField) view).getText();
+    }
+
+    @Override
+    Paint getTextColor() {
+        return getSafePaint(((UITextField) view).getTextColor());
+    }
+
+    @Override
+    int getNumberOfLines() {
+        return 1;
+    }
+
+    @Override
+    void renderBackground(Graphics2D g) {
+        CGRect frame = view.getFrame();
+        Rectangle2D rect = new Rectangle2D.Float(frame.origin.x, frame.origin.y,
+                frame.size.width - 1, frame.size.height);
+        if (view.getBackgroundColor() != null) {
+            g.setPaint(view.getBackgroundColor().xmlvmGetPaint());
+            g.fill(rect);
         }
-        g.setPaint(view.getTextColor().xmlvmGetPaint());
-        FontMetrics fm = g.getFontMetrics();
-        int width = fm.stringWidth(view.getText());
-        int height = fm.getHeight();
-        int descent = fm.getDescent();
-        int x = (int) displayRect.origin.x + TEXT_LEFT_INSET;
-        int y = (int) displayRect.origin.y;
-        y += ((int) view.getFrame().size.height - height) / 2 + height - descent;
-        g.drawString(view.getText(), x, y);
+        switch (((UITextField) view).getBorderStyle()) {
+            case UITextBorderStyle.Bezel:
+                g.setColor(BEZEL_IN);
+                g.draw(new Rectangle2D.Float(frame.origin.x + 1, frame.origin.y + 1,
+                        frame.size.width - 2, frame.size.height - 1));
+                g.setColor(BEZEL_OUT);
+                g.draw(rect);
+                break;
+            case UITextBorderStyle.Line:
+                g.setColor(Color.black);
+                g.draw(rect);
+                break;
+            case UITextBorderStyle.RoundedRect:
+                Shape rrect = new RoundRectangle2D.Float(frame.origin.x + 1, frame.origin.y + 1,
+                        frame.size.width - 2, frame.size.height - 2, ROUND_WIDTH, ROUND_WIDTH);
+                g.setPaint(Color.white);
+                g.fill(rrect);
+                g.setPaint(new GradientPaint(frame.origin.x, frame.origin.y, ROUND_UP,
+                        frame.origin.x, frame.origin.y + frame.size.height, ROUND_DOWN));
+                g.setStroke(new BasicStroke(2));
+                g.draw(rrect);
+                g.setStroke(new BasicStroke(1));
+                break;
+        }
+    }
+
+    @Override
+    Insets getInsets() {
+        return INSETS;
     }
 }

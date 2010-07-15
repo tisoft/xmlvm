@@ -31,6 +31,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
+import android.internal.ViewHandler;
 import android.internal.Assert;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -137,7 +138,8 @@ public class ImageView extends View {
     public void setImageDrawable(Drawable drawable) {
         this.drawable = drawable;
         if (drawable instanceof BitmapDrawable) {
-            getUIImageView().setImage(((BitmapDrawable) drawable).xmlvmGetImage());
+            ((UIImageView) xmlvmGetViewHandler().getContentView())
+                    .setImage(((BitmapDrawable) drawable).xmlvmGetImage());
         } else if (drawable instanceof StateListDrawable) {
             refreshImageStateDrawable();
         } else {
@@ -152,24 +154,23 @@ public class ImageView extends View {
         layoutParams = l;
         int width = l.width;
         int height = l.height;
+        UIImage img = ((UIImageView) xmlvmGetViewHandler().getContentView()).getImage();
 
         if (width == LayoutParams.WRAP_CONTENT) {
-            width = getUIImageView().getImage() != null ? (int) getUIImageView().getImage()
-                    .getSize().width : 0;
+            width = img != null ? (int) img.getSize().width : 0;
         }
         if (height == LayoutParams.WRAP_CONTENT) {
-            height = getUIImageView().getImage() != null ? (int) getUIImageView().getImage()
-                    .getSize().height : 0;
+            height = img != null ? (int) img.getSize().height : 0;
         }
 
         int x = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).x : 0;
         int y = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).y : 0;
 
-        getUIImageView().setFrame(new CGRect(x, y, width, height));
+        xmlvmGetViewHandler().getMetricsView().setFrame(new CGRect(x, y, width, height));
     }
 
     public void setScaleType(ScaleType type) {
-        UIView view = xmlvmGetUIView();
+        ViewHandler view = xmlvmGetViewHandler();
         switch (type) {
         case CENTER:
             view.setContentMode(UIViewContentMode.Center);
@@ -231,33 +232,29 @@ public class ImageView extends View {
     }
 
     @Override
-    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        return new UIImageView(new CGRect(0, 0, 0, 0)) {
+    protected UIView xmlvmNewUIView(AttributeSet attrs) {
+        return new UIImageView() {
 
             @Override
             public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+                xmlvmTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
             }
 
             @Override
             public void touchesMoved(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+                xmlvmTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
             }
 
             @Override
             public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+                xmlvmTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
             }
 
             @Override
             public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+                xmlvmTouchesEvent(MotionEvent.ACTION_UP, touches, event);
             }
         };
-    }
-
-    protected UIImageView getUIImageView() {
-        return (UIImageView) xmlvmGetUIView();
     }
 
     @Override
@@ -273,11 +270,12 @@ public class ImageView extends View {
             d.selectDrawable(i);
             Drawable currentStateDrawable = d.getStateDrawable(i);
             UIImage newImg = ((BitmapDrawable) currentStateDrawable).xmlvmGetImage();
-            UIImage currentImg = getUIImageView().getImage();
+            UIImage currentImg = ((UIImageView) xmlvmGetViewHandler()
+                    .getContentView()).getImage();
             if (currentImg != newImg) {
                 boolean relayout = currentImg != null && newImg != null
                         && !currentImg.getSize().equals(newImg.getSize());
-                getUIImageView().setImage(newImg);
+                ((UIImageView) xmlvmGetViewHandler().getContentView()).setImage(newImg);
                 if (relayout) {
                     requestLayout();
                 }

@@ -20,7 +20,6 @@
 
 package android.view.inputmethod;
 
-import org.xmlvm.iphone.UIView;
 
 import android.internal.IBinderImpl;
 import android.os.IBinder;
@@ -31,28 +30,8 @@ public final class InputMethodManager {
 
     public boolean hideSoftInputFromWindow(IBinder windowToken, int flags) {
         if ((flags & HIDE_NOT_ALWAYS) != 0) {
-            UIView view = ((IBinderImpl) windowToken).getView().xmlvmGetUIView();
-            while (view.getSuperview() != null) {
-                view = view.getSuperview();
-            }
-            resignFirstResponderForViewHierarchy(view);
+            ((IBinderImpl) windowToken).getView().xmlvmGetViewHandler().resignFirstResponder();
         }
         return false;
-    }
-
-    /**
-     * Under Android it is sufficient to hide the keyboard for the top-level
-     * widget of a view hierarchy. iPhone requires that the specific widget that
-     * caused the soft keyboard to open to resign as first responder. We
-     * therefore have to recurse through the view hierarchy.
-     * 
-     * @param view
-     *            UIView to resign as first responder.
-     */
-    private void resignFirstResponderForViewHierarchy(UIView view) {
-        view.resignFirstResponder();
-        for (UIView subview : view.getSubviews()) {
-            resignFirstResponderForViewHierarchy(subview);
-        }
     }
 }

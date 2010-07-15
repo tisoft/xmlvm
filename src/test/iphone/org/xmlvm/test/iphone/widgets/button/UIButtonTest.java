@@ -22,7 +22,7 @@ package org.xmlvm.test.iphone.widgets.button;
 
 import org.xmlvm.iphone.*;
 
-public class UIButtonTest extends UIApplication {
+public class UIButtonTest extends UIApplicationDelegate {
 
     @Override
     public void applicationDidFinishLaunching(UIApplication app) {
@@ -58,7 +58,7 @@ public class UIButtonTest extends UIApplication {
         alertDialogLightButton.setFrame(new CGRect(115, 10, 90, 60));
         alertDialogLightButton.setBackgroundColor(UIColor.colorWithRGBA(122, 126, 150, 191));
         alertDialogLightButton.setTitleColor(UIColor.whiteColor, UIControlState.Normal);
-        alertDialogLightButton.setTitleShadowOffset(new CGSize(0, -1), UIControlState.Normal);
+        alertDialogLightButton.setTitleShadowOffset(new CGSize(0, -1));
         // TODO: alertDialogLightButton.setEdgeDiameter(8);
         // detailDisclosureButton.setFont(new Font("Times New Roman", Font.BOLD,
         // 16));
@@ -77,7 +77,7 @@ public class UIButtonTest extends UIApplication {
         alertDialogDarkButton.setFrame(new CGRect(220, 10, 90, 60));
         alertDialogDarkButton.setBackgroundColor(UIColor.colorWithRGBA(76, 82, 113, 191));
         alertDialogDarkButton.setTitleColor(UIColor.whiteColor, UIControlState.Normal);
-        alertDialogDarkButton.setTitleShadowOffset(new CGSize(0, -1), UIControlState.Normal);
+        alertDialogDarkButton.setTitleShadowOffset(new CGSize(0, -1));
         // TODO: alertDialogDarkButton.setEdgeDiameter(8);
         alertDialogDarkButton.setTitle("alertDark", UIControlState.Normal);
         alertDialogDarkButton.addTarget(new UIControlDelegate() {
@@ -113,7 +113,7 @@ public class UIButtonTest extends UIApplication {
         // TODO: darkGrayButton.setPressedBackgroundColor(UIColor.blueColor);
         // TODO: darkGrayButton.setPressedTitleColor(Color.WHITE);
         darkGrayButton.setTitleColor(UIColor.blackColor, UIControlState.Normal);
-        darkGrayButton.setTitleShadowOffset(new CGSize(0, -1), UIControlState.Normal);
+        darkGrayButton.setTitleShadowOffset(new CGSize(0, -1));
         // TODO: darkGrayButton.setEdgeDiameter(8);
         darkGrayButton.setTitle("darkGray", UIControlState.Normal);
         darkGrayButton.addTarget(new UIControlDelegate() {
@@ -147,8 +147,7 @@ public class UIButtonTest extends UIApplication {
          * UIControlState.UIControlStateNormal);
          * customButton.setTitleShadowColor(Color.DARK_GRAY,
          * UIControlState.UIControlStateNormal);
-         * customButton.setTitleShadowOffset(new CGSize(2, 2),
-         * UIControlState.UIControlStateNormal);
+         * customButton.setTitleShadowOffset(new CGSize(2, 2));
          * mainView.addSubview(customButton);
          * mainView.bringSubviewToFront(customButton);
          */
@@ -156,6 +155,6 @@ public class UIButtonTest extends UIApplication {
     }
 
     public static void main(String[] args) {
-        UIApplication.main(args, UIButtonTest.class);
+        UIApplication.main(args, null, UIButtonTest.class);
     }
 }

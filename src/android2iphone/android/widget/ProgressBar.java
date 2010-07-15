@@ -20,13 +20,17 @@
 
 package android.widget;
 
-import org.xmlvm.iphone.UIActivityIndicatorView;
-import org.xmlvm.iphone.UIActivityIndicatorViewStyle;
-import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
+import java.util.Set;
+import org.xmlvm.iphone.UIActivityIndicatorView;
+import org.xmlvm.iphone.UIActivityIndicatorViewStyle;
+import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UITouch;
+import org.xmlvm.iphone.UIView;
 
 /* TODO: This implementation of ProgressBar is currently hard coded
  * for indeterminate mode.
@@ -47,9 +51,30 @@ public class ProgressBar extends View {
     }
 
     @Override
-    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
+    protected UIView xmlvmNewUIView(AttributeSet attrs) {
         UIActivityIndicatorView activityIndicator = new UIActivityIndicatorView(
-                UIActivityIndicatorViewStyle.WhiteLarge);
+                UIActivityIndicatorViewStyle.WhiteLarge) {
+
+            @Override
+            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+            }
+
+            @Override
+            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+            }
+
+            @Override
+            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+            }
+
+            @Override
+            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+            }
+        };
         activityIndicator.setHidesWhenStopped(false);
         activityIndicator.startAnimating();
         return activityIndicator;

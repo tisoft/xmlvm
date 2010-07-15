@@ -105,6 +105,8 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
                         "statusbarhidden").toLowerCase().equals("true") ? "true" : "false");
                 line = line.replaceAll("PROPERTY_PRERENDEREDICON", arguments.option_property(
                         "prerenderedicon").toLowerCase().equals("true") ? "true" : "false");
+                line = line.replaceAll("PROPERTY_APPLICATIONEXITS", arguments.option_property(
+                        "applicationexits").toLowerCase().equals("true") ? "true" : "false");
                 line = line.replaceAll("XMLVM_APP", arguments.option_app_name());
                 infoOut.append(line).append("\n");
             }

@@ -99,8 +99,8 @@ public class UIViewController extends UIResponder {
     public void viewDidDisappear(boolean animated) {
     }
 
-    public boolean shouldAutorotateToInterfaceOrientation(int orientation) {
-        if (UIInterfaceOrientation.Portrait == orientation)
+    public boolean shouldAutorotateToInterfaceOrientation(int uiInterfaceOrientation) {
+        if (UIInterfaceOrientation.Portrait == uiInterfaceOrientation)
             return true;
         return false;
     }
@@ -113,23 +113,23 @@ public class UIViewController extends UIResponder {
         return null;
     }
 
-    public void willRotateToInterfaceOrientation(int orientation, double duration) {
+    public void willRotateToInterfaceOrientation(int uiInterfaceOrientation, double duration) {
     }
 
-    public void willAnimateRotationToInterfaceOrientation(int orientation, double duration) {
+    public void willAnimateRotationToInterfaceOrientation(int uiInterfaceOrientation, double duration) {
     }
 
-    public void didRotateFromInterfaceOrientation(int orientation) {
+    public void didRotateFromInterfaceOrientation(int uiInterfaceOrientation) {
     }
 
-    public void willAnimateFirstHalfOfRotationToInterfaceOrientation(int orientation,
+    public void willAnimateFirstHalfOfRotationToInterfaceOrientation(int uiInterfaceOrientation,
             double duration) {
     }
 
-    public void didAnimateFirstHalfOfRotationToInterfaceOrientation(int orientation) {
+    public void didAnimateFirstHalfOfRotationToInterfaceOrientation(int uiInterfaceOrientation) {
     }
 
-    public void willAnimateSecondHalfOfRotationFromInterfaceOrientation(int orientation,
+    public void willAnimateSecondHalfOfRotationFromInterfaceOrientation(int orienuiInterfaceOrientationtation,
             double duration) {
     }
 

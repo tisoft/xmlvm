@@ -22,13 +22,14 @@ package org.xmlvm.demo.ihelloworld.portrait;
 
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
+import org.xmlvm.iphone.UIApplicationDelegate;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UITextAlignment;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
 
-public class HelloWorld extends UIApplication {
+public class HelloWorld extends UIApplicationDelegate {
 
     @Override
     public void applicationDidFinishLaunching(UIApplication app) {
@@ -49,6 +50,6 @@ public class HelloWorld extends UIApplication {
     }
 
     public static void main(String[] args) {
-        UIApplication.main(args, HelloWorld.class);
+        UIApplication.main(args, null, HelloWorld.class);
     }
 }

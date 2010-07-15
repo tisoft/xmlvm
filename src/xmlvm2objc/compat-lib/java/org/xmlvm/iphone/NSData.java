@@ -80,7 +80,7 @@ public class NSData extends NSObject {
             return new NSData(NSData.class.getResourceAsStream(path.substring(startOfResource)));
         } else {
             try {
-                return new NSData(new FileInputStream(new File(NSBundle.getFilenameFromURI(path))));
+                return new NSData(new FileInputStream(new File(path)));
             } catch (FileNotFoundException e) {
                 return null;
             }

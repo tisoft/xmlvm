@@ -99,8 +99,9 @@ public class AndroidManifest {
         public int    screenOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
     }
 
-    public String                 appPackage;
-    private Map<String, Activity> activities = new HashMap<String, Activity>();
+    private final static AndroidManifest manifest = new AndroidManifest();
+    String                               appPackage;
+    private Map<String, Activity>        activities = new HashMap<String, Activity>();
 
     public AndroidManifest() {
         String filePath = NSBundle.mainBundle().pathForResource("AndroidManifest", "xml");
@@ -113,11 +114,25 @@ public class AndroidManifest {
         // TODO what to do if success == false?
     }
 
-    public void addActivity(String action, Activity activity) {
+    void addActivity(String action, Activity activity) {
         activities.put(action, activity);
     }
 
-    public Activity getActivity(String action) {
-        return activities.get(action);
+    public static String getActivityClassName(String action) {
+        Activity act = manifest.activities.get(action);
+        if (act == null)
+            return null;
+        return act.className;
+    }
+
+    public static int getActivityScreenOrientation(String action) {
+        Activity act = manifest.activities.get(action);
+        if (act == null)
+            return ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+        return act.screenOrientation;
+    }
+
+    public static String getPackageName() {
+        return manifest.appPackage;
     }
 }

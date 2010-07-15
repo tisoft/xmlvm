@@ -22,7 +22,6 @@ package android.app;
 
 import java.lang.ref.WeakReference;
 
-import org.xmlvm.iphone.NSObject;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIInterfaceOrientation;
 
@@ -32,9 +31,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.internal.ActivityManager;
 import android.internal.Assert;
+import android.internal.TopActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -45,6 +45,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.ViewGroup.LayoutParams;
+import org.xmlvm.iphone.NSObject;
 
 /**
  * IPhone implementation of Android's Activity class.
@@ -73,26 +74,23 @@ public class Activity extends ContextThemeWrapper {
     private Intent                  intent;
     private ComponentName           componentName;
     private int                     requestCode;
-    private int                     childRequestCode;
-    private int                     childResultCode;
-    private Intent                  childData;
+    private int                     resultCode;
+    private Intent                  resultData;
     private Window                  window;
     private int                     screenOrientation   = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+    private boolean                 finishing           = false;
 
     public void xmlvmSetParent(Activity parent) {
         this.parent = new WeakReference<Activity>(parent);
+        parent.child = this;
     }
 
-    public Activity xmlvmGetParent() {
+    public final Activity getParent() {
         return this.parent == null ? null : this.parent.get();
     }
 
     public void xmlvmSetRequestCode(int requestCode) {
         this.requestCode = requestCode;
-    }
-
-    public void xmlvmSetChild(Activity child) {
-        this.child = child;
     }
 
     public void xmlvmSetIntent(Intent intent) {
@@ -103,94 +101,96 @@ public class Activity extends ContextThemeWrapper {
         this.componentName = componentName;
     }
 
-    private void xmlvmUnlinkActivity() {
-        Activity parent = xmlvmGetParent();
-        if (child == null) {
-            // We have no child so set the parent as the new top activity
-            ActivityManager.setTopActivity(parent);
-        }
-        if (parent != null) {
-            parent.child = child;
-        }
-        if (child != null) {
-            child.parent = new WeakReference<Activity>(parent);
-        }
-        parent = null;
-        child = null;
+
+    public void xmlvmCreate(Bundle savedInstanceState) {
+        NSObject.performSelectorOnMainThread(this, "create", savedInstanceState, true);
     }
 
-    public void xmlvmTransitToStateActive(Object savedInstanceState) {
-        switch (state) {
-        case STATE_UNINITIALIZED:
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnCreate", savedInstanceState, false);
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnStart", null, false);
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnResume", null, false);
-            break;
-        case STATE_PAUSED:
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnResume", null, false);
-            break;
-        case STATE_STOPPED:
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnRestart", null, false);
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnStart", null, false);
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnResume", null, false);
-            break;
-        default:
-            Assert.FAIL("Bad transition from state: " + state);
-            break;
-        }
-        state = STATE_ACTIVE;
+    public void xmlvmDestroy() {
+        NSObject.performSelectorOnMainThread(this, "destroy", null, true);
     }
 
-    public void xmlvmTransitToStatePaused() {
-        switch (state) {
-        case STATE_ACTIVE:
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnPause", null, false);
-            break;
-        case STATE_STOPPED:
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnRestart", null, false);
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnStart", null, false);
-            break;
-        default:
-            Assert.FAIL("Bad transition from state: " + state);
-            break;
-        }
+    private void create(Object savedInstanceState) {
+        Activity prev = TopActivity.get();
+        if (prev != null && prev.state == STATE_ACTIVE)
+            prev.pause();
+
+        TopActivity.set(this);
+        window = new Window(this);
+        setRequestedOrientation(screenOrientation);
+        setResult(Activity.RESULT_CANCELED);
+        onContentChanged();
+        onCreate((Bundle)savedInstanceState);
+        start();
+        if (TopActivity.get() == this)
+            resume();
+    }
+
+    private void start() {
+        window.xmlvmSetHidden(false);
+        onStart();
         state = STATE_PAUSED;
     }
 
-    public void xmlvmTransitToStateStopped() {
-        switch (state) {
-        case STATE_ACTIVE:
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnPause", null, false);
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnStop", null, false);
-            break;
-        case STATE_PAUSED:
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnStop", null, false);
-            break;
-        default:
-            Assert.FAIL("Bad transition from state: " + state);
-            break;
-        }
+    private void resume() {
+        if (state == STATE_ACTIVE)
+            return;
+        if (state == STATE_STOPPED)
+            start();
+        window.xmlvmSetHidden(false);
+        onResume();
+        state = STATE_ACTIVE;
+    }
+
+    private void pause() {
+        if (state == STATE_PAUSED)
+            return;
+        onPause();
+        state = STATE_PAUSED;
+    }
+
+    private void stop() {
+        if (state == STATE_STOPPED)
+            return;
+        if (state == STATE_ACTIVE)
+            pause();
+        window.xmlvmSetHidden(true);
+        onStop();
         state = STATE_STOPPED;
     }
 
-    public void xmlvmTransitToStateDestroyed(boolean waitUntilDone) {
-        switch (state) {
-        case STATE_ACTIVE:
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnPause", null, waitUntilDone);
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnStop", null, waitUntilDone);
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnDestroy", null, waitUntilDone);
-            break;
-        case STATE_PAUSED:
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnStop", null, waitUntilDone);
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnDestroy", null, waitUntilDone);
-            break;
-        case STATE_STOPPED:
-            NSObject.performSelectorOnMainThread(this, "xmlvmOnDestroy", null, waitUntilDone);
-            break;
-        default:
-            Assert.FAIL("Bad transition from state: " + state);
-            break;
+    private void destroy(Object unused) {
+        if (state == STATE_DESTROYED)
+            return;
+        stop();
+        onDestroy();
+        if (window != null) {
+            window.xmlvmRemoveWindow();
+            window = null;
         }
+
+        Activity theParent = getParent();
+        if (child != null) {
+            child.parent = null;
+            if (theParent != null) {
+                child.parent = new WeakReference<Activity>(theParent);
+                theParent.child = child;
+            }
+        } else {
+            theParent.child = null;
+        }
+        child = null;
+
+        if (TopActivity.get() == this)
+            TopActivity.set(null);
+        if (theParent != null) {
+            if (TopActivity.get() == null) {
+                TopActivity.set(theParent);
+                theParent.resume();
+            }
+            theParent.onActivityResult(requestCode, resultCode, resultData);
+        }
+        parent = null;
         state = STATE_DESTROYED;
     }
 
@@ -200,52 +200,21 @@ public class Activity extends ContextThemeWrapper {
      *            unused as of now
      */
     protected void onCreate(Bundle savedInstanceState) {
-        window = new Window(this);
-        onContentChanged();
-    }
-
-    public void xmlvmOnCreate(Object savedInstanceState) {
-        setRequestedOrientation(screenOrientation);
-        setResult(RESULT_CANCELED);
-        onCreate((Bundle) savedInstanceState);
     }
 
     protected void onStart() {
-        window.xmlvmSetHidden(false);
-    }
-
-    public void xmlvmOnStart(Object arg) {
-        onStart();
     }
 
     protected void onRestart() {
     }
 
-    public void xmlvmOnRestart(Object arg) {
-        onRestart();
-    }
-
     protected void onResume() {
-    }
-
-    public void xmlvmOnResume(Object arg) {
-        onResume();
-        window.xmlvmSetHidden(false);
     }
 
     protected void onPause() {
     }
 
-    public void xmlvmOnPause(Object arg) {
-        onPause();
-    }
-
     protected void onStop() {
-    }
-
-    public void xmlvmOnStop(Object arg) {
-        onStop();
-        window.xmlvmSetHidden(true);
     }
 
     /**
@@ -255,25 +224,8 @@ public class Activity extends ContextThemeWrapper {
     protected void onDestroy() {
     }
 
-    public void xmlvmOnDestroy(Object arg) {
-        onDestroy();
-
-        Activity theParent = xmlvmGetParent();
-        Activity theChild = child;
-        window.xmlvmRemoveWindow();
-        window = null;
-        xmlvmUnlinkActivity();
-        if (theParent != null) {
-            NSObject.performSelectorOnMainThread(theParent, "xmlvmOnActivityResult", null, false);
-            // Transition the parent to active only if there is no child
-            if (theChild == null) {
-                theParent.xmlvmTransitToStateActive(null);
-            }
-        }
-    }
-
     /**
-     * 
+     *
      * @param requestCode
      * @param resultCode
      *            unused as of now
@@ -282,20 +234,7 @@ public class Activity extends ContextThemeWrapper {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 
-    /**
-     * 
-     * @param result
-     *            unused as of now
-     */
-    public void xmlvmOnActivityResult(Object result) {
-        onActivityResult(childRequestCode, childResultCode, childData);
-    }
-
     protected void onSaveInstanceState(Bundle bundle) {
-    }
-
-    public void xmlvmOnSaveInstanceState(Object bundle) {
-        onSaveInstanceState((Bundle) bundle);
     }
 
     public void setContentView(View view) {
@@ -367,25 +306,13 @@ public class Activity extends ContextThemeWrapper {
         return false;
     }
 
-    public void startActivity(Intent intent) {
-        ActivityManager.startActivity(this, intent);
-    }
-
-    public void startActivityForResult(Intent intent, int requestCode) {
-        ActivityManager.startActivityForResult(this, intent, requestCode);
-    }
-
     public final void setResult(int resultCode) {
         setResult(resultCode, null);
     }
 
     public final void setResult(int resultCode, Intent data) {
-        Activity parent = xmlvmGetParent();
-        if (parent != null) {
-            parent.childRequestCode = requestCode;
-            parent.childResultCode = resultCode;
-            parent.childData = data;
-        }
+        this.resultCode = resultCode;
+        this.resultData = data;
     }
 
     public void requestWindowFeature(int feature) {
@@ -466,7 +393,13 @@ public class Activity extends ContextThemeWrapper {
     }
 
     public void finish() {
-        this.xmlvmTransitToStateDestroyed(false);
+        finishing = true;
+        xmlvmDestroy();
+        finishing = false;
+    }
+
+    public boolean isFinishing() {
+        return finishing;
     }
 
     public void onConfigurationChanged(Configuration newConfig) {
@@ -487,6 +420,7 @@ public class Activity extends ContextThemeWrapper {
         Assert.NOT_IMPLEMENTED();
     }
 
+    @Override
     public String getString(int id) {
         return this.getResources().getText(id);
     }

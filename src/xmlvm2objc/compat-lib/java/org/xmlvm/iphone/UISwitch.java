@@ -46,7 +46,7 @@ public class UISwitch extends UIControl {
         setBackgroundColor(UIColor.clearColor);
     }
 
-    public void setOn(boolean on) {
+    public final void setOn(boolean on) {
         this.isOn = on;
         this.setNeedsDisplay();
     }

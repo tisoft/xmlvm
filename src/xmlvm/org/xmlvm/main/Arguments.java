@@ -124,12 +124,18 @@ public class Arguments {
                     + " separated list of external non parsable files and directories. Used in iphone and android-on-iphone templates to register auxilliary files. If this argument ends with '/', then the contents of this directory will be copied. If it is a directory and does not end with '/', then a verbatim copy of the directory will be performed.",
             "", " --qx-main=<class> Entry point of Qooxdoo application", "",
             " --qx-debug        Create debug information of Qooxdoo target", "",
-            " -Dkey=value       Set an XMLVM property",
+            " -Dkey=value       Set an Xcode property",
+            "   XcodeProject      Template to use for Xcode project:",
+            "      iphone           iPhone project skeleton",
+            "      ipad             iPad project skeleton",
+            "      ios              iPhone and iPad project skeleton",
+            "      iphone3          Legacy iPhone 3.1 project skeleton",
             "   BundleIdentifier  The value of CFBundleIdentifier in Info.plist",
             "   BundleVersion     The value of CFBundleVersion in Info.plist",
             "   BundleDisplayName The value of CFBundleDisplayName in Info.plist",
             "   PrerenderedIcon   The iPhone application icon is already pre-rendered",
             "   StatusBarHidden   Hide (value is 'true') or display (value is 'false' status bar",
+            "   ApplicationExits  Application does not run in background on suspend",
             "", " --debug=<level>   Debug information level",
             "    none             Be completely quiet, no information is printed",
             "    error            Only errors will be printed",
@@ -167,11 +173,13 @@ public class Arguments {
      */
     public Arguments(String[] argv) {
         // Add default properties
+        option_property.put("xcodeproject", "iphone");
         option_property.put("bundleidentifier", "org.xmlvm.iphone.XMLVM_APP");
         option_property.put("bundleversion", "1.0");
         option_property.put("bundledisplayname", "XMLVM_APP");
         option_property.put("statusbarhidden", "false");
         option_property.put("prerenderedicon", "false");
+        option_property.put("applicationexits", "true");
         // Add default libraries
         option_lib.add("Foundation.framework");
         option_lib.add("UIKit.framework");
@@ -251,10 +259,10 @@ public class Arguments {
 
     private void performSanityChecks() {
         if (option_skeleton != null && option_target != Targets.NONE) {
-            parseError("Only one argument of '--target' or '--project-skeleton' is allowed");
+            parseError("Only one argument of '--target' or '--skeleton' is allowed");
         }
         // if (option_skeleton != null && option_lib.size() > 0) {
-        // parseError("Argument '--project-skeleton' does not support '--lib'");
+        //     parseError("Argument '--skeleton' does not support '--lib'");
         // }
         if (option_skeleton != null)
             option_target = Targets.IPHONETEMPLATE;
@@ -283,7 +291,7 @@ public class Arguments {
         // " is not supported for this target");
 
         // Only skeleton creation mode supports empty inputs.
-        if ((option_skeleton == null || option_skeleton.equals("")) && option_in.size() == 0)
+        if ((option_skeleton == null || option_skeleton.equals("")) && option_in.isEmpty())
             parseError("Need at least one --in argument");
         if (option_out == null)
             option_out = ".";
@@ -296,7 +304,7 @@ public class Arguments {
             parseError("Unknown --debug level");
     }
 
-    private final static void parseListArgument(String argument, Set<String> option,
+    private static void parseListArgument(String argument, Set<String> option,
             String separator) {
         StringTokenizer tk = new StringTokenizer(argument, separator);
         while (tk.hasMoreTokens()) {
@@ -368,7 +376,7 @@ public class Arguments {
         return option_property.get(key);
     }
 
-    private static final void printText(String[] txt, PrintStream out) {
+    private static void printText(String[] txt, PrintStream out) {
         for (int i = 0; i < txt.length; i++)
             out.println(txt[i]);
     }

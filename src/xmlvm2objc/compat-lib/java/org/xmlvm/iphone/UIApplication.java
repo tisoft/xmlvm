@@ -1,20 +1,20 @@
 /*
  * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along with
  * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
  * Ave, Cambridge, MA 02139, USA.
- * 
+ *
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
@@ -28,17 +28,17 @@ import javax.swing.SwingUtilities;
 import org.xmlvm.iphone.internal.Simulator;
 import org.xmlvm.iphone.internal.SimulatorDesktop;
 
-public abstract class UIApplication extends UIResponder {
+public class UIApplication extends UIResponder {
 
-    private boolean              idleTimerDisabled;
-    private static UIApplication instance;
-    List<UIWindow>               windows;
-    UIWindow                     keyWindow;
-    private int                  statusBarStyle;
+    private boolean               idleTimerDisabled;
+    private UIApplicationDelegate delegate;
+    private static UIApplication  instance;
+    List<UIWindow>                windows;
+    UIWindow                      keyWindow;
+    private int                   statusBarStyle;
 
     public UIApplication() {
         windows = new ArrayList<UIWindow>();
-        instance = this;
         setIdleTimerDisabled(false);
         if (!Simulator.initialized) {
             // We run on the desktop
@@ -48,7 +48,17 @@ public abstract class UIApplication extends UIResponder {
     }
 
     public static UIApplication sharedApplication() {
+        if (instance == null)
+            instance = new UIApplication();
         return instance;
+    }
+
+    public UIApplicationDelegate getDelegate() {
+        return delegate;
+    }
+
+    public void setDelegate(UIApplicationDelegate delegate) {
+        this.delegate = delegate;
     }
 
     public void setIdleTimerDisabled(boolean flag) {
@@ -72,17 +82,6 @@ public abstract class UIApplication extends UIResponder {
 
     public List<UIWindow> getWindows() {
         return new ArrayList<UIWindow>(windows);
-    }
-
-    public abstract void applicationDidFinishLaunching(UIApplication app);
-
-    public void applicationWillTerminate(UIApplication app) {
-    }
-
-    public void applicationDidBecomeActive(UIApplication app) {
-    }
-
-    public void applicationWillResignActive(UIApplication app) {
     }
 
     public void setStatusBarOrientation(int orientation) {
@@ -110,13 +109,18 @@ public abstract class UIApplication extends UIResponder {
         return true;
     }
 
-    public static void main(String[] args, Class appClass) {
+    public static void main(String[] args, Class<? extends UIApplication> uiApplication, Class<? extends UIApplicationDelegate> uiApplicationDelegate) {
         try {
-            final UIApplication theApp = (UIApplication) appClass.newInstance();
+            if (uiApplication==null)
+                uiApplication = UIApplication.class;
+            if (uiApplicationDelegate==null)
+                uiApplicationDelegate = UIApplicationDelegate.class;
+            instance = ((UIApplication)uiApplication.newInstance());
+            instance.setDelegate((UIApplicationDelegate) uiApplicationDelegate.newInstance());
             Runnable r = new Runnable() {
 
                 public void run() {
-                    theApp.applicationDidFinishLaunching(theApp);
+                    instance.getDelegate().applicationDidFinishLaunching(instance);
                 }
             };
 

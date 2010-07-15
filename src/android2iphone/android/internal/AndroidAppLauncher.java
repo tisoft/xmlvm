@@ -17,16 +17,39 @@
  * 
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
-
 package android.internal;
+
+import android.app.Application;
+import org.xmlvm.iphone.UIApplication;
+import org.xmlvm.iphone.UIApplicationDelegate;
 
 /**
  * Wiring code for launching an Android Activity inside the iPhone simulator
  */
-public class AndroidAppLauncher {
+public class AndroidAppLauncher extends UIApplicationDelegate {
 
-    public static void main(String[] args) throws ClassNotFoundException, InstantiationException,
-            IllegalAccessException {
-        ActivityManager.bootstrapMainActivity();
+    private static Application app         = new Application();
+
+    @Override
+    public void applicationDidFinishLaunching(UIApplication iphone_app) {
+        app.onCreate();
+    }
+
+    @Override
+    public void applicationWillTerminate(UIApplication iphone_app) {
+        app.onTerminate();
+    }
+
+    @Override
+    public void applicationDidReceiveMemoryWarning(UIApplication iphone_app) {
+        app.onLowMemory();
+    }
+
+    public static void main(String[] args) {
+        UIApplication.main(null, null, AndroidAppLauncher.class);
+    }
+
+    public static Application getApplication() {
+        return app;
     }
 }

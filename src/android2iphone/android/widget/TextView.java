@@ -23,13 +23,11 @@ package android.widget;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.NSString;
-import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UILineBreakMode;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UITextAlignment;
-import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -38,9 +36,15 @@ import android.internal.XMLVMTheme;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
+import java.util.Set;
+import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UITouch;
+import org.xmlvm.iphone.UIView;
 
 public class TextView extends View {
 
@@ -79,7 +83,7 @@ public class TextView extends View {
             height = l.height == LayoutParams.WRAP_CONTENT ? (int) size.height + 2 * INSETS_Y
                     : l.height;
 
-            xmlvmGetUIView().setFrame(
+            xmlvmGetViewHandler().setFrame(
                     new CGRect(((AbsoluteLayout.LayoutParams) l).x,
                             ((AbsoluteLayout.LayoutParams) l).y, width, height));
         }
@@ -92,7 +96,7 @@ public class TextView extends View {
 
     public void setText(String string) {
         this.text = string;
-        getUILabel().setText(string);
+       ((UILabel) xmlvmGetViewHandler().getContentView()).setText(string);
         requestLayout();
     }
 
@@ -105,11 +109,12 @@ public class TextView extends View {
     }
 
     public void setTextSize(float size) {
-        UIFont font = getUILabel().getFont();
+        UILabel content = (UILabel) xmlvmGetViewHandler().getContentView();
+        UIFont font = content.getFont();
         if (font == null) {
-            getUILabel().setFont(UIFont.systemFontOfSize(size));
+            content.setFont(UIFont.systemFontOfSize(size));
         } else {
-            getUILabel().setFont(font.fontWithSize(size));
+            content.setFont(font.fontWithSize(size));
         }
     }
 
@@ -118,22 +123,38 @@ public class TextView extends View {
     }
 
     @Override
-    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        UILabel label = new UILabel();
+    protected UIView xmlvmNewUIView(AttributeSet attrs) {
+        UILabel label = new UILabel() {
+
+            @Override
+            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+            }
+
+            @Override
+            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+            }
+
+            @Override
+            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+            }
+
+            @Override
+            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+            }
+        };
         label.setNumberOfLines(0);
         label.setLineBreakMode(UILineBreakMode.WordWrap);
         label.setTextAlignment(UITextAlignment.Left);
+        label.setBackgroundColor(null);
 
         if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
             label.setTextColor(UIColor.whiteColor);
-            label.setBackgroundColor(UIColor.clearColor);
         }
-
         return label;
-    }
-
-    private UILabel getUILabel() {
-        return (UILabel) xmlvmGetUIView();
     }
 
     private void parseTextViewAttributes(AttributeSet attrs) {
@@ -197,7 +218,7 @@ public class TextView extends View {
     }
 
     protected UIFont xmlvmGetUIFont() {
-        return ((UILabel) xmlvmGetUIView()).getFont();
+        return ((UILabel) xmlvmGetViewHandler().getContentView()).getFont();
     }
 
     protected int xmlvmGetInsetsX() {
@@ -210,5 +231,11 @@ public class TextView extends View {
 
     public void addTextChangedListener(TextWatcher watcher) {
         Assert.NOT_IMPLEMENTED();
+    }
+    
+    void setToastAttributes() {
+        UILabel content = (UILabel) xmlvmGetViewHandler().getContentView();
+        content.setTextAlignment(UITextAlignment.Center);
+        content.setFont(UIFont.boldSystemFontOfSize(16));
     }
 }

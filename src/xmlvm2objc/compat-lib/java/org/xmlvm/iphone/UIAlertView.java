@@ -32,7 +32,6 @@ import java.util.List;
 import org.xmlvm.iphone.internal.Device;
 import org.xmlvm.iphone.internal.renderer.UIAlertButtonRenderer;
 import org.xmlvm.iphone.internal.renderer.UIAlertViewRenderer;
-import org.xmlvm.iphone.internal.renderer.UILabelRenderer;
 
 public class UIAlertView extends UIView {
 
@@ -61,8 +60,8 @@ public class UIAlertView extends UIView {
         addSubview(label);
         label.setBackgroundColor(UIColor.clearColor);
         label.setTextColor(UIColor.whiteColor);
-        ((UILabelRenderer) label.xmlvmGetRenderer()).setShadowColor(UIColor.darkGrayColor);
-        ((UILabelRenderer) label.xmlvmGetRenderer()).setShadowOffset(new CGSize(0, -1));
+        label.setShadowColor(UIColor.darkGrayColor);
+        label.setShadowOffset(new CGSize(0, -1));
         label.setFont(UIFont.fontWithNameSize("Arial Bold", TITLE_FONT_SIZE));
         label.setTextAlignment(UITextAlignment.Center);
     }
@@ -109,7 +108,7 @@ public class UIAlertView extends UIView {
         button.setFont(UIFont.fontWithNameSize("Arial Bold", 14));
         button.setTitleColor(UIColor.whiteColor, UIControlState.Normal);
         button.setTitleShadowColor(UIColor.darkGrayColor, UIControlState.Normal);
-        button.setTitleShadowOffset(new CGSize(0, -1), UIControlState.Normal);
+        button.setTitleShadowOffset(new CGSize(0, -1));
         bgui.setBackgroundTypeColor(new Color(150, 170, 190));
         button.setAlpha(0.78f);
 

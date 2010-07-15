@@ -17,26 +17,27 @@
  * 
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
-
 package org.xmlvm.iphone.internal.renderer;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.Paint;
 import java.awt.font.FontRenderContext;
 import java.awt.font.LineMetrics;
 
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIButton;
+import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIControlState;
 import org.xmlvm.iphone.UIFont;
 
 public abstract class UIButtonRenderer extends UIViewRenderer<UIButton> {
 
-    private static final Color DEFAULT_TITLE_SHADOW_COLOR = Color.DARK_GRAY;
-    protected int              edgeDiameter               = 16;
-    protected boolean          buttonPressed              = false;
+    public static final UIColor DEFAULT_TITLE_COLOR_NORMAL             = UIColor.colorWithRGBA(56f/255f, 84f/255f, 135f/255f, 1);
+    public static final UIColor DEFAULT_TITLE_COLOR_HIGHLIGHTED        = UIColor.whiteColor;
+    public static final UIColor DEFAULT_TITLE_SHADOW_COLOR_NORMAL      = UIColor.darkGrayColor;
+    protected int edgeDiameter = 16;
+    private int state = UIControlState.Normal;
 
     public UIButtonRenderer(UIButton view) {
         super(view);
@@ -50,12 +51,14 @@ public abstract class UIButtonRenderer extends UIViewRenderer<UIButton> {
     }
 
     protected void drawTitle(Graphics2D g, CGRect displayRect) {
-        if (view.getTitleForState(0) == null)
+        String text = view.getCurrentTitle();
+        if (text == null) {
             return;
+        }
 
         Font f = view.getFont() != null ? view.getFont().xmlvmGetFont() : getDefaultFont();
         g.setFont(f);
-        Metrics m = getMetrics(g, view.getTitleForState(0), f);
+        Metrics m = getMetrics(g, text, f);
 
         int x = (int) displayRect.origin.x;
         x += ((int) displayRect.size.width - m.width) / 2;
@@ -64,26 +67,28 @@ public abstract class UIButtonRenderer extends UIViewRenderer<UIButton> {
         y += ((int) displayRect.size.height - m.height) / 2 + m.height - m.descent;
 
         if (view.getTitleShadowOffset() != null) {
-            Paint p = g.getPaint();
-            g.setPaint(view.getTitleShadowColorForState(0) != null ? view
-                    .getTitleShadowColorForState(0).xmlvmGetPaint() : DEFAULT_TITLE_SHADOW_COLOR);
-            g.drawString(view.getTitleForState(0), x + view.getTitleShadowOffset().width, y
+            g.setPaint(view.getCurrentTitleShadowColor().xmlvmGetPaint());
+            g.drawString(text, x + view.getTitleShadowOffset().width, y
                     + view.getTitleShadowOffset().height);
-            g.setPaint(p);
         }
-        g.drawString(view.getTitleForState(0), x, y);
+        g.setPaint(view.getCurrentTitleColor().xmlvmGetPaint());
+        g.drawString(text, x, y);
     }
 
     public void setEdgeDiameter(int edgeDiameter) {
         this.edgeDiameter = edgeDiameter;
     }
 
-    public void setButtonPressed(boolean buttonPressed) {
-        this.buttonPressed = buttonPressed;
+    public void setHighlighted(boolean buttonPressed) {
+        state = buttonPressed ? UIControlState.Highlighted : UIControlState.Normal;
     }
 
-    public boolean isButtonPressed() {
-        return buttonPressed;
+    public boolean isHighlighted() {
+        return (state & UIControlState.Highlighted) != 0;
+    }
+
+    public int getState() {
+        return state;
     }
 
     public void updateButtonElements() {

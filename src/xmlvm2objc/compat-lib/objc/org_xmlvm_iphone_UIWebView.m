@@ -60,4 +60,9 @@
 	return_XMLVM(delegate)
 }
 
+- (void) reload__
+{
+	[self reload];
+}
+
 @end

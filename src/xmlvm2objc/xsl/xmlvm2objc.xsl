@@ -56,13 +56,23 @@ int main(int argc, char* argv[])
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	xmlvm_init();
+	XMLVMArray * args;
+	if (argc==0) {
+		args=nil;
+	} else {
+		args= [XMLVMArray createSingleDimensionWithType:0 andSize:argc];
+		for (int i = 0; i &lt; argc; i++) {
+			[args replaceObjectAtIndex:i withObject:[NSString stringWithUTF8String:argv[i]]];
+		}		
+	}
     [</xsl:text>
     <xsl:variable name="cl" as="node()" select="vm:class/vm:method[@name = 'main']/.."/>
     <xsl:value-of select="vm:fixname($cl/@package)"/>
     <xsl:text>_</xsl:text>
     <xsl:value-of select="$cl/@name"/>
-    <xsl:text> main___java_lang_String_ARRAYTYPE: nil];
-    [pool release];
+    <xsl:text> main___java_lang_String_ARRAYTYPE: args];
+    [pool drain];
+	[args release];
 	return 0;						 
 }
   

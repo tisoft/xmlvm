@@ -22,27 +22,25 @@
 #import "org_xmlvm_iphone_NSNotification.h"
 #import "org_xmlvm_iphone_NSURL.h"
 #import "java_util_List.h"
+#import "org_xmlvm_iphone_UIWindow.h"
+
+@class org_xmlvm_iphone_UIApplicationDelegate;
 
 // UIApplication
 //----------------------------------------------------------------------------
-@interface org_xmlvm_iphone_UIApplication : UIApplication <UIApplicationDelegate>
-- (void) __init_org_xmlvm_iphone_UIApplication__;
+@interface org_xmlvm_iphone_UIApplication : UIApplication
++ (void) main___java_lang_String_ARRAYTYPE_java_lang_Class_java_lang_Class :(XMLVMArray*) args :(java_lang_Class*) app :(java_lang_Class*) del;
 + (org_xmlvm_iphone_UIApplication*) sharedApplication__;
-- (void) applicationDidFinishLaunching: (UIApplication*) app;
-- (void) applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app;
-- (void) applicationWillTerminate: (UIApplication*) app;
-- (void) applicationWillTerminate___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app;
-- (void) applicationDidBecomeActive___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app;
-- (void) applicationDidBecomeActive:(org_xmlvm_iphone_UIApplication*) app;
-- (void) applicationWillResignActive___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app;
-- (void) applicationWillResignActive:(org_xmlvm_iphone_UIApplication*) app;
+- (void) __init_org_xmlvm_iphone_UIApplication__;
+- (void) setDelegate___org_xmlvm_iphone_UIApplicationDelegate :(org_xmlvm_iphone_UIApplicationDelegate*) newdelegate;
+- (org_xmlvm_iphone_UIApplicationDelegate*) getDelegate__;
 - (void) setStatusBarHidden___boolean:(bool) flag;
 - (void) setStatusBarOrientation___int: (int) orientation;
 - (void) setStatusBarStyle___int: (int) style;
 - (void) setStatusBarStyle___int_boolean: (int) style :(int) animated;
 - (int) getStatusBarStyle__;
+- (org_xmlvm_iphone_UIWindow*) getKeyWindow__;
 - (void) setIdleTimerDisabled___boolean: (bool) flag;
-+ (void) main___java_lang_String_ARRAYTYPE_java_lang_Class :(XMLVMArray*) args :(java_lang_Class*) app;
 - (java_util_List *) getWindows__;
 - (BOOL) openURL___org_xmlvm_iphone_NSURL:(org_xmlvm_iphone_NSURL*)url;
 @end

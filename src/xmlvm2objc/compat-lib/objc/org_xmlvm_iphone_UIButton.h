@@ -23,17 +23,35 @@
 #import "org_xmlvm_iphone_UIImage.h"
 #import "org_xmlvm_iphone_UIFont.h"
 #import "org_xmlvm_iphone_UIColor.h"
+#import "java_lang_String.h"
+#import "org_xmlvm_iphone_UIColor.h"
 
 // UIButton
 //----------------------------------------------------------------------------
 typedef UIButton org_xmlvm_iphone_UIButton;
 @interface UIButton (cat_org_xmlvm_iphone_UIButton)
 + (org_xmlvm_iphone_UIButton*) buttonWithType___int :(int) buttonType;
-- (void) setTitle___java_lang_String_int :(NSString*) label :(int) state;
+
+- (void) setTitle___java_lang_String_int :(java_lang_String*) label :(int) state;
+- (java_lang_String*) titleForState___int:(int) state;
+- (java_lang_String*) getCurrentTitle__;
+
 - (void) setTitleColor___org_xmlvm_iphone_UIColor_int:(org_xmlvm_iphone_UIColor*)color :(int)state;
+- (org_xmlvm_iphone_UIColor*) titleColorForState___int:(int) state;
+- (org_xmlvm_iphone_UIColor*) getCurrentTitleColor__;
+
+- (void) setTitleShadowColor___org_xmlvm_iphone_UIColor_int:(org_xmlvm_iphone_UIColor*)color :(int)state;
+- (org_xmlvm_iphone_UIColor*) titleShadowColorForState___int:(int) state;
+- (org_xmlvm_iphone_UIColor*) getCurrentTitleShadowColor__;
+
 - (void) setImage___org_xmlvm_iphone_UIImage_int :(org_xmlvm_iphone_UIImage*) image :(int) state;
 - (org_xmlvm_iphone_UIImage*) imageForState___int :(int) state;
+- (org_xmlvm_iphone_UIImage*) getCurrentImage__;
+
 - (void) setBackgroundImage___org_xmlvm_iphone_UIImage_int: (org_xmlvm_iphone_UIImage*)image :(int)state;
+- (org_xmlvm_iphone_UIImage*) backgroundImageForState___int:(int) state;
+- (org_xmlvm_iphone_UIImage*) getCurrentBackgroundImage__;
+
 - (void) setFont___org_xmlvm_iphone_UIFont:(org_xmlvm_iphone_UIFont*)font;
 - (org_xmlvm_iphone_UIFont*) getFont__;
 @end

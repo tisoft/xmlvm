@@ -21,16 +21,17 @@
 package org.xmlvm.iphone.demo.gl.nehelesson4;
 
 import org.xmlvm.iphone.UIApplication;
+import org.xmlvm.iphone.UIApplicationDelegate;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UIWindow;
 
-public class NeHeLesson4 extends UIApplication {
+public class NeHeLesson4 extends UIApplicationDelegate {
     UIWindow window;
     GLView   mainView;
 
     @Override
     public void applicationDidFinishLaunching(UIApplication application) {
-        this.setStatusBarHidden(true);
+        application.setStatusBarHidden(true);
 
         UIScreen screen = UIScreen.mainScreen();
         window = new UIWindow(screen.getApplicationFrame());
@@ -43,6 +44,6 @@ public class NeHeLesson4 extends UIApplication {
 
     public static void main(String[] argv) {
         System.setProperty("xmlvm.gl", "true");
-        UIApplication.main(argv, NeHeLesson4.class);
+        UIApplication.main(argv, null, NeHeLesson4.class);
     }
 }

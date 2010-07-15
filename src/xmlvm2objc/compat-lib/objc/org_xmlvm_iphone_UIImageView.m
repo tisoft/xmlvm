@@ -24,13 +24,36 @@
 
 // UIImageView
 //----------------------------------------------------------------------------
+@implementation org_xmlvm_iphone_UIImageView : UIImageView
+
+/*
+ * We have to use inheritance to override drawRect because we cannot achieve
+ * the same with categories.
+ */
+
+- (void) drawRect:(CGRect)rect
+{
+	org_xmlvm_iphone_CGRect * r = [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:rect];
+	[self drawRect___org_xmlvm_iphone_CGRect:r];
+	[r release];
+}
+
+- (void) drawRect___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*)rect
+{
+	[super drawRect:[rect getCGRect]];
+}
+
+@end
+
 @implementation UIImageView (cat_org_xmlvm_iphone_UIImageView)
 
+- (void) __init_org_xmlvm_iphone_UIImageView__
+{
+}
 
 - (void) __init_org_xmlvm_iphone_UIImageView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1
 {
 	[self setFrame: [n1 getCGRect]];
-	[self setBackgroundColor:[UIColor clearColor]];
 	[self setContentMode:UIViewContentModeCenter];
 }
 

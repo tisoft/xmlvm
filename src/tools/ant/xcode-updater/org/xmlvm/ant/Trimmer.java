@@ -17,6 +17,7 @@
  *
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
+
 package org.xmlvm.ant;
 
 import org.xmlvm.ant.xcode.TrimmerAction;
@@ -25,6 +26,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
+import org.xmlvm.ant.xcode.XcodeSkeleton;
 
 /**
  * This is an ant task which makes thinner Xcode projects from existing ones.
@@ -37,6 +39,7 @@ public class Trimmer extends Task {
     private boolean shorten = true;
     private boolean cleanup = true;
     private long seed = Long.MAX_VALUE;
+    private XcodeSkeleton target = XcodeSkeleton.IPHONE;
     private String template = ReplacementList.DEFAULT_TEMPLATE;
 
     /**
@@ -91,6 +94,14 @@ public class Trimmer extends Task {
         }
     }
 
+    /**
+     * Set a specified Xcode project target
+     * @param target Could be one of iphone, ipad, ios (both iphone and ipad), iphone3 (legacy project)
+     */
+    public void setTarget(String target) {
+        this.target = XcodeSkeleton.getTarget(target);
+    }
+
     @Override
     /**
      * Execute the ant task
@@ -99,10 +110,10 @@ public class Trimmer extends Task {
         if (home == null) {
             throw new BuildException("Home directory should be defined.");
         }
-        TrimmerAction trim = new TrimmerAction(shorten, cleanup, home.getPath(), template, seed);
+        TrimmerAction trim = new TrimmerAction(shorten, cleanup, home.getPath(), template, seed, target);
         try {
             String seedtext = (seed == Long.MAX_VALUE) ? "random seed" : "seed=" + seed;
-            System.out.println("Trimming project at path " + home.getPath() + " with template \"" + template + "\" and " + seedtext);
+            System.out.println("Trimming project at path " + home.getPath() + " with template \"" + template + "\", target \"" + target.name().toLowerCase() + "\" and " + seedtext);
             trim.trim();
         } catch (FileNotFoundException ex) {
             throw new BuildException(ex);

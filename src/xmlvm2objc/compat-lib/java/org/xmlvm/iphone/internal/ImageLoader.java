@@ -1,6 +1,7 @@
 package org.xmlvm.iphone.internal;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -34,9 +35,13 @@ public class ImageLoader {
         }
         // Perform the actual loading
         try {
-            return ImageIO.read(new URL(path));
-        } catch (IOException e) {
-            System.err.println("I/O error when reading image with name " + imageName + " : " + e.getMessage());
+            return ImageIO.read(new File(path));
+        } catch (IOException e1) {
+            try {
+                return ImageIO.read(new URL(path));
+            } catch (IOException e2) {
+                System.err.println("I/O error when reading image with name " + imageName + " : " + e2.getMessage());
+            }
         }
         return null;
     }

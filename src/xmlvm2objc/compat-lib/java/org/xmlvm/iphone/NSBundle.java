@@ -21,8 +21,6 @@
 package org.xmlvm.iphone;
 
 import java.io.File;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 /**
  * @author arno, teras
@@ -60,7 +58,7 @@ public class NSBundle extends NSObject {
             File res = new File(new File(getClass().getResource("/").getFile()).getParentFile().getParent()
                     + APPRES_FILE + filename);
             if (res.exists()) {
-                return "file://"+res.getAbsolutePath();
+                return res.getAbsolutePath();
             }
         } catch (Exception ex) {
         }
@@ -69,12 +67,14 @@ public class NSBundle extends NSObject {
         try {
             File res = new File(getClass().getResource("/" + filename).getFile());
             if (res.exists()) {
-                return res.toURI().toString();
+                return res.getAbsolutePath();
             }
         } catch (Exception ex) {
         }
 
-        /* Then check as a file inside the jar */
+        /* Then check as a file inside the jar 
+         * This is a rare case and used only for the emulator under ImageLoader
+         */
         String jarfilename = filename.startsWith("/") ? filename : "/" + filename;
         try {
             String path = getClass().getResource(jarfilename).toURI().toURL().toString();
@@ -84,7 +84,9 @@ public class NSBundle extends NSObject {
         } catch (Exception ex) {
         }
 
-        /* Then check as a system jar resource file */
+        /* Then check as a system jar resource file
+         * This is a rare case and used only for the emulator under ImageLoader
+         */
         try {
             String path = getClass().getResource(SYSRES_JAR + jarfilename).toURI().toURL().toString();
             if (path != null) {
@@ -103,15 +105,5 @@ public class NSBundle extends NSObject {
 
     public String bundlePath() {
         return getClass().getResource("/").getPath();
-    }
-    
-    static String getFilenameFromURI(String path) {
-        if (path.startsWith("file:///")) {
-            return path.substring("file://".length());
-        }
-        if (path.startsWith("file:/")) {
-            return path.substring("file:".length());
-        }
-        return path;
     }
 }

@@ -31,7 +31,6 @@ import java.awt.Graphics2D;
 
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIProgressView;
 import org.xmlvm.iphone.UIProgressViewStyle;
 
@@ -63,7 +62,7 @@ public class UIProgressViewRenderer extends UIViewRenderer<UIProgressView> {
         int w = (int) displayRect.size.width;
         int h = (int) displayRect.size.height;
 
-        if (view.getBackgroundColor() != UIColor.clearColor) {
+        if (view.getBackgroundColor() != null) {
             g.setPaint(view.getBackgroundColor().xmlvmGetPaint());
             g.fillRect(x, y, w, h);
         }

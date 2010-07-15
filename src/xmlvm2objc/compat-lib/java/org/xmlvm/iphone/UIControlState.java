@@ -22,6 +22,7 @@ package org.xmlvm.iphone;
 
 public class UIControlState {
     public static final int Normal              = 0;
+    @SuppressWarnings("PointlessBitwiseExpression")
     public static final int Highlighted         = 1 << 0;
     public static final int Disabled            = 1 << 1;
     public static final int Selected            = 1 << 2;

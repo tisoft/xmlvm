@@ -39,6 +39,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.internal.ViewHandler;
 import android.internal.Assert;
 import android.internal.Dimension;
 import android.internal.IBinderImpl;
@@ -82,7 +83,7 @@ public class View {
     protected int                     paddingTop;
     protected int                     paddingBottom;
     private WeakReference<Context>    c;
-    private UIView                    uiView;
+    private ViewHandler               viewHandler;
     private WeakReference<ViewParent> parent;
     private OnTouchListener           listener;
     private int                       id;
@@ -274,16 +275,42 @@ public class View {
         flags |= FORCE_LAYOUT;
         this.c = new WeakReference<Context>(c);
         mResources = c != null ? c.getResources() : null;
-        uiView = xmlvmCreateUIView(attrs);
-
-        if (uiView instanceof UIView) {
-            uiView.setDrawDelegate(this);
-        }
-        uiView.setUserInteractionEnabled(true);
-
+        viewHandler = new ViewHandler(xmlvmNewUIView(attrs));
+        viewHandler.getContentView().setOpaque(false);
+        viewHandler.setUserInteractionEnabled(true);
         if (attrs != null && attrs.getAttributeCount() > 0) {
             parseViewAttributes(attrs);
         }
+    }
+
+    protected UIView xmlvmNewUIView(AttributeSet attrs) {
+        return new UIView() {
+
+            @Override
+            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+            }
+
+            @Override
+            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+            }
+
+            @Override
+            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+            }
+
+            @Override
+            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+            }
+
+            @Override
+            public void drawRect(CGRect rect) {
+                draw(new Canvas(CGContext.UICurrentContext()));
+            }
+        };
     }
 
     public ViewGroup.LayoutParams getLayoutParams() {
@@ -291,7 +318,7 @@ public class View {
     }
 
     public void invalidate() {
-        uiView.setNeedsDisplay();
+        viewHandler.setNeedsDisplay();
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams l) {
@@ -303,7 +330,7 @@ public class View {
     }
 
     public void bringToFront() {
-        UIView view = this.xmlvmGetUIView();
+        UIView view = viewHandler.getMetricsView();
         UIView superView = view.getSuperview();
         if (superView != null)
             superView.bringSubviewToFront(view);
@@ -325,13 +352,13 @@ public class View {
         this.onClickListener = onClickListener;
     }
 
-    protected boolean processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
+    public boolean xmlvmTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
         if (action == MotionEvent.ACTION_UP && onClickListener != null) {
             onClickListener.onClick(this);
         }
 
         UITouch firstTouch = touches.iterator().next();
-        CGPoint point = firstTouch.locationInView(uiView);
+        CGPoint point = firstTouch.locationInView(viewHandler.getMetricsView());
         MotionEvent motionEvent = new MotionEvent(action, (int) point.x, (int) point.y);
         if (onTouchEvent(motionEvent)) {
             return true;
@@ -340,7 +367,7 @@ public class View {
             return true;
         }
         if (getParent() != null && (getParent() instanceof View)) {
-            return ((View) getParent()).processTouchesEvent(action, touches, event);
+            return ((View) getParent()).xmlvmTouchesEvent(action, touches, event);
         }
         return false;
     }
@@ -349,34 +376,8 @@ public class View {
         return false;
     }
 
-    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        UIView v = new UIView() {
-
-            @Override
-            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
-            }
-
-            @Override
-            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
-            }
-
-            @Override
-            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
-            }
-
-            @Override
-            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_UP, touches, event);
-            }
-        };
-        return v;
-    }
-
-    public UIView xmlvmGetUIView() {
-        return uiView;
+    public ViewHandler xmlvmGetViewHandler() {
+        return viewHandler;
     }
 
     public void xmlvmSetParent(ViewParent parent) {
@@ -456,17 +457,16 @@ public class View {
 
         if (drawable == null) {
             if (savedBackgroundColor != null) {
-                xmlvmGetUIView().setBackgroundColor(savedBackgroundColor);
+                viewHandler.setBackgroundColor(savedBackgroundColor);
             }
-
-            uiView.setBackgroundImage(null);
+            viewHandler.setBackgroundImage(null);
             return;
         }
 
-        savedBackgroundColor = xmlvmGetUIView().getBackgroundColor();
-        xmlvmGetUIView().setBackgroundColor(UIColor.clearColor);
+        savedBackgroundColor = viewHandler.getMetricsView().getBackgroundColor();
+        viewHandler.setBackgroundColor(null);
         if (drawable instanceof BitmapDrawable) {
-            uiView.setBackgroundImage(((BitmapDrawable) drawable).xmlvmGetImage());
+            viewHandler.setBackgroundImage(((BitmapDrawable) drawable).xmlvmGetImage());
         } else if (drawable instanceof StateListDrawable) {
             refreshBackgroundStateDrawable();
         } else if (drawable instanceof GradientDrawable) {
@@ -483,7 +483,7 @@ public class View {
         float red = (float) (((color >> 16) & 0xff) / 255.0f);
         float green = (float) (((color >> 8) & 0xff) / 255.0f);
         float blue = (float) ((color & 0xff) / 255.0f);
-        uiView.setBackgroundColor(UIColor.colorWithRGBA(red, green, blue, alpha));
+        viewHandler.setBackgroundColor(UIColor.colorWithRGBA(red, green, blue, alpha));
     }
 
     public boolean postDelayed(Runnable runnable, long delay) {
@@ -610,7 +610,7 @@ public class View {
 
     public void setVisibility(int visibility) {
         this.visibility = visibility;
-        uiView.setHidden(visibility != VISIBLE);
+        viewHandler.getMetricsView().setHidden(visibility != VISIBLE);
         requestLayout();
     }
 
@@ -622,12 +622,9 @@ public class View {
         return -1;
     }
 
-    public void xmlvmDraw(CGRect rect) {
-        Canvas canvas = new Canvas(CGContext.UICurrentContext());
-        draw(canvas);
-    }
-
-    protected void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
+        // NOTE: I don't know if the following statement is correct any more:
+        //
         // TODO Implement proper background drawing
         // Currently draw() gets called AFTER the UI widget has drawn itself so
         // this results in overwriting the aldready drawn UI widget.
@@ -635,7 +632,6 @@ public class View {
             backgroundDrawable.setBounds(0, 0, width, height);
             backgroundDrawable.draw(canvas);
         }
-
         onDraw(canvas);
     }
 
@@ -827,7 +823,7 @@ public class View {
             this.top = top;
             this.width = right - left;
             this.height = bottom - top;
-            uiView.setFrame(new CGRect(left, top, width, height));
+            viewHandler.setFrame(new CGRect(left, top, width, height));
 
             // mPrivateFlags |= HAS_BOUNDS;
 
@@ -925,11 +921,12 @@ public class View {
             d.selectDrawable(i);
             Drawable currentStateDrawable = d.getStateDrawable(i);
             UIImage newImg = ((BitmapDrawable) currentStateDrawable).xmlvmGetImage();
-            UIImage currentImg = uiView.getBackgroundImage();
+            UIImage currentImg = viewHandler.getBackgroundImage();
             if (currentImg != newImg) {
-                boolean relayout = currentImg != null && newImg != null
-                        && !currentImg.getSize().equals(newImg.getSize());
-                uiView.setBackgroundImage(newImg);
+                boolean relayout = (currentImg==null && newImg != null) ||
+                        (currentImg != null && newImg != null
+                        && !currentImg.getSize().equals(newImg.getSize()));
+                viewHandler.setBackgroundImage(newImg);
                 if (relayout) {
                     requestLayout();
                 }

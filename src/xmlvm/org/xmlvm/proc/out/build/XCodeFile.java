@@ -61,6 +61,10 @@ public class XCodeFile extends BuildFile {
     private static final String                  TEMPL_RESOURCES              = "__RESOURCES__";
     private static final String                  TEMPL_SRC_BUILD              = "__SRC_BUILD__";
     private static final String                  TEMPL_RESOURCES_BUILD        = "__RESOURCES_BUILD__";
+
+    private static final String                  TEMPL_SDK_ROOT               = "__SDK_ROOT__";
+    private static final String                  TEMPL_SDK_TARGET             = "__SDK_TARGET__";
+
     /* Maps of file types */
     private static final HashMap<String, String> sourcefiles;
     private static final HashMap<String, String> hiddensourcefiles;
@@ -103,7 +107,7 @@ public class XCodeFile extends BuildFile {
         proj.injectFiles(TEMPL_ANDROID_SRC, FILTER_ANDROID);
         // proj.injectFiles(TEMPL_RESOURCES, FILTER_RESOURCES); // Do not inject
         // files, a special bash script will take care of this
-        proj.finalizeObject();
+        proj.finalizeObject(arguments);
 
         OutputFile makefile = new OutputFile(proj.data);
         makefile.setFileName("project.pbxproj");
@@ -133,11 +137,17 @@ public class XCodeFile extends BuildFile {
             nextid = FIRST_ID;
         }
 
-        private void finalizeObject() {
-            data = data.replace(TEMPL_FILEREFS, "").replace(TEMPL_BUILDREFS, "").replace(
-                    TEMPL_RESOURCES_BUILD, "").replace(TEMPL_SRC_BUILD, "").replace(
-                    TEMPL_RESOURCES, "").replace(TEMPL_BUILDFRAMS, "")
+        private void finalizeObject(Arguments arguments) {
+            data = data.replace(TEMPL_FILEREFS, "")
+                    .replace(TEMPL_BUILDREFS, "")
+                    .replace(TEMPL_RESOURCES_BUILD, "")
+                    .replace(TEMPL_SRC_BUILD, "")
+                    .replace(TEMPL_RESOURCES, "")
+                    .replace(TEMPL_BUILDFRAMS, "")
                     .replace(TEMPL_FRAMEWORKS, "");
+            XcodeSkeleton skel = XcodeSkeleton.getTarget(arguments.option_property("xcodeproject"));
+            data = data.replace(TEMPL_SDK_ROOT, skel.root)
+                    .replace(TEMPL_SDK_TARGET, skel.target);
         }
 
         private void injectLibraries(Set<String> libraries) {

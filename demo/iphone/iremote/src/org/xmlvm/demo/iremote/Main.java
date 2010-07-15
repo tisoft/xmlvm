@@ -22,7 +22,7 @@ package org.xmlvm.demo.iremote;
 
 import org.xmlvm.iphone.*;
 
-public class Main extends UIApplication implements UIAccelerometerDelegate {
+public class Main extends UIApplicationDelegate implements UIAccelerometerDelegate {
 
     private SettingsTableDataSource settings     = null;
     private UIAccelerometer         accel        = null;
@@ -95,6 +95,6 @@ public class Main extends UIApplication implements UIAccelerometerDelegate {
      * @param args
      */
     public static void main(String[] args) {
-        UIApplication.main(args, Main.class);
+        UIApplication.main(args, null, Main.class);
     }
 }

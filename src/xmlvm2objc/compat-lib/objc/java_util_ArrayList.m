@@ -21,6 +21,45 @@
 #import "java_util_ArrayList.h"
 #import "java_lang_IllegalArgumentException.h"
 
+@implementation NSArray (cat_java_util_ArrayList)
+
+- (java_util_Iterator*) iterator__
+{
+	return [[java_util_IteratorImpl alloc] init: [self objectEnumerator]];
+}
+
+- (int) size__
+{
+	return [self count];
+}
+
+- (int) contains___java_lang_Object :(java_lang_Object*) item
+{
+	return [self indexOf___java_lang_Object: item] != -1;
+}
+
+- (BOOL) isEmpty__
+{
+	return [self count]==0;
+}
+
+- (int) indexOf___java_lang_Object :(java_lang_Object*) item
+{
+	int i = [((NSMutableArray*) self) indexOfObject: item];
+	return i == NSNotFound ? -1 : i;
+}
+
+- (java_lang_Object*) get___int :(int) idx
+{
+	java_lang_Object* item = (java_lang_Object*) [self objectAtIndex: idx];
+	[item retain];
+	return item;
+}
+
+
+
+@end
+
 
 // java.util.ArrayList
 //----------------------------------------------------------------------------
@@ -42,16 +81,6 @@
 
 - (void) __init_java_util_ArrayList___java_util_Collection:(java_util_Collection*)c {
 	[self addAll___java_util_Collection:c];
-}
-
-- (java_util_Iterator*) iterator__
-{
-	return [[java_util_IteratorImpl alloc] init: [self objectEnumerator]];
-}
-
-- (int) size__
-{
-	return [self count];
 }
 
 - (BOOL) add___java_lang_Object :(java_lang_Object*) item
@@ -84,13 +113,6 @@
 	return removed;
 }
 
-- (java_lang_Object*) get___int :(int) idx
-{
-	java_lang_Object* item = (java_lang_Object*) [self objectAtIndex: idx];
-	[item retain];
-	return item;
-}
-
 - (java_lang_Object*) remove___int :(int) idx
 {
 	java_lang_Object* o = [self objectAtIndex: idx];
@@ -110,25 +132,9 @@
 	}
 }
 
-- (int) indexOf___java_lang_Object :(java_lang_Object*) item
-{
-	int i = [((NSMutableArray*) self) indexOfObject: item];
-	return i == NSNotFound ? -1 : i;
-}
-
-- (int) contains___java_lang_Object :(java_lang_Object*) item
-{
-	return [self indexOf___java_lang_Object: item] != -1;
-}
-
 - (void) clear__
 {
 	[self removeAllObjects];
-}
-
-- (BOOL) isEmpty__
-{
-	return [self count]==0;
 }
 
 @end

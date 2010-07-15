@@ -143,9 +143,11 @@ public class MediaPlayer {
     }
 
     public void release() {
-        player.stop();
-        player.setDelegate(null);
-        player = null;
+        if (player != null) {
+            player.stop();
+            player.setDelegate(null);
+            player = null;
+        }
     }
 
     /**

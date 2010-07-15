@@ -26,7 +26,7 @@
 // UIViewGL
 //----------------------------------------------------------------------------
 
-@implementation org_xmlvm_iphone_UIViewGL : UIView
+@implementation org_xmlvm_iphone_UIViewGL : org_xmlvm_iphone_UIView
 
 + (Class) layerClass
 {
@@ -41,18 +41,6 @@
 - (void) __init_org_xmlvm_iphone_UIViewGL___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1
 {
 	[super __init_org_xmlvm_iphone_UIView___org_xmlvm_iphone_CGRect:n1];	
-}
-
-
-- (void) drawRect:(CGRect)rect
-{
-    org_xmlvm_iphone_CGRect* redrawRect = [[org_xmlvm_iphone_CGRect alloc] init];
-    redrawRect->origin_org_xmlvm_iphone_CGPoint->x_float = rect.origin.x;
-    redrawRect->origin_org_xmlvm_iphone_CGPoint->y_float = rect.origin.y;
-    redrawRect->size_org_xmlvm_iphone_CGSize->width_float = rect.size.width;
-    redrawRect->size_org_xmlvm_iphone_CGSize->height_float = rect.size.height;
-    [self drawRect___org_xmlvm_iphone_CGRect: redrawRect];
-    [redrawRect release];
 }
 
 - (org_xmlvm_iphone_gl_CAEAGLLayer*) getEAGLLayer__

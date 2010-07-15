@@ -45,16 +45,18 @@ public class TrimmerAction {
     private final boolean cleanup;
     private final String template;
     private final long seed;
+    private final XcodeSkeleton target;
 
     /**
      * Initialize the trimmer obejct. For actual parameter definition, refer to the corresponding ant task
      */
-    public TrimmerAction(boolean shorten, boolean cleanup, String projecthome, String template, long seed) {
+    public TrimmerAction(boolean shorten, boolean cleanup, String projecthome, String template, long seed, XcodeSkeleton target) {
         this.projecthome = projecthome;
         this.shorten = shorten;
         this.cleanup = cleanup;
         this.template = template;
         this.seed = seed;
+        this.target = target;
     }
 
     /**
@@ -81,7 +83,7 @@ public class TrimmerAction {
 
         Log.debug("Creating XCode file");
         HashSet<String> libraries = FileUtilities.getProjectLibs(projecthome, projname);
-        XCodeFile output = new XCodeFile(projname, list, libraries);
+        XCodeFile output = new XCodeFile(projname, list, libraries, target);
 
         Log.debug("Removing old trimmed files");
         FileUtilities.removeDirectory(new File(FileUtilities.trimDir(projecthome)));

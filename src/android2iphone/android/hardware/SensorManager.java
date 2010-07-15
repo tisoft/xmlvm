@@ -28,7 +28,7 @@ import org.xmlvm.iphone.UIAccelerometer;
 import org.xmlvm.iphone.UIAccelerometerDelegate;
 
 import android.content.pm.ActivityInfo;
-import android.internal.ActivityManager;
+import android.internal.TopActivity;
 
 public class SensorManager implements UIAccelerometerDelegate {
     public static final float             GRAVITY_EARTH        = 9.80665f;
@@ -72,7 +72,7 @@ public class SensorManager implements UIAccelerometerDelegate {
         float z = (float) (acceleration.z() * GRAVITY_EARTH);
 
         float[] values;
-        if (ActivityManager.getTopActivity().getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+        if (TopActivity.get().getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
             values = new float[] { x, y, z, x, y, z };
         } else {
             values = new float[] { -y, x, z, x, y, z };

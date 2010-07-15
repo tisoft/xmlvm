@@ -28,6 +28,7 @@ import org.xmlvm.iphone.NSError;
 import org.xmlvm.iphone.NSErrorHolder;
 import org.xmlvm.iphone.NSURL;
 import org.xmlvm.iphone.UIApplication;
+import org.xmlvm.iphone.UIApplicationDelegate;
 import org.xmlvm.iphone.UIButton;
 import org.xmlvm.iphone.UIButtonType;
 import org.xmlvm.iphone.UIColor;
@@ -41,7 +42,7 @@ import org.xmlvm.iphone.UISwitch;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
 
-public class ISound extends UIApplication implements AVAudioPlayerDelegate {
+public class ISound extends UIApplicationDelegate implements AVAudioPlayerDelegate {
 
     private UIButton      button;
     private UISwitch      loopSwitch;
@@ -150,7 +151,7 @@ public class ISound extends UIApplication implements AVAudioPlayerDelegate {
     }
 
     public static void main(String[] args) {
-        UIApplication.main(args, ISound.class);
+        UIApplication.main(args, null, ISound.class);
     }
 
 }

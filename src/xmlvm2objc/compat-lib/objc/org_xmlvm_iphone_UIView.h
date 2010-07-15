@@ -32,18 +32,8 @@
 
 // UIView
 //----------------------------------------------------------------------------
-@interface org_xmlvm_iphone_UIView : UIView {
-
-UIImage* backgroundImage;
-id       drawDelegate;
-}
-
-- (void) dealloc;
-- (void) drawRect:(CGRect)rect;
-- (void) setBackgroundImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image;
-- (UIImage*) getBackgroundImage__;
-- (void) setDrawDelegate___java_lang_Object: (java_lang_Object*) delegate;
-
+@interface org_xmlvm_iphone_UIView : UIView 
+- (void) drawRect___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*)rect;
 @end
 
 @interface UIView (cat_org_xmlvm_iphone_UIView)
@@ -71,6 +61,7 @@ id       drawDelegate;
 - (void) setBackgroundColor___org_xmlvm_iphone_UIColor:(org_xmlvm_iphone_UIColor*) col;
 - (void) setClearsContextBeforeDrawing___boolean :(int) clear;
 - (void) setUserInteractionEnabled___boolean:(int) uinteraction;
+- (int) isUserInteractionEnabled__;
 - (void) setHidden___boolean:(int) uinteraction;
 - (void) setContentMode___int:(int) mode;
 - (int) getContentMode__;

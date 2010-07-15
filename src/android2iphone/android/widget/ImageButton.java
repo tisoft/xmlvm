@@ -58,13 +58,13 @@ public class ImageButton extends ImageView {
     }
 
     @Override
-    protected boolean processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
+    public boolean xmlvmTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
         if (action == MotionEvent.ACTION_DOWN) {
             xmlvmSetDrawableState(PRESSED_STATE_SET);
         } else if (action == MotionEvent.ACTION_UP) {
             xmlvmSetDrawableState(EMPTY_STATE_SET);
         }
 
-        return super.processTouchesEvent(action, touches, event);
+        return super.xmlvmTouchesEvent(action, touches, event);
     }
 }

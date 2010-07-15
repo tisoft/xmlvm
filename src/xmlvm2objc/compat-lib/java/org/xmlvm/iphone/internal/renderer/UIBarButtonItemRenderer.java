@@ -71,7 +71,7 @@ public class UIBarButtonItemRenderer extends UIBarItemRenderer {
 
         if (base.xmlvmGetPaint() instanceof Color) {
             float newbright;
-            if (buttonPressed)
+            if (isHighlighted())
                 newbright = 0.7f;
             else
                 newbright = 0.8f;
@@ -79,7 +79,7 @@ public class UIBarButtonItemRenderer extends UIBarItemRenderer {
             Color c = (Color) base.xmlvmGetPaint();
             float[] hsb = Color.RGBtoHSB(c.getRed(), c.getGreen(), c.getBlue(), null);
             if (hsb[2] < 0.5)
-                if (buttonPressed)
+                if (isHighlighted())
                     newbright = 1f;
                 else
                     newbright = 1.3f;

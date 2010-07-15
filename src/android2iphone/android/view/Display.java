@@ -22,7 +22,7 @@ package android.view;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
-import android.internal.ActivityManager;
+import android.internal.TopActivity;
 import android.util.DisplayMetrics;
 
 import org.xmlvm.iphone.CGSize;
@@ -35,7 +35,7 @@ public class Display {
      * only a dummy.
      */
     public int getWidth() {
-        Activity activity = ActivityManager.getTopActivity();
+        Activity activity = TopActivity.get();
         CGSize s = UIScreen.mainScreen().getBounds().size;
         return (int) (activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? s.height
                 : s.width);
@@ -46,7 +46,7 @@ public class Display {
      * only a dummy.
      */
     public int getHeight() {
-        Activity activity = ActivityManager.getTopActivity();
+        Activity activity = TopActivity.get();
         CGSize s = UIScreen.mainScreen().getBounds().size;
         return (int) (activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? s.width
                 : s.height);

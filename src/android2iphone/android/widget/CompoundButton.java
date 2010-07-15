@@ -82,21 +82,19 @@ public abstract class CompoundButton extends Button {
     }
 
     public void toggle() {
-        this.checked = !this.checked;
-        xmlvmSetDrawableState(this.checked ? CHECKED_STATE_SET : EMPTY_STATE_SET);
-        xmlvmUpdateUIView(this.checked);
+        setChecked(!checked);
     }
 
     protected abstract void xmlvmUpdateUIView(boolean checked);
 
     @Override
-    protected boolean processTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
+    public boolean xmlvmTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
         if (action == MotionEvent.ACTION_UP) {
             this.checked = !this.checked;
             xmlvmSetDrawableState(this.checked ? CHECKED_STATE_SET : EMPTY_STATE_SET);
         }
 
-        return super.processTouchesEvent(action, touches, event);
+        return super.xmlvmTouchesEvent(action, touches, event);
     }
 
 }

@@ -233,6 +233,19 @@
 	return [res retain];
 }
 
+- (java_lang_String*) replaceFirst___java_lang_String_java_lang_String:(java_lang_String*)regex :(java_lang_String*)replacement
+{
+	NSRange found = [self rangeOfString:regex options:NSRegularExpressionSearch];
+	if (found.location == NSNotFound) {
+		return_XMLVM(self);
+	}
+	NSString * res = [NSString stringWithFormat:@"%@%@%@", 
+					  [self substringToIndex:found.location],
+					  replacement,
+					  [self substringFromIndex:(found.location+found.length)]];
+	return [res retain];
+}
+
 - (java_lang_String*) replaceAll___java_lang_String_java_lang_String :(java_lang_String*)a :(java_lang_String*)b {
 	NSMutableString *m = [[NSMutableString alloc] initWithString:self];
 	NSRange range;

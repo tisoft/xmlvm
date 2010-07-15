@@ -35,15 +35,22 @@ public class NSObject {
             public void run() {
                 Class<?>[] paramTypes = { Object.class };
                 Object[] params = { arg };
-                Class<?> targetClass = target.getClass();
+                Class targetClass = target.getClass();
                 Method m = null;
-                try {
-                    m = targetClass.getMethod(method, paramTypes);
-                } catch (SecurityException e) {
-                    throw new RuntimeException(e);
-                } catch (NoSuchMethodException e) {
-                    throw new RuntimeException(e);
+                // This trick will search for private methods not only on the given object but also on parent
+                while (targetClass != null && m == null) {
+                    try {
+                        m = targetClass.getDeclaredMethod(method, paramTypes);
+                    } catch (SecurityException e) {
+                    } catch (NoSuchMethodException e) {
+                    }
+                    targetClass = targetClass.getSuperclass();
                 }
+                if (m == null) {
+                    throw new RuntimeException("Unable fo find method "
+                            + method + " in class " + target.getClass().getName());
+                }
+
                 try {
                     m.setAccessible(true);  // This is required, since in Obj-C "private" modifier does not exist
                     m.invoke(target, params);

@@ -24,11 +24,15 @@ import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UITextBorderStyle;
 import org.xmlvm.iphone.UITextField;
-import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.internal.XMLVMTheme;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
+import java.util.Set;
+import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UITouch;
+import org.xmlvm.iphone.UIView;
 
 public class EditText extends TextView {
 
@@ -46,7 +50,7 @@ public class EditText extends TextView {
     }
 
     private void initEditText(Context c, AttributeSet attrs) {
-        getUITextField().setText("");
+        ((UITextField) xmlvmGetViewHandler().getContentView()).setText("");
 
         if (attrs != null && attrs.getAttributeCount() > 0) {
             parseEditTextAttributes(attrs);
@@ -54,13 +58,13 @@ public class EditText extends TextView {
     }
 
     public Object getText() {
-        return getUITextField().getText();
+        return ((UITextField) xmlvmGetViewHandler().getContentView()).getText();
     }
 
     @Override
     public void setText(String string) {
         text = string;
-        getUITextField().setText(string);
+        ((UITextField) xmlvmGetViewHandler().getContentView()).setText(string);
         requestLayout();
     }
 
@@ -70,21 +74,38 @@ public class EditText extends TextView {
     }
 
     public void setHint(CharSequence hint) {
-        getUITextField().setPlaceholder(hint.toString());
+        ((UITextField) xmlvmGetViewHandler().getContentView()).setPlaceholder(hint.toString());
     }
 
     @Override
-    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        UITextField field = new UITextField();
+    protected UIView xmlvmNewUIView(AttributeSet attrs) {
+        UITextField field = new UITextField() {
+
+            @Override
+            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+            }
+
+            @Override
+            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+            }
+
+            @Override
+            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+            }
+
+            @Override
+            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+            }
+        };
         if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
             field.setBackgroundColor(UIColor.whiteColor);
             field.setBorderStyle(UITextBorderStyle.Bezel);
         }
         return field;
-    }
-
-    private UITextField getUITextField() {
-        return (UITextField) xmlvmGetUIView();
     }
 
     private void parseEditTextAttributes(AttributeSet attrs) {
@@ -97,7 +118,7 @@ public class EditText extends TextView {
 
     @Override
     protected UIFont xmlvmGetUIFont() {
-        return getUITextField().getFont();
+        return ((UITextField) xmlvmGetViewHandler().getContentView()).getFont();
     }
 
     @Override

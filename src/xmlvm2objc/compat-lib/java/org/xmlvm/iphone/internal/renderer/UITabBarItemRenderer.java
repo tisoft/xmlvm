@@ -56,10 +56,10 @@ public class UITabBarItemRenderer extends UIBarItemRenderer {
                     + TOP_OFFSET, Simulator.getDisplay());
         rect.origin.y = h - TEXT_HEIGHT;
         rect.size.height = TEXT_HEIGHT;
-        g.setPaint(view.getTitleColorForState(0).xmlvmGetPaint());
+        g.setPaint(view.getCurrentTitleColor().xmlvmGetPaint());
         drawTitle(g, rect);
 
-        if (isButtonPressed()) {
+        if (isHighlighted()) {
             Color[] c = new Color[2];
             c[0] = new Color(255, 255, 255, 150);
             c[1] = new Color(255, 255, 255, 0);

@@ -22,12 +22,16 @@ package android.widget;
 
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UISwitch;
-import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.ViewGroup;
+import java.util.Set;
+import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UITouch;
+import org.xmlvm.iphone.UIView;
 
 public class CheckBox extends CompoundButton {
 
@@ -41,7 +45,7 @@ public class CheckBox extends CompoundButton {
 
         if (l instanceof AbsoluteLayout.LayoutParams) {
             AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams) l;
-            getUISwitch()
+            xmlvmGetViewHandler().getMetricsView()
                     .setFrame(
                             new CGRect(a.x, a.y, UISwitch.kSwitchButtonWidth,
                                     UISwitch.kSwitchButtonHeight));
@@ -50,12 +54,12 @@ public class CheckBox extends CompoundButton {
 
     @Override
     public boolean isChecked() {
-        return getUISwitch().isOn();
+        return ((UISwitch) xmlvmGetViewHandler().getContentView()).isOn();
     }
 
     @Override
     public void setChecked(boolean checked) {
-        getUISwitch().setOn(checked);
+        ((UISwitch) xmlvmGetViewHandler().getContentView()).setOn(checked);
     }
 
     public void setSelected(boolean b) {
@@ -64,14 +68,31 @@ public class CheckBox extends CompoundButton {
     }
 
     @Override
-    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
+    protected UIView xmlvmNewUIView(AttributeSet attrs) {
         // TODO mapping a CheckBox to a UISwitch is not entirely correct since
         // the latter does not setText()
-        return new UISwitch();
-    }
+        return new UISwitch() {
 
-    private UISwitch getUISwitch() {
-        return (UISwitch) xmlvmGetUIView();
+            @Override
+            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+            }
+
+            @Override
+            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+            }
+
+            @Override
+            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+            }
+
+            @Override
+            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+            }
+        };
     }
 
     @Override

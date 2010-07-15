@@ -29,6 +29,7 @@
 #import "org_xmlvm_iphone_CALayer.h"
 #import "org_xmlvm_iphone_gl_CAEAGLLayer.h"
 #import "org_xmlvm_iphone_UIColor.h"
+#import "org_xmlvm_iphone_UIView.h"
 
 // UIViewGL
 //----------------------------------------------------------------------------
@@ -38,7 +39,7 @@
  * the same with categories.
  */
 
-@interface org_xmlvm_iphone_UIViewGL : UIView
+@interface org_xmlvm_iphone_UIViewGL : org_xmlvm_iphone_UIView
 + (Class) layerClass;
 - (void) __init_org_xmlvm_iphone_UIViewGL;
 - (void) __init_org_xmlvm_iphone_UIViewGL___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;

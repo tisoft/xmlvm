@@ -26,7 +26,6 @@ import java.awt.Graphics2D;
 
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UISlider;
 
 /**
@@ -65,7 +64,7 @@ public class UISliderRenderer extends UIViewRenderer<UISlider> {
         if ((knobOffsetX + KNOBSIZE) > w)
             knobOffsetX = w - KNOBSIZE;
 
-        if (view.getBackgroundColor() != UIColor.clearColor) {
+        if (view.getBackgroundColor() != null) {
             g.setPaint(view.getBackgroundColor().xmlvmGetPaint());
             g.fillRect(x, y, w, h);
         }

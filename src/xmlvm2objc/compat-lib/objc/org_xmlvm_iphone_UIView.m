@@ -26,12 +26,6 @@
 
 @implementation org_xmlvm_iphone_UIView : UIView
 
-- (void) dealloc
-{
-	[self->backgroundImage release];
-	[super dealloc];
-}
-
 /*
  * We have to use inheritance to override drawRect because we cannot achieve
  * the same with categories.
@@ -39,49 +33,14 @@
 
 - (void) drawRect:(CGRect)rect
 {
-	[self->backgroundImage drawInRect:rect];
-
-	org_xmlvm_iphone_CGRect* redrawRect = [[org_xmlvm_iphone_CGRect alloc] init];
-	redrawRect->origin_org_xmlvm_iphone_CGPoint->x_float = rect.origin.x;
-	redrawRect->origin_org_xmlvm_iphone_CGPoint->y_float = rect.origin.y;
-	redrawRect->size_org_xmlvm_iphone_CGSize->width_float = rect.size.width;
-	redrawRect->size_org_xmlvm_iphone_CGSize->height_float = rect.size.height;
-
-	if (self->drawDelegate != nil) {
-		[self->drawDelegate xmlvmDraw___org_xmlvm_iphone_CGRect:redrawRect];
-	}
-	else {
-		[self drawRect___org_xmlvm_iphone_CGRect: redrawRect];
-	}
-	
-	[redrawRect release];
+	org_xmlvm_iphone_CGRect * r = [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:rect];
+	[self drawRect___org_xmlvm_iphone_CGRect:r];
+	[r release];
 }
 
-- (void) setBackgroundImage___org_xmlvm_iphone_UIImage: (org_xmlvm_iphone_UIImage*) image
+- (void) drawRect___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*)rect
 {
-	[image retain];
-	[self->backgroundImage release];
-	if (image == JAVA_NULL) {
-		self->backgroundImage = nil;
-	}
-	else {
-		self->backgroundImage = image;
-		[self setBackgroundColor: [UIColor clearColor]];
-	}
-	[self setNeedsDisplay];
-}
-
-- (UIImage*) getBackgroundImage__
-{
-	return [self->backgroundImage retain];
-}
-
-- (void) setDrawDelegate___java_lang_Object: (java_lang_Object*) delegate
-{
-	// We keep a weak reference (don't do a retain on delegate)
-	// We do this because the delegate will only exist as long as this UIView
-	// and by not doing a retain we avoid cycles
-	self->drawDelegate = delegate == JAVA_NULL ? nil : delegate;
+	[super drawRect:[rect getCGRect]];
 }
 
 @end
@@ -118,12 +77,7 @@
 
 - (org_xmlvm_iphone_CGRect*) getBounds__
 {
-	org_xmlvm_iphone_CGRect* rect = [[org_xmlvm_iphone_CGRect alloc] init];
-	rect->origin_org_xmlvm_iphone_CGPoint->x_float = self.bounds.origin.x;
-	rect->origin_org_xmlvm_iphone_CGPoint->y_float = self.bounds.origin.y;
-	rect->size_org_xmlvm_iphone_CGSize->width_float = self.bounds.size.width;
-	rect->size_org_xmlvm_iphone_CGSize->height_float = self.bounds.size.height;
-	return rect;
+	return [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:[self bounds]];
 }
 
 - (void) setBounds___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*) bounds
@@ -206,7 +160,7 @@
 }
 
 - (void) setBackgroundColor___org_xmlvm_iphone_UIColor:(org_xmlvm_iphone_UIColor*) col {
-	[self setBackgroundColor:col];
+	[self setBackgroundColor:XMLVM_VALUE(col)];
 }
 
 - (void) setClearsContextBeforeDrawing___boolean :(int)clear
@@ -216,6 +170,11 @@
 
 - (void) setUserInteractionEnabled___boolean:(int) uinteraction {
     [self setUserInteractionEnabled:uinteraction];
+}
+
+- (int) isUserInteractionEnabled__
+{
+	return [self isUserInteractionEnabled];
 }
 
 - (void) setContentMode___int:(int) mode
@@ -234,13 +193,7 @@
 
 - (org_xmlvm_iphone_CGRect*) getFrame__
 {
-	org_xmlvm_iphone_CGRect * res = [[org_xmlvm_iphone_CGRect alloc] init];
-	CGRect frame = [self frame];
-	res->origin_org_xmlvm_iphone_CGPoint->x_float = frame.origin.x;
-	res->origin_org_xmlvm_iphone_CGPoint->y_float = frame.origin.y;
-	res->size_org_xmlvm_iphone_CGSize->width_float = frame.size.width;
-	res->size_org_xmlvm_iphone_CGSize->height_float = frame.size.height;
-	return res;
+	return [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:[self frame]];
 }
 
 - (org_xmlvm_iphone_UIView*) getSuperview__

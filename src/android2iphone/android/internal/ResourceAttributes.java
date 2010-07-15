@@ -108,7 +108,7 @@ public class ResourceAttributes implements AttributeSet {
             String type = getResourceType(value);
             String name = getResourceName(value);
             resourceId = context.getResources().getIdentifier(name, type,
-                    ActivityManager.getApplicationPackageName());
+                    AndroidManifest.getPackageName());
         } else {
             resourceId = Integer.parseInt(value);
         }
@@ -117,12 +117,12 @@ public class ResourceAttributes implements AttributeSet {
          * int resourceId; if (value.startsWith("@+id/")) { resourceId =
          * context.
          * getResources().getIdentifier(value.substring("@+id/".length()), "id",
-         * ActivityManager.getApplicationPackageName()); if (resourceId == -1) {
+         * AndroidManifest.manifest.appPackage); if (resourceId == -1) {
          * resourceId = defaultValue; } } else if
          * (value.startsWith("@drawable/")) { resourceId =
          * context.getResources().getIdentifier(
          * value.substring("@drawable/".length()), "drawable",
-         * ActivityManager.getApplicationPackageName()); if (resourceId == -1) {
+         * AndroidManifest.manifest.appPackage); if (resourceId == -1) {
          * resourceId = defaultValue; } } else { resourceId =
          * Integer.parseInt(value); }
          */

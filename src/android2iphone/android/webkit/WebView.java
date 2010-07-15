@@ -22,12 +22,17 @@ package android.webkit;
 
 import org.xmlvm.iphone.NSURL;
 import org.xmlvm.iphone.NSURLRequest;
-import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWebView;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.ViewGroup;
+import java.util.Set;
+import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UITouch;
+import org.xmlvm.iphone.UIView;
 
 public class WebView extends ViewGroup {
 
@@ -40,13 +45,36 @@ public class WebView extends ViewGroup {
     }
 
     @Override
-    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        return new UIWebView();
+    protected UIView xmlvmNewUIView(AttributeSet attrs) {
+        UIWebView view = new UIWebView() {
+
+            @Override
+            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
+            }
+
+            @Override
+            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
+            }
+
+            @Override
+            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
+            }
+
+            @Override
+            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
+                xmlvmTouchesEvent(MotionEvent.ACTION_UP, touches, event);
+            }
+        };
+        view.setBackgroundColor(UIColor.whiteColor);
+        return view;
     }
 
     public void loadUrl(String url) {
         NSURL nsurl = NSURL.URLWithString(url);
         NSURLRequest request = NSURLRequest.requestWithURL(nsurl);
-        ((UIWebView) xmlvmGetUIView()).loadRequest(request);
+        ((UIWebView) xmlvmGetViewHandler().getContentView()).loadRequest(request);
     }
 }

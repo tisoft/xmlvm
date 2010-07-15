@@ -26,6 +26,11 @@ public class UIImageView extends UIView {
 
     private UIImage image = null;
 
+    public UIImageView() {
+        this(new CGRect(0, 0, 0, 0));
+        setUserInteractionEnabled(false);
+    }
+
     public UIImageView(CGRect rect) {
         super(rect);
         xmlvmSetRenderer(new UIImageViewRenderer(this));

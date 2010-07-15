@@ -22,12 +22,12 @@ package org.xmlvm.demo.ihelloworld.fullscreen;
 
 import org.xmlvm.iphone.*;
 
-public class HelloWorld extends UIApplication {
+public class HelloWorld extends UIApplicationDelegate {
 
     @Override
     public void applicationDidFinishLaunching(UIApplication app) {
-        this.setStatusBarHidden(true);
-        this.setStatusBarOrientation(UIInterfaceOrientation.LandscapeRight);
+        app.setStatusBarHidden(true);
+        app.setStatusBarOrientation(UIInterfaceOrientation.LandscapeRight);
         UIScreen screen = UIScreen.mainScreen();
         CGRect rect = screen.getApplicationFrame();
         float t = rect.size.height;
@@ -51,7 +51,7 @@ public class HelloWorld extends UIApplication {
     }
 
     public static void main(String[] args) {
-        UIApplication.main(args, HelloWorld.class);
+        UIApplication.main(args, null, HelloWorld.class);
     }
 
 }

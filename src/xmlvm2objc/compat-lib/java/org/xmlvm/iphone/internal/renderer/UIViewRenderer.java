@@ -3,11 +3,11 @@ package org.xmlvm.iphone.internal.renderer;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIColor;
-import org.xmlvm.iphone.UIImage;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.internal.Simulator;
 
@@ -54,24 +54,11 @@ public class UIViewRenderer<T extends UIView> {
         Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         UIColor backgroundColor = view.getBackgroundColor();
-        if (backgroundColor != UIColor.clearColor) {
-            if (backgroundColor.xmlvmGetPatternImage() != null) {
-                UIImage backgroundPatternImage = backgroundColor.xmlvmGetPatternImage();
-                float offset = displayRect.size.height - backgroundPatternImage.getSize().height;
-                CGRect backgroundRect = new CGRect(displayRect);
-                backgroundRect.origin.y += offset;
-                backgroundPatternImage.drawInRect(backgroundRect);
-            } else {
-                g.setPaint(view.getBackgroundColor().xmlvmGetPaint());
-                g.fillRect((int) displayRect.origin.x, (int) displayRect.origin.y,
-                        (int) displayRect.size.width, (int) displayRect.size.height);
-            }
+        if (backgroundColor != null) {
+            g.setPaint(view.getBackgroundColor().xmlvmGetPaint());
+            g.fill(new Rectangle2D.Float(displayRect.origin.x, displayRect.origin.y,
+                    displayRect.size.width, displayRect.size.height));
         }
-        UIImage backgroundImage = view.getBackgroundImage();
-        if (backgroundImage != null) {
-            backgroundImage.drawInRect(displayRect);
-        }
-
     }
 
     // TODO (arno) Fix the clipping rect computation

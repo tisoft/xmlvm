@@ -17,6 +17,7 @@
  *
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
+
 package org.xmlvm.ant.xcode;
 
 import org.xmlvm.ant.utils.Log;
@@ -39,20 +40,22 @@ public class XCodeFile {
     private static final String TEMPL_RESOURCES = "__RESOURCES__";
     private static final String TEMPL_SRC_BUILD = "__SRC_BUILD__";
     private static final String TEMPL_RESOURCES_BUILD = "__RESOURCES_BUILD__";
+    private static final String TEMPL_SDK_ROOT = "__SDK_ROOT__";
+    private static final String TEMPL_SDK_TARGET = "__SDK_TARGET__";
     /* Project creation constants*/
     private static final int FIRST_ID = 1000;
     /* */
     private String data = "";    // Actual XCode data
     private int nextid; // Next reference id
 
-    public XCodeFile(String projname, ArrayList<String> projfiles, HashSet<String> libraries) {
+    public XCodeFile(String projname, ArrayList<String> projfiles, HashSet<String> libraries, XcodeSkeleton target) {
         /* Project name */
         data = XCodeProjectSource.Source.replace(TEMPL_PROJNAME, projname);
 
         nextid = FIRST_ID;
         injectLibraries(libraries);
         injectFiles(projfiles);
-        finalizeObject();
+        finalizeObject(target);
     }
     /* Requested libraries */
 
@@ -60,11 +63,16 @@ public class XCodeFile {
         return data;
     }
 
-    private void finalizeObject() {
-        data = data.replace(TEMPL_FILEREFS, "").replace(
-                TEMPL_BUILDREFS, "").replace(TEMPL_RESOURCES_BUILD, "").replace(
-                TEMPL_SRC_BUILD, "").replace(TEMPL_RESOURCES, "").replace(
-                TEMPL_BUILDFRAMS, "").replace(TEMPL_FRAMEWORKS, "");
+    private void finalizeObject(XcodeSkeleton target) {
+        data = data.replace(TEMPL_FILEREFS, "")
+                .replace(TEMPL_BUILDREFS, "")
+                .replace(TEMPL_RESOURCES_BUILD, "")
+                .replace(TEMPL_SRC_BUILD, "")
+                .replace(TEMPL_RESOURCES, "")
+                .replace(TEMPL_BUILDFRAMS, "")
+                .replace(TEMPL_FRAMEWORKS, "")
+                .replace(TEMPL_SDK_ROOT, target.root)
+                .replace(TEMPL_SDK_TARGET, target.target);
     }
 
     private void injectLibraries(HashSet<String> libs) {

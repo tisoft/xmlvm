@@ -23,18 +23,18 @@ package android.widget;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIButton;
-import org.xmlvm.iphone.UIButtonType;
 import org.xmlvm.iphone.UIControl;
 import org.xmlvm.iphone.UIControlDelegate;
 import org.xmlvm.iphone.UIControlEvent;
 import org.xmlvm.iphone.UIControlState;
 import org.xmlvm.iphone.UIFont;
-import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
+import org.xmlvm.iphone.UIButtonType;
+import org.xmlvm.iphone.UIView;
 
 public class Button extends TextView {
     private static final int INSETS_X = 10;
@@ -70,7 +70,7 @@ public class Button extends TextView {
             height = l.height == LayoutParams.WRAP_CONTENT ? (int) size.height + 2 * INSETS_Y
                     : l.height;
 
-            xmlvmGetUIView().setFrame(
+            xmlvmGetViewHandler().setFrame(
                     new CGRect(((AbsoluteLayout.LayoutParams) l).x,
                             ((AbsoluteLayout.LayoutParams) l).y, width, height));
         }
@@ -79,8 +79,7 @@ public class Button extends TextView {
     @Override
     public void setText(String text) {
         this.text = text;
-        UIView view = xmlvmGetUIView();
-        ((UIButton) view).setTitle(text, UIControlState.Normal);
+        ((UIButton) xmlvmGetViewHandler().getContentView()).setTitle(text, UIControlState.Normal);
         requestLayout();
     }
 
@@ -88,7 +87,7 @@ public class Button extends TextView {
     public void setOnClickListener(OnClickListener listener) {
         if (!(this instanceof CompoundButton)) {
             final OnClickListener theListener = listener;
-            ((UIControl) xmlvmGetUIView()).addTarget(new UIControlDelegate() {
+            ((UIControl) xmlvmGetViewHandler().getContentView()).addTarget(new UIControlDelegate() {
 
                 @Override
                 public void raiseEvent(UIControl sender, int eventType) {
@@ -102,7 +101,7 @@ public class Button extends TextView {
     }
 
     @Override
-    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
+    protected UIView xmlvmNewUIView(AttributeSet attrs) {
         return UIButton.buttonWithType(UIButtonType.RoundedRect);
     }
 
@@ -116,7 +115,7 @@ public class Button extends TextView {
 
     @Override
     protected UIFont xmlvmGetUIFont() {
-        return ((UIButton) xmlvmGetUIView()).getFont();
+        return ((UIButton) xmlvmGetViewHandler().getContentView()).getFont();
     }
 
     @Override

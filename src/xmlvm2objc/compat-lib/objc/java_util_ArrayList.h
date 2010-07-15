@@ -26,23 +26,25 @@
 // java.util.ArrayList
 //----------------------------------------------------------------------------
 typedef NSMutableArray java_util_ArrayList;
-@interface NSMutableArray (cat_java_util_ArrayList) <java_util_List>
 
+@interface NSArray (cat_java_util_ArrayList)
+- (int) size__;
+- (int) contains___java_lang_Object :(java_lang_Object*) item;
+- (BOOL) isEmpty__;
+- (java_util_Iterator*) iterator__;
+- (int) indexOf___java_lang_Object :(java_lang_Object*) item;
+- (java_lang_Object*) get___int :(int) idx;
+@end
+
+@interface NSMutableArray (cat_java_util_ArrayList) <java_util_List>
 - (void) __init_java_util_ArrayList__;
 - (void) __init_java_util_ArrayList___int:(int)initialCapacity;
 - (void) __init_java_util_ArrayList___java_util_Collection:(java_util_Collection*)c;
-- (java_util_Iterator*) iterator__;
-- (int) size__;
 - (BOOL) add___java_lang_Object :(java_lang_Object*) item;
 - (void) add___int_java_lang_Object :(int) idx :(java_lang_Object*) item;
 - (BOOL) addAll___java_util_Collection:(java_util_Collection*)c;
 - (java_lang_Object*) set___int_java_lang_Object :(int) idx: (java_lang_Object*) item;
-- (java_lang_Object*) get___int :(int) idx;
 - (java_lang_Object*) remove___int :(int) idx;
 - (BOOL) remove___java_lang_Object :(java_lang_Object*) item;
-- (int) indexOf___java_lang_Object :(java_lang_Object*) item;
-- (int) contains___java_lang_Object :(java_lang_Object*) item;
 - (void) clear__;
-- (BOOL) isEmpty__;
-
 @end

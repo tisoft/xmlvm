@@ -73,8 +73,8 @@ public class UIAlertButtonRenderer extends UIButtonRenderer {
         upperShape.closePath();
 
         GradientPaint lightGradient = new GradientPaint(0, y,
-                buttonPressed ? upperLightPressedColor : upperLightColor, 0, y + h / 2,
-                buttonPressed ? upperDarkPressedColor : upperDarkColor);
+                isHighlighted() ? upperLightPressedColor : upperLightColor, 0, y + h / 2,
+                isHighlighted() ? upperDarkPressedColor : upperDarkColor);
         g.setPaint(lightGradient);
         g.fill(upperShape);
 
@@ -91,8 +91,8 @@ public class UIAlertButtonRenderer extends UIButtonRenderer {
         lowerShape.closePath();
 
         GradientPaint darkGradient = new GradientPaint(0, y + h + 1,
-                buttonPressed ? lowerDarkPressedColor : lowerDarkColor, 0, y + h + 1,
-                buttonPressed ? lowerLightPressedColor : lowerLightColor);
+                isHighlighted() ? lowerDarkPressedColor : lowerDarkColor, 0, y + h + 1,
+                isHighlighted() ? lowerLightPressedColor : lowerLightColor);
         g.setPaint(darkGradient);
         g.fill(lowerShape);
 
@@ -101,7 +101,7 @@ public class UIAlertButtonRenderer extends UIButtonRenderer {
         g.drawRoundRect((int) x, (int) y, (int) w + 1, (int) h + 1, edgeDiameter, edgeDiameter);
 
         // Draw upper light line
-        if (!buttonPressed) {
+        if (!isHighlighted()) {
             Color c = new Color((int) Math.min(typeColor.getRed() * 1.3, 255), (int) Math.min(
                     typeColor.getGreen() * 1.3, 255), (int) Math
                     .min(typeColor.getBlue() * 1.3, 255));
@@ -110,9 +110,8 @@ public class UIAlertButtonRenderer extends UIButtonRenderer {
         }
 
         UIButton bt = (UIButton) view;
-        if (bt.getTitleForState(0) != null) {
-            g.setPaint(!buttonPressed || pressedTitleColor == null ? bt.getTitleColorForState(0)
-                    .xmlvmGetPaint() : pressedTitleColor);
+        if (bt.getCurrentTitle() != null) {
+            g.setPaint(bt.getCurrentTitleColor().xmlvmGetPaint());
             drawTitle(g, displayRect);
         }
     }

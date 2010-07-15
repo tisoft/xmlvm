@@ -27,57 +27,53 @@ import java.awt.Paint;
 
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIButton;
-import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIControlState;
 
 /**
  * 
  * @author teras
  */
-public class UIRoundRectButtonRenderer extends UIButtonRenderer {
-
-    private static final Color DEFAULT_TITLE_COLOR = new Color(56, 84, 135);
+public class UIRoundRectButtonRenderer extends UICustomButtonRenderer {
 
     public UIRoundRectButtonRenderer(UIButton view) {
         super(view);
     }
 
     @Override
-    protected void drawButton(Graphics2D g, CGRect displayRect) {
-        Paint borderColor;
-        Paint fillColor;
-        Paint titleColor;
+    protected boolean drawBackground(Graphics2D g, CGRect displayRect) {
+        if (!super.drawBackground(g, displayRect)) {
+            Paint borderColor;
+            Paint fillColor;
+            int x = (int) displayRect.origin.x;
+            int y = (int) displayRect.origin.y;
+            int w = (int) displayRect.size.width - 2;
+            int h = (int) displayRect.size.height - 2;
 
-        UIButton bt = (UIButton) view;
-        int x = (int) displayRect.origin.x;
-        int y = (int) displayRect.origin.y;
-        int w = (int) displayRect.size.width - 2;
-        int h = (int) displayRect.size.height - 2;
-        if (bt.getBackgroundColor() != UIColor.clearColor) {
-            g.setPaint(bt.getBackgroundColor().xmlvmGetPaint());
-            g.fillRect(x, y, w + 1, h + 1);
+            if (view.getBackgroundColor() != null) {
+                g.setPaint(view.getBackgroundColor().xmlvmGetPaint());
+                g.fillRect(x, y, w + 1, h + 1);
+            }
+            if (getState() == UIControlState.Normal) {
+                borderColor = new Color(0x9f9f9f);
+                fillColor = Color.WHITE;
+            } else {
+                borderColor = new Color(0x9f9f9f);
+                fillColor = new GradientPaint(0, y, new Color(5, 140, 245), 0, y
+                        + displayRect.size.height - 1, new Color(1, 96, 230));
+            }
+
+            g.setPaint(fillColor);
+            g.fillRoundRect(x, y, w, h, edgeDiameter, edgeDiameter);
+            g.setPaint(borderColor);
+            g.drawRoundRect(x, y, w, h, edgeDiameter, edgeDiameter);
         }
+        return true;
+    }
 
-        if (buttonPressed) {
-            borderColor = new Color(0x9f9f9f);
-            fillColor = new GradientPaint(0, y, new Color(5, 140, 245), 0, y
-                    + displayRect.size.height - 1, new Color(1, 96, 230));
-            titleColor = Color.WHITE;
-        } else {
-            borderColor = new Color(0x9f9f9f);
-            fillColor = Color.WHITE;
-            titleColor = bt.getTitleColorForState(1) != null ? bt.getTitleColorForState(1)
-                    .xmlvmGetPaint() : DEFAULT_TITLE_COLOR;
-        }
-
-        g.setPaint(fillColor);
-        g.fillRoundRect(x, y, w, h, edgeDiameter, edgeDiameter);
-
-        g.setPaint(borderColor);
-        g.drawRoundRect(x, y, w, h, edgeDiameter, edgeDiameter);
-
-        if (bt.getTitleForState(0) != null) {
-            g.setPaint(titleColor);
-            drawTitle(g, displayRect);
-        }
+    @Override
+    /**
+     * RoundRectButton does not support hghlight
+     */
+    protected void drawHighlight(Graphics2D g, CGRect displayRect) {
     }
 }

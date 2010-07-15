@@ -6,6 +6,8 @@
 	<PROPERTY_STATUSBARHIDDEN/>
 	<key>UIPrerenderedIcon</key>
 	<PROPERTY_PRERENDEREDICON/>
+	<key>UIApplicationExitsOnSuspend</key>
+	<PROPERTY_APPLICATIONEXITS/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>

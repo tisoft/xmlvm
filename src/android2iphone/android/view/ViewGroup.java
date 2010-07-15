@@ -25,17 +25,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIColor;
-import org.xmlvm.iphone.UIView;
 
 import android.app.Activity;
 import android.content.Context;
 import android.internal.Assert;
 import android.internal.Dimension;
 import android.util.AttributeSet;
-import java.util.Set;
-import org.xmlvm.iphone.UIEvent;
-import org.xmlvm.iphone.UITouch;
 
 /**
  * iPhone implementation of Android's ViewGroup class.
@@ -160,8 +155,10 @@ public class ViewGroup extends View implements ViewParent {
     private void initViewGroup(Context c, AttributeSet attrs) {
         this.subViews = new ArrayList<View>();
 
-        CGRect rect = ((Activity) c).getWindow().getCGRect();
-        this.xmlvmGetUIView().setFrame(rect);
+        if (c instanceof Activity) {
+            CGRect rect = ((Activity) c).getWindow().getCGRect();
+            this.xmlvmGetViewHandler().setFrame(rect);
+        }
 
         if (attrs != null && attrs.getAttributeCount() > 0) {
             parseViewGroupAttributes(attrs);
@@ -171,7 +168,7 @@ public class ViewGroup extends View implements ViewParent {
     public void addView(View child) {
         subViews.add(child);
         child.xmlvmSetParent(this);
-        xmlvmGetUIView().addSubview(child.xmlvmGetUIView());
+        xmlvmGetViewHandler().addSubview(child);
     }
 
     public void addView(View child, LayoutParams p) {
@@ -182,13 +179,13 @@ public class ViewGroup extends View implements ViewParent {
     public void addView(View child, int idx) {
         subViews.add(idx, child);
         child.xmlvmSetParent(this);
-        xmlvmGetUIView().insertSubview(child.xmlvmGetUIView(), idx);
+        xmlvmGetViewHandler().insertSubview(child, idx);
     }
 
     public void removeView(View child) {
         subViews.remove(child);
         child.xmlvmSetParent(null);
-        child.xmlvmGetUIView().removeFromSuperview();
+        child.xmlvmGetViewHandler().removeFromSuperview();
     }
 
     public void removeAllViews() {
@@ -276,34 +273,6 @@ public class ViewGroup extends View implements ViewParent {
 
     public Map<Integer, View> getXmlvmViewMap() {
         return xmlvmViewMap;
-    }
-
-    @Override
-    protected UIView xmlvmCreateUIView(AttributeSet attrs) {
-        UIView v = new UIView() {
-
-            @Override
-            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
-            }
-
-            @Override
-            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
-            }
-
-            @Override
-            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
-            }
-
-            @Override
-            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-                processTouchesEvent(MotionEvent.ACTION_UP, touches, event);
-            }
-        };
-        v.setBackgroundColor(UIColor.clearColor);
-        return v;
     }
 
     public void setXmlvmViewMap(Map<Integer, View> xmlvmViewMap) {
