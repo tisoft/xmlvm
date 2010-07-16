@@ -28,9 +28,10 @@
 {	
 }
 
-- (bool) available__
+- (int) available__
 {
-	return false;
+	[self xmlvmSubclassResponsibility];
+	return 0;
 }
 
 - (bool) markSupported__

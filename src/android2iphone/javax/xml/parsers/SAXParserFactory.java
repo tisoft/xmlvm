@@ -18,9 +18,30 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import "java_lang_Object.h"
+package javax.xml.parsers;
 
-@interface javax_xml_parsers_SAXParserFactory : java_lang_Object
+/**
+ * @author arno
+ * 
+ */
+public class SAXParserFactory {
 
-@end
+    private boolean isNamespaceAware = false;
+
+    public static SAXParserFactory newInstance() {
+        return new SAXParserFactory();
+    }
+
+    public void setNamespaceAware(boolean isNamespaceAware) {
+        this.isNamespaceAware = isNamespaceAware;
+    }
+
+    public boolean isNamespaceAware() {
+        return this.isNamespaceAware;
+    }
+
+    public SAXParser newSAXParser() throws ParserConfigurationException {
+        return new SAXParserImpl();
+    }
+
+}

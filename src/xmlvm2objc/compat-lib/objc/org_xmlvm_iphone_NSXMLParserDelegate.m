@@ -53,8 +53,8 @@
 	[self didStartElement___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String_java_lang_String_java_util_Map
 	  :parser
 	  :elementName
-	  :namespaceURI
-	  :qualifiedName
+	  :(namespaceURI == nil ? JAVA_NULL : namespaceURI)
+	  :(qualifiedName == nil ? elementName : qualifiedName)
 	  :attributeDict];
 }
 
@@ -70,13 +70,13 @@
 - (void) parser:(NSXMLParser *)parser
          didEndElement:(NSString *)elementName
          namespaceURI:(NSString *)namespaceURI
-         qualifiedName:(NSString *)qName
+         qualifiedName:(NSString *)qualifiedName
 {
 	[self didEndElement___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String_java_lang_String
 	  :parser
 	  :elementName
-	  :namespaceURI
-	  :qName];
+	  :(namespaceURI == nil ? JAVA_NULL : namespaceURI)
+	  :(qualifiedName == nil ? elementName : qualifiedName)];
 }
 
 - (void) didEndElement___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String_java_lang_String

@@ -25,10 +25,12 @@
 
 // java.util.Stack
 //----------------------------------------------------------------------------
-typedef NSMutableArray java_util_Stack;
-@interface NSMutableArray (cat_java_util_Stack)
+@interface java_util_Stack : java_lang_Object {
+	NSMutableArray* theStack;
+}
 
 - (void) __init_java_util_Stack__;
+- (void) dealloc;
 - (java_util_Iterator*) iterator__;
 - (int) size__;
 - (java_lang_Object*) push___java_lang_Object :(java_lang_Object*) item;

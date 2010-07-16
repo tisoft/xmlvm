@@ -177,4 +177,11 @@ static void quicksort(int list[], int m, int n)
 	return result;
 }
 
++ (XMLVMArray*) copyOf___int_ARRAYTYPE_int:(XMLVMArray*) original :(int) newLength
+{
+	XMLVMArray* newArray = [XMLVMArray createSingleDimensionWithType:5 /*INT*/ andSize:newLength];
+	[java_lang_System arraycopy___java_lang_Object_int_java_lang_Object_int_int:original :0 :newArray :0 :newLength];
+	return newArray;
+}
+
 @end

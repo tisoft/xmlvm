@@ -21,8 +21,15 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 #import "java_io_Reader.h"
+#import "java_lang_String.h"
 
 
-@interface java_io_StringReader : java_io_Reader 
+@interface java_io_StringReader : java_io_Reader {
+	java_lang_String* str;
+	int pos;
+}
+
+- (void) __init_java_io_StringReader___java_lang_String:(java_lang_String*)s;
+- (int) read__;
 
 @end

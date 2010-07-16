@@ -18,11 +18,22 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "org_xml_sax_InputSource.h"
 
-// javax_xml_parsers_SAXParserFactory
-//----------------------------------------------------------------------------
-@implementation javax_xml_parsers_SAXParserFactory
+package javax.xml.parsers;
 
-@end
+import java.io.IOException;
+import java.io.InputStream;
 
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+/**
+ * @author arno
+ *
+ */
+abstract public class SAXParser {
+
+    abstract public void parse(InputSource is, DefaultHandler dh) throws SAXException, IOException;
+    abstract public void parse(InputStream is, DefaultHandler dh) throws SAXException, IOException;
+}

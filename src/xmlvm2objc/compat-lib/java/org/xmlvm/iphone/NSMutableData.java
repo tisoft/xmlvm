@@ -36,4 +36,13 @@ public class NSMutableData extends NSData {
         data[count++] = (byte) v;
     }
 
+    /**
+     * @param buf
+     */
+    public void appendBytes(byte[] buf) {
+        for (byte b : buf) {
+            data[count++] = b;
+        }
+    }
+
 }

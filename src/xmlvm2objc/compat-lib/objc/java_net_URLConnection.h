@@ -20,7 +20,22 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
+#import "java_io_InputStream.h"
 
-@interface javax_xml_parsers_SAXParser : java_lang_Object
+
+@interface java_net_URLConnection : java_lang_Object {
+	NSURL* url;
+	NSMutableURLRequest* request;
+	NSHTTPURLResponse* response;
+	NSError* error;
+	NSData* data; 
+}
+
+- (id) initWithURL:(NSURL*) url;
+- (void) dealloc;
+- (void) setDoOutput___boolean:(int) flag;
+- (void) setRequestProperty___java_lang_String_java_lang_String:(java_lang_String*) key
+															   :(java_lang_String*) value;
+- (java_io_InputStream*) getInputStream__;
 
 @end

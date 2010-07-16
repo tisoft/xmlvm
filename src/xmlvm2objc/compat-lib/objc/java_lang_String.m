@@ -45,6 +45,13 @@
 	}
 }
 
+- (void) __init_java_lang_String___char_ARRAYTYPE_int_int: (XMLVMArray*) chars :(int) offset :(int) count
+{
+	for(int i = offset; i < offset + count; i++) {
+		[self appendFormat:@"%c", (char) chars->array.c[i]];
+	}
+}
+
 + (java_lang_String*) valueOf___int: (int) i
 {
 	NSNumber* n = [NSNumber numberWithInt: i];
@@ -106,11 +113,20 @@
 
 - (XMLVMArray*) getBytes__
 {
-	XMLVMArray *bytes = [XMLVMArray createSingleDimensionWithType: 3 andSize: self.length];
+	XMLVMArray *bytes = [XMLVMArray createSingleDimensionWithType:3 /*BYTES*/ andSize: self.length];
 	for (int i = 0; i < self.length; i++) {
 		bytes->array.b[i] = [self characterAtIndex:i];
 	}
 	return [bytes retain];
+}
+
+- (XMLVMArray*) toCharArray__
+{
+	XMLVMArray *chars = [XMLVMArray createSingleDimensionWithType:2 /*CHAR*/ andSize: self.length];
+	for (int i = 0; i < self.length; i++) {
+		chars->array.c[i] = [self characterAtIndex:i];
+	}
+	return [chars retain];
 }
 
 - (unichar) charAt___int: (int) idx

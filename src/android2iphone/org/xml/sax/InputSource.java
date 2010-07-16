@@ -18,9 +18,24 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import "java_lang_Object.h"
+package org.xml.sax;
 
-@interface org_xml_sax_helpers_DefaultHandler : java_lang_Object
+import java.io.Reader;
 
-@end
+/**
+ * @author arno
+ * 
+ */
+public class InputSource {
+
+    private Reader reader;
+
+    public InputSource(Reader reader) {
+        this.reader = reader;
+    }
+
+    public Reader getCharacterStream() {
+        return reader;
+    }
+
+}

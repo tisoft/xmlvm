@@ -24,5 +24,19 @@
 //----------------------------------------------------------------------------
 @implementation java_io_StringReader
 
+- (void) __init_java_io_StringReader___java_lang_String:(java_lang_String*)s
+{
+	self->str = s;
+	self->pos = 0;
+}
+
+- (int) read__
+{
+	if ([str length] == pos) {
+		return -1;
+	}
+	return [str charAt___int:pos++];
+}
+
 @end
 

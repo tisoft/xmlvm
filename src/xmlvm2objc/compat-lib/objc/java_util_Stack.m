@@ -23,56 +23,63 @@
 
 // java.util.Stack
 //----------------------------------------------------------------------------
-@implementation NSMutableArray (cat_java_util_Stack)
+@implementation java_util_Stack
 
 - (void) __init_java_util_Stack__
 {
+	theStack = [[NSMutableArray alloc] init];
+}
+
+- (void) dealloc
+{
+	[theStack release];
+	[super dealloc];
 }
 
 - (java_util_Iterator*) iterator__
 {
-	return [[java_util_IteratorImpl alloc] init: [self objectEnumerator]];
+	return [[java_util_IteratorImpl alloc] init: [theStack objectEnumerator]];
 }
 
 - (int) size__
 {
-	return [self count];
+	return [theStack count];
 }
 
 - (java_lang_Object*) push___java_lang_Object :(java_lang_Object*) item
 {
-	[self addObject: item];
+	[theStack addObject: item];
 	[item retain];
 	return item;
 }
 
 - (java_lang_Object*) get___int :(int) idx
 {
-	java_lang_Object* item = (java_lang_Object*) [self objectAtIndex: idx];
+	java_lang_Object* item = (java_lang_Object*) [theStack objectAtIndex: idx];
 	[item retain];
 	return item;
 }
 
 - (java_lang_Object*) remove___int :(int) idx
 {
-	java_lang_Object* o = [self objectAtIndex: idx];
+	java_lang_Object* o = [theStack objectAtIndex: idx];
 	[o retain];
-	[self removeObjectAtIndex: idx];
+	[theStack removeObjectAtIndex: idx];
 	return o;
 }
 
 - (java_lang_Object*) pop__
 {
-	java_lang_Object* o = [self lastObject];
+	java_lang_Object* o = [theStack lastObject];
 	[o retain];
-	[self removeLastObject];
+	[theStack removeLastObject];
 	return o;
 }
 
 - (BOOL) remove___java_lang_Object :(java_lang_Object*) item
 {
-	if ([self indexOfObject: item] != NSNotFound) {
-		[self removeObject: item];
+	if ([theStack indexOfObject: item] != NSNotFound) {
+		[theStack removeObject: item];
 		return true;
 	} else {
 		return false;
