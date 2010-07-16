@@ -27,36 +27,10 @@ class java_lang_Object;
 
 void xmlvm_init();
 
+/* Base C++ class for all Java classes and interfaces */
 class XMLVMRootObject {
-private:
-    virtual void __dummy() {}
-
-/*
 public:
-    int retainCount;
-    
-public:
-    XMLVMRootObject() {
-        retainCount = 1;
-    }
-
     virtual ~XMLVMRootObject() {}
-
-    XMLVMRootObject* __retain() {
-        if (retainCount != -1) retainCount++;
-        return this;
-    }
-
-    void __release() {
-        if (retainCount != -1) {
-            retainCount--;
-            if (retainCount == 0) {
-                delete this;
-            }
-        }
-    }
-*/
-
 };
 
 
@@ -105,7 +79,7 @@ typedef union {
 extern XMLVMRootObject* JAVA_NULL;
 
 
-class XMLVMArray : public XMLVMRootObject
+class XMLVMArray : virtual public XMLVMRootObject
 {
 public:
     XMLVMElemPtr array;

@@ -81,14 +81,14 @@ int main(int argc, char* argv[])
     <xsl:text>_</xsl:text>
     <xsl:value-of select="vm:fixname(@name)"/>
     <xsl:if test="not(@isInterface = 'true')">
-      <xsl:text> :</xsl:text>
-      <xsl:if test="@interfaces">
-        <xsl:text> /*virtual*/</xsl:text>
-      </xsl:if>
-      <xsl:text> public </xsl:text>
-      <xsl:value-of select="if (@extends='') then 'XMLVMRootObject' else vm:fixname(@extends)"/>
+      <xsl:text> : public </xsl:text>
+      <xsl:value-of select="if (@extends='') then 'virtual XMLVMRootObject' else vm:fixname(@extends)"/>
     </xsl:if>
 
+    <xsl:if test="@isInterface = 'true' and not(@interfaces)">
+      <xsl:text> : virtual public XMLVMRootObject</xsl:text>
+    </xsl:if>
+    
     <xsl:if test="@interfaces">
       <!-- Only use virtual inheritance if we inherit from more than one C++ class. -->
       <!-- The number of C++ classes is the sum of the base class plus all interfaces. -->
@@ -502,9 +502,17 @@ static void __init_class();
     <xsl:value-of select="if (@isStatic = 'true') then 'static' else 'virtual'"/>
     <xsl:text> </xsl:text>
   </xsl:if>
-  <xsl:call-template name="emitType">
-    <xsl:with-param name="type" select="vm:signature/vm:return/@type"/>
-  </xsl:call-template>
+  <!-- If the return type is java.lang.Object, we emit XMLVMRootObject to handle covariant returns -->
+  <xsl:choose>
+    <xsl:when test="vm:signature/vm:return/@type = 'java.lang.Object'">
+      <xsl:text>XMLVMRootObject*</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="vm:signature/vm:return/@type"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:text> </xsl:text>
   <xsl:if test="$forDeclaration = 0">
     <xsl:value-of select="vm:fixname(concat(../@package, '.', ../@name))"/>
@@ -781,8 +789,12 @@ static void __init_class();
 </xsl:text>
  </xsl:if>
  <xsl:if test="@sourceArg != 'self'">
-   <xsl:text> = n</xsl:text><xsl:value-of select="@sourceArg"/>
- <xsl:text>;
+   <xsl:text> = </xsl:text>
+   <xsl:if test="vm:isObjectRef(@vx-type)">
+     <xsl:text>dynamic_cast&lt;XMLVMRootObject*></xsl:text>
+   </xsl:if>
+   <xsl:text>(n</xsl:text><xsl:value-of select="@sourceArg"/>
+ <xsl:text>);
 </xsl:text>
  </xsl:if>
 </xsl:template>
