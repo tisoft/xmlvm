@@ -251,6 +251,10 @@
 
 - (java_lang_String*) replaceFirst___java_lang_String_java_lang_String:(java_lang_String*)regex :(java_lang_String*)replacement
 {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED <= __IPHONE_3_1
+#define NSRegularExpressionSearch NSLiteralSearch
+	NSLog(@"String.replaceFirst() not supported");
+#endif
 	NSRange found = [self rangeOfString:regex options:NSRegularExpressionSearch];
 	if (found.location == NSNotFound) {
 		return_XMLVM(self);
