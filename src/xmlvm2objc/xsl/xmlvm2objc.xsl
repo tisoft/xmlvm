@@ -3443,7 +3443,8 @@ int main(int argc, char* argv[])
   <xsl:text>    [XMLVMArray fillArray:_r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.o withData:(</xsl:text>
-  <xsl:value-of select="@vx-type"/>
+  <!-- Replace char[] with short[] since the values have already been converted to short. Otherwise, junk is produced. Similar requirement for byte[] as well? -->
+  <xsl:value-of select="replace(@vx-type, 'char', 'short')"/>
   <xsl:text>){</xsl:text>
   <xsl:for-each select="dex:constant">
     <xsl:value-of select="@value"/>
