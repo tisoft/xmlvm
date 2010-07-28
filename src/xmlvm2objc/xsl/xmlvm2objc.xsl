@@ -2182,14 +2182,26 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:monitor-enter">
-  <!-- TODO we can't map this to @synchronized {} because DEX may
-       generate multiple monitor-exit for one monitor-enter -->
+  <!-- We can't map this to @synchronized {} because DEX may
+       generate multiple monitor-exit for one monitor-enter in order
+       to handle exceptions. Also, wait() and wait(long) need to be
+       able to release the Object's monitor (the synchronized lock) -->
+  <xsl:text>    [_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o acquireLockRecursive];
+</xsl:text>
 </xsl:template>
 
 
 <xsl:template match="dex:monitor-exit">
-  <!-- TODO we can't map this to @synchronized {} because DEX may
-       generate multiple monitor-exit for one monitor-enter -->
+  <!-- We can't map this to @synchronized {} because DEX may
+       generate multiple monitor-exit for one monitor-enter in order
+       to handle exceptions. Also, wait() and wait(long) need to be
+       able to release the Object's monitor (the synchronized lock) -->
+  <xsl:text>    [_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o releaseLockRecursive];
+</xsl:text>
 </xsl:template>
 
 

@@ -103,10 +103,10 @@ void ERROR(char* msg);
 #define XMLVM_PROPERTY_WITHCOMMAND(PROPERTY,VALUE,COMMAND) id __retainable=(VALUE==JAVA_NULL)?nil:VALUE; COMMAND; static char PROPERTY_key; objc_setAssociatedObject(self, &PROPERTY_key, __retainable, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
 // Under iPhone simulator there is a bug, in which associations are not supported. This is a workaround, which actually leaves a memory leak, but it doesn't harm (much).
-#if TARGET_IPHONE_SIMULATOR
-#define objc_setAssociatedObject(A,B,ITEM,D) [ITEM retain];
-#define OBJC_ASSOCIATION_RETAIN_NONATOMIC 1
-#endif
+//#if TARGET_IPHONE_SIMULATOR
+//#define objc_setAssociatedObject(A,B,ITEM,D) [ITEM retain];
+//#define OBJC_ASSOCIATION_RETAIN_NONATOMIC 1
+//#endif
 
 
 // This is used to support optional protocol implementation in Java. Declare that an ObjC selector exists ONLY if the JAVA selector exists. CHECK is the current selector being asked.

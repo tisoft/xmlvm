@@ -36,4 +36,51 @@ typedef NSObject java_lang_Object;
 - (int) hashCode__;
 - (NSString*) toString__;
 
+- (BOOL) acquireLockRecursive;
+- (void) releaseLockRecursive;
+
+- (void) wait__;
+- (void) wait___long: (long)timeout;
+- (void) notify__;
+- (void) notifyAll__;
+
+@end
+
+@interface java_lang_Object_members : NSObject {
+	//////////////////////////////////////////////////////
+	// The following members are synchronization
+	//////////////////////////////////////////////////////
+
+	NSLock* syncLock; // When synchronizing on "this", it will actually use "syncLock"
+	int recursiveLocks; // the number of recursive locks. If only synchronized once, this is 1
+	NSInteger owningThread; // the thread that owns the lock or -1 for none
+
+	//////////////////////////////////////////////////////
+	// The following members are for wait(), wait(long), notify(), notifyAll()
+	//////////////////////////////////////////////////////
+
+	// Array of ids representing threads waiting. This id is also the condition
+	// on which they will lock.  It is initialized with an initialCapacity of 0
+	// since most Objects won't use wait/notify
+	NSMutableArray* threads;
+	// if a notifyAll occurs, notify every thread at or before or this index
+	int notifyAllMaxIndex;
+	NSConditionLock* notifyLock;
+
+	//////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////
+}
+
+// For synchronization
+@property (nonatomic, retain) NSLock* syncLock;
+@property (nonatomic) int recursiveLocks;
+@property (nonatomic) NSInteger owningThread;
+
+// For wait(), wait(long), notify(), notifyAll()
+@property (nonatomic, retain) NSMutableArray* threads;
+@property (nonatomic) int notifyAllMaxIndex;
+@property (nonatomic, retain) NSConditionLock* notifyLock;
+
+- (void) incrementNotifyAllMaxIndex: (int) increment;
+
 @end
