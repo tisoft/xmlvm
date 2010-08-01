@@ -21,10 +21,13 @@
 package org.xmlvm.proc.out;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.JavaJDKLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResourceProvider;
@@ -37,6 +40,7 @@ public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
     private static final String JS_EXTENSION = ".js";
     private List<OutputFile>    result       = new ArrayList<OutputFile>();
 
+
     public JavaScriptOutputProcess(Arguments arguments) {
         super(arguments);
         addAllXmlvmEmittingProcessesAsInput();
@@ -47,20 +51,39 @@ public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
         return result;
     }
 
-    @Override
     public boolean process() {
+        Map<String, XmlvmResource> mappedResources = new HashMap<String, XmlvmResource>();
         List<XmlvmResourceProvider> preprocesses = preprocess();
         for (XmlvmResourceProvider process : preprocesses) {
             List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
-            for (XmlvmResource xmlvm : xmlvmResources) {
-                Log.debug("JavaScriptOutputProcess: Processing " + xmlvm.getName());
-                OutputFile file = generateJavaScript(xmlvm);
-                file.setLocation(arguments.option_out());
-                String packageName = xmlvm.getPackageName().replace('.', '_');
-                String resourceName = xmlvm.getName().replace('$', '_');
-                file.setFileName(packageName + '_' + resourceName + JS_EXTENSION);
-                result.add(file);
+            for (XmlvmResource resource : xmlvmResources) {
+                mappedResources.put(resource.getFullName(), resource);
             }
+        }
+
+        if (arguments.option_exp_load_deps()) {
+            // Make sure we have all types that are referenced loaded.
+            (new JavaJDKLoader(arguments)).loadAllReferencedTypes(mappedResources);
+        }
+
+        // TODO(Sascha): Parallelize.
+        for (XmlvmResource resource : mappedResources.values()) {
+            if (resource == null) {
+                continue;
+            }
+            Log.debug("JavaScriptOutputProcess: Processing " + resource.getName());
+            OutputFile file = generateJavaScript(resource);
+            file.setLocation(arguments.option_out());
+            String packageName = resource.getPackageName().replace('.', '_');
+            String resourceName = resource.getName();
+            Log.debug("RESOURCE NAME: " + resourceName);
+
+            String fileName = resourceName + JS_EXTENSION;
+            if (!packageName.isEmpty()) {
+                fileName = packageName + '_' + fileName;
+            }
+            file.setFileName(fileName);
+            result.add(file);
         }
         return true;
     }

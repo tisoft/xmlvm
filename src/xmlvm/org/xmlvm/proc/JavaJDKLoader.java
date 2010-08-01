@@ -20,7 +20,10 @@
 
 package org.xmlvm.proc;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
@@ -44,17 +47,24 @@ public class JavaJDKLoader {
                                                                   ONEJAR_JDK_JAR,
                                                                   FILESYSTEM_JDK_JAR);
 
+    private final Arguments            arguments;
+
+
+    public JavaJDKLoader(Arguments arguments) {
+        this.arguments = arguments;
+    }
+
     /**
      * Loads the type with the given name from the JDK class library.
      * 
      * @param typeName
      *            can be e.g. "java.lang.Object"
      */
-    public static XmlvmResource load(String typeName) {
+    public XmlvmResource load(String typeName) {
         return load(typeName, JDK);
     }
 
-    private static XmlvmResource load(String typeName, UniversalFile directory) {
+    private XmlvmResource load(String typeName, UniversalFile directory) {
         if (typeName.contains(".")) {
             String packageName = typeName.substring(0, typeName.indexOf("."));
             UniversalFile subDir = directory.getEntry(packageName);
@@ -80,10 +90,9 @@ public class JavaJDKLoader {
         }
     }
 
-    private static XmlvmResource process(UniversalFile file) {
+    private XmlvmResource process(UniversalFile file) {
         ClassFile classFile = new ClassFile(file);
 
-        Arguments arguments = new Arguments(new String[] { "--in=foo" });
         ClassInputProcess inputProcess = new ClassInputProcess(arguments, classFile);
         DEXmlvmOutputProcess outputProcess = new DEXmlvmOutputProcess(arguments);
         outputProcess.addPreprocess(inputProcess);
@@ -96,5 +105,98 @@ public class JavaJDKLoader {
             return null;
         }
         return resources.get(0);
+    }
+
+    /**
+     * This method looks at the resources and their referenced types. It causes
+     * the missing types to be loaded from the JDK. This is done recursively
+     * until all types have been loaded.
+     * <p>
+     * The loaded types will be added to the given resource map.
+     * 
+     * @param resources
+     *            the resources from which on referenced types are looked up.
+     *            Loaded references are also added here.
+     * 
+     * @return whether all references are loaded and no further loading is
+     *         necessary.
+     */
+    public void loadAllReferencedTypes(Map<String, XmlvmResource> resources) {
+        while (!loadReferencedTypes(resources)) {
+        }
+    }
+
+    private boolean loadReferencedTypes(Map<String, XmlvmResource> resources) {
+        Set<String> toLoad = new HashSet<String>();
+
+        for (String typeName : resources.keySet()) {
+            XmlvmResource resource = resources.get(typeName);
+            if (resource == null) {
+                continue;
+            }
+            Log.debug("***********************************");
+            Log.debug("XMLVM Resource: " + resource.getFullName());
+            Log.debug("Super-type    : " + resource.getSuperTypeName());
+            Log.debug("Referenced types:");
+
+            Set<String> referencedTypes = resource.getReferencedTypes();
+            eliminateArrayTypes(referencedTypes);
+
+            for (String referencedType : referencedTypes) {
+                if (!isBasicType(referencedType)) {
+                    if (resources.keySet().contains(referencedType)) {
+                        Log.debug(" OK   -> " + referencedType);
+                    } else {
+                        toLoad.add(referencedType);
+                        Log.debug(" LOAD -> " + referencedType);
+                    }
+                }
+            }
+        }
+
+        if (toLoad.isEmpty()) {
+            return true;
+        }
+
+        // Load missing dependencies.
+        // TODO(Sascha): Parallelize.
+        for (String load : toLoad) {
+            Log.debug(TAG, "Loading " + load);
+            resources.put(load, load(load));
+        }
+        return false;
+    }
+
+    private static boolean isBasicType(String typeName) {
+        final Set<String> basicTypes = new HashSet<String>();
+        basicTypes.add("");
+        basicTypes.add("byte");
+        basicTypes.add("char");
+        basicTypes.add("int");
+        basicTypes.add("float");
+        basicTypes.add("long");
+        basicTypes.add("double");
+        basicTypes.add("boolean");
+        basicTypes.add("void");
+        basicTypes.add("null");
+        return basicTypes.contains(typeName);
+    }
+
+    private static void eliminateArrayTypes(Set<String> types) {
+        Set<String> add = new HashSet<String>();
+        Set<String> remove = new HashSet<String>();
+
+        for (String typeName : types) {
+            if (typeName.endsWith("[]")) {
+                remove.add(typeName);
+                add.add(typeName.substring(0, typeName.length() - 2));
+            }
+        }
+        for (String typeName : remove) {
+            types.remove(typeName);
+        }
+        for (String typeName : add) {
+            types.add(typeName);
+        }
     }
 }

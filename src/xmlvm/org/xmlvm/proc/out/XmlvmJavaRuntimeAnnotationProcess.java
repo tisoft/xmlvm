@@ -20,17 +20,11 @@
 
 package org.xmlvm.proc.out;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.JavaJDKLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
@@ -47,9 +41,6 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
                                                         .getSimpleName();
 
     List<XmlvmResource>         result          = new ArrayList<XmlvmResource>();
-    Map<String, String>         wasLoadedBy     = new HashMap<String, String>();
-    BufferedWriter              statsWriter;
-    private boolean             writeDepsToHtml = false;
 
     public XmlvmJavaRuntimeAnnotationProcess(Arguments arguments) {
         super(arguments);
@@ -58,15 +49,6 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
 
     @Override
     public boolean process() {
-        if (writeDepsToHtml) {
-            try {
-                statsWriter = new BufferedWriter(new FileWriter("stats.html"));
-            } catch (IOException e) {
-                e.printStackTrace();
-                return false;
-            }
-        }
-
         List<XmlvmResourceProvider> preprocesses = preprocess();
 
         // We create a map that maps type name to the resource.
@@ -77,54 +59,18 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
                 xmlvmResources.put(resource.getFullName(), resource);
             }
         }
-
-        if (!arguments.option_exp_no_deps()) {
+        if (arguments.option_exp_load_deps()) {
             // Make sure we have all types that are referenced loaded.
-            while (!loadReferencedTypes(xmlvmResources)) {
-            }
+            (new JavaJDKLoader(arguments)).loadAllReferencedTypes(xmlvmResources);
         }
-
-        Map<String, String> dependencies = new HashMap<String, String>();
-        // Build a dependency graph.
-        for (XmlvmResource resource : xmlvmResources.values()) {
-            if (resource != null) {
-
-                dependencies.put(resource.getFullName(), getDependencyList(resource.getFullName()));
-            }
-        }
-
-        if (writeDepsToHtml) {
-            for (String type : dependencies.keySet()) {
-                try {
-                    statsWriter.write("<br/><br/>Dependencies of: <b>" + type + "</b><br/>");
-                    statsWriter.write(dependencies.get(type));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            try {
-                statsWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        result.addAll(xmlvmResources.values());
 
         // *************************************************************
         // * TODO(Arno): Do whatever you need with the XMLVM resources *
         // * to add the vtable information. *
         // *************************************************************
 
+        result.addAll(xmlvmResources.values());
         return true;
-    }
-
-    private String getDependencyList(String type) {
-        String dependency = wasLoadedBy.get(type);
-        if (dependency == null) {
-            return "";
-        }
-        return dependency + " <- " + getDependencyList(dependency);
     }
 
     @Override
@@ -137,85 +83,5 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
         return null;
     }
 
-    private boolean isBasicType(String typeName) {
-        final Set<String> basicTypes = new HashSet<String>();
-        basicTypes.add("");
-        basicTypes.add("byte");
-        basicTypes.add("char");
-        basicTypes.add("int");
-        basicTypes.add("float");
-        basicTypes.add("long");
-        basicTypes.add("double");
-        basicTypes.add("boolean");
-        basicTypes.add("void");
-        basicTypes.add("null");
-        return basicTypes.contains(typeName);
-    }
 
-    private void eliminateArrayTypes(Set<String> types) {
-        Set<String> add = new HashSet<String>();
-        Set<String> remove = new HashSet<String>();
-
-        for (String typeName : types) {
-            if (typeName.endsWith("[]")) {
-                remove.add(typeName);
-                add.add(typeName.substring(0, typeName.length() - 2));
-            }
-        }
-        for (String typeName : remove) {
-            types.remove(typeName);
-        }
-        for (String typeName : add) {
-            types.add(typeName);
-        }
-    }
-
-    /**
-     * This method looks at the resources and their referenced types. It causes
-     * the missing types to be loaded again looks at all referenced types. This
-     * is done recursively until all types have been loaded.
-     * 
-     * @return whether all references are loaded and no further loading is
-     *         necessary.
-     */
-    private boolean loadReferencedTypes(Map<String, XmlvmResource> resources) {
-        Set<String> toLoad = new HashSet<String>();
-
-        for (String typeName : resources.keySet()) {
-            XmlvmResource resource = resources.get(typeName);
-            if (resource == null) {
-                continue;
-            }
-            Log.debug("***********************************");
-            Log.debug("XMLVM Resource: " + resource.getFullName());
-            Log.debug("Super-type    : " + resource.getSuperTypeName());
-            Log.debug("Referenced types:");
-
-            Set<String> referencedTypes = resource.getReferencedTypes();
-            eliminateArrayTypes(referencedTypes);
-
-            for (String referencedType : referencedTypes) {
-                if (!isBasicType(referencedType)) {
-                    if (resources.keySet().contains(referencedType)) {
-                        Log.debug(" OK   -> " + referencedType);
-                    } else {
-                        wasLoadedBy.put(referencedType, resource.getFullName());
-                        toLoad.add(referencedType);
-                        Log.debug(" LOAD -> " + referencedType);
-                    }
-                }
-            }
-        }
-
-        if (toLoad.isEmpty()) {
-            return true;
-        }
-
-        // Load missing dependencies.
-        for (String load : toLoad) {
-            Log.debug(TAG, "Loading " + load);
-            resources.put(load, JavaJDKLoader.load(load));
-        }
-        return false;
-    }
 }

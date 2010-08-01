@@ -38,52 +38,55 @@ import org.xmlvm.Log;
 public class Arguments {
     // The arguments that are given by the user on the command line.
 
-    public static final String    ARG_IN             = "--in=";
-    public static final String    ARG_OUT            = "--out=";
-    public static final String    ARG_TARGET         = "--target=";
-    public static final String    ARG_RESOURCE       = "--resource=";
-    public static final String    ARG_LIB            = "--lib=";
-    public static final String    ARG_APP_NAME       = "--app-name=";
-    public static final String    ARG_QX_MAIN        = "--qx-main=";
-    public static final String    ARG_QX_DEBUG       = "--qx-debug";
-    public static final String    ARG_DEBUG          = "--debug=";
-    public static final String    ARG_VERSION        = "--version";
-    public static final String    ARG_HELP           = "--help";
-    public static final String    ARG_SKELETON       = "--skeleton=";
+    public static final String    ARG_IN                     = "--in=";
+    public static final String    ARG_OUT                    = "--out=";
+    public static final String    ARG_TARGET                 = "--target=";
+    public static final String    ARG_RESOURCE               = "--resource=";
+    public static final String    ARG_LIB                    = "--lib=";
+    public static final String    ARG_APP_NAME               = "--app-name=";
+    public static final String    ARG_QX_MAIN                = "--qx-main=";
+    public static final String    ARG_QX_DEBUG               = "--qx-debug";
+    public static final String    ARG_DEBUG                  = "--debug=";
+    public static final String    ARG_VERSION                = "--version";
+    public static final String    ARG_HELP                   = "--help";
+    public static final String    ARG_SKELETON               = "--skeleton=";
     // These are obsolete arguments, being here for compatibility reasons
-    public static final String    ARG_IPHONE_APP     = "--iphone-app=";
-    public static final String    ARG_QX_APP         = "--qx-app=";
-    public static final String    ARG_QUIET          = "--quiet";
+    public static final String    ARG_IPHONE_APP             = "--iphone-app=";
+    public static final String    ARG_QX_APP                 = "--qx-app=";
+    public static final String    ARG_QUIET                  = "--quiet";
     // This is just temporary for activating the new DEX processing.
-    public static final String    ARG_USE_JVM        = "--use-jvm";
-    // Disables the experimental dependency resolution feature.
-    public static final String    ARG_EXP_NO_DEPS    = "--exp-no-deps";
+    public static final String    ARG_USE_JVM                = "--use-jvm";
+    // Enables the experimental dependency resolution feature.
+    public static final String    ARG_EXP_LOAD_DEPS          = "--exp-load-deps";
+    // Enables reference counting for DEX input.
+    public static final String    ARG_ENABLE_REF_COUNTING    = "--enable-ref-counting";
     // This argument will store various properties to XMLVM
     // An example of these values can be found in the long help
-    public static final String    ARG_PROPERTY       = "-D";
+    public static final String    ARG_PROPERTY               = "-D";
     // The parsed values will be stored here.
-    private List<String>          option_in          = new ArrayList<String>();
-    private String                option_out         = null;
-    private Targets               option_target      = Targets.NONE;
-    private Set<String>           option_resource    = new HashSet<String>();
-    private Set<String>           option_lib         = new HashSet<String>();
-    private String                option_app_name    = null;
-    private String                option_qx_main     = null;
-    private boolean               option_qx_debug    = false;
-    private Log.Level             option_debug       = Log.Level.WARNING;
-    private String                option_skeleton    = null;
-    private boolean               option_use_jvm     = false;
-    private boolean               option_exp_no_deps = false;
-    private Map<String, String>   option_property    = new HashMap<String, String>();
+    private List<String>          option_in                  = new ArrayList<String>();
+    private String                option_out                 = null;
+    private Targets               option_target              = Targets.NONE;
+    private Set<String>           option_resource            = new HashSet<String>();
+    private Set<String>           option_lib                 = new HashSet<String>();
+    private String                option_app_name            = null;
+    private String                option_qx_main             = null;
+    private boolean               option_qx_debug            = false;
+    private Log.Level             option_debug               = Log.Level.WARNING;
+    private String                option_skeleton            = null;
+    private boolean               option_use_jvm             = false;
+    private boolean               option_exp_load_deps       = false;
+    private boolean               option_enable_ref_counting = false;
+    private Map<String, String>   option_property            = new HashMap<String, String>();
 
-    private static final String[] shortUsage         = {
+    private static final String[] shortUsage                 = {
             "Usage: ",
             "xmlvm [--in=<path> [--out=<dir>]]",
             "      [--target=[xmlvm|dexmlvm|jvm|clr|dfa|class|exe|dex|js|cpp|c|python|objc|iphone|qooxdoo|webos]]",
             "      [--skeleton=<type>]", "      [--lib=<name>", "      [--app-name=<app-name>]",
             "      [--resource=<path>]", "      [--qx-main=<main-class> [--qx-debug]]",
             "      [--debug=[none|error|warning|all]]", "      [--version] [--help]" };
-    private static final String[] longUsage          = {
+    private static final String[] longUsage                  = {
             "Detailed usage:",
             "===============",
             "",
@@ -101,6 +104,7 @@ public class Arguments {
             "    exe              .NET executable",
             "    dex              DEX bytecode",
             "    js               JavaScript",
+            "    jsandroid        Android to JS (experimental)",
             "    c                C source code",
             "    cpp              C++ source code",
             "    python           Python",
@@ -135,16 +139,18 @@ public class Arguments {
             "   BundleDisplayName The value of CFBundleDisplayName in Info.plist",
             "   PrerenderedIcon   The iPhone application icon is already pre-rendered",
             "   StatusBarHidden   Hide (value is 'true') or display (value is 'false' status bar",
-            "   ApplicationExits  Application does not run in background on suspend",
-            "", " --debug=<level>   Debug information level",
+            "   ApplicationExits  Application does not run in background on suspend", "",
+            " --debug=<level>   Debug information level",
             "    none             Be completely quiet, no information is printed",
             "    error            Only errors will be printed",
             "    warning          Warning and errors will be printed",
             "    all              All debug information (including errors and warnings)", "",
             " --version         Display version information", "",
-            " --help            This message", ""   };
-    private static final String[] Version            = { "XMLVM 2 alpha (experimental rebuild)",
+            " --help            This message", ""           };
+    private static final String[] Version                    = {
+            "XMLVM 2 alpha (experimental rebuild)",
             "Note: Not all command like arguments activated yet." };
+
 
     public static void printVersion() {
         printText(Version, System.out);
@@ -238,16 +244,18 @@ public class Arguments {
                 option_debug = Log.Level.ERROR;
             } else if (arg.equals(ARG_USE_JVM)) {
                 option_use_jvm = true;
-            } else if (arg.equals(ARG_EXP_NO_DEPS)) {
-                option_exp_no_deps = true;
+            } else if (arg.equals(ARG_EXP_LOAD_DEPS)) {
+                option_exp_load_deps = true;
+            } else if (arg.equals(ARG_ENABLE_REF_COUNTING)) {
+                option_enable_ref_counting = true;
             } else if (arg.startsWith(ARG_PROPERTY)) {
                 String value = arg.substring(ARG_PROPERTY.length());
                 int equal = value.indexOf("=");
                 if (equal < 1) {
                     parseError("Unable to parse kay/value: " + value);
                 }
-                option_property.put(value.substring(0, equal).toLowerCase(), value
-                        .substring(equal + 1));
+                option_property.put(value.substring(0, equal).toLowerCase(),
+                        value.substring(equal + 1));
             } else {
                 parseError("Unknown parameter: " + arg);
             }
@@ -262,7 +270,7 @@ public class Arguments {
             parseError("Only one argument of '--target' or '--skeleton' is allowed");
         }
         // if (option_skeleton != null && option_lib.size() > 0) {
-        //     parseError("Argument '--skeleton' does not support '--lib'");
+        // parseError("Argument '--skeleton' does not support '--lib'");
         // }
         if (option_skeleton != null)
             option_target = Targets.IPHONETEMPLATE;
@@ -304,8 +312,7 @@ public class Arguments {
             parseError("Unknown --debug level");
     }
 
-    private static void parseListArgument(String argument, Set<String> option,
-            String separator) {
+    private static void parseListArgument(String argument, Set<String> option, String separator) {
         StringTokenizer tk = new StringTokenizer(argument, separator);
         while (tk.hasMoreTokens()) {
             String entry = tk.nextToken().trim();
@@ -364,8 +371,12 @@ public class Arguments {
         return option_use_jvm;
     }
 
-    public boolean option_exp_no_deps() {
-        return option_exp_no_deps;
+    public boolean option_exp_load_deps() {
+        return option_exp_load_deps;
+    }
+    
+    public boolean option_enable_ref_counting() {
+        return option_enable_ref_counting;
     }
 
     public Set<String> option_lib() {

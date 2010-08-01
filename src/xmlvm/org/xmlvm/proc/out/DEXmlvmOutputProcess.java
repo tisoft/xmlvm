@@ -43,8 +43,8 @@ import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcess;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XmlvmResource.Type;
+import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
 import org.xmlvm.refcount.InstructionProcessor;
 import org.xmlvm.refcount.ReferenceCounting;
@@ -62,6 +62,7 @@ import com.android.dx.dex.cf.CfTranslator;
 import com.android.dx.dex.code.ArrayData;
 import com.android.dx.dex.code.CatchHandlerList;
 import com.android.dx.dex.code.CatchTable;
+import com.android.dx.dex.code.CatchTable.Entry;
 import com.android.dx.dex.code.CodeAddress;
 import com.android.dx.dex.code.CstInsn;
 import com.android.dx.dex.code.DalvCode;
@@ -78,7 +79,6 @@ import com.android.dx.dex.code.RopTranslator;
 import com.android.dx.dex.code.SimpleInsn;
 import com.android.dx.dex.code.SwitchData;
 import com.android.dx.dex.code.TargetInsn;
-import com.android.dx.dex.code.CatchTable.Entry;
 import com.android.dx.rop.code.AccessFlags;
 import com.android.dx.rop.code.DexTranslationAdvice;
 import com.android.dx.rop.code.LocalVariableExtractor;
@@ -188,7 +188,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
 
 
     private static final boolean   LOTS_OF_DEBUG      = false;
-    private static final boolean   REF_LOGGING        = false;
+    private static final boolean   REF_LOGGING        = true;
 
     private static final String    DEXMLVM_ENDING     = ".dexmlvm";
     private static final Namespace NS_XMLVM           = XmlvmResource.nsXMLVM;
@@ -252,44 +252,47 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 referencedTypes);
         String className = type.typeName.replace('.', '_');
 
-        // We now need to mark up the code with retains/releases.
-        ReferenceCounting refCounting = new ReferenceCounting();
-
         String jClassName = document.getRootElement().getChild("class", InstructionProcessor.vm)
                 .getAttributeValue("name");
-        if (REF_LOGGING) {
-            Log.debug("ref", "Processing class: " + jClassName);
-        }
 
         List<Element> methods = (List<Element>) document.getRootElement()
                 .getChild("class", InstructionProcessor.vm)
                 .getChildren("method", InstructionProcessor.vm);
-        for (Element e : methods) {
+
+        if (arguments.option_enable_ref_counting()) {
             if (REF_LOGGING) {
-                Log.debug("ref", "Processing method: " + e.getAttributeValue("name"));
+                Log.debug("ref", "Processing class: " + jClassName);
             }
 
-            try {
-                refCounting.process(e);
-            } catch (ReferenceCountingException ex) {
-                Log.error("ref", "Processing method: " + e.getAttributeValue("name"));
-                Log.error("ref", "Failed while processing: " + ex.getMessage() + " in "
-                        + jClassName);
-                return null;
-            } catch (DataConversionException ex) {
-                Log.error("ref", "Processing method: " + e.getAttributeValue("name"));
-                Log.error("ref", "Failed while processing: " + ex.getMessage() + " in "
-                        + jClassName);
-                return null;
-            }
-            if (REF_LOGGING) {
-                Log.debug("ref", "Done with " + e.getAttributeValue("name"));
-            }
-        }
-        if (REF_LOGGING) {
-            Log.debug("ref", "Done processing methods!");
-        }
+            // We now need to mark up the code with retains/releases.
+            ReferenceCounting refCounting = new ReferenceCounting();
+            for (Element e : methods) {
+                if (REF_LOGGING) {
+                    Log.debug("ref", "Processing method: " + e.getAttributeValue("name"));
+                }
 
+                try {
+                    refCounting.process(e);
+                } catch (ReferenceCountingException ex) {
+                    Log.error("ref", "Processing method: " + e.getAttributeValue("name"));
+                    Log.error("ref", "Failed while processing: " + ex.getMessage() + " in "
+                            + jClassName);
+                    return null;
+                } catch (DataConversionException ex) {
+                    Log.error("ref", "Processing method: " + e.getAttributeValue("name"));
+                    Log.error("ref", "Failed while processing: " + ex.getMessage() + " in "
+                            + jClassName);
+                    return null;
+                }
+                if (REF_LOGGING) {
+                    Log.debug("ref", "Done with " + e.getAttributeValue("name"));
+                }
+            }
+
+            if (REF_LOGGING) {
+                Log.debug("ref", "Done processing methods!");
+            }
+        }
         generatedResources.add(new XmlvmResource(className, type.superTypeName, Type.DEX, document,
                 referencedTypes));
 
