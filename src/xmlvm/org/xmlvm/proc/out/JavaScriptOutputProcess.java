@@ -20,10 +20,10 @@
 
 package org.xmlvm.proc.out;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
@@ -37,8 +37,47 @@ import org.xmlvm.proc.XsltRunner;
  * This process takes XMLVM and turns it into JavaScript.
  */
 public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
+
+    private class JavaScriptTranslationThread extends Thread {
+        private final XmlvmResource[] resources;
+        private final int             start;
+        private final int             end;
+
+
+        public JavaScriptTranslationThread(XmlvmResource[] resources, int start, int end) {
+            this.resources = resources;
+            this.start = start;
+            this.end = end;
+        }
+
+        @Override
+        public void run() {
+            for (int i = start; i <= end; ++i) {
+                XmlvmResource resource = resources[i];
+                if (resource == null) {
+                    continue;
+                }
+                Log.debug("JavaScriptOutputProcess: Processing " + resource.getName());
+                OutputFile file = generateJavaScript(resource);
+                file.setLocation(arguments.option_out());
+                String packageName = resource.getPackageName().replace('.', '_');
+                String resourceName = resource.getName();
+                Log.debug("RESOURCE NAME: " + resourceName);
+
+                String fileName = resourceName + JS_EXTENSION;
+                if (!packageName.isEmpty()) {
+                    fileName = packageName + '_' + fileName;
+                }
+                file.setFileName(fileName);
+                result.add(file);
+            }
+        }
+    }
+
+
     private static final String JS_EXTENSION = ".js";
-    private List<OutputFile>    result       = new ArrayList<OutputFile>();
+    private static final String TAG          = JavaScriptOutputProcess.class.getSimpleName();
+    private Vector<OutputFile>  result       = new Vector<OutputFile>();
 
 
     public JavaScriptOutputProcess(Arguments arguments) {
@@ -66,25 +105,35 @@ public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
             (new JavaJDKLoader(arguments)).loadAllReferencedTypes(mappedResources);
         }
 
-        // TODO(Sascha): Parallelize.
-        for (XmlvmResource resource : mappedResources.values()) {
-            if (resource == null) {
-                continue;
-            }
-            Log.debug("JavaScriptOutputProcess: Processing " + resource.getName());
-            OutputFile file = generateJavaScript(resource);
-            file.setLocation(arguments.option_out());
-            String packageName = resource.getPackageName().replace('.', '_');
-            String resourceName = resource.getName();
-            Log.debug("RESOURCE NAME: " + resourceName);
+        long startTime = System.currentTimeMillis();
 
-            String fileName = resourceName + JS_EXTENSION;
-            if (!packageName.isEmpty()) {
-                fileName = packageName + '_' + fileName;
-            }
-            file.setFileName(fileName);
-            result.add(file);
+        XmlvmResource[] resources = mappedResources.values().toArray(new XmlvmResource[0]);
+        int threadCount = Runtime.getRuntime().availableProcessors();
+        int itemsPerThread = (int) Math.ceil(resources.length / (float) threadCount);
+        Log.debug("Threads: " + threadCount);
+        Log.debug("Items per thread: " + itemsPerThread);
+        JavaScriptTranslationThread[] threads = new JavaScriptTranslationThread[threadCount];
+
+        // Divide work and start the threads.
+        for (int i = 0; i < threadCount; ++i) {
+            int start = i * itemsPerThread;
+            int end = Math.min(start + itemsPerThread - 1, resources.length - 1);
+            threads[i] = new JavaScriptTranslationThread(resources, start, end);
+            threads[i].start();
         }
+
+        // Wait for threads to finish.
+        for (int i = 0; i < threadCount; ++i) {
+            try {
+                threads[i].join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+        long endTime = System.currentTimeMillis();
+        Log.debug(TAG, "JS Processing took: " + (endTime - startTime) + " ms.");
         return true;
     }
 
