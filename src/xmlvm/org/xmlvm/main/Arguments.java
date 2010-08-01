@@ -310,6 +310,12 @@ public class Arguments {
             parseError("--target=qooxdoo with --qx-app requires --qx-main");
         if (option_debug == null)
             parseError("Unknown --debug level");
+        
+        // We need to enforce reference counting for these targets.
+        if (option_target == Targets.OBJC || option_target == Targets.IPHONE || option_target == Targets.IPHONEANDROID) {
+            option_enable_ref_counting = true;
+            Log.debug("Forcing --enable_ref_counting for target " + option_target);
+        }
     }
 
     private static void parseListArgument(String argument, Set<String> option, String separator) {
