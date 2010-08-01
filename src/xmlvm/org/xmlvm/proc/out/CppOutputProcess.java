@@ -75,7 +75,7 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
             }
         }
 
-        fixInterfaces();
+        //fixInterfaces();
 
         // Process all collected resources.
         for (XmlvmResource xmlvm : resourcePool.values()) {
@@ -92,39 +92,39 @@ public class CppOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
      * Removes methods from interfaces, if a super-interface already implements
      * it.
      */
-    private void fixInterfaces() {
-        for (XmlvmResource resource : resourcePool.values()) {
-            if (resource.isInterface()) {
-                fixInterface(resource);
-            }
-        }
-    }
-
-    private void fixInterface(XmlvmResource resource) {
-        System.out.println("Fixing interface: " + resource.getFullName());
-        Set<XmlvmMethod> superMethods = new HashSet<XmlvmMethod>();
-        getMethodsFromSuperInterfaces(resource, superMethods);
-        System.out.println("Methods from super interfaces: " + superMethods.size());
-        Set<XmlvmMethod> methods = resource.getMethods();
-
-        for (XmlvmMethod method : methods) {
-            if (superMethods.contains(method)) {
-                System.out.println("Found a method I need to remove: " + method);
-                resource.removeMethod(method);
-            }
-        }
-    }
-
-    private void getMethodsFromSuperInterfaces(XmlvmResource resource, Set<XmlvmMethod> methods) {
-        if (resource.getInterfaces() != null && !resource.getInterfaces().isEmpty()) {
-            String[] superInterfaces = resource.getInterfaces().split(",");
-            for (String superInterface : superInterfaces) {
-                XmlvmResource superResource = resourcePool.get(superInterface);
-                methods.addAll(superResource.getMethods());
-                getMethodsFromSuperInterfaces(superResource, methods);
-            }
-        }
-    }
+//    private void fixInterfaces() {
+//        for (XmlvmResource resource : resourcePool.values()) {
+//            if (resource.isInterface()) {
+//                fixInterface(resource);
+//            }
+//        }
+//    }
+//
+//    private void fixInterface(XmlvmResource resource) {
+//        System.out.println("Fixing interface: " + resource.getFullName());
+//        Set<XmlvmMethod> superMethods = new HashSet<XmlvmMethod>();
+//        getMethodsFromSuperInterfaces(resource, superMethods);
+//        System.out.println("Methods from super interfaces: " + superMethods.size());
+//        Set<XmlvmMethod> methods = resource.getMethods();
+//
+//        for (XmlvmMethod method : methods) {
+//            if (superMethods.contains(method)) {
+//                System.out.println("Found a method I need to remove: " + method);
+//                resource.removeMethod(method);
+//            }
+//        }
+//    }
+//
+//    private void getMethodsFromSuperInterfaces(XmlvmResource resource, Set<XmlvmMethod> methods) {
+//        if (resource.getInterfaces() != null && !resource.getInterfaces().isEmpty()) {
+//            String[] superInterfaces = resource.getInterfaces().split(",");
+//            for (String superInterface : superInterfaces) {
+//                XmlvmResource superResource = resourcePool.get(superInterface);
+//                methods.addAll(superResource.getMethods());
+//                getMethodsFromSuperInterfaces(superResource, methods);
+//            }
+//        }
+//    }
 
     /**
      * From the given XmlvmResource creates a header as well as cpp-file.

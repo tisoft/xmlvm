@@ -43,10 +43,50 @@ public class XmlvmResource {
         JVM, CLI, CLI_DFA, DEX
     }
 
+    public class XmlvmInvokeVirtual {
+        public Element invokeVirtualElement;
 
+        /**
+         * Wrapper for a <code>&lt;dex:invoke-virtual&gt;</code> element.
+         * 
+         * @param invokeVirtualElement
+         *            DOM element representing a
+         *            <code>&lt;dex:invoke-virtual&gt;</code>.
+         */
+        public XmlvmInvokeVirtual(Element invokeVirtualElement) {
+            this.invokeVirtualElement = invokeVirtualElement;
+        }
+
+        /**
+         * @return
+         */
+        public String getClassType() {
+            return invokeVirtualElement.getAttributeValue("class-type");
+        }
+
+        /**
+         * @return
+         */
+        public String getMethodName() {
+            return invokeVirtualElement.getAttributeValue("method");
+        }
+
+        /**
+         * @param vtableIndex
+         */
+        public void setVtableIndex(int vtableIndex) {
+            invokeVirtualElement.setAttribute("vtable-index", "" + vtableIndex);
+        }
+    }
+
+    /**
+     * Wrapper for a <code>&lt;vm:method&gt;</code> element.
+     * 
+     * @param invokeVirtualElement
+     *            DOM element representing a <code>&lt;vm:method&gt;</code>.
+     */
     public class XmlvmMethod {
         public Element methodElement;
-
 
         public XmlvmMethod(Element methodElement) {
             this.methodElement = methodElement;
@@ -62,23 +102,143 @@ public class XmlvmResource {
             return (new XMLOutputter()).outputString(methodElement);
         }
 
-        @Override
-        public boolean equals(Object obj) {
-            return this.toString().equals(obj.toString());
+        public String getName() {
+            return methodElement.getAttributeValue("name");
         }
+
+        public List<XmlvmInvokeVirtual> getInvokeVirtualInstructions() {
+            List<XmlvmInvokeVirtual> invokeInstructions = new ArrayList<XmlvmInvokeVirtual>();
+            searchForInvokeVirtualInstructions(invokeInstructions, methodElement);
+            return invokeInstructions;
+        }
+
+        @SuppressWarnings("unchecked")
+        private void searchForInvokeVirtualInstructions(
+                List<XmlvmInvokeVirtual> invokeInstructions, Element element) {
+            List<Element> children = element.getChildren("invoke-virtual", nsDEX);
+            for (Element instruction : children) {
+                XmlvmInvokeVirtual invoke = new XmlvmInvokeVirtual(instruction);
+                invokeInstructions.add(invoke);
+            }
+            children = element.getChildren();
+            for (Element node : children) {
+                searchForInvokeVirtualInstructions(invokeInstructions, node);
+            }
+        }
+
+        /**
+         * Determines if two Java methods can override each other. Two methods
+         * override each other, iff their names as well as all their input
+         * parameter types are identical. Note that the return types need not be
+         * identical since Java allows covariant returns.
+         * <code>doesOverrideMethod()</code> does not check for subtype
+         * relationship of the return type. The return type is essentially
+         * ignored and therefore <code>doesOverrideMethod()</code> is
+         * commutative.
+         * 
+         * @param method
+         *            {@link #XmlvmResource} to be checked.
+         * @return true, iff <code>method</code> overrides <code>this</code>.
+         */
+        public boolean doesOverrideMethod(XmlvmMethod method) {
+            return doesOverrideMethod(method.getName(), method.methodElement.getChild("signature",
+                    nsXMLVM));
+        }
+
+        /**
+         * Determines if two Java methods can override each other. Two methods
+         * override each other, iff their names as well as all their input
+         * parameter types are identical. Note that the return types need not be
+         * identical since Java allows covariant returns.
+         * <code>doesOverrideMethod()</code> does not check for subtype
+         * relationship of the return type. The return type is essentially
+         * ignored and therefore <code>doesOverrideMethod()</code> is
+         * commutative.
+         * 
+         * @param method
+         *            {@link #XmlvmInvokeVirtual} to be checked.
+         * @return true, iff <code>method</code> overrides <code>this</code>.
+         */
+        public boolean doesOverrideMethod(XmlvmInvokeVirtual instruction) {
+            return doesOverrideMethod(instruction.getMethodName(), instruction.invokeVirtualElement
+                    .getChild("parameters", nsDEX));
+        }
+
+        @SuppressWarnings("unchecked")
+        private boolean doesOverrideMethod(String methodName, Element signature) {
+            if (!this.getName().equals(methodName)) {
+                return false;
+            }
+            Element mySignature = methodElement.getChild("signature", nsXMLVM);
+            List<Element> myParameters = mySignature.getChildren("parameter", nsXMLVM);
+            List<Element> otherParameters = signature.getChildren("parameter", nsXMLVM);
+
+            if (myParameters.size() != otherParameters.size()) {
+                return false;
+            }
+
+            for (int i = 0; i < myParameters.size(); i++) {
+                String myParameterType = myParameters.get(i).getAttributeValue("type");
+                String otherParameterType = otherParameters.get(i).getAttributeValue("type");
+                if (!myParameterType.equals(otherParameterType)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public boolean isStatic() {
+            String flag = methodElement.getAttributeValue("isStatic");
+            return flag != null && flag.equals("true");
+        }
+
+        public boolean isPrivate() {
+            String flag = methodElement.getAttributeValue("isPrivate");
+            return flag != null && flag.equals("true");
+        }
+
+        public boolean isProtected() {
+            String flag = methodElement.getAttributeValue("isProtected");
+            return flag != null && flag.equals("true");
+        }
+
+        public boolean isPublic() {
+            String flag = methodElement.getAttributeValue("isPublic");
+            return flag != null && flag.equals("true");
+        }
+
+        public boolean isAbstract() {
+            String flag = methodElement.getAttributeValue("isAbstract");
+            return flag != null && flag.equals("true");
+        }
+
+        public boolean isNative() {
+            String flag = methodElement.getAttributeValue("isNative");
+            return flag != null && flag.equals("true");
+        }
+
+        public boolean isConstructor() {
+            return methodElement.getAttributeValue("name").equals("<init>");
+        }
+
+        /**
+         * @param idx
+         */
+        public void setVtableIndex(int idx) {
+            methodElement.setAttribute("vtableIndex", "" + idx);
+        }
+
     }
 
-
-    public static Namespace   nsXMLVM  = Namespace.getNamespace("vm", "http://xmlvm.org");
-    public static Namespace   nsDEX = Namespace.getNamespace("dex", "http://xmlvm.org/dex");
-    public static Namespace   nsJVM = Namespace.getNamespace("jvm", "http://xmlvm.org/jvm");
+    public static Namespace   nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
+    public static Namespace   nsDEX   = Namespace.getNamespace("dex", "http://xmlvm.org/dex");
+    public static Namespace   nsJVM   = Namespace.getNamespace("jvm", "http://xmlvm.org/jvm");
 
     private final String      name;
     private final String      superTypeName;
     private final Type        type;
     private final Document    xmlvmDocument;
     private final Set<String> referencedTypes;
-
 
     public XmlvmResource(String name, String superTypeName, Type type, Document xmlvmDocument,
             Set<String> referencedTypes) {
@@ -158,10 +318,7 @@ public class XmlvmResource {
         Set<XmlvmMethod> result = new HashSet<XmlvmMethod>();
         List<Element> methods = getMethodElements();
         for (Element method : methods) {
-            Element methodClone = (Element) method.clone();
-            methodClone.removeChild("code", nsDEX);
-            methodClone.removeChild("code", nsJVM);
-            result.add(new XmlvmMethod(methodClone));
+            result.add(new XmlvmMethod(method));
         }
         return result;
     }
@@ -175,9 +332,10 @@ public class XmlvmResource {
     }
 
     /**
-     * Removes the given method from the resource.
+     * Removes the given method from the resource. TODO: Do not call this
+     * method!
      */
-    public void removeMethod(XmlvmMethod method) {
+    private void removeMethodXXX(XmlvmMethod method) {
         List<Element> methods = getMethodElements();
         for (Element methodElement : methods) {
             Element methodClone = (Element) methodElement.clone();
@@ -199,5 +357,19 @@ public class XmlvmResource {
             result.addAll(clazz.getChildren("method", nsXMLVM));
         }
         return result;
+    }
+
+    /**
+     * @param vtableSize
+     */
+    @SuppressWarnings("unchecked")
+    // JDOM's non-generic API.
+    public void setVtableSize(int vtableSize) {
+        List<Element> classes = xmlvmDocument.getRootElement().getChildren("class", nsXMLVM);
+        if (classes.size() != 1) {
+            System.err.println("XmlvmResource.setVtableSize(): cannot deal with multiple classes");
+            System.exit(-1);
+        }
+        classes.get(0).setAttribute("vtableSize", "" + vtableSize);
     }
 }

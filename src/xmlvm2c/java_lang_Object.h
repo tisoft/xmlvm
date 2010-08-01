@@ -23,8 +23,21 @@
 
 #include "xmlvm.h"
 
-typedef int __CLASS_DEFINITION_java_lang_Object;
-/*extern*/int __CLASS_java_lang_Object;
+typedef struct {
+    int classInitialized;
+    const char* className;
+    JAVA_OBJECT extends;
+    VTABLE_PTR vtable[11];
+} __CLASS_DEFINITION_java_lang_Object;
+
+/*extern*/ __CLASS_DEFINITION_java_lang_Object __CLASS_java_lang_Object;
+
+
+#define __INSTANCE_MEMBERS_java_lang_Object
+
+inline void __INIT_java_lang_Object()
+{
+}
 
 inline void java_lang_Object___INIT___(JAVA_OBJECT me)
 {

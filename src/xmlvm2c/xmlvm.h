@@ -31,18 +31,8 @@
 #define XMLVM_BZERO(pointer, size) bzero(pointer, size)
 #define XMLVM_MEMCPY(dest, src, size) memcpy(dest, src, size)
 
-//class java_lang_Object;
-
 
 void xmlvm_init();
-
-/* Base C++ class for all Java classes and interfaces */
-/*
-class XMLVMRootObject {
-public:
-    virtual ~XMLVMRootObject() {}
-};
-*/
 
 
 typedef void   JAVA_VOID;
@@ -89,6 +79,7 @@ typedef union {
 
 #define JAVA_NULL ((JAVA_OBJECT) 0)
 
+typedef void (*VTABLE_PTR)();
 
 typedef struct {
     XMLVMElemPtr array;

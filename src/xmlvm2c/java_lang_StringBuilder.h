@@ -1,5 +1,8 @@
 
-#import "java_lang_String.h"
+#ifndef __STRINGBUILDER_H__
+#define __STRINGBUILDER_H__
+
+#include "java_lang_String.h"
 
 class java_lang_StringBuilder : public java_lang_String {
 public:

@@ -22,8 +22,8 @@
 #define __STRINGX_H__
 
 #include "java_lang_Object.h"
-//#include <cstdio.h>
-//#include <cstring.h>
+#include <stdio.h>
+#include <string.h>
 
 
 typedef struct {
@@ -48,20 +48,17 @@ inline void java_lang_String__INIT___char_ARRAYTYPE(java_lang_String* me, XMLVMA
     ((char*) me->str)[s->length] = '\0';
 }
   
-/*
-  static java_lang_String* valueOf___int(int i) {
-    java_lang_String* s = new java_lang_String();
-    s->str = new char[20];
+inline java_lang_String* java_lang_String_valueOf___int(int i)
+{
+    java_lang_String* s = __NEW_java_lang_String();
+    s->str = (const char*) XMLVM_MALLOC(30);
     sprintf((char*) s->str, "%d", i);
     return s;
-  }
+}
 
-  int length__() {
-    return strlen(str);
-  }
-
-
-};
-*/
+JAVA_INT java_lang_String_length__(JAVA_OBJECT me)
+{
+    return strlen(((java_lang_String*) me)->str);
+}
 
 #endif

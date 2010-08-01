@@ -80,10 +80,12 @@ int main(int argc, char* argv[])
     int classInitialized;
     const char* className;
     __CLASS_DEFINITION_</xsl:text>
-    <xsl:value-of select="if (@extends='') then 'XMLVMObjectRoot' else vm:fixname(@extends)"/>
-    <xsl:text>* extends;</xsl:text>
-    <xsl:if test="not(@isInterface = 'true')">
-      <xsl:text>
+    <xsl:value-of select="if (@extends='') then vm:fixname('java.lang.Object') else vm:fixname(@extends)"/>
+    <xsl:text>* extends;
+    VTABLE_PTR vtable[</xsl:text>
+    <xsl:value-of select="@vtableSize"/>
+    <xsl:text>];</xsl:text>
+    <xsl:text>
 } __CLASS_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;
@@ -94,30 +96,45 @@ extern __CLASS_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;
 
+#define __INSTANCE_MEMBERS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text> \
+    __INSTANCE_MEMBERS_</xsl:text>
+    <xsl:value-of select="vm:fixname(@extends)"/>
+    <xsl:text>; \
+    struct { \
+    </xsl:text>
+    <!-- Emit declarations for all non-static fields -->
+    <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
+      <xsl:text>    </xsl:text>
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="@type"/>
+      </xsl:call-template>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>; \
+    </xsl:text>
+    </xsl:for-each>
+    <xsl:text>} </xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>
+</xsl:text>
+    
+
+    <xsl:text>
 typedef struct {
     __CLASS_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>* __class;
-    //TODO instance variables
+    __INSTANCE_MEMBERS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;
 } </xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;
 
 </xsl:text>
 
-      <!-- Emit declarations for all non-static fields -->
-      <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
-        <xsl:call-template name="emitType">
-          <xsl:with-param name="type" select="@type"/>
-        </xsl:call-template>
-        <xsl:text> </xsl:text>
-        <xsl:value-of select="vm:fixname(@name)"/>
-        <xsl:text>_</xsl:text>
-        <xsl:value-of select="vm:fixname(@type)"/>
-        <xsl:text>;
-</xsl:text>
-      </xsl:for-each>
-    </xsl:if>
     <!-- Emit declarations for getter and setter methods for all static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
       <!-- Emit getter -->
@@ -151,6 +168,12 @@ typedef struct {
     <!-- Emit declarations for all methods -->
     <xsl:for-each select="vm:method">
       <xsl:if test="not(vm:isDuplicateMethod(.))">
+        <xsl:if test="@vtableIndex">
+          <xsl:text>// Vtable index: </xsl:text>
+          <xsl:value-of select="@vtableIndex"/>
+          <xsl:text>
+</xsl:text>
+        </xsl:if>
         <xsl:call-template name="emitMethodSignature">
           <xsl:with-param name="forDeclaration" select="1"/>
         </xsl:call-template>
@@ -218,6 +241,37 @@ typedef struct {
     <xsl:value-of select="$clname"/>
     <xsl:text>()
 {
+    // Initialize base class if necessary
+    if (__CLASS_</xsl:text>
+    <xsl:value-of select="vm:fixname(@extends)"/>
+    <xsl:text>.classInitialized) __INIT_</xsl:text>
+    <xsl:value-of select="vm:fixname(@extends)"/>
+    <xsl:text>();
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.vtable, __CLASS_</xsl:text>
+    <xsl:value-of select="vm:fixname(@extends)"/>
+    <xsl:text>.vtable, sizeof(__CLASS_</xsl:text>
+    <xsl:value-of select="vm:fixname(@extends)"/>
+    <xsl:text>.vtable));
+    // Initialize vtable for this class
+    </xsl:text>
+    <xsl:for-each select="vm:method[@vtableIndex]">
+      <xsl:text>__CLASS_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>.vtable[</xsl:text>
+      <xsl:value-of select="@vtableIndex"/>
+      <xsl:text>] = (VTABLE_PTR) &amp;</xsl:text>
+      <xsl:call-template name="emitMethodName">
+        <xsl:with-param name="name" select="@name"/>
+        <xsl:with-param name="class-type" select="concat(../@package, '.', ../@name)"/>
+      </xsl:call-template>
+      <xsl:call-template name="appendSignature"/>
+      <xsl:text>;
+    </xsl:text>
+    </xsl:for-each>
+    <xsl:text>
     __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized = 1;
@@ -472,11 +526,8 @@ typedef struct {
       <xsl:text>JAVA_OBJECT /* XMLVMArray*/</xsl:text>
     </xsl:when>
     <xsl:otherwise>
-    <!-- 
       <xsl:value-of select="vm:fixname($type)"/>
       <xsl:text>*</xsl:text>
-    -->
-      <xsl:text>JAVA_OBJECT</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -714,11 +765,11 @@ typedef struct {
   <xsl:param name="reg"/>
   <xsl:choose>
     <xsl:when test="vm:isObjectRef($type)">
-      <xsl:text>dynamic_cast&lt;</xsl:text>
+      <xsl:text>((</xsl:text>
       <xsl:call-template name="emitType">
         <xsl:with-param name="type" select="$type"/>
       </xsl:call-template>
-      <xsl:text>&gt;(_r</xsl:text>
+      <xsl:text>) _r</xsl:text>
       <xsl:value-of select="$reg"/>
       <xsl:text>.o)</xsl:text>
     </xsl:when>
@@ -736,6 +787,36 @@ typedef struct {
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
+
+
+<xsl:template name="initArguments">
+  <xsl:variable name="numRegs" select="@register-size" as="xs:integer"/>
+  <xsl:variable name="numArgs" select="count(../vm:signature/vm:parameter)" as="xs:integer"/>
+  <xsl:for-each select="1 to $numRegs">
+    <xsl:text>    XMLVMElem _r</xsl:text>
+    <xsl:value-of select="position() - 1"/>
+    <xsl:text>;
+</xsl:text>
+  </xsl:for-each>
+  <xsl:if test="not(../@isStatic = 'true')">
+    <!-- Initialize 'this' parameter -->
+    <xsl:text>    _r</xsl:text>
+    <xsl:value-of select="$numRegs - ($numArgs + 1)"/>
+    <xsl:text>.o = me;
+</xsl:text>
+    </xsl:if>
+    <xsl:for-each select="../vm:signature/vm:parameter">
+      <xsl:text>    _r</xsl:text>
+      <xsl:value-of select="$numRegs - ($numArgs - position()) - 1"/>
+      <xsl:call-template name="emitTypedAccess">
+        <xsl:with-param name="type" select="@type"/>
+      </xsl:call-template>
+      <xsl:text> = n</xsl:text>
+      <xsl:value-of select="position()"/>
+      <xsl:text>;
+</xsl:text>
+    </xsl:for-each>
+</xsl:template>
 
 
 <xsl:template match="vm:annotations">
@@ -766,6 +847,7 @@ typedef struct {
     <xsl:text>();
 </xsl:text>
   </xsl:if>
+  <xsl:call-template name="initArguments"/>
   <xsl:apply-templates/>
   <xsl:text>}
 
@@ -847,7 +929,7 @@ typedef struct {
     </xsl:choose>
   </xsl:if>
   <xsl:value-of select="vm:fixname(@class-type)"/>
-  <xsl:text>::</xsl:text>
+  <xsl:text>_</xsl:text>
   <xsl:value-of select="@method"/>
   <xsl:call-template name="appendDexSignature"/>
   <xsl:text>(</xsl:text>
@@ -855,15 +937,11 @@ typedef struct {
     <xsl:if test="position() != 1">
       <xsl:text>, </xsl:text>
     </xsl:if>
-    <xsl:if test="vm:isObjectRef(@type)">
-      <xsl:value-of select="vm:cast(@type)"/>
-    </xsl:if>
-    <xsl:text>(_r</xsl:text>
+    <xsl:text>_r</xsl:text>
     <xsl:value-of select="@register"/>
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@type"/>
     </xsl:call-template>
-    <xsl:text>)</xsl:text>
   </xsl:for-each>
   <xsl:text>);
 </xsl:text>
@@ -871,6 +949,19 @@ typedef struct {
 
 
 <xsl:template match="dex:invoke-virtual|dex:invoke-virtual-range">
+<xsl:text>// Vtable-index: </xsl:text>
+<xsl:value-of select="@vtable-index"/>
+<xsl:text>
+</xsl:text>
+  <xsl:text>    //</xsl:text>
+  <xsl:call-template name="emitMethodName">
+    <xsl:with-param name="name" select="@method"/>
+    <xsl:with-param name="class-type" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:call-template name="appendDexSignature"/>
+  <xsl:text>
+</xsl:text>
+
   <xsl:variable name="returnTypedAccess">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="dex:parameters/dex:return/@type"/>
@@ -892,11 +983,27 @@ typedef struct {
       </xsl:otherwise>
     </xsl:choose>
   </xsl:if>
-  <xsl:call-template name="emitMethodName">
-    <xsl:with-param name="name" select="@method"/>
-    <xsl:with-param name="class-type" select="@class-type"/>
+  
+  <xsl:text>(*(</xsl:text>
+  <xsl:call-template name="emitType">
+    <xsl:with-param name="type" select="dex:parameters/dex:return/@type"/>
   </xsl:call-template>
-  <xsl:call-template name="appendDexSignature"/>
+  <xsl:text> (*)(JAVA_OBJECT</xsl:text>
+  <xsl:for-each select="dex:parameters/dex:parameter">
+    <xsl:text>, </xsl:text>
+    <xsl:call-template name="emitType">
+      <xsl:with-param name="type" select="@type"/>
+    </xsl:call-template>
+  </xsl:for-each>
+  <xsl:text>)) ((</xsl:text>
+  <xsl:call-template name="emitType">
+    <xsl:with-param name="type" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:text>) _r</xsl:text>
+  <xsl:value-of select="@register"/>
+  <xsl:text>.o)->__class->vtable[</xsl:text>
+  <xsl:value-of select="@vtable-index"/>
+  <xsl:text>])</xsl:text>
   <xsl:text>(_r</xsl:text>
   <xsl:value-of select="@register"/>
   <xsl:text>.o</xsl:text>
@@ -1578,9 +1685,9 @@ typedef struct {
 <xsl:template match="dex:new-instance">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx" />
-  <xsl:text>.o = </xsl:text>
+  <xsl:text>.o = __NEW_</xsl:text>
   <xsl:value-of select="vm:fixname(@value)" />
-  <xsl:text>_NEW();
+  <xsl:text>();
 </xsl:text>
 </xsl:template>
 
@@ -1597,9 +1704,9 @@ typedef struct {
   <xsl:text> = </xsl:text>
   <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
   <xsl:text>-></xsl:text>
+  <xsl:value-of select="vm:fixname(@class-type)"/>
+  <xsl:text>.</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
-  <xsl:text>_</xsl:text>
-  <xsl:value-of select="vm:fixname(@member-type)"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -1617,9 +1724,9 @@ typedef struct {
   <xsl:text> = </xsl:text>
   <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
   <xsl:text>-></xsl:text>
+  <xsl:value-of select="vm:fixname(@class-type)" />
+  <xsl:text>.</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)" />
-  <xsl:text>_</xsl:text>
-  <xsl:value-of select="vm:fixname(@member-type)" />
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -1634,9 +1741,9 @@ typedef struct {
   <xsl:text>    </xsl:text>
   <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
   <xsl:text>-></xsl:text>
+  <xsl:value-of select="vm:fixname(@class-type)"/>
+  <xsl:text>.</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
-  <xsl:text>_</xsl:text>
-  <xsl:value-of select="vm:fixname(@member-type)"/>
   <xsl:text> = </xsl:text>
   <xsl:text> _r</xsl:text>
   <xsl:value-of select="@vx"/>
@@ -1695,9 +1802,9 @@ typedef struct {
   <xsl:text>    </xsl:text>
   <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
   <xsl:text>-></xsl:text>
+  <xsl:value-of select="vm:fixname(@class-type)" />
+  <xsl:text>.</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)" />
-  <xsl:text>_</xsl:text>
-  <xsl:value-of select="vm:fixname(@member-type)" />
   <xsl:text> = </xsl:text>
   <xsl:value-of select="vm:cast-register(@member-type, @vx)"/>
   <xsl:text>;
@@ -1758,8 +1865,8 @@ typedef struct {
   </xsl:call-template>
   <xsl:text> = </xsl:text>
   <xsl:value-of select="@value"/>
-  <xs:text>;
-</xs:text>
+  <xsl:text>;
+</xsl:text>
 </xsl:template>
 
 
@@ -1771,8 +1878,8 @@ typedef struct {
   <xsl:value-of select="@vx"/>
   <xsl:text>.o, XMLVMArray_createFromString("</xsl:text>
   <xsl:value-of select="@value"/>
-  <xs:text>"));
-</xs:text>
+  <xsl:text>"));
+</xsl:text>
 </xsl:template>
 
 
@@ -1781,8 +1888,8 @@ typedef struct {
   <xsl:value-of select="@vx"/>
   <xsl:text>.o = </xsl:text>
   <xsl:value-of select="vm:fixname(@value)"/>
-  <xs:text>->getClass__();
-</xs:text>
+  <xsl:text>->getClass__();
+</xsl:text>
 </xsl:template>
 
 

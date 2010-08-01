@@ -32,8 +32,10 @@ import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.JavaJDKLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
+import org.xmlvm.proc.XmlvmResource.XmlvmInvokeVirtual;
 import org.xmlvm.proc.XmlvmResource.XmlvmMethod;
 import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XsltRunner;
@@ -47,8 +49,74 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
     private Map<String, XmlvmResource> resourcePool = new HashMap<String, XmlvmResource>();
 
+    static class Vtable {
+
+        private List<XmlvmMethod> virtualMethods;
+
+        public Vtable() {
+            virtualMethods = new ArrayList<XmlvmMethod>();
+        }
+
+        public Vtable(Vtable vtable) {
+            virtualMethods = new ArrayList<XmlvmMethod>(vtable.virtualMethods);
+        }
+
+        public Vtable clone() {
+            return new Vtable(this);
+        }
+
+        /**
+         * @param method
+         * @return
+         */
+        public int getVtableIndex(XmlvmMethod method) {
+            for (int i = 0; i < virtualMethods.size(); i++) {
+                if (virtualMethods.get(i).doesOverrideMethod(method)) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        /**
+         * @param instruction
+         * @return
+         */
+        public int getVtableIndex(XmlvmInvokeVirtual instruction) {
+            for (int i = 0; i < virtualMethods.size(); i++) {
+                if (virtualMethods.get(i).doesOverrideMethod(instruction)) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        /**
+         * @param method
+         */
+        public void addMethod(XmlvmMethod method) {
+            int idx = virtualMethods.size();
+            method.setVtableIndex(idx);
+            virtualMethods.add(method);
+        }
+
+        /**
+         * @return
+         */
+        public int getVtableSize() {
+            return virtualMethods.size();
+        }
+
+    }
+
+    private Map<String, Vtable> vtables = new HashMap<String, Vtable>();
+
     public COutputProcess(Arguments arguments) {
         super(arguments);
+
+        // Add empty class name that acts as a base class for java.lang.Object
+        vtables.put("", new Vtable());
+
         // addAllXmlvmEmittingProcessesAsInput();
         // We need the special Vtable information in order to be able to produce
         // C code.
@@ -74,7 +142,8 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
             }
         }
 
-        // fixInterfaces();
+        computeVtables();
+        annotateInvokeVirtuals();
 
         // Process all collected resources.
         for (XmlvmResource xmlvm : resourcePool.values()) {
@@ -88,39 +157,74 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     }
 
     /**
-     * Removes methods from interfaces, if a super-interface already implements
-     * it.
+     * Compute Vtables for all {@link org.xmlvm.proc.XmlvmResource}s.
      */
-    private void fixInterfacesX() {
+    private void computeVtables() {
         for (XmlvmResource resource : resourcePool.values()) {
-            if (resource.isInterface()) {
-                fixInterface(resource);
+            if (!vtables.containsKey(resource.getFullName())) {
+                computeVtable(resource);
             }
         }
     }
 
-    private void fixInterface(XmlvmResource resource) {
-        System.out.println("Fixing interface: " + resource.getFullName());
-        Set<XmlvmMethod> superMethods = new HashSet<XmlvmMethod>();
-        getMethodsFromSuperInterfaces(resource, superMethods);
-        System.out.println("Methods from super interfaces: " + superMethods.size());
+    /**
+     * Compute the Vtable for one {@link org.xmlvm.proc.XmlvmResource}.
+     * 
+     * @param resource
+     *            {@link #XmlvmResource} for which to compute the Vtable.
+     */
+    private void computeVtable(XmlvmResource resource) {
+        String baseClassName = resource.getSuperTypeName();
+        if (!vtables.containsKey(baseClassName)) {
+            System.out.println("Loading JDK class: " + baseClassName);
+            XmlvmResource baseClass = (new JavaJDKLoader(new Arguments(new String[] { "--in=foo" })))
+                    .load(baseClassName);
+            computeVtable(baseClass);
+        }
+
+        Vtable baseClassVtable = vtables.get(baseClassName);
+        Vtable thisClassVtable = baseClassVtable.clone();
         Set<XmlvmMethod> methods = resource.getMethods();
-
         for (XmlvmMethod method : methods) {
-            if (superMethods.contains(method)) {
-                System.out.println("Found a method I need to remove: " + method);
-                resource.removeMethod(method);
+            if (method.isConstructor() || method.isStatic() || method.isPrivate()) {
+                continue;
+            }
+            int idx = baseClassVtable.getVtableIndex(method);
+            if (idx == -1) {
+                thisClassVtable.addMethod(method);
+            } else {
+                method.setVtableIndex(idx);
             }
         }
+
+        System.out.println("Size of vtable for class " + resource.getFullName() + ": "
+                + thisClassVtable.virtualMethods.size());
+        resource.setVtableSize(thisClassVtable.getVtableSize());
+        vtables.put(resource.getFullName(), thisClassVtable);
     }
 
-    private void getMethodsFromSuperInterfaces(XmlvmResource resource, Set<XmlvmMethod> methods) {
-        if (resource.getInterfaces() != null && !resource.getInterfaces().isEmpty()) {
-            String[] superInterfaces = resource.getInterfaces().split(",");
-            for (String superInterface : superInterfaces) {
-                XmlvmResource superResource = resourcePool.get(superInterface);
-                methods.addAll(superResource.getMethods());
-                getMethodsFromSuperInterfaces(superResource, methods);
+    /**
+     * Annotate all <code>&lt;dex:invoke-virtual&gt;</code> instructions by
+     * adding the XML attribute <code>vtable-index</code>.
+     */
+    private void annotateInvokeVirtuals() {
+        for (XmlvmResource resource : resourcePool.values()) {
+            Set<XmlvmMethod> methods = resource.getMethods();
+            for (XmlvmMethod method : methods) {
+                for (XmlvmInvokeVirtual instruction : method.getInvokeVirtualInstructions()) {
+                    String className = instruction.getClassType();
+                    if (!vtables.containsKey(className)) {
+                        System.out.println("Loading JDK class: " + className);
+                        XmlvmResource clazz = (new JavaJDKLoader(new Arguments(
+                                new String[] { "--in=foo" }))).load(className);
+                        computeVtable(clazz);
+                    }
+                    Vtable vtable = vtables.get(className);
+                    instruction.setVtableIndex(vtable.getVtableIndex(instruction));
+                    System.out.println("Vtable index for " + instruction.getClassType() + "."
+                            + instruction.getMethodName() + ": "
+                            + vtable.getVtableIndex(instruction));
+                }
             }
         }
     }
@@ -140,9 +244,9 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
         String headerProlog = "#ifndef __" + fileNameStem.toUpperCase() + "__\n";
         headerProlog += "#define __" + fileNameStem.toUpperCase() + "__\n\n";
-        
+
         String headerEpilog = "\n#endif\n";
-        
+
         StringBuffer headerBuffer = new StringBuffer();
         headerBuffer.append("#include \"xmlvm.h\"\n");
         for (String i : getTypesForHeader(doc)) {
@@ -163,7 +267,8 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
         OutputFile headerFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
                 { "pass", "emitHeader" }, { "header", headerFileName } });
-        headerFile.setData(headerProlog + headerBuffer.toString() + headerFile.getData() + headerEpilog);
+        headerFile.setData(headerProlog + headerBuffer.toString() + headerFile.getData()
+                + headerEpilog);
         headerFile.setFileName(headerFileName);
 
         StringBuffer mBuffer = new StringBuffer();
