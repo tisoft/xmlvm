@@ -110,8 +110,8 @@ public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
         XmlvmResource[] resources = mappedResources.values().toArray(new XmlvmResource[0]);
         int threadCount = Runtime.getRuntime().availableProcessors();
         int itemsPerThread = (int) Math.ceil(resources.length / (float) threadCount);
-        Log.debug("Threads: " + threadCount);
-        Log.debug("Items per thread: " + itemsPerThread);
+        Log.debug(TAG, "Threads: " + threadCount);
+        Log.debug(TAG, "Items per thread: " + itemsPerThread);
         JavaScriptTranslationThread[] threads = new JavaScriptTranslationThread[threadCount];
 
         // Divide work and start the threads.
