@@ -1195,12 +1195,15 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 <!-- Added for Dynamic Loading -->
 <xsl:template name="checkClass">
   <xsl:param name="string" />
-  <xsl:text>
-  if (</xsl:text><xsl:call-template name="emitScopedName"><xsl:with-param name="string" select="$string"/></xsl:call-template><xsl:text>.initialized == undefined &amp;&amp; </xsl:text>
-  <xsl:call-template name="emitScopedName"><xsl:with-param name="string" select="$string"/></xsl:call-template><xsl:text>.$$clinit_ != undefined) {</xsl:text>
-  <xsl:call-template name="emitScopedName"><xsl:with-param name="string" select="$string"/></xsl:call-template><xsl:text>.initialized = 1;</xsl:text>
-  <xsl:call-template name="emitScopedName"><xsl:with-param name="string" select="$string"/></xsl:call-template><xsl:text>.$$clinit_();</xsl:text>
-  <xsl:call-template name="emitScopedName"><xsl:with-param name="string" select="$string"/></xsl:call-template><xsl:text>.$$clinit_ = undefined; }</xsl:text>
+  <xsl:variable name="typeName">
+    <xsl:call-template name="emitScopedName"><xsl:with-param name="string" select="replace($string, '\[\]', '')"/></xsl:call-template>  
+  </xsl:variable>
+  <xsl:if test="vm:isObjectRef($typeName)">
+    <xsl:text>
+            if (</xsl:text><xsl:copy-of select="$typeName" /><xsl:text>.$$clinit_ != undefined) {</xsl:text>
+    <xsl:copy-of select="$typeName" /><xsl:text>.$$clinit_();</xsl:text>
+    <xsl:copy-of select="$typeName" /><xsl:text>.$$clinit_ = undefined; }</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 
@@ -1623,7 +1626,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
             __r</xsl:text>
   <xsl:value-of select="@vx" />
   <xsl:text> = new java_lang_String("</xsl:text>
-  <xsl:value-of select="@value" />
+  <xsl:value-of select="replace(replace(replace(replace(replace(replace(replace(@value,'\\','\\\\'),
+                           '\\\\011','\\t'),'\\\\012','\\n'),'\\\\015','\\r'),'\\\\014','\\f'),'\\\\010','\\b'),
+                           '&quot;','\\&quot;')"/>
   <xsl:text>");</xsl:text>
 </xsl:template>
 
