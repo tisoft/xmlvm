@@ -20,6 +20,7 @@
 
 package org.xmlvm.proc;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,30 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * the XMLVM processing pipeline.
  */
 public class JavaJDKLoader {
+
+    private class LoaderThread extends Thread {
+        private final String[]           classesToLoad;
+        private final int                start;
+        private final int                end;
+        final Map<String, XmlvmResource> loadedResources;
+
+
+        public LoaderThread(String[] classesToLoad, int start, int end) {
+            this.classesToLoad = classesToLoad;
+            this.start = start;
+            this.end = end;
+            loadedResources = new HashMap<String, XmlvmResource>((end - start) + 1);
+        }
+
+        @Override
+        public void run() {
+            for (int i = start; i <= end; ++i) {
+                loadedResources.put(classesToLoad[i], load(classesToLoad[i]));
+            }
+        }
+    }
+
+
     private static final String        TAG                = JavaJDKLoader.class.getSimpleName();
 
     private static final String        ONEJAR_JDK_JAR     = "lib/openjdk6-build.jar";
@@ -67,7 +92,10 @@ public class JavaJDKLoader {
     private XmlvmResource load(String typeName, UniversalFile directory) {
         if (typeName.contains(".")) {
             String packageName = typeName.substring(0, typeName.indexOf("."));
-            UniversalFile subDir = directory.getEntry(packageName);
+            UniversalFile subDir;
+            synchronized (JDK) {
+                subDir = directory.getEntry(packageName);
+            }
             if (subDir != null && subDir.isDirectory()) {
                 return load(typeName.substring(typeName.indexOf(".") + 1), subDir);
             } else {
@@ -76,7 +104,10 @@ public class JavaJDKLoader {
                 return null;
             }
         } else {
-            UniversalFile classFile = directory.getEntry(typeName + ".class");
+            UniversalFile classFile;
+            synchronized (JDK) {
+                classFile = directory.getEntry(typeName + ".class");
+            }
             if (classFile != null && classFile.isFile()) {
 
                 // Success, we found the class file we were looking for. Let's
@@ -122,8 +153,11 @@ public class JavaJDKLoader {
      *         necessary.
      */
     public void loadAllReferencedTypes(Map<String, XmlvmResource> resources) {
+        long startTime = System.currentTimeMillis();
         while (!loadReferencedTypes(resources)) {
         }
+        long endTime = System.currentTimeMillis();
+        Log.debug(TAG, "Processing took: " + (endTime - startTime) + " ms.");
     }
 
     private boolean loadReferencedTypes(Map<String, XmlvmResource> resources) {
@@ -159,10 +193,33 @@ public class JavaJDKLoader {
         }
 
         // Load missing dependencies.
-        // TODO(Sascha): Parallelize.
-        for (String load : toLoad) {
-            Log.debug(TAG, "Loading " + load);
-            resources.put(load, load(load));
+        String[] classesToLoad = toLoad.toArray(new String[0]);
+        // int threadCount = Runtime.getRuntime().availableProcessors();
+        int threadCount = 1;  // TODO(Sascha): Make UniveralFile API thread-safe.
+        int itemsPerThread = (int) Math.ceil(classesToLoad.length / (float) threadCount);
+        LoaderThread[] threads = new LoaderThread[threadCount];
+
+        // Divide work and start the threads.
+        for (int i = 0; i < threadCount; ++i) {
+            int start = i * itemsPerThread;
+            int end = Math.min(start + itemsPerThread - 1, classesToLoad.length - 1);
+            if (end >= start) {
+                threads[i] = new LoaderThread(classesToLoad, start, end);
+                threads[i].start();
+            }
+        }
+
+        // Wait for threads to finish and add their results;
+        for (int i = 0; i < threadCount; ++i) {
+            try {
+                if (threads[i] != null) {
+                    threads[i].join();
+                    resources.putAll(threads[i].loadedResources);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                return false;
+            }
         }
         return false;
     }
