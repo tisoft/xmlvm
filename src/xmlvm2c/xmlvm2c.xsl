@@ -135,6 +135,12 @@ typedef struct {
 
 </xsl:text>
 
+    <!-- Emit class initializers -->
+    <xsl:text>void __INIT_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>();
+</xsl:text>
+
     <!-- Emit declarations for getter and setter methods for all static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
       <!-- Emit getter -->
@@ -492,6 +498,49 @@ typedef struct {
 
 
 
+<xsl:template name="emitTrueType">
+  <xsl:param name="type"/>
+  <xsl:choose>
+    <xsl:when test="$type = 'void'">
+      <xsl:text>void</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'char'">
+      <xsl:text>JAVA_CHAR</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'byte'">
+      <xsl:text>JAVA_BYTE</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'short'">
+      <xsl:text>JAVA_SHORT</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'int'">
+      <xsl:text>JAVA_INT</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'long'">
+      <xsl:text>JAVA_LONG</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'float'">
+      <xsl:text>JAVA_FLOAT</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'double'">
+      <xsl:text>JAVA_DOUBLE</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'boolean'">
+      <xsl:text>JAVA_BOOLEAN</xsl:text>
+    </xsl:when>
+    <xsl:when test="ends-with($type, '[]')">
+      <xsl:text>XMLVMArray</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="vm:fixname($type)"/>
+      <xsl:text>*</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+
+<!-- The difference between emitType and emitTrueType is that the latter
+     emits the proper type for reference types while the former emits JAVA_OBJECT -->
 <xsl:template name="emitType">
   <xsl:param name="type"/>
   <xsl:choose>
@@ -523,11 +572,10 @@ typedef struct {
       <xsl:text>JAVA_BOOLEAN</xsl:text>
     </xsl:when>
     <xsl:when test="ends-with($type, '[]')">
-      <xsl:text>JAVA_OBJECT /* XMLVMArray*/</xsl:text>
+      <xsl:text>JAVA_OBJECT</xsl:text>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:value-of select="vm:fixname($type)"/>
-      <xsl:text>*</xsl:text>
+      <xsl:text>JAVA_OBJECT</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -744,14 +792,14 @@ typedef struct {
   <xsl:choose>
     <xsl:when test="vm:isObjectRef($type)">
       <xsl:text>dynamic_cast&lt;</xsl:text>
-      <xsl:call-template name="emitType">
+      <xsl:call-template name="emitTrueType">
         <xsl:with-param name="type" select="$type"/>
       </xsl:call-template>
       <xsl:text>&gt;</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:text>(</xsl:text>
-      <xsl:call-template name="emitType">
+      <xsl:call-template name="emitTrueType">
         <xsl:with-param name="type" select="$type"/>
       </xsl:call-template>
       <xsl:text>)</xsl:text>
@@ -766,7 +814,7 @@ typedef struct {
   <xsl:choose>
     <xsl:when test="vm:isObjectRef($type)">
       <xsl:text>((</xsl:text>
-      <xsl:call-template name="emitType">
+      <xsl:call-template name="emitTrueType">
         <xsl:with-param name="type" select="$type"/>
       </xsl:call-template>
       <xsl:text>) _r</xsl:text>
@@ -775,7 +823,7 @@ typedef struct {
     </xsl:when>
     <xsl:otherwise>
       <xsl:text>((</xsl:text>
-      <xsl:call-template name="emitType">
+      <xsl:call-template name="emitTrueType">
         <xsl:with-param name="type" select="$type"/>
       </xsl:call-template>
       <xsl:text>) _r</xsl:text>
@@ -996,7 +1044,7 @@ typedef struct {
     </xsl:call-template>
   </xsl:for-each>
   <xsl:text>)) ((</xsl:text>
-  <xsl:call-template name="emitType">
+  <xsl:call-template name="emitTrueType">
     <xsl:with-param name="type" select="@class-type"/>
   </xsl:call-template>
   <xsl:text>) _r</xsl:text>

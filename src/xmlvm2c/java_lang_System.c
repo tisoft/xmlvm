@@ -18,17 +18,11 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#ifndef __SYSTEM_H__
-#define __SYSTEM_H__
-
-#include "xmlvm.h"
-#include "java_lang_Object.h"
-#include "java_io_PrintStream.h"
+#include "java_lang_System.h"
 
 
-inline java_io_PrintStream* java_lang_System_GET_out()
+JAVA_OBJECT java_lang_System_GET_out()
 {
     return __NEW_java_io_PrintStream();
 }
 
-#endif

@@ -32,9 +32,11 @@ JAVA_OBJECT __NEW_java_lang_String()
 }
 
 
-void java_lang_String__INIT___char_ARRAYTYPE(java_lang_String* me, XMLVMArray* s)
+void java_lang_String__INIT___char_ARRAYTYPE(JAVA_OBJECT n0, JAVA_OBJECT n1)
 {
 	int i;
+	java_lang_String* me = (java_lang_String*) n0;
+	XMLVMArray* s = (XMLVMArray*) n1;
     me->str = (char*) malloc(s->length + 1);
     for (i = 0; i < s->length; i++) {
         ((char*) me->str)[i] = s->array.b[i];
@@ -44,7 +46,7 @@ void java_lang_String__INIT___char_ARRAYTYPE(java_lang_String* me, XMLVMArray* s
   
 java_lang_String* java_lang_String_valueOf___int(int i)
 {
-    java_lang_String* s = __NEW_java_lang_String();
+    java_lang_String* s = (java_lang_String*) __NEW_java_lang_String();
     s->str = (const char*) XMLVM_MALLOC(30);
     sprintf((char*) s->str, "%d", i);
     return s;

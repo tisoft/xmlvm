@@ -29,7 +29,7 @@ typedef struct {
 } java_lang_String;
 
 JAVA_OBJECT __NEW_java_lang_String();
-void java_lang_String__INIT___char_ARRAYTYPE(java_lang_String* me, XMLVMArray* s);
+void java_lang_String__INIT___char_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT s);
 java_lang_String* java_lang_String_valueOf___int(int i);
 JAVA_INT java_lang_String_length__(JAVA_OBJECT me);
 

@@ -56,7 +56,7 @@ typedef int               JAVA_ARRAY_INT;
 typedef long              JAVA_ARRAY_LONG;
 typedef float             JAVA_ARRAY_FLOAT;
 typedef double            JAVA_ARRAY_DOUBLE;
-typedef JAVA_OBJECT*      JAVA_ARRAY_OBJECT;
+typedef JAVA_OBJECT       JAVA_ARRAY_OBJECT;
 
 
 typedef union {
