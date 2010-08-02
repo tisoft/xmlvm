@@ -31,6 +31,8 @@
 #define XMLVM_BZERO(pointer, size) bzero(pointer, size)
 #define XMLVM_MEMCPY(dest, src, size) memcpy(dest, src, size)
 
+#define XMLVM_FORWARD_DECL(class) \
+    JAVA_OBJECT __NEW_##class();
 
 void xmlvm_init();
 

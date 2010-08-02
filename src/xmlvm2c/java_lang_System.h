@@ -26,9 +26,6 @@
 #include "java_io_PrintStream.h"
 
 
-inline java_io_PrintStream* java_lang_System_GET_out()
-{
-    return __NEW_java_io_PrintStream();
-}
+java_io_PrintStream* java_lang_System_GET_out();
 
 #endif

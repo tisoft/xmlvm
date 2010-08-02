@@ -18,24 +18,15 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#ifndef __OBJECT_H__
-#define __OBJECT_H__
-
-#include "xmlvm.h"
-
-typedef struct {
-    int classInitialized;
-    const char* className;
-    JAVA_OBJECT extends;
-    VTABLE_PTR vtable[11];
-} __CLASS_DEFINITION_java_lang_Object;
-
-extern __CLASS_DEFINITION_java_lang_Object __CLASS_java_lang_Object;
+#include "java_lang_Object.h"
 
 
-#define __INSTANCE_MEMBERS_java_lang_Object
+__CLASS_DEFINITION_java_lang_Object __CLASS_java_lang_Object;
 
-void __INIT_java_lang_Object();
-void java_lang_Object___INIT___(JAVA_OBJECT me);
+void __INIT_java_lang_Object()
+{
+}
 
-#endif
+void java_lang_Object___INIT___(JAVA_OBJECT me)
+{
+}

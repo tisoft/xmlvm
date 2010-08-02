@@ -22,43 +22,15 @@
 #define __STRINGX_H__
 
 #include "java_lang_Object.h"
-#include <stdio.h>
-#include <string.h>
 
 
 typedef struct {
     const char* str;
 } java_lang_String;
 
-inline JAVA_OBJECT __NEW_java_lang_String()
-{
-    java_lang_String* s = (java_lang_String*) malloc(sizeof(java_lang_String));
-    s->str = "";
-    return s;
-}
-
-
-inline void java_lang_String__INIT___char_ARRAYTYPE(java_lang_String* me, XMLVMArray* s)
-{
-	int i;
-    me->str = (char*) malloc(s->length + 1);
-    for (i = 0; i < s->length; i++) {
-        ((char*) me->str)[i] = s->array.b[i];
-    }
-    ((char*) me->str)[s->length] = '\0';
-}
-  
-inline java_lang_String* java_lang_String_valueOf___int(int i)
-{
-    java_lang_String* s = __NEW_java_lang_String();
-    s->str = (const char*) XMLVM_MALLOC(30);
-    sprintf((char*) s->str, "%d", i);
-    return s;
-}
-
-JAVA_INT java_lang_String_length__(JAVA_OBJECT me)
-{
-    return strlen(((java_lang_String*) me)->str);
-}
+JAVA_OBJECT __NEW_java_lang_String();
+void java_lang_String__INIT___char_ARRAYTYPE(java_lang_String* me, XMLVMArray* s);
+java_lang_String* java_lang_String_valueOf___int(int i);
+JAVA_INT java_lang_String_length__(JAVA_OBJECT me);
 
 #endif

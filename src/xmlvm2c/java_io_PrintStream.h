@@ -24,7 +24,6 @@
 #include "xmlvm.h"
 #include "java_lang_Object.h"
 #include "java_lang_String.h"
-#include <stdio.h>
 
 typedef struct {
     int classInitialized;
@@ -33,7 +32,7 @@ typedef struct {
     VTABLE_PTR vtable[39];
 } __CLASS_DEFINITION_java_io_PrintStream;
 
-/*extern*/ __CLASS_DEFINITION_java_io_PrintStream __CLASS_java_io_PrintStream;
+extern __CLASS_DEFINITION_java_io_PrintStream __CLASS_java_io_PrintStream;
 
 #define __INSTANCE_MEMBERS_java_io_PrintStream \
     __INSTANCE_MEMBERS_java_lang_Object
@@ -46,24 +45,9 @@ typedef struct {
 
 
 void __INIT_java_io_PrintStream();
-
-inline JAVA_OBJECT __NEW_java_io_PrintStream()
-{
-    if (!__CLASS_java_io_PrintStream.classInitialized) __INIT_java_io_PrintStream();
-    java_io_PrintStream* me = (java_io_PrintStream*) XMLVM_MALLOC(sizeof(java_io_PrintStream));
-    me->__class = &__CLASS_java_io_PrintStream;
-    return me;
-}
-
-inline void java_io_PrintStream_println___java_lang_String(JAVA_OBJECT me, java_lang_String* s)
-{
-	printf("%s\n", s->str);
-}
-
-/*inline*/ void java_io_PrintStream_println___int(JAVA_OBJECT me, JAVA_INT i)
-{
-	printf("%d\n", i);
-}
+JAVA_OBJECT __NEW_java_io_PrintStream();
+void java_io_PrintStream_println___java_lang_String(JAVA_OBJECT me, java_lang_String* s);
+void java_io_PrintStream_println___int(JAVA_OBJECT me, JAVA_INT i);
 
 /*
 void println___float(float f) {
@@ -71,19 +55,6 @@ void println___float(float f) {
 }
 };
 */
-
-/*inline*/ void __INIT_java_io_PrintStream()
-{
-    // Initialize base class if necessary
-    if (__CLASS_java_lang_Object.classInitialized) __INIT_java_lang_Object();
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_java_io_PrintStream.vtable, __CLASS_java_lang_Object.vtable, sizeof(__CLASS_java_lang_Object.vtable));
-    // Initialize vtable for this class
-    __CLASS_java_io_PrintStream.vtable[38] = (VTABLE_PTR) &java_io_PrintStream_println___int;
-
-    __CLASS_java_io_PrintStream.classInitialized = 1;
-
-}
 
 #endif
 

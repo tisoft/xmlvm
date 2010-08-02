@@ -140,9 +140,10 @@ public class XmlvmResource {
          *            {@link #XmlvmResource} to be checked.
          * @return true, iff <code>method</code> overrides <code>this</code>.
          */
+        @SuppressWarnings("unchecked")
         public boolean doesOverrideMethod(XmlvmMethod method) {
             return doesOverrideMethod(method.getName(), method.methodElement.getChild("signature",
-                    nsXMLVM));
+                    nsXMLVM).getChildren("parameter", nsXMLVM));
         }
 
         /**
@@ -159,27 +160,27 @@ public class XmlvmResource {
          *            {@link #XmlvmInvokeVirtual} to be checked.
          * @return true, iff <code>method</code> overrides <code>this</code>.
          */
+        @SuppressWarnings("unchecked")
         public boolean doesOverrideMethod(XmlvmInvokeVirtual instruction) {
             return doesOverrideMethod(instruction.getMethodName(), instruction.invokeVirtualElement
-                    .getChild("parameters", nsDEX));
+                    .getChild("parameters", nsDEX).getChildren("parameter", nsDEX));
         }
 
         @SuppressWarnings("unchecked")
-        private boolean doesOverrideMethod(String methodName, Element signature) {
+        private boolean doesOverrideMethod(String methodName, List<Element> parameters) {
             if (!this.getName().equals(methodName)) {
                 return false;
             }
             Element mySignature = methodElement.getChild("signature", nsXMLVM);
             List<Element> myParameters = mySignature.getChildren("parameter", nsXMLVM);
-            List<Element> otherParameters = signature.getChildren("parameter", nsXMLVM);
 
-            if (myParameters.size() != otherParameters.size()) {
+            if (myParameters.size() != parameters.size()) {
                 return false;
             }
 
             for (int i = 0; i < myParameters.size(); i++) {
                 String myParameterType = myParameters.get(i).getAttributeValue("type");
-                String otherParameterType = otherParameters.get(i).getAttributeValue("type");
+                String otherParameterType = parameters.get(i).getAttributeValue("type");
                 if (!myParameterType.equals(otherParameterType)) {
                     return false;
                 }
@@ -356,6 +357,12 @@ public class XmlvmResource {
         for (Element clazz : classes) {
             result.addAll(clazz.getChildren("method", nsXMLVM));
         }
+        System.out.println("++++++++++++++++++++++");
+        for (Element e : result) {
+            System.out.println(e.getAttributeValue("name"));
+            
+        }
+        System.out.println("++++++++++++++++++++++");
         return result;
     }
 

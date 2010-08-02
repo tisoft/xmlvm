@@ -49,14 +49,33 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
     private Map<String, XmlvmResource> resourcePool = new HashMap<String, XmlvmResource>();
 
+    /**
+     * Class {@link Vtable} represents the Vtable for one class. It is basically
+     * a list of {@link org.xmlvm.proc.XmlvmResource.XmlvmMethod} that includes
+     * all methods of that class that have an entry in the Vtable. Note that
+     * only public and protected methods have entries in the Vtable. Also note
+     * that the Vtable includes all eligible methods from all base classes. The
+     * Vtable index of a method corresponds to the list index.
+     * 
+     */
     static class Vtable {
 
         private List<XmlvmMethod> virtualMethods;
 
+        /**
+         * Constructs an empty {@link Vtable}.
+         */
         public Vtable() {
             virtualMethods = new ArrayList<XmlvmMethod>();
         }
 
+        /**
+         * Constructs a new {@link Vtable} based on an existing Vtable.
+         * 
+         * @param vtable
+         *            Initial {@link Vtable}. A deep copy is performed on
+         *            <code>vtable</code>.
+         */
         public Vtable(Vtable vtable) {
             virtualMethods = new ArrayList<XmlvmMethod>(vtable.virtualMethods);
         }
@@ -66,8 +85,12 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
 
         /**
+         * Determine the Vtable index of a method.
+         * 
          * @param method
-         * @return
+         *            Method for which the Vtable index is to be determined.
+         * @return Vtable index (&gt;= 0) of this method or -1 if method has no
+         *         entry in the Vtable.
          */
         public int getVtableIndex(XmlvmMethod method) {
             for (int i = 0; i < virtualMethods.size(); i++) {
@@ -79,8 +102,15 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
 
         /**
+         * Determines the Vtable index that an
+         * <code>&lt;dex:invoke-virtual&gt;</code> instruction should use.
+         * 
          * @param instruction
-         * @return
+         *            <code>&lt;dex:invoke-virtual&gt;</code> instruction for
+         *            which to determine the Vtable index.
+         * @return Vtable index (&gt;= 0) for this instruction or -1 if
+         *         instruction has no entry in the Vtable (which indicates an
+         *         internal error).
          */
         public int getVtableIndex(XmlvmInvokeVirtual instruction) {
             for (int i = 0; i < virtualMethods.size(); i++) {
@@ -92,16 +122,22 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
 
         /**
+         * Adds a method to the Vtable.
+         * 
          * @param method
+         *            Method to be added.
          */
         public void addMethod(XmlvmMethod method) {
             int idx = virtualMethods.size();
             method.setVtableIndex(idx);
             virtualMethods.add(method);
+            System.out.println("Method: " + method.getName() + ": " + idx);
         }
 
         /**
-         * @return
+         * Determines the size of the Vtable.
+         * 
+         * @return Size of Vtable.
          */
         public int getVtableSize() {
             return virtualMethods.size();
@@ -176,9 +212,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     private void computeVtable(XmlvmResource resource) {
         String baseClassName = resource.getSuperTypeName();
         if (!vtables.containsKey(baseClassName)) {
-            System.out.println("Loading JDK class: " + baseClassName);
-            XmlvmResource baseClass = (new JavaJDKLoader(new Arguments(new String[] { "--in=foo" })))
-                    .load(baseClassName);
+            XmlvmResource baseClass = getXmlvmResource(baseClassName);
             computeVtable(baseClass);
         }
 
@@ -214,9 +248,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                 for (XmlvmInvokeVirtual instruction : method.getInvokeVirtualInstructions()) {
                     String className = instruction.getClassType();
                     if (!vtables.containsKey(className)) {
-                        System.out.println("Loading JDK class: " + className);
-                        XmlvmResource clazz = (new JavaJDKLoader(new Arguments(
-                                new String[] { "--in=foo" }))).load(className);
+                        XmlvmResource clazz = getXmlvmResource(className);
                         computeVtable(clazz);
                     }
                     Vtable vtable = vtables.get(className);
@@ -227,6 +259,15 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                 }
             }
         }
+    }
+
+    private XmlvmResource getXmlvmResource(String className) {
+        XmlvmResource resource = resourcePool.get(className);
+        if (resource != null) {
+            return resource;
+        }
+        System.out.println("Loading JDK class: " + className);
+        return (new JavaJDKLoader(new Arguments(new String[] { "--in=foo" }))).load(className);
     }
 
     /**
@@ -261,9 +302,9 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                         + ".h\"\n");
             }
         }
-        headerBuffer.append("\n// For circular include:\n");
+        headerBuffer.append("\n// Circular references:\n");
         for (String i : getTypesForHeader(doc)) {
-            headerBuffer.append("// class " + i + ";\n");
+            headerBuffer.append("XMLVM_FORWARD_DECL(" + i + ")\n");
         }
         OutputFile headerFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
                 { "pass", "emitHeader" }, { "header", headerFileName } });
