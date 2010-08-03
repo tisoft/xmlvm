@@ -24,9 +24,7 @@
 
   <xsl:choose>
     <xsl:when test="$pass = 'emitHeader'">
-      <xsl:text>
-	</xsl:text>
-      <xsl:call-template name="emitInterfaces"/>
+      <xsl:call-template name="emitDeclarations"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:text>
@@ -69,19 +67,53 @@ int main(int argc, char* argv[])
 
 
 
-<xsl:template name="emitInterfaces">
+<xsl:template name="emitDeclarations">
   <xsl:for-each select="vm:class">
+    <xsl:choose>
+      <xsl:when test="@isInterface = 'true'">
+        <xsl:call-template name="emitInterfaceDeclarations"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="emitClassDeclarations"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
+</xsl:template>
+
+
+<xsl:template name="emitClassDeclarations">
     <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
     <xsl:variable name="clname" select="vm:fixname($cclname)"/>
-  
-    <xsl:text>
+
+    <xsl:text>// All the interfaces that this class implements
+typedef struct {
 </xsl:text>
-    <xsl:text>typedef struct {
+    <xsl:text>    int numInterfaces;
+    JAVA_OBJECT interfacePtr[</xsl:text>
+    <xsl:value-of select="count(vm:vtable[@kind='interface-vtable'])"/>
+    <xsl:text>];</xsl:text>
+    <xsl:for-each select="vm:vtable[@kind='interface-vtable']">
+      <xsl:text>
+    __INTERFACE_DEFINITION_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>;</xsl:text>
+    </xsl:for-each>
+    <xsl:text>
+} __IMPLEMENTED_INTERFACES_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;
+
+typedef struct {
     int classInitialized;
     const char* className;
     __CLASS_DEFINITION_</xsl:text>
     <xsl:value-of select="if (@extends='') then vm:fixname('java.lang.Object') else vm:fixname(@extends)"/>
     <xsl:text>* extends;
+    __IMPLEMENTED_INTERFACES_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>* interfaces;
     VTABLE_PTR vtable[</xsl:text>
     <xsl:value-of select="@vtableSize"/>
     <xsl:text>];</xsl:text>
@@ -187,20 +219,56 @@ typedef struct {
 </xsl:text>
       </xsl:if>
     </xsl:for-each>
-      
-  </xsl:for-each>
+</xsl:template>
+
+
+<xsl:template name="emitInterfaceDeclarations">
+    <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
+    <xsl:variable name="clname" select="vm:fixname($cclname)"/>
+  
+    <xsl:text>
+</xsl:text>
+    <xsl:text>typedef struct {
+    JAVA_OBJECT implementingClass;
+    const char* interfaceName;
+    // TODO base interfaces
+    VTABLE_PTR vtable[</xsl:text>
+    <xsl:value-of select="@vtableSize"/>
+    <xsl:text>];</xsl:text>
+    <xsl:text>
+} __INTERFACE_DEFINITION_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;
+
+</xsl:text>
+
+    <!-- Emit interface initializers -->
+    <xsl:text>void __INIT_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>(__INTERFACE_DEFINITION_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>* iface);
+</xsl:text>
 
 </xsl:template>
 
 
 <xsl:template name="emitImplementation">
-  <xsl:for-each select="vm:class[not(@isInterface = 'true')]">
-  
-    <xsl:variable name="clname">
-        <xsl:value-of select="vm:fixname(@package)"/>
-        <xsl:text>_</xsl:text>
-        <xsl:value-of select="vm:fixname(@name)"/>
-    </xsl:variable>
+  <xsl:for-each select="vm:class">
+    <xsl:choose>
+      <xsl:when test="@isInterface = 'true'">
+        <xsl:call-template name="emitInterfaceImplementation"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="emitClassImplementation"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
+</xsl:template>
+
+
+<xsl:template name="emitClassImplementation">
+    <xsl:variable name="clname" select="vm:fixname(concat(@package, '.', @name))"/>
 
     <xsl:text>__CLASS_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
@@ -276,6 +344,55 @@ typedef struct {
       <xsl:call-template name="appendSignature"/>
       <xsl:text>;
     </xsl:text>
+    </xsl:for-each>
+    
+    <xsl:text>// Initialize vtable for implementing interfaces
+    __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.interfaces = (__IMPLEMENTED_INTERFACES_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>*) XMLVM_MALLOC(sizeof(__IMPLEMENTED_INTERFACES_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>));
+    __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.interfaces->numInterfaces = </xsl:text>
+    <xsl:value-of select="count(vm:vtable[@kind='interface-vtable'])"/>
+    <xsl:text>;</xsl:text>
+    <xsl:for-each select="vm:vtable[@kind='interface-vtable']">
+      <xsl:variable name="iname" select="vm:fixname(@name)"/>
+      <xsl:text>
+    __INIT_</xsl:text>
+      <xsl:value-of select="$iname"/>
+      <xsl:text>(&amp;__CLASS_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>.interfaces-></xsl:text>
+      <xsl:value-of select="$iname"/>
+      <xsl:text>);
+    __CLASS_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>.interfaces-></xsl:text>
+      <xsl:text>interfacePtr[</xsl:text>
+      <xsl:value-of select="position() - 1"/>
+      <xsl:text>] = &amp;__CLASS_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>.interfaces-></xsl:text>
+      <xsl:value-of select="$iname"/>
+      <xsl:text>;</xsl:text>
+      <xsl:for-each select="vm:map">
+        <xsl:text>
+    __CLASS_</xsl:text>
+        <xsl:value-of select="$clname"/>
+        <xsl:text>.interfaces-></xsl:text>
+        <xsl:value-of select="$iname"/>
+        <xsl:text>.vtable[</xsl:text>
+        <xsl:value-of select="@vtableIndexInterface"/>
+        <xsl:text>] = __CLASS_</xsl:text>
+        <xsl:value-of select="$clname"/>
+        <xsl:text>.vtable[</xsl:text>
+        <xsl:value-of select="@vtableIndexClass"/>
+        <xsl:text>];</xsl:text>
+      </xsl:for-each>
     </xsl:for-each>
     <xsl:text>
     __CLASS_</xsl:text>
@@ -474,8 +591,26 @@ typedef struct {
         </xsl:choose>
       </xsl:if>
     </xsl:for-each>
-  </xsl:for-each>
   
+</xsl:template>
+
+
+<xsl:template name="emitInterfaceImplementation">
+    <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
+    <xsl:variable name="clname" select="vm:fixname($cclname)"/>
+    <!-- Emit interface initializers -->
+    <xsl:text>void __INIT_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>(__INTERFACE_DEFINITION_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>* iface)
+{
+    iface->interfaceName = "</xsl:text>
+    <xsl:value-of select="$cclname"/>
+    <xsl:text>";
+}
+
+</xsl:text>
 </xsl:template>
 
 
@@ -997,17 +1132,15 @@ typedef struct {
 
 
 <xsl:template match="dex:invoke-virtual|dex:invoke-virtual-range">
-<xsl:text>// Vtable-index: </xsl:text>
-<xsl:value-of select="@vtable-index"/>
-<xsl:text>
-</xsl:text>
   <xsl:text>    //</xsl:text>
   <xsl:call-template name="emitMethodName">
     <xsl:with-param name="name" select="@method"/>
     <xsl:with-param name="class-type" select="@class-type"/>
   </xsl:call-template>
   <xsl:call-template name="appendDexSignature"/>
-  <xsl:text>
+  <xsl:text>[</xsl:text>
+  <xsl:value-of select="@vtable-index"/>
+  <xsl:text>]
 </xsl:text>
 
   <xsl:variable name="returnTypedAccess">
@@ -1114,6 +1247,17 @@ typedef struct {
 
 
 <xsl:template match="dex:invoke-interface|dex:invoke-interface-range">
+  <xsl:text>    //</xsl:text>
+  <xsl:call-template name="emitMethodName">
+    <xsl:with-param name="name" select="@method"/>
+    <xsl:with-param name="class-type" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:call-template name="appendDexSignature"/>
+  <xsl:text>[</xsl:text>
+  <xsl:value-of select="@vtable-index"/>
+  <xsl:text>]
+</xsl:text>
+
   <xsl:variable name="returnTypedAccess">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="dex:parameters/dex:return/@type"/>
@@ -1135,11 +1279,26 @@ typedef struct {
       </xsl:otherwise>
     </xsl:choose>
   </xsl:if>
-  <xsl:call-template name="emitMethodName">
-    <xsl:with-param name="name" select="@method"/>
-    <xsl:with-param name="class-type" select="@class-type"/>
+
+  <xsl:text>(*(</xsl:text>
+  <xsl:call-template name="emitType">
+    <xsl:with-param name="type" select="dex:parameters/dex:return/@type"/>
   </xsl:call-template>
-  <xsl:call-template name="appendDexSignature"/>
+  <xsl:text> (*)(JAVA_OBJECT</xsl:text>
+  <xsl:for-each select="dex:parameters/dex:parameter">
+    <xsl:text>, </xsl:text>
+    <xsl:call-template name="emitType">
+      <xsl:with-param name="type" select="@type"/>
+    </xsl:call-template>
+  </xsl:for-each>
+  <xsl:text>)) XMLVM_LOOKUP_INTERFACE_METHOD(</xsl:text>
+  <xsl:text>_r</xsl:text>
+  <xsl:value-of select="@register"/>
+  <xsl:text>.o, "</xsl:text>
+  <xsl:value-of select="@class-type"/>
+  <xsl:text>", </xsl:text>
+  <xsl:value-of select="@vtable-index"/>
+  <xsl:text>))</xsl:text>
   <xsl:text>(_r</xsl:text>
   <xsl:value-of select="@register"/>
   <xsl:text>.o</xsl:text>

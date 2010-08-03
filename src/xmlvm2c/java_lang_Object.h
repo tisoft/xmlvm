@@ -24,9 +24,22 @@
 #include "xmlvm.h"
 
 typedef struct {
+    int numInterfaces;
+    JAVA_OBJECT interfacePtr[];
+} __IMPLEMENTED_INTERFACES_java_lang_Object;
+
+typedef struct {
+    JAVA_OBJECT implementingClass;
+    const char* interfaceName;
+    // TODO base interfaces
+    VTABLE_PTR vtable[];
+} __INTERFACE_DEFINITION_TEMPLATE;
+
+typedef struct {
     int classInitialized;
     const char* className;
     JAVA_OBJECT extends;
+    __IMPLEMENTED_INTERFACES_java_lang_Object* interfaces;
     VTABLE_PTR vtable[11];
 } __CLASS_DEFINITION_java_lang_Object;
 
@@ -34,6 +47,12 @@ extern __CLASS_DEFINITION_java_lang_Object __CLASS_java_lang_Object;
 
 
 #define __INSTANCE_MEMBERS_java_lang_Object
+
+typedef struct {
+    __CLASS_DEFINITION_java_lang_Object* __class;
+    __INSTANCE_MEMBERS_java_lang_Object;
+} java_lang_Object;
+
 
 void __INIT_java_lang_Object();
 void java_lang_Object___INIT___(JAVA_OBJECT me);

@@ -83,6 +83,8 @@ typedef union {
 
 typedef void (*VTABLE_PTR)();
 
+VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, int vtableIndex);
+
 typedef struct {
     XMLVMElemPtr array;
     int          type;
@@ -107,6 +109,6 @@ int XMLVMArray_sizeOfBaseTypeInBytes(int type);
 */
 
 
-void XMLVM_ERROR(char* msg);
+void XMLVM_ERROR(const char* msg);
 
 #endif

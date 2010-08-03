@@ -35,8 +35,9 @@ import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.JavaJDKLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.XmlvmResource.XmlvmInvokeVirtual;
+import org.xmlvm.proc.XmlvmResource.XmlvmVtableInvoke;
 import org.xmlvm.proc.XmlvmResource.XmlvmMethod;
+import org.xmlvm.proc.XmlvmResource.XmlvmVtable;
 import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XsltRunner;
 
@@ -112,7 +113,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
          *         instruction has no entry in the Vtable (which indicates an
          *         internal error).
          */
-        public int getVtableIndex(XmlvmInvokeVirtual instruction) {
+        public int getVtableIndex(XmlvmVtableInvoke instruction) {
             for (int i = 0; i < virtualMethods.size(); i++) {
                 if (virtualMethods.get(i).doesOverrideMethod(instruction)) {
                     return i;
@@ -131,7 +132,17 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
             int idx = virtualMethods.size();
             method.setVtableIndex(idx);
             virtualMethods.add(method);
-            System.out.println("Method: " + method.getName() + ": " + idx);
+        }
+
+        /**
+         * @param vtable
+         */
+        public void addVtable(Vtable vtable) {
+            for (XmlvmMethod method : vtable.virtualMethods) {
+                if (getVtableIndex(method) == -1) {
+                    addMethod(method);
+                }
+            }
         }
 
         /**
@@ -179,7 +190,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
 
         computeVtables();
-        annotateInvokeVirtuals();
+        annotateVtableInvokes();
 
         // Process all collected resources.
         for (XmlvmResource xmlvm : resourcePool.values()) {
@@ -197,9 +208,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
      */
     private void computeVtables() {
         for (XmlvmResource resource : resourcePool.values()) {
-            if (!vtables.containsKey(resource.getFullName())) {
-                computeVtable(resource);
-            }
+            computeVtable(resource);
         }
     }
 
@@ -210,12 +219,17 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
      *            {@link #XmlvmResource} for which to compute the Vtable.
      */
     private void computeVtable(XmlvmResource resource) {
+        if (vtables.containsKey(resource.getFullName())) {
+            return;
+        }
+
         String baseClassName = resource.getSuperTypeName();
         if (!vtables.containsKey(baseClassName)) {
             XmlvmResource baseClass = getXmlvmResource(baseClassName);
             computeVtable(baseClass);
         }
 
+        // Add all methods from base classes to vtable
         Vtable baseClassVtable = vtables.get(baseClassName);
         Vtable thisClassVtable = baseClassVtable.clone();
         Set<XmlvmMethod> methods = resource.getMethods();
@@ -231,21 +245,89 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
             }
         }
 
+        // If this is an interface, add vtable of all base interfaces
+        if (resource.isInterface()) {
+            addAllBaseInterfaceVtables(thisClassVtable, resource);
+        }
+
         System.out.println("Size of vtable for class " + resource.getFullName() + ": "
                 + thisClassVtable.virtualMethods.size());
+
         resource.setVtableSize(thisClassVtable.getVtableSize());
         vtables.put(resource.getFullName(), thisClassVtable);
+
+        // Add vtable initialization for all interfaces that this class
+        // implements
+        if (!resource.isInterface()) {
+            List<XmlvmResource> interfaces = getAllImplementedInterfaces(resource);
+            System.out.println("Implemented interfaces: ");
+            for (XmlvmResource iface : interfaces) {
+                System.out.println("    " + iface.getFullName());
+                Vtable ifaceVtable = vtables.get(iface.getFullName());
+                XmlvmVtable vt = resource.createVtable("interface-vtable", iface.getFullName(),
+                        ifaceVtable.getVtableSize());
+                for (XmlvmMethod m : iface.getMethods()) {
+                    vt.addMapping(ifaceVtable.getVtableIndex(m), thisClassVtable.getVtableIndex(m));
+                    System.out.println("        " + m.getName() + ": "
+                            + ifaceVtable.getVtableIndex(m) + " = "
+                            + thisClassVtable.getVtableIndex(m));
+                }
+            }
+        }
+    }
+
+    private void addAllBaseInterfaceVtables(Vtable vtable, XmlvmResource resource) {
+        // TODO hack! We don't do this for OpenJDK classes. If we try, there is
+        // a "severely truncated class file" exception.
+        if (resource.getPackageName().startsWith("java")) {
+            return;
+        }
+
+        String interfaces = resource.getInterfaces();
+        if (interfaces == null) {
+            return;
+        }
+        for (String iface : interfaces.split(",")) {
+            XmlvmResource ifaceResource = getXmlvmResource(iface);
+            computeVtable(ifaceResource);
+            Vtable ifaceVtable = vtables.get(ifaceResource.getFullName());
+            vtable.addVtable(ifaceVtable);
+        }
+    }
+
+    private List<XmlvmResource> getAllImplementedInterfaces(XmlvmResource resource) {
+        List<XmlvmResource> collectedInterfaces = new ArrayList<XmlvmResource>();
+
+        // TODO hack! We don't do this for OpenJDK classes. If we try, there is
+        // a "severely truncated class file" exception.
+        if (resource.getPackageName().startsWith("java")) {
+            return collectedInterfaces;
+        }
+
+        String interfaces = resource.getInterfaces();
+        if (interfaces == null) {
+            return collectedInterfaces;
+        }
+        for (String iface : interfaces.split(",")) {
+            XmlvmResource ifaceResource = getXmlvmResource(iface);
+            List<XmlvmResource> baseInterfaces = getAllImplementedInterfaces(ifaceResource);
+            computeVtable(ifaceResource);
+            collectedInterfaces.add(ifaceResource);
+            collectedInterfaces.addAll(baseInterfaces);
+        }
+        return collectedInterfaces;
     }
 
     /**
-     * Annotate all <code>&lt;dex:invoke-virtual&gt;</code> instructions by
-     * adding the XML attribute <code>vtable-index</code>.
+     * Annotate all <code>&lt;dex:invoke-virtual&gt;</code> and
+     * <code>&lt;dex:invoke-interface&gt;</code> instructions by adding the XML
+     * attribute <code>vtable-index</code>.
      */
-    private void annotateInvokeVirtuals() {
+    private void annotateVtableInvokes() {
         for (XmlvmResource resource : resourcePool.values()) {
             Set<XmlvmMethod> methods = resource.getMethods();
             for (XmlvmMethod method : methods) {
-                for (XmlvmInvokeVirtual instruction : method.getInvokeVirtualInstructions()) {
+                for (XmlvmVtableInvoke instruction : method.getVtableInvokeInstructions()) {
                     String className = instruction.getClassType();
                     if (!vtables.containsKey(className)) {
                         XmlvmResource clazz = getXmlvmResource(className);

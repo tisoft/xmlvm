@@ -20,6 +20,7 @@
 
 
 #include "xmlvm.h"
+#include "java_lang_Object.h"
 #include <stdio.h>
 
 
@@ -27,7 +28,23 @@ void xmlvm_init()
 {
 }
 
-
+VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, int vtableIndex)
+{
+	__CLASS_DEFINITION_java_lang_Object* clazz = ((java_lang_Object*) me)->__class;
+	int numInterfaces = clazz->interfaces->numInterfaces;
+	int i;
+	for (i = 0; i < numInterfaces; i++) {
+		__INTERFACE_DEFINITION_TEMPLATE* iface =
+		        (__INTERFACE_DEFINITION_TEMPLATE*) clazz->interfaces->interfacePtr[i];
+		if (strcmp(ifaceName, iface->interfaceName) == 0) {
+			return iface->vtable[vtableIndex];
+		}
+	}
+	XMLVM_ERROR("XMLVM_LOOKUP_INTERFACE_METHOD() could not find interface");
+	return (VTABLE_PTR) 0;
+}
+	
+	
 XMLVMArray* __NEW_XMLVMArray()
 {
 	return (XMLVMArray*) XMLVM_MALLOC(sizeof(XMLVMArray));
@@ -191,7 +208,7 @@ XMLVMArray* XMLVMArray::clone__()
 }
 */
 
-void XMLVM_ERROR(char* msg)
+void XMLVM_ERROR(const char* msg)
 {
     printf("XMLVM Error: '%s'\n", msg);
 }

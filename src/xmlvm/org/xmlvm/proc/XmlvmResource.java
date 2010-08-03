@@ -43,51 +43,61 @@ public class XmlvmResource {
         JVM, CLI, CLI_DFA, DEX
     }
 
-    public class XmlvmInvokeVirtual {
-        public Element invokeVirtualElement;
+    /**
+     * Wrapper for a <code>&lt;dex:invoke-virtual&gt;</code> or a
+     * <code>&lt;dex:invoke-interface&gt;</code> element. Methods of those
+     * instructions are handled via a Vtable.
+     */
+    public class XmlvmVtableInvoke {
+        public Element invokeElement;
 
         /**
-         * Wrapper for a <code>&lt;dex:invoke-virtual&gt;</code> element.
+         * Wrapper for a <code>&lt;dex:invoke-virtual&gt;</code> or a
+         * <code>&lt;dex:invoke-interface&gt;</code> element.
          * 
-         * @param invokeVirtualElement
+         * @param invokeElement
          *            DOM element representing a
-         *            <code>&lt;dex:invoke-virtual&gt;</code>.
+         *            <code>&lt;dex:invoke-virtual&gt;</code> or a
+         *            <code>&lt;dex:invoke-interface&gt;</code>.
          */
-        public XmlvmInvokeVirtual(Element invokeVirtualElement) {
-            this.invokeVirtualElement = invokeVirtualElement;
+        public XmlvmVtableInvoke(Element invokeElement) {
+            this.invokeElement = invokeElement;
         }
 
         /**
          * @return
          */
         public String getClassType() {
-            return invokeVirtualElement.getAttributeValue("class-type");
+            return invokeElement.getAttributeValue("class-type");
         }
 
         /**
          * @return
          */
         public String getMethodName() {
-            return invokeVirtualElement.getAttributeValue("method");
+            return invokeElement.getAttributeValue("method");
         }
 
         /**
          * @param vtableIndex
          */
         public void setVtableIndex(int vtableIndex) {
-            invokeVirtualElement.setAttribute("vtable-index", "" + vtableIndex);
+            invokeElement.setAttribute("vtable-index", "" + vtableIndex);
         }
     }
 
     /**
      * Wrapper for a <code>&lt;vm:method&gt;</code> element.
-     * 
-     * @param invokeVirtualElement
-     *            DOM element representing a <code>&lt;vm:method&gt;</code>.
      */
     public class XmlvmMethod {
         public Element methodElement;
 
+        /**
+         * Wrapper for a <code>&lt;vm:method&gt;</code> element.
+         * 
+         * @param invokeElement
+         *            DOM element representing a <code>&lt;vm:method&gt;</code>.
+         */
         public XmlvmMethod(Element methodElement) {
             this.methodElement = methodElement;
         }
@@ -106,23 +116,37 @@ public class XmlvmResource {
             return methodElement.getAttributeValue("name");
         }
 
-        public List<XmlvmInvokeVirtual> getInvokeVirtualInstructions() {
-            List<XmlvmInvokeVirtual> invokeInstructions = new ArrayList<XmlvmInvokeVirtual>();
-            searchForInvokeVirtualInstructions(invokeInstructions, methodElement);
+        /**
+         * Retrieve all invoke instructions that are handled via a vtable (i.e.,
+         * <code>&lt;dex:invoke-virtual&gt;</code> and
+         * <code>&lt;dex:invoke-interface&gt;</code> instructions).
+         * 
+         * @return All <code>&lt;dex:invoke-virtual&gt;</code> and
+         *         <code>&lt;dex:invoke-interface&gt;</code> instructions of
+         *         this method.
+         */
+        public List<XmlvmVtableInvoke> getVtableInvokeInstructions() {
+            List<XmlvmVtableInvoke> invokeInstructions = new ArrayList<XmlvmVtableInvoke>();
+            searchForVtableInvokeInstructions(invokeInstructions, methodElement);
             return invokeInstructions;
         }
 
         @SuppressWarnings("unchecked")
-        private void searchForInvokeVirtualInstructions(
-                List<XmlvmInvokeVirtual> invokeInstructions, Element element) {
+        private void searchForVtableInvokeInstructions(List<XmlvmVtableInvoke> invokeInstructions,
+                Element element) {
             List<Element> children = element.getChildren("invoke-virtual", nsDEX);
             for (Element instruction : children) {
-                XmlvmInvokeVirtual invoke = new XmlvmInvokeVirtual(instruction);
+                XmlvmVtableInvoke invoke = new XmlvmVtableInvoke(instruction);
+                invokeInstructions.add(invoke);
+            }
+            children = element.getChildren("invoke-interface", nsDEX);
+            for (Element instruction : children) {
+                XmlvmVtableInvoke invoke = new XmlvmVtableInvoke(instruction);
                 invokeInstructions.add(invoke);
             }
             children = element.getChildren();
             for (Element node : children) {
-                searchForInvokeVirtualInstructions(invokeInstructions, node);
+                searchForVtableInvokeInstructions(invokeInstructions, node);
             }
         }
 
@@ -161,8 +185,8 @@ public class XmlvmResource {
          * @return true, iff <code>method</code> overrides <code>this</code>.
          */
         @SuppressWarnings("unchecked")
-        public boolean doesOverrideMethod(XmlvmInvokeVirtual instruction) {
-            return doesOverrideMethod(instruction.getMethodName(), instruction.invokeVirtualElement
+        public boolean doesOverrideMethod(XmlvmVtableInvoke instruction) {
+            return doesOverrideMethod(instruction.getMethodName(), instruction.invokeElement
                     .getChild("parameters", nsDEX).getChildren("parameter", nsDEX));
         }
 
@@ -229,6 +253,25 @@ public class XmlvmResource {
             methodElement.setAttribute("vtableIndex", "" + idx);
         }
 
+    }
+
+    public class XmlvmVtable {
+        private Element vtableElement;
+
+        public XmlvmVtable(Element vtableElement) {
+            this.vtableElement = vtableElement;
+        }
+
+        /**
+         * @param vtableIndexInterface
+         * @param vtableIndexClass
+         */
+        public void addMapping(int vtableIndexInterface, int vtableIndexClass) {
+            Element map = new Element("map", nsXMLVM);
+            map.setAttribute("vtableIndexInterface", "" + vtableIndexInterface);
+            map.setAttribute("vtableIndexClass", "" + vtableIndexClass);
+            vtableElement.addContent(map);
+        }
     }
 
     public static Namespace   nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
@@ -357,12 +400,6 @@ public class XmlvmResource {
         for (Element clazz : classes) {
             result.addAll(clazz.getChildren("method", nsXMLVM));
         }
-        System.out.println("++++++++++++++++++++++");
-        for (Element e : result) {
-            System.out.println(e.getAttributeValue("name"));
-            
-        }
-        System.out.println("++++++++++++++++++++++");
         return result;
     }
 
@@ -378,5 +415,15 @@ public class XmlvmResource {
             System.exit(-1);
         }
         classes.get(0).setAttribute("vtableSize", "" + vtableSize);
+    }
+
+    public XmlvmVtable createVtable(String kind, String name, int size) {
+        Element vtableElement = new Element("vtable", nsXMLVM);
+        vtableElement.setAttribute("kind", kind);
+        vtableElement.setAttribute("name", name);
+        vtableElement.setAttribute("size", "" + size);
+        xmlvmDocument.getRootElement().getChild("class", nsXMLVM).addContent(vtableElement);
+        return new XmlvmVtable(vtableElement);
+
     }
 }
