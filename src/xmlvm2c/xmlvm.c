@@ -28,15 +28,38 @@ void xmlvm_init()
 {
 }
 
+int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz)
+{
+	if (obj == JAVA_NULL) {
+		return 0;
+	}
+	__CLASS_DEFINITION_TEMPLATE* objClass = (__CLASS_DEFINITION_TEMPLATE*) ((java_lang_Object*) obj)->__class;
+	__CLASS_DEFINITION_TEMPLATE* cl = (__CLASS_DEFINITION_TEMPLATE*) clazz;
+	while (objClass != JAVA_NULL) {
+		if (strcmp(objClass->className, cl->className) == 0) {
+			return 1;
+		}
+		// Check all implemented interfaces
+		int i;
+		for (i = 0; i < objClass->numImplementedInterfaces; i++) {
+			if (strcmp(objClass->implementedInterfaces[0][i]->className, cl->className) == 0) {
+				return 1;
+			}
+		}
+		objClass = objClass->extends;
+	}
+	return 0;
+}
+
 VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, int vtableIndex)
 {
-	__CLASS_DEFINITION_java_lang_Object* clazz = ((java_lang_Object*) me)->__class;
-	int numInterfaces = clazz->interfaces->numInterfaces;
+    __CLASS_DEFINITION_TEMPLATE* clazz = (__CLASS_DEFINITION_TEMPLATE*) ((java_lang_Object*) me)->__class;
+    int numInterfaces = clazz->numImplementedInterfaces;
 	int i;
 	for (i = 0; i < numInterfaces; i++) {
-		__INTERFACE_DEFINITION_TEMPLATE* iface =
-		        (__INTERFACE_DEFINITION_TEMPLATE*) clazz->interfaces->interfacePtr[i];
-		if (strcmp(ifaceName, iface->interfaceName) == 0) {
+		__CLASS_DEFINITION_TEMPLATE* (*ifaces)[1] = clazz->implementedInterfaces;
+		__CLASS_DEFINITION_TEMPLATE* iface = (*ifaces)[i];
+		if (strcmp(ifaceName, iface->className) == 0) {
 			return iface->vtable[vtableIndex];
 		}
 	}
@@ -211,4 +234,5 @@ XMLVMArray* XMLVMArray::clone__()
 void XMLVM_ERROR(const char* msg)
 {
     printf("XMLVM Error: '%s'\n", msg);
+	exit(-1);
 }

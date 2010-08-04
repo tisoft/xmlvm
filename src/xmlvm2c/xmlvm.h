@@ -83,6 +83,42 @@ typedef union {
 
 typedef void (*VTABLE_PTR)();
 
+/*
+
+typedef struct {
+    int         interfaceInitialized;
+    const char* interfaceName;
+    int         numBaseInterfaces;
+    JAVA_OBJECT baseInterfaces[];
+} __INTERFACE_DEFINITION_TEMPLATE;
+
+typedef struct {
+    __INTERFACE_DEFINITION_TEMPLATE* interface;
+    JAVA_OBJECT                      classImplemented;
+    VTABLE_PTR                       vtable[];
+} __INTERFACE_VTABLE_TEMPLATE;
+
+typedef struct {
+    int                         numInterfaces;
+    __INTERFACE_VTABLE_TEMPLATE interfacePtr[];
+} __IMPLEMENTED_INTERFACES_TEMPLATE;
+*/
+
+//struct __CLASS_DEFINITION_TEMPLATE;
+//typedef __CLASS_DEFINITION_TEMPLATE __CLASS_DEFINITION_TEMPLATE_PTR;
+
+typedef struct __CLASS_DEFINITION_TEMPLATE {
+    int                                 classInitialized;
+    const char*                         className;
+    struct __CLASS_DEFINITION_TEMPLATE* extends;
+	int                                 numInterfaces;
+    struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[1];
+	int                                 numImplementedInterfaces;
+    struct __CLASS_DEFINITION_TEMPLATE* (*implementedInterfaces)[1];
+    VTABLE_PTR                          vtable[];
+} __CLASS_DEFINITION_TEMPLATE;
+
+int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz);
 VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, int vtableIndex);
 
 typedef struct {

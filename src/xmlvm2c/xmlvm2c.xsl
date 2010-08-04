@@ -86,6 +86,7 @@ int main(int argc, char* argv[])
     <xsl:variable name="clname" select="vm:fixname($cclname)"/>
 
     <xsl:text>// All the interfaces that this class implements
+/*
 typedef struct {
 </xsl:text>
     <xsl:text>    int numInterfaces;
@@ -94,7 +95,7 @@ typedef struct {
     <xsl:text>];</xsl:text>
     <xsl:for-each select="vm:vtable[@kind='interface-vtable']">
       <xsl:text>
-    __INTERFACE_DEFINITION_</xsl:text>
+    __INTERFACE_VTABLE_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text> </xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
@@ -104,17 +105,17 @@ typedef struct {
 } __IMPLEMENTED_INTERFACES_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;
+*/
 
 typedef struct {
-    int classInitialized;
-    const char* className;
-    __CLASS_DEFINITION_</xsl:text>
-    <xsl:value-of select="if (@extends='') then vm:fixname('java.lang.Object') else vm:fixname(@extends)"/>
-    <xsl:text>* extends;
-    __IMPLEMENTED_INTERFACES_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>* interfaces;
-    VTABLE_PTR vtable[</xsl:text>
+    int                                 classInitialized;
+    const char*                         className;
+    struct __CLASS_DEFINITION_TEMPLATE* extends;
+    int                                 numInterfaces;
+    struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[1];
+    int                                 numImplementedInterfaces;
+    struct __CLASS_DEFINITION_TEMPLATE* (*implementedInterfaces)[1];
+    VTABLE_PTR                          vtable[</xsl:text>
     <xsl:value-of select="@vtableSize"/>
     <xsl:text>];</xsl:text>
     <xsl:text>
@@ -229,25 +230,46 @@ typedef struct {
     <xsl:text>
 </xsl:text>
     <xsl:text>typedef struct {
-    JAVA_OBJECT implementingClass;
-    const char* interfaceName;
-    // TODO base interfaces
+    int                                 classInitialized;
+    const char*                         className;
+    struct __CLASS_DEFINITION_TEMPLATE* extends;
+	int                                 numInterfaces;
+    struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[1];
+	int                                 numImplementedInterfaces;
+    struct __CLASS_DEFINITION_TEMPLATE* (*implementedInterfaces)[1];
+    VTABLE_PTR                          vtable[</xsl:text>
+    <xsl:value-of select="@vtableSize"/>
+    <xsl:text>];
+} __CLASS_DEFINITION_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;
+
+extern __CLASS_DEFINITION_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text> __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;
+
+/*
+typedef struct {
+    </xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>* interface;
+    JAVA_OBJECT classImplemented;
     VTABLE_PTR vtable[</xsl:text>
     <xsl:value-of select="@vtableSize"/>
     <xsl:text>];</xsl:text>
     <xsl:text>
-} __INTERFACE_DEFINITION_</xsl:text>
+} __INTERFACE_VTABLE_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;
-
+*/
 </xsl:text>
 
     <!-- Emit interface initializers -->
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>(__INTERFACE_DEFINITION_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>* iface);
+    <xsl:text>(__CLASS_DEFINITION_TEMPLATE** interface);
 </xsl:text>
 
 </xsl:template>
@@ -279,7 +301,7 @@ typedef struct {
     "</xsl:text>
     <xsl:value-of select="concat(@package, '.' , @name)"/>
     <xsl:text>", // className
-    &amp;__CLASS_</xsl:text>
+    (__CLASS_DEFINITION_TEMPLATE*) &amp;__CLASS_</xsl:text>
     <xsl:value-of select="vm:fixname(@extends)"/>
     <xsl:text>, // extends
 };
@@ -316,7 +338,7 @@ typedef struct {
     <xsl:text>()
 {
     // Initialize base class if necessary
-    if (__CLASS_</xsl:text>
+    if (!__CLASS_</xsl:text>
     <xsl:value-of select="vm:fixname(@extends)"/>
     <xsl:text>.classInitialized) __INIT_</xsl:text>
     <xsl:value-of select="vm:fixname(@extends)"/>
@@ -346,19 +368,18 @@ typedef struct {
     </xsl:text>
     </xsl:for-each>
     
+    <xsl:variable name="numImplementedInterfaces" select="count(vm:vtable[@kind='interface-vtable'])"/>
     <xsl:text>// Initialize vtable for implementing interfaces
     __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>.interfaces = (__IMPLEMENTED_INTERFACES_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>*) XMLVM_MALLOC(sizeof(__IMPLEMENTED_INTERFACES_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>));
+    <xsl:text>.numImplementedInterfaces = </xsl:text>
+    <xsl:value-of select="$numImplementedInterfaces"/>
+    <xsl:text>;
     __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>.interfaces->numInterfaces = </xsl:text>
-    <xsl:value-of select="count(vm:vtable[@kind='interface-vtable'])"/>
-    <xsl:text>;</xsl:text>
+    <xsl:text>.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * </xsl:text>
+    <xsl:value-of select="$numImplementedInterfaces"/>
+    <xsl:text>);</xsl:text>
     <xsl:for-each select="vm:vtable[@kind='interface-vtable']">
       <xsl:variable name="iname" select="vm:fixname(@name)"/>
       <xsl:text>
@@ -366,26 +387,16 @@ typedef struct {
       <xsl:value-of select="$iname"/>
       <xsl:text>(&amp;__CLASS_</xsl:text>
       <xsl:value-of select="$clname"/>
-      <xsl:text>.interfaces-></xsl:text>
-      <xsl:value-of select="$iname"/>
-      <xsl:text>);
-    __CLASS_</xsl:text>
-      <xsl:value-of select="$clname"/>
-      <xsl:text>.interfaces-></xsl:text>
-      <xsl:text>interfacePtr[</xsl:text>
+      <xsl:text>.implementedInterfaces[0][</xsl:text>
       <xsl:value-of select="position() - 1"/>
-      <xsl:text>] = &amp;__CLASS_</xsl:text>
-      <xsl:value-of select="$clname"/>
-      <xsl:text>.interfaces-></xsl:text>
-      <xsl:value-of select="$iname"/>
-      <xsl:text>;</xsl:text>
+      <xsl:text>]);</xsl:text>
       <xsl:for-each select="vm:map">
         <xsl:text>
     __CLASS_</xsl:text>
         <xsl:value-of select="$clname"/>
-        <xsl:text>.interfaces-></xsl:text>
-        <xsl:value-of select="$iname"/>
-        <xsl:text>.vtable[</xsl:text>
+        <xsl:text>.implementedInterfaces[0][</xsl:text>
+        <xsl:value-of select="position() - 1"/>
+        <xsl:text>]->vtable[</xsl:text>
         <xsl:value-of select="@vtableIndexInterface"/>
         <xsl:text>] = __CLASS_</xsl:text>
         <xsl:value-of select="$clname"/>
@@ -598,16 +609,64 @@ typedef struct {
 <xsl:template name="emitInterfaceImplementation">
     <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
     <xsl:variable name="clname" select="vm:fixname($cclname)"/>
+    <xsl:variable name="numBaseInterfaces" select="count(tokenize(@interfaces, ','))"/>
+    
+    <xsl:text>__CLASS_DEFINITION_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text> __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;
+
+</xsl:text>
+
     <!-- Emit interface initializers -->
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>(__INTERFACE_DEFINITION_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>* iface)
+    <xsl:text>(__CLASS_DEFINITION_TEMPLATE** interface)
 {
-    iface->interfaceName = "</xsl:text>
+    if (!__CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.classInitialized) {
+        __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.className = "</xsl:text>
     <xsl:value-of select="$cclname"/>
     <xsl:text>";
+        __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.extends = (__CLASS_DEFINITION_TEMPLATE*) &amp;__CLASS_</xsl:text>
+    <xsl:value-of select="vm:fixname(@extends)"/>
+    <xsl:text>;
+        __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.numInterfaces = </xsl:text>
+    <xsl:value-of select="$numBaseInterfaces"/>
+    <xsl:text>;</xsl:text>
+    <xsl:if test="$numBaseInterfaces gt 0">
+      <xsl:for-each select="tokenize(@interfaces, ',')">
+        <xsl:text>
+        //__CLASS_</xsl:text>
+        <xsl:value-of select="$clname"/>
+        <xsl:text>.baseInterfaces[</xsl:text>
+        <xsl:value-of select="position() - 1"/>
+        <xsl:text>] = &amp;__INTERFACE_</xsl:text>
+        <xsl:value-of select="vm:fixname(.)"/>
+        <xsl:text>;</xsl:text>
+      </xsl:for-each>
+    </xsl:if>
+    <xsl:text>
+        __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.classInitialized = 1;
+    }
+    *interface = (__CLASS_DEFINITION_TEMPLATE*) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>));
+    XMLVM_MEMCPY(*interface, &amp;__CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>, sizeof(__CLASS_DEFINITION_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>));
 }
 
 </xsl:text>
@@ -1202,7 +1261,7 @@ typedef struct {
 </xsl:template>
 
 
-<xsl:template match="dex:invoke-direct|dex:invoke-direct-range">
+<xsl:template match="dex:invoke-direct|dex:invoke-direct-range|dex:invoke-super|dex:invoke-super-range">
   <xsl:variable name="returnTypedAccess">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="dex:parameters/dex:return/@type"/>
@@ -1316,7 +1375,7 @@ typedef struct {
 </xsl:template>
 
 
-<xsl:template match="dex:invoke-super|dex:invoke-super-range">
+<xsl:template match="dex:invoke-superX|dex:invoke-super-rangeX">
   <xsl:variable name="returnTypedAccess">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="dex:parameters/dex:return/@type"/>
@@ -2795,19 +2854,15 @@ typedef struct {
 </xsl:template>
 
 
+
 <xsl:template match="dex:instance-of">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.i = (_r</xsl:text>
+  <xsl:text>.i = XMLVM_ISA(_r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.o != JAVA_NULL &amp;&amp; 
-        (dynamic_cast&lt;</xsl:text>
+  <xsl:text>.o, (JAVA_OBJECT) &amp;__CLASS_</xsl:text>
   <xsl:value-of select="vm:fixname(@value)"/>
-  <xsl:text>*&gt;(_r</xsl:text>
-  <xsl:value-of select="@vy"/>
-  <xsl:text>.o) != (</xsl:text>
-  <xsl:value-of select="vm:fixname(@value)"/>
-  <xsl:text>*) 0)) ? 1 : 0;
+  <xsl:text>);
 </xsl:text>
 </xsl:template>
 
