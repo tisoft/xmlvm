@@ -22,6 +22,7 @@ package org.xmlvm.proc;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -44,23 +45,19 @@ public class XmlvmResource {
     }
 
     /**
-     * Wrapper for a <code>&lt;dex:invoke-virtual&gt;</code> or a
-     * <code>&lt;dex:invoke-interface&gt;</code> element. Methods of those
-     * instructions are handled via a Vtable.
+     * Wrapper for a <code>&lt;dex:invoke-*&gt;</code> element.
      */
-    public class XmlvmVtableInvoke {
+    public class XmlvmInvokeInstruction {
         public Element invokeElement;
 
         /**
-         * Wrapper for a <code>&lt;dex:invoke-virtual&gt;</code> or a
-         * <code>&lt;dex:invoke-interface&gt;</code> element.
+         * Wrapper for a <code>&lt;dex:invoke-*&gt;</code> element.
          * 
          * @param invokeElement
          *            DOM element representing a
-         *            <code>&lt;dex:invoke-virtual&gt;</code> or a
-         *            <code>&lt;dex:invoke-interface&gt;</code>.
+         *            <code>&lt;dex:invoke-*&gt;</code>.
          */
-        public XmlvmVtableInvoke(Element invokeElement) {
+        public XmlvmInvokeInstruction(Element invokeElement) {
             this.invokeElement = invokeElement;
         }
 
@@ -84,6 +81,52 @@ public class XmlvmResource {
         public void setVtableIndex(int vtableIndex) {
             invokeElement.setAttribute("vtable-index", "" + vtableIndex);
         }
+
+        /**
+         * @param type
+         */
+        public void setClassType(String type) {
+            invokeElement.setAttribute("class-type", type);
+        }
+    }
+
+    public class XmlvmMemberReadWrite {
+        public Element memberReadWriteElement;
+
+        /**
+         * Wrapper for a <code>&lt;dex:iget-*&gt;</code> or a
+         * <code>&lt;dex:iput-*&gt;</code> element.
+         * 
+         * @param invokeElement
+         *            DOM element representing a <code>&lt;dex:iget-*&gt;</code>
+         *            or a <code>&lt;dex:iput-*&gt;</code>.
+         */
+        public XmlvmMemberReadWrite(Element memberReadWriteElement) {
+            this.memberReadWriteElement = memberReadWriteElement;
+        }
+
+        /**
+         * @return
+         */
+        public String getMemberName() {
+            return this.memberReadWriteElement.getAttributeValue("member-name");
+        }
+
+        /**
+         * @param type
+         */
+        public void setClassType(String type) {
+            System.out.println("Changing type for member '" + getMemberName() + "' to " + type);
+            this.memberReadWriteElement.setAttribute("class-type", type);
+        }
+
+        /**
+         * @return
+         */
+        public String getClassType() {
+            return this.memberReadWriteElement.getAttributeValue("class-type");
+        }
+
     }
 
     /**
@@ -125,23 +168,23 @@ public class XmlvmResource {
          *         <code>&lt;dex:invoke-interface&gt;</code> instructions of
          *         this method.
          */
-        public List<XmlvmVtableInvoke> getVtableInvokeInstructions() {
-            List<XmlvmVtableInvoke> invokeInstructions = new ArrayList<XmlvmVtableInvoke>();
+        public List<XmlvmInvokeInstruction> getVtableInvokeInstructions() {
+            List<XmlvmInvokeInstruction> invokeInstructions = new ArrayList<XmlvmInvokeInstruction>();
             searchForVtableInvokeInstructions(invokeInstructions, methodElement);
             return invokeInstructions;
         }
 
         @SuppressWarnings("unchecked")
-        private void searchForVtableInvokeInstructions(List<XmlvmVtableInvoke> invokeInstructions,
-                Element element) {
+        private void searchForVtableInvokeInstructions(
+                List<XmlvmInvokeInstruction> invokeInstructions, Element element) {
             List<Element> children = element.getChildren("invoke-virtual", nsDEX);
             for (Element instruction : children) {
-                XmlvmVtableInvoke invoke = new XmlvmVtableInvoke(instruction);
+                XmlvmInvokeInstruction invoke = new XmlvmInvokeInstruction(instruction);
                 invokeInstructions.add(invoke);
             }
             children = element.getChildren("invoke-interface", nsDEX);
             for (Element instruction : children) {
-                XmlvmVtableInvoke invoke = new XmlvmVtableInvoke(instruction);
+                XmlvmInvokeInstruction invoke = new XmlvmInvokeInstruction(instruction);
                 invokeInstructions.add(invoke);
             }
             children = element.getChildren();
@@ -185,7 +228,7 @@ public class XmlvmResource {
          * @return true, iff <code>method</code> overrides <code>this</code>.
          */
         @SuppressWarnings("unchecked")
-        public boolean doesOverrideMethod(XmlvmVtableInvoke instruction) {
+        public boolean doesOverrideMethod(XmlvmInvokeInstruction instruction) {
             return doesOverrideMethod(instruction.getMethodName(), instruction.invokeElement
                     .getChild("parameters", nsDEX).getChildren("parameter", nsDEX));
         }
@@ -253,6 +296,54 @@ public class XmlvmResource {
             methodElement.setAttribute("vtableIndex", "" + idx);
         }
 
+    }
+
+    /**
+     * Wrapper for a <code>&lt;vm:field&gt;</code> element.
+     */
+    public class XmlvmField {
+        public Element fieldElement;
+
+        /**
+         * Wrapper for a <code>&lt;vm:field&gt;</code> element.
+         * 
+         * @param fieldElement
+         *            DOM element representing a <code>&lt;vm:field&gt;</code>.
+         */
+        public XmlvmField(Element fieldElement) {
+            this.fieldElement = fieldElement;
+        }
+
+        public String getName() {
+            return fieldElement.getAttributeValue("name");
+        }
+
+        public String getType() {
+            return fieldElement.getAttributeValue("type");
+        }
+
+        public boolean matchesName(XmlvmMemberReadWrite instruction) {
+            return getName().equals(instruction.getMemberName());
+        }
+
+        public boolean isPrivate() {
+            String flag = fieldElement.getAttributeValue("isPrivate");
+            return flag != null && flag.equals("true");
+        }
+
+        public boolean isProtected() {
+            String flag = fieldElement.getAttributeValue("isProtected");
+            return flag != null && flag.equals("true");
+        }
+
+        public boolean isPublic() {
+            String flag = fieldElement.getAttributeValue("isPublic");
+            return flag != null && flag.equals("true");
+        }
+
+        public boolean matchesDeclaration(XmlvmField field) {
+            return getName().equals(field.getName()) && getType().equals(field.getType());
+        }
     }
 
     public class XmlvmVtable {
@@ -367,6 +458,20 @@ public class XmlvmResource {
         return result;
     }
 
+    @SuppressWarnings("unchecked")
+    public Set<XmlvmField> getFields() {
+        Set<XmlvmField> result = new HashSet<XmlvmField>();
+        List<Element> classes = xmlvmDocument.getRootElement().getChildren("class", nsXMLVM);
+        for (Element clazz : classes) {
+            List<Element> fields = clazz.getChildren("field", nsXMLVM);
+            for (Element field : fields) {
+                result.add(new XmlvmField(field));
+            }
+        }
+        return result;
+
+    }
+
     /**
      * Returns whether this resource represents an interface.
      */
@@ -425,5 +530,25 @@ public class XmlvmResource {
         xmlvmDocument.getRootElement().getChild("class", nsXMLVM).addContent(vtableElement);
         return new XmlvmVtable(vtableElement);
 
+    }
+
+    @SuppressWarnings("unchecked")
+    public void collectInstructions(List<XmlvmInvokeInstruction> invokeInstructions,
+            List<XmlvmMemberReadWrite> readWriteInstructions) {
+        Element root = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
+        Iterator iter = root.getDescendants();
+        while (iter.hasNext()) {
+            Object o = iter.next();
+            if (o instanceof Element) {
+                Element elem = (Element) o;
+                String name = elem.getName();
+                if (name.startsWith("invoke-static")) {
+                    invokeInstructions.add(new XmlvmInvokeInstruction(elem));
+                }
+                if (name.startsWith("iput") || name.startsWith("iget")) {
+                    readWriteInstructions.add(new XmlvmMemberReadWrite(elem));
+                }
+            }
+        }
     }
 }

@@ -85,28 +85,9 @@ int main(int argc, char* argv[])
     <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
     <xsl:variable name="clname" select="vm:fixname($cclname)"/>
 
-    <xsl:text>// All the interfaces that this class implements
-/*
-typedef struct {
-</xsl:text>
-    <xsl:text>    int numInterfaces;
-    JAVA_OBJECT interfacePtr[</xsl:text>
-    <xsl:value-of select="count(vm:vtable[@kind='interface-vtable'])"/>
-    <xsl:text>];</xsl:text>
-    <xsl:for-each select="vm:vtable[@kind='interface-vtable']">
-      <xsl:text>
-    __INTERFACE_VTABLE_</xsl:text>
-      <xsl:value-of select="vm:fixname(@name)"/>
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="vm:fixname(@name)"/>
-      <xsl:text>;</xsl:text>
-    </xsl:for-each>
+    <xsl:text>// Class declarations for </xsl:text>
+    <xsl:value-of select="$cclname"/>
     <xsl:text>
-} __IMPLEMENTED_INTERFACES_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>;
-*/
-
 typedef struct {
     int                                 classInitialized;
     const char*                         className;
@@ -250,20 +231,6 @@ extern __CLASS_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;
 
-/*
-typedef struct {
-    </xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>* interface;
-    JAVA_OBJECT classImplemented;
-    VTABLE_PTR vtable[</xsl:text>
-    <xsl:value-of select="@vtableSize"/>
-    <xsl:text>];</xsl:text>
-    <xsl:text>
-} __INTERFACE_VTABLE_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>;
-*/
 </xsl:text>
 
     <!-- Emit interface initializers -->

@@ -35,7 +35,9 @@ import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.JavaJDKLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.XmlvmResource.XmlvmVtableInvoke;
+import org.xmlvm.proc.XmlvmResource.XmlvmField;
+import org.xmlvm.proc.XmlvmResource.XmlvmInvokeInstruction;
+import org.xmlvm.proc.XmlvmResource.XmlvmMemberReadWrite;
 import org.xmlvm.proc.XmlvmResource.XmlvmMethod;
 import org.xmlvm.proc.XmlvmResource.XmlvmVtable;
 import org.xmlvm.proc.XmlvmResourceProvider;
@@ -113,7 +115,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
          *         instruction has no entry in the Vtable (which indicates an
          *         internal error).
          */
-        public int getVtableIndex(XmlvmVtableInvoke instruction) {
+        public int getVtableIndex(XmlvmInvokeInstruction instruction) {
             for (int i = 0; i < virtualMethods.size(); i++) {
                 if (virtualMethods.get(i).doesOverrideMethod(instruction)) {
                     return i;
@@ -191,6 +193,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
         computeVtables();
         annotateVtableInvokes();
+        adjustTypes();
 
         // Process all collected resources.
         for (XmlvmResource xmlvm : resourcePool.values()) {
@@ -327,7 +330,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         for (XmlvmResource resource : resourcePool.values()) {
             Set<XmlvmMethod> methods = resource.getMethods();
             for (XmlvmMethod method : methods) {
-                for (XmlvmVtableInvoke instruction : method.getVtableInvokeInstructions()) {
+                for (XmlvmInvokeInstruction instruction : method.getVtableInvokeInstructions()) {
                     String className = instruction.getClassType();
                     if (!vtables.containsKey(className)) {
                         XmlvmResource clazz = getXmlvmResource(className);
@@ -341,6 +344,85 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                 }
             }
         }
+    }
+
+    /**
+     * Given the following classes:
+     * 
+     * <pre>
+     * class Base {
+     *     public int member;
+     * }
+     * 
+     * class Derived extends Base {
+     * }
+     * 
+     * Derived d = new Derived();
+     * </pre>
+     * 
+     * When accessing <code>d.member</code>, the JVM/DEX byte code instruction
+     * generated will be:
+     * 
+     * <pre>
+     * &lt;dex:iget class-type="Derived" member-type="int" member-name="member" ... /&gt;
+     * </pre>
+     * 
+     * The <code>class-type</code> refers to the actual type of the object, not
+     * the type where <code>member</code> is declared. This method adjusts the
+     * <code>class-type</code> to the class, where it is defined. Method
+     * {@link #adjustTypes()} performs this operation for all member variables
+     * as well as static methods.
+     */
+    private void adjustTypes() {
+        for (XmlvmResource resource : resourcePool.values()) {
+            List<XmlvmInvokeInstruction> invokeStaticInstructions = new ArrayList<XmlvmInvokeInstruction>();
+            List<XmlvmMemberReadWrite> memberReadWriteInstructions = new ArrayList<XmlvmMemberReadWrite>();
+            resource.collectInstructions(invokeStaticInstructions, memberReadWriteInstructions);
+            for (XmlvmInvokeInstruction instr : invokeStaticInstructions) {
+                String classType = instr.getClassType();
+                XmlvmResource classTypeResource = getXmlvmResource(classType);
+                String type = searchDeclaringTypeInHierarchy(classTypeResource, instr);
+                instr.setClassType(type);
+            }
+            for (XmlvmMemberReadWrite instr : memberReadWriteInstructions) {
+                String classType = instr.getClassType();
+                XmlvmResource classTypeResource = getXmlvmResource(classType);
+                String type = searchDeclaringTypeInHierarchy(classTypeResource, instr);
+                instr.setClassType(type);
+            }
+        }
+    }
+
+    private String searchDeclaringTypeInHierarchy(XmlvmResource resource,
+            XmlvmInvokeInstruction instruction) {
+        Set<XmlvmMethod> methods = resource.getMethods();
+        for (XmlvmMethod method : methods) {
+            if (method.doesOverrideMethod(instruction)) {
+                return resource.getFullName();
+            }
+        }
+        String baseClass = resource.getSuperTypeName();
+        if (!baseClass.equals("")) {
+            XmlvmResource baseResource = getXmlvmResource(baseClass);
+            return searchDeclaringTypeInHierarchy(baseResource, instruction);
+        }
+        return null;
+    }
+
+    private String searchDeclaringTypeInHierarchy(XmlvmResource resource,
+            XmlvmMemberReadWrite instruction) {
+        Set<XmlvmField> fields = resource.getFields();
+        for (XmlvmField field : fields) {
+            if (field.matchesName(instruction)) {
+                return resource.getFullName();
+            }
+        }
+        String baseClass = resource.getSuperTypeName();
+        if (!baseClass.equals("")) {
+            XmlvmResource baseResource = getXmlvmResource(baseClass);
+            return searchDeclaringTypeInHierarchy(baseResource, instruction);
+        }
+        return null;
     }
 
     private XmlvmResource getXmlvmResource(String className) {

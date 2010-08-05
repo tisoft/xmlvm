@@ -23,12 +23,6 @@
 
 #include "xmlvm.h"
 
-/*
-typedef struct {
-    int numInterfaces;
-    JAVA_OBJECT interfacePtr[];
-} __IMPLEMENTED_INTERFACES_java_lang_Object;
-*/
 
 typedef struct {
     int                                 classInitialized;
@@ -37,13 +31,6 @@ typedef struct {
 	int                                 numInterfaces;
     struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[];
     VTABLE_PTR                          vtable[11];
-/*
-    int classInitialized;
-    const char* className;
-    JAVA_OBJECT extends;
-    __IMPLEMENTED_INTERFACES_java_lang_Object* interfaces;
-    VTABLE_PTR vtable[11];
- */
 } __CLASS_DEFINITION_java_lang_Object;
 
 extern __CLASS_DEFINITION_java_lang_Object __CLASS_java_lang_Object;

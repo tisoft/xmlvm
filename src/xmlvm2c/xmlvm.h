@@ -21,6 +21,7 @@
 #ifndef __XMLVM_H__
 #define __XMLVM_H__
 
+
 //#import <math.h>
 #include <stdlib.h>
 #include <strings.h>
@@ -82,30 +83,6 @@ typedef union {
 #define JAVA_NULL ((JAVA_OBJECT) 0)
 
 typedef void (*VTABLE_PTR)();
-
-/*
-
-typedef struct {
-    int         interfaceInitialized;
-    const char* interfaceName;
-    int         numBaseInterfaces;
-    JAVA_OBJECT baseInterfaces[];
-} __INTERFACE_DEFINITION_TEMPLATE;
-
-typedef struct {
-    __INTERFACE_DEFINITION_TEMPLATE* interface;
-    JAVA_OBJECT                      classImplemented;
-    VTABLE_PTR                       vtable[];
-} __INTERFACE_VTABLE_TEMPLATE;
-
-typedef struct {
-    int                         numInterfaces;
-    __INTERFACE_VTABLE_TEMPLATE interfacePtr[];
-} __IMPLEMENTED_INTERFACES_TEMPLATE;
-*/
-
-//struct __CLASS_DEFINITION_TEMPLATE;
-//typedef __CLASS_DEFINITION_TEMPLATE __CLASS_DEFINITION_TEMPLATE_PTR;
 
 typedef struct __CLASS_DEFINITION_TEMPLATE {
     int                                 classInitialized;
