@@ -2647,7 +2647,7 @@ extern __CLASS_DEFINITION_</xsl:text>
 </xsl:text>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
-  <xsl:text>.o = XMLVMArray::createSingleDimension(5, </xsl:text>
+  <xsl:text>.o = XMLVMArray_createSingleDimension(5, </xsl:text>
   <xsl:value-of select="count(dex:value)"/>
   <xsl:text>, _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
@@ -2657,7 +2657,7 @@ extern __CLASS_DEFINITION_</xsl:text>
 
 
 <xsl:template match="dex:fill-array-data">
-  <xsl:text>    XMLVMArray::fillArray(</xsl:text>
+  <xsl:text>    XMLVMArray_fillArray(</xsl:text>
   <xsl:value-of select="vm:cast-register('XMLVMArray', @vx)"/>
   <xsl:text>, (</xsl:text>
   <xsl:value-of select="@vx-type"/>
@@ -2675,7 +2675,7 @@ extern __CLASS_DEFINITION_</xsl:text>
   <xsl:variable name="base-type" select="replace(@value, '\[\]', '')"/>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o = XMLVMArray::createSingleDimension(</xsl:text>
+  <xsl:text>.o = XMLVMArray_createSingleDimension(</xsl:text>
   <xsl:value-of select="vm:typeID($base-type)"/>
   <xsl:text>, _r</xsl:text>
   <xsl:value-of select="@vy"/>
@@ -2687,9 +2687,9 @@ extern __CLASS_DEFINITION_</xsl:text>
 <xsl:template match="dex:array-length">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.i = </xsl:text>
+  <xsl:text>.i = XMLVMArray_count(</xsl:text>
   <xsl:value-of select="vm:cast-register('XMLVMArray', @vy)"/>
-  <xsl:text>->count();
+  <xsl:text>);
 </xsl:text>
 </xsl:template>
 

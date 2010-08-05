@@ -119,7 +119,6 @@ XMLVMArray* XMLVMArray_createSingleDimensionWithData(int type, int size, void* d
     return retval;
 }
 
-/*
 XMLVMArray* XMLVMArray_createMultiDimensions(int type, XMLVMElem* dim, int count)
 {
 	int dimensions = dim->i;
@@ -131,11 +130,10 @@ XMLVMArray* XMLVMArray_createMultiDimensions(int type, XMLVMElem* dim, int count
 	XMLVMArray* slice = XMLVMArray_createSingleDimension(0, dimensions);
 	for (int i = 0; i < dimensions; i++) {
 		XMLVMArray* o = XMLVMArray_createMultiDimensions(type, dim, count);
-		slice->replaceObjectAtIndex(i, o);
+		XMLVMArray_replaceObjectAtIndex(slice, i, o);
 	}
 	return slice;
 }
- */
 
 XMLVMArray* XMLVMArray_createFromString(const char* str)
 {
@@ -188,48 +186,43 @@ int XMLVMArray_sizeOfBaseTypeInBytes(int type)
     return sizeOfBaseType;
 }
 
-/*
-XMLVMRootObject* XMLVMArray::objectAtIndex(int idx)
+JAVA_OBJECT XMLVMArray_objectAtIndex(XMLVMArray* array, int idx)
 {
-    XMLVMRootObject* obj = array.o[idx];
-    return obj;//->__retain();
+    return array->array.o[idx];
 }
 
-void XMLVMArray::replaceObjectAtIndex(int idx, XMLVMRootObject* obj)
+void XMLVMArray_replaceObjectAtIndex(XMLVMArray* array, int idx, JAVA_OBJECT obj)
 {
-    //obj->__retain();
-    //array.o[idx]->__release();
-    array.o[idx] = obj;
+    array->array.o[idx] = obj;
 }
 
-int XMLVMArray::count()
+int XMLVMArray_count(XMLVMArray* array)
 {
-    return length;
+	return array->length;
 }
 
-XMLVMArray* XMLVMArray::clone__()
+XMLVMArray* XMLVMArray_clone__(XMLVMArray* array)
 {
-    XMLVMArray *retval = new XMLVMArray();
-    retval->type = type;
-    retval->length = length;
-    retval->ownsData = true;
+    XMLVMArray *retval = __NEW_XMLVMArray();
+    retval->type = array->type;
+    retval->length = array->length;
+    retval->ownsData = 1;
 
-    int sizeOfBaseType = XMLVMArray::sizeOfBaseTypeInBytes(type);
-    int sizeOfArrayInBytes = sizeOfBaseType * length;
+    int sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(array->type);
+    int sizeOfArrayInBytes = sizeOfBaseType * array->length;
     retval->array.data = XMLVM_MALLOC(sizeOfArrayInBytes);
 
-    if (type == 0) {
-        for (int i = 0; i < length; i++) {
+    if (array->type == 0) {
+        for (int i = 0; i < array->length; i++) {
             //retval->array.o[i] = array.o[i]->__retain();
         }
     }
     else {
-	    XMLVM_MEMCPY(retval->array.data, array.data, sizeOfArrayInBytes);
+	    XMLVM_MEMCPY(retval->array.data, array->array.data, sizeOfArrayInBytes);
     }
 
     return retval;
 }
-*/
 
 void XMLVM_ERROR(const char* msg)
 {

@@ -26,10 +26,14 @@
 #include "java_lang_String.h"
 
 typedef struct {
-    int classInitialized;
-    const char* className;
-    __CLASS_DEFINITION_java_lang_Object* extends;
-    VTABLE_PTR vtable[39];
+    int                                 classInitialized;
+    const char*                         className;
+    struct __CLASS_DEFINITION_TEMPLATE* extends;
+	int                                 numInterfaces;
+    struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[1];
+	int                                 numImplementedInterfaces;
+    struct __CLASS_DEFINITION_TEMPLATE* (*implementedInterfaces)[1];
+    VTABLE_PTR                          vtable[39];
 } __CLASS_DEFINITION_java_io_PrintStream;
 
 extern __CLASS_DEFINITION_java_io_PrintStream __CLASS_java_io_PrintStream;
@@ -48,13 +52,7 @@ void __INIT_java_io_PrintStream();
 JAVA_OBJECT __NEW_java_io_PrintStream();
 void java_io_PrintStream_println___java_lang_String(JAVA_OBJECT me, java_lang_String* s);
 void java_io_PrintStream_println___int(JAVA_OBJECT me, JAVA_INT i);
-
-/*
-void println___float(float f) {
-    std::cout << f << std::endl;
-}
-};
-*/
+void java_io_PrintStream_println___float(JAVA_OBJECT me, JAVA_FLOAT f);
 
 #endif
 

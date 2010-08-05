@@ -43,12 +43,10 @@ void java_io_PrintStream_println___int(JAVA_OBJECT me, JAVA_INT i)
 	printf("%d\n", i);
 }
 
-/*
-void println___float(float f) {
-    std::cout << f << std::endl;
+void java_io_PrintStream_println___float(JAVA_OBJECT me, JAVA_FLOAT f)
+{
+	printf("%f\n", f);
 }
-};
-*/
 
 void __INIT_java_io_PrintStream()
 {
@@ -59,6 +57,7 @@ void __INIT_java_io_PrintStream()
     // Initialize vtable for this class
     __CLASS_java_io_PrintStream.vtable[35] = (VTABLE_PTR) &java_io_PrintStream_println___java_lang_String;
     __CLASS_java_io_PrintStream.vtable[16] = (VTABLE_PTR) &java_io_PrintStream_println___int;
+    __CLASS_java_io_PrintStream.vtable[19] = (VTABLE_PTR) &java_io_PrintStream_println___float;
 
     __CLASS_java_io_PrintStream.classInitialized = 1;
 

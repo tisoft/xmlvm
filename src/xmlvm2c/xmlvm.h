@@ -112,14 +112,10 @@ XMLVMArray* XMLVMArray_createMultiDimensions(int type, XMLVMElem* dimensions, in
 XMLVMArray* XMLVMArray_createFromString(const char* str);
 void XMLVMArray_fillArray(XMLVMArray* array, void* data);
 int XMLVMArray_sizeOfBaseTypeInBytes(int type);
-
-/*
-    XMLVMRootObject* objectAtIndex(int idx);
-    void replaceObjectAtIndex(int idx, XMLVMRootObject* obj);
-    int count();
-    XMLVMArray* clone__();
-};
-*/
+JAVA_OBJECT XMLVMArray_objectAtIndex(XMLVMArray* array, int idx);
+void XMLVMArray_replaceObjectAtIndex(XMLVMArray* array, int idx, JAVA_OBJECT obj);
+int XMLVMArray_count(XMLVMArray* array);
+XMLVMArray* XMLVMArray_clone__(XMLVMArray* array);
 
 
 void XMLVM_ERROR(const char* msg);
