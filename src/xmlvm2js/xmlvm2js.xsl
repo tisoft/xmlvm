@@ -149,7 +149,7 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     }</xsl:text>
     <xsl:for-each select="vm:field[count(@isStatic)=0 or @isStatic='false']">
       <xsl:text>,
-    $</xsl:text>
+    $$$</xsl:text>
       <xsl:value-of select="@name" /><xsl:text>: </xsl:text>
       <xsl:value-of select="if (@value) then @value else 0"/>
 	</xsl:for-each>
@@ -1275,6 +1275,34 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     </xsl:for-each>
 </xsl:template>
 
+<xsl:template name="initArguments">
+  <xsl:variable name="numRegs" select="@register-size" as="xs:integer"/>
+  <xsl:variable name="numArgs" select="count(../vm:signature/vm:parameter)" as="xs:integer"/>
+  <xsl:for-each select="1 to $numRegs">
+    <xsl:text>    var __r</xsl:text>
+    <xsl:value-of select="position() - 1"/>
+    <xsl:text>;
+</xsl:text>
+  </xsl:for-each>
+  <xsl:if test="not(../@isStatic = 'true')">
+    <!-- Initialize 'this' parameter -->
+    <xsl:text>    __r</xsl:text>
+    <xsl:value-of select="$numRegs - ($numArgs + 1)"/>
+    <xsl:text> = this;
+</xsl:text>
+    </xsl:if>
+    <xsl:for-each select="../vm:signature/vm:parameter">
+      <xsl:text>    __r</xsl:text>
+      <xsl:value-of select="$numRegs - ($numArgs - position()) - 1"/>
+      <xsl:text> = __arg</xsl:text>
+      <xsl:value-of select="position()"/>
+      <xsl:text>;
+</xsl:text>
+    </xsl:for-each>
+</xsl:template>
+
+
+
 <!--
    emitMethodName
    ==============
@@ -1464,7 +1492,16 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
 <xsl:template match="dex:code">
   <xsl:text>
-    {</xsl:text>
+    {
+        </xsl:text>
+  <xsl:if test="../@name = '&lt;clinit&gt;'">
+    <xsl:call-template name="getPackgePlusClassName">
+      <xsl:with-param name="package" select="../../@package"/>
+      <xsl:with-param name="classname" select="../../@name"/>
+    </xsl:call-template>
+    <xsl:text>.$$clinit_ = undefined;
+    </xsl:text>
+  </xsl:if>
     
   <!--  Declare the registers - START. -->
   <xsl:for-each select="vm:define-register">
@@ -1501,6 +1538,8 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 </xsl:text>
     </xsl:if>
   </xsl:for-each>
+  
+  <xsl:call-template name="initArguments"/>
   
   <xsl:text>
         var __next_label = -1;
