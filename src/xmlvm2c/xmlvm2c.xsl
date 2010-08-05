@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY nl "&#xa;"><!--new line-->
+]>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs = "http://www.w3.org/2001/XMLSchema"
@@ -7,6 +10,7 @@
                 xmlns:jvm="http://xmlvm.org/jvm"
                 xmlns:dex="http://xmlvm.org/dex"
                 version="2.0">
+
 
 <xsl:param name="pass">emitHeader</xsl:param>
 <xsl:param name="header">xmlvm.h</xsl:param>
@@ -142,49 +146,42 @@ typedef struct {
     <xsl:text>* __class;
     __INSTANCE_MEMBERS_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>;
-} </xsl:text>
+    <xsl:text>;&nl;} </xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>;
+    <xsl:text>;&nl;&nl;</xsl:text>
 
-</xsl:text>
-
-    <!-- Emit class initializers -->
+    <!-- Emit XMLVM-specific class initializer -->
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>();
-</xsl:text>
+    <xsl:text>();&nl;</xsl:text>
 
     <!-- Emit declarations for getter and setter methods for all static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
+
       <!-- Emit getter -->
-      <xsl:text>static </xsl:text>
       <xsl:call-template name="emitType">
         <xsl:with-param name="type" select="@type"/>
       </xsl:call-template>
-      <xsl:text> _GET_</xsl:text>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>_GET_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
-      <xsl:text>();
-</xsl:text>
+      <xsl:text>();&nl;</xsl:text>
+      
       <!-- Emit setter -->
-      <xsl:text>static void _PUT_</xsl:text>
+      <xsl:text>void </xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>_PUT_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>(</xsl:text>
       <xsl:call-template name="emitType">
         <xsl:with-param name="type" select="@type"/>
       </xsl:call-template>
       <xsl:text> v)</xsl:text>
-      <xsl:text>;
-</xsl:text>
-      <!-- Emit releaser -->
-      <xsl:if test="vm:isObjectRef(@type)">
-        <xsl:text>static void _RELEASE_</xsl:text>
-        <xsl:value-of select="vm:fixname(@name)"/>
-        <xsl:text>();
-</xsl:text>
-      </xsl:if>
-      
+      <xsl:text>;&nl;</xsl:text>
+     
     </xsl:for-each>
+
     <!-- Emit declarations for all methods -->
     <xsl:for-each select="vm:method">
       <xsl:if test="not(vm:isDuplicateMethod(.))">
@@ -270,13 +267,11 @@ extern __CLASS_DEFINITION_</xsl:text>
     <xsl:text>", // className
     (__CLASS_DEFINITION_TEMPLATE*) &amp;__CLASS_</xsl:text>
     <xsl:value-of select="vm:fixname(@extends)"/>
-    <xsl:text>, // extends
-};
-
-</xsl:text>
+    <xsl:text>, // extends&nl;};&nl;&nl;</xsl:text>
 
     <!-- Emit global variable definition for all static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
+      <xsl:text>static </xsl:text>
       <xsl:call-template name="emitType">
         <xsl:with-param name="type" select="@type"/>
       </xsl:call-template>
@@ -288,24 +283,25 @@ extern __CLASS_DEFINITION_</xsl:text>
         <xsl:text> = </xsl:text>
         <!-- TODO String values need to be surrounded by quotes and escaped properly. -->
         <xsl:if test="@type = 'java.lang.String'">
-          <xsl:text>new java_lang_String("</xsl:text>
+          <xsl:text>__NEW_java_lang_String("</xsl:text>
         </xsl:if>
         <xsl:value-of select="@value"/>
         <xsl:if test="@type = 'java.lang.String'">
           <xsl:text>")</xsl:text>
         </xsl:if>
       </xsl:if>
-      <xsl:text>;
-</xsl:text>
+      <xsl:text>;&nl;</xsl:text>
     </xsl:for-each>
 
-    <!-- Emit class initializers -->
+    <!-- Emit XMLVM-specific class initializer -->
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>()
-{
-    // Initialize base class if necessary
-    if (!__CLASS_</xsl:text>
+    <xsl:text>()&nl;{&nl;</xsl:text>
+    <xsl:text>    __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.classInitialized = 1;&nl;</xsl:text>
+    <xsl:text>    // Initialize base class if necessary&nl;</xsl:text>
+    <xsl:text>    if (!__CLASS_</xsl:text>
     <xsl:value-of select="vm:fixname(@extends)"/>
     <xsl:text>.classInitialized) __INIT_</xsl:text>
     <xsl:value-of select="vm:fixname(@extends)"/>
@@ -331,8 +327,7 @@ extern __CLASS_DEFINITION_</xsl:text>
         <xsl:with-param name="class-type" select="concat(../@package, '.', ../@name)"/>
       </xsl:call-template>
       <xsl:call-template name="appendSignature"/>
-      <xsl:text>;
-    </xsl:text>
+      <xsl:text>;&nl;    </xsl:text>
     </xsl:for-each>
     
     <xsl:variable name="numImplementedInterfaces" select="count(vm:vtable[@kind='interface-vtable'])"/>
@@ -349,8 +344,7 @@ extern __CLASS_DEFINITION_</xsl:text>
     <xsl:text>);</xsl:text>
     <xsl:for-each select="vm:vtable[@kind='interface-vtable']">
       <xsl:variable name="iname" select="vm:fixname(@name)"/>
-      <xsl:text>
-    __INIT_</xsl:text>
+      <xsl:text>&nl;    __INIT_</xsl:text>
       <xsl:value-of select="$iname"/>
       <xsl:text>(&amp;__CLASS_</xsl:text>
       <xsl:value-of select="$clname"/>
@@ -358,8 +352,7 @@ extern __CLASS_DEFINITION_</xsl:text>
       <xsl:value-of select="position() - 1"/>
       <xsl:text>]);</xsl:text>
       <xsl:for-each select="vm:map">
-        <xsl:text>
-    __CLASS_</xsl:text>
+        <xsl:text>&nl;    __CLASS_</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.implementedInterfaces[0][</xsl:text>
         <xsl:value-of select="position() - 1"/>
@@ -372,46 +365,34 @@ extern __CLASS_DEFINITION_</xsl:text>
         <xsl:text>];</xsl:text>
       </xsl:for-each>
     </xsl:for-each>
-    <xsl:text>
-    __CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.classInitialized = 1;
-</xsl:text>
-        <xsl:for-each select="vm:field[@isStatic = 'true' and vm:isObjectRef(@type)]">
-          <xsl:text>
-    _STATIC_</xsl:text>
-          <xsl:value-of select="vm:fixname(../@package)"/>
-          <xsl:text>_</xsl:text>
-          <xsl:value-of select="vm:fixname(../@name)"/>
-          <xsl:text>_</xsl:text>
-          <xsl:value-of select="vm:fixname(@name)"/>
-          <xsl:text> = (</xsl:text>
-          <xsl:value-of select="vm:fixname(@type)"/>
-          <xsl:text>*) JAVA_NULL;</xsl:text>
-        </xsl:for-each>
-    	<!-- If there is a Java class initializer, call it. -->
-        <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
-          <xsl:text>
-    </xsl:text>
-          <xsl:value-of select="vm:fixname(@package)"/>
-          <xsl:text>_</xsl:text>
-          <xsl:value-of select="vm:fixname(@name)"/>
-          <xsl:text>::__clinit_</xsl:text>
-          <xsl:value-of select="vm:fixname(@package)"/>
-          <xsl:text>_</xsl:text>
-          <xsl:value-of select="vm:fixname(@name)"/>
-          <xsl:text>();</xsl:text>
-        </xsl:if>
-    <xsl:text>
-}
-
-</xsl:text>
+    
+    <!-- Initialize static object references to JAVA_NULL -->
+    <xsl:for-each select="vm:field[@isStatic = 'true' and vm:isObjectRef(@type)]">
+      <xsl:text>&nl;    _STATIC_</xsl:text>
+      <xsl:value-of select="vm:fixname(../@package)"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(../@name)"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text> = (</xsl:text>
+      <xsl:value-of select="vm:fixname(@type)"/>
+      <xsl:text>*) JAVA_NULL;</xsl:text>
+    </xsl:for-each>
+    
+    <!-- If there is a Java class initializer, call it. -->
+    <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
+      <xsl:text>&nl;    </xsl:text>
+      <xsl:value-of select="vm:fixname(@package)"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>___CLINIT_();</xsl:text>
+    </xsl:if>
+    <xsl:text>&nl;}&nl;&nl;</xsl:text>
     
     <!-- Emit 'new' method -->
     <xsl:text>JAVA_OBJECT __NEW_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>()
-{
+    <xsl:text>()&nl;{
     if (!__CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized) __INIT_</xsl:text>
@@ -426,8 +407,7 @@ extern __CLASS_DEFINITION_</xsl:text>
     <xsl:text>));
     me->__class = &amp;__CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>;
-</xsl:text>
+    <xsl:text>;&nl;</xsl:text>
     
     <!-- Emit declarations for all non-static member fields -->
     <xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type)]">
@@ -445,22 +425,18 @@ extern __CLASS_DEFINITION_</xsl:text>
       </xsl:text>
     </xsl:for-each>
     <xsl:text>
-    return me;
-}
-
-</xsl:text>
+    return me;&nl;}&nl;&nl;</xsl:text>
 
     <!-- Emit destructor -->
     <xsl:text>void __DELETE_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>(JAVA_OBJECT me)
-{
-</xsl:text>
+    <xsl:text>(JAVA_OBJECT me)&nl;{&nl;</xsl:text>
     <xsl:if test="vm:method[@name='finalize' and 
                         not(vm:signature/vm:parameter) and 
                         vm:signature/vm:return[@type='void']]">
-      <xsl:text>    this->finalize_</xsl:text><xsl:value-of select="vm:fixname(concat(@package, '.', @name))"/><xsl:text>__();
-</xsl:text>
+      <xsl:text>    this->finalize_</xsl:text>
+      <xsl:value-of select="vm:fixname(concat(@package, '.', @name))"/>
+      <xsl:text>__();&nl;</xsl:text>
     </xsl:if>
 	<xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type) and
 	                      not(@isSynthetic = 'true' and starts-with(@name, 'this$'))]">
@@ -468,12 +444,9 @@ extern __CLASS_DEFINITION_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>_</xsl:text>
       <xsl:value-of select="vm:fixname(@type)"/>
-	  <xsl:text>->__release();
-</xsl:text>
+	  <xsl:text>->__release();&nl;</xsl:text>
 	</xsl:for-each>
-	<xsl:text>}
-
-</xsl:text>
+	<xsl:text>}&nl;&nl;</xsl:text>
 
 	<!-- Emit getters and setters for all static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
@@ -490,62 +463,48 @@ extern __CLASS_DEFINITION_</xsl:text>
       </xsl:call-template>
       <xsl:text> </xsl:text>
       <xsl:value-of select="$clname"/>
-      <xsl:text>::_GET_</xsl:text>
+      <xsl:text>_GET_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
-      <xsl:text>()
-{
-    if (!__CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.classInitialized) __INIT_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>();
-    return </xsl:text>
+      <xsl:text>()&nl;{&nl;    if (!__CLASS_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>.classInitialized) __INIT_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>();&nl;    return </xsl:text>
       <xsl:text>_STATIC_</xsl:text>
       <xsl:value-of select="$field"/>
-      <xsl:text>;
-}
-
-</xsl:text>
+      <xsl:text>;&nl;}&nl;&nl;</xsl:text>
+      
       <!-- Emit setter -->
       <xsl:text>void </xsl:text>
       <xsl:value-of select="$clname"/>
-      <xsl:text>::_PUT_</xsl:text>
+      <xsl:text>_PUT_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>(</xsl:text>
       <xsl:call-template name="emitType">
         <xsl:with-param name="type" select="@type"/>
       </xsl:call-template>
-      <xsl:text> v)
-{
-    if (!__CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.classInitialized) __INIT_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>();
-    </xsl:text>
+      <xsl:text> v)&nl;{&nl;    if (!__CLASS_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>.classInitialized) __INIT_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>();&nl;    </xsl:text>
       <xsl:text>_STATIC_</xsl:text>
       <xsl:value-of select="$field"/>
-      <xsl:text> = v;
-}
-
-</xsl:text>
+      <xsl:text> = v;&nl;}&nl;&nl;</xsl:text>
 
       <!-- Emit releaser -->
-<xsl:if test="vm:isObjectRef(@type)">
-      <xsl:text>void </xsl:text>
-      <xsl:value-of select="$clname"/>
-      <xsl:text>::_RELEASE_</xsl:text>
-      <xsl:value-of select="vm:fixname(@name)"/>
-      <xsl:text>()
-{
-    //</xsl:text>
-      <xsl:text>_STATIC_</xsl:text>
-      <xsl:value-of select="$field"/>
-      <xsl:text>-&gt;__release();
-}
-
-</xsl:text>
-</xsl:if>
+      <!-- 
+      <xsl:if test="vm:isObjectRef(@type)">
+        <xsl:text>void </xsl:text>
+        <xsl:value-of select="$clname"/>
+        <xsl:text>::_RELEASE_</xsl:text>
+        <xsl:value-of select="vm:fixname(@name)"/>
+        <xsl:text>()&nl;{&nl;    //</xsl:text>
+        <xsl:text>_STATIC_</xsl:text>
+        <xsl:value-of select="$field"/>
+        <xsl:text>-&gt;__release();&nl;}&nl;&nl;</xsl:text>
+      </xsl:if>
+      -->
     </xsl:for-each>
     
     <xsl:for-each select="vm:method">
@@ -553,15 +512,10 @@ extern __CLASS_DEFINITION_</xsl:text>
         <xsl:call-template name="emitMethodSignature">
           <xsl:with-param name="forDeclaration" select="0"/>
         </xsl:call-template>
-        <xsl:text>
-</xsl:text>
+        <xsl:text>&nl;</xsl:text>
         <xsl:choose>
           <xsl:when test="@isNative = 'true'">
-            <xsl:text>{
-    XMLVM_ERROR("Native method not implemented");
-}
-
-</xsl:text>
+            <xsl:text>{&nl;    XMLVM_ERROR("Native method not implemented");&nl;}&nl;&nl;</xsl:text>
           </xsl:when>
           <xsl:otherwise>
             <xsl:apply-templates/>
@@ -2072,7 +2026,7 @@ extern __CLASS_DEFINITION_</xsl:text>
 <xsl:template match="dex:sput|dex:sput-wide|dex:sput-boolean|dex:sput-char|dex:sput-object">
   <xsl:text>    </xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)"/>
-  <xsl:text>::_PUT_</xsl:text>
+  <xsl:text>_PUT_</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
   <xsl:text>(</xsl:text>
   <xsl:value-of select="vm:cast-register(@member-type, @vx)"/>
