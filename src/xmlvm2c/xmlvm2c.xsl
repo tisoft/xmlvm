@@ -421,14 +421,6 @@ typedef struct {
       <xsl:value-of select="vm:fixname(concat(@package, '.', @name))"/>
       <xsl:text>__();&nl;</xsl:text>
     </xsl:if>
-	<xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type) and
-	                      not(@isSynthetic = 'true' and starts-with(@name, 'this$'))]">
-	  <xsl:text>    //</xsl:text>
-      <xsl:value-of select="vm:fixname(@name)"/>
-      <xsl:text>_</xsl:text>
-      <xsl:value-of select="vm:fixname(@type)"/>
-	  <xsl:text>->__release();&nl;</xsl:text>
-	</xsl:for-each>
 	<xsl:text>}&nl;&nl;</xsl:text>
 
 	<!-- Emit getters and setters for all static fields -->
@@ -474,20 +466,6 @@ typedef struct {
       <xsl:text>_STATIC_</xsl:text>
       <xsl:value-of select="$field"/>
       <xsl:text> = v;&nl;}&nl;&nl;</xsl:text>
-
-      <!-- Emit releaser -->
-      <!-- 
-      <xsl:if test="vm:isObjectRef(@type)">
-        <xsl:text>void </xsl:text>
-        <xsl:value-of select="$clname"/>
-        <xsl:text>::_RELEASE_</xsl:text>
-        <xsl:value-of select="vm:fixname(@name)"/>
-        <xsl:text>()&nl;{&nl;    //</xsl:text>
-        <xsl:text>_STATIC_</xsl:text>
-        <xsl:value-of select="$field"/>
-        <xsl:text>-&gt;__release();&nl;}&nl;&nl;</xsl:text>
-      </xsl:if>
-      -->
     </xsl:for-each>
     
     <xsl:for-each select="vm:method">
@@ -1073,8 +1051,7 @@ typedef struct {
       <xsl:with-param name="type" select="@type"/>
     </xsl:call-template>
   </xsl:for-each>
-  <xsl:text>);
-</xsl:text>
+  <xsl:text>);&nl;</xsl:text>
 </xsl:template>
 
 
@@ -1087,8 +1064,7 @@ typedef struct {
   <xsl:call-template name="appendDexSignature"/>
   <xsl:text>[</xsl:text>
   <xsl:value-of select="@vtable-index"/>
-  <xsl:text>]
-</xsl:text>
+  <xsl:text>]&nl;</xsl:text>
 
   <xsl:variable name="returnTypedAccess">
     <xsl:call-template name="emitTypedAccess">
@@ -1144,8 +1120,7 @@ typedef struct {
     </xsl:call-template>
     <xsl:text></xsl:text>
   </xsl:for-each>
-  <xsl:text>);
-</xsl:text>
+  <xsl:text>);&nl;</xsl:text>
 </xsl:template>
 
 
@@ -1188,8 +1163,7 @@ typedef struct {
     </xsl:call-template>
     <xsl:text></xsl:text>
   </xsl:for-each>
-  <xsl:text>);
-</xsl:text>
+  <xsl:text>);&nl;</xsl:text>
 </xsl:template>
 
 
@@ -1202,8 +1176,7 @@ typedef struct {
   <xsl:call-template name="appendDexSignature"/>
   <xsl:text>[</xsl:text>
   <xsl:value-of select="@vtable-index"/>
-  <xsl:text>]
-</xsl:text>
+  <xsl:text>]&nl;</xsl:text>
 
   <xsl:variable name="returnTypedAccess">
     <xsl:call-template name="emitTypedAccess">
@@ -1258,60 +1231,7 @@ typedef struct {
     </xsl:call-template>
     <xsl:text></xsl:text>
   </xsl:for-each>
-  <xsl:text>);
-</xsl:text>
-</xsl:template>
-
-
-<xsl:template match="dex:invoke-superX|dex:invoke-super-rangeX">
-  <xsl:variable name="returnTypedAccess">
-    <xsl:call-template name="emitTypedAccess">
-      <xsl:with-param name="type" select="dex:parameters/dex:return/@type"/>
-    </xsl:call-template>
-  </xsl:variable>
-  <xsl:text>    </xsl:text>
-  <xsl:if test="dex:parameters/dex:return/@type != 'void'">
-    <xsl:choose>
-      <xsl:when test="dex:move-result">
-        <xsl:text>_r</xsl:text>
-        <xsl:value-of select="dex:move-result/@vx"/>
-        <xsl:value-of select="$returnTypedAccess"/>
-        <xsl:text> = </xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
-          <xsl:text>_rtmp.o = </xsl:text>
-        </xsl:if>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:if>
-  <xsl:text>(</xsl:text>
-  <xsl:value-of select="vm:cast-register(@class-type, @register)"/>
-  <xsl:text>)-&gt;</xsl:text>
-  <xsl:value-of select="vm:fixname(@class-type)"/>
-  <xsl:text>::</xsl:text>
-  <xsl:call-template name="emitMethodName">
-    <xsl:with-param name="name" select="@method"/>
-    <xsl:with-param name="class-type" select="@class-type"/>
-  </xsl:call-template>
-  <xsl:call-template name="appendDexSignature"/>
-  <xsl:text>(</xsl:text>
-  <xsl:for-each select="dex:parameters/dex:parameter">
-    <xsl:if test="position() != 1">
-      <xsl:text>, </xsl:text>
-    </xsl:if>
-    <xsl:if test="vm:isObjectRef(@type)">
-      <xsl:value-of select="vm:cast(@type)"/>
-    </xsl:if>
-    <xsl:text>(_r</xsl:text>
-    <xsl:value-of select="@register"/>
-    <xsl:call-template name="emitTypedAccess">
-      <xsl:with-param name="type" select="@type"/>
-    </xsl:call-template>
-    <xsl:text>)</xsl:text>
-  </xsl:for-each>
-  <xsl:text>);
-</xsl:text>
+  <xsl:text>);&nl;</xsl:text>
 </xsl:template>
 
 
@@ -1818,25 +1738,15 @@ typedef struct {
 
   
 <xsl:template match="dex:return-void">
-  <xsl:if test="@catchesException = 'true'">
-    <xsl:text>    //_ex-&gt;__release();
-</xsl:text>
-  </xsl:if>
-  <xsl:text>    return;
-</xsl:text>
+  <xsl:text>    return;&nl;</xsl:text>
 </xsl:template>
 
 
 <xsl:template match="dex:return|dex:return-wide|dex:return-object">
-  <xsl:if test="@catchesException = 'true'">
-    <xsl:text>    //_ex-&gt;__release();
-</xsl:text>
-  </xsl:if>
   <xsl:variable name="return-type" select="ancestor::vm:method/vm:signature/vm:return/@type" />
   <xsl:text>    return </xsl:text>
   <xsl:value-of select="vm:cast-register($return-type, @vx)"/>
-  <xsl:text>;
-</xsl:text>
+  <xsl:text>;&nl;</xsl:text>
 </xsl:template>
 
 
@@ -1926,35 +1836,6 @@ typedef struct {
   </xsl:text>
 </xsl:template>
 
-<xsl:template match="vm:reg-release">
-  <xsl:text>    //_r</xsl:text>
-  <xsl:value-of select="@reg" />
-  <xsl:text>.o-&gt;__release();
-</xsl:text>
-</xsl:template>
-
-<xsl:template match="vm:reg-retain">
-  <xsl:text>    //_r</xsl:text>
-  <xsl:value-of select="@reg" />
-  <xsl:text>.o-&gt;__retain();
-</xsl:text>
-</xsl:template>
-  
-<xsl:template match="vm:i-release">
-    <xsl:variable name="m">
-      <xsl:call-template name="emitTypedAccess">
-        <xsl:with-param name="type" select="@member-type" />
-      </xsl:call-template>
-    </xsl:variable>
-  <xsl:text>    //</xsl:text>
-  <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
-  <xsl:text>-></xsl:text>
-  <xsl:value-of select="vm:fixname(@member-name)" />
-  <xsl:text>_</xsl:text>
-  <xsl:value-of select="vm:fixname(@member-type)" />
-  <xsl:text>-&gt;__release();
-</xsl:text>
-</xsl:template>
 
 <xsl:template match="dex:iput-object">
   <xsl:text>    </xsl:text>
@@ -1985,14 +1866,6 @@ typedef struct {
 </xsl:text>
 </xsl:template>
 
-<xsl:template match="vm:s-release">
-    <xsl:text>    //</xsl:text>
-    <xsl:value-of select="vm:fixname(@class-type)" />
-    <xsl:text>::_RELEASE_</xsl:text>
-    <xsl:value-of select="vm:fixname(@member-name)" />
-    <xsl:text>();
-</xsl:text>
-</xsl:template>
 
 <xsl:template match="dex:sput|dex:sput-wide|dex:sput-boolean|dex:sput-char|dex:sput-object">
   <xsl:text>    </xsl:text>
@@ -2714,14 +2587,6 @@ typedef struct {
 </xsl:text>
 </xsl:template>
 
-<xsl:template match="vm:a-release">
-  <xsl:text>    //</xsl:text>
-  <xsl:value-of select="vm:cast-register('XMLVMArray', @vy)"/>
-  <xsl:text>->array.o[_r</xsl:text>
-  <xsl:value-of select="@vz" />
-  <xsl:text>.i]->__release();
-</xsl:text>
-</xsl:template>
   
 <xsl:template match="dex:aput-object">
   <xsl:text>    </xsl:text>
@@ -2757,7 +2622,6 @@ typedef struct {
   <xsl:text>);
 </xsl:text>
 </xsl:template>
-
 
 
 <xsl:template match="dex:move|dex:move-from16|dex:move-wide|dex:move-wide-from16|dex:move-object|dex:move-object-from16">
