@@ -86,17 +86,21 @@ typedef union {
 
 typedef void (*VTABLE_PTR)();
 
-// TODO change below to a #define so it can be used during code generation
-typedef struct __CLASS_DEFINITION_TEMPLATE {
-    int                                 classInitialized;
-    const char*                         className;
-    struct __CLASS_DEFINITION_TEMPLATE* extends;
-	int                                 numInterfaces;
-    struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[1];
-	int                                 numImplementedInterfaces;
-    struct __CLASS_DEFINITION_TEMPLATE* (*implementedInterfaces)[1];
-    VTABLE_PTR                          vtable[];
-} __CLASS_DEFINITION_TEMPLATE;
+#define XMLVM_DEFINE_CLASS(name, vtableSize) \
+typedef struct __CLASS_DEFINITION_##name { \
+    int                                 classInitialized; \
+    const char*                         className; \
+    struct __CLASS_DEFINITION_TEMPLATE* extends; \
+	int                                 numInterfaces; \
+    struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[1]; \
+	int                                 numImplementedInterfaces; \
+    struct __CLASS_DEFINITION_TEMPLATE* (*implementedInterfaces)[1]; \
+    VTABLE_PTR                          vtable[vtableSize]; \
+} __CLASS_DEFINITION_##name; \
+\
+extern __CLASS_DEFINITION_##name __CLASS_##name;
+
+XMLVM_DEFINE_CLASS(TEMPLATE, 0)
 
 int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz);
 VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, int vtableIndex);

@@ -25,18 +25,7 @@
 #include "java_lang_Object.h"
 #include "java_lang_String.h"
 
-typedef struct {
-    int                                 classInitialized;
-    const char*                         className;
-    struct __CLASS_DEFINITION_TEMPLATE* extends;
-	int                                 numInterfaces;
-    struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[1];
-	int                                 numImplementedInterfaces;
-    struct __CLASS_DEFINITION_TEMPLATE* (*implementedInterfaces)[1];
-    VTABLE_PTR                          vtable[39];
-} __CLASS_DEFINITION_java_io_PrintStream;
-
-extern __CLASS_DEFINITION_java_io_PrintStream __CLASS_java_io_PrintStream;
+XMLVM_DEFINE_CLASS(java_io_PrintStream, 39)
 
 #define __INSTANCE_MEMBERS_java_io_PrintStream \
     __INSTANCE_MEMBERS_java_lang_Object

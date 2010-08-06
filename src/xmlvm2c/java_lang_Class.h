@@ -19,12 +19,7 @@
  */
 
 
-#import "xmlvm.h"
+#ifndef __CLASS_H__
+#define __CLASS_H__
 
-class java_lang_Class : public java_lang_Object {
-public:
-void __init_java_lang_Class__() {
-}
-
-};
-
+#endif

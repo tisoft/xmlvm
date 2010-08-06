@@ -24,19 +24,7 @@
 #include "xmlvm.h"
 
 
-typedef struct {
-    int                                 classInitialized;
-    const char*                         className;
-    struct __CLASS_DEFINITION_TEMPLATE* extends;
-	int                                 numInterfaces;
-    struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[1];
-	int                                 numImplementedInterfaces;
-    struct __CLASS_DEFINITION_TEMPLATE* (*implementedInterfaces)[1];
-    VTABLE_PTR                          vtable[11];
-} __CLASS_DEFINITION_java_lang_Object;
-
-extern __CLASS_DEFINITION_java_lang_Object __CLASS_java_lang_Object;
-
+XMLVM_DEFINE_CLASS(java_lang_Object, 11)
 
 #define __INSTANCE_MEMBERS_java_lang_Object
 

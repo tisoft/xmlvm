@@ -92,28 +92,11 @@ int main(int argc, char* argv[])
 
     <xsl:text>// Class declarations for </xsl:text>
     <xsl:value-of select="$cclname"/>
-    <xsl:text>
-typedef struct {
-    int                                 classInitialized;
-    const char*                         className;
-    struct __CLASS_DEFINITION_TEMPLATE* extends;
-    int                                 numInterfaces;
-    struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[1];
-    int                                 numImplementedInterfaces;
-    struct __CLASS_DEFINITION_TEMPLATE* (*implementedInterfaces)[1];
-    VTABLE_PTR                          vtable[</xsl:text>
+    <xsl:text>&nl;XMLVM_DEFINE_CLASS(</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>, </xsl:text>
     <xsl:value-of select="@vtableSize"/>
-    <xsl:text>];</xsl:text>
-    <xsl:text>
-} __CLASS_DEFINITION_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>;
-
-extern __CLASS_DEFINITION_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text> __CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>;&nl;&nl;</xsl:text>
+    <xsl:text>)&nl;&nl;</xsl:text>
     <xsl:if test="$genWrapper = 'true'">
       <xsl:text>//XMLVM_BEGIN_MEMBERS&nl;</xsl:text>
       <xsl:text>#define __ADDITIONAL_INSTANCE_MEMBERS_</xsl:text>
@@ -217,37 +200,18 @@ typedef struct {
     <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
     <xsl:variable name="clname" select="vm:fixname($cclname)"/>
   
-    <xsl:text>
-</xsl:text>
-    <xsl:text>typedef struct {
-    int                                 classInitialized;
-    const char*                         className;
-    struct __CLASS_DEFINITION_TEMPLATE* extends;
-	int                                 numInterfaces;
-    struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[1];
-	int                                 numImplementedInterfaces;
-    struct __CLASS_DEFINITION_TEMPLATE* (*implementedInterfaces)[1];
-    VTABLE_PTR                          vtable[</xsl:text>
+    <xsl:text>&nl;XMLVM_DEFINE_CLASS(</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>, </xsl:text>
     <xsl:value-of select="@vtableSize"/>
-    <xsl:text>];
-} __CLASS_DEFINITION_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>;
-
-extern __CLASS_DEFINITION_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text> __CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>;
-
-</xsl:text>
+    <xsl:text>)&nl;&nl;</xsl:text>
 
     <!-- Emit interface initializers -->
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>(__CLASS_DEFINITION_TEMPLATE** interface);
-</xsl:text>
-
+    <xsl:text>(__CLASS_DEFINITION_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>** interface);&nl;</xsl:text>
 </xsl:template>
 
 
