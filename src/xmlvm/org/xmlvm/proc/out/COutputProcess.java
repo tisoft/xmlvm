@@ -192,8 +192,10 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
 
         computeVtables();
-        annotateVtableInvokes();
-        adjustTypes();
+        if (!arguments.option_gen_wrapper()) {
+            annotateVtableInvokes();
+            adjustTypes();
+        }
 
         // Process all collected resources.
         for (XmlvmResource xmlvm : resourcePool.values()) {
@@ -471,7 +473,8 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
             headerBuffer.append("XMLVM_FORWARD_DECL(" + i + ")\n");
         }
         OutputFile headerFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
-                { "pass", "emitHeader" }, { "header", headerFileName } });
+                { "pass", "emitHeader" }, { "header", headerFileName },
+                { "genWrapper", "" + arguments.option_gen_wrapper() } });
         headerFile.setData(headerProlog + headerBuffer.toString() + headerFile.getData()
                 + headerEpilog);
         headerFile.setFileName(headerFileName);
@@ -485,7 +488,8 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
 
         OutputFile mFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
-                { "pass", "emitImplementation" }, { "header", headerFileName } });
+                { "pass", "emitImplementation" }, { "header", headerFileName },
+                { "genWrapper", "" + arguments.option_gen_wrapper() } });
         mFile.setData(mBuffer.toString() + mFile.getData());
         mFile.setFileName(mFileName);
 

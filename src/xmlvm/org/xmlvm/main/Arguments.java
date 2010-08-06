@@ -48,6 +48,7 @@ public class Arguments {
     public static final String    ARG_QX_DEBUG               = "--qx-debug";
     public static final String    ARG_DEBUG                  = "--debug=";
     public static final String    ARG_VERSION                = "--version";
+    public static final String    ARG_GEN_WRAPPER            = "--gen-wrapper";
     public static final String    ARG_HELP                   = "--help";
     public static final String    ARG_SKELETON               = "--skeleton=";
     // These are obsolete arguments, being here for compatibility reasons
@@ -67,6 +68,7 @@ public class Arguments {
     private List<String>          option_in                  = new ArrayList<String>();
     private String                option_out                 = null;
     private Targets               option_target              = Targets.NONE;
+    private boolean               option_gen_wrapper         = false;
     private Set<String>           option_resource            = new HashSet<String>();
     private Set<String>           option_lib                 = new HashSet<String>();
     private String                option_app_name            = null;
@@ -112,6 +114,9 @@ public class Arguments {
             "    iphone           iPhone Objective-C",
             "    qooxdoo          JavaScript Qooxdoo web application",
             "    webos            WebOS JavaScript Project",
+            "",
+            "--gen-wrapper      Generates wrappers in the target language (currently only",
+            "                   available for --target=c",
             "",
             " --skeleton=<type> Skeleton to create a new template project:",
             "    iphone           iPhone project skeleton",
@@ -215,6 +220,8 @@ public class Arguments {
             } else if (arg.startsWith(ARG_RESOURCE)) {
                 parseListArgument(arg.substring(ARG_RESOURCE.length()), option_resource,
                         File.pathSeparator);
+            } else if (arg.equals(ARG_GEN_WRAPPER)) {
+                option_gen_wrapper = true;
             } else if (arg.startsWith(ARG_LIB)) {
                 parseListArgument(arg.substring(ARG_LIB.length()), option_lib, ",");
             } else if (arg.startsWith(ARG_APP_NAME)) {
@@ -269,6 +276,7 @@ public class Arguments {
         if (option_skeleton != null && option_target != Targets.NONE) {
             parseError("Only one argument of '--target' or '--skeleton' is allowed");
         }
+        if (option_gen_wrapper )
         // if (option_skeleton != null && option_lib.size() > 0) {
         // parseError("Argument '--skeleton' does not support '--lib'");
         // }
@@ -355,6 +363,10 @@ public class Arguments {
 
     public Targets option_target() {
         return option_target;
+    }
+
+    public boolean option_gen_wrapper() {
+        return option_gen_wrapper;
     }
 
     public String option_app_name() {
