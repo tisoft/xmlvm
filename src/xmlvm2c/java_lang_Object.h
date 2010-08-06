@@ -29,7 +29,9 @@ typedef struct {
     const char*                         className;
     struct __CLASS_DEFINITION_TEMPLATE* extends;
 	int                                 numInterfaces;
-    struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[];
+    struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[1];
+	int                                 numImplementedInterfaces;
+    struct __CLASS_DEFINITION_TEMPLATE* (*implementedInterfaces)[1];
     VTABLE_PTR                          vtable[11];
 } __CLASS_DEFINITION_java_lang_Object;
 

@@ -24,8 +24,14 @@
 #include <stdio.h>
 
 
+XMLVM_JMP_BUF xmlvm_exception_env;
+JAVA_OBJECT xmlvm_exception;
+
 void xmlvm_init()
 {
+	if (XMLVM_SETJMP(xmlvm_exception_env)) {
+		XMLVM_ERROR("Unhandled exception thrown");
+	}
 }
 
 int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz)

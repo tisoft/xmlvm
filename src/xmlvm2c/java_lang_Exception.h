@@ -19,12 +19,36 @@
  */
 
 
-#import "xmlvm.h"
+#ifndef __EXCEPTION_H__
+#define __EXCEPTION_H__
 
-class java_lang_Exception : public java_lang_Object {
-public:
-void __init_java_lang_Exception__() {
-}
+#include "xmlvm.h"
 
-};
 
+typedef struct {
+    int                                 classInitialized;
+    const char*                         className;
+    struct __CLASS_DEFINITION_TEMPLATE* extends;
+	int                                 numInterfaces;
+    struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[1];
+	int                                 numImplementedInterfaces;
+    struct __CLASS_DEFINITION_TEMPLATE* (*implementedInterfaces)[1];
+    VTABLE_PTR                          vtable[11];
+} __CLASS_DEFINITION_java_lang_Exception;
+
+extern __CLASS_DEFINITION_java_lang_Exception __CLASS_java_lang_Exception;
+
+
+#define __INSTANCE_MEMBERS_java_lang_Exception
+
+typedef struct {
+    __CLASS_DEFINITION_java_lang_Exception* __class;
+    __INSTANCE_MEMBERS_java_lang_Exception;
+} java_lang_Exception;
+
+
+void __INIT_java_lang_Exception();
+JAVA_OBJECT __NEW_java_lang_Exception();
+void java_lang_Exception___INIT___(JAVA_OBJECT me);
+
+#endif

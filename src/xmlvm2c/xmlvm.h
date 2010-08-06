@@ -25,6 +25,7 @@
 //#import <math.h>
 #include <stdlib.h>
 #include <strings.h>
+#include <setjmp.h>
 
 
 #define XMLVM_MALLOC(size) malloc(size)
@@ -34,6 +35,7 @@
 
 #define XMLVM_FORWARD_DECL(class) \
     JAVA_OBJECT __NEW_##class();
+
 
 void xmlvm_init();
 
@@ -84,6 +86,7 @@ typedef union {
 
 typedef void (*VTABLE_PTR)();
 
+// TODO change below to a #define so it can be used during code generation
 typedef struct __CLASS_DEFINITION_TEMPLATE {
     int                                 classInitialized;
     const char*                         className;
@@ -116,6 +119,20 @@ JAVA_OBJECT XMLVMArray_objectAtIndex(XMLVMArray* array, int idx);
 void XMLVMArray_replaceObjectAtIndex(XMLVMArray* array, int idx, JAVA_OBJECT obj);
 int XMLVMArray_count(XMLVMArray* array);
 XMLVMArray* XMLVMArray_clone__(XMLVMArray* array);
+
+
+#define XMLVM_JMP_BUF jmp_buf
+#define XMLVM_SETJMP(env) setjmp(env)
+#define XMLVM_LONGJMP(env) longjmp(env, 0)
+
+// TODO this won't work with multi-threading. Each thread needs its own xmlvm_exception_env
+extern XMLVM_JMP_BUF xmlvm_exception_env;
+// According to the documentation, the use of setjmp() is limited. In particular
+// one should not use the return value of setjmp() in a context other than an if- or
+// switch-statement. Because of this, we need to store the thrown exception in a global
+// variable.
+// TODO not thread safe!
+extern JAVA_OBJECT xmlvm_exception;
 
 
 void XMLVM_ERROR(const char* msg);
