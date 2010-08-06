@@ -20,21 +20,19 @@
  *  http://www.xml11.org/xmlvm/
  */
 
-
 package org.xmlvm.test;
 
-public class ControlStructureTest
-{
+public class ControlStructureTest extends Exception {
 
-    static private void log(String msg)
-    {
+    static private void log(String msg) {
         System.out.println(msg);
     }
 
+    static private void log(int i) {
+        System.out.println(i);
+    }
 
-
-    static private void testIf()
-    {
+    static private void testIf() {
         int x = 11;
         int y = 22;
 
@@ -68,52 +66,40 @@ public class ControlStructureTest
         log("Exit testIf()");
     }
 
-
-
-    static private void testWhile()
-    {
+    static private void testWhile() {
         log("Enter testWhile()");
         int i = 0;
         while (i < 5) {
-            log(new Integer(i).toString());
+            log(i);
             i++;
         }
         log("Exit testWhile()");
     }
 
-
-
-    static private void testDoWhile()
-    {
+    static private void testDoWhile() {
         log("Enter testDoWhile()");
         int i = 0;
         do {
-            log(new Integer(i).toString());
+            log(i);
             i++;
-        }
-        while (i < 5);
+        } while (i < 5);
         log("Exit testDoWhile()");
     }
 
-
-
-    static private void testFor()
-    {
+    static private void testFor() {
         log("Enter testFor()");
         for (int i = 0; i < 5; i++) {
-            log(new Integer(i).toString());
+            log(i);
         }
         log("Exit testFor()");
     }
 
-
-
-    static private void testContinueBreak()
-    {
+    static private void testContinueBreak() {
         log("Enter testContinueBreak()");
         int i;
         for (i = 0; i < 10; i++) {
-            log("Begin iteration: " + new Integer(i).toString());
+            log("Begin iteration: ");
+            log(i);
             if (i == 3) {
                 log("i == 3");
                 continue;
@@ -122,61 +108,55 @@ public class ControlStructureTest
                 log("i == 6");
                 break;
             }
-            log("End iteration: " + new Integer(i).toString());
+            log("End iteration: ");
+            log(i);
         }
         log("Exit testContinueBreak");
     }
 
-
-
-    static private void testSwitch()
-    {
+    static private void testSwitch() {
         log("Enter testSwitch()");
         for (int i = 5; i < 10; i++) {
             // This switch-statement forces a <tableswitch/>
             switch (i) {
-                case 5:
-                    log("5");
-                    break;
-                case 6:
-                    log("6");
-                    break;
-                case 8:
-                    log("8");
-                default:
-                    log("default");
-                    break;
+            case 5:
+                log("5");
+                break;
+            case 6:
+                log("6");
+                break;
+            case 8:
+                log("8");
+            default:
+                log("default");
+                break;
 
             }
         }
         for (int i = 0; i < 100; i++) {
             // This switch-statement forces a <lookupswitch/>
             switch (i) {
-                case 5:
-                    log("5");
-                    break;
-                case 50:
-                    log("50");
-                    break;
-                case 80:
-                    log("80");
-                default:
-                    log("default");
-                    break;
+            case 5:
+                log("5");
+                break;
+            case 50:
+                log("50");
+                break;
+            case 80:
+                log("80");
+            default:
+                log("default");
+                break;
             }
         }
         log("Exit testSwitch()");
     }
 
-
-
-    static private void testException()
-    {
+    static private void testException() {
         log("Enter testException()");
         try {
             log("Friendly code");
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             log("Caught exception");
         }
         for (int i = 0; i < 4; i++) {
@@ -188,38 +168,29 @@ public class ControlStructureTest
                 }
                 if (i == 1) {
                     log("i == 1");
-                    log("" + 5 / (i - 1));
-                    log("Never reached");
+                    throw new Exception();
                 }
                 if (i == 2) {
                     log("i == 2");
-                    String s = null;
-                    int x = s.length();
-                    log("Never reached");
+                    throw new ControlStructureTest();
                 }
                 if (i == 3) {
                     log("i == 3");
                     try {
                         log("Nested try-block");
-                        log("" + 5 / (i - 1));
-                        log("Never reached");
-                    }
-                    catch (Exception ex) {
-                        log("Caught Exception");
-                    }
-                    finally {
+                        throw new Exception();
+                    } catch (Exception ex) {
+                        log("Caught nested Exception");
+                    } finally {
                         log("Nested finally");
                     }
                     log("End of i == 3");
                 }
-            }
-            catch (NullPointerException ex) {
-                log("Caught NullPointerException");
-            }
-            catch (ArithmeticException ex) {
-                log("Caught ArithmeticException");
-            }
-            finally {
+            } catch (ControlStructureTest ex) {
+                log("Caught ControlStructureTest");
+            } catch (Exception ex) {
+                log("Caught Exception");
+            } finally {
                 log("Finally");
             }
             log("End iteration");
@@ -227,10 +198,7 @@ public class ControlStructureTest
         log("Exit testException()");
     }
 
-
-
-    static private void testComplexExample()
-    {
+    static private void testComplexExample() {
         log("Enter testComplexExample()");
         for (int i = 0; i < 10; i++) {
             log("Location 1");
@@ -240,8 +208,7 @@ public class ControlStructureTest
                 do {
                     log("Location 3");
                     j++;
-                }
-                while (j < 3);
+                } while (j < 3);
                 log("Location 4");
             }
             if (i == 3)
@@ -257,10 +224,7 @@ public class ControlStructureTest
         log("Exit testComplexExample()");
     }
 
-
-
-    static public void main(String[] args)
-    {
+    static public void main(String[] args) {
         testIf();
         testWhile();
         testDoWhile();
