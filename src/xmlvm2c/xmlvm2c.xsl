@@ -209,9 +209,7 @@ typedef struct {
     <!-- Emit interface initializers -->
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>(__CLASS_DEFINITION_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>** interface);&nl;</xsl:text>
+    <xsl:text>(__CLASS_DEFINITION_TEMPLATE** interface);&nl;</xsl:text>
 </xsl:template>
 
 
