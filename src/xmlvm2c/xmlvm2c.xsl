@@ -105,12 +105,13 @@ int main(int argc, char* argv[])
     </xsl:if>
     <xsl:text>#define __INSTANCE_MEMBERS_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text> \
-    __INSTANCE_MEMBERS_</xsl:text>
-    <xsl:value-of select="vm:fixname(@extends)"/>
-    <xsl:text>; \
-    struct { \
-    </xsl:text>
+    <xsl:text> \&nl;</xsl:text>
+    <xsl:if test="@extends ne ''">
+      <xsl:text>    __INSTANCE_MEMBERS_</xsl:text>
+      <xsl:value-of select="vm:fixname(@extends)"/>
+      <xsl:text>; \&nl;</xsl:text>
+    </xsl:if>
+    <xsl:text>    struct { \&nl;    </xsl:text>
     <!-- Emit declarations for all non-static fields -->
     <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
       <xsl:if test="not($genWrapper = 'true' and @isPrivate = 'true')">
@@ -238,9 +239,17 @@ typedef struct {
     0, // classInitialized
     "</xsl:text>
     <xsl:value-of select="concat(@package, '.' , @name)"/>
-    <xsl:text>", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &amp;__CLASS_</xsl:text>
-    <xsl:value-of select="vm:fixname(@extends)"/>
+    <xsl:text>", // className&nl;</xsl:text>
+    <xsl:text>    (__CLASS_DEFINITION_TEMPLATE*) </xsl:text>
+    <xsl:choose>
+      <xsl:when test="@extends ne ''">
+        <xsl:text>&amp;__CLASS_</xsl:text>
+        <xsl:value-of select="vm:fixname(@extends)"/> 
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>JAVA_NULL</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:text>, // extends&nl;};&nl;&nl;</xsl:text>
 
     <xsl:if test="$genWrapper = 'true'">
@@ -283,21 +292,23 @@ typedef struct {
     <xsl:text>    __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized = 1;&nl;</xsl:text>
-    <xsl:text>    // Initialize base class if necessary&nl;</xsl:text>
-    <xsl:text>    if (!__CLASS_</xsl:text>
-    <xsl:value-of select="vm:fixname(@extends)"/>
-    <xsl:text>.classInitialized) __INIT_</xsl:text>
-    <xsl:value-of select="vm:fixname(@extends)"/>
-    <xsl:text>();
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.vtable, __CLASS_</xsl:text>
-    <xsl:value-of select="vm:fixname(@extends)"/>
-    <xsl:text>.vtable, sizeof(__CLASS_</xsl:text>
-    <xsl:value-of select="vm:fixname(@extends)"/>
-    <xsl:text>.vtable));
-    // Initialize vtable for this class
+    <xsl:if test="@extends ne ''">
+      <xsl:text>    // Initialize base class if necessary&nl;</xsl:text>
+      <xsl:text>    if (!__CLASS_</xsl:text>
+      <xsl:value-of select="vm:fixname(@extends)"/>
+      <xsl:text>.classInitialized) __INIT_</xsl:text>
+      <xsl:value-of select="vm:fixname(@extends)"/>
+      <xsl:text>();&nl;</xsl:text>
+      <xsl:text>    // Copy vtable from base class&nl;</xsl:text>
+      <xsl:text>    XMLVM_MEMCPY(__CLASS_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>.vtable, __CLASS_</xsl:text>
+      <xsl:value-of select="vm:fixname(@extends)"/>
+      <xsl:text>.vtable, sizeof(__CLASS_</xsl:text>
+      <xsl:value-of select="vm:fixname(@extends)"/>
+      <xsl:text>.vtable));&nl;</xsl:text>
+    </xsl:if>
+    <xsl:text>    // Initialize vtable for this class
     </xsl:text>
     <xsl:for-each select="vm:method[@vtableIndex]">
       <xsl:text>__CLASS_</xsl:text>
