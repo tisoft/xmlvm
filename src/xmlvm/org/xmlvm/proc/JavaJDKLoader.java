@@ -195,7 +195,7 @@ public class JavaJDKLoader {
         // Load missing dependencies.
         String[] classesToLoad = toLoad.toArray(new String[0]);
         // int threadCount = Runtime.getRuntime().availableProcessors();
-        int threadCount = 1;  // TODO(Sascha): Make UniveralFile API thread-safe.
+        int threadCount = 1; // TODO(Sascha): Make UniveralFile API thread-safe.
         int itemsPerThread = (int) Math.ceil(classesToLoad.length / (float) threadCount);
         LoaderThread[] threads = new LoaderThread[threadCount];
 
@@ -229,6 +229,7 @@ public class JavaJDKLoader {
         basicTypes.add("");
         basicTypes.add("byte");
         basicTypes.add("char");
+        basicTypes.add("short");
         basicTypes.add("int");
         basicTypes.add("float");
         basicTypes.add("long");
@@ -246,7 +247,8 @@ public class JavaJDKLoader {
         for (String typeName : types) {
             if (typeName.endsWith("[]")) {
                 remove.add(typeName);
-                add.add(typeName.substring(0, typeName.length() - 2));
+                int p = typeName.indexOf('[');
+                add.add(typeName.substring(0, p));
             }
         }
         for (String typeName : remove) {
