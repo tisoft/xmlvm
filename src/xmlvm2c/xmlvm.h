@@ -34,7 +34,9 @@
 #define XMLVM_MEMCPY(dest, src, size) memcpy(dest, src, size)
 
 #define XMLVM_FORWARD_DECL(class) \
-    JAVA_OBJECT __NEW_##class();
+    JAVA_OBJECT __NEW_ ##class(); \
+    struct class; \
+    typedef struct class class;
 
 
 void xmlvm_init();
@@ -51,6 +53,9 @@ typedef float  JAVA_FLOAT;
 typedef double JAVA_DOUBLE;
 typedef void*  JAVA_OBJECT;
 
+//TODO which values should we use for Double.INFINITY?
+#define Infinity 0
+#define NaN 0
 
 typedef char              JAVA_ARRAY_BYTE;
 typedef unsigned short    JAVA_ARRAY_CHAR;
@@ -105,11 +110,16 @@ XMLVM_DEFINE_CLASS(TEMPLATE, 0)
 int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz);
 VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, int vtableIndex);
 
+#define XMLVM_SIZE_OF_OBJECT_VTABLE 11
+
+XMLVM_DEFINE_CLASS(XMLVMArray, XMLVM_SIZE_OF_OBJECT_VTABLE)
+
 typedef struct {
-    XMLVMElemPtr array;
-    int          type;
-    int          length;
-    int          ownsData;
+	__CLASS_DEFINITION_XMLVMArray* __class;
+    XMLVMElemPtr                   array;
+    int                            type;
+    int                            length;
+    int                            ownsData;
 } XMLVMArray;
 
 void __DELETE_XMLVMArray(XMLVMArray* me);
@@ -123,6 +133,16 @@ JAVA_OBJECT XMLVMArray_objectAtIndex(XMLVMArray* array, int idx);
 void XMLVMArray_replaceObjectAtIndex(XMLVMArray* array, int idx, JAVA_OBJECT obj);
 int XMLVMArray_count(XMLVMArray* array);
 XMLVMArray* XMLVMArray_clone__(XMLVMArray* array);
+
+XMLVM_DEFINE_CLASS(java_lang_Object_ARRAYTYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(boolean_ARRAYTYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(byte_ARRAYTYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(char_ARRAYTYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(short_ARRAYTYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(int_ARRAYTYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(long_ARRAYTYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(float_ARRAYTYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(double_ARRAYTYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
 
 
 #define XMLVM_JMP_BUF jmp_buf

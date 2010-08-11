@@ -20,18 +20,52 @@
 
 
 #include "xmlvm.h"
-#include "java_lang_Object.h"
+#include "java_lang_System.h"
 #include <stdio.h>
 
 
 XMLVM_JMP_BUF xmlvm_exception_env;
 JAVA_OBJECT xmlvm_exception;
 
+__CLASS_DEFINITION_XMLVMArray __CLASS_XMLVMArray;
+
+__CLASS_DEFINITION_java_lang_Object_ARRAYTYPE __CLASS_java_lang_Object_ARRAYTYPE;
+__CLASS_DEFINITION_boolean_ARRAYTYPE          __CLASS_boolean_ARRAYTYPE;
+__CLASS_DEFINITION_byte_ARRAYTYPE             __CLASS_byte_ARRAYTYPE;
+__CLASS_DEFINITION_char_ARRAYTYPE             __CLASS_char_ARRAYTYPE;
+__CLASS_DEFINITION_short_ARRAYTYPE            __CLASS_short_ARRAYTYPE;
+__CLASS_DEFINITION_int_ARRAYTYPE              __CLASS_int_ARRAYTYPE;
+__CLASS_DEFINITION_long_ARRAYTYPE             __CLASS_long_ARRAYTYPE;
+__CLASS_DEFINITION_float_ARRAYTYPE            __CLASS_float_ARRAYTYPE;
+__CLASS_DEFINITION_double_ARRAYTYPE           __CLASS_double_ARRAYTYPE;
+
+
+void __INIT_XMLVMArray()
+{
+	if (!__CLASS_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__CLASS_XMLVMArray.vtable, __CLASS_java_lang_Object.vtable, sizeof(__CLASS_java_lang_Object.vtable));
+	// Initialize vtable for XMLVMArray
+	// TODO "1" below should be done via some #define
+	__CLASS_XMLVMArray.vtable[1] = (VTABLE_PTR) XMLVMArray_clone__;
+    // Initialize vtable for implementing interfaces
+	// TODO Array do implement two interfaces
+    __CLASS_XMLVMArray.numImplementedInterfaces = 0;
+}
+
+void xmlvm_init_system_class()
+{
+	java_lang_System_initializeSystemClass__();
+}
+
 void xmlvm_init()
 {
 	if (XMLVM_SETJMP(xmlvm_exception_env)) {
 		XMLVM_ERROR("Unhandled exception thrown");
 	}
+	__INIT_XMLVMArray();
+	__INIT_java_lang_System();
+	xmlvm_init_system_class();
 }
 
 int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz)
@@ -76,7 +110,9 @@ VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, 
 	
 XMLVMArray* __NEW_XMLVMArray()
 {
-	return (XMLVMArray*) XMLVM_MALLOC(sizeof(XMLVMArray));
+	XMLVMArray* array = (XMLVMArray*) XMLVM_MALLOC(sizeof(XMLVMArray));
+	array->__class = &__CLASS_XMLVMArray;
+	return array;
 }
 
 void __DELETE_XMLVMArray(XMLVMArray* me)
@@ -134,7 +170,8 @@ XMLVMArray* XMLVMArray_createMultiDimensions(int type, XMLVMElem* dim, int count
 		return XMLVMArray_createSingleDimension(type, dimensions);
 	}
 	XMLVMArray* slice = XMLVMArray_createSingleDimension(0, dimensions);
-	for (int i = 0; i < dimensions; i++) {
+	int i;
+	for (i = 0; i < dimensions; i++) {
 		XMLVMArray* o = XMLVMArray_createMultiDimensions(type, dim, count);
 		XMLVMArray_replaceObjectAtIndex(slice, i, o);
 	}
@@ -219,7 +256,8 @@ XMLVMArray* XMLVMArray_clone__(XMLVMArray* array)
     retval->array.data = XMLVM_MALLOC(sizeOfArrayInBytes);
 
     if (array->type == 0) {
-        for (int i = 0; i < array->length; i++) {
+		int i;
+        for (i = 0; i < array->length; i++) {
             //retval->array.o[i] = array.o[i]->__retain();
         }
     }

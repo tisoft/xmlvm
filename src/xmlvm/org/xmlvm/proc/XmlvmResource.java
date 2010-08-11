@@ -116,7 +116,6 @@ public class XmlvmResource {
          * @param type
          */
         public void setClassType(String type) {
-            System.out.println("Changing type for member '" + getMemberName() + "' to " + type);
             this.memberReadWriteElement.setAttribute("class-type", type);
         }
 
@@ -369,7 +368,7 @@ public class XmlvmResource {
     public static Namespace   nsDEX   = Namespace.getNamespace("dex", "http://xmlvm.org/dex");
     public static Namespace   nsJVM   = Namespace.getNamespace("jvm", "http://xmlvm.org/jvm");
 
-    private final String      name;
+    private String            name;
     private final String      superTypeName;
     private final Type        type;
     private final Document    xmlvmDocument;
@@ -382,6 +381,17 @@ public class XmlvmResource {
         this.type = type;
         this.xmlvmDocument = xmlvmDocument;
         this.referencedTypes = referencedTypes;
+    }
+
+    /**
+     * TODO this constructor should be deleted
+     */
+    public XmlvmResource(XmlvmResource other) {
+        this.name = other.name;
+        this.superTypeName = "java.lang.Object";
+        this.type = other.type;
+        this.referencedTypes = other.referencedTypes;
+        this.xmlvmDocument = (Document) other.xmlvmDocument.clone();
     }
 
     /**
@@ -542,10 +552,11 @@ public class XmlvmResource {
             if (o instanceof Element) {
                 Element elem = (Element) o;
                 String name = elem.getName();
-                if (name.startsWith("invoke-static")) {
+                if (name.startsWith("invoke-static") || name.startsWith("invoke-super")) {
                     invokeInstructions.add(new XmlvmInvokeInstruction(elem));
                 }
-                if (name.startsWith("iput") || name.startsWith("iget")) {
+                if (name.startsWith("iput") || name.startsWith("iget") || name.startsWith("sput")
+                        || name.startsWith("sget")) {
                     readWriteInstructions.add(new XmlvmMemberReadWrite(elem));
                 }
             }

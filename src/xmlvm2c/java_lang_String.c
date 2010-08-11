@@ -32,7 +32,7 @@ JAVA_OBJECT __NEW_java_lang_String()
 }
 
 
-void java_lang_String__INIT___char_ARRAYTYPE(JAVA_OBJECT n0, JAVA_OBJECT n1)
+void java_lang_String___INIT____char_ARRAYTYPE(JAVA_OBJECT n0, JAVA_OBJECT n1)
 {
 	int i;
 	java_lang_String* me = (java_lang_String*) n0;

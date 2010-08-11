@@ -20,9 +20,16 @@
 
 #include "java_lang_System.h"
 
+void __INIT_java_lang_System()
+{
+}
 
 JAVA_OBJECT java_lang_System_GET_out()
 {
     return __NEW_java_io_PrintStream();
 }
 
+void java_lang_System_initializeSystemClass__()
+{
+	// Do nothing
+}

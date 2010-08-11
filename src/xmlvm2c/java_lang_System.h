@@ -25,7 +25,8 @@
 #include "java_lang_Object.h"
 #include "java_io_PrintStream.h"
 
-
+void __INIT_java_lang_System();
 JAVA_OBJECT java_lang_System_GET_out();
+void java_lang_System_initializeSystemClass__();
 
 #endif

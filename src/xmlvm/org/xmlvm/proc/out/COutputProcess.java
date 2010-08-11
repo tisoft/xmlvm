@@ -31,6 +31,7 @@ import java.util.Set;
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
+import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.JavaJDKLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
@@ -255,7 +256,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
             addAllBaseInterfaceVtables(thisClassVtable, resource);
         }
 
-        System.out.println("Size of vtable for class " + resource.getFullName() + ": "
+        Log.debug("Size of vtable for class " + resource.getFullName() + ": "
                 + thisClassVtable.virtualMethods.size());
 
         resource.setVtableSize(thisClassVtable.getVtableSize());
@@ -265,17 +266,16 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         // implements
         if (!resource.isInterface()) {
             List<XmlvmResource> interfaces = getAllImplementedInterfaces(resource);
-            System.out.println("Implemented interfaces: ");
+            Log.debug("Implemented interfaces: ");
             for (XmlvmResource iface : interfaces) {
-                System.out.println("    " + iface.getFullName());
+                Log.debug("    " + iface.getFullName());
                 Vtable ifaceVtable = vtables.get(iface.getFullName());
                 XmlvmVtable vt = resource.createVtable("interface-vtable", iface.getFullName(),
                         ifaceVtable.getVtableSize());
                 for (XmlvmMethod m : iface.getMethods()) {
                     vt.addMapping(ifaceVtable.getVtableIndex(m), thisClassVtable.getVtableIndex(m));
-                    System.out.println("        " + m.getName() + ": "
-                            + ifaceVtable.getVtableIndex(m) + " = "
-                            + thisClassVtable.getVtableIndex(m));
+                    Log.debug("        " + m.getName() + ": " + ifaceVtable.getVtableIndex(m)
+                            + " = " + thisClassVtable.getVtableIndex(m));
                 }
             }
         }
@@ -334,13 +334,20 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
             for (XmlvmMethod method : methods) {
                 for (XmlvmInvokeInstruction instruction : method.getVtableInvokeInstructions()) {
                     String className = instruction.getClassType();
+                    if (className.indexOf("[]") != -1) {
+                        className = "java.lang.Object";
+                    }
                     if (!vtables.containsKey(className)) {
                         XmlvmResource clazz = getXmlvmResource(className);
                         computeVtable(clazz);
                     }
                     Vtable vtable = vtables.get(className);
+                    if (vtable == null) {
+                        System.out.println("WARNING: couldn't find vtable for " + className);
+                        continue;
+                    }
                     instruction.setVtableIndex(vtable.getVtableIndex(instruction));
-                    System.out.println("Vtable index for " + instruction.getClassType() + "."
+                    Log.debug("Vtable index for " + instruction.getClassType() + "."
                             + instruction.getMethodName() + ": "
                             + vtable.getVtableIndex(instruction));
                 }
@@ -377,19 +384,27 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
      */
     private void adjustTypes() {
         for (XmlvmResource resource : resourcePool.values()) {
-            List<XmlvmInvokeInstruction> invokeStaticInstructions = new ArrayList<XmlvmInvokeInstruction>();
+            List<XmlvmInvokeInstruction> invokeInstructions = new ArrayList<XmlvmInvokeInstruction>();
             List<XmlvmMemberReadWrite> memberReadWriteInstructions = new ArrayList<XmlvmMemberReadWrite>();
-            resource.collectInstructions(invokeStaticInstructions, memberReadWriteInstructions);
-            for (XmlvmInvokeInstruction instr : invokeStaticInstructions) {
+            resource.collectInstructions(invokeInstructions, memberReadWriteInstructions);
+            for (XmlvmInvokeInstruction instr : invokeInstructions) {
                 String classType = instr.getClassType();
                 XmlvmResource classTypeResource = getXmlvmResource(classType);
                 String type = searchDeclaringTypeInHierarchy(classTypeResource, instr);
+                if (type == null) {
+                    System.out.println("WARNING: problem with adjusting type for " + classType);
+                    continue;
+                }
                 instr.setClassType(type);
             }
             for (XmlvmMemberReadWrite instr : memberReadWriteInstructions) {
                 String classType = instr.getClassType();
                 XmlvmResource classTypeResource = getXmlvmResource(classType);
                 String type = searchDeclaringTypeInHierarchy(classTypeResource, instr);
+                if (type == null) {
+                    System.out.println("WARNING: problem with adjusting type for " + classType);
+                    continue;
+                }
                 instr.setClassType(type);
             }
         }
@@ -413,12 +428,27 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
     private String searchDeclaringTypeInHierarchy(XmlvmResource resource,
             XmlvmMemberReadWrite instruction) {
+        // Search this class
         Set<XmlvmField> fields = resource.getFields();
         for (XmlvmField field : fields) {
             if (field.matchesName(instruction)) {
                 return resource.getFullName();
             }
         }
+        // Search all immediate implemented interfaces
+        String interfaces = resource.getInterfaces();
+        if (interfaces != null) {
+            for (String iface : interfaces.split(",")) {
+                XmlvmResource ifaceResource = getXmlvmResource(iface);
+                fields = ifaceResource.getFields();
+                for (XmlvmField field : fields) {
+                    if (field.matchesName(instruction)) {
+                        return ifaceResource.getFullName();
+                    }
+                }
+            }
+        }
+        // Search base class
         String baseClass = resource.getSuperTypeName();
         if (!baseClass.equals("")) {
             XmlvmResource baseResource = getXmlvmResource(baseClass);
@@ -427,13 +457,28 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         return null;
     }
 
+    private XmlvmResource              object;
+    private Map<String, XmlvmResource> alreadyLoadedResources = new HashMap<String, XmlvmResource>();
+
     private XmlvmResource getXmlvmResource(String className) {
+        if (alreadyLoadedResources.containsKey(className)) {
+            return alreadyLoadedResources.get(className);
+        }
         XmlvmResource resource = resourcePool.get(className);
+        if (className.equals("java.lang.Object")) {
+            object = resource;
+        }
         if (resource != null) {
             return resource;
         }
+        if (className.indexOf("[]") != -1) {
+            // Array type. Return java.lang.Object
+            return new XmlvmResource(object);
+        }
         System.out.println("Loading JDK class: " + className);
-        return (new JavaJDKLoader(new Arguments(new String[] { "--in=foo" }))).load(className);
+        resource = (new JavaJDKLoader(new Arguments(new String[] { "--in=foo" }))).load(className);
+        alreadyLoadedResources.put(className, resource);
+        return resource;
     }
 
     /**
@@ -470,7 +515,10 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
         headerBuffer.append("\n// Circular references:\n");
         for (String i : getTypesForHeader(doc)) {
+            headerBuffer.append("#ifndef XMLVM_FORWARD_DECL_" + i + "\n");
+            headerBuffer.append("#define XMLVM_FORWARD_DECL_" + i + "\n");
             headerBuffer.append("XMLVM_FORWARD_DECL(" + i + ")\n");
+            headerBuffer.append("#endif\n");
         }
         OutputFile headerFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
                 { "pass", "emitHeader" }, { "header", headerFileName },

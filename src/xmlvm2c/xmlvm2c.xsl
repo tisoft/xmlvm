@@ -52,8 +52,8 @@
 
 <xsl:template name="emitMainMethod">
   <xsl:text>
-  
-      
+
+//#if 0
 int main(int argc, char* argv[])
 {
     xmlvm_init();
@@ -65,8 +65,8 @@ int main(int argc, char* argv[])
     <xsl:text>_main___java_lang_String_ARRAYTYPE(JAVA_NULL);
     return 0;
 }
-  
-  
+//#endif
+
 </xsl:text>
 </xsl:template>
 
@@ -121,7 +121,7 @@ int main(int argc, char* argv[])
         </xsl:call-template>
         <xsl:text> </xsl:text>
         <xsl:value-of select="vm:fixname(@name)"/>
-        <xsl:text>; \&nl;    </xsl:text>
+        <xsl:text>_; \&nl;    </xsl:text>
       </xsl:if>
     </xsl:for-each>
     <xsl:if test="$genWrapper = 'true'">
@@ -131,21 +131,37 @@ int main(int argc, char* argv[])
     </xsl:if>
     <xsl:text>} </xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>&nl;</xsl:text>
+    <xsl:text>&nl;&nl;</xsl:text>
 
-    <xsl:text>
-typedef struct {
-    __CLASS_DEFINITION_</xsl:text>
+    <xsl:text>struct </xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text> {&nl;    __CLASS_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>* __class;
     __INSTANCE_MEMBERS_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>;&nl;} </xsl:text>
+    <xsl:text>;&nl;};&nl;</xsl:text>
+    <xsl:text>#ifndef XMLVM_FORWARD_DECL_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>;&nl;&nl;</xsl:text>
+    <xsl:text>&nl;</xsl:text>
+    <xsl:text>#define XMLVM_FORWARD_DECL_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>&nl;</xsl:text>
+    <xsl:text>typedef struct </xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;&nl;</xsl:text>
+    <xsl:text>#endif</xsl:text>
+    <xsl:text>&nl;&nl;</xsl:text>
 
     <!-- Emit XMLVM-specific class initializer -->
     <xsl:text>void __INIT_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>();&nl;</xsl:text>
+
+    <!-- Emit new-operator -->
+    <xsl:text>JAVA_OBJECT __NEW_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>();&nl;</xsl:text>
 
@@ -184,14 +200,12 @@ typedef struct {
         <xsl:if test="@vtableIndex">
           <xsl:text>// Vtable index: </xsl:text>
           <xsl:value-of select="@vtableIndex"/>
-          <xsl:text>
-</xsl:text>
+          <xsl:text>&nl;</xsl:text>
         </xsl:if>
         <xsl:call-template name="emitMethodSignature">
           <xsl:with-param name="forDeclaration" select="1"/>
         </xsl:call-template>
-        <xsl:text>;
-</xsl:text>
+        <xsl:text>;&nl;</xsl:text>
       </xsl:if>
     </xsl:for-each>
 </xsl:template>
@@ -207,10 +221,48 @@ typedef struct {
     <xsl:value-of select="@vtableSize"/>
     <xsl:text>)&nl;&nl;</xsl:text>
 
+    <xsl:text>#ifndef XMLVM_FORWARD_DECL_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>&nl;</xsl:text>
+    <xsl:text>#define XMLVM_FORWARD_DECL_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>&nl;</xsl:text>
+    <xsl:text>typedef struct </xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;&nl;</xsl:text>
+    <xsl:text>#endif&nl;&nl;</xsl:text>
+    
     <!-- Emit interface initializers -->
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>(__CLASS_DEFINITION_TEMPLATE** interface);&nl;</xsl:text>
+
+    <!-- Emit code for class initializer if there is one -->
+    <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
+      <xsl:call-template name="emitMethodSignature">
+        <xsl:with-param name="forDeclaration" select="1"/>
+      </xsl:call-template>
+      <xsl:text>;&nl;&nl;</xsl:text>
+    </xsl:if>
+
+    <!-- Emit declarations for getter for all fields. Note that for interfaces all fields must be static
+         and final, hence there is no need to emit a setter. -->
+    <xsl:for-each select="vm:field">
+
+      <!-- Emit getter -->
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="@type"/>
+      </xsl:call-template>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>_GET_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>();&nl;</xsl:text>
+       
+    </xsl:for-each>
+
 </xsl:template>
 
 
@@ -269,17 +321,6 @@ typedef struct {
         <xsl:value-of select="$clname"/>
         <xsl:text>_</xsl:text>
         <xsl:value-of select="vm:fixname(@name)"/>
-        <xsl:if test="@value">
-          <xsl:text> = </xsl:text>
-          <!-- TODO String values need to be surrounded by quotes and escaped properly. -->
-          <xsl:if test="@type = 'java.lang.String'">
-            <xsl:text>__NEW_java_lang_String("</xsl:text>
-          </xsl:if>
-          <xsl:value-of select="@value"/>
-          <xsl:if test="@type = 'java.lang.String'">
-            <xsl:text>")</xsl:text>
-          </xsl:if>
-        </xsl:if>
         <xsl:text>;&nl;</xsl:text>
       </xsl:if>
       
@@ -310,7 +351,7 @@ typedef struct {
     </xsl:if>
     <xsl:text>    // Initialize vtable for this class
     </xsl:text>
-    <xsl:for-each select="vm:method[@vtableIndex]">
+    <xsl:for-each select="vm:method[@vtableIndex and not(@isAbstract = 'true')]">
       <xsl:text>__CLASS_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>.vtable[</xsl:text>
@@ -360,18 +401,42 @@ typedef struct {
       </xsl:for-each>
     </xsl:for-each>
     
-    <!-- Initialize static object references to JAVA_NULL -->
-    <xsl:for-each select="vm:field[@isStatic = 'true' and vm:isObjectRef(@type)]">
+    <!-- Initialize static members -->
+    <xsl:for-each select="vm:field[@isStatic = 'true']">
       <xsl:text>&nl;    _STATIC_</xsl:text>
       <xsl:value-of select="vm:fixname(../@package)"/>
       <xsl:text>_</xsl:text>
       <xsl:value-of select="vm:fixname(../@name)"/>
       <xsl:text>_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
-      <xsl:text> = (</xsl:text>
-      <xsl:value-of select="vm:fixname(@type)"/>
-      <xsl:text>*) JAVA_NULL;</xsl:text>
+      <xsl:text> = </xsl:text>
+      <xsl:choose>
+        <xsl:when test="vm:isObjectRef(@type)">
+          <xsl:text>(</xsl:text>
+          <xsl:call-template name="emitTrueType">
+            <xsl:with-param name="type" select="@type"/>
+          </xsl:call-template>
+          <xsl:text>) </xsl:text>
+          <xsl:choose>
+            <xsl:when test="@value">
+              <!-- TODO need to create a java.lang.String! -->
+              <!-- We assume that @value is always a string -->
+              <xsl:text>XMLVMArray_createFromString(</xsl:text>
+              <xsl:value-of select="vm:escapeString(@value)"/>
+              <xsl:text>)</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>JAVA_NULL</xsl:text>
+            </xsl:otherwise>          
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="if (@value) then @value else '0'"/>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:text>;</xsl:text>
     </xsl:for-each>
+    <xsl:text>&nl;&nl;</xsl:text>
     
     <!-- If there is a Java class initializer, call it. -->
     <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
@@ -403,20 +468,28 @@ typedef struct {
     <xsl:value-of select="$clname"/>
     <xsl:text>;&nl;</xsl:text>
     
-    <!-- Emit declarations for all non-static member fields -->
-    <xsl:for-each select="vm:field[not(@isStatic = 'true') and vm:isObjectRef(@type)]">
+    <!-- Emit initializations for all non-static member fields -->
+    <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
       <xsl:if test="not($genWrapper = 'true' and @isPrivate = 'true')">
-        <xsl:text>    </xsl:text>
+        <xsl:text>    me-></xsl:text>
+        <xsl:value-of select="$clname"/>
+        <xsl:text>.</xsl:text>
         <xsl:value-of select="vm:fixname(@name)"/>
-        <xsl:text>_</xsl:text>
-        <xsl:value-of select="vm:fixname(@type)"/>
-        <xsl:text> = </xsl:text>
-        <xsl:text>(</xsl:text>
-        <xsl:call-template name="emitType">
-          <xsl:with-param name="type" select="@type"/>
-        </xsl:call-template>
-        <xsl:text>) </xsl:text>
-        <xsl:text>JAVA_NULL;&nl;</xsl:text>
+        <xsl:text>_ = </xsl:text>
+        <xsl:choose>
+          <xsl:when test="vm:isObjectRef(@type)">
+            <xsl:text>(</xsl:text>
+            <xsl:call-template name="emitTrueType">
+              <xsl:with-param name="type" select="@type"/>
+            </xsl:call-template>
+            <xsl:text>) </xsl:text>
+            <xsl:text>JAVA_NULL</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>0</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:text>;&nl;</xsl:text>
       </xsl:if>
     </xsl:for-each>
     <xsl:text>    return me;&nl;}&nl;&nl;</xsl:text>
@@ -428,7 +501,8 @@ typedef struct {
     <xsl:if test="vm:method[@name='finalize' and 
                         not(vm:signature/vm:parameter) and 
                         vm:signature/vm:return[@type='void']]">
-      <xsl:text>    this->finalize_</xsl:text>
+      <xsl:text>XMLVM_ERROR("Need to call finalize()");&nl;</xsl:text>
+      <xsl:text>    //this->finalize_</xsl:text>
       <xsl:value-of select="vm:fixname(concat(@package, '.', @name))"/>
       <xsl:text>__();&nl;</xsl:text>
     </xsl:if>
@@ -516,9 +590,9 @@ typedef struct {
                 </xsl:otherwise>
               </xsl:choose>
             </xsl:if>
+            <xsl:text>}&nl;&nl;</xsl:text>
           </xsl:otherwise>
         </xsl:choose>
-        <xsl:text>}&nl;&nl;</xsl:text>
       </xsl:if>
     </xsl:for-each>
 </xsl:template>
@@ -537,6 +611,21 @@ typedef struct {
     <xsl:text>;
 
 </xsl:text>
+
+    <!-- Emit global variable definition for all fields (which must be final and static for interfaces) -->
+    <xsl:for-each select="vm:field">
+
+      <xsl:text>static </xsl:text>
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="@type"/>
+      </xsl:call-template>
+      <xsl:text> _STATIC_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>;&nl;</xsl:text>
+      
+    </xsl:for-each>
 
     <!-- Emit interface initializers -->
     <xsl:text>void __INIT_</xsl:text>
@@ -573,22 +662,106 @@ typedef struct {
         <xsl:text>;</xsl:text>
       </xsl:for-each>
     </xsl:if>
-    <xsl:text>
-        __CLASS_</xsl:text>
+    <!-- Initialize static members -->
+    <xsl:for-each select="vm:field">
+      <xsl:text>&nl;        _STATIC_</xsl:text>
+      <xsl:value-of select="vm:fixname(../@package)"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(../@name)"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text> = </xsl:text>
+      <xsl:choose>
+        <xsl:when test="vm:isObjectRef(@type)">
+          <xsl:text>(</xsl:text>
+          <xsl:call-template name="emitTrueType">
+            <xsl:with-param name="type" select="@type"/>
+          </xsl:call-template>
+          <xsl:text>) </xsl:text>
+          <xsl:choose>
+            <xsl:when test="@value">
+              <!-- We assume that @value is always a string -->
+              <xsl:text>XMLVMArray_createFromString(</xsl:text>
+              <xsl:value-of select="vm:escapeString(@value)"/>
+              <xsl:text>)</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>JAVA_NULL</xsl:text>
+            </xsl:otherwise>          
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="if (@value) then @value else '0'"/>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:text>;</xsl:text>
+    </xsl:for-each>
+    
+    <xsl:text>&nl;        __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized = 1;
     }
-    *interface = (__CLASS_DEFINITION_TEMPLATE*) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_</xsl:text>
+    if (interface != JAVA_NULL) {
+        *interface = (__CLASS_DEFINITION_TEMPLATE*) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>));
-    XMLVM_MEMCPY(*interface, &amp;__CLASS_</xsl:text>
+        XMLVM_MEMCPY(*interface, &amp;__CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>, sizeof(__CLASS_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>));
-}
+    <xsl:text>));</xsl:text>
 
-</xsl:text>
+    <!-- If there is a Java class initializer, call it. -->
+    <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
+      <xsl:text>&nl;        </xsl:text>
+      <xsl:value-of select="vm:fixname(@package)"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>___CLINIT_();</xsl:text>
+    </xsl:if>
+    
+    <xsl:text>&nl;    }&nl;}&nl;&nl;</xsl:text>
+
+    <!-- Emit code for class initializer if there is one -->
+    <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
+      <xsl:call-template name="emitMethodSignature">
+        <xsl:with-param name="forDeclaration" select="0"/>
+      </xsl:call-template>
+      <xsl:text>&nl;</xsl:text>
+      <xsl:text>{&nl;</xsl:text>
+      <xsl:call-template name="initArguments"/>
+      <xsl:apply-templates/>
+      <xsl:text>}&nl;&nl;</xsl:text>
+    </xsl:if>
+
+	<!-- Emit getters for all fields -->
+    <xsl:for-each select="vm:field">
+      <!-- Emit getter -->
+      <xsl:variable name="field">
+        <xsl:value-of select="vm:fixname(../@package)"/>
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="vm:fixname(../@name)"/>
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="vm:fixname(@name)"/>
+      </xsl:variable>
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="@type"/>
+      </xsl:call-template>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>_GET_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>()&nl;{&nl;    if (!__CLASS_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>.classInitialized) __INIT_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>(JAVA_NULL);&nl;    return </xsl:text>
+      <xsl:text>_STATIC_</xsl:text>
+      <xsl:value-of select="$field"/>
+      <xsl:text>;&nl;}&nl;&nl;</xsl:text>
+      
+    </xsl:for-each>
+    
 </xsl:template>
 
 
@@ -642,7 +815,7 @@ typedef struct {
       <xsl:text>JAVA_BOOLEAN</xsl:text>
     </xsl:when>
     <xsl:when test="ends-with($type, '[]')">
-      <xsl:text>XMLVMArray</xsl:text>
+      <xsl:text>XMLVMArray*</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="vm:fixname($type)"/>
@@ -919,6 +1092,21 @@ typedef struct {
 </xsl:function>
   
 
+<xsl:function name="vm:escapeString">
+  <xsl:param  name="string"/>
+  <!-- Escape all \\ \t(011) \n(012) \r(015) \f(014) \b(010) \" -->
+  <!-- Single quotes don't need to be escaped. -->
+  <!-- PROBLEM! Because backslashes aren't already escaped in @value, there
+       is no way to differ both Java Strings of "\\011" and "\t". So they'll
+       both be translated to "\t". That is also true for the other escaped characters. -->
+  <xsl:text>"</xsl:text>
+  <xsl:value-of select="replace(replace(replace(replace(replace(replace(replace($string,'\\','\\\\'),
+                           '\\\\011','\\t'),'\\\\012','\\n'),'\\\\015','\\r'),'\\\\014','\\f'),'\\\\010','\\b'),
+                           '&quot;','\\&quot;')"/>
+  <xsl:text>"</xsl:text>
+</xsl:function>
+
+
 <xsl:function name="vm:cast">
   <xsl:param name="type"/>
   <xsl:choose>
@@ -1025,6 +1213,10 @@ typedef struct {
 </xsl:template>
 
 
+<xsl:template match="dex:nop">
+</xsl:template>
+
+
 <xsl:template match="dex:invoke-static|dex:invoke-static-range">
   <xsl:variable name="returnTypedAccess">
     <xsl:call-template name="emitTypedAccess">
@@ -1032,20 +1224,11 @@ typedef struct {
     </xsl:call-template>
   </xsl:variable>
   <xsl:text>    </xsl:text>
-  <xsl:if test="dex:parameters/dex:return/@type != 'void'">
-    <xsl:choose>
-      <xsl:when test="dex:move-result">
-        <xsl:text>_r</xsl:text>
-        <xsl:value-of select="dex:move-result/@vx"/>
-        <xsl:value-of select="$returnTypedAccess"/>
-        <xsl:text> = </xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
-          <xsl:text>_rtmp.o = </xsl:text>
-        </xsl:if>
-      </xsl:otherwise>
-    </xsl:choose>
+  <xsl:if test="dex:parameters/dex:return/@type != 'void' and dex:move-result">
+    <xsl:text>_r</xsl:text>
+    <xsl:value-of select="dex:move-result/@vx"/>
+    <xsl:value-of select="$returnTypedAccess"/>
+    <xsl:text> = </xsl:text>
   </xsl:if>
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text>_</xsl:text>
@@ -1067,6 +1250,10 @@ typedef struct {
 
 
 <xsl:template match="dex:invoke-virtual|dex:invoke-virtual-range">
+  <xsl:variable name="vtable-index" select="if (@vtable-index) then @vtable-index else -1"/>
+  <xsl:if test="$vtable-index = -1">
+    <xsl:text>XMLVM_ERROR("Missing @vtable-index");&nl;</xsl:text>
+  </xsl:if>
   <xsl:text>    //</xsl:text>
   <xsl:call-template name="emitMethodName">
     <xsl:with-param name="name" select="@method"/>
@@ -1074,7 +1261,7 @@ typedef struct {
   </xsl:call-template>
   <xsl:call-template name="appendDexSignature"/>
   <xsl:text>[</xsl:text>
-  <xsl:value-of select="@vtable-index"/>
+  <xsl:value-of select="$vtable-index"/>
   <xsl:text>]&nl;</xsl:text>
 
   <xsl:variable name="returnTypedAccess">
@@ -1083,20 +1270,11 @@ typedef struct {
     </xsl:call-template>
   </xsl:variable>
   <xsl:text>    </xsl:text>
-  <xsl:if test="dex:parameters/dex:return/@type != 'void'">
-    <xsl:choose>
-      <xsl:when test="dex:move-result">
-        <xsl:text>_r</xsl:text>
-        <xsl:value-of select="dex:move-result/@vx"/>
-        <xsl:value-of select="$returnTypedAccess"/>
-        <xsl:text> = </xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
-          <xsl:text>_rtmp.o = </xsl:text>
-        </xsl:if>
-      </xsl:otherwise>
-    </xsl:choose>
+  <xsl:if test="dex:parameters/dex:return/@type != 'void' and dex:move-result">
+    <xsl:text>_r</xsl:text>
+    <xsl:value-of select="dex:move-result/@vx"/>
+    <xsl:value-of select="$returnTypedAccess"/>
+    <xsl:text> = </xsl:text>
   </xsl:if>
   
   <xsl:text>(*(</xsl:text>
@@ -1117,7 +1295,7 @@ typedef struct {
   <xsl:text>) _r</xsl:text>
   <xsl:value-of select="@register"/>
   <xsl:text>.o)->__class->vtable[</xsl:text>
-  <xsl:value-of select="@vtable-index"/>
+  <xsl:value-of select="$vtable-index"/>
   <xsl:text>])</xsl:text>
   <xsl:text>(_r</xsl:text>
   <xsl:value-of select="@register"/>
@@ -1142,20 +1320,11 @@ typedef struct {
     </xsl:call-template>
   </xsl:variable>
   <xsl:text>    </xsl:text>
-  <xsl:if test="dex:parameters/dex:return/@type != 'void'">
-    <xsl:choose>
-      <xsl:when test="dex:move-result">
-        <xsl:text>_r</xsl:text>
-        <xsl:value-of select="dex:move-result/@vx"/>
-        <xsl:value-of select="$returnTypedAccess"/>
-        <xsl:text> = </xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
-          <xsl:text>_rtmp.o = </xsl:text>
-        </xsl:if>
-      </xsl:otherwise>
-    </xsl:choose>
+  <xsl:if test="dex:parameters/dex:return/@type != 'void' and dex:move-result">
+    <xsl:text>_r</xsl:text>
+    <xsl:value-of select="dex:move-result/@vx"/>
+    <xsl:value-of select="$returnTypedAccess"/>
+    <xsl:text> = </xsl:text>
   </xsl:if>
   <xsl:call-template name="emitMethodName">
     <xsl:with-param name="name" select="@method"/>
@@ -1179,6 +1348,10 @@ typedef struct {
 
 
 <xsl:template match="dex:invoke-interface|dex:invoke-interface-range">
+  <xsl:variable name="vtable-index" select="if (@vtable-index) then @vtable-index else -1"/>
+  <xsl:if test="$vtable-index = -1">
+    <xsl:text>XMLVM_ERROR("Missing @vtable-index");&nl;</xsl:text>
+  </xsl:if>
   <xsl:text>    //</xsl:text>
   <xsl:call-template name="emitMethodName">
     <xsl:with-param name="name" select="@method"/>
@@ -1186,7 +1359,7 @@ typedef struct {
   </xsl:call-template>
   <xsl:call-template name="appendDexSignature"/>
   <xsl:text>[</xsl:text>
-  <xsl:value-of select="@vtable-index"/>
+  <xsl:value-of select="$vtable-index"/>
   <xsl:text>]&nl;</xsl:text>
 
   <xsl:variable name="returnTypedAccess">
@@ -1195,20 +1368,11 @@ typedef struct {
     </xsl:call-template>
   </xsl:variable>
   <xsl:text>    </xsl:text>
-  <xsl:if test="dex:parameters/dex:return/@type != 'void'">
-    <xsl:choose>
-      <xsl:when test="dex:move-result">
-        <xsl:text>_r</xsl:text>
-        <xsl:value-of select="dex:move-result/@vx"/>
-        <xsl:value-of select="$returnTypedAccess"/>
-        <xsl:text> = </xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:if test="vm:isObjectRef(dex:parameters/dex:return/@type)">
-          <xsl:text>_rtmp.o = </xsl:text>
-        </xsl:if>
-      </xsl:otherwise>
-    </xsl:choose>
+  <xsl:if test="dex:parameters/dex:return/@type != 'void' and dex:move-result">
+    <xsl:text>_r</xsl:text>
+    <xsl:value-of select="dex:move-result/@vx"/>
+    <xsl:value-of select="$returnTypedAccess"/>
+    <xsl:text> = </xsl:text>
   </xsl:if>
 
   <xsl:text>(*(</xsl:text>
@@ -1228,7 +1392,7 @@ typedef struct {
   <xsl:text>.o, "</xsl:text>
   <xsl:value-of select="@class-type"/>
   <xsl:text>", </xsl:text>
-  <xsl:value-of select="@vtable-index"/>
+  <xsl:value-of select="$vtable-index"/>
   <xsl:text>))</xsl:text>
   <xsl:text>(_r</xsl:text>
   <xsl:value-of select="@register"/>
@@ -1786,7 +1950,7 @@ typedef struct {
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text>.</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
-  <xsl:text>;
+  <xsl:text>_;
 </xsl:text>
 </xsl:template>
 
@@ -1806,7 +1970,7 @@ typedef struct {
   <xsl:value-of select="vm:fixname(@class-type)" />
   <xsl:text>.</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)" />
-  <xsl:text>;
+  <xsl:text>_;
 </xsl:text>
 </xsl:template>
 
@@ -1823,7 +1987,7 @@ typedef struct {
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text>.</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
-  <xsl:text> = </xsl:text>
+  <xsl:text>_ = </xsl:text>
   <xsl:text> _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:value-of select="$m"/>
@@ -1831,14 +1995,6 @@ typedef struct {
 </xsl:text>
 </xsl:template>
 
-
-<xsl:template match="vm:tmp-equals-r">
-  <xsl:text>    _rtmp.o =  _r</xsl:text>
-  <xsl:value-of select="@reg" />
-  <xsl:text>.o;
-</xsl:text>
-</xsl:template>
-  
 
 <xsl:template match="vm:comment">
   <xsl:text>    //INFO: </xsl:text>
@@ -1855,7 +2011,7 @@ typedef struct {
   <xsl:value-of select="vm:fixname(@class-type)" />
   <xsl:text>.</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)" />
-  <xsl:text> = </xsl:text>
+  <xsl:text>_ = </xsl:text>
   <xsl:value-of select="vm:cast-register(@member-type, @vx)"/>
   <xsl:text>;
 </xsl:text>
@@ -1863,7 +2019,7 @@ typedef struct {
 
 
 
-<xsl:template match="dex:sget|dex:sget-wide|dex:sget-boolean|dex:sget-char|dex:sget-object">
+<xsl:template match="dex:sget|dex:sget-wide|dex:sget-boolean|dex:sget-char|dex:sget-short|dex:sget-object">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:call-template name="emitTypedAccess">
@@ -1878,7 +2034,7 @@ typedef struct {
 </xsl:template>
 
 
-<xsl:template match="dex:sput|dex:sput-wide|dex:sput-boolean|dex:sput-char|dex:sput-object">
+<xsl:template match="dex:sput|dex:sput-wide|dex:sput-boolean|dex:sput-char|dex:sput-short|dex:sput-object">
   <xsl:text>    </xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text>_PUT_</xsl:text>
@@ -1916,22 +2072,22 @@ typedef struct {
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.o = __NEW_java_lang_String();
-    java_lang_String__INIT___char_ARRAYTYPE(_r</xsl:text>
+    java_lang_String___INIT____char_ARRAYTYPE(_r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o, XMLVMArray_createFromString("</xsl:text>
-  <xsl:value-of select="@value"/>
-  <xsl:text>"));
-</xsl:text>
+  <xsl:text>.o, XMLVMArray_createFromString(</xsl:text>
+  <xsl:value-of select="vm:escapeString(@value)"/>
+  <xsl:text>));&nl;</xsl:text>
 </xsl:template>
 
 
 <xsl:template match="dex:const-class"> 
-  <xsl:text>    _r</xsl:text>
+  <xsl:text>//TODO should use #define for getClass() vtable index</xsl:text>
+  <xsl:text>    //_r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.o = </xsl:text>
   <xsl:value-of select="vm:fixname(@value)"/>
-  <xsl:text>->getClass__();
-</xsl:text>
+  <xsl:text>->getClass__();&nl;</xsl:text>
+  <xsl:text>XMLVM_ERROR("dex:const-class");&nl;</xsl:text>
 </xsl:template>
 
 
@@ -2498,11 +2654,10 @@ typedef struct {
     <xsl:value-of select="@register"/>
     <xsl:text>, </xsl:text>
   </xsl:for-each>
-  <xsl:text>});
-</xsl:text>
+  <xsl:text>});&nl;</xsl:text>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
-  <xsl:text>.o = XMLVMArray_createSingleDimension(5, </xsl:text>
+  <xsl:text>.o = XMLVMArray_createSingleDimensionWithData(5, </xsl:text>
   <xsl:value-of select="count(dex:value)"/>
   <xsl:text>, _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
@@ -2512,11 +2667,14 @@ typedef struct {
 
 
 <xsl:template match="dex:fill-array-data">
+  <xsl:variable name="base-type" select="replace(@vx-type, '\[\]', '')"/>
   <xsl:text>    XMLVMArray_fillArray(</xsl:text>
   <xsl:value-of select="vm:cast-register('XMLVMArray', @vx)"/>
   <xsl:text>, (</xsl:text>
-  <xsl:value-of select="@vx-type"/>
-  <xsl:text>){</xsl:text>
+  <xsl:call-template name="emitTrueType">
+    <xsl:with-param name="type" select="$base-type"/>
+  </xsl:call-template>
+  <xsl:text>[]){</xsl:text>
   <xsl:for-each select="dex:constant">
     <xsl:value-of select="@value"/>
     <xsl:text>, </xsl:text>

@@ -31,11 +31,15 @@ XMLVM_DEFINE_CLASS(java_io_PrintStream, 39)
     __INSTANCE_MEMBERS_java_lang_Object
 
 
-typedef struct {
+struct java_io_PrintStream {
     __CLASS_DEFINITION_java_io_PrintStream* __class;
     __INSTANCE_MEMBERS_java_io_PrintStream;
-} java_io_PrintStream;
+};
 
+#ifndef XMLVM_FORWARD_DECL_java_io_PrintStream
+#define XMLVM_FORWARD_DECL_java_io_PrintStream
+typedef struct java_io_PrintStream java_io_PrintStream;
+#endif
 
 void __INIT_java_io_PrintStream();
 JAVA_OBJECT __NEW_java_io_PrintStream();

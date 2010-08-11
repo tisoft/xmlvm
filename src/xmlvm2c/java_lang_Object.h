@@ -28,11 +28,15 @@ XMLVM_DEFINE_CLASS(java_lang_Object, 11)
 
 #define __INSTANCE_MEMBERS_java_lang_Object
 
-typedef struct {
+struct java_lang_Object {
     __CLASS_DEFINITION_java_lang_Object* __class;
     __INSTANCE_MEMBERS_java_lang_Object;
-} java_lang_Object;
+};
 
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+typedef struct java_lang_Object java_lang_Object;
+#endif
 
 void __INIT_java_lang_Object();
 void java_lang_Object___INIT___(JAVA_OBJECT me);
