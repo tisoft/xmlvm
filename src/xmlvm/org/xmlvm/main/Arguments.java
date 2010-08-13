@@ -38,57 +38,59 @@ import org.xmlvm.Log;
 public class Arguments {
     // The arguments that are given by the user on the command line.
 
-    public static final String    ARG_IN                     = "--in=";
-    public static final String    ARG_OUT                    = "--out=";
-    public static final String    ARG_TARGET                 = "--target=";
-    public static final String    ARG_RESOURCE               = "--resource=";
-    public static final String    ARG_LIB                    = "--lib=";
-    public static final String    ARG_APP_NAME               = "--app-name=";
-    public static final String    ARG_QX_MAIN                = "--qx-main=";
-    public static final String    ARG_QX_DEBUG               = "--qx-debug";
-    public static final String    ARG_DEBUG                  = "--debug=";
-    public static final String    ARG_VERSION                = "--version";
-    public static final String    ARG_GEN_WRAPPER            = "--gen-wrapper";
-    public static final String    ARG_HELP                   = "--help";
-    public static final String    ARG_SKELETON               = "--skeleton=";
+    public static final String    ARG_IN                      = "--in=";
+    public static final String    ARG_OUT                     = "--out=";
+    public static final String    ARG_TARGET                  = "--target=";
+    public static final String    ARG_RESOURCE                = "--resource=";
+    public static final String    ARG_LIB                     = "--lib=";
+    public static final String    ARG_APP_NAME                = "--app-name=";
+    public static final String    ARG_QX_MAIN                 = "--qx-main=";
+    public static final String    ARG_QX_DEBUG                = "--qx-debug";
+    public static final String    ARG_DEBUG                   = "--debug=";
+    public static final String    ARG_VERSION                 = "--version";
+    public static final String    ARG_GEN_WRAPPER             = "--gen-wrapper";
+    public static final String    ARG_GEN_NATIVE_SKELETONS    = "--gen-native-skeletons";
+    public static final String    ARG_HELP                    = "--help";
+    public static final String    ARG_SKELETON                = "--skeleton=";
     // These are obsolete arguments, being here for compatibility reasons
-    public static final String    ARG_IPHONE_APP             = "--iphone-app=";
-    public static final String    ARG_QX_APP                 = "--qx-app=";
-    public static final String    ARG_QUIET                  = "--quiet";
+    public static final String    ARG_IPHONE_APP              = "--iphone-app=";
+    public static final String    ARG_QX_APP                  = "--qx-app=";
+    public static final String    ARG_QUIET                   = "--quiet";
     // This is just temporary for activating the new DEX processing.
-    public static final String    ARG_USE_JVM                = "--use-jvm";
+    public static final String    ARG_USE_JVM                 = "--use-jvm";
     // Enables the experimental dependency resolution feature.
-    public static final String    ARG_EXP_LOAD_DEPS          = "--exp-load-deps";
+    public static final String    ARG_EXP_LOAD_DEPS           = "--exp-load-deps";
     // Enables reference counting for DEX input.
-    public static final String    ARG_ENABLE_REF_COUNTING    = "--enable-ref-counting";
+    public static final String    ARG_ENABLE_REF_COUNTING     = "--enable-ref-counting";
     // This argument will store various properties to XMLVM
     // An example of these values can be found in the long help
-    public static final String    ARG_PROPERTY               = "-D";
+    public static final String    ARG_PROPERTY                = "-D";
     // The parsed values will be stored here.
-    private List<String>          option_in                  = new ArrayList<String>();
-    private String                option_out                 = null;
-    private Targets               option_target              = Targets.NONE;
-    private boolean               option_gen_wrapper         = false;
-    private Set<String>           option_resource            = new HashSet<String>();
-    private Set<String>           option_lib                 = new HashSet<String>();
-    private String                option_app_name            = null;
-    private String                option_qx_main             = null;
-    private boolean               option_qx_debug            = false;
-    private Log.Level             option_debug               = Log.Level.WARNING;
-    private String                option_skeleton            = null;
-    private boolean               option_use_jvm             = false;
-    private boolean               option_exp_load_deps       = false;
-    private boolean               option_enable_ref_counting = false;
-    private Map<String, String>   option_property            = new HashMap<String, String>();
+    private List<String>          option_in                   = new ArrayList<String>();
+    private String                option_out                  = null;
+    private Targets               option_target               = Targets.NONE;
+    private boolean               option_gen_wrapper          = false;
+    private boolean               option_gen_native_skeletons = false;
+    private Set<String>           option_resource             = new HashSet<String>();
+    private Set<String>           option_lib                  = new HashSet<String>();
+    private String                option_app_name             = null;
+    private String                option_qx_main              = null;
+    private boolean               option_qx_debug             = false;
+    private Log.Level             option_debug                = Log.Level.WARNING;
+    private String                option_skeleton             = null;
+    private boolean               option_use_jvm              = false;
+    private boolean               option_exp_load_deps        = false;
+    private boolean               option_enable_ref_counting  = false;
+    private Map<String, String>   option_property             = new HashMap<String, String>();
 
-    private static final String[] shortUsage                 = {
+    private static final String[] shortUsage                  = {
             "Usage: ",
             "xmlvm [--in=<path> [--out=<dir>]]",
             "      [--target=[xmlvm|dexmlvm|jvm|clr|dfa|class|exe|dex|js|cpp|c|python|objc|iphone|qooxdoo|webos]]",
             "      [--skeleton=<type>]", "      [--lib=<name>", "      [--app-name=<app-name>]",
             "      [--resource=<path>]", "      [--qx-main=<main-class> [--qx-debug]]",
             "      [--debug=[none|error|warning|all]]", "      [--version] [--help]" };
-    private static final String[] longUsage                  = {
+    private static final String[] longUsage                   = {
             "Detailed usage:",
             "===============",
             "",
@@ -117,6 +119,9 @@ public class Arguments {
             "",
             "--gen-wrapper      Generates wrappers in the target language (currently only",
             "                   available for --target=c",
+            "",
+            "--gen-native-skeletons Generates skeletons for Java native methods in the target",
+            "                   language (currently only available for --target=c",
             "",
             " --skeleton=<type> Skeleton to create a new template project:",
             "    iphone           iPhone project skeleton",
@@ -151,11 +156,10 @@ public class Arguments {
             "    warning          Warning and errors will be printed",
             "    all              All debug information (including errors and warnings)", "",
             " --version         Display version information", "",
-            " --help            This message", ""           };
-    private static final String[] Version                    = {
+            " --help            This message", ""            };
+    private static final String[] Version                     = {
             "XMLVM 2 alpha (experimental rebuild)",
             "Note: Not all command like arguments activated yet." };
-
 
     public static void printVersion() {
         printText(Version, System.out);
@@ -222,6 +226,8 @@ public class Arguments {
                         File.pathSeparator);
             } else if (arg.equals(ARG_GEN_WRAPPER)) {
                 option_gen_wrapper = true;
+            } else if (arg.equals(ARG_GEN_NATIVE_SKELETONS)) {
+                option_gen_native_skeletons = true;
             } else if (arg.startsWith(ARG_LIB)) {
                 parseListArgument(arg.substring(ARG_LIB.length()), option_lib, ",");
             } else if (arg.startsWith(ARG_APP_NAME)) {
@@ -261,8 +267,8 @@ public class Arguments {
                 if (equal < 1) {
                     parseError("Unable to parse kay/value: " + value);
                 }
-                option_property.put(value.substring(0, equal).toLowerCase(),
-                        value.substring(equal + 1));
+                option_property.put(value.substring(0, equal).toLowerCase(), value
+                        .substring(equal + 1));
             } else {
                 parseError("Unknown parameter: " + arg);
             }
@@ -276,7 +282,12 @@ public class Arguments {
         if (option_skeleton != null && option_target != Targets.NONE) {
             parseError("Only one argument of '--target' or '--skeleton' is allowed");
         }
-        if (option_gen_wrapper )
+        if (option_gen_wrapper && option_target != Targets.C) {
+            parseError("--gen-wrapper only available for --target=c");
+        }
+        if (option_gen_native_skeletons && option_target != Targets.C) {
+            parseError("--gen-native-skeletons only available for --target=c");
+        }
         // if (option_skeleton != null && option_lib.size() > 0) {
         // parseError("Argument '--skeleton' does not support '--lib'");
         // }
@@ -318,9 +329,10 @@ public class Arguments {
             parseError("--target=qooxdoo with --qx-app requires --qx-main");
         if (option_debug == null)
             parseError("Unknown --debug level");
-        
+
         // We need to enforce reference counting for these targets.
-        if (option_target == Targets.OBJC || option_target == Targets.IPHONE || option_target == Targets.IPHONEANDROID) {
+        if (option_target == Targets.OBJC || option_target == Targets.IPHONE
+                || option_target == Targets.IPHONEANDROID) {
             option_enable_ref_counting = true;
             Log.debug("Forcing --enable_ref_counting for target " + option_target);
         }
@@ -369,6 +381,10 @@ public class Arguments {
         return option_gen_wrapper;
     }
 
+    public boolean option_gen_native_skeletons() {
+        return option_gen_native_skeletons;
+    }
+
     public String option_app_name() {
         return option_app_name;
     }
@@ -392,7 +408,7 @@ public class Arguments {
     public boolean option_exp_load_deps() {
         return option_exp_load_deps;
     }
-    
+
     public boolean option_enable_ref_counting() {
         return option_enable_ref_counting;
     }

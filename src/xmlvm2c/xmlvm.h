@@ -112,6 +112,17 @@ VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, 
 
 #define XMLVM_SIZE_OF_OBJECT_VTABLE 11
 
+//---------------------------------------------------------------------------------------------
+// XMLVMClass
+
+JAVA_OBJECT __NEW_XMLVMClass(__CLASS_DEFINITION_TEMPLATE* clazz);
+
+
+
+//---------------------------------------------------------------------------------------------
+// XMLVMArray
+
+
 XMLVM_DEFINE_CLASS(XMLVMArray, XMLVM_SIZE_OF_OBJECT_VTABLE)
 
 typedef struct {
@@ -158,6 +169,7 @@ extern XMLVM_JMP_BUF xmlvm_exception_env;
 // TODO not thread safe!
 extern JAVA_OBJECT xmlvm_exception;
 
+void xmlvm_unimplemented_native_method();
 
 void XMLVM_ERROR(const char* msg);
 

@@ -216,4 +216,13 @@ public class OutputFile {
         }
         return false;
     }
+
+    /**
+     * Determines if the file is empty.
+     * 
+     * @return true if file is of size 0
+     */
+    public boolean isEmpty() {
+        return data == null || data.length == 0;
+    }
 }

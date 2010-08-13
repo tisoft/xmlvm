@@ -21,6 +21,7 @@
 
 #include "xmlvm.h"
 #include "java_lang_System.h"
+#include "java_lang_Class.h"
 #include <stdio.h>
 
 
@@ -55,7 +56,28 @@ void __INIT_XMLVMArray()
 
 void xmlvm_init_system_class()
 {
-	java_lang_System_initializeSystemClass__();
+	//java_lang_System_initializeSystemClass__();
+}
+
+JAVA_OBJECT native_java_lang_Object_getClass__(JAVA_OBJECT me)
+{
+	return __NEW_XMLVMClass((__CLASS_DEFINITION_TEMPLATE*) ((java_lang_Object*) me)->__class);
+}
+
+JAVA_OBJECT native_java_lang_Class_getName__(JAVA_OBJECT me);
+
+void xmlvm_init_java_lang_Object()
+{
+	__INIT_java_lang_Object();
+	__CLASS_java_lang_Object.vtable[XMLVM_VTABLE_IDX_java_lang_Object_getClass__] =
+	(VTABLE_PTR) native_java_lang_Object_getClass__;
+}
+
+void xmlvm_init_java_lang_Class()
+{
+	__INIT_java_lang_Class();
+	__CLASS_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getName__] =
+	(VTABLE_PTR) native_java_lang_Class_getName__;
 }
 
 void xmlvm_init()
@@ -63,6 +85,8 @@ void xmlvm_init()
 	if (XMLVM_SETJMP(xmlvm_exception_env)) {
 		XMLVM_ERROR("Unhandled exception thrown");
 	}
+	xmlvm_init_java_lang_Object();
+	xmlvm_init_java_lang_Class();
 	__INIT_XMLVMArray();
 	__INIT_java_lang_System();
 	xmlvm_init_system_class();
@@ -106,8 +130,65 @@ VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, 
 	XMLVM_ERROR("XMLVM_LOOKUP_INTERFACE_METHOD() could not find interface");
 	return (VTABLE_PTR) 0;
 }
-	
-	
+
+//---------------------------------------------------------------------------------------------
+// XMLVMClass
+
+
+XMLVM_DEFINE_CLASS(XMLVMClass, XMLVM_VTABLE_SIZE_java_lang_Class)
+
+#define __INSTANCE_MEMBERS_XMLVMClass \
+__INSTANCE_MEMBERS_java_lang_Class; \
+struct { \
+__CLASS_DEFINITION_TEMPLATE* clazz; \
+} XMLVMClass
+
+struct XMLVMClass {
+    __CLASS_DEFINITION_XMLVMClass* __class;
+    __INSTANCE_MEMBERS_XMLVMClass;
+};
+
+typedef struct XMLVMClass XMLVMClass;
+
+__CLASS_DEFINITION_XMLVMClass __CLASS_XMLVMClass = {
+    0, // classInitialized
+    "XMLVMClass", // className
+    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_java_lang_Class, // extends
+};
+
+void __INIT_XMLVMClass()
+{
+    __CLASS_XMLVMClass.classInitialized = 1;
+    // Initialize base class if necessary
+    if (!__CLASS_java_lang_Class.classInitialized) __INIT_java_lang_Class();
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__CLASS_XMLVMClass.vtable, __CLASS_java_lang_Class.vtable, sizeof(__CLASS_java_lang_Class.vtable));
+    // Initialize vtable for this class
+    // Initialize vtable for implementing interfaces
+    __CLASS_XMLVMClass.numImplementedInterfaces = 0;
+}
+
+JAVA_OBJECT __NEW_XMLVMClass(__CLASS_DEFINITION_TEMPLATE* clazz)
+{
+    if (!__CLASS_XMLVMClass.classInitialized) __INIT_XMLVMClass();
+    XMLVMClass* me = (XMLVMClass*) XMLVM_MALLOC(sizeof(XMLVMClass));
+    me->__class = &__CLASS_XMLVMClass;
+	me->XMLVMClass.clazz = clazz;
+    return me;
+}
+
+JAVA_OBJECT native_java_lang_Class_getName__(JAVA_OBJECT me)
+{
+	XMLVMClass* clazz = (XMLVMClass*) me;
+	java_lang_String* name = __NEW_java_lang_String();
+    java_lang_String___INIT____char_ARRAYTYPE(name, XMLVMArray_createFromString(clazz->XMLVMClass.clazz->className));
+	return name;
+}
+
+
+//---------------------------------------------------------------------------------------------
+// XMLVMArray
+
 XMLVMArray* __NEW_XMLVMArray()
 {
 	XMLVMArray* array = (XMLVMArray*) XMLVM_MALLOC(sizeof(XMLVMArray));
@@ -182,9 +263,14 @@ XMLVMArray* XMLVMArray_createFromString(const char* str)
 {
     XMLVMArray *retval = __NEW_XMLVMArray();
     retval->type = 2; // CHAR
-    retval->length = strlen(str);
-    retval->array.data = (void*) str;
-    retval->ownsData = 0;
+	int len = strlen(str);
+    retval->length = len;
+    retval->array.data = XMLVM_MALLOC(len);
+	int i;
+	for (i = 0; i < len; i++) {
+		retval->array.c[i] = *str++;
+	}
+    retval->ownsData = 1;
     return retval;
 }
 
@@ -266,6 +352,11 @@ XMLVMArray* XMLVMArray_clone__(XMLVMArray* array)
     }
 
     return retval;
+}
+
+void xmlvm_unimplemented_native_method()
+{
+	XMLVM_ERROR("Unimplemented native method");
 }
 
 void XMLVM_ERROR(const char* msg)

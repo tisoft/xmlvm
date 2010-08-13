@@ -192,6 +192,17 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
             }
         }
 
+        if (arguments.option_gen_native_skeletons()) {
+            for (XmlvmResource xmlvm : resourcePool.values()) {
+                OutputFile file = genNativeSkeletons(xmlvm);
+                if (file != null) {
+                    file.setLocation(arguments.option_out());
+                    result.add(file);
+                }
+            }
+            return true;
+        }
+
         computeVtables();
         if (!arguments.option_gen_wrapper()) {
             annotateVtableInvokes();
@@ -265,7 +276,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         // Add vtable initialization for all interfaces that this class
         // implements
         if (!resource.isInterface()) {
-            List<XmlvmResource> interfaces = getAllImplementedInterfaces(resource);
+            Set<XmlvmResource> interfaces = getAllImplementedInterfaces(resource);
             Log.debug("Implemented interfaces: ");
             for (XmlvmResource iface : interfaces) {
                 Log.debug("    " + iface.getFullName());
@@ -282,12 +293,6 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     }
 
     private void addAllBaseInterfaceVtables(Vtable vtable, XmlvmResource resource) {
-        // TODO hack! We don't do this for OpenJDK classes. If we try, there is
-        // a "severely truncated class file" exception.
-        if (resource.getPackageName().startsWith("java")) {
-            return;
-        }
-
         String interfaces = resource.getInterfaces();
         if (interfaces == null) {
             return;
@@ -300,25 +305,24 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
     }
 
-    private List<XmlvmResource> getAllImplementedInterfaces(XmlvmResource resource) {
-        List<XmlvmResource> collectedInterfaces = new ArrayList<XmlvmResource>();
-
-        // TODO hack! We don't do this for OpenJDK classes. If we try, there is
-        // a "severely truncated class file" exception.
-        if (resource.getPackageName().startsWith("java")) {
-            return collectedInterfaces;
-        }
-
+    private Set<XmlvmResource> getAllImplementedInterfaces(XmlvmResource resource) {
+        Set<XmlvmResource> collectedInterfaces = new HashSet<XmlvmResource>();
         String interfaces = resource.getInterfaces();
-        if (interfaces == null) {
-            return collectedInterfaces;
+        // Collect immediate implemented interfaces
+        if (interfaces != null) {
+            for (String iface : interfaces.split(",")) {
+                XmlvmResource ifaceResource = getXmlvmResource(iface);
+                Set<XmlvmResource> baseInterfaces = getAllImplementedInterfaces(ifaceResource);
+                computeVtable(ifaceResource);
+                collectedInterfaces.add(ifaceResource);
+                collectedInterfaces.addAll(baseInterfaces);
+            }
         }
-        for (String iface : interfaces.split(",")) {
-            XmlvmResource ifaceResource = getXmlvmResource(iface);
-            List<XmlvmResource> baseInterfaces = getAllImplementedInterfaces(ifaceResource);
-            computeVtable(ifaceResource);
-            collectedInterfaces.add(ifaceResource);
-            collectedInterfaces.addAll(baseInterfaces);
+        // Collect interfaces of base classes
+        String baseClass = resource.getSuperTypeName();
+        if (!baseClass.equals("")) {
+            Set<XmlvmResource> baseClassInterfaces = getAllImplementedInterfaces(getXmlvmResource(baseClass));
+            collectedInterfaces.addAll(baseClassInterfaces);
         }
         return collectedInterfaces;
     }
@@ -598,5 +602,31 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
             }
         }
         return toRet;
+    }
+
+    public OutputFile genNativeSkeletons(XmlvmResource xmlvm) {
+        Document doc = xmlvm.getXmlvmDocument();
+        // The filename will be the name of the first class
+        String namespaceName = xmlvm.getPackageName();
+        String className = xmlvm.getName().replace('$', '_');
+        String fileNameStem = (namespaceName + "." + className).replace('.', '_');
+        String headerFileName = fileNameStem + H_EXTENSION;
+        String mFileName = "native_" + fileNameStem + C_EXTENSION;
+
+        StringBuffer mBuffer = new StringBuffer();
+        mBuffer.append("\n#include \"" + headerFileName + "\"\n\n");
+
+        OutputFile mFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
+                { "pass", "emitNativeSkeletons" }, { "header", headerFileName },
+                { "genWrapper", "" + arguments.option_gen_wrapper() } });
+
+        if (mFile.isEmpty()) {
+            return null;
+        }
+
+        mFile.setData(mBuffer.toString() + mFile.getData());
+        mFile.setFileName(mFileName);
+
+        return mFile;
     }
 }
