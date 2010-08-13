@@ -254,42 +254,64 @@ public class XmlvmResource {
             return true;
         }
 
+        /**
+         * Returns true if this method is static.
+         */
         public boolean isStatic() {
             String flag = methodElement.getAttributeValue("isStatic");
             return flag != null && flag.equals("true");
         }
 
+        /**
+         * Returns true if this method is private.
+         */
         public boolean isPrivate() {
             String flag = methodElement.getAttributeValue("isPrivate");
             return flag != null && flag.equals("true");
         }
 
+        /**
+         * Returns true if this method is protected.
+         */
         public boolean isProtected() {
             String flag = methodElement.getAttributeValue("isProtected");
             return flag != null && flag.equals("true");
         }
 
+        /**
+         * Returns true if this method is public.
+         */
         public boolean isPublic() {
             String flag = methodElement.getAttributeValue("isPublic");
             return flag != null && flag.equals("true");
         }
 
+        /**
+         * Returns true if this method is abstract.
+         */
         public boolean isAbstract() {
             String flag = methodElement.getAttributeValue("isAbstract");
             return flag != null && flag.equals("true");
         }
 
+        /**
+         * Returns true if this method is native.
+         */
         public boolean isNative() {
             String flag = methodElement.getAttributeValue("isNative");
             return flag != null && flag.equals("true");
         }
 
+        /**
+         * Returns true if this method is a constructor.
+         */
         public boolean isConstructor() {
             return methodElement.getAttributeValue("name").equals("<init>");
         }
 
         /**
-         * @param idx
+         * Set a vtable index for this method (XML attribute
+         * <code>vtableIndex</code>).
          */
         public void setVtableIndex(int idx) {
             methodElement.setAttribute("vtableIndex", "" + idx);
@@ -313,33 +335,56 @@ public class XmlvmResource {
             this.fieldElement = fieldElement;
         }
 
+        /**
+         * Returns the name of the field.
+         */
         public String getName() {
             return fieldElement.getAttributeValue("name");
         }
 
+        /**
+         * Returns the type of the field.
+         */
         public String getType() {
             return fieldElement.getAttributeValue("type");
         }
 
-        public boolean matchesName(XmlvmMemberReadWrite instruction) {
-            return getName().equals(instruction.getMemberName());
-        }
-
+        /**
+         * Returns true if this field is private.
+         */
         public boolean isPrivate() {
             String flag = fieldElement.getAttributeValue("isPrivate");
             return flag != null && flag.equals("true");
         }
 
+        /**
+         * Returns true if this field is protected.
+         */
         public boolean isProtected() {
             String flag = fieldElement.getAttributeValue("isProtected");
             return flag != null && flag.equals("true");
         }
 
+        /**
+         * Returns true if this field is public.
+         */
         public boolean isPublic() {
             String flag = fieldElement.getAttributeValue("isPublic");
             return flag != null && flag.equals("true");
         }
 
+        /**
+         * Returns true if the field the <code>instruction</code> is accessing
+         * has the same name as this field.
+         */
+        public boolean matchesName(XmlvmMemberReadWrite instruction) {
+            return getName().equals(instruction.getMemberName());
+        }
+
+        /**
+         * Returns true if the given <code>field</code> has the same name and
+         * type as this field.
+         */
         public boolean matchesDeclaration(XmlvmField field) {
             return getName().equals(field.getName()) && getType().equals(field.getType());
         }
@@ -353,8 +398,15 @@ public class XmlvmResource {
         }
 
         /**
+         * Create a new mapping between a vtable of an interface and a vtable of
+         * an implementing class. See
+         * {@link XmlvmResource#createVtable(String, String, int)}.
+         * 
          * @param vtableIndexInterface
+         *            vtable index of a method defined in an interface.
          * @param vtableIndexClass
+         *            Corresponding vtable index of an implementing method in a
+         *            class.
          */
         public void addMapping(int vtableIndexInterface, int vtableIndexClass) {
             Element map = new Element("map", nsXMLVM);
@@ -381,17 +433,6 @@ public class XmlvmResource {
         this.type = type;
         this.xmlvmDocument = xmlvmDocument;
         this.referencedTypes = referencedTypes;
-    }
-
-    /**
-     * TODO this constructor should be deleted
-     */
-    public XmlvmResource(XmlvmResource other) {
-        this.name = other.name;
-        this.superTypeName = "java.lang.Object";
-        this.type = other.type;
-        this.referencedTypes = other.referencedTypes;
-        this.xmlvmDocument = (Document) other.xmlvmDocument.clone();
     }
 
     /**
@@ -459,6 +500,9 @@ public class XmlvmResource {
         return clazz.getAttributeValue("interfaces");
     }
 
+    /**
+     * Returns all methods defined in this resource.
+     */
     public Set<XmlvmMethod> getMethods() {
         Set<XmlvmMethod> result = new HashSet<XmlvmMethod>();
         List<Element> methods = getMethodElements();
@@ -468,6 +512,9 @@ public class XmlvmResource {
         return result;
     }
 
+    /**
+     * Returns all fields defined in this resource.
+     */
     @SuppressWarnings("unchecked")
     public Set<XmlvmField> getFields() {
         Set<XmlvmField> result = new HashSet<XmlvmField>();
@@ -490,23 +537,6 @@ public class XmlvmResource {
                 .getAttributeValue("isInterface"));
     }
 
-    /**
-     * Removes the given method from the resource. TODO: Do not call this
-     * method!
-     */
-    private void removeMethodXXX(XmlvmMethod method) {
-        List<Element> methods = getMethodElements();
-        for (Element methodElement : methods) {
-            Element methodClone = (Element) methodElement.clone();
-            methodClone.removeChild("code", nsDEX);
-            methodClone.removeChild("code", nsJVM);
-            if ((new XmlvmMethod(methodClone).equals(method))) {
-                System.out.println("Found method, removing it...");
-                methodElement.detach();
-            }
-        }
-    }
-
     @SuppressWarnings("unchecked")
     // JDOM's non-generic API.
     private List<Element> getMethodElements() {
@@ -519,7 +549,11 @@ public class XmlvmResource {
     }
 
     /**
+     * Set the XML attribute <code>vtableSize</code> that designates the number
+     * of vtable entries for this class.
+     * 
      * @param vtableSize
+     *            Size of the vtable.
      */
     @SuppressWarnings("unchecked")
     // JDOM's non-generic API.
@@ -532,6 +566,34 @@ public class XmlvmResource {
         classes.get(0).setAttribute("vtableSize", "" + vtableSize);
     }
 
+    /**
+     * Creates an additional vtable for this class. These additional vtables are
+     * created for all implemented interfaces of this class. This means, if
+     * interface I is implemented by classes A and B, both classes A and B will
+     * contain separate vtables for I. This is because A and B will most likely
+     * implement methods of I in different order so their methods cannot be
+     * mapped via one vtable. The created vtable is essentially a mapping of
+     * methods defined in an interface to methods defined in the class. The XML
+     * markup of the vtable is as follows:
+     * 
+     * <pre>
+     * &lt;vtable kind="..." name="..." size="..."&gt;
+     *     &lt;map vtableIndexInterface="..." vtableIndexClass="..."/&gt;
+     *     &lt;map vtableIndexInterface="..." vtableIndexClass="..."/&gt;
+     *     ...
+     * &lt/vtable&gt;
+     * </pre>
+     * 
+     * @param kind
+     *            The kind of vtable to be created. The only legal value
+     *            currently is <code>interface-vtable</code>.
+     * @param name
+     *            Fully qualified name of the interface for which vtable is to
+     *            be created.
+     * @param size
+     *            Size of the vtable required for the interface.
+     * @return A newly created vtable.
+     */
     public XmlvmVtable createVtable(String kind, String name, int size) {
         Element vtableElement = new Element("vtable", nsXMLVM);
         vtableElement.setAttribute("kind", kind);
@@ -542,6 +604,21 @@ public class XmlvmResource {
 
     }
 
+    /**
+     * Collects a list of all instructions whose type may need to be adjusted
+     * for a specific set of classes that comprise the application being
+     * cross-compiled (see
+     * {@link org.xmlvm.proc.out.COutputProcess#adjustTypes()}). Instructions
+     * that need to be considered are invoke-static, invoke-super, iput, iget,
+     * sput, and sget.
+     * 
+     * @param invokeInstructions
+     *            Will be filled with all invoke-static and invoke-super
+     *            instructions upon return.
+     * @param readWriteInstructions
+     *            Will be filled with all iput, iget, sput, and sget
+     *            instructions upon return.
+     */
     @SuppressWarnings("unchecked")
     public void collectInstructions(List<XmlvmInvokeInstruction> invokeInstructions,
             List<XmlvmMemberReadWrite> readWriteInstructions) {

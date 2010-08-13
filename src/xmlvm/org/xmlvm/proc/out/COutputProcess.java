@@ -54,12 +54,12 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     private Map<String, XmlvmResource> resourcePool = new HashMap<String, XmlvmResource>();
 
     /**
-     * Class {@link Vtable} represents the Vtable for one class. It is basically
-     * a list of {@link org.xmlvm.proc.XmlvmResource.XmlvmMethod} that includes
-     * all methods of that class that have an entry in the Vtable. Note that
-     * only public and protected methods have entries in the Vtable. Also note
-     * that the Vtable includes all eligible methods from all base classes. The
-     * Vtable index of a method corresponds to the list index.
+     * Class {@link Vtable} represents the Vtable for one class or interface. It
+     * is basically a list of {@link org.xmlvm.proc.XmlvmResource.XmlvmMethod}
+     * that includes all methods of that class that have an entry in the Vtable.
+     * Note that only public and protected methods have entries in the Vtable.
+     * Also note that the Vtable includes all eligible methods from all base
+     * classes. The Vtable index of a method corresponds to the list index.
      * 
      */
     static class Vtable {
@@ -292,6 +292,18 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
     }
 
+    /**
+     * The vtable of an interface also includes the vtables of all base
+     * interfaces due to multiple inheritance of Java interfaces. This means
+     * that the vtable of an interface contains all methods inherited directly
+     * or indirectly from all base interfaces.
+     * 
+     * @param vtable
+     *            vtable to which the base interface's vtables is to be added.
+     * @param resource
+     *            The interface whose base interfaces's vtables are to be
+     *            included.
+     */
     private void addAllBaseInterfaceVtables(Vtable vtable, XmlvmResource resource) {
         String interfaces = resource.getInterfaces();
         if (interfaces == null) {
@@ -305,6 +317,18 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
     }
 
+    /**
+     * Retrieves a list of all (directly or indirectly) implemented interfaces
+     * of a class. XMLVM will associate this list with a class when generating
+     * code. Having a complete list of all implemented interfaces allows for a
+     * more efficient implementation of invoke-interface.
+     * 
+     * @param resource
+     *            Class for which all implemented interfaces are to be
+     *            retrieved.
+     * @return List of interfaces (either directly or indirectly through
+     *         inheritance) that this class implements.
+     */
     private Set<XmlvmResource> getAllImplementedInterfaces(XmlvmResource resource) {
         Set<XmlvmResource> collectedInterfaces = new HashSet<XmlvmResource>();
         String interfaces = resource.getInterfaces();
@@ -383,8 +407,8 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
      * The <code>class-type</code> refers to the actual type of the object, not
      * the type where <code>member</code> is declared. This method adjusts the
      * <code>class-type</code> to the class, where it is defined. Method
-     * {@link #adjustTypes()} performs this operation for all member variables
-     * as well as static methods.
+     * {@link #adjustTypes()} performs this operation for the following
+     * instructions: invoke-static, invoke-super, iput, iget, sput, sget.
      */
     private void adjustTypes() {
         for (XmlvmResource resource : resourcePool.values()) {
@@ -414,6 +438,18 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
     }
 
+    /**
+     * Searches for the class along an inheritance hierarchy where a certain
+     * method is being declared.
+     * 
+     * @param resource
+     *            The class where the search for the method should begin.
+     * @param instruction
+     *            An invoke-static or invoke-super instruction for which a
+     *            matching method is to be searched.
+     * @return Full qualified class name of the class where a matching method
+     *         was found.
+     */
     private String searchDeclaringTypeInHierarchy(XmlvmResource resource,
             XmlvmInvokeInstruction instruction) {
         Set<XmlvmMethod> methods = resource.getMethods();
@@ -430,6 +466,23 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         return null;
     }
 
+    /**
+     * Searches for a class or interface along an inheritance hierarchy where a
+     * certain field is being declared. Note that interfaces can only contain
+     * final static fields, so searching interfaces only applies for sget and
+     * sput instructions (note that sput instructions can be generated for final
+     * static field by the Java compiler in places such as &lt;clinit&gt;). The
+     * search order is governed by section 5.4.3.2 (Field Resolution) of the
+     * Java specs.
+     * 
+     * @param resource
+     *            The class where the search for the field should begin.
+     * @param instruction
+     *            An iget, iput, sget, or sput instruction for which a matching
+     *            field is to be searched.
+     * @return Full qualified class name of the class or interface where a
+     *         matching field was found.
+     */
     private String searchDeclaringTypeInHierarchy(XmlvmResource resource,
             XmlvmMemberReadWrite instruction) {
         // Search this class
@@ -462,6 +515,11 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     }
 
     private XmlvmResource              object;
+    /**
+     * This variable caches already loaded resources. I would have expected the
+     * JavaJDKLoader to do this. Trying to load a resource a second time via
+     * JavaJDKLoader will yield in a runtime exception.
+     */
     private Map<String, XmlvmResource> alreadyLoadedResources = new HashMap<String, XmlvmResource>();
 
     private XmlvmResource getXmlvmResource(String className) {
@@ -474,10 +532,6 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
         if (resource != null) {
             return resource;
-        }
-        if (className.indexOf("[]") != -1) {
-            // Array type. Return java.lang.Object
-            return new XmlvmResource(object);
         }
         System.out.println("Loading JDK class: " + className);
         resource = (new JavaJDKLoader(new Arguments(new String[] { "--in=foo" }))).load(className);
@@ -604,11 +658,21 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         return toRet;
     }
 
-    public OutputFile genNativeSkeletons(XmlvmResource xmlvm) {
-        Document doc = xmlvm.getXmlvmDocument();
+    /**
+     * Generates C-source code skeletons for all native methods of a class. This
+     * method will be triggered by the --gen-native-skeletons option. vtable
+     * indices are correctly initialized for non-static native methods.
+     * 
+     * @param resource
+     *            Class for which skeletons are to be generated.
+     * @return Generated C-source code. If class contains no native methods,
+     *         null is returned.
+     */
+    public OutputFile genNativeSkeletons(XmlvmResource resource) {
+        Document doc = resource.getXmlvmDocument();
         // The filename will be the name of the first class
-        String namespaceName = xmlvm.getPackageName();
-        String className = xmlvm.getName().replace('$', '_');
+        String namespaceName = resource.getPackageName();
+        String className = resource.getName().replace('$', '_');
         String fileNameStem = (namespaceName + "." + className).replace('.', '_');
         String headerFileName = fileNameStem + H_EXTENSION;
         String mFileName = "native_" + fileNameStem + C_EXTENSION;
