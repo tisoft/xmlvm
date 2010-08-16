@@ -1103,8 +1103,7 @@ int main(int argc, char* argv[])
 
 <!-- This function determines, if code for a method should be emitted. No code is emitted
      if this method is a duplicate (see below) or if wrappers are to be generated and this
-     is a private method. In this case, methods whose name starts with 'xmlvm' are also
-     ignored. -->
+     is a private method. -->
 <xsl:function name="vm:shouldGenerateCodeForMethod" as="xs:boolean">
   <xsl:param name="method" as="node()"/>
   
@@ -1113,7 +1112,7 @@ int main(int argc, char* argv[])
       <xsl:value-of select="false()"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:value-of select="not($genWrapper = 'true' and ($method/@isPrivate = 'true' or starts-with($method/@name, 'xmlvm')))"/>
+      <xsl:value-of select="not($genWrapper = 'true' and $method/@isPrivate = 'true')"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
