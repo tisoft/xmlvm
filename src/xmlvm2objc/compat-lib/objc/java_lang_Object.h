@@ -44,6 +44,8 @@ typedef NSObject java_lang_Object;
 - (void) notify__;
 - (void) notifyAll__;
 
+- (void) interruptWait: (NSInteger)threadId;
+
 @end
 
 @interface java_lang_Object_members : NSObject {

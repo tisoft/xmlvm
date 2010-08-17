@@ -25,6 +25,8 @@
 #import <objc/runtime.h> // For associative references
 #import "java_lang_IllegalArgumentException.h"
 #import "java_lang_IllegalMonitorStateException.h"
+#import "java_lang_InterruptedException.h"
+#import "java_lang_Thread.h"
 
 // java.lang.Object
 //----------------------------------------------------------------------------
@@ -175,7 +177,7 @@ static char memberKey; // key for associative reference for member variables
 }
 
 /**
- * Remove a thread from the list of threads to be notified. This is only required for wait(long) when a timeout occurs.
+ * Remove a thread from the list of threads to be notified. This is only required for wait(long) when a timeout occurs or a thread is interrupted.
  * Since the index does not remain consistent, we must find the thread by id.
  */
 - (BOOL) removeThreadNotification:(NSInteger) threadId
@@ -262,6 +264,22 @@ static char memberKey; // key for associative reference for member variables
 {
 	java_lang_Object_members* members = [self getMembers];
 
+	[[java_lang_Thread currentThread__] setWaitingObject: self];
+
+	// Clear the interrupted status and determine if the interrupted status was set to TRUE before being cleared
+	BOOL alreadyInterrupted = [java_lang_Thread interrupted__];
+
+	// If the thread was interrupted entirely before a "wait" was called
+	if (alreadyInterrupted) {
+		//NSLog(@"Thread was already interrupted before the \"wait\" process began [possibly after \"wait\" was called].");
+
+		// Forego the "wait". An InterruptedException will then be thrown immediately in acquireLockAfterWait
+		[[members notifyLock] lockWhenCondition:-1];
+
+		NSInteger threadId = (NSInteger)pthread_self();
+		[[members notifyLock] unlockWithCondition:threadId];
+	}
+
 	int numLocks = [members recursiveLocks];
 	[members setRecursiveLocks:0];
 	[self syncUnlock];
@@ -271,13 +289,35 @@ static char memberKey; // key for associative reference for member variables
 
 /**
  * @param numLocks the number of recursive synchronized lock to reacquire after a wait() or wait(long) has awakened
+ * @return true if the wait was interrupted and needs to throw an interrupted exception, else false
  */
-- (void) acquireLockAfterWait:(int)numLocks
+- (BOOL) acquireLockAfterWait:(int)numLocks
 {
+	BOOL wasInterrupted = FALSE;
+
 	java_lang_Object_members* members = [self getMembers];
 
 	[self syncLock];
 	[members setRecursiveLocks:numLocks];
+
+	[[java_lang_Thread currentThread__] setWaitingObject: NULL];
+
+	// If the thread has been interrupted, clear the interrupted status & throw an exception
+	if ([java_lang_Thread interrupted__]) {
+		wasInterrupted = TRUE;
+	}
+
+	return wasInterrupted;
+}
+
+/**
+ * Once everything is unlocked and remaining notifications have been handled,
+ * this may be called to throw an InterruptedException.
+ */
+- (void) throwInterruptedException {
+	java_lang_InterruptedException* ex = [[java_lang_InterruptedException alloc] init];
+	[ex __init_java_lang_InterruptedException__];
+	@throw ex;
 }
 
 - (void) wait__
@@ -290,9 +330,13 @@ static char memberKey; // key for associative reference for member variables
 
 	int numLocks = [self releaseLockBeforeWait];
 	[[members notifyLock] lockWhenCondition:threadId];
-	[self acquireLockAfterWait:numLocks];
+	BOOL wasInterrupted = [self acquireLockAfterWait:numLocks];
 
 	[self unlockAndNotifyNext];
+
+	if (wasInterrupted) {
+		[self throwInterruptedException];
+	}
 }
 
 - (void) wait___long: (long)timeout
@@ -318,7 +362,7 @@ static char memberKey; // key for associative reference for member variables
 
 		int numLocks = [self releaseLockBeforeWait];
 		BOOL locked = [[members notifyLock] lockWhenCondition:threadId beforeDate:date];
-		[self acquireLockAfterWait:numLocks];
+		BOOL wasInterrupted = [self acquireLockAfterWait:numLocks];
 /*
 		if (locked) {
 			NSLog(@"Timed out? false");
@@ -343,7 +387,7 @@ static char memberKey; // key for associative reference for member variables
 			if (locked) {
 				// Another thread did try to notify this thread
 				// after this thread already timed out
-				NSLog(@"Tardy notification handled on thread %i", threadId);
+				//NSLog(@"Tardy notification handled on thread %i", threadId);
 			} else {
 				// Lock without a condition
 				[[members notifyLock] lockWhenCondition:-1];
@@ -351,6 +395,10 @@ static char memberKey; // key for associative reference for member variables
 		}
 
 		[self unlockAndNotifyNext];
+
+		if (wasInterrupted) {
+			[self throwInterruptedException];
+		}
 	}
 }
 
@@ -376,15 +424,32 @@ static char memberKey; // key for associative reference for member variables
 	[self unlockAndNotifyNext];
 }
 
-/****************************************/
+/**
+ * Notify a specific waiting thread immediately after marking the thread as interrupted.
+ * This is called from java_lang_Thread to interrupt a thread that is definitely waiting on this object.
+ * This is only called while synchronized on the java_lang_Thread.
+ */
+- (void) interruptWait: (NSInteger)threadId {
+	// It is safe to synchronize on the waiting object since if the thread is waiting, it released the object's monitor.
+	// OR if another thread is sleeping while synchronized on the object, the waiting thread will have to wait for its interruption until the sleep to finishes anyways.
+	[self acquireLockRecursive]; // start synchronized block
 
-//- (void)dealloc {
-//
-//// TODO is it okay to have this method since this IS currently a category of NSObject? I.e. I want to make sure the real dealloc is called & I can't call super dealloc on NSObject
-//
-//	objc_setAssociatedObject(self, &memberKey, nil, OBJC_ASSOCIATION_ASSIGN);
-//	[super dealloc];
-//}
+	// Remove the thread from the list of threads to be notified since it will be interrupted
+	BOOL found = [self removeThreadNotification:threadId];
+	if (found) {
+		java_lang_Object_members* members = [self getMembers];
+
+		[[members notifyLock] lockWhenCondition:-1];
+		//NSLog(@"Interrupting thread %i", threadId);
+		[[members notifyLock] unlockWithCondition:threadId];
+	} else {
+		//NSLog(@"Thread is not currently in the waiting list.");
+	}
+
+	[self releaseLockRecursive]; // finish synchronized block
+}
+
+/****************************************/
 
 @end
 

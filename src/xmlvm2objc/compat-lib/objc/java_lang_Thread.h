@@ -21,17 +21,20 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 #import "java_lang_Runnable.h"
+#import "java_lang_String.h"
 
 @interface java_lang_Thread : java_lang_Object<java_lang_Runnable> {
 
 id<java_lang_Runnable> runnable;
 NSThread*              thread;
+pthread_t              m_pthread_t; // Used solely to get the thread id
+BOOL interrupted;
+java_lang_Object* waitingObj; // the object the thread is synchronized & waiting on (this is used to interrupt a wait)
 
 }
 
 + (void) initialize;
 - (id) init;
-- (id) initWithCurrentThread;
 - (void) dealloc;
 - (void) __init_java_lang_Thread__;
 - (void) __init_java_lang_Thread___java_lang_Runnable: (id<java_lang_Runnable>) r;
@@ -41,5 +44,11 @@ NSThread*              thread;
 - (void) join__;
 + (void) sleep___long: (long) millis;
 + (java_lang_Thread*) currentThread__;
+- (void) setWaitingObject: (java_lang_Object*) obj;
+- (void) interrupt__;
++ (BOOL) interrupted__;
+- (BOOL) isInterrupted__;
+- (java_lang_String*) getName__;
+- (void) setName___java_lang_String:(java_lang_String*)name;
 
 @end
