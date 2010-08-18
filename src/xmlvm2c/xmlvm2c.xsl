@@ -534,12 +534,20 @@ int main(int argc, char* argv[])
     
     <!-- If there is a Java class initializer, call it. -->
     <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
-      <xsl:text>&nl;    </xsl:text>
+      <xsl:text>    </xsl:text>
       <xsl:value-of select="vm:fixname(@package)"/>
       <xsl:text>_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>___CLINIT_();</xsl:text>
     </xsl:if>
+    
+    <xsl:if test="$genWrapper = 'true'">
+      <xsl:text>    //XMLVM_BEGIN_WRAPPER[__INIT_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>]&nl;</xsl:text>
+      <xsl:text>    //XMLVM_END_WRAPPER</xsl:text>
+    </xsl:if>
+
     <xsl:text>&nl;}&nl;&nl;</xsl:text>
     
     <!-- Emit 'new' method -->
@@ -586,19 +594,29 @@ int main(int argc, char* argv[])
         <xsl:text>;&nl;</xsl:text>
       </xsl:if>
     </xsl:for-each>
+    <xsl:if test="$genWrapper = 'true'">
+      <xsl:text>    //XMLVM_BEGIN_WRAPPER[__NEW_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>]&nl;</xsl:text>
+      <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
+    </xsl:if>
     <xsl:text>    return me;&nl;}&nl;&nl;</xsl:text>
 
     <!-- Emit destructor -->
     <xsl:text>void __DELETE_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>(JAVA_OBJECT me)&nl;{&nl;</xsl:text>
+    <xsl:if test="$genWrapper = 'true'">
+      <xsl:text>    //XMLVM_BEGIN_WRAPPER[__DELETE_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>]&nl;</xsl:text>
+      <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
+    </xsl:if>
     <xsl:if test="vm:method[@name='finalize' and 
                         not(vm:signature/vm:parameter) and 
                         vm:signature/vm:return[@type='void']]">
-      <xsl:text>XMLVM_ERROR("Need to call finalize()");&nl;</xsl:text>
-      <xsl:text>    //this->finalize_</xsl:text>
-      <xsl:value-of select="vm:fixname(concat(@package, '.', @name))"/>
-      <xsl:text>__();&nl;</xsl:text>
+      <xsl:text>    // Call finalize()&nl;</xsl:text>
+      <xsl:text>    (*(void (*)(JAVA_OBJECT)) ((java_lang_Object*) me)->__class->vtable[XMLVM_VTABLE_IDX_java_lang_Object_finalize_java_lang_Object__])(me);&nl;</xsl:text>
     </xsl:if>
 	<xsl:text>}&nl;&nl;</xsl:text>
 
