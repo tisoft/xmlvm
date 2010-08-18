@@ -343,8 +343,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private TypePlusSuperType process(DirectClassFile cf, Element root, Set<String> referencedTypes) {
         cf.setAttributeFactory(StdAttributeFactory.THE_ONE);
         cf.getMagic();
+
+        boolean skeletonOnly = hasSkeletonOnlyAnnotation(cf.getAttributes());
+
         Element classElement = processClass(cf, root, referencedTypes);
-        processFields(cf.getFields(), classElement, referencedTypes);
+        processFields(cf.getFields(), classElement, referencedTypes, skeletonOnly);
 
         MethodList methods = cf.getMethods();
         int sz = methods.size();
@@ -358,8 +361,14 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 continue;
             }
 
+            if (skeletonOnly && (one.getAccessFlags() & AccessFlags.ACC_PUBLIC) == 0) {
+                // We only want to generate skeletons. This method is not public
+                // so simply ignore it.
+                continue;
+            }
+
             try {
-                processMethod(one, cf, classElement, referencedTypes);
+                processMethod(one, cf, classElement, referencedTypes, skeletonOnly);
             } catch (RuntimeException ex) {
                 String msg = "...while processing " + one.getName().toHuman() + " "
                         + one.getDescriptor().toHuman();
@@ -426,14 +435,21 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     /**
      * Processes the fields and adds corresponding elements to the class
      * element.
+     * 
+     * @param skeletonOnly
      */
     private static void processFields(FieldList fieldList, Element classElement,
-            Set<String> referencedTypes) {
+            Set<String> referencedTypes, boolean skeletonOnly) {
         for (int i = 0; i < fieldList.size(); ++i) {
             Field field = fieldList.get(i);
             if (hasIgnoreAnnotation(field.getAttributes())) {
                 // If this field has the @XMLVMIgnore annotation, we just
                 // simply ignore it.
+                continue;
+            }
+            if (skeletonOnly && (field.getAccessFlags() & AccessFlags.ACC_PUBLIC) == 0) {
+                // This field is not public and we want to generate only a
+                // skeleton, so we just simply ignore it.
                 continue;
             }
             Element fieldElement = new Element("field", NS_XMLVM);
@@ -500,7 +516,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      *            will be filled with the types references in this class file
      */
     private static void processMethod(Method method, DirectClassFile cf, Element classElement,
-            Set<String> referencedTypes) {
+            Set<String> referencedTypes, boolean skeletonOnly) {
         final boolean localInfo = true;
         final int positionInfo = PositionList.LINES;
 
@@ -508,9 +524,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
 
         // Extract flags for this method.
         int accessFlags = method.getAccessFlags();
-        if (hasIgnoreImplementationAnnotation(method.getAttributes())) {
-            // If this method has the @XMLVMIgnoreImplementation annotation we
-            // mark it artificially as abstract
+        if (skeletonOnly) {
+            // Only generate a skeleton for this class. We do this by
+            // artificially making the method abstract.
             accessFlags |= AccessFlags.ACC_ABSTRACT;
         }
         boolean isNative = AccessFlags.isNative(accessFlags);
@@ -1269,16 +1285,15 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     }
 
     /**
-     * Returns true if annotation {@link org.xmlvm.XMLVMIgnoreImplementation} is
-     * found.
+     * Returns true if annotation {@link org.xmlvm.XMLVMSkeletonOnly} is found.
      */
-    private static boolean hasIgnoreImplementationAnnotation(AttributeList attrs) {
+    private static boolean hasSkeletonOnlyAnnotation(AttributeList attrs) {
         BaseAnnotations a = (BaseAnnotations) attrs
                 .findFirst(AttRuntimeInvisibleAnnotations.ATTRIBUTE_NAME);
         if (a != null) {
             for (Annotation an : a.getAnnotations().getAnnotations()) {
-                if (an.getType().getClassType().getClassName().equals(
-                        "org/xmlvm/XMLVMIgnoreImplementation")) {
+                if (an.getType().getClassType().getClassName()
+                        .equals("org/xmlvm/XMLVMSkeletonOnly")) {
                     return true;
                 }
             }

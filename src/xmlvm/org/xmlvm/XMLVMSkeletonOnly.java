@@ -24,12 +24,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * This annotation can be applied to methods, in which case the referring
- * method's implementation is omitted from the resulting XMLVM, thereby making
- * it artificially an abstract method.
+ * This annotation can be applied to classes, in which case the resulting XMLVM
+ * will only contain a skeleton of this class. Private fields and methods are
+ * ignored. Public methods are artificially marked as abstract thereby removing
+ * their implementation.
  * 
  */
 @Retention(RetentionPolicy.CLASS)
-public @interface XMLVMIgnoreImplementation {
+public @interface XMLVMSkeletonOnly {
 
 }
