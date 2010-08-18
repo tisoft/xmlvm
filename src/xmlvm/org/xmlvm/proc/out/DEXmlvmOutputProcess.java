@@ -344,7 +344,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         cf.setAttributeFactory(StdAttributeFactory.THE_ONE);
         cf.getMagic();
 
-        boolean skeletonOnly = hasSkeletonOnlyAnnotation(cf.getAttributes());
+        boolean skeletonOnly = hasSkeletonOnlyAnnotation(cf.getAttributes())
+                && !arguments.option_gen_wrapper();
 
         Element classElement = processClass(cf, root, referencedTypes);
         processFields(cf.getFields(), classElement, referencedTypes, skeletonOnly);
