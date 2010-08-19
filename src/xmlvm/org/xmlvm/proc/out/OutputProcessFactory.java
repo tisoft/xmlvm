@@ -54,8 +54,6 @@ public class OutputProcessFactory {
             return new JavaScriptOutputProcess(arguments);
         case PYTHON:
             return new PythonOutputProcess(arguments);
-        case CPP:
-            return new CppOutputProcess(arguments);
         case C:
             return new COutputProcess(arguments);
         case OBJC:

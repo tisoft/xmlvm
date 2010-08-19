@@ -86,7 +86,7 @@ public class Arguments {
     private static final String[] shortUsage                  = {
             "Usage: ",
             "xmlvm [--in=<path> [--out=<dir>]]",
-            "      [--target=[xmlvm|dexmlvm|jvm|clr|dfa|class|exe|dex|js|cpp|c|python|objc|iphone|qooxdoo|webos]]",
+            "      [--target=[xmlvm|dexmlvm|jvm|clr|dfa|class|exe|dex|js|c|python|objc|iphone|qooxdoo|webos]]",
             "      [--skeleton=<type>]", "      [--lib=<name>", "      [--app-name=<app-name>]",
             "      [--resource=<path>]", "      [--qx-main=<main-class> [--qx-debug]]",
             "      [--debug=[none|error|warning|all]]", "      [--version] [--help]" };
@@ -110,7 +110,6 @@ public class Arguments {
             "    js               JavaScript",
             "    jsandroid        Android to JS (experimental)",
             "    c                C source code",
-            "    cpp              C++ source code",
             "    python           Python",
             "    objc             Objective C source code",
             "    iphone           iPhone Objective-C",

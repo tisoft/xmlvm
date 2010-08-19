@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src/xmlvm"/>
 	<classpathentry kind="src" path="src/xmlvm2c"/>
-	<classpathentry kind="src" path="src/xmlvm2cpp"/>
 	<classpathentry kind="src" path="src/xmlvm2js"/>
 	<classpathentry kind="src" path="src/clr2jvm/xsl"/>
 	<classpathentry kind="src" path="src/clr2jvm/compat-lib/Java"/>
