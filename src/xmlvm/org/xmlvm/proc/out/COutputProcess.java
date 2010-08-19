@@ -559,7 +559,8 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
         StringBuffer headerBuffer = new StringBuffer();
         headerBuffer.append("#include \"xmlvm.h\"\n");
-        for (String i : getTypesForHeader(doc)) {
+        List<String> typesForHeader = getTypesForHeader(doc.getRootElement());
+        for (String i : typesForHeader) {
             if (i.equals(inheritsFrom)) {
                 headerBuffer.append("#include \"" + i + ".h\"\n");
             }
@@ -572,7 +573,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
             }
         }
         headerBuffer.append("\n// Circular references:\n");
-        for (String i : getTypesForHeader(doc)) {
+        for (String i : typesForHeader) {
             headerBuffer.append("#ifndef XMLVM_FORWARD_DECL_" + i + "\n");
             headerBuffer.append("#define XMLVM_FORWARD_DECL_" + i + "\n");
             headerBuffer.append("XMLVM_FORWARD_DECL(" + i + ")\n");
@@ -586,7 +587,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         headerFile.setFileName(headerFileName);
 
         StringBuffer mBuffer = new StringBuffer();
-        for (String i : getTypesForHeader(doc)) {
+        for (String i : typesForHeader) {
             String toIgnore = (namespaceName + "_" + className).replace('.', '_');
             if (!i.equals(inheritsFrom) && !i.equals(toIgnore)) {
                 mBuffer.append("#include \"" + i + ".h\"\n");
@@ -602,47 +603,57 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         return new OutputFile[] { headerFile, mFile };
     }
 
-    private List<String> getTypesForHeader(Document doc) {
+    private List<String> getTypesForHeader(Element node) {
         HashSet<String> seen = new HashSet<String>();
-        @SuppressWarnings("unchecked")
-        Iterator<Object> i = doc.getDescendants();
-        while (i.hasNext()) {
-            Object cur = i.next();
-            if (cur instanceof Element) {
-                Attribute a = ((Element) cur).getAttribute("type");
-                if (a != null) {
-                    seen.add(a.getValue());
-                }
-                a = ((Element) cur).getAttribute("extends");
-                if (a != null && !a.getValue().equals("")) {
-                    seen.add(a.getValue());
-                }
-                a = ((Element) cur).getAttribute("interfaces");
-                if (a != null) {
-                    for (String iface : a.getValue().split(",")) {
-                        seen.add(iface);
-                    }
-                }
-                a = ((Element) cur).getAttribute("class-type");
-                if (a != null) {
-                    seen.add(a.getValue());
-                }
-                if (((Element) cur).getName().equals("const-class")) {
-                    a = ((Element) cur).getAttribute("value");
-                    if (a != null) {
-                        seen.add(a.getValue());
-                    }
-                }
-                a = ((Element) cur).getAttribute("kind");
-                if (a != null && a.getValue().equals("type")) {
-                    a = ((Element) cur).getAttribute("value");
-                    if (a != null) {
-                        seen.add(a.getValue());
-                    }
-                }
-            } else {
-                System.out.println(cur);
+        for (Object o : node.getChildren()) {
+            if (!(o instanceof Element)) {
+                continue;
             }
+            Element cur = (Element) o;
+            // If we generate a wrapper, do not collect types for private
+            // fields, private methods or the code-segment of public methods
+            if (arguments.option_gen_wrapper()) {
+                String name = cur.getName();
+                if (name.equals("code")) {
+                    continue;
+                }
+                String isPrivate = cur.getAttributeValue("isPrivate");
+                if ((name.equals("method") || name.equals("field")) && isPrivate != null) {
+                    continue;
+                }
+            }
+            Attribute a = cur.getAttribute("type");
+            if (a != null) {
+                seen.add(a.getValue());
+            }
+            a = cur.getAttribute("extends");
+            if (a != null && !a.getValue().equals("")) {
+                seen.add(a.getValue());
+            }
+            a = cur.getAttribute("interfaces");
+            if (a != null) {
+                for (String iface : a.getValue().split(",")) {
+                    seen.add(iface);
+                }
+            }
+            a = cur.getAttribute("class-type");
+            if (a != null) {
+                seen.add(a.getValue());
+            }
+            if (cur.getName().equals("const-class")) {
+                a = cur.getAttribute("value");
+                if (a != null) {
+                    seen.add(a.getValue());
+                }
+            }
+            a = cur.getAttribute("kind");
+            if (a != null && a.getValue().equals("type")) {
+                a = cur.getAttribute("value");
+                if (a != null) {
+                    seen.add(a.getValue());
+                }
+            }
+            seen.addAll(getTypesForHeader(cur));
         }
         HashSet<String> bad = new HashSet<String>();
         for (String t : new String[] { "char", "float", "double", "int", "void", "boolean",
