@@ -249,7 +249,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         // Add all methods from base classes to vtable
         Vtable baseClassVtable = vtables.get(baseClassName);
         Vtable thisClassVtable = baseClassVtable.clone();
-        Set<XmlvmMethod> methods = resource.getMethods();
+        List<XmlvmMethod> methods = resource.getMethods();
         for (XmlvmMethod method : methods) {
             if (method.isConstructor() || method.isStatic() || method.isPrivate()) {
                 continue;
@@ -358,7 +358,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
      */
     private void annotateVtableInvokes() {
         for (XmlvmResource resource : resourcePool.values()) {
-            Set<XmlvmMethod> methods = resource.getMethods();
+            List<XmlvmMethod> methods = resource.getMethods();
             for (XmlvmMethod method : methods) {
                 for (XmlvmInvokeInstruction instruction : method.getVtableInvokeInstructions()) {
                     String className = instruction.getClassType();
@@ -452,7 +452,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
      */
     private String searchDeclaringTypeInHierarchy(XmlvmResource resource,
             XmlvmInvokeInstruction instruction) {
-        Set<XmlvmMethod> methods = resource.getMethods();
+        List<XmlvmMethod> methods = resource.getMethods();
         for (XmlvmMethod method : methods) {
             if (method.doesOverrideMethod(instruction)) {
                 return resource.getFullName();
@@ -486,7 +486,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     private String searchDeclaringTypeInHierarchy(XmlvmResource resource,
             XmlvmMemberReadWrite instruction) {
         // Search this class
-        Set<XmlvmField> fields = resource.getFields();
+        List<XmlvmField> fields = resource.getFields();
         for (XmlvmField field : fields) {
             if (field.matchesName(instruction)) {
                 return resource.getFullName();

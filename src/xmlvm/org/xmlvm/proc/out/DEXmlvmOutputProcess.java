@@ -362,8 +362,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 continue;
             }
 
-            if (skeletonOnly && (one.getAccessFlags() & AccessFlags.ACC_PUBLIC) == 0) {
-                // We only want to generate skeletons. This method is not public
+            if (skeletonOnly && (one.getAccessFlags() & AccessFlags.ACC_PRIVATE) == 1) {
+                // We only want to generate skeletons. This method is private
                 // so simply ignore it.
                 continue;
             }
@@ -448,8 +448,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 // simply ignore it.
                 continue;
             }
-            if (skeletonOnly && (field.getAccessFlags() & AccessFlags.ACC_PUBLIC) == 0) {
-                // This field is not public and we want to generate only a
+            if (skeletonOnly && (field.getAccessFlags() & AccessFlags.ACC_PRIVATE) == 1) {
+                // This field is private and we want to generate only a
                 // skeleton, so we just simply ignore it.
                 continue;
             }

@@ -21,7 +21,6 @@
 package org.xmlvm.proc;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -503,8 +502,8 @@ public class XmlvmResource {
     /**
      * Returns all methods defined in this resource.
      */
-    public Set<XmlvmMethod> getMethods() {
-        Set<XmlvmMethod> result = new HashSet<XmlvmMethod>();
+    public List<XmlvmMethod> getMethods() {
+        List<XmlvmMethod> result = new ArrayList<XmlvmMethod>();
         List<Element> methods = getMethodElements();
         for (Element method : methods) {
             result.add(new XmlvmMethod(method));
@@ -516,8 +515,8 @@ public class XmlvmResource {
      * Returns all fields defined in this resource.
      */
     @SuppressWarnings("unchecked")
-    public Set<XmlvmField> getFields() {
-        Set<XmlvmField> result = new HashSet<XmlvmField>();
+    public List<XmlvmField> getFields() {
+        List<XmlvmField> result = new ArrayList<XmlvmField>();
         List<Element> classes = xmlvmDocument.getRootElement().getChildren("class", nsXMLVM);
         for (Element clazz : classes) {
             List<Element> fields = clazz.getChildren("field", nsXMLVM);
@@ -526,7 +525,6 @@ public class XmlvmResource {
             }
         }
         return result;
-
     }
 
     /**
