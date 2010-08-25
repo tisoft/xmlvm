@@ -19,6 +19,8 @@
  */
 
 #import "java_lang_Thread.h"
+#import "java_lang_System.h"
+#import "java_lang_IllegalArgumentException.h"
 #include <pthread.h>
 
 static NSMutableDictionary* threadMap;
@@ -37,6 +39,7 @@ static NSMutableDictionary* threadMap;
 	runnable = [self retain];
 	interrupted = FALSE;
 	waitingObj = NULL; // no need for [NSNull null] since this object is never referenced by generated source code
+	alive = FALSE;
 	[threadMap setObject:self forKey:[NSValue valueWithNonretainedObject:thread]];
 	return self;
 }
@@ -76,7 +79,23 @@ static NSMutableDictionary* threadMap;
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	m_pthread_t = pthread_self();
+
+	@synchronized (self) {
+		alive = TRUE;
+	}
 	[runnable run__];
+	@synchronized (self) {
+		alive = FALSE;
+	}
+
+	[self acquireLockRecursive];
+	@try {
+		// Notify the thread is finished
+		[self notifyAll__];
+	} @finally {
+		[self releaseLockRecursive];
+	}
+
 	[self release];
 	[pool release];
 }
@@ -92,21 +111,65 @@ static NSMutableDictionary* threadMap;
 	[thread start];
 }
 
-- (void) join__
++ (void) sleep___long: (long) millis
 {
-	// TODO throw InterruptedException if interrupted and clear the interrupted status
+	java_lang_Object* obj = [[java_lang_Object alloc] init];
+	[obj __init_java_lang_Object__];
 
-	// TODO don't do busy-wait
-	while (![thread isFinished]) {
-		[NSThread sleepForTimeInterval:0.1];
+	[obj acquireLockRecursive];
+	@try {
+		// Since no other thread has access to this object, it will never be
+		// notified. It will either timeout or be interrupted.
+		[obj wait___long:millis];
+	} @finally {
+		[obj releaseLockRecursive];
+		[obj release];
 	}
 }
 
-+ (void) sleep___long: (long) millis
-{
-	// TODO throw InterruptedException if interrupted and clear the interrupted status
+- (BOOL) isAlive__ {
+	BOOL result = FALSE;
+	@synchronized (self) {
+		result = alive;
+	}
+	return result;
+}
 
-	[NSThread sleepForTimeInterval: (double) millis / 1000.0];
+- (void) join___long:(long)millis {
+	[self acquireLockRecursive];
+	@try {
+		long base = [java_lang_System currentTimeMillis__];
+		long now = 0;
+
+		if (millis < 0) {
+			java_lang_IllegalArgumentException* ex = [[java_lang_IllegalArgumentException alloc] init];
+			[ex __init_java_lang_IllegalArgumentException___java_lang_String:[NSMutableString stringWithString:@"timeout value is negative"]];
+			@throw ex;
+		}
+
+		if (millis == 0) {
+			while ([self isAlive__]) {
+				[self wait___long:0];
+			}
+		} else {
+			BOOL done = FALSE;
+			while (!done && [self isAlive__]) {
+				long delay = millis - now;
+				if (delay <= 0) {
+					done = TRUE;
+				} else {
+					[self wait___long:delay];
+					now = [java_lang_System currentTimeMillis__] - base;
+				}
+			}
+		}
+	} @finally {
+		[self releaseLockRecursive];
+	}
+}
+
+- (void) join__ {
+	[self join___long:0];
 }
 
 + (java_lang_Thread*) currentThread__
@@ -140,18 +203,9 @@ static NSMutableDictionary* threadMap;
 	@synchronized (self) {
 		interrupted = TRUE;
 
-		// If in a wait(), wait(long), wait(long, int)
 		if (waitingObj != NULL) {
 			objectForInterrupt = waitingObj;
-		}
-		// If in a join(), join(long), join(long, int), sleep(long) or sleep(long, int)
-//		else if (?) {
-// TODO throw an InterruptedException from the thread where it's sleeping or joining and clear the interrupted status. Although this is a reference to the thread, this code is not actually running in that thread. Otherwise, it couldn't be sleeping or joining.
-// TODO if a Thread has already been interrupted before sleeping or joining, it still throws an InterruptedException when it attempts to sleep or join
-//		}
-		else {
-			// Thread is not waiting, sleeping or joining.
-			// Do nothing. Thread is now marked interrupted.
+			[objectForInterrupt retain];
 		}
 	}
 
@@ -160,6 +214,7 @@ static NSMutableDictionary* threadMap;
 	if (objectForInterrupt != NULL) {
 		NSInteger threadId = (NSInteger)m_pthread_t;
 		[objectForInterrupt interruptWait:threadId];
+		[objectForInterrupt release];
 	}
 }
 

@@ -30,6 +30,7 @@ NSThread*              thread;
 pthread_t              m_pthread_t; // Used solely to get the thread id
 BOOL interrupted;
 java_lang_Object* waitingObj; // the object the thread is synchronized & waiting on (this is used to interrupt a wait)
+BOOL alive;
 
 }
 
@@ -41,7 +42,9 @@ java_lang_Object* waitingObj; // the object the thread is synchronized & waiting
 - (void) threadCallback: (id) arg;
 - (void) run__;
 - (void) start__;
+- (BOOL) isAlive__;
 - (void) join__;
+- (void) join___long:(long)millis;
 + (void) sleep___long: (long) millis;
 + (java_lang_Thread*) currentThread__;
 - (void) setWaitingObject: (java_lang_Object*) obj;

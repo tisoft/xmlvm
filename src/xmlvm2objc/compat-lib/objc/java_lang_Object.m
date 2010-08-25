@@ -258,13 +258,18 @@ static char memberKey; // key for associative reference for member variables
 }
 
 /**
- * @return the number of recursive synchronized locks on this object when wait() or wait(long) was called 
+ * @return the number of recursive synchronized locks on this object when
+ *         wait() or wait(long) was called. If the thread was already
+ *         interrupted, this value will be negated.
  */
 - (int) releaseLockBeforeWait
 {
 	java_lang_Object_members* members = [self getMembers];
 
 	[[java_lang_Thread currentThread__] setWaitingObject: self];
+
+	int numLocks = [members recursiveLocks];
+	[members setRecursiveLocks:0];
 
 	// Clear the interrupted status and determine if the interrupted status was set to TRUE before being cleared
 	BOOL alreadyInterrupted = [java_lang_Thread interrupted__];
@@ -278,33 +283,54 @@ static char memberKey; // key for associative reference for member variables
 
 		NSInteger threadId = (NSInteger)pthread_self();
 		[[members notifyLock] unlockWithCondition:threadId];
+
+		numLocks = -numLocks;
 	}
 
-	int numLocks = [members recursiveLocks];
-	[members setRecursiveLocks:0];
 	[self syncUnlock];
 
 	return numLocks;
 }
 
 /**
+ * @param locked true if notifyLock was locked, else false (such as during a wait(long) timeout)
  * @param numLocks the number of recursive synchronized lock to reacquire after a wait() or wait(long) has awakened
- * @return true if the wait was interrupted and needs to throw an interrupted exception, else false
+ * @param numLocks
+ *            the number of recursive synchronized locks to reacquire after a
+ *            wait() or wait(long) has awakened. If this value is negative,
+ *            use the absolute value and throw an InterruptedException.
+ * @return true if the thread was interrupted and needs to throw an interrupted exception, else false
  */
-- (BOOL) acquireLockAfterWait:(int)numLocks
+- (BOOL) acquireLockAfterWait:(BOOL)locked:(int)numLocks
 {
 	BOOL wasInterrupted = FALSE;
 
 	java_lang_Object_members* members = [self getMembers];
 
+	// If it gained the lock, release the lock before synchronization to
+	// avoid a possible deadlock where this thread has the notifyLock
+	// and wants synchronization, but a notify thread has vice versa.
+	// It will be regained below.
+	if (locked) {
+		[[members notifyLock] unlockWithCondition:-1];
+	}
+
 	[self syncLock];
-	[members setRecursiveLocks:numLocks];
 
 	[[java_lang_Thread currentThread__] setWaitingObject: NULL];
 
 	// If the thread has been interrupted, clear the interrupted status & throw an exception
 	if ([java_lang_Thread interrupted__]) {
 		wasInterrupted = TRUE;
+	} else if (numLocks < 0) {
+		numLocks = -numLocks;
+		wasInterrupted = TRUE;
+	}
+
+	[members setRecursiveLocks:numLocks];
+
+	if (locked) {
+		[[members notifyLock] lockWhenCondition:-1];
 	}
 
 	return wasInterrupted;
@@ -330,7 +356,7 @@ static char memberKey; // key for associative reference for member variables
 
 	int numLocks = [self releaseLockBeforeWait];
 	[[members notifyLock] lockWhenCondition:threadId];
-	BOOL wasInterrupted = [self acquireLockAfterWait:numLocks];
+	BOOL wasInterrupted = [self acquireLockAfterWait:TRUE:numLocks];
 
 	[self unlockAndNotifyNext];
 
@@ -362,7 +388,7 @@ static char memberKey; // key for associative reference for member variables
 
 		int numLocks = [self releaseLockBeforeWait];
 		BOOL locked = [[members notifyLock] lockWhenCondition:threadId beforeDate:date];
-		BOOL wasInterrupted = [self acquireLockAfterWait:numLocks];
+		BOOL wasInterrupted = [self acquireLockAfterWait:locked:numLocks];
 /*
 		if (locked) {
 			NSLog(@"Timed out? false");
