@@ -170,7 +170,7 @@ extern XMLVM_JMP_BUF xmlvm_exception_env;
 extern JAVA_OBJECT xmlvm_exception;
 
 void xmlvm_unimplemented_native_method();
-
+void XMLVM_NOT_IMPLEMENTED();
 void XMLVM_ERROR(const char* msg);
 
 #endif

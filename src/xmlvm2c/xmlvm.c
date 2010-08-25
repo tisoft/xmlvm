@@ -359,6 +359,11 @@ void xmlvm_unimplemented_native_method()
 	XMLVM_ERROR("Unimplemented native method");
 }
 
+void XMLVM_NOT_IMPLEMENTED()
+{
+	XMLVM_ERROR("Unimplemented wrapper method");
+}
+
 void XMLVM_ERROR(const char* msg)
 {
     printf("XMLVM Error: '%s'\n", msg);

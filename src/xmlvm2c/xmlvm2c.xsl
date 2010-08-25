@@ -300,6 +300,25 @@ int main(int argc, char* argv[])
     <xsl:text>;&nl;</xsl:text>
     <xsl:text>#endif&nl;&nl;</xsl:text>
     
+    <!--  Emit symbolic constants for Vtable entries -->
+    <xsl:text>#define XMLVM_VTABLE_SIZE_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="@vtableSize"/>
+    <xsl:text>&nl;</xsl:text>
+    <xsl:for-each select="vm:method[@vtableIndex]">
+      <xsl:text>#define XMLVM_VTABLE_IDX_</xsl:text>
+      <xsl:call-template name="emitMethodName">
+        <xsl:with-param name="name" select="@name"/>
+        <xsl:with-param name="class-type" select="concat(../@package, '.', ../@name)"/>
+      </xsl:call-template>
+      <xsl:call-template name="appendSignature"/>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="@vtableIndex"/>
+      <xsl:text>&nl;</xsl:text>
+    </xsl:for-each>
+    <xsl:text>&nl;</xsl:text>
+
     <!-- Emit interface initializers -->
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
@@ -699,6 +718,7 @@ int main(int argc, char* argv[])
               </xsl:call-template>
               <xsl:call-template name="appendSignature"/>
               <xsl:text>]&nl;</xsl:text>
+              <xsl:text>    XMLVM_NOT_IMPLEMENTED();&nl;</xsl:text>
               <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
             </xsl:when>
             <xsl:otherwise>
