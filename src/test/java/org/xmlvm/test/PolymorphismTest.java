@@ -34,6 +34,7 @@ public class PolymorphismTest {
     private int privateMember;
 
     public PolymorphismTest() {
+        Log(this.getClass().getName());
         publicMember = 1;
         privateMember = 2;
     }
@@ -95,6 +96,7 @@ public class PolymorphismTest {
 
     interface Iface {
         public void ifaceMethod();
+        final public static int ifaceInt = 42;
     }
 
     static class DerivedIface extends PolymorphismTest implements Iface {
@@ -108,6 +110,7 @@ public class PolymorphismTest {
     }
     
     public static void main(String[] args) {
+        Log(PolymorphismTest.class.getName());
         PolymorphismTest a = new PolymorphismTest();
         a.print();
         Log(a.publicMember);
@@ -149,6 +152,8 @@ public class PolymorphismTest {
         }
         Log("===============");
         DerivedIface c = new DerivedIface();
+        Log(Iface.ifaceInt);
+        Log(c.ifaceInt);
         c.print();
         c.ifaceMethod();
         Log(c.publicMember);
@@ -161,5 +166,7 @@ public class PolymorphismTest {
         }
         Log("===============");
         doCast(b);
+        Class<?> cl = int.class;
+        Log(cl.getName());
     }
 }
