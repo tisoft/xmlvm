@@ -248,4 +248,9 @@ public class Resources {
     private Context getContext() {
         return context == null ? null : context.get();
     }
+
+    public float getDimension(int id) {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 }
