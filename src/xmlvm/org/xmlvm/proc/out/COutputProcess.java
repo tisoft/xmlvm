@@ -53,6 +53,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
     private Map<String, XmlvmResource> resourcePool = new HashMap<String, XmlvmResource>();
 
+
     /**
      * Class {@link Vtable} represents the Vtable for one class or interface. It
      * is basically a list of {@link org.xmlvm.proc.XmlvmResource.XmlvmMethod}
@@ -65,6 +66,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     static class Vtable {
 
         private List<XmlvmMethod> virtualMethods;
+
 
         /**
          * Constructs an empty {@link Vtable}.
@@ -236,13 +238,18 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
      *            {@link #XmlvmResource} for which to compute the Vtable.
      */
     private void computeVtable(XmlvmResource resource) {
-        if (vtables.containsKey(resource.getFullName())) {
+        if (resource == null || vtables.containsKey(resource.getFullName())) {
             return;
         }
 
         String baseClassName = resource.getSuperTypeName();
         if (!vtables.containsKey(baseClassName)) {
             XmlvmResource baseClass = getXmlvmResource(baseClassName);
+            if (baseClass == null) {
+                // When we don't have the base class, we cannot calculate the
+                // vtable for this class.
+                return;
+            }
             computeVtable(baseClass);
         }
 
@@ -336,6 +343,9 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         if (interfaces != null) {
             for (String iface : interfaces.split(",")) {
                 XmlvmResource ifaceResource = getXmlvmResource(iface);
+                if (ifaceResource == null) {
+                    continue;
+                }
                 Set<XmlvmResource> baseInterfaces = getAllImplementedInterfaces(ifaceResource);
                 computeVtable(ifaceResource);
                 collectedInterfaces.add(ifaceResource);
@@ -371,7 +381,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                     }
                     Vtable vtable = vtables.get(className);
                     if (vtable == null) {
-                        System.out.println("WARNING: couldn't find vtable for " + className);
+                        Log.warn("Couldn't find vtable for " + className);
                         continue;
                     }
                     instruction.setVtableIndex(vtable.getVtableIndex(instruction));
@@ -391,8 +401,10 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
      *     public int member;
      * }
      * 
+     * 
      * class Derived extends Base {
      * }
+     * 
      * 
      * Derived d = new Derived();
      * </pre>
@@ -418,9 +430,12 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
             for (XmlvmInvokeInstruction instr : invokeInstructions) {
                 String classType = instr.getClassType();
                 XmlvmResource classTypeResource = getXmlvmResource(classType);
+                if (classTypeResource == null) {
+                    continue;
+                }
                 String type = searchDeclaringTypeInHierarchy(classTypeResource, instr);
                 if (type == null) {
-                    System.out.println("WARNING: problem with adjusting type for " + classType);
+                    Log.warn(TAG, "Problem with adjusting type for " + classType);
                     continue;
                 }
                 instr.setClassType(type);
@@ -428,9 +443,12 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
             for (XmlvmMemberReadWrite instr : memberReadWriteInstructions) {
                 String classType = instr.getClassType();
                 XmlvmResource classTypeResource = getXmlvmResource(classType);
+                if (classTypeResource == null) {
+                    continue;
+                }
                 String type = searchDeclaringTypeInHierarchy(classTypeResource, instr);
                 if (type == null) {
-                    System.out.println("WARNING: problem with adjusting type for " + classType);
+                    Log.warn(TAG, "Problem with adjusting type for " + classType);
                     continue;
                 }
                 instr.setClassType(type);
@@ -509,10 +527,13 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         String baseClass = resource.getSuperTypeName();
         if (!baseClass.equals("")) {
             XmlvmResource baseResource = getXmlvmResource(baseClass);
-            return searchDeclaringTypeInHierarchy(baseResource, instruction);
+            if (baseResource != null) {
+                return searchDeclaringTypeInHierarchy(baseResource, instruction);
+            }
         }
         return null;
     }
+
 
     private XmlvmResource              object;
     /**
@@ -521,6 +542,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
      * JavaJDKLoader will yield in a runtime exception.
      */
     private Map<String, XmlvmResource> alreadyLoadedResources = new HashMap<String, XmlvmResource>();
+
 
     private XmlvmResource getXmlvmResource(String className) {
         if (alreadyLoadedResources.containsKey(className)) {
@@ -533,7 +555,8 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         if (resource != null) {
             return resource;
         }
-        System.out.println("Loading JDK class: " + className);
+        
+        Log.debug(TAG, "Loading JDK class: " + className);
         resource = (new JavaJDKLoader(new Arguments(new String[] { "--in=foo" }))).load(className);
         alreadyLoadedResources.put(className, resource);
         return resource;
