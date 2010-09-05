@@ -348,7 +348,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 && !arguments.option_gen_wrapper();
 
         Element classElement = processClass(cf, root, referencedTypes);
-        processFields(cf.getFields(), classElement, referencedTypes, skeletonOnly);
+        processFields(cf.getFields(), classElement, skeletonOnly);
 
         MethodList methods = cf.getMethods();
         int sz = methods.size();
@@ -439,8 +439,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * 
      * @param skeletonOnly
      */
-    private static void processFields(FieldList fieldList, Element classElement,
-            Set<String> referencedTypes, boolean skeletonOnly) {
+    private static void processFields(FieldList fieldList, Element classElement, boolean skeletonOnly) {
         for (int i = 0; i < fieldList.size(); ++i) {
             Field field = fieldList.get(i);
             if (hasIgnoreAnnotation(field.getAttributes())) {
@@ -457,7 +456,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             fieldElement.setAttribute("name", field.getName().toHuman());
             String fieldType = field.getNat().getFieldType().toHuman();
             fieldElement.setAttribute("type", fieldType);
-            referencedTypes.add(fieldType);
             TypedConstant value = field.getConstantValue();
             if (value != null) {
                 fieldElement.setAttribute("value", value.toHuman());
