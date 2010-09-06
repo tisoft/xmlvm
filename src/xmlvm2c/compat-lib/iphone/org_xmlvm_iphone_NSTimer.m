@@ -12,6 +12,8 @@ __CLASS_DEFINITION_org_xmlvm_iphone_NSTimer __CLASS_org_xmlvm_iphone_NSTimer = {
 
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <CoreFoundation/CoreFoundation.h>
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 
 

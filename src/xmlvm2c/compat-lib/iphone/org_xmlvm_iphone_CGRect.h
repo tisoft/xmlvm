@@ -34,9 +34,9 @@ XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGRect, 17)
 
 //XMLVM_BEGIN_MEMBERS
 
-#import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
 
-CGRect toCGRect(void *);
+CGRect toCGRect(void* rect);
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CGRect
 
 //XMLVM_END_MEMBERS

@@ -1,5 +1,4 @@
 #include "org_xmlvm_iphone_UIImage.h"
-#include "org_xmlvm_iphone_internal_UIGenericBar.h"
 #include "org_xmlvm_iphone_UIEdgeInsets.h"
 #include "java_lang_String.h"
 

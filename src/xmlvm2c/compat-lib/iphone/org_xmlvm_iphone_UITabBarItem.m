@@ -1,4 +1,3 @@
-#include "org_xmlvm_iphone_internal_UITabBarItemView.h"
 #include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_UITabBarItem.h"

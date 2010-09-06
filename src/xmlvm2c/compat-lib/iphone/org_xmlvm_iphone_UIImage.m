@@ -1,4 +1,3 @@
-#include "java_awt_image_BufferedImage.h"
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_CGPoint.h"
 #include "org_xmlvm_iphone_CGSize.h"
@@ -15,7 +14,6 @@ __CLASS_DEFINITION_org_xmlvm_iphone_UIImage __CLASS_org_xmlvm_iphone_UIImage = {
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
-#include "ObjCUtil.h"
 #import <UIKit/UIImage.h>
 //XMLVM_END_IMPLEMENTATION
 

@@ -9,7 +9,6 @@
 #include "org_xmlvm_iphone_UIWindow.h"
 #include "org_xmlvm_iphone_CALayer.h"
 #include "org_xmlvm_iphone_NSDate.h"
-#include "org_xmlvm_iphone_internal_renderer_UIViewRenderer.h"
 #include "java_util_Set.h"
 #include "java_lang_String.h"
 
@@ -24,7 +23,7 @@ __CLASS_DEFINITION_org_xmlvm_iphone_UIView __CLASS_org_xmlvm_iphone_UIView = {
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <UIKit/UIView.h>
 #import <UIKit/UIViewController.h>
-#include "ObjCUtil.h"
+
 @interface UIViewWrapper : UIView 
 {
 	org_xmlvm_iphone_UIView *view;

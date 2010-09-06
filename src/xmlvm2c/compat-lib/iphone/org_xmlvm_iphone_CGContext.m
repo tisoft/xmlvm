@@ -1,6 +1,5 @@
 #include "org_xmlvm_iphone_UIImage.h"
 #include "org_xmlvm_iphone_CGPoint.h"
-#include "java_awt_Graphics2D.h"
 #include "org_xmlvm_iphone_CGLayer.h"
 #include "org_xmlvm_iphone_CGSize.h"
 #include "org_xmlvm_iphone_CGRect.h"
@@ -18,7 +17,6 @@ __CLASS_DEFINITION_org_xmlvm_iphone_CGContext __CLASS_org_xmlvm_iphone_CGContext
 
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <CoreGraphics/CoreGraphics.h>
-#include "ObjCUtil.h"
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_CGContext_kCGTextInvisible;

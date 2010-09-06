@@ -10,7 +10,7 @@ __CLASS_DEFINITION_org_xmlvm_iphone_UIWindow __CLASS_org_xmlvm_iphone_UIWindow =
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
-#include "ObjCUtil.h"
+#import <UIKit/UIKit.h>
 //XMLVM_END_IMPLEMENTATION
 
 
