@@ -158,6 +158,12 @@ __CLASS_DEFINITION_XMLVMClass __CLASS_XMLVMClass = {
     (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_java_lang_Class, // extends
 };
 
+JAVA_OBJECT XMLVMClass_newInstance(JAVA_OBJECT me)
+{
+	XMLVMClass* clazz = (XMLVMClass*) me;
+	return (*(clazz->XMLVMClass.clazz->newInstanceFunc))();
+}
+
 void __INIT_XMLVMClass()
 {
     __CLASS_XMLVMClass.classInitialized = 1;
@@ -166,6 +172,7 @@ void __INIT_XMLVMClass()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_XMLVMClass.vtable, __CLASS_java_lang_Class.vtable, sizeof(__CLASS_java_lang_Class.vtable));
     // Initialize vtable for this class
+	__CLASS_XMLVMClass.vtable[11] = (VTABLE_PTR) XMLVMClass_newInstance;
     // Initialize vtable for implementing interfaces
     __CLASS_XMLVMClass.numImplementedInterfaces = 0;
 }

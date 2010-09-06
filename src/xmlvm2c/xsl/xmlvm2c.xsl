@@ -225,6 +225,11 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text>();&nl;</xsl:text>
 
+    <!-- Emit newInstance-method -->
+    <xsl:text>JAVA_OBJECT __NEW_INSTANCE_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>();&nl;</xsl:text>
+
     <xsl:if test="vm:method[@isNative = 'true' and not(@isStatic = 'true')]">
       <xsl:text>void xmlvm_init_native_</xsl:text>
       <xsl:value-of select="$clname"/>
@@ -438,6 +443,11 @@ int main(int argc, char* argv[])
       <xsl:text>.classInitialized) __INIT_</xsl:text>
       <xsl:value-of select="vm:fixname(@extends)"/>
       <xsl:text>();&nl;</xsl:text>
+      <xsl:text>    __CLASS_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>.newInstanceFunc = __NEW_INSTANCE_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>;&nl;</xsl:text>
       <xsl:text>    // Copy vtable from base class&nl;</xsl:text>
       <xsl:text>    XMLVM_MEMCPY(__CLASS_</xsl:text>
       <xsl:value-of select="$clname"/>
@@ -623,6 +633,23 @@ int main(int argc, char* argv[])
     </xsl:if>
     <xsl:text>    return me;&nl;}&nl;&nl;</xsl:text>
 
+    <!-- Emit 'newInstance' method -->
+    <xsl:text>JAVA_OBJECT __NEW_INSTANCE_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>()&nl;{&nl;</xsl:text>
+    <xsl:text>    JAVA_OBJECT me = JAVA_NULL;&nl;</xsl:text>
+    <!-- Only generate code if this class has a default constructor -->
+    <!-- TODO should throw an exception if there is no default constructor -->
+    <xsl:if test="vm:method[@name = '&lt;init&gt;' and not(vm:signature/vm:parameter)]">
+      <xsl:text>    me = __NEW_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>();&nl;</xsl:text>
+      <xsl:text>    </xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>___INIT___(me);&nl;</xsl:text>
+    </xsl:if>
+    <xsl:text>    return me;&nl;}&nl;&nl;</xsl:text>
+    
     <!-- Emit destructor -->
     <xsl:text>void __DELETE_</xsl:text>
     <xsl:value-of select="$clname"/>

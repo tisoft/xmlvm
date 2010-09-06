@@ -57,7 +57,7 @@ void __INIT_java_io_PrintStream()
     XMLVM_MEMCPY(__CLASS_java_io_PrintStream.vtable, __CLASS_java_lang_Object.vtable, sizeof(__CLASS_java_lang_Object.vtable));
     // Initialize vtable for this class
     __CLASS_java_io_PrintStream.vtable[36] = (VTABLE_PTR) &java_io_PrintStream_println___java_lang_String;
-    __CLASS_java_io_PrintStream.vtable[16] = (VTABLE_PTR) &java_io_PrintStream_println___int;
+    __CLASS_java_io_PrintStream.vtable[31] = (VTABLE_PTR) &java_io_PrintStream_println___int;
     __CLASS_java_io_PrintStream.vtable[19] = (VTABLE_PTR) &java_io_PrintStream_println___float;
 
     __CLASS_java_io_PrintStream.classInitialized = 1;

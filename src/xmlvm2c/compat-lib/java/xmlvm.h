@@ -92,12 +92,16 @@ typedef union {
 #define JAVA_NULL ((JAVA_OBJECT) 0)
 
 typedef void (*VTABLE_PTR)();
+typedef void (*Func_VOO)(JAVA_OBJECT me, JAVA_OBJECT o1);
+typedef JAVA_OBJECT (*Func_O)();
+
 
 #define XMLVM_DEFINE_CLASS(name, vtableSize) \
 typedef struct __CLASS_DEFINITION_##name { \
     int                                 classInitialized; \
     const char*                         className; \
     struct __CLASS_DEFINITION_TEMPLATE* extends; \
+    Func_O                              newInstanceFunc; \
 	int                                 numInterfaces; \
     struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[1]; \
 	int                                 numImplementedInterfaces; \
@@ -173,7 +177,5 @@ extern JAVA_OBJECT xmlvm_exception;
 
 void xmlvm_unimplemented_native_method();
 void XMLVM_ERROR(const char* msg);
-
-typedef void (*Func_VOO)(JAVA_OBJECT me, JAVA_OBJECT o1);
 
 #endif
