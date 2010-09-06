@@ -321,7 +321,7 @@ public class Arguments {
             parseError("Need at least one --in argument");
         if (option_out == null)
             option_out = ".";
-        if ((option_target == Targets.IPHONE || option_target == Targets.IPHONEANDROID || option_target == Targets.WEBOS)
+        if ((option_target == Targets.IPHONE || option_target == Targets.IPHONEC || option_target == Targets.IPHONEANDROID || option_target == Targets.WEBOS)
                 && option_app_name == null)
             parseError("--target=[iphone|webos] requires option --app-name");
         if (option_target == Targets.QOOXDOO && option_app_name != null && option_qx_main == null)

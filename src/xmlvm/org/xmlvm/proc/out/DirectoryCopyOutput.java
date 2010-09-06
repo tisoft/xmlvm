@@ -67,7 +67,7 @@ public class DirectoryCopyOutput extends OutputFile {
         File[] files = sourceFile.listFiles();
         for (File file : files) {
             if (!file.isDirectory()) {
-                resultList.add(file);
+                resultList.add(new File(getLocation(), file.getName()));
             }
         }
         return resultList.toArray(new File[0]);

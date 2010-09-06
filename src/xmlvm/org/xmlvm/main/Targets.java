@@ -25,11 +25,14 @@ package org.xmlvm.main;
  */
 public enum Targets {
 
-    NONE, XMLVM, DEXMLVM, JVM, CLR, DFA, CLASS, EXE, DEX, JS, C, PYTHON, OBJC, QOOXDOO, IPHONE, IPHONEANDROID, IPHONETEMPLATE, WEBOS;
+    NONE, XMLVM, DEXMLVM, JVM, CLR, DFA, CLASS, EXE, DEX, JS, C, PYTHON, OBJC, QOOXDOO, IPHONE, IPHONEC, IPHONEANDROID, IPHONETEMPLATE, WEBOS;
 
     public static Targets getTarget(String target) {
         if (target.equals("android-on-iphone")) {
             target = "IPHONEANDROID";
+        }
+        if (target.equals("iphone-c")) {
+            target = "IPHONEC";
         }
         target = target.toUpperCase().replace("-", "").replace(":", "");
         try {

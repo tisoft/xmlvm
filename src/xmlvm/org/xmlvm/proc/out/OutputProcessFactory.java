@@ -62,6 +62,8 @@ public class OutputProcessFactory {
             return new QooxdooOutputProcess(arguments);
         case IPHONE:
             return new IPhoneOutputProcess(arguments);
+        case IPHONEC:
+            return new IPhoneCOutputProcess(arguments);
         case IPHONEANDROID:
             return new Android2IPhoneOutputProcess(arguments);
         case WEBOS:
