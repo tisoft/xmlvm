@@ -24,11 +24,13 @@ import java.util.Map;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
+import org.xmlvm.XMLVMSkeletonOnly;
 
 /**
  * @author arno
  * 
  */
+@XMLVMSkeletonOnly
 public class NSXMLParserDelegate extends NSObject {
 
 	private NSXMLParser parser;

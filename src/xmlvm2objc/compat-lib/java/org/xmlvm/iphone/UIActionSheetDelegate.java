@@ -4,10 +4,13 @@
  */
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UIActionSheetDelegate extends NSObject {
 
     public void clickedButtonAtIndex(UIActionSheet actionSheet, int buttonIndex) {

@@ -19,10 +19,13 @@
  */
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UIViewAnimationCurve {
 
     public static final int EaseInOut = 0;

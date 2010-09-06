@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public interface AVAudioPlayerDelegate {
     public void audioPlayerDidFinishPlaying(AVAudioPlayer player, boolean successfully);
 

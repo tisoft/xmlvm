@@ -19,12 +19,14 @@
  */
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UIPageControlRenderer;
 
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UIPageControl extends UIView {
 
     private int     currentPage;

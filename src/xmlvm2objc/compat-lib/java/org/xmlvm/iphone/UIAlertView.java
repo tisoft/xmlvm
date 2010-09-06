@@ -29,10 +29,12 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.List;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Device;
 import org.xmlvm.iphone.internal.renderer.UIAlertButtonRenderer;
 import org.xmlvm.iphone.internal.renderer.UIAlertViewRenderer;
 
+@XMLVMSkeletonOnly
 public class UIAlertView extends UIView {
 
     private UIAlertViewDelegate delegate;

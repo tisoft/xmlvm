@@ -23,7 +23,6 @@ package org.xmlvm.proc.out;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -47,7 +46,7 @@ import org.xmlvm.proc.XsltRunner;
 public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     private final static String        TAG          = COutputProcess.class.getSimpleName();
 
-    private static final String        C_EXTENSION  = ".c";
+    private static final String        C_EXTENSION  = ".m";
     private static final String        H_EXTENSION  = ".h";
     private List<OutputFile>           result       = new ArrayList<OutputFile>();
 

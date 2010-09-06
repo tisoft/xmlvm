@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 abstract public class UIAlertViewDelegate extends NSObject {
 
     abstract public void clickedButtonAtIndex(UIAlertView alertView, int buttonIndex);

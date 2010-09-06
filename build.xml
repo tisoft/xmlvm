@@ -60,6 +60,7 @@
 		<pathelement location="lib/basicplayer3.0.jar" />
 	</path>
 
+		
 	<path id="classpath.run">
 		<pathelement location="${xmlvm.bin}" />
 		<pathelement location="src/xmlvm2objc/xsl" />
@@ -87,11 +88,14 @@
 		<mkdir dir="${xmlvm.bin}/iphone" />
 	</target>
 
-	<target name="build-objc-compat-lib" depends="init">
+	<target name="build-objc-compat-lib" depends="build-xmlvm">
 		<echo message="Generating objc-compat.jar" />
 		<mkdir dir="${xmlvm.objc-compat-lib}" />
 		<javac srcdir="src/xmlvm2objc/compat-lib/java" destdir="${xmlvm.objc-compat-lib}" debug="${debug}">
 			<classpath refid="classpath.compile" />
+			<classpath>
+			    <pathelement location="${xmlvm.bin}" />
+			</classpath>
 			<include name="**/*.java" />
 		</javac>
 		<jar destfile="${xmlvm.libjars}/objc-compat.jar">
@@ -486,7 +490,7 @@
 
 	<target name="cc-ifireworks" depends="xmlvmjar,build-ifireworks">
 		<mkdir dir="${xmlvm.demo}/iphone/ifireworks/iphone" />
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
+		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true" maxmemory="512m">
 			<arg value="--out=${xmlvm.demo}/iphone/ifireworks/iphone" />
 			<arg value="--target=iphone" />
 			<arg value="--app-name=iFireworks" />

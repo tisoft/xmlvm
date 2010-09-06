@@ -22,6 +22,7 @@ package org.xmlvm.iphone.demo.gl.nehelesson4;
 
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.NSTimer;
+import org.xmlvm.iphone.NSTimerDelegate;
 import org.xmlvm.iphone.UIViewGL;
 import org.xmlvm.iphone.gl.CAEAGLLayer;
 import org.xmlvm.iphone.gl.EAGLContext;
@@ -64,7 +65,7 @@ public abstract class GLView extends UIViewGL {
         EAGLContext.setCurrentContext(context);
         destroyFrameBuffer();
         createFrameBuffer();
-        drawView(null);
+        drawView();
     }
 
     public boolean createFrameBuffer() {
@@ -105,7 +106,12 @@ public abstract class GLView extends UIViewGL {
     }
 
     public void startAnimation() {
-        animationTimer = new NSTimer((float) animationInterval, this, "drawView", null, true);
+        animationTimer = new NSTimer((float) animationInterval, new NSTimerDelegate() {
+            @Override
+            public void timerEvent(Object userInfo) {
+                drawView();
+            }
+        }, null, true);
     }
 
     public void stopAnimation() {
@@ -141,7 +147,7 @@ public abstract class GLView extends UIViewGL {
     }
 
     // Updates the OpenGL view when the timer fires
-    public void drawView(NSTimer timer) {
+    public void drawView() {
         // Make sure that you are drawing to the current context
         EAGLContext.setCurrentContext(context);
 

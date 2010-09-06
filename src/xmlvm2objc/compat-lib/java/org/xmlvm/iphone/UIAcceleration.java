@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class UIAcceleration extends NSObject {
 
     private double x;

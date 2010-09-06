@@ -40,8 +40,9 @@ void java_lang_Exception___INIT___(JAVA_OBJECT me)
 
 JAVA_OBJECT __NEW_java_lang_Exception()
 {
+	java_lang_Exception* me;
     if (!__CLASS_java_lang_Exception.classInitialized) __INIT_java_lang_Exception();
-    java_lang_Exception* me = (java_lang_Exception*) XMLVM_MALLOC(sizeof(java_lang_Exception));
+    me = (java_lang_Exception*) XMLVM_MALLOC(sizeof(java_lang_Exception));
     me->__class = &__CLASS_java_lang_Exception;
     return me;
 }

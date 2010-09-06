@@ -23,6 +23,8 @@ package org.xmlvm.iphone;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+@XMLVMSkeletonOnly
 public class NSUserDefaults extends NSObject {
 
     private static NSUserDefaults nsUserDefaults = new NSUserDefaults();

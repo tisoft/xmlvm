@@ -25,10 +25,13 @@ import static org.xmlvm.iphone.internal.renderer.UIToolbarRenderer.HEIGHT_WITHPR
 
 import java.util.ArrayList;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UINavigationController extends UIViewController {
 
     private ArrayList<UIViewController>    items;

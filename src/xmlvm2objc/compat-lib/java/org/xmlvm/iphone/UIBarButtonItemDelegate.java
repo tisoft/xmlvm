@@ -20,10 +20,13 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public interface UIBarButtonItemDelegate {
 
     public void clicked();

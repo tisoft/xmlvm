@@ -22,6 +22,9 @@ package org.xmlvm.iphone;
 
 import java.util.Set;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class UIResponder extends NSObject {
 
     protected boolean           callDelegates = true;

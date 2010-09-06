@@ -23,6 +23,7 @@ package org.xmlvm.iphone;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.UIBarButtonItemView;
 import org.xmlvm.iphone.internal.renderer.UIBarButtonItemRenderer;
 import org.xmlvm.iphone.internal.renderer.UIButtonRenderer;
@@ -31,6 +32,7 @@ import org.xmlvm.iphone.internal.renderer.UIButtonRenderer;
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UIBarButtonItem extends UIBarItem {
     /* SEL action : replaced solely by UIBarButtonItemTarget */
     /* */

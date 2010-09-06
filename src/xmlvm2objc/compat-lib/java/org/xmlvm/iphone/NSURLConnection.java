@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+@XMLVMSkeletonOnly
 public class NSURLConnection extends NSObject {
 
     private Thread thread;

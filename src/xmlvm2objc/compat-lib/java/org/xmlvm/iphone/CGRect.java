@@ -22,6 +22,8 @@ package org.xmlvm.iphone;
 
 import java.awt.Rectangle;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+@XMLVMSkeletonOnly
 public class CGRect extends NSObject {
 
     private static final CGRect NULL = new CGRect(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, 0, 0);

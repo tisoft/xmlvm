@@ -20,8 +20,10 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UILabelRenderer;
 
+@XMLVMSkeletonOnly
 public class UILabel extends UIView {
 
     private String  text;

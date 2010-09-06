@@ -27,8 +27,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UISwitchRenderer;
 
+@XMLVMSkeletonOnly
 public class UISwitch extends UIControl {
 
     public static final float kSwitchButtonWidth  = 94.0f;

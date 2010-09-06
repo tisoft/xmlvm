@@ -7,10 +7,13 @@ package org.xmlvm.iphone;
 
 import java.util.Map;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public interface CAAction {
 
     void runAction(String key, NSObject object, Map arguments);

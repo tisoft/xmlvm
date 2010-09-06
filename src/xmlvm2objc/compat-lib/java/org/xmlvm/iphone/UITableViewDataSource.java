@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 abstract public class UITableViewDataSource extends NSObject {
     abstract public UITableViewCell cellForRowAtIndexPath(UITableView table, NSIndexPath idx);
 

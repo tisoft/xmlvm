@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class UIDeviceOrientation {
     public static final int Unknown            = 0;
     public static final int Portrait           = 1;

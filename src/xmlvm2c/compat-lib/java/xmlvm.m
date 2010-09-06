@@ -23,7 +23,7 @@
 #include "java_lang_System.h"
 #include "java_lang_Class.h"
 #include <stdio.h>
-
+#include <string.h>
 
 XMLVM_JMP_BUF xmlvm_exception_env;
 JAVA_OBJECT xmlvm_exception;
@@ -94,17 +94,19 @@ void xmlvm_init()
 
 int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz)
 {
+	int i;
+	__CLASS_DEFINITION_TEMPLATE* objClass;
+	__CLASS_DEFINITION_TEMPLATE* cl;
 	if (obj == JAVA_NULL) {
 		return 0;
 	}
-	__CLASS_DEFINITION_TEMPLATE* objClass = (__CLASS_DEFINITION_TEMPLATE*) ((java_lang_Object*) obj)->__class;
-	__CLASS_DEFINITION_TEMPLATE* cl = (__CLASS_DEFINITION_TEMPLATE*) clazz;
+	objClass = (__CLASS_DEFINITION_TEMPLATE*) ((java_lang_Object*) obj)->__class;
+	cl = (__CLASS_DEFINITION_TEMPLATE*) clazz;
 	while (objClass != JAVA_NULL) {
 		if (strcmp(objClass->className, cl->className) == 0) {
 			return 1;
 		}
 		// Check all implemented interfaces
-		int i;
 		for (i = 0; i < objClass->numImplementedInterfaces; i++) {
 			if (strcmp(objClass->implementedInterfaces[0][i]->className, cl->className) == 0) {
 				return 1;
@@ -170,8 +172,9 @@ void __INIT_XMLVMClass()
 
 JAVA_OBJECT __NEW_XMLVMClass(__CLASS_DEFINITION_TEMPLATE* clazz)
 {
+	XMLVMClass* me;
     if (!__CLASS_XMLVMClass.classInitialized) __INIT_XMLVMClass();
-    XMLVMClass* me = (XMLVMClass*) XMLVM_MALLOC(sizeof(XMLVMClass));
+	me = (XMLVMClass*) XMLVM_MALLOC(sizeof(XMLVMClass));
     me->__class = &__CLASS_XMLVMClass;
 	me->XMLVMClass.clazz = clazz;
     return me;
@@ -214,11 +217,12 @@ void __DELETE_XMLVMArray(XMLVMArray* me)
 XMLVMArray* XMLVMArray_createSingleDimension(int type, int size)
 {
     XMLVMArray *retval = __NEW_XMLVMArray();
+	int sizeOfBaseType;
     retval->type = type;
     retval->length = size;
     retval->ownsData = 1;
 
-    int sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(type);
+    sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(type);
     retval->array.data = XMLVM_MALLOC(sizeOfBaseType * size);
     XMLVM_BZERO(retval->array.data, sizeOfBaseType * size);
 
@@ -245,13 +249,15 @@ XMLVMArray* XMLVMArray_createSingleDimensionWithData(int type, int size, void* d
 XMLVMArray* XMLVMArray_createMultiDimensions(int type, XMLVMElem* dim, int count)
 {
 	int dimensions = dim->i;
+	XMLVMArray* slice;
+	int i;
 	dim++;
 	count--;
 	if (count == 0) {
 		return XMLVMArray_createSingleDimension(type, dimensions);
 	}
-	XMLVMArray* slice = XMLVMArray_createSingleDimension(0, dimensions);
-	int i;
+	slice = XMLVMArray_createSingleDimension(0, dimensions);
+
 	for (i = 0; i < dimensions; i++) {
 		XMLVMArray* o = XMLVMArray_createMultiDimensions(type, dim, count);
 		XMLVMArray_replaceObjectAtIndex(slice, i, o);
@@ -262,14 +268,13 @@ XMLVMArray* XMLVMArray_createMultiDimensions(int type, XMLVMElem* dim, int count
 XMLVMArray* XMLVMArray_createFromString(const char* str)
 {
     XMLVMArray *retval = __NEW_XMLVMArray();
-    retval->type = 2; // CHAR
 	int len = strlen(str);
+	int i;
+
+    retval->type = 2; // CHAR
     retval->length = len;
     retval->array.data = XMLVM_MALLOC(len);
-	int i;
-	for (i = 0; i < len; i++) {
-		retval->array.c[i] = *str++;
-	}
+	memcpy(retval->array.c, str, len);
     retval->ownsData = 1;
     return retval;
 }
@@ -333,12 +338,14 @@ int XMLVMArray_count(XMLVMArray* array)
 XMLVMArray* XMLVMArray_clone__(XMLVMArray* array)
 {
     XMLVMArray *retval = __NEW_XMLVMArray();
+	int sizeOfBaseType;
+	int sizeOfArrayInBytes;
     retval->type = array->type;
     retval->length = array->length;
     retval->ownsData = 1;
 
-    int sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(array->type);
-    int sizeOfArrayInBytes = sizeOfBaseType * array->length;
+    sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(array->type);
+    sizeOfArrayInBytes = sizeOfBaseType * array->length;
     retval->array.data = XMLVM_MALLOC(sizeOfArrayInBytes);
 
     if (array->type == 0) {
@@ -357,11 +364,6 @@ XMLVMArray* XMLVMArray_clone__(XMLVMArray* array)
 void xmlvm_unimplemented_native_method()
 {
 	XMLVM_ERROR("Unimplemented native method");
-}
-
-void XMLVM_NOT_IMPLEMENTED()
-{
-	XMLVM_ERROR("Unimplemented wrapper method");
 }
 
 void XMLVM_ERROR(const char* msg)

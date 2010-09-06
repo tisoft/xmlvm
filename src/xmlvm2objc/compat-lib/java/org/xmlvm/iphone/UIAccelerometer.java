@@ -20,8 +20,10 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
 
+@XMLVMSkeletonOnly
 public class UIAccelerometer extends NSObject {
 
     private static UIAccelerometer  sharedAccelerometer = new UIAccelerometer();

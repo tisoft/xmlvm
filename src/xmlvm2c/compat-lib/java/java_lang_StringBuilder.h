@@ -1,4 +1,5 @@
 
+#if 0
 #ifndef __STRINGBUILDER_H__
 #define __STRINGBUILDER_H__
 
@@ -37,3 +38,4 @@ java_lang_String* toString__() {
 
 };
 
+#endif

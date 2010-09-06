@@ -22,9 +22,11 @@ package org.xmlvm.iphone;
 
 import java.awt.Rectangle;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Device;
 import org.xmlvm.iphone.internal.Simulator;
 
+@XMLVMSkeletonOnly
 public class UIScreen extends NSObject {
 
     private final static UIScreen mainScreen;

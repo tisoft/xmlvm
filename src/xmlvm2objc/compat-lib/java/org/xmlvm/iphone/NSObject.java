@@ -25,6 +25,9 @@ import java.lang.reflect.Method;
 
 import javax.swing.SwingUtilities;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class NSObject {
 
     public static void performSelectorOnMainThread(final Object target, final String method,

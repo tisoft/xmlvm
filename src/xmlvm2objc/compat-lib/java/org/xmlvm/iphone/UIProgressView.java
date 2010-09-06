@@ -25,11 +25,13 @@ import static org.xmlvm.iphone.internal.renderer.UIProgressViewRenderer.kMinimum
 import static org.xmlvm.iphone.internal.renderer.UIProgressViewRenderer.kProgressViewHeight;
 import static org.xmlvm.iphone.internal.renderer.UIProgressViewRenderer.kProgressViewWidth;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UIProgressViewRenderer;
 
 /**
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UIProgressView extends UIControl {
 
     private float progress          = 0f;

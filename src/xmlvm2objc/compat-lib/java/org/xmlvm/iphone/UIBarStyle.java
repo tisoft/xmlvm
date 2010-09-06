@@ -20,10 +20,13 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UIBarStyle {
 
     public static final int Default          = 0;

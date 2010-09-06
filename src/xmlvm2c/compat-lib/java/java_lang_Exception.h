@@ -19,32 +19,23 @@
  */
 
 
-#ifndef __CLASS_H__
-#define __CLASS_H__
+#ifndef __EXCEPTION_H__
+#define __EXCEPTION_H__
 
 #include "xmlvm.h"
-#include "java_lang_Object.h"
 
-#define XMLVM_VTABLE_SIZE_java_lang_Class 73
-#define XMLVM_VTABLE_IDX_java_lang_Class_getName__ 11
+XMLVM_DEFINE_CLASS(java_lang_Exception, 11)
 
-XMLVM_DEFINE_CLASS(java_lang_Class, XMLVM_VTABLE_SIZE_java_lang_Class)
+#define __INSTANCE_MEMBERS_java_lang_Exception
 
-#define __INSTANCE_MEMBERS_java_lang_Class \
-__INSTANCE_MEMBERS_java_lang_Object; \
-struct { \
-} java_lang_Class
+typedef struct {
+    __CLASS_DEFINITION_java_lang_Exception* __class;
+    __INSTANCE_MEMBERS_java_lang_Exception
+} java_lang_Exception;
 
-struct java_lang_Class {
-    __CLASS_DEFINITION_java_lang_Class* __class;
-    __INSTANCE_MEMBERS_java_lang_Class;
-};
-#ifndef XMLVM_FORWARD_DECL_java_lang_Class
-#define XMLVM_FORWARD_DECL_java_lang_Class
-typedef struct java_lang_Class java_lang_Class;
-#endif
 
-void __INIT_java_lang_Class();
-JAVA_OBJECT __NEW_java_lang_Class();
+void __INIT_java_lang_Exception();
+JAVA_OBJECT __NEW_java_lang_Exception();
+void java_lang_Exception___INIT___(JAVA_OBJECT me);
 
 #endif

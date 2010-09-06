@@ -22,6 +22,8 @@ package org.xmlvm.iphone;
 
 import java.awt.Font;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+@XMLVMSkeletonOnly
 public class CGFont extends NSObject {
     public Font font;
 

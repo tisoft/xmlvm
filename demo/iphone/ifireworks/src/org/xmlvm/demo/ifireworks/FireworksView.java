@@ -25,11 +25,12 @@ import java.util.Set;
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.NSTimer;
+import org.xmlvm.iphone.NSTimerDelegate;
 import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
-public class FireworksView extends UIView {
+public class FireworksView extends UIView implements NSTimerDelegate {
     private static final int touchMod    = 3;
 
     Bomb                     bombs[];
@@ -79,10 +80,10 @@ public class FireworksView extends UIView {
     }
 
     void initTimer() {
-        timer = new NSTimer(0.05f, this, "triggered", null, true);
+        timer = new NSTimer(0.05f, this, null, true);
     }
 
-    public void triggered(NSTimer timer) {
+    public void timerEvent(Object notUsed) {
         if (allBombsOutOfSite()) {
             userActive = false;
         }

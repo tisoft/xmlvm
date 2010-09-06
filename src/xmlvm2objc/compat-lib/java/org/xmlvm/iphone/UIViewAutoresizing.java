@@ -20,10 +20,13 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  *
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UIViewAutoresizing {
 
     public static final int None = 0;

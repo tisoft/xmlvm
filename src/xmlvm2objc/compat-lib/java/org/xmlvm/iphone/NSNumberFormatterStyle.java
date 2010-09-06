@@ -19,10 +19,13 @@
  */
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class NSNumberFormatterStyle {
 
     private static final int kCFNumberFormatterNoStyle         = 0;

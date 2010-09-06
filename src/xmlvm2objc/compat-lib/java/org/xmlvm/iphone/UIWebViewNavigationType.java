@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class UIWebViewNavigationType {
     public static final int LinkClicked     = 0;
     public static final int FormSubmitted   = 1;

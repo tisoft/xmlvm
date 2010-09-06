@@ -19,23 +19,38 @@
  */
 
 
-#ifndef __EXCEPTION_H__
-#define __EXCEPTION_H__
-
-#include "xmlvm.h"
-
-XMLVM_DEFINE_CLASS(java_lang_Exception, 11)
-
-#define __INSTANCE_MEMBERS_java_lang_Exception
-
-typedef struct {
-    __CLASS_DEFINITION_java_lang_Exception* __class;
-    __INSTANCE_MEMBERS_java_lang_Exception;
-} java_lang_Exception;
+#include "java_lang_String.h"
+#include <stdio.h>
+#include <string.h>
 
 
-void __INIT_java_lang_Exception();
-JAVA_OBJECT __NEW_java_lang_Exception();
-void java_lang_Exception___INIT___(JAVA_OBJECT me);
+JAVA_OBJECT __NEW_java_lang_String()
+{
+    java_lang_String* s = (java_lang_String*) malloc(sizeof(java_lang_String));
+    s->str = "";
+    return s;
+}
 
-#endif
+
+void java_lang_String___INIT____char_ARRAYTYPE(JAVA_OBJECT n0, JAVA_OBJECT n1)
+{
+	int i;
+	java_lang_String* me = (java_lang_String*) n0;
+	XMLVMArray* s = (XMLVMArray*) n1;
+    me->str = (char*) malloc(s->length + 1);
+    memcpy(me->str, s->array.c, s->length);
+    ((char*) me->str)[s->length] = '\0';
+}
+  
+java_lang_String* java_lang_String_valueOf___int(int i)
+{
+    java_lang_String* s = (java_lang_String*) __NEW_java_lang_String();
+    s->str = (const char*) XMLVM_MALLOC(30);
+    sprintf((char*) s->str, "%d", i);
+    return s;
+}
+
+JAVA_INT java_lang_String_length__(JAVA_OBJECT me)
+{
+    return strlen(((java_lang_String*) me)->str);
+}

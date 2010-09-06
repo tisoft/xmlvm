@@ -22,9 +22,11 @@ package org.xmlvm.iphone;
 
 import java.awt.image.BufferedImage;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.ImageLoader;
 import org.xmlvm.iphone.internal.Simulator;
 
+@XMLVMSkeletonOnly
 public class UIImage extends NSObject {
 
     private BufferedImage image;

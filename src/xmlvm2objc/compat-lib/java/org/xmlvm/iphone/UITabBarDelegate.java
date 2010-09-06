@@ -22,10 +22,13 @@ package org.xmlvm.iphone;
 
 import java.util.ArrayList;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public abstract class UITabBarDelegate extends NSObject {
 
     public void willBeginCustomizingItems(UITabBar bar, ArrayList<UITabBarItem> items) {

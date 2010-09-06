@@ -19,10 +19,13 @@
  */
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UIDatePicker extends UIControl {
 
     private NSCalendar calendar;

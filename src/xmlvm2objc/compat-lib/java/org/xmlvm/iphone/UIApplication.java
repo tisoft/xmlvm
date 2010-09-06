@@ -25,9 +25,11 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
 import org.xmlvm.iphone.internal.SimulatorDesktop;
 
+@XMLVMSkeletonOnly
 public class UIApplication extends UIResponder {
 
     private boolean               idleTimerDisabled;

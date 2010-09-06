@@ -27,8 +27,9 @@ __CLASS_DEFINITION_java_io_PrintStream __CLASS_java_io_PrintStream;
 
 JAVA_OBJECT __NEW_java_io_PrintStream()
 {
+	java_io_PrintStream* me;
     if (!__CLASS_java_io_PrintStream.classInitialized) __INIT_java_io_PrintStream();
-    java_io_PrintStream* me = (java_io_PrintStream*) XMLVM_MALLOC(sizeof(java_io_PrintStream));
+	me = (java_io_PrintStream*) XMLVM_MALLOC(sizeof(java_io_PrintStream));
     me->__class = &__CLASS_java_io_PrintStream;
     return me;
 }

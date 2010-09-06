@@ -24,9 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
 import org.xmlvm.iphone.internal.renderer.UIViewRenderer;
 
+@XMLVMSkeletonOnly
 public class UIView extends UIResponder {
 
     private CGRect            frame;

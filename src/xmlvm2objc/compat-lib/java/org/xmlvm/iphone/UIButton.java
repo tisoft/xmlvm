@@ -28,11 +28,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UIAlertButtonRenderer;
 import org.xmlvm.iphone.internal.renderer.UIButtonRenderer;
 import org.xmlvm.iphone.internal.renderer.UICustomButtonRenderer;
 import org.xmlvm.iphone.internal.renderer.UIRoundRectButtonRenderer;
 
+@XMLVMSkeletonOnly
 public class UIButton extends UIControl {
 
     private final static int NUMBER_OF_STATES = 16;

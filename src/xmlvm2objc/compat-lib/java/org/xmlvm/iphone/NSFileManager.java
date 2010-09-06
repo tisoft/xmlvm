@@ -22,10 +22,13 @@ package org.xmlvm.iphone;
 
 import java.io.File;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class NSFileManager extends NSObject {
 
     private static final NSFileManager defaultMngr = new NSFileManager();

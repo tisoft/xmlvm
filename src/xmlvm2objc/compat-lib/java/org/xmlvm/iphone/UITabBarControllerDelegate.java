@@ -22,10 +22,13 @@ package org.xmlvm.iphone;
 
 import java.util.ArrayList;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public abstract class UITabBarControllerDelegate extends NSObject {
 
     public boolean shouldSelectViewController(UITabBarController controller, UIViewController view) {

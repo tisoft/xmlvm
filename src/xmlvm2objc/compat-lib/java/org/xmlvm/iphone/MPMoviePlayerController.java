@@ -19,11 +19,14 @@
  */
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * Placeholder for video player
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class MPMoviePlayerController extends NSObject {
 
     private NSURL   contentURL;

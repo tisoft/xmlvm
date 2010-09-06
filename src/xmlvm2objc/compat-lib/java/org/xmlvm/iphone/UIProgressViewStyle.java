@@ -20,10 +20,13 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UIProgressViewStyle {
     public static final int Default = 0;
     public static final int Bar     = 1;

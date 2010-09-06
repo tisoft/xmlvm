@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class UIWebViewDelegate extends NSObject {
     public void didFailLoadWithError(UIWebView webView, NSError error) {
 

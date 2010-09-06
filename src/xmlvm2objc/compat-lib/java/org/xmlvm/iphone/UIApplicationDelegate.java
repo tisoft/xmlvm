@@ -20,10 +20,13 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  *
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UIApplicationDelegate extends NSObject {
 
     public void applicationDidFinishLaunching(UIApplication app) {

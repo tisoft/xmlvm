@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class UIViewContentMode {
     public static final int ScaleToFill     = 0;
     public static final int ScaleAspectFit  = 1;

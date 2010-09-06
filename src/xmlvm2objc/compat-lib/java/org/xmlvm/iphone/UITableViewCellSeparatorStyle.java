@@ -20,11 +20,13 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
-
+@XMLVMSkeletonOnly
 public class UITableViewCellSeparatorStyle {
     public static final int None       = 0;
     public static final int SingleLine = 1;

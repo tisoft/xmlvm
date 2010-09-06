@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class UILineBreakMode {
     public static final int WordWrap         = 0;
     public static final int CharacterWrap    = 1;

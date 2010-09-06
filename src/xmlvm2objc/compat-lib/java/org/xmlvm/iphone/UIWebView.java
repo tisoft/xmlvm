@@ -20,8 +20,10 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UIWebViewRenderer;
 
+@XMLVMSkeletonOnly
 public class UIWebView extends UIView {
 
     private NSURLRequest      request;

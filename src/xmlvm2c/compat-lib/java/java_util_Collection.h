@@ -1,0 +1,57 @@
+#ifndef __JAVA_UTIL_COLLECTION__
+#define __JAVA_UTIL_COLLECTION__
+
+#include "xmlvm.h"
+#include "java_lang_Object.h"
+#include "java_lang_Object.h"
+#include "java_lang_Iterable.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_util_Collection
+#define XMLVM_FORWARD_DECL_java_util_Collection
+XMLVM_FORWARD_DECL(java_util_Collection)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_Iterable
+#define XMLVM_FORWARD_DECL_java_lang_Iterable
+XMLVM_FORWARD_DECL(java_lang_Iterable)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_Iterator
+#define XMLVM_FORWARD_DECL_java_util_Iterator
+XMLVM_FORWARD_DECL(java_util_Iterator)
+#endif
+
+XMLVM_DEFINE_CLASS(java_util_Collection, 24)
+
+#ifndef XMLVM_FORWARD_DECL_java_util_Collection
+#define XMLVM_FORWARD_DECL_java_util_Collection
+typedef struct java_util_Collection java_util_Collection;
+#endif
+
+#define XMLVM_VTABLE_SIZE_java_util_Collection 24
+#define XMLVM_VTABLE_IDX_java_util_Collection_size__ 11
+#define XMLVM_VTABLE_IDX_java_util_Collection_isEmpty__ 12
+#define XMLVM_VTABLE_IDX_java_util_Collection_contains___java_lang_Object 13
+#define XMLVM_VTABLE_IDX_java_util_Collection_iterator__ 14
+#define XMLVM_VTABLE_IDX_java_util_Collection_toArray__ 15
+#define XMLVM_VTABLE_IDX_java_util_Collection_toArray___java_lang_Object_ARRAYTYPE 16
+#define XMLVM_VTABLE_IDX_java_util_Collection_add___java_lang_Object 17
+#define XMLVM_VTABLE_IDX_java_util_Collection_remove___java_lang_Object 18
+#define XMLVM_VTABLE_IDX_java_util_Collection_containsAll___java_util_Collection 19
+#define XMLVM_VTABLE_IDX_java_util_Collection_addAll___java_util_Collection 20
+#define XMLVM_VTABLE_IDX_java_util_Collection_removeAll___java_util_Collection 21
+#define XMLVM_VTABLE_IDX_java_util_Collection_retainAll___java_util_Collection 22
+#define XMLVM_VTABLE_IDX_java_util_Collection_clear__ 23
+#define XMLVM_VTABLE_IDX_java_util_Collection_equals___java_lang_Object 2
+#define XMLVM_VTABLE_IDX_java_util_Collection_hashCode__ 1
+
+void __INIT_java_util_Collection(__CLASS_DEFINITION_TEMPLATE** interface);
+
+#endif

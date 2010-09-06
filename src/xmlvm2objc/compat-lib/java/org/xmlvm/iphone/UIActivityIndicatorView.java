@@ -20,8 +20,10 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UIActivityIndicatorViewRenderer;
 
+@XMLVMSkeletonOnly
 public class UIActivityIndicatorView extends UIView {
 
     private int                             activityIndicatorViewStyle = UIActivityIndicatorViewStyle.White;

@@ -20,6 +20,7 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UIBarButtonItemRenderer;
 import org.xmlvm.iphone.internal.renderer.UIButtonRenderer;
 import org.xmlvm.iphone.internal.renderer.UIButtonRenderer.Metrics;
@@ -28,6 +29,7 @@ import org.xmlvm.iphone.internal.renderer.UIButtonRenderer.Metrics;
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UINavigationItem extends NSObject {
 
     private String          title;

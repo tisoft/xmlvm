@@ -24,13 +24,15 @@
 
 //#import <math.h>
 #include <stdlib.h>
-#include <strings.h>
 #include <setjmp.h>
 
 
+#define XMLVM_NOT_IMPLEMENTED() printf("Unimplemented: %s:%d\n", __FILE__, __LINE__)
+void* xmalloc(int size);
+//#define XMLVM_MALLOC(size) xmalloc(size)
 #define XMLVM_MALLOC(size) malloc(size)
 #define XMLVM_FREE(pointer) free(pointer)
-#define XMLVM_BZERO(pointer, size) bzero(pointer, size)
+#define XMLVM_BZERO(pointer, size) memset((pointer), 0, size)
 #define XMLVM_MEMCPY(dest, src, size) memcpy(dest, src, size)
 
 #define XMLVM_FORWARD_DECL(class) \
@@ -170,7 +172,8 @@ extern XMLVM_JMP_BUF xmlvm_exception_env;
 extern JAVA_OBJECT xmlvm_exception;
 
 void xmlvm_unimplemented_native_method();
-void XMLVM_NOT_IMPLEMENTED();
 void XMLVM_ERROR(const char* msg);
+
+typedef void (*Func_VOO)(JAVA_OBJECT me, JAVA_OBJECT o1);
 
 #endif

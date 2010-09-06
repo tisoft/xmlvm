@@ -19,10 +19,13 @@
  */
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UITextFieldDelegate extends NSObject {
 
     public boolean textFieldShouldBeginEditing(UITextField textField) {

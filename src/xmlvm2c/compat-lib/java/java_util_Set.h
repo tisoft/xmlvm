@@ -1,0 +1,57 @@
+#ifndef __JAVA_UTIL_SET__
+#define __JAVA_UTIL_SET__
+
+#include "xmlvm.h"
+#include "java_lang_Object.h"
+#include "java_lang_Object.h"
+#include "java_util_Collection.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_util_Collection
+#define XMLVM_FORWARD_DECL_java_util_Collection
+XMLVM_FORWARD_DECL(java_util_Collection)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_Iterator
+#define XMLVM_FORWARD_DECL_java_util_Iterator
+XMLVM_FORWARD_DECL(java_util_Iterator)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_Collection
+#define XMLVM_FORWARD_DECL_java_util_Collection
+XMLVM_FORWARD_DECL(java_util_Collection)
+#endif
+
+XMLVM_DEFINE_CLASS(java_util_Set, 24)
+
+#ifndef XMLVM_FORWARD_DECL_java_util_Set
+#define XMLVM_FORWARD_DECL_java_util_Set
+typedef struct java_util_Set java_util_Set;
+#endif
+
+#define XMLVM_VTABLE_SIZE_java_util_Set 24
+#define XMLVM_VTABLE_IDX_java_util_Set_size__ 11
+#define XMLVM_VTABLE_IDX_java_util_Set_isEmpty__ 12
+#define XMLVM_VTABLE_IDX_java_util_Set_contains___java_lang_Object 13
+#define XMLVM_VTABLE_IDX_java_util_Set_iterator__ 14
+#define XMLVM_VTABLE_IDX_java_util_Set_toArray__ 15
+#define XMLVM_VTABLE_IDX_java_util_Set_toArray___java_lang_Object_ARRAYTYPE 16
+#define XMLVM_VTABLE_IDX_java_util_Set_add___java_lang_Object 17
+#define XMLVM_VTABLE_IDX_java_util_Set_remove___java_lang_Object 18
+#define XMLVM_VTABLE_IDX_java_util_Set_containsAll___java_util_Collection 19
+#define XMLVM_VTABLE_IDX_java_util_Set_addAll___java_util_Collection 20
+#define XMLVM_VTABLE_IDX_java_util_Set_retainAll___java_util_Collection 21
+#define XMLVM_VTABLE_IDX_java_util_Set_removeAll___java_util_Collection 22
+#define XMLVM_VTABLE_IDX_java_util_Set_clear__ 23
+#define XMLVM_VTABLE_IDX_java_util_Set_equals___java_lang_Object 2
+#define XMLVM_VTABLE_IDX_java_util_Set_hashCode__ 1
+
+void __INIT_java_util_Set(__CLASS_DEFINITION_TEMPLATE** interface);
+
+#endif

@@ -22,10 +22,13 @@ package org.xmlvm.iphone;
 
 import java.io.File;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * @author arno, teras
  * 
  */
+@XMLVMSkeletonOnly
 public class NSBundle extends NSObject {
     private static final String SYSRES_JAR = "/sys_resources";
     private static final String APPRES_FILE = File.separator + "resources" + File.separator + "app" + File.separator;

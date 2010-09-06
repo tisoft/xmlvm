@@ -20,9 +20,11 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
 import org.xmlvm.iphone.internal.renderer.UITextFieldRenderer;
 
+@XMLVMSkeletonOnly
 public class UITextField extends UIView {
 
     private int                 autocapitalizationType        = UITextAutocapitalizationType.None;

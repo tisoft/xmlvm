@@ -20,8 +20,10 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UIPreferencesTableRenderer;
 
+@XMLVMSkeletonOnly
 public class UIPreferencesTable extends UIView {
 
     private UIPreferencesTableDataSource dataSource;

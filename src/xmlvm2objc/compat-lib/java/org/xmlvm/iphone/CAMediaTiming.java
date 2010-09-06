@@ -8,6 +8,7 @@ package org.xmlvm.iphone;
  * 
  * @author teras
  */
+
 public interface CAMediaTiming {
 
     public boolean isAutoreverses();

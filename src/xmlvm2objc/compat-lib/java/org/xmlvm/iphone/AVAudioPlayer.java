@@ -26,12 +26,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 import javazoom.jlgui.basicplayer.BasicController;
 import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerEvent;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 import javazoom.jlgui.basicplayer.BasicPlayerListener;
 
+@XMLVMSkeletonOnly
 public class AVAudioPlayer extends NSObject {
 
     class Listener implements BasicPlayerListener {

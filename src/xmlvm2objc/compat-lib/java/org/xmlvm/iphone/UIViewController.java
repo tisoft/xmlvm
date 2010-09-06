@@ -22,12 +22,14 @@ package org.xmlvm.iphone;
 
 import java.util.ArrayList;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
 
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UIViewController extends UIResponder {
 
     private UIView                     view;

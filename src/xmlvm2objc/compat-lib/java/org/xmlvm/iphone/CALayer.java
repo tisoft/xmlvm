@@ -22,6 +22,9 @@ package org.xmlvm.iphone;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class CALayer extends NSObject {
 
     HashMap<String, CAAnimation> animation;

@@ -718,7 +718,6 @@ int main(int argc, char* argv[])
               </xsl:call-template>
               <xsl:call-template name="appendSignature"/>
               <xsl:text>]&nl;</xsl:text>
-              <xsl:text>    XMLVM_NOT_IMPLEMENTED();&nl;</xsl:text>
               <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
             </xsl:when>
             <xsl:otherwise>

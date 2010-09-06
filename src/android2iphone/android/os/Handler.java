@@ -22,6 +22,7 @@ package android.os;
 
 import org.xmlvm.iphone.NSObject;
 import org.xmlvm.iphone.NSTimer;
+import org.xmlvm.iphone.NSTimerDelegate;
 
 import android.internal.Assert;
 
@@ -35,10 +36,6 @@ public class Handler {
 
     public Handler(Looper looper) {
         Assert.NOT_IMPLEMENTED();
-    }
-
-    public void run(NSTimer timer) {
-        toRun.run();
     }
 
     public final boolean postDelayed(Runnable r, long delayMillis) {
@@ -61,7 +58,12 @@ public class Handler {
     }
 
     public void xmlvmStartTimer(Object ticks) {
-        timer = new NSTimer(delay, this, "run", null, false);
+        //TODO what to do witch ticks?
+        timer = new NSTimer(delay, new NSTimerDelegate() {
+            public void timerEvent(Object notUsed) {
+                toRun.run();
+            }
+        }, null, false);
     }
 
     public void handleMessage(Message msg) {

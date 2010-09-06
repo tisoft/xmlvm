@@ -20,25 +20,20 @@
 
 package org.xmlvm.iphone;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import org.xmlvm.XMLVMSkeletonOnly;
 
-import javax.swing.SwingUtilities;
-
+@XMLVMSkeletonOnly
 public class NSTimer extends NSObject implements Runnable {
 
-    private Object  target;
-    private String  method;
+	private NSTimerDelegate target;
     private Object  userInfo;
 
     private boolean repeats;
     private Thread  thread;
     private long    milliInterval;
 
-    public NSTimer(float timerInterval, Object target, String method, Object userInfo,
-            boolean repeats) {
+    public NSTimer(float timerInterval, NSTimerDelegate target, Object userInfo, boolean repeats) {
         this.target = target;
-        this.method = method;
         this.userInfo = userInfo;
         this.repeats = repeats;
         this.milliInterval = (long) (timerInterval * 1000);
@@ -61,39 +56,7 @@ public class NSTimer extends NSObject implements Runnable {
     }
 
     private void timerTick() {
-        Class<?>[] paramTypes = { NSTimer.class };
-        Object[] params = { this };
-        Class<?> targetClass = target.getClass();
-        Method m = null;
-        try {
-            m = targetClass.getMethod(method, paramTypes);
-        } catch (SecurityException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        }
-
-        // TODO the following is denied by the applets Security Manager
-        // if (!m.isAccessible())
-        // m.setAccessible(true);
-
-        final Method m1 = m;
-        final Object[] p = params;
-        Runnable r = new Runnable() {
-            public void run() {
-                try {
-                    m1.invoke(target, p);
-                } catch (IllegalArgumentException e) {
-                    throw new RuntimeException(e);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                } catch (InvocationTargetException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        };
-
-        SwingUtilities.invokeLater(r);
+    	target.timerEvent(userInfo);
     }
 
     public void invalidate() {

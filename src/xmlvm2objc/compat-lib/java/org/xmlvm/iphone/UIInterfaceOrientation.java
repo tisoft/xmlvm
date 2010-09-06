@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class UIInterfaceOrientation {
     public static final int Portrait           = UIDeviceOrientation.Portrait;
     public static final int PortraitUpsideDown = UIDeviceOrientation.PortraitUpsideDown;

@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class NSURLConnectionDelegate extends NSObject {
     public void connectionDidFinishLoading(NSURLConnection connection) {
         // Do nothing

@@ -20,10 +20,13 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  *
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UIUserInterfaceIdiom {
 
     public static final int Phone = 0;

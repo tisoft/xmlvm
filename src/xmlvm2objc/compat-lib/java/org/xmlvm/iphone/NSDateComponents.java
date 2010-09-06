@@ -19,10 +19,13 @@
  */
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class NSDateComponents extends NSObject {
 
     private final static int kCFCalendarComponentsWrap = (1 << 0);

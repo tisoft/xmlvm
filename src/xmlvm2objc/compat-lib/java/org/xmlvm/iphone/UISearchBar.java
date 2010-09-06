@@ -20,12 +20,15 @@
 package org.xmlvm.iphone;
 
 import java.util.ArrayList;
+
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UISearchBarRenderer;
 
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UISearchBar extends UIControl {
 
     private String              placeholder;

@@ -20,9 +20,11 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
 import org.xmlvm.iphone.internal.renderer.UITextViewRenderer;
 
+@XMLVMSkeletonOnly
 public class UITextView extends UIView {
 
     private boolean editable;

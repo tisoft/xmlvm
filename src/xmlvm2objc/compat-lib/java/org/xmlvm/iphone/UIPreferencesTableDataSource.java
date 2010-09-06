@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 abstract public class UIPreferencesTableDataSource extends NSObject {
 
     abstract public int numberOfGroupsInPreferencesTable(UIPreferencesTable aTable);

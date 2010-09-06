@@ -20,12 +20,14 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.UITabBarItemView;
 
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UITabBarItem extends UIBarItem {
 
     final UITabBarItemView view;

@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public interface UIAccelerometerDelegate {
     void accelerometerDidAccelerate(UIAccelerometer accelerometer, UIAcceleration acceleration);
 }

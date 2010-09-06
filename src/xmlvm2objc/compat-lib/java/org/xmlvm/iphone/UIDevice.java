@@ -20,10 +20,13 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  *
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UIDevice extends NSObject {
 
     private static final UIDevice current      = new UIDevice();

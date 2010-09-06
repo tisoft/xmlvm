@@ -19,8 +19,9 @@
  */
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.OptionalSelectorException;
-
+@XMLVMSkeletonOnly
 abstract public class UITableViewDelegate extends NSObject {
 
     public void willDisplayCellForRowAtIndexPath(UITableView tableview, UITableViewCell cell,

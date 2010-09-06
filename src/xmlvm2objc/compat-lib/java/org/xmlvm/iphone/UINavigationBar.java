@@ -28,11 +28,13 @@ import static org.xmlvm.iphone.internal.renderer.UIToolbarRenderer.TOP_OFFSET;
 
 import java.util.ArrayList;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.UIGenericToolbar;
 
 /**
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UINavigationBar extends UIGenericToolbar {
 
     private ArrayList<UINavigationItem> items;

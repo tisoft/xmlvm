@@ -19,10 +19,13 @@
  */
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public abstract class UISearchBarDelegate extends NSObject {
 
     public void searchBarTextDidChange(UISearchBar bar, String text) {

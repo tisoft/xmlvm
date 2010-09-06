@@ -22,6 +22,9 @@ package org.xmlvm.iphone;
 
 import java.util.Map;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class NSError extends NSObject {
     private String              domain;
     private int                 code;

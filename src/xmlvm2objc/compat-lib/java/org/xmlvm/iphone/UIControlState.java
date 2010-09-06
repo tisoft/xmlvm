@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class UIControlState {
     public static final int Normal              = 0;
     @SuppressWarnings("PointlessBitwiseExpression")

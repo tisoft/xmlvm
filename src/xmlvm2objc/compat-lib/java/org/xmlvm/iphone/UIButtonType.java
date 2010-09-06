@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class UIButtonType {
     public static final int Custom           = 0;
     public static final int RoundedRect      = 1;

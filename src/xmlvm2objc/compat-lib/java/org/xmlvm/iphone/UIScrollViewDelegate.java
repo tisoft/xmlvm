@@ -19,10 +19,13 @@
  */
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public abstract class UIScrollViewDelegate extends NSObject {
 
     public void scrollViewDidScroll(UIScrollView scrollView) {

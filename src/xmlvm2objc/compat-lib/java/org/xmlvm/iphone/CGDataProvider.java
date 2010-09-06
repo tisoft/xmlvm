@@ -22,6 +22,8 @@ package org.xmlvm.iphone;
 
 import java.io.InputStream;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+@XMLVMSkeletonOnly
 public class CGDataProvider extends NSObject {
 
     public InputStream in;

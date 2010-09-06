@@ -23,6 +23,8 @@ package org.xmlvm.iphone;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+@XMLVMSkeletonOnly
 public class CGLayer extends NSObject {
     BufferedImage image;
 

@@ -21,10 +21,13 @@ package org.xmlvm.iphone;
 
 import java.util.ArrayList;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class MFMailComposeViewController extends UINavigationController {
 
     private MFMailComposeViewControllerDelegate mailComposeDelegate;

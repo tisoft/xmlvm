@@ -20,10 +20,13 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * 
  * @author teras
  */
+@XMLVMSkeletonOnly
 public abstract class UIPickerViewDataSource extends NSObject {
 
     public abstract int numberOfComponentsInPickerView(UIPickerView view);

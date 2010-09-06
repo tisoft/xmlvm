@@ -27,11 +27,13 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
+import org.xmlvm.XMLVMSkeletonOnly;
 
 /**
  * @author arno
  * 
  */
+@XMLVMSkeletonOnly
 public class NSXMLParser extends NSObject {
 
     private NSData              data;

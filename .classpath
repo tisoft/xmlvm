@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/xmlvm"/>
-	<classpathentry kind="src" path="src/xmlvm2c"/>
 	<classpathentry kind="src" path="src/xmlvm2js"/>
 	<classpathentry kind="src" path="src/clr2jvm/xsl"/>
 	<classpathentry kind="src" path="src/clr2jvm/compat-lib/Java"/>
@@ -11,6 +10,9 @@
 	<classpathentry kind="src" path="src/xmlvm2objc/xsl"/>
 	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/objc"/>
 	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/java"/>
+	<classpathentry kind="src" path="src/xmlvm2c/xsl"/>
+	<classpathentry kind="src" path="src/xmlvm2c/compat-lib/iphone"/>
+	<classpathentry kind="src" path="src/xmlvm2c/compat-lib/java"/>
 	<classpathentry kind="src" path="src/android2iphone"/>
 	<classpathentry kind="src" path="demo/java-desktop"/>
 	<classpathentry kind="src" path="demo/iphone/iremote/src"/>

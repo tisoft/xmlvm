@@ -21,8 +21,11 @@
 package org.xmlvm.iphone;
 
 import java.util.ArrayList;
+
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UITableViewRenderer;
 
+@XMLVMSkeletonOnly
 public class UITableView extends UIView {
 
     private UITableViewDataSource dataSource;

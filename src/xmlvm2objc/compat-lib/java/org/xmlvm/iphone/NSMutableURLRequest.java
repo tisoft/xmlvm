@@ -22,6 +22,9 @@ package org.xmlvm.iphone;
 
 import java.net.URL;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public class NSMutableURLRequest extends NSObject {
 
     private NSURL url;

@@ -23,6 +23,8 @@ package org.xmlvm.iphone;
 import java.awt.Graphics2D;
 import java.nio.ByteBuffer;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+@XMLVMSkeletonOnly
 public class CGBitmapContext extends CGContext {
 
     public static CGBitmapContext createWithSize(int x, int y, CGImage image) {

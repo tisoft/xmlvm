@@ -20,8 +20,10 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UIImageViewRenderer;
 
+@XMLVMSkeletonOnly
 public class UIImageView extends UIView {
 
     private UIImage image = null;

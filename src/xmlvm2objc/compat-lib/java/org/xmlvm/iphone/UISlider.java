@@ -27,11 +27,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UISliderRenderer;
 
 /**
  * @author teras
  */
+@XMLVMSkeletonOnly
 public class UISlider extends UIControl {
 
     private float minimum = 0.0f;

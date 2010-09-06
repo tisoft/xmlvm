@@ -21,10 +21,13 @@ package org.xmlvm.iphone;
 
 import java.awt.Font;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
 /**
  * @author teras
  * 
  */
+@XMLVMSkeletonOnly
 public class UIFont extends NSObject {
 
     private final Font font;
