@@ -30,6 +30,7 @@ org_xmlvm_iphone_UIApplication *curApp;
 {
 
 	curApp = __NEW_org_xmlvm_iphone_UIApplication();
+	org_xmlvm_iphone_UIApplication___INIT___(curApp);
 	curApp->org_xmlvm_iphone_UIApplication.ocApp = app;
 	
 	Func_VOO applicatonDidFinishLaunching = 
@@ -187,8 +188,9 @@ void org_xmlvm_iphone_UIApplication_main___java_lang_String_ARRAYTYPE_java_lang_
 {
     if (!__CLASS_org_xmlvm_iphone_UIApplication.classInitialized) __INIT_org_xmlvm_iphone_UIApplication();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_main___java_lang_String_ARRAYTYPE_java_lang_Class_java_lang_Class]
-	appToRun = (org_xmlvm_iphone_UIApplicationDelegate*) n3;
 	
+	//java_lang_Class_newInstance__[11]
+    appToRun = (*(JAVA_OBJECT (*)(JAVA_OBJECT)) ((java_lang_Class*) n3)->__class->vtable[11])(n3);	
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     UIApplicationMain(0 /*argc*/, nil /*argv*/, @"UIAppWrap", @"UIAppWrap");
 	[pool release];	
