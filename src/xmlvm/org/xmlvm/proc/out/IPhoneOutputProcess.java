@@ -72,7 +72,10 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
                 result.add(out);
             }
         }
-        result.add(new OutputFile(IPHONE_COMPAT_LIB));
+
+        OutputFile iPhoneCompatLib = new OutputFile(IPHONE_COMPAT_LIB);
+        iPhoneCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
+        result.add(iPhoneCompatLib);
         
         try {
             // Create Info.plist
