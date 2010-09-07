@@ -32,7 +32,7 @@ public class UniversalFileDirectory extends UniversalFile {
     private String              absoluteName;
     private List<UniversalFile> files = new ArrayList<UniversalFile>();
 
-    public UniversalFileDirectory(String absoluteName) {
+    UniversalFileDirectory(String absoluteName) {
         this.absoluteName = absoluteName;
     }
 
