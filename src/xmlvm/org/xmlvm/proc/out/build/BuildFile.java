@@ -66,13 +66,13 @@ public abstract class BuildFile {
      *            Filename criteria.
      * @return List of filenames with valid files.
      */
-    protected static List<String> getFileNames(List<OutputFile> fileList, PathFileFilter filter) {
+    protected static List<String> getFileNames(List<OutputFile> fileList, PathFileFilter filter, String basePath) {
         ArrayList<String> result = new ArrayList<String>();
 
         for (OutputFile outfile : fileList) {
             OutputFile[] files = outfile.getAffectedSourceFiles(filter);
             for (OutputFile copyFile : files) {
-                result.add(copyFile.getFullPath());
+                result.add(copyFile.getRelativePath(basePath));
             }
         }
         return result;

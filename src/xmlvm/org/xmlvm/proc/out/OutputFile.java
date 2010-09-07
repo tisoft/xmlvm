@@ -146,15 +146,7 @@ public class OutputFile {
      * Sets the output location of this file.
      */
     public void setLocation(String location) {
-        // Remove relative path expressions within the path.
-        location = location.replace("./", "");
-
-        // For all relative paths add the current path to make it absolute.
-        if (!location.startsWith(File.separator)) {
-            location = (new File(".").getAbsolutePath()) + File.separatorChar + location;
-        }
-
-        this.location = location;
+        this.location = (new File(location)).getAbsolutePath();
     }
 
     /**
@@ -223,6 +215,35 @@ public class OutputFile {
      */
     public String getFullPath() {
         return location + (location.endsWith(File.separator) ? "" : File.separator) + fileName;
+    }
+
+    /**
+     * Returns the path of this file relative to the given one.
+     * <p>
+     * <p>
+     * Example:
+     * <p>
+     * Path of this file: /foo/bar/tar/file.txt
+     * <p>
+     * Given basePath: /foo/bar
+     * <p>
+     * Result: tar/file.txt
+     * 
+     * @param basePath
+     * @return
+     */
+    public String getRelativePath(String basePath) {
+        String fullPath = getFullPath();
+
+        if (!fullPath.startsWith(basePath)) {
+            Log.error("'" + basePath + "' is not a base path of '" + fullPath);
+            return null;
+        }
+        String result = fullPath.substring(basePath.length());
+        if (result.startsWith(File.separator)) {
+            result = result.substring(1);
+        }
+        return result;
     }
 
     /**
