@@ -114,7 +114,6 @@ public class UIApplication extends UIResponder {
         return true;
     }
 
-    @XMLVMIgnore
     public static void main(String[] args, Class<? extends UIApplication> uiApplication, Class<? extends UIApplicationDelegate> uiApplicationDelegate) {
         try {
             if (uiApplication==null)
