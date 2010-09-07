@@ -34,8 +34,6 @@ public class PathFileFilter {
     }
 
     public boolean accept(File path) {
-        System.out.println("InLocation: " + inLocation);
-        System.out.println("Path      : " + path + " \n");
         return path.getParent().endsWith(inLocation);
     }
 }
