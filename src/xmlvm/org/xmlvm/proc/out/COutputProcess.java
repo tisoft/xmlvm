@@ -32,7 +32,7 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.JavaJDKLoader;
+import org.xmlvm.proc.LibraryLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResource.XmlvmField;
@@ -556,7 +556,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
         
         Log.debug(TAG, "Loading JDK class: " + className);
-        resource = (new JavaJDKLoader(new Arguments(new String[] { "--in=foo" }))).load(className);
+        resource = (new LibraryLoader(new Arguments(new String[] { "--in=foo" }))).load(className);
         alreadyLoadedResources.put(className, resource);
         return resource;
     }

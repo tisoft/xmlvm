@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.JavaJDKLoader;
+import org.xmlvm.proc.LibraryLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResourceProvider;
@@ -61,7 +61,7 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
         }
         if (arguments.option_exp_load_deps()) {
             // Make sure we have all types that are referenced loaded.
-            (new JavaJDKLoader(arguments)).loadAllReferencedTypes(xmlvmResources);
+            (new LibraryLoader(arguments)).loadAllReferencedTypes(xmlvmResources);
         }
 
         // *************************************************************

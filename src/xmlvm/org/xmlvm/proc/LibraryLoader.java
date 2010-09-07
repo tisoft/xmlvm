@@ -32,14 +32,17 @@ import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
 import org.xmlvm.proc.in.file.ClassFile;
 import org.xmlvm.proc.out.DEXmlvmOutputProcess;
 import org.xmlvm.util.universalfile.UniversalFile;
-import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 /**
  * This class is able to load classes from the Java JDK and runs them through
  * the XMLVM processing pipeline.
  */
-public class JavaJDKLoader {
+public class LibraryLoader {
 
+    /**
+     * In order to process the loading of additional resources in parallel, we
+     * put the loading code into threads.
+     */
     private class LoaderThread extends Thread {
         private final String[]           classesToLoad;
         private final int                start;
@@ -63,20 +66,16 @@ public class JavaJDKLoader {
     }
 
 
-    private static final String        TAG                = JavaJDKLoader.class.getSimpleName();
+    private static final String       TAG  = LibraryLoader.class.getSimpleName();
+    private static final Libraries    LIBS = new Libraries();
 
-    private static final String        ONEJAR_JDK_JAR     = "/lib/openjdk6-build.jar";
-    private static final String        FILESYSTEM_JDK_JAR = "lib/openjdk6-build.jar";
-
-    private static final UniversalFile JDK                = UniversalFileCreator.createDirectory(
-                                                                  ONEJAR_JDK_JAR,
-                                                                  FILESYSTEM_JDK_JAR);
-
-    private final Arguments            arguments;
+    private final Arguments           arguments;
+    private final List<UniversalFile> libraries;
 
 
-    public JavaJDKLoader(Arguments arguments) {
+    public LibraryLoader(Arguments arguments) {
         this.arguments = arguments;
+        this.libraries = LIBS.getLibraries();
     }
 
     /**
@@ -86,26 +85,31 @@ public class JavaJDKLoader {
      *            can be e.g. "java.lang.Object"
      */
     public XmlvmResource load(String typeName) {
-        return load(typeName, JDK);
+        for (UniversalFile library : libraries) {
+            XmlvmResource resource = load(typeName, library);
+            if (resource != null) {
+                return resource;
+            }
+        }
+        Log.warn(TAG, "Could not find resource: " + typeName);
+        return null;
     }
 
     private XmlvmResource load(String typeName, UniversalFile directory) {
         if (typeName.contains(".")) {
             String packageName = typeName.substring(0, typeName.indexOf("."));
             UniversalFile subDir;
-            synchronized (JDK) {
+            synchronized (this) {
                 subDir = directory.getEntry(packageName);
             }
             if (subDir != null && subDir.isDirectory()) {
                 return load(typeName.substring(typeName.indexOf(".") + 1), subDir);
             } else {
-                Log.error(TAG, "Unable to find sub-directory in jar: " + packageName
-                        + "  (in directory: " + directory.getAbsolutePath() + ").");
                 return null;
             }
         } else {
             UniversalFile classFile;
-            synchronized (JDK) {
+            synchronized (this) {
                 classFile = directory.getEntry(typeName + ".class");
             }
             if (classFile != null && classFile.isFile()) {
@@ -114,8 +118,6 @@ public class JavaJDKLoader {
                 // process it.
                 return process(classFile);
             } else {
-                Log.error(TAG, "Unable to find file in jar: " + typeName + "  (in directory: "
-                        + directory.getAbsolutePath() + ").");
                 return null;
             }
         }

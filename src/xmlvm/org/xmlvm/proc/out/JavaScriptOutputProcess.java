@@ -27,7 +27,7 @@ import java.util.Vector;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.JavaJDKLoader;
+import org.xmlvm.proc.LibraryLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResourceProvider;
@@ -102,7 +102,7 @@ public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
 
         if (arguments.option_exp_load_deps()) {
             // Make sure we have all types that are referenced loaded.
-            (new JavaJDKLoader(arguments)).loadAllReferencedTypes(mappedResources);
+            (new LibraryLoader(arguments)).loadAllReferencedTypes(mappedResources);
         }
 
         long startTime = System.currentTimeMillis();
