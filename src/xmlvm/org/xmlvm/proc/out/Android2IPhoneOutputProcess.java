@@ -32,6 +32,8 @@ import org.xmlvm.proc.out.build.MakeFile;
 import org.xmlvm.proc.out.build.XCodeFile;
 import org.xmlvm.util.FileUtil;
 import org.xmlvm.util.JarUtil;
+import org.xmlvm.util.universalfile.UniversalFile;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 /**
  * Takes an {@link IPhoneOutputProcess} as the input and augments it with
@@ -44,6 +46,7 @@ public class Android2IPhoneOutputProcess extends XmlvmProcessImpl<IPhoneOutputPr
 
     private static final String ANDROID_IPHONE_COMPAT_LIB_JAR = "/iphone/android-compat-lib.jar";
     private List<OutputFile>    result                        = new ArrayList<OutputFile>();
+
 
     public Android2IPhoneOutputProcess(Arguments arguments) {
         super(arguments);
@@ -74,10 +77,11 @@ public class Android2IPhoneOutputProcess extends XmlvmProcessImpl<IPhoneOutputPr
             // destination.
             // This is the typical scenario for when XMLVM is called from within
             // xmlvm.jar.
-            FromJarOutputFile compatLibJar = new FromJarOutputFile();
-            compatLibJar.setLocation(arguments.option_out() + ANDROID_SRC_LIB);
-            compatLibJar.setSourceJar(ANDROID_IPHONE_COMPAT_LIB_JAR);
-            result.add(compatLibJar);
+            UniversalFile compatLibJar = UniversalFileCreator.createDirectory(
+                    ANDROID_IPHONE_COMPAT_LIB_JAR, null);
+            OutputFile compatLib = new OutputFile(compatLibJar);
+            compatLib.setLocation(arguments.option_out() + ANDROID_SRC_LIB);
+            result.add(compatLib);
         } else {
             // If the jar is not present (typical non-xmlvm.jar scenario) then
             // we need to cross-compile the android compatibility library first,

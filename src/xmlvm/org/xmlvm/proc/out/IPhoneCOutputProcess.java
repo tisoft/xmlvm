@@ -30,17 +30,21 @@ import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.out.build.MakeFile;
 import org.xmlvm.proc.out.build.XCodeFile;
 import org.xmlvm.util.JarUtil;
+import org.xmlvm.util.universalfile.UniversalFile;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
 
-    private static final String IPHONE_COMPAT_LIB_JAR  = "/iphoneXXX/compat-lib.jar";
-    private static final String IPHONE_COMPAT_LIB_PATH = "src/xmlvm2c/compat-lib/java";
-    private List<OutputFile>    result                 = new ArrayList<OutputFile>();
-    public static final String  IPHONE_SRC             = "/src/xcode";
-    public static final String  IPHONE_SRC_LIB         = IPHONE_SRC + "/lib/iphone";
-    public static final String  IPHONE_SRC_APP         = IPHONE_SRC + "/app";
-    public static final String  IPHONE_RESOURCES_SYS   = "/resources/sys";
-    public static final String  IPHONE_RESOURCES_APP   = "/resources/app";
+    private static final UniversalFile IPHONE_COMPAT_LIB    = UniversalFileCreator.createDirectory(
+                                                                    "/iphoneXXX/compat-lib.jar",
+                                                                    "src/xmlvm2c/compat-lib/java");
+    public static final String         IPHONE_SRC           = "/src/xcode";
+    public static final String         IPHONE_SRC_LIB       = IPHONE_SRC + "/lib/iphone";
+    public static final String         IPHONE_SRC_APP       = IPHONE_SRC + "/app";
+    public static final String         IPHONE_RESOURCES_SYS = "/resources/sys";
+    public static final String         IPHONE_RESOURCES_APP = "/resources/app";
+    private List<OutputFile>           result               = new ArrayList<OutputFile>();
+
 
     public IPhoneCOutputProcess(Arguments arguments) {
         super(arguments);
@@ -54,7 +58,6 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
     }
 
     @Override
-    @SuppressWarnings("CallToThreadDumpStack")
     public boolean process() {
         List<COutputProcess> preprocesses = preprocess();
 
@@ -70,22 +73,9 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
             }
         }
 
-        if (JarUtil.resourceExists(IPHONE_COMPAT_LIB_JAR)) {
-            // If the jar exists, we create a new OutputFile instance that will
-            // lead in the contents of this file being copied to the
-            // destination.
-            // This is the typical scenario for when XMLVM is called from within
-            // xmlvm.jar.
-            FromJarOutputFile compatLibJar = new FromJarOutputFile();
-            compatLibJar.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
-            compatLibJar.setSourceJar(IPHONE_COMPAT_LIB_JAR);
-            result.add(compatLibJar);
-        } else {
-            // If the jar is not present, we take the file from their actual
-            // path and copy them to the destination.
-            result.add(new DirectoryCopyOutput(IPHONE_COMPAT_LIB_PATH, arguments.option_out()
-                    + IPHONE_SRC_LIB));
-        }
+        OutputFile iPhoneCompatLib = new OutputFile(IPHONE_COMPAT_LIB);
+        iPhoneCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
+        result.add(iPhoneCompatLib);
 
         try {
             // Create Info.plist
@@ -95,18 +85,27 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
             StringBuilder infoOut = new StringBuilder();
             String line = null;
             while ((line = infoIn.readLine()) != null) {
-                line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER", arguments
-                        .option_property("bundleidentifier"));
-                line = line.replaceAll("PROPERTY_BUNDLEVERSION", arguments
-                        .option_property("bundleversion"));
-                line = line.replaceAll("PROPERTY_BUNDLEDISPLAYNAME", arguments
-                        .option_property("bundledisplayname"));
-                line = line.replaceAll("PROPERTY_STATUSBARHIDDEN", arguments.option_property(
-                        "statusbarhidden").toLowerCase().equals("true") ? "true" : "false");
-                line = line.replaceAll("PROPERTY_PRERENDEREDICON", arguments.option_property(
-                        "prerenderedicon").toLowerCase().equals("true") ? "true" : "false");
-                line = line.replaceAll("PROPERTY_APPLICATIONEXITS", arguments.option_property(
-                        "applicationexits").toLowerCase().equals("true") ? "true" : "false");
+                line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER",
+                        arguments.option_property("bundleidentifier"));
+                line = line.replaceAll("PROPERTY_BUNDLEVERSION",
+                        arguments.option_property("bundleversion"));
+                line = line.replaceAll("PROPERTY_BUNDLEDISPLAYNAME",
+                        arguments.option_property("bundledisplayname"));
+                line = line
+                        .replaceAll(
+                                "PROPERTY_STATUSBARHIDDEN",
+                                arguments.option_property("statusbarhidden").toLowerCase()
+                                        .equals("true") ? "true" : "false");
+                line = line
+                        .replaceAll(
+                                "PROPERTY_PRERENDEREDICON",
+                                arguments.option_property("prerenderedicon").toLowerCase()
+                                        .equals("true") ? "true" : "false");
+                line = line
+                        .replaceAll(
+                                "PROPERTY_APPLICATIONEXITS",
+                                arguments.option_property("applicationexits").toLowerCase()
+                                        .equals("true") ? "true" : "false");
                 line = line.replaceAll("XMLVM_APP", arguments.option_app_name());
                 infoOut.append(line).append("\n");
             }

@@ -21,13 +21,10 @@
 package org.xmlvm.proc.out.build;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileFilter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.OutputFile;
 import org.xmlvm.util.FileUtil;
@@ -69,18 +66,13 @@ public abstract class BuildFile {
      *            Filename criteria.
      * @return List of filenames with valid files.
      */
-    protected static List<String> getFileNames(List<OutputFile> fileList, FileFilter filter) {
+    protected static List<String> getFileNames(List<OutputFile> fileList, PathFileFilter filter) {
         ArrayList<String> result = new ArrayList<String>();
 
         for (OutputFile outfile : fileList) {
-            File[] files = outfile.getAffectedSourceFiles();
-            if (files != null) {
-                for (File copyFile : files) {
-                    if (filter.accept(copyFile))
-                        result.add(copyFile.getName());
-                }
-            } else {
-                Log.debug("Null items found while parsing " + outfile.getClass().getName());
+            OutputFile[] files = outfile.getAffectedSourceFiles(filter);
+            for (OutputFile copyFile : files) {
+                result.add(copyFile.getFullPath());
             }
         }
         return result;

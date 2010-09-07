@@ -108,7 +108,7 @@ public class FileUtil {
                         + file.getAbsolutePath().substring(source.getAbsolutePath().length());
                 copyDirectory(file, subPath, recursive);
             } else if (file.isFile()) {
-                file.saveFileAs(destination + File.separator + file.getName());
+                file.saveAs(destination + File.separator + file.getName());
             }
         }
         return true;

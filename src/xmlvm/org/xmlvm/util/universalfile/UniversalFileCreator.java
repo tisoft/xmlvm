@@ -41,6 +41,7 @@ public class UniversalFileCreator {
 
     private static final String TAG = "UniversalFileCreator";
 
+
     private UniversalFileCreator() {
         // Do not allow instantiation.
     }
@@ -59,8 +60,8 @@ public class UniversalFileCreator {
         } else if (location.isFile()) {
             return new UniversalFileFromFileSystemFile(location);
         } else {
-            Log.error(TAG, "Location is neither a File nor a directory: "
-                    + location.getAbsolutePath());
+            Log.error(TAG,
+                    "Location is neither a File nor a directory: " + location.getAbsolutePath());
             return null;
         }
     }
@@ -76,6 +77,19 @@ public class UniversalFileCreator {
      */
     public static UniversalFile createFile(String absoluteName, InputStream stream) {
         return new UniversalFileFromStreamResource(absoluteName, stream);
+    }
+
+    /**
+     * Creates a {@link UniversalFile} from memory.
+     * 
+     * @param absoluteName
+     *            the absolute name of the resource
+     * @param data
+     *            the contents of the file
+     * @return The {@link UniversalFile} instance.
+     */
+    public static UniversalFile createFile(String absoluteName, byte[] data) {
+        return new UniversalFileFromMemory(absoluteName, data);
     }
 
     /**
@@ -129,7 +143,10 @@ public class UniversalFileCreator {
         boolean resourceFound = false;
 
         InputStream stream = UniversalFileCreator.class.getResourceAsStream(oneJarResource);
-        File file = new File(fileSystemLocation);
+        File file = null;
+        if (fileSystemLocation != null) {
+            file = new File(fileSystemLocation);
+        }
 
         boolean fileSystemIsJar = file.isFile() && file.getName().toLowerCase().endsWith(".jar");
 
@@ -140,7 +157,7 @@ public class UniversalFileCreator {
         }
 
         // Make sure the file system resource exists.
-        if (file.exists()) {
+        if (file != null && file.exists()) {
             isOneJarMode = false;
             resourceFound = true;
         }

@@ -30,17 +30,21 @@ import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.out.build.MakeFile;
 import org.xmlvm.proc.out.build.XCodeFile;
 import org.xmlvm.util.JarUtil;
+import org.xmlvm.util.universalfile.UniversalFile;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProcess> {
 
-    private static final String IPHONE_COMPAT_LIB_JAR  = "/iphone/compat-lib.jar";
-    private static final String IPHONE_COMPAT_LIB_PATH = "src/xmlvm2objc/compat-lib/objc";
-    private List<OutputFile>    result                 = new ArrayList<OutputFile>();
-    public static final String  IPHONE_SRC             = "/src/xcode";
-    public static final String  IPHONE_SRC_LIB         = IPHONE_SRC + "/lib/iphone";
-    public static final String  IPHONE_SRC_APP         = IPHONE_SRC + "/app";
-    public static final String  IPHONE_RESOURCES_SYS   = "/resources/sys";
-    public static final String  IPHONE_RESOURCES_APP   = "/resources/app";
+    private static final UniversalFile IPHONE_COMPAT_LIB    = UniversalFileCreator.createDirectory(
+                                                                    "/iphoneXXX/compat-lib.jar",
+                                                                    "src/xmlvm2c/compat-lib/java");
+    public static final String         IPHONE_SRC           = "/src/xcode";
+    public static final String         IPHONE_SRC_LIB       = IPHONE_SRC + "/lib/iphone";
+    public static final String         IPHONE_SRC_APP       = IPHONE_SRC + "/app";
+    public static final String         IPHONE_RESOURCES_SYS = "/resources/sys";
+    public static final String         IPHONE_RESOURCES_APP = "/resources/app";
+    private List<OutputFile>           result               = new ArrayList<OutputFile>();
+
 
     public IPhoneOutputProcess(Arguments arguments) {
         super(arguments);
@@ -54,7 +58,6 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
     }
 
     @Override
-    @SuppressWarnings("CallToThreadDumpStack")
     public boolean process() {
         List<ObjectiveCOutputProcess> preprocesses = preprocess();
 
@@ -69,24 +72,8 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
                 result.add(out);
             }
         }
-
-        if (JarUtil.resourceExists(IPHONE_COMPAT_LIB_JAR)) {
-            // If the jar exists, we create a new OutputFile instance that will
-            // lead in the contents of this file being copied to the
-            // destination.
-            // This is the typical scenario for when XMLVM is called from within
-            // xmlvm.jar.
-            FromJarOutputFile compatLibJar = new FromJarOutputFile();
-            compatLibJar.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
-            compatLibJar.setSourceJar(IPHONE_COMPAT_LIB_JAR);
-            result.add(compatLibJar);
-        } else {
-            // If the jar is not present, we take the file from their actual
-            // path and copy them to the destination.
-            result.add(new DirectoryCopyOutput(IPHONE_COMPAT_LIB_PATH, arguments.option_out()
-                    + IPHONE_SRC_LIB));
-        }
-
+        result.add(new OutputFile(IPHONE_COMPAT_LIB));
+        
         try {
             // Create Info.plist
             // TODO: Copy non-in-JAR file version in case we are not in JAR-file

@@ -462,7 +462,7 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
         try {
             String destinationPath = destination.getAbsolutePath() + File.separator
                     + outputFileName;
-            if (!jsFile.saveFileAs(destinationPath)) {
+            if (!jsFile.saveAs(destinationPath)) {
                 Log.error(TAG, "Could not save file to: " + destinationPath);
                 return false;
             }

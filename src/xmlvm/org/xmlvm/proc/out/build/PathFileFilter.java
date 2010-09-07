@@ -21,20 +21,21 @@
 package org.xmlvm.proc.out.build;
 
 import java.io.File;
-import java.io.FileFilter;
 
 /**
- * @author teras
+ * Filters on whether a given path is within a given location.
  */
-public class PathFileFilter implements FileFilter {
+public class PathFileFilter {
     private String inLocation;
+
 
     public PathFileFilter(String inLocation) {
         this.inLocation = inLocation;
     }
 
-    public boolean accept(File pathname) {
-        return pathname.getParent().endsWith(inLocation);
+    public boolean accept(File path) {
+        System.out.println("InLocation: " + inLocation);
+        System.out.println("Path      : " + path + " \n");
+        return path.getParent().endsWith(inLocation);
     }
-
 }

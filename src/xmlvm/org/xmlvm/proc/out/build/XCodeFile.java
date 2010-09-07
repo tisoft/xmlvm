@@ -20,17 +20,17 @@
 
 package org.xmlvm.proc.out.build;
 
-import java.io.FileFilter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-
 import java.util.Set;
+
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.Android2IPhoneOutputProcess;
 import org.xmlvm.proc.out.IPhoneOutputProcess;
 import org.xmlvm.proc.out.OutputFile;
+import org.xmlvm.util.universalfile.UniversalFileFilter;
 
 /**
  * @author teras
@@ -207,7 +207,7 @@ public class XCodeFile extends BuildFile {
             data = data.replace(TEMPL_FRAMEWORKS, frameworks.toString() + TEMPL_FRAMEWORKS);
         }
 
-        private void injectFiles(String template, FileFilter filter) {
+        private void injectFiles(String template, PathFileFilter filter) {
             StringBuilder filerefs = new StringBuilder();
             StringBuilder buildrefs = new StringBuilder();
             StringBuilder display = new StringBuilder();

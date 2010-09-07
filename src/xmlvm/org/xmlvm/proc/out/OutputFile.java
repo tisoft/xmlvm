@@ -21,16 +21,18 @@
 package org.xmlvm.proc.out;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.Log;
+import org.xmlvm.proc.out.build.PathFileFilter;
 import org.xmlvm.util.FileUtil;
+import org.xmlvm.util.universalfile.UniversalFile;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 /**
  * This class represents a file and its content, read to be written out to the
@@ -38,9 +40,10 @@ import org.xmlvm.util.FileUtil;
  */
 public class OutputFile {
 
-    private byte[] data;
-    private String location = "";
-    private String fileName = "";
+    private UniversalFile data;
+    private String        location = "";
+    private String        fileName = "";
+
 
     /**
      * Creates an empty OutputFile instance.
@@ -62,6 +65,10 @@ public class OutputFile {
         setData(data);
     }
 
+    public OutputFile(UniversalFile file) {
+        this.data = file;
+    }
+
     /**
      * Returns the contents of this file.
      */
@@ -69,41 +76,36 @@ public class OutputFile {
         if (data == null) {
             return null;
         }
-        String res = null;
-        try {
-            res = new String(data, "UTF-8");
-        } catch (UnsupportedEncodingException ex) {
-            Log.error(ex.getMessage());
-        }
-        return res;
+        return data.getFileAsString();
     }
 
     /**
      * Returns the data as a byte array.
      */
     public byte[] getDataAsBytes() {
-        return data;
+        return data.getFileAsBytes();
     }
 
     /**
      * Sets the content of this file.
      */
     public final void setData(String data) {
-        if (data == null)
+        if (data == null) {
             this.data = null;
-        else
+        } else {
             try {
-                this.data = data.getBytes("UTF-8");
+                setData(data.getBytes("UTF-8"));
             } catch (UnsupportedEncodingException ex) {
                 Log.error(ex.getMessage());
             }
+        }
     }
 
     /**
      * Sets the content of this file.
      */
     public final void setData(byte[] data) {
-        this.data = data;
+        this.data = UniversalFileCreator.createFile("", data);
     }
 
     /**
@@ -114,14 +116,11 @@ public class OutputFile {
      * @return true, if everything was succesfull
      */
     public boolean setDataFromStream(InputStream stream) {
-        if (stream == null)
+        if (stream == null) {
             return false;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        if (FileUtil.copyStreams(stream, out)) {
-            data = out.toByteArray();
-            return true;
         }
-        return false;
+        this.data = UniversalFileCreator.createFile("", stream);
+        return true;
     }
 
     /**
@@ -129,11 +128,12 @@ public class OutputFile {
      * 
      * @param in
      *            The BufferReader to use as input
-     * @return true, if everything was succesfull
+     * @return true, if everything was successful
      */
     public boolean setDataFromReader(BufferedReader in) {
-        if (in == null)
+        if (in == null) {
             return false;
+        }
         StringWriter out = new StringWriter();
         if (FileUtil.copyReaders(in, out)) {
             setData(out.toString());
@@ -169,15 +169,62 @@ public class OutputFile {
         this.fileName = fileName;
     }
 
+    // /**
+    // * Get a list of the files affected by this OutputFile class.
+    // *
+    // * @return Array of affected files.
+    // */
+    // public UniversalFile[] getAffectedSourceFiles() {
+    // if (data.isFile()) {
+    // return new UniversalFile[] { data };
+    // } else {
+    // return data.listFilesRecursively();
+    // }
+    // }
+
     /**
-     * Get a list of the files affected by this OutputFile class. Only one file
-     * (the output file) is affected
+     * Get a list of the files affected by this OutputFile class that match the
+     * given filter.
+     * <p>
+     * If this OutputFile only contains a file, it will return itself as the
+     * only array element.
      * 
      * @return Array of affected files.
      */
-    public File[] getAffectedSourceFiles() {
-        File[] res = { new File(location, fileName) };
-        return res;
+    public OutputFile[] getAffectedSourceFiles(PathFileFilter filter) {
+        OutputFile[] candidates = getAffectedSourceFiles();
+        List<OutputFile> result = new ArrayList<OutputFile>();
+        for (OutputFile candidate : candidates) {
+            if (filter.accept(new File(candidate.getFullPath()))) {
+                result.add(candidate);
+            }
+        }
+        return result.toArray(new OutputFile[0]);
+    }
+
+    public OutputFile[] getAffectedSourceFiles() {
+        if (data.isFile()) {
+            return new OutputFile[] { this };
+        } else {
+            List<OutputFile> result = new ArrayList<OutputFile>();
+            UniversalFile[] files = data.listFilesRecursively();
+            int dataPathLength = data.getAbsolutePath().length();
+            for (UniversalFile file : files) {
+                String relativePath = file.getAbsolutePath().substring(dataPathLength + 1);
+                OutputFile outputFile = new OutputFile(file);
+                String path = getFullPath();
+                if (!relativePath.isEmpty()) {
+                    path += relativePath;
+                }
+
+                String location = path.substring(0, path.length() - file.getName().length());
+                outputFile.setLocation(location);
+                outputFile.setFileName(file.getName());
+
+                result.add(outputFile);
+            }
+            return result.toArray(new OutputFile[0]);
+        }
     }
 
     /**
@@ -192,37 +239,23 @@ public class OutputFile {
     /**
      * Write the given file to disk.
      * 
-     * @return whether file was written successfully
+     * @return Whether file was written successfully or is empty.
      */
     public boolean write() {
-        if (getData() == null) {
-            Log.warn("Ignoring empty file: " + getFullPath());
+        if (isEmpty()) {
+            Log.warn("Ignoring empty or non-existent file: " + getFullPath());
             return true;
         }
-        FileOutputStream out = null;
-        try {
-            String pathAndName = getFullPath();
-            out = new FileOutputStream(pathAndName);
-            out.write(getDataAsBytes());
-            out.close();
-            return true;
-        } catch (IOException e) {
-            Log.error("Could not write file.\n" + e.getMessage());
-            if (out != null)
-                try {
-                    out.close();
-                } catch (IOException ex) {
-                }
-        }
-        return false;
+        String pathAndName = getFullPath();
+        return data.saveAs(pathAndName);
     }
 
     /**
      * Determines if the file is empty.
      * 
-     * @return true if file is of size 0
+     * @return Whether the file empty or not present.
      */
     public boolean isEmpty() {
-        return data == null || data.length == 0;
+        return data == null;
     }
 }

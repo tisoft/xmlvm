@@ -70,7 +70,7 @@ public class UniversalFileDirectory extends UniversalFile {
     public UniversalFile[] listFiles() {
         return files.toArray(new UniversalFile[0]);
     }
-
+    
     /**
      * Adds a universal file as a child.
      */

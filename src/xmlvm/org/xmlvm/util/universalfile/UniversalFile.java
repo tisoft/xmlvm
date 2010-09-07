@@ -25,6 +25,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.xmlvm.Log;
@@ -35,6 +36,7 @@ import org.xmlvm.Log;
  */
 public abstract class UniversalFile {
     private static final String TAG = "UniversalFile";
+
 
     /**
      * Returns the name of this file. The returned value is analog to
@@ -76,8 +78,9 @@ public abstract class UniversalFile {
     public abstract boolean exists();
 
     /**
-     * If this file entry is a directory, this returns the files contained in
-     * it.
+     * If this universal file is a directory, this returns the files contained
+     * in it. This only lists file on one level, and can thus return files and
+     * sub-directories.
      */
     public abstract UniversalFile[] listFiles();
 
@@ -98,6 +101,51 @@ public abstract class UniversalFile {
             }
         }
 
+        return result.toArray(new UniversalFile[0]);
+    }
+
+    /**
+     * If this universal file is is a directory, it returns a list of all files
+     * contained in it and within all sub-directories. This method will not
+     * return any directories.
+     * 
+     * @param filter
+     *            a filter for selecting a particular set of files from the list
+     */
+    public UniversalFile[] listFilesRecursively(UniversalFileFilter filter) {
+        if (!isDirectory()) {
+            return new UniversalFile[0];
+        }
+
+        List<UniversalFile> result = new ArrayList<UniversalFile>();
+        for (UniversalFile file : listFiles(filter)) {
+            if (file.isFile()) {
+                result.add(file);
+            } else if (file.isDirectory()) {
+                result.addAll(Arrays.asList(file.listFilesRecursively()));
+            }
+        }
+        return result.toArray(new UniversalFile[0]);
+    }
+
+    /**
+     * If this universal file is is a directory, it returns a list of all files
+     * contained in it and within all sub-directories. This method will not
+     * return any directories.
+     */
+    public UniversalFile[] listFilesRecursively() {
+        if (!isDirectory()) {
+            return new UniversalFile[0];
+        }
+
+        List<UniversalFile> result = new ArrayList<UniversalFile>();
+        for (UniversalFile file : listFiles()) {
+            if (file.isFile()) {
+                result.add(file);
+            } else if (file.isDirectory()) {
+                result.addAll(Arrays.asList(file.listFilesRecursively()));
+            }
+        }
         return result.toArray(new UniversalFile[0]);
     }
 
@@ -143,13 +191,33 @@ public abstract class UniversalFile {
     public abstract String getFileAsString();
 
     /**
-     * Saves this universal file to the given file system path.
+     * Saves this universal file to the given file system path (in this case the
+     * path should contains the file name itself, too). If it represents a file,
+     * it stores the file, if it is a directory, it stores multiple files
+     * recursively, preserving the original file hierarchy.
      * 
      * @param path
      *            the destination to where this resource is copied to
      * @return Whether the operation was successful.
      */
-    public boolean saveFileAs(String path) {
+    public boolean saveAs(String path) {
+        if (isFile()) {
+            return saveFileAs(path);
+        } else if (isDirectory()) {
+            return saveDirectoryAs(path);
+        }
+        return false;
+    }
+    
+    /**
+     * Stores this universal file to the given file system path (which includes
+     * the file name itself).
+     * 
+     * @param path
+     *            the destination to where this resource is copied to
+     * @return Whether the operation was successful.
+     */
+    private boolean saveFileAs(String path) {
         try {
             // Make sure the destination directory exists.
             File parent = (new File(path)).getParentFile();
@@ -166,6 +234,39 @@ public abstract class UniversalFile {
             Log.error(TAG, "Could not save file at: " + path + "(" + e.getMessage() + ")");
         }
         return false;
+    }
+
+    /**
+     * If this universal file is a directory, this stores all the files
+     * recursively in the given destination directory, preserving the directory
+     * structure.
+     * 
+     * @param destination
+     *            the directory where the files should be stored
+     * @return Whether the operation was successful.
+     */
+    private boolean saveDirectoryAs(String destination) {
+        File destinationFile = new File(destination);
+
+        if (destinationFile.exists() && destinationFile.isFile()) {
+            Log.error(TAG, "Could not copy files to " + destination + ". Destination is a file.");
+            return false;
+        }
+
+        // Lets make sure we have a properly formatted path to work with.
+        String destinationStr = destinationFile.getAbsolutePath();
+
+        for (UniversalFile file : listFiles()) {
+            if (file.isFile()) {
+                file.saveAs(destinationStr + File.separatorChar + file.getName());
+            } else if (file.isDirectory()) {
+                String absolutePath = file.getAbsolutePath();
+                String directoryName = absolutePath.substring(absolutePath
+                        .lastIndexOf(File.separatorChar) + 1);
+                file.saveAs(destinationStr + File.separatorChar + directoryName);
+            }
+        }
+        return true;
     }
 
     /**
