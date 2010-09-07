@@ -36,8 +36,8 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
 public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProcess> {
 
     private static final UniversalFile IPHONE_COMPAT_LIB    = UniversalFileCreator.createDirectory(
-                                                                    "/iphoneXXX/compat-lib.jar",
-                                                                    "src/xmlvm2c/compat-lib/java");
+                                                                    "/iphone/compat-lib.jar",
+                                                                    "src/xmlvm2/compat-lib/java");
     public static final String         IPHONE_SRC           = "/src/xcode";
     public static final String         IPHONE_SRC_LIB       = IPHONE_SRC + "/lib/iphone";
     public static final String         IPHONE_SRC_APP       = IPHONE_SRC + "/app";
@@ -72,11 +72,10 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
                 result.add(out);
             }
         }
-
         OutputFile iPhoneCompatLib = new OutputFile(IPHONE_COMPAT_LIB);
         iPhoneCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
         result.add(iPhoneCompatLib);
-        
+
         try {
             // Create Info.plist
             // TODO: Copy non-in-JAR file version in case we are not in JAR-file

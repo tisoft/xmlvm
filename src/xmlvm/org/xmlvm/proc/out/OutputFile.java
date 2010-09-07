@@ -44,13 +44,6 @@ public class OutputFile {
     private String        location = "";
     private String        fileName = "";
 
-
-    /**
-     * Creates an empty OutputFile instance.
-     */
-    public OutputFile() {
-    }
-
     /**
      * Create a new file with the given string content.
      */
@@ -190,7 +183,7 @@ public class OutputFile {
     }
 
     public OutputFile[] getAffectedSourceFiles() {
-        if (data.isFile()) {
+        if (data == null || data.isFile()) {
             return new OutputFile[] { this };
         } else {
             List<OutputFile> result = new ArrayList<OutputFile>();

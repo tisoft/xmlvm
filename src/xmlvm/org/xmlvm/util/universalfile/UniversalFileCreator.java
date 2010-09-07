@@ -144,11 +144,12 @@ public class UniversalFileCreator {
 
         InputStream stream = UniversalFileCreator.class.getResourceAsStream(oneJarResource);
         File file = null;
+        boolean fileSystemIsJar = false;
         if (fileSystemLocation != null) {
             file = new File(fileSystemLocation);
+            fileSystemIsJar = file.isFile() && file.getName().toLowerCase().endsWith(".jar");
         }
 
-        boolean fileSystemIsJar = file.isFile() && file.getName().toLowerCase().endsWith(".jar");
 
         // Check whether the One-JAR resource exists.
         if (stream != null) {

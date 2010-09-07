@@ -293,10 +293,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 referencedTypes));
 
         String fileName = className + DEXMLVM_ENDING;
-        OutputFile result = new OutputFile();
+        OutputFile result = new OutputFile(documentToString(document));
         result.setLocation(arguments.option_out());
         result.setFileName(fileName);
-        result.setData(documentToString(document));
 
         return result;
     }

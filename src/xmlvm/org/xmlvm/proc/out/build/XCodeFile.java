@@ -30,7 +30,6 @@ import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.Android2IPhoneOutputProcess;
 import org.xmlvm.proc.out.IPhoneOutputProcess;
 import org.xmlvm.proc.out.OutputFile;
-import org.xmlvm.util.universalfile.UniversalFileFilter;
 
 /**
  * @author teras

@@ -30,6 +30,7 @@ import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.in.InputProcess.EmptyInputProcess;
 import org.xmlvm.util.FileUtil;
 import org.xmlvm.util.JarUtil;
+import org.xmlvm.util.universalfile.UniversalFile;
 
 /**
  * Creates a template project.
@@ -86,7 +87,7 @@ public class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputProcess> {
     }
 
     private boolean addFile(String filename, String to, String projname) {
-        OutputFile file = new OutputFile();
+        OutputFile file = new OutputFile((UniversalFile)null);
         file.setFileName(filename);
         file.setLocation(to);
         if (!file.setDataFromStream(FileUtil.findStreamResource(IPHONE_TEMPL_JAR_PATH + filename,

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlvm.util.FileUtil;
+import org.xmlvm.util.universalfile.UniversalFile;
 
 /**
  * This output file is responsible to copy resources to a project
@@ -14,6 +15,7 @@ import org.xmlvm.util.FileUtil;
 public class ResourceOutputFile extends OutputFile {
 
     private String sourcePath = "";
+
 
     /**
      * Create a new resource file
@@ -26,6 +28,7 @@ public class ResourceOutputFile extends OutputFile {
      *            Filename to copy
      */
     public ResourceOutputFile(String from, String to, String fname) {
+        super((UniversalFile) null);
         setFileName(fname);
         setLocation(to);
         this.sourcePath = from;
