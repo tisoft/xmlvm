@@ -44,6 +44,7 @@ public class OutputFile {
     private String        location = "";
     private String        fileName = "";
 
+
     /**
      * Create a new file with the given string content.
      */
@@ -145,6 +146,14 @@ public class OutputFile {
      * Sets the output location of this file.
      */
     public void setLocation(String location) {
+        // Remove relative path expressions within the path.
+        location = location.replace("./", "");
+
+        // For all relative paths add the current path to make it absolute.
+        if (!location.startsWith(File.separator)) {
+            location = (new File(".").getAbsolutePath()) + File.separatorChar + location;
+        }
+
         this.location = location;
     }
 
@@ -222,10 +231,10 @@ public class OutputFile {
      * @return Whether file was written successfully.
      */
     public boolean write() {
-    	if (location.isEmpty()) {
+        if (location.isEmpty()) {
             Log.warn("Cannot write OutputFile with no location: " + getFullPath());
-            return false;    		
-    	}
+            return false;
+        }
         if (isEmpty()) {
             Log.warn("Ignoring empty or non-existent file: " + getFullPath());
             return false;
