@@ -222,13 +222,18 @@ public abstract class UniversalFile {
      * 
      * @param destination
      *            the archive in which the file will be stored
+     * @param pathPrefix
+     *            the path inside the archive, where the files are put into
      * @return Whether the operation was successful.
      */
-    public boolean archiveTo(String destination) {
+    public boolean archiveTo(String destination, String pathPrefix) {
+        if (!pathPrefix.endsWith("/")) {
+            pathPrefix += "/";
+        }
         if (isFile()) {
-            return archiveFileTo(destination);
+            return archiveFileTo(destination, pathPrefix);
         } else if (isDirectory()) {
-            return archiveDirectoryTo(destination);
+            return archiveDirectoryTo(destination, pathPrefix);
         }
         return false;
     }
@@ -299,9 +304,11 @@ public abstract class UniversalFile {
      * 
      * @param destination
      *            the archive in which the file will be stored
+     * @param pathPrefix
+     *            the path inside the archive, where the files are put into
      * @return Whether the operation was successful.
      */
-    private boolean archiveFileTo(String destination) {
+    private boolean archiveFileTo(String destination, String pathPrefix) {
         File destinationFile = prepareDestinationArchive(destination);
         if (destinationFile == null) {
             return false;
@@ -310,7 +317,7 @@ public abstract class UniversalFile {
         try {
             JarOutputStream outputStream = new JarOutputStream(
                     new FileOutputStream(destinationFile));
-            outputStream.putNextEntry(new ZipEntry(getName()));
+            outputStream.putNextEntry(new ZipEntry(pathPrefix + getName()));
             outputStream.write(getFileAsBytes());
             outputStream.close();
             return true;
@@ -330,9 +337,11 @@ public abstract class UniversalFile {
      * 
      * @param destination
      *            the archive in which the files will be stored
+     * @param pathPrefix
+     *            the path inside the archive, where the files are put into
      * @return Whether the operation was successful.
      */
-    private boolean archiveDirectoryTo(String destination) {
+    private boolean archiveDirectoryTo(String destination, String pathPrefix) {
         File destinationFile = prepareDestinationArchive(destination);
         if (destinationFile == null) {
             return false;
@@ -362,7 +371,7 @@ public abstract class UniversalFile {
                     return false;
                 }
                 path = path.substring(basePath.length() + 1);
-                outputStream.putNextEntry(new ZipEntry(path));
+                outputStream.putNextEntry(new ZipEntry(pathPrefix + path));
                 outputStream.write(fileToArchive.getFileAsBytes());
             }
             outputStream.close();
