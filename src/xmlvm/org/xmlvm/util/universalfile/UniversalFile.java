@@ -396,6 +396,14 @@ public abstract class UniversalFile {
                 }
             }
         }
+        File parentDirectory = destinationFile.getParentFile();
+        if (!parentDirectory.exists()) {
+            boolean created = parentDirectory.mkdirs();
+            if (!created) {
+                Log.error(TAG, "Could not create directory: " + parentDirectory.getAbsolutePath());
+                return null;
+            }
+        }
         return destinationFile;
     }
 
