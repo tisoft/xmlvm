@@ -213,14 +213,20 @@ public abstract class UniversalFile {
     }
 
     /**
-     * Archives this universal file to the given archive file.
+     * Archives this universal file to the given archive file. If the archive
+     * file already exists, it will be replaced.
+     * <p>
+     * If this universal file is a directory, this stores all files recursively
+     * in the given destination archive file. Paths in the destination are
+     * relative to the this file.
      * 
      * @param destination
+     *            the archive in which the file will be stored
      * @return Whether the operation was successful.
      */
     public boolean archiveTo(String destination) {
         if (isFile()) {
-            return archiveFileTo(destination, false);
+            return archiveFileTo(destination);
         } else if (isDirectory()) {
             return archiveDirectoryTo(destination);
         }
@@ -287,10 +293,23 @@ public abstract class UniversalFile {
         return true;
     }
 
-    private boolean archiveFileTo(String destination, boolean append) {
+    /**
+     * If this universal file is a file, this will store the file in the given
+     * archive. If the archive already exists, it will be replaced.
+     * 
+     * @param destination
+     *            the archive in which the file will be stored
+     * @return Whether the operation was successful.
+     */
+    private boolean archiveFileTo(String destination) {
+        File destinationFile = prepareDestinationArchive(destination);
+        if (destinationFile == null) {
+            return false;
+        }
+
         try {
-            JarOutputStream outputStream = new JarOutputStream(new FileOutputStream(destination,
-                    append));
+            JarOutputStream outputStream = new JarOutputStream(
+                    new FileOutputStream(destinationFile));
             outputStream.putNextEntry(new ZipEntry(getName()));
             outputStream.write(getFileAsBytes());
             outputStream.close();
@@ -303,19 +322,20 @@ public abstract class UniversalFile {
         return false;
     }
 
+    /**
+     * If this universal file is a directory, this stores all files recursively
+     * in the given destination archive file. Paths in the destination are
+     * relative to the this file. If the archive already exists, it will be
+     * replaced.
+     * 
+     * @param destination
+     *            the archive in which the files will be stored
+     * @return Whether the operation was successful.
+     */
     private boolean archiveDirectoryTo(String destination) {
-        File destinationFile = new File(destination);
-        if (destinationFile.exists()) {
-            if (destinationFile.isDirectory()) {
-                Log.error(TAG, "Cannot write archive, destination is a directory: " + destination);
-                return false;
-            } else {
-                boolean deleted = destinationFile.delete();
-                if (!deleted) {
-                    Log.error(TAG, "Unable to delete existing file: " + destination);
-                    return false;
-                }
-            }
+        File destinationFile = prepareDestinationArchive(destination);
+        if (destinationFile == null) {
+            return false;
         }
 
         JarOutputStream outputStream;
@@ -351,6 +371,32 @@ public abstract class UniversalFile {
             Log.error(TAG, "Could not write to archive: " + e.getMessage());
         }
         return false;
+    }
+
+    /**
+     * Prepares the destination archive file. If the file exists, it will be
+     * deleted.
+     * 
+     * @param destination
+     *            the destination archive file
+     * @return The {@link File} object, if the operation was successful, or
+     *         <code>null</code> otherwise.
+     */
+    private static File prepareDestinationArchive(String destination) {
+        File destinationFile = new File(destination);
+        if (destinationFile.exists()) {
+            if (destinationFile.isDirectory()) {
+                Log.error(TAG, "Cannot write archive, destination is a directory: " + destination);
+                return null;
+            } else {
+                boolean deleted = destinationFile.delete();
+                if (!deleted) {
+                    Log.error(TAG, "Unable to delete existing file: " + destination);
+                    return null;
+                }
+            }
+        }
+        return destinationFile;
     }
 
     /**
