@@ -192,6 +192,14 @@
 			</fileset>
 		</copy>
 
+		<jar destfile="${xmlvm.bin}/iphone/cocoa-compat-lib.jar">
+			<fileset dir="src/xmlvm2c/compat-lib/iphone/" />
+		</jar>
+
+		<jar destfile="${xmlvm.bin}/iphone/java-compat-lib.jar">
+			<fileset dir="src/xmlvm2c/compat-lib/java/" />
+		</jar>
+
 		<jar destfile="${xmlvm.bin}/iphone/compat-lib.jar">
 			<fileset dir="src/xmlvm2objc/compat-lib/objc/" />
 		</jar>

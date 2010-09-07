@@ -65,7 +65,7 @@ public class JavaJDKLoader {
 
     private static final String        TAG                = JavaJDKLoader.class.getSimpleName();
 
-    private static final String        ONEJAR_JDK_JAR     = "lib/openjdk6-build.jar";
+    private static final String        ONEJAR_JDK_JAR     = "/lib/openjdk6-build.jar";
     private static final String        FILESYSTEM_JDK_JAR = "lib/openjdk6-build.jar";
 
     private static final UniversalFile JDK                = UniversalFileCreator.createDirectory(

@@ -37,16 +37,20 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
 public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
 
     // TODO: Replace with actual one-jar jar.
-    private static final UniversalFile IPHONE_COMPAT_LIB    = UniversalFileCreator.createDirectory(
-                                                                    "/iphoneXXX/compat-lib.jar",
-                                                                    "src/xmlvm2c/compat-lib/java");
-    public static final String         IPHONE_SRC           = "/src/xcode";
-    public static final String         IPHONE_SRC_LIB       = IPHONE_SRC + "/lib/iphone";
-    public static final String         IPHONE_SRC_APP       = IPHONE_SRC + "/app";
-    public static final String         IPHONE_RESOURCES_SYS = "/resources/sys";
-    public static final String         IPHONE_RESOURCES_APP = "/resources/app";
-    private List<OutputFile>           result               = new ArrayList<OutputFile>();
-
+    private static final UniversalFile IPHONE_COCOA_COMPAT_LIB = UniversalFileCreator
+                                                                       .createDirectory(
+                                                                               "/iphone/cocoa-compat-lib.jar",
+                                                                               "src/xmlvm2c/compat-lib/iphone");
+    private static final UniversalFile IPHONE_JAVA_COMPAT_LIB  = UniversalFileCreator
+                                                                       .createDirectory(
+                                                                               "/iphone/java-compat-lib.jar",
+                                                                               "src/xmlvm2c/compat-lib/java");
+    public static final String         IPHONE_SRC              = "/src/xcode";
+    public static final String         IPHONE_SRC_LIB          = IPHONE_SRC + "/lib/iphone";
+    public static final String         IPHONE_SRC_APP          = IPHONE_SRC + "/app";
+    public static final String         IPHONE_RESOURCES_SYS    = "/resources/sys";
+    public static final String         IPHONE_RESOURCES_APP    = "/resources/app";
+    private List<OutputFile>           result                  = new ArrayList<OutputFile>();
 
     public IPhoneCOutputProcess(Arguments arguments) {
         super(arguments);
@@ -75,39 +79,35 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
             }
         }
 
-        OutputFile iPhoneCompatLib = new OutputFile(IPHONE_COMPAT_LIB);
-        iPhoneCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
-        result.add(iPhoneCompatLib);
+        OutputFile iPhoneCocoaCompatLib = new OutputFile(IPHONE_COCOA_COMPAT_LIB);
+        iPhoneCocoaCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
+        result.add(iPhoneCocoaCompatLib);
+
+        OutputFile iPhoneJavaCompatLib = new OutputFile(IPHONE_JAVA_COMPAT_LIB);
+        iPhoneJavaCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
+        result.add(iPhoneJavaCompatLib);
 
         try {
             // Create Info.plist
             UniversalFile infoInFile = UniversalFileCreator.createFile("/iphone/Info.plist",
                     "var/iphone/Info.plist");
-            BufferedReader infoIn = new BufferedReader(new StringReader(infoInFile.getFileAsString()));
+            BufferedReader infoIn = new BufferedReader(new StringReader(infoInFile
+                    .getFileAsString()));
             StringBuilder infoOut = new StringBuilder();
             String line = null;
             while ((line = infoIn.readLine()) != null) {
-                line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER",
-                        arguments.option_property("bundleidentifier"));
-                line = line.replaceAll("PROPERTY_BUNDLEVERSION",
-                        arguments.option_property("bundleversion"));
-                line = line.replaceAll("PROPERTY_BUNDLEDISPLAYNAME",
-                        arguments.option_property("bundledisplayname"));
-                line = line
-                        .replaceAll(
-                                "PROPERTY_STATUSBARHIDDEN",
-                                arguments.option_property("statusbarhidden").toLowerCase()
-                                        .equals("true") ? "true" : "false");
-                line = line
-                        .replaceAll(
-                                "PROPERTY_PRERENDEREDICON",
-                                arguments.option_property("prerenderedicon").toLowerCase()
-                                        .equals("true") ? "true" : "false");
-                line = line
-                        .replaceAll(
-                                "PROPERTY_APPLICATIONEXITS",
-                                arguments.option_property("applicationexits").toLowerCase()
-                                        .equals("true") ? "true" : "false");
+                line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER", arguments
+                        .option_property("bundleidentifier"));
+                line = line.replaceAll("PROPERTY_BUNDLEVERSION", arguments
+                        .option_property("bundleversion"));
+                line = line.replaceAll("PROPERTY_BUNDLEDISPLAYNAME", arguments
+                        .option_property("bundledisplayname"));
+                line = line.replaceAll("PROPERTY_STATUSBARHIDDEN", arguments.option_property(
+                        "statusbarhidden").toLowerCase().equals("true") ? "true" : "false");
+                line = line.replaceAll("PROPERTY_PRERENDEREDICON", arguments.option_property(
+                        "prerenderedicon").toLowerCase().equals("true") ? "true" : "false");
+                line = line.replaceAll("PROPERTY_APPLICATIONEXITS", arguments.option_property(
+                        "applicationexits").toLowerCase().equals("true") ? "true" : "false");
                 line = line.replaceAll("XMLVM_APP", arguments.option_app_name());
                 infoOut.append(line).append("\n");
             }
