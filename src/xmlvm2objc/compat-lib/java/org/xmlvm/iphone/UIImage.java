@@ -22,6 +22,7 @@ package org.xmlvm.iphone;
 
 import java.awt.image.BufferedImage;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.ImageLoader;
 import org.xmlvm.iphone.internal.Simulator;
@@ -55,6 +56,7 @@ public class UIImage extends NSObject {
         return null;
     }
 
+    @XMLVMIgnore
     public static UIImage xmlvmCreateFromBufferedImage(BufferedImage bi) {
         return new UIImage(bi);
     }
@@ -82,6 +84,7 @@ public class UIImage extends NSObject {
         return new CGSize(width, height);
     }
 
+    @XMLVMIgnore
     public BufferedImage xmlvmGetImage() {
         return image;
     }

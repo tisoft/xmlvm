@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
 import org.xmlvm.iphone.internal.renderer.UIViewRenderer;
@@ -59,6 +60,7 @@ public class UIView extends UIResponder {
      * 
      * Do not use it directly
      */
+    @XMLVMIgnore
     UIViewController          controller;
 
     public UIView(CGRect rect) {
@@ -389,6 +391,7 @@ public class UIView extends UIResponder {
         // TODO : Java implementation
     }
 
+    @XMLVMIgnore
     public void xmlvmDrawRect(CGRect rect) {
         if (isHidden())
             return;
@@ -410,23 +413,28 @@ public class UIView extends UIResponder {
         // Do nothing
     }
 
+    @XMLVMIgnore
     protected UIViewRenderer<?> xmlvmGetRenderer() {
         return renderer;
     }
 
+    @XMLVMIgnore
     protected final void xmlvmSetRenderer(UIViewRenderer<?> renderer) {
         this.renderer = renderer;
     }
 
+    @XMLVMIgnore
     public void xmlvmSetOffsets(int offsetLeft, int offsetTop) {
         this.offsetLeft = offsetLeft;
         this.offsetTop = offsetTop;
     }
 
+    @XMLVMIgnore
     public int xmlvmGetOffsetLeft() {
         return this.offsetLeft;
     }
 
+    @XMLVMIgnore
     public int xmlvmGetOffsetTop() {
         return this.offsetTop;
     }

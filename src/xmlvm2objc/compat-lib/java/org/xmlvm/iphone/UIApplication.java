@@ -25,6 +25,7 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
 import org.xmlvm.iphone.internal.SimulatorDesktop;
@@ -35,7 +36,9 @@ public class UIApplication extends UIResponder {
     private boolean               idleTimerDisabled;
     private UIApplicationDelegate delegate;
     private static UIApplication  instance;
+    @XMLVMIgnore
     List<UIWindow>                windows;
+    @XMLVMIgnore
     UIWindow                      keyWindow;
     private int                   statusBarStyle;
 
@@ -111,6 +114,7 @@ public class UIApplication extends UIResponder {
         return true;
     }
 
+    @XMLVMIgnore
     public static void main(String[] args, Class<? extends UIApplication> uiApplication, Class<? extends UIApplicationDelegate> uiApplicationDelegate) {
         try {
             if (uiApplication==null)
