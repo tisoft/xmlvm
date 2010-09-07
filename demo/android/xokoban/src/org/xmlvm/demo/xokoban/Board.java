@@ -20,13 +20,11 @@
 
 package org.xmlvm.demo.xokoban;
 
-import org.xmlvm.iphone.XMLVMNoAutoReleasePool;
 
 /**
  * A Boards represents a logical Sokoban level. It uses a {@link CharField} in
  * order to get the information about a level from an encoded String.
  */
-@XMLVMNoAutoReleasePool
 public class Board {
     /**
      * An empty game tile.

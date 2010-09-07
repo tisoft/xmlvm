@@ -20,6 +20,7 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
 
@@ -37,6 +38,7 @@ public class UIAccelerometer extends NSObject {
         return sharedAccelerometer;
     }
 
+    @XMLVMIgnore
     public static void setAcceleratedInternal(double x, double y, double z) {
         Simulator.setAccelerated(x, y, z);
         if (sharedAccelerometer.delegate != null) {
