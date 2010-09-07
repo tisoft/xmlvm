@@ -169,19 +169,6 @@ public class OutputFile {
         this.fileName = fileName;
     }
 
-    // /**
-    // * Get a list of the files affected by this OutputFile class.
-    // *
-    // * @return Array of affected files.
-    // */
-    // public UniversalFile[] getAffectedSourceFiles() {
-    // if (data.isFile()) {
-    // return new UniversalFile[] { data };
-    // } else {
-    // return data.listFilesRecursively();
-    // }
-    // }
-
     /**
      * Get a list of the files affected by this OutputFile class that match the
      * given filter.
