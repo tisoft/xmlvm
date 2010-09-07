@@ -29,48 +29,49 @@ import org.xmlvm.Log;
  */
 public class OutputFileWriter {
 
-    private List<OutputFile> outputFiles;
+	private List<OutputFile> outputFiles;
 
-    public OutputFileWriter(List<OutputFile> outputFiles) {
-        this.outputFiles = outputFiles;
-    }
+	public OutputFileWriter(List<OutputFile> outputFiles) {
+		this.outputFiles = outputFiles;
+	}
 
-    /**
-     * Writes the files given in the constructor to the file system.
-     * 
-     * @return whether all files were written successfully
-     */
-    public boolean writeFiles() {
-        for (OutputFile outputFile : outputFiles) {
-            if (!createOutputDirectory(outputFile))
-                Log.error("Could not create directory for file: " + outputFile.getFileName());
-            if (!outputFile.write()) {
-                return false;
-            }
-        }
-        return true;
-    }
+	/**
+	 * Writes the files given in the constructor to the file system.
+	 * 
+	 * @return whether all files were written successfully
+	 */
+	public boolean writeFiles() {
+		for (OutputFile outputFile : outputFiles) {
+			if (!createOutputDirectory(outputFile))
+				Log.error("Could not create directory for file: "
+						+ outputFile.getFileName());
+			outputFile.write();
+		}
+		return true;
+	}
 
-    /**
-     * Make sure that the directory, this file is written to, exists or is
-     * created.
-     * 
-     * @return whether the directory exists or could be created
-     */
-    private boolean createOutputDirectory(OutputFile outputFile) {
-        File location = new File(outputFile.getLocation());
-        if (location.exists()) {
-            if (location.isDirectory()) {
-                return true;
-            } else {
-                Log.error("Location is not a directory: " + outputFile.getLocation());
-                return false;
-            }
-        }
-        if (!location.mkdirs()) {
-            Log.error("Directory could not be created: " + outputFile.getLocation());
-            return false;
-        }
-        return true;
-    }
+	/**
+	 * Make sure that the directory, this file is written to, exists or is
+	 * created.
+	 * 
+	 * @return whether the directory exists or could be created
+	 */
+	private boolean createOutputDirectory(OutputFile outputFile) {
+		File location = new File(outputFile.getLocation());
+		if (location.exists()) {
+			if (location.isDirectory()) {
+				return true;
+			} else {
+				Log.error("Location is not a directory: "
+						+ outputFile.getLocation());
+				return false;
+			}
+		}
+		if (!location.mkdirs()) {
+			Log.error("Directory could not be created: "
+					+ outputFile.getLocation());
+			return false;
+		}
+		return true;
+	}
 }

@@ -226,12 +226,16 @@ public class OutputFile {
     /**
      * Write the given file to disk.
      * 
-     * @return Whether file was written successfully or is empty.
+     * @return Whether file was written successfully.
      */
     public boolean write() {
+    	if (location.isEmpty()) {
+            Log.warn("Cannot write OutputFile with no location: " + getFullPath());
+            return false;    		
+    	}
         if (isEmpty()) {
             Log.warn("Ignoring empty or non-existent file: " + getFullPath());
-            return true;
+            return false;
         }
         String pathAndName = getFullPath();
         return data.saveAs(pathAndName);
