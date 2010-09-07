@@ -21,6 +21,7 @@ package org.xmlvm.proc.out;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,7 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
 
+    // TODO: Replace with actual one-jar jar.
     private static final UniversalFile IPHONE_COMPAT_LIB    = UniversalFileCreator.createDirectory(
                                                                     "/iphoneXXX/compat-lib.jar",
                                                                     "src/xmlvm2c/compat-lib/java");
@@ -79,9 +81,9 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
 
         try {
             // Create Info.plist
-            // TODO: Copy non-in-JAR file version in case we are not in JAR-file
-            // mode.
-            BufferedReader infoIn = JarUtil.getFile("/iphone/Info.plist");
+            UniversalFile infoInFile = UniversalFileCreator.createFile("/iphone/Info.plist",
+                    "var/iphone/Info.plist");
+            BufferedReader infoIn = new BufferedReader(new StringReader(infoInFile.getFileAsString()));
             StringBuilder infoOut = new StringBuilder();
             String line = null;
             while ((line = infoIn.readLine()) != null) {

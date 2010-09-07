@@ -21,6 +21,7 @@ package org.xmlvm.proc.out;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,24 +79,34 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
 
         try {
             // Create Info.plist
-            // TODO: Copy non-in-JAR file version in case we are not in JAR-file
-            // mode.
-            BufferedReader infoIn = JarUtil.getFile("/iphone/Info.plist");
+            UniversalFile infoInFile = UniversalFileCreator.createFile("/iphone/Info.plist",
+                    "var/iphone/Info.plist");
+            BufferedReader infoIn = new BufferedReader(new StringReader(
+                    infoInFile.getFileAsString()));
             StringBuilder infoOut = new StringBuilder();
             String line = null;
             while ((line = infoIn.readLine()) != null) {
-                line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER", arguments
-                        .option_property("bundleidentifier"));
-                line = line.replaceAll("PROPERTY_BUNDLEVERSION", arguments
-                        .option_property("bundleversion"));
-                line = line.replaceAll("PROPERTY_BUNDLEDISPLAYNAME", arguments
-                        .option_property("bundledisplayname"));
-                line = line.replaceAll("PROPERTY_STATUSBARHIDDEN", arguments.option_property(
-                        "statusbarhidden").toLowerCase().equals("true") ? "true" : "false");
-                line = line.replaceAll("PROPERTY_PRERENDEREDICON", arguments.option_property(
-                        "prerenderedicon").toLowerCase().equals("true") ? "true" : "false");
-                line = line.replaceAll("PROPERTY_APPLICATIONEXITS", arguments.option_property(
-                        "applicationexits").toLowerCase().equals("true") ? "true" : "false");
+                line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER",
+                        arguments.option_property("bundleidentifier"));
+                line = line.replaceAll("PROPERTY_BUNDLEVERSION",
+                        arguments.option_property("bundleversion"));
+                line = line.replaceAll("PROPERTY_BUNDLEDISPLAYNAME",
+                        arguments.option_property("bundledisplayname"));
+                line = line
+                        .replaceAll(
+                                "PROPERTY_STATUSBARHIDDEN",
+                                arguments.option_property("statusbarhidden").toLowerCase()
+                                        .equals("true") ? "true" : "false");
+                line = line
+                        .replaceAll(
+                                "PROPERTY_PRERENDEREDICON",
+                                arguments.option_property("prerenderedicon").toLowerCase()
+                                        .equals("true") ? "true" : "false");
+                line = line
+                        .replaceAll(
+                                "PROPERTY_APPLICATIONEXITS",
+                                arguments.option_property("applicationexits").toLowerCase()
+                                        .equals("true") ? "true" : "false");
                 line = line.replaceAll("XMLVM_APP", arguments.option_app_name());
                 infoOut.append(line).append("\n");
             }
