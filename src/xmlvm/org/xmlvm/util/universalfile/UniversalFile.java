@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.jar.JarOutputStream;
+import java.util.zip.ZipEntry;
 
 import org.xmlvm.Log;
 
@@ -35,6 +37,7 @@ import org.xmlvm.Log;
  * system file or directory or a file or JAR archive within a JAR resource.
  */
 public abstract class UniversalFile {
+
     private static final String TAG = "UniversalFile";
 
 
@@ -208,7 +211,22 @@ public abstract class UniversalFile {
         }
         return false;
     }
-    
+
+    /**
+     * Archives this universal file to the given archive file.
+     * 
+     * @param destination
+     * @return Whether the operation was successful.
+     */
+    public boolean archiveTo(String destination) {
+        if (isFile()) {
+            return archiveFileTo(destination, false);
+        } else if (isDirectory()) {
+            return archiveDirectoryTo(destination);
+        }
+        return false;
+    }
+
     /**
      * Stores this universal file to the given file system path (which includes
      * the file name itself).
@@ -267,6 +285,72 @@ public abstract class UniversalFile {
             }
         }
         return true;
+    }
+
+    private boolean archiveFileTo(String destination, boolean append) {
+        try {
+            JarOutputStream outputStream = new JarOutputStream(new FileOutputStream(destination,
+                    append));
+            outputStream.putNextEntry(new ZipEntry(getName()));
+            outputStream.write(getFileAsBytes());
+            outputStream.close();
+            return true;
+        } catch (FileNotFoundException e) {
+            Log.error(TAG, "Could not create JarOutputStream: " + e.getMessage());
+        } catch (IOException e) {
+            Log.error(TAG, "Could not create JarOutputStream: " + e.getMessage());
+        }
+        return false;
+    }
+
+    private boolean archiveDirectoryTo(String destination) {
+        File destinationFile = new File(destination);
+        if (destinationFile.exists()) {
+            if (destinationFile.isDirectory()) {
+                Log.error(TAG, "Cannot write archive, destination is a directory: " + destination);
+                return false;
+            } else {
+                boolean deleted = destinationFile.delete();
+                if (!deleted) {
+                    Log.error(TAG, "Unable to delete existing file: " + destination);
+                    return false;
+                }
+            }
+        }
+
+        JarOutputStream outputStream;
+        try {
+            outputStream = new JarOutputStream(new FileOutputStream(destinationFile));
+        } catch (FileNotFoundException e) {
+            Log.error(TAG, "Could not create JarOutputStream: " + e.getMessage());
+            return false;
+        } catch (IOException e) {
+            Log.error(TAG, "Could not create JarOutputStream: " + e.getMessage());
+            return false;
+        }
+        String basePath = getAbsolutePath();
+        UniversalFile[] filesToArchive = listFilesRecursively();
+        try {
+            for (UniversalFile fileToArchive : filesToArchive) {
+                String path = fileToArchive.getAbsolutePath();
+
+                // Paranoia check
+                if (!path.startsWith(basePath)) {
+                    Log.error(TAG, "Internal error: File in directory has wrong path:");
+                    Log.error(TAG, "Base path: " + basePath);
+                    Log.error(TAG, "File path: " + path);
+                    return false;
+                }
+                path = path.substring(basePath.length() + 1);
+                outputStream.putNextEntry(new ZipEntry(path));
+                outputStream.write(fileToArchive.getFileAsBytes());
+            }
+            outputStream.close();
+            return true;
+        } catch (IOException e) {
+            Log.error(TAG, "Could not write to archive: " + e.getMessage());
+        }
+        return false;
     }
 
     /**
