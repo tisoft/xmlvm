@@ -23,6 +23,12 @@
 #include <stdio.h>
 #include <string.h>
 
+NSString* toNSString(JAVA_OBJECT o)
+{
+	java_lang_String* s = (java_lang_String*) o;
+	return [[NSString alloc] initWithCString:s->str];
+}
+
 
 JAVA_OBJECT __NEW_java_lang_String()
 {

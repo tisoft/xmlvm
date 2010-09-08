@@ -278,10 +278,17 @@ XMLVMArray* XMLVMArray_createFromString(const char* str)
 	int len = strlen(str);
 	int i;
 
-    retval->type = 2; // CHAR
+    //retval->type = 2; // CHAR
+    retval->type = 3; // BYTE
     retval->length = len;
-    retval->array.data = XMLVM_MALLOC(len);
-	memcpy(retval->array.c, str, len);
+    //retval->array.data = XMLVM_MALLOC(len * sizeof(JAVA_ARRAY_CHAR));
+    retval->array.data = XMLVM_MALLOC(len + 1);
+	for (i = 0; i < len; i++) {
+	    //retval->array.c[i] = *str++;
+	    retval->array.b[i] = *str++;
+	}
+	//retval->array.c[i] = '\0';
+	retval->array.b[i] = '\0';
     retval->ownsData = 1;
     return retval;
 }

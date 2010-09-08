@@ -63,9 +63,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String(
     if (!__CLASS_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String]
 	
-    java_lang_String *arg = n1;
-	
-	NSString *nsStr = [[NSString alloc] initWithCString: arg->str];
+	NSString *nsStr = toNSString(n1);
 	UIImage *named = [UIImage imageNamed:nsStr];
 	
 	org_xmlvm_iphone_UIImage *toRet = __NEW_org_xmlvm_iphone_UIImage();

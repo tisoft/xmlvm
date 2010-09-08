@@ -23,6 +23,10 @@
 
 #include "java_lang_Object.h"
 
+#import <Foundation/Foundation.h>
+
+NSString* toNSString(JAVA_OBJECT o);
+
 
 struct java_lang_String {
     const char* str;
