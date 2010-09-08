@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
@@ -36,6 +37,7 @@ public class NSData extends NSObject {
 
     private String data;
 
+    @XMLVMIgnore
     public NSData(InputStream in) {
         readData(in);
     }
@@ -59,6 +61,7 @@ public class NSData extends NSObject {
         }
     }
 
+    @XMLVMIgnore
     public InputStream getInputStream() {
         return new ByteArrayInputStream(data.getBytes());
     }

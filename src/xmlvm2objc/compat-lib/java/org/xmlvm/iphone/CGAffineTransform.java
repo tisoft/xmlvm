@@ -27,6 +27,7 @@ package org.xmlvm.iphone;
 
 import java.awt.geom.AffineTransform;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class CGAffineTransform extends NSObject {
@@ -77,6 +78,7 @@ public class CGAffineTransform extends NSObject {
         return new CGAffineTransform(old);
     }
 
+    @XMLVMIgnore
     public AffineTransform xmlvmGetAffine() {
         return transform;
     }

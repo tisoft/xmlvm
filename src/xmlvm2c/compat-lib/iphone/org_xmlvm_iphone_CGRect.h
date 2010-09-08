@@ -67,6 +67,8 @@ typedef struct org_xmlvm_iphone_CGRect org_xmlvm_iphone_CGRect;
 
 void __INIT_org_xmlvm_iphone_CGRect();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGRect();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGRect();
+void org_xmlvm_iphone_CGRect___CLINIT_();
 void org_xmlvm_iphone_CGRect___INIT____float_float_float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4);
 void org_xmlvm_iphone_CGRect___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_CGRect_Null__();
@@ -83,6 +85,5 @@ JAVA_BOOLEAN org_xmlvm_iphone_CGRect_isInfinite__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_CGRect_toString__(JAVA_OBJECT me);
 // Vtable index: 2
 JAVA_BOOLEAN org_xmlvm_iphone_CGRect_equals___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
-void org_xmlvm_iphone_CGRect___CLINIT_();
 
 #endif

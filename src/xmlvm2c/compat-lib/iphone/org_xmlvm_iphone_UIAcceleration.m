@@ -16,6 +16,7 @@ void __INIT_org_xmlvm_iphone_UIAcceleration()
     __CLASS_org_xmlvm_iphone_UIAcceleration.classInitialized = 1;
     // Initialize base class if necessary
     if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __CLASS_org_xmlvm_iphone_UIAcceleration.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIAcceleration;
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIAcceleration.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
@@ -41,6 +42,12 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAcceleration()
     return me;
 }
 
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAcceleration()
+{
+    JAVA_OBJECT me = JAVA_NULL;
+    return me;
+}
+
 void __DELETE_org_xmlvm_iphone_UIAcceleration(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIAcceleration]
@@ -50,24 +57,28 @@ void __DELETE_org_xmlvm_iphone_UIAcceleration(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIAcceleration___INIT____double_double_double(JAVA_OBJECT me, JAVA_DOUBLE n1, JAVA_DOUBLE n2, JAVA_DOUBLE n3)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAcceleration___INIT____double_double_double]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_DOUBLE org_xmlvm_iphone_UIAcceleration_x__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAcceleration_x__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_DOUBLE org_xmlvm_iphone_UIAcceleration_y__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAcceleration_y__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_DOUBLE org_xmlvm_iphone_UIAcceleration_z__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAcceleration_z__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

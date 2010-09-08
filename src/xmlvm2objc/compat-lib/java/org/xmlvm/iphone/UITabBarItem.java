@@ -20,6 +20,7 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.UITabBarItemView;
 
@@ -30,6 +31,7 @@ import org.xmlvm.iphone.internal.UITabBarItemView;
 @XMLVMSkeletonOnly
 public class UITabBarItem extends UIBarItem {
 
+    @XMLVMIgnore
     final UITabBarItemView view;
     private String         badgeValue;
 

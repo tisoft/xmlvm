@@ -24,6 +24,7 @@ import java.util.Map;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 /**
@@ -34,9 +35,11 @@ import org.xmlvm.XMLVMSkeletonOnly;
 public class NSXMLParserDelegate extends NSObject {
 
 	private NSXMLParser parser;
+    @XMLVMIgnore
 	DefaultHandler handler = new DefaultHandler() {
 
 		@Override
+	    @XMLVMIgnore
 		public void startPrefixMapping(String prefix, String uri) {
 			if (parser.shouldReportNamespacePrefixes()) {
 				didStartMappingPrefix(parser, prefix, uri);
@@ -44,6 +47,7 @@ public class NSXMLParserDelegate extends NSObject {
 		}
 
 		@Override
+	    @XMLVMIgnore
 		public void endPrefixMapping(String prefix) {
 			if (parser.shouldReportNamespacePrefixes()) {
 				didEndMappingPrefix(parser, prefix);
@@ -51,6 +55,7 @@ public class NSXMLParserDelegate extends NSObject {
 		}
 
 		@Override
+	    @XMLVMIgnore
 		public void startElement(String uri, String localName, String qName,
 				Attributes attributes) {
 			didStartElement(parser, localName, uri, qName,
@@ -58,11 +63,13 @@ public class NSXMLParserDelegate extends NSObject {
 		}
 
 		@Override
+	    @XMLVMIgnore
 		public void endElement(String uri, String localName, String qName) {
 			didEndElement(parser, localName, uri, qName);
 		}
 
 		@Override
+	    @XMLVMIgnore
 		public void characters(char[] ch, int start, int length) {
 			String characters = String.copyValueOf(ch, start, length);
 			foundCharacters(parser, characters);

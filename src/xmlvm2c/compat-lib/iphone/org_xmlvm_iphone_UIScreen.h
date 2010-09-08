@@ -45,11 +45,12 @@ typedef struct org_xmlvm_iphone_UIScreen org_xmlvm_iphone_UIScreen;
 
 void __INIT_org_xmlvm_iphone_UIScreen();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIScreen();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIScreen();
+void org_xmlvm_iphone_UIScreen___CLINIT_();
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_mainScreen__();
 // Vtable index: 14
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_getBounds__(JAVA_OBJECT me);
 // Vtable index: 15
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_getApplicationFrame__(JAVA_OBJECT me);
-void org_xmlvm_iphone_UIScreen___CLINIT_();
 
 #endif

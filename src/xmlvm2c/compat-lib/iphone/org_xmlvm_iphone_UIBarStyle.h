@@ -1,0 +1,49 @@
+#ifndef __ORG_XMLVM_IPHONE_UIBARSTYLE__
+#define __ORG_XMLVM_IPHONE_UIBARSTYLE__
+
+#include "xmlvm.h"
+#include "java_lang_Object.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+// Class declarations for org.xmlvm.iphone.UIBarStyle
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarStyle, 11)
+
+//XMLVM_BEGIN_MEMBERS
+#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarStyle
+//XMLVM_END_MEMBERS
+
+#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarStyle \
+    __INSTANCE_MEMBERS_java_lang_Object; \
+    struct { \
+        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarStyle \
+    } org_xmlvm_iphone_UIBarStyle
+
+struct org_xmlvm_iphone_UIBarStyle {
+    __CLASS_DEFINITION_org_xmlvm_iphone_UIBarStyle* __class;
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarStyle;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarStyle
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarStyle
+typedef struct org_xmlvm_iphone_UIBarStyle org_xmlvm_iphone_UIBarStyle;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIBarStyle 11
+
+void __INIT_org_xmlvm_iphone_UIBarStyle();
+JAVA_OBJECT __NEW_org_xmlvm_iphone_UIBarStyle();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIBarStyle();
+JAVA_INT org_xmlvm_iphone_UIBarStyle_GET_Default();
+void org_xmlvm_iphone_UIBarStyle_PUT_Default(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_UIBarStyle_GET_Black();
+void org_xmlvm_iphone_UIBarStyle_PUT_Black(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_UIBarStyle_GET_BlackOpaque();
+void org_xmlvm_iphone_UIBarStyle_PUT_BlackOpaque(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_UIBarStyle_GET_BlackTranslucent();
+void org_xmlvm_iphone_UIBarStyle_PUT_BlackTranslucent(JAVA_INT v);
+void org_xmlvm_iphone_UIBarStyle___INIT___(JAVA_OBJECT me);
+
+#endif

@@ -17,6 +17,7 @@ void __INIT_org_xmlvm_iphone_UIApplicationDelegate()
     __CLASS_org_xmlvm_iphone_UIApplicationDelegate.classInitialized = 1;
     // Initialize base class if necessary
     if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __CLASS_org_xmlvm_iphone_UIApplicationDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIApplicationDelegate;
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIApplicationDelegate.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
@@ -44,6 +45,14 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIApplicationDelegate()
     return me;
 }
 
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIApplicationDelegate()
+{
+    JAVA_OBJECT me = JAVA_NULL;
+    me = __NEW_org_xmlvm_iphone_UIApplicationDelegate();
+    org_xmlvm_iphone_UIApplicationDelegate___INIT___(me);
+    return me;
+}
+
 void __DELETE_org_xmlvm_iphone_UIApplicationDelegate(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIApplicationDelegate]
@@ -53,36 +62,42 @@ void __DELETE_org_xmlvm_iphone_UIApplicationDelegate(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIApplicationDelegate___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate___INIT___]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIApplicationDelegate_applicationWillTerminate___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_applicationWillTerminate___org_xmlvm_iphone_UIApplication]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIApplicationDelegate_applicationDidBecomeActive___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_applicationDidBecomeActive___org_xmlvm_iphone_UIApplication]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIApplicationDelegate_applicationWillResignActive___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_applicationWillResignActive___org_xmlvm_iphone_UIApplication]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIApplicationDelegate_applicationDidReceiveMemoryWarning___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_applicationDidReceiveMemoryWarning___org_xmlvm_iphone_UIApplication]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

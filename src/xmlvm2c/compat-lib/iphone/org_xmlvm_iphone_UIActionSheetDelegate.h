@@ -1,0 +1,63 @@
+#ifndef __ORG_XMLVM_IPHONE_UIACTIONSHEETDELEGATE__
+#define __ORG_XMLVM_IPHONE_UIACTIONSHEETDELEGATE__
+
+#include "xmlvm.h"
+#include "org_xmlvm_iphone_NSObject.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheet
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheet
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIActionSheet)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#endif
+// Class declarations for org.xmlvm.iphone.UIActionSheetDelegate
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActionSheetDelegate, 20)
+
+//XMLVM_BEGIN_MEMBERS
+#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheetDelegate
+//XMLVM_END_MEMBERS
+
+#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheetDelegate \
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+    struct { \
+        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheetDelegate \
+    } org_xmlvm_iphone_UIActionSheetDelegate
+
+struct org_xmlvm_iphone_UIActionSheetDelegate {
+    __CLASS_DEFINITION_org_xmlvm_iphone_UIActionSheetDelegate* __class;
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheetDelegate;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheetDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheetDelegate
+typedef struct org_xmlvm_iphone_UIActionSheetDelegate org_xmlvm_iphone_UIActionSheetDelegate;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIActionSheetDelegate 20
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheetDelegate_clickedButtonAtIndex___org_xmlvm_iphone_UIActionSheet_int 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheetDelegate_willPresentActionSheet___org_xmlvm_iphone_UIActionSheet 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheetDelegate_didPresentActionSheet___org_xmlvm_iphone_UIActionSheet 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheetDelegate_willDismissWithButtonIndex___org_xmlvm_iphone_UIActionSheet_int 17
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheetDelegate_didDismissWithButtonIndex___org_xmlvm_iphone_UIActionSheet_int 18
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheetDelegate_actionSheetCancel___org_xmlvm_iphone_UIActionSheet 19
+
+void __INIT_org_xmlvm_iphone_UIActionSheetDelegate();
+JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActionSheetDelegate();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIActionSheetDelegate();
+void org_xmlvm_iphone_UIActionSheetDelegate___INIT___(JAVA_OBJECT me);
+// Vtable index: 14
+void org_xmlvm_iphone_UIActionSheetDelegate_clickedButtonAtIndex___org_xmlvm_iphone_UIActionSheet_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+// Vtable index: 15
+void org_xmlvm_iphone_UIActionSheetDelegate_willPresentActionSheet___org_xmlvm_iphone_UIActionSheet(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 16
+void org_xmlvm_iphone_UIActionSheetDelegate_didPresentActionSheet___org_xmlvm_iphone_UIActionSheet(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 17
+void org_xmlvm_iphone_UIActionSheetDelegate_willDismissWithButtonIndex___org_xmlvm_iphone_UIActionSheet_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+// Vtable index: 18
+void org_xmlvm_iphone_UIActionSheetDelegate_didDismissWithButtonIndex___org_xmlvm_iphone_UIActionSheet_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+// Vtable index: 19
+void org_xmlvm_iphone_UIActionSheetDelegate_actionSheetCancel___org_xmlvm_iphone_UIActionSheet(JAVA_OBJECT me, JAVA_OBJECT n1);
+
+#endif

@@ -25,6 +25,7 @@ void __INIT_org_xmlvm_iphone_UIViewController()
     __CLASS_org_xmlvm_iphone_UIViewController.classInitialized = 1;
     // Initialize base class if necessary
     if (!__CLASS_org_xmlvm_iphone_UIResponder.classInitialized) __INIT_org_xmlvm_iphone_UIResponder();
+    __CLASS_org_xmlvm_iphone_UIViewController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIViewController;
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIViewController.vtable, __CLASS_org_xmlvm_iphone_UIResponder.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIResponder.vtable));
     // Initialize vtable for this class
@@ -93,6 +94,14 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewController()
     return me;
 }
 
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewController()
+{
+    JAVA_OBJECT me = JAVA_NULL;
+    me = __NEW_org_xmlvm_iphone_UIViewController();
+    org_xmlvm_iphone_UIViewController___INIT___(me);
+    return me;
+}
+
 void __DELETE_org_xmlvm_iphone_UIViewController(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIViewController]
@@ -102,276 +111,322 @@ void __DELETE_org_xmlvm_iphone_UIViewController(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIViewController___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController___INIT___]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_loadView__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_loadView__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UIViewController_isViewLoaded__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_isViewLoaded__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_viewDidLoad__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_viewDidLoad__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_viewDidUnload__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_viewDidUnload__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_viewWillAppearInternal___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_viewWillAppearInternal___boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_requestInternalFrame__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_requestInternalFrame__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_updateViews__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_updateViews__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_viewWillAppear___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_viewWillAppear___boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_viewDidAppear___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_viewDidAppear___boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_viewWillDisappear___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_viewWillDisappear___boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_viewDidDisappear___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_viewDidDisappear___boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UIViewController_shouldAutorotateToInterfaceOrientation___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_shouldAutorotateToInterfaceOrientation___int]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_rotatingHeaderView__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_rotatingHeaderView__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_rotatingFooterView__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_rotatingFooterView__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_willRotateToInterfaceOrientation___int_double(JAVA_OBJECT me, JAVA_INT n1, JAVA_DOUBLE n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_willRotateToInterfaceOrientation___int_double]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_willAnimateRotationToInterfaceOrientation___int_double(JAVA_OBJECT me, JAVA_INT n1, JAVA_DOUBLE n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_willAnimateRotationToInterfaceOrientation___int_double]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_didRotateFromInterfaceOrientation___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_didRotateFromInterfaceOrientation___int]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_willAnimateFirstHalfOfRotationToInterfaceOrientation___int_double(JAVA_OBJECT me, JAVA_INT n1, JAVA_DOUBLE n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_willAnimateFirstHalfOfRotationToInterfaceOrientation___int_double]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_didAnimateFirstHalfOfRotationToInterfaceOrientation___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_didAnimateFirstHalfOfRotationToInterfaceOrientation___int]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_willAnimateSecondHalfOfRotationFromInterfaceOrientation___int_double(JAVA_OBJECT me, JAVA_INT n1, JAVA_DOUBLE n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_willAnimateSecondHalfOfRotationFromInterfaceOrientation___int_double]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_didReceiveMemoryWarning__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_didReceiveMemoryWarning__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_getView__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getView__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_setView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setView___org_xmlvm_iphone_UIView]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_getTitle__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getTitle__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setTitle___java_lang_String]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UIViewController_wantsFullScreenLayout__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_wantsFullScreenLayout__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_setWantsFullScreenLayout___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setWantsFullScreenLayout___boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewController_getInterfaceOrientation__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getInterfaceOrientation__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_getNavigationController__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getNavigationController__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_getNavigationItem__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getNavigationItem__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_editButtonItem__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_editButtonItem__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UIViewController_isEditing__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_isEditing__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_setEditing___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setEditing___boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_setEditing___boolean_boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setEditing___boolean_boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UIViewController_hidesBottomBarWhenPushed__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_hidesBottomBarWhenPushed__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_setHidesBottomBarWhenPushed___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setHidesBottomBarWhenPushed___boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_getTabBarController__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getTabBarController__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_setParentController___org_xmlvm_iphone_UIViewController(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setParentController___org_xmlvm_iphone_UIViewController]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_getTabBarItem__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getTabBarItem__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_setTabBarItem___org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setTabBarItem___org_xmlvm_iphone_UITabBarItem]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_getToolbarItems__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getToolbarItems__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_ArrayList]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_ArrayList_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_ArrayList_boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_presentModalViewController___org_xmlvm_iphone_UIViewController_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_presentModalViewController___org_xmlvm_iphone_UIViewController_boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_dismissModalViewControllerAnimated___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_dismissModalViewControllerAnimated___boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

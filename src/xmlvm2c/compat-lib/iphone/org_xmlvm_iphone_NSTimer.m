@@ -55,6 +55,7 @@ void __INIT_org_xmlvm_iphone_NSTimer()
     __CLASS_org_xmlvm_iphone_NSTimer.classInitialized = 1;
     // Initialize base class if necessary
     if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __CLASS_org_xmlvm_iphone_NSTimer.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSTimer;
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_NSTimer.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
@@ -81,6 +82,12 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSTimer()
     return me;
 }
 
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSTimer()
+{
+    JAVA_OBJECT me = JAVA_NULL;
+    return me;
+}
+
 void __DELETE_org_xmlvm_iphone_NSTimer(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSTimer]
@@ -102,12 +109,14 @@ void org_xmlvm_iphone_NSTimer___INIT____float_org_xmlvm_iphone_NSTimerDelegate_j
 void org_xmlvm_iphone_NSTimer_run__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_run__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSTimer_invalidate__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_invalidate__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

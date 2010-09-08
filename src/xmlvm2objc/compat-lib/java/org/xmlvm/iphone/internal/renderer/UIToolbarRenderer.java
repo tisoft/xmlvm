@@ -25,7 +25,7 @@ import java.awt.Graphics2D;
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIColor;
-import org.xmlvm.iphone.internal.UIGenericToolbar;
+import org.xmlvm.iphone.UIGenericToolbar;
 
 /**
  * 

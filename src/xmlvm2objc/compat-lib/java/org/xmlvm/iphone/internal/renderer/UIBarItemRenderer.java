@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 
 import org.xmlvm.iphone.UIBarItem;
 import org.xmlvm.iphone.UIButton;
-import org.xmlvm.iphone.internal.UIGenericBar;
+import org.xmlvm.iphone.UIGenericBar;
 
 /**
  * 

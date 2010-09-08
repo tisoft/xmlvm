@@ -17,6 +17,7 @@ void __INIT_org_xmlvm_iphone_UITabBarItem()
     __CLASS_org_xmlvm_iphone_UITabBarItem.classInitialized = 1;
     // Initialize base class if necessary
     if (!__CLASS_org_xmlvm_iphone_UIBarItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarItem();
+    __CLASS_org_xmlvm_iphone_UITabBarItem.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITabBarItem;
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UITabBarItem.vtable, __CLASS_org_xmlvm_iphone_UIBarItem.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIBarItem.vtable));
     // Initialize vtable for this class
@@ -37,9 +38,16 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarItem()
     if (!__CLASS_org_xmlvm_iphone_UITabBarItem.classInitialized) __INIT_org_xmlvm_iphone_UITabBarItem();
     org_xmlvm_iphone_UITabBarItem* me = (org_xmlvm_iphone_UITabBarItem*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITabBarItem));
     me->__class = &__CLASS_org_xmlvm_iphone_UITabBarItem;
-    me->org_xmlvm_iphone_UITabBarItem.view_ = (org_xmlvm_iphone_internal_UITabBarItemView*) JAVA_NULL;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITabBarItem]
     //XMLVM_END_WRAPPER
+    return me;
+}
+
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITabBarItem()
+{
+    JAVA_OBJECT me = JAVA_NULL;
+    me = __NEW_org_xmlvm_iphone_UITabBarItem();
+    org_xmlvm_iphone_UITabBarItem___INIT___(me);
     return me;
 }
 
@@ -52,31 +60,36 @@ void __DELETE_org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT me)
 void org_xmlvm_iphone_UITabBarItem___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarItem___INIT___]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UITabBarItem_getBadgeValue__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarItem_getBadgeValue__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITabBarItem_setBadgeValue___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarItem_setBadgeValue___java_lang_String]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITabBarItem_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarItem_setTitle___java_lang_String]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UITabBarItem_access$000___org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT n1)
+void org_xmlvm_iphone_UITabBarItem_access$0___org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT n1)
 {
     if (!__CLASS_org_xmlvm_iphone_UITabBarItem.classInitialized) __INIT_org_xmlvm_iphone_UITabBarItem();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarItem_access$000___org_xmlvm_iphone_UITabBarItem]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarItem_access$0___org_xmlvm_iphone_UITabBarItem]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

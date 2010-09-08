@@ -1,0 +1,92 @@
+#ifndef __ORG_XMLVM_IPHONE_NSSTRINGENCODING__
+#define __ORG_XMLVM_IPHONE_NSSTRINGENCODING__
+
+#include "xmlvm.h"
+#include "java_lang_Object.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+// Class declarations for org.xmlvm.iphone.NSStringEncoding
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSStringEncoding, 11)
+
+//XMLVM_BEGIN_MEMBERS
+#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringEncoding
+//XMLVM_END_MEMBERS
+
+#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringEncoding \
+    __INSTANCE_MEMBERS_java_lang_Object; \
+    struct { \
+        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringEncoding \
+    } org_xmlvm_iphone_NSStringEncoding
+
+struct org_xmlvm_iphone_NSStringEncoding {
+    __CLASS_DEFINITION_org_xmlvm_iphone_NSStringEncoding* __class;
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringEncoding;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSStringEncoding
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSStringEncoding
+typedef struct org_xmlvm_iphone_NSStringEncoding org_xmlvm_iphone_NSStringEncoding;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSStringEncoding 11
+
+void __INIT_org_xmlvm_iphone_NSStringEncoding();
+JAVA_OBJECT __NEW_org_xmlvm_iphone_NSStringEncoding();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSStringEncoding();
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_ASCII();
+void org_xmlvm_iphone_NSStringEncoding_PUT_ASCII(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_NEXTSTEP();
+void org_xmlvm_iphone_NSStringEncoding_PUT_NEXTSTEP(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_JapaneseEUC();
+void org_xmlvm_iphone_NSStringEncoding_PUT_JapaneseEUC(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_UTF8();
+void org_xmlvm_iphone_NSStringEncoding_PUT_UTF8(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_ISOLatin1();
+void org_xmlvm_iphone_NSStringEncoding_PUT_ISOLatin1(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_Symbol();
+void org_xmlvm_iphone_NSStringEncoding_PUT_Symbol(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_NonLossyASCII();
+void org_xmlvm_iphone_NSStringEncoding_PUT_NonLossyASCII(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_ShiftJIS();
+void org_xmlvm_iphone_NSStringEncoding_PUT_ShiftJIS(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_ISOLatin2();
+void org_xmlvm_iphone_NSStringEncoding_PUT_ISOLatin2(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_Unicode();
+void org_xmlvm_iphone_NSStringEncoding_PUT_Unicode(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_WindowsCP1251();
+void org_xmlvm_iphone_NSStringEncoding_PUT_WindowsCP1251(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_WindowsCP1252();
+void org_xmlvm_iphone_NSStringEncoding_PUT_WindowsCP1252(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_WindowsCP1253();
+void org_xmlvm_iphone_NSStringEncoding_PUT_WindowsCP1253(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_WindowsCP1254();
+void org_xmlvm_iphone_NSStringEncoding_PUT_WindowsCP1254(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_WindowsCP1250();
+void org_xmlvm_iphone_NSStringEncoding_PUT_WindowsCP1250(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_ISO2022JP();
+void org_xmlvm_iphone_NSStringEncoding_PUT_ISO2022JP(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_MacOSRoman();
+void org_xmlvm_iphone_NSStringEncoding_PUT_MacOSRoman(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_UTF16();
+void org_xmlvm_iphone_NSStringEncoding_PUT_UTF16(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_UTF16BigEndian();
+void org_xmlvm_iphone_NSStringEncoding_PUT_UTF16BigEndian(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_UTF16LittleEndian();
+void org_xmlvm_iphone_NSStringEncoding_PUT_UTF16LittleEndian(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_UTF32();
+void org_xmlvm_iphone_NSStringEncoding_PUT_UTF32(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_UTF32BigEndian();
+void org_xmlvm_iphone_NSStringEncoding_PUT_UTF32BigEndian(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_UTF32LittleEndian();
+void org_xmlvm_iphone_NSStringEncoding_PUT_UTF32LittleEndian(JAVA_INT v);
+void org_xmlvm_iphone_NSStringEncoding___INIT___(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSStringEncoding_convertIntToString___int(JAVA_INT n1);
+
+#endif

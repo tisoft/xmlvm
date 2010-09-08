@@ -23,6 +23,7 @@ void __INIT_org_xmlvm_iphone_UIImage()
     __CLASS_org_xmlvm_iphone_UIImage.classInitialized = 1;
     // Initialize base class if necessary
     if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __CLASS_org_xmlvm_iphone_UIImage.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIImage;
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIImage.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
@@ -31,8 +32,7 @@ void __INIT_org_xmlvm_iphone_UIImage()
     __CLASS_org_xmlvm_iphone_UIImage.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect;
     __CLASS_org_xmlvm_iphone_UIImage.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_drawAtPoint___org_xmlvm_iphone_CGPoint;
     __CLASS_org_xmlvm_iphone_UIImage.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_getSize__;
-    __CLASS_org_xmlvm_iphone_UIImage.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_xmlvmGetImage__;
-    __CLASS_org_xmlvm_iphone_UIImage.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_cropImage___int_int_int_int;
+    __CLASS_org_xmlvm_iphone_UIImage.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_cropImage___int_int_int_int;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UIImage.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_UIImage.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
@@ -49,6 +49,12 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImage()
     me->__class = &__CLASS_org_xmlvm_iphone_UIImage;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImage]
     //XMLVM_END_WRAPPER
+    return me;
+}
+
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImage()
+{
+    JAVA_OBJECT me = JAVA_NULL;
     return me;
 }
 
@@ -76,25 +82,21 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithData___org_xmlvm_iphone_NSData(JAV
 {
     if (!__CLASS_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_imageWithData___org_xmlvm_iphone_NSData]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIImage_stretchableImage___int_int(JAVA_OBJECT me, JAVA_INT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_stretchableImage___int_int]
-    //XMLVM_END_WRAPPER
-}
-
-JAVA_OBJECT org_xmlvm_iphone_UIImage_xmlvmCreateFromBufferedImage___java_awt_image_BufferedImage(JAVA_OBJECT n1)
-{
-    if (!__CLASS_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_xmlvmCreateFromBufferedImage___java_awt_image_BufferedImage]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIImage_getCGImage__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_getCGImage__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
@@ -111,24 +113,21 @@ void org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT m
 void org_xmlvm_iphone_UIImage_drawAtPoint___org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_drawAtPoint___org_xmlvm_iphone_CGPoint]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIImage_getSize__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_getSize__]
-    //XMLVM_END_WRAPPER
-}
-
-JAVA_OBJECT org_xmlvm_iphone_UIImage_xmlvmGetImage__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_xmlvmGetImage__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIImage_cropImage___int_int_int_int(JAVA_OBJECT me, JAVA_INT n1, JAVA_INT n2, JAVA_INT n3, JAVA_INT n4)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_cropImage___int_int_int_int]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

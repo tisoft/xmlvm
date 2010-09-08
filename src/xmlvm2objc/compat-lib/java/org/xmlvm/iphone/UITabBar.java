@@ -23,7 +23,6 @@ package org.xmlvm.iphone;
 import java.util.ArrayList;
 
 import org.xmlvm.XMLVMSkeletonOnly;
-import org.xmlvm.iphone.internal.UIGenericBar;
 import org.xmlvm.iphone.internal.renderer.UITabBarRenderer;
 
 /**

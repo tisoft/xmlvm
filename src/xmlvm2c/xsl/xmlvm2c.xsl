@@ -31,7 +31,7 @@
       <xsl:value-of select="$header"/>
       <xsl:text>"&nl;&nl;</xsl:text>
       <xsl:call-template name="emitImplementation"/>
-      <xsl:if test="vm:class/vm:method/@name = 'main'">
+      <xsl:if test="vm:class/vm:method/@name = 'main' and not($genWrapper = 'true')">
         <xsl:call-template name="emitMainMethod"/>
       </xsl:if>
     </xsl:otherwise>
@@ -640,7 +640,7 @@ int main(int argc, char* argv[])
     <xsl:text>    JAVA_OBJECT me = JAVA_NULL;&nl;</xsl:text>
     <!-- Only generate code if this class has a default constructor -->
     <!-- TODO should throw an exception if there is no default constructor -->
-    <xsl:if test="vm:method[@name = '&lt;init&gt;' and not(vm:signature/vm:parameter)]">
+    <xsl:if test="vm:method[@name = '&lt;init&gt;' and not(vm:signature/vm:parameter) and not(@isPrivate = 'true')]">
       <xsl:text>    me = __NEW_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>();&nl;</xsl:text>

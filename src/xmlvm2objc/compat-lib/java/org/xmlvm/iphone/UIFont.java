@@ -21,6 +21,7 @@ package org.xmlvm.iphone;
 
 import java.awt.Font;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 /**
@@ -77,6 +78,7 @@ public class UIFont extends NSObject {
         return 16.0f;
     }
 
+    @XMLVMIgnore
     public Font xmlvmGetFont() {
         return font;
     }

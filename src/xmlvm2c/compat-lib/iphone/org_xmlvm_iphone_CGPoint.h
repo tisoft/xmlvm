@@ -51,6 +51,7 @@ typedef struct org_xmlvm_iphone_CGPoint org_xmlvm_iphone_CGPoint;
 
 void __INIT_org_xmlvm_iphone_CGPoint();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGPoint();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGPoint();
 void org_xmlvm_iphone_CGPoint___INIT____org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_CGPoint___INIT____float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2);
 // Vtable index: 4

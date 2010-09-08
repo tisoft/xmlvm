@@ -1,0 +1,143 @@
+#ifndef __ORG_XMLVM_IPHONE_UIBUTTON__
+#define __ORG_XMLVM_IPHONE_UIBUTTON__
+
+#include "xmlvm.h"
+#include "org_xmlvm_iphone_UIControl.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControl)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIButton
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIButton
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIButton)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIFont)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_Set
+#define XMLVM_FORWARD_DECL_java_util_Set
+XMLVM_FORWARD_DECL(java_util_Set)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+// Class declarations for org.xmlvm.iphone.UIButton
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIButton, 90)
+
+//XMLVM_BEGIN_MEMBERS
+#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIButton
+//XMLVM_END_MEMBERS
+
+#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIButton \
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl; \
+    struct { \
+        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIButton \
+    } org_xmlvm_iphone_UIButton
+
+struct org_xmlvm_iphone_UIButton {
+    __CLASS_DEFINITION_org_xmlvm_iphone_UIButton* __class;
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIButton;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIButton
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIButton
+typedef struct org_xmlvm_iphone_UIButton org_xmlvm_iphone_UIButton;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIButton 90
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setFont___org_xmlvm_iphone_UIFont 70
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_getFont__ 71
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_getButtonType__ 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setTitle___java_lang_String_int 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_titleForState___int 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_getCurrentTitle__ 75
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setTitleColor___org_xmlvm_iphone_UIColor_int 76
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_titleColorForState___int 77
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_getCurrentTitleColor__ 78
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setTitleShadowColor___org_xmlvm_iphone_UIColor_int 79
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_titleShadowColorForState___int 80
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_getCurrentTitleShadowColor__ 81
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setImage___org_xmlvm_iphone_UIImage_int 82
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_imageForState___int 83
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_getCurrentImage__ 84
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setBackgroundImage___org_xmlvm_iphone_UIImage_int 85
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_backgroundImageForState___int 86
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_getCurrentBackgroundImage__ 87
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setTitleShadowOffset___org_xmlvm_iphone_CGSize 88
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_getTitleShadowOffset__ 89
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setAlpha___float 43
+
+void __INIT_org_xmlvm_iphone_UIButton();
+JAVA_OBJECT __NEW_org_xmlvm_iphone_UIButton();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIButton();
+void org_xmlvm_iphone_UIButton___INIT____int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIButton_buttonWithType___int(JAVA_INT n1);
+// Vtable index: 70
+void org_xmlvm_iphone_UIButton_setFont___org_xmlvm_iphone_UIFont(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 71
+JAVA_OBJECT org_xmlvm_iphone_UIButton_getFont__(JAVA_OBJECT me);
+// Vtable index: 72
+JAVA_INT org_xmlvm_iphone_UIButton_getButtonType__(JAVA_OBJECT me);
+// Vtable index: 73
+void org_xmlvm_iphone_UIButton_setTitle___java_lang_String_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+// Vtable index: 74
+JAVA_OBJECT org_xmlvm_iphone_UIButton_titleForState___int(JAVA_OBJECT me, JAVA_INT n1);
+// Vtable index: 75
+JAVA_OBJECT org_xmlvm_iphone_UIButton_getCurrentTitle__(JAVA_OBJECT me);
+// Vtable index: 76
+void org_xmlvm_iphone_UIButton_setTitleColor___org_xmlvm_iphone_UIColor_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+// Vtable index: 77
+JAVA_OBJECT org_xmlvm_iphone_UIButton_titleColorForState___int(JAVA_OBJECT me, JAVA_INT n1);
+// Vtable index: 78
+JAVA_OBJECT org_xmlvm_iphone_UIButton_getCurrentTitleColor__(JAVA_OBJECT me);
+// Vtable index: 79
+void org_xmlvm_iphone_UIButton_setTitleShadowColor___org_xmlvm_iphone_UIColor_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+// Vtable index: 80
+JAVA_OBJECT org_xmlvm_iphone_UIButton_titleShadowColorForState___int(JAVA_OBJECT me, JAVA_INT n1);
+// Vtable index: 81
+JAVA_OBJECT org_xmlvm_iphone_UIButton_getCurrentTitleShadowColor__(JAVA_OBJECT me);
+// Vtable index: 82
+void org_xmlvm_iphone_UIButton_setImage___org_xmlvm_iphone_UIImage_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+// Vtable index: 83
+JAVA_OBJECT org_xmlvm_iphone_UIButton_imageForState___int(JAVA_OBJECT me, JAVA_INT n1);
+// Vtable index: 84
+JAVA_OBJECT org_xmlvm_iphone_UIButton_getCurrentImage__(JAVA_OBJECT me);
+// Vtable index: 85
+void org_xmlvm_iphone_UIButton_setBackgroundImage___org_xmlvm_iphone_UIImage_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+// Vtable index: 86
+JAVA_OBJECT org_xmlvm_iphone_UIButton_backgroundImageForState___int(JAVA_OBJECT me, JAVA_INT n1);
+// Vtable index: 87
+JAVA_OBJECT org_xmlvm_iphone_UIButton_getCurrentBackgroundImage__(JAVA_OBJECT me);
+// Vtable index: 88
+void org_xmlvm_iphone_UIButton_setTitleShadowOffset___org_xmlvm_iphone_CGSize(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 89
+JAVA_OBJECT org_xmlvm_iphone_UIButton_getTitleShadowOffset__(JAVA_OBJECT me);
+// Vtable index: 14
+void org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+// Vtable index: 16
+void org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+// Vtable index: 43
+void org_xmlvm_iphone_UIButton_setAlpha___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+
+#endif

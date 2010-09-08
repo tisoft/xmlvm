@@ -37,10 +37,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
@@ -57,10 +53,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CALayer)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_internal_renderer_UIViewRenderer
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_internal_renderer_UIViewRenderer
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_internal_renderer_UIViewRenderer)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_util_Set
 #define XMLVM_FORWARD_DECL_java_util_Set
 XMLVM_FORWARD_DECL(java_util_Set)
@@ -70,7 +62,7 @@ XMLVM_FORWARD_DECL(java_util_Set)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.UIView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIView, 75)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIView, 69)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView void *ocView;
@@ -79,7 +71,6 @@ XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIView, 75)
 #define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIView \
     __INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder; \
     struct { \
-        JAVA_OBJECT controller_; \
         __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView \
     } org_xmlvm_iphone_UIView
 
@@ -92,7 +83,7 @@ struct org_xmlvm_iphone_UIView {
 typedef struct org_xmlvm_iphone_UIView org_xmlvm_iphone_UIView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIView 75
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIView 69
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect 20
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_getFrame__ 21
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_setLocation___float_float 22
@@ -141,16 +132,11 @@ typedef struct org_xmlvm_iphone_UIView org_xmlvm_iphone_UIView;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_setAutoresizesSubviews___boolean 65
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize 66
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_sizeToFit__ 67
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_xmlvmDrawRect___org_xmlvm_iphone_CGRect 68
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect 69
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_xmlvmGetRenderer__ 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_xmlvmSetRenderer___org_xmlvm_iphone_internal_renderer_UIViewRenderer 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_xmlvmSetOffsets___int_int 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_xmlvmGetOffsetLeft__ 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_xmlvmGetOffsetTop__ 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect 68
 
 void __INIT_org_xmlvm_iphone_UIView();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIView();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIView();
 void org_xmlvm_iphone_UIView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UIView___INIT___(JAVA_OBJECT me);
 // Vtable index: 20
@@ -263,18 +249,6 @@ JAVA_OBJECT org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize(JAVA_
 // Vtable index: 67
 void org_xmlvm_iphone_UIView_sizeToFit__(JAVA_OBJECT me);
 // Vtable index: 68
-void org_xmlvm_iphone_UIView_xmlvmDrawRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 69
 void org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 70
-JAVA_OBJECT org_xmlvm_iphone_UIView_xmlvmGetRenderer__(JAVA_OBJECT me);
-// Vtable index: 71
-void org_xmlvm_iphone_UIView_xmlvmSetRenderer___org_xmlvm_iphone_internal_renderer_UIViewRenderer(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 72
-void org_xmlvm_iphone_UIView_xmlvmSetOffsets___int_int(JAVA_OBJECT me, JAVA_INT n1, JAVA_INT n2);
-// Vtable index: 73
-JAVA_INT org_xmlvm_iphone_UIView_xmlvmGetOffsetLeft__(JAVA_OBJECT me);
-// Vtable index: 74
-JAVA_INT org_xmlvm_iphone_UIView_xmlvmGetOffsetTop__(JAVA_OBJECT me);
 
 #endif

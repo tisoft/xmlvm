@@ -1,0 +1,72 @@
+#ifndef __ORG_XMLVM_IPHONE_UITABLEVIEWDATASOURCE__
+#define __ORG_XMLVM_IPHONE_UITABLEVIEWDATASOURCE__
+
+#include "xmlvm.h"
+#include "org_xmlvm_iphone_NSObject.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableViewCell)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableView)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSIndexPath)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+// Class declarations for org.xmlvm.iphone.UITableViewDataSource
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewDataSource, 19)
+
+//XMLVM_BEGIN_MEMBERS
+#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewDataSource
+//XMLVM_END_MEMBERS
+
+#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewDataSource \
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+    struct { \
+        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewDataSource \
+    } org_xmlvm_iphone_UITableViewDataSource
+
+struct org_xmlvm_iphone_UITableViewDataSource {
+    __CLASS_DEFINITION_org_xmlvm_iphone_UITableViewDataSource* __class;
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewDataSource;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewDataSource
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewDataSource
+typedef struct org_xmlvm_iphone_UITableViewDataSource org_xmlvm_iphone_UITableViewDataSource;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewDataSource 19
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_numberOfSectionsInTableView___org_xmlvm_iphone_UITableView 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_numberOfRowsInSection___org_xmlvm_iphone_UITableView_int 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_titleForHeaderInSection___org_xmlvm_iphone_UITableView_int 17
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath 18
+
+void __INIT_org_xmlvm_iphone_UITableViewDataSource();
+JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewDataSource();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewDataSource();
+void org_xmlvm_iphone_UITableViewDataSource___INIT___(JAVA_OBJECT me);
+// Vtable index: 14
+JAVA_OBJECT org_xmlvm_iphone_UITableViewDataSource_cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+// Vtable index: 15
+JAVA_INT org_xmlvm_iphone_UITableViewDataSource_numberOfSectionsInTableView___org_xmlvm_iphone_UITableView(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 16
+JAVA_INT org_xmlvm_iphone_UITableViewDataSource_numberOfRowsInSection___org_xmlvm_iphone_UITableView_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+// Vtable index: 17
+JAVA_OBJECT org_xmlvm_iphone_UITableViewDataSource_titleForHeaderInSection___org_xmlvm_iphone_UITableView_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+// Vtable index: 18
+void org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_OBJECT n3);
+
+#endif

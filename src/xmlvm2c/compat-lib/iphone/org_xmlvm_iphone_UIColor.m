@@ -36,10 +36,10 @@ void __INIT_org_xmlvm_iphone_UIColor()
     __CLASS_org_xmlvm_iphone_UIColor.classInitialized = 1;
     // Initialize base class if necessary
     if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __CLASS_org_xmlvm_iphone_UIColor.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIColor;
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIColor.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIColor.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIColor_xmlvmGetPaint__;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UIColor.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_UIColor.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
@@ -75,6 +75,12 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIColor()
     me->__class = &__CLASS_org_xmlvm_iphone_UIColor;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIColor]
     //XMLVM_END_WRAPPER
+    return me;
+}
+
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIColor()
+{
+    JAVA_OBJECT me = JAVA_NULL;
     return me;
 }
 
@@ -312,10 +318,19 @@ void org_xmlvm_iphone_UIColor_PUT_viewFlipsideBackgroundColor(JAVA_OBJECT v)
     _STATIC_org_xmlvm_iphone_UIColor_viewFlipsideBackgroundColor = v;
 }
 
+void org_xmlvm_iphone_UIColor___CLINIT_()
+{
+    if (!__CLASS_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor___CLINIT___]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithWhiteAlpha___float_float(JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
     if (!__CLASS_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor_colorWithWhiteAlpha___float_float]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
@@ -323,6 +338,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithHSBA___float_float_float_float(JAV
 {
     if (!__CLASS_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor_colorWithHSBA___float_float_float_float]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
@@ -330,6 +346,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithRGBA___float_float_float_float(JAV
 {
     if (!__CLASS_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor_colorWithRGBA___float_float_float_float]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
@@ -337,19 +354,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithPatternImage___org_xmlvm_iphone_UI
 {
     if (!__CLASS_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor_colorWithPatternImage___org_xmlvm_iphone_UIImage]
-    //XMLVM_END_WRAPPER
-}
-
-JAVA_OBJECT org_xmlvm_iphone_UIColor_xmlvmGetPaint__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor_xmlvmGetPaint__]
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_UIColor___CLINIT_()
-{
-    if (!__CLASS_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor___CLINIT___]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

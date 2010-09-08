@@ -38,6 +38,7 @@ typedef struct org_xmlvm_iphone_UIAcceleration org_xmlvm_iphone_UIAcceleration;
 
 void __INIT_org_xmlvm_iphone_UIAcceleration();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAcceleration();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAcceleration();
 void org_xmlvm_iphone_UIAcceleration___INIT____double_double_double(JAVA_OBJECT me, JAVA_DOUBLE n1, JAVA_DOUBLE n2, JAVA_DOUBLE n3);
 // Vtable index: 14
 JAVA_DOUBLE org_xmlvm_iphone_UIAcceleration_x__(JAVA_OBJECT me);

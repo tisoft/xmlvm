@@ -18,6 +18,7 @@ void __INIT_org_xmlvm_iphone_UIScreen()
     __CLASS_org_xmlvm_iphone_UIScreen.classInitialized = 1;
     // Initialize base class if necessary
     if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __CLASS_org_xmlvm_iphone_UIScreen.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIScreen;
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIScreen.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
@@ -42,9 +43,23 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIScreen()
     return me;
 }
 
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIScreen()
+{
+    JAVA_OBJECT me = JAVA_NULL;
+    return me;
+}
+
 void __DELETE_org_xmlvm_iphone_UIScreen(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIScreen]
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIScreen___CLINIT_()
+{
+    if (!__CLASS_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScreen___CLINIT___]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
@@ -61,6 +76,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIScreen_mainScreen__()
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_getBounds__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScreen_getBounds__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
@@ -74,13 +90,6 @@ JAVA_OBJECT org_xmlvm_iphone_UIScreen_getApplicationFrame__(JAVA_OBJECT me)
 	org_xmlvm_iphone_CGRect___INIT____float_float_float_float(
 		toRet, rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
 	return toRet;
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_UIScreen___CLINIT_()
-{
-    if (!__CLASS_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScreen___CLINIT___]
     //XMLVM_END_WRAPPER
 }
 

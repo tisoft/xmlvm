@@ -24,11 +24,14 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.ImageLoader;
 import org.xmlvm.iphone.internal.Simulator;
 @XMLVMSkeletonOnly
 public class CGImage extends NSObject {
+
+    @XMLVMIgnore
     public BufferedImage image;
 
     private CGImage(InputStream in) {
@@ -46,6 +49,7 @@ public class CGImage extends NSObject {
 
     }
 
+    @XMLVMIgnore
     CGImage(BufferedImage image) {
         this.image = image;
     }

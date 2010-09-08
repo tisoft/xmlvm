@@ -1,0 +1,48 @@
+#ifndef __ORG_XMLVM_IPHONE_UIALERTVIEWDELEGATE__
+#define __ORG_XMLVM_IPHONE_UIALERTVIEWDELEGATE__
+
+#include "xmlvm.h"
+#include "org_xmlvm_iphone_NSObject.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAlertView)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#endif
+// Class declarations for org.xmlvm.iphone.UIAlertViewDelegate
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAlertViewDelegate, 15)
+
+//XMLVM_BEGIN_MEMBERS
+#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAlertViewDelegate
+//XMLVM_END_MEMBERS
+
+#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIAlertViewDelegate \
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+    struct { \
+        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAlertViewDelegate \
+    } org_xmlvm_iphone_UIAlertViewDelegate
+
+struct org_xmlvm_iphone_UIAlertViewDelegate {
+    __CLASS_DEFINITION_org_xmlvm_iphone_UIAlertViewDelegate* __class;
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIAlertViewDelegate;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertViewDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertViewDelegate
+typedef struct org_xmlvm_iphone_UIAlertViewDelegate org_xmlvm_iphone_UIAlertViewDelegate;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIAlertViewDelegate 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertViewDelegate_clickedButtonAtIndex___org_xmlvm_iphone_UIAlertView_int 14
+
+void __INIT_org_xmlvm_iphone_UIAlertViewDelegate();
+JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAlertViewDelegate();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAlertViewDelegate();
+void org_xmlvm_iphone_UIAlertViewDelegate___INIT___(JAVA_OBJECT me);
+// Vtable index: 14
+void org_xmlvm_iphone_UIAlertViewDelegate_clickedButtonAtIndex___org_xmlvm_iphone_UIAlertView_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+
+#endif

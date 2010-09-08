@@ -1,0 +1,25 @@
+#ifndef __ORG_XMLVM_IPHONE_UIBARBUTTONITEMDELEGATE__
+#define __ORG_XMLVM_IPHONE_UIBARBUTTONITEMDELEGATE__
+
+#include "xmlvm.h"
+#include "java_lang_Object.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarButtonItemDelegate, 12)
+
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItemDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItemDelegate
+typedef struct org_xmlvm_iphone_UIBarButtonItemDelegate org_xmlvm_iphone_UIBarButtonItemDelegate;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIBarButtonItemDelegate 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItemDelegate_clicked__ 11
+
+void __INIT_org_xmlvm_iphone_UIBarButtonItemDelegate(__CLASS_DEFINITION_TEMPLATE** interface);
+
+#endif

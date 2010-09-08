@@ -71,6 +71,7 @@ void __INIT_org_xmlvm_iphone_UIAccelerometer()
     __CLASS_org_xmlvm_iphone_UIAccelerometer.classInitialized = 1;
     // Initialize base class if necessary
     if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __CLASS_org_xmlvm_iphone_UIAccelerometer.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIAccelerometer;
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIAccelerometer.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
@@ -95,9 +96,23 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAccelerometer()
     return me;
 }
 
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAccelerometer()
+{
+    JAVA_OBJECT me = JAVA_NULL;
+    return me;
+}
+
 void __DELETE_org_xmlvm_iphone_UIAccelerometer(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIAccelerometer]
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIAccelerometer___CLINIT_()
+{
+    if (!__CLASS_org_xmlvm_iphone_UIAccelerometer.classInitialized) __INIT_org_xmlvm_iphone_UIAccelerometer();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAccelerometer___CLINIT___]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
@@ -110,29 +125,17 @@ JAVA_OBJECT org_xmlvm_iphone_UIAccelerometer_sharedAccelerometer__()
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UIAccelerometer_setAcceleratedInternal___double_double_double(JAVA_DOUBLE n1, JAVA_DOUBLE n2, JAVA_DOUBLE n3)
-{
-    if (!__CLASS_org_xmlvm_iphone_UIAccelerometer.classInitialized) __INIT_org_xmlvm_iphone_UIAccelerometer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAccelerometer_setAcceleratedInternal___double_double_double]
-    //XMLVM_END_WRAPPER
-}
-
 void org_xmlvm_iphone_UIAccelerometer_setUpdateInterval___double(JAVA_OBJECT me, JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAccelerometer_setUpdateInterval___double]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate]
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_UIAccelerometer___CLINIT_()
-{
-    if (!__CLASS_org_xmlvm_iphone_UIAccelerometer.classInitialized) __INIT_org_xmlvm_iphone_UIAccelerometer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAccelerometer___CLINIT___]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

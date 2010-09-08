@@ -22,6 +22,7 @@ package org.xmlvm.iphone;
 
 import java.net.URL;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
@@ -33,6 +34,7 @@ public class NSMutableURLRequest extends NSObject {
         this.url = url;
     }
 
+    @XMLVMIgnore
     public URL xmlvmGetURL() {
         return url.xmlvmGetURL();
     }

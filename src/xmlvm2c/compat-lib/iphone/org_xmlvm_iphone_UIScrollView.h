@@ -1,0 +1,111 @@
+#ifndef __ORG_XMLVM_IPHONE_UISCROLLVIEW__
+#define __ORG_XMLVM_IPHONE_UISCROLLVIEW__
+
+#include "xmlvm.h"
+#include "org_xmlvm_iphone_UIView.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollViewDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollViewDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIScrollViewDelegate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
+#endif
+// Class declarations for org.xmlvm.iphone.UIScrollView
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIScrollView, 87)
+
+//XMLVM_BEGIN_MEMBERS
+#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollView
+//XMLVM_END_MEMBERS
+
+#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollView \
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIView; \
+    struct { \
+        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollView \
+    } org_xmlvm_iphone_UIScrollView
+
+struct org_xmlvm_iphone_UIScrollView {
+    __CLASS_DEFINITION_org_xmlvm_iphone_UIScrollView* __class;
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollView;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollView
+typedef struct org_xmlvm_iphone_UIScrollView org_xmlvm_iphone_UIScrollView;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIScrollView 87
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint 69
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint_boolean 70
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_getContentOffset__ 71
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setScrollEnabled___boolean 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_isScrollEnabled__ 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_isPagingEnabled__ 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setPagingEnabled___boolean 75
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_getContentSize__ 76
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setContentSize___org_xmlvm_iphone_CGSize 77
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_getDelegate__ 78
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setDelegate___org_xmlvm_iphone_UIScrollViewDelegate 79
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_isScrollsToTop__ 80
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setScrollsToTop___boolean 81
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_isShowsHorizontalScrollIndicator__ 82
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setShowsHorizontalScrollIndicator___boolean 83
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_isShowsVerticalScrollIndicator__ 84
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean 85
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean 86
+
+void __INIT_org_xmlvm_iphone_UIScrollView();
+JAVA_OBJECT __NEW_org_xmlvm_iphone_UIScrollView();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIScrollView();
+void org_xmlvm_iphone_UIScrollView___INIT___(JAVA_OBJECT me);
+// Vtable index: 69
+void org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 70
+void org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
+// Vtable index: 71
+JAVA_OBJECT org_xmlvm_iphone_UIScrollView_getContentOffset__(JAVA_OBJECT me);
+// Vtable index: 72
+void org_xmlvm_iphone_UIScrollView_setScrollEnabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+// Vtable index: 73
+JAVA_BOOLEAN org_xmlvm_iphone_UIScrollView_isScrollEnabled__(JAVA_OBJECT me);
+// Vtable index: 74
+JAVA_BOOLEAN org_xmlvm_iphone_UIScrollView_isPagingEnabled__(JAVA_OBJECT me);
+// Vtable index: 75
+void org_xmlvm_iphone_UIScrollView_setPagingEnabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+// Vtable index: 76
+JAVA_OBJECT org_xmlvm_iphone_UIScrollView_getContentSize__(JAVA_OBJECT me);
+// Vtable index: 77
+void org_xmlvm_iphone_UIScrollView_setContentSize___org_xmlvm_iphone_CGSize(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 78
+JAVA_OBJECT org_xmlvm_iphone_UIScrollView_getDelegate__(JAVA_OBJECT me);
+// Vtable index: 79
+void org_xmlvm_iphone_UIScrollView_setDelegate___org_xmlvm_iphone_UIScrollViewDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 80
+JAVA_BOOLEAN org_xmlvm_iphone_UIScrollView_isScrollsToTop__(JAVA_OBJECT me);
+// Vtable index: 81
+void org_xmlvm_iphone_UIScrollView_setScrollsToTop___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+// Vtable index: 82
+JAVA_BOOLEAN org_xmlvm_iphone_UIScrollView_isShowsHorizontalScrollIndicator__(JAVA_OBJECT me);
+// Vtable index: 83
+void org_xmlvm_iphone_UIScrollView_setShowsHorizontalScrollIndicator___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+// Vtable index: 84
+JAVA_BOOLEAN org_xmlvm_iphone_UIScrollView_isShowsVerticalScrollIndicator__(JAVA_OBJECT me);
+// Vtable index: 85
+void org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+// Vtable index: 86
+void org_xmlvm_iphone_UIScrollView_scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
+
+#endif

@@ -44,6 +44,7 @@ typedef struct org_xmlvm_iphone_UIApplicationDelegate org_xmlvm_iphone_UIApplica
 
 void __INIT_org_xmlvm_iphone_UIApplicationDelegate();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIApplicationDelegate();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIApplicationDelegate();
 void org_xmlvm_iphone_UIApplicationDelegate___INIT___(JAVA_OBJECT me);
 // Vtable index: 14
 void org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1);

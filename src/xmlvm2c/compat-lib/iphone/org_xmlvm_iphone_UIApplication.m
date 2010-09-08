@@ -48,6 +48,7 @@ void __INIT_org_xmlvm_iphone_UIApplication()
     __CLASS_org_xmlvm_iphone_UIApplication.classInitialized = 1;
     // Initialize base class if necessary
     if (!__CLASS_org_xmlvm_iphone_UIResponder.classInitialized) __INIT_org_xmlvm_iphone_UIResponder();
+    __CLASS_org_xmlvm_iphone_UIApplication.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIApplication;
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIApplication.vtable, __CLASS_org_xmlvm_iphone_UIResponder.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIResponder.vtable));
     // Initialize vtable for this class
@@ -78,10 +79,16 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIApplication()
     if (!__CLASS_org_xmlvm_iphone_UIApplication.classInitialized) __INIT_org_xmlvm_iphone_UIApplication();
     org_xmlvm_iphone_UIApplication* me = (org_xmlvm_iphone_UIApplication*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIApplication));
     me->__class = &__CLASS_org_xmlvm_iphone_UIApplication;
-    me->org_xmlvm_iphone_UIApplication.windows_ = (java_util_List*) JAVA_NULL;
-    me->org_xmlvm_iphone_UIApplication.keyWindow_ = (org_xmlvm_iphone_UIWindow*) JAVA_NULL;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIApplication]
     //XMLVM_END_WRAPPER
+    return me;
+}
+
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIApplication()
+{
+    JAVA_OBJECT me = JAVA_NULL;
+    me = __NEW_org_xmlvm_iphone_UIApplication();
+    org_xmlvm_iphone_UIApplication___INIT___(me);
     return me;
 }
 
@@ -94,6 +101,7 @@ void __DELETE_org_xmlvm_iphone_UIApplication(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIApplication___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication___INIT___]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
@@ -101,54 +109,63 @@ JAVA_OBJECT org_xmlvm_iphone_UIApplication_sharedApplication__()
 {
     if (!__CLASS_org_xmlvm_iphone_UIApplication.classInitialized) __INIT_org_xmlvm_iphone_UIApplication();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_sharedApplication__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIApplication_getDelegate__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_getDelegate__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIApplication_setDelegate___org_xmlvm_iphone_UIApplicationDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_setDelegate___org_xmlvm_iphone_UIApplicationDelegate]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIApplication_setIdleTimerDisabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_setIdleTimerDisabled___boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_isIdleTimerDisabled__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_isIdleTimerDisabled__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIApplication_setKeyWindow___org_xmlvm_iphone_UIWindow(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_setKeyWindow___org_xmlvm_iphone_UIWindow]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIApplication_getKeyWindow__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_getKeyWindow__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIApplication_getWindows__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_getWindows__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIApplication_setStatusBarOrientation___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_setStatusBarOrientation___int]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
@@ -163,24 +180,28 @@ void org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean(JAVA_OBJECT me,
 JAVA_INT org_xmlvm_iphone_UIApplication_getStatusBarStyle__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_getStatusBarStyle__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIApplication_setStatusBarStyle___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_setStatusBarStyle___int]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIApplication_setStatusBarStyle___int_boolean(JAVA_OBJECT me, JAVA_INT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_setStatusBarStyle___int_boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
@@ -198,21 +219,11 @@ void org_xmlvm_iphone_UIApplication_main___java_lang_String_ARRAYTYPE_java_lang_
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_UIApplication_access$000__()
+JAVA_OBJECT org_xmlvm_iphone_UIApplication_access$0__()
 {
     if (!__CLASS_org_xmlvm_iphone_UIApplication.classInitialized) __INIT_org_xmlvm_iphone_UIApplication();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_access$000__]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_access$0__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
-
-
-
-#if 0
-int main(int argc, char* argv[])
-{
-    xmlvm_init();
-    org_xmlvm_iphone_UIApplication_main___java_lang_String_ARRAYTYPE(JAVA_NULL);
-    return 0;
-}
-#endif
 

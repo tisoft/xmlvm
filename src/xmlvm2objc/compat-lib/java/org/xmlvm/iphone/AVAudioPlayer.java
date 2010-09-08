@@ -26,6 +26,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 import javazoom.jlgui.basicplayer.BasicController;
@@ -37,27 +38,32 @@ import javazoom.jlgui.basicplayer.BasicPlayerListener;
 @XMLVMSkeletonOnly
 public class AVAudioPlayer extends NSObject {
 
-    class Listener implements BasicPlayerListener {
+    @XMLVMSkeletonOnly
+    class AVAudioPlayerListener implements BasicPlayerListener {
 
         private AVAudioPlayer avAudioPlayer;
 
-        Listener(AVAudioPlayer avAudioPlayer) {
+        AVAudioPlayerListener(AVAudioPlayer avAudioPlayer) {
             this.avAudioPlayer = avAudioPlayer;
         }
 
         @Override
+        @XMLVMIgnore
         public void opened(Object arg0, Map arg1) {
         }
 
         @Override
+        @XMLVMIgnore
         public void progress(int arg0, long arg1, byte[] arg2, Map arg3) {
         }
 
         @Override
+        @XMLVMIgnore
         public void setController(BasicController arg0) {
         }
 
         @Override
+        @XMLVMIgnore
         public void stateUpdated(BasicPlayerEvent event) {
             if (event.getCode() == BasicPlayerEvent.STOPPED) {
                 try {
@@ -103,7 +109,7 @@ public class AVAudioPlayer extends NSObject {
     private AVAudioPlayer(NSURL url) throws BasicPlayerException {
         this.url = url;
         player = new BasicPlayer();
-        player.addBasicPlayerListener(new Listener(this));
+        player.addBasicPlayerListener(new AVAudioPlayerListener(this));
 
         // If this marker appears in the path, then the resource needs to be
         // loaded out of a JAR file. We expect it in this case to be the JAR
@@ -134,7 +140,7 @@ public class AVAudioPlayer extends NSObject {
 
         ByteArrayInputStream bis = new ByteArrayInputStream(data, 0, (int) length);
         player = new BasicPlayer();
-        player.addBasicPlayerListener(new Listener(this));
+        player.addBasicPlayerListener(new AVAudioPlayerListener(this));
         player.open(bis);
     }
 
@@ -149,6 +155,7 @@ public class AVAudioPlayer extends NSObject {
         }
     }
 
+    @XMLVMIgnore
     public static AVAudioPlayer initWithContentsOfFileDescriptor(FileDescriptor fd, long offset,
             long length, NSErrorHolder error) {
         try {

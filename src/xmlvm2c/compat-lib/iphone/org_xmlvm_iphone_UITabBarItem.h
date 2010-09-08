@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarItem
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarItem)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_internal_UITabBarItemView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_internal_UITabBarItemView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_internal_UITabBarItemView)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarItem
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarItem
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarItem)
@@ -31,7 +27,6 @@ XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBarItem, 29)
 #define __INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarItem \
     __INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarItem; \
     struct { \
-        JAVA_OBJECT view_; \
         __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarItem \
     } org_xmlvm_iphone_UITabBarItem
 
@@ -51,6 +46,7 @@ typedef struct org_xmlvm_iphone_UITabBarItem org_xmlvm_iphone_UITabBarItem;
 
 void __INIT_org_xmlvm_iphone_UITabBarItem();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarItem();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITabBarItem();
 void org_xmlvm_iphone_UITabBarItem___INIT___(JAVA_OBJECT me);
 // Vtable index: 27
 JAVA_OBJECT org_xmlvm_iphone_UITabBarItem_getBadgeValue__(JAVA_OBJECT me);
@@ -58,6 +54,6 @@ JAVA_OBJECT org_xmlvm_iphone_UITabBarItem_getBadgeValue__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UITabBarItem_setBadgeValue___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 23
 void org_xmlvm_iphone_UITabBarItem_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-void org_xmlvm_iphone_UITabBarItem_access$000___org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT n1);
+void org_xmlvm_iphone_UITabBarItem_access$0___org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT n1);
 
 #endif

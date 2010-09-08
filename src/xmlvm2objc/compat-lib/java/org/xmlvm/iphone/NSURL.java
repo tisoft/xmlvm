@@ -23,6 +23,7 @@ package org.xmlvm.iphone;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
@@ -64,6 +65,7 @@ public class NSURL extends NSObject {
         return url.toString();
     }
 
+    @XMLVMIgnore
     public URL xmlvmGetURL() {
         return url;
     }

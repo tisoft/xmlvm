@@ -121,6 +121,7 @@ typedef struct org_xmlvm_iphone_UIViewController org_xmlvm_iphone_UIViewControll
 
 void __INIT_org_xmlvm_iphone_UIViewController();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewController();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewController();
 void org_xmlvm_iphone_UIViewController___INIT___(JAVA_OBJECT me);
 // Vtable index: 20
 void org_xmlvm_iphone_UIViewController_loadView__(JAVA_OBJECT me);

@@ -43,8 +43,6 @@ XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIApplication, 33)
 #define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIApplication \
     __INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder; \
     struct { \
-        JAVA_OBJECT windows_; \
-        JAVA_OBJECT keyWindow_; \
         __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIApplication \
     } org_xmlvm_iphone_UIApplication
 
@@ -74,6 +72,7 @@ typedef struct org_xmlvm_iphone_UIApplication org_xmlvm_iphone_UIApplication;
 
 void __INIT_org_xmlvm_iphone_UIApplication();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIApplication();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIApplication();
 void org_xmlvm_iphone_UIApplication___INIT___(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UIApplication_sharedApplication__();
 // Vtable index: 20
@@ -103,6 +102,6 @@ void org_xmlvm_iphone_UIApplication_setStatusBarStyle___int_boolean(JAVA_OBJECT 
 // Vtable index: 32
 JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UIApplication_main___java_lang_String_ARRAYTYPE_java_lang_Class_java_lang_Class(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
-JAVA_OBJECT org_xmlvm_iphone_UIApplication_access$000__();
+JAVA_OBJECT org_xmlvm_iphone_UIApplication_access$0__();
 
 #endif

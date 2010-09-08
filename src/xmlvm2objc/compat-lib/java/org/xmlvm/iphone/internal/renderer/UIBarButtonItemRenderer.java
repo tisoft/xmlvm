@@ -28,8 +28,8 @@ import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIBarButtonItem;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIFont;
+import org.xmlvm.iphone.UIGenericToolbar;
 import org.xmlvm.iphone.internal.UIBarButtonItemView;
-import org.xmlvm.iphone.internal.UIGenericToolbar;
 
 /**
  * 

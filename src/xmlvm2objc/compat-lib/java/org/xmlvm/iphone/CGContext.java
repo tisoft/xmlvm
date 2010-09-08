@@ -30,6 +30,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.Stack;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class CGContext extends NSObject {
@@ -56,6 +57,7 @@ public class CGContext extends NSObject {
         xmlvmPushGraphicsContext((Graphics2D) image.getGraphics());
     }
 
+    @XMLVMIgnore
     CGContext(Graphics2D g) {
         graphicsContext = g;
         image = null;
@@ -66,27 +68,33 @@ public class CGContext extends NSObject {
         this.image = image;
     }
 
+    @XMLVMIgnore
     CGContext(Graphics2D g, UIImage img) {
         this.graphicsContext = g;
         this.image = img;
     }
 
+    @XMLVMIgnore
     public static void xmlvmPushGraphicsContext(Graphics2D g) {
         contextStack.push(new CGContext(g));
     }
 
+    @XMLVMIgnore
     public static void xmlvmPushGraphicsContext(UIImage image) {
         contextStack.push(new CGContext(image));
     }
 
+    @XMLVMIgnore
     public static void xmlvmPushGraphicsContext(Graphics2D g, UIImage image) {
         contextStack.push(new CGContext(g, image));
     }
 
+    @XMLVMIgnore
     public static void xmlvmPopGraphicsContext() {
         contextStack.pop();
     }
 
+    @XMLVMIgnore
     public Graphics2D xmlvmGetGraphics2D() {
         return graphicsContext;
     }

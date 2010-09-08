@@ -17,6 +17,7 @@ void __INIT_org_xmlvm_iphone_NSObject()
     __CLASS_org_xmlvm_iphone_NSObject.classInitialized = 1;
     // Initialize base class if necessary
     if (!__CLASS_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    __CLASS_org_xmlvm_iphone_NSObject.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSObject;
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_NSObject.vtable, __CLASS_java_lang_Object.vtable, sizeof(__CLASS_java_lang_Object.vtable));
     // Initialize vtable for this class
@@ -42,6 +43,14 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSObject()
     return me;
 }
 
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSObject()
+{
+    JAVA_OBJECT me = JAVA_NULL;
+    me = __NEW_org_xmlvm_iphone_NSObject();
+    org_xmlvm_iphone_NSObject___INIT___(me);
+    return me;
+}
+
 void __DELETE_org_xmlvm_iphone_NSObject(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSObject]
@@ -51,6 +60,7 @@ void __DELETE_org_xmlvm_iphone_NSObject(JAVA_OBJECT me)
 void org_xmlvm_iphone_NSObject___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject___INIT___]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
@@ -58,24 +68,28 @@ void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___java_lang_Object_ja
 {
     if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelectorOnMainThread___java_lang_Object_java_lang_String_java_lang_Object_boolean]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSObject_retain__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_retain__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSObject_release__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_release__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSObject_dealloc__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_dealloc__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

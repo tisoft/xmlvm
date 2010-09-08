@@ -20,6 +20,7 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.gl.CAEAGLLayer;
 
@@ -37,6 +38,8 @@ public class UIViewGL extends UIView {
         super(rect);
     }
 
+    //TODO for now we don't do GL
+    @XMLVMIgnore
     public CAEAGLLayer getEAGLLayer() {
         return new CAEAGLLayer();
     }

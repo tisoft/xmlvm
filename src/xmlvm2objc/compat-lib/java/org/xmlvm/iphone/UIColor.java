@@ -26,6 +26,7 @@ import java.awt.TexturePaint;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
@@ -94,6 +95,7 @@ public class UIColor extends NSObject {
         return new UIColor(paint);
     }
 
+    @XMLVMIgnore
     public Paint xmlvmGetPaint() {
         return color;
     }

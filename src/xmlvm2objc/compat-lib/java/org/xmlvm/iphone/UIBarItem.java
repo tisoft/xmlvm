@@ -23,7 +23,6 @@ package org.xmlvm.iphone;
 import java.lang.reflect.Method;
 
 import org.xmlvm.XMLVMSkeletonOnly;
-import org.xmlvm.iphone.internal.UIGenericBar;
 
 /**
  * 

@@ -50,6 +50,7 @@ typedef struct org_xmlvm_iphone_NSTimer org_xmlvm_iphone_NSTimer;
 
 void __INIT_org_xmlvm_iphone_NSTimer();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSTimer();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSTimer();
 void org_xmlvm_iphone_NSTimer___INIT____float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4);
 // Vtable index: 14
 void org_xmlvm_iphone_NSTimer_run__(JAVA_OBJECT me);

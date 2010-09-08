@@ -54,6 +54,7 @@ typedef struct org_xmlvm_iphone_UIResponder org_xmlvm_iphone_UIResponder;
 
 void __INIT_org_xmlvm_iphone_UIResponder();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIResponder();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIResponder();
 void org_xmlvm_iphone_UIResponder___INIT___(JAVA_OBJECT me);
 // Vtable index: 14
 void org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);

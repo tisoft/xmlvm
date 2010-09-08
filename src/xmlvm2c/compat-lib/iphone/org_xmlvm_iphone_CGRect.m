@@ -37,6 +37,7 @@ void __INIT_org_xmlvm_iphone_CGRect()
     __CLASS_org_xmlvm_iphone_CGRect.classInitialized = 1;
     // Initialize base class if necessary
     if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __CLASS_org_xmlvm_iphone_CGRect.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGRect;
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_CGRect.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
@@ -68,9 +69,23 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_CGRect()
     return me;
 }
 
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGRect()
+{
+    JAVA_OBJECT me = JAVA_NULL;
+    return me;
+}
+
 void __DELETE_org_xmlvm_iphone_CGRect(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_CGRect]
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CGRect___CLINIT_()
+{
+    if (!__CLASS_org_xmlvm_iphone_CGRect.classInitialized) __INIT_org_xmlvm_iphone_CGRect();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGRect___CLINIT___]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
@@ -135,7 +150,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_CGRect_isNull__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGRect_isNull__]
 	return CGRectIsNull(toCGRect(me));
-	//XMLVM_END_WRAPPER
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_CGRect_isEmpty__(JAVA_OBJECT me)
@@ -163,13 +178,6 @@ JAVA_BOOLEAN org_xmlvm_iphone_CGRect_equals___java_lang_Object(JAVA_OBJECT me, J
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGRect_equals___java_lang_Object]
 	XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_CGRect___CLINIT_()
-{
-    if (!__CLASS_org_xmlvm_iphone_CGRect.classInitialized) __INIT_org_xmlvm_iphone_CGRect();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGRect___CLINIT___]
     //XMLVM_END_WRAPPER
 }
 

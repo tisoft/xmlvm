@@ -1,12 +1,11 @@
-package org.xmlvm.iphone.internal;
+package org.xmlvm.iphone;
 
-import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIView;
 
 /**
  * 
  * @author teras
  */
+//TODO this class should be in 'internal' but we have to have it here because it is used as a base class
 public abstract class UIGenericBar extends UIView {
 
     public UIGenericBar() {

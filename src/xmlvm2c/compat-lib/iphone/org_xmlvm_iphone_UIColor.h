@@ -5,10 +5,6 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_awt_Paint
-#define XMLVM_FORWARD_DECL_java_awt_Paint
-XMLVM_FORWARD_DECL(java_awt_Paint)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
@@ -22,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 #endif
 // Class declarations for org.xmlvm.iphone.UIColor
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIColor, 15)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIColor, 14)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIColor
@@ -43,11 +39,11 @@ struct org_xmlvm_iphone_UIColor {
 typedef struct org_xmlvm_iphone_UIColor org_xmlvm_iphone_UIColor;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIColor 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIColor_xmlvmGetPaint__ 14
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIColor 14
 
 void __INIT_org_xmlvm_iphone_UIColor();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIColor();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIColor();
 JAVA_OBJECT org_xmlvm_iphone_UIColor_GET_blackColor();
 void org_xmlvm_iphone_UIColor_PUT_blackColor(JAVA_OBJECT v);
 JAVA_OBJECT org_xmlvm_iphone_UIColor_GET_darkGrayColor();
@@ -86,12 +82,10 @@ JAVA_OBJECT org_xmlvm_iphone_UIColor_GET_groupTableViewBackgroundColor();
 void org_xmlvm_iphone_UIColor_PUT_groupTableViewBackgroundColor(JAVA_OBJECT v);
 JAVA_OBJECT org_xmlvm_iphone_UIColor_GET_viewFlipsideBackgroundColor();
 void org_xmlvm_iphone_UIColor_PUT_viewFlipsideBackgroundColor(JAVA_OBJECT v);
+void org_xmlvm_iphone_UIColor___CLINIT_();
 JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithWhiteAlpha___float_float(JAVA_FLOAT n1, JAVA_FLOAT n2);
 JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithHSBA___float_float_float_float(JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4);
 JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithRGBA___float_float_float_float(JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4);
 JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithPatternImage___org_xmlvm_iphone_UIImage(JAVA_OBJECT n1);
-// Vtable index: 14
-JAVA_OBJECT org_xmlvm_iphone_UIColor_xmlvmGetPaint__(JAVA_OBJECT me);
-void org_xmlvm_iphone_UIColor___CLINIT_();
 
 #endif
