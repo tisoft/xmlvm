@@ -64,6 +64,21 @@ public abstract class UniversalFile {
      * Returns the absolute path of this {@link UniversalFile}
      */
     public abstract String getAbsolutePath();
+    
+    public String getRelativePath(String basePath) {
+        String fullPath = getAbsolutePath();
+
+        if (!fullPath.startsWith(basePath)) {
+            Log.error("'" + basePath + "' is not a base path of '" + fullPath);
+            return null;
+        }
+        String result = fullPath.substring(basePath.length());
+        if (result.startsWith(File.separator)) {
+            result = result.substring(1);
+        }
+        return result;
+    }
+
 
     /**
      * Returns whether this file is a directory.
