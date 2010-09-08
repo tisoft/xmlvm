@@ -85,7 +85,7 @@ public class Libraries {
         Log.debug(TAG, "Preparing temp JAR for '" + path + "' at '" + tempFileName + "'.");
 
         UniversalFile source = UniversalFileCreator.createDirectory(null, path);
-        if (!source.exists()) {
+        if (source == null || !source.exists()) {
             Log.error(TAG, "Couldn't find library path: " + path);
             return null;
         }
