@@ -106,11 +106,6 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
         // We patch the existing content into the newly generated wrappers.
         injectAllSections(existingSections, outputFiles, destination.getAbsolutePath());
 
-        // Then we clean up the old files.
-        if (!deleteRecursively(destination)) {
-            return false;
-        }
-
         result.addAll(outputFiles);
         return true;
     }
@@ -224,30 +219,5 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
     private static String generateBackupFolder() {
         return (new File(".cache" + File.separatorChar
                 + dateFormatter.format(Calendar.getInstance().getTime()))).getAbsolutePath();
-    }
-
-    /**
-     * Deletes the directory recursively.
-     */
-    private static boolean deleteRecursively(File toDelete) {
-        if (toDelete.isFile()) {
-            if (!toDelete.delete()) {
-                Log.error(TAG, "Could not delete " + toDelete.getAbsolutePath());
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            File[] files = toDelete.listFiles();
-            boolean success = true;
-            for (File file : files) {
-                success = deleteRecursively(file);
-            }
-            if (success) {
-                return toDelete.delete();
-            } else {
-                return false;
-            }
-        }
     }
 }
