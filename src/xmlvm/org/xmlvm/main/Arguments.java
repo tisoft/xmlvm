@@ -335,7 +335,12 @@ public class Arguments {
             option_enable_ref_counting = true;
             Log.debug("Forcing --enable_ref_counting for target " + option_target);
         }
-    }
+
+        if (option_target == Targets.GEN_C_WRAPPERS) {
+            option_gen_wrapper = true;
+            Log.debug("Forcing --gen_wrapper for target " + option_target);
+        }
+ }
 
     private static void parseListArgument(String argument, Set<String> option, String separator) {
         StringTokenizer tk = new StringTokenizer(argument, separator);

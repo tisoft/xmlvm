@@ -56,6 +56,8 @@ public class OutputProcessFactory {
             return new PythonOutputProcess(arguments);
         case C:
             return new COutputProcess(arguments);
+        case GEN_C_WRAPPERS:
+            return new GenCWrappersOutputProcess(arguments);
         case OBJC:
             return new ObjectiveCOutputProcess(arguments);
         case QOOXDOO:

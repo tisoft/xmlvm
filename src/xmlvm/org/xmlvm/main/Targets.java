@@ -25,7 +25,7 @@ package org.xmlvm.main;
  */
 public enum Targets {
 
-    NONE, XMLVM, DEXMLVM, JVM, CLR, DFA, CLASS, EXE, DEX, JS, C, PYTHON, OBJC, QOOXDOO, IPHONE, IPHONEC, IPHONEANDROID, IPHONETEMPLATE, WEBOS;
+    NONE, XMLVM, DEXMLVM, JVM, CLR, DFA, CLASS, EXE, DEX, JS, C, GEN_C_WRAPPERS, PYTHON, OBJC, QOOXDOO, IPHONE, IPHONEC, IPHONEANDROID, IPHONETEMPLATE, WEBOS;
 
     public static Targets getTarget(String target) {
         if (target.equals("android-on-iphone")) {
@@ -33,6 +33,9 @@ public enum Targets {
         }
         if (target.equals("iphone-c")) {
             target = "IPHONEC";
+        }
+        if (target.equalsIgnoreCase("gen-c-wrappers")) {
+            target = "GEN_C_WRAPPERS";
         }
         target = target.toUpperCase().replace("-", "").replace(":", "");
         try {
