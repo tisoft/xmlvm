@@ -110,15 +110,33 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
         return true;
     }
 
+    /**
+     * In order to allow easy rollback, in case something went wrong or the old
+     * state needs to be reverted to, this method takes the given destination
+     * directory and backs it up recursively to the cache directory of the
+     * project.
+     * 
+     * @param destinationDirectory
+     *            the directory to back up
+     */
     private void backupExistingDestination(String destinationDirectory) {
         UniversalFile destination = UniversalFileCreator
                 .createDirectory(null, destinationDirectory);
-        String backupFolder = generateBackupFolder();
+        String backupFolder = generateBackupFolderName();
         Log.debug(TAG, "Backing up current content of " + destinationDirectory + " to "
                 + backupFolder);
         destination.saveAs(backupFolder);
     }
 
+    /**
+     * From the given destination directory, this method extracts all blocks
+     * that are enclosed within XMLVM_BEGIN and XMLVM_END blocks. It keys them
+     * first by file name and then by section name.
+     * 
+     * @param destination
+     *            the directory from where the files are parsed recusively
+     * @return The section contents keyed by filename and section name.
+     */
     private Map<String, Map<String, String>> extractAllSections(UniversalFile destination) {
         Map<String, Map<String, String>> result = new HashMap<String, Map<String, String>>();
         UniversalFile[] existingFiles = destination.listFilesRecursively();
@@ -131,6 +149,15 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
         return result;
     }
 
+    /**
+     * Extracts the sections that are enclosed within XMLVM_BEGIN and XMLVM_END
+     * blocks from the given file.
+     * 
+     * @param file
+     *            the file to parse
+     * @return A map that contains the contents of the blocks, keyed by block
+     *         name
+     */
     private Map<String, String> extractSections(UniversalFile file) {
         Map<String, String> sections = new HashMap<String, String>();
         BufferedReader reader = new BufferedReader(new StringReader(file.getFileAsString()));
@@ -171,6 +198,21 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
         return sections;
     }
 
+    /**
+     * Injects the given sections to the given files, if their relative file
+     * name matches and they contain matching sections.
+     * 
+     * @param sections
+     *            the previously extracted section contents which are keyed by
+     *            relative file name and section name
+     * @param files
+     *            the files that should be scanned for blocks. If a file has
+     *            matching blocks, the blocks are exchanged with the contents of
+     *            the map
+     * @param basePath
+     *            a base path of the files, so that valid relative paths can be
+     *            calculated
+     */
     private void injectAllSections(Map<String, Map<String, String>> sections,
             List<OutputFile> files, String basePath) {
         for (OutputFile file : files) {
@@ -181,6 +223,17 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
         }
     }
 
+    /**
+     * Injects the given section contents, keyed by section name, into the given
+     * file. If the file has sections that match the ones in the given map,
+     * their content is replaced.
+     * 
+     * @param sections
+     *            the section contents, keyed by section name
+     * @param file
+     *            The file to parse and possibly replace the section contents
+     *            in.
+     */
     private void injectSections(Map<String, String> sections, OutputFile file) {
         BufferedReader reader = new BufferedReader(new StringReader(file.getData()));
 
@@ -216,7 +269,11 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
         }
     }
 
-    private static String generateBackupFolder() {
+    /**
+     * Generates a timestamped folder name that can be used to store temporary
+     * backups in.
+     */
+    private static String generateBackupFolderName() {
         return (new File(".cache" + File.separatorChar
                 + dateFormatter.format(Calendar.getInstance().getTime()))).getAbsolutePath();
     }
