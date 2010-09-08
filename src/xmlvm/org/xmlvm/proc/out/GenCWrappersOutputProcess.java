@@ -52,7 +52,6 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
 
     private static final String           TAG           = GenCWrappersOutputProcess.class
                                                                 .getSimpleName();
-    // TODO: Ignore XMLVM_BEGIN_MEMBERS as it gets auto filled??
     private static final String           BEGIN_MARKER  = "//XMLVM_BEGIN";
     private static final String           END_MARKER    = "//XMLVM_END";
 
