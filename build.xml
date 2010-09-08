@@ -19,6 +19,8 @@
 	<property name="xmlvm.android-compat-lib" value="build/compat-lib/android" />
 	<property name="xmlvm.android-compat-lib.java" value="${xmlvm.android-compat-lib}/java" />
 	<property name="xmlvm.android-compat-lib.objc" value="${xmlvm.android-compat-lib}/objc" />
+	
+	<property name="xmlvm.cocoa-java" value="/build/cocoa-java" />
 
 	<property name="xmlvm.isound" value="build/demo/iphone/isound" />
 	<property name="xmlvm.ifireworks" value="build/demo/iphone/ifireworks" />
@@ -86,6 +88,7 @@
 		<mkdir dir="${xmlvm.build.lib}" />
 		<mkdir dir="${xmlvm.bin}" />
 		<mkdir dir="${xmlvm.bin}/iphone" />
+		<mkdir dir="${xmlvm.bin}/lib" />
 	</target>
 
 	<target name="build-objc-compat-lib" depends="build-xmlvm">
@@ -115,7 +118,7 @@
 			<fileset dir="${xmlvm.android-compat-lib.java}" />
 		</jar>
 	</target>
-
+	
 	<target name="cc-android-compat-lib" depends="build-android-compat-lib,build-xmlvm">
 		<uptodate property="cc-android-compat-lib.notrequired" targetfile="${xmlvm.android-compat-lib.objc}">
    			<srcfiles dir= "${xmlvm.android-compat-lib.java}" includes="**/*.class"/>
@@ -206,6 +209,18 @@
 
 		<jar destfile="${xmlvm.bin}/iphone/android-compat-lib.jar">
 			<fileset dir="${xmlvm.android-compat-lib.objc}" />
+		</jar>
+
+		<mkdir dir="${xmlvm.cocoa-java}" />
+		<javac srcdir="./src/xmlvm2objc/compat-lib/java" destdir="${xmlvm.cocoa-java}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.bin}" />
+			</classpath>
+			<classpath refid="classpath.compile" />
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.bin}/lib/cocoa-java.jar">
+			<fileset dir="${xmlvm.cocoa-java}" />
 		</jar>
 
 		<copy todir="${xmlvm.bin}/iphone">
