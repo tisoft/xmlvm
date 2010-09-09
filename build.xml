@@ -58,6 +58,7 @@
 		<pathelement location="lib/yuicompressor-2.1.2.jar" />
 		<pathelement location="lib/czlUtil.jar" />
 		<pathelement location="lib/saxon9.jar" />
+		<pathelement location="lib/saxon9-jdom.jar" />
 		<pathelement location="lib/lwjgl.jar" />
 		<pathelement location="lib/basicplayer3.0.jar" />
 	</path>
@@ -72,6 +73,7 @@
 		<pathelement location="lib/jdom.jar" />
 		<pathelement location="lib/jakarta-regexp.jar" />
 		<pathelement location="lib/saxon9.jar" />
+		<pathelement location="lib/saxon9-jdom.jar" />
 		<pathelement location="lib/xercesImpl.jar" />
 		<pathelement location="lib/lwjgl.jar" />
 	</path>

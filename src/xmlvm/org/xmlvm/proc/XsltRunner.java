@@ -20,9 +20,7 @@
 
 package org.xmlvm.proc;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,8 +34,10 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import net.sf.saxon.Controller;
+import net.sf.saxon.jdom.DocumentWrapper;
+
 import org.jdom.Document;
-import org.jdom.output.XMLOutputter;
 import org.xmlvm.Log;
 import org.xmlvm.proc.out.OutputFile;
 
@@ -83,19 +83,14 @@ public class XsltRunner {
     public static OutputFile runXSLT(String xsltFileName, Document doc, String[][] xsltParams) {
         StringWriter writer = new StringWriter();
         try {
-            StringWriter docWriter = new StringWriter();
-            XMLOutputter outputter = new XMLOutputter();
-            outputter.output(doc, docWriter);
-
-            StringReader xmlvmReader = new StringReader(docWriter.toString());
-            Source xmlvmSource = new StreamSource(xmlvmReader);
+            Transformer transformer = getTransformer(xsltFileName, xsltParams);
+            DocumentWrapper docw = new DocumentWrapper(doc, "",
+                    ((Controller) transformer).getConfiguration());
             Result result = new StreamResult(writer);
 
-            getTransformer(xsltFileName, xsltParams).transform(xmlvmSource, result);
+            getTransformer(xsltFileName, xsltParams).transform(docw, result);
 
             return new OutputFile(writer.toString());
-        } catch (IOException e) {
-            Log.error(TAG, e.getMessage());
         } catch (TransformerException e) {
             Log.error(TAG, e.getMessage());
         }

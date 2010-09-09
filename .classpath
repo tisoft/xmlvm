@@ -55,5 +55,6 @@
 	<classpathentry kind="lib" path="lib/tritonus_share.jar"/>
 	<classpathentry kind="lib" path="lib/httpclient-4.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/httpcore-4.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/saxon9-jdom.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
