@@ -33,6 +33,7 @@ import org.jdom.Element;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.LibraryLoader;
+import org.xmlvm.proc.XmlvmProcess;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResource.XmlvmField;
@@ -48,7 +49,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
     private static final String        C_EXTENSION  = ".m";
     private static final String        H_EXTENSION  = ".h";
-    private List<OutputFile>           result       = new ArrayList<OutputFile>();
+    private List<OutputFile>           outputFiles  = new ArrayList<OutputFile>();
 
     private Map<String, XmlvmResource> resourcePool = new HashMap<String, XmlvmResource>();
 
@@ -160,7 +161,9 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
     }
 
+
     private Map<String, Vtable> vtables = new HashMap<String, Vtable>();
+
 
     public COutputProcess(Arguments arguments) {
         super(arguments);
@@ -176,7 +179,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
     @Override
     public List<OutputFile> getOutputFiles() {
-        return result;
+        return outputFiles;
     }
 
     @Override
@@ -191,6 +194,16 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                     resourcePool.put(xmlvm.getFullName(), xmlvm);
                 }
             }
+
+            // Pass-through all non-xmlvm files.
+            List<OutputFile> files = ((XmlvmProcess<?>) process).getOutputFiles();
+            if (files != null) {
+                for (OutputFile outputFile : files) {
+                    if (!outputFile.getFileName().endsWith("xmlvm")) {
+                        outputFiles.add(outputFile);
+                    }
+                }
+            }
         }
 
         if (arguments.option_gen_native_skeletons()) {
@@ -198,7 +211,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                 OutputFile file = genNativeSkeletons(xmlvm);
                 if (file != null) {
                     file.setLocation(arguments.option_out());
-                    result.add(file);
+                    outputFiles.add(file);
                 }
             }
             return true;
@@ -215,7 +228,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
             OutputFile[] files = genC(xmlvm);
             for (OutputFile file : files) {
                 file.setLocation(arguments.option_out());
-                result.add(file);
+                outputFiles.add(file);
             }
         }
         return true;
@@ -554,7 +567,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         if (resource != null) {
             return resource;
         }
-        
+
         Log.debug(TAG, "Loading JDK class: " + className);
         resource = (new LibraryLoader(new Arguments(new String[] { "--in=foo" }))).load(className);
         alreadyLoadedResources.put(className, resource);
