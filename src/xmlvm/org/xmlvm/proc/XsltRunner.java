@@ -110,7 +110,7 @@ public class XsltRunner {
      * @param xsltFileName
      *            the name of the XSLT file to use
      * @param xsltParams
-     *            the paramters for the XSLT transformer
+     *            the parameters for the XSLT transformer
      * @return The transformer that uses the given XSLT file or null, if none
      *         could be created.
      */
