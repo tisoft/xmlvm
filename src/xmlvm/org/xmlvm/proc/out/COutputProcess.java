@@ -45,13 +45,13 @@ import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XsltRunner;
 
 public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
-    private final static String        TAG          = COutputProcess.class.getSimpleName();
+    private final static String        TAG             = COutputProcess.class.getSimpleName();
 
-    private static final String        C_EXTENSION  = ".m";
-    private static final String        H_EXTENSION  = ".h";
-    private List<OutputFile>           outputFiles  = new ArrayList<OutputFile>();
+    private final String               sourceExtension;
+    private final String               headerExtension = ".h";
+    private List<OutputFile>           outputFiles     = new ArrayList<OutputFile>();
 
-    private Map<String, XmlvmResource> resourcePool = new HashMap<String, XmlvmResource>();
+    private Map<String, XmlvmResource> resourcePool    = new HashMap<String, XmlvmResource>();
 
 
     /**
@@ -167,6 +167,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
     public COutputProcess(Arguments arguments) {
         super(arguments);
+        sourceExtension = "." + arguments.option_c_source_extension();
 
         // Add empty class name that acts as a base class for java.lang.Object
         vtables.put("", new Vtable());
@@ -584,8 +585,8 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         String inheritsFrom = xmlvm.getSuperTypeName().replace('.', '_').replace('$', '_');
         String className = xmlvm.getName().replace('$', '_');
         String fileNameStem = (namespaceName + "." + className).replace('.', '_');
-        String headerFileName = fileNameStem + H_EXTENSION;
-        String mFileName = fileNameStem + C_EXTENSION;
+        String headerFileName = fileNameStem + headerExtension;
+        String mFileName = fileNameStem + sourceExtension;
 
         String headerProlog = "#ifndef __" + fileNameStem.toUpperCase() + "__\n";
         headerProlog += "#define __" + fileNameStem.toUpperCase() + "__\n\n";
@@ -720,8 +721,8 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         String namespaceName = resource.getPackageName();
         String className = resource.getName().replace('$', '_');
         String fileNameStem = (namespaceName + "." + className).replace('.', '_');
-        String headerFileName = fileNameStem + H_EXTENSION;
-        String mFileName = "native_" + fileNameStem + C_EXTENSION;
+        String headerFileName = fileNameStem + headerExtension;
+        String mFileName = "native_" + fileNameStem + sourceExtension;
 
         StringBuffer mBuffer = new StringBuffer();
         mBuffer.append("\n#include \"" + headerFileName + "\"\n\n");

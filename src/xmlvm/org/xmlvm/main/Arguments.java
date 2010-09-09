@@ -62,6 +62,7 @@ public class Arguments {
     public static final String    ARG_EXP_LOAD_DEPS           = "--exp-load-deps";
     // Enables reference counting for DEX input.
     public static final String    ARG_ENABLE_REF_COUNTING     = "--enable-ref-counting";
+    public static final String    ARG_C_SOURCE_EXTENSION      = "--c-source-extension=";
     // This argument will store various properties to XMLVM
     // An example of these values can be found in the long help
     public static final String    ARG_PROPERTY                = "-D";
@@ -81,6 +82,7 @@ public class Arguments {
     private boolean               option_use_jvm              = false;
     private boolean               option_exp_load_deps        = false;
     private boolean               option_enable_ref_counting  = false;
+    private String                option_c_source_extension   = "c";
     private Map<String, String>   option_property             = new HashMap<String, String>();
 
     private static final String[] shortUsage                  = {
@@ -158,6 +160,7 @@ public class Arguments {
     private static final String[] Version                     = {
             "XMLVM 2 alpha (experimental rebuild)",
             "Note: Not all command like arguments activated yet." };
+
 
     public static void printVersion() {
         printText(Version, System.out);
@@ -259,14 +262,16 @@ public class Arguments {
                 option_exp_load_deps = true;
             } else if (arg.equals(ARG_ENABLE_REF_COUNTING)) {
                 option_enable_ref_counting = true;
+            } else if (arg.startsWith(ARG_C_SOURCE_EXTENSION)) {
+                option_c_source_extension = arg.substring(ARG_C_SOURCE_EXTENSION.length());
             } else if (arg.startsWith(ARG_PROPERTY)) {
                 String value = arg.substring(ARG_PROPERTY.length());
                 int equal = value.indexOf("=");
                 if (equal < 1) {
                     parseError("Unable to parse kay/value: " + value);
                 }
-                option_property.put(value.substring(0, equal).toLowerCase(), value
-                        .substring(equal + 1));
+                option_property.put(value.substring(0, equal).toLowerCase(),
+                        value.substring(equal + 1));
             } else {
                 parseError("Unknown parameter: " + arg);
             }
@@ -320,7 +325,8 @@ public class Arguments {
             parseError("Need at least one --in argument");
         if (option_out == null)
             option_out = ".";
-        if ((option_target == Targets.IPHONE || option_target == Targets.IPHONEC || option_target == Targets.IPHONEANDROID || option_target == Targets.WEBOS)
+        if ((option_target == Targets.IPHONE || option_target == Targets.IPHONEC
+                || option_target == Targets.IPHONEANDROID || option_target == Targets.WEBOS)
                 && option_app_name == null)
             parseError("--target=[iphone|webos] requires option --app-name");
         if (option_target == Targets.QOOXDOO && option_app_name != null && option_qx_main == null)
@@ -335,11 +341,16 @@ public class Arguments {
             Log.debug("Forcing --enable_ref_counting for target " + option_target);
         }
 
+        if (option_target == Targets.IPHONE || option_target == Targets.IPHONEC
+                || option_target == Targets.IPHONEANDROID) {
+            option_c_source_extension = "m";
+        }
+
         if (option_target == Targets.GEN_C_WRAPPERS) {
             option_gen_wrapper = true;
             Log.debug("Forcing --gen_wrapper for target " + option_target);
         }
- }
+    }
 
     private static void parseListArgument(String argument, Set<String> option, String separator) {
         StringTokenizer tk = new StringTokenizer(argument, separator);
@@ -414,6 +425,10 @@ public class Arguments {
 
     public boolean option_enable_ref_counting() {
         return option_enable_ref_counting;
+    }
+    
+    public String option_c_source_extension() {
+        return option_c_source_extension;
     }
 
     public Set<String> option_lib() {
