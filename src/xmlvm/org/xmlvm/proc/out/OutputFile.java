@@ -40,10 +40,26 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  */
 public class OutputFile {
 
-    private UniversalFile data;
-    private String        location = "";
-    private String        fileName = "";
+    /**
+     * Defines a data provider that can be used to de-couple the creation of the
+     * OutputFile from the time the data is produced. getData() is only called
+     * when the data is actually needed. It is also guaranteed that the method
+     * is only called once inside OutputFile.
+     */
+    public static interface DelayedDataProvider {
+        public UniversalFile getData();
+    }
 
+
+    private UniversalFile       data;
+    private DelayedDataProvider provider;
+    private String              location = "";
+    private String              fileName = "";
+
+
+    public OutputFile(DelayedDataProvider provider) {
+        this.provider = provider;
+    }
 
     /**
      * Create a new file with the given string content.
@@ -67,6 +83,7 @@ public class OutputFile {
      * Returns the contents of this file.
      */
     public String getData() {
+        maybeLoadDelayedData();
         if (data == null) {
             return null;
         }
@@ -77,6 +94,7 @@ public class OutputFile {
      * Returns the data as a byte array.
      */
     public byte[] getDataAsBytes() {
+        maybeLoadDelayedData();
         return data.getFileAsBytes();
     }
 
@@ -184,6 +202,7 @@ public class OutputFile {
     }
 
     public OutputFile[] getAffectedSourceFiles() {
+        maybeLoadDelayedData();
         if (data == null || data.isFile()) {
             return new OutputFile[] { this };
         } else {
@@ -256,6 +275,7 @@ public class OutputFile {
             Log.warn("Cannot write OutputFile with no location: " + getFullPath());
             return false;
         }
+        maybeLoadDelayedData();
         if (isEmpty()) {
             Log.warn("Ignoring empty or non-existent file: " + getFullPath());
             return false;
@@ -270,6 +290,14 @@ public class OutputFile {
      * @return Whether the file empty or not present.
      */
     public boolean isEmpty() {
+        maybeLoadDelayedData();
         return data == null;
+    }
+
+    private void maybeLoadDelayedData() {
+        if (provider != null) {
+            data = provider.getData();
+            provider = null;
+        }
     }
 }
