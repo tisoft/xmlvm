@@ -83,12 +83,16 @@ public class XsltRunner {
     public static OutputFile runXSLT(String xsltFileName, Document doc, String[][] xsltParams) {
         StringWriter writer = new StringWriter();
         try {
-            Transformer transformer = getTransformer(xsltFileName, xsltParams);
+            Transformer transformer = getTransformer(xsltFileName);
+            transformer.reset();
+            if (xsltParams != null) {
+                for (int i = 0; i < xsltParams.length; i++)
+                    transformer.setParameter(xsltParams[i][0], xsltParams[i][1]);
+            }
             DocumentWrapper docw = new DocumentWrapper(doc, "",
                     ((Controller) transformer).getConfiguration());
             Result result = new StreamResult(writer);
-
-            getTransformer(xsltFileName, xsltParams).transform(docw, result);
+            transformer.transform(docw, result);
 
             return new OutputFile(writer.toString());
         } catch (TransformerException e) {
@@ -99,17 +103,14 @@ public class XsltRunner {
 
     /**
      * Returns a transformer for the given XSLT file. If one already exists, it
-     * will be returned and no new one will be created, even if the parameters
-     * differ.
+     * will be returned and no new one will be created.
      * 
      * @param xsltFileName
      *            the name of the XSLT file to use
-     * @param xsltParams
-     *            the parameters for the XSLT transformer
      * @return The transformer that uses the given XSLT file or null, if none
      *         could be created.
      */
-    private static Transformer getTransformer(String xsltFileName, String[][] xsltParams) {
+    private static Transformer getTransformer(String xsltFileName) {
         if (transformers.containsKey(xsltFileName)) {
             return transformers.get(xsltFileName);
         }
@@ -122,10 +123,6 @@ public class XsltRunner {
             Source xsltSource = new StreamSource(xsltFile);
             TransformerFactory transFactory = TransformerFactory.newInstance();
             Transformer transformer = transFactory.newTransformer(xsltSource);
-            if (xsltParams != null) {
-                for (int i = 0; i < xsltParams.length; i++)
-                    transformer.setParameter(xsltParams[i][0], xsltParams[i][1]);
-            }
             transformers.put(xsltFileName, transformer);
             return transformer;
         } catch (TransformerConfigurationException e) {
