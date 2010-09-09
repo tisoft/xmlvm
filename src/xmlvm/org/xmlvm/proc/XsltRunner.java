@@ -20,27 +20,34 @@
 
 package org.xmlvm.proc;
 
-import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.jdom.Document;
 import org.jdom.output.XMLOutputter;
+import org.xmlvm.Log;
 import org.xmlvm.proc.out.OutputFile;
 
 /**
  * Utility class for running XSL transformations.
  */
 public class XsltRunner {
+    private static final String             TAG          = XsltRunner.class.getSimpleName();
+    private static Map<String, Transformer> transformers = new HashMap<String, Transformer>();
+
 
     private XsltRunner() {
         // Utility class.
@@ -74,34 +81,60 @@ public class XsltRunner {
      * @return The output file with the result of the transformation.
      */
     public static OutputFile runXSLT(String xsltFileName, Document doc, String[][] xsltParams) {
+        StringWriter writer = new StringWriter();
+        try {
+            StringWriter docWriter = new StringWriter();
+            XMLOutputter outputter = new XMLOutputter();
+            outputter.output(doc, docWriter);
+
+            StringReader xmlvmReader = new StringReader(docWriter.toString());
+            Source xmlvmSource = new StreamSource(xmlvmReader);
+            Result result = new StreamResult(writer);
+
+            getTransformer(xsltFileName, xsltParams).transform(xmlvmSource, result);
+
+            return new OutputFile(writer.toString());
+        } catch (IOException e) {
+            Log.error(TAG, e.getMessage());
+        } catch (TransformerException e) {
+            Log.error(TAG, e.getMessage());
+        }
+        return null;
+    }
+
+    /**
+     * Returns a transformer for the given XSLT file. If one already exists, it
+     * will be returned and no new one will be created, even if the parameters
+     * differ.
+     * 
+     * @param xsltFileName
+     *            the name of the XSLT file to use
+     * @param xsltParams
+     *            the paramters for the XSLT transformer
+     * @return The transformer that uses the given XSLT file or null, if none
+     *         could be created.
+     */
+    private static Transformer getTransformer(String xsltFileName, String[][] xsltParams) {
+        if (transformers.containsKey(xsltFileName)) {
+            return transformers.get(xsltFileName);
+        }
         InputStream xsltFile = OutputFile.class.getResourceAsStream("/" + xsltFileName);
         if (xsltFile == null) {
             System.out.println("Error could not find: " + xsltFileName);
             return null;
         }
-        StringWriter writer = new StringWriter();
         try {
-            OutputStream xmlvm_out = new ByteArrayOutputStream();
-            XMLOutputter outputter = new XMLOutputter();
-            outputter.output(doc, xmlvm_out);
-            xmlvm_out.close();
-
-            StringReader xmlvmReader = new StringReader(xmlvm_out.toString());
-            Source xmlvmSource = new StreamSource(xmlvmReader);
             Source xsltSource = new StreamSource(xsltFile);
-            Result result = new StreamResult(writer);
-
             TransformerFactory transFactory = TransformerFactory.newInstance();
-            Transformer trans = transFactory.newTransformer(xsltSource);
+            Transformer transformer = transFactory.newTransformer(xsltSource);
             if (xsltParams != null) {
                 for (int i = 0; i < xsltParams.length; i++)
-                    trans.setParameter(xsltParams[i][0], xsltParams[i][1]);
+                    transformer.setParameter(xsltParams[i][0], xsltParams[i][1]);
             }
-            trans.transform(xmlvmSource, result);
-
-            return new OutputFile(writer.toString());
-        } catch (Exception ex) {
-            ex.printStackTrace(System.err);
+            transformers.put(xsltFileName, transformer);
+            return transformer;
+        } catch (TransformerConfigurationException e) {
+            Log.error(TAG, e.getMessage());
         }
         return null;
     }
