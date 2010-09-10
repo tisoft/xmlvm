@@ -35,5 +35,12 @@
 	return [self fileExistsAtPath:path];
 }
 
+- (java_util_List*) contentsOfDirectoryAtPath___java_lang_String_org_xmlvm_iphone_NSErrorHolder
+         :(java_lang_String*) path
+         :(org_xmlvm_iphone_NSErrorHolder*) error
+{
+	return [[self contentsOfDirectoryAtPath:path error:nil] retain];
+}
+
 @end
 

@@ -107,6 +107,19 @@ public class NSBundle extends NSObject {
     }
 
     public String bundlePath() {
-        return getClass().getResource("/").getPath();
+        // First we assume that we are running an Android app and we use the 'res' directory
+        // to locate the proper classpath location. We have to do this since the classpath
+        // usually consists of several directories and we use 'res' as a unique identifier
+        // to locate the correct location.
+        String path = pathForResource("", null, "res");
+        if (path == null) {
+            // We are not running an Android app. Just return the main directory in this case
+            File res = new File(getClass().getResource("/").getFile());
+            if (res.exists()) {
+                return res.getAbsolutePath();
+            }
+            return null;
+        }
+        return new File(path).getParent();
     }
 }

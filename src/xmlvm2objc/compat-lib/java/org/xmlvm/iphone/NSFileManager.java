@@ -21,6 +21,8 @@
 package org.xmlvm.iphone;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
@@ -42,6 +44,14 @@ public class NSFileManager extends NSObject {
 
     public boolean fileExistsAtPath(String path) {
         return new File(path).exists();
+    }
+
+    public List<String> contentsOfDirectoryAtPath(String path, NSErrorHolder error) {
+        List<String> files = new ArrayList<String>();
+        for (String f : new File(path).list()) {
+            files.add(f);
+        }
+        return files;
     }
 
 }
