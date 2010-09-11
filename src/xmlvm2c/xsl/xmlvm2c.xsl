@@ -2818,6 +2818,7 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:filled-new-array|dex:filled-new-array-range">
+  <xsl:variable name="base-type" select="substring(@vx-type, 1, string-length(@vx-type) - 2)"/>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
   <xsl:text>.o = ((XMLVMElem[]) {</xsl:text>
@@ -2829,7 +2830,9 @@ int main(int argc, char* argv[])
   <xsl:text>});&nl;</xsl:text>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
-  <xsl:text>.o = XMLVMArray_createSingleDimensionWithData(5, </xsl:text>
+  <xsl:text>.o = XMLVMArray_createSingleDimensionWithData(</xsl:text>
+  <xsl:value-of select="vm:typeID($base-type)"/>
+  <xsl:text>, </xsl:text>
   <xsl:value-of select="count(dex:value)"/>
   <xsl:text>, _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
@@ -2839,7 +2842,7 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:fill-array-data">
-  <xsl:variable name="base-type" select="replace(@vx-type, '\[\]', '')"/>
+  <xsl:variable name="base-type" select="substring(@vx-type, 1, string-length(@vx-type) - 2)"/>
   <xsl:text>    XMLVMArray_fillArray(</xsl:text>
   <xsl:value-of select="vm:cast-register('XMLVMArray', @vx)"/>
   <xsl:text>, (</xsl:text>
@@ -2857,7 +2860,7 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:new-array">
-  <xsl:variable name="base-type" select="replace(@value, '\[\]', '')"/>
+  <xsl:variable name="base-type" select="substring(@value, 1, string-length(@value) - 2)"/>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.o = XMLVMArray_createSingleDimension(</xsl:text>
