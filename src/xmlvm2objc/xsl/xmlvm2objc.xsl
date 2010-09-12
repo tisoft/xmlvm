@@ -3418,7 +3418,7 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:filled-new-array|dex:filled-new-array-range">
-  <xsl:variable name="base-type" select="substring(@vx-type, 1, string-length(@vx-type) - 2)"/>
+  <xsl:variable name="base-type" select="substring(@value, 1, string-length(@value) - 2)"/>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
   <xsl:text>.o = (id) ((XMLVMElem[]) {</xsl:text>

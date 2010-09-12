@@ -2818,7 +2818,7 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:filled-new-array|dex:filled-new-array-range">
-  <xsl:variable name="base-type" select="substring(@vx-type, 1, string-length(@vx-type) - 2)"/>
+  <xsl:variable name="base-type" select="substring(@value, 1, string-length(@value) - 2)"/>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
   <xsl:text>.o = ((XMLVMElem[]) {</xsl:text>
@@ -2842,7 +2842,8 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:fill-array-data">
-  <xsl:variable name="base-type" select="substring(@vx-type, 1, string-length(@vx-type) - 2)"/>
+  <!-- Replace char[] with short[] since the values have already been converted to short. Otherwise, junk is produced. Similar requirement for byte[] as well? -->
+  <xsl:variable name="base-type" select="replace(substring(@vx-type, 1, string-length(@vx-type) - 2), 'char', 'short')"/>
   <xsl:text>    XMLVMArray_fillArray(</xsl:text>
   <xsl:value-of select="vm:cast-register('XMLVMArray', @vx)"/>
   <xsl:text>, (</xsl:text>
