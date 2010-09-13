@@ -49,7 +49,7 @@
 		baseTypeId = 0;
 	}
 	
-	return [[XMLVMArray createMultiDimensionsWithType:baseTypeId dimensions:dimensions->array.data count:dimensions->length] retain];
+	return [XMLVMArray createMultiDimensionsWithType:baseTypeId dimensions:dimensions->array.data count:dimensions->length];
 }
 
 + (void) set___java_lang_Object_int_java_lang_Object:(XMLVMArray*) array :(int) index :(java_lang_Object*) obj

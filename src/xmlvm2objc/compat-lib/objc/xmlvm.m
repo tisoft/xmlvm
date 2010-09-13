@@ -73,6 +73,7 @@ void xmlvm_init()
 	for (int i = 0; i < dimensions; i++) {
 		id o = [XMLVMArray createMultiDimensionsWithType:type dimensions:dim count:count];
 		[slice replaceObjectAtIndex:i withObject:o];
+		[o release];
 	}
 	return slice;
 }

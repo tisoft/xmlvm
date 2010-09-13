@@ -117,7 +117,7 @@
 	for (int i = 0; i < self.length; i++) {
 		bytes->array.b[i] = [self characterAtIndex:i];
 	}
-	return [bytes retain];
+	return bytes;
 }
 
 - (XMLVMArray*) toCharArray__
@@ -126,7 +126,7 @@
 	for (int i = 0; i < self.length; i++) {
 		chars->array.c[i] = [self characterAtIndex:i];
 	}
-	return [chars retain];
+	return chars;
 }
 
 - (unichar) charAt___int: (int) idx
