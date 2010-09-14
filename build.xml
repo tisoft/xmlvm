@@ -20,7 +20,7 @@
 	<property name="xmlvm.android-compat-lib.java" value="${xmlvm.android-compat-lib}/java" />
 	<property name="xmlvm.android-compat-lib.objc" value="${xmlvm.android-compat-lib}/objc" />
 	
-	<property name="xmlvm.cocoa-java" value="/build/cocoa-java" />
+	<property name="xmlvm.cocoa-java" value="build/cocoa-java" />
 
 	<property name="xmlvm.isound" value="build/demo/iphone/isound" />
 	<property name="xmlvm.ifireworks" value="build/demo/iphone/ifireworks" />
