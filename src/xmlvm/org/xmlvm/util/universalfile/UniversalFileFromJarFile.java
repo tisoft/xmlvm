@@ -122,7 +122,11 @@ public class UniversalFileFromJarFile extends UniversalFile {
             }
             name = name.substring(index + 1);
         }
-        addToDir.add(new UniversalFileFromStreamResource(addToDir.getAbsolutePath()
-                + File.separator + name, stream));
+        
+        // If this entry is a directory, we don't need to add it.
+        if (!name.isEmpty()) {
+            addToDir.add(new UniversalFileFromStreamResource(addToDir.getAbsolutePath()
+                    + File.separator + name, stream));
+        }
     }
 }
