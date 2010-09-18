@@ -116,7 +116,7 @@ public class XsltRunner {
         }
         InputStream xsltFile = OutputFile.class.getResourceAsStream("/" + xsltFileName);
         if (xsltFile == null) {
-            System.out.println("Error could not find: " + xsltFileName);
+            Log.error(TAG, "Error could not find: " + xsltFileName);
             return null;
         }
         try {
@@ -126,7 +126,8 @@ public class XsltRunner {
             transformers.put(xsltFileName, transformer);
             return transformer;
         } catch (TransformerConfigurationException e) {
-            Log.error(TAG, e.getMessage());
+            Log.error(TAG,
+                    "Could not create transformer for " + xsltFileName + ": " + e.getMessage());
         }
         return null;
     }
