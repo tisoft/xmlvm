@@ -78,7 +78,7 @@ public class Libraries {
      *            the directory that contains the resources to be archived
      * @param pathPrefix
      *            the path inside the archive, where the files are put into
-     * @return The path to the JAR file or null, if and error occurred.
+     * @return The path to the JAR file or null, if and error occurred or the path was not found.
      */
     private String prepareTempJar(String path, String pathPrefix) {
         String tempFileName = createTempFileName(path);
@@ -86,7 +86,7 @@ public class Libraries {
 
         UniversalFile source = UniversalFileCreator.createDirectory(null, path);
         if (source == null || !source.exists()) {
-            Log.error(TAG, "Couldn't find library path: " + path);
+            Log.debug(TAG, "Couldn't find library path: " + path);
             return null;
         }
         source.archiveTo(tempFileName, pathPrefix);
