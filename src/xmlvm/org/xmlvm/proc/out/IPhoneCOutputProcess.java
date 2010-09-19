@@ -44,11 +44,18 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
                                                                        .createDirectory(
                                                                                "/iphone/java-compat-lib.jar",
                                                                                "src/xmlvm2c/compat-lib/java");
+    private static final UniversalFile BOEHM_GC                = UniversalFileCreator
+                                                                       .createDirectory(
+                                                                               "/lib/boehmgc.jar",
+                                                                               "lib/boehmgc.jar");
+
     public static final String         IPHONE_SRC              = "/src/xcode";
     public static final String         IPHONE_SRC_LIB          = IPHONE_SRC + "/lib/iphone";
     public static final String         IPHONE_SRC_APP          = IPHONE_SRC + "/app";
     public static final String         IPHONE_RESOURCES_SYS    = "/resources/sys";
     public static final String         IPHONE_RESOURCES_APP    = "/resources/app";
+    public static final String         IPHONE_SRC_BOEHMGC      = IPHONE_SRC + "/boehmgc";
+
     private List<OutputFile>           result                  = new ArrayList<OutputFile>();
 
     public IPhoneCOutputProcess(Arguments arguments) {
@@ -85,6 +92,10 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
         OutputFile iPhoneJavaCompatLib = new OutputFile(IPHONE_JAVA_COMPAT_LIB);
         iPhoneJavaCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
         result.add(iPhoneJavaCompatLib);
+
+        OutputFile bohemGc = new OutputFile(BOEHM_GC);
+        bohemGc.setLocation(arguments.option_out() + IPHONE_SRC_BOEHMGC);
+        result.add(bohemGc);
 
         try {
             // Create Info.plist

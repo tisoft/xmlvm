@@ -38,6 +38,7 @@ __APPSRC__			);
 			children = (
 				26 /* iPhone */,
 				27 /* Android */,
+				30 /* BoehmGC */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -48,6 +49,14 @@ __APPSRC__			);
 __IPHONESRC__			);
 			name = iPhone;
 			path = src/xcode/lib/iphone;
+			sourceTree = "<group>";
+		};
+		30 /* BoehmGc */ = {
+			isa = PBXGroup;
+			children = (
+__BOEHMGC__			);
+			name = BoehmGC;
+			path = src/xcode/boehmgc;
 			sourceTree = "<group>";
 		};
 		26 /* Android */ = {
@@ -186,6 +195,7 @@ __SRC_BUILD__			);
 				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
 				SDKROOT = __SDK_ROOT__;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
 			};
 			name = AppStore;
 		};
@@ -201,6 +211,7 @@ __SRC_BUILD__			);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
 				SDKROOT = __SDK_ROOT__;
+				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
 			};
 			name = Debug;
 		};
@@ -220,6 +231,7 @@ __SRC_BUILD__			);
 				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
 				SDKROOT = __SDK_ROOT__;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
 			};
 			name = Release;
 		};
@@ -231,6 +243,7 @@ __SRC_BUILD__			);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "resources/sys/__PROJNAME__-Info.plist";
 				PRODUCT_NAME = __PROJNAME__;
+				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
 			};
 			name = AppStore;
 		};
@@ -244,6 +257,7 @@ __SRC_BUILD__			);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "resources/sys/__PROJNAME__-Info.plist";
 				PRODUCT_NAME = __PROJNAME__;
+				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
 			};
 			name = Debug;
 		};
@@ -255,6 +269,7 @@ __SRC_BUILD__			);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "resources/sys/__PROJNAME__-Info.plist";
 				PRODUCT_NAME = __PROJNAME__;
+				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
 			};
 			name = Release;
 		};

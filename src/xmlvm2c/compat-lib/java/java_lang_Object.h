@@ -40,7 +40,7 @@ struct java_lang_Object {
 typedef struct java_lang_Object java_lang_Object;
 #endif
 
-#define XMLVM_VTABLE_IDX_java_lang_Object_finalize_java_lang_Object__ 2
+#define XMLVM_VTABLE_IDX_java_lang_Object_finalize_java_lang_Object__ 10
 
 void __INIT_java_lang_Object();
 void java_lang_Object___INIT___(JAVA_OBJECT me);

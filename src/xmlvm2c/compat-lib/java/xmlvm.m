@@ -24,6 +24,7 @@
 #include "java_lang_Class.h"
 #include <stdio.h>
 #include <string.h>
+#include "gc.h"
 
 XMLVM_JMP_BUF xmlvm_exception_env;
 JAVA_OBJECT xmlvm_exception;
@@ -82,6 +83,9 @@ void xmlvm_init_java_lang_Class()
 
 void xmlvm_init()
 {
+	setenv("GC_PRINT_STATS", "1", 1);
+	GC_INIT();
+	
 	if (XMLVM_SETJMP(xmlvm_exception_env)) {
 		XMLVM_ERROR("Unhandled exception thrown");
 	}

@@ -581,6 +581,28 @@ int main(int argc, char* argv[])
 
     <xsl:text>&nl;}&nl;&nl;</xsl:text>
     
+    
+    
+    <!-- Emit destructor -->
+    <xsl:text>GC_CALLBACK __DELETE_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>(void * me, void * client_data)&nl;{&nl;</xsl:text>
+    <xsl:if test="$genWrapper = 'true'">
+      <xsl:text>    //XMLVM_BEGIN_WRAPPER[__DELETE_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>]&nl;</xsl:text>
+      <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
+    </xsl:if>
+      <xsl:if test="vm:method[@name='finalize' and 
+                        not(vm:signature/vm:parameter) and 
+                        vm:signature/vm:return[@type='void']]">
+      <xsl:text>    // Call the finalizer&nl;</xsl:text>
+      <xsl:text>    (*(void (*)(JAVA_OBJECT)) ((java_lang_Object*) me)->__class->vtable[XMLVM_VTABLE_IDX_java_lang_Object_finalize_java_lang_Object__])(me);&nl;</xsl:text>
+    </xsl:if>
+	<xsl:text>}&nl;&nl;</xsl:text>
+	
+	
+	
     <!-- Emit 'new' method -->
     <xsl:text>JAVA_OBJECT __NEW_</xsl:text>
     <xsl:value-of select="$clname"/>
@@ -600,7 +622,7 @@ int main(int argc, char* argv[])
     me->__class = &amp;__CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;&nl;</xsl:text>
-    
+	
     <!-- Emit initializations for all non-static member fields -->
     <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
       <xsl:if test="not($genWrapper = 'true' and @isPrivate = 'true')">
@@ -631,6 +653,15 @@ int main(int argc, char* argv[])
       <xsl:text>]&nl;</xsl:text>
       <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
     </xsl:if>
+  
+    <xsl:if test="(vm:method[@name='finalize' and 
+                        not(vm:signature/vm:parameter) and 
+                        vm:signature/vm:return[@type='void']]) or $genWrapper = 'true'">
+      <xsl:text>    // Tell the GC to finalize us&nl;</xsl:text>
+      <xsl:text>    XMLVM_FINALIZE(me, __DELETE_</xsl:text>
+   	  <xsl:value-of select="$clname"/>
+      <xsl:text>);&nl;</xsl:text>
+    </xsl:if>
     <xsl:text>    return me;&nl;}&nl;&nl;</xsl:text>
 
     <!-- Emit 'newInstance' method -->
@@ -650,23 +681,6 @@ int main(int argc, char* argv[])
     </xsl:if>
     <xsl:text>    return me;&nl;}&nl;&nl;</xsl:text>
     
-    <!-- Emit destructor -->
-    <xsl:text>void __DELETE_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>(JAVA_OBJECT me)&nl;{&nl;</xsl:text>
-    <xsl:if test="$genWrapper = 'true'">
-      <xsl:text>    //XMLVM_BEGIN_WRAPPER[__DELETE_</xsl:text>
-      <xsl:value-of select="$clname"/>
-      <xsl:text>]&nl;</xsl:text>
-      <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
-    </xsl:if>
-    <xsl:if test="vm:method[@name='finalize' and 
-                        not(vm:signature/vm:parameter) and 
-                        vm:signature/vm:return[@type='void']]">
-      <xsl:text>    // Call finalize()&nl;</xsl:text>
-      <xsl:text>    (*(void (*)(JAVA_OBJECT)) ((java_lang_Object*) me)->__class->vtable[XMLVM_VTABLE_IDX_java_lang_Object_finalize_java_lang_Object__])(me);&nl;</xsl:text>
-    </xsl:if>
-	<xsl:text>}&nl;&nl;</xsl:text>
 
 	<!-- Emit getters and setters for all static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
