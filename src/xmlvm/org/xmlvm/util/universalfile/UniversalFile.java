@@ -64,7 +64,7 @@ public abstract class UniversalFile {
      * Returns the absolute path of this {@link UniversalFile}
      */
     public abstract String getAbsolutePath();
-    
+
     public String getRelativePath(String basePath) {
         String fullPath = getAbsolutePath();
 
@@ -78,7 +78,6 @@ public abstract class UniversalFile {
         }
         return result;
     }
-
 
     /**
      * Returns whether this file is a directory.
@@ -131,16 +130,12 @@ public abstract class UniversalFile {
      *            a filter for selecting a particular set of files from the list
      */
     public UniversalFile[] listFilesRecursively(UniversalFileFilter filter) {
-        if (!isDirectory()) {
-            return new UniversalFile[0];
-        }
-
+        UniversalFile[] all = listFilesRecursively();
         List<UniversalFile> result = new ArrayList<UniversalFile>();
-        for (UniversalFile file : listFiles(filter)) {
-            if (file.isFile()) {
+
+        for (UniversalFile file : all) {
+            if (filter.accept(file)) {
                 result.add(file);
-            } else if (file.isDirectory()) {
-                result.addAll(Arrays.asList(file.listFilesRecursively()));
             }
         }
         return result.toArray(new UniversalFile[0]);
