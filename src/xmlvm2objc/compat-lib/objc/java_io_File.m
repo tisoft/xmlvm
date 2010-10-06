@@ -84,9 +84,9 @@
 		// http://developer.apple.com/iphone/library/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/FilesandNetworking/FilesandNetworking.html
 		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *documentsDirectory = [paths objectAtIndex:0];
-		path = [[documentsDirectory stringByAppendingFormat:@"/%@", pathname] retain];
+		path = [documentsDirectory stringByAppendingFormat:@"/%@", pathname];
 	} else {
-		path = [[pathname copyWithZone: NULL] retain];
+		path = [pathname copyWithZone: NULL];
 	}
 }
 
@@ -96,7 +96,12 @@
 	[(NSMutableString*)path appendString: [dir getPath__]];
 	[(NSMutableString*)path appendString: _separator];
 	[(NSMutableString*)path appendString: name];
-	[path retain];
+}
+
+- (void) dealloc
+{
+	[path release];
+	[super dealloc];
 }
 
 - (bool) canRead__

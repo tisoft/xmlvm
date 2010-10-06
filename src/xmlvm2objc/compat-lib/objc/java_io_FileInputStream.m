@@ -47,6 +47,7 @@
 	}
 	self->fd = [[java_io_FileDescriptor alloc] init];
 	[fd __init_java_io_FileDescriptor___NSFileHandle: fdImpl];
+	[fdImpl release];
 }
 
 - (void) dealloc

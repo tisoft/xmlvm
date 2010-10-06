@@ -39,6 +39,8 @@ static java_lang_String* _separator = @"/";
 - (void) __init_java_io_File___java_lang_String: (java_lang_String*) pathname;
 - (void) __init_java_io_File___java_io_File_java_lang_String: (java_io_File*) dir: (java_lang_String*) name;
 
+- (void) dealloc;
+
 - (bool) canRead__;
 - (bool) canWrite__;
 - (bool) createNewFile__;
