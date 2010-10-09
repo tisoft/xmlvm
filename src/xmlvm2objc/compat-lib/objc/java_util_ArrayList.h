@@ -46,5 +46,6 @@ typedef NSMutableArray java_util_ArrayList;
 - (java_lang_Object*) set___int_java_lang_Object :(int) idx: (java_lang_Object*) item;
 - (java_lang_Object*) remove___int :(int) idx;
 - (BOOL) remove___java_lang_Object :(java_lang_Object*) item;
+- (BOOL) removeAll___java_util_Collection:(java_util_Collection*) c;
 - (void) clear__;
 @end

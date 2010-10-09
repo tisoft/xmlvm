@@ -132,6 +132,19 @@
 	}
 }
 
+- (BOOL) removeAll___java_util_Collection:(java_util_Collection*) c
+{
+	BOOL modified = false;
+	java_util_Iterator* iter = [c iterator__];
+	while ([iter hasNext__]) {
+		java_lang_Object* obj = [iter next__];
+		modified |= [self remove___java_lang_Object:obj];
+		[obj release];
+	}
+	[iter release];
+	return modified;
+}
+
 - (void) clear__
 {
 	[self removeAllObjects];
