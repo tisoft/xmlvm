@@ -36,5 +36,6 @@ typedef NSMutableSet java_util_HashSet;
 - (int) size__;
 - (void) clear__;
 - (java_util_Iterator*) iterator__;
+- (BOOL) contains___java_lang_Object: (java_lang_Object*) o;
 
 @end
