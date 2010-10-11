@@ -75,6 +75,11 @@ static java_lang_Class* primitiveIntClass;
 	return [anObject isKindOfClass: [java_lang_Integer class]] && ((java_lang_Integer*) anObject)-> number == number;
 }
 
+- (BOOL)equals___java_lang_Object:(java_lang_Object*)anObject
+{
+	return [anObject isKindOfClass: [java_lang_Integer class]] && ((java_lang_Integer*) anObject)-> number == number;
+}
+
 - (int) intValue__
 {
 	return number;

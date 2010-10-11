@@ -38,6 +38,7 @@ int number;
 + (java_lang_Class*) _GET_TYPE;
 - (void) __init_java_lang_Integer___int :(int) i;
 - (BOOL)isEqual:(id)anObject;
+- (BOOL)equals___java_lang_Object:(java_lang_Object*)anObject;
 - (int) intValue__;
 + (int) parseInt___java_lang_String: (java_lang_String *) str;
 - (java_lang_String*) toString__;
