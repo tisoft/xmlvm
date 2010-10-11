@@ -43,13 +43,13 @@ static Class localeClass;
 	return self;
 }
 
-- (void) __init_java_lang_String___java_lang_String: (java_lang_String*) theLanguage
+- (void) __init_java_util_Locale___java_lang_String: (java_lang_String*) theLanguage
 {
 	language = [theLanguage retain];
 	languageHash = [theLanguage hash];
 }
 
-- (void) __init_java_lang_String___java_lang_String_java_lang_String:(java_lang_String*) theLanguage
+- (void) __init_java_util_Locale___java_lang_String_java_lang_String:(java_lang_String*) theLanguage
                                                                     :(java_lang_String*) theCountry
 {
 	language = [theLanguage retain];
@@ -72,7 +72,7 @@ static Class localeClass;
 	NSString* preferredLang = [languages objectAtIndex:0];
 
 	java_util_Locale *l = [[java_util_Locale alloc] init];
-	[l __init_java_lang_String___java_lang_String:preferredLang];
+	[l __init_java_util_Locale___java_lang_String:preferredLang];
 	return l;
 }
 

@@ -32,8 +32,8 @@
 
 + (void) initialize;
 - (id) init;
-- (void) __init_java_lang_String___java_lang_String: (java_lang_String*) theLanguage;
-- (void) __init_java_lang_String___java_lang_String_java_lang_String:(java_lang_String*) theLanguage
+- (void) __init_java_util_Locale___java_lang_String: (java_lang_String*) theLanguage;
+- (void) __init_java_util_Locale___java_lang_String_java_lang_String:(java_lang_String*) theLanguage
                                                                     :(java_lang_String*) theCountry;
 - (void) dealloc;
 + (java_util_Locale*) getDefault__;
