@@ -21,6 +21,8 @@
 package org.xmlvm.iphone;
 
 import org.xmlvm.XMLVMSkeletonOnly;
+import org.xmlvm.iphone.internal.Simulator;
+
 
 /**
  *
@@ -73,7 +75,7 @@ public class UIDevice extends NSObject {
     }
 
     public int getOrientation() {
-        return UIDeviceOrientation.Unknown;
+        return Simulator.getStatusBarOrientation();
     }
 
     public boolean isGeneratingDeviceOrientationNotifications() {
