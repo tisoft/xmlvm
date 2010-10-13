@@ -42,5 +42,6 @@ typedef NSMutableDictionary java_util_HashMap;
 - (java_util_Set*) entrySet__;
 - (java_lang_Object*) put___java_lang_Object_java_lang_Object:(java_lang_Object*) key: (java_lang_Object*) value;
 - (java_lang_Object*) get___java_lang_Object:(java_lang_Object*) key;
+- (BOOL) containsKey___java_lang_Object: (java_lang_Object*) key;
 
 @end

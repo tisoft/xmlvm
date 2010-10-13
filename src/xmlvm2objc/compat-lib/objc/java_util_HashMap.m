@@ -98,6 +98,11 @@
 	return (java_lang_Object*) value;
 }
 
+- (BOOL) containsKey___java_lang_Object: (java_lang_Object*) key
+{
+	return [self objectForKey:key] != nil;
+}
+
 - (void)dealloc {
 	[super dealloc];
 }
