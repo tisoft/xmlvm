@@ -34,6 +34,8 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.InflateException;
 
 class DrawableParser extends NSXMLParserDelegate {
@@ -151,6 +153,7 @@ class XMLResourceParser extends NSXMLParserDelegate {
     private Integer              currentId;
     private StringBuffer         currentCDATA;
     private ArrayList<String>    currentStringArrayValue;
+    private DisplayMetrics       metrics;
 
     public XMLResourceParser(Context context, Map<String, Integer> nameToIdMap,
             Map<Integer, Object> resourceMap) {
@@ -158,6 +161,13 @@ class XMLResourceParser extends NSXMLParserDelegate {
         this.nameToIdMap = nameToIdMap;
         this.resourceMap = resourceMap;
         currentCDATA = null;
+
+        // TODO: Fix this
+        // Should be retrieved using
+        // Activity.getWindowManager().getDefaulDisplay
+        // Works as long as Display implementation remains unchanged
+        metrics = new DisplayMetrics();
+        new Display().getMetrics(metrics);
     }
 
     @Override
@@ -194,7 +204,10 @@ class XMLResourceParser extends NSXMLParserDelegate {
     public void didEndElement(NSXMLParser parser, String elementName, String namespaceURI,
             String qualifiedName) {
         if (!resourceMap.containsKey(currentId)) {
-            if (qualifiedName.equals("string") || qualifiedName.equals("dimen")) {
+            if (qualifiedName.equals("dimen")) {
+                Float f = new Float(Dimension.resolveDimension(currentCDATA.toString(), metrics));
+                resourceMap.put(currentId, f);
+            } else if (qualifiedName.equals("string")) {
                 resourceMap.put(currentId, currentCDATA.toString());
                 currentCDATA = null;
             } else if (qualifiedName.equals("string-array")) {

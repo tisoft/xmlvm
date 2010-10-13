@@ -20,10 +20,13 @@
 
 package android.internal;
 
+import android.util.DisplayMetrics;
+
 public class Dimension {
 
     private static final int DISPLAY_DENSITY = 160;
 
+    // TODO: Remove this and use the metrics based implementation instead
     public static int resolveDimension(String dimension) {
         // A missing dimension is interpreted as 0 pixel
         if (dimension == null || dimension.length() == 0) {
@@ -44,6 +47,30 @@ public class Dimension {
 
         Assert.FAIL("layout dimension not supported: " + dimension);
         return -1;
+    }
+
+    public static float resolveDimension(String dimension, DisplayMetrics metrics) {
+        // A missing dimension is interpreted as 0 pixel
+        if (dimension == null || dimension.length() == 0) {
+            return -1.0f;
+        }
+
+        if (dimension.length() > 2 && dimension.endsWith("px")) {
+            return Float.parseFloat(dimension.substring(0, dimension.length() - 2));
+        }
+
+        if (dimension.length() > 2 && dimension.endsWith("dp")) {
+            return Float.parseFloat(dimension.substring(0, dimension.length() - 2))
+                    * metrics.density;
+        }
+
+        if (dimension.length() > 3 && dimension.endsWith("dip")) {
+            return Float.parseFloat(dimension.substring(0, dimension.length() - 3))
+                    * metrics.density;
+        }
+
+        Assert.FAIL("layout dimension not supported: " + dimension);
+        return -1.0f;
     }
 
     private static final float getDensityFactor() {

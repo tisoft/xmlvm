@@ -36,16 +36,16 @@ import android.content.res.Configuration;
 public class ConfigurationFactory {
 
     /** Constant indicating an unknown device. */
-    private static final int DEVICE_UNKNOWN = 0;
+    public static final int DEVICE_UNKNOWN = 0;
 
     /** Constant indicating a 1st, 2nd or 3rd generation iPhone device. */
-    private static final int DEVICE_IPHONE  = 1;
+    public static final int DEVICE_IPHONE  = 1;
 
     /** Constant indicating a 4th generation iPhone device. */
-    private static final int DEVICE_IPHONE4 = 2;
+    public static final int DEVICE_IPHONE4 = 2;
 
     /** Constant indicating an iPad device. */
-    private static final int DEVICE_IPAD    = 3;
+    public static final int DEVICE_IPAD    = 3;
 
     /**
      * 
@@ -163,7 +163,7 @@ public class ConfigurationFactory {
      * 
      */
 
-    private static int detectDevice() {
+    public static int detectDevice() {
         CGRect rect = UIScreen.mainScreen().getBounds();
 
         // Determine configuration based on the sum of width and height, which

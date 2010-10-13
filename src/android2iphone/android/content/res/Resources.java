@@ -375,7 +375,10 @@ public class Resources {
     }
 
     public float getDimension(int id) {
-        Assert.NOT_IMPLEMENTED();
-        return 0;
+        if (resourceMap == null) {
+            loadValueResources();
+        }
+
+        return ((Float) resourceMap.get(new Integer(id))).floatValue();
     }
 }
