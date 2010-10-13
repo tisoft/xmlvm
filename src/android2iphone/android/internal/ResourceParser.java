@@ -21,7 +21,6 @@
 package android.internal;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -143,19 +142,22 @@ class DrawableParser extends NSXMLParserDelegate {
     }
 }
 
-class StringsParser extends NSXMLParserDelegate {
+class XMLResourceParser extends NSXMLParserDelegate {
 
     private Context              context;
     private String               prefix;
     private Map<String, Integer> nameToIdMap;
-    private Map<Integer, String> stringMap;
+    private Map<Integer, Object> resourceMap;
     private Integer              currentId;
-    private StringBuffer         currentValue;
+    private StringBuffer         currentCDATA;
+    private ArrayList<String>    currentStringArrayValue;
 
-    public StringsParser(Context context, Map<String, Integer> nameToIdMap) {
+    public XMLResourceParser(Context context, Map<String, Integer> nameToIdMap,
+            Map<Integer, Object> resourceMap) {
         this.context = context;
         this.nameToIdMap = nameToIdMap;
-        stringMap = new HashMap<Integer, String>();
+        this.resourceMap = resourceMap;
+        currentCDATA = null;
     }
 
     @Override
@@ -171,107 +173,54 @@ class StringsParser extends NSXMLParserDelegate {
         AttributeSet attrs = new ResourceAttributes(context, prefix, attributes);
 
         if (qualifiedName.equals("string")) {
-            currentValue = new StringBuffer();
             String name = attrs.getAttributeValue("", "name");
             currentId = nameToIdMap.get("string/" + name);
-        }
-    }
-
-    @Override
-    public void didEndElement(NSXMLParser parser, String elementName, String namespaceURI,
-            String qualifiedName) {
-        if (qualifiedName.equals("string")) {
-            stringMap.put(currentId, currentValue.toString());
-            currentId = null;
-        }
-    }
-
-    @Override
-    public void foundCharacters(NSXMLParser parser, String characters) {
-        if (currentId != null) {
-            currentValue.append(characters);
-        }
-    }
-
-    Map<Integer, String> getStringMap() {
-        return stringMap;
-    }
-}
-
-class StringArraysParser extends NSXMLParserDelegate {
-
-    private Context                context;
-    private String                 prefix;
-    private Map<String, Integer>   nameToIdMap;
-    private Map<Integer, String[]> stringMap;
-    private Integer                currentId;
-    private StringBuffer[]         currentValue;
-    private int                    currentIdx;
-    private boolean                inItem;
-
-    public StringArraysParser(Context context, Map<String, Integer> nameToIdMap) {
-        this.context = context;
-        this.nameToIdMap = nameToIdMap;
-        stringMap = new HashMap<Integer, String[]>();
-        inItem = false;
-    }
-
-    @Override
-    public void didStartMappingPrefix(NSXMLParser parser, String prefix, String namespaceURI) {
-        if (namespaceURI.equals("http://schemas.android.com/apk/res/android")) {
-            this.prefix = prefix + ":";
-        }
-    }
-
-    @Override
-    public void didStartElement(NSXMLParser parser, String elementName, String namespaceURI,
-            String qualifiedName, Map<String, String> attributes) {
-        AttributeSet attrs = new ResourceAttributes(context, prefix, attributes);
-        // System.out.println("StartEl="+qualifiedName);
-        if (qualifiedName.equals("string-array")) {
+            currentCDATA = new StringBuffer();
+        } else if (qualifiedName.equals("string-array")) {
             String name = attrs.getAttributeValue("", "name");
             currentId = nameToIdMap.get("array/" + name);
-            // if (currentId==null) { System.out.println("cId=null"); } else {
-            // System.out.println("cId="+currentId); }
-            currentIdx = -1;
-            currentValue = new StringBuffer[100]; // TODO: at most 100 values
-            // for array
+            currentStringArrayValue = new ArrayList<String>();
+        } else if (qualifiedName.equals("dimen")) {
+            String name = attrs.getAttributeValue("", "name");
+            // TODO that is the prefix for dimen?
+            currentId = nameToIdMap.get("dimen/" + name);
+            currentCDATA = new StringBuffer();
         } else if (qualifiedName.equals("item")) {
-            currentIdx++;
-            inItem = true;
-            currentValue[currentIdx] = new StringBuffer();
+            currentCDATA = new StringBuffer();
         }
     }
 
     @Override
     public void didEndElement(NSXMLParser parser, String elementName, String namespaceURI,
             String qualifiedName) {
-        // System.out.println("EndEl="+qualifiedName);
-        if (currentId != null && qualifiedName.equals("string-array")) {
-            // System.out.println("Storing "+currentId);
-            String[] cV = new String[currentIdx + 1];
-            for (int i = 0; i <= currentIdx; i++) {
-                cV[i] = currentValue[i].toString();
+        if (!resourceMap.containsKey(currentId)) {
+            if (qualifiedName.equals("string") || qualifiedName.equals("dimen")) {
+                resourceMap.put(currentId, currentCDATA.toString());
+                currentCDATA = null;
+            } else if (qualifiedName.equals("string-array")) {
+                // TODO should use ArrayList.toString() but the ObjC wrapper
+                // don't
+                // support it
+                String[] stringArray = new String[currentStringArrayValue.size()];
+                int i = 0;
+                for (String s : currentStringArrayValue) {
+                    stringArray[i++] = s;
+                }
+                resourceMap.put(currentId, stringArray);
+            } else if (qualifiedName.equals("item")) {
+                // The assumption here is that <item> can only be a child of
+                // <string-array>
+                currentStringArrayValue.add(currentCDATA.toString());
+                currentCDATA = null;
             }
-            stringMap.put(currentId, cV);
-            currentId = null;
-        } else if (currentId != null && currentIdx >= 0 && qualifiedName.equals("item")) {
-            // System.out.println("currentIdx="+currentIdx);
-            inItem = false;
         }
     }
 
     @Override
     public void foundCharacters(NSXMLParser parser, String characters) {
-        // System.out.println("chars");
-        if (currentId != null && currentIdx >= 0 && inItem) {
-            // System.out.println("Adding "+characters+" to "+currentId+"/#"+currentIdx);
-            currentValue[currentIdx].append(characters);
+        if (currentCDATA != null) {
+            currentCDATA.append(characters);
         }
-    }
-
-    Map<Integer, String[]> getStringMap() {
-        return stringMap;
     }
 }
 
@@ -293,39 +242,19 @@ public class ResourceParser {
         return delegate.getDrawable();
     }
 
-    public static Map<Integer, String> parseStrings(Context context, String fileName,
-            Map<String, Integer> nameToIdMap) {
+    public static void parse(Context context, String fileName, Map<String, Integer> nameToIdMap,
+            Map<Integer, Object> resourceMap) {
         String resourceName = getResourceName(fileName);
         String resourceDir = getResourceDirectory(fileName);
         String filePath = NSBundle.mainBundle().pathForResource(resourceName, "xml", resourceDir);
         NSData content = NSData.dataWithContentsOfFile(filePath);
 
-        StringsParser delegate = new StringsParser(context, nameToIdMap);
+        XMLResourceParser delegate = new XMLResourceParser(context, nameToIdMap, resourceMap);
         NSXMLParser xmlParser = createParser(context, content, delegate);
         boolean success = xmlParser.parse();
         if (!success) {
             throw new InflateException("Unable to inflate string resources: " + fileName + ".xml");
         }
-
-        return delegate.getStringMap();
-    }
-
-    public static Map<Integer, String[]> parseStringArrays(Context context, String fileName,
-            Map<String, Integer> nameToIdMap) {
-
-        String resourceName = getResourceName(fileName);
-        String resourceDir = getResourceDirectory(fileName);
-        String filePath = NSBundle.mainBundle().pathForResource(resourceName, "xml", resourceDir);
-        NSData content = NSData.dataWithContentsOfFile(filePath);
-
-        StringArraysParser delegate = new StringArraysParser(context, nameToIdMap);
-        NSXMLParser xmlParser = createParser(context, content, delegate);
-        boolean success = xmlParser.parse();
-        if (!success) {
-            throw new InflateException("Unable to inflate string resources: " + fileName + ".xml");
-        }
-
-        return delegate.getStringMap();
     }
 
     private static NSXMLParser createParser(Context context, NSData content,

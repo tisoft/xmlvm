@@ -22,12 +22,14 @@ package android.content.res;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Locale;
 
 import org.xmlvm.iphone.NSBundle;
 import org.xmlvm.iphone.NSData;
+import org.xmlvm.iphone.NSFileManager;
 import org.xmlvm.iphone.UIImage;
 
 import android.content.Context;
@@ -35,6 +37,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.internal.AndroidManifest;
 import android.internal.Assert;
+import android.internal.ConfigurationFactory;
+import android.internal.Density;
+import android.internal.ResourceFolderSelector;
 import android.internal.ResourceParser;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -42,27 +47,45 @@ import android.util.Log;
 public class Resources {
 
     /** The name of the directory holding the application's resources. */
-    private static final String           RES_DIR     = "res";
+    private static final String         RES_DIR         = "res";
+
+    /** The device's configuration */
+    private Configuration               configuration   = null;
+
+    /** The device's density. */
+    private int                         density         = Density.DENSITY_UNDEFINED;
+
+    /**
+     * The cached folders to search for values resources (string, dimensions,
+     * ...).
+     */
+    private List<String>                valuesFolders   = null;
+
+    /** The cached folders to search for layout resources. */
+    private List<String>                layoutFolders   = null;
+
+    /** The cached folders to search for drawable resources. */
+    private List<String>                drawableFolders = null;
 
     /** A map holding the mapping from IDs to variable names. */
-    private Map<Integer, String>          idToNameMap = new HashMap<Integer, String>();
+    private Map<Integer, String>        idToNameMap     = new HashMap<Integer, String>();
 
     /** A map holding the mapping from variable names to IDs. */
-    private Map<String, Integer>          nameToIdMap = new HashMap<String, Integer>();
+    private Map<String, Integer>        nameToIdMap     = new HashMap<String, Integer>();
 
     /** A map holding the mapping from resourceId to Drawable. */
-    private Map<Integer, Drawable>        drawableMap = new HashMap<Integer, Drawable>();
+    private Map<Integer, Drawable>      drawableMap     = new HashMap<Integer, Drawable>();
 
     /**
      * A map holding the mapping from resourceId to NSData (representing the
      * content of the XML layout file).
      */
-    private static Map<Integer, NSData>   layoutMap   = new HashMap<Integer, NSData>();
+    private static Map<Integer, NSData> layoutMap       = new HashMap<Integer, NSData>();
 
-    private static Map<Integer, String>   stringMap;
-    private static Map<Integer, String[]> stringArrayMap;
+    /** A map holding all resources which can be read from the values folders. */
+    private static Map<Integer, Object> resourceMap     = null;
 
-    private WeakReference<Context>        context;
+    private WeakReference<Context>      context;
 
     public Resources(Context context) {
         this.context = new WeakReference<Context>(context);
@@ -72,28 +95,79 @@ public class Resources {
     public Drawable getDrawable(int resourceId) {
         Drawable d = drawableMap.get(new Integer(resourceId));
         if (d == null) {
-            String fileName = getFileNamePath(findResourceNameById(resourceId));
-            UIImage image = UIImage.imageWithContentsOfFile(fileName + ".png");
-            if (image != null) {
-                d = BitmapDrawable.xmlvmCreateWithImage(image);
-                drawableMap.put(new Integer(resourceId), d);
-            } else {
-                d = ResourceParser.parseDrawable(getContext(), fileName);
-                drawableMap.put(new Integer(resourceId), d);
+            // Initialize the folders to search for drawables
+            if (drawableFolders == null) {
+                drawableFolders = getResourceFolders("drawable");
+            }
+            // Initialze layout folder as well, XML based drawables might be
+            // stored in a layout folder
+            if (layoutFolders == null) {
+                layoutFolders = getResourceFolders("layout");
+            }
+
+            // Get the layout resource's name and determine whether it is
+            // located
+            // in the drawable or layout folder
+            String resourceName = getResourceName(findResourceNameById(resourceId));
+            boolean usesDrawableFolder = getResourceDirectory(findResourceNameById(resourceId))
+                    .equals("drawable");
+
+            // Iterate drawable folders and try to load image
+            for (String folder : usesDrawableFolder ? drawableFolders : layoutFolders) {
+                String type = findDrawableType(folder, resourceName);
+                if (type != null) {
+                    if (type.equals("xml")) {
+                        d = ResourceParser.parseDrawable(getContext(), RES_DIR + "/" + folder + "/"
+                                + resourceName);
+                    } else {
+                        UIImage image = UIImage.imageWithContentsOfFile(RES_DIR + "/" + folder
+                                + "/" + resourceName + ".png");
+                        d = BitmapDrawable.xmlvmCreateWithImage(image);
+                    }
+
+                    drawableMap.put(new Integer(resourceId), d);
+                    break;
+                }
             }
         }
+
         return d;
+    }
+
+    private String findDrawableType(String folder, String drawableName) {
+        String path = RES_DIR + "/" + folder;
+        if (NSBundle.mainBundle().pathForResource(drawableName, "png", path) != null) {
+            return "png";
+        }
+        if (NSBundle.mainBundle().pathForResource(drawableName, "xml", path) != null) {
+            return "xml";
+        }
+
+        return null;
     }
 
     public NSData getLayout(int resourceId) {
         NSData theFile = layoutMap.get(new Integer(resourceId));
         if (theFile == null) {
+            // Initialize the folders to search for layouts
+            if (layoutFolders == null) {
+                layoutFolders = getResourceFolders("layout");
+            }
+
+            // Get the layout resource's name
             String resourceName = getResourceName(findResourceNameById(resourceId));
-            String resourceDir = getResourceDirectory(findResourceNameById(resourceId));
-            String filePath = NSBundle.mainBundle().pathForResource(resourceName, "xml",
-                    resourceDir);
-            theFile = NSData.dataWithContentsOfFile(filePath);
-            layoutMap.put(new Integer(resourceId), theFile);
+
+            // Iterate the layout folders and try to load the layout from that
+            // folder
+            for (String folder : layoutFolders) {
+                String filePath = NSBundle.mainBundle().pathForResource(resourceName, "xml",
+                        RES_DIR + "/" + folder);
+                if (filePath != null) {
+                    theFile = NSData.dataWithContentsOfFile(filePath);
+                    layoutMap.put(new Integer(resourceId), theFile);
+                    break;
+                }
+            }
         }
 
         return theFile;
@@ -174,10 +248,7 @@ public class Resources {
         initResources("layout");
         initResources("string");
         initResources("array");
-    }
-
-    private String getFileNamePath(String filePath) {
-        return RES_DIR + "/" + filePath;
+        initResources("dimen");
     }
 
     private String getResourceName(String filePath) {
@@ -186,9 +257,8 @@ public class Resources {
     }
 
     private String getResourceDirectory(String filePath) {
-        String fileName = RES_DIR + "/" + filePath;
-        int i = fileName.lastIndexOf('/');
-        return i >= 0 ? fileName.substring(0, i) : null;
+        int i = filePath.lastIndexOf('/');
+        return i >= 0 ? filePath.substring(0, i) : null;
     }
 
     /**
@@ -196,43 +266,98 @@ public class Resources {
      * @return
      */
     public String getString(int id) {
-        if (stringMap == null) {
-            String path = getValuesDir() + "/" + "strings";
-            stringMap = ResourceParser.parseStrings(getContext(), path, nameToIdMap);
+        if (resourceMap == null) {
+            loadValueResources();
         }
 
-        return stringMap.get(new Integer(id));
+        return (String) resourceMap.get(new Integer(id));
     }
 
     public String[] getTextArray(int id) {
-        if (stringArrayMap == null) {
-            String path = getValuesDir();
-            stringArrayMap = ResourceParser.parseStringArrays(getContext(), path, nameToIdMap);
+        if (resourceMap == null) {
+            loadValueResources();
         }
 
-        return stringArrayMap.get(new Integer(id));
+        return (String[]) resourceMap.get(new Integer(id));
+    }
+
+    /**
+     * 
+     * Loads all resources stored in the values folders: String, StringArray,
+     * Dimensions, etc.. To load the resources all XML files stored in one of
+     * the values folders are parsed and stored. The folders to search depend on
+     * the device configuration and the folders available.
+     * 
+     */
+
+    private void loadValueResources() {
+        // Initialize the folders to search for strings
+        if (valuesFolders == null) {
+            valuesFolders = getResourceFolders("values");
+        }
+
+        resourceMap = new HashMap<Integer, Object>();
+
+        // Iterate all suitable values folders
+        for (String folder : valuesFolders) {
+            // Get all files from the folder
+            List<String> allFiles = NSFileManager.defaultManager().contentsOfDirectoryAtPath(
+                    NSBundle.mainBundle().bundlePath() + "/" + RES_DIR + "/" + folder, null);
+
+            // Iterate all files and parse XML files
+            for (String file : allFiles) {
+                if (file.endsWith(".xml")) {
+                    String baseName = file.substring(0, file.length() - 4);
+                    String fullPath = RES_DIR + "/" + folder + "/" + baseName;
+                    ResourceParser.parse(getContext(), fullPath, nameToIdMap, resourceMap);
+                }
+            }
+
+        }
     }
 
     public String getText(int id) {
         return getString(id);
     }
 
-    private String getValuesDir() {
-        String locale = Locale.getDefault().toString();
-        locale = locale.replaceAll("-", "_");
-        String path = RES_DIR + "/values-" + locale;
-        String resP = NSBundle.mainBundle().pathForResource("strings", "xml", path);
-        if (resP == null) {
-            String[] p = locale.split("_"); // just use language
-            if (p.length >= 2) {
-                path = RES_DIR + "/values-" + p[0];
-                resP = NSBundle.mainBundle().pathForResource("strings", "xml", path);
+    /**
+     * 
+     * Get the folders to search for resources of a particular type. The type is
+     * specified by the folder's prefix (drawable, layout, ...).
+     * 
+     * @param type
+     *            The resource type to get the folders for.
+     * 
+     * @return The folders to search for resources.
+     * 
+     */
+
+    private List<String> getResourceFolders(String type) {
+        // Get all files and folders below the res folder
+        List<String> allFiles = NSFileManager.defaultManager().contentsOfDirectoryAtPath(
+                NSBundle.mainBundle().bundlePath() + "/" + RES_DIR, null);
+
+        // Get all folders of the
+        List<String> resourceFolders = new ArrayList<String>();
+        if (allFiles != null) {
+            for (String file : allFiles) {
+                if (file.startsWith(type)) {
+                    resourceFolders.add(file);
+                }
             }
         }
-        if (resP == null) {
-            path = RES_DIR + "/values"; // default values, should always exist
+
+        // Initialize configuration and density if not already initialized
+        if (configuration == null) {
+            configuration = ConfigurationFactory.create();
         }
-        return path;
+
+        if (density == Density.DENSITY_UNDEFINED) {
+            density = ConfigurationFactory.getDensity();
+        }
+
+        return new ResourceFolderSelector().getResourceFolders(resourceFolders, configuration,
+                density);
     }
 
     public DisplayMetrics getDisplayMetrics() {
