@@ -220,11 +220,13 @@ class XMLResourceParser extends NSXMLParserDelegate {
                     stringArray[i++] = s;
                 }
                 resourceMap.put(currentId, stringArray);
+                currentStringArrayValue = null;
             } else if (qualifiedName.equals("item")) {
-                // The assumption here is that <item> can only be a child of
-                // <string-array>
-                currentStringArrayValue.add(currentCDATA.toString());
-                currentCDATA = null;
+                // Inside string-array
+                if (currentStringArrayValue != null) {
+                    currentStringArrayValue.add(currentCDATA.toString());
+                    currentCDATA = null;
+                }
             }
         }
     }
