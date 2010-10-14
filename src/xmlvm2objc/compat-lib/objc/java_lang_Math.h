@@ -45,5 +45,7 @@
 + (float) round___float: (float) a;
 + (double) round___double: (double) a;
 + (double) floor___double:(double) a;
++ (double) ceil___double:(double) a;
+
 @end
 

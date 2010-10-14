@@ -126,4 +126,9 @@
 	return floor(a);
 }
 
++ (double) ceil___double:(double) a
+{
+	return ceil(a);
+}
+
 @end
