@@ -33,6 +33,7 @@ typedef NSMutableString java_lang_StringBuffer;
 - (void) __init_java_lang_StringBuffer__;
 - (void) __init_java_lang_StringBuffer___java_lang_String: (java_lang_String*) str;
 - (java_lang_StringBuffer*) append___java_lang_String: (java_lang_String*) str;
+- (java_lang_StringBuffer*) append___char_ARRAYTYPE: (XMLVMArray*) arr;
 - (java_lang_StringBuffer*) append___java_lang_Object: (java_lang_Object*) obj;
 - (java_lang_StringBuffer*) append___int: (int) i;
 - (java_lang_StringBuffer*) append___long: (long) l;
@@ -44,6 +45,7 @@ typedef NSMutableString java_lang_StringBuffer;
 - (java_lang_String*) substring___int: (int) from;
 - (java_lang_String*) toString__;
 - (int) indexOf___java_lang_String: (java_lang_String*) s;
+- (java_lang_StringBuffer*) deleteCharAt___int: (int) n;
 
 
 @end

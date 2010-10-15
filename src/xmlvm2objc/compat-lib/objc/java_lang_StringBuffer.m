@@ -59,6 +59,17 @@
     return self;
 }
 
+- (java_lang_StringBuffer*) append___char_ARRAYTYPE: (XMLVMArray*) arr
+{
+	java_lang_StringBuffer* r;
+	for (int i = 0; i < arr->length; i++) {
+		r = [self append___char:arr->array.c[i]];
+		[r release];
+	}
+    [self retain];
+    return self;
+}
+
 - (java_lang_StringBuffer*) append___java_lang_Object: (java_lang_Object*) obj
 {
 	if (obj==JAVA_NULL)
@@ -140,6 +151,15 @@
 		return -1;
 	}
 	return range.location;
+}
+
+- (java_lang_StringBuffer*) deleteCharAt___int: (int) n
+{
+	NSRange range;
+	range.location = n;
+	range.length = 1;
+	[self deleteCharactersInRange:range];
+	return [self retain];
 }
 
 @end

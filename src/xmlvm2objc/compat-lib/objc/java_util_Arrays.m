@@ -184,4 +184,11 @@ static void quicksort(int list[], int m, int n)
 	return newArray;
 }
 
++ (void) fill___char_ARRAYTYPE_char:(XMLVMArray*) arr :(int) ch
+{
+	for (int i = 0; i < arr->length; i++) {
+		arr->array.c[i] = (unsigned short) ch;
+	}
+}
+
 @end

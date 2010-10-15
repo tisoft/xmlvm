@@ -35,5 +35,6 @@
 + (void) sort___java_lang_Object_ARRAYTYPE_java_util_Comparator: (XMLVMArray*) a: (java_util_Comparator*) c;
 + (java_util_List*) asList___java_lang_Object_ARRAYTYPE:(XMLVMArray*) a;
 + (XMLVMArray*) copyOf___int_ARRAYTYPE_int:(XMLVMArray*) original :(int) newLength;
++ (void) fill___char_ARRAYTYPE_char:(XMLVMArray*) arr :(int) ch;
 
 @end
