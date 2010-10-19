@@ -29,7 +29,7 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
 /**
  * A file used as an input for the {@link InputProcess} instances.
  */
-public abstract class XFile {
+public class XFile {
     protected UniversalFile file;
 
     /**
