@@ -50,6 +50,9 @@ public class ResourceFolderSelector {
             parsedFolders.add(new Folder(folder));
         }
 
+        // Step 1: Remove folders contradicting the device specification
+        removeContradictions(parsedFolders, configuration);
+
         // Call internal version of getResourceFolders recursively
         getResourceFolders(result, parsedFolders, configuration, density);
 
@@ -91,9 +94,6 @@ public class ResourceFolderSelector {
 
     private void getResourceFolders(List<String> result, List<Folder> folders,
             Configuration configuration, int density) {
-
-        // Step 1: Remove folders contradicting the device specification
-        removeContradictions(folders, configuration);
 
         // Step 2 to 5: Test for the presence of qualifiers and remove all
         // folders which do not include the qualifier detected in other folders
