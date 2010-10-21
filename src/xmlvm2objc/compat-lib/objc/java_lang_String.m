@@ -276,6 +276,16 @@
 	return m;
 }
 
+- (int) matches___java_lang_String:(java_lang_String*)regex
+{
+//#if __IPHONE_OS_VERSION_MIN_REQUIRED <= __IPHONE_3_1
+//#define NSRegularExpressionSearch NSLiteralSearch
+//	NSLog(@"String.replaceFirst() not supported");
+//#endif
+	NSRange found = [self rangeOfString:regex options:NSRegularExpressionSearch];
+	return found.location != NSNotFound;
+}
+
 - (XMLVMArray*) split___java_lang_String :(java_lang_String*)s
 {
 	NSArray *chunks = [self componentsSeparatedByString:s];
