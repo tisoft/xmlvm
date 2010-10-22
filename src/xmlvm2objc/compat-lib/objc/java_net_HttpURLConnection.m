@@ -18,29 +18,14 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "java_net_URL.h"
 #import "java_net_HttpURLConnection.h"
 
 
-// java.net.URL
-//----------------------------------------------------------------------------
-@implementation java_net_URL
+@implementation java_net_HttpURLConnection
 
-- (void) __init_java_net_URL___java_lang_String: (java_lang_String*) urlString
+- (void) setRequestMethod___java_lang_String: (java_lang_String*) method
 {
-	self->url = [NSURL URLWithString: urlString];
-}
-
-- (void) dealloc
-{
-	[self->url release];
-	[super dealloc];
-}
-
-- (java_net_URLConnection*) openConnection__
-{
-	return [[java_net_HttpURLConnection alloc] initWithURL:self->url];
+	[self->request setHTTPMethod:method];
 }
 
 @end
-
