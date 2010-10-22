@@ -18,41 +18,16 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
+package javax.xml.xpath;
 
-#import "org_xmlvm_iphone_NSXMLParser.h"
+public class XPathFactory {
 
-// NSXMLParser
-//----------------------------------------------------------------------------
-@implementation NSXMLParser (cat_NSXMLParser)
+    public static XPathFactory newInstance() {
+        return new XPathFactory();
+    }
 
-- (void) __init_org_xmlvm_iphone_NSXMLParser___org_xmlvm_iphone_NSData: (org_xmlvm_iphone_NSData*) data
-{
-	[self initWithData: data];
+    public XPath newXPath() {
+        return new XPath();
+    }
+
 }
-
-- (void) setDelegate___org_xmlvm_iphone_NSXMLParserDelegate: (org_xmlvm_iphone_NSXMLParserDelegate*) delegate
-{
-	[self setDelegate: delegate];
-}
-
-- (void) setShouldProcessNamespaces___boolean: (int) flag
-{
-	[self setShouldProcessNamespaces: flag];
-}
-
-- (void) setShouldReportNamespacePrefixes___boolean: (int) flag
-{
-	[self setShouldReportNamespacePrefixes: flag];
-}
-
-- (BOOL) shouldReportNamespacePrefixes__
-{
-	return [self shouldReportNamespacePrefixes];
-}
-
-- (BOOL) parse__
-{
-	return [self parse];
-}
-@end
-

@@ -18,41 +18,14 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
+package javax.xml.namespace;
 
-#import "org_xmlvm_iphone_NSXMLParser.h"
+public class QName {
 
-// NSXMLParser
-//----------------------------------------------------------------------------
-@implementation NSXMLParser (cat_NSXMLParser)
+    private String localPart;
 
-- (void) __init_org_xmlvm_iphone_NSXMLParser___org_xmlvm_iphone_NSData: (org_xmlvm_iphone_NSData*) data
-{
-	[self initWithData: data];
+    public QName(String localPart) {
+        this.localPart = localPart;
+    }
+
 }
-
-- (void) setDelegate___org_xmlvm_iphone_NSXMLParserDelegate: (org_xmlvm_iphone_NSXMLParserDelegate*) delegate
-{
-	[self setDelegate: delegate];
-}
-
-- (void) setShouldProcessNamespaces___boolean: (int) flag
-{
-	[self setShouldProcessNamespaces: flag];
-}
-
-- (void) setShouldReportNamespacePrefixes___boolean: (int) flag
-{
-	[self setShouldReportNamespacePrefixes: flag];
-}
-
-- (BOOL) shouldReportNamespacePrefixes__
-{
-	return [self shouldReportNamespacePrefixes];
-}
-
-- (BOOL) parse__
-{
-	return [self parse];
-}
-@end
-
