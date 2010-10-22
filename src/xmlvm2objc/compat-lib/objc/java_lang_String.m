@@ -38,6 +38,13 @@
 	}
 }
 
+- (void) __init_java_lang_String___byte_ARRAYTYPE_java_lang_String: (XMLVMArray*) bytes :(java_lang_String*) encoding
+{
+	for(int i = 0; i < bytes->length; i++) {
+		[self appendFormat:@"%c", (char) bytes->array.b[i]];
+	}
+}
+
 - (void) __init_java_lang_String___char_ARRAYTYPE: (XMLVMArray*) chars
 {
 	for(int i = 0; i < chars->length; i++) {

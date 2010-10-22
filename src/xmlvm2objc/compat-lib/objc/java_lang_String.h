@@ -28,6 +28,7 @@ typedef NSMutableString java_lang_String;
 
 - (void) __init_java_lang_String___java_lang_String: (java_lang_String*) str;
 - (void) __init_java_lang_String___byte_ARRAYTYPE: (XMLVMArray*) bytes;
+- (void) __init_java_lang_String___byte_ARRAYTYPE_java_lang_String: (XMLVMArray*) bytes :(java_lang_String*) encoding;
 - (void) __init_java_lang_String___char_ARRAYTYPE: (XMLVMArray*) chars;
 - (void) __init_java_lang_String___char_ARRAYTYPE_int_int: (XMLVMArray*) chars :(int) offset :(int) count;
 + (java_lang_String*) valueOf___int: (int) i;
