@@ -18,19 +18,22 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import <Foundation/Foundation.h>
-#import "java_lang_String.h"
+package javax.xml.parsers;
 
+public class DocumentBuilderFactory {
 
-// NSData
-//----------------------------------------------------------------------------
-typedef NSMutableData org_xmlvm_iphone_NSMutableData;
-@interface NSMutableData (cat_org_xmlvm_iphone_NSMutableData)
-- (void) __init_org_xmlvm_iphone_NSMutableData__;
-- (int) getByte___int: (int) index;
-- (void) appendByte___int: (int) value;
-- (void) appendBytes___byte_ARRAYTYPE: (XMLVMArray*) arr;
-- (int) byteCount__;
-- (java_lang_String*) toString__;
-@end
+    private boolean namespaceAware = false;
+
+    public static DocumentBuilderFactory newInstance() {
+        return new DocumentBuilderFactory();
+    }
+
+    public void setNamespaceAware(boolean flag) {
+        namespaceAware = flag;
+    }
+
+    public DocumentBuilder newDocumentBuilder() {
+        return new DocumentBuilder(namespaceAware);
+    }
+
+}

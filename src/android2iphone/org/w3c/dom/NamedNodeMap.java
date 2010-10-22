@@ -18,19 +18,26 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-#import "xmlvm.h"
-#import <Foundation/Foundation.h>
-#import "java_lang_String.h"
 
+package org.w3c.dom;
 
-// NSData
-//----------------------------------------------------------------------------
-typedef NSMutableData org_xmlvm_iphone_NSMutableData;
-@interface NSMutableData (cat_org_xmlvm_iphone_NSMutableData)
-- (void) __init_org_xmlvm_iphone_NSMutableData__;
-- (int) getByte___int: (int) index;
-- (void) appendByte___int: (int) value;
-- (void) appendBytes___byte_ARRAYTYPE: (XMLVMArray*) arr;
-- (int) byteCount__;
-- (java_lang_String*) toString__;
-@end
+public class NamedNodeMap {
+
+    /**
+     * @return
+     */
+    public int getLength() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    /**
+     * @param i
+     * @return
+     */
+    public Node item(int i) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+}

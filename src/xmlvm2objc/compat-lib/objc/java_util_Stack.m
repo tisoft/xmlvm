@@ -76,6 +76,13 @@
 	return o;
 }
 
+- (java_lang_Object*) peek__
+{
+	java_lang_Object* o = [theStack lastObject];
+	[o retain];
+	return o;
+}
+
 - (BOOL) remove___java_lang_Object :(java_lang_Object*) item
 {
 	if ([theStack indexOfObject: item] != NSNotFound) {

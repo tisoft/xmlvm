@@ -39,6 +39,11 @@
     [self appendBytes: c length: 1];
 }
 
+- (void) appendBytes___byte_ARRAYTYPE: (XMLVMArray*) arr
+{
+	[self appendBytes:arr->array.b length:arr->length];
+}
+
 - (int) byteCount__
 {
     return [self length];

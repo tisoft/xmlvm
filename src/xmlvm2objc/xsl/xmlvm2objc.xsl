@@ -2670,7 +2670,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:iget|dex:iget-wide|dex:iget-boolean|dex:iget-byte">
+<xsl:template match="dex:iget|dex:iget-wide|dex:iget-boolean|dex:iget-byte|dex:iget-short">
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@member-type"/>
@@ -2718,7 +2718,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:iput|dex:iput-wide|dex:iput-boolean|dex:iput-byte">
+<xsl:template match="dex:iput|dex:iput-wide|dex:iput-boolean|dex:iput-byte|dex:iput-short">
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@member-type"/>
