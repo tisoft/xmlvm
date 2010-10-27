@@ -31,6 +31,7 @@ import org.xmlvm.iphone.UITextAlignment;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.internal.AndroidManifest;
 import android.internal.Assert;
 import android.internal.XMLVMTheme;
 import android.text.TextWatcher;
@@ -96,7 +97,7 @@ public class TextView extends View {
 
     public void setText(String string) {
         this.text = string;
-       ((UILabel) xmlvmGetViewHandler().getContentView()).setText(string);
+        ((UILabel) xmlvmGetViewHandler().getContentView()).setText(string);
         requestLayout();
     }
 
@@ -161,7 +162,18 @@ public class TextView extends View {
         setIgnoreRequestLayout(true);
 
         String value = attrs.getAttributeValue(null, "text");
-        setText(value != null ? value : "");
+        if (value != null) {
+            if (value.startsWith("@string/")) {
+                String name = value.substring("@string/".length());
+                int id = getContext().getResources().getIdentifier(name, "string",
+                        AndroidManifest.getPackageName());
+                setText(getContext().getString(id));
+            } else {
+                setText(value);
+            }
+        } else {
+            setText("");
+        }
 
         setIgnoreRequestLayout(false);
     }
@@ -232,7 +244,7 @@ public class TextView extends View {
     public void addTextChangedListener(TextWatcher watcher) {
         Assert.NOT_IMPLEMENTED();
     }
-    
+
     void setToastAttributes() {
         UILabel content = (UILabel) xmlvmGetViewHandler().getContentView();
         content.setTextAlignment(UITextAlignment.Center);

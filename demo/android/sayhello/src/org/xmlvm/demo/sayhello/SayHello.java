@@ -17,7 +17,6 @@ public class SayHello extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         final Button sayHelloButton = (Button) findViewById(R.id.sayHello);
-        sayHelloButton.setText(R.string.app_name);
         sayHelloButton.setOnClickListener(new OnClickListener() {
 
             public void onClick(View view) {
