@@ -20,18 +20,23 @@
 
 package android.widget;
 
+import java.util.Set;
+
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.NSString;
+import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UILineBreakMode;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UITextAlignment;
+import org.xmlvm.iphone.UITouch;
+import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.internal.AndroidManifest;
 import android.internal.Assert;
 import android.internal.XMLVMTheme;
 import android.text.TextWatcher;
@@ -41,11 +46,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
-import java.util.Set;
-import org.xmlvm.iphone.UIColor;
-import org.xmlvm.iphone.UIEvent;
-import org.xmlvm.iphone.UITouch;
-import org.xmlvm.iphone.UIView;
 
 public class TextView extends View {
 
@@ -164,9 +164,7 @@ public class TextView extends View {
         String value = attrs.getAttributeValue(null, "text");
         if (value != null) {
             if (value.startsWith("@string/")) {
-                String name = value.substring("@string/".length());
-                int id = getContext().getResources().getIdentifier(name, "string",
-                        AndroidManifest.getPackageName());
+                int id = attrs.getAttributeResourceValue(null, "text", -1);
                 setText(getContext().getString(id));
             } else {
                 setText(value);
