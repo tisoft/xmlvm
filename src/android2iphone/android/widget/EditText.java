@@ -113,6 +113,17 @@ public class EditText extends TextView {
         setIgnoreRequestLayout(true);
 
         // Implementation of attribute parsing
+        String value = attrs.getAttributeValue(null, "hint");
+        if (value != null) {
+            if (value.startsWith("@string/")) {
+                int id = attrs.getAttributeResourceValue(null, "hint", -1);
+                if (id != -1) {
+                    setHint(getContext().getString(id));
+                }
+            } else {
+                setHint(value);
+            }
+        }
 
         setIgnoreRequestLayout(false);
     }
