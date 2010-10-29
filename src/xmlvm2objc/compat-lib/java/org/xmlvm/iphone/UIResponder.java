@@ -61,4 +61,9 @@ public class UIResponder extends NSObject {
         // Do nothing
         return true;
     }
+    
+    public boolean becomeFirstResponder() {
+        // TODO Implement this
+        return true;
+    }
 }

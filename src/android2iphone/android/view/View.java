@@ -435,6 +435,9 @@ public class View {
 
         setPadding(pl, pt, pr, pb);
 
+        d = Dimension.resolveDimension(attrs.getAttributeValue(null, "minWidth"));
+        setMinimumWidth(d);
+
         setIgnoreRequestLayout(false);
     }
 
@@ -960,8 +963,12 @@ public class View {
     public void postInvalidate() {
         Assert.NOT_IMPLEMENTED();
     }
-    
+
     public void requestFocus() {
-        Assert.NOT_IMPLEMENTED();
+        // Do we really want that? On iPhone a keyboards pops on immediately
+        // after requesting focus. Maybe it es better to simply ignore
+        // requestFocus.
+
+        // viewHandler.getContentView().becomeFirstResponder();
     }
 }

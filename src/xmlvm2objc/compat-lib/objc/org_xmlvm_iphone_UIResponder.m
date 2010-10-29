@@ -69,5 +69,10 @@
 	return [self resignFirstResponder];
 }
 
+- (int) becomeFirstResponder__
+{
+	return [self becomeFirstResponder];
+}
+
 // Note: it is important this object to be incomplete, or else smart usage of selectors will not be possible
 @end

@@ -45,5 +45,5 @@
 :(org_xmlvm_iphone_UIEvent*) event;
 	
 - (int)resignFirstResponder__;
-             
+- (int) becomeFirstResponder__;             
 @end
