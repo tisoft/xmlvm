@@ -32,7 +32,6 @@ import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UILineBreakMode;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UITextAlignment;
-import org.xmlvm.iphone.UITextField;
 import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
