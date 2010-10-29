@@ -28,6 +28,7 @@ import org.xmlvm.iphone.NSData;
 import org.xmlvm.iphone.NSXMLParser;
 import org.xmlvm.iphone.NSXMLParserDelegate;
 
+import android.R;
 import android.content.pm.ActivityInfo;
 
 class AndroidManifestParser extends NSXMLParserDelegate {
@@ -50,6 +51,14 @@ class AndroidManifestParser extends NSXMLParserDelegate {
     @Override
     public void didStartElement(NSXMLParser parser, String elementName, String namespaceURI,
             String qualifiedName, Map<String, String> attributes) {
+        if (qualifiedName.equals("application")) {
+            // For now simply check for the Theme.Light string to enable NATIVE
+            // theme instead of the dark Android theme
+            String theme = attributes.get(prefix + "theme");
+            if (theme != null && theme.equals("@android:style/Theme.Light")) {
+                manifest.appTheme = R.style.Theme_Light;
+            }
+        }
         if (qualifiedName.equals("manifest")) {
             manifest.appPackage = attributes.get("package");
         }
@@ -99,8 +108,9 @@ public class AndroidManifest {
         public int    screenOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
     }
 
-    private final static AndroidManifest manifest = new AndroidManifest();
+    private final static AndroidManifest manifest   = new AndroidManifest();
     String                               appPackage;
+    int                                  appTheme   = R.style.Theme;
     private Map<String, Activity>        activities = new HashMap<String, Activity>();
 
     public AndroidManifest() {
@@ -134,5 +144,9 @@ public class AndroidManifest {
 
     public static String getPackageName() {
         return manifest.appPackage;
+    }
+
+    public static int getTheme() {
+        return manifest.appTheme;
     }
 }

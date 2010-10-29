@@ -20,6 +20,8 @@
 
 package android.internal;
 
+import android.R;
+
 /**
  * @author arno
  * 
@@ -36,10 +38,9 @@ public class XMLVMTheme {
      */
     public static final int XMLVM_THEME_NATIVE  = 1;
 
-    // TODO read this parameter from some configuration file
-    private static int      theme               = XMLVM_THEME_ANDROID;
-
     public static int getTheme() {
-        return theme;
+//        return XMLVM_THEME_ANDROID;
+        return AndroidManifest.getTheme() == R.style.Theme_Light ? XMLVM_THEME_NATIVE
+                : XMLVM_THEME_ANDROID;
     }
 }

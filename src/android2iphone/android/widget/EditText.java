@@ -101,9 +101,10 @@ public class EditText extends TextView {
                 xmlvmTouchesEvent(MotionEvent.ACTION_UP, touches, event);
             }
         };
+
+        field.setBorderStyle(UITextBorderStyle.Bezel);
         if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
             field.setBackgroundColor(UIColor.whiteColor);
-            field.setBorderStyle(UITextBorderStyle.Bezel);
         }
         return field;
     }
