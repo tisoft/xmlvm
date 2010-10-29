@@ -161,16 +161,17 @@ public class TextView extends View {
     private void parseTextViewAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
 
+        setText("");
         String value = attrs.getAttributeValue(null, "text");
         if (value != null) {
             if (value.startsWith("@string/")) {
                 int id = attrs.getAttributeResourceValue(null, "text", -1);
-                setText(getContext().getString(id));
+                if (id != -1) {
+                    setText(getContext().getString(id));
+                }
             } else {
                 setText(value);
             }
-        } else {
-            setText("");
         }
 
         setIgnoreRequestLayout(false);
