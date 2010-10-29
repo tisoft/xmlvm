@@ -46,6 +46,9 @@ import android.util.Log;
 
 public class Resources {
 
+    /** Filename prefix used for IOS specific resources. */
+    private static final String         IOS_PREFIX      = "_ios_";
+
     /** The name of the directory holding the application's resources. */
     private static final String         RES_DIR         = "res";
 
@@ -156,12 +159,20 @@ public class Resources {
 
             // Get the layout resource's name
             String resourceName = getResourceName(findResourceNameById(resourceId));
+            String iosResourceName = IOS_PREFIX + resourceName;
 
             // Iterate the layout folders and try to load the layout from that
             // folder
             for (String folder : layoutFolders) {
-                String filePath = NSBundle.mainBundle().pathForResource(resourceName, "xml",
+                // First try IOS specific resources, if not found use "normal"
+                // resource
+                String filePath = NSBundle.mainBundle().pathForResource(iosResourceName, "xml",
                         RES_DIR + "/" + folder);
+                if (filePath == null) {
+                    filePath = NSBundle.mainBundle().pathForResource(resourceName, "xml",
+                            RES_DIR + "/" + folder);
+                }
+
                 if (filePath != null) {
                     theFile = NSData.dataWithContentsOfFile(filePath);
                     layoutMap.put(new Integer(resourceId), theFile);
