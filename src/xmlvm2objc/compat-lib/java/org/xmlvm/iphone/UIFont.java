@@ -78,6 +78,18 @@ public class UIFont extends NSObject {
         return 16.0f;
     }
 
+    public String familyName() {
+        return font.getFamily();
+    }
+
+    public String fontName() {
+        return font.getName();
+    }
+
+    public float pointSize() {
+        return font.getSize();
+    }
+
     @XMLVMIgnore
     public Font xmlvmGetFont() {
         return font;

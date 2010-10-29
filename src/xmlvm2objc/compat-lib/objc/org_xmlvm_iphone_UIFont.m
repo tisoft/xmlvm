@@ -64,4 +64,21 @@
 	return_XMLVM(fontWithSize: fontSize)
 }
 
+- (NSString*) familyName__
+{
+	return_XMLVM(familyName);
+}
+
+
+- (NSString*) fontName__
+{
+	return_XMLVM(fontName);
+}
+
+- (float) pointSize__
+{
+	return [self pointSize];
+}
+
+
 @end

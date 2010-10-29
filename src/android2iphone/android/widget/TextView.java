@@ -38,6 +38,7 @@ import org.xmlvm.iphone.UIView;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.internal.Assert;
+import android.internal.Dimension;
 import android.internal.XMLVMTheme;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -120,7 +121,29 @@ public class TextView extends View {
     }
 
     public void setTypeface(Typeface tf, int style) {
-        Log.w("xmlvm", "TextView.setTypeface() not implemented");
+        UILabel content = (UILabel) xmlvmGetViewHandler().getContentView();
+        UIFont font;
+
+        if (tf != null) {
+            // TODO Implement this
+            Assert.NOT_IMPLEMENTED();
+        } else {
+            font = content.getFont();
+            if (font == null) {
+                float size = UIFont.labelFontSize();
+                font = UIFont.systemFontOfSize(size);
+            }
+
+            String family = font.familyName();
+            String type = "";
+            if ((style & Typeface.BOLD) > 0) {
+                type += "Bold";
+            }
+            if ((style & Typeface.ITALIC) > 0) {
+                type += "Italic";
+            }
+            content.setFont(UIFont.fontWithNameSize(family + "-" + type, font.pointSize()));
+        }
     }
 
     @Override
@@ -172,6 +195,26 @@ public class TextView extends View {
             } else {
                 setText(value);
             }
+        }
+
+        value = attrs.getAttributeValue(null, "textSize");
+        if (value != null && value.length() > 0) {
+            int size = Dimension.resolveDimension(value);
+            setTextSize(size);
+        }
+
+        value = attrs.getAttributeValue(null, "textStyle");
+        int style = Typeface.NORMAL;
+        if (value != null && value.length() > 0) {
+            value = value.toLowerCase();
+            if (value.contains("bold")) {
+                style |= Typeface.BOLD;
+            }
+            if (value.contains("italic")) {
+                style |= Typeface.ITALIC;
+            }
+
+            setTypeface(null, style);
         }
 
         setIgnoreRequestLayout(false);

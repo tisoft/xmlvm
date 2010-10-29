@@ -45,6 +45,11 @@ public class Dimension {
             return (int) (Integer.parseInt(dimension.substring(0, dimension.length() - 3)) * getDensityFactor());
         }
 
+        // TODO: Proper handling of sp dimensions
+        if (dimension.length() > 2 && dimension.endsWith("sp")) {
+            return (int) (Integer.parseInt(dimension.substring(0, dimension.length() - 2)) * getDensityFactor());
+        }
+
         Assert.FAIL("layout dimension not supported: " + dimension);
         return -1;
     }
