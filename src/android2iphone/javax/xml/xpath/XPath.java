@@ -34,7 +34,8 @@ public class XPath {
         String[] path = expression.split("/");
         NodeList top = new NodeList();
         top.addChild(doc.getDocumentElement());
-        return match(top, path, 1);
+        Object o = match(top, path, 1);
+        return o == null ? "" : o;
     }
 
     private Object match(NodeList siblings, String[] path, int idx) {
