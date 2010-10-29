@@ -32,6 +32,7 @@ import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UILineBreakMode;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UITextAlignment;
+import org.xmlvm.iphone.UITextField;
 import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
@@ -40,6 +41,7 @@ import android.graphics.Typeface;
 import android.internal.Assert;
 import android.internal.Dimension;
 import android.internal.XMLVMTheme;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -103,6 +105,14 @@ public class TextView extends View {
 
     public final void setText(CharSequence text) {
         setText(text.toString());
+    }
+
+    public void setHint(CharSequence hint) {
+        // TODO: Do UILabels support hints?
+    }
+
+    public void setRawInputType(int inputType) {
+        // TODO: Are they supported on UILabels?
     }
 
     public final void append(CharSequence text) {
@@ -214,6 +224,37 @@ public class TextView extends View {
             }
 
             setTypeface(null, style);
+        }
+
+        value = attrs.getAttributeValue(null, "hint");
+        if (value != null && value.length() > 0) {
+            if (value.startsWith("@string/")) {
+                int id = attrs.getAttributeResourceValue(null, "hint", -1);
+                if (id != -1) {
+                    setHint(getContext().getString(id));
+                }
+            } else {
+                setHint(value);
+            }
+        }
+
+        value = attrs.getAttributeValue(null, "inputType");
+        if (value != null && value.length() > 0) {
+            int type = 0;
+            boolean isPassword = value.contains("textPassword");
+            if (isPassword) {
+                type |= InputType.TYPE_TEXT_VARIATION_PASSWORD;
+            }
+
+            setRawInputType(type);
+        }
+
+        value = attrs.getAttributeValue(null, "password");
+        if (value != null && value.length() > 0) {
+            boolean isPassword = Boolean.parseBoolean(value);
+            if (isPassword) {
+                setRawInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            }
         }
 
         setIgnoreRequestLayout(false);

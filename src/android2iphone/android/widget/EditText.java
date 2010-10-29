@@ -20,19 +20,21 @@
 
 package android.widget;
 
+import java.util.Set;
+
 import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UITextBorderStyle;
 import org.xmlvm.iphone.UITextField;
+import org.xmlvm.iphone.UITouch;
+import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.internal.XMLVMTheme;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import java.util.Set;
-import org.xmlvm.iphone.UIEvent;
-import org.xmlvm.iphone.UITouch;
-import org.xmlvm.iphone.UIView;
 
 public class EditText extends TextView {
 
@@ -77,6 +79,12 @@ public class EditText extends TextView {
         ((UITextField) xmlvmGetViewHandler().getContentView()).setPlaceholder(hint.toString());
     }
 
+    public void setRawInputType(int inputType) {
+        if ((inputType & InputType.TYPE_TEXT_VARIATION_PASSWORD) > 0) {
+            ((UITextField) xmlvmGetViewHandler().getContentView()).setSecureTextEntry(true);
+        }
+    }
+
     @Override
     protected UIView xmlvmNewUIView(AttributeSet attrs) {
         UITextField field = new UITextField() {
@@ -113,17 +121,6 @@ public class EditText extends TextView {
         setIgnoreRequestLayout(true);
 
         // Implementation of attribute parsing
-        String value = attrs.getAttributeValue(null, "hint");
-        if (value != null) {
-            if (value.startsWith("@string/")) {
-                int id = attrs.getAttributeResourceValue(null, "hint", -1);
-                if (id != -1) {
-                    setHint(getContext().getString(id));
-                }
-            } else {
-                setHint(value);
-            }
-        }
 
         setIgnoreRequestLayout(false);
     }
