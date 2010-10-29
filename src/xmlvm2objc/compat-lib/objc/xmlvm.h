@@ -88,6 +88,8 @@ extern id JAVA_NULL;
 
 
 void ERROR(char* msg);
+id NOT_IMPLEMENTED();
+
 
 // Use this macro to safely set a n obj-c value, in case Java has given a null pointer
 #define XMLVM_VALUE(VALUE) ((VALUE==JAVA_NULL)?nil:VALUE)
@@ -102,11 +104,14 @@ void ERROR(char* msg);
 // Like XMLVM_PROPERTY but specify the exact command to execute to set this property (if any) 
 #define XMLVM_PROPERTY_WITHCOMMAND(PROPERTY,VALUE,COMMAND) id __retainable=(VALUE==JAVA_NULL)?nil:VALUE; COMMAND; static char PROPERTY_key; objc_setAssociatedObject(self, &PROPERTY_key, __retainable, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
-// Under iPhone simulator there is a bug, in which associations are not supported. This is a workaround, which actually leaves a memory leak, but it doesn't harm (much).
-//#if TARGET_IPHONE_SIMULATOR
-//#define objc_setAssociatedObject(A,B,ITEM,D) [ITEM retain];
-//#define OBJC_ASSOCIATION_RETAIN_NONATOMIC 1
-//#endif
+// Under iPhone simulator (SDK 3.x only) there is a bug, in which associations are not supported. 
+// This is a incomplete workaround, which actually leaves a memory leak, but it doesn't harm (much).
+#if TARGET_IPHONE_SIMULATOR && __IPHONE_OS_VERSION_MAX_ALLOWED < 40000
+#warning "Using iPhone SDK 3.x compatibility workaround!"
+#define objc_setAssociatedObject(A,B,ITEM,D) [ITEM retain];
+#define objc_getAssociatedObject(A,B) NOT_IMPLEMENTED()
+#define OBJC_ASSOCIATION_RETAIN_NONATOMIC 1
+#endif
 
 
 // This is used to support optional protocol implementation in Java. Declare that an ObjC selector exists ONLY if the JAVA selector exists. CHECK is the current selector being asked.

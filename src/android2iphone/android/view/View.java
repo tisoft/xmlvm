@@ -144,6 +144,7 @@ public class View {
      * the int.
      */
     public static class MeasureSpec {
+
         private static final int MODE_SHIFT  = 30;
         private static final int MODE_MASK   = 0x3 << MODE_SHIFT;
 
@@ -240,6 +241,7 @@ public class View {
     }
 
     public static interface OnTouchListener {
+
         /**
          * Called when a touch event is dispatched to a view. This allows
          * listeners to get a chance to respond before the target view.
@@ -256,6 +258,7 @@ public class View {
     }
 
     public static interface OnClickListener {
+
         public void onClick(View view);
     }
 
@@ -923,9 +926,9 @@ public class View {
             UIImage newImg = ((BitmapDrawable) currentStateDrawable).xmlvmGetImage();
             UIImage currentImg = viewHandler.getBackgroundImage();
             if (currentImg != newImg) {
-                boolean relayout = (currentImg==null && newImg != null) ||
-                        (currentImg != null && newImg != null
-                        && !currentImg.getSize().equals(newImg.getSize()));
+                boolean relayout = (currentImg == null && newImg != null)
+                        || (currentImg != null && newImg != null && !currentImg.getSize().equals(
+                                newImg.getSize()));
                 viewHandler.setBackgroundImage(newImg);
                 if (relayout) {
                     requestLayout();
@@ -951,6 +954,14 @@ public class View {
     }
 
     public void setEnabled(boolean enabled) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void postInvalidate() {
+        Assert.NOT_IMPLEMENTED();
+    }
+    
+    public void requestFocus() {
         Assert.NOT_IMPLEMENTED();
     }
 }

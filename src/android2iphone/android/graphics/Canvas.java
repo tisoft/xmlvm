@@ -106,6 +106,11 @@ public class Canvas {
         Assert.NOT_IMPLEMENTED();
     }
 
+    public void drawLine(float startX, float startY, float stopX, float stopY, Paint paint)
+    {
+        Assert.NOT_IMPLEMENTED();
+    }
+    
     public void drawRect(float left, float top, float right, float bottom, Paint paint) {
         createCGContext();
         context.storeState();

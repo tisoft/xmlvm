@@ -58,7 +58,7 @@ public class Handler {
     }
 
     public void xmlvmStartTimer(Object ticks) {
-        //TODO what to do witch ticks?
+        // TODO what to do witch ticks?
         timer = new NSTimer(delay, new NSTimerDelegate() {
             public void timerEvent(Object notUsed) {
                 toRun.run();
@@ -79,6 +79,11 @@ public class Handler {
     }
 
     public boolean sendMessageDelayed(Message msg, long delayMillis) {
+        Assert.NOT_IMPLEMENTED();
+        return false;
+    }
+
+    public boolean sendEmptyMessage(int what) {
         Assert.NOT_IMPLEMENTED();
         return false;
     }

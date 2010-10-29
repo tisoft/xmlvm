@@ -182,3 +182,10 @@ void ERROR(char* msg)
 	NSLog([NSString stringWithUTF8String:msg]);
 	@throw [NSException exceptionWithName: @"XMLVM missing byte code instruction" reason:[NSString stringWithUTF8String:msg] userInfo: nil];
 }
+
+
+id NOT_IMPLEMENTED()
+{
+	NSLog(@"Not implemented ...");
+	@throw [NSException exceptionWithName: @"Not implemented" reason: @"Not implemented" userInfo: nil];
+}

@@ -124,6 +124,22 @@ public class AlertDialog extends Dialog implements DialogInterface {
         listeners[1] = listener;
     }
 
+    public void setButton(int whichButton, String string, OnClickListener listener) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void setIcon(int id) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void setMessage(String msg) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void setTitle(int id) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
     /**
      * XMLVM internal.
      */

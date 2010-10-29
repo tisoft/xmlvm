@@ -18,19 +18,36 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package android.content;
+package android.widget;
 
-public interface DialogInterface {
-    
-    public static final int BUTTON1 = -1;
-    public static final int BUTTON2 = -2;
-    public static final int BUTTON3 = -3;
-    
-    public static final int BUTTON_POSITIVE = BUTTON1;
-    public static final int BUTTON_NEGATIVE = BUTTON2;
-    public static final int BUTTON_NEUTRAL = BUTTON3;
+import android.content.Context;
+import android.internal.Assert;
+import android.util.AttributeSet;
 
-    public interface OnClickListener {
-        public abstract void onClick(DialogInterface dialog, int which);
+/**
+ * @author wkorn
+ * 
+ */
+public class RadioButton extends CompoundButton {
+
+    public RadioButton(Context c) {
+        super(c);
     }
+
+    public RadioButton(Context c, AttributeSet attrs) {
+        super(c, attrs);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see android.widget.CompoundButton#xmlvmUpdateUIView(boolean)
+     */
+    @Override
+    protected void xmlvmUpdateUIView(boolean checked) {
+        // TODO Auto-generated method stub
+        Assert.NOT_IMPLEMENTED();
+
+    }
+
 }

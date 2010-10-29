@@ -29,4 +29,8 @@ public class R {
     public static final class style {
         public static final int Theme_Light_NoTitleBar_Fullscreen = 0;
     }
+    
+    public static final class drawable {
+        public static final int ic_dialog_alert = 0;
+    }
 }
