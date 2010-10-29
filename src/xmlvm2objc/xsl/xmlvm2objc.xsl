@@ -2993,6 +2993,16 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="dex:long-to-double">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.d = (double) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l;
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="dex:long-to-float">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
