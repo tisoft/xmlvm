@@ -52,6 +52,12 @@
 	self.title = title;
 }
 
+- (void) setMessage___java_lang_String
+			 :(java_lang_String*) message;
+{
+	self.message = message;
+}
+
 - (int) addButtonWithTitle___java_lang_String
              :(java_lang_String*) title;
 {

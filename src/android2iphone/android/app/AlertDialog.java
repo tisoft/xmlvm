@@ -32,11 +32,13 @@ public class AlertDialog extends Dialog implements DialogInterface {
     public static class Builder {
 
         private String                          title;
+        private String                          message;
         private String                          positiveButtonTitle;
         private DialogInterface.OnClickListener clickListener;
+        private Context                         context;
 
         public Builder(Context context) {
-
+            this.context = context;
         }
 
         public Builder setTitle(String title) {
@@ -55,7 +57,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
         }
 
         public Builder setMessage(CharSequence message) {
-            Assert.NOT_IMPLEMENTED();
+            this.message = message.toString();
             return this;
         }
 
@@ -70,10 +72,12 @@ public class AlertDialog extends Dialog implements DialogInterface {
         }
     }
 
-    private UIAlertView       alertView;
     private Builder           builder;
     private String[]          buttonTitles = new String[3];
     private OnClickListener[] listeners    = new OnClickListener[3];
+    private String            title;
+    private String            message;
+    private Context           context;
 
     protected AlertDialog(Context context) {
         Assert.NOT_IMPLEMENTED();
@@ -87,26 +91,33 @@ public class AlertDialog extends Dialog implements DialogInterface {
             listeners[i] = null;
         }
         this.builder = builder;
-        this.alertView = new UIAlertView(builder.title, "", new UIAlertViewDelegate() {
+        this.context = builder.context;
+        this.title = builder.title;
+        this.message = builder.message;
+    }
+
+    @Override
+    public void show() {
+        UIAlertView alertView = new UIAlertView(title, "", new UIAlertViewDelegate() {
             @Override
             public void clickedButtonAtIndex(UIAlertView alertView, int buttonIndex) {
                 AlertDialog.this.clickedButtonAtIndex(alertView, buttonIndex);
             }
         }, builder.positiveButtonTitle);
-    }
-
-    @Override
-    public void show() {
+        
+        alertView.setTitle(title);
+        alertView.setMessage(message);
+        
         for (int i = 0; i < buttonTitles.length; ++i) {
             if (buttonTitles[i] != null) {
-                this.alertView.addButtonWithTitle(buttonTitles[i]);
+                alertView.addButtonWithTitle(buttonTitles[i]);
             }
         }
-        this.alertView.show();
+        alertView.show();
     }
 
-    public void setTitle(String string) {
-        this.alertView.setTitle(string);
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setButton(String string, OnClickListener listener) {
@@ -125,19 +136,34 @@ public class AlertDialog extends Dialog implements DialogInterface {
     }
 
     public void setButton(int whichButton, String string, OnClickListener listener) {
-        Assert.NOT_IMPLEMENTED();
+        switch (whichButton) {
+        case BUTTON_POSITIVE:
+            setButton(string, listener);
+            break;
+
+        case BUTTON_NEGATIVE:
+            setButton2(string, listener);
+            break;
+
+        case BUTTON_NEUTRAL:
+            setButton3(string, listener);
+            break;
+        }
     }
 
     public void setIcon(int id) {
-        Assert.NOT_IMPLEMENTED();
+        // Do nothing: UIAlertView does not support icons
     }
 
-    public void setMessage(String msg) {
-        Assert.NOT_IMPLEMENTED();
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public void setTitle(int id) {
-        Assert.NOT_IMPLEMENTED();
+        String str = context.getString(id);
+        if (str != null) {
+            setTitle(str);
+        }
     }
 
     /**
