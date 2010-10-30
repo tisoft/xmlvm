@@ -27,6 +27,7 @@ import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UITextBorderStyle;
 import org.xmlvm.iphone.UITextField;
+import org.xmlvm.iphone.UITextFieldDelegate;
 import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
@@ -40,6 +41,7 @@ public class EditText extends TextView {
 
     private static final int INSETS_X = 3;
     private static final int INSETS_Y = 3;
+
 
     public EditText(Context c) {
         super(c);
@@ -138,6 +140,10 @@ public class EditText extends TextView {
     @Override
     protected int xmlvmGetInsetsY() {
         return INSETS_Y;
+    }
+
+    public void xmlvmSetKeyboardDelegate(UITextFieldDelegate iTextFieldDelegate) {
+        ((UITextField) xmlvmGetViewHandler().getContentView()).setDelegate(iTextFieldDelegate);
     }
 
 }

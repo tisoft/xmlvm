@@ -271,25 +271,25 @@
 
 - (org_xmlvm_iphone_CGPoint*) convertPointFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIView*) view
 {
-	CGPoint to = [self convertPoint:[point getCGPoint] fromView:view];
+	CGPoint to = [self convertPoint:[point getCGPoint] fromView:XMLVM_VALUE(view)];
 	return [[org_xmlvm_iphone_CGPoint alloc] initWithCGPoint:to];
 }
 
 - (org_xmlvm_iphone_CGPoint*) convertPointToView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIView*) view
 {
-	CGPoint to = [self convertPoint:[point getCGPoint] toView:view];
+	CGPoint to = [self convertPoint:[point getCGPoint] toView:XMLVM_VALUE(view)];
 	return [[org_xmlvm_iphone_CGPoint alloc] initWithCGPoint:to];
 }
 
 - (org_xmlvm_iphone_CGRect*) convertRectFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGRect*)rect :(org_xmlvm_iphone_UIView*) view
 {
-	CGRect to = [self convertRect:[rect getCGRect] fromView:view];
+	CGRect to = [self convertRect:[rect getCGRect] fromView:XMLVM_VALUE(view)];
 	return [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:to];
 }
 
 - (org_xmlvm_iphone_CGRect*) convertRectToView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGRect*)rect :(org_xmlvm_iphone_UIView*) view
 {
-	CGRect to = [self convertRect:[rect getCGRect] toView:view];
+	CGRect to = [self convertRect:[rect getCGRect] toView:XMLVM_VALUE(view)];
 	return [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:to];
 }
 

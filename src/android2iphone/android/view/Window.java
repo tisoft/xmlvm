@@ -21,9 +21,13 @@
 package android.view;
 
 import org.xmlvm.iphone.CGAffineTransform;
+import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIScreen;
+import org.xmlvm.iphone.UIScrollView;
+import org.xmlvm.iphone.UITextField;
+import org.xmlvm.iphone.UITextFieldDelegate;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
 
@@ -35,6 +39,7 @@ import android.internal.DecorView;
 import android.internal.LayoutManager;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 
 /**
@@ -43,17 +48,46 @@ import android.widget.FrameLayout;
  * @see http://developer.android.com/reference/android/view/Window.html
  */
 public class Window {
-    public static final int FEATURE_NO_TITLE = 1;
-    private Activity        activity;
-    private UIWindow        iWindow;
-    private View            toast;
-    private FrameLayout     internalView;
-    private DecorView       decorView;
-    private FrameLayout     contentParent;
-    private boolean         floating         = false;
+    public static final int     FEATURE_NO_TITLE = 1;
+    private Activity            activity;
+    private UIWindow            iWindow;
+    private UIScrollView        iScrollView;
+    private UITextFieldDelegate iTextFieldDelegate;
+    private View                toast;
+    private FrameLayout         internalView;
+    private DecorView           decorView;
+    private FrameLayout         contentParent;
+    private boolean             floating         = false;
+
 
     public Window(Activity parent) {
         this.activity = parent;
+        iTextFieldDelegate = new UITextFieldDelegate() {
+            @Override
+            public void textFieldDidBeginEditing(UITextField textField) {
+                CGRect rect = textField.getSuperview()
+                        .convertRectToView(textField.getFrame(), null);
+                int height = (int) UIScreen.mainScreen().getBounds().size.height;
+                // TODO don't hardcode keyboard height
+                if (rect.origin.y > height - 216 - 60) {
+                    CGPoint offset = new CGPoint(0, rect.origin.y - 150);
+                    iScrollView.setContentOffset(offset, true);
+                }
+            }
+
+            @Override
+            public void textFieldDidEndEditing(UITextField textField) {
+                textField.resignFirstResponder();
+                CGPoint offset = new CGPoint(0, 0);
+                iScrollView.setContentOffset(offset, true);
+            }
+
+            @Override
+            public boolean textFieldShouldReturn(UITextField textField) {
+                textField.resignFirstResponder();
+                return false;
+            }
+        };
     }
 
     public void setContentView(View view) {
@@ -69,11 +103,13 @@ public class Window {
         // Create UIWindow and transparent internal FrameLayout used to layout
         // the content views.
         iWindow = new UIWindow();
+        iScrollView = new UIScrollView();
+        iWindow.addSubview(iScrollView);
         internalView = new FrameLayout(activity);
         internalView.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT,
                 LayoutParams.FILL_PARENT));
         internalView.setBackgroundColor(0x80000000);
-        iWindow.addSubview(internalView.xmlvmGetViewHandler().getMetricsView());
+        iScrollView.addSubview(internalView.xmlvmGetViewHandler().getMetricsView());
 
         // Create DecorView used as the window for all content views
         int gravity = ((FrameLayout.LayoutParams) view.getLayoutParams()).gravity;
@@ -96,6 +132,7 @@ public class Window {
         decorView.addView(contentParent);
 
         adjustFrameSize();
+        setEditTextDelegates(view);
         xmlvmSetHidden(false);
     }
 
@@ -161,6 +198,7 @@ public class Window {
         if (iWindow != null) {
             xmlvmSetHidden(true);
             iWindow = null;
+            iScrollView = null;
             internalView.removeAllViews();
             internalView = null;
             decorView.removeAllViews();
@@ -181,6 +219,9 @@ public class Window {
         iWindow.setTransform(null);
         CGRect rect = getCGRect();
         iWindow.setFrame(rect);
+        rect.origin.x = 0;
+        rect.origin.y = 0;
+        iScrollView.setFrame(rect);
         if (activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
             CGAffineTransform rotation = CGAffineTransform
                     .makeRotation((float) ((Math.PI / 180) * 90));
@@ -191,6 +232,20 @@ public class Window {
         }
 
         layoutContentView(internalView);
+    }
+
+    private void setEditTextDelegates(View view) {
+        if (view instanceof EditText) {
+            EditText editText = (EditText) view;
+            editText.xmlvmSetKeyboardDelegate(iTextFieldDelegate);
+        }
+        if (view instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) view;
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View child = viewGroup.getChildAt(i);
+                setEditTextDelegates(child);
+            }
+        }
     }
 
     private void layoutContentView(View view) {
