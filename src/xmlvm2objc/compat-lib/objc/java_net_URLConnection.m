@@ -21,6 +21,7 @@
 #import "java_net_URLConnection.h"
 #import "java_io_ByteArrayInputStream.h"
 #import "java_io_ByteArrayOutputStream.h"
+#import "java_io_IOException.h"
 
 
 @interface HTTPRequestNoRedirect : NSThread {
@@ -108,9 +109,10 @@
 	return inRedirectResponse ? nil : inRequest;
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)resp
 {
 	[receivedData setLength:0];
+	*(self->response) = [resp retain];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -160,7 +162,7 @@
 	//[self->url release];
 	[self->request release];
 	[self->body release];
-	//[self->response release];
+	[self->response release];
 	[self->error release];
 	//[self->data release];
 	[super dealloc];
@@ -191,6 +193,12 @@
 - (java_io_InputStream*) getInputStream__
 {
 	[self xmlvmDoRequest];
+	int statusCode = [((NSHTTPURLResponse *)response) statusCode];
+	if (statusCode >= 400) {
+		java_io_IOException* ex = [[java_io_IOException alloc] init];
+		[ex __init_java_io_IOException__];
+		@throw ex;
+	}
 	if (data == nil) {
 		return JAVA_NULL;
 	}
