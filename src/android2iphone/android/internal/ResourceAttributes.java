@@ -79,21 +79,24 @@ public class ResourceAttributes implements AttributeSet {
 
     @Override
     public String getAttributeValue(String namespace, String attribute) {
-        StringBuffer keyName = new StringBuffer();
-
-        if (namespace == null) {
-            keyName.append(androidNsPrefix);
+        String result = null;
+        if (namespace == null || namespace.length() == 0) {
+            result = attributeMap.get(androidNsPrefix + attribute);
+            if (result == null) {
+                result = attributeMap.get(attribute);
+            }
         } else if (namespace.length() > 0) {
+            StringBuffer keyName = new StringBuffer();
             keyName.append(namespace);
 
             if (!namespace.endsWith(":")) {
                 keyName.append(":");
             }
+            
+            keyName.append(attribute);
+            result = attributeMap.get(keyName);
         }
-
-        keyName.append(attribute);
-
-        return attributeMap.get(keyName.toString());
+        return result;
     }
 
     @Override
