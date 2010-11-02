@@ -48,6 +48,7 @@ public class Intent {
     private String             action;
     private Uri                uri;
     private Bundle             extras;
+    private ComponentName      componentName;
 
     public Intent() {
         Assert.NOT_IMPLEMENTED();
@@ -58,7 +59,18 @@ public class Intent {
     }
 
     public Intent(Context context, Class<?> clazz) {
-        Assert.NOT_IMPLEMENTED();
+        String className = clazz.getName();
+        int lastDot = className.lastIndexOf('.');
+
+        String pkgName = null;
+        if (lastDot > -1) {
+            pkgName = className.substring(0, lastDot);
+        } else {
+            pkgName = "";
+        }
+
+        componentName = new ComponentName(pkgName, className
+                .substring(className.lastIndexOf('.') + 1));
     }
 
     public String getAction() {
@@ -113,6 +125,10 @@ public class Intent {
     public static Intent createChooser(Intent target, CharSequence title) {
         Assert.NOT_IMPLEMENTED();
         return null;
+    }
+
+    public ComponentName getComponentName() {
+        return componentName;
     }
 
     public Intent putExtra(String name, String value) {

@@ -206,24 +206,43 @@ public abstract class Context {
     }
 
     public void startActivityForResult(Intent intent, int requestCode) {
-        String action = intent.getAction();
-        String activityName = AndroidManifest.getActivityClassName(action);
-        if (activityName == null)
-            activityName = checkForBuiltinActivity(action);
-        Activity newActivity = getActivityClass(activityName);
+        Activity newActivity = null;
+        ComponentName componentName = intent.getComponentName();
+        String action = null;
+        if (componentName != null) {
+            String className = componentName.getPackageName();
+            if (className.length() > 0) {
+                className += ".";
+            }
+            className += componentName.getClassName();
+            newActivity = getActivityClass(className);
+            action = AndroidManifest.getActionForClass(className);
+        } else {
+            action = intent.getAction();
+            if (action != null) {
+                String activityName = AndroidManifest.getActivityClassName(action);
+                if (activityName == null) {
+                    activityName = checkForBuiltinActivity(action);
+                }
+                newActivity = getActivityClass(activityName);
+
+                int i = activityName.lastIndexOf('.');
+                String pkg = null;
+                String cls = activityName;
+                if (i != -1) {
+                    pkg = activityName.substring(0, i);
+                    cls = activityName.substring(i + 1);
+                }
+
+                componentName = new ComponentName(pkg, cls);
+            }
+        }
 
         newActivity.xmlvmSetRequestCode(requestCode);
         newActivity.xmlvmSetIntent(intent);
-
-        int i = activityName.lastIndexOf('.');
-        String pkg = null;
-        String cls = activityName;
-        if (i != -1) {
-            pkg = activityName.substring(0, i);
-            cls = activityName.substring(i + 1);
-        }
-        newActivity.xmlvmSetComponentName(new ComponentName(pkg, cls));
-        newActivity.xmlvmSetRequestedOrientation(AndroidManifest.getActivityScreenOrientation(action));
+        newActivity.xmlvmSetComponentName(componentName);
+        newActivity.xmlvmSetRequestedOrientation(AndroidManifest
+                .getActivityScreenOrientation(action));
 
         if (this instanceof Activity)
             newActivity.xmlvmSetParent((Activity) this);

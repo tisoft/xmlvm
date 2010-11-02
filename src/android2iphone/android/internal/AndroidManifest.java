@@ -112,6 +112,7 @@ public class AndroidManifest {
     String                               appPackage;
     int                                  appTheme   = R.style.Theme;
     private Map<String, Activity>        activities = new HashMap<String, Activity>();
+    private Map<String, String>          classes    = new HashMap<String, String>();
 
     public AndroidManifest() {
         String filePath = NSBundle.mainBundle().pathForResource("AndroidManifest", "xml");
@@ -126,6 +127,7 @@ public class AndroidManifest {
 
     void addActivity(String action, Activity activity) {
         activities.put(action, activity);
+        classes.put(activity.className, action);
     }
 
     public static String getActivityClassName(String action) {
@@ -133,6 +135,10 @@ public class AndroidManifest {
         if (act == null)
             return null;
         return act.className;
+    }
+
+    public static String getActionForClass(String className) {
+        return manifest.classes.get(className);
     }
 
     public static int getActivityScreenOrientation(String action) {
