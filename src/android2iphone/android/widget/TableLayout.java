@@ -19,8 +19,6 @@ package android.widget;
 //import com.android.internal.R;
 
 import android.content.Context;
-import android.internal.Assert;
-//import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.SparseBooleanArray;
 import android.view.View;
@@ -29,150 +27,156 @@ import android.view.ViewGroup;
 //import java.util.regex.Pattern;
 
 /**
- * <p>A layout that arranges its children into rows and columns.
- * A TableLayout consists of a number of {@link android.widget.TableRow} objects,
- * each defining a row (actually, you can have other children, which will be
+ * <p>
+ * A layout that arranges its children into rows and columns. A TableLayout
+ * consists of a number of {@link android.widget.TableRow} objects, each
+ * defining a row (actually, you can have other children, which will be
  * explained below). TableLayout containers do not display border lines for
  * their rows, columns, or cells. Each row has zero or more cells; each cell can
  * hold one {@link android.view.View View} object. The table has as many columns
  * as the row with the most cells. A table can leave cells empty. Cells can span
- * columns, as they can in HTML.</p>
- *
- * <p>The width of a column is defined by the row with the widest cell in that
+ * columns, as they can in HTML.
+ * </p>
+ * 
+ * <p>
+ * The width of a column is defined by the row with the widest cell in that
  * column. However, a TableLayout can specify certain columns as shrinkable or
- * stretchable by calling
- * {@link #setColumnShrinkable(int, boolean) setColumnShrinkable()}
- * or {@link #setColumnStretchable(int, boolean) setColumnStretchable()}. If
- * marked as shrinkable, the column width can be shrunk to fit the table into
- * its parent object. If marked as stretchable, it can expand in width to fit
- * any extra space. The total width of the table is defined by its parent
- * container. It is important to remember that a column can be both shrinkable
- * and stretchable. In such a situation, the column will change its size to
- * always use up the available space, but never more. Finally, you can hide a
- * column by calling
- * {@link #setColumnCollapsed(int,boolean) setColumnCollapsed()}.</p>
- *
- * <p>The children of a TableLayout cannot specify the <code>layout_width</code>
+ * stretchable by calling {@link #setColumnShrinkable(int, boolean)
+ * setColumnShrinkable()} or {@link #setColumnStretchable(int, boolean)
+ * setColumnStretchable()}. If marked as shrinkable, the column width can be
+ * shrunk to fit the table into its parent object. If marked as stretchable, it
+ * can expand in width to fit any extra space. The total width of the table is
+ * defined by its parent container. It is important to remember that a column
+ * can be both shrinkable and stretchable. In such a situation, the column will
+ * change its size to always use up the available space, but never more.
+ * Finally, you can hide a column by calling
+ * {@link #setColumnCollapsed(int,boolean) setColumnCollapsed()}.
+ * </p>
+ * 
+ * <p>
+ * The children of a TableLayout cannot specify the <code>layout_width</code>
  * attribute. Width is always <code>FILL_PARENT</code>. However, the
  * <code>layout_height</code> attribute can be defined by a child; default value
  * is {@link android.widget.TableLayout.LayoutParams#WRAP_CONTENT}. If the child
  * is a {@link android.widget.TableRow}, then the height is always
- * {@link android.widget.TableLayout.LayoutParams#WRAP_CONTENT}.</p>
- *
- * <p> Cells must be added to a row in increasing column order, both in code and
+ * {@link android.widget.TableLayout.LayoutParams#WRAP_CONTENT}.
+ * </p>
+ * 
+ * <p>
+ * Cells must be added to a row in increasing column order, both in code and
  * XML. Column numbers are zero-based. If you don't specify a column number for
  * a child cell, it will autoincrement to the next available column. If you skip
  * a column number, it will be considered an empty cell in that row. See the
- * TableLayout examples in ApiDemos for examples of creating tables in XML.</p>
- *
- * <p>Although the typical child of a TableLayout is a TableRow, you can
- * actually use any View subclass as a direct child of TableLayout. The View
- * will be displayed as a single row that spans all the table columns.</p>
+ * TableLayout examples in ApiDemos for examples of creating tables in XML.
+ * </p>
+ * 
+ * <p>
+ * Although the typical child of a TableLayout is a TableRow, you can actually
+ * use any View subclass as a direct child of TableLayout. The View will be
+ * displayed as a single row that spans all the table columns.
+ * </p>
  */
 public class TableLayout extends LinearLayout {
-    private int[] mMaxWidths;
+    private int[]              mMaxWidths;
     private SparseBooleanArray mStretchableColumns;
     private SparseBooleanArray mShrinkableColumns;
     private SparseBooleanArray mCollapsedColumns;
 
-    private boolean mShrinkAllColumns;
-    private boolean mStretchAllColumns;
+    private boolean            mShrinkAllColumns;
+    private boolean            mStretchAllColumns;
 
-//    private TableLayout.PassThroughHierarchyChangeListener mPassThroughListener;
+    // private TableLayout.PassThroughHierarchyChangeListener
+    // mPassThroughListener;
 
-    private boolean mInitialized;
+    private boolean            mInitialized;
 
     /**
-     * <p>Creates a new TableLayout for the given context.</p>
-     *
-     * @param context the application environment
+     * <p>
+     * Creates a new TableLayout for the given context.
+     * </p>
+     * 
+     * @param context
+     *            the application environment
      */
     public TableLayout(Context context) {
         super(context);
-        initTableLayout();
+        initTableLayout(context, null);
     }
 
     /**
-     * <p>Creates a new TableLayout for the given context and with the
-     * specified set attributes.</p>
-     *
-     * @param context the application environment
-     * @param attrs a collection of attributes
+     * <p>
+     * Creates a new TableLayout for the given context and with the specified
+     * set attributes.
+     * </p>
+     * 
+     * @param context
+     *            the application environment
+     * @param attrs
+     *            a collection of attributes
      */
     public TableLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        Assert.NOT_IMPLEMENTED();
-//        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TableLayout);
-//
-//        String stretchedColumns = a.getString(R.styleable.TableLayout_stretchColumns);
-//        if (stretchedColumns != null) {
-//            if (stretchedColumns.charAt(0) == '*') {
-//                mStretchAllColumns = true;
-//            } else {
-//                mStretchableColumns = parseColumns(stretchedColumns);
-//            }
-//        }
-//
-//        String shrinkedColumns = a.getString(R.styleable.TableLayout_shrinkColumns);
-//        if (shrinkedColumns != null) {
-//            if (shrinkedColumns.charAt(0) == '*') {
-//                mShrinkAllColumns = true;
-//            } else {
-//                mShrinkableColumns = parseColumns(shrinkedColumns);
-//            }
-//        }
-//
-//        String collapsedColumns = a.getString(R.styleable.TableLayout_collapseColumns);
-//        if (collapsedColumns != null) {
-//            mCollapsedColumns = parseColumns(collapsedColumns);
-//        }
-//
-//        a.recycle();
-//        initTableLayout();
+        parseTableLayoutAttributes(context, attrs);
     }
 
-//    /**
-//     * <p>Parses a sequence of columns ids defined in a CharSequence with the
-//     * following pattern (regex): \d+(\s*,\s*\d+)*</p>
-//     *
-//     * <p>Examples: "1" or "13, 7, 6" or "".</p>
-//     *
-//     * <p>The result of the parsing is stored in a sparse boolean array. The
-//     * parsed column ids are used as the keys of the sparse array. The values
-//     * are always true.</p>
-//     *
-//     * @param sequence a sequence of column ids, can be empty but not null
-//     * @return a sparse array of boolean mapping column indexes to the columns
-//     *         collapse state
-//     */
-//    private static SparseBooleanArray parseColumns(String sequence) {
-//        SparseBooleanArray columns = new SparseBooleanArray();
-//        Pattern pattern = Pattern.compile("\\s*,\\s*");
-//        String[] columnDefs = pattern.split(sequence);
-//
-//        for (String columnIdentifier : columnDefs) {
-//            try {
-//                int columnIndex = Integer.parseInt(columnIdentifier);
-//                // only valid, i.e. positive, columns indexes are handled
-//                if (columnIndex >= 0) {
-//                    // putting true in this sparse array indicates that the
-//                    // column index was defined in the XML file
-//                    columns.put(columnIndex, true);
-//                }
-//            } catch (NumberFormatException e) {
-//                // we just ignore columns that don't exist
-//            }
-//        }
-//
-//        return columns;
-//    }
+    /**
+     * <p>
+     * Parses a sequence of columns ids defined in a CharSequence with the
+     * following pattern (regex): \d+(\s*,\s*\d+)*
+     * </p>
+     * 
+     * <p>
+     * Examples: "1" or "13, 7, 6" or "".
+     * </p>
+     * 
+     * <p>
+     * The result of the parsing is stored in a sparse boolean array. The parsed
+     * column ids are used as the keys of the sparse array. The values are
+     * always true.
+     * </p>
+     * 
+     * @param sequence
+     *            a sequence of column ids, can be empty but not null
+     * @return a sparse array of boolean mapping column indexes to the columns
+     *         collapse state
+     */
+    private static SparseBooleanArray parseColumns(String sequence) {
+        SparseBooleanArray columns = new SparseBooleanArray();
+
+        // Pattern pattern = Pattern.compile("\\s*,\\s*");
+        // String[] columnDefs = pattern.split(sequence);
+
+        String str = sequence.replaceAll(" ", "");
+        String[] columnDefs = str.split(",");
+
+        for (String columnIdentifier : columnDefs) {
+            try {
+                int columnIndex = Integer.parseInt(columnIdentifier);
+                // only valid, i.e. positive, columns indexes are handled
+                if (columnIndex >= 0) {
+                    // putting true in this sparse array indicates that the
+                    // column index was defined in the XML file
+                    columns.put(columnIndex, true);
+                }
+            } catch (NumberFormatException e) {
+                // we just ignore columns that don't exist
+            }
+        }
+
+        return columns;
+    }
 
     /**
-     * <p>Performs initialization common to prorgrammatic use and XML use of
-     * this widget.</p>
+     * <p>
+     * Performs initialization common to prorgrammatic use and XML use of this
+     * widget.
+     * </p>
      */
-    private void initTableLayout() {
+    private void initTableLayout(Context context, AttributeSet attrs) {
+        if (attrs != null) {
+            parseTableLayoutAttributes(context, attrs);
+        }
+
         if (mCollapsedColumns == null) {
             mCollapsedColumns = new SparseBooleanArray();
         }
@@ -183,23 +187,23 @@ public class TableLayout extends LinearLayout {
             mShrinkableColumns = new SparseBooleanArray();
         }
 
-//        mPassThroughListener = new PassThroughHierarchyChangeListener();
+        // mPassThroughListener = new PassThroughHierarchyChangeListener();
         // make sure to call the parent class method to avoid potential
         // infinite loops
-//        super.setOnHierarchyChangeListener(mPassThroughListener);
+        // super.setOnHierarchyChangeListener(mPassThroughListener);
 
         mInitialized = true;
     }
 
-//    /**
-//     * {@inheritDoc}
-//     */
-//    @Override
-//    public void setOnHierarchyChangeListener(
-//            OnHierarchyChangeListener listener) {
-//        // the user listener is delegated to our pass-through listener
-//        mPassThroughListener.mOnHierarchyChangeListener = listener;
-//    }
+    // /**
+    // * {@inheritDoc}
+    // */
+    // @Override
+    // public void setOnHierarchyChangeListener(
+    // OnHierarchyChangeListener listener) {
+    // // the user listener is delegated to our pass-through listener
+    // mPassThroughListener.mOnHierarchyChangeListener = listener;
+    // }
 
     private void requestRowsLayout() {
         if (mInitialized) {
@@ -218,7 +222,7 @@ public class TableLayout extends LinearLayout {
         if (mInitialized) {
             int count = getChildCount();
             for (int i = 0; i < count; i++) {
-//                getChildAt(i).forceLayout();
+                // getChildAt(i).forceLayout();
                 getChildAt(i).requestLayout();
             }
         }
@@ -227,8 +231,10 @@ public class TableLayout extends LinearLayout {
     }
 
     /**
-     * <p>Indicates whether all columns are shrinkable or not.</p>
-     *
+     * <p>
+     * Indicates whether all columns are shrinkable or not.
+     * </p>
+     * 
      * @return true if all columns are shrinkable, false otherwise
      */
     public boolean isShrinkAllColumns() {
@@ -236,10 +242,13 @@ public class TableLayout extends LinearLayout {
     }
 
     /**
-     * <p>Convenience method to mark all columns as shrinkable.</p>
-     *
-     * @param shrinkAllColumns true to mark all columns shrinkable
-     *
+     * <p>
+     * Convenience method to mark all columns as shrinkable.
+     * </p>
+     * 
+     * @param shrinkAllColumns
+     *            true to mark all columns shrinkable
+     * 
      * @attr ref android.R.styleable#TableLayout_shrinkColumns
      */
     public void setShrinkAllColumns(boolean shrinkAllColumns) {
@@ -247,8 +256,10 @@ public class TableLayout extends LinearLayout {
     }
 
     /**
-     * <p>Indicates whether all columns are stretchable or not.</p>
-     *
+     * <p>
+     * Indicates whether all columns are stretchable or not.
+     * </p>
+     * 
      * @return true if all columns are stretchable, false otherwise
      */
     public boolean isStretchAllColumns() {
@@ -256,10 +267,13 @@ public class TableLayout extends LinearLayout {
     }
 
     /**
-     * <p>Convenience method to mark all columns as stretchable.</p>
-     *
-     * @param stretchAllColumns true to mark all columns stretchable
-     *
+     * <p>
+     * Convenience method to mark all columns as stretchable.
+     * </p>
+     * 
+     * @param stretchAllColumns
+     *            true to mark all columns stretchable
+     * 
      * @attr ref android.R.styleable#TableLayout_stretchColumns
      */
     public void setStretchAllColumns(boolean stretchAllColumns) {
@@ -267,16 +281,22 @@ public class TableLayout extends LinearLayout {
     }
 
     /**
-     * <p>Collapses or restores a given column. When collapsed, a column
-     * does not appear on screen and the extra space is reclaimed by the
-     * other columns. A column is collapsed/restored only when it belongs to
-     * a {@link android.widget.TableRow}.</p>
-     *
-     * <p>Calling this method requests a layout operation.</p>
-     *
-     * @param columnIndex the index of the column
-     * @param isCollapsed true if the column must be collapsed, false otherwise
-     *
+     * <p>
+     * Collapses or restores a given column. When collapsed, a column does not
+     * appear on screen and the extra space is reclaimed by the other columns. A
+     * column is collapsed/restored only when it belongs to a
+     * {@link android.widget.TableRow}.
+     * </p>
+     * 
+     * <p>
+     * Calling this method requests a layout operation.
+     * </p>
+     * 
+     * @param columnIndex
+     *            the index of the column
+     * @param isCollapsed
+     *            true if the column must be collapsed, false otherwise
+     * 
      * @attr ref android.R.styleable#TableLayout_collapseColumns
      */
     public void setColumnCollapsed(int columnIndex, boolean isCollapsed) {
@@ -295,9 +315,12 @@ public class TableLayout extends LinearLayout {
     }
 
     /**
-     * <p>Returns the collapsed state of the specified column.</p>
-     *
-     * @param columnIndex the index of the column
+     * <p>
+     * Returns the collapsed state of the specified column.
+     * </p>
+     * 
+     * @param columnIndex
+     *            the index of the column
      * @return true if the column is collapsed, false otherwise
      */
     public boolean isColumnCollapsed(int columnIndex) {
@@ -305,15 +328,21 @@ public class TableLayout extends LinearLayout {
     }
 
     /**
-     * <p>Makes the given column stretchable or not. When stretchable, a column
-     * takes up as much as available space as possible in its row.</p>
-     *
-     * <p>Calling this method requests a layout operation.</p>
-     *
-     * @param columnIndex the index of the column
-     * @param isStretchable true if the column must be stretchable,
-     *                      false otherwise. Default is false.
-     *
+     * <p>
+     * Makes the given column stretchable or not. When stretchable, a column
+     * takes up as much as available space as possible in its row.
+     * </p>
+     * 
+     * <p>
+     * Calling this method requests a layout operation.
+     * </p>
+     * 
+     * @param columnIndex
+     *            the index of the column
+     * @param isStretchable
+     *            true if the column must be stretchable, false otherwise.
+     *            Default is false.
+     * 
      * @attr ref android.R.styleable#TableLayout_stretchColumns
      */
     public void setColumnStretchable(int columnIndex, boolean isStretchable) {
@@ -322,9 +351,12 @@ public class TableLayout extends LinearLayout {
     }
 
     /**
-     * <p>Returns whether the specified column is stretchable or not.</p>
-     *
-     * @param columnIndex the index of the column
+     * <p>
+     * Returns whether the specified column is stretchable or not.
+     * </p>
+     * 
+     * @param columnIndex
+     *            the index of the column
      * @return true if the column is stretchable, false otherwise
      */
     public boolean isColumnStretchable(int columnIndex) {
@@ -332,15 +364,21 @@ public class TableLayout extends LinearLayout {
     }
 
     /**
-     * <p>Makes the given column shrinkable or not. When a row is too wide, the
-     * table can reclaim extra space from shrinkable columns.</p>
-     *
-     * <p>Calling this method requests a layout operation.</p>
-     *
-     * @param columnIndex the index of the column
-     * @param isShrinkable true if the column must be shrinkable,
-     *                     false otherwise. Default is false.
-     *
+     * <p>
+     * Makes the given column shrinkable or not. When a row is too wide, the
+     * table can reclaim extra space from shrinkable columns.
+     * </p>
+     * 
+     * <p>
+     * Calling this method requests a layout operation.
+     * </p>
+     * 
+     * @param columnIndex
+     *            the index of the column
+     * @param isShrinkable
+     *            true if the column must be shrinkable, false otherwise.
+     *            Default is false.
+     * 
      * @attr ref android.R.styleable#TableLayout_shrinkColumns
      */
     public void setColumnShrinkable(int columnIndex, boolean isShrinkable) {
@@ -349,24 +387,32 @@ public class TableLayout extends LinearLayout {
     }
 
     /**
-     * <p>Returns whether the specified column is shrinkable or not.</p>
-     *
-     * @param columnIndex the index of the column
-     * @return true if the column is shrinkable, false otherwise. Default is false.
+     * <p>
+     * Returns whether the specified column is shrinkable or not.
+     * </p>
+     * 
+     * @param columnIndex
+     *            the index of the column
+     * @return true if the column is shrinkable, false otherwise. Default is
+     *         false.
      */
     public boolean isColumnShrinkable(int columnIndex) {
         return mShrinkAllColumns || mShrinkableColumns.get(columnIndex);
     }
 
     /**
-     * <p>Applies the columns collapse status to a new row added to this
-     * table. This method is invoked by PassThroughHierarchyChangeListener
-     * upon child insertion.</p>
-     *
-     * <p>This method only applies to {@link android.widget.TableRow}
-     * instances.</p>
-     *
-     * @param child the newly added child
+     * <p>
+     * Applies the columns collapse status to a new row added to this table.
+     * This method is invoked by PassThroughHierarchyChangeListener upon child
+     * insertion.
+     * </p>
+     * 
+     * <p>
+     * This method only applies to {@link android.widget.TableRow} instances.
+     * </p>
+     * 
+     * @param child
+     *            the newly added child
      */
     private void trackCollapsedColumns(View child) {
         if (child instanceof TableRow) {
@@ -413,14 +459,15 @@ public class TableLayout extends LinearLayout {
         requestRowsLayout();
     }
 
-//    /**
-//     * {@inheritDoc}
-//     */
-//    @Override
-//    public void addView(View child, int index, ViewGroup.LayoutParams params) {
-//        super.addView(child, index, params);
-//        requestRowsLayout();
-//    }
+    // /**
+    // * {@inheritDoc}
+    // */
+    // @Override
+    // public void addView(View child, int index, ViewGroup.LayoutParams params)
+    // {
+    // super.addView(child, index, params);
+    // requestRowsLayout();
+    // }
 
     /**
      * {@inheritDoc}
@@ -444,8 +491,7 @@ public class TableLayout extends LinearLayout {
      * {@inheritDoc}
      */
     @Override
-    void measureChildBeforeLayout(View child, int childIndex,
-            int widthMeasureSpec, int totalWidth,
+    void measureChildBeforeLayout(View child, int childIndex, int widthMeasureSpec, int totalWidth,
             int heightMeasureSpec, int totalHeight) {
         // when the measured child is a table row, we force the width of its
         // children with the widths computed in findLargestCells()
@@ -453,8 +499,8 @@ public class TableLayout extends LinearLayout {
             ((TableRow) child).setColumnsWidthConstraints(mMaxWidths);
         }
 
-        super.measureChildBeforeLayout(child, childIndex,
-                widthMeasureSpec, totalWidth, heightMeasureSpec, totalHeight);
+        super.measureChildBeforeLayout(child, childIndex, widthMeasureSpec, totalWidth,
+                heightMeasureSpec, totalHeight);
     }
 
     /**
@@ -469,10 +515,13 @@ public class TableLayout extends LinearLayout {
     }
 
     /**
-     * <p>Finds the largest cell in each column. For each column, the width of
-     * the largest cell is applied to all the other cells.</p>
-     *
-     * @param widthMeasureSpec the measure constraint imposed by our parent
+     * <p>
+     * Finds the largest cell in each column. For each column, the width of the
+     * largest cell is applied to all the other cells.
+     * </p>
+     * 
+     * @param widthMeasureSpec
+     *            the measure constraint imposed by our parent
      */
     private void findLargestCells(int widthMeasureSpec) {
         boolean firstRow = true;
@@ -514,10 +563,9 @@ public class TableLayout extends LinearLayout {
                     if (difference > 0) {
                         final int[] oldMaxWidths = mMaxWidths;
                         mMaxWidths = new int[newLength];
-                        System.arraycopy(oldMaxWidths, 0, mMaxWidths, 0,
-                                oldMaxWidths.length);
-                        System.arraycopy(widths, oldMaxWidths.length,
-                                mMaxWidths, oldMaxWidths.length, difference);
+                        System.arraycopy(oldMaxWidths, 0, mMaxWidths, 0, oldMaxWidths.length);
+                        System.arraycopy(widths, oldMaxWidths.length, mMaxWidths,
+                                oldMaxWidths.length, difference);
                     }
 
                     // the row is narrower or of the same width as the previous
@@ -535,13 +583,16 @@ public class TableLayout extends LinearLayout {
     }
 
     /**
-     * <p>Shrinks the columns if their total width is greater than the
-     * width allocated by widthMeasureSpec. When the total width is less
-     * than the allocated width, this method attempts to stretch columns
-     * to fill the remaining space.</p>
-     *
-     * @param widthMeasureSpec the width measure specification as indicated
-     *                         by this widget's parent
+     * <p>
+     * Shrinks the columns if their total width is greater than the width
+     * allocated by widthMeasureSpec. When the total width is less than the
+     * allocated width, this method attempts to stretch columns to fill the
+     * remaining space.
+     * </p>
+     * 
+     * @param widthMeasureSpec
+     *            the width measure specification as indicated by this widget's
+     *            parent
      */
     private void shrinkAndStretchColumns(int widthMeasureSpec) {
         // when we have no row, mMaxWidths is not initialized and the loop
@@ -569,8 +620,8 @@ public class TableLayout extends LinearLayout {
         }
     }
 
-    private void mutateColumnsWidth(SparseBooleanArray columns,
-            boolean allColumns, int size, int totalWidth) {
+    private void mutateColumnsWidth(SparseBooleanArray columns, boolean allColumns, int size,
+            int totalWidth) {
         int skipped = 0;
         final int[] maxWidths = mMaxWidths;
         final int length = maxWidths.length;
@@ -624,8 +675,8 @@ public class TableLayout extends LinearLayout {
 
     /**
      * Returns a set of layout parameters with a width of
-     * {@link android.view.ViewGroup.LayoutParams#FILL_PARENT},
-     * and a height of {@link android.view.ViewGroup.LayoutParams#WRAP_CONTENT}.
+     * {@link android.view.ViewGroup.LayoutParams#FILL_PARENT}, and a height of
+     * {@link android.view.ViewGroup.LayoutParams#WRAP_CONTENT}.
      */
     @Override
     protected LinearLayout.LayoutParams generateDefaultLayoutParams() {
@@ -649,11 +700,13 @@ public class TableLayout extends LinearLayout {
     }
 
     /**
-     * <p>This set of layout parameters enforces the width of each child to be
+     * <p>
+     * This set of layout parameters enforces the width of each child to be
      * {@link #FILL_PARENT} and the height of each child to be
-     * {@link #WRAP_CONTENT}, but only if the height is not specified.</p>
+     * {@link #WRAP_CONTENT}, but only if the height is not specified.
+     * </p>
      */
-    @SuppressWarnings({"UnusedDeclaration"})
+    @SuppressWarnings( { "UnusedDeclaration" })
     public static class LayoutParams extends LinearLayout.LayoutParams {
         /**
          * {@inheritDoc}
@@ -677,9 +730,11 @@ public class TableLayout extends LinearLayout {
         }
 
         /**
-         * <p>Sets the child width to
-         * {@link android.view.ViewGroup.LayoutParams} and the child height to
-         * {@link android.view.ViewGroup.LayoutParams#WRAP_CONTENT}.</p>
+         * <p>
+         * Sets the child width to {@link android.view.ViewGroup.LayoutParams}
+         * and the child height to
+         * {@link android.view.ViewGroup.LayoutParams#WRAP_CONTENT}.
+         * </p>
          */
         public LayoutParams() {
             super(FILL_PARENT, WRAP_CONTENT);
@@ -699,56 +754,84 @@ public class TableLayout extends LinearLayout {
             super(source);
         }
 
-//        /**
-//         * <p>Fixes the row's width to
-//         * {@link android.view.ViewGroup.LayoutParams#FILL_PARENT}; the row's
-//         * height is fixed to
-//         * {@link android.view.ViewGroup.LayoutParams#WRAP_CONTENT} if no layout
-//         * height is specified.</p>
-//         *
-//         * @param a the styled attributes set
-//         * @param widthAttr the width attribute to fetch
-//         * @param heightAttr the height attribute to fetch
-//         */
-//        @Override
-//        protected void setBaseAttributes(TypedArray a,
-//                int widthAttr, int heightAttr) {
-//            this.width = FILL_PARENT;
-//            if (a.hasValue(heightAttr)) {
-//                this.height = a.getLayoutDimension(heightAttr, "layout_height");
-//            } else {
-//                this.height = WRAP_CONTENT;
-//            }
-//        }
-//    }
-//
-//    /**
-//     * <p>A pass-through listener acts upon the events and dispatches them
-//     * to another listener. This allows the table layout to set its own internal
-//     * hierarchy change listener without preventing the user to setup his.</p>
-//     */
-//    private class PassThroughHierarchyChangeListener implements
-//            OnHierarchyChangeListener {
-//        private OnHierarchyChangeListener mOnHierarchyChangeListener;
-//
-//        /**
-//         * {@inheritDoc}
-//         */
-//        public void onChildViewAdded(View parent, View child) {
-//            trackCollapsedColumns(child);
-//
-//            if (mOnHierarchyChangeListener != null) {
-//                mOnHierarchyChangeListener.onChildViewAdded(parent, child);
-//            }
-//        }
-//
-//        /**
-//         * {@inheritDoc}
-//         */
-//        public void onChildViewRemoved(View parent, View child) {
-//            if (mOnHierarchyChangeListener != null) {
-//                mOnHierarchyChangeListener.onChildViewRemoved(parent, child);
-//            }
-//        }
+        // /**
+        // * <p>Fixes the row's width to
+        // * {@link android.view.ViewGroup.LayoutParams#FILL_PARENT}; the row's
+        // * height is fixed to
+        // * {@link android.view.ViewGroup.LayoutParams#WRAP_CONTENT} if no
+        // layout
+        // * height is specified.</p>
+        // *
+        // * @param a the styled attributes set
+        // * @param widthAttr the width attribute to fetch
+        // * @param heightAttr the height attribute to fetch
+        // */
+        // @Override
+        // protected void setBaseAttributes(TypedArray a,
+        // int widthAttr, int heightAttr) {
+        // this.width = FILL_PARENT;
+        // if (a.hasValue(heightAttr)) {
+        // this.height = a.getLayoutDimension(heightAttr, "layout_height");
+        // } else {
+        // this.height = WRAP_CONTENT;
+        // }
+        // }
+        // }
+        //
+        // /**
+        // * <p>A pass-through listener acts upon the events and dispatches them
+        // * to another listener. This allows the table layout to set its own
+        // internal
+        // * hierarchy change listener without preventing the user to setup
+        // his.</p>
+        // */
+        // private class PassThroughHierarchyChangeListener implements
+        // OnHierarchyChangeListener {
+        // private OnHierarchyChangeListener mOnHierarchyChangeListener;
+        //
+        // /**
+        // * {@inheritDoc}
+        // */
+        // public void onChildViewAdded(View parent, View child) {
+        // trackCollapsedColumns(child);
+        //
+        // if (mOnHierarchyChangeListener != null) {
+        // mOnHierarchyChangeListener.onChildViewAdded(parent, child);
+        // }
+        // }
+        //
+        // /**
+        // * {@inheritDoc}
+        // */
+        // public void onChildViewRemoved(View parent, View child) {
+        // if (mOnHierarchyChangeListener != null) {
+        // mOnHierarchyChangeListener.onChildViewRemoved(parent, child);
+        // }
+        // }
+    }
+
+    private void parseTableLayoutAttributes(Context context, AttributeSet attrs) {
+        String stretchedColumns = attrs.getAttributeValue(null, "stretchColumns");
+        if (stretchedColumns != null) {
+            if (stretchedColumns.charAt(0) == '*') {
+                mStretchAllColumns = true;
+            } else {
+                mStretchableColumns = parseColumns(stretchedColumns);
+            }
+        }
+
+        String shrinkedColumns = attrs.getAttributeValue(null, "shrinkColumns");
+        if (shrinkedColumns != null) {
+            if (shrinkedColumns.charAt(0) == '*') {
+                mShrinkAllColumns = true;
+            } else {
+                mShrinkableColumns = parseColumns(shrinkedColumns);
+            }
+        }
+
+        String collapsedColumns = attrs.getAttributeValue(null, "collapseColumns");
+        if (collapsedColumns != null) {
+            mCollapsedColumns = parseColumns(collapsedColumns);
+        }
     }
 }
