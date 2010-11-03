@@ -1222,7 +1222,7 @@ public class LinearLayout extends ViewGroup {
      * {@link LayoutParams#WRAP_CONTENT}.
      */
     @Override
-    protected LayoutParams generateDefaultLayoutParams() {
+    protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
         if (mOrientation == HORIZONTAL) {
             return new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         } else if (mOrientation == VERTICAL) {
@@ -1232,7 +1232,7 @@ public class LinearLayout extends ViewGroup {
     }
 
     @Override
-    protected LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
+    protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
         return new LayoutParams(p);
     }
 

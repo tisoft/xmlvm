@@ -89,6 +89,7 @@ public class TableLayout extends LinearLayout {
     // mPassThroughListener;
 
     private boolean            mInitialized;
+    private boolean            layouting = false;
 
     /**
      * <p>
@@ -116,7 +117,7 @@ public class TableLayout extends LinearLayout {
      */
     public TableLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        parseTableLayoutAttributes(context, attrs);
+        initTableLayout(context, attrs);
     }
 
     /**
@@ -219,15 +220,20 @@ public class TableLayout extends LinearLayout {
      */
     @Override
     public void requestLayout() {
-        if (mInitialized) {
-            int count = getChildCount();
-            for (int i = 0; i < count; i++) {
-                // getChildAt(i).forceLayout();
-                getChildAt(i).requestLayout();
+        if (!getIgnoreRequestLayout() && !layouting) {
+            layouting = true;
+            // setForceLayout();
+            if (mInitialized) {
+                int count = getChildCount();
+                for (int i = 0; i < count; i++) {
+                    // getChildAt(i).forceLayout();
+                    getChildAt(i).requestLayout();
+                }
             }
-        }
 
-        super.requestLayout();
+            super.requestLayout();
+            layouting = false;
+        }
     }
 
     /**
@@ -439,6 +445,7 @@ public class TableLayout extends LinearLayout {
     public void addView(View child) {
         super.addView(child);
         requestRowsLayout();
+        trackCollapsedColumns(child);
     }
 
     /**
@@ -448,6 +455,7 @@ public class TableLayout extends LinearLayout {
     public void addView(View child, int index) {
         super.addView(child, index);
         requestRowsLayout();
+        trackCollapsedColumns(child);
     }
 
     /**
@@ -457,6 +465,7 @@ public class TableLayout extends LinearLayout {
     public void addView(View child, ViewGroup.LayoutParams params) {
         super.addView(child, params);
         requestRowsLayout();
+        trackCollapsedColumns(child);
     }
 
     // /**
@@ -679,8 +688,8 @@ public class TableLayout extends LinearLayout {
      * {@link android.view.ViewGroup.LayoutParams#WRAP_CONTENT}.
      */
     @Override
-    protected LinearLayout.LayoutParams generateDefaultLayoutParams() {
-        return new LayoutParams();
+    protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
+        return new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     }
 
     /**
@@ -695,7 +704,7 @@ public class TableLayout extends LinearLayout {
      * {@inheritDoc}
      */
     @Override
-    protected LinearLayout.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
+    protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
         return new LayoutParams(p);
     }
 
@@ -811,6 +820,8 @@ public class TableLayout extends LinearLayout {
     }
 
     private void parseTableLayoutAttributes(Context context, AttributeSet attrs) {
+        setIgnoreRequestLayout(true);
+
         String stretchedColumns = attrs.getAttributeValue(null, "stretchColumns");
         if (stretchedColumns != null) {
             if (stretchedColumns.charAt(0) == '*') {
@@ -833,5 +844,7 @@ public class TableLayout extends LinearLayout {
         if (collapsedColumns != null) {
             mCollapsedColumns = parseColumns(collapsedColumns);
         }
+
+        setIgnoreRequestLayout(false);
     }
 }
