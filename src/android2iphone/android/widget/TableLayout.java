@@ -445,6 +445,9 @@ public class TableLayout extends LinearLayout {
     public void addView(View child) {
         super.addView(child);
         requestRowsLayout();
+
+        // TODO: Following line should be removed once OnHierarchyChangeListener
+        // works and the OnHierarchyChangedListener above is uncommented.
         trackCollapsedColumns(child);
     }
 
@@ -454,7 +457,9 @@ public class TableLayout extends LinearLayout {
     @Override
     public void addView(View child, int index) {
         super.addView(child, index);
-        requestRowsLayout();
+
+        // TODO: Following line should be removed once OnHierarchyChangeListener
+        // works and the OnHierarchyChangedListener above is uncommented.
         trackCollapsedColumns(child);
     }
 
@@ -465,6 +470,9 @@ public class TableLayout extends LinearLayout {
     public void addView(View child, ViewGroup.LayoutParams params) {
         super.addView(child, params);
         requestRowsLayout();
+
+        // TODO: Following line should be removed once OnHierarchyChangeListener
+        // works and the OnHierarchyChangedListener above is uncommented.
         trackCollapsedColumns(child);
     }
 
