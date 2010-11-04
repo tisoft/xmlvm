@@ -23,11 +23,11 @@ package android.view;
 import java.lang.ref.WeakReference;
 import java.util.Set;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIImage;
 import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
@@ -39,17 +39,16 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
-import android.internal.ViewHandler;
 import android.internal.Assert;
 import android.internal.Dimension;
 import android.internal.IBinderImpl;
+import android.internal.ViewHandler;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.widget.AbsListView;
-import org.xmlvm.iphone.UIGraphics;
 
 /**
  * iPhone implementation of Android's View class.
@@ -117,6 +116,7 @@ public class View {
      */
     public static final int           DRAWING_CACHE_QUALITY_HIGH = 0x00100000;
 
+
     /**
      * Copyright (C) 2006 The Android Open Source Project
      * 
@@ -167,6 +167,7 @@ public class View {
          * to the specified size.
          */
         public static final int  AT_MOST     = 2 << MODE_SHIFT;
+
 
         /**
          * Creates a measure specification based on the supplied size and mode.
@@ -241,6 +242,7 @@ public class View {
         }
     }
 
+
     public static interface OnTouchListener {
 
         /**
@@ -258,10 +260,12 @@ public class View {
         public boolean onTouch(View v, MotionEvent event);
     }
 
+
     public static interface OnClickListener {
 
         public void onClick(View view);
     }
+
 
     public View(Context c) {
         initView(c, null);
@@ -971,5 +975,9 @@ public class View {
         // requestFocus.
 
         // viewHandler.getContentView().becomeFirstResponder();
+    }
+
+    protected OnClickListener getOnClickListener() {
+        return this.onClickListener;
     }
 }
