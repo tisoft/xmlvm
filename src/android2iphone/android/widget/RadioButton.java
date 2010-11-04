@@ -167,6 +167,9 @@ public class RadioButton extends CompoundButton {
     @Override
     public void setText(String text) {
         this.text = text;
+        
+        // TODO: Update UISegmentedControl
+        
         requestLayout();
     }
 
