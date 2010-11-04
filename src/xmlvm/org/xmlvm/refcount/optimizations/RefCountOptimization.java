@@ -43,6 +43,7 @@ public interface RefCountOptimization {
         public List<Element> functionInit = new ArrayList<Element>();
     }
 
+
     /**
      * This interface allows an implementor to make changes to nulling releases
      * and retains as it desires, based on all the processing that as already

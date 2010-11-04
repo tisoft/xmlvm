@@ -36,6 +36,7 @@ public class UILabel extends UIView {
     private UIColor shadowColor               = null;
     private boolean adjustsFontSizeToFitWidth = false;
 
+
     public UILabel() {
         this(new CGRect(0, 0, 0, 0));
     }

@@ -26,8 +26,8 @@ import java.awt.FontMetrics;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UISwitch;
 
 public class UISwitchRenderer extends UIViewRenderer<UISwitch> {
@@ -35,13 +35,14 @@ public class UISwitchRenderer extends UIViewRenderer<UISwitch> {
     private static final int INSET = 8;
     private Font             font  = new Font("Arial", Font.BOLD, 16);
 
+
     public UISwitchRenderer(UISwitch view) {
         super(view);
     }
 
     @Override
     public void paint() {
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         g.setFont(font);
         CGRect displayRect = view.getFrame();
         int x = (int) displayRect.origin.x;

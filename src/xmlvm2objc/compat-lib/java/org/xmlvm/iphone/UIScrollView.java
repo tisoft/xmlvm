@@ -33,6 +33,15 @@ public class UIScrollView extends UIView {
     private boolean              scrollsToTop                   = true;
     private UIScrollViewDelegate delegate                       = null;
 
+
+    public UIScrollView() {
+        super();
+    }
+
+    public UIScrollView(CGRect frame) {
+        super(frame);
+    }
+
     public void setContentOffset(CGPoint offset) {
         setContentOffset(offset, false);
     }

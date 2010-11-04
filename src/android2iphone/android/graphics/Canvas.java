@@ -29,6 +29,7 @@ import org.xmlvm.iphone.UIImage;
 
 import android.graphics.drawable.BitmapDrawable;
 import android.internal.Assert;
+import org.xmlvm.iphone.UIGraphics;
 
 //TODO all methods in this class should be synchronized in order to avoid race conditions when accessing lastCanvasUsed
 public class Canvas {
@@ -61,8 +62,8 @@ public class Canvas {
             return;
         float width = bitmap.getWidth();
         float height = bitmap.getHeight();
-        CGContext.UIGraphicsBeginImageContext(new CGSize(width, height));
-        context = CGContext.UICurrentContext();
+        UIGraphics.beginImageContext(new CGSize(width, height));
+        context = UIGraphics.getCurrentContext();
         UIImage image = ((BitmapDrawable) (bitmap.getDrawable())).xmlvmGetImage();
         context.storeState();
         context.scale(1, -1);
@@ -74,9 +75,9 @@ public class Canvas {
     private void deferredReleaseCGContext() {
         if (usesExternalCGContext)
             return;
-        UIImage image = CGContext.UIGraphicsGetImageFromCurrentImageContext();
+        UIImage image = UIGraphics.getImageFromCurrentImageContext();
         ((BitmapDrawable) bitmap.getDrawable()).xmlvmSetImage(image);
-        CGContext.UIGraphicsEndImageContext();
+        UIGraphics.endImageContext();
     }
 
     private void releaseCGContext() {

@@ -71,6 +71,7 @@ void __INIT_org_xmlvm_iphone_UIImage();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImage();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImage();
 JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithData___org_xmlvm_iphone_NSData(JAVA_OBJECT n1);
 // Vtable index: 14
 JAVA_OBJECT org_xmlvm_iphone_UIImage_stretchableImage___int_int(JAVA_OBJECT me, JAVA_INT n1, JAVA_INT n2);

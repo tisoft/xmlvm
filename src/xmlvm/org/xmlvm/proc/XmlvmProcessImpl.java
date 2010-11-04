@@ -40,6 +40,7 @@ enum XmlvmProcessId {
             "qooxdoo");
     String name;
 
+
     private XmlvmProcessId(String name) {
         this.name = name;
     }
@@ -49,6 +50,7 @@ enum XmlvmProcessId {
         return name;
     }
 }
+
 
 /**
  * Common implementation for all XMLVM Processes. Actual processes extend this
@@ -68,6 +70,7 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
     protected Arguments                    arguments;
 
     protected boolean                      isProcessed     = false;
+
 
     public XmlvmProcessImpl(Arguments arguments) {
         Log.debug("Instantiated: " + this.getClass().getName());

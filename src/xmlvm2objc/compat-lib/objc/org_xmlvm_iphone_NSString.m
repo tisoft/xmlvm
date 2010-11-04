@@ -103,5 +103,10 @@
 	return [[NSString alloc] initWithData:data encoding:encoding];
 }
 
++ (int) writeToFile___java_lang_String_java_lang_String_boolean_int:(java_lang_String*)string :(java_lang_String*)path :(int)atomically :(int)encoding
+{
+	return [string writeToFile:path atomically:atomically encoding:encoding error:nil];
+}
+
 @end
 

@@ -35,6 +35,11 @@
 	return [self fileExistsAtPath:path];
 }
 
+- (BOOL) createDirectoryAtPath___java_lang_String_boolean_java_util_Map:(java_lang_String*)path :(int)createIntermediates :(java_util_Map*) attributes
+{
+	return [self createDirectoryAtPath:XMLVM_VALUE(path) withIntermediateDirectories:createIntermediates attributes:XMLVM_VALUE(attributes) error:NULL];
+}
+
 - (java_util_List*) contentsOfDirectoryAtPath___java_lang_String_org_xmlvm_iphone_NSErrorHolder
          :(java_lang_String*) path
          :(org_xmlvm_iphone_NSErrorHolder*) error

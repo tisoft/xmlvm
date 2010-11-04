@@ -8,6 +8,7 @@ public class Application implements Runnable {
     private String appl;
     private String androidClassName;
 
+
     public Application(String appl, String androidClassName) {
         this.appl = appl;
         this.androidClassName = androidClassName;

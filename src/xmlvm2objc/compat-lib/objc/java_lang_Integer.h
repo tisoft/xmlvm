@@ -41,7 +41,6 @@ int number;
 - (BOOL)equals___java_lang_Object:(java_lang_Object*)anObject;
 - (int) intValue__;
 + (int) parseInt___java_lang_String: (java_lang_String *) str;
-- (java_lang_String*) toString__;
 + (java_lang_String*) toString___int: (int) i;
 + (java_lang_Integer*) valueOf___int: (int) i;
 - (int) compareTo___java_lang_Object: (java_lang_Object*) obj;

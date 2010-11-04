@@ -24,8 +24,8 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UISlider;
 
 /**
@@ -39,6 +39,7 @@ public class UISliderRenderer extends UIViewRenderer<UISlider> {
     public static final float SLIDER_BUTTON_WIDTH  = 114.0f;
     public static final float SLIDER_BUTTON_HEIGHT = 22.0f;
 
+
     public UISliderRenderer(UISlider view) {
         super(view);
     }
@@ -49,7 +50,7 @@ public class UISliderRenderer extends UIViewRenderer<UISlider> {
         float maximum = view.getMaximumValue();
         float value = view.getValue();
 
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         int x = (int) displayRect.origin.x;
         int y = (int) displayRect.origin.y;

@@ -35,7 +35,9 @@
 @public CGFontRef localFont;
 @public float localSize;
 }
-+ (org_xmlvm_iphone_CGContext*) UICurrentContext__;
+
+- (id) initWithCGContextRef:(CGContextRef)ref;
+- (CGContextRef) getCGContextRef;
 - (void) setFillColor___float_ARRAYTYPE: (XMLVMArray*) color;
 - (void) setStrokeColor___float_ARRAYTYPE: (XMLVMArray*) color;
 - (void) fillRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect;
@@ -59,10 +61,5 @@
 - (org_xmlvm_iphone_CGRect*)getClip__;
 
 - (void) drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage: (org_xmlvm_iphone_CGRect*)rect: (org_xmlvm_iphone_CGImage*)image;
-- (void) drawLayer___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGLayer: (org_xmlvm_iphone_CGRect*)rect: (org_xmlvm_iphone_CGLayer*)layer;
-
-+ (void) UIGraphicsBeginImageContext___org_xmlvm_iphone_CGSize: (org_xmlvm_iphone_CGSize*) size;
-+ (org_xmlvm_iphone_UIImage*) UIGraphicsGetImageFromCurrentImageContext__;
-+ (void) UIGraphicsEndImageContext__;
 
 @end

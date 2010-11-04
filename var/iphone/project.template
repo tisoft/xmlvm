@@ -11,7 +11,7 @@ __BUILDREFS__/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1 /* __PROJNAME__.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = __PROJNAME__.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8 /* __PROJNAME__-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "__PROJNAME__-Info.plist" ; path = "sys/__PROJNAME__-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8 /* __PROJNAME__-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "__PROJNAME__-Info.plist" ; path = "__PROJNAME__-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 __FILEREFS__/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,7 +30,7 @@ __BUILDFRAMS__			);
 			children = (
 __APPSRC__			);
 			name = Application;
-			path = src/xcode/app;
+			path = ../build/xcode/src/app;
 			sourceTree = "<group>";
 		};
 		25 /* Library */ = {
@@ -48,7 +48,7 @@ __APPSRC__			);
 			children = (
 __IPHONESRC__			);
 			name = iPhone;
-			path = src/xcode/lib/iphone;
+			path = ../build/xcode/src/lib/iphone;
 			sourceTree = "<group>";
 		};
 		30 /* BoehmGc */ = {
@@ -56,7 +56,7 @@ __IPHONESRC__			);
 			children = (
 __BOEHMGC__			);
 			name = BoehmGC;
-			path = src/xcode/boehmgc;
+			path = ../build/xcode/src/lib/boehmgc;
 			sourceTree = "<group>";
 		};
 		26 /* Android */ = {
@@ -64,7 +64,7 @@ __BOEHMGC__			);
 			children = (
 __ANDROIDSRC__			);
 			name = Android;
-			path = src/xcode/lib/android;
+			path = ../build/xcode/src/lib/android;
 			sourceTree = "<group>";
 		};
 		11 /* MainGroup */ = {
@@ -82,10 +82,10 @@ __ANDROIDSRC__			);
 		12 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-__RESOURCES__				8 /* __PROJNAME__-Info.plist */,
+				8 /* __PROJNAME__-Info.plist */,
 			);
 			name = Resources;
-			path = resources;
+			path = ../build/xcode/sys;
 			sourceTree = "<group>";
 		};
 		13 /* Frameworks */ = {
@@ -163,7 +163,7 @@ __RESOURCES_BUILD__			);
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "if [ -d ${SOURCE_ROOT}/resources/app ] ; then\n\tRESDEST=${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\n\tmkdir -p ${RESDEST}\t\n\tcp -r ${SOURCE_ROOT}/resources/app/* ${RESDEST}/\nfi\n";
+			shellScript = "RESOURCES=\"__RESOURCE_DIR__\"\nfor i in __RESOURCE_LIST__; do\n\tcase $i in\n\t\t/*)\tFROM=$i ;;\n\t\t*)\tFROM=${RESOURCES}/$i ;;\n\tesac\n\tif [ -e \"$FROM\" ] ; then\n\t\tcp -rf \"$FROM\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\"\n\tfi\ndone\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -181,7 +181,7 @@ __SRC_BUILD__			);
 		29 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(__ARCHITECTURE__)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -202,7 +202,7 @@ __SRC_BUILD__			);
 		22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(__ARCHITECTURE__)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -218,7 +218,7 @@ __SRC_BUILD__			);
 		23 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(__ARCHITECTURE__)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -241,7 +241,7 @@ __SRC_BUILD__			);
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				INFOPLIST_FILE = "resources/sys/__PROJNAME__-Info.plist";
+				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				PRODUCT_NAME = __PROJNAME__;
 				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
 			};
@@ -255,7 +255,7 @@ __SRC_BUILD__			);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				INFOPLIST_FILE = "resources/sys/__PROJNAME__-Info.plist";
+				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				PRODUCT_NAME = __PROJNAME__;
 				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
 			};
@@ -267,7 +267,7 @@ __SRC_BUILD__			);
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				INFOPLIST_FILE = "resources/sys/__PROJNAME__-Info.plist";
+				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				PRODUCT_NAME = __PROJNAME__;
 				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
 			};

@@ -37,6 +37,7 @@ public class PythonOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
     private static final String PY_EXTENSION = ".py";
     private List<OutputFile>    result       = new ArrayList<OutputFile>();
 
+
     public PythonOutputProcess(Arguments arguments) {
         super(arguments);
         addAllXmlvmEmittingProcessesAsInput();

@@ -20,30 +20,34 @@
 
 package org.xmlvm.iphone;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
+import org.xmlvm.iphone.internal.CGContextState;
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
+
 @XMLVMSkeletonOnly
 public class CGLayer extends NSObject {
 
-    @XMLVMIgnore
-    BufferedImage image;
+    private CGContext context;
+
 
     public static CGLayer createWithContext(CGContext context, CGSize size) {
-        CGLayer layer = new CGLayer();
-        layer.image = new BufferedImage((int) size.width, (int) size.height,
-                BufferedImage.TYPE_INT_ARGB);
+        return new CGLayer(context, size);
+    }
 
-        return layer;
+    private CGLayer(CGContext context, CGSize size) {
+        CGContextState state = new CGContextState(context.xmlvmGetGraphics2D());
+        this.context = CGContext.xmlvmNewCGContext(size);
+        state.resetValues(this.context.xmlvmGetGraphics2D());
     }
 
     public CGContext getContext() {
-        return new CGContext((Graphics2D) image.getGraphics());
+        return context;
     }
 
     public CGSize getSize() {
-        return new CGSize(image.getWidth(), image.getHeight());
+        BufferedImage img = context.xmlvmGetImage();
+        // Always have an image, since this context is created as an image
+        return new CGSize(img.getWidth(), img.getHeight());
     }
 }

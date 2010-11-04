@@ -41,6 +41,12 @@ public class UINavigationController extends UIViewController {
     private UIToolbar                      toolbar;
     private boolean                        toolbarHidden;
 
+
+    /* Required for MFMessageComposeViewController */
+    UINavigationController() {
+        this(null);
+    }
+
     public UINavigationController(UIViewController rootViewController) {
         super();
         toolbarHidden = true;
@@ -83,6 +89,8 @@ public class UINavigationController extends UIViewController {
     }
 
     public void pushViewController(UIViewController controller, boolean animated) {
+        if (controller == null)
+            return;
         items.add(controller);
         controller.setParentController(this);
         navigationBar.pushNavigationItem(new UINavigationItem(controller.getTitle()), animated);

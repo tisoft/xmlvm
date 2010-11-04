@@ -54,7 +54,6 @@ typedef NSMutableString java_lang_String;
 - (int) compareTo___java_lang_String: (java_lang_String*) str;
 - (int) equals___java_lang_Object: (java_lang_Object*) o;
 - (int) equalsIgnoreCase___java_lang_String: (java_lang_String*) s;
-- (java_lang_String*) toString__;
 - (java_lang_String*) toLowerCase__;
 - (java_lang_String*) toUpperCase__;
 - (int) lastIndexOf___java_lang_String: (java_lang_String*) s;

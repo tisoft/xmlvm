@@ -5,6 +5,7 @@ import org.lwjgl.opengl.Display;
 public class EAGLContext {
     public static final int kEAGLRenderingAPIOpenGLES1 = 1;
 
+
     public static void setCurrentContext(EAGLContext context) {
     }
 

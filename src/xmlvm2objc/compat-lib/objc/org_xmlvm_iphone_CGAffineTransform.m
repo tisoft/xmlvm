@@ -51,4 +51,11 @@
 	return t;
 }
 
++ (org_xmlvm_iphone_CGAffineTransform*) identity__
+{
+	org_xmlvm_iphone_CGAffineTransform* t = [[org_xmlvm_iphone_CGAffineTransform alloc] init];
+	t->transform = CGAffineTransformIdentity;
+	return t;
+}
+
 @end

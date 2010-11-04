@@ -24,21 +24,26 @@
 // NSTimer
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_NSTimer;
-- (void) __init_org_xmlvm_iphone_NSTimer___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean
+
++ (org_xmlvm_iphone_NSTimer*) scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean
              :(float) timerInterval
              :(org_xmlvm_iphone_NSTimerDelegate*) t
              :(java_lang_Object*) userInfo
              :(int) r
 {
-    [timer release];
-    timer = [NSTimer scheduledTimerWithTimeInterval:timerInterval
+	t=XMLVM_VALUE(t);
+    NSTimer * nstimer = [NSTimer scheduledTimerWithTimeInterval:timerInterval
                      target:t
                      selector:NSSelectorFromString(@"timerEvent___java_lang_Object:")
                      userInfo:userInfo
                      repeats:r];
     // Make sure timer is valid even after it fired. If we don't do this, we can't do
     // an invalidate after it fired.
-    [timer retain];
+	[nstimer retain];
+	
+	org_xmlvm_iphone_NSTimer * jtimer = [[org_xmlvm_iphone_NSTimer alloc] init];
+	jtimer->timer = nstimer;
+	return jtimer;
 }
 
 - (void) dealloc

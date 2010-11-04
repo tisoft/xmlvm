@@ -72,6 +72,7 @@ public class XmlvmArguments {
     private boolean            option_recursive      = false;
     private String             option_class          = null;
 
+
     /**
      * Prints usage information and exits the applications.
      * 

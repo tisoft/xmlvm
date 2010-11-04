@@ -33,6 +33,7 @@ import org.xmlvm.proc.in.InputProcess.XmlvmInputProcess;
 import org.xmlvm.proc.in.file.ClassFile;
 import org.xmlvm.proc.in.file.Directory;
 import org.xmlvm.proc.in.file.ExeFile;
+import org.xmlvm.proc.in.file.ResourceList;
 import org.xmlvm.proc.in.file.XmlvmFile;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
@@ -45,6 +46,7 @@ public class InputProcessFactory {
      * The arguments that should be given to the created processes.
      */
     private Arguments arguments;
+
 
     public InputProcessFactory(Arguments arguments) {
         this.arguments = arguments;
@@ -106,8 +108,10 @@ public class InputProcessFactory {
         } else if (XmlvmFile.isXmlvmInput(input)) {
             // XMLVM files.
             return new XmlvmInputProcess(arguments, new XmlvmFile(input));
-        }
-        Log.warn("Unable to create InputProcesses for input: " + input);
+        } else if (ResourceList.isResourceList(input)) {
+            // Do nothing: ignore resource list files
+        } else
+            Log.warn("Unable to create InputProcesses for input: " + input);
         return null;
     }
 

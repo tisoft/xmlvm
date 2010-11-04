@@ -28,10 +28,10 @@ import org.xmlvm.iphone.NSString;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UIFont;
-import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UILineBreakMode;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UITextAlignment;
+import org.xmlvm.iphone.UITextField;
 import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
@@ -98,16 +98,16 @@ public class TextView extends View {
 
     public void setText(String string) {
         this.text = string;
-        ((UILabel) xmlvmGetViewHandler().getContentView()).setText(string);
+        ((UITextField) xmlvmGetViewHandler().getContentView()).setText(string);
         requestLayout();
+    }
+
+    public String getText() {
+        return ((UITextField) xmlvmGetViewHandler().getContentView()).getText();
     }
 
     public final void setText(CharSequence text) {
         setText(text.toString());
-    }
-
-    public void setHint(CharSequence hint) {
-        // TODO: Do UILabels support hints?
     }
 
     public void setRawInputType(int inputType) {
@@ -119,7 +119,7 @@ public class TextView extends View {
     }
 
     public void setTextSize(float size) {
-        UILabel content = (UILabel) xmlvmGetViewHandler().getContentView();
+        UITextField content = (UITextField) xmlvmGetViewHandler().getContentView();
         UIFont font = content.getFont();
         if (font == null) {
             content.setFont(UIFont.systemFontOfSize(size));
@@ -129,7 +129,7 @@ public class TextView extends View {
     }
 
     public void setTypeface(Typeface tf, int style) {
-        UILabel content = (UILabel) xmlvmGetViewHandler().getContentView();
+        UITextField content = (UITextField) xmlvmGetViewHandler().getContentView();
         UIFont font;
 
         if (tf != null) {
@@ -156,7 +156,7 @@ public class TextView extends View {
 
     @Override
     protected UIView xmlvmNewUIView(AttributeSet attrs) {
-        UILabel label = new UILabel() {
+        UITextField view = new UITextField() {
 
             @Override
             public void touchesBegan(Set<UITouch> touches, UIEvent event) {
@@ -178,15 +178,16 @@ public class TextView extends View {
                 xmlvmTouchesEvent(MotionEvent.ACTION_UP, touches, event);
             }
         };
-        label.setNumberOfLines(0);
-        label.setLineBreakMode(UILineBreakMode.WordWrap);
-        label.setTextAlignment(UITextAlignment.Left);
-        label.setBackgroundColor(null);
 
-        if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
-            label.setTextColor(UIColor.whiteColor);
+        if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_NATIVE) {
+            view.setBackgroundColor(UIColor.whiteColor);
+            view.setTextColor(UIColor.blackColor);
+        } else {
+            view.setTextColor(UIColor.whiteColor);
         }
-        return label;
+
+        // view.setEditable(false);
+        return view;
     }
 
     private void parseTextViewAttributes(AttributeSet attrs) {
@@ -311,7 +312,7 @@ public class TextView extends View {
     }
 
     protected UIFont xmlvmGetUIFont() {
-        return ((UILabel) xmlvmGetViewHandler().getContentView()).getFont();
+        return ((UITextField) xmlvmGetViewHandler().getContentView()).getFont();
     }
 
     protected int xmlvmGetInsetsX() {
@@ -327,8 +328,13 @@ public class TextView extends View {
     }
 
     void setToastAttributes() {
-        UILabel content = (UILabel) xmlvmGetViewHandler().getContentView();
+        UITextField content = (UITextField) xmlvmGetViewHandler().getContentView();
         content.setTextAlignment(UITextAlignment.Center);
         content.setFont(UIFont.boldSystemFontOfSize(16));
     }
+
+    public void setHint(CharSequence hint) {
+        ((UITextField) xmlvmGetViewHandler().getContentView()).setPlaceholder(hint.toString());
+    }
+
 }

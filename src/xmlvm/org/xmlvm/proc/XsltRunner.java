@@ -89,8 +89,8 @@ public class XsltRunner {
                 for (int i = 0; i < xsltParams.length; i++)
                     transformer.setParameter(xsltParams[i][0], xsltParams[i][1]);
             }
-            DocumentWrapper docw = new DocumentWrapper(doc, "",
-                    ((Controller) transformer).getConfiguration());
+            DocumentWrapper docw = new DocumentWrapper(doc, "", ((Controller) transformer)
+                    .getConfiguration());
             Result result = new StreamResult(writer);
             transformer.transform(docw, result);
 
@@ -126,8 +126,8 @@ public class XsltRunner {
             transformers.put(xsltFileName, transformer);
             return transformer;
         } catch (TransformerConfigurationException e) {
-            Log.error(TAG,
-                    "Could not create transformer for " + xsltFileName + ": " + e.getMessage());
+            Log.error(TAG, "Could not create transformer for " + xsltFileName + ": "
+                    + e.getMessage());
         }
         return null;
     }

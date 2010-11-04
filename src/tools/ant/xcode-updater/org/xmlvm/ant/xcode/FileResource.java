@@ -37,6 +37,7 @@ public class FileResource {
         sourcefiles.put("m", "sourcecode.c.objc");
         sourcefiles.put("c++", "sourcecode.cpp.cpp");
         sourcefiles.put("cpp", "sourcecode.cpp.cpp");
+        sourcefiles.put("mm", "sourcecode.cpp.objcpp");
 
         hiddensourcefiles = new HashMap<String, String>();
         hiddensourcefiles.put("h", "sourcecode.c.h");

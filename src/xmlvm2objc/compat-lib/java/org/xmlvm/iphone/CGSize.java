@@ -28,6 +28,7 @@ public class CGSize extends NSObject {
     public float width;
     public float height;
 
+
     public CGSize(CGSize size) {
         width = size.width;
         height = size.height;

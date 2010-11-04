@@ -22,8 +22,4 @@ public class HelloWorld1 extends Activity {
         layout.addView(okButton);
         setContentView(layout);
     }
-    
-    public static void main(String[] args) {
-        (new HelloWorld1()).onCreate(null);
-    }
 }

@@ -30,11 +30,11 @@ import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIFont;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UILineBreakMode;
 import org.xmlvm.iphone.UITextAlignment;
 import org.xmlvm.iphone.UIView;
@@ -49,12 +49,13 @@ public abstract class UITextRenderer<S> extends UIViewRenderer<UIView> {
     public void paint() {
         super.paint();
 
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         g.setFont(getFont());
         FontMetrics fm = g.getFontMetrics();
         renderBackground(g);
         Insets ins = getInsets();
-        List<String> lines = splitIntoLines(view.getFrame().size.width - ins.left - ins.right, fm, getLineBreakMode());
+        List<String> lines = splitIntoLines(view.getFrame().size.width - ins.left - ins.right, fm,
+                getLineBreakMode());
         renderText(lines, g, fm);
     }
 
@@ -78,12 +79,12 @@ public abstract class UITextRenderer<S> extends UIViewRenderer<UIView> {
             int y = (int) displayRect.origin.y + insets.top;
 
             switch (getTextAlignment()) {
-                case UITextAlignment.Left:
-                    // Do nothing
-                    break;
-                case UITextAlignment.Center:
-                    x += ((int) view.getFrame().size.width - width) / 2;
-                    break;
+            case UITextAlignment.Left:
+                // Do nothing
+                break;
+            case UITextAlignment.Center:
+                x += ((int) view.getFrame().size.width - width) / 2;
+                break;
             }
             y += ((int) view.getFrame().size.height - linesToDisplay * height) / 2 + ascent + i
                     * height;
@@ -134,7 +135,8 @@ public abstract class UITextRenderer<S> extends UIViewRenderer<UIView> {
         if (c != null) {
             CGRect frame = view.getFrame();
             g.setPaint(c.xmlvmGetPaint());
-            g.fill(new Rectangle2D.Float(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height));
+            g.fill(new Rectangle2D.Float(frame.origin.x, frame.origin.y, frame.size.width,
+                    frame.size.height));
         }
     }
 

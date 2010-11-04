@@ -570,7 +570,8 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
 
         Log.debug(TAG, "Loading JDK class: " + className);
-        resource = (new LibraryLoader(new Arguments(new String[] { "--in=foo" }))).load(className);
+        resource = (new LibraryLoader(new Arguments(new String[] { "--in=foo", "--out=bar" })))
+                .load(className);
         alreadyLoadedResources.put(className, resource);
         return resource;
     }

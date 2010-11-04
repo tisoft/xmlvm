@@ -30,6 +30,7 @@ public class UIPreferencesTableCell extends UIView {
 
     private boolean isGroupCell = false;
 
+
     public UIPreferencesTableCell() {
         super();
         xmlvmSetRenderer(new UIPreferencesTableCellRenderer(this));

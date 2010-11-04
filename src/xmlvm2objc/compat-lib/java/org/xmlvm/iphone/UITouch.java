@@ -29,24 +29,20 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class UITouch extends NSObject {
 
-    private int    phase;
-    private UIView view;
-    private int    x;
-    private int    y;
+    private UIView   view;
+    private UIWindow window;
+    private int      phase;
+    private int      tapCount;
+    private double   timestamp;
+    private int      x;
+    private int      y;
+
 
     public UITouch(int phase, UIView view, int x, int y) {
         this.phase = phase;
         this.view = view;
         this.x = x;
         this.y = y;
-    }
-
-    public int phase() {
-        return phase;
-    }
-
-    public UIView getView() {
-        return view;
     }
 
     public CGPoint locationInView(UIView view) {
@@ -75,5 +71,25 @@ public class UITouch extends NSObject {
             v = v.getSuperview();
         }
         return res;
+    }
+
+    public UIView getView() {
+        return view;
+    }
+
+    public UIWindow getWindow() {
+        return window;
+    }
+
+    public int getTapCount() {
+        return tapCount;
+    }
+
+    public double getTimestamp() {
+        return timestamp;
+    }
+
+    public int getPhase() {
+        return phase;
     }
 }

@@ -39,6 +39,8 @@
 - (void) setStatusBarStyle___int: (int) style;
 - (void) setStatusBarStyle___int_boolean: (int) style :(int) animated;
 - (int) getStatusBarStyle__;
+- (void) setNetworkActivityIndicatorVisible___boolean:(int) activity;
+- (BOOL) isNetworkActivityIndicatorVisible__;
 - (org_xmlvm_iphone_UIWindow*) getKeyWindow__;
 - (void) setIdleTimerDisabled___boolean: (bool) flag;
 - (java_util_List *) getWindows__;

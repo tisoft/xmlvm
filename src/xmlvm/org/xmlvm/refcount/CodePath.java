@@ -35,6 +35,7 @@ public class CodePath {
         this.parent = parent;
     }
 
+
     /**
      * Every code path gets a unique id.
      */
@@ -58,6 +59,7 @@ public class CodePath {
     public RegisterSet                              wantsObject = RegisterSet.none();
     public RegisterSet                              givesObject = RegisterSet.none();
     public RegisterSet                              shouldFree  = RegisterSet.none();
+
 
     private void toStringRec(int depth, StringBuilder toRet) {
         char[] tabs = new char[depth];

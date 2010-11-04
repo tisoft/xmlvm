@@ -23,6 +23,7 @@
 #import "java_lang_String.h"
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_CGSize.h"
+#import "org_xmlvm_iphone_CGPoint.h"
 #import "org_xmlvm_iphone_CGAffineTransform.h"
 #import "org_xmlvm_iphone_UIColor.h"
 #import "org_xmlvm_iphone_NSDate.h"
@@ -42,6 +43,8 @@
 - (void) setBounds___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*) bounds;
 - (org_xmlvm_iphone_CGRect*) getBounds__;
 - (void) setFrame___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*) frame;
+- (void) setCenter___org_xmlvm_iphone_CGPoint:(org_xmlvm_iphone_CGPoint*) point;
+- (org_xmlvm_iphone_CGPoint*) getCenter__;
 - (void) setLocation___float_float: (int)x :(int)y;
 - (void) setSize___float_float: (int)width :(int)height;
 - (void) addSubview___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) view;

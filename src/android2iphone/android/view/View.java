@@ -49,6 +49,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.widget.AbsListView;
+import org.xmlvm.iphone.UIGraphics;
 
 /**
  * iPhone implementation of Android's View class.
@@ -311,7 +312,7 @@ public class View {
 
             @Override
             public void drawRect(CGRect rect) {
-                draw(new Canvas(CGContext.UICurrentContext()));
+                draw(new Canvas(UIGraphics.getCurrentContext()));
             }
         };
     }

@@ -29,8 +29,8 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIProgressView;
 import org.xmlvm.iphone.UIProgressViewStyle;
 
@@ -46,6 +46,7 @@ public class UIProgressViewRenderer extends UIViewRenderer<UIProgressView> {
     public static final float  kProgressViewHeight = 8.0f;
     private static final float kColorOffset        = 2.0f;
 
+
     public UIProgressViewRenderer(UIProgressView view) {
         super(view);
     }
@@ -55,7 +56,7 @@ public class UIProgressViewRenderer extends UIViewRenderer<UIProgressView> {
         float progress = view.getProgress();
         int style = view.getProgressViewStyle();
 
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         int x = (int) displayRect.origin.x;
         int y = (int) displayRect.origin.y;

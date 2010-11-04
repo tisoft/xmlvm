@@ -29,12 +29,13 @@ import org.xmlvm.iphone.UILineBreakMode;
 import org.xmlvm.iphone.UITextView;
 
 /**
- *
+ * 
  * @author teras
  */
 public class UITextViewRenderer extends UITextRenderer<UITextView> {
 
-    private static final Insets INSETS    = new Insets(8, 8, 8, 8);
+    private static final Insets INSETS = new Insets(8, 8, 8, 8);
+
 
     public UITextViewRenderer(UITextView view) {
         super(view);
@@ -52,7 +53,7 @@ public class UITextViewRenderer extends UITextRenderer<UITextView> {
 
     @Override
     Font getFont() {
-        return getSafeFont(((UITextView)view).getFont());
+        return getSafeFont(((UITextView) view).getFont());
     }
 
     @Override
@@ -62,17 +63,17 @@ public class UITextViewRenderer extends UITextRenderer<UITextView> {
 
     @Override
     int getTextAlignment() {
-        return ((UITextView)view).getTextAlignment();
+        return ((UITextView) view).getTextAlignment();
     }
 
     @Override
     String getText() {
-        return getText();
+        return ((UITextView) view).getText();
     }
 
     @Override
     Paint getTextColor() {
-        return getSafePaint(((UITextView)view).getTextColor());
+        return getSafePaint(((UITextView) view).getTextColor());
     }
 
     @Override

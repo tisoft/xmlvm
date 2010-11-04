@@ -40,6 +40,7 @@ public class UINavigationBar extends UIGenericToolbar {
     private UINavigationBarDelegate     delegate;
     UINavigationController              controller;
 
+
     public UINavigationBar() {
         this(new CGRect(0, 0, 0, 0));
     }

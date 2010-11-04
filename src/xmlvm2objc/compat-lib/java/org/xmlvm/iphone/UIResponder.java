@@ -27,7 +27,8 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class UIResponder extends NSObject {
 
-    protected boolean           callDelegates = true;
+    protected boolean callDelegates = true;
+
 
     public UIResponder() {
     }

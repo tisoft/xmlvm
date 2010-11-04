@@ -23,7 +23,22 @@
 
 // UIWindow
 //----------------------------------------------------------------------------
-@implementation UIWindow (cat_org_xmlvm_iphone_UIWindow);
+
+@implementation org_xmlvm_iphone_UIWindow : UIWindow 
+
+- (void)sendEvent:(UIEvent *)event
+{
+	[self sendEvent___org_xmlvm_iphone_UIEvent:event];
+}
+
+- (void) sendEvent___org_xmlvm_iphone_UIEvent:(org_xmlvm_iphone_UIEvent*)event
+{
+	[super sendEvent:event];
+}
+
+@end
+
+@implementation UIWindow (cat_org_xmlvm_iphone_UIWindow)
 
 - (void) __init_org_xmlvm_iphone_UIWindow__ {
 	org_xmlvm_iphone_CGRect * zero = [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:CGRectZero];

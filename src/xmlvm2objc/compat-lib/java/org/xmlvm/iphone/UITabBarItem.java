@@ -35,6 +35,7 @@ public class UITabBarItem extends UIBarItem {
     final UITabBarItemView view;
     private String         badgeValue;
 
+
     public UITabBarItem() {
         view = new UITabBarItemView(this);
         view.addTarget(new UIControlDelegate() {

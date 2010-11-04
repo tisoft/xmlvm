@@ -3,10 +3,8 @@ package org.xmlvm.iphone.internal;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.geom.AffineTransform;
-
 import javax.swing.JPanel;
 
-import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UIView;
 
 public class SimulatorGUI extends JPanel {
@@ -17,6 +15,7 @@ public class SimulatorGUI extends JPanel {
 
     final static private int   simulatorPositionX = 15;
     final static private int   simulatorPositionY = 15;
+
 
     public SimulatorGUI(Component rootWindow, ImageLoader imageLoader) {
         Simulator.setGUI(this);

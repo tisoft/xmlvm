@@ -20,13 +20,13 @@
 
 package android.graphics;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIImage;
 
 import android.content.res.Resources;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import org.xmlvm.iphone.UIGraphics;
 
 /**
  * @author arno
@@ -63,9 +63,9 @@ public final class Bitmap {
     }
 
     public static Bitmap createBitmap(int width, int height, Config rgb565) {
-        CGContext.UIGraphicsBeginImageContext(new CGSize(width, height));
-        UIImage image = CGContext.UIGraphicsGetImageFromCurrentImageContext();
-        CGContext.UIGraphicsEndImageContext();
+        UIGraphics.beginImageContext(new CGSize(width, height));
+        UIImage image = UIGraphics.getImageFromCurrentImageContext();
+        UIGraphics.endImageContext();
         return new Bitmap(BitmapDrawable.xmlvmCreateWithImage(image));
     }
 

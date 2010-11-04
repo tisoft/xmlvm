@@ -40,6 +40,7 @@ public class AccelerometerPanel extends JPanel implements AdjustmentListener {
     private JScrollBar yAxisControl;
     private JScrollBar zAxisControl;
 
+
     public AccelerometerPanel() {
         this.setLayout(null);
         this.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5,

@@ -39,6 +39,7 @@ public class UITabBarItemRenderer extends UIBarItemRenderer {
     private static final int TOP_OFFSET  = 5;
     private static final int TEXT_HEIGHT = 14;
 
+
     public UITabBarItemRenderer(UITabBarItem item, UITabBarItemView view) {
         super(item, view);
     }

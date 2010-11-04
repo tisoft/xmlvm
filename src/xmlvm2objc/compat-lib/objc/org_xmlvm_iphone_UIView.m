@@ -85,6 +85,16 @@
 	self.bounds = [bounds getCGRect];
 }
 
+- (void) setCenter___org_xmlvm_iphone_CGPoint:(org_xmlvm_iphone_CGPoint*) point
+{
+	[self setCenter:[point getCGPoint]];
+}
+
+- (org_xmlvm_iphone_CGPoint*) getCenter__
+{
+	return [[org_xmlvm_iphone_CGPoint alloc] initWithCGPoint:[self center]];
+}
+
 - (void) addSubview___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*)view
 {
     [self addSubview: view];

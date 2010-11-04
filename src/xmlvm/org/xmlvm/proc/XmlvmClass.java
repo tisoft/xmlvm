@@ -33,6 +33,7 @@ public class XmlvmClass extends XmlvmEntity {
     private List<XmlvmField>  fields     = new ArrayList<XmlvmField>();
     private List<XmlvmMethod> methods    = new ArrayList<XmlvmMethod>();
 
+
     public String getPackageName() {
         return packageName;
     }
@@ -73,11 +74,13 @@ public class XmlvmClass extends XmlvmEntity {
         methods.add(method);
     }
 
+
     /**
      * The XMLVM member representation.
      */
     public static class XmlvmField extends XmlvmEntity {
         private String type;
+
 
         public String getType() {
             return type;
@@ -88,6 +91,7 @@ public class XmlvmClass extends XmlvmEntity {
         }
     }
 
+
     /**
      * The XMLVM method representation.
      */
@@ -96,6 +100,7 @@ public class XmlvmClass extends XmlvmEntity {
         private int          maxLocals     = 0;
         private List<String> argumentTypes = new ArrayList<String>();
         private String       nativeMethodName;
+
 
         public int getMaxStack() {
             return maxStack;

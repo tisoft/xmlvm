@@ -28,6 +28,17 @@ public class NSIndexPath extends NSObject {
     private int section;
     private int row;
 
+
+    public NSIndexPath() {
+    }
+
+    public static NSIndexPath indexPathForRow(int row, int section) {
+        NSIndexPath path = new NSIndexPath();
+        path.row = row;
+        path.section = section;
+        return path;
+    }
+
     public int getSection() {
         return section;
     }
@@ -43,5 +54,4 @@ public class NSIndexPath extends NSObject {
     public void setRow(int row) {
         this.row = row;
     }
-
 }

@@ -23,6 +23,7 @@
 #import "java_util_ArrayList.h"
 #import "org_xmlvm_iphone_UINavigationBar.h"
 #import "org_xmlvm_iphone_UIToolbar.h"
+#import "org_xmlvm_iphone_UIViewController_macros.h"
 @class org_xmlvm_iphone_UINavigationControllerDelegate;
 
 /** @author teras */
@@ -55,11 +56,5 @@ typedef UINavigationController org_xmlvm_iphone_UINavigationControllerImpl;
 @end
 
 @interface org_xmlvm_iphone_UINavigationController : org_xmlvm_iphone_UINavigationControllerImpl
-- (void) loadView__;
-- (void) viewDidLoad__;
-- (void) viewDidUnload__;
-- (void) viewWillAppear___boolean :(int)anim;
-- (void) viewDidAppear___boolean :(int)anim;
-- (void) viewWillDisappear___boolean :(int)anim;
-- (void) viewDidDisappear___boolean :(int)anim;
+UIVIEWCONTROLLER_CALLBACKS_INC
 @end

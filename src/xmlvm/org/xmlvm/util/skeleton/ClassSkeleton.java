@@ -61,6 +61,7 @@ public class ClassSkeleton {
     private StringBuffer        test;
     private final Class         c;
 
+
     public ClassSkeleton(Class c) {
         this.c = c;
         hfile = new StringBuffer();

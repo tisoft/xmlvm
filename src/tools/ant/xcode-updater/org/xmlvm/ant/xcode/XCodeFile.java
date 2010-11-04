@@ -31,6 +31,9 @@ import java.util.HashSet;
 public class XCodeFile {
 
     /* Templates */
+    public static final String TEMPL_RESOURCE_LIST = "__RESOURCE_LIST__";
+    public static final String TEMPL_RESOURCE_DIR = "__RESOURCE_DIR__";
+    /* Private templates */
     private static final String TEMPL_PROJNAME = "__PROJNAME__";
     private static final String TEMPL_FILEREFS = "__FILEREFS__";
     private static final String TEMPL_BUILDREFS = "__BUILDREFS__";
@@ -42,13 +45,15 @@ public class XCodeFile {
     private static final String TEMPL_RESOURCES_BUILD = "__RESOURCES_BUILD__";
     private static final String TEMPL_SDK_ROOT = "__SDK_ROOT__";
     private static final String TEMPL_SDK_TARGET = "__SDK_TARGET__";
+    private static final String TEMPL_ARCHITECTURE = "__ARCHITECTURE__";
     /* Project creation constants*/
     private static final int FIRST_ID = 1000;
     /* */
     private String data = "";    // Actual XCode data
     private int nextid; // Next reference id
 
-    public XCodeFile(String projname, ArrayList<String> projfiles, HashSet<String> libraries, XcodeSkeleton target) {
+    public XCodeFile(String projname, ArrayList<String> projfiles, HashSet<String> libraries,
+            XcodeSkeleton target) {
         /* Project name */
         data = XCodeProjectSource.Source.replace(TEMPL_PROJNAME, projname);
 
@@ -72,7 +77,8 @@ public class XCodeFile {
                 .replace(TEMPL_BUILDFRAMS, "")
                 .replace(TEMPL_FRAMEWORKS, "")
                 .replace(TEMPL_SDK_ROOT, target.root)
-                .replace(TEMPL_SDK_TARGET, target.target);
+                .replace(TEMPL_SDK_TARGET, target.target)
+                .replace(TEMPL_ARCHITECTURE, target.architecture);
     }
 
     private void injectLibraries(HashSet<String> libs) {

@@ -23,21 +23,22 @@ package org.xmlvm.proc.out.build;
 import org.xmlvm.Log;
 
 /**
- *
+ * 
  * @author teras
  */
 public enum XcodeSkeleton {
 
-    IPHONE3("iphoneos3.1", "1"),
-    IPHONE("iphoneos4.0", "1"),
-    IPAD("iphoneos4.0", "2"),
-    IOS("iphoneos4.0", "1,2");
+    IPHONE3("iphoneos3.1", "1"), IPHONE("iphoneos4.1", "1"), IPAD("iphoneos4.1", "2"), IOS(
+            "iphoneos4.1", "1,2");
     public final String root;
     public final String target;
+    public final String architecture;
+
 
     private XcodeSkeleton(String root, String target) {
         this.root = root;
         this.target = target;
+        architecture = target.equals("2") ? "ARCHS_UNIVERSAL_IPHONE_OS" : "ARCHS_STANDARD_32_BIT";
     }
 
     public static XcodeSkeleton getTarget(String skeleton) {

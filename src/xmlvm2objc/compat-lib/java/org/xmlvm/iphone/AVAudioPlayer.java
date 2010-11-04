@@ -43,6 +43,7 @@ public class AVAudioPlayer extends NSObject {
 
         private AVAudioPlayer avAudioPlayer;
 
+
         AVAudioPlayerListener(AVAudioPlayer avAudioPlayer) {
             this.avAudioPlayer = avAudioPlayer;
         }
@@ -97,6 +98,7 @@ public class AVAudioPlayer extends NSObject {
         }
     };
 
+
     private int                   numberOfLoops = 0;
     private int                   loopsLeft     = 0;
     private BasicPlayer           player        = null;
@@ -105,6 +107,7 @@ public class AVAudioPlayer extends NSObject {
     private AVAudioPlayerDelegate delegate      = null;
     private boolean               playing       = false;
     private byte[]                data          = null;
+
 
     private AVAudioPlayer(NSURL url) throws BasicPlayerException {
         this.url = url;

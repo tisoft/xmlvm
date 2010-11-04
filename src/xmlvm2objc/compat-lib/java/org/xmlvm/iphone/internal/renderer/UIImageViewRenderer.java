@@ -24,9 +24,9 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIImageView;
 import org.xmlvm.iphone.UIViewContentMode;
 import org.xmlvm.iphone.internal.Simulator;
@@ -43,7 +43,7 @@ public class UIImageViewRenderer extends UIViewRenderer<UIImageView> {
 
     @Override
     public void paint() {
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         CGRect rect = view.getFrame();
 
         if (view.getImage() != null) {

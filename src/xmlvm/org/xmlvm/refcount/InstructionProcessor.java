@@ -118,6 +118,7 @@ public class InstructionProcessor {
     public final static Namespace vm                                 = Namespace.getNamespace("vm",
                                                                              "http://xmlvm.org");
 
+
     /*
      * Most of the time, the destination register in dex is VX, this is a helper
      * function to get the register index for VX.
@@ -133,6 +134,7 @@ public class InstructionProcessor {
     static RegisterSet getDestReg(Element x, String name) throws DataConversionException {
         return RegisterSet.from(x.getAttribute(name).getIntValue());
     }
+
 
     /*
      * The following patterns help us identify and act upon instructions in DEX
@@ -172,6 +174,7 @@ public class InstructionProcessor {
     static Pattern        compInstr         = Pattern.compile("^" + "cmp" + ".*");
 
     public static Pattern nonObjTypes       = Pattern.compile("^" + nonObjTypesString);
+
 
     /**
      * We try and match the instruction to an action given our list of regex.

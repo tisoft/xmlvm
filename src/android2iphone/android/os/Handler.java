@@ -31,6 +31,7 @@ public class Handler {
     NSTimer  timer = null;
     float    delay;
 
+
     public Handler() {
     }
 
@@ -59,11 +60,15 @@ public class Handler {
 
     public void xmlvmStartTimer(Object ticks) {
         // TODO what to do witch ticks?
-        timer = new NSTimer(delay, new NSTimerDelegate() {
+        timer = NSTimer.scheduledTimerWithTimeInterval(delay, new NSTimerDelegate() {
             public void timerEvent(Object notUsed) {
                 toRun.run();
             }
         }, null, false);
+    }
+
+    public void xmlvmHandleMessage(Object msg) {
+        handleMessage((Message) msg);
     }
 
     public void handleMessage(Message msg) {
@@ -74,8 +79,9 @@ public class Handler {
         Assert.NOT_IMPLEMENTED();
     }
 
-    public void sendMessage(Message message) {
-        Assert.NOT_IMPLEMENTED();
+    public boolean sendMessage(Message message) {
+        NSObject.performSelectorOnMainThread(this, "xmlvmHandleMessage", message, false);
+        return true;
     }
 
     public boolean sendMessageDelayed(Message msg, long delayMillis) {
@@ -84,7 +90,8 @@ public class Handler {
     }
 
     public boolean sendEmptyMessage(int what) {
-        Assert.NOT_IMPLEMENTED();
-        return false;
+        Message msg = new Message();
+        msg.what = what;
+        return sendMessage(msg);
     }
 }

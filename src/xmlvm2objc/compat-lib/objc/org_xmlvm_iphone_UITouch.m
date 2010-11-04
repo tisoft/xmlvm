@@ -25,18 +25,34 @@
 //----------------------------------------------------------------------------
 @implementation UITouch (cat_org_xmlvm_iphone_UITouch)
 
+- (org_xmlvm_iphone_CGPoint*) locationInView___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) view
+{
+	return [[org_xmlvm_iphone_CGPoint alloc] initWithCGPoint:[self locationInView: view]];
+}
+
 - (org_xmlvm_iphone_UIView*) getView__
 {
 	return_XMLVM(view)
 }
 
-- (org_xmlvm_iphone_CGPoint*) locationInView___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) view
+- (org_xmlvm_iphone_UIWindow*) getWindow__
 {
-	CGPoint p1 = [self locationInView: view];
-	org_xmlvm_iphone_CGPoint* p2 = [[org_xmlvm_iphone_CGPoint alloc] init];
-	p2->x_float = p1.x;
-	p2->y_float = p1.y;
-	return p2;
+	return_XMLVM(window)
+}
+
+- (int) getPhase__
+{
+	return [self phase];
+}
+
+- (int) getTapCount__
+{
+	return [self tapCount];
+}
+
+- (double) getTimestamp__;
+{
+	return [self timestamp];
 }
 
 @end

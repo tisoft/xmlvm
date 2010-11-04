@@ -1,11 +1,11 @@
 package org.xmlvm.iphone;
 
-
 /**
  * 
  * @author teras
  */
-//TODO this class should be in 'internal' but we have to have it here because it is used as a base class
+// TODO this class should be in 'internal' but we have to have it here because
+// it is used as a base class
 public abstract class UIGenericBar extends UIView {
 
     public UIGenericBar() {

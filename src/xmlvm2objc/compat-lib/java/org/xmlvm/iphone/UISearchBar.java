@@ -47,6 +47,7 @@ public class UISearchBar extends UIControl {
     private int                 selectedScopeButtonIndex;
     private ArrayList<String>   scopeButtonTitles;
 
+
     public UISearchBar() {
         this(new CGRect(0, 0, 0, 0));
     }

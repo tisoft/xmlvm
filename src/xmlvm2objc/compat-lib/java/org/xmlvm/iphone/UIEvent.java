@@ -20,9 +20,18 @@
 
 package org.xmlvm.iphone;
 
+import java.util.Set;
+
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
 public class UIEvent extends NSObject {
 
+    UIEvent() {
+    }
+
+    public Set<UITouch> allTouches() {
+        // TODO : Java implementation
+        return null;
+    }
 }

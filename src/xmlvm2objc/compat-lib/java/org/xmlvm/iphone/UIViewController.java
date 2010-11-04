@@ -43,6 +43,7 @@ public class UIViewController extends UIResponder {
     private ArrayList<UIBarButtonItem> toolbarItems;
     UIViewController                   pcontroller;
 
+
     public UIViewController() {
         super();
         setTitle("");
@@ -54,8 +55,6 @@ public class UIViewController extends UIResponder {
         if (view == null) {
             view = new UIView();
             view.controller = this;
-            view.setBackgroundColor(UIColor.whiteColor);
-
             int offset = wantsFullScreenLayout ? 0 : 20;
             CGRect b = UIScreen.mainScreen().getBounds();
             b.origin.y += offset;
@@ -118,7 +117,8 @@ public class UIViewController extends UIResponder {
     public void willRotateToInterfaceOrientation(int uiInterfaceOrientation, double duration) {
     }
 
-    public void willAnimateRotationToInterfaceOrientation(int uiInterfaceOrientation, double duration) {
+    public void willAnimateRotationToInterfaceOrientation(int uiInterfaceOrientation,
+            double duration) {
     }
 
     public void didRotateFromInterfaceOrientation(int uiInterfaceOrientation) {
@@ -131,8 +131,8 @@ public class UIViewController extends UIResponder {
     public void didAnimateFirstHalfOfRotationToInterfaceOrientation(int uiInterfaceOrientation) {
     }
 
-    public void willAnimateSecondHalfOfRotationFromInterfaceOrientation(int orienuiInterfaceOrientationtation,
-            double duration) {
+    public void willAnimateSecondHalfOfRotationFromInterfaceOrientation(
+            int orienuiInterfaceOrientationtation, double duration) {
     }
 
     public void didReceiveMemoryWarning() {

@@ -35,6 +35,7 @@ public class OnePathInstructionRegisterContents {
         this.noObj = noObj;
     }
 
+
     /**
      * The instruction in question
      */

@@ -22,9 +22,9 @@ package org.xmlvm.iphone.internal.renderer;
 
 import java.awt.Graphics2D;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIGenericToolbar;
 
 /**
@@ -46,13 +46,14 @@ public class UIToolbarRenderer extends UIViewRenderer<UIGenericToolbar> {
     public static final float    TOP_OFFSET       = 9;
     public static final float    BOTTOM_OFFSET    = 6;
 
+
     public UIToolbarRenderer(UIGenericToolbar view) {
         super(view);
     }
 
     @Override
     public void paint() {
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         CGRect rect = view.getFrame();
         int x = (int) rect.origin.x;
         int y = (int) rect.origin.y;

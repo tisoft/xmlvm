@@ -44,6 +44,7 @@ public class XmlvmProcessor {
 
     private List<Class<? extends XmlvmProcess>> processTypesInPipeline = new ArrayList<Class<? extends XmlvmProcess>>();
 
+
     public XmlvmProcessor(Arguments arguments) {
         InputProcessFactory inputProcessFactory = new InputProcessFactory(arguments);
         OutputProcessFactory outputProcessFactory = new OutputProcessFactory(arguments);

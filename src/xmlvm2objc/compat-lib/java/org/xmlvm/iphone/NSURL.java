@@ -31,6 +31,7 @@ public class NSURL extends NSObject {
 
     private URL url;
 
+
     private NSURL(String u) throws MalformedURLException {
         try {
             url = new URL(u);

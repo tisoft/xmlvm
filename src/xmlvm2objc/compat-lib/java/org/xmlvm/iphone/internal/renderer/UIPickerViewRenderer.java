@@ -26,8 +26,8 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIPickerView;
 
 /**
@@ -49,13 +49,14 @@ public class UIPickerViewRenderer extends UIViewRenderer<UIPickerView> {
     private int[]              selectedRows;
     private int                selectedComponent = 1;
 
+
     public UIPickerViewRenderer(UIPickerView view) {
         super(view);
     }
 
     @Override
     public void paint() {
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         CGRect rect = view.getFrame();
         int x = (int) rect.origin.x;
         int y = (int) rect.origin.y;

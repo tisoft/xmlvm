@@ -41,7 +41,6 @@ import javax.swing.JPanel;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.PixelFormat;
 import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UIView;
 
 public class Device extends JPanel implements KeyListener, MouseListener, MouseMotionListener {
@@ -56,6 +55,7 @@ public class Device extends JPanel implements KeyListener, MouseListener, MouseM
     private Canvas                glPanel;
     private boolean               glCreated       = false;
     private Image                 chassisImage;
+
 
     public Device(ImageLoader imageLoader) {
         this.imageLoader = imageLoader;

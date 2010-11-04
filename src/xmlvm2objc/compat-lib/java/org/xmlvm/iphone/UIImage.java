@@ -32,13 +32,19 @@ public class UIImage extends NSObject {
 
     private BufferedImage image;
 
-    private UIImage(BufferedImage image) {
+    @XMLVMIgnore
+    UIImage(BufferedImage image) {
         this.image = image;
     }
 
     private UIImage(String filename) {
         ImageLoader loader = Simulator.getImageLoader();
         image = loader.loadImage(filename);
+    }
+
+    public static UIImage imageNamed(String filename) {
+        UIImage uiImage = new UIImage(filename);
+        return uiImage.image != null ? uiImage : null;
     }
 
     public static UIImage imageWithContentsOfFile(String filename) {
@@ -66,13 +72,13 @@ public class UIImage extends NSObject {
     }
 
     public void drawInRect(CGRect rect) {
-        CGContext.UICurrentContext().xmlvmGetGraphics2D().drawImage(image, (int) rect.origin.x,
+        UIGraphics.getCurrentContext().xmlvmGetGraphics2D().drawImage(image, (int) rect.origin.x,
                 (int) rect.origin.y, (int) rect.size.width, (int) rect.size.height,
                 Simulator.getDisplay());
     }
 
     public void drawAtPoint(CGPoint point) {
-        CGContext.UICurrentContext().xmlvmGetGraphics2D().drawImage(image, (int) point.x,
+        UIGraphics.getCurrentContext().xmlvmGetGraphics2D().drawImage(image, (int) point.x,
                 (int) point.y, Simulator.getDisplay());
     }
 
@@ -98,5 +104,15 @@ public class UIImage extends NSObject {
      */
     public UIImage cropImage(int x, int y, int width, int height) {
         return new UIImage(image.getSubimage(x, y, width, height));
+    }
+
+    public NSData PNGRepresentation() {
+        // TODO: implement under Java
+        return null;
+    }
+
+    public NSData JPEGRepresentation(float compressionQuality) {
+        // TODO: implement under Java
+        return null;
     }
 }

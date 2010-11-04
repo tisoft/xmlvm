@@ -29,6 +29,7 @@ public class UIPreferencesTextTableCell extends UIPreferencesTableCell {
 
     private String text;
 
+
     public UIPreferencesTextTableCell() {
         super();
         xmlvmSetRenderer(new UIPreferencesTextTableCellRenderer(this));

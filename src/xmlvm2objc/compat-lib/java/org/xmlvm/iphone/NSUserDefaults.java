@@ -24,11 +24,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.xmlvm.XMLVMSkeletonOnly;
+
 @XMLVMSkeletonOnly
 public class NSUserDefaults extends NSObject {
 
     private static NSUserDefaults nsUserDefaults = new NSUserDefaults();
     private Map<String, Object>   preferences    = new HashMap<String, Object>();
+
 
     public static NSUserDefaults standardUserDefaults() {
         return nsUserDefaults;

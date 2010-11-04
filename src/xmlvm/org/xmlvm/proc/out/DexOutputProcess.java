@@ -45,6 +45,7 @@ public class DexOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
 
     private List<OutputFile>    outputFiles = new ArrayList<OutputFile>();
 
+
     public DexOutputProcess(Arguments arguments) {
         super(arguments);
         addSupportedInput(ClassInputProcess.class);

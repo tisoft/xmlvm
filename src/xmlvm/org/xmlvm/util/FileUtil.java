@@ -44,6 +44,7 @@ import org.xmlvm.util.universalfile.UniversalFile;
 public class FileUtil {
     private static final String TAG = "FileUtil";
 
+
     /**
      * Returns whether the file or directory with the given name exists.
      * <p>
@@ -260,7 +261,8 @@ public class FileUtil {
             if (JarUtil.resourceExists(jarResource))
                 in = JarUtil.getFile(jarResource);
             else
-                in = new BufferedReader(new InputStreamReader(new FileInputStream(fileResource), "UTF-8"));
+                in = new BufferedReader(new InputStreamReader(new FileInputStream(fileResource),
+                        "UTF-8"));
         } catch (FileNotFoundException ex) {
         } catch (UnsupportedEncodingException ex) {
         }
@@ -401,7 +403,8 @@ public class FileUtil {
      */
     public static boolean writeStringToFile(File file, String content) {
         try {
-            OutputStreamWriter stageAssistantWriter = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
+            OutputStreamWriter stageAssistantWriter = new OutputStreamWriter(new FileOutputStream(
+                    file), "UTF-8");
             stageAssistantWriter.write(content);
             stageAssistantWriter.close();
         } catch (IOException e) {

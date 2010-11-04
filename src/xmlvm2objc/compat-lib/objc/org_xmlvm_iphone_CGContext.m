@@ -27,14 +27,16 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_CGContext;
 
-+ (org_xmlvm_iphone_CGContext*) UICurrentContext__
+- (id) initWithCGContextRef:(CGContextRef)ref
 {
-	
-    org_xmlvm_iphone_CGContext* c = [[org_xmlvm_iphone_CGContext alloc] init];
-	c->context = UIGraphicsGetCurrentContext();
-    return c;
+	self->context = ref;
+	return self;
 }
-    
+
+- (CGContextRef) getCGContextRef
+{
+	return self->context;
+}
 
 - (void) setFillColor___float_ARRAYTYPE: (XMLVMArray*) color
 {
@@ -172,28 +174,5 @@
 	CGImageRef i = [image getCGImage];
 	CGContextDrawImage(context, r, i);
 }
-
-- (void) drawLayer___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGLayer: (org_xmlvm_iphone_CGRect*)rect: (org_xmlvm_iphone_CGLayer*)layer
-{
-	CGRect r = [rect getCGRect];
-	CGLayerRef l = [layer getCGLayer];
-	CGContextDrawLayerInRect(context, r, l);
-}
-
-+ (void) UIGraphicsBeginImageContext___org_xmlvm_iphone_CGSize: (org_xmlvm_iphone_CGSize*) size
-{
-	CGSize cgsize = CGSizeMake(size->width_float, size->height_float);
-	UIGraphicsBeginImageContext(cgsize);
-}
-
-+ (org_xmlvm_iphone_UIImage*) UIGraphicsGetImageFromCurrentImageContext__
-{
-	return [UIGraphicsGetImageFromCurrentImageContext() retain];
-}
-
-+ (void) UIGraphicsEndImageContext__
-{
-	UIGraphicsEndImageContext();
-}
-        
+   
 @end

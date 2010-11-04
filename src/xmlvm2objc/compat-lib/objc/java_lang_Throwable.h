@@ -29,7 +29,6 @@
 - (id) init;
 - (void) __init_java_lang_Throwable__;
 - (NSString *) getMessage__;
-- (NSString *) toString__;
 - (void) printStackTrace__;
 
 @end

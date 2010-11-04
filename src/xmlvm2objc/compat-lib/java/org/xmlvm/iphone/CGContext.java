@@ -22,76 +22,37 @@ package org.xmlvm.iphone;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
-import java.awt.Composite;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.util.Stack;
+import org.xmlvm.iphone.internal.CGContextState;
 
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
+
 @XMLVMSkeletonOnly
 public class CGContext extends NSObject {
-    public static final int         kCGTextInvisible = 1;
-    public static final int         kCGTextFill      = 2;
+    public static final int     kCGTextInvisible = 1;
+    public static final int     kCGTextFill      = 2;
 
-    private static Stack<CGContext> contextStack;
+    private final BufferedImage image;
+    private final Graphics2D    graphicsContext;
+    private float               tx;
+    private float               ty;
+    private int                 textMode;
 
-    private Graphics2D              graphicsContext;
-    private UIImage                 image;
-
-    private float                   tx;
-    private float                   ty;
-    private int                     textMode;
-    private Rectangle               savedClip;
-    private AffineTransform         savedTransform;
-    private Color                   savedColor;
-    private Composite               savedComposite;
-    private Font                    savedFont;
-
-    static {
-        contextStack = new Stack<CGContext>();
-        BufferedImage image = new BufferedImage(320, 480, BufferedImage.TYPE_USHORT_565_RGB);
-        xmlvmPushGraphicsContext((Graphics2D) image.getGraphics());
-    }
 
     @XMLVMIgnore
-    CGContext(Graphics2D g) {
-        graphicsContext = g;
+    CGContext(CGSize size) {
+        image = new BufferedImage((int) size.width, (int) size.height,
+                BufferedImage.TYPE_USHORT_565_RGB);
+        graphicsContext = image.createGraphics();
+    }
+
+    private CGContext(Graphics2D g) {
         image = null;
-    }
-
-    CGContext(UIImage image) {
-        graphicsContext = (Graphics2D) image.xmlvmGetImage().getGraphics();
-        this.image = image;
-    }
-
-    @XMLVMIgnore
-    CGContext(Graphics2D g, UIImage img) {
-        this.graphicsContext = g;
-        this.image = img;
-    }
-
-    @XMLVMIgnore
-    public static void xmlvmPushGraphicsContext(Graphics2D g) {
-        contextStack.push(new CGContext(g));
-    }
-
-    @XMLVMIgnore
-    public static void xmlvmPushGraphicsContext(UIImage image) {
-        contextStack.push(new CGContext(image));
-    }
-
-    @XMLVMIgnore
-    public static void xmlvmPushGraphicsContext(Graphics2D g, UIImage image) {
-        contextStack.push(new CGContext(g, image));
-    }
-
-    @XMLVMIgnore
-    public static void xmlvmPopGraphicsContext() {
-        contextStack.pop();
+        graphicsContext = g;
     }
 
     @XMLVMIgnore
@@ -99,8 +60,19 @@ public class CGContext extends NSObject {
         return graphicsContext;
     }
 
-    public static CGContext UICurrentContext() {
-        return contextStack.peek();
+    @XMLVMIgnore
+    BufferedImage xmlvmGetImage() {
+        return image;
+    }
+
+    @XMLVMIgnore
+    static CGContext xmlvmNewCGContext(CGSize size) {
+        return new CGContext(size);
+    }
+
+    @XMLVMIgnore
+    public static CGContext xmlvmNewCGContext(Graphics2D g) {
+        return new CGContext(g);
     }
 
     public void setFillColor(float[] color) {
@@ -181,23 +153,11 @@ public class CGContext extends NSObject {
     }
 
     public void storeState() {
-        xmlvmPushGraphicsContext(graphicsContext, image);
-        CGContext newContext = UICurrentContext();
-        newContext.savedClip = graphicsContext.getClipBounds();
-        newContext.savedTransform = graphicsContext.getTransform();
-        newContext.savedFont = graphicsContext.getFont();
-        newContext.savedComposite = graphicsContext.getComposite();
-        newContext.savedColor = graphicsContext.getColor();
+        CGContextState.push(graphicsContext);
     }
 
     public void restoreState() {
-        CGContext oldContext = UICurrentContext();
-        graphicsContext.setTransform(oldContext.savedTransform);
-        graphicsContext.setClip(oldContext.savedClip);
-        graphicsContext.setFont(oldContext.savedFont);
-        graphicsContext.setColor(oldContext.savedColor);
-        graphicsContext.setComposite(oldContext.savedComposite);
-        xmlvmPopGraphicsContext();
+        CGContextState.pop();
     }
 
     public CGRect getClip() {
@@ -222,25 +182,5 @@ public class CGContext extends NSObject {
         graphicsContext.drawImage(image.image, (int) rect.origin.x, (int) rect.origin.y,
                 (int) rect.size.width, (int) rect.size.height, null);
         graphicsContext.setTransform(savedTransform);
-    }
-
-    public void drawLayer(CGRect rect, CGLayer layer) {
-        graphicsContext.drawImage(layer.image, (int) rect.origin.x, (int) rect.origin.y,
-                (int) rect.size.width, (int) rect.size.height, null);
-    }
-
-    public static void UIGraphicsBeginImageContext(CGSize size) {
-        BufferedImage image = new BufferedImage((int) size.width, (int) size.height,
-                BufferedImage.TYPE_USHORT_565_RGB);
-        xmlvmPushGraphicsContext(UIImage.xmlvmCreateFromBufferedImage(image));
-    }
-
-    public static UIImage UIGraphicsGetImageFromCurrentImageContext() {
-        CGContext context = UICurrentContext();
-        return context.image;
-    }
-
-    public static void UIGraphicsEndImageContext() {
-        xmlvmPopGraphicsContext();
     }
 }

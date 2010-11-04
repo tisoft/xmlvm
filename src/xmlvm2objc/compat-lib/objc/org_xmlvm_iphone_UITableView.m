@@ -19,6 +19,7 @@
  */
 
 #import "org_xmlvm_iphone_UITableView.h"
+#import "org_xmlvm_iphone_UIScrollView.h"
 
 // UITableView
 //----------------------------------------------------------------------------
@@ -39,9 +40,19 @@
 	XMLVM_PROPERTY(dataSource,newsource)
 }
 
+- (org_xmlvm_iphone_UITableViewDataSource*) getDataSource__
+{
+	return_XMLVM(dataSource)
+}
+
 - (void) setDelegate___org_xmlvm_iphone_UITableViewDelegate :(org_xmlvm_iphone_UITableViewDelegate*) newdelegate
 {
 	XMLVM_PROPERTY(delegate,newdelegate)
+}
+
+- (org_xmlvm_iphone_UITableViewDelegate*) getTableViewDelegate__
+{
+	return_XMLVM(delegate)
 }
 
 - (void) setSeparatorColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*)separatorColor

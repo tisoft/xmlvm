@@ -28,11 +28,11 @@ import java.awt.Stroke;
 import java.awt.geom.Path2D;
 import java.util.List;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIAlertView;
 import org.xmlvm.iphone.UIButton;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIInterfaceOrientation;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UIScreen;
@@ -63,13 +63,14 @@ public class UIAlertViewRenderer extends UIViewRenderer<UIAlertView> {
      */
     CGRect                   viewingArea;
 
+
     public UIAlertViewRenderer(UIAlertView view) {
         super(view);
     }
 
     @Override
     public void paint() {
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = viewingArea; // Note!!! getFrame() refers to the
         // whole screen
         g.setColor(Color.red);

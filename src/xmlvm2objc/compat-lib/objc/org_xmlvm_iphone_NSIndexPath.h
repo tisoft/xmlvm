@@ -25,6 +25,7 @@
 typedef NSIndexPath org_xmlvm_iphone_NSIndexPath;
 @interface NSIndexPath (cat_org_xmlvm_iphone_NSIndexPath)
 
++ (org_xmlvm_iphone_NSIndexPath *) indexPathForRow___int_int:(int) row :(int) section;
 - (int) getSection__;
 - (int) getRow__;
 

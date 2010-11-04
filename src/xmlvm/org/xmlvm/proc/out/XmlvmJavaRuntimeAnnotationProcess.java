@@ -37,10 +37,10 @@ import org.xmlvm.proc.XmlvmResourceProvider;
  */
 public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
         implements XmlvmResourceProvider {
-    private final static String TAG             = XmlvmJavaRuntimeAnnotationProcess.class
-                                                        .getSimpleName();
+    private final static String TAG    = XmlvmJavaRuntimeAnnotationProcess.class.getSimpleName();
 
-    List<XmlvmResource>         result          = new ArrayList<XmlvmResource>();
+    List<XmlvmResource>         result = new ArrayList<XmlvmResource>();
+
 
     public XmlvmJavaRuntimeAnnotationProcess(Arguments arguments) {
         super(arguments);
@@ -82,6 +82,5 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
     public List<OutputFile> getOutputFiles() {
         return null;
     }
-
 
 }

@@ -50,7 +50,8 @@ public class NSString extends NSObject {
 
     public static String stringWithContentsOfFile(String path) {
         try {
-            return stringWithContentsOfReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
+            return stringWithContentsOfReader(new InputStreamReader(new FileInputStream(path),
+                    "UTF-8"));
         } catch (UnsupportedEncodingException ex) {
         } catch (IOException ex) {
         }
@@ -108,7 +109,7 @@ public class NSString extends NSObject {
     }
 
     public static void drawAtPoint(String texttodisplay, CGPoint point, UIFont font) {
-        Graphics2D graphicsContext = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D graphicsContext = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         Font savedFont = graphicsContext.getFont();
         graphicsContext.setFont(font.xmlvmGetFont());
         graphicsContext.drawString(texttodisplay, point.x, point.y);
@@ -116,7 +117,7 @@ public class NSString extends NSObject {
     }
 
     public static CGSize sizeWithFont(String text, UIFont font) {
-        Graphics2D graphicsContext = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D graphicsContext = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         Font savedFont = graphicsContext.getFont();
         Font awtFont = font.xmlvmGetFont();
         graphicsContext.setFont(awtFont);
@@ -127,7 +128,7 @@ public class NSString extends NSObject {
     }
 
     public static CGSize sizeWithFont(String text, UIFont font, CGSize size, int lineBreakMode) {
-        Graphics2D graphicsContext = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D graphicsContext = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         FontMetrics fm = graphicsContext.getFontMetrics(font.xmlvmGetFont());
 
         CGSize result = null;
@@ -174,4 +175,9 @@ public class NSString extends NSObject {
         return lines;
     }
 
+    public static boolean writeToFile(String content, String path, boolean atomically,
+            int NSStringEncoding) {
+        // TODO : Java implementation
+        return true;
+    }
 }

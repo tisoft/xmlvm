@@ -21,6 +21,10 @@
 package org.xmlvm.iphone;
 
 import java.io.File;
+import java.util.HashSet;
+import java.util.Properties;
+import java.util.Set;
+import java.util.StringTokenizer;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
@@ -30,11 +34,12 @@ import org.xmlvm.XMLVMSkeletonOnly;
  */
 @XMLVMSkeletonOnly
 public class NSBundle extends NSObject {
-    private static final String SYSRES_JAR = "/sys_resources";
-    private static final String APPRES_FILE = File.separator + "resources" + File.separator + "app" + File.separator;
 
+    private static final String SYSRES      = "/sys_resources";
+    private static final String APPRES_META = "/META-INF/list.resources";
+    private static NSBundle     mainBundle  = new NSBundle();
+    private static Set<String>  runtime_res;
 
-    private static NSBundle mainBundle = new NSBundle();
 
     private NSBundle() {
     }
@@ -56,46 +61,72 @@ public class NSBundle extends NSObject {
             filename = directory + "/" + filename;
         }
 
-        /* First check as a local file */
-        try {
-            File res = new File(new File(getClass().getResource("/").getFile()).getParentFile().getParent()
-                    + APPRES_FILE + filename);
-            if (res.exists()) {
-                return res.getAbsolutePath();
+        /* First check as a local resource file */
+        for (String dname : getDeclaredResources()) {
+            File dfile = new File(dname);
+            try {
+                if (dfile.isFile()) { // Resource is a file
+                    if (dfile.getName().equals(filename))
+                        return dfile.getAbsolutePath();
+                } else { // Resource is a directory
+                    File req = null;
+                    if (dname.endsWith("/")) // Search inside directory
+                        req = new File(dfile, filename);
+                    else { // Take into account resource directory
+                        int slash = filename.indexOf('/');
+                        String doubledir = filename.substring(0, slash);
+                        if (doubledir.equals(dfile.getName())) // Only if both
+                            // directories
+                            // are the same
+                            req = new File(dfile, filename.substring(slash + 1));
+                    }
+                    if (req != null && req.exists())
+                        return req.getAbsolutePath();
+                }
+            } catch (Exception ex) {
             }
-        } catch (Exception ex) {
-        }
-        
-        /* Check also if it is simply on the root directory of the project */
-        try {
-            File res = new File(getClass().getResource("/" + filename).getFile());
-            if (res.exists()) {
-                return res.getAbsolutePath();
-            }
-        } catch (Exception ex) {
         }
 
-        /* Then check as a file inside the jar 
-         * This is a rare case and used only for the emulator under ImageLoader
+        /*
+         * Then check as a system jar resource file This is a rare case and used
+         * only for the emulator under ImageLoader
          */
         String jarfilename = filename.startsWith("/") ? filename : "/" + filename;
         try {
-            String path = getClass().getResource(jarfilename).toURI().toURL().toString();
+            String path = getClass().getResource(SYSRES + jarfilename).toURI().toURL().toString();
             if (path != null) {
                 return path;
             }
         } catch (Exception ex) {
         }
 
-        /* Then check as a system jar resource file
-         * This is a rare case and used only for the emulator under ImageLoader
+        /*
+         * As a last effort, check if this file can be found locally in the
+         * current xmlvm project. This is only a convenience approach for XMLVM
+         * demos to access their resources when run from inside Eclipse.
+         * 
+         * Please do not use it in your own projects. Use "xmlvm.resource" under
+         * file "xcode.properties" instead.
          */
-        try {
-            String path = getClass().getResource(SYSRES_JAR + jarfilename).toURI().toURL().toString();
-            if (path != null) {
-                return path;
-            }
-        } catch (Exception ex) {
+        File xmlvmlocal = new File(System.getProperty("user.dir"), filename);
+        if (xmlvmlocal.exists()) {
+            return xmlvmlocal.getAbsolutePath();
+        }
+        xmlvmlocal = new File(System.getProperty("user.dir") + File.separator + "res", filename);
+        if (xmlvmlocal.exists()) {
+            return xmlvmlocal.getAbsolutePath();
+        }
+        xmlvmlocal = new File(System.getProperty("user.dir") + File.separator + ".."
+                + File.separator + ".." + File.separator + ".." + File.separator + "var"
+                + File.separator + "iphone", filename);
+        if (xmlvmlocal.exists()) {
+            return xmlvmlocal.getAbsolutePath();
+        }
+        xmlvmlocal = new File(System.getProperty("user.dir") + File.separator + ".."
+                + File.separator + ".." + File.separator + ".." + File.separator + ".."
+                + File.separator + "var" + File.separator + "iphone", filename);
+        if (xmlvmlocal.exists()) {
+            return xmlvmlocal.getAbsolutePath();
         }
 
         /* Not found */
@@ -107,13 +138,17 @@ public class NSBundle extends NSObject {
     }
 
     public String bundlePath() {
-        // First we assume that we are running an Android app and we use the 'res' directory
-        // to locate the proper classpath location. We have to do this since the classpath
-        // usually consists of several directories and we use 'res' as a unique identifier
+        // First we assume that we are running an Android app and we use the
+        // 'res' directory
+        // to locate the proper classpath location. We have to do this since the
+        // classpath
+        // usually consists of several directories and we use 'res' as a unique
+        // identifier
         // to locate the correct location.
         String path = pathForResource("", null, "res");
         if (path == null) {
-            // We are not running an Android app. Just return the main directory in this case
+            // We are not running an Android app. Just return the main directory
+            // in this case
             File res = new File(getClass().getResource("/").getFile());
             if (res.exists()) {
                 return res.getAbsolutePath();
@@ -121,5 +156,36 @@ public class NSBundle extends NSObject {
             return null;
         }
         return new File(path).getParent();
+    }
+
+    /**
+     * Runtime resources, given as a special file under
+     * ${CLASSPATH}/META-INF/list.resources This is required in order to run
+     * applications from the command line.
+     */
+    private static Set<String> getDeclaredResources() {
+        if (runtime_res == null) {
+            runtime_res = new HashSet<String>();
+            Properties pr = new Properties();
+            try {
+                // Load resources definition in the META-INF directory
+                pr.load(NSBundle.class.getResourceAsStream(APPRES_META));
+            } catch (Exception ex1) {
+                return runtime_res;
+            }
+            String path = pr.getProperty("path", System.getProperty("user.dir"));
+            if (!path.endsWith(File.separator))
+                path += File.separator;
+            String list = pr.getProperty("items", "");
+            StringTokenizer tk = new StringTokenizer(list, ":");
+            while (tk.hasMoreTokens()) {
+                String item = tk.nextToken();
+                if (item.startsWith(File.separator))
+                    runtime_res.add(item);
+                else
+                    runtime_res.add(path + item);
+            }
+        }
+        return runtime_res;
     }
 }

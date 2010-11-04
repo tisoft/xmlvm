@@ -31,6 +31,7 @@ public class UIAccelerometer extends NSObject {
 
     private UIAccelerometerDelegate delegate            = null;
 
+
     private UIAccelerometer() {
     }
 

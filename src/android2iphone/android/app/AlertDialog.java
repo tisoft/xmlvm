@@ -37,6 +37,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
         private DialogInterface.OnClickListener clickListener;
         private Context                         context;
 
+
         public Builder(Context context) {
             this.context = context;
         }
@@ -72,12 +73,14 @@ public class AlertDialog extends Dialog implements DialogInterface {
         }
     }
 
+
     private Builder           builder;
     private String[]          buttonTitles = new String[3];
     private OnClickListener[] listeners    = new OnClickListener[3];
     private String            title;
     private String            message;
     private Context           context;
+
 
     protected AlertDialog(Context context) {
         Assert.NOT_IMPLEMENTED();
@@ -104,10 +107,10 @@ public class AlertDialog extends Dialog implements DialogInterface {
                 AlertDialog.this.clickedButtonAtIndex(alertView, buttonIndex);
             }
         }, builder.positiveButtonTitle);
-        
+
         alertView.setTitle(title);
         alertView.setMessage(message);
-        
+
         for (int i = 0; i < buttonTitles.length; ++i) {
             if (buttonTitles[i] != null) {
                 alertView.addButtonWithTitle(buttonTitles[i]);

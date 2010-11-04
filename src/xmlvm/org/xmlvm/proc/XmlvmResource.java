@@ -43,11 +43,13 @@ public class XmlvmResource {
         JVM, CLI, CLI_DFA, DEX
     }
 
+
     /**
      * Wrapper for a <code>&lt;dex:invoke-*&gt;</code> element.
      */
     public class XmlvmInvokeInstruction {
         public Element invokeElement;
+
 
         /**
          * Wrapper for a <code>&lt;dex:invoke-*&gt;</code> element.
@@ -89,8 +91,10 @@ public class XmlvmResource {
         }
     }
 
+
     public class XmlvmMemberReadWrite {
         public Element memberReadWriteElement;
+
 
         /**
          * Wrapper for a <code>&lt;dex:iget-*&gt;</code> or a
@@ -127,11 +131,13 @@ public class XmlvmResource {
 
     }
 
+
     /**
      * Wrapper for a <code>&lt;vm:method&gt;</code> element.
      */
     public class XmlvmMethod {
         public Element methodElement;
+
 
         /**
          * Wrapper for a <code>&lt;vm:method&gt;</code> element.
@@ -318,11 +324,13 @@ public class XmlvmResource {
 
     }
 
+
     /**
      * Wrapper for a <code>&lt;vm:field&gt;</code> element.
      */
     public class XmlvmField {
         public Element fieldElement;
+
 
         /**
          * Wrapper for a <code>&lt;vm:field&gt;</code> element.
@@ -389,8 +397,10 @@ public class XmlvmResource {
         }
     }
 
+
     public class XmlvmVtable {
         private Element vtableElement;
+
 
         public XmlvmVtable(Element vtableElement) {
             this.vtableElement = vtableElement;
@@ -415,6 +425,7 @@ public class XmlvmResource {
         }
     }
 
+
     public static Namespace   nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
     public static Namespace   nsDEX   = Namespace.getNamespace("dex", "http://xmlvm.org/dex");
     public static Namespace   nsJVM   = Namespace.getNamespace("jvm", "http://xmlvm.org/jvm");
@@ -424,6 +435,7 @@ public class XmlvmResource {
     private final Type        type;
     private final Document    xmlvmDocument;
     private final Set<String> referencedTypes;
+
 
     public XmlvmResource(String name, String superTypeName, Type type, Document xmlvmDocument,
             Set<String> referencedTypes) {

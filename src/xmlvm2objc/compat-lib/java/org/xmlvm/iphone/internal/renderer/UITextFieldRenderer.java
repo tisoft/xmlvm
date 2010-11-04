@@ -38,17 +38,18 @@ import org.xmlvm.iphone.UITextBorderStyle;
 import org.xmlvm.iphone.UITextField;
 
 /**
- *
+ * 
  * @author teras
  */
 public class UITextFieldRenderer extends UITextRenderer<UITextField> {
 
-    private static final Insets INSETS       = new Insets(1, 8, 1, 8);
-    private static final int    ROUND_WIDTH  = 12;
-    private static final Color  BEZEL_OUT    = new Color(128, 128, 128, 255);
-    private static final Color  BEZEL_IN     = new Color(179, 179, 179, 255);
-    private static final Color  ROUND_UP     = new Color(161, 163, 166, 255);
-    private static final Color  ROUND_DOWN   = new Color(228, 230, 234);
+    private static final Insets INSETS           = new Insets(1, 8, 1, 8);
+    private static final Insets INSETS_NO_BORDER = new Insets(1, 1, 1, 1);
+    private static final int    ROUND_WIDTH      = 12;
+    private static final Color  BEZEL_OUT        = new Color(128, 128, 128, 255);
+    private static final Color  BEZEL_IN         = new Color(179, 179, 179, 255);
+    private static final Color  ROUND_UP         = new Color(161, 163, 166, 255);
+    private static final Color  ROUND_DOWN       = new Color(228, 230, 234);
 
     public UITextFieldRenderer(UITextField view) {
         super(view);
@@ -104,33 +105,37 @@ public class UITextFieldRenderer extends UITextRenderer<UITextField> {
             g.fill(rect);
         }
         switch (((UITextField) view).getBorderStyle()) {
-            case UITextBorderStyle.Bezel:
-                g.setColor(BEZEL_IN);
-                g.draw(new Rectangle2D.Float(frame.origin.x + 1, frame.origin.y + 1,
-                        frame.size.width - 2, frame.size.height - 1));
-                g.setColor(BEZEL_OUT);
-                g.draw(rect);
-                break;
-            case UITextBorderStyle.Line:
-                g.setColor(Color.black);
-                g.draw(rect);
-                break;
-            case UITextBorderStyle.RoundedRect:
-                Shape rrect = new RoundRectangle2D.Float(frame.origin.x + 1, frame.origin.y + 1,
-                        frame.size.width - 2, frame.size.height - 2, ROUND_WIDTH, ROUND_WIDTH);
-                g.setPaint(Color.white);
-                g.fill(rrect);
-                g.setPaint(new GradientPaint(frame.origin.x, frame.origin.y, ROUND_UP,
-                        frame.origin.x, frame.origin.y + frame.size.height, ROUND_DOWN));
-                g.setStroke(new BasicStroke(2));
-                g.draw(rrect);
-                g.setStroke(new BasicStroke(1));
-                break;
+        case UITextBorderStyle.Bezel:
+            g.setColor(BEZEL_IN);
+            g.draw(new Rectangle2D.Float(frame.origin.x + 1, frame.origin.y + 1,
+                    frame.size.width - 2, frame.size.height - 1));
+            g.setColor(BEZEL_OUT);
+            g.draw(rect);
+            break;
+        case UITextBorderStyle.Line:
+            g.setColor(Color.black);
+            g.draw(rect);
+            break;
+        case UITextBorderStyle.RoundedRect:
+            Shape rrect = new RoundRectangle2D.Float(frame.origin.x + 1, frame.origin.y + 1,
+                    frame.size.width - 2, frame.size.height - 2, ROUND_WIDTH, ROUND_WIDTH);
+            g.setPaint(Color.white);
+            g.fill(rrect);
+            g.setPaint(new GradientPaint(frame.origin.x, frame.origin.y, ROUND_UP, frame.origin.x,
+                    frame.origin.y + frame.size.height, ROUND_DOWN));
+            g.setStroke(new BasicStroke(2));
+            g.draw(rrect);
+            g.setStroke(new BasicStroke(1));
+            break;
         }
     }
 
     @Override
     Insets getInsets() {
-        return INSETS;
+        if (((UITextField) view).getBorderStyle() == UITextBorderStyle.None) {
+            return INSETS_NO_BORDER;
+        } else {
+            return INSETS;
+        }
     }
 }

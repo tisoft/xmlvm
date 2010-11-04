@@ -40,6 +40,7 @@ import org.xmlvm.proc.in.file.XmlvmFile;
 public class XmlvmOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     private List<OutputFile> outputFiles = new ArrayList<OutputFile>();
 
+
     public XmlvmOutputProcess(Arguments arguments) {
         super(arguments);
         addAllXmlvmEmittingProcessesAsInput();

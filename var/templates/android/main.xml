@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+android:id="@+id/mainview"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<ImageView
+android:id="@+id/xmlvm"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:padding="6px"
+android:src="@drawable/demo"
+android:layout_below="@+id/hello"
+android:layout_centerHorizontal="true"
+>
+</ImageView>
+<TextView
+android:id="@+id/hello"
+android:layout_width="wrap_content"
+android:layout_height="16px"
+android:text="Hello"
+android:layout_alignParentTop="true"
+android:layout_centerHorizontal="true"
+>
+</TextView>
+</RelativeLayout>

@@ -41,6 +41,8 @@ public class UIApplication extends UIResponder {
     @XMLVMIgnore
     UIWindow                      keyWindow;
     private int                   statusBarStyle;
+    private boolean               networkActivityIndicatorVisible;
+
 
     public UIApplication() {
         windows = new ArrayList<UIWindow>();
@@ -109,18 +111,27 @@ public class UIApplication extends UIResponder {
         this.statusBarStyle = uiStatusBarStyle;
     }
 
+    public boolean isNetworkActivityIndicatorVisible() {
+        return networkActivityIndicatorVisible;
+    }
+
+    public void setNetworkActivityIndicatorVisible(boolean networkActivityIndicatorVisible) {
+        this.networkActivityIndicatorVisible = networkActivityIndicatorVisible;
+    }
+
     public boolean openURL(NSURL url) {
         // TODO : Java implementation
         return true;
     }
 
-    public static void main(String[] args, Class<? extends UIApplication> uiApplication, Class<? extends UIApplicationDelegate> uiApplicationDelegate) {
+    public static void main(String[] args, Class<? extends UIApplication> uiApplication,
+            Class<? extends UIApplicationDelegate> uiApplicationDelegate) {
         try {
-            if (uiApplication==null)
+            if (uiApplication == null)
                 uiApplication = UIApplication.class;
-            if (uiApplicationDelegate==null)
+            if (uiApplicationDelegate == null)
                 uiApplicationDelegate = UIApplicationDelegate.class;
-            instance = ((UIApplication)uiApplication.newInstance());
+            instance = ((UIApplication) uiApplication.newInstance());
             instance.setDelegate((UIApplicationDelegate) uiApplicationDelegate.newInstance());
             Runnable r = new Runnable() {
 

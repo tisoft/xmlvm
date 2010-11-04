@@ -56,4 +56,6 @@ typedef NSString org_xmlvm_iphone_NSString;
                :(org_xmlvm_iphone_UIFont*) font
                :(org_xmlvm_iphone_CGSize*) constraint
                :(int) lineBreakMode;
++ (int) writeToFile___java_lang_String_java_lang_String_boolean_int:(java_lang_String*)string :(java_lang_String*)path :(int)atomically :(int)encoding;
+
 @end

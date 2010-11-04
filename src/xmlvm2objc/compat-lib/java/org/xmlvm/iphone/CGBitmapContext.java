@@ -20,12 +20,10 @@
 
 package org.xmlvm.iphone;
 
-import java.awt.Graphics2D;
 import java.nio.ByteBuffer;
 
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
-
 
 @XMLVMSkeletonOnly
 public class CGBitmapContext extends CGContext {
@@ -38,16 +36,8 @@ public class CGBitmapContext extends CGContext {
         return new CGBitmapContext(x, y);
     }
 
-    @XMLVMIgnore
-    CGBitmapContext(Graphics2D g) {
-        super(g);
-    }
-
     private CGBitmapContext(int x, int y) {
-        super((Graphics2D) null);
-    }
-
-    public void release() {
+        super(new CGSize(x, y));
     }
 
     @XMLVMIgnore

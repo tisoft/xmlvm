@@ -14,6 +14,7 @@ public class SimulatorApplet extends JApplet {
     private JPanel jContentPane = null;
     private Thread applThread;
 
+
     public SimulatorApplet() {
         super();
         Simulator.initialized = true;

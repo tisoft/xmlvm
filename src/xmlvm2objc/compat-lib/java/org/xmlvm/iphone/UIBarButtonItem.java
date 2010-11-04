@@ -43,6 +43,7 @@ public class UIBarButtonItem extends UIBarItem {
     private int                     style;
     private float                   width;
 
+
     public UIBarButtonItem(int uiBarButtonSystemItem, final UIBarButtonItemDelegate action) {
     }
 
@@ -79,7 +80,7 @@ public class UIBarButtonItem extends UIBarItem {
         super.setTitle(title);
         if (customView instanceof UIBarButtonItemView)
             ((UIBarButtonItemView) customView).setTitle(title, 0);
-        UIButtonRenderer.Metrics m = UIButtonRenderer.getMetrics(CGContext.UICurrentContext()
+        UIButtonRenderer.Metrics m = UIButtonRenderer.getMetrics(UIGraphics.getCurrentContext()
                 .xmlvmGetGraphics2D(), title, UIBarButtonItemRenderer.BAR_BUTTON_FONT
                 .xmlvmGetFont());
         float cutoff = ((UIBarButtonItemRenderer) getCustomView().xmlvmGetRenderer()).isBack() ? UIBarButtonItemRenderer.CUTOFF

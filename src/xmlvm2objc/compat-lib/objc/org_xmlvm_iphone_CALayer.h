@@ -21,15 +21,19 @@
 #import "xmlvm.h"
 #import <QuartzCore/CAAnimation.h>
 #import "org_xmlvm_iphone_CAAnimation.h"
+#import "org_xmlvm_iphone_CGContext.h"
 #import "java_lang_String.h"
+
+@class org_xmlvm_iphone_UIView;
 
 /** @author teras */
 
 typedef CALayer org_xmlvm_iphone_CALayer;
 
 @interface CALayer (cat_org_xmlvm_iphone_CALayer)
-
 - (void) addAnimation___org_xmlvm_iphone_CAAnimation_java_lang_String:(org_xmlvm_iphone_CAAnimation*)animation :(java_lang_String*) key;
-
+- (void) renderInContext___org_xmlvm_iphone_CGContext:(org_xmlvm_iphone_CGContext*)context;
+- (id) getDelegate__;
+- (void) setDelegate___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*) newdelegate;
 @end
 

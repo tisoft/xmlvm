@@ -1,89 +1,43 @@
-<project name="xmlvm" default="all" basedir=".">
+<project name="xmlvm" default="jar" basedir=".">
 
-
-	<property name="homepage.dir" value="../XML11HomePage" />
-
-	<property name="xmlvm.jar" value="./dist/xmlvm.jar" />
-	<property name="xmlvm.libjars" value="./dist/lib/" />
-	<property name="xmlvm.dist" value="./dist" />
-
-	<property name="xmlvm.demo" value="./dist/demo" />
-
-	<property name="xmlvm.build" value="build/base" />
-	<property name="xmlvm.build.main" value="${xmlvm.build}/main" />
-	<property name="xmlvm.build.lib" value="${xmlvm.build}/lib" />
-	<property name="xmlvm.bin" value="build/bin" />
-
-	<property name="xmlvm.objc-compat-lib" value="build/compat-lib/iphone" />
-	
-	<property name="xmlvm.android-compat-lib" value="build/compat-lib/android" />
-	<property name="xmlvm.android-compat-lib.java" value="${xmlvm.android-compat-lib}/java" />
-	<property name="xmlvm.android-compat-lib.objc" value="${xmlvm.android-compat-lib}/objc" />
-	
-	<property name="xmlvm.cocoa-java" value="build/cocoa-java" />
-
-	<property name="xmlvm.isound" value="build/demo/iphone/isound" />
-	<property name="xmlvm.ifireworks" value="build/demo/iphone/ifireworks" />
-	<property name="xmlvm.iremote" value="build/demo/iphone/iremote" />
-	<property name="xmlvm.ihelloworld" value="build/demo/iphone/ihelloworld" />
-	<property name="xmlvm.iglnehelesson4" value="build/demo/iphone/gl/nehelesson4" />
-	<property name="xmlvm.widgets" value="build/widgets" />
-
-	<property name="xmlvm.afireworks" value="build/demo/android/afireworks" />
-	<property name="xmlvm.aremote" value="build/demo/android/aremote" />
-	<property name="xmlvm.xokoban" value="build/demo/android/xokoban" />
-	<property name="xmlvm.sayhello" value="build/demo/android/sayhello" />
-
-	<property name="xmlvm.opengl" value="build/demo/android/opengl" />
-
-	<property name="xmlvm.demo.classpath" value="${basedir}/dist/xmlvm.jar"/>
-
-	<property name="debug" value="yes" />
-	<property name="doc.dir" value="doc" />
-	<property name="ant.build.javac.target" value="1.5"/>
-
-	<property name="tmp.dir" value="${xmlvm.main}" />
-	<property name="cscCompiler" value="C:/WINDOWS/Microsoft.NET/Framework/v2.0.50727/csc.exe" />
-
-
-
-	<target name="all" depends="xmlvmjar,build-objc-compat-lib,build-iphoneDemo">
-
-	</target>
-	<path id="classpath.compile">
-		<pathelement location="lib/dx.jar" />
-		<pathelement location="lib/bcel.jar" />
-		<pathelement location="lib/jdom.jar" />
-		<pathelement location="lib/mbel.jar" />
-		<pathelement location="lib/yuicompressor-2.1.2.jar" />
-		<pathelement location="lib/czlUtil.jar" />
-		<pathelement location="lib/saxon9.jar" />
-		<pathelement location="lib/saxon9-jdom.jar" />
-		<pathelement location="lib/lwjgl.jar" />
-		<pathelement location="lib/basicplayer3.0.jar" />
-	</path>
-
-		
-	<path id="classpath.run">
-		<pathelement location="${xmlvm.bin}" />
-		<pathelement location="src/xmlvm2objc/xsl" />
-		<pathelement location="lib/dx.jar" />
-		<pathelement location="lib/bcel.jar" />
-		<pathelement location="lib/mbel.jar" />
-		<pathelement location="lib/jdom.jar" />
-		<pathelement location="lib/jakarta-regexp.jar" />
-		<pathelement location="lib/saxon9.jar" />
-		<pathelement location="lib/saxon9-jdom.jar" />
-		<pathelement location="lib/xercesImpl.jar" />
-		<pathelement location="lib/lwjgl.jar" />
-	</path>
-
+	<target name="demos" depends="demos-iphone,demos-android"/>
 
 	<target name="init">
+		<!-- initialize properties -->
+		<property file="properties/local.properties"/>
+		<property file="properties/xmlvm.properties"/>
+
+		<!-- calculate classpaths -->
+		<path id="classpath.compile">
+			<pathelement location="lib/dx.jar" />
+			<pathelement location="lib/bcel.jar" />
+			<pathelement location="lib/jdom.jar" />
+			<pathelement location="lib/mbel.jar" />
+			<pathelement location="lib/yuicompressor-2.1.2.jar" />
+			<pathelement location="lib/czlUtil.jar" />
+			<pathelement location="lib/saxon9.jar" />
+			<pathelement location="lib/saxon9-jdom.jar" />
+			<pathelement location="lib/lwjgl.jar" />
+			<pathelement location="lib/basicplayer3.0.jar" />
+		</path>
+		<path id="classpath.run">
+			<pathelement location="${xmlvm.bin}" />
+			<pathelement location="src/xmlvm2objc/xsl" />
+			<pathelement location="lib/dx.jar" />
+			<pathelement location="lib/bcel.jar" />
+			<pathelement location="lib/mbel.jar" />
+			<pathelement location="lib/jdom.jar" />
+			<pathelement location="lib/jakarta-regexp.jar" />
+			<pathelement location="lib/saxon9.jar" />
+			<pathelement location="lib/saxon9-jdom.jar" />
+			<pathelement location="lib/xercesImpl.jar" />
+			<pathelement location="lib/lwjgl.jar" />
+		</path>
+
 		<!-- Create the time stamp -->
 		<tstamp />
+
 		<!-- Create the build directory structure used by compile -->
-		<mkdir dir="${xmlvm.demo}" />
 		<mkdir dir="${xmlvm.libjars}" />
 		<mkdir dir="${xmlvm.build}" />
 		<mkdir dir="${xmlvm.build.main}" />
@@ -93,13 +47,14 @@
 		<mkdir dir="${xmlvm.bin}/lib" />
 	</target>
 
+
 	<target name="build-objc-compat-lib" depends="build-xmlvm">
 		<echo message="Generating objc-compat.jar" />
 		<mkdir dir="${xmlvm.objc-compat-lib}" />
 		<javac srcdir="src/xmlvm2objc/compat-lib/java" destdir="${xmlvm.objc-compat-lib}" debug="${debug}">
 			<classpath refid="classpath.compile" />
 			<classpath>
-			    <pathelement location="${xmlvm.bin}" />
+				<pathelement location="${xmlvm.bin}" />
 			</classpath>
 			<include name="**/*.java" />
 		</javac>
@@ -125,7 +80,7 @@
 		<uptodate property="cc-android-compat-lib.notrequired" targetfile="${xmlvm.android-compat-lib.objc}">
    			<srcfiles dir= "${xmlvm.android-compat-lib.java}" includes="**/*.class"/>
   		</uptodate>
-		<antcall target="cc-android-compat-lib.impl"/>
+		<antcall target="cc-android-compat-lib.impl" inheritRefs="yes"/>
 	</target>
 	
 	<target name="cc-android-compat-lib.impl" unless="cc-android-compat-lib.notrequired">
@@ -240,8 +195,8 @@
 			<fileset file="src/xmlvm2js/Application.js.template" />
 		</copy>
 
-		<copy todir="${xmlvm.bin}/iphone/netbeans">
-			<fileset dir="var/iphone/netbeans/" />
+		<copy todir="${xmlvm.bin}/templates/">
+			<fileset dir="var/templates" />
 		</copy>
 
 		<copy todir="${xmlvm.build}/sys_resources">
@@ -273,444 +228,17 @@
 			</manifest>
 			<fileset dir="${xmlvm.build}" />
 		</jar>
-	</target>
 
+		<!-- Declare the location of xmlvm.jar to all iPhone projects -->
+		<ant dir="demo/iphone/ihelloworld/fullscreen" target="init"/>
+		<ant dir="demo/iphone/ihelloworld/landscape" target="init"/>
+		<ant dir="demo/iphone/ihelloworld/portrait" target="init"/>
+		<ant dir="demo/iphone/ihelloworld/upsidedown" target="init"/>
+		<ant dir="demo/iphone/ifireworks" target="init"/>
+		<ant dir="demo/iphone/iremote" target="init"/>
+		<ant dir="demo/iphone/isound" target="init"/>
+		<ant dir="demo/iphone/gl/nehelesson4" target="init"/>
 
-	<target name="build-iphoneDemo" depends="all-ihelloworld,
-											 build-iglnehelesson4,cc-iglnehelesson4,
-											 cc-ifireworks,cc-iremote,cc-isound,
-											 sim-afireworks-jar,cc-sim-afireworks,sim-xokoban-jar,cc-sim-xokoban,sim-sayhello-jar,cc-sim-sayhello">
-	</target>
-
-	<target name="all-cc" depends="all-ihelloworld,cc-ifireworks,cc-iremote,cc-isound,cc-sim-afireworks,cc-sim-aremote,cc-sim-sayhello,cc-sim-xokoban"/>
-
-	<target name="all-ihelloworld" depends="cc-ihelloworld-portrait,cc-ihelloworld-landscape,cc-ihelloworld-fullscreen,cc-ihelloworld-upsidedown"/>
-	
-	<target name="build-ihelloworld-portrait" depends="build-objc-compat-lib">
-		<mkdir dir="${xmlvm.ihelloworld}/portrait" />
-		<javac srcdir="demo/iphone/ihelloworld/portrait/src" destdir="${xmlvm.ihelloworld}/portrait" debug="${debug}">
-			<classpath>
-				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
-			</classpath>
-			<include name="**/*.java" />
-		</javac>
-		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/portrait/java"/>
-		<jar destfile="${xmlvm.demo}/iphone/ihelloworld/portrait/java/ihelloworld.jar">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}" />
-				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.demo.ihelloworld.portrait.HelloWorld" />
-				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
-			</manifest>
-			<fileset dir="${xmlvm.ihelloworld}/portrait" />
-		</jar>
-	</target>
-
-	<target name="cc-ihelloworld-portrait" depends="xmlvmjar,build-ihelloworld-portrait">
-		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/portrait/iphone" />
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/portrait/iphone" />
-			<arg value="--target=iphone" />
-			<arg value="--app-name=iHelloWorld" />
-			<arg value="--in=${xmlvm.ihelloworld}/portrait/" />
-		</java>
-	</target>
-
-	<target name="build-iglnehelesson4" depends="build-objc-compat-lib">
-		<mkdir dir="${xmlvm.iglnehelesson4}" />
-		<javac srcdir="demo/iphone/gl/nehelesson4/src" destdir="${xmlvm.iglnehelesson4}" debug="${debug}">
-			<classpath>
-				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
-			</classpath>
-			<include name="**/*.java" />
-		</javac>
-		<mkdir dir="${xmlvm.demo}/iphone/iglnehelesson4/java"/>
-		<jar destfile="${xmlvm.demo}/iphone/iglnehelesson4/java/iglnehelesson4.jar">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}" />
-				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.iphone.demo.gl.nehelesson4.NeHeLesson4" />
-				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
-			</manifest>
-			<fileset dir="${xmlvm.iglnehelesson4}" />
-		</jar>
-	</target>
-
-	<target name="cc-iglnehelesson4" depends="xmlvmjar,build-iglnehelesson4">
-		<mkdir dir="${xmlvm.demo}/iphone/iglnehelesson4/iphone" />
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/iphone/iglnehelesson4/iphone" />
-			<arg value="--target=iphone" />
-			<arg value="--iphone-app=iGLNeHeLesson4" />
-			<arg value="--in=${xmlvm.iglnehelesson4}/" />
-		</java>
-	</target>
-	
-	<target name="build-ihelloworld-upsidedown" depends="build-objc-compat-lib">
-		<mkdir dir="${xmlvm.ihelloworld}/upsidedown" />
-		<javac srcdir="demo/iphone/ihelloworld/upsidedown/src" destdir="${xmlvm.ihelloworld}/upsidedown" debug="${debug}">
-			<classpath>
-				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
-			</classpath>
-			<include name="**/*.java" />
-		</javac>
-		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/upsidedown/java"/>
-		<jar destfile="${xmlvm.demo}/iphone/ihelloworld/upsidedown/java/ihelloworld.jar">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}" />
-				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.demo.ihelloworld.upsidedown.HelloWorld" />
-				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
-			</manifest>
-			<fileset dir="${xmlvm.ihelloworld}/upsidedown" />
-		</jar>
-	</target>
-
-	<target name="cc-ihelloworld-upsidedown" depends="xmlvmjar,build-ihelloworld-upsidedown">
-		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/upsidedown/iphone" />
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/upsidedown/iphone" />
-			<arg value="--target=iphone" />
-			<arg value="--app-name=iHelloWorld" />
-			<arg value="--in=${xmlvm.ihelloworld}/upsidedown/" />
-		</java>
-	</target>
-
-	<target name="build-ihelloworld-landscape" depends="build-objc-compat-lib">
-		<mkdir dir="${xmlvm.ihelloworld}/landscape" />
-		<javac srcdir="demo/iphone/ihelloworld/landscape/src" destdir="${xmlvm.ihelloworld}/landscape" debug="${debug}">
-			<classpath>
-				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
-			</classpath>
-			<include name="**/*.java" />
-		</javac>
-		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/landscape/java"/>
-		<jar destfile="${xmlvm.demo}/iphone/ihelloworld/landscape/java/ihelloworld.jar">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}" />
-				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.demo.ihelloworld.landscape.HelloWorld" />
-				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
-			</manifest>
-			<fileset dir="${xmlvm.ihelloworld}/landscape" />
-		</jar>
-	</target>
-
-	<target name="cc-ihelloworld-landscape" depends="xmlvmjar,build-ihelloworld-landscape">
-		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/landscape/iphone" />
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/landscape/iphone" />
-			<arg value="--target=iphone" />
-			<arg value="--app-name=iHelloWorld" />
-			<arg value="--in=${xmlvm.ihelloworld}/landscape/" />
-		</java>
-	</target>
-
-	<target name="build-ihelloworld-fullscreen" depends="build-objc-compat-lib">
-		<mkdir dir="${xmlvm.ihelloworld}/fullscreen" />
-		<javac srcdir="demo/iphone/ihelloworld/fullscreen/src" destdir="${xmlvm.ihelloworld}/fullscreen" debug="${debug}">
-			<classpath>
-				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
-			</classpath>
-			<include name="**/*.java" />
-		</javac>
-		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/fullscreen/java"/>
-		<jar destfile="${xmlvm.demo}/iphone/ihelloworld/fullscreen/java/ihelloworld.jar">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}" />
-				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.demo.ihelloworld.fullscreen.HelloWorld" />
-				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
-			</manifest>
-			<fileset dir="${xmlvm.ihelloworld}/fullscreen" />
-		</jar>
-	</target>
-
-	<target name="cc-ihelloworld-fullscreen" depends="xmlvmjar,build-ihelloworld-fullscreen">
-		<mkdir dir="${xmlvm.demo}/iphone/ihelloworld/fullscreen/iphone" />
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/iphone/ihelloworld/fullscreen/iphone" />
-			<arg value="--target=iphone" />
-			<arg value="--app-name=iHelloWorld" />
-			<arg value="--in=${xmlvm.ihelloworld}/fullscreen/" />
-		</java>
-	</target>
-
-	<target name="build-ibuttontest" depends="build-objc-compat-lib">
-		<mkdir dir="${xmlvm.widgets}/button" />
-		<javac srcdir="src/test/iphone/org/xmlvm/test/iphone/widgets/button" destdir="${xmlvm.widgets}/button" debug="${debug}">
-			<classpath>
-				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
-			</classpath>
-			<include name="**/*.java" />
-		</javac>
-		<mkdir dir="${xmlvm.demo}/widgets/ibuttontest/java"/>
-		<jar destfile="${xmlvm.demo}/widgets/ibuttontest/java/ibuttontest.jar">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}" />
-				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.test.iphone.widgets.button.UIButtonTest" />
-				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
-			</manifest>
-			<fileset dir="${xmlvm.widgets}/button" />
-		</jar>
-	</target>
-
-	<target name="build-isound" depends="build-objc-compat-lib">
-		<mkdir dir="${xmlvm.isound}" />
-		<javac srcdir="demo/iphone/isound/src" destdir="${xmlvm.isound}" debug="${debug}">
-			<classpath>
-				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
-			</classpath>
-			<include name="**/*.java" />
-		</javac>
-		<mkdir dir="${xmlvm.demo}/iphone/isound/java" />
-		<jar destfile="${xmlvm.demo}/iphone/isound/java/isound.jar">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}" />
-				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.demo.isound.ISound" />
-				<attribute name="Class-Path" value="${xmlvm.demo.classpath} ../../../../../lib/basicplayer3.0.jar ../../../../../lib/jl1.0.jar ../../../../../lib/mp3spi1.9.4.jar ../../../../../lib/tritonus_share.jar ../../../../../lib/commons-logging-api-1.1.jar" />
-			</manifest>
-			<fileset dir="${xmlvm.isound}" />
-			<fileset dir="demo/iphone/isound/res">
-				<include name="*.mp3" />
-			</fileset>
-		</jar>
-	</target>
-
-	<target name="cc-isound" depends="xmlvmjar,build-isound">
-		<mkdir dir="${xmlvm.demo}/iphone/isound/iphone" />
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/iphone/isound/iphone" />
-			<arg value="--target=iphone" />
-			<arg value="--app-name=iSound" />
-			<arg value="--in=${xmlvm.isound}/" />
-			<arg value="--resource=demo/iphone/isound/res/"/>
-		</java>
-	</target>
-
-	<target name="build-ifireworks" depends="build-objc-compat-lib">
-		<mkdir dir="${xmlvm.ifireworks}" />
-		<javac srcdir="demo/iphone/ifireworks/src" destdir="${xmlvm.ifireworks}" debug="${debug}">
-			<classpath>
-				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
-			</classpath>
-			<include name="**/*.java" />
-		</javac>
-		<mkdir dir="${xmlvm.demo}/iphone/ifireworks/java" />
-		<jar destfile="${xmlvm.demo}/iphone/ifireworks/java/ifireworks.jar">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}" />
-				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.demo.ifireworks.Main" />
-				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
-			</manifest>
-			<fileset dir="${xmlvm.ifireworks}" />
-			<fileset dir="demo/iphone/ifireworks/ires">
-				<include name="*.png" />
-			</fileset>
-		</jar>
-	</target>
-
-	<target name="cc-ifireworks" depends="xmlvmjar,build-ifireworks">
-		<mkdir dir="${xmlvm.demo}/iphone/ifireworks/iphone" />
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true" maxmemory="512m">
-			<arg value="--out=${xmlvm.demo}/iphone/ifireworks/iphone" />
-			<arg value="--target=iphone" />
-			<arg value="--app-name=iFireworks" />
-			<arg value="--in=${xmlvm.ifireworks}/" />
-			<arg value="--resource=demo/iphone/ifireworks/ires/"/>
-		</java>
-	</target>
-
-	<target name="sim-afireworks" depends="build-android-compat-lib">
-		<mkdir dir="${xmlvm.afireworks}" />
-		<javac srcdir="./demo/android/afireworks" destdir="${xmlvm.afireworks}" debug="${debug}">
-			<classpath>
-				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
-				<pathelement location="${xmlvm.libjars}/android-compat.jar" />
-			</classpath>
-			<include name="**/*.java" />
-		</javac>
-	</target>
-
-	<target name="sim-afireworks-jar" depends="sim-afireworks">
-		<mkdir dir="${xmlvm.demo}/android/afireworks/java" />
-		<jar destfile="${xmlvm.demo}/android/afireworks/java/afireworks.jar">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}" />
-				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="android.internal.AndroidAppLauncher" />
-				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
-			</manifest>
-			<fileset dir="${xmlvm.afireworks}" />
-			<fileset dir="demo/android/afireworks">
-				<include name="*.xml" />
-				<include name="res/**" />
-			</fileset>
-		</jar>
-	</target>
-
-	<target name="cc-sim-afireworks" depends="sim-afireworks,xmlvmjar">
-		<mkdir dir="${xmlvm.demo}/android/afireworks/iphone" />
-
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/android/afireworks/iphone" />
-			<arg value="--target=android-on-iphone" />
-			<arg value="--app-name=aFireworks" />
-			<arg value="--in=${xmlvm.afireworks}/" />
-			<arg value="--resource=demo/android/afireworks/res"/>
-			<arg value="--resource=demo/android/afireworks/AndroidManifest.xml"/>
-		</java>
-	</target>
-
-	<target name="sim-aremote" depends="build-android-compat-lib">
-		<mkdir dir="${xmlvm.aremote}" />
-		<javac srcdir="./demo/android/aremote" destdir="${xmlvm.aremote}" debug="${debug}">
-			<classpath>
-				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
-				<pathelement location="${xmlvm.libjars}/android-compat.jar" />
-			</classpath>
-			<include name="**/*.java" />
-		</javac>
-	</target>
-
-	<target name="sim-aremote-jar" depends="sim-aremote">
-		<mkdir dir="${xmlvm.demo}/android/aremote/java" />
-		<jar destfile="${xmlvm.demo}/android/aremote/java/aremote.jar">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}" />
-				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.iphone.internal.AndroidAppLauncher" />
-				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
-			</manifest>
-			<fileset dir="${xmlvm.aremote}" />
-		</jar>
-	</target>
-
-	<target name="cc-sim-aremote" depends="sim-aremote,xmlvmjar">
-		<mkdir dir="${xmlvm.demo}/android/aremote/iphone" />
-
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/android/aremote/iphone" />
-			<arg value="--target=android-on-iphone" />
-			<arg value="--app-name=aRemote" />
-			<arg value="--in=${xmlvm.aremote}/" />
-		</java>
-	</target>
-
-	<target name="sim-xokoban" depends="build-android-compat-lib">
-		<mkdir dir="${xmlvm.xokoban}" />
-		<javac srcdir="./demo/android/xokoban" destdir="${xmlvm.xokoban}" debug="${debug}">
-			<classpath>
-				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
-				<pathelement location="${xmlvm.libjars}/android-compat.jar" />
-			</classpath>
-			<include name="src/**/*.java" />
-			<include name="gen/**/*.java" />
-		</javac>
-	</target>
-
-	<target name="sim-xokoban-jar" depends="sim-xokoban">
-		<mkdir dir="${xmlvm.demo}/android/xokoban/java" />
-		<jar destfile="${xmlvm.demo}/android/xokoban/java/xokoban.jar">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}" />
-				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="android.internal.AndroidAppLauncher" />
-				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
-			</manifest>
-			<fileset dir="${xmlvm.xokoban}" />
-			<fileset dir="demo/android/xokoban">
-				<include name="*.xml" />
-				<include name="res/**" />
-			</fileset>
-		</jar>
-	</target>
-
-	<target name="cc-sim-xokoban" depends="sim-xokoban,xmlvmjar">
-		<mkdir dir="${xmlvm.demo}/android/xokoban/iphone" />
-
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/android/xokoban/iphone" />
-			<arg value="--target=android-on-iphone" />
-			<arg value="--app-name=Xokoban" />
-			<arg value="--in=${xmlvm.xokoban}/" />
-			<arg value="--resource=demo/android/xokoban/res" />
-			<arg value="--resource=demo/android/xokoban/AndroidManifest.xml" />
-		</java>
-	</target>
-
-	<target name="sim-sayhello" depends="build-android-compat-lib">
-		<mkdir dir="${xmlvm.sayhello}" />
-		<javac srcdir="./demo/android/sayhello" destdir="${xmlvm.sayhello}" debug="${debug}">
-			<classpath>
-				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
-				<pathelement location="${xmlvm.libjars}/android-compat.jar" />
-			</classpath>
-			<include name="**/*.java" />
-		</javac>
-	</target>
-
-	<target name="sim-sayhello-jar" depends="sim-sayhello">
-		<mkdir dir="${xmlvm.demo}/android/sayhello/java" />
-		<jar destfile="${xmlvm.demo}/android/sayhello/java/sayhello.jar">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}" />
-				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="android.internal.AndroidAppLauncher" />
-				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
-			</manifest>
-			<fileset dir="${xmlvm.sayhello}" />
-			<fileset dir="demo/android/sayhello">
-				<include name="*.xml" />
-				<include name="res/**" />
-			</fileset>
-		</jar>
-	</target>
-
-	<target name="cc-sim-sayhello" depends="sim-sayhello,xmlvmjar">
-		<mkdir dir="${xmlvm.demo}/android/sayhello/iphone" />
-
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/android/sayhello/iphone" />
-			<arg value="--target=android-on-iphone" />
-			<arg value="--app-name=SayHello" />
-			<arg value="--in=${xmlvm.sayhello}/" />
-			<arg value="--resource=demo/android/sayhello/AndroidManifest.xml"/>
-			<arg value="--resource=demo/android/sayhello/res"/>
-		</java>
-	</target>
-
-	<target name="build-iremote" depends="build-objc-compat-lib">
-		<mkdir dir="${xmlvm.iremote}" />
-		<javac srcdir="demo/iphone/iremote/src" destdir="${xmlvm.iremote}" debug="${debug}">
-			<classpath>
-				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
-			</classpath>
-			<include name="**/*.java" />
-		</javac>
-		<mkdir dir="${xmlvm.demo}/iphone/iremote/java" />
-		<jar destfile="${xmlvm.demo}/iphone/iremote/java/iremote.jar">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}" />
-				<attribute name="Implementation-Vendor" value="xmlvm.org" />
-				<attribute name="Main-Class" value="org.xmlvm.demo.iremote.Main" />
-				<attribute name="Class-Path" value="${xmlvm.demo.classpath}" />
-			</manifest>
-			<fileset dir="${xmlvm.iremote}" />
-		</jar>
-	</target>
-
-	<target name="cc-iremote" depends="xmlvmjar,build-iremote">
-		<mkdir dir="${xmlvm.demo}/iphone/iremote/iphone" />
-		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
-			<arg value="--out=${xmlvm.demo}/iphone/iremote/iphone" />
-			<arg value="--target=iphone" />
-			<arg value="--app-name=iRemote" />
-			<arg value="--in=${xmlvm.iremote}/" />
-		</java>
 	</target>
 
 	<target name="eventHandlerCompatLib" depends="build-xmlvm">
@@ -741,13 +269,77 @@
 	</target>
 
 
+	<target name="demos-iphone" depends="jar">
+		<ant dir="demo/iphone/ihelloworld/fullscreen" target="xproject"/>
+		<ant dir="demo/iphone/ihelloworld/landscape" target="xproject"/>
+		<ant dir="demo/iphone/ihelloworld/portrait" target="xproject"/>
+		<ant dir="demo/iphone/ihelloworld/upsidedown" target="xproject"/>
+		<ant dir="demo/iphone/ifireworks" target="xproject"/>
+		<ant dir="demo/iphone/iremote" target="xproject"/>
+		<ant dir="demo/iphone/isound" target="xproject"/>
+		<ant dir="demo/iphone/gl/nehelesson4" target="xproject"/>
+	</target>
 
-	<target name="clean" description="Remove all build files">
+
+	<target name="create-local.properties" unless="sdk.dir">
+		<echo file="properties/local.properties" message="# The location of the AndroidSDK.${line.separator}# Since this file is included in all Android demo projects, it is advised${line.separator}# to use an absolute path, or else the demo projects will not be properly${line.separator}# configured.${line.separator}#${line.separator}sdk.dir=LOCATION_OF_ANDROID_SDK"/>
+	</target>
+
+	<target name="demos-android" depends="jar,create-local.properties">
+		<ant dir="demo/android/afireworks" target="xproject"/>
+		<ant dir="demo/android/aremote" target="xproject"/>
+		<ant dir="demo/android/helloworld" target="xproject"/>
+		<ant dir="demo/android/sayhello" target="xproject"/>
+		<ant dir="demo/android/xokoban" target="xproject"/>
+	</target>
+
+	
+	<!-- In Android projects we can not use the proper clean task to clean up the project,
+		 since these projects require the AndroidSDK to be present.
+		 Thus, a macro has been used instead -->
+	<macrodef name="aproj-delete">
+		<attribute name="dir"/>
+		<attribute name="projname"/>
+		<sequential>
+			<delete dir="@{dir}/@{projname}.xcodeproj"/>
+			<delete dir="@{dir}/build"/>
+			<delete dir="@{dir}/nbproject/private"/>
+			<delete dir="@{dir}/bin"/>
+			<delete dir="@{dir}/dist"/>
+		</sequential>
+	</macrodef>
+
+	<target name="clean" description="Remove all build files" depends="clean-iphone,clean-android">
 		<delete dir="dist" />
 		<delete dir="build" />
+		<delete dir="bin" />
 		<delete dir="${doc.dir}/homepage/lib" />
 		<delete file="${doc.dir}/homepage/android/demo/xokoban.jar" />
 		<delete file="${doc.dir}/homepage/iphone/demo/ifireworks.jar" />
+		<delete dir="var/Netbeans/build"/>
+		<delete dir="var/Netbeans/nbproject/private"/>
+		<delete dir="demo/iphone/plugins/Zip/nbproject/private"/>
+	</target>
+
+	<!-- clean iphone subprojects -->
+	<target name="clean-iphone">
+		<ant dir="demo/iphone/ihelloworld/fullscreen" target="clean"/>
+		<ant dir="demo/iphone/ihelloworld/landscape" target="clean"/>
+		<ant dir="demo/iphone/ihelloworld/portrait" target="clean"/>
+		<ant dir="demo/iphone/ihelloworld/upsidedown" target="clean"/>
+		<ant dir="demo/iphone/ifireworks" target="clean"/>
+		<ant dir="demo/iphone/iremote" target="clean"/>
+		<ant dir="demo/iphone/isound" target="clean"/>
+		<ant dir="demo/iphone/gl/nehelesson4" target="clean"/>
+	</target>
+
+	<!-- clean android subprojects -->
+	<target name="clean-android">
+		<aproj-delete dir="demo/android/afireworks" projname="aFireworks"/>
+		<aproj-delete dir="demo/android/aremote" projname="aRemote"/>
+		<aproj-delete dir="demo/android/helloworld" projname="HelloAndroidWorld"/>
+		<aproj-delete dir="demo/android/sayhello" projname="SayHello"/>
+		<aproj-delete dir="demo/android/xokoban" projname="Xokoban"/>
 	</target>
 
 	<target name="homepage" depends="_createDirTree,_copyDemoJars" description="Copies all document files from the XMLVM source tree to xml11.org/xmlvm homepage">
@@ -766,11 +358,13 @@
 		<mkdir dir="${homepage.dir}/htdocs/xmlvm/download/dist" />
 	</target>
 
-	<target name="_copyDemoJars"  depends="build-ifireworks,sim-xokoban-jar">
+	<target name="_copyDemoJars">
+		<ant dir="demo/iphone/ihelloworld/fullscreen" target="jar"/>
+		<ant dir="demo/android/xokoban" target="jar"/>
 		<mkdir dir="${doc.dir}/homepage/lib" />
 		<copy todir="${doc.dir}/homepage/lib" file="${xmlvm.libjars}/objc-compat.jar" />
 		<copy todir="${doc.dir}/homepage/lib" file="${xmlvm.libjars}/android-compat.jar" />
-		<copy todir="${doc.dir}/homepage/android/demo" file="${xmlvm.demo}/android/xokoban/java/xokoban.jar" />
-		<copy todir="${doc.dir}/homepage/iphone/demo" file="${xmlvm.demo}/iphone/ifireworks/java/ifireworks.jar" />
+		<copy todir="${doc.dir}/homepage/android/demo" file="demo/android/xokoban/dist/xokoban.jar" />
+		<copy todir="${doc.dir}/homepage/iphone/demo" file="demo/iphone/ifireworks/dist/ifireworks.jar" />
 	</target>
 </project>

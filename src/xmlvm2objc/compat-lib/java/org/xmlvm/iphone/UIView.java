@@ -63,6 +63,7 @@ public class UIView extends UIResponder {
     @XMLVMIgnore
     UIViewController          controller;
 
+
     public UIView(CGRect rect) {
         xmlvmSetRenderer(new UIViewRenderer<UIView>(this));
         this.bounds = null;
@@ -77,6 +78,7 @@ public class UIView extends UIResponder {
         setHidden(false);
         tag = 0;
         layer = CALayer.layer();
+        layer.setDelegate(this);
         autoresizingMask = UIViewAutoresizing.None;
         autoresizesSubviews = true;
     }
@@ -100,6 +102,19 @@ public class UIView extends UIResponder {
 
     public CGRect getFrame() {
         return new CGRect(frame);
+    }
+
+    public CGPoint getCenter() {
+        return new CGPoint((frame.origin.x + frame.size.width) / 2,
+                (frame.origin.y + frame.size.width) / 2);
+    }
+
+    public void setCenter(CGPoint center) {
+        CGPoint transf = getCenter();
+        transf.x -= center.x;
+        transf.y -= center.y;
+        setFrame(new CGRect(frame.origin.x - transf.x, frame.origin.y - transf.y, frame.size.width,
+                frame.size.height));
     }
 
     public void setLocation(float x, float y) {
@@ -399,9 +414,9 @@ public class UIView extends UIResponder {
         renderer.paint();
         // This is required to set the new coordinates to widget's 0,0
         // location
-        CGContext.UICurrentContext().xmlvmGetGraphics2D().translate(getFrame().origin.x,
+        UIGraphics.getCurrentContext().xmlvmGetGraphics2D().translate(getFrame().origin.x,
                 getFrame().origin.y);
-        CGContext.UICurrentContext().xmlvmGetGraphics2D().translate(-offsetLeft, -offsetTop);
+        UIGraphics.getCurrentContext().xmlvmGetGraphics2D().translate(-offsetLeft, -offsetTop);
         drawRect(rect);
         for (UIView v : getSubviews()) {
             v.xmlvmDrawRect(rect);

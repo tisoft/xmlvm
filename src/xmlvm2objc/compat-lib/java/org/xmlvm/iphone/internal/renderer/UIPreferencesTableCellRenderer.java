@@ -24,8 +24,8 @@ import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIPreferencesTableCell;
 
 /**
@@ -36,13 +36,14 @@ public class UIPreferencesTableCellRenderer extends UIViewRenderer<UIPreferences
 
     private final int INSET = 10;
 
+
     public UIPreferencesTableCellRenderer(UIPreferencesTableCell view) {
         super(view);
     }
 
     @Override
     public void paint() {
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         g.setBackground(Color.WHITE);
         g.setColor(view.isGroupCell() ? Color.GRAY : Color.BLACK);

@@ -46,6 +46,7 @@ public class UIAlertButtonRenderer extends UIButtonRenderer {
     private Color           lowerDarkColor         = null;
     private Color           typeColor              = null;
 
+
     public UIAlertButtonRenderer(UIButton view) {
         super(view);
     }

@@ -40,6 +40,7 @@ public class UISlider extends UIControl {
     private float maximum = 1.0f;
     private float value   = 0.5f;
 
+
     public UISlider() {
         this(new CGRect(0, 0, 0, 0));
     }

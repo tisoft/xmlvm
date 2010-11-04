@@ -37,6 +37,7 @@ public class UISwitch extends UIControl {
     public static final float kSwitchButtonHeight = 27.0f;
     private boolean           isOn;
 
+
     public UISwitch() {
         this(new CGRect(0, 0, kSwitchButtonWidth, kSwitchButtonHeight));
     }

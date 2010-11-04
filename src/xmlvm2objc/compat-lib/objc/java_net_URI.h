@@ -56,6 +56,5 @@ typedef NSURL java_net_URI;
 
 - (java_lang_String*) getRawPath__;
 - (java_lang_String*) getPath__;
-- (java_lang_String*) toString__;
 
 @end

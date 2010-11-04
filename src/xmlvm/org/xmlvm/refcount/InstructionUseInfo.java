@@ -38,6 +38,7 @@ public class InstructionUseInfo {
      */
     Element Instruction;
 
+
     /**
      * On construction, we check for the normal vx vy vz register usage patterns
      * present in DEX, adding them to our info store if they exist.
@@ -53,12 +54,14 @@ public class InstructionUseInfo {
         possibleWrites.add("vx");
     }
 
+
     /**
      * Meaning that we are doing something like aput, which means we will need
      * to potentially insert a release before we overwrite the pointer in the
      * array.
      */
     public Element putRelease = null;
+
 
     /**
      * Given a register attribute and a type attribute, this method adds both to
@@ -80,11 +83,13 @@ public class InstructionUseInfo {
         }
     }
 
+
     /**
      * If this instruction is a write instruction, the name of the register that
      * is being written into.
      */
     public List<String> possibleWrites = new ArrayList<String>();
+
 
     /**
      * Returns the registers which this instruction writes objects into
@@ -171,6 +176,7 @@ public class InstructionUseInfo {
 
     }
 
+
     /**
      * What registers should be freed after this instruction
      */
@@ -200,6 +206,7 @@ public class InstructionUseInfo {
      * Given a register name, is it referring to an object or a non object?
      */
     public HashMap<Attribute, Boolean> typeIsObj      = new HashMap<Attribute, Boolean>();
+
 
     /**
      * The all registers (non object or object) used by this instruction

@@ -47,13 +47,6 @@ static char memberKey; // key for associative reference for member variables
 	return members;
 }
 
-- (NSString*) getName__
-{
-	NSString* name = [[self getClass__] getName__];
-	[name retain];
-	return name;
-}
-
 - (void) __init_java_lang_Object__
 {
 }
@@ -63,11 +56,6 @@ static char memberKey; // key for associative reference for member variables
 	java_lang_Class* wrapperClass = [[java_lang_Class alloc] init];
 	wrapperClass->clazz = [self class];
 	return wrapperClass;
-}
-
-- (int) intValue__
-{
-	return 0;
 }
 
 - (int) equals___java_lang_Object: (java_lang_Object*) o
@@ -80,7 +68,7 @@ static char memberKey; // key for associative reference for member variables
 	return [self hash];
 }
 
-- (NSString*) toString__
+- (java_lang_String*) toString__
 {
 	return_XMLVM(description)
 }

@@ -76,9 +76,11 @@ static const char CR = '\r';
 	[b release];
 	int j = [result indexOf___int: CR];
 	if (j > -1) {
-		return [[result substring___int_int: 0: j] retain];
+		java_lang_String * newresult = [[result substring___int_int: 0: j] retain];
+		[result release];
+		return newresult;
 	}
-	return [result retain];
+	return result;
 }
 
 @end

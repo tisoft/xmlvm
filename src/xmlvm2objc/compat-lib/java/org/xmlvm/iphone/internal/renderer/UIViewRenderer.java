@@ -5,9 +5,9 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.internal.Simulator;
 
@@ -24,6 +24,7 @@ public class UIViewRenderer<T extends UIView> {
     private AffineTransform savedTransform;
     private Shape           savedClip;
 
+
     public UIViewRenderer(T view) {
         if (view == null)
             throw new NullPointerException("UIViewGUI should not be null");
@@ -31,7 +32,7 @@ public class UIViewRenderer<T extends UIView> {
     }
 
     public void initPaint() {
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         savedTransform = g.getTransform();
         savedClip = g.getClip();
         AffineTransform trans = getJavaAffineTransformation();
@@ -45,13 +46,13 @@ public class UIViewRenderer<T extends UIView> {
     }
 
     public void finishPaint() {
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         g.setTransform(savedTransform);
         g.setClip(savedClip);
     }
 
     public void paint() {
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         UIColor backgroundColor = view.getBackgroundColor();
         if (backgroundColor != null) {

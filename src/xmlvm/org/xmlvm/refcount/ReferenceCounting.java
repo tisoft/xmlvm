@@ -79,6 +79,7 @@ public class ReferenceCounting {
     Namespace vm               = InstructionProcessor.vm;
     String    tmpRegNameSuffix = "tmp";
 
+
     /**
      * The entry point to this class. This function takes a method element and
      * processes it, adding instructions to release and retain objects as
@@ -288,6 +289,7 @@ public class ReferenceCounting {
         throw new ReferenceCountingException("Impossible");
     }
 
+
     /**
      * label id to label element. Used for construction of code paths.
      */
@@ -297,6 +299,7 @@ public class ReferenceCounting {
      */
     Map<Element, Element> nextElement = new HashMap<Element, Element>();
     Map<Element, Element> prevElement = new HashMap<Element, Element>();
+
 
     /**
      * Represents a single run of the reference counter. We have this because we
@@ -327,11 +330,13 @@ public class ReferenceCounting {
         LinkedList<OneRecusiveCall>             callsToDo    = new LinkedList<OneRecusiveCall>();
     }
 
+
     /*
      * Our current run context. TODO: pass this down the stack instead of having
      * it be an instance variable.
      */
     RunState curRun;
+
 
     /**
      * This adds any labels it finds to our labels map. It also populates our
@@ -612,6 +617,7 @@ public class ReferenceCounting {
         return c;
     }
 
+
     /**
      * Class representing collected parameters for one execution of the body of
      * ProcessWhileCallsToDo
@@ -622,6 +628,7 @@ public class ReferenceCounting {
         Element     currentElement;
         CodePath    codePath;
     }
+
 
     /**
      * Helper to add to the list of recursive calls to do.

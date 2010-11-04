@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="XMLVM" default="default" basedir=".">
+    <description>Builds, tests, and runs the project XMLVM.</description>
+    <import file="nbproject/build-impl.xml"/>
+
+	<target name="-post-compile">
+		<property location="${work.dir}" name="work.dir.location"/>
+		<property file="${work.dir.location}/list.resources"/>
+		<echo file="build/classes/list.resources" message="path=${work.dir.location}${line.separator}items=${items}${line.separator}"/>
+	</target>
+</project>

@@ -518,6 +518,7 @@ public class GL {
     public static final int GL_DOT3_RGB                           = 0x86AE;
     public static final int GL_DOT3_RGBA                          = 0x86AF;
 
+
     public static void glEnable(int param) {
         GL11.glEnable(param);
     }

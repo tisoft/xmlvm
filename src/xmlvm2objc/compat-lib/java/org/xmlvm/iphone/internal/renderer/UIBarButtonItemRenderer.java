@@ -44,6 +44,7 @@ public class UIBarButtonItemRenderer extends UIBarItemRenderer {
     public static final int    TEXT_INSET      = 10;
     private boolean            isBack          = true;
 
+
     public UIBarButtonItemRenderer(UIBarButtonItem item, UIBarButtonItemView view) {
         super(item, view);
         this.isBack = false;

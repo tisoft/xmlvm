@@ -37,6 +37,7 @@ public class NSData extends NSObject {
 
     private String data;
 
+
     @XMLVMIgnore
     public NSData(InputStream in) {
         readData(in);

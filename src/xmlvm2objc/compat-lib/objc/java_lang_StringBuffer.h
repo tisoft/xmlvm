@@ -43,7 +43,6 @@ typedef NSMutableString java_lang_StringBuffer;
 - (java_lang_StringBuffer*) append___boolean: (BOOL) b;
 - (java_lang_String*) substring___int_int: (int) from :(int) to;
 - (java_lang_String*) substring___int: (int) from;
-- (java_lang_String*) toString__;
 - (int) indexOf___java_lang_String: (java_lang_String*) s;
 - (java_lang_StringBuffer*) deleteCharAt___int: (int) n;
 

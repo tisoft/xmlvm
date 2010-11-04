@@ -24,6 +24,11 @@
 //----------------------------------------------------------------------------
 @implementation NSIndexPath (cat_org_xmlvm_iphone_NSIndexPath)
 
++ (org_xmlvm_iphone_NSIndexPath *) indexPathForRow___int_int:(int) row :(int) section
+{
+	return [[NSIndexPath indexPathForRow:row inSection:section] retain];
+}
+
 - (int) getSection__
 {
 	return [self section];

@@ -4,7 +4,7 @@ public class BuildException extends Exception {
 	public BuildException(String reason) {
 		super(reason);
 	}
-	public BuildException(Exception ex) {
+	public BuildException(Throwable ex) {
 		super(ex);
 	}
 }

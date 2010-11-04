@@ -41,6 +41,7 @@ public class UniversalFileFromJarFile extends UniversalFile {
     private JarInputStream         jarStream;
     private UniversalFileDirectory directory;
 
+
     UniversalFileFromJarFile(String absoluteName, JarInputStream jarStream) {
         this.absoluteName = absoluteName;
         this.jarStream = jarStream;
@@ -122,7 +123,7 @@ public class UniversalFileFromJarFile extends UniversalFile {
             }
             name = name.substring(index + 1);
         }
-        
+
         // If this entry is a directory, we don't need to add it.
         if (!name.isEmpty()) {
             addToDir.add(new UniversalFileFromStreamResource(addToDir.getAbsolutePath()

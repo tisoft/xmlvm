@@ -30,6 +30,7 @@ public class UIActivityIndicatorView extends UIView {
     private boolean                         hidesWhenStopped           = true;
     private UIActivityIndicatorViewRenderer renderer;
 
+
     public UIActivityIndicatorView() {
         this(UIActivityIndicatorViewStyle.White);
     }

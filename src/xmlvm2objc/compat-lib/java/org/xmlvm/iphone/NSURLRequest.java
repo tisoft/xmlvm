@@ -27,6 +27,7 @@ public class NSURLRequest extends NSObject {
 
     private NSURL url;
 
+
     private NSURLRequest(NSURL url) {
         this.url = url;
     }

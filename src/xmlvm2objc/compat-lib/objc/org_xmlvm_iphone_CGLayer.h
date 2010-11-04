@@ -36,5 +36,4 @@
 - (CGLayerRef) getCGLayer__;
 - (org_xmlvm_iphone_CGContext*) getContext__;
 - (org_xmlvm_iphone_CGSize*) getSize__;
-
 @end

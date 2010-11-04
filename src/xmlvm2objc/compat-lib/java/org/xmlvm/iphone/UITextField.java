@@ -42,6 +42,7 @@ public class UITextField extends UIView {
     private UITextFieldDelegate delegate;
     private boolean             adjustsFontSizeToFitWidth     = false;
 
+
     public UITextField() {
         this(new CGRect(0, 0, 0, 0));
     }

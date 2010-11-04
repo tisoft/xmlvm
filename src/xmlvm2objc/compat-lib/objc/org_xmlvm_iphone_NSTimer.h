@@ -26,14 +26,16 @@
 // NSTimer
 //----------------------------------------------------------------------------
 @interface org_xmlvm_iphone_NSTimer : java_lang_Object {
-@public NSTimer* timer;
+@public
+	NSTimer* timer;
 }
 
-- (void) __init_org_xmlvm_iphone_NSTimer___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean
++ (org_xmlvm_iphone_NSTimer*) scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean
              :(float) timerInterval
              :(org_xmlvm_iphone_NSTimerDelegate*) target
              :(java_lang_Object*) userInfo
              :(int) repeats;
+
 - (void) dealloc;
 - (void) invalidate__;
 

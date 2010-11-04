@@ -39,6 +39,10 @@ public class UIWindow extends UIView {
         UIApplication.sharedApplication().setKeyWindow(this);
     }
 
+    public void sendEvent(UIEvent event) {
+        // TODO : Java implementation
+    }
+
     public CGPoint convertPointToWindow(CGPoint point, UIWindow window) {
         // TODO : Java implementation
         return null;

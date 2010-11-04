@@ -47,6 +47,7 @@ public class XmlvmBuilderArguments {
     private String             option_main               = "";
     private boolean            option_qxsourcebuild      = false;
 
+
     /**
      * Prints out usage information for XmlvmBuilder's parameters and exit the
      * application.

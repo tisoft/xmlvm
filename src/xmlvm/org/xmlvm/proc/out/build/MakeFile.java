@@ -35,6 +35,7 @@ public class MakeFile extends BuildFile {
     private static final String IPHONE_MAKFILE_IN_JAR_RESOURCE = "/iphone/Makefile";
     private static final String IPHONE_MAKEFILE_PATH           = "var/iphone/Makefile";
 
+
     @Override
     public String composeBuildFiles(List<OutputFile> result, Arguments arguments) {
         String makefile_data = readData(IPHONE_MAKFILE_IN_JAR_RESOURCE, IPHONE_MAKEFILE_PATH);
@@ -43,7 +44,7 @@ public class MakeFile extends BuildFile {
         makefile_data = makefile_data.replace(TEMPL_PROJNAME, arguments.option_app_name());
         OutputFile makefile = new OutputFile(makefile_data);
         makefile.setFileName("Makefile");
-        makefile.setLocation(arguments.option_out());
+        makefile.setLocation(arguments.option_out() + BUILDFILE_LOCATION );
         result.add(makefile);
         return null;
     }

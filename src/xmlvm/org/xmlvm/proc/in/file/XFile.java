@@ -32,6 +32,7 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
 public class XFile {
     protected UniversalFile file;
 
+
     /**
      * Creates an {@link XFile} instance from a file system location.
      */

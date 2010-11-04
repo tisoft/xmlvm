@@ -25,11 +25,11 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.NSIndexPath;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIFont;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UITableView;
 import org.xmlvm.iphone.UITableViewCell;
@@ -43,6 +43,7 @@ public class UITableViewRenderer extends UIViewRenderer<UITableView> {
     private List<CGRect> sectionFrames;
     private List<CGRect> horizontalDividers;
 
+
     public UITableViewRenderer(UITableView view) {
         super(view);
         sectionFrames = new ArrayList<CGRect>();
@@ -51,7 +52,7 @@ public class UITableViewRenderer extends UIViewRenderer<UITableView> {
 
     @Override
     public void paint() {
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         int x = (int) displayRect.origin.x;
         int y = (int) displayRect.origin.y;
@@ -76,7 +77,7 @@ public class UITableViewRenderer extends UIViewRenderer<UITableView> {
     }
 
     public void reloadData() {
-        UITableViewDelegate delegate = view.getDelegate();
+        UITableViewDelegate delegate = view.getTableViewDelegate();
         UITableViewDataSource datasource = view.getTableViewDataSource();
 
         view.getSubviews().clear();

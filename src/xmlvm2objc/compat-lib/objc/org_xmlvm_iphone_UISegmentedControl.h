@@ -22,17 +22,22 @@
 /** @author teras */
 
 #import "xmlvm.h"
+#import "org_xmlvm_iphone_UIView.h"
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_UIColor.h"
+#import "org_xmlvm_iphone_UIImage.h"
 #import "java_lang_String.h"
+#import "java_util_ArrayList.h"
 
 // UISegmentedControl
 //----------------------------------------------------------------------------
 typedef UISegmentedControl org_xmlvm_iphone_UISegmentedControl;
 @interface UISegmentedControl (cat_org_xmlvm_iphone_UISegmentedControl)
-- (void) __init_org_xmlvm_iphone_UISegmentedControl;
-- (void) __init_org_xmlvm_iphone_UISegmentedControl___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect;
+- (void) __init_org_xmlvm_iphone_UISegmentedControl__;
+- (void) __init_org_xmlvm_iphone_UISegmentedControl___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) r;
+- (void) __init_org_xmlvm_iphone_UISegmentedControl___java_util_ArrayList: (java_util_ArrayList*) items;
 - (void) insertSegmentWithTitle___java_lang_String_int_boolean:(java_lang_String *) title :(int)segment :(int)animated;
+- (void) insertSegmentWithImage___org_xmlvm_iphone_UIImage_int_boolean:(org_xmlvm_iphone_UIImage *) img :(int)segment :(int)animated;
 - (void) setSelectedSegmentIndex___int:(int) index;
 - (void) setSegmentedControlStyle___int:(int) style;
 - (void) setTitle___java_lang_String_int:(java_lang_String *)title :(int)index;
@@ -44,6 +49,7 @@ typedef UISegmentedControl org_xmlvm_iphone_UISegmentedControl;
 - (int) getSegmentedControlStyle__;
 - (org_xmlvm_iphone_UIColor*) getTintColor__;
 - (void) setTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*) tint;
-
+- (void) setMomentary___boolean:(int) mom;
+- (int) isMomentary__;
 @end
 

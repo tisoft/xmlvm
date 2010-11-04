@@ -17,11 +17,13 @@
  *
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
+
 package org.xmlvm.ant.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -30,6 +32,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.StringTokenizer;
+import org.apache.tools.ant.BuildException;
 
 /**
  * Various methods, to help working with files.
@@ -40,7 +43,16 @@ public class FileUtilities {
     /**
      * where xcode source file is located
      */
-    public static final String SRCLOC = "xcode";
+    public static final String SRCLOC = "build" + File.separator + "xcode" + File.separator + "src" + File.separator;
+
+    /**
+     * Root location of source files
+     * @param project Location of the project
+     * @return Source root location
+     */
+    public static String coreDir(String project) {
+        return project + File.separator + SRCLOC;
+    }
 
     /**
      * Get the location of the application directory
@@ -48,7 +60,7 @@ public class FileUtilities {
      * @return Application directory location
      */
     public static String appDir(String project) {
-        return project + File.separator + "src" + File.separator + SRCLOC + File.separator + "app";
+        return coreDir(project) + "app";
     }
 
     /**
@@ -57,7 +69,7 @@ public class FileUtilities {
      * @return Libraries directory location
      */
     public static String compDir(String project) {
-        return project + File.separator + "src" + File.separator + SRCLOC + File.separator + "lib";
+        return coreDir(project) + "lib";
     }
 
     /**
@@ -84,7 +96,7 @@ public class FileUtilities {
      * @return Trimmed project directory location
      */
     public static String trimDir(String project) {
-        return project + File.separator + "src" + File.separator + SRCLOC + File.separator + "trim";
+        return coreDir(project) + "trim";
     }
 
     /**
@@ -136,11 +148,12 @@ public class FileUtilities {
                 if (!file.isFile()) {
                     return false;
                 }
-                String name = file.getName();
+                String name = file.getName().toLowerCase();
                 if (name.endsWith(".h")
                         || name.endsWith(".m")
                         || name.endsWith(".c")
                         || name.endsWith(".cpp")
+                        || name.endsWith(".mm")
                         || name.endsWith(".c++")) {
                     return true;
                 }
@@ -221,7 +234,7 @@ public class FileUtilities {
      * Output a String to a file
      * @param outfile the file name and location
      * @param data String containing the date to save 
-     * @return true, if everything was successful, false if an error occured
+     * @return true, if everything was successful, false if an error occurred
      */
     public static boolean writeFile(String outfile, String data) {
         boolean status = false;
@@ -249,28 +262,58 @@ public class FileUtilities {
      * @param projectname The name of the project
      * @param data The project date
      * @param replace the replacement list to use
-     * @return true, if everything was successful, false if an error occured
+     * @return true, if everything was successful, false if an error occurred
      */
     public static boolean writeProjectFile(String projecthome, String projectname, String data, ReplacementList replace) {
-        return writeFile(projecthome + File.separator + projectname + ".xcodeproj" + File.separator + "project.pbxproj", replace.actOnData(data));
+        return writeFile(getProjectFile(projecthome).getPath(), replace.actOnData(data));
     }
 
     /**
-     * Get the name of the project, based on the project directory. Actually it
-     * searches for the *.xcodeproj file
-     * @param projecthome The home directory of te project
+     * Get the name of the project, based on the project directory. 
+     * @param projecthome The home directory of the project
      * @return The project name
      */
     public static String getProjectName(String projecthome) {
         final int SUFFIXSIZE = 10;
-        File[] list = new File(projecthome).listFiles();
-        for (int i = 0; i < list.length; i++) {
-            String filename = list[i].getName();
-            if (list[i].isDirectory() && filename.endsWith(".xcodeproj")) {
-                return filename.substring(0, filename.length() - SUFFIXSIZE);
+        String name = getProjectDir(projecthome).getName();
+        return name.substring(0, name.length() - SUFFIXSIZE);
+    }
+
+    /**
+     * Get the location of the project, based on the given directory. It
+     * searches for the *.xcodeproj directory in the current directory, in
+     * directory "dist" and in directory "build".
+     * If it is not found a RuntimeException is thrown
+     * @param projecthome The home directory of the project
+     * @return The project directory
+     */
+    public static File getProjectDir(String projecthome) {
+        File projdir;
+        projdir = getProjectDirImpl(projecthome + File.separator + "dist");
+        if (projdir == null)
+            projdir = getProjectDirImpl(projecthome);
+        if (projdir == null)
+            projdir = getProjectDirImpl(projecthome + File.separator + "build");
+        if (projdir == null)
+            throw new RuntimeException("Unable to find Xcode project under directory " + projecthome);
+        return projdir;
+    }
+
+    public static File getProjectFile(String projecthome) {
+        return new File(getProjectDir(projecthome), "project.pbxproj");
+    }
+
+    /* Actual implementation of searching for project name under a specific directory */
+    private static File getProjectDirImpl(String dirname) {
+        File projecthomefile = new File(dirname);
+        File[] list = projecthomefile.listFiles();
+        if (list != null)
+            for (int i = 0; i < list.length; i++) {
+                String filename = list[i].getName();
+                if (list[i].isDirectory() && filename.endsWith(".xcodeproj"))
+                    return list[i];
             }
-        }
-        throw new RuntimeException("Unable to find Project name under directory " + projecthome);
+        return null;
     }
 
     /**
@@ -280,7 +323,7 @@ public class FileUtilities {
      * @return A list of libraries required for this project
      */
     public static HashSet<String> getProjectLibs(String projecthome, String projectname) {
-        File oldproj = new File(projecthome + File.separator + projectname + ".xcodeproj" + File.separator + "project.pbxproj");
+        File oldproj = getProjectFile(projecthome);
         if (!oldproj.exists()) {
             throw new RuntimeException("Unable to find old project " + projectname + " under directory " + projecthome);
         }
@@ -349,5 +392,49 @@ public class FileUtilities {
             status = false;
         }
         return status;
+    }
+
+    /**
+     * Copy a file or a directory to a specified directory
+     * @param source source file or directory
+     * @param dest destination file or directory
+     * @throws BuildException  this exception is thrown when copying can not be performed
+     */
+    public static void copy(File source, File dest) throws BuildException {
+        dest = new File(dest, source.getName());
+        if (source.isFile()) {
+            // Copy file
+            byte[] buffer = new byte[4096];
+            FileInputStream fin = null;
+            FileOutputStream fout = null;
+            try {
+                fin = new FileInputStream(source);
+                fout = new FileOutputStream(dest);
+                int count = 0;
+                while ((count = fin.read(buffer)) > 0)
+                    fout.write(buffer, 0, count);
+                fin.close();
+                fout.close();
+            } catch (IOException ex) {
+                throw new BuildException(ex);
+            } finally {
+                try {
+                    if (fin != null)
+                        fin.close();
+                } catch (IOException ex) {
+                }
+                try {
+                    if (fout != null)
+                        fout.close();
+                } catch (IOException ex) {
+                }
+            }
+        } else {
+            // Copy directory
+            dest.mkdirs();
+            File[] children = source.listFiles();
+            for (File child : children)
+                copy(child, dest);
+        }
     }
 }

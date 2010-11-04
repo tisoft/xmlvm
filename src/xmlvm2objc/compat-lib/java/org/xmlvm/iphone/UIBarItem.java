@@ -38,6 +38,7 @@ public abstract class UIBarItem extends NSObject {
     private String       title;
     private UIGenericBar bar;
 
+
     public UIBarItem() {
         enabled = true;
         image = null;

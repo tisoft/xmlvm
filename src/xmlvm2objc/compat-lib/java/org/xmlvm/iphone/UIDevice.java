@@ -23,17 +23,17 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
 
-
 /**
- *
+ * 
  * @author teras
  */
 @XMLVMSkeletonOnly
 public class UIDevice extends NSObject {
 
-    private static final UIDevice current      = new UIDevice();
-    private boolean proximityMonitoringEnabled = false;
-    private boolean batteryMonitoringEnabled   = false;
+    private static final UIDevice current                    = new UIDevice();
+    private boolean               proximityMonitoringEnabled = false;
+    private boolean               batteryMonitoringEnabled   = false;
+
 
     private UIDevice() {
     }

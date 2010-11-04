@@ -31,6 +31,7 @@ public class NSNumberFormatter extends NSObject {
     private int style;
     private int maximumFractionDigits;
 
+
     public void setNumberStyle(int NSNumberFormatterStyle) {
         this.style = NSNumberFormatterStyle;
     }

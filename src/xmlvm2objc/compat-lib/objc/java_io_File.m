@@ -79,7 +79,7 @@
 
 - (void) __init_java_io_File___java_lang_String: (java_lang_String*) pathname
 {
-	if ([pathname characterAtIndex:0] != '/') {
+	if (pathname==JAVA_NULL || [pathname length] == 0 || [pathname characterAtIndex:0] != '/') {
 		// For relative paths, prepend the base directory of <App>/Documents/
 		// http://developer.apple.com/iphone/library/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/FilesandNetworking/FilesandNetworking.html
 		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -303,12 +303,12 @@
 - (java_lang_String*) getAbsolutePath__
 {
 	if ([path startsWith___java_lang_String: _separator]) {
-		return path;
+		return [path retain];
 	}
 	NSFileManager *man = [NSFileManager defaultManager];
 	NSString *currentDir = [man currentDirectoryPath];
 	if (currentDir == nil) {
-		return path;
+		return [path retain];
 	}
 	NSMutableString* s = [NSMutableString stringWithString: currentDir];
 	if (! [s endsWith___java_lang_String:_separator]) {

@@ -21,21 +21,31 @@
 
 /** @author teras */
 
-#include "org_xmlvm_iphone_UISwitch.h"
+#include "org_xmlvm_iphone_UISegmentedControl.h"
 
 // UISegmentedControl
 //----------------------------------------------------------------------------
 @implementation UISegmentedControl (cat_org_xmlvm_iphone_UISegmentedControl)
 
-- (void) __init_org_xmlvm_iphone_UISegmentedControl {
+- (void) __init_org_xmlvm_iphone_UISegmentedControl__ {
 }
 
 - (void) __init_org_xmlvm_iphone_UISegmentedControl___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) r {
     [self setFrame:[r getCGRect]];
 }
 
-- (void) insertSegmentWithTitle___java_lang_String_int_boolean:(NSString *) title :(int)segment :(int)animated; {
+- (void) __init_org_xmlvm_iphone_UISegmentedControl___java_util_ArrayList: (java_util_ArrayList*) items
+{
+	[self initWithItems:items];
+}
+
+- (void) insertSegmentWithTitle___java_lang_String_int_boolean:(java_lang_String *) title :(int)segment :(int)animated; {
 	[self insertSegmentWithTitle:title atIndex:segment animated:animated];
+}
+
+- (void) insertSegmentWithImage___org_xmlvm_iphone_UIImage_int_boolean:(org_xmlvm_iphone_UIImage *) img :(int)segment :(int)animated
+{
+	[self insertSegmentWithImage:img atIndex:segment animated:animated];
 }
 
 - (void) setSelectedSegmentIndex___int:(int) index {
@@ -46,7 +56,7 @@
 	[self setSegmentedControlStyle:style];
 }
 
-- (void) setTitle___java_lang_String_int:(NSString *)title :(int)index {
+- (void) setTitle___java_lang_String_int:(java_lang_String *)title :(int)index {
 	[self setTitle:title forSegmentAtIndex:index];
 }
 
@@ -84,6 +94,16 @@
 - (void) setTintColor___org_xmlvm_iphone_UIColor :(UIColor*) tint
 {
 	[self setTintColor:tint];
+}
+
+- (void) setMomentary___boolean:(int) mom
+{
+	[self setMomentary:mom];
+}
+
+- (int) isMomentary__
+{
+	return [self isMomentary];
 }
 
 

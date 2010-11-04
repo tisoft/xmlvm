@@ -29,6 +29,7 @@ import org.xmlvm.XMLVMSkeletonOnly;
 public class NSStringInputStream extends InputStream {
     private InputStream in;
 
+
     public NSStringInputStream(String ref) {
         in = NSStringInputStream.class.getResourceAsStream(ref);
     }

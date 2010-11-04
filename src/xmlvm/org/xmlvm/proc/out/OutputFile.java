@@ -26,10 +26,8 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.xmlvm.Log;
-import org.xmlvm.proc.out.build.PathFileFilter;
 import org.xmlvm.util.FileUtil;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
@@ -56,6 +54,12 @@ public class OutputFile {
     private String              location = "";
     private String              fileName = "";
 
+
+    /**
+     * Create an empty output file. It is required to set data later
+     */
+    public OutputFile() {
+    }
 
     public OutputFile(DelayedDataProvider provider) {
         this.provider = provider;
@@ -125,7 +129,7 @@ public class OutputFile {
      * 
      * @param stream
      *            The InputStream to use - only UTF-8 streams are supported
-     * @return true, if everything was succesfull
+     * @return true, if everything was successful
      */
     public boolean setDataFromStream(InputStream stream) {
         if (stream == null) {
@@ -182,31 +186,19 @@ public class OutputFile {
     }
 
     /**
-     * Get a list of the files affected by this OutputFile class that match the
-     * given filter.
+     * Get a list of the files affected by this OutputFile class
      * <p>
      * If this OutputFile only contains a file, it will return itself as the
      * only array element.
      * 
      * @return Array of affected files.
      */
-    public OutputFile[] getAffectedSourceFiles(PathFileFilter filter) {
-        OutputFile[] candidates = getAffectedSourceFiles();
-        List<OutputFile> result = new ArrayList<OutputFile>();
-        for (OutputFile candidate : candidates) {
-            if (filter.accept(new File(candidate.getFullPath()))) {
-                result.add(candidate);
-            }
-        }
-        return result.toArray(new OutputFile[0]);
-    }
-
-    public OutputFile[] getAffectedSourceFiles() {
+    public ArrayList<OutputFile> getAffectedSourceFiles() {
         maybeLoadDelayedData();
+        ArrayList<OutputFile> result = new ArrayList<OutputFile>();
         if (data == null || data.isFile()) {
-            return new OutputFile[] { this };
+            result.add(this);
         } else {
-            List<OutputFile> result = new ArrayList<OutputFile>();
             UniversalFile[] files = data.listFilesRecursively();
             int dataPathLength = data.getAbsolutePath().length();
             for (UniversalFile file : files) {
@@ -217,14 +209,14 @@ public class OutputFile {
                     path += relativePath;
                 }
 
-                String location = path.substring(0, path.length() - file.getName().length());
-                outputFile.setLocation(location);
+                String filelocation = path.substring(0, path.length() - file.getName().length());
+                outputFile.setLocation(filelocation);
                 outputFile.setFileName(file.getName());
 
                 result.add(outputFile);
             }
-            return result.toArray(new OutputFile[0]);
         }
+        return result;
     }
 
     /**

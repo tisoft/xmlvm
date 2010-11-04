@@ -24,20 +24,23 @@ import java.awt.Graphics2D;
 import java.awt.font.FontRenderContext;
 import java.awt.font.LineMetrics;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIButton;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIControlState;
 import org.xmlvm.iphone.UIFont;
+import org.xmlvm.iphone.UIGraphics;
 
 public abstract class UIButtonRenderer extends UIViewRenderer<UIButton> {
 
-    public static final UIColor DEFAULT_TITLE_COLOR_NORMAL             = UIColor.colorWithRGBA(56f/255f, 84f/255f, 135f/255f, 1);
-    public static final UIColor DEFAULT_TITLE_COLOR_HIGHLIGHTED        = UIColor.whiteColor;
-    public static final UIColor DEFAULT_TITLE_SHADOW_COLOR_NORMAL      = UIColor.darkGrayColor;
-    protected int edgeDiameter = 16;
-    private int state = UIControlState.Normal;
+    public static final UIColor DEFAULT_TITLE_COLOR_NORMAL        = UIColor.colorWithRGBA(
+                                                                          56f / 255f, 84f / 255f,
+                                                                          135f / 255f, 1);
+    public static final UIColor DEFAULT_TITLE_COLOR_HIGHLIGHTED   = UIColor.whiteColor;
+    public static final UIColor DEFAULT_TITLE_SHADOW_COLOR_NORMAL = UIColor.darkGrayColor;
+    protected int               edgeDiameter                      = 16;
+    private int                 state                             = UIControlState.Normal;
+
 
     public UIButtonRenderer(UIButton view) {
         super(view);
@@ -45,7 +48,7 @@ public abstract class UIButtonRenderer extends UIViewRenderer<UIButton> {
 
     @Override
     public void paint() {
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         drawButton(g, displayRect);
     }
@@ -111,10 +114,12 @@ public abstract class UIButtonRenderer extends UIViewRenderer<UIButton> {
         return m;
     }
 
+
     public static class Metrics {
 
         public int width, height, descent;
     }
+
 
     protected abstract void drawButton(Graphics2D g, CGRect displayRect);
 

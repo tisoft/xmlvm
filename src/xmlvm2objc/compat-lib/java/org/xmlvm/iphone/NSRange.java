@@ -31,6 +31,7 @@ public class NSRange extends NSObject {
     public int location;
     public int length;
 
+
     private NSRange(int location, int length) {
         this.location = location;
         this.length = length;

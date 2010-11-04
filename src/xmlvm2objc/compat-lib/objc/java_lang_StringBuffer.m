@@ -74,8 +74,11 @@
 {
 	if (obj==JAVA_NULL)
 		[self appendString:@"null"];
-	else 
-		[self appendString: [obj toString__]];
+	else {
+		NSString * toS = [obj toString__];
+		[self appendString: toS];
+		[toS release];
+	}
     [self retain];
     return self;
 }

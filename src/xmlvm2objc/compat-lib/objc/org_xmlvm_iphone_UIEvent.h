@@ -19,12 +19,15 @@
  */
 
 #import "xmlvm.h"
-
+#import "java_util_Set.h"
 
 
 // UIEvent
 //----------------------------------------------------------------------------
 typedef UIEvent org_xmlvm_iphone_UIEvent;
+
 @interface UIEvent (cat_org_xmlvm_iphone_UIEvent)
+
+- (java_util_Set*) allTouches__;
 
 @end

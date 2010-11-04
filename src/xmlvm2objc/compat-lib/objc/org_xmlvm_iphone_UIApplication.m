@@ -112,6 +112,16 @@
 	return [self statusBarStyle];
 }
 
+- (void) setNetworkActivityIndicatorVisible___boolean:(int) activity
+{
+	[self setNetworkActivityIndicatorVisible:activity];
+}
+
+- (BOOL) isNetworkActivityIndicatorVisible__
+{
+	return [self isNetworkActivityIndicatorVisible];
+}
+
 - (org_xmlvm_iphone_UIWindow*) getKeyWindow__
 {
 	return_XMLVM(keyWindow)

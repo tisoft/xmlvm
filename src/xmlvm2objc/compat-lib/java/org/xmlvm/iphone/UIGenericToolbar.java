@@ -6,12 +6,14 @@ import org.xmlvm.iphone.internal.renderer.UIToolbarRenderer;
  * 
  * @author teras
  */
-//TODO this class should be in 'internal' but we have to have it here because it is used as a base class
+// TODO this class should be in 'internal' but we have to have it here because
+// it is used as a base class
 public abstract class UIGenericToolbar extends UIGenericBar {
 
     private UIColor tintColor;
     private boolean translucent;
     private int     barStyle;
+
 
     public UIGenericToolbar() {
         this(new CGRect(0, 0, 0, 0));

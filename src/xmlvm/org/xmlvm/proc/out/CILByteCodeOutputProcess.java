@@ -92,6 +92,7 @@ public class CILByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourceProv
         private Map<Integer, InstructionHandle>       mapID2InstructionHandle;
         private Map<Integer, List<BranchInstruction>> mapID2BranchInstructions;
 
+
         public InstructionHandlerManagerCIL(InstructionList il) {
             this.il = il;
             currentID = -1;
@@ -150,6 +151,7 @@ public class CILByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourceProv
         }
     }
 
+
     private static final Namespace       nsXMLVM     = Namespace.getNamespace("vm",
                                                              "http://xmlvm.org");
     private static final Namespace       nsCLR       = Namespace.getNamespace("clr",
@@ -164,6 +166,7 @@ public class CILByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourceProv
     private MethodBody                   body;
 
     private List<OutputFile>             outputFiles = new ArrayList<OutputFile>();
+
 
     public CILByteCodeOutputProcess(Arguments arguments) {
         super(arguments);

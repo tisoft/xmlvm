@@ -23,12 +23,14 @@
 #import "org_xmlvm_iphone_CGSize.h"
 #import "org_xmlvm_iphone_CGImage.h"
 #import "org_xmlvm_iphone_NSData.h"
+#import "java_lang_String.h"
 
 // UIImage
 //----------------------------------------------------------------------------
 typedef UIImage org_xmlvm_iphone_UIImage;
 @interface UIImage (cat_org_xmlvm_iphone_UIImage)
-+ (org_xmlvm_iphone_UIImage*) imageWithContentsOfFile___java_lang_String :(NSString*)n1;
++ (org_xmlvm_iphone_UIImage*)imageNamed___java_lang_String:(java_lang_String*)n1;
++ (org_xmlvm_iphone_UIImage*) imageWithContentsOfFile___java_lang_String :(java_lang_String*)n1;
 + (org_xmlvm_iphone_UIImage*) imageWithData___org_xmlvm_iphone_NSData: (org_xmlvm_iphone_NSData*) data;
 - (org_xmlvm_iphone_UIImage*) stretchableImage___int_int :(int)leftCapWidth :(int)topCapHeight;
 - (org_xmlvm_iphone_CGSize*) getSize__;
@@ -37,4 +39,6 @@ typedef UIImage org_xmlvm_iphone_UIImage;
 - (org_xmlvm_iphone_CGImage*) getCGImage__;
 - (void) cropImage: (id) dataPtr;
 - (org_xmlvm_iphone_UIImage *) cropImage___int_int_int_int: (int) x :(int) y :(int) width :(int) height;
+- (org_xmlvm_iphone_NSData*) PNGRepresentation__;
+- (org_xmlvm_iphone_NSData*) JPEGRepresentation___float:(float) compression;
 @end

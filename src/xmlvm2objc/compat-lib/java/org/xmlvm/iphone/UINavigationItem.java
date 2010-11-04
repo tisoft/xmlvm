@@ -41,6 +41,7 @@ public class UINavigationItem extends NSObject {
     private UIBarButtonItem rightBarButtonItem;
     private UINavigationBar bar;               // Back reference
 
+
     public UINavigationItem(String title) {
         setTitle(title);
         setTitleView(null);
@@ -162,7 +163,7 @@ public class UINavigationItem extends NSObject {
             label.setTextColor(UIColor.whiteColor);
             label.setFont(UIFont.fontWithNameSize("Arial Bold", 19));
             label.setTextAlignment(UITextAlignment.Center);
-            Metrics m = UIButtonRenderer.getMetrics(CGContext.UICurrentContext()
+            Metrics m = UIButtonRenderer.getMetrics(UIGraphics.getCurrentContext()
                     .xmlvmGetGraphics2D(), title, label.getFont().xmlvmGetFont());
             label.setFrame(new CGRect(0, 0, m.width, m.height));
             titleView = label;

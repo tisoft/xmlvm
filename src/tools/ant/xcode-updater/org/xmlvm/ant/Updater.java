@@ -82,7 +82,7 @@ public class Updater extends Task {
         if (!src.exists()) {
             throw new BuildException("Src directory does not exist.");
         }
-        System.out.println("Updating from " + src.getPath() + " to " + src.getPath());
+        System.out.println("Updating from " + src.getPath() + " to " + dest.getPath());
         check(src, dest);
     }
 

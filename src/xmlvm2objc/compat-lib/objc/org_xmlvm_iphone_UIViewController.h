@@ -27,6 +27,8 @@
 #import "java_lang_String.h"
 #import "org_xmlvm_iphone_UINavigationItem.h"
 #import "org_xmlvm_iphone_UIBarButtonItem.h"
+#import "org_xmlvm_iphone_UIViewController_macros.h"
+
 @class org_xmlvm_iphone_UINavigationController;
 @class org_xmlvm_iphone_UITabBarController;
 @class org_xmlvm_iphone_UITabBarItem;
@@ -74,29 +76,5 @@ typedef UIViewController org_xmlvm_iphone_UIViewControllerImpl;
 @end
 
 @interface org_xmlvm_iphone_UIViewController : org_xmlvm_iphone_UIViewControllerImpl
+UIVIEWCONTROLLER_CALLBACKS_INC
 @end
-
-
-#define UIVIEWCONTROLLER_CALLBACKS - (void) loadView { [self loadView__];}\
-- (void) loadView__ { [super loadView]; }\
-- (void) viewDidLoad__ { [super viewDidLoad]; }\
-- (void) viewDidUnload__ { [super viewDidUnload]; }\
-- (void) viewWillAppear___boolean :(int)anim { [super viewWillAppear:anim]; }\
-- (void) viewWillDisappear___boolean :(int)anim { [super viewWillDisappear:anim]; }\
-- (void) viewDidAppear___boolean :(int)anim{ [super viewDidAppear:anim]; }\
-- (void) viewDidDisappear___boolean :(int)anim{ [super viewDidDisappear:anim]; }\
-\
-- (void) viewDidLoad { [self viewDidLoad__];}\
-- (void) viewDidUnload { [self viewDidUnload__]; }\
-- (void) viewWillAppear:(BOOL)anim { [self viewWillAppear___boolean:anim]; }\
-- (void) viewWillDisappear:(BOOL)anim { [self viewWillDisappear___boolean:anim]; }\
-- (void) viewDidAppear:(BOOL)anim { [self viewDidAppear___boolean:anim]; }\
-- (void) viewDidDisappear:(BOOL)anim { [self viewDidDisappear___boolean:anim]; }\
-\
-- (int) shouldAutorotateToInterfaceOrientation___int :(int)orientation {\
-return [super shouldAutorotateToInterfaceOrientation:orientation];\
-}\
--(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {\
-return [self shouldAutorotateToInterfaceOrientation___int:orientation];\
-}
-

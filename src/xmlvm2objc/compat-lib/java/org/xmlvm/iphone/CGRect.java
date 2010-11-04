@@ -23,15 +23,19 @@ package org.xmlvm.iphone;
 import java.awt.Rectangle;
 
 import org.xmlvm.XMLVMSkeletonOnly;
+
 @XMLVMSkeletonOnly
 public class CGRect extends NSObject {
 
-    private static final CGRect NULL = new CGRect(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, 0, 0);
-    private static final CGRect ZERO = new CGRect(0, 0, 0, 0);
-    private static final CGRect INFINITE = new CGRect(-Float.MAX_VALUE, -Float.MAX_VALUE, Float.MAX_VALUE, Float.MAX_VALUE);
+    private static final CGRect NULL     = new CGRect(Float.POSITIVE_INFINITY,
+                                                 Float.POSITIVE_INFINITY, 0, 0);
+    private static final CGRect ZERO     = new CGRect(0, 0, 0, 0);
+    private static final CGRect INFINITE = new CGRect(-Float.MAX_VALUE, -Float.MAX_VALUE,
+                                                 Float.MAX_VALUE, Float.MAX_VALUE);
 
-    public CGPoint origin;
-    public CGSize  size;
+    public CGPoint              origin;
+    public CGSize               size;
+
 
     public CGRect(float x, float y, float width, float height) {
         origin = new CGPoint(x, y);
@@ -94,7 +98,7 @@ public class CGRect extends NSObject {
         if (!(o instanceof CGRect)) {
             return false;
         }
-        CGRect r = (CGRect)o;
+        CGRect r = (CGRect) o;
         return origin.equals(r.origin) && size.equals(r.size);
     }
 }

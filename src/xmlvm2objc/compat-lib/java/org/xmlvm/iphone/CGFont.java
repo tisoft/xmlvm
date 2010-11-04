@@ -24,11 +24,13 @@ import java.awt.Font;
 
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
+
 @XMLVMSkeletonOnly
 public class CGFont extends NSObject {
 
     @XMLVMIgnore
     public Font font;
+
 
     private CGFont(Font font) {
         this.font = font;

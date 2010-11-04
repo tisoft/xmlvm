@@ -35,12 +35,14 @@ import org.xmlvm.ant.xcode.XcodeSkeleton;
  */
 public class Trimmer extends Task {
 
-    private File home;
     private boolean shorten = true;
     private boolean cleanup = true;
     private long seed = Long.MAX_VALUE;
     private XcodeSkeleton target = XcodeSkeleton.IPHONE;
+    private String home;
     private String template = ReplacementList.DEFAULT_TEMPLATE;
+    private String resources = "";
+    private String resourceroot;
 
     /**
      * Set the home directory of the Xcode project.
@@ -48,7 +50,7 @@ public class Trimmer extends Task {
      * @param home home directory of the Xcode project
      */
     public void setHome(File home) {
-        this.home = home;
+        this.home = home.getAbsolutePath();
     }
 
     /**
@@ -102,18 +104,39 @@ public class Trimmer extends Task {
         this.target = XcodeSkeleton.getTarget(target);
     }
 
+    /**
+     * Set the list of resources, to use with this project
+     * @param resources colon separated list of resources. When an item is directory, if
+     * ends with "/" then the contents of this location is used, if not a verbatim copy
+     * of this directory is used.
+     */
+    public void setResources(String resources) {
+        this.resources = resources;
+    }
+
+    /**
+     * Set the resource root of this project. In the case the home directory is 
+     * other from resource directory, with this optional property will set the
+     * correct resource directory.
+     * @param resourceroot The root of resource directory. Defaults to "home"
+     */
+    public void setResourceroot(String resourceroot) {
+        this.resourceroot = resourceroot;
+    }
+
     @Override
     /**
      * Execute the ant task
      */
     public void execute() throws BuildException {
-        if (home == null) {
+        if (home == null)
             throw new BuildException("Home directory should be defined.");
-        }
-        TrimmerAction trim = new TrimmerAction(shorten, cleanup, home.getPath(), template, seed, target);
+        if (resourceroot == null)
+            resourceroot = getProject().getBaseDir().getAbsolutePath();
+        TrimmerAction trim = new TrimmerAction(shorten, cleanup, home, template, seed, target, resources, resourceroot);
         try {
             String seedtext = (seed == Long.MAX_VALUE) ? "random seed" : "seed=" + seed;
-            System.out.println("Trimming project at path " + home.getPath() + " with template \"" + template + "\", target \"" + target.name().toLowerCase() + "\" and " + seedtext);
+            System.out.println("Trimming project at path " + home + " with template \"" + template + "\", target \"" + target.name().toLowerCase() + "\" and " + seedtext);
             trim.trim();
         } catch (FileNotFoundException ex) {
             throw new BuildException(ex);

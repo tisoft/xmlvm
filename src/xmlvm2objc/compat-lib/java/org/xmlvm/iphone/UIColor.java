@@ -55,6 +55,7 @@ public class UIColor extends NSObject {
                                                                       212f / 255, 1);
     public final static UIColor viewFlipsideBackgroundColor   = new UIColor(Color.BLACK);
 
+
     private UIColor(Paint c) {
         if (c == null)
             c = clearColor.xmlvmGetPaint();
@@ -91,7 +92,8 @@ public class UIColor extends NSObject {
 
     public static UIColor colorWithPatternImage(UIImage patternImage) {
         BufferedImage img = patternImage.xmlvmGetImage();
-        Paint paint = new TexturePaint(img, new Rectangle2D.Float(0,0,img.getWidth(), img.getHeight()));
+        Paint paint = new TexturePaint(img, new Rectangle2D.Float(0, 0, img.getWidth(), img
+                .getHeight()));
         return new UIColor(paint);
     }
 

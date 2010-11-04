@@ -31,6 +31,7 @@ public class UIEdgeInsets extends NSObject {
 
     public float top, left, bottom, right;
 
+
     public UIEdgeInsets() {
         top = 0;
         left = 0;

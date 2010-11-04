@@ -17,6 +17,7 @@
  *
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
+
 package org.xmlvm.ant.xcode;
 
 import org.xmlvm.ant.utils.FileUtilities;
@@ -46,17 +47,21 @@ public class TrimmerAction {
     private final String template;
     private final long seed;
     private final XcodeSkeleton target;
+    private final String resources;
+    private final String resourceroot;
 
     /**
-     * Initialize the trimmer obejct. For actual parameter definition, refer to the corresponding ant task
+     * Initialize the trimmer object. For actual parameter definition, refer to the corresponding ant task
      */
-    public TrimmerAction(boolean shorten, boolean cleanup, String projecthome, String template, long seed, XcodeSkeleton target) {
+    public TrimmerAction(boolean shorten, boolean cleanup, String projecthome, String template, long seed, XcodeSkeleton target, String resources, String resourceroot) {
         this.projecthome = projecthome;
         this.shorten = shorten;
         this.cleanup = cleanup;
         this.template = template;
         this.seed = seed;
         this.target = target;
+        this.resources = resources;
+        this.resourceroot = resourceroot;
     }
 
     /**
@@ -67,7 +72,7 @@ public class TrimmerAction {
         Log.debug("Parsing files");
 
         /* useful variables */
-        ReplacementList replace = new ReplacementList(shorten, template, seed);
+        ReplacementList replace = new ReplacementList(shorten, template, seed, resources, resourceroot);
         String projname = FileUtilities.getProjectName(projecthome);
 
         HashSet<String> files;

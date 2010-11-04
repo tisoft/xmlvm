@@ -37,6 +37,7 @@ public class ClassList extends ArrayList<Class> {
     private String pkg;
     private String canonical_pkg;
 
+
     public ClassList(String pkg) {
         this.pkg = pkg.replace(".", "/");
         canonical_pkg = pkg.replace("/", ".") + ".";

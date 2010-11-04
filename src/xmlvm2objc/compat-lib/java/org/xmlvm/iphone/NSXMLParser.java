@@ -42,6 +42,7 @@ public class NSXMLParser extends NSObject {
     private SAXParser           saxParser;
     private boolean             shouldReportNamespacePrefixes;
 
+
     public NSXMLParser(NSData data) {
         this.data = data;
         init();

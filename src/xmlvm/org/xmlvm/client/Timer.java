@@ -30,6 +30,7 @@ public class Timer extends Thread {
     private int                  millis;
     private boolean              repeating = true;
 
+
     @Override
     public void run() {
         while (repeating && !isInterrupted()) {

@@ -29,6 +29,7 @@ public class UIWebView extends UIView {
     private NSURLRequest      request;
     private UIWebViewDelegate delegate = null;
 
+
     public UIWebView() {
         this(new CGRect(0, 0, 0, 0));
     }

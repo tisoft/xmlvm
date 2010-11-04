@@ -23,40 +23,62 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class NSTimer extends NSObject implements Runnable {
+public class NSTimer extends NSObject {
 
-	private NSTimerDelegate target;
-    private Object  userInfo;
+    private NSTimerDelegate target;
+    private Object          userInfo;
+    private boolean         timer_repeats;
+    private Thread          thread;
+    private long            milliInterval;
 
-    private boolean repeats;
-    private Thread  thread;
-    private long    milliInterval;
 
-    public NSTimer(float timerInterval, NSTimerDelegate target, Object userInfo, boolean repeats) {
+    @SuppressWarnings("CallToThreadStartDuringObjectConstruction")
+    private NSTimer(float timerInterval, NSTimerDelegate target, Object userInfo, boolean repeats) {
         this.target = target;
         this.userInfo = userInfo;
-        this.repeats = repeats;
+        timer_repeats = repeats;
         this.milliInterval = (long) (timerInterval * 1000);
-        thread = new Thread(this);
+        thread = new Thread() {
+
+            @Override
+            @SuppressWarnings("SleepWhileHoldingLock")
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(milliInterval);
+                    } catch (InterruptedException e) {
+                        return;
+                    }
+                    timerTick();
+                    if (!timer_repeats) {
+                        break;
+                    }
+                }
+            }
+        };
         thread.start();
     }
 
-    public void run() {
-        while (true) {
-            try {
-                Thread.sleep(milliInterval);
-            } catch (InterruptedException e) {
-                return;
-            }
-            timerTick();
-            if (!repeats) {
-                break;
-            }
-        }
+    /**
+     * Create a new NSTimer object
+     * 
+     * @param timerInterval
+     *            time interval in seconds
+     * @param target
+     *            object to receive the specified message
+     * @param userInfo
+     *            The user info to provide to the target method
+     * @param repeats
+     *            If true, the timer will repeat itself. If false, will fire
+     *            once.
+     */
+    public static NSTimer scheduledTimerWithTimeInterval(float seconds, NSTimerDelegate target,
+            Object userinfo, boolean repeats) {
+        return new NSTimer(seconds, target, userinfo, repeats);
     }
 
     private void timerTick() {
-    	target.timerEvent(userInfo);
+        target.timerEvent(userInfo);
     }
 
     public void invalidate() {

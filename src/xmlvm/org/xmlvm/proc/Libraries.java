@@ -56,8 +56,8 @@ public class Libraries {
                     "lib/openjdk6-build.jar");
         }
         if (cocoaJava == null) {
-            cocoaJava = UniversalFileCreator.createDirectory("/lib/cocoa-java.jar",
-                    prepareTempJar("bin/org/xmlvm/iphone", "org/xmlvm/iphone/"));
+            cocoaJava = UniversalFileCreator.createDirectory("/lib/cocoa-java.jar", prepareTempJar(
+                    "bin/org/xmlvm/iphone", "org/xmlvm/iphone/"));
         }
     }
 
@@ -78,7 +78,8 @@ public class Libraries {
      *            the directory that contains the resources to be archived
      * @param pathPrefix
      *            the path inside the archive, where the files are put into
-     * @return The path to the JAR file or null, if and error occurred or the path was not found.
+     * @return The path to the JAR file or null, if and error occurred or the
+     *         path was not found.
      */
     private String prepareTempJar(String path, String pathPrefix) {
         String tempFileName = createTempFileName(path);

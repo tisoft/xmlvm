@@ -114,7 +114,11 @@
 
 - (NSString*) toString__
 {
-	NSString* res = [[NSString alloc] initWithFormat:@"[%@%@]", [origin_org_xmlvm_iphone_CGPoint toString__], [size_org_xmlvm_iphone_CGSize toString__]];
+	NSString * cgP = [origin_org_xmlvm_iphone_CGPoint toString__];
+	NSString * cgS = [size_org_xmlvm_iphone_CGSize toString__];
+	NSString* res = [[NSString alloc] initWithFormat:@"[%@%@]", cgP, cgS];
+	[cgP release];
+	[cgS release];
 	return res;
 }
 

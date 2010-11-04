@@ -42,6 +42,7 @@ public class NSDateComponents extends NSObject {
     private int              weekday;
     private int              weekdayOrdinal;
 
+
     private NSDateComponents() {
     }
 

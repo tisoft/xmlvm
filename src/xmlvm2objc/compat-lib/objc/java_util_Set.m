@@ -42,4 +42,9 @@
 	return hasObj;
 }
 
+- (int) size__
+{
+	return [self count];
+}
+
 @end

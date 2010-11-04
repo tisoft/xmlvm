@@ -21,6 +21,7 @@
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_CGPoint.h"
 #import "org_xmlvm_iphone_UIView.h"
+#import "org_xmlvm_iphone_UIWindow.h"
 
 
 // UITouch
@@ -28,7 +29,11 @@
 typedef UITouch org_xmlvm_iphone_UITouch;
 @interface UITouch (cat_org_xmlvm_iphone_UITouch)
 
-- (org_xmlvm_iphone_UIView*) getView__;
 - (org_xmlvm_iphone_CGPoint*) locationInView___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) view;
+- (org_xmlvm_iphone_UIView*) getView__;
+- (int) getPhase__;
+- (int) getTapCount__;
+- (double) getTimestamp__;
+- (org_xmlvm_iphone_UIWindow*) getWindow__;
 
 @end

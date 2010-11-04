@@ -53,8 +53,7 @@
 
 - (NSString*) toString__
 {
-	NSString* res = [[NSString alloc] initWithFormat:@"[%f, %f]", self->width_float, self->height_float];
-	return res;
+	return [[NSString alloc] initWithFormat:@"[%f, %f]", self->width_float, self->height_float];
 }
 
 @end

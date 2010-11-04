@@ -39,6 +39,7 @@ public class UIAlertView extends UIView {
 
     private UIAlertViewDelegate delegate;
 
+
     public UIAlertView(String title, String message, UIAlertViewDelegate delegate,
             String cancelButtonTitle) {
         xmlvmSetRenderer(new UIAlertViewRenderer(this));
@@ -125,9 +126,11 @@ public class UIAlertView extends UIView {
         setNeedsDisplay();
     }
 
+
     private class ButtonClickCallback implements UIControlDelegate {
 
         private int buttonIndex;
+
 
         public ButtonClickCallback(int buttonIndex) {
             this.buttonIndex = buttonIndex;

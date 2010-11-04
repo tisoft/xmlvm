@@ -40,7 +40,8 @@ public class NSObject {
                 Object[] params = { arg };
                 Class targetClass = target.getClass();
                 Method m = null;
-                // This trick will search for private methods not only on the given object but also on parent
+                // This trick will search for private methods not only on the
+                // given object but also on parent
                 while (targetClass != null && m == null) {
                     try {
                         m = targetClass.getDeclaredMethod(method, paramTypes);
@@ -50,12 +51,13 @@ public class NSObject {
                     targetClass = targetClass.getSuperclass();
                 }
                 if (m == null) {
-                    throw new RuntimeException("Unable fo find method "
-                            + method + " in class " + target.getClass().getName());
+                    throw new RuntimeException("Unable fo find method " + method + " in class "
+                            + target.getClass().getName());
                 }
 
                 try {
-                    m.setAccessible(true);  // This is required, since in Obj-C "private" modifier does not exist
+                    m.setAccessible(true); // This is required, since in Obj-C
+                    // "private" modifier does not exist
                     m.invoke(target, params);
                 } catch (IllegalArgumentException e) {
                     throw new RuntimeException(e);

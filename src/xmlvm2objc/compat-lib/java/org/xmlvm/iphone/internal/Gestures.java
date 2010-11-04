@@ -21,6 +21,7 @@ public class Gestures implements ActionListener {
     Timer                         timer;
     boolean                       ignoreMouseClick = false;
 
+
     public Gestures() {
         listeners = new ArrayList<GestureListener>();
         timer = null;

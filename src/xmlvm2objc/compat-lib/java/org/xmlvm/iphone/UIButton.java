@@ -47,6 +47,7 @@ public class UIButton extends UIControl {
     private UIImage[]        image;
     private CGSize           titleShadowOffset;
 
+
     protected UIButton(int uiButtonType) {
         super();
         callDelegates = false;
@@ -59,9 +60,9 @@ public class UIButton extends UIControl {
         backgroundImage = new UIImage[NUMBER_OF_STATES];
         image = new UIImage[NUMBER_OF_STATES];
 
-        titleColor[UIControlState.Normal] = UIButtonRenderer.DEFAULT_TITLE_COLOR_NORMAL;        
+        titleColor[UIControlState.Normal] = UIButtonRenderer.DEFAULT_TITLE_COLOR_NORMAL;
         titleShadowColor[UIControlState.Normal] = UIButtonRenderer.DEFAULT_TITLE_SHADOW_COLOR_NORMAL;
-        
+
         switch (buttonType) {
         case UIAlertButtonRenderer.AlertViewType:
             xmlvmSetRenderer(new UIAlertButtonRenderer(this));
@@ -144,7 +145,8 @@ public class UIButton extends UIControl {
         if (uiControlState < 0 || uiControlState >= titleShadowColor.length) {
             uiControlState = 0;
         }
-        return titleShadowColor[uiControlState] == null ? titleShadowColor[0] : titleShadowColor[uiControlState];
+        return titleShadowColor[uiControlState] == null ? titleShadowColor[0]
+                : titleShadowColor[uiControlState];
     }
 
     public UIColor getCurrentTitleShadowColor() {

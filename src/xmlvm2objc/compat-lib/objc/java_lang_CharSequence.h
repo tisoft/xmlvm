@@ -29,7 +29,6 @@
 - (int) charAt___int :(int) index;
 - (int) length__;
 - (id<java_lang_CharSequence>) subSequence___int_int :(int) start :(int) end;
-- (java_lang_String*) toString__;
  
 @end
 

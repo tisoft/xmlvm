@@ -43,6 +43,7 @@ public abstract class CATransition extends CAAnimation {
     public static final String FromTop    = "fromTop";
     public static final String FromBottom = "fromBottom";
 
+
     public static CATransition animation() {
         // TODO: Java implementation
         return null;

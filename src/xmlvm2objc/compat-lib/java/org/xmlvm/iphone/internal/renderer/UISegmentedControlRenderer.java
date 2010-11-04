@@ -27,8 +27,8 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UISegmentedControl;
 import org.xmlvm.iphone.UISegmentedControlStyle;
 
@@ -42,6 +42,7 @@ public class UISegmentedControlRenderer extends UIViewRenderer<UISegmentedContro
     private static Font      FONT_BAR     = new Font("Arial", Font.BOLD, 12);
     private static final int ROUNDEDGE    = 20;
 
+
     public UISegmentedControlRenderer(UISegmentedControl view) {
         super(view);
     }
@@ -52,7 +53,7 @@ public class UISegmentedControlRenderer extends UIViewRenderer<UISegmentedContro
             return;
         int style = view.getSegmentedControlStyle();
 
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         Color selUp, selDown, unselUp, unselDown, line, selTxt, unselTxt;
         if (style == UISegmentedControlStyle.Bar) {
             g.setFont(FONT_BAR);

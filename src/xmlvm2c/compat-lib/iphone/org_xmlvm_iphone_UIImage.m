@@ -64,6 +64,23 @@ void __DELETE_org_xmlvm_iphone_UIImage(JAVA_OBJECT me)
     //XMLVM_END_WRAPPER
 }
 
+
+
+JAVA_OBJECT org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(JAVA_OBJECT n1)
+{
+    if (!__CLASS_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String]
+	
+	NSString *nsStr = toNSString(n1);
+	UIImage *named = [UIImage imageNamed:nsStr];
+	
+	org_xmlvm_iphone_UIImage *toRet = __NEW_org_xmlvm_iphone_UIImage();
+	//TODO need to call a constructor but UIImage does not have a public default constructor
+	toRet->org_xmlvm_iphone_UIImage.ocImage = named; //[UIImage imageWithContentsOfFile: nsStr];
+	return toRet;
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String(JAVA_OBJECT n1)
 {
     if (!__CLASS_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();

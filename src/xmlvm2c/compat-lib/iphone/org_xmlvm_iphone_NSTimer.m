@@ -72,6 +72,20 @@ void __INIT_org_xmlvm_iphone_NSTimer()
     //XMLVM_END_WRAPPER
 }
 
+
+JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(JAVA_FLOAT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4)
+{
+    if (!__CLASS_org_xmlvm_iphone_NSTimer.classInitialized) __INIT_org_xmlvm_iphone_NSTimer();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean]
+	org_xmlvm_iphone_NSTimer* tim = __NEW_org_xmlvm_iphone_NSTimer();
+	org_xmlvm_iphone_NSTimer___INIT____float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(tim, n1, n2, n3, n4);
+	return tim;
+    //XMLVM_END_WRAPPER
+}
+
+
+
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSTimer()
 {
     if (!__CLASS_org_xmlvm_iphone_NSTimer.classInitialized) __INIT_org_xmlvm_iphone_NSTimer();

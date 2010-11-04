@@ -52,6 +52,7 @@ public class NSStringEncoding {
     public static final int UTF32BigEndian    = 0x98000100;
     public static final int UTF32LittleEndian = 0x9c000100;
 
+
     final static String convertIntToString(int value) {
         switch (value) {
         case 1:

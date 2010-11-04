@@ -17,8 +17,10 @@
  * 
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
+
 package org.xmlvm.proc.out;
 
+import org.xmlvm.proc.out.build.ResourceManager;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
@@ -35,14 +37,14 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProcess> {
 
-    private static final UniversalFile IPHONE_COMPAT_LIB    = UniversalFileCreator.createDirectory(
-                                                                    "/iphone/compat-lib.jar",
-                                                                    "src/xmlvm2/compat-lib/java");
-    public static final String         IPHONE_SRC           = "/src/xcode";
+    private static final UniversalFile IPHONE_COMPAT_LIB    = UniversalFileCreator
+                                                                    .createDirectory(
+                                                                            "/iphone/compat-lib.jar",
+                                                                            "src/xmlvm2objc/compat-lib/java");
+    public static final String         IPHONE_SRC           = "/build/xcode/src";
     public static final String         IPHONE_SRC_LIB       = IPHONE_SRC + "/lib/iphone";
     public static final String         IPHONE_SRC_APP       = IPHONE_SRC + "/app";
-    public static final String         IPHONE_RESOURCES_SYS = "/resources/sys";
-    public static final String         IPHONE_RESOURCES_APP = "/resources/app";
+    public static final String         IPHONE_RESOURCES_SYS = "/build/xcode/sys";
     private List<OutputFile>           result               = new ArrayList<OutputFile>();
 
 
@@ -80,32 +82,23 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
             // Create Info.plist
             UniversalFile infoInFile = UniversalFileCreator.createFile("/iphone/Info.plist",
                     "var/iphone/Info.plist");
-            BufferedReader infoIn = new BufferedReader(new StringReader(
-                    infoInFile.getFileAsString()));
+            BufferedReader infoIn = new BufferedReader(new StringReader(infoInFile
+                    .getFileAsString()));
             StringBuilder infoOut = new StringBuilder();
             String line = null;
             while ((line = infoIn.readLine()) != null) {
-                line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER",
-                        arguments.option_property("bundleidentifier"));
-                line = line.replaceAll("PROPERTY_BUNDLEVERSION",
-                        arguments.option_property("bundleversion"));
-                line = line.replaceAll("PROPERTY_BUNDLEDISPLAYNAME",
-                        arguments.option_property("bundledisplayname"));
-                line = line
-                        .replaceAll(
-                                "PROPERTY_STATUSBARHIDDEN",
-                                arguments.option_property("statusbarhidden").toLowerCase()
-                                        .equals("true") ? "true" : "false");
-                line = line
-                        .replaceAll(
-                                "PROPERTY_PRERENDEREDICON",
-                                arguments.option_property("prerenderedicon").toLowerCase()
-                                        .equals("true") ? "true" : "false");
-                line = line
-                        .replaceAll(
-                                "PROPERTY_APPLICATIONEXITS",
-                                arguments.option_property("applicationexits").toLowerCase()
-                                        .equals("true") ? "true" : "false");
+                line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER", arguments
+                        .option_property("bundleidentifier"));
+                line = line.replaceAll("PROPERTY_BUNDLEVERSION", arguments
+                        .option_property("bundleversion"));
+                line = line.replaceAll("PROPERTY_BUNDLEDISPLAYNAME", arguments
+                        .option_property("bundledisplayname"));
+                line = line.replaceAll("PROPERTY_STATUSBARHIDDEN", arguments.option_property(
+                        "statusbarhidden").toLowerCase().equals("true") ? "true" : "false");
+                line = line.replaceAll("PROPERTY_PRERENDEREDICON", arguments.option_property(
+                        "prerenderedicon").toLowerCase().equals("true") ? "true" : "false");
+                line = line.replaceAll("PROPERTY_APPLICATIONEXITS", arguments.option_property(
+                        "applicationexits").toLowerCase().equals("true") ? "true" : "false");
                 line = line.replaceAll("XMLVM_APP", arguments.option_app_name());
                 infoOut.append(line).append("\n");
             }
@@ -118,13 +111,8 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
             return false;
         }
 
-        /* Add resources, as defined */
-        for (String resourcedir : arguments.option_resource()) {
-            List<ResourceOutputFile> resources = ResourceOutputFile.listResources(resourcedir,
-                    arguments.option_out() + IPHONE_RESOURCES_APP, arguments.option_out()
-                            + IPHONE_SRC_APP);
-            result.addAll(resources);
-        }
+        /* Add extra source files, as resource files, if found */
+        result.addAll(ResourceManager.getSourceResources(arguments));
 
         /* Create various buildfiles */
         MakeFile makefile = new MakeFile();

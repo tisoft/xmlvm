@@ -35,6 +35,7 @@ public class MPMoviePlayerController extends NSObject {
     private int     scalingMode;
     private int     movieControlMode;
 
+
     private MPMoviePlayerController(NSURL contentURL) {
         // TODO : Java implementation
     }

@@ -123,7 +123,7 @@ public class Resources {
                         d = ResourceParser.parseDrawable(getContext(), RES_DIR + "/" + folder + "/"
                                 + resourceName);
                     } else {
-                        UIImage image = UIImage.imageWithContentsOfFile(RES_DIR + "/" + folder
+                        UIImage image = UIImage.imageNamed(RES_DIR + "/" + folder
                                 + "/" + resourceName + ".png");
                         d = BitmapDrawable.xmlvmCreateWithImage(image);
                     }
@@ -148,6 +148,7 @@ public class Resources {
 
         return null;
     }
+
 
     public NSData getLayout(int resourceId) {
         NSData theFile = layoutMap.get(new Integer(resourceId));

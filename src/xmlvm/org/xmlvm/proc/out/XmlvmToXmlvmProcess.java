@@ -44,6 +44,7 @@ public class XmlvmToXmlvmProcess extends XmlvmProcessImpl<XmlvmInputProcess> imp
 
     private List<XmlvmResource> xmlvmResources = new ArrayList<XmlvmResource>();
 
+
     public XmlvmToXmlvmProcess(Arguments arguments) {
         super(arguments);
         addSupportedInput(XmlvmInputProcess.class);

@@ -27,6 +27,7 @@ public class NSMutableData extends NSData {
     private byte[] data = new byte[10000];
     private int    count;
 
+
     public int byteCount() {
         return count;
     }

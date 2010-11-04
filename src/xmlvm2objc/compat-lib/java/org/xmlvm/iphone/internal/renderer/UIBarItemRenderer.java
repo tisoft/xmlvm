@@ -14,6 +14,7 @@ public abstract class UIBarItemRenderer extends UIButtonRenderer {
 
     protected UIBarItem item;
 
+
     public UIBarItemRenderer(UIBarItem item, UIButton view) {
         super(view);
         this.item = item;

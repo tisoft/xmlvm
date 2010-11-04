@@ -38,6 +38,7 @@ public class UIDatePicker extends UIControl {
     private int        minuteInterval;
     private double     countDownDuration;
 
+
     public UIDatePicker() {
         this(new CGRect(0, 0, 0, 0));
     }

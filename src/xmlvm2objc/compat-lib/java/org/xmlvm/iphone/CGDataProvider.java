@@ -24,11 +24,13 @@ import java.io.InputStream;
 
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
+
 @XMLVMSkeletonOnly
 public class CGDataProvider extends NSObject {
 
     @XMLVMIgnore
     public InputStream in;
+
 
     private CGDataProvider(String ref) {
         in = Thread.currentThread().getContextClassLoader().getResourceAsStream(ref);

@@ -28,6 +28,7 @@ public class UIPreferencesTable extends UIView {
 
     private UIPreferencesTableDataSource dataSource;
 
+
     public UIPreferencesTable(CGRect rect) {
         super(rect);
         xmlvmSetRenderer(new UIPreferencesTableRenderer(this));

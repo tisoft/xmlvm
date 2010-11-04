@@ -31,6 +31,7 @@ public class RegisterSet implements java.lang.Iterable<Integer> {
 
     private BitSet map = new BitSet();
 
+
     /**
      * |= operator
      */
@@ -153,13 +154,16 @@ public class RegisterSet implements java.lang.Iterable<Integer> {
         return this.map.equals(((RegisterSet) regs).map);
     }
 
+
     class BitSetIterator implements Iterator<Integer> {
         public BitSetIterator(RegisterSet toIterate) {
             this.toIterate = toIterate;
         }
 
+
         RegisterSet toIterate;
         int         cur = 0;
+
 
         /*
          * (non-Javadoc)
@@ -204,6 +208,7 @@ public class RegisterSet implements java.lang.Iterable<Integer> {
             throw new RuntimeException("Impossible");
         }
     }
+
 
     /*
      * (non-Javadoc)

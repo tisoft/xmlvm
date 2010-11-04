@@ -23,6 +23,9 @@ import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.main.Targets;
 import org.xmlvm.proc.XmlvmProcess;
+import org.xmlvm.proc.out.templates.AndroidMigrateOutputProcess;
+import org.xmlvm.proc.out.templates.AndroidTemplateOutputProcess;
+import org.xmlvm.proc.out.templates.IPhoneTemplateOutputProcess;
 
 /**
  * Creates OutputProcess based on the given targets.
@@ -33,6 +36,7 @@ public class OutputProcessFactory {
      * The arguments that should be given to the created processes.
      */
     protected Arguments arguments;
+
 
     /**
      * Creates a new OutputProcessFactory
@@ -73,7 +77,11 @@ public class OutputProcessFactory {
         case XMLVM:
             return new XmlvmOutputProcess(arguments);
         case IPHONETEMPLATE:
-            return new TemplateOutputProcess(arguments);
+            return new IPhoneTemplateOutputProcess(arguments);
+        case ANDROIDTEMPLATE:
+            return new AndroidTemplateOutputProcess(arguments);
+        case ANDROIDMIGRATETEMPLATE:
+            return new AndroidMigrateOutputProcess(arguments);
         case CLASS:
             return new JavaByteCodeOutputProcess(arguments);
         case EXE:

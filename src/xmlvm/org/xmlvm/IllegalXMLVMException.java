@@ -25,6 +25,7 @@ public class IllegalXMLVMException extends Exception {
 
     private String            reason;
 
+
     public IllegalXMLVMException(String reason) {
         this.reason = reason;
     }

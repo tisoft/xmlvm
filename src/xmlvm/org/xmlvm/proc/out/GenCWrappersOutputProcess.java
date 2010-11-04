@@ -89,8 +89,8 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
         }
 
         if (destination.isFile()) {
-            Log.error(TAG,
-                    "Destination is a file, but must be a directory: " + arguments.option_out());
+            Log.error(TAG, "Destination is a file, but must be a directory: "
+                    + arguments.option_out());
             return false;
         }
 
@@ -134,19 +134,19 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
      * first by file name and then by section name.
      * 
      * @param destination
-     *            the directory from where the files are parsed recusively
+     *            the directory from where the files are parsed recursively
      * @return The section contents keyed by filename and section name.
      */
     private Map<String, Map<String, String>> extractAllSections(UniversalFile destination) {
-        Map<String, Map<String, String>> result = new HashMap<String, Map<String, String>>();
+        Map<String, Map<String, String>> output = new HashMap<String, Map<String, String>>();
         UniversalFile[] existingFiles = destination.listFilesRecursively();
         String basePath = destination.getAbsolutePath();
 
         for (UniversalFile existingFile : existingFiles) {
             String key = existingFile.getRelativePath(basePath);
-            result.put(key, extractSections(existingFile));
+            output.put(key, extractSections(existingFile));
         }
-        return result;
+        return output;
     }
 
     /**
@@ -175,7 +175,9 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
 
                 if (line.contains(END_MARKER)) {
                     if (section == null) {
-                        Log.error(TAG, "Found end marker without matching starting marker: " + line);
+                        Log
+                                .error(TAG, "Found end marker without matching starting marker: "
+                                        + line);
                         continue;
                     }
                     String content = section.toString();

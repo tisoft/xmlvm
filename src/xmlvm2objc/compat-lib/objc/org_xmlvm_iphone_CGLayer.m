@@ -49,11 +49,7 @@
 
 - (org_xmlvm_iphone_CGSize*) getSize__
 {
-    org_xmlvm_iphone_CGSize* s = [[org_xmlvm_iphone_CGSize alloc] init];
-    CGSize size = CGLayerGetSize(layer);
-    s->width_float = size.width;
-    s->height_float = size.height;
-    return s;
+    return [[org_xmlvm_iphone_CGSize alloc] initWithCGSize:CGLayerGetSize(layer)];
 }
 
 @end

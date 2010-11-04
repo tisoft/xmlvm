@@ -56,7 +56,7 @@ public class UIButtonTest extends UIApplicationDelegate {
 
         UIButton alertDialogLightButton = UIButton.buttonWithType(UIButtonType.RoundedRect);
         alertDialogLightButton.setFrame(new CGRect(115, 10, 90, 60));
-        alertDialogLightButton.setBackgroundColor(UIColor.colorWithRGBA(122, 126, 150, 191));
+        alertDialogLightButton.setBackgroundColor(UIColor.colorWithRGBA(122f/255, 126f/255, 150f/255, 191f/255));
         alertDialogLightButton.setTitleColor(UIColor.whiteColor, UIControlState.Normal);
         alertDialogLightButton.setTitleShadowOffset(new CGSize(0, -1));
         // TODO: alertDialogLightButton.setEdgeDiameter(8);
@@ -75,7 +75,7 @@ public class UIButtonTest extends UIApplicationDelegate {
 
         UIButton alertDialogDarkButton = UIButton.buttonWithType(UIButtonType.RoundedRect);
         alertDialogDarkButton.setFrame(new CGRect(220, 10, 90, 60));
-        alertDialogDarkButton.setBackgroundColor(UIColor.colorWithRGBA(76, 82, 113, 191));
+        alertDialogDarkButton.setBackgroundColor(UIColor.colorWithRGBA(76f/255, 82f/255, 113f/255, 191f/255));
         alertDialogDarkButton.setTitleColor(UIColor.whiteColor, UIControlState.Normal);
         alertDialogDarkButton.setTitleShadowOffset(new CGSize(0, -1));
         // TODO: alertDialogDarkButton.setEdgeDiameter(8);
@@ -109,7 +109,7 @@ public class UIButtonTest extends UIApplicationDelegate {
 
         UIButton darkGrayButton = UIButton.buttonWithType(UIButtonType.RoundedRect);
         darkGrayButton.setFrame(new CGRect(10, 390, 90, 60));
-        darkGrayButton.setBackgroundColor(UIColor.colorWithRGBA(10, 10, 10, 191));
+        darkGrayButton.setBackgroundColor(UIColor.colorWithRGBA(10f/255, 10f/255, 10f/255, 191f/255));
         // TODO: darkGrayButton.setPressedBackgroundColor(UIColor.blueColor);
         // TODO: darkGrayButton.setPressedTitleColor(Color.WHITE);
         darkGrayButton.setTitleColor(UIColor.blackColor, UIControlState.Normal);

@@ -34,9 +34,14 @@
 //----------------------------------------------------------------------------
 @implementation UIImage(cat_org_xmlvm_iphone_UIImage);
 
-+ (org_xmlvm_iphone_UIImage*) imageWithContentsOfFile___java_lang_String :(NSString*)path
++ (org_xmlvm_iphone_UIImage*)imageNamed___java_lang_String:(java_lang_String*)path
 {
 	return_XMLVM_SELECTOR(UIImage imageNamed:path)
+}
+
++ (org_xmlvm_iphone_UIImage*) imageWithContentsOfFile___java_lang_String :(java_lang_String*)path
+{
+	return_XMLVM_SELECTOR(UIImage imageWithContentsOfFile:path)
 }
 
 + (org_xmlvm_iphone_UIImage*) imageWithData___org_xmlvm_iphone_NSData: (org_xmlvm_iphone_NSData*) data
@@ -112,5 +117,18 @@
 	[args release];
 	return croppedImage;
 }
+
+- (org_xmlvm_iphone_NSData*) PNGRepresentation__
+{
+	NSData * data = UIImagePNGRepresentation(self);
+	return [data retain];
+}
+
+- (org_xmlvm_iphone_NSData*) JPEGRepresentation___float:(float) compression
+{
+	NSData * data = UIImageJPEGRepresentation(self, compression);
+	return [data retain];
+}
+
 
 @end

@@ -26,11 +26,7 @@ import org.xmlvm.iphone.UISwitch;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.ViewGroup;
-import java.util.Set;
-import org.xmlvm.iphone.UIEvent;
-import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
 public class CheckBox extends CompoundButton {
@@ -71,28 +67,7 @@ public class CheckBox extends CompoundButton {
     protected UIView xmlvmNewUIView(AttributeSet attrs) {
         // TODO mapping a CheckBox to a UISwitch is not entirely correct since
         // the latter does not setText()
-        return new UISwitch() {
-
-            @Override
-            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-                xmlvmTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
-            }
-
-            @Override
-            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
-                xmlvmTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
-            }
-
-            @Override
-            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
-                xmlvmTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
-            }
-
-            @Override
-            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-                xmlvmTouchesEvent(MotionEvent.ACTION_UP, touches, event);
-            }
-        };
+        return new UISwitch();
     }
 
     @Override

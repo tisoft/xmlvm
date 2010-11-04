@@ -30,6 +30,7 @@ public class NSError extends NSObject {
     private int                 code;
     private Map<Object, Object> userInfo;
 
+
     public NSError(String domain, int code, Map<Object, Object> userInfo) {
         this.domain = domain;
         this.code = code;

@@ -10,11 +10,12 @@ import java.awt.event.MouseEvent;
 import java.awt.image.ImageObserver;
 import java.util.HashSet;
 import java.util.Set;
-
 import org.xmlvm.iphone.CGContext;
+
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIInterfaceOrientation;
 import org.xmlvm.iphone.UIResponder;
 import org.xmlvm.iphone.UITouch;
@@ -29,6 +30,7 @@ public class Display implements ImageObserver {
     private UIView      keyListener;
     private Device      device;
     private UIResponder currentResponder;
+
 
     public Display(Device device) {
         this.device = device;
@@ -52,7 +54,7 @@ public class Display implements ImageObserver {
         Rectangle r = new Rectangle(Device.ScreenSize);
         g2d.setClip(r);
 
-        CGContext.xmlvmPushGraphicsContext(g2d);
+        UIGraphics.pushContext(CGContext.xmlvmNewCGContext(g2d));
         g2d.setBackground(Color.BLACK);
         g2d.clearRect(r.x, r.y, r.width, r.height);
         CGRect rect = new CGRect(r.x, r.y, r.width, r.height);
@@ -68,7 +70,7 @@ public class Display implements ImageObserver {
         statusBar.xmlvmDrawRect(rect);
 
         g2d.setClip(savedClip);
-        CGContext.xmlvmPopGraphicsContext();
+        UIGraphics.popContext();
     }
 
     private void deliverTouchesEvent(int phase, MouseEvent e) {
@@ -235,6 +237,7 @@ public class Display implements ImageObserver {
             findTouchedView(touches, childView, nesting + 1, result);
         }
     }
+
 
     private class ViewSearchResult {
         private int    level;

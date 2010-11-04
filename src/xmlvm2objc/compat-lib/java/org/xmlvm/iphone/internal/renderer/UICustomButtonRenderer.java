@@ -70,14 +70,16 @@ public class UICustomButtonRenderer extends UIButtonRenderer {
         CGSize im = displayRect.size;
         float dx = (im.width - bt.width) / 2;
         float dy = (im.height - bt.height) / 2;
-        g.drawImage(img.xmlvmGetImage(), (int) (displayRect.origin.x + dx), (int) (displayRect.origin.y + dy), null);
+        g.drawImage(img.xmlvmGetImage(), (int) (displayRect.origin.x + dx),
+                (int) (displayRect.origin.y + dy), null);
 
     }
 
     protected void drawHighlight(Graphics2D g, CGRect displayRect) {
         if (isHighlighted()) {
             g.setPaint(new Color(50, 50, 50, 80));
-            g.fill(new Rectangle2D.Float(displayRect.origin.x, displayRect.origin.y, displayRect.size.width, displayRect.size.height));
+            g.fill(new Rectangle2D.Float(displayRect.origin.x, displayRect.origin.y,
+                    displayRect.size.width, displayRect.size.height));
         }
     }
 }

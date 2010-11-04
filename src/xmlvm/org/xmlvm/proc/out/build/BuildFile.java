@@ -21,6 +21,8 @@
 package org.xmlvm.proc.out.build;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileFilter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +39,8 @@ import org.xmlvm.util.FileUtil;
  */
 public abstract class BuildFile {
 
+    protected final static String BUILDFILE_LOCATION = File.separator + "dist" + File.separator;
+    
     /**
      * Read data either from inside a JAR or from a file
      * 
@@ -66,13 +70,14 @@ public abstract class BuildFile {
      *            Filename criteria.
      * @return List of filenames with valid files.
      */
-    protected static List<String> getFileNames(List<OutputFile> fileList, PathFileFilter filter, String basePath) {
+    protected static ArrayList<String> getFileNames(List<OutputFile> fileList, FileFilter filter) {
         ArrayList<String> result = new ArrayList<String>();
 
-        for (OutputFile outfile : fileList) {
-            OutputFile[] files = outfile.getAffectedSourceFiles(filter);
-            for (OutputFile copyFile : files) {
-                result.add(copyFile.getRelativePath(basePath));
+        for (OutputFile fileBundle : fileList) {
+            for (OutputFile outfile : fileBundle.getAffectedSourceFiles()) {
+                File fileEntry = new File(outfile.getFullPath());
+                if (filter.accept(fileEntry))
+                    result.add(fileEntry.getName());
             }
         }
         return result;

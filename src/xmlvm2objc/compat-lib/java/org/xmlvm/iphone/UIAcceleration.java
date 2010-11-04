@@ -29,6 +29,7 @@ public class UIAcceleration extends NSObject {
     private double y;
     private double z;
 
+
     public UIAcceleration(double x, double y, double z) {
         this.x = x;
         this.y = y;

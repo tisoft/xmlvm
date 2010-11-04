@@ -27,7 +27,9 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class CALayer extends NSObject {
 
-    HashMap<String, CAAnimation> animation;
+    private HashMap<String, CAAnimation> animation;
+    private UIView                       delegate;
+
 
     public static CALayer layer() {
         return new CALayer();
@@ -55,5 +57,17 @@ public class CALayer extends NSObject {
 
     public ArrayList<String> animationKeys() {
         return new ArrayList<String>(animation.keySet());
+    }
+
+    public void renderInContext(CGContext context) {
+        // TODO: Not implemented under Java
+    }
+
+    public UIView getDelegate() {
+        return delegate;
+    }
+
+    public void setDelegate(UIView delegate) {
+        this.delegate = delegate;
     }
 }

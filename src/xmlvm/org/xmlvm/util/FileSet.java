@@ -34,6 +34,7 @@ public class FileSet implements Iterable<File>, Iterator<File> {
     private boolean           recurseFolders;
     private Iterator<File>    currentIterator;
 
+
     public FileSet(String filePattern) {
         File f = new File(filePattern);
         if (f.isDirectory())
@@ -91,6 +92,7 @@ public class FileSet implements Iterable<File>, Iterator<File> {
         });
         currentIterator = new Iterator<File>() {
             int i = 0;
+
 
             public boolean hasNext() {
                 return i < fileList.length;

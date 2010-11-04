@@ -22,10 +22,10 @@ package org.xmlvm.iphone.internal.renderer;
 
 import java.awt.Graphics2D;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIActivityIndicatorView;
 import org.xmlvm.iphone.UIActivityIndicatorViewStyle;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIImage;
 import org.xmlvm.iphone.internal.Simulator;
 
@@ -34,13 +34,14 @@ public class UIActivityIndicatorViewRenderer extends UIViewRenderer<UIActivityIn
     /* Animated gifs courtesy of http://www.ajaxload.info */
 
     private static final UIImage whiteSpinnerImage      = UIImage
-                                                                .imageWithContentsOfFile("activity-indicator-white-small.gif");
+                                                                .imageNamed("activity-indicator-white-small.gif");
     private static final UIImage whiteLargeSpinnerImage = UIImage
-                                                                .imageWithContentsOfFile("activity-indicator-white-large.gif");
+                                                                .imageNamed("activity-indicator-white-large.gif");
     private static final UIImage graySpinnerImage       = UIImage
-                                                                .imageWithContentsOfFile("activity-indicator-gray-small.gif");
+                                                                .imageNamed("activity-indicator-gray-small.gif");
 
     private boolean              isAnimating            = false;
+
 
     public UIActivityIndicatorViewRenderer(UIActivityIndicatorView view) {
         super(view);
@@ -51,7 +52,7 @@ public class UIActivityIndicatorViewRenderer extends UIViewRenderer<UIActivityIn
         if (!isAnimating || ((UIActivityIndicatorView) view).isHidden()) {
             return;
         }
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         CGRect rect = view.getFrame();
         UIImage spinner = null;
         switch (((UIActivityIndicatorView) view).getActivityIndicatorViewStyle()) {

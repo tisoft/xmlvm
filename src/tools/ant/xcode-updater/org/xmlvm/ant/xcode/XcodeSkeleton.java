@@ -35,21 +35,23 @@ public enum XcodeSkeleton {
     /**
      * Create an iPhone project
      */
-    IPHONE("iphoneos4.0", "1"),
+    IPHONE("iphoneos4.1", "1"),
     /**
      * Create an iPad project
      */
-    IPAD("iphoneos4.0", "2"),
+    IPAD("iphoneos4.1", "2"),
     /**
      * Create an iPhone project
      */
-    IOS("iphoneos4.0", "1,2");
+    IOS("iphoneos4.1", "1,2");
     public final String root;
     public final String target;
+    public final String architecture;
 
     private XcodeSkeleton(String root, String target) {
         this.root = root;
         this.target = target;
+        architecture = target.equals("2") ? "ARCHS_UNIVERSAL_IPHONE_OS" : "ARCHS_STANDARD_32_BIT";
     }
 
     /**

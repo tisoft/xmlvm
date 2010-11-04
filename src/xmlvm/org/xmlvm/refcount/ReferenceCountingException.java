@@ -31,6 +31,7 @@ public class ReferenceCountingException extends Exception {
 
     String message;
 
+
     public ReferenceCountingException(DataConversionException convertEx) {
         this.message = convertEx.getMessage();
     }

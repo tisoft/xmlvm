@@ -28,11 +28,13 @@ import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.ImageLoader;
 import org.xmlvm.iphone.internal.Simulator;
+
 @XMLVMSkeletonOnly
 public class CGImage extends NSObject {
 
     @XMLVMIgnore
     public BufferedImage image;
+
 
     private CGImage(InputStream in) {
         ImageLoader loader = Simulator.getImageLoader();

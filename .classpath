@@ -15,14 +15,14 @@
 	<classpathentry kind="src" path="src/xmlvm2c/compat-lib/java"/>
 	<classpathentry kind="src" path="src/android2iphone"/>
 	<classpathentry kind="src" path="demo/java-desktop"/>
-	<classpathentry kind="src" path="demo/iphone/iremote/src"/>
-	<classpathentry kind="src" path="demo/iphone/isound/src"/>
-	<classpathentry kind="src" path="demo/iphone/ihelloworld/portrait/src"/>
-	<classpathentry kind="src" path="demo/iphone/ihelloworld/upsidedown/src"/>
-	<classpathentry kind="src" path="demo/iphone/ihelloworld/landscape/src"/>
-	<classpathentry kind="src" path="demo/iphone/ihelloworld/fullscreen/src"/>
-	<classpathentry kind="src" path="demo/iphone/gl/nehelesson4/src"/>
-	<classpathentry kind="src" path="demo/iphone/ifireworks/src"/>
+	<classpathentry kind="src" path="demo/iphone/iremote/src/java"/>
+	<classpathentry kind="src" path="demo/iphone/isound/src/java"/>
+	<classpathentry kind="src" path="demo/iphone/ihelloworld/portrait/src/java"/>
+	<classpathentry kind="src" path="demo/iphone/ihelloworld/upsidedown/src/java"/>
+	<classpathentry kind="src" path="demo/iphone/ihelloworld/landscape/src/java"/>
+	<classpathentry kind="src" path="demo/iphone/ihelloworld/fullscreen/src/java"/>
+	<classpathentry kind="src" path="demo/iphone/gl/nehelesson4/src/java"/>
+	<classpathentry kind="src" path="demo/iphone/ifireworks/src/java"/>
 	<classpathentry kind="src" path="demo/android/aremote/src"/>
 	<classpathentry kind="src" path="demo/android/sayhello/gen"/>
 	<classpathentry kind="src" path="demo/android/sayhello/src"/>
@@ -31,8 +31,8 @@
 	<classpathentry kind="src" path="demo/android/afireworks/gen"/>
 	<classpathentry kind="src" path="demo/android/xokoban/src"/>
 	<classpathentry kind="src" path="demo/android/xokoban/gen"/>
-	<classpathentry kind="src" path="demo/android/helloworld/gen"/>
 	<classpathentry kind="src" path="demo/android/helloworld/src"/>
+	<classpathentry kind="src" path="demo/android/helloworld/gen"/>
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="src/test/iphone"/>
 	<classpathentry kind="src" path="src/test/cs"/>

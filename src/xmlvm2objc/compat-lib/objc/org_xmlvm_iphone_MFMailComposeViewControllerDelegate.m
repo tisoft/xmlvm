@@ -28,7 +28,7 @@
 {
 }
 
-- (void) mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+- (void) mailComposeController:(org_xmlvm_iphone_MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
 	[self didFinishWithResult___org_xmlvm_iphone_MFMailComposeViewController_int_org_xmlvm_iphone_NSError:controller :result :error];
 }

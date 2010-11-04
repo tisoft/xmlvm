@@ -20,8 +20,9 @@
 
 #import "xmlvm.h"
 #import <MessageUI/MessageUI.h>
-#import <MessageUI/MFMailComposeViewController.h>
 #import "java_util_ArrayList.h"
+#import "org_xmlvm_iphone_UIViewController_macros.h"
+
 @class org_xmlvm_iphone_MFMailComposeViewControllerDelegate;
 
 /** @author teras */
@@ -44,11 +45,5 @@ typedef MFMailComposeViewController org_xmlvm_iphone_MFMailComposeViewController
 @end
 
 @interface org_xmlvm_iphone_MFMailComposeViewController : org_xmlvm_iphone_MFMailComposeViewControllerImpl
-- (void) loadView__;
-- (void) viewDidLoad__;
-- (void) viewDidUnload__;
-- (void) viewWillAppear___boolean :(int)anim;
-- (void) viewDidAppear___boolean :(int)anim;
-- (void) viewWillDisappear___boolean :(int)anim;
-- (void) viewDidDisappear___boolean :(int)anim;
+UIVIEWCONTROLLER_CALLBACKS_INC
 @end

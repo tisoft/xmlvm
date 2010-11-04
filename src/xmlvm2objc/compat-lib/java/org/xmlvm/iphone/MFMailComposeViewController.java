@@ -32,6 +32,7 @@ public class MFMailComposeViewController extends UINavigationController {
 
     private MFMailComposeViewControllerDelegate mailComposeDelegate;
 
+
     public MFMailComposeViewController() {
         super(null);
         // TODO : Java implementation

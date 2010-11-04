@@ -21,9 +21,9 @@
 package org.xmlvm.iphone;
 
 import java.io.File;
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.xmlvm.XMLVMSkeletonOnly;
 
 /**
@@ -34,6 +34,7 @@ import org.xmlvm.XMLVMSkeletonOnly;
 public class NSFileManager extends NSObject {
 
     private static final NSFileManager defaultMngr = new NSFileManager();
+
 
     private NSFileManager() {
     }
@@ -46,6 +47,14 @@ public class NSFileManager extends NSObject {
         return new File(path).exists();
     }
 
+    public boolean createDirectoryAtPath(String path, boolean createIntermediates,
+            Map<String, String> attributes) {
+        if (createIntermediates)
+            return new File(path).mkdirs();
+        else
+            return new File(path).mkdir();
+    }
+
     public List<String> contentsOfDirectoryAtPath(String path, NSErrorHolder error) {
         List<String> files = new ArrayList<String>();
         for (String f : new File(path).list()) {
@@ -53,5 +62,4 @@ public class NSFileManager extends NSObject {
         }
         return files;
     }
-
 }

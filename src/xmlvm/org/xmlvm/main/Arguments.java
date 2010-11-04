@@ -112,8 +112,7 @@ public class Arguments {
             "    js               JavaScript",
             "    jsandroid        Android to JS (experimental)",
             "    c                C source code",
-            "    gen-c-wrappers   Generates C wrappers while preserving hand-written code from " +
-            "                     overridden files in the 'out' directory.",
+            "    gen-c-wrappers   Generates C wrappers while preserving hand-written code from overridden files in the 'out' directory.",
             "    python           Python",
             "    objc             Objective C source code",
             "    iphone           iPhone Objective-C",
@@ -125,8 +124,10 @@ public class Arguments {
             "",
             " --skeleton=<type> Skeleton to create a new template project:",
             "    iphone           iPhone project skeleton",
+            "    android          Android/iPhone project skeleton",
+            "    android:migrate  Migrate an existing Android project to XMLVM (needs project created by 'android create project' command)",
             "",
-            " --lib=<libraries> Comma separated list of extra libraries required for the specified target:",
+            " --lib=<libraries> Comma separated list of extra libraries required for the specified target. Use a tilde at the and of the library name, to mark it as 'Weak'.",
             "    android          Support of android applications",
             "    <LIB>.dylib      iPhone dynamic library <LIB>",
             "    <LIB>.Framework  iPhone framework <LIB>",
@@ -135,15 +136,15 @@ public class Arguments {
             "",
             " --resource=<path> "
                     + (File.pathSeparatorChar == ':' ? "Colon" : "Semicolon")
-                    + " separated list of external non parsable files and directories. Used in iphone and android-on-iphone templates to register auxilliary files. If this argument ends with '/', then the contents of this directory will be copied. If it is a directory and does not end with '/', then a verbatim copy of the directory will be performed.",
+                    + " separated list of external non parsable files and directories. Used in iphone and android-on-iphone templates to register auxilliary files. If this argument ends with '/', then the contents of this directory will be copied. If it is a directory and does not end with '/', then a verbatim copy of the directory will be performed. This argument can also be used to add extra C/C++/Obj-C source files in the produced Xcode project.",
             "", " --qx-main=<class> Entry point of Qooxdoo application", "",
             " --qx-debug        Create debug information of Qooxdoo target", "",
             " -Dkey=value       Set an Xcode property",
             "   XcodeProject      Template to use for Xcode project:",
-            "      iphone           iPhone project skeleton",
-            "      ipad             iPad project skeleton",
-            "      ios              iPhone and iPad project skeleton",
-            "      iphone3          Legacy iPhone 3.1 project skeleton",
+            "     iphone            iPhone project skeleton",
+            "     ipad              iPad project skeleton",
+            "     ios               iPhone and iPad project skeleton",
+            "     iphone3           Legacy iPhone 3.1 project skeleton",
             "   BundleIdentifier  The value of CFBundleIdentifier in Info.plist",
             "   BundleVersion     The value of CFBundleVersion in Info.plist",
             "   BundleDisplayName The value of CFBundleDisplayName in Info.plist",
@@ -200,11 +201,12 @@ public class Arguments {
         option_lib.add("Foundation.framework");
         option_lib.add("UIKit.framework");
         option_lib.add("CoreGraphics.framework");
-        option_lib.add("AVFoundation.framework");
-        option_lib.add("OpenGLES.framework");
-        option_lib.add("QuartzCore.framework");
-        option_lib.add("MessageUI.framework");
-        option_lib.add("MediaPlayer.framework");
+        option_lib.add("AVFoundation.framework~");
+        option_lib.add("OpenGLES.framework~");
+        option_lib.add("QuartzCore.framework~");
+        option_lib.add("MessageUI.framework~");
+        option_lib.add("MediaPlayer.framework~");
+        option_lib.add("StoreKit.framework~");
 
         // Read command line arguments
         for (int i = 0; i < argv.length; i++) {
@@ -222,6 +224,9 @@ public class Arguments {
                 option_target = Targets.getTarget(target);
                 if (option_target == null)
                     parseError("Unkown target: " + target);
+                if (option_target.affinity != Targets.Affinity.TARGET)
+                    parseError("Not valid target: " + target
+                            + ". Consider using --skeleton argument.");
             } else if (arg.startsWith(ARG_RESOURCE)) {
                 parseListArgument(arg.substring(ARG_RESOURCE.length()), option_resource,
                         File.pathSeparator);
@@ -246,9 +251,7 @@ public class Arguments {
             } else if (arg.startsWith(ARG_SKELETON)) {
                 if (option_skeleton != null)
                     parseError("--skeleton can only be specified once");
-                option_skeleton = arg.substring(ARG_SKELETON.length());
-                if (!option_skeleton.equals("iphone"))
-                    parseError("Unknown skeleton: " + option_skeleton);
+                option_skeleton = arg.substring(ARG_SKELETON.length()).toLowerCase();
                 // Obsolete arguments
             } else if (arg.startsWith(ARG_IPHONE_APP)) {
                 option_app_name = arg.substring(ARG_IPHONE_APP.length());
@@ -270,8 +273,8 @@ public class Arguments {
                 if (equal < 1) {
                     parseError("Unable to parse kay/value: " + value);
                 }
-                option_property.put(value.substring(0, equal).toLowerCase(),
-                        value.substring(equal + 1));
+                option_property.put(value.substring(0, equal).toLowerCase(), value
+                        .substring(equal + 1));
             } else {
                 parseError("Unknown parameter: " + arg);
             }
@@ -294,15 +297,25 @@ public class Arguments {
         // if (option_skeleton != null && option_lib.size() > 0) {
         // parseError("Argument '--skeleton' does not support '--lib'");
         // }
-        if (option_skeleton != null)
-            option_target = Targets.IPHONETEMPLATE;
-        if (option_target == Targets.IPHONETEMPLATE) {
-            // Clearing all inputs will force the EmptyInputProcess to be
-            // created.
-            option_in.clear();
+
+        if ((option_target == Targets.IPHONE || option_target == Targets.IPHONEC
+                || option_target == Targets.IPHONEANDROID || option_target == Targets.WEBOS || option_skeleton != null)
+                && option_app_name == null) {
+            option_app_name = guessAppName();
             if (option_app_name == null)
-                parseError("--skeleton=iphone requires option --app-name");
+                parseError("Required parameter: --app-name");
         }
+
+        if ("".equals(option_skeleton)) // empty existing skeleton definition
+            parseError("--skeleton option is empty");
+        if (option_skeleton != null) {
+            option_target = Targets.getTarget(option_skeleton + "template");
+            if (option_target == null)
+                parseError("Unknown skeleton: " + option_skeleton);
+            // Clearing all inputs will force EmptyInputProcess to be used.
+            option_in.clear();
+        }
+
         if (option_target == Targets.NONE)
             option_target = Targets.XMLVM;
 
@@ -323,12 +336,6 @@ public class Arguments {
         // Only skeleton creation mode supports empty inputs.
         if ((option_skeleton == null || option_skeleton.equals("")) && option_in.isEmpty())
             parseError("Need at least one --in argument");
-        if (option_out == null)
-            option_out = ".";
-        if ((option_target == Targets.IPHONE || option_target == Targets.IPHONEC
-                || option_target == Targets.IPHONEANDROID || option_target == Targets.WEBOS)
-                && option_app_name == null)
-            parseError("--target=[iphone|webos] requires option --app-name");
         if (option_target == Targets.QOOXDOO && option_app_name != null && option_qx_main == null)
             parseError("--target=qooxdoo with --qx-app requires --qx-main");
         if (option_debug == null)
@@ -380,6 +387,16 @@ public class Arguments {
     }
 
     public String option_out() {
+        // Lazy definition of "smart" option_out parameter, so the warning will
+        // appear only when needed
+        if (option_out == null) {
+            if (option_app_name == null)
+                option_out = ".";
+            else {
+                option_out = option_app_name;
+            }
+            Log.warn("Using '" + option_out + "' as output directory");
+        }
         return option_out;
     }
 
@@ -426,7 +443,7 @@ public class Arguments {
     public boolean option_enable_ref_counting() {
         return option_enable_ref_counting;
     }
-    
+
     public String option_c_source_extension() {
         return option_c_source_extension;
     }
@@ -442,5 +459,24 @@ public class Arguments {
     private static void printText(String[] txt, PrintStream out) {
         for (int i = 0; i < txt.length; i++)
             out.println(txt[i]);
+    }
+
+    private String guessAppName() {
+        if (option_out == null)
+            return null;
+        File outfile = new File(option_out).getAbsoluteFile();
+        if (outfile.exists() && outfile.isFile())
+            outfile = outfile.getParentFile();
+        while (outfile != null
+                && (outfile.getName().equals("..") || outfile.getName().equals(".") || outfile
+                        .getName().equals("/")))
+            outfile = outfile.getParentFile();
+        if (outfile == null)
+            return null;
+        String guess = outfile.getName();
+        if (guess.isEmpty())
+            return null;
+        Log.warn("Using " + guess + " as application name");
+        return guess;
     }
 }

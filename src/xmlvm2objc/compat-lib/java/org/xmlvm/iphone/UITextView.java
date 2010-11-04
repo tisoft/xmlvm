@@ -40,6 +40,7 @@ public class UITextView extends UIView {
     private UIFont  font;
     private UIColor textColor;
 
+
     public UITextView() {
         this(new CGRect(0, 0, 0, 0));
     }

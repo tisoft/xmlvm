@@ -37,6 +37,7 @@ public abstract class XmlvmEntity {
     protected String           name;
     protected List<AccessFlag> accessFlags = new ArrayList<AccessFlag>();
 
+
     /**
      * Get the name of this entity.
      */
@@ -79,6 +80,7 @@ public abstract class XmlvmEntity {
         return accessFlags.contains(flag);
     }
 
+
     /**
      * Defines access flags for {@link XmlvmEntity} instances.
      */
@@ -89,6 +91,7 @@ public abstract class XmlvmEntity {
                 "isStrictfp");
 
         private final String flagName;
+
 
         private AccessFlag(String flagName) {
             this.flagName = flagName;

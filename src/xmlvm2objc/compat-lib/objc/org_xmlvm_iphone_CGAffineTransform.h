@@ -30,4 +30,5 @@
 + (org_xmlvm_iphone_CGAffineTransform*) makeScale___float_float: (float) tx :(float)ty;
 + (org_xmlvm_iphone_CGAffineTransform*) translate___org_xmlvm_iphone_CGAffineTransform_float_float:(org_xmlvm_iphone_CGAffineTransform *)transf :(float)tx :(float)ty;
 + (org_xmlvm_iphone_CGAffineTransform*) rotate___org_xmlvm_iphone_CGAffineTransform_float:(org_xmlvm_iphone_CGAffineTransform *)transf :(float)alpha;
++ (org_xmlvm_iphone_CGAffineTransform*) identity__;
 @end

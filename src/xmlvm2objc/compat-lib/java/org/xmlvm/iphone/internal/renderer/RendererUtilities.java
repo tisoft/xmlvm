@@ -16,6 +16,7 @@ public class RendererUtilities {
     private final static float BRIGHTNESS = 1.3f;
     private final static float SATURATION = 0.5f;
 
+
     public static Paint getHalfPaint(UIColor basecolor, CGRect frame, boolean topDark) {
         return getGradientPaint(basecolor, frame, topDark, true);
     }

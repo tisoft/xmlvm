@@ -21,11 +21,12 @@
 package org.xmlvm.proc.out.build;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
+import java.util.Set;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.Android2IPhoneOutputProcess;
@@ -41,57 +42,50 @@ public class XCodeFile extends BuildFile {
     private static final String                  IPHONE_XCODE_IN_JAR_RESOURCE = "/iphone/project.template";
     private static final String                  IPHONE_XCODE_PATH            = "var/iphone/project.template";
     /* File filters */
-    private static final PathFileFilter          FILTER_APP                   = new PathFileFilter(
+    private static final FileFilter              FILTER_APP                   = new PathFileFilter(
                                                                                       IPhoneOutputProcess.IPHONE_SRC_APP);
-    private static final PathFileFilter          FILTER_IPHONE                = new PathFileFilter(
+    private static final FileFilter              FILTER_IPHONE                = new PathFileFilter(
                                                                                       IPhoneOutputProcess.IPHONE_SRC_LIB);
-    private static final PathFileFilter          FILTER_BOHEMGC               = new PathFileFilter(
-                                                                                      IPhoneCOutputProcess.IPHONE_SRC_BOEHMGC);
-    private static final PathFileFilter          FILTER_ANDROID               = new PathFileFilter(
+    private static final FileFilter              FILTER_ANDROID               = new PathFileFilter(
                                                                                       Android2IPhoneOutputProcess.ANDROID_SRC_LIB);
-    private static final PathFileFilter          FILTER_RESOURCES             = new PathFileFilter(
-                                                                                      IPhoneOutputProcess.IPHONE_RESOURCES_APP);
+    private static final PathFileFilter          FILTER_BOHEMGC               = new PathFileFilter(
+                                                                                      IPhoneCOutputProcess.IPHONE_BOEHMGC_LIB);
     /* Templates */
-    private static final String                  TEMPL_BOEHMGC                = "__BOEHMGC__";
     private static final String                  TEMPL_PROJNAME               = "__PROJNAME__";
     private static final String                  TEMPL_FILEREFS               = "__FILEREFS__";
     private static final String                  TEMPL_BUILDREFS              = "__BUILDREFS__";
     private static final String                  TEMPL_BUILDFRAMS             = "__BUILDFRAMS__";
     private static final String                  TEMPL_FRAMEWORKS             = "__FRAMEWORKS__";
+    private static final String                  TEMPL_BOEHMGC                = "__BOEHMGC__";
 
     private static final String                  TEMPL_APP_SRC                = "__APPSRC__";
     private static final String                  TEMPL_IPHONE_SRC             = "__IPHONESRC__";
     private static final String                  TEMPL_ANDROID_SRC            = "__ANDROIDSRC__";
-    private static final String                  TEMPL_RESOURCES              = "__RESOURCES__";
     private static final String                  TEMPL_SRC_BUILD              = "__SRC_BUILD__";
     private static final String                  TEMPL_RESOURCES_BUILD        = "__RESOURCES_BUILD__";
 
     private static final String                  TEMPL_SDK_ROOT               = "__SDK_ROOT__";
     private static final String                  TEMPL_SDK_TARGET             = "__SDK_TARGET__";
+    private static final String                  TEMPL_RESOURCE_LIST          = "__RESOURCE_LIST__";
+    private static final String                  TEMPL_RESOURCE_DIR           = "__RESOURCE_DIR__";
+    private static final String                  TEMPL_ARCHITECTURE           = "__ARCHITECTURE__";
 
     /* Maps of file types */
     private static final HashMap<String, String> sourcefiles;
     private static final HashMap<String, String> hiddensourcefiles;
-    private static final HashMap<String, String> resourcefiles;
 
     static {
         sourcefiles = new HashMap<String, String>();
         sourcefiles.put("c", "sourcecode.c.c");
         sourcefiles.put("m", "sourcecode.c.objc");
+        sourcefiles.put("mm", "sourcecode.cpp.objcpp");
         sourcefiles.put("c++", "sourcecode.cpp.cpp");
         sourcefiles.put("cpp", "sourcecode.cpp.cpp");
 
         hiddensourcefiles = new HashMap<String, String>();
         hiddensourcefiles.put("h", "sourcecode.c.h");
-
-        resourcefiles = new HashMap<String, String>();
-        resourcefiles.put("xml", "text.xml");
-        resourcefiles.put("jpg", "image.jpeg");
-        resourcefiles.put("png", "image.png");
-        resourcefiles.put("mp3", "audio.mpeg");
-        resourcefiles.put("txt", "text");
-        resourcefiles.put("plist", "text.plist");
     }
+
 
     /* Produce Xcode project file */
     @Override
@@ -106,30 +100,19 @@ public class XCodeFile extends BuildFile {
             return ex.getMessage();
         }
         proj.injectLibraries(arguments.option_lib());
-        proj.injectFiles(TEMPL_APP_SRC, FILTER_APP, getRelativeBasePath(arguments.option_out(),
-                IPhoneOutputProcess.IPHONE_SRC_APP));
-        proj.injectFiles(TEMPL_IPHONE_SRC, FILTER_IPHONE, getRelativeBasePath(arguments
-                .option_out(), IPhoneOutputProcess.IPHONE_SRC_LIB));
-
-        proj.injectFiles(TEMPL_BOEHMGC, FILTER_BOHEMGC, getRelativeBasePath(arguments.option_out(),
-                IPhoneCOutputProcess.IPHONE_SRC_BOEHMGC));
-
-        proj.injectFiles(TEMPL_ANDROID_SRC, FILTER_ANDROID, getRelativeBasePath(arguments
-                .option_out(), Android2IPhoneOutputProcess.ANDROID_SRC_LIB));
-        // proj.injectFiles(TEMPL_RESOURCES, FILTER_RESOURCES); // Do not inject
-        // files, a special bash script will take care of this
+        proj.injectFiles(TEMPL_APP_SRC, FILTER_APP);
+        proj.injectFiles(TEMPL_IPHONE_SRC, FILTER_IPHONE);
+        proj.injectFiles(TEMPL_BOEHMGC, FILTER_BOHEMGC);
+        proj.injectFiles(TEMPL_ANDROID_SRC, FILTER_ANDROID);
         proj.finalizeObject(arguments);
 
         OutputFile makefile = new OutputFile(proj.data);
         makefile.setFileName("project.pbxproj");
-        makefile.setLocation(arguments.option_out() + File.separator + projname + ".xcodeproj");
+        makefile.setLocation(arguments.option_out() + BUILDFILE_LOCATION + projname + ".xcodeproj");
         allfiles.add(makefile);
         return null;
     }
 
-    private static String getRelativeBasePath(String outPath, String subPath) {
-        return (new File(outPath + subPath)).getAbsolutePath();
-    }
 
     private class XCodeProj {
 
@@ -138,6 +121,7 @@ public class XCodeFile extends BuildFile {
         String           data;
         int              nextid;
         List<OutputFile> allfiles;
+
 
         private XCodeProj(String name, List<OutputFile> allfiles) throws IOException {
             data = readData(IPHONE_XCODE_IN_JAR_RESOURCE, IPHONE_XCODE_PATH);
@@ -155,10 +139,14 @@ public class XCodeFile extends BuildFile {
         private void finalizeObject(Arguments arguments) {
             data = data.replace(TEMPL_FILEREFS, "").replace(TEMPL_BUILDREFS, "").replace(
                     TEMPL_RESOURCES_BUILD, "").replace(TEMPL_SRC_BUILD, "").replace(
-                    TEMPL_RESOURCES, "").replace(TEMPL_BUILDFRAMS, "")
-                    .replace(TEMPL_FRAMEWORKS, "");
+                    TEMPL_BUILDFRAMS, "").replace(TEMPL_FRAMEWORKS, "").replace(TEMPL_BOEHMGC, "");
             XcodeSkeleton skel = XcodeSkeleton.getTarget(arguments.option_property("xcodeproject"));
-            data = data.replace(TEMPL_SDK_ROOT, skel.root).replace(TEMPL_SDK_TARGET, skel.target);
+            data = data.replace(TEMPL_SDK_ROOT, skel.root).replace(TEMPL_SDK_TARGET, skel.target)
+                    .replace(TEMPL_ARCHITECTURE, skel.architecture);
+            data = data.replace(TEMPL_RESOURCE_LIST, ResourceManager.getResourcesAsEscQuoteList(
+                    arguments.option_resource(), null));
+            data = data.replace(TEMPL_RESOURCE_DIR, new File(System.getProperty("user.dir"))
+                    .getAbsolutePath());
         }
 
         private void injectLibraries(Set<String> libraries) {
@@ -172,6 +160,7 @@ public class XCodeFile extends BuildFile {
 
             /* add user specified libraries to system libraries */
             boolean valid_lib;
+            boolean weak;
             /* Parse libraries */
             int buildid = 99998;
             int fileid;
@@ -179,6 +168,9 @@ public class XCodeFile extends BuildFile {
                 buildid += 2;
                 fileid = buildid + 1;
                 valid_lib = true;
+                weak = lib.endsWith("~");
+                if (weak)
+                    lib = lib.substring(0, lib.length() - 1);
 
                 if (lib.endsWith(".framework")) {
                     filetype = "wrapper.framework";
@@ -196,8 +188,10 @@ public class XCodeFile extends BuildFile {
                     buildrefs.append("\t\t").append(buildid);
                     buildrefs.append(" /* ").append(lib).append(" in Frameworks */");
                     buildrefs.append(" = {isa = PBXBuildFile; fileRef = ").append(fileid);
-                    buildrefs.append(" /* ").append(lib);
-                    buildrefs.append(" */; };\n");
+                    buildrefs.append(" /* ").append(lib).append(" */;");
+                    if (weak)
+                        buildrefs.append(" settings = {ATTRIBUTES = (Weak, ); };");
+                    buildrefs.append(" };\n");
                     /* Add file reference */
                     filerefs.append("\t\t").append(fileid);
                     filerefs.append(" /* ").append(lib).append(" */");
@@ -218,7 +212,7 @@ public class XCodeFile extends BuildFile {
             data = data.replace(TEMPL_FRAMEWORKS, frameworks.toString() + TEMPL_FRAMEWORKS);
         }
 
-        private void injectFiles(String template, PathFileFilter filter, String basePath) {
+        private void injectFiles(String template, FileFilter filter) {
             StringBuilder filerefs = new StringBuilder();
             StringBuilder buildrefs = new StringBuilder();
             StringBuilder display = new StringBuilder();
@@ -228,8 +222,7 @@ public class XCodeFile extends BuildFile {
             if (template == null || template.equals(""))
                 return;
 
-            List<String> files = getFileNames(allfiles, filter, basePath);
-            for (String fname : files) {
+            for (String fname : getFileNames(allfiles, filter)) {
                 FileResource fres = new FileResource(fname);
                 if (fres.isValid) {
                     filerefs.append("\t\t").append(nextid);
@@ -259,11 +252,6 @@ public class XCodeFile extends BuildFile {
                             source.append(" /* ").append(fname).append(" */");
                             source.append(",\n");
                         }
-                        if (fres.isResource) {
-                            resource.append("\t\t\t\t").append(nextid);
-                            resource.append(" /* ").append(fname).append(" */");
-                            resource.append(",\n");
-                        }
                     }
                     nextid++;
                 }
@@ -275,13 +263,14 @@ public class XCodeFile extends BuildFile {
             data = data.replace(TEMPL_RESOURCES_BUILD, resource.toString() + TEMPL_RESOURCES_BUILD);
         }
 
+
         private class FileResource {
 
             private String  type        = null;
             private boolean isSource    = false;
-            private boolean isResource  = false;
             private boolean isValid     = false;
             private boolean isBuildable = false;
+
 
             private FileResource(String fname) {
                 if (fname == null)
@@ -306,20 +295,11 @@ public class XCodeFile extends BuildFile {
                     isSource = true;
                     return;
                 }
-
-                type = resourcefiles.get(ext);
-                if (type != null) {
-                    isValid = true;
-                    isBuildable = true;
-                    isResource = true;
-                    return;
-                }
             }
 
             @Override
             public String toString() {
-                return "[type=" + type + (isSource ? ", Source" : "")
-                        + (isResource ? ", Resource" : "") + (isValid ? ", Valid" : "")
+                return "[type=" + type + (isSource ? ", Source" : "") + (isValid ? ", Valid" : "")
                         + (isBuildable ? ", Buildable" : "") + "]";
             }
         }

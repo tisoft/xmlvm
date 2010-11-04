@@ -25,8 +25,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIPreferencesTable;
 import org.xmlvm.iphone.UIPreferencesTableCell;
 import org.xmlvm.iphone.UIPreferencesTableDataSource;
@@ -35,6 +35,7 @@ public class UIPreferencesTableRenderer extends UIViewRenderer<UIPreferencesTabl
 
     private List<CGRect> groupFrames;
     final static int     INSET = 15;
+
 
     public UIPreferencesTableRenderer(UIPreferencesTable view) {
         super(view);
@@ -77,7 +78,7 @@ public class UIPreferencesTableRenderer extends UIViewRenderer<UIPreferencesTabl
 
     @Override
     public void paint() {
-        Graphics2D g = CGContext.UICurrentContext().xmlvmGetGraphics2D();
+        Graphics2D g = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         CGRect displayRect = view.getFrame();
         g.setBackground(new Color(220, 220, 220));
         g.clearRect((int) displayRect.origin.x, (int) displayRect.origin.y,

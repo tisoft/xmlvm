@@ -48,8 +48,9 @@ public class StatusBar extends UIView {
     public UILabel               timeLabel;
     public UIImageView           wifiIcon;
     public UIImageView           batteryIcon;
-    private static final UIImage batteryImage      = UIImage.imageWithContentsOfFile(BATTERY_IMG);
-    private static final UIImage wifiImage         = UIImage.imageWithContentsOfFile(WIFI_IMG);
+    private static final UIImage batteryImage      = UIImage.imageNamed(BATTERY_IMG);
+    private static final UIImage wifiImage         = UIImage.imageNamed(WIFI_IMG);
+
 
     public StatusBar(CGRect rect) {
         super(rect);

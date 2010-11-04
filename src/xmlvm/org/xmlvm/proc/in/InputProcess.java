@@ -42,6 +42,7 @@ public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl<Xml
 
     private boolean isActive = true;
 
+
     public static class EmptyInputProcess extends InputProcess<ClassFile> {
         /**
          * The signature of this input process. If a target requires this string
@@ -49,10 +50,12 @@ public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl<Xml
          */
         public final static String EMPTY_INPUT_IN_ARGUMENT = "<<EMPTY_INPUT>>";
 
+
         public EmptyInputProcess() {
             super(null, null);
         }
     }
+
 
     /**
      * An implementation of {@link InputProcess} that reads class files.
@@ -63,6 +66,7 @@ public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl<Xml
         }
     }
 
+
     /**
      * An implementation of {@link InputProcess} that reads exe files.
      */
@@ -71,6 +75,7 @@ public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl<Xml
             super(arguments, input);
         }
     }
+
 
     /**
      * An implementation of {@link InputProcess} that reads XMLVM files.
@@ -81,7 +86,9 @@ public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl<Xml
         }
     }
 
+
     protected T input;
+
 
     public InputProcess(Arguments arguments, T input) {
         super(arguments);

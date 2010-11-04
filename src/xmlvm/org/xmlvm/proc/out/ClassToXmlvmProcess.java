@@ -92,6 +92,7 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
 
     private List<XmlvmResource> generatedResources = new ArrayList<XmlvmResource>();
 
+
     public ClassToXmlvmProcess(Arguments arguments) {
         super(arguments);
         addSupportedInput(InputProcess.class);
@@ -124,6 +125,7 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
         return null;
     }
 
+
     /**
      * A class that encapsulates the functionality needed to parse a class file
      * and output an XMLVM document.
@@ -134,6 +136,7 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
         private BcelVisitor     visitor;
 
         private final String    classFilePath;
+
 
         public ClassToXmlvmTask(String classFilePath) {
             this.classFilePath = classFilePath;
@@ -164,6 +167,7 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
                             .getXmlvmDocument(), null);
         }
 
+
         /**
          * A visitor that is used to build an {@link XmlvmClass} instance from a
          * given Java class.
@@ -182,6 +186,7 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
             private String                                className;
             private String                                superClassName;
             private Hashtable<InstructionHandle, Integer> map;
+
 
             public BcelVisitor() {
                 xmlvmRoot = new org.jdom.Element("xmlvm", nsXMLVM);

@@ -28,6 +28,7 @@ public class UITableViewCell extends UIView {
     protected boolean selected = false;
     private UIView    accessoryView;
 
+
     public UITableViewCell() {
         this(UITableViewCellStyle.Default, null);
     }

@@ -34,6 +34,7 @@ public class UIPageControl extends UIView {
     private boolean hidesForSinglePage;
     private boolean defersCurrentPageDisplay;
 
+
     public UIPageControl() {
         this(new CGRect(0, 0, 0, 0));
     }

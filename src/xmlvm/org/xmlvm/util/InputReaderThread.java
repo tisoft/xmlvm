@@ -35,6 +35,7 @@ public class InputReaderThread extends Thread {
     private PrintStream    out;
     private String         prefix;
 
+
     /**
      * Instantiates a new InputReaderThread.
      * 

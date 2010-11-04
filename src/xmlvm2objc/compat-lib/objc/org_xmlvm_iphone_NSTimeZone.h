@@ -28,7 +28,6 @@ typedef NSTimeZone org_xmlvm_iphone_NSTimeZone;
 
 - (void) __init_org_xmlvm_iphone_NSTimeZone___java_lang_String :(NSString*)aName;
 - (NSString*) name__;
-- (NSString*) toString__;
 
 @end
 

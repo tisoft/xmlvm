@@ -62,6 +62,7 @@ public class InstructionActions {
         return getObjectRegs().and(getNonObjectRegs());
     }
 
+
     /**
      * Each time we hit this instruction through a code path, it adds info about
      * the object/non object usage to these lists.

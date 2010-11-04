@@ -38,7 +38,7 @@ public class UIViewGL extends UIView {
         super(rect);
     }
 
-    //TODO for now we don't do GL
+    // TODO for now we don't do GL
     @XMLVMIgnore
     public CAEAGLLayer getEAGLLayer() {
         return new CAEAGLLayer();

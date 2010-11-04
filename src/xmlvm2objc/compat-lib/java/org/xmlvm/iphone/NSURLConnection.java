@@ -25,10 +25,12 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import org.xmlvm.XMLVMSkeletonOnly;
+
 @XMLVMSkeletonOnly
 public class NSURLConnection extends NSObject {
 
     private Thread thread;
+
 
     private NSURLConnection(final NSMutableURLRequest req, final NSURLConnectionDelegate delegate) {
         thread = new Thread(new Runnable() {

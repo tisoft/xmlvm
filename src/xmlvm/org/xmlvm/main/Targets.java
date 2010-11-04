@@ -20,28 +20,48 @@
 
 package org.xmlvm.main;
 
+import static org.xmlvm.main.Targets.Affinity.SKELETON;
+import static org.xmlvm.main.Targets.Affinity.TARGET;
+
 /**
  * All possible targets for the cross-compilation.
  */
 public enum Targets {
 
-    NONE, XMLVM, DEXMLVM, JVM, CLR, DFA, CLASS, EXE, DEX, JS, C, GEN_C_WRAPPERS, PYTHON, OBJC, QOOXDOO, IPHONE, IPHONEC, IPHONEANDROID, IPHONETEMPLATE, WEBOS;
+    NONE(TARGET), XMLVM(TARGET), DEXMLVM(TARGET), JVM(TARGET), CLR(TARGET), DFA(TARGET), CLASS(
+            TARGET), EXE(TARGET), DEX(TARGET), JS(TARGET), C(TARGET), GEN_C_WRAPPERS(TARGET), PYTHON(
+            TARGET), OBJC(TARGET), QOOXDOO(TARGET), IPHONE(TARGET), IPHONEC(TARGET), IPHONEANDROID(
+            TARGET), WEBOS(TARGET), IPHONETEMPLATE(SKELETON), ANDROIDTEMPLATE(SKELETON), ANDROIDMIGRATETEMPLATE(
+            SKELETON);
 
     public static Targets getTarget(String target) {
-        if (target.equals("android-on-iphone")) {
-            target = "IPHONEANDROID";
-        }
-        if (target.equals("iphone-c")) {
-            target = "IPHONEC";
-        }
         if (target.equalsIgnoreCase("gen-c-wrappers")) {
             target = "GEN_C_WRAPPERS";
         }
         target = target.toUpperCase().replace("-", "").replace(":", "");
+        if (target.equals("ANDROIDONIPHONE"))
+            target = "IPHONEANDROID";
         try {
             return Targets.valueOf(target);
         } catch (IllegalArgumentException ex) {
         }
         return null;
+    }
+
+
+    public final Affinity affinity;
+
+
+    private Targets(Affinity af) {
+        affinity = af;
+    }
+
+
+    /**
+     * Note if a target has to do with an actual output target or is a skeleton
+     */
+    public enum Affinity {
+
+        TARGET, SKELETON;
     }
 }

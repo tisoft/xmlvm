@@ -26,6 +26,7 @@ import org.xmlvm.XMLVMSkeletonOnly;
 public class NSErrorHolder extends NSObject {
     public NSError error;
 
+
     public String description() {
         return error.description();
     }

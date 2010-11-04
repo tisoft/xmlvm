@@ -14,6 +14,7 @@ public class Simulator {
     static private SimulatorGUI simulatorGUI;
     static private Component    rootWindow;
 
+
     private Simulator() {
     }
 

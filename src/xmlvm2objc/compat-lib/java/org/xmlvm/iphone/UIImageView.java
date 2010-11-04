@@ -28,6 +28,7 @@ public class UIImageView extends UIView {
 
     private UIImage image = null;
 
+
     public UIImageView() {
         this(new CGRect(0, 0, 0, 0));
         setUserInteractionEnabled(false);

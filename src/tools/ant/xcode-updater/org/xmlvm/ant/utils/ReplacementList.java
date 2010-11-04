@@ -17,12 +17,16 @@
  *
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
+
 package org.xmlvm.ant.utils;
 
 import org.xmlvm.ant.utils.ReplacementList.ReplaceItem;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
+import org.xmlvm.ant.xcode.AntResourceManager;
+
+import static org.xmlvm.ant.xcode.XCodeFile.*;
 
 /**
  * This is a list of possible replacements, when trimming source code.
@@ -51,7 +55,7 @@ public class ReplacementList extends ArrayList<ReplaceItem> {
      * @param seed The random seed to use. If it is equal to Long.MAX_VALUE, then
      * a random seed based on system clock is used.
      */
-    public ReplacementList(boolean should_replace, String template, long seed) {
+    public ReplacementList(boolean should_replace, String template, long seed, String resources, String resourceroot) {
         if (seed == Long.MAX_VALUE) {
             rnd = new Random();
         } else {
@@ -64,6 +68,7 @@ public class ReplacementList extends ArrayList<ReplaceItem> {
         used.add(template.toUpperCase() + "LIB");
         used.add(template.toLowerCase() + "LIB");
 
+        // Pre replacements
         if (should_replace) {
             add(new ReplaceItem("java_lang_annotation_", template));
             add(new ReplaceItem("java_lang_ref_", template));
@@ -95,8 +100,6 @@ public class ReplacementList extends ArrayList<ReplaceItem> {
             add(new ReplaceItem("_double", getUniqueIdentifier(IDENT_SIZE)));
             add(new ReplaceItem("_boolean", getUniqueIdentifier(IDENT_SIZE)));
             add(new ReplaceItem("_char", getUniqueIdentifier(IDENT_SIZE)));
-            add(new ReplaceItem("___", "_"));
-            add(new ReplaceItem("__", "x"));
 
             if (template.length() < 5) {
                 template = template + "LIB";
@@ -105,6 +108,17 @@ public class ReplacementList extends ArrayList<ReplaceItem> {
             add(new ReplaceItem("XMLVM", template.toUpperCase()));
             add(new ReplaceItem("xmlvm", template.toLowerCase()));
             add(new ReplaceItem("java", template.toLowerCase()));
+        }
+
+        /* These are for Xcode resource copying. It is requireld to be called later,
+         * in the case some files are under a path named "xmlvm" */
+        add(new ReplaceItem(TEMPL_RESOURCE_LIST, AntResourceManager.getResourcesAsRegExQuoteList(resources, resourceroot)));
+        add(new ReplaceItem(TEMPL_RESOURCE_DIR, resourceroot));
+
+        // Post replalcements
+        if (should_replace) {
+            add(new ReplaceItem("__", "x"));
+            add(new ReplaceItem("___", "_"));
         }
     }
 

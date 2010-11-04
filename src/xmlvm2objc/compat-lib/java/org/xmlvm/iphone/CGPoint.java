@@ -28,6 +28,7 @@ public class CGPoint extends NSObject {
     public float x;
     public float y;
 
+
     public CGPoint(CGPoint point) {
         x = point.x;
         y = point.y;

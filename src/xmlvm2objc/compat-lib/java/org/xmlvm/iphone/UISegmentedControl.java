@@ -44,7 +44,9 @@ public class UISegmentedControl extends UIControl {
     private int               selection = -1;
     private ArrayList<String> titles    = new ArrayList<String>();
     private int               style     = UISegmentedControlStyle.Plain;
-    private UIColor           tintColor = null;                         // TODO
+    private UIColor           tintColor = null;
+    private boolean           momentary = false;
+
 
     // :
     // implement
@@ -60,6 +62,12 @@ public class UISegmentedControl extends UIControl {
         xmlvmSetRenderer(new UISegmentedControlRenderer(this));
     }
 
+    public UISegmentedControl(ArrayList items) {
+        for (int i = 0; i < items.size(); i++)
+            insertSegmentWithTitle((String) items.get(i), i, false);
+        xmlvmSetRenderer(new UISegmentedControlRenderer(this));
+    }
+
     public void setTitle(String title, int index) {
         titles.set(index, title);
         setNeedsDisplay();
@@ -69,13 +77,17 @@ public class UISegmentedControl extends UIControl {
         return titles.get(index);
     }
 
-    public void insertSegmentWithTitle(String title, int index, boolean animated) {
+    public final void insertSegmentWithTitle(String title, int index, boolean animated) {
         titles.add(index, title);
         if (selection >= index) {
             selection++;
             fireEventValueChanged();
         }
         setNeedsDisplay();
+    }
+
+    public final void insertSegmentWithImage(UIImage img, int index, boolean animated) {
+        insertSegmentWithTitle("IMG", index, animated);
     }
 
     public int numberOfSegments() {
@@ -130,6 +142,14 @@ public class UISegmentedControl extends UIControl {
 
     public void setTintColor(UIColor tintColor) {
         this.tintColor = tintColor;
+    }
+
+    public boolean isMomentary() {
+        return momentary;
+    }
+
+    public void setMomentary(boolean momentary) {
+        this.momentary = momentary;
     }
 
     /* TODO teras: again should remove this type of code */

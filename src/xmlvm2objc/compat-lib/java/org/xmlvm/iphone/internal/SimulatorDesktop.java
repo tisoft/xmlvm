@@ -13,6 +13,7 @@ public class SimulatorDesktop {
     private JFrame    window;
     private Container contentPane;
 
+
     public SimulatorDesktop() {
         Simulator.initialized = true;
         MicroHTTPServer.start();

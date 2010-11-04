@@ -135,7 +135,6 @@ public class ARemote extends Activity implements SensorListener, OnCheckedChange
         p = new AbsoluteLayout.LayoutParams(IP_WIDTH, AbsoluteLayout.LayoutParams.WRAP_CONTENT, 320
                 - IP_WIDTH - INSETS, INSETS - 10);
         edtIpAddress.setLayoutParams(p);
-        edtIpAddress.setLines(1);
         layout.addView(edtIpAddress);
 
         cbxAccelerometer = new CheckBox(this);

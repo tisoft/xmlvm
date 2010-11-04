@@ -22,10 +22,15 @@
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_CGPoint.h"
 #import "org_xmlvm_iphone_UIView.h"
+#import "org_xmlvm_iphone_UIEvent.h"
 
 // UIWindow
 //----------------------------------------------------------------------------
-typedef UIWindow org_xmlvm_iphone_UIWindow;
+
+@interface org_xmlvm_iphone_UIWindow : UIWindow 
+- (void) sendEvent___org_xmlvm_iphone_UIEvent:(org_xmlvm_iphone_UIEvent*)event;
+@end
+
 @interface UIWindow (cat_org_xmlvm_iphone_UIWindow)
 - (void) __init_org_xmlvm_iphone_UIWindow__;
 - (void) __init_org_xmlvm_iphone_UIWindow___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;

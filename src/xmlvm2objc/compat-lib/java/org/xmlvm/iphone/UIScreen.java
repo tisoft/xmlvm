@@ -38,6 +38,7 @@ public class UIScreen extends NSObject {
         mainScreen = new UIScreen();
     }
 
+
     // Prevent someone from instantiating this class
     private UIScreen() {
     }

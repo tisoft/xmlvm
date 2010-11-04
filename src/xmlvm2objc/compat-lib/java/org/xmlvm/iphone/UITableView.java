@@ -21,12 +21,11 @@
 package org.xmlvm.iphone;
 
 import java.util.ArrayList;
-
-import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UITableViewRenderer;
+import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UITableView extends UIView {
+public class UITableView extends UIScrollView {
 
     private UITableViewDataSource dataSource;
     private UITableViewDelegate   delegate;
@@ -35,6 +34,7 @@ public class UITableView extends UIView {
     private boolean               editing;
     private boolean               allowsSelection;
     private float                 rowHeight;
+
 
     public UITableView(CGRect rect) {
         this(rect, UITableViewStyle.Plain);
@@ -62,8 +62,12 @@ public class UITableView extends UIView {
         ((UITableViewRenderer) xmlvmGetRenderer()).reloadData();
     }
 
-    public UITableViewDelegate getDelegate() {
+    public UITableViewDelegate getTableViewDelegate() {
         return delegate;
+    }
+
+    public UITableViewDataSource getDataSource() {
+        return dataSource;
     }
 
     public UITableViewCell dequeueReusableCellWithIdentifier(String identifier) {

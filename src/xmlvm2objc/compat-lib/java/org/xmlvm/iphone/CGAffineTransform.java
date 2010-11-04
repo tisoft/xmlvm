@@ -29,10 +29,12 @@ import java.awt.geom.AffineTransform;
 
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
+
 @XMLVMSkeletonOnly
 public class CGAffineTransform extends NSObject {
 
     private AffineTransform transform;
+
 
     private CGAffineTransform(AffineTransform transform) {
         this.transform = transform;
@@ -76,6 +78,10 @@ public class CGAffineTransform extends NSObject {
         AffineTransform old = (AffineTransform) transf1.transform.clone();
         old.concatenate(transf2.transform);
         return new CGAffineTransform(old);
+    }
+
+    public static CGAffineTransform identity() {
+        return new CGAffineTransform(new AffineTransform());
     }
 
     @XMLVMIgnore

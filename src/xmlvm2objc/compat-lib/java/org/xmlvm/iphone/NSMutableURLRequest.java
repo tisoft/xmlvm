@@ -30,6 +30,7 @@ public class NSMutableURLRequest extends NSObject {
 
     private NSURL url;
 
+
     public NSMutableURLRequest(NSURL url) {
         this.url = url;
     }

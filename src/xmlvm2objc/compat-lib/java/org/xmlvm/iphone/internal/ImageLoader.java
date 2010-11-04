@@ -40,7 +40,8 @@ public class ImageLoader {
             try {
                 return ImageIO.read(new URL(path));
             } catch (IOException e2) {
-                System.err.println("I/O error when reading image with name " + imageName + " : " + e2.getMessage());
+                System.err.println("I/O error when reading image with name " + imageName + " : "
+                        + e2.getMessage());
             }
         }
         return null;

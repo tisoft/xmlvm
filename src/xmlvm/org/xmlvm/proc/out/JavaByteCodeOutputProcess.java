@@ -119,6 +119,7 @@ public class JavaByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourcePro
         private Map<Integer, List<BranchInstruction>> mapID2BranchInstructions;
         private ArrayList<Integer>                    currentIds;
 
+
         public InstructionHandlerManager() {
             mapID2InstructionHandle = new HashMap<Integer, InstructionHandle>();
             mapID2BranchInstructions = new HashMap<Integer, List<BranchInstruction>>();
@@ -179,6 +180,7 @@ public class JavaByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourcePro
         }
     }
 
+
     private static final Namespace    nsXMLVM     = Namespace
                                                           .getNamespace("vm", "http://xmlvm.org");
 
@@ -189,6 +191,7 @@ public class JavaByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourcePro
     private InstructionHandlerManager instructionHandlerManager;
     private String                    fullQualifiedClassName;
     private List<OutputFile>          outputFiles = new ArrayList<OutputFile>();
+
 
     public JavaByteCodeOutputProcess(Arguments arguments) {
         super(arguments);

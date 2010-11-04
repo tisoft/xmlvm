@@ -21,11 +21,14 @@
 package org.xmlvm.proc.out.build;
 
 import java.io.File;
+import java.io.FileFilter;
 
 /**
  * Filters on whether a given path is within a given location.
+ * 
+ * @author teras
  */
-public class PathFileFilter {
+public class PathFileFilter implements FileFilter {
     private String inLocation;
 
 
@@ -33,7 +36,7 @@ public class PathFileFilter {
         this.inLocation = inLocation;
     }
 
-    public boolean accept(File path) {
-        return path.getParent().endsWith(inLocation);
+    public boolean accept(File pathname) {
+        return pathname.getParent().endsWith(inLocation);
     }
 }

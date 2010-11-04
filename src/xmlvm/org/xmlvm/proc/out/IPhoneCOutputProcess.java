@@ -19,6 +19,11 @@
  */
 package org.xmlvm.proc.out;
 
+import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_SRC;
+import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_SRC_APP;
+import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_SRC_LIB;
+import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_RESOURCES_SYS;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
@@ -29,6 +34,7 @@ import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.out.build.MakeFile;
+import org.xmlvm.proc.out.build.ResourceManager;
 import org.xmlvm.proc.out.build.XCodeFile;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
@@ -44,19 +50,15 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
                                                                        .createDirectory(
                                                                                "/iphone/java-compat-lib.jar",
                                                                                "src/xmlvm2c/compat-lib/java");
-    private static final UniversalFile BOEHM_GC                = UniversalFileCreator
+    private static final UniversalFile BOEHM_GC_LIB            = UniversalFileCreator
                                                                        .createDirectory(
                                                                                "/lib/boehmgc.jar",
                                                                                "lib/boehmgc.jar");
 
-    public static final String         IPHONE_SRC              = "/src/xcode";
-    public static final String         IPHONE_SRC_LIB          = IPHONE_SRC + "/lib/iphone";
-    public static final String         IPHONE_SRC_APP          = IPHONE_SRC + "/app";
-    public static final String         IPHONE_RESOURCES_SYS    = "/resources/sys";
-    public static final String         IPHONE_RESOURCES_APP    = "/resources/app";
-    public static final String         IPHONE_SRC_BOEHMGC      = IPHONE_SRC + "/boehmgc";
+    public static final String         IPHONE_BOEHMGC_LIB      = IPHONE_SRC + "/lib/boehmgc";
 
     private List<OutputFile>           result                  = new ArrayList<OutputFile>();
+
 
     public IPhoneCOutputProcess(Arguments arguments) {
         super(arguments);
@@ -93,8 +95,8 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
         iPhoneJavaCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
         result.add(iPhoneJavaCompatLib);
 
-        OutputFile bohemGc = new OutputFile(BOEHM_GC);
-        bohemGc.setLocation(arguments.option_out() + IPHONE_SRC_BOEHMGC);
+        OutputFile bohemGc = new OutputFile(BOEHM_GC_LIB);
+        bohemGc.setLocation(arguments.option_out() + IPHONE_BOEHMGC_LIB);
         result.add(bohemGc);
 
         try {
@@ -130,13 +132,8 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
             return false;
         }
 
-        /* Add resources, as defined */
-        for (String resourcedir : arguments.option_resource()) {
-            List<ResourceOutputFile> resources = ResourceOutputFile.listResources(resourcedir,
-                    arguments.option_out() + IPHONE_RESOURCES_APP, arguments.option_out()
-                            + IPHONE_SRC_APP);
-            result.addAll(resources);
-        }
+        /* Add extra source files, as resource files, if found */
+        result.addAll(ResourceManager.getSourceResources(arguments));
 
         /* Create various buildfiles */
         MakeFile makefile = new MakeFile();

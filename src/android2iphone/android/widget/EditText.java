@@ -20,28 +20,21 @@
 
 package android.widget;
 
-import java.util.Set;
-
 import org.xmlvm.iphone.UIColor;
-import org.xmlvm.iphone.UIEvent;
-import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UITextBorderStyle;
 import org.xmlvm.iphone.UITextField;
 import org.xmlvm.iphone.UITextFieldDelegate;
-import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.internal.XMLVMTheme;
 import android.text.InputType;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 
 public class EditText extends TextView {
 
     private static final int INSETS_X = 3;
     private static final int INSETS_Y = 3;
-
 
     public EditText(Context c) {
         super(c);
@@ -61,26 +54,6 @@ public class EditText extends TextView {
         }
     }
 
-    public Object getText() {
-        return ((UITextField) xmlvmGetViewHandler().getContentView()).getText();
-    }
-
-    @Override
-    public void setText(String string) {
-        text = string;
-        ((UITextField) xmlvmGetViewHandler().getContentView()).setText(string);
-        requestLayout();
-    }
-
-    public void setLines(int i) {
-        // TODO Auto-generated method stub
-
-    }
-
-    public void setHint(CharSequence hint) {
-        ((UITextField) xmlvmGetViewHandler().getContentView()).setPlaceholder(hint.toString());
-    }
-
     public void setRawInputType(int inputType) {
         if ((inputType & InputType.TYPE_TEXT_VARIATION_PASSWORD) > 0) {
             ((UITextField) xmlvmGetViewHandler().getContentView()).setSecureTextEntry(true);
@@ -89,30 +62,10 @@ public class EditText extends TextView {
 
     @Override
     protected UIView xmlvmNewUIView(AttributeSet attrs) {
-        UITextField field = new UITextField() {
-
-            @Override
-            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-                xmlvmTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
-            }
-
-            @Override
-            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
-                xmlvmTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
-            }
-
-            @Override
-            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
-                xmlvmTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
-            }
-
-            @Override
-            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-                xmlvmTouchesEvent(MotionEvent.ACTION_UP, touches, event);
-            }
-        };
-
+        UITextField field = (UITextField) super.xmlvmNewUIView(attrs);
+        
         field.setBorderStyle(UITextBorderStyle.Bezel);
+        field.setTextColor(UIColor.blackColor);
         if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
             field.setBackgroundColor(UIColor.whiteColor);
         }
@@ -125,11 +78,6 @@ public class EditText extends TextView {
         // Implementation of attribute parsing
 
         setIgnoreRequestLayout(false);
-    }
-
-    @Override
-    protected UIFont xmlvmGetUIFont() {
-        return ((UITextField) xmlvmGetViewHandler().getContentView()).getFont();
     }
 
     @Override

@@ -30,12 +30,14 @@ import org.xmlvm.iphone.NSXMLParserDelegate;
 
 import android.R;
 import android.content.pm.ActivityInfo;
+import android.util.Log;
 
 class AndroidManifestParser extends NSXMLParserDelegate {
 
     private String                   prefix = "";
     private AndroidManifest          manifest;
     private AndroidManifest.Activity currentActivity;
+
 
     public AndroidManifestParser(AndroidManifest manifest) {
         this.manifest = manifest;
@@ -97,6 +99,7 @@ class AndroidManifestParser extends NSXMLParserDelegate {
     }
 }
 
+
 /**
  * @author arno
  * 
@@ -108,14 +111,18 @@ public class AndroidManifest {
         public int    screenOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
     }
 
+
     private final static AndroidManifest manifest   = new AndroidManifest();
     String                               appPackage;
     int                                  appTheme   = R.style.Theme;
     private Map<String, Activity>        activities = new HashMap<String, Activity>();
     private Map<String, String>          classes    = new HashMap<String, String>();
 
+
     public AndroidManifest() {
         String filePath = NSBundle.mainBundle().pathForResource("AndroidManifest", "xml");
+        if (filePath == null)
+            Log.e("xmlvm", "Unable to locate AndroidManifest.xml file");
         NSData manifestFile = NSData.dataWithContentsOfFile(filePath);
         NSXMLParser xmlParser = new NSXMLParser(manifestFile);
         xmlParser.setShouldProcessNamespaces(true);
