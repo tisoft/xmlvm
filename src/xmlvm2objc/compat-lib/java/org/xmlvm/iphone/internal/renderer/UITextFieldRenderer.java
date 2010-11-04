@@ -51,6 +51,7 @@ public class UITextFieldRenderer extends UITextRenderer<UITextField> {
     private static final Color  ROUND_UP         = new Color(161, 163, 166, 255);
     private static final Color  ROUND_DOWN       = new Color(228, 230, 234);
 
+
     public UITextFieldRenderer(UITextField view) {
         super(view);
     }
@@ -82,7 +83,9 @@ public class UITextFieldRenderer extends UITextRenderer<UITextField> {
 
     @Override
     String getText() {
-        return ((UITextField) view).getText();
+        String text = ((UITextField) view).getText();
+        boolean secureEntry = ((UITextField) view).isSecureTextEntry();
+        return secureEntry ? text.replaceAll(".", "\u2022") : text;
     }
 
     @Override
