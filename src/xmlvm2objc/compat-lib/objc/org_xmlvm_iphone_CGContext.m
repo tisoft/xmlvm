@@ -157,6 +157,26 @@
 	}
 }
 
+- (void) beginPath__
+{
+    CGContextBeginPath(context);
+}
+
+- (void) moveToPoint___float_float: (float) x :(float) y
+{
+    CGContextMoveToPoint(context, x, y);
+}
+
+- (void) addLineToPoint___float_float: (float) x :(float) y
+{
+    CGContextAddLineToPoint(context, x, y);
+}
+
+- (void) drawPath___int: (int) mode
+{
+    CGContextDrawPath(context, mode);
+}
+
 - (void) storeState__
 {
 	CGContextSaveGState(context);

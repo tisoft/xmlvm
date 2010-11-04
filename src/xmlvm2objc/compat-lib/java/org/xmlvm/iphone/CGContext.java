@@ -183,4 +183,24 @@ public class CGContext extends NSObject {
                 (int) rect.size.width, (int) rect.size.height, null);
         graphicsContext.setTransform(savedTransform);
     }
+
+    public void beginPath() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void moveToPoint(float x, float y) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void addLineToPoint(float x, float y) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void drawPath(int mode) {
+        // TODO Auto-generated method stub
+        
+    }
 }

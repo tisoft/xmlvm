@@ -82,6 +82,7 @@ public class Paint {
     // we use this when we first create a paint
     private static final int DEFAULT_PAINT_FLAGS   = DEV_KERN_TEXT_FLAG;
 
+
     /**
      * The Style specifies if the primitive being drawn is filled, stroked, or
      * both (in the same color). The default is FILL.
@@ -108,8 +109,10 @@ public class Paint {
             this.nativeInt = nativeInt;
         }
 
+
         final int nativeInt;
     }
+
 
     /**
      * The Cap specifies the treatment for the beginning and ending of stroked
@@ -135,8 +138,10 @@ public class Paint {
             this.nativeInt = nativeInt;
         }
 
+
         final int nativeInt;
     }
+
 
     /**
      * The Join specifies the treatment where lines and curve segments join on a
@@ -160,8 +165,10 @@ public class Paint {
             this.nativeInt = nativeInt;
         }
 
+
         final int nativeInt;
     }
+
 
     /**
      * Align specifies how drawText aligns its text relative to the [x,y]
@@ -185,8 +192,10 @@ public class Paint {
             this.nativeInt = nativeInt;
         }
 
+
         final int nativeInt;
     }
+
 
     /**
      * Create a new paint with default settings.
@@ -861,7 +870,7 @@ public class Paint {
         int r = (color >> 16) & 0xff;
         int g = (color >> 8) & 0xff;
         int b = color & 0xff;
-        mShadowColor = new float[]{ r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f };
+        mShadowColor = new float[] { r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f };
     }
 
     /**
@@ -968,6 +977,7 @@ public class Paint {
      */
     public native float descent();
 
+
     /**
      * Class that describes the various metrics for a font at a given text size.
      * Remember, Y values increase going down, so those values will be positive,
@@ -999,6 +1009,7 @@ public class Paint {
         public float leading;
     }
 
+
     /**
      * Return the font's recommended interline spacing, given the Paint's
      * settings for typeface, textSize, etc. If metrics is not null, return the
@@ -1021,6 +1032,7 @@ public class Paint {
         return fm;
     }
 
+
     /**
      * Convenience method for callers that want to have FontMetrics values as
      * integers.
@@ -1032,12 +1044,14 @@ public class Paint {
         public int bottom;
         public int leading;
 
+
         @Override
         public String toString() {
             return "FontMetricsInt: top=" + top + " ascent=" + ascent + " descent=" + descent
                     + " bottom=" + bottom + " leading=" + leading;
         }
     }
+
 
     /**
      * Return the font's interline spacing, given the Paint's settings for
@@ -1552,7 +1566,9 @@ public class Paint {
     private native void nativeGetCharArrayBounds(char[] text, int index, int count, Rect bounds);
 
     public UIFont xmlvmGetUIFont() {
-        return mTypeface.xmlvmGenUIFont(mTextSize, mFlags);
+        // TODO (8, 0) proper DEFAULTs?
+        return mTypeface == null ? Typeface.DEFAULT.xmlvmGenUIFont(8, 0) : mTypeface
+                .xmlvmGenUIFont(mTextSize, mFlags);
     }
 
     public float[] xmlvmGetColor() {

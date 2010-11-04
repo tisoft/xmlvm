@@ -55,6 +55,10 @@
 - (void) showText___java_lang_String: (NSString*)text;
 - (org_xmlvm_iphone_CGPoint*) getTextPosition__;
 - (void) setTextDrawingMode___int :(int)mode;
+- (void) beginPath__;
+- (void) moveToPoint___float_float: (float) x :(float) y;
+- (void) addLineToPoint___float_float: (float) x :(float) y;
+- (void) drawPath___int: (int) mode;
 
 - (void) storeState__;
 - (void) restoreState__;

@@ -21,6 +21,7 @@
 package android.graphics;
 
 import org.xmlvm.iphone.CGContext;
+import org.xmlvm.iphone.CGPathDrawingMode;
 import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
@@ -109,7 +110,14 @@ public class Canvas {
 
     public void drawLine(float startX, float startY, float stopX, float stopY, Paint paint)
     {
-        Assert.NOT_IMPLEMENTED();
+        createCGContext();
+        context.storeState();
+        context.beginPath();
+        context.moveToPoint(startX, startY);
+        context.addLineToPoint(stopX, stopY);
+        context.drawPath(CGPathDrawingMode.kCGPathStroke);
+        context.restoreState();
+        releaseCGContext();
     }
     
     public void drawRect(float left, float top, float right, float bottom, Paint paint) {

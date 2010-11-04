@@ -962,7 +962,7 @@ public class View {
     }
 
     public void postInvalidate() {
-        Assert.NOT_IMPLEMENTED();
+        viewHandler.setNeedsDisplay();
     }
 
     public void requestFocus() {
