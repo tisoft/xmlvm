@@ -109,6 +109,11 @@
 	CGContextSetFontSize(context, size);
 }
 
+- (void) setShouldAntialias___boolean :(int) flag
+{
+	CGContextSetShouldAntialias(context, flag);
+}
+
 - (void) setShadowWithColor___float_float_float_float_ARRAYTYPE: (float) dx :(float) dy :(float) blur_radius :(XMLVMArray*) color
 {
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();

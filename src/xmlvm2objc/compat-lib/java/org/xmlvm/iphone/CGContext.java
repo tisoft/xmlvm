@@ -134,6 +134,11 @@ public class CGContext extends NSObject {
         }
     }
 
+    public void setShouldAntialias(boolean antiAlias) {
+        // TODO Auto-generated method stub
+        
+    }
+
     public void setShadowWithColor(float dx, float dy, float blur_radius, float[] color) {
         // TODO
     }
@@ -203,4 +208,5 @@ public class CGContext extends NSObject {
         // TODO Auto-generated method stub
         
     }
+
 }

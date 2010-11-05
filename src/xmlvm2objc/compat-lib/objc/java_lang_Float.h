@@ -36,6 +36,8 @@ float number;
 - (NSUInteger) hash;
 - (void) __init_java_lang_Float___float :(float) f;
 - (BOOL)isEqual:(id)anObject;
+- (java_lang_String*) toString__;
++ (java_lang_String*) toString___float: (float) f;
 + (java_lang_Class*) _GET_TYPE;
 - (float) floatValue__;
 + (float) parseFloat___java_lang_String: (java_lang_String *) str;

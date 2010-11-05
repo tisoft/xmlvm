@@ -68,6 +68,16 @@ static java_lang_Class* primitiveFloatClass;
 	return [anObject isKindOfClass: [java_lang_Float class]] && ((java_lang_Float*) anObject)-> number == number;
 }
 
+- (java_lang_String*) toString__
+{
+	return [java_lang_Float toString___float:number];
+}
+
++ (java_lang_String*) toString___float: (float) f
+{
+	return [[[NSNumber numberWithFloat: f] stringValue] retain];
+}
+
 - (float) floatValue__
 {
 	return number;
