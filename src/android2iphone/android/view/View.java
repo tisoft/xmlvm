@@ -43,6 +43,7 @@ import android.internal.Assert;
 import android.internal.Dimension;
 import android.internal.IBinderImpl;
 import android.internal.ViewHandler;
+import android.internal.XMLVMTheme;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.AttributeSet;
@@ -292,7 +293,7 @@ public class View {
     }
 
     protected UIView xmlvmNewUIView(AttributeSet attrs) {
-        return new UIView() {
+        UIView v = new UIView() {
 
             @Override
             public void touchesBegan(Set<UITouch> touches, UIEvent event) {
@@ -319,6 +320,12 @@ public class View {
                 draw(new Canvas(UIGraphics.getCurrentContext()));
             }
         };
+
+        if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_NATIVE) {
+            v.setBackgroundColor(UIColor.whiteColor);
+        }
+        
+        return v;
     }
 
     public ViewGroup.LayoutParams getLayoutParams() {
