@@ -46,6 +46,7 @@ import android.internal.ViewHandler;
 import android.internal.XMLVMTheme;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.animation.Animation;
@@ -967,7 +968,14 @@ public class View {
     }
 
     public void postInvalidate() {
-        viewHandler.setNeedsDisplay();
+        Handler handler = new Handler() {
+
+            @Override
+            public void handleMessage(Message msg) {
+                viewHandler.setNeedsDisplay();
+            }
+        };
+        handler.sendEmptyMessage(0);
     }
 
     public void requestFocus() {
