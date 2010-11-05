@@ -293,7 +293,7 @@ public class View {
     }
 
     protected UIView xmlvmNewUIView(AttributeSet attrs) {
-        UIView v = new UIView() {
+        return new UIView() {
 
             @Override
             public void touchesBegan(Set<UITouch> touches, UIEvent event) {
@@ -320,12 +320,6 @@ public class View {
                 draw(new Canvas(UIGraphics.getCurrentContext()));
             }
         };
-
-        if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_NATIVE) {
-            v.setBackgroundColor(UIColor.whiteColor);
-        }
-        
-        return v;
     }
 
     public ViewGroup.LayoutParams getLayoutParams() {
