@@ -26,8 +26,10 @@ import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.NSString;
+import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UIImage;
 
+import android.graphics.Paint.Style;
 import android.graphics.drawable.BitmapDrawable;
 import android.internal.Assert;
 import org.xmlvm.iphone.UIGraphics;
@@ -40,6 +42,7 @@ public class Canvas {
     private CGContext     context;
     private Bitmap        bitmap;
     private int           saveCount      = 0;
+
 
     public Canvas() {
         context = null;
@@ -108,10 +111,11 @@ public class Canvas {
         Assert.NOT_IMPLEMENTED();
     }
 
-    public void drawLine(float startX, float startY, float stopX, float stopY, Paint paint)
-    {
+    public void drawLine(float startX, float startY, float stopX, float stopY, Paint paint) {
         createCGContext();
         context.storeState();
+        context.setStrokeColor(paint.xmlvmGetColor());
+        context.setShouldAntialias(paint.isAntiAlias());
         context.beginPath();
         context.moveToPoint(startX, startY);
         context.addLineToPoint(stopX, stopY);
@@ -119,14 +123,27 @@ public class Canvas {
         context.restoreState();
         releaseCGContext();
     }
-    
+
     public void drawRect(float left, float top, float right, float bottom, Paint paint) {
         createCGContext();
         context.storeState();
-        // TODO the setFillColor() should be done in xmlvmSetCGContextPaintParameters()
-        context.setFillColor(paint.xmlvmGetColor());
-        xmlvmSetCGContextPaintParameters(paint);
-        context.fillRect(new CGRect(left, top, right - left, bottom - top));
+        //xmlvmSetCGContextPaintParameters(paint);
+        float[] color = paint.xmlvmGetColor();
+        context.setStrokeColor(color);
+        context.setFillColor(color);
+        context.setShouldAntialias(paint.isAntiAlias());
+        switch (paint.getStyle()) {
+        case FILL:
+            context.fillRect(new CGRect(left, top, right - left, bottom - top));
+            break;
+        case STROKE:
+            context.strokeRect(new CGRect(left, top, right - left, bottom - top));
+            break;
+        case FILL_AND_STROKE:
+            context.fillRect(new CGRect(left, top, right - left, bottom - top));
+            context.strokeRect(new CGRect(left, top, right - left, bottom - top));
+            break;
+        }
         context.restoreState();
         releaseCGContext();
     }
@@ -158,10 +175,25 @@ public class Canvas {
         releaseCGContext();
     }
 
-    public void drawText(String texttodisplay, float left, float top, Paint paint) {
+    public void drawText(String text, float left, float top, Paint paint) {
         createCGContext();
         context.setFillColor(paint.xmlvmGetColor());
-        NSString.drawAtPoint(texttodisplay, new CGPoint(left, top), paint.xmlvmGetUIFont());
+        context.setFontSize(paint.getTextSize());
+        context.setShouldAntialias(paint.isAntiAlias());
+        Paint.Align align = paint.getTextAlign();
+        UIFont font = paint.xmlvmGetUIFont();
+        if (align == Paint.Align.RIGHT || align == Paint.Align.CENTER) {
+            CGSize textSize = NSString.sizeWithFont(text, font);
+            switch (align) {
+            case RIGHT:
+                left -= textSize.width;
+                break;
+            case CENTER:
+                left -= textSize.width / 2.0;
+                break;
+            }
+        }
+        NSString.drawAtPoint(text, new CGPoint(left, top), font);
         releaseCGContext();
     }
 

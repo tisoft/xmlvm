@@ -1566,8 +1566,7 @@ public class Paint {
     private native void nativeGetCharArrayBounds(char[] text, int index, int count, Rect bounds);
 
     public UIFont xmlvmGetUIFont() {
-        // TODO (8, 0) proper DEFAULTs?
-        return mTypeface == null ? Typeface.DEFAULT.xmlvmGenUIFont(8, 0) : mTypeface
+        return mTypeface == null ? Typeface.DEFAULT.xmlvmGenUIFont(mTextSize, mFlags) : mTypeface
                 .xmlvmGenUIFont(mTextSize, mFlags);
     }
 
@@ -1584,5 +1583,8 @@ public class Paint {
         if (mShadowRadius != 0) {
             context.setShadowWithColor(mShadowDX, mShadowDY, mShadowRadius, mShadowColor);
         }
+        float[] color = xmlvmGetColor();
+        context.setFillColor(color);
+        context.setStrokeColor(color);
     }
 }
