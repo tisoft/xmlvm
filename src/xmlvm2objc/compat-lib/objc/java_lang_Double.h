@@ -39,6 +39,7 @@ double number;
 - (void) __init_java_lang_Double___double :(double) d;
 - (BOOL)isEqual:(id)anObject;
 - (double) doubleValue__;
+- (java_lang_String*) toString__;
 + (double) parseDouble___java_lang_String: (java_lang_String *) str;
 + (java_lang_String*) toString___double: (double) d;
 + (java_lang_Double*) valueOf___double: (double) d;

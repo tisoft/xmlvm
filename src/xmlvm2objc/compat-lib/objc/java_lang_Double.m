@@ -84,6 +84,11 @@ static java_lang_Class* primitiveDoubleClass;
 	return atof([str UTF8String]);
 }
 
+- (java_lang_String*) toString__
+{
+	return [java_lang_Double toString___double:number];
+}
+
 + (java_lang_String*) toString___double: (double) d
 {
 	return [[[NSNumber numberWithDouble: d] stringValue] retain];
