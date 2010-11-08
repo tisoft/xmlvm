@@ -209,4 +209,14 @@ public class CGContext extends NSObject {
         
     }
 
+    public void setLineCap(int cap) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void strokePath() {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

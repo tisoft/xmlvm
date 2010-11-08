@@ -52,6 +52,11 @@
     CGContextSetStrokeColor(context, color->array.f);
 }
 
+- (void) setLineCap___int: (int) cap
+{
+	CGContextSetLineCap(context, cap);
+}
+
 - (void) fillRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect
 {
     CGRect r = [rect getCGRect];
@@ -180,6 +185,11 @@
 - (void) drawPath___int: (int) mode
 {
     CGContextDrawPath(context, mode);
+}
+
+- (void) strokePath__
+{
+	CGContextStrokePath(context);
 }
 
 - (void) storeState__

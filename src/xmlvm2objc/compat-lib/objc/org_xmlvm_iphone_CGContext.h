@@ -40,6 +40,7 @@
 - (CGContextRef) getCGContextRef;
 - (void) setFillColor___float_ARRAYTYPE: (XMLVMArray*) color;
 - (void) setStrokeColor___float_ARRAYTYPE: (XMLVMArray*) color;
+- (void) setLineCap___int: (int) cap;
 - (void) fillRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect;
 - (void) strokeRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect;
 - (void) fillEllipseInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect;
@@ -60,6 +61,7 @@
 - (void) moveToPoint___float_float: (float) x :(float) y;
 - (void) addLineToPoint___float_float: (float) x :(float) y;
 - (void) drawPath___int: (int) mode;
+- (void) strokePath__;
 
 - (void) storeState__;
 - (void) restoreState__;

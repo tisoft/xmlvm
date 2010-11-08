@@ -21,7 +21,7 @@
 package android.graphics;
 
 import org.xmlvm.iphone.CGContext;
-import org.xmlvm.iphone.CGPathDrawingMode;
+import org.xmlvm.iphone.CGLineCap;
 import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
@@ -29,7 +29,6 @@ import org.xmlvm.iphone.NSString;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UIImage;
 
-import android.graphics.Paint.Style;
 import android.graphics.drawable.BitmapDrawable;
 import android.internal.Assert;
 import org.xmlvm.iphone.UIGraphics;
@@ -114,12 +113,17 @@ public class Canvas {
     public void drawLine(float startX, float startY, float stopX, float stopY, Paint paint) {
         createCGContext();
         context.storeState();
+        startX += 0.5f;
+        startY += 0.5f;
+        stopX += 0.5f;
+        stopY += 0.5f;
+        context.setLineCap(CGLineCap.kCGLineCapSquare);
         context.setStrokeColor(paint.xmlvmGetColor());
         context.setShouldAntialias(paint.isAntiAlias());
         context.beginPath();
         context.moveToPoint(startX, startY);
         context.addLineToPoint(stopX, stopY);
-        context.drawPath(CGPathDrawingMode.kCGPathStroke);
+        context.strokePath();
         context.restoreState();
         releaseCGContext();
     }
@@ -127,6 +131,11 @@ public class Canvas {
     public void drawRect(float left, float top, float right, float bottom, Paint paint) {
         createCGContext();
         context.storeState();
+        left += 0.5;
+        top += 0.5;
+        float width = right - left;
+        float height = bottom - top;
+        CGRect rect = new CGRect(left, top, width, height);
         //xmlvmSetCGContextPaintParameters(paint);
         float[] color = paint.xmlvmGetColor();
         context.setStrokeColor(color);
@@ -134,14 +143,14 @@ public class Canvas {
         context.setShouldAntialias(paint.isAntiAlias());
         switch (paint.getStyle()) {
         case FILL:
-            context.fillRect(new CGRect(left, top, right - left, bottom - top));
+            context.fillRect(rect);
             break;
         case STROKE:
-            context.strokeRect(new CGRect(left, top, right - left, bottom - top));
+            context.strokeRect(rect);
             break;
         case FILL_AND_STROKE:
-            context.fillRect(new CGRect(left, top, right - left, bottom - top));
-            context.strokeRect(new CGRect(left, top, right - left, bottom - top));
+            context.fillRect(rect);
+            context.strokeRect(rect);
             break;
         }
         context.restoreState();
