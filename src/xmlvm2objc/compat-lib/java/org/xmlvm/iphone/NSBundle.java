@@ -21,6 +21,7 @@
 package org.xmlvm.iphone;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
@@ -35,9 +36,11 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class NSBundle extends NSObject {
 
-    private static final String SYSRES      = "/sys_resources";
-    private static final String APPRES_META = "/META-INF/list.resources";
-    private static NSBundle     mainBundle  = new NSBundle();
+    private static final String SYSRES              = "/sys_resources";
+    private static final String CLASS_RESOURCE_LIST = "/META-INF/list.resources";
+    private static final String XCODE_RESOURCE_LIST = System.getProperty("user.dir")
+                                                            + File.separator + "xcode.properties";
+    private static NSBundle     mainBundle          = new NSBundle();
     private static Set<String>  runtime_res;
 
 
@@ -61,7 +64,7 @@ public class NSBundle extends NSObject {
             filename = directory + "/" + filename;
         }
 
-        /* First check as a local resource file */
+        /* Check it as a local resource file */
         for (String dname : getDeclaredResources()) {
             File dfile = new File(dname);
             try {
@@ -88,45 +91,19 @@ public class NSBundle extends NSObject {
         }
 
         /*
-         * Then check as a system jar resource file This is a rare case and used
-         * only for the emulator under ImageLoader
+         * If file was not found, search as a system resource file. This is a
+         * rare case and used only internally for the emulator.
+         * 
+         * Please do not use it in your own projects. Use "xmlvm.resource" in
+         * file "xcode.properties" instead.
          */
-        String jarfilename = filename.startsWith("/") ? filename : "/" + filename;
+        String sysfilename = SYSRES + (filename.startsWith("/") ? "" : "/") + filename;
         try {
-            String path = getClass().getResource(SYSRES + jarfilename).toURI().toURL().toString();
+            String path = getClass().getResource(sysfilename).toURI().toURL().toString();
             if (path != null) {
                 return path;
             }
         } catch (Exception ex) {
-        }
-
-        /*
-         * As a last effort, check if this file can be found locally in the
-         * current xmlvm project. This is only a convenience approach for XMLVM
-         * demos to access their resources when run from inside Eclipse.
-         * 
-         * Please do not use it in your own projects. Use "xmlvm.resource" under
-         * file "xcode.properties" instead.
-         */
-        File xmlvmlocal = new File(System.getProperty("user.dir"), filename);
-        if (xmlvmlocal.exists()) {
-            return xmlvmlocal.getAbsolutePath();
-        }
-        xmlvmlocal = new File(System.getProperty("user.dir") + File.separator + "res", filename);
-        if (xmlvmlocal.exists()) {
-            return xmlvmlocal.getAbsolutePath();
-        }
-        xmlvmlocal = new File(System.getProperty("user.dir") + File.separator + ".."
-                + File.separator + ".." + File.separator + ".." + File.separator + "var"
-                + File.separator + "iphone", filename);
-        if (xmlvmlocal.exists()) {
-            return xmlvmlocal.getAbsolutePath();
-        }
-        xmlvmlocal = new File(System.getProperty("user.dir") + File.separator + ".."
-                + File.separator + ".." + File.separator + ".." + File.separator + ".."
-                + File.separator + "var" + File.separator + "iphone", filename);
-        if (xmlvmlocal.exists()) {
-            return xmlvmlocal.getAbsolutePath();
         }
 
         /* Not found */
@@ -160,8 +137,11 @@ public class NSBundle extends NSObject {
 
     /**
      * Runtime resources, given as a special file under
-     * ${CLASSPATH}/META-INF/list.resources This is required in order to run
-     * applications from the command line.
+     * ${CLASSPATH}/META-INF/xcode.properties or under
+     * ${user.dir}/xcode.properties
+     * 
+     * This is required in order to run applications as Java from the command
+     * line.
      */
     private static Set<String> getDeclaredResources() {
         if (runtime_res == null) {
@@ -169,14 +149,19 @@ public class NSBundle extends NSObject {
             Properties pr = new Properties();
             try {
                 // Load resources definition in the META-INF directory
-                pr.load(NSBundle.class.getResourceAsStream(APPRES_META));
+                pr.load(NSBundle.class.getResourceAsStream(CLASS_RESOURCE_LIST));
             } catch (Exception ex1) {
-                return runtime_res;
+                try {
+                    pr.load(new FileInputStream(XCODE_RESOURCE_LIST));
+                } catch (Exception ex2) {
+                    return runtime_res;
+                }
             }
-            String path = pr.getProperty("path", System.getProperty("user.dir"));
+
+            String path = pr.getProperty("xmlvm.resource.path", System.getProperty("user.dir"));
             if (!path.endsWith(File.separator))
                 path += File.separator;
-            String list = pr.getProperty("items", "");
+            String list = pr.getProperty("xmlvm.resource", "");
             StringTokenizer tk = new StringTokenizer(list, ":");
             while (tk.hasMoreTokens()) {
                 String item = tk.nextToken();

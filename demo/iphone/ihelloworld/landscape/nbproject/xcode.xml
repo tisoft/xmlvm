@@ -66,7 +66,7 @@
 	<!-- compile targets -->
 	<target name="-xcode-resources" depends="-x-post-init">
 		<mkdir dir="${out.dir}/classes/META-INF"/>
-		<echo file="${out.dir}/classes/META-INF/list.resources" message="# This file has a list of required resources for this application${line.separator}path=${xmlvm.project.path}${line.separator}items=${xmlvm.resouce.all}${line.separator}"/>
+		<echo file="${out.dir}/classes/META-INF/list.resources" message="# This file has a list of required resources for this application${line.separator}xmlvm.resource.path=${xmlvm.project.path}${line.separator}xmlvm.resource=${xmlvm.resouce.all}${line.separator}"/>
 	</target>
 
 	<target name="-pre-xproject"/>

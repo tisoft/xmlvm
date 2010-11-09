@@ -200,10 +200,7 @@
 		</copy>
 
 		<copy todir="${xmlvm.build}/sys_resources">
-			<fileset file="var/iphone/battery.png"/>
-			<fileset file="var/iphone/chassis.png"/>
-			<fileset file="var/iphone/wifi.png"/>
-			<fileset file="var/iphone/*.gif"/>
+			<fileset dir="var/iphone/sys_resources"/>
 		</copy>
 
 		<jar destfile="${xmlvm.build.main}/main.jar" basedir="${xmlvm.bin}">
