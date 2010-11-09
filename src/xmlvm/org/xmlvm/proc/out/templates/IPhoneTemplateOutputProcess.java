@@ -20,6 +20,11 @@
 
 package org.xmlvm.proc.out.templates;
 
+import static org.xmlvm.proc.out.templates.TemplateFile.Mode.BACKUP;
+import static org.xmlvm.proc.out.templates.TemplateFile.Mode.KEEP;
+import static org.xmlvm.proc.out.templates.TemplateFile.Mode.OVERWRITE;
+import static org.xmlvm.proc.out.templates.TemplateFile.Mode.ABORT;
+
 import java.util.ArrayList;
 import org.xmlvm.main.Arguments;
 
@@ -30,28 +35,37 @@ import org.xmlvm.main.Arguments;
  */
 public class IPhoneTemplateOutputProcess extends TemplateOutputProcess {
 
-    public IPhoneTemplateOutputProcess(Arguments arguments) {
-        super(arguments);
+    public IPhoneTemplateOutputProcess(Arguments arguments, boolean migrate) {
+        super(arguments, migrate);
     }
 
     @Override
     ArrayList<TemplateFile> getTemplateList() {
         ArrayList<TemplateFile> list = new ArrayList<TemplateFile>();
-        list.add(new TemplateFile("build.xml", ""));
-        list.add(new TemplateFile("manifest.mf", ""));
-        list.add(new TemplateFile("xcode.properties", ""));
-        list.add(new TemplateFile(".classpath", ""));
-        list.add(new TemplateFile(".project", ""));
-        list.add(new TemplateFile("build-impl.xml", "nbproject"));
-        list.add(new TemplateFile("xcode.xml", "nbproject"));
-        list.add(new TemplateFile("genfiles.properties", "nbproject"));
-        list.add(new TemplateFile("project.properties", "nbproject"));
-        list.add(new TemplateFile("project.xml", "nbproject"));
-        list.add(new TemplateFile("empty.properties", "Java.properties", "nbproject/configs"));
-        list.add(new TemplateFile("empty.properties", "Xcode.properties", "nbproject/configs"));
-        list.add(new TemplateFile("org.eclipse.jdt.core.prefs", ".settings"));
-        list.add(new TemplateFile("demo.png", "resources"));
-        list.add(new TemplateFile("Main.java", "src/java/" + pack_name.replace(".", "/")));
+
+        list.add(new TemplateFile("build.xml", migrate ? BACKUP : ABORT));
+        list.add(new TemplateFile("xcode.xml", "nbproject", migrate ? OVERWRITE : ABORT));
+
+        list.add(new TemplateFile("manifest.mf", KEEP));
+        list.add(new TemplateFile("xmlvm.properties", KEEP));
+        list.add(new TemplateFile(".classpath", KEEP));
+        list.add(new TemplateFile(".project", KEEP));
+        list.add(new TemplateFile("build-impl.xml", "nbproject", KEEP));
+        list.add(new TemplateFile("genfiles.properties", "nbproject", KEEP));
+        list.add(new TemplateFile("project.properties", "nbproject", KEEP));
+        list.add(new TemplateFile("project.xml", "nbproject", KEEP));
+        list
+                .add(new TemplateFile("empty.properties", "Java.properties", "nbproject/configs",
+                        KEEP));
+        list
+                .add(new TemplateFile("empty.properties", "Xcode.properties", "nbproject/configs",
+                        KEEP));
+        list.add(new TemplateFile("org.eclipse.jdt.core.prefs", ".settings", KEEP));
+        
+        if (!migrate) {
+            list.add(new TemplateFile("demo.png", "resources", KEEP));
+            list.add(new TemplateFile("Main.java", "src/java/" + pack_name.replace(".", "/"), KEEP));
+        }
         return list;
     }
 

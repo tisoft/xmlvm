@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir=".." name="android-support">
 
-	<!-- This file is required for the various xmlvm related tasks -->
-	<import file="xcode.xml"/>
-
 	<path id="android.antlibs">
 		<pathelement path="${sdk.dir}/tools/lib/anttasks.jar" />
 		<pathelement path="${sdk.dir}/tools/lib/sdklib.jar" />
@@ -11,15 +8,6 @@
 		<pathelement path="${sdk.dir}/tools/lib/apkbuilder.jar" />
 		<pathelement path="${sdk.dir}/tools/lib/jarutils.jar" />
 	</path>
-
-	<target name="init">
-		<property file="nbproject/private/config.properties"/>
-		<property file="nbproject/project.properties"/>
-		<available file="${xmlvm.sdk.jar}" property="xmlvm.jar.exists"/>
-		<property name="main.class" value="android.internal.AndroidAppLauncher"/>
-		<property name="run.classpath" value="${out.classes.dir}"/>
-		<property name="application.args" value=""/>
-	</target>
 
 	<!-- Custom Android task to deal with the project target, and import the proper rules.
 		 This requires ant 1.6.0 or above. -->
@@ -30,6 +18,22 @@
 	<!-- Execute the Android Setup task that will setup some properties specific to the target,
 		 and import the build rules files. -->
 	<setup />
+
+	<!-- This file is required for the various xmlvm related tasks -->
+	<import file="xcode.xml"/>
+
+	<target depends="-resource-src" name="-res-compile" unless="bootclasspath1.available"/>
+	<target depends="-resource-src" if="bootclasspath1.available" name="-res-compile1"/>
+	
+	<!-- initialize android variables -->
+	<target name="init">
+		<property file="nbproject/private/config.properties"/>
+		<property file="nbproject/project.properties"/>
+		<available file="${xmlvm.sdk.jar}" property="xmlvm.jar.exists"/>
+		<property name="main.class" value="android.internal.AndroidAppLauncher"/>
+		<property name="run.classpath" value="${out.classes.dir}"/>
+		<property name="application.args" value=""/>
+	</target>
 
 	<!-- Use Android bootstrap files for compilation -->
 	<target name="-use-android-libraries" if="run-in-android">
@@ -82,12 +86,18 @@
 	</target>
 
 	<target name="-trigger-android-task" depends="install">
-		<echo message="Application installed - it is required to launch it manually"/>
+		<taskdef name="amanifest" classname="org.xmlvm.ant.AndroidManifestParser" classpath="${xmlvm.sdk.jar}"/>
+		<amanifest manifest="AndroidManifest.xml"/>
+		<exec executable="${sdk.dir}/tools/adb" failonerror="true">
+			<arg value="shell"/>
+			<arg value="am start -n ${xmlvm.android.package}/${xmlvm.android.activity}"/>
+		</exec>
 	</target>
 
 	<!-- Properly clean up project -->
-	<target name="clean" description="Removes output files created by other targets." depends="-xcode-clean">
+	<target name="clean" description="Removes output files created by other targets." depends="init,-xcode-clean">
 		<delete dir="${out.absolute.dir}" verbose="${verbose}" />
+		<delete dir="${dist.dir}" verbose="${verbose}" />
 		<delete includeemptydirs="true">
 			<fileset dir="${gen.absolute.dir}" includes="**/*"/>
 		</delete>

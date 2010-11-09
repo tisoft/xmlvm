@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.android.project</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/android-project/1">
+            <name>__PROJNAME__</name>
+            <minimum-ant-version>1.7.0</minimum-ant-version>
+            <explicit-platform explicit-source-supported="true"/>
+            <source-roots>
+                <root id="src.dir"/>
+                <root id="src.gen.dir" name="Generated Source"/>
+            </source-roots>
+            <test-roots/>
+        </data>
+    </configuration>
+</project>

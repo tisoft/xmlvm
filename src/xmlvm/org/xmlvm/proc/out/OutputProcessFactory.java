@@ -23,7 +23,6 @@ import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.main.Targets;
 import org.xmlvm.proc.XmlvmProcess;
-import org.xmlvm.proc.out.templates.AndroidMigrateOutputProcess;
 import org.xmlvm.proc.out.templates.AndroidTemplateOutputProcess;
 import org.xmlvm.proc.out.templates.IPhoneTemplateOutputProcess;
 
@@ -60,7 +59,7 @@ public class OutputProcessFactory {
             return new PythonOutputProcess(arguments);
         case C:
             return new COutputProcess(arguments);
-        case GEN_C_WRAPPERS:
+        case GENCWRAPPERS:
             return new GenCWrappersOutputProcess(arguments);
         case OBJC:
             return new ObjectiveCOutputProcess(arguments);
@@ -70,6 +69,7 @@ public class OutputProcessFactory {
             return new IPhoneOutputProcess(arguments);
         case IPHONEC:
             return new IPhoneCOutputProcess(arguments);
+        case ANDROIDONIPHONE:
         case IPHONEANDROID:
             return new Android2IPhoneOutputProcess(arguments);
         case WEBOS:
@@ -77,11 +77,14 @@ public class OutputProcessFactory {
         case XMLVM:
             return new XmlvmOutputProcess(arguments);
         case IPHONETEMPLATE:
-            return new IPhoneTemplateOutputProcess(arguments);
+            return new IPhoneTemplateOutputProcess(arguments, false);
+        case IPHONEUPDATETEMPLATE:
+            return new IPhoneTemplateOutputProcess(arguments, true);
         case ANDROIDTEMPLATE:
-            return new AndroidTemplateOutputProcess(arguments);
+            return new AndroidTemplateOutputProcess(arguments, false);
+        case ANDROIDUPDATETEMPLATE:
         case ANDROIDMIGRATETEMPLATE:
-            return new AndroidMigrateOutputProcess(arguments);
+            return new AndroidTemplateOutputProcess(arguments, true);
         case CLASS:
             return new JavaByteCodeOutputProcess(arguments);
         case EXE:

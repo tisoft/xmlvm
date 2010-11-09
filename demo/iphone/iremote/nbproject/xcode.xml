@@ -15,7 +15,7 @@
 
 	<target name="-x-pre-init" depends="-x-init-static">
 		<!-- User provided properties -->
-		<property file="xcode.properties"/>
+		<property file="xmlvm.properties"/>
 		<property file="nbproject/private/config.properties"/>
 
 		<!-- Check if definejd xmlvm.jar exists-->

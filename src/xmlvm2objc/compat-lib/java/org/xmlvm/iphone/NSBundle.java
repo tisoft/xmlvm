@@ -39,7 +39,7 @@ public class NSBundle extends NSObject {
     private static final String SYSRES              = "/sys_resources";
     private static final String CLASS_RESOURCE_LIST = "/META-INF/list.resources";
     private static final String XCODE_RESOURCE_LIST = System.getProperty("user.dir")
-                                                            + File.separator + "xcode.properties";
+                                                            + File.separator + "xmlvm.properties";
     private static NSBundle     mainBundle          = new NSBundle();
     private static Set<String>  runtime_res;
 
@@ -95,7 +95,7 @@ public class NSBundle extends NSObject {
          * rare case and used only internally for the emulator.
          * 
          * Please do not use it in your own projects. Use "xmlvm.resource" in
-         * file "xcode.properties" instead.
+         * file "xmlvm.properties" instead.
          */
         String sysfilename = SYSRES + (filename.startsWith("/") ? "" : "/") + filename;
         try {
@@ -137,8 +137,8 @@ public class NSBundle extends NSObject {
 
     /**
      * Runtime resources, given as a special file under
-     * ${CLASSPATH}/META-INF/xcode.properties or under
-     * ${user.dir}/xcode.properties
+     * ${CLASSPATH}/META-INF/xmlvm.properties or under
+     * ${user.dir}/xmlvm.properties
      * 
      * This is required in order to run applications as Java from the command
      * line.

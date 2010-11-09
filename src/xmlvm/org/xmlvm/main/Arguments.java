@@ -126,6 +126,8 @@ public class Arguments {
             "    iphone           iPhone project skeleton",
             "    android          Android/iPhone project skeleton",
             "    android:migrate  Migrate an existing Android project to XMLVM (needs project created by 'android create project' command)",
+            "    iphone:update    Update an existing XMLVM/iPhone project to latest build scripts",
+            "    android:update   Update an existing XMLVM/Android project to latest build scripts",
             "",
             " --lib=<libraries> Comma separated list of extra libraries required for the specified target. Use a tilde at the and of the library name, to mark it as 'Weak'.",
             "    android          Support of android applications",
@@ -353,7 +355,7 @@ public class Arguments {
             option_c_source_extension = "m";
         }
 
-        if (option_target == Targets.GEN_C_WRAPPERS) {
+        if (option_target == Targets.GENCWRAPPERS) {
             option_gen_wrapper = true;
             Log.debug("Forcing --gen_wrapper for target " + option_target);
         }

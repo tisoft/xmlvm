@@ -20,6 +20,11 @@
 
 package org.xmlvm.proc.out.templates;
 
+import static org.xmlvm.proc.out.templates.TemplateFile.Mode.BACKUP;
+import static org.xmlvm.proc.out.templates.TemplateFile.Mode.KEEP;
+import static org.xmlvm.proc.out.templates.TemplateFile.Mode.OVERWRITE;
+import static org.xmlvm.proc.out.templates.TemplateFile.Mode.ABORT;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,11 +51,14 @@ public abstract class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputP
     private List<OutputFile>    result         = new ArrayList<OutputFile>();
     protected String            safe_name;
     protected String            pack_name;
+    //
+    protected final boolean     migrate;
 
 
-    public TemplateOutputProcess(Arguments arguments) {
+    public TemplateOutputProcess(Arguments arguments, boolean migrate) {
         super(arguments);
         addSupportedInput(EmptyInputProcess.class);
+        this.migrate = migrate;
     }
 
     @Override
@@ -83,16 +91,24 @@ public abstract class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputP
         file.setLocation(path);
         Log.debug("Adding template file " + source + " to destination " + path + dest);
 
-        if (mode != TemplateFile.Mode.OVERWRITE) {
-            File destfileref = new File(path, dest);
-            if (destfileref.exists()) {
-                if (mode == TemplateFile.Mode.KEEP)
-                    return true;
-                else {
-                    String backupname = dest + ".back";
-                    Log.warn("Renaming " + dest + " to " + backupname);
-                    destfileref.renameTo(new File(path, backupname));
-                }
+        File destfileref = new File(path, dest);
+        if (destfileref.exists()) {
+            switch (mode) {
+            case ABORT:
+                Log.error("Destination already contains file " + source);
+                return false;
+            case KEEP:
+                Log.debug("Keeping already existing file " + source);
+                return true;
+            case BACKUP:
+                String backupname = dest + ".back";
+                Log.warn("Renaming " + dest + " to " + backupname);
+                destfileref.renameTo(new File(path, backupname));
+                break;
+            case OVERWRITE:
+            default:
+                Log.debug("Overwriting already existing file " + source);
+                break;
             }
         }
 

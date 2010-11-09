@@ -32,6 +32,14 @@ class TemplateFile {
     final Mode   mode;
 
 
+    TemplateFile(String source) {
+        this(source, "");
+    }
+
+    TemplateFile(String source, Mode mode) {
+        this(source, "", mode);
+    }
+
     TemplateFile(String source, String path) {
         this(source, source, path);
     }
@@ -54,6 +62,6 @@ class TemplateFile {
 
     enum Mode {
 
-        OVERWRITE, KEEP, BACKUP;
+        OVERWRITE, KEEP, BACKUP, ABORT;
     }
 }

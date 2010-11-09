@@ -29,20 +29,16 @@ import static org.xmlvm.main.Targets.Affinity.TARGET;
 public enum Targets {
 
     NONE(TARGET), XMLVM(TARGET), DEXMLVM(TARGET), JVM(TARGET), CLR(TARGET), DFA(TARGET), CLASS(
-            TARGET), EXE(TARGET), DEX(TARGET), JS(TARGET), C(TARGET), GEN_C_WRAPPERS(TARGET), PYTHON(
+            TARGET), EXE(TARGET), DEX(TARGET), JS(TARGET), C(TARGET), GENCWRAPPERS(TARGET), PYTHON(
             TARGET), OBJC(TARGET), QOOXDOO(TARGET), IPHONE(TARGET), IPHONEC(TARGET), IPHONEANDROID(
-            TARGET), WEBOS(TARGET), IPHONETEMPLATE(SKELETON), ANDROIDTEMPLATE(SKELETON), ANDROIDMIGRATETEMPLATE(
+            TARGET), ANDROIDONIPHONE(TARGET), WEBOS(TARGET), IPHONETEMPLATE(SKELETON), ANDROIDTEMPLATE(
+            SKELETON), ANDROIDMIGRATETEMPLATE(SKELETON), IPHONEUPDATETEMPLATE(SKELETON), ANDROIDUPDATETEMPLATE(
             SKELETON);
 
     public static Targets getTarget(String target) {
-        if (target.equalsIgnoreCase("gen-c-wrappers")) {
-            target = "GEN_C_WRAPPERS";
-        }
-        target = target.toUpperCase().replace("-", "").replace(":", "");
-        if (target.equals("ANDROIDONIPHONE"))
-            target = "IPHONEANDROID";
         try {
-            return Targets.valueOf(target);
+            return Targets.valueOf(target.toUpperCase().replace("_", "").replace("-", "").replace(
+                    ":", ""));
         } catch (IllegalArgumentException ex) {
         }
         return null;

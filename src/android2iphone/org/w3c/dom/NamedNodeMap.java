@@ -40,4 +40,9 @@ public class NamedNodeMap {
         return null;
     }
 
+    public Node getNamedItem(String name) {
+        // TODO : Java implementation
+        return null;
+    }
+
 }
