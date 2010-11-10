@@ -371,6 +371,24 @@ public class RadioGroup extends LinearLayout {
 
     /**
      * 
+     * Sets the title for the given RadioButton by setting the
+     * UISegmentedControl's title at the index associated with the button.
+     * 
+     * @param button
+     *            The RadioButton which triggered setting the text.
+     * 
+     * @param text
+     *            The text to be set.
+     * 
+     */
+
+    void setText(RadioButton button, String text) {
+        int index = radioButtons.indexOf(button);
+        ((UISegmentedControl) xmlvmGetViewHandler().getContentView()).setTitle(text, index);
+    }
+
+    /**
+     * 
      * Determines the currently selected RadioButton.
      * 
      * @return The determined RadioButton or null, if none is selected.

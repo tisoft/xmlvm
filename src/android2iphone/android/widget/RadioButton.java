@@ -159,17 +159,31 @@ public class RadioButton extends CompoundButton {
         }
     }
 
+    /**
+     * 
+     * Gets the text associated with this RadioButton.
+     * 
+     * @return The RadioButton's text.
+     * 
+     */
+
     @Override
     public String getText() {
         return text;
     }
 
+    /**
+     * 
+     * Sets the RadioButton's text. The text is stored internally. Additionally
+     * the RadioGroup hosting the UISegmentedControl is called to update the
+     * title for this RadioButton.
+     * 
+     */
+
     @Override
     public void setText(String text) {
         this.text = text;
-        
-        // TODO: Update UISegmentedControl
-        
+        ((RadioGroup) getParent()).setText(this, text);
         requestLayout();
     }
 
