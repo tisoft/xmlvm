@@ -183,8 +183,11 @@ public class RadioButton extends CompoundButton {
     @Override
     public void setText(String text) {
         this.text = text;
-        ((RadioGroup) getParent()).setText(this, text);
-        requestLayout();
+
+        if (getParent() != null) {
+            ((RadioGroup) getParent()).setText(this, text);
+            requestLayout();
+        }
     }
 
 }
