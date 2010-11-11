@@ -215,7 +215,6 @@ public class CGContext extends NSObject {
     }
 
     public void strokePath() {
-        // TODO Auto-generated method stub
         graphicsContext.draw(path);
         path = null;
     }
