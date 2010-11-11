@@ -24,12 +24,14 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Path2D;
 import java.awt.image.BufferedImage;
-import org.xmlvm.iphone.internal.CGContextState;
 
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
+import org.xmlvm.iphone.internal.CGContextState;
 
 @XMLVMSkeletonOnly
 public class CGContext extends NSObject {
@@ -41,6 +43,7 @@ public class CGContext extends NSObject {
     private float               tx;
     private float               ty;
     private int                 textMode;
+    private Path2D              path             = null;
 
 
     @XMLVMIgnore
@@ -135,8 +138,8 @@ public class CGContext extends NSObject {
     }
 
     public void setShouldAntialias(boolean antiAlias) {
-        // TODO Auto-generated method stub
-        
+        graphicsContext.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                antiAlias ? RenderingHints.VALUE_ANTIALIAS_ON : RenderingHints.VALUE_ANTIALIAS_OFF);
     }
 
     public void setShadowWithColor(float dx, float dy, float blur_radius, float[] color) {
@@ -190,33 +193,31 @@ public class CGContext extends NSObject {
     }
 
     public void beginPath() {
-        // TODO Auto-generated method stub
-        
+        path = new Path2D.Float();
     }
 
     public void moveToPoint(float x, float y) {
-        // TODO Auto-generated method stub
-        
+        path.moveTo(x, y);
     }
 
     public void addLineToPoint(float x, float y) {
-        // TODO Auto-generated method stub
-        
+        path.lineTo(x, y);
     }
 
     public void drawPath(int mode) {
         // TODO Auto-generated method stub
-        
+
     }
 
     public void setLineCap(int cap) {
         // TODO Auto-generated method stub
-        
+
     }
 
     public void strokePath() {
         // TODO Auto-generated method stub
-        
+        graphicsContext.draw(path);
+        path = null;
     }
 
 }
