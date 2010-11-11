@@ -46,6 +46,7 @@ public class UIAlertView extends UIView {
         this.delegate = delegate;
         addBaseView();
         addBaseView();
+        ((UILabel) getSubviews().get(MESSAGE_ID)).setLineBreakMode(UILineBreakMode.WordWrap);
         setMessage(message);
         setTitle(title);
         if (cancelButtonTitle != null)

@@ -30,11 +30,14 @@ import java.util.List;
 
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
+import org.xmlvm.iphone.NSString;
 import org.xmlvm.iphone.UIAlertView;
 import org.xmlvm.iphone.UIButton;
+import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIInterfaceOrientation;
 import org.xmlvm.iphone.UILabel;
+import org.xmlvm.iphone.UILineBreakMode;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.internal.Simulator;
@@ -132,11 +135,21 @@ public class UIAlertViewRenderer extends UIViewRenderer<UIAlertView> {
             height = 2 * FRAME_SIZE + LABEL_INSETS + INSETS + BUTTON_HEIGHT;
         }
 
-        if (titleV.getText() != null && titleV.getText().length() > 0)
+        if (titleV.getText() != null && titleV.getText().length() > 0) {
             height += LABEL_INSETS + TITLE_FONT_SIZE;
+        }
 
-        if (messageV.getText() != null && messageV.getText().length() > 0)
-            height += LABEL_INSETS + MESSAGE_FONT_SIZE;
+        int messageHeight = 0;
+        if (messageV.getText() != null && messageV.getText().length() > 0) {
+            UIFont font = messageV.getFont();
+            CGSize constraints = new CGSize(width - 2 * INSETS, font.pointSize() * 4);
+            CGSize textSize = NSString.sizeWithFont(messageV.getText(), font, constraints,
+                    UILineBreakMode.WordWrap);
+            messageHeight = (int) textSize.height;
+            int lines = messageHeight / (int) font.pointSize();
+            messageV.setNumberOfLines(lines);
+            height += LABEL_INSETS + textSize.height;
+        }
 
         x = getScreenWidth() / 2 - width / 2;
         y = getScreenHeight() / 2 - height / 2;
@@ -154,10 +167,10 @@ public class UIAlertViewRenderer extends UIViewRenderer<UIAlertView> {
         }
 
         if (messageV.getText() != null && messageV.getText().length() > 0) {
-            buttonYOffset += LABEL_INSETS + MESSAGE_FONT_SIZE;
+            buttonYOffset += LABEL_INSETS + messageHeight;
             messageV.setFrame(new CGRect(FRAME_SIZE + INSETS + x,
                     LABEL_INSETS + messageYOffset + y, buttonSize != 2 ? FULL_BUTTON_WIDTH
-                            : 2 * (SMALL_BUTTON_WIDTH + INSETS), MESSAGE_FONT_SIZE));
+                            : 2 * (SMALL_BUTTON_WIDTH + INSETS), messageHeight));
         }
 
         // Compute buttons' boundaries
