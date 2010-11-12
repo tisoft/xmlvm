@@ -29,6 +29,7 @@ import org.xmlvm.iphone.NSString;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UIImage;
 
+import android.graphics.Paint.Style;
 import android.graphics.drawable.BitmapDrawable;
 import android.internal.Assert;
 import org.xmlvm.iphone.UIGraphics;
@@ -136,22 +137,20 @@ public class Canvas {
         float width = right - left;
         float height = bottom - top;
         CGRect rect = new CGRect(left, top, width, height);
-        //xmlvmSetCGContextPaintParameters(paint);
+        // xmlvmSetCGContextPaintParameters(paint);
         float[] color = paint.xmlvmGetColor();
         context.setStrokeColor(color);
         context.setFillColor(color);
         context.setShouldAntialias(paint.isAntiAlias());
-        switch (paint.getStyle()) {
-        case FILL:
+        Paint.Style style = paint.getStyle();
+        if (style == null || style == Style.FILL) {
             context.fillRect(rect);
-            break;
-        case STROKE:
+        } else if (style == Style.STROKE) {
             context.strokeRect(rect);
-            break;
-        case FILL_AND_STROKE:
+        } else {
+            // FILL_AND_STROKE:
             context.fillRect(rect);
             context.strokeRect(rect);
-            break;
         }
         context.restoreState();
         releaseCGContext();
