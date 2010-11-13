@@ -24,16 +24,21 @@
 //----------------------------------------------------------------------------
 @implementation UIActivityIndicatorView (cat_org_xmlvm_iphone_UIActivityIndicatorView)
 
+- (id) init
+{
+	return [self initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+}
+
 - (void) __init_org_xmlvm_iphone_UIActivityIndicatorView__
 {
 	// Either this, or set activityIndicatorViewStyle and size accordingly
-	[self initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+	self.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
 }
 
 - (void) __init_org_xmlvm_iphone_UIActivityIndicatorView___int :(int)style
 {
 	// Either this, or set activityIndicatorViewStyle and size accordingly
-	[self initWithActivityIndicatorStyle:style];
+	[self setActivityIndicatorViewStyle___int:style];
 }
 
 - (void) setActivityIndicatorViewStyle___int :(int) style

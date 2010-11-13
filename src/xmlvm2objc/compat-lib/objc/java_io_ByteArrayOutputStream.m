@@ -32,14 +32,14 @@
 
 - (void) __init_java_io_ByteArrayOutputStream__
 {
-	buffer = [NSMutableData dataWithCapacity: DEFAULT_CAPACITY];
-	[buffer retain];
+	buffer = [[NSMutableData alloc] initWithCapacity: DEFAULT_CAPACITY];
+//	[buffer retain];
 }
 
 - (void) __init_java_io_ByteArrayOutputStream___int: (int) size
 {
-	buffer = [NSMutableData dataWithCapacity: size];
-	[buffer retain];
+	buffer = [[NSMutableData alloc] initWithCapacity: size];
+//	[buffer retain];
 }
 
 - (void) write___int:(int)i
@@ -57,14 +57,14 @@
 - (XMLVMArray *) toByteArray__
 {
 	int length = [buffer length];
-	XMLVMArray *result = [XMLVMArray createSingleDimensionWithType: 3 andSize: length];	// byte array
+	XMLVMArray* result = [XMLVMArray createSingleDimensionWithType: 3 andSize: length];	// byte array
 	
-	unsigned char * buf = (unsigned char *) [buffer mutableBytes];
+	unsigned char* buf = (unsigned char *) [buffer mutableBytes];
 	
 	for (int i = 0; i < length; ++i) {
 		result->array.b[i] = *(buf+i); 
 	}
-	[result retain];
+
 	return result;
 }
 

@@ -47,6 +47,11 @@
 
 @implementation UIImageView (cat_org_xmlvm_iphone_UIImageView)
 
+- (id) init
+{
+	return [self initWithImage:nil];
+}
+
 - (void) __init_org_xmlvm_iphone_UIImageView__
 {
 }

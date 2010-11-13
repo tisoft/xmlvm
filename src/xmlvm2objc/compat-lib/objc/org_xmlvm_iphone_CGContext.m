@@ -122,7 +122,9 @@
 - (void) setShadowWithColor___float_float_float_float_ARRAYTYPE: (float) dx :(float) dy :(float) blur_radius :(XMLVMArray*) color
 {
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-	CGContextSetShadowWithColor(context, CGSizeMake(dx, dy), blur_radius, CGColorCreate(colorSpace, color->array.f));
+	CGColorRef colorRef = CGColorCreate(colorSpace, color->array.f);
+	CGContextSetShadowWithColor(context, CGSizeMake(dx, dy), blur_radius, colorRef);
+	CGColorRelease(colorRef);
 	CGColorSpaceRelease(colorSpace);
 }
 

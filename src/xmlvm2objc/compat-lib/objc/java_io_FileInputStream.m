@@ -40,7 +40,9 @@
 - (void) __init_java_io_FileInputStream___java_io_File: (java_io_File*) f 
 {
 	NSFileHandle *fdImpl;
-	fdImpl = [NSFileHandle fileHandleForReadingAtPath: [f getCanonicalPath__]];
+	java_lang_String* path = [f getCanonicalPath__];
+	fdImpl = [NSFileHandle fileHandleForReadingAtPath: path];
+	[path release];
 	if (fdImpl == nil) {
 		java_io_FileNotFoundException* ex = [[java_io_FileNotFoundException alloc] init];
 		@throw ex;

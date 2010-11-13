@@ -142,7 +142,9 @@ static char memberKey; // key for associative reference for member variables
 - (NSInteger) enqueueThreadId
 {
 	NSInteger threadId = (NSInteger)pthread_self();
-	[[[self getMembers] threads] addObject:[[NSNumber alloc] initWithInteger:threadId]];
+	NSNumber* threadIdNumber = [[NSNumber alloc] initWithInteger:threadId];
+	[[[self getMembers] threads] addObject:threadIdNumber];
+	[threadIdNumber release];
 	return threadId;
 }
 

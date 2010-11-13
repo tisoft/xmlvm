@@ -32,7 +32,7 @@
               :(java_lang_Object*) arg
               :(BOOL) waitUntilDone
 {
-	NSMutableString* selectorName = [NSMutableString stringWithString:method];
+	NSMutableString* selectorName = [[NSMutableString alloc] initWithString:method];
 	[selectorName appendString:@"___java_lang_Object:"];
 	SEL selector = NSSelectorFromString(selectorName);
 	
@@ -40,6 +40,7 @@
         performSelectorOnMainThread:selector
         withObject:arg
         waitUntilDone:waitUntilDone];
+	[selectorName release];
 }
 
 - (void) __init_org_xmlvm_iphone_NSObject__

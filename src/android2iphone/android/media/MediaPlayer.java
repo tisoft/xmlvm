@@ -22,6 +22,7 @@ package android.media;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 
 import org.xmlvm.iphone.AVAudioPlayer;
 import org.xmlvm.iphone.AVAudioPlayerDelegate;
@@ -34,10 +35,10 @@ public class MediaPlayer {
 
     class AudioPlayerDelegate implements AVAudioPlayerDelegate {
         
-        private MediaPlayer mediaPlayer;
+        private WeakReference<MediaPlayer> mediaPlayer;
         
         public AudioPlayerDelegate(MediaPlayer mediaPlayer) {
-            this.mediaPlayer = mediaPlayer;
+            this.mediaPlayer = new WeakReference<MediaPlayer>(mediaPlayer);
         }
 
         @Override
@@ -51,7 +52,7 @@ public class MediaPlayer {
         @Override
         public void audioPlayerDidFinishPlaying(AVAudioPlayer player, boolean successfully) {
             if (onCompletionListener != null) {
-                onCompletionListener.onCompletion(mediaPlayer);
+                onCompletionListener.onCompletion(mediaPlayer.get());
             }
         }
 

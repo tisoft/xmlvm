@@ -303,7 +303,7 @@
 		result->array.o[i] = [[chunks objectAtIndex: i] retain];
 	}
 
-	return [result retain];
+	return result;
 }
 
 - (java_lang_String*) trim__ {

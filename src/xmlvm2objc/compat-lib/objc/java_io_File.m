@@ -83,8 +83,9 @@
 		// For relative paths, prepend the base directory of <App>/Documents/
 		// http://developer.apple.com/iphone/library/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/FilesandNetworking/FilesandNetworking.html
 		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-		NSString *documentsDirectory = [paths objectAtIndex:0];
-		path = [[documentsDirectory stringByAppendingFormat:@"/%@", pathname] retain];
+		path = [[NSMutableString alloc] init];
+		[path setString:[paths objectAtIndex:0]];
+		[path appendFormat:@"/%@", pathname];
 	} else {
 		path = [[pathname copyWithZone: NULL] retain];
 	}
@@ -96,7 +97,12 @@
 	[(NSMutableString*)path appendString: [dir getPath__]];
 	[(NSMutableString*)path appendString: _separator];
 	[(NSMutableString*)path appendString: name];
-	[path retain];
+}
+
+- (void) dealloc
+{
+	[path release];
+	[super dealloc];
 }
 
 - (bool) canRead__

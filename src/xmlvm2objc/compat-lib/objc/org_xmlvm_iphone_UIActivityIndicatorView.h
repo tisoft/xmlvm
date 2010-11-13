@@ -27,6 +27,7 @@
 typedef UIActivityIndicatorView org_xmlvm_iphone_UIActivityIndicatorView;
 @interface UIActivityIndicatorView (cat_org_xmlvm_iphone_UIActivityIndicatorView)
 
+- (id) init;
 - (void) __init_org_xmlvm_iphone_UIActivityIndicatorView__;
 - (void) __init_org_xmlvm_iphone_UIActivityIndicatorView___int :(int)style;
 - (void) setActivityIndicatorViewStyle___int :(int) style;
