@@ -95,7 +95,6 @@ public class ContextWrapper extends Context {
     }
 
     public File getFileStreamPath(String name) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return new File(name);
     }
 }
