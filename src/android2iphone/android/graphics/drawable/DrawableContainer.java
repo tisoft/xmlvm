@@ -134,7 +134,7 @@ public class DrawableContainer extends Drawable {
 
     public abstract static class DrawableContainerState extends ConstantState {
         protected static final int      INIT_SIZE            = 10;
-        private final DrawableContainer owner;
+        //private final DrawableContainer owner;
         private boolean                 constantSize         = false;
         private boolean                 computedConstantSize = false;
         private int                     constantWidth;
@@ -148,7 +148,8 @@ public class DrawableContainer extends Drawable {
         protected Drawable[]            drawables            = new Drawable[INIT_SIZE];
 
         DrawableContainerState(DrawableContainerState orig, DrawableContainer owner) {
-            this.owner = owner;
+            //TODO this.owner is not used. If that ever changes, it should be made a WeakReference
+            //this.owner = owner;
             if (orig != null) {
                 Assert.NOT_IMPLEMENTED();
             }
