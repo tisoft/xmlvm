@@ -43,6 +43,7 @@ import android.internal.XMLVMTheme;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,7 @@ public class TextView extends View {
     private static final int INSETS_Y = 0;
 
     protected String         text     = "";
+
 
     public TextView(Context c) {
         super(c);
@@ -208,7 +210,9 @@ public class TextView extends View {
 
         value = attrs.getAttributeValue(null, "textSize");
         if (value != null && value.length() > 0) {
-            int size = Dimension.resolveDimension(value);
+            DisplayMetrics metrics = new DisplayMetrics();
+            metrics.setToDefaults();
+            int size = (int) Dimension.resolveDimension(getContext(), value, metrics);
             setTextSize(size);
         }
 

@@ -43,11 +43,11 @@ import android.internal.Assert;
 import android.internal.Dimension;
 import android.internal.IBinderImpl;
 import android.internal.ViewHandler;
-import android.internal.XMLVMTheme;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.widget.AbsListView;
@@ -422,27 +422,35 @@ public class View {
             }
         }
 
-        int pl = Dimension.resolveDimension(attrs.getAttributeValue(null, "padding"));
+        DisplayMetrics metrics = new DisplayMetrics();
+        metrics.setToDefaults();
+        int pl = (int) Dimension.resolveDimension(getContext(), attrs.getAttributeValue(null,
+                "padding"), metrics);
         pl = pl < 0 ? 0 : pl;
         int pt = pl;
         int pr = pl;
         int pb = pl;
 
-        int d = Dimension.resolveDimension(attrs.getAttributeValue(null, "paddingLeft"));
+        int d = (int) Dimension.resolveDimension(getContext(), attrs.getAttributeValue(null,
+                "paddingLeft"), metrics);
         pl = d > 0 ? d : pl;
 
-        d = Dimension.resolveDimension(attrs.getAttributeValue(null, "paddingTop"));
+        d = (int) Dimension.resolveDimension(getContext(), attrs.getAttributeValue(null,
+                "paddingTop"), metrics);
         pt = d > 0 ? d : pt;
 
-        d = Dimension.resolveDimension(attrs.getAttributeValue(null, "paddingRight"));
+        d = (int) Dimension.resolveDimension(getContext(), attrs.getAttributeValue(null,
+                "paddingRight"), metrics);
         pr = d > 0 ? d : pr;
 
-        d = Dimension.resolveDimension(attrs.getAttributeValue(null, "paddingBottom"));
+        d = (int) Dimension.resolveDimension(getContext(), attrs.getAttributeValue(null,
+                "paddingBottom"), metrics);
         pb = d > 0 ? d : pb;
 
         setPadding(pl, pt, pr, pb);
 
-        d = Dimension.resolveDimension(attrs.getAttributeValue(null, "minWidth"));
+        d = (int) Dimension.resolveDimension(getContext(), attrs
+                .getAttributeValue(null, "minWidth"), metrics);
         setMinimumWidth(d);
 
         setIgnoreRequestLayout(false);

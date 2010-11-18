@@ -31,6 +31,7 @@ import android.content.Context;
 import android.internal.Assert;
 import android.internal.Dimension;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 
 /**
  * iPhone implementation of Android's ViewGroup class.
@@ -42,6 +43,7 @@ public class ViewGroup extends View implements ViewParent {
     private List<View>         subViews;
     private Map<Integer, View> xmlvmViewMap;
 
+
     public static class LayoutParams {
         public static final int FILL_PARENT  = -1;
         public static final int WRAP_CONTENT = -2;
@@ -49,12 +51,13 @@ public class ViewGroup extends View implements ViewParent {
         public int              width;
         public int              height;
 
+
         public LayoutParams() {
         }
 
         public LayoutParams(Context context, AttributeSet attrs) {
-            width = sizeFromString(attrs.getAttributeValue(null, "layout_width"), 0);
-            height = sizeFromString(attrs.getAttributeValue(null, "layout_height"), 0);
+            width = sizeFromString(context, attrs.getAttributeValue(null, "layout_width"), 0);
+            height = sizeFromString(context, attrs.getAttributeValue(null, "layout_height"), 0);
         }
 
         public LayoutParams(int width, int height) {
@@ -67,7 +70,7 @@ public class ViewGroup extends View implements ViewParent {
             this.height = source.height;
         }
 
-        private int sizeFromString(String str, int defaultValue) {
+        private int sizeFromString(Context context, String str, int defaultValue) {
             if (str == null || str.length() == 0) {
                 return defaultValue;
             } else if (str.equalsIgnoreCase("wrap_content")) {
@@ -75,11 +78,13 @@ public class ViewGroup extends View implements ViewParent {
             } else if (str.equalsIgnoreCase("fill_parent")) {
                 return FILL_PARENT;
             } else {
-
-                return Dimension.resolveDimension(str);
+                DisplayMetrics metrics = new DisplayMetrics();
+                metrics.setToDefaults();
+                return (int) Dimension.resolveDimension(context, str, metrics);
             }
         }
     }
+
 
     public static class MarginLayoutParams extends LayoutParams {
 
@@ -88,25 +93,31 @@ public class ViewGroup extends View implements ViewParent {
         public int rightMargin;
         public int topMargin;
 
+
         public MarginLayoutParams(Context context, AttributeSet attrs) {
             super(context, attrs);
 
-            int margin = Dimension.resolveDimension(attrs.getAttributeValue(null, "layout_margin"));
+            DisplayMetrics metrics = new DisplayMetrics();
+            metrics.setToDefaults();
+            int margin = (int) Dimension.resolveDimension(context, attrs.getAttributeValue(null,
+                    "layout_margin"), metrics);
             margin = margin < 0 ? 0 : margin;
             setMargins(margin, margin, margin, margin);
 
-            margin = Dimension.resolveDimension(attrs
-                    .getAttributeValue(null, "layout_marginBottom"));
+            margin = (int) Dimension.resolveDimension(context, attrs.getAttributeValue(null,
+                    "layout_marginBottom"), metrics);
             bottomMargin = margin > 0 ? margin : bottomMargin;
 
-            margin = Dimension.resolveDimension(attrs.getAttributeValue(null, "layout_marginLeft"));
+            margin = (int) Dimension.resolveDimension(context, attrs.getAttributeValue(null,
+                    "layout_marginLeft"), metrics);
             leftMargin = margin > 0 ? margin : leftMargin;
 
-            margin = Dimension
-                    .resolveDimension(attrs.getAttributeValue(null, "layout_marginRight"));
+            margin = (int) Dimension.resolveDimension(context, attrs.getAttributeValue(null,
+                    "layout_marginRight"), metrics);
             rightMargin = margin > 0 ? margin : rightMargin;
 
-            margin = Dimension.resolveDimension(attrs.getAttributeValue(null, "layout_marginTop"));
+            margin = (int) Dimension.resolveDimension(context, attrs.getAttributeValue(null,
+                    "layout_marginTop"), metrics);
             topMargin = margin > 0 ? margin : topMargin;
         }
 
@@ -136,7 +147,9 @@ public class ViewGroup extends View implements ViewParent {
         }
     }
 
+
     public static final int PERSISTENT_ANIMATION_CACHE = 1;
+
 
     public ViewGroup(Context c) {
         super(c);

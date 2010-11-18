@@ -49,6 +49,7 @@ class DrawableParser extends NSXMLParserDelegate {
     private Drawable         drawable;
     private int              drawableType       = UNKNOWN_DRAWABLE;
 
+
     public DrawableParser(Context context) {
         this.context = context;
     }
@@ -101,16 +102,22 @@ class DrawableParser extends NSXMLParserDelegate {
             int color = attrs.getAttributeIntValue(null, "color", 0);
             ((GradientDrawable) drawable).setColor(color);
         } else if (elementName.equals("padding")) {
-            int left = Dimension.resolveDimension(attrs.getAttributeValue(null, "left"));
+            DisplayMetrics metrics = new DisplayMetrics();
+            metrics.setToDefaults();
+            int left = (int) Dimension.resolveDimension(context, attrs.getAttributeValue(null,
+                    "left"), metrics);
             left = left < 0 ? 0 : left;
 
-            int top = Dimension.resolveDimension(attrs.getAttributeValue(null, "top"));
+            int top = (int) Dimension.resolveDimension(context, attrs
+                    .getAttributeValue(null, "top"), metrics);
             top = top < 0 ? 0 : top;
 
-            int right = Dimension.resolveDimension(attrs.getAttributeValue(null, "right"));
+            int right = (int) Dimension.resolveDimension(context, attrs.getAttributeValue(null,
+                    "right"), metrics);
             right = right < 0 ? 0 : right;
 
-            int bottom = Dimension.resolveDimension(attrs.getAttributeValue(null, "bottom"));
+            int bottom = (int) Dimension.resolveDimension(context, attrs.getAttributeValue(null,
+                    "bottom"), metrics);
             bottom = bottom < 0 ? 0 : bottom;
 
             ((GradientDrawable) drawable).xmlvmSetPadding(left, top, right, bottom);
@@ -144,6 +151,7 @@ class DrawableParser extends NSXMLParserDelegate {
     }
 }
 
+
 class XMLResourceParser extends NSXMLParserDelegate {
 
     private Context              context;
@@ -154,6 +162,7 @@ class XMLResourceParser extends NSXMLParserDelegate {
     private StringBuffer         currentCDATA;
     private ArrayList<String>    currentStringArrayValue;
     private DisplayMetrics       metrics;
+
 
     public XMLResourceParser(Context context, Map<String, Integer> nameToIdMap,
             Map<Integer, Object> resourceMap) {
@@ -205,7 +214,8 @@ class XMLResourceParser extends NSXMLParserDelegate {
             String qualifiedName) {
         if (!resourceMap.containsKey(currentId)) {
             if (qualifiedName.equals("dimen")) {
-                Float f = new Float(Dimension.resolveDimension(currentCDATA.toString(), metrics));
+                Float f = new Float(Dimension.resolveDimension(context, currentCDATA.toString(),
+                        metrics));
                 resourceMap.put(currentId, f);
             } else if (qualifiedName.equals("string")) {
                 resourceMap.put(currentId, currentCDATA.toString());
@@ -238,6 +248,7 @@ class XMLResourceParser extends NSXMLParserDelegate {
         }
     }
 }
+
 
 public class ResourceParser {
 
