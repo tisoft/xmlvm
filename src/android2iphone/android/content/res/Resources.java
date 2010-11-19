@@ -20,6 +20,7 @@
 
 package android.content.res;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -47,48 +48,55 @@ import android.util.Log;
 public class Resources {
 
     /** Filename prefix used for IOS specific resources. */
-    private static final String         IOS_PREFIX      = "_ios_";
+    private static final String         IOS_PREFIX               = "_ios_";
 
     /** The name of the directory holding the application's resources. */
-    private static final String         RES_DIR         = "res";
+    private static final String         RES_DIR                  = "res";
 
     /** The device's configuration */
-    private Configuration               configuration   = null;
+    private Configuration               configuration            = null;
 
     /** The device's density. */
-    private int                         density         = Density.DENSITY_UNDEFINED;
+    private int                         density                  = Density.DENSITY_UNDEFINED;
+
+    /**
+     * UIImages whose size (in bytes) is less than this threshold will be
+     * cached.
+     */
+    final private static long           DRAWABLE_CACHE_THRESHOLD = 50000;
 
     /**
      * The cached folders to search for values resources (string, dimensions,
      * ...).
      */
-    private List<String>                valuesFolders   = null;
+    private List<String>                valuesFolders            = null;
 
     /** The cached folders to search for layout resources. */
-    private List<String>                layoutFolders   = null;
+    private List<String>                layoutFolders            = null;
 
     /** The cached folders to search for drawable resources. */
-    private List<String>                drawableFolders = null;
+    private List<String>                drawableFolders          = null;
 
     /** A map holding the mapping from IDs to variable names. */
-    private Map<Integer, String>        idToNameMap     = new HashMap<Integer, String>();
+    private Map<Integer, String>        idToNameMap              = new HashMap<Integer, String>();
 
     /** A map holding the mapping from variable names to IDs. */
-    private Map<String, Integer>        nameToIdMap     = new HashMap<String, Integer>();
+    private Map<String, Integer>        nameToIdMap              = new HashMap<String, Integer>();
 
     /** A map holding the mapping from resourceId to Drawable. */
-    private Map<Integer, Drawable>      drawableMap     = new HashMap<Integer, Drawable>();
+    private Map<Integer, Drawable>      drawableMap              = new HashMap<Integer, Drawable>();
 
     /**
      * A map holding the mapping from resourceId to NSData (representing the
      * content of the XML layout file).
      */
-    private static Map<Integer, NSData> layoutMap       = new HashMap<Integer, NSData>();
+    private static Map<Integer, NSData> layoutMap                = new HashMap<Integer, NSData>();
 
     /** A map holding all resources which can be read from the values folders. */
-    private static Map<Integer, Object> resourceMap     = null;
+    private static Map<Integer, Object> resourceMap              = null;
 
     private WeakReference<Context>      context;
+
 
     public Resources(Context context) {
         this.context = new WeakReference<Context>(context);
@@ -122,13 +130,20 @@ public class Resources {
                     if (type.equals("xml")) {
                         d = ResourceParser.parseDrawable(getContext(), RES_DIR + "/" + folder + "/"
                                 + resourceName);
+                        drawableMap.put(new Integer(resourceId), d);
                     } else {
-                        UIImage image = UIImage.imageNamed(RES_DIR + "/" + folder
-                                + "/" + resourceName + ".png");
+                        String path = NSBundle.mainBundle().bundlePath() + "/" + RES_DIR + "/"
+                                + folder + "/" + resourceName + ".png";
+                        UIImage image = UIImage.imageWithContentsOfFile(path);
+                        // UIImage image = UIImage.imageNamed(RES_DIR + "/" +
+                        // folder
+                        // + "/" + resourceName + ".png");
                         d = BitmapDrawable.xmlvmCreateWithImage(image);
+                        File f = new File(path);
+                        if (f.length() < DRAWABLE_CACHE_THRESHOLD) {
+                            drawableMap.put(new Integer(resourceId), d);
+                        }
                     }
-
-                    drawableMap.put(new Integer(resourceId), d);
                     break;
                 }
             }
@@ -148,7 +163,6 @@ public class Resources {
 
         return null;
     }
-
 
     public NSData getLayout(int resourceId) {
         NSData theFile = layoutMap.get(new Integer(resourceId));
