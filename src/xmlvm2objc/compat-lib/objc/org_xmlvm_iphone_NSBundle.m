@@ -32,7 +32,11 @@
 - (java_lang_String*) pathForResource___java_lang_String_java_lang_String: (java_lang_String*) resource
                                                                          : (java_lang_String*) type
 {
-	return_XMLVM(pathForResource: resource ofType: (type == JAVA_NULL ? nil : type))
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	id path = [self pathForResource: resource ofType: (type == JAVA_NULL ? nil : type)];
+	[path retain];
+	[pool release];
+	return path == nil ? JAVA_NULL : path;
 }
 
 - (java_lang_String*) pathForResource___java_lang_String_java_lang_String_java_lang_String
@@ -40,7 +44,11 @@
                                                                          : (java_lang_String*) type
                                                                          : (java_lang_String*) directory
 {
-	return_XMLVM(pathForResource: resource ofType: (type == JAVA_NULL ? nil : type) inDirectory: (directory == JAVA_NULL ? nil : directory))
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	id path = [self pathForResource: resource ofType: (type == JAVA_NULL ? nil : type) inDirectory: (directory == JAVA_NULL ? nil : directory)];
+	[path retain];
+	[pool release];
+	return path == nil ? JAVA_NULL : path;
 }
 
 - (NSString*) bundlePath__

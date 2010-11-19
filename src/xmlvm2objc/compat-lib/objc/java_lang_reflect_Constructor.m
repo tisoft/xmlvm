@@ -47,6 +47,7 @@
 {
 	int i;
 	
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	NSObject* obj = (NSObject*) class_createInstance(clazz->clazz, class_getInstanceSize(clazz->clazz));
 	[obj init];
 	// Call constructor
@@ -63,6 +64,7 @@
 	}
 	
 	[inv invoke];
+	[pool release];
 	return obj;
 }
 

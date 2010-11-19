@@ -41,15 +41,17 @@
 {
 	NSFileHandle *fdImpl;
 	java_lang_String* path = [f getCanonicalPath__];
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	fdImpl = [NSFileHandle fileHandleForReadingAtPath: path];
 	[path release];
 	if (fdImpl == nil) {
+		[pool release];
 		java_io_FileNotFoundException* ex = [[java_io_FileNotFoundException alloc] init];
 		@throw ex;
 	}
 	self->fd = [[java_io_FileDescriptor alloc] init];
 	[fd __init_java_io_FileDescriptor___NSFileHandle: fdImpl];
-	[fdImpl release];
+	[pool release];
 }
 
 - (void) dealloc

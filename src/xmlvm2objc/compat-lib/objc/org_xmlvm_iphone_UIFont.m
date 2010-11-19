@@ -31,17 +31,29 @@
 
 + (UIFont*) systemFontOfSize___float: (float)size
 {
-	return_XMLVM_SELECTOR(UIFont systemFontOfSize:size)
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	id font = [UIFont systemFontOfSize:size];
+	[font retain];
+	[pool release];
+	return font;
 }
 
 + (UIFont*) boldSystemFontOfSize___float: (float)size
 {
-	return_XMLVM_SELECTOR(UIFont boldSystemFontOfSize:size)
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	id font = [UIFont boldSystemFontOfSize:size];
+	[font retain];
+	[pool release];
+	return font;
 }
 
 + (UIFont*) italicSystemFontOfSize___float: (float)size
 {
-	return_XMLVM_SELECTOR(UIFont italicSystemFontOfSize:size)
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	id font = [UIFont italicSystemFontOfSize:size];
+	[font retain];
+	[pool release];
+	return font;
 }
 
 + (float) buttonFontSize__

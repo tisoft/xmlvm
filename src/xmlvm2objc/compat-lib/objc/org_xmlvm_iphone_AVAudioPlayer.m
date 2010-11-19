@@ -99,6 +99,7 @@
 	NSData* data = [fileHandle readDataOfLength: length];
 	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData: data error: &(outError->error_org_xmlvm_iphone_NSError)];
 	[outError->error_org_xmlvm_iphone_NSError retain];
+	[fileHandle release];
 	return XMLVM_VALUE(player);
 }
 

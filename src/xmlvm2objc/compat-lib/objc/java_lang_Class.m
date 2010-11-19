@@ -48,6 +48,7 @@
 
 - (java_lang_String*) getName__
 {
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	NSMutableString* mangledName = [NSMutableString stringWithCString: class_getName(clazz) encoding: NSASCIIStringEncoding];
 	if ([mangledName isEqualToString:@"NSCFString"]) {
 		mangledName = @"java_lang_String";
@@ -59,11 +60,13 @@
 	// Java-based simple name in some global data structure.
 	NSMutableString* simpleName = [mangledName stringByReplacingOccurrencesOfString: @"_" withString: @"."];
 	[simpleName retain];
+	[pool release];
 	return simpleName;
 }
 
 - (NSObject*) newInstance__
 {
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	// Instantiate object
 	NSObject* obj = (NSObject*) class_createInstance(clazz, class_getInstanceSize(clazz));
 	[obj init];
@@ -78,21 +81,25 @@
 	[inv setTarget: obj];
 	[inv setSelector: sel];
 	[inv invoke];
+	[pool release];
 	return obj;
 }
 
 + (java_lang_Class*) forName___java_lang_String :(java_lang_String*) className;
 {
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	NSString* mangledName = [className stringByReplacingOccurrencesOfString: @"." withString: @"_"];
 	mangledName = [mangledName stringByReplacingOccurrencesOfString: @"$" withString: @"_"];
 	Class theClass = NSClassFromString(mangledName);
 	if (theClass == nil) {
+		[pool release];
 		java_lang_ClassNotFoundException* ex = [[java_lang_ClassNotFoundException alloc] init];
 		[ex __init_java_lang_ClassNotFoundException__];
 		@throw ex;
 	}
 	java_lang_Class* classWrapper = [[java_lang_Class alloc] init];
 	classWrapper->clazz = theClass;
+	[pool release];
 	return classWrapper;
 }
 
@@ -100,26 +107,30 @@
 {
 	unsigned int count, field_count, i;
 
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     Method* m = class_copyMethodList(object_getClass(clazz), &count);
 	field_count = 0;
 	for (i = 0; i < count; i++) {
-		NSString* name = [NSString stringWithCString: sel_getName(method_getName(m[i])) encoding: NSASCIIStringEncoding];
+		NSString* name = [[NSString alloc] initWithCString: sel_getName(method_getName(m[i])) encoding: NSASCIIStringEncoding];
 		if ([name hasPrefix: @"_GET_"]) {
 			field_count++;
 		}
+		[name release];
 	}
 	XMLVMArray* fields = [XMLVMArray createSingleDimensionWithType:0 andSize:field_count];
 	int idx = 0;
 	for (i = 0; i < count; i++) {
-		NSString* name = [NSString stringWithCString: sel_getName(method_getName(m[i])) encoding: NSASCIIStringEncoding];
+		NSString* name = [[NSString alloc] initWithCString: sel_getName(method_getName(m[i])) encoding: NSASCIIStringEncoding];
 		if ([name hasPrefix: @"_GET_"]) {
 			NSString* fieldName = [name substringFromIndex: 5];
 			// TODO the isStatic: TRUE is not necessarily true. We also return instance members here
             java_lang_reflect_Field* f = [[java_lang_reflect_Field alloc] initWithName: fieldName isStatic: TRUE];
 			fields->array.o[idx++] = f;
 		}
+		[name release];
 	}
     free(m);
+    [pool release];
 	return fields;
 }
 
@@ -129,7 +140,9 @@
 
 	NSMutableString* mangledConstructorName = [[NSMutableString alloc] init];
 	[mangledConstructorName appendString: @"__init_"];
-	[mangledConstructorName appendString: [NSMutableString stringWithCString: class_getName(clazz) encoding: NSASCIIStringEncoding]];
+	NSMutableString* name = [[NSMutableString alloc] initWithCString: class_getName(clazz) encoding: NSASCIIStringEncoding];
+	[mangledConstructorName appendString: name];
+	[name release];
 	[mangledConstructorName appendString: @"__"];
 	
 	for (i = 0; i < [signature count]; i++) {

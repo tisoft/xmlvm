@@ -41,12 +41,14 @@
 
 + (org_xmlvm_iphone_UIImage*) imageWithContentsOfFile___java_lang_String :(java_lang_String*)path
 {
-	return_XMLVM_SELECTOR(UIImage imageWithContentsOfFile:path)
+	return [[UIImage alloc] initWithContentsOfFile:path];
+	//return_XMLVM_SELECTOR(UIImage imageWithContentsOfFile:path)
 }
 
 + (org_xmlvm_iphone_UIImage*) imageWithData___org_xmlvm_iphone_NSData: (org_xmlvm_iphone_NSData*) data
 {
-	return_XMLVM_SELECTOR(UIImage imageWithData:data)
+	return [[UIImage alloc] initWithData:data];
+	//return_XMLVM_SELECTOR(UIImage imageWithData:data)
 }
 
 - (org_xmlvm_iphone_UIImage*) stretchableImage___int_int :(int)leftCapWidth :(int)topCapHeight

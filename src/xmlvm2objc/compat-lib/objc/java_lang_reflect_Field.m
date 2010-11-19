@@ -56,10 +56,11 @@
 {
 	int val = 0;
 	if (isStatic) {
-		NSMutableString* mangledFieldName = [NSMutableString stringWithString: @"_GET_"];
+		NSMutableString* mangledFieldName = [[NSMutableString alloc] initWithString: @"_GET_"];
 		[mangledFieldName appendString: name];
 		SEL sel = NSSelectorFromString(mangledFieldName);
 		val = (int) [((java_lang_Class*) obj)->clazz performSelector: sel];
+		[mangledFieldName release];
 	} else {
 		// TODO non-static fields
 	}
