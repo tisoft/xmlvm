@@ -1,7 +1,4 @@
-#include "org_xmlvm_iphone_UIImage.h"
 #include "org_xmlvm_iphone_CGPoint.h"
-#include "org_xmlvm_iphone_CGLayer.h"
-#include "org_xmlvm_iphone_CGSize.h"
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_CGImage.h"
 #include "org_xmlvm_iphone_CGFont.h"
@@ -43,24 +40,36 @@ void __INIT_org_xmlvm_iphone_CGContext()
     __CLASS_org_xmlvm_iphone_CGContext.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setAlpha___float;
     __CLASS_org_xmlvm_iphone_CGContext.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setFont___org_xmlvm_iphone_CGFont;
     __CLASS_org_xmlvm_iphone_CGContext.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setFontSize___float;
-    __CLASS_org_xmlvm_iphone_CGContext.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_ARRAYTYPE;
-    __CLASS_org_xmlvm_iphone_CGContext.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_showTextAtPoint___float_float_java_lang_String;
-    __CLASS_org_xmlvm_iphone_CGContext.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_showText___java_lang_String;
-    __CLASS_org_xmlvm_iphone_CGContext.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_storeState__;
-    __CLASS_org_xmlvm_iphone_CGContext.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_restoreState__;
-    __CLASS_org_xmlvm_iphone_CGContext.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_getClip__;
-    __CLASS_org_xmlvm_iphone_CGContext.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_getTextPosition__;
-    __CLASS_org_xmlvm_iphone_CGContext.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setTextDrawingMode___int;
-    __CLASS_org_xmlvm_iphone_CGContext.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage;
-    __CLASS_org_xmlvm_iphone_CGContext.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_drawLayer___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGLayer;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setShouldAntialias___boolean;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_ARRAYTYPE;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_showTextAtPoint___float_float_java_lang_String;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_showText___java_lang_String;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_storeState__;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_restoreState__;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_getClip__;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_getTextPosition__;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setTextDrawingMode___int;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[36] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_beginPath__;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[37] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_moveToPoint___float_float;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[38] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_addLineToPoint___float_float;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[39] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_drawPath___int;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[40] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setLineCap___int;
+    __CLASS_org_xmlvm_iphone_CGContext.vtable[41] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_strokePath__;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_CGContext.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_CGContext.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
     _STATIC_org_xmlvm_iphone_CGContext_kCGTextInvisible = 1;
     _STATIC_org_xmlvm_iphone_CGContext_kCGTextFill = 2;
 
-    org_xmlvm_iphone_CGContext___CLINIT_();
+
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGContext]
+    //XMLVM_END_WRAPPER
+}
+
+GC_CALLBACK __DELETE_org_xmlvm_iphone_CGContext(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_CGContext]
     //XMLVM_END_WRAPPER
 }
 
@@ -71,6 +80,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_CGContext()
     me->__class = &__CLASS_org_xmlvm_iphone_CGContext;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGContext]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_CGContext);
     return me;
 }
 
@@ -78,12 +89,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGContext()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_CGContext(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_CGContext]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_CGContext_GET_kCGTextInvisible()
@@ -108,31 +113,6 @@ void org_xmlvm_iphone_CGContext_PUT_kCGTextFill(JAVA_INT v)
 {
     if (!__CLASS_org_xmlvm_iphone_CGContext.classInitialized) __INIT_org_xmlvm_iphone_CGContext();
     _STATIC_org_xmlvm_iphone_CGContext_kCGTextFill = v;
-}
-
-void org_xmlvm_iphone_CGContext___CLINIT_()
-{
-    if (!__CLASS_org_xmlvm_iphone_CGContext.classInitialized) __INIT_org_xmlvm_iphone_CGContext();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext___CLINIT___]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_CGContext___INIT____org_xmlvm_iphone_UIImage(JAVA_OBJECT me, JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext___INIT____org_xmlvm_iphone_UIImage]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-JAVA_OBJECT org_xmlvm_iphone_CGContext_UICurrentContext__()
-{
-    if (!__CLASS_org_xmlvm_iphone_CGContext.classInitialized) __INIT_org_xmlvm_iphone_CGContext();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_UICurrentContext__]
-	org_xmlvm_iphone_CGContext *toRet = __NEW_org_xmlvm_iphone_CGContext();
-	toRet->org_xmlvm_iphone_CGContext.ocContext = UIGraphicsGetCurrentContext();
-	return toRet;
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_CGContext_setFillColor___float_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1)
@@ -224,6 +204,13 @@ void org_xmlvm_iphone_CGContext_setFontSize___float(JAVA_OBJECT me, JAVA_FLOAT n
     //XMLVM_END_WRAPPER
 }
 
+void org_xmlvm_iphone_CGContext_setShouldAntialias___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setShouldAntialias___boolean]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
 void org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_ARRAYTYPE(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_OBJECT n4)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_ARRAYTYPE]
@@ -287,33 +274,44 @@ void org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_ip
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_CGContext_drawLayer___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGLayer(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+void org_xmlvm_iphone_CGContext_beginPath__(JAVA_OBJECT me)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_drawLayer___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGLayer]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_beginPath__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_CGContext_UIGraphicsBeginImageContext___org_xmlvm_iphone_CGSize(JAVA_OBJECT n1)
+void org_xmlvm_iphone_CGContext_moveToPoint___float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
-    if (!__CLASS_org_xmlvm_iphone_CGContext.classInitialized) __INIT_org_xmlvm_iphone_CGContext();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_UIGraphicsBeginImageContext___org_xmlvm_iphone_CGSize]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_moveToPoint___float_float]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_CGContext_UIGraphicsGetImageFromCurrentImageContext__()
+void org_xmlvm_iphone_CGContext_addLineToPoint___float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
-    if (!__CLASS_org_xmlvm_iphone_CGContext.classInitialized) __INIT_org_xmlvm_iphone_CGContext();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_UIGraphicsGetImageFromCurrentImageContext__]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_addLineToPoint___float_float]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_CGContext_UIGraphicsEndImageContext__()
+void org_xmlvm_iphone_CGContext_drawPath___int(JAVA_OBJECT me, JAVA_INT n1)
 {
-    if (!__CLASS_org_xmlvm_iphone_CGContext.classInitialized) __INIT_org_xmlvm_iphone_CGContext();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_UIGraphicsEndImageContext__]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_drawPath___int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CGContext_setLineCap___int(JAVA_OBJECT me, JAVA_INT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setLineCap___int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CGContext_strokePath__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_strokePath__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

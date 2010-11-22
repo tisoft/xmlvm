@@ -35,6 +35,12 @@ void __INIT_org_xmlvm_iphone_UIBarButtonItemStyle()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIBarButtonItemStyle(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIBarButtonItemStyle]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIBarButtonItemStyle()
 {
     if (!__CLASS_org_xmlvm_iphone_UIBarButtonItemStyle.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonItemStyle();
@@ -42,6 +48,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIBarButtonItemStyle()
     me->__class = &__CLASS_org_xmlvm_iphone_UIBarButtonItemStyle;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIBarButtonItemStyle]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIBarButtonItemStyle);
     return me;
 }
 
@@ -51,12 +59,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIBarButtonItemStyle()
     me = __NEW_org_xmlvm_iphone_UIBarButtonItemStyle();
     org_xmlvm_iphone_UIBarButtonItemStyle___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIBarButtonItemStyle(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIBarButtonItemStyle]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonItemStyle_GET_Plain()

@@ -2,7 +2,7 @@
 #define __ORG_XMLVM_IPHONE_UITABLEVIEW__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
+#include "org_xmlvm_iphone_UIScrollView.h"
 
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
@@ -12,6 +12,10 @@ XMLVM_FORWARD_DECL(java_util_ArrayList)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableViewCell)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIScrollView)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
@@ -37,19 +41,15 @@ XMLVM_FORWARD_DECL(java_lang_String)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSIndexPath)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
-#endif
 // Class declarations for org.xmlvm.iphone.UITableView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableView, 89)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableView, 111)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableView
 //XMLVM_END_MEMBERS
 
 #define __INSTANCE_MEMBERS_org_xmlvm_iphone_UITableView \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIView; \
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollView; \
     struct { \
         __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableView \
     } org_xmlvm_iphone_UITableView
@@ -63,72 +63,75 @@ struct org_xmlvm_iphone_UITableView {
 typedef struct org_xmlvm_iphone_UITableView org_xmlvm_iphone_UITableView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableView 89
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setDataSource___org_xmlvm_iphone_UITableViewDataSource 69
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_getTableViewDataSource__ 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setDelegate___org_xmlvm_iphone_UITableViewDelegate 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_getDelegate__ 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_dequeueReusableCellWithIdentifier___java_lang_String 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_ArrayList_boolean 74
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_reloadData__ 75
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_ArrayList_int 76
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean 77
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_getSeparatorColor__ 78
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setSeparatorColor___org_xmlvm_iphone_UIColor 79
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_getSeparatorStyle__ 80
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setSeparatorStyle___int 81
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_isAllowsSelection__ 82
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setAllowsSelection___boolean 83
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_isEditing__ 84
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setEditing___boolean 85
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setEditing___boolean_boolean 86
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_getRowHeight__ 87
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setRowHeight___float 88
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableView 111
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setDataSource___org_xmlvm_iphone_UITableViewDataSource 90
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_getTableViewDataSource__ 91
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setDelegate___org_xmlvm_iphone_UITableViewDelegate 92
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_getTableViewDelegate__ 93
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_getDataSource__ 94
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_dequeueReusableCellWithIdentifier___java_lang_String 95
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_ArrayList_boolean 96
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_reloadData__ 97
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_ArrayList_int 98
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean 99
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_getSeparatorColor__ 100
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setSeparatorColor___org_xmlvm_iphone_UIColor 101
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_getSeparatorStyle__ 102
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setSeparatorStyle___int 103
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_isAllowsSelection__ 104
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setAllowsSelection___boolean 105
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_isEditing__ 106
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setEditing___boolean 107
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setEditing___boolean_boolean 108
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_getRowHeight__ 109
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setRowHeight___float 110
 
 void __INIT_org_xmlvm_iphone_UITableView();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableView();
 void org_xmlvm_iphone_UITableView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UITableView___INIT____org_xmlvm_iphone_CGRect_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
-// Vtable index: 69
+// Vtable index: 90
 void org_xmlvm_iphone_UITableView_setDataSource___org_xmlvm_iphone_UITableViewDataSource(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 70
+// Vtable index: 91
 JAVA_OBJECT org_xmlvm_iphone_UITableView_getTableViewDataSource__(JAVA_OBJECT me);
-// Vtable index: 71
+// Vtable index: 92
 void org_xmlvm_iphone_UITableView_setDelegate___org_xmlvm_iphone_UITableViewDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 72
-JAVA_OBJECT org_xmlvm_iphone_UITableView_getDelegate__(JAVA_OBJECT me);
-// Vtable index: 73
+// Vtable index: 93
+JAVA_OBJECT org_xmlvm_iphone_UITableView_getTableViewDelegate__(JAVA_OBJECT me);
+// Vtable index: 94
+JAVA_OBJECT org_xmlvm_iphone_UITableView_getDataSource__(JAVA_OBJECT me);
+// Vtable index: 95
 JAVA_OBJECT org_xmlvm_iphone_UITableView_dequeueReusableCellWithIdentifier___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 74
+// Vtable index: 96
 void org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_ArrayList_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
-// Vtable index: 75
+// Vtable index: 97
 void org_xmlvm_iphone_UITableView_reloadData__(JAVA_OBJECT me);
-// Vtable index: 76
+// Vtable index: 98
 void org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_ArrayList_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
-// Vtable index: 77
+// Vtable index: 99
 void org_xmlvm_iphone_UITableView_deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
-// Vtable index: 78
+// Vtable index: 100
 JAVA_OBJECT org_xmlvm_iphone_UITableView_getSeparatorColor__(JAVA_OBJECT me);
-// Vtable index: 79
+// Vtable index: 101
 void org_xmlvm_iphone_UITableView_setSeparatorColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 80
+// Vtable index: 102
 JAVA_INT org_xmlvm_iphone_UITableView_getSeparatorStyle__(JAVA_OBJECT me);
-// Vtable index: 81
+// Vtable index: 103
 void org_xmlvm_iphone_UITableView_setSeparatorStyle___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 82
+// Vtable index: 104
 JAVA_BOOLEAN org_xmlvm_iphone_UITableView_isAllowsSelection__(JAVA_OBJECT me);
-// Vtable index: 83
+// Vtable index: 105
 void org_xmlvm_iphone_UITableView_setAllowsSelection___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 84
+// Vtable index: 106
 JAVA_BOOLEAN org_xmlvm_iphone_UITableView_isEditing__(JAVA_OBJECT me);
-// Vtable index: 85
+// Vtable index: 107
 void org_xmlvm_iphone_UITableView_setEditing___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 86
+// Vtable index: 108
 void org_xmlvm_iphone_UITableView_setEditing___boolean_boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1, JAVA_BOOLEAN n2);
-// Vtable index: 87
+// Vtable index: 109
 JAVA_FLOAT org_xmlvm_iphone_UITableView_getRowHeight__(JAVA_OBJECT me);
-// Vtable index: 88
+// Vtable index: 110
 void org_xmlvm_iphone_UITableView_setRowHeight___float(JAVA_OBJECT me, JAVA_FLOAT n1);
 
 #endif

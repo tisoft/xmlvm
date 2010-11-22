@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(java_util_Set)
 #endif
 // Class declarations for org.xmlvm.iphone.UIResponder
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIResponder, 20)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIResponder, 21)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder
@@ -44,13 +44,14 @@ struct org_xmlvm_iphone_UIResponder {
 typedef struct org_xmlvm_iphone_UIResponder org_xmlvm_iphone_UIResponder;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIResponder 20
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIResponder 21
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent 14
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent 15
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 16
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent 17
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_getNextResponder__ 18
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_resignFirstResponder__ 19
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_becomeFirstResponder__ 20
 
 void __INIT_org_xmlvm_iphone_UIResponder();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIResponder();
@@ -68,5 +69,7 @@ void org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_
 JAVA_OBJECT org_xmlvm_iphone_UIResponder_getNextResponder__(JAVA_OBJECT me);
 // Vtable index: 19
 JAVA_BOOLEAN org_xmlvm_iphone_UIResponder_resignFirstResponder__(JAVA_OBJECT me);
+// Vtable index: 20
+JAVA_BOOLEAN org_xmlvm_iphone_UIResponder_becomeFirstResponder__(JAVA_OBJECT me);
 
 #endif

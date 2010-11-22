@@ -51,6 +51,12 @@ void __INIT_org_xmlvm_iphone_UIReturnKeyType()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIReturnKeyType(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIReturnKeyType]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIReturnKeyType()
 {
     if (!__CLASS_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
@@ -58,6 +64,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIReturnKeyType()
     me->__class = &__CLASS_org_xmlvm_iphone_UIReturnKeyType;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIReturnKeyType]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIReturnKeyType);
     return me;
 }
 
@@ -67,12 +75,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIReturnKeyType()
     me = __NEW_org_xmlvm_iphone_UIReturnKeyType();
     org_xmlvm_iphone_UIReturnKeyType___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIReturnKeyType(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIReturnKeyType]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_UIReturnKeyType_GET_Default()

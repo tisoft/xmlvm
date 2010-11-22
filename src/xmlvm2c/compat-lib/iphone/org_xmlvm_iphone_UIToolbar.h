@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(java_util_ArrayList)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 // Class declarations for org.xmlvm.iphone.UIToolbar
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIToolbar, 79)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIToolbar, 82)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIToolbar
@@ -39,24 +39,24 @@ struct org_xmlvm_iphone_UIToolbar {
 typedef struct org_xmlvm_iphone_UIToolbar org_xmlvm_iphone_UIToolbar;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIToolbar 79
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIToolbar_getItems__ 76
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIToolbar_setItems___java_util_ArrayList 77
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIToolbar_setItems___java_util_ArrayList_boolean 78
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIToolbar_updateViews__ 69
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIToolbar 82
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIToolbar_getItems__ 79
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIToolbar_setItems___java_util_ArrayList 80
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIToolbar_setItems___java_util_ArrayList_boolean 81
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIToolbar_updateViews__ 72
 
 void __INIT_org_xmlvm_iphone_UIToolbar();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIToolbar();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIToolbar();
 void org_xmlvm_iphone_UIToolbar___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIToolbar___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 76
+// Vtable index: 79
 JAVA_OBJECT org_xmlvm_iphone_UIToolbar_getItems__(JAVA_OBJECT me);
-// Vtable index: 77
+// Vtable index: 80
 void org_xmlvm_iphone_UIToolbar_setItems___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 78
+// Vtable index: 81
 void org_xmlvm_iphone_UIToolbar_setItems___java_util_ArrayList_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
-// Vtable index: 69
+// Vtable index: 72
 void org_xmlvm_iphone_UIToolbar_updateViews__(JAVA_OBJECT me);
 
 #endif

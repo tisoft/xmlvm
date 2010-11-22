@@ -51,6 +51,12 @@ void __INIT_org_xmlvm_iphone_UINavigationItem()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UINavigationItem(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UINavigationItem]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationItem()
 {
     if (!__CLASS_org_xmlvm_iphone_UINavigationItem.classInitialized) __INIT_org_xmlvm_iphone_UINavigationItem();
@@ -58,6 +64,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationItem()
     me->__class = &__CLASS_org_xmlvm_iphone_UINavigationItem;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UINavigationItem]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UINavigationItem);
     return me;
 }
 
@@ -65,12 +73,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UINavigationItem()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UINavigationItem]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UINavigationItem___INIT____java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
@@ -206,10 +208,10 @@ void org_xmlvm_iphone_UINavigationItem_setTitleView___org_xmlvm_iphone_UIView(JA
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_access$0___org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT n1)
+JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_access$000___org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT n1)
 {
     if (!__CLASS_org_xmlvm_iphone_UINavigationItem.classInitialized) __INIT_org_xmlvm_iphone_UINavigationItem();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationItem_access$0___org_xmlvm_iphone_UINavigationItem]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationItem_access$000___org_xmlvm_iphone_UINavigationItem]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

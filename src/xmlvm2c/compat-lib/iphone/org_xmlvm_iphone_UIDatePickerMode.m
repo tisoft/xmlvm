@@ -37,6 +37,12 @@ void __INIT_org_xmlvm_iphone_UIDatePickerMode()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIDatePickerMode(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIDatePickerMode]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDatePickerMode()
 {
     if (!__CLASS_org_xmlvm_iphone_UIDatePickerMode.classInitialized) __INIT_org_xmlvm_iphone_UIDatePickerMode();
@@ -44,6 +50,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDatePickerMode()
     me->__class = &__CLASS_org_xmlvm_iphone_UIDatePickerMode;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIDatePickerMode]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIDatePickerMode);
     return me;
 }
 
@@ -53,12 +61,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIDatePickerMode()
     me = __NEW_org_xmlvm_iphone_UIDatePickerMode();
     org_xmlvm_iphone_UIDatePickerMode___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIDatePickerMode(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIDatePickerMode]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_UIDatePickerMode_GET_Time()

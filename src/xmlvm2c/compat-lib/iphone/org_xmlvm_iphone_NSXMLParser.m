@@ -37,6 +37,12 @@ void __INIT_org_xmlvm_iphone_NSXMLParser()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_NSXMLParser(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSXMLParser]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSXMLParser()
 {
     if (!__CLASS_org_xmlvm_iphone_NSXMLParser.classInitialized) __INIT_org_xmlvm_iphone_NSXMLParser();
@@ -44,6 +50,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSXMLParser()
     me->__class = &__CLASS_org_xmlvm_iphone_NSXMLParser;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSXMLParser]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSXMLParser);
     return me;
 }
 
@@ -51,12 +59,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSXMLParser()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_NSXMLParser(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSXMLParser]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSXMLParser___INIT____org_xmlvm_iphone_NSData(JAVA_OBJECT me, JAVA_OBJECT n1)

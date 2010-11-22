@@ -33,6 +33,12 @@ void __INIT_org_xmlvm_iphone_NSBundle()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_NSBundle(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSBundle]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSBundle()
 {
     if (!__CLASS_org_xmlvm_iphone_NSBundle.classInitialized) __INIT_org_xmlvm_iphone_NSBundle();
@@ -40,6 +46,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSBundle()
     me->__class = &__CLASS_org_xmlvm_iphone_NSBundle;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSBundle]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSBundle);
     return me;
 }
 
@@ -47,20 +55,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSBundle()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_NSBundle(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSBundle]
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_NSBundle___CLINIT_()
-{
-    if (!__CLASS_org_xmlvm_iphone_NSBundle.classInitialized) __INIT_org_xmlvm_iphone_NSBundle();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSBundle___CLINIT___]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSBundle_mainBundle__()
@@ -88,6 +82,14 @@ JAVA_OBJECT org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_la
 JAVA_OBJECT org_xmlvm_iphone_NSBundle_bundlePath__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSBundle_bundlePath__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_NSBundle___CLINIT_()
+{
+    if (!__CLASS_org_xmlvm_iphone_NSBundle.classInitialized) __INIT_org_xmlvm_iphone_NSBundle();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSBundle___CLINIT___]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

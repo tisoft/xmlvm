@@ -37,6 +37,12 @@ void __INIT_org_xmlvm_iphone_MFMailComposeResult()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_MFMailComposeResult(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_MFMailComposeResult]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMailComposeResult()
 {
     if (!__CLASS_org_xmlvm_iphone_MFMailComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeResult();
@@ -44,6 +50,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMailComposeResult()
     me->__class = &__CLASS_org_xmlvm_iphone_MFMailComposeResult;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MFMailComposeResult]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_MFMailComposeResult);
     return me;
 }
 
@@ -53,12 +61,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MFMailComposeResult()
     me = __NEW_org_xmlvm_iphone_MFMailComposeResult();
     org_xmlvm_iphone_MFMailComposeResult___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_MFMailComposeResult(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_MFMailComposeResult]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_MFMailComposeResult_GET_Cancelled()

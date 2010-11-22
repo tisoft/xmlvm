@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIAlertView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAlertView, 75)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAlertView, 78)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAlertView
@@ -43,30 +43,30 @@ struct org_xmlvm_iphone_UIAlertView {
 typedef struct org_xmlvm_iphone_UIAlertView org_xmlvm_iphone_UIAlertView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIAlertView 75
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertView_show__ 69
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertView_setTitle___java_lang_String 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertView_getTitle__ 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertView_setMessage___java_lang_String 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertView_getMesssage__ 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertView_addButtonWithTitle___java_lang_String 74
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIAlertView 78
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertView_show__ 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertView_setTitle___java_lang_String 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertView_getTitle__ 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertView_setMessage___java_lang_String 75
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertView_getMesssage__ 76
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertView_addButtonWithTitle___java_lang_String 77
 
 void __INIT_org_xmlvm_iphone_UIAlertView();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAlertView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAlertView();
 void org_xmlvm_iphone_UIAlertView___INIT____java_lang_String_java_lang_String_org_xmlvm_iphone_UIAlertViewDelegate_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4);
-// Vtable index: 69
-void org_xmlvm_iphone_UIAlertView_show__(JAVA_OBJECT me);
-// Vtable index: 70
-void org_xmlvm_iphone_UIAlertView_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 71
-JAVA_OBJECT org_xmlvm_iphone_UIAlertView_getTitle__(JAVA_OBJECT me);
 // Vtable index: 72
-void org_xmlvm_iphone_UIAlertView_setMessage___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIAlertView_show__(JAVA_OBJECT me);
 // Vtable index: 73
-JAVA_OBJECT org_xmlvm_iphone_UIAlertView_getMesssage__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIAlertView_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 74
+JAVA_OBJECT org_xmlvm_iphone_UIAlertView_getTitle__(JAVA_OBJECT me);
+// Vtable index: 75
+void org_xmlvm_iphone_UIAlertView_setMessage___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 76
+JAVA_OBJECT org_xmlvm_iphone_UIAlertView_getMesssage__(JAVA_OBJECT me);
+// Vtable index: 77
 JAVA_INT org_xmlvm_iphone_UIAlertView_addButtonWithTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-void org_xmlvm_iphone_UIAlertView_access$0___org_xmlvm_iphone_UIAlertView_int(JAVA_OBJECT n1, JAVA_INT n2);
+void org_xmlvm_iphone_UIAlertView_access$000___org_xmlvm_iphone_UIAlertView_int(JAVA_OBJECT n1, JAVA_INT n2);
 
 #endif

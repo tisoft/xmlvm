@@ -29,6 +29,12 @@ void __INIT_org_xmlvm_iphone_UIEdgeInsets()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIEdgeInsets(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIEdgeInsets]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIEdgeInsets()
 {
     if (!__CLASS_org_xmlvm_iphone_UIEdgeInsets.classInitialized) __INIT_org_xmlvm_iphone_UIEdgeInsets();
@@ -40,6 +46,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIEdgeInsets()
     me->org_xmlvm_iphone_UIEdgeInsets.right_ = 0;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIEdgeInsets]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIEdgeInsets);
     return me;
 }
 
@@ -49,12 +57,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIEdgeInsets()
     me = __NEW_org_xmlvm_iphone_UIEdgeInsets();
     org_xmlvm_iphone_UIEdgeInsets___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIEdgeInsets(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIEdgeInsets]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIEdgeInsets___INIT___(JAVA_OBJECT me)

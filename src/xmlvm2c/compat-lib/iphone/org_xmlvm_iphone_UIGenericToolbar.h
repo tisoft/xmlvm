@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 #endif
 // Class declarations for org.xmlvm.iphone.UIGenericToolbar
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIGenericToolbar, 76)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIGenericToolbar, 79)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIGenericToolbar
@@ -39,30 +39,30 @@ struct org_xmlvm_iphone_UIGenericToolbar {
 typedef struct org_xmlvm_iphone_UIGenericToolbar org_xmlvm_iphone_UIGenericToolbar;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIGenericToolbar 76
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIGenericToolbar_getBarStyle__ 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIGenericToolbar_setBarStyle___int 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIGenericToolbar_getTintColor__ 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIGenericToolbar_setTintColor___org_xmlvm_iphone_UIColor 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIGenericToolbar_isTranslucent__ 74
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIGenericToolbar_setTranslucent___boolean 75
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIGenericToolbar 79
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIGenericToolbar_getBarStyle__ 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIGenericToolbar_setBarStyle___int 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIGenericToolbar_getTintColor__ 75
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIGenericToolbar_setTintColor___org_xmlvm_iphone_UIColor 76
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIGenericToolbar_isTranslucent__ 77
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIGenericToolbar_setTranslucent___boolean 78
 
 void __INIT_org_xmlvm_iphone_UIGenericToolbar();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIGenericToolbar();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIGenericToolbar();
 void org_xmlvm_iphone_UIGenericToolbar___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIGenericToolbar___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 70
-JAVA_INT org_xmlvm_iphone_UIGenericToolbar_getBarStyle__(JAVA_OBJECT me);
-// Vtable index: 71
-void org_xmlvm_iphone_UIGenericToolbar_setBarStyle___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 72
-JAVA_OBJECT org_xmlvm_iphone_UIGenericToolbar_getTintColor__(JAVA_OBJECT me);
 // Vtable index: 73
-void org_xmlvm_iphone_UIGenericToolbar_setTintColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_INT org_xmlvm_iphone_UIGenericToolbar_getBarStyle__(JAVA_OBJECT me);
 // Vtable index: 74
-JAVA_BOOLEAN org_xmlvm_iphone_UIGenericToolbar_isTranslucent__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIGenericToolbar_setBarStyle___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 75
+JAVA_OBJECT org_xmlvm_iphone_UIGenericToolbar_getTintColor__(JAVA_OBJECT me);
+// Vtable index: 76
+void org_xmlvm_iphone_UIGenericToolbar_setTintColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 77
+JAVA_BOOLEAN org_xmlvm_iphone_UIGenericToolbar_isTranslucent__(JAVA_OBJECT me);
+// Vtable index: 78
 void org_xmlvm_iphone_UIGenericToolbar_setTranslucent___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 
 #endif

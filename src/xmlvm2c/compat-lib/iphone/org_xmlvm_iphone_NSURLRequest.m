@@ -31,6 +31,12 @@ void __INIT_org_xmlvm_iphone_NSURLRequest()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_NSURLRequest(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSURLRequest]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURLRequest()
 {
     if (!__CLASS_org_xmlvm_iphone_NSURLRequest.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequest();
@@ -38,6 +44,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURLRequest()
     me->__class = &__CLASS_org_xmlvm_iphone_NSURLRequest;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSURLRequest]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSURLRequest);
     return me;
 }
 
@@ -45,12 +53,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSURLRequest()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_NSURLRequest(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSURLRequest]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSURLRequest_requestWithURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1)

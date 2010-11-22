@@ -23,12 +23,12 @@ void __INIT_org_xmlvm_iphone_UISlider()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UISlider.vtable, __CLASS_org_xmlvm_iphone_UIControl.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UISlider.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float;
-    __CLASS_org_xmlvm_iphone_UISlider.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getValue__;
-    __CLASS_org_xmlvm_iphone_UISlider.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumValue___float;
-    __CLASS_org_xmlvm_iphone_UISlider.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMinimumValue__;
-    __CLASS_org_xmlvm_iphone_UISlider.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumValue___float;
-    __CLASS_org_xmlvm_iphone_UISlider.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMaximumValue__;
+    __CLASS_org_xmlvm_iphone_UISlider.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float;
+    __CLASS_org_xmlvm_iphone_UISlider.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getValue__;
+    __CLASS_org_xmlvm_iphone_UISlider.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumValue___float;
+    __CLASS_org_xmlvm_iphone_UISlider.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMinimumValue__;
+    __CLASS_org_xmlvm_iphone_UISlider.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumValue___float;
+    __CLASS_org_xmlvm_iphone_UISlider.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMaximumValue__;
     __CLASS_org_xmlvm_iphone_UISlider.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UISlider.numImplementedInterfaces = 0;
@@ -39,6 +39,12 @@ void __INIT_org_xmlvm_iphone_UISlider()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UISlider(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UISlider]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISlider()
 {
     if (!__CLASS_org_xmlvm_iphone_UISlider.classInitialized) __INIT_org_xmlvm_iphone_UISlider();
@@ -46,6 +52,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UISlider()
     me->__class = &__CLASS_org_xmlvm_iphone_UISlider;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UISlider]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UISlider);
     return me;
 }
 
@@ -55,12 +63,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UISlider()
     me = __NEW_org_xmlvm_iphone_UISlider();
     org_xmlvm_iphone_UISlider___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UISlider(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UISlider]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UISlider___INIT___(JAVA_OBJECT me)

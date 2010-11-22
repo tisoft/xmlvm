@@ -68,6 +68,12 @@ void __INIT_org_xmlvm_iphone_UIColor()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIColor(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIColor]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIColor()
 {
     if (!__CLASS_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
@@ -75,6 +81,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIColor()
     me->__class = &__CLASS_org_xmlvm_iphone_UIColor;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIColor]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIColor);
     return me;
 }
 
@@ -82,12 +90,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIColor()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIColor(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIColor]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIColor_GET_blackColor()
@@ -318,14 +320,6 @@ void org_xmlvm_iphone_UIColor_PUT_viewFlipsideBackgroundColor(JAVA_OBJECT v)
     _STATIC_org_xmlvm_iphone_UIColor_viewFlipsideBackgroundColor = v;
 }
 
-void org_xmlvm_iphone_UIColor___CLINIT_()
-{
-    if (!__CLASS_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor___CLINIT___]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
 JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithWhiteAlpha___float_float(JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
     if (!__CLASS_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
@@ -354,6 +348,14 @@ JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithPatternImage___org_xmlvm_iphone_UI
 {
     if (!__CLASS_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor_colorWithPatternImage___org_xmlvm_iphone_UIImage]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIColor___CLINIT_()
+{
+    if (!__CLASS_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor___CLINIT___]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

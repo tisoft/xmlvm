@@ -63,7 +63,6 @@ typedef struct org_xmlvm_iphone_UIDevice org_xmlvm_iphone_UIDevice;
 void __INIT_org_xmlvm_iphone_UIDevice();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDevice();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIDevice();
-void org_xmlvm_iphone_UIDevice___CLINIT_();
 JAVA_OBJECT org_xmlvm_iphone_UIDevice_currentDevice__();
 // Vtable index: 14
 JAVA_BOOLEAN org_xmlvm_iphone_UIDevice_getMultitaskingSupported__(JAVA_OBJECT me);
@@ -103,5 +102,6 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIDevice_isProximityMonitoringEnabled__(JAVA_OBJEC
 void org_xmlvm_iphone_UIDevice_setProximityMonitoringEnabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 // Vtable index: 32
 JAVA_BOOLEAN org_xmlvm_iphone_UIDevice_getProximityState__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIDevice___CLINIT_();
 
 #endif

@@ -22,14 +22,20 @@ void __INIT_org_xmlvm_iphone_UIImageView()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIImageView.vtable, __CLASS_org_xmlvm_iphone_UIView.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIImageView.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIImageView_setImage___org_xmlvm_iphone_UIImage;
-    __CLASS_org_xmlvm_iphone_UIImageView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIImageView_getImage__;
+    __CLASS_org_xmlvm_iphone_UIImageView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIImageView_setImage___org_xmlvm_iphone_UIImage;
+    __CLASS_org_xmlvm_iphone_UIImageView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIImageView_getImage__;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UIImageView.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_UIImageView.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIImageView]
+    //XMLVM_END_WRAPPER
+}
+
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIImageView(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIImageView]
     //XMLVM_END_WRAPPER
 }
 
@@ -40,6 +46,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImageView()
     me->__class = &__CLASS_org_xmlvm_iphone_UIImageView;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImageView]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIImageView);
     return me;
 }
 
@@ -49,12 +57,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImageView()
     me = __NEW_org_xmlvm_iphone_UIImageView();
     org_xmlvm_iphone_UIImageView___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIImageView(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIImageView]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIImageView___INIT___(JAVA_OBJECT me)

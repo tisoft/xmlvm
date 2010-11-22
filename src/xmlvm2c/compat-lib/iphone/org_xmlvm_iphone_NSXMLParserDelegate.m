@@ -40,6 +40,12 @@ void __INIT_org_xmlvm_iphone_NSXMLParserDelegate()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_NSXMLParserDelegate(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSXMLParserDelegate]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSXMLParserDelegate()
 {
     if (!__CLASS_org_xmlvm_iphone_NSXMLParserDelegate.classInitialized) __INIT_org_xmlvm_iphone_NSXMLParserDelegate();
@@ -47,6 +53,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSXMLParserDelegate()
     me->__class = &__CLASS_org_xmlvm_iphone_NSXMLParserDelegate;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSXMLParserDelegate]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSXMLParserDelegate);
     return me;
 }
 
@@ -56,12 +64,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSXMLParserDelegate()
     me = __NEW_org_xmlvm_iphone_NSXMLParserDelegate();
     org_xmlvm_iphone_NSXMLParserDelegate___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_NSXMLParserDelegate(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSXMLParserDelegate]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSXMLParserDelegate___INIT___(JAVA_OBJECT me)
@@ -120,10 +122,10 @@ void org_xmlvm_iphone_NSXMLParserDelegate_setParser___org_xmlvm_iphone_NSXMLPars
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_NSXMLParserDelegate_access$0___org_xmlvm_iphone_NSXMLParserDelegate(JAVA_OBJECT n1)
+JAVA_OBJECT org_xmlvm_iphone_NSXMLParserDelegate_access$000___org_xmlvm_iphone_NSXMLParserDelegate(JAVA_OBJECT n1)
 {
     if (!__CLASS_org_xmlvm_iphone_NSXMLParserDelegate.classInitialized) __INIT_org_xmlvm_iphone_NSXMLParserDelegate();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParserDelegate_access$0___org_xmlvm_iphone_NSXMLParserDelegate]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParserDelegate_access$000___org_xmlvm_iphone_NSXMLParserDelegate]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

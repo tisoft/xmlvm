@@ -46,11 +46,11 @@ typedef struct org_xmlvm_iphone_UIAccelerometer org_xmlvm_iphone_UIAccelerometer
 void __INIT_org_xmlvm_iphone_UIAccelerometer();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAccelerometer();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAccelerometer();
-void org_xmlvm_iphone_UIAccelerometer___CLINIT_();
 JAVA_OBJECT org_xmlvm_iphone_UIAccelerometer_sharedAccelerometer__();
 // Vtable index: 14
 void org_xmlvm_iphone_UIAccelerometer_setUpdateInterval___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
 // Vtable index: 15
 void org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIAccelerometer___CLINIT_();
 
 #endif

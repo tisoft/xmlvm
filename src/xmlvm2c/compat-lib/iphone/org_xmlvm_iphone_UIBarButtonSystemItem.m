@@ -75,6 +75,12 @@ void __INIT_org_xmlvm_iphone_UIBarButtonSystemItem()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIBarButtonSystemItem(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIBarButtonSystemItem]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIBarButtonSystemItem()
 {
     if (!__CLASS_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
@@ -82,6 +88,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIBarButtonSystemItem()
     me->__class = &__CLASS_org_xmlvm_iphone_UIBarButtonSystemItem;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIBarButtonSystemItem]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIBarButtonSystemItem);
     return me;
 }
 
@@ -91,12 +99,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIBarButtonSystemItem()
     me = __NEW_org_xmlvm_iphone_UIBarButtonSystemItem();
     org_xmlvm_iphone_UIBarButtonSystemItem___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIBarButtonSystemItem(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIBarButtonSystemItem]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Done()

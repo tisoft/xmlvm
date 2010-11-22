@@ -111,6 +111,6 @@ void org_xmlvm_iphone_UINavigationItem_setTitle___java_lang_String(JAVA_OBJECT m
 JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_getTitleView__(JAVA_OBJECT me);
 // Vtable index: 31
 void org_xmlvm_iphone_UINavigationItem_setTitleView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
-JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_access$0___org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_access$000___org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT n1);
 
 #endif

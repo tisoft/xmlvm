@@ -51,6 +51,12 @@ void __INIT_org_xmlvm_iphone_AVAudioPlayer()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_AVAudioPlayer(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_AVAudioPlayer]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_AVAudioPlayer()
 {
     if (!__CLASS_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
@@ -58,6 +64,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_AVAudioPlayer()
     me->__class = &__CLASS_org_xmlvm_iphone_AVAudioPlayer;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_AVAudioPlayer]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_AVAudioPlayer);
     return me;
 }
 
@@ -65,12 +73,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_AVAudioPlayer()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_AVAudioPlayer]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_initWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT n1, JAVA_OBJECT n2)
@@ -200,66 +202,66 @@ JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_getData__(JAVA_OBJECT me)
     //XMLVM_END_WRAPPER
 }
 
-JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_access$0___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1)
+JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_access$000___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1)
 {
     if (!__CLASS_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$0___org_xmlvm_iphone_AVAudioPlayer]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$000___org_xmlvm_iphone_AVAudioPlayer]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_access$1___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1)
+JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_access$100___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1)
 {
     if (!__CLASS_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$1___org_xmlvm_iphone_AVAudioPlayer]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$100___org_xmlvm_iphone_AVAudioPlayer]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_access$2___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1)
+JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_access$200___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1)
 {
     if (!__CLASS_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$2___org_xmlvm_iphone_AVAudioPlayer]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$200___org_xmlvm_iphone_AVAudioPlayer]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_access$3___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1)
+JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_access$300___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1)
 {
     if (!__CLASS_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$3___org_xmlvm_iphone_AVAudioPlayer]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$300___org_xmlvm_iphone_AVAudioPlayer]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-JAVA_INT org_xmlvm_iphone_AVAudioPlayer_access$4___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1)
+JAVA_INT org_xmlvm_iphone_AVAudioPlayer_access$400___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1)
 {
     if (!__CLASS_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$4___org_xmlvm_iphone_AVAudioPlayer]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$400___org_xmlvm_iphone_AVAudioPlayer]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_AVAudioPlayer_access$5___org_xmlvm_iphone_AVAudioPlayer_int(JAVA_OBJECT n1, JAVA_INT n2)
+JAVA_INT org_xmlvm_iphone_AVAudioPlayer_access$410___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1)
 {
     if (!__CLASS_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$5___org_xmlvm_iphone_AVAudioPlayer_int]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$410___org_xmlvm_iphone_AVAudioPlayer]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_AVAudioPlayer_access$6___org_xmlvm_iphone_AVAudioPlayer_boolean(JAVA_OBJECT n1, JAVA_BOOLEAN n2)
+JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_access$502___org_xmlvm_iphone_AVAudioPlayer_boolean(JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     if (!__CLASS_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$6___org_xmlvm_iphone_AVAudioPlayer_boolean]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$502___org_xmlvm_iphone_AVAudioPlayer_boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_access$7___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1)
+JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_access$600___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1)
 {
     if (!__CLASS_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$7___org_xmlvm_iphone_AVAudioPlayer]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_access$600___org_xmlvm_iphone_AVAudioPlayer]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

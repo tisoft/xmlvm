@@ -50,7 +50,6 @@ typedef struct org_xmlvm_iphone_CGLayer org_xmlvm_iphone_CGLayer;
 void __INIT_org_xmlvm_iphone_CGLayer();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGLayer();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGLayer();
-void org_xmlvm_iphone_CGLayer___INIT___(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_CGLayer_createWithContext___org_xmlvm_iphone_CGContext_org_xmlvm_iphone_CGSize(JAVA_OBJECT n1, JAVA_OBJECT n2);
 // Vtable index: 14
 JAVA_OBJECT org_xmlvm_iphone_CGLayer_getContext__(JAVA_OBJECT me);

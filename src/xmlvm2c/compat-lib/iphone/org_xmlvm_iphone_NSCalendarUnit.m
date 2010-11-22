@@ -49,6 +49,12 @@ void __INIT_org_xmlvm_iphone_NSCalendarUnit()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_NSCalendarUnit(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSCalendarUnit]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSCalendarUnit()
 {
     if (!__CLASS_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
@@ -56,6 +62,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSCalendarUnit()
     me->__class = &__CLASS_org_xmlvm_iphone_NSCalendarUnit;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSCalendarUnit]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSCalendarUnit);
     return me;
 }
 
@@ -65,12 +73,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSCalendarUnit()
     me = __NEW_org_xmlvm_iphone_NSCalendarUnit();
     org_xmlvm_iphone_NSCalendarUnit___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_NSCalendarUnit(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSCalendarUnit]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_NSCalendarUnit_GET_Era()

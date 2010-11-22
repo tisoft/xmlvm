@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIWebView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWebView, 76)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWebView, 79)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebView
@@ -51,33 +51,33 @@ struct org_xmlvm_iphone_UIWebView {
 typedef struct org_xmlvm_iphone_UIWebView org_xmlvm_iphone_UIWebView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIWebView 76
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_loadRequest___org_xmlvm_iphone_NSURLRequest 69
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_loadHTMLString___java_lang_String_org_xmlvm_iphone_NSURL 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_xmlvmGetRequest__ 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_stringByEvaluatingJavaScriptFromString___java_lang_String 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_getDelegate__ 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_setDelegate___org_xmlvm_iphone_UIWebViewDelegate 74
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_reload__ 75
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIWebView 79
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_loadRequest___org_xmlvm_iphone_NSURLRequest 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_loadHTMLString___java_lang_String_org_xmlvm_iphone_NSURL 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_xmlvmGetRequest__ 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_stringByEvaluatingJavaScriptFromString___java_lang_String 75
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_getDelegate__ 76
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_setDelegate___org_xmlvm_iphone_UIWebViewDelegate 77
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_reload__ 78
 
 void __INIT_org_xmlvm_iphone_UIWebView();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWebView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIWebView();
 void org_xmlvm_iphone_UIWebView___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIWebView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 69
-void org_xmlvm_iphone_UIWebView_loadRequest___org_xmlvm_iphone_NSURLRequest(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 70
-void org_xmlvm_iphone_UIWebView_loadHTMLString___java_lang_String_org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 71
-JAVA_OBJECT org_xmlvm_iphone_UIWebView_xmlvmGetRequest__(JAVA_OBJECT me);
 // Vtable index: 72
-JAVA_OBJECT org_xmlvm_iphone_UIWebView_stringByEvaluatingJavaScriptFromString___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIWebView_loadRequest___org_xmlvm_iphone_NSURLRequest(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 73
-JAVA_OBJECT org_xmlvm_iphone_UIWebView_getDelegate__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIWebView_loadHTMLString___java_lang_String_org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 // Vtable index: 74
-void org_xmlvm_iphone_UIWebView_setDelegate___org_xmlvm_iphone_UIWebViewDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIWebView_xmlvmGetRequest__(JAVA_OBJECT me);
 // Vtable index: 75
+JAVA_OBJECT org_xmlvm_iphone_UIWebView_stringByEvaluatingJavaScriptFromString___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 76
+JAVA_OBJECT org_xmlvm_iphone_UIWebView_getDelegate__(JAVA_OBJECT me);
+// Vtable index: 77
+void org_xmlvm_iphone_UIWebView_setDelegate___org_xmlvm_iphone_UIWebViewDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 78
 void org_xmlvm_iphone_UIWebView_reload__(JAVA_OBJECT me);
 
 #endif

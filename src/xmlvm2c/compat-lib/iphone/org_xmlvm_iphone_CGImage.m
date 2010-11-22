@@ -33,6 +33,12 @@ void __INIT_org_xmlvm_iphone_CGImage()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_CGImage(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_CGImage]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGImage()
 {
     if (!__CLASS_org_xmlvm_iphone_CGImage.classInitialized) __INIT_org_xmlvm_iphone_CGImage();
@@ -40,6 +46,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_CGImage()
     me->__class = &__CLASS_org_xmlvm_iphone_CGImage;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGImage]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_CGImage);
     return me;
 }
 
@@ -47,12 +55,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGImage()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_CGImage(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_CGImage]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_CGImage_createWithImageInRect___org_xmlvm_iphone_CGImage_org_xmlvm_iphone_CGRect(JAVA_OBJECT n1, JAVA_OBJECT n2)

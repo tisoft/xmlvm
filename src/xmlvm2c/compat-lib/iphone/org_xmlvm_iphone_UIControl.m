@@ -25,7 +25,7 @@ void __INIT_org_xmlvm_iphone_UIControl()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIControl.vtable, __CLASS_org_xmlvm_iphone_UIView.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIControl.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int;
+    __CLASS_org_xmlvm_iphone_UIControl.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int;
     __CLASS_org_xmlvm_iphone_UIControl.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UIControl.numImplementedInterfaces = 0;
@@ -33,6 +33,12 @@ void __INIT_org_xmlvm_iphone_UIControl()
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIControl]
+    //XMLVM_END_WRAPPER
+}
+
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIControl(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIControl]
     //XMLVM_END_WRAPPER
 }
 
@@ -44,6 +50,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIControl()
     me->org_xmlvm_iphone_UIControl.delegates_ = (java_util_Map*) JAVA_NULL;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIControl]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIControl);
     return me;
 }
 
@@ -53,12 +61,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIControl()
     me = __NEW_org_xmlvm_iphone_UIControl();
     org_xmlvm_iphone_UIControl___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIControl(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIControl]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIControl___INIT___(JAVA_OBJECT me)

@@ -33,6 +33,12 @@ void __INIT_org_xmlvm_iphone_UITabBarItem()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UITabBarItem(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UITabBarItem]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarItem()
 {
     if (!__CLASS_org_xmlvm_iphone_UITabBarItem.classInitialized) __INIT_org_xmlvm_iphone_UITabBarItem();
@@ -40,6 +46,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarItem()
     me->__class = &__CLASS_org_xmlvm_iphone_UITabBarItem;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITabBarItem]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UITabBarItem);
     return me;
 }
 
@@ -49,12 +57,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITabBarItem()
     me = __NEW_org_xmlvm_iphone_UITabBarItem();
     org_xmlvm_iphone_UITabBarItem___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UITabBarItem]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITabBarItem___INIT___(JAVA_OBJECT me)
@@ -85,10 +87,10 @@ void org_xmlvm_iphone_UITabBarItem_setTitle___java_lang_String(JAVA_OBJECT me, J
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UITabBarItem_access$0___org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT n1)
+void org_xmlvm_iphone_UITabBarItem_access$000___org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT n1)
 {
     if (!__CLASS_org_xmlvm_iphone_UITabBarItem.classInitialized) __INIT_org_xmlvm_iphone_UITabBarItem();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarItem_access$0___org_xmlvm_iphone_UITabBarItem]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarItem_access$000___org_xmlvm_iphone_UITabBarItem]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

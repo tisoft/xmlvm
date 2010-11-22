@@ -30,6 +30,12 @@ void __INIT_org_xmlvm_iphone_UIAlertViewDelegate()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIAlertViewDelegate(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIAlertViewDelegate]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAlertViewDelegate()
 {
     if (!__CLASS_org_xmlvm_iphone_UIAlertViewDelegate.classInitialized) __INIT_org_xmlvm_iphone_UIAlertViewDelegate();
@@ -37,6 +43,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAlertViewDelegate()
     me->__class = &__CLASS_org_xmlvm_iphone_UIAlertViewDelegate;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIAlertViewDelegate]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIAlertViewDelegate);
     return me;
 }
 
@@ -46,12 +54,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAlertViewDelegate()
     me = __NEW_org_xmlvm_iphone_UIAlertViewDelegate();
     org_xmlvm_iphone_UIAlertViewDelegate___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIAlertViewDelegate(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIAlertViewDelegate]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIAlertViewDelegate___INIT___(JAVA_OBJECT me)

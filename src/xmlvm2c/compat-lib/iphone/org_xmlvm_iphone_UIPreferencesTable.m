@@ -22,14 +22,20 @@ void __INIT_org_xmlvm_iphone_UIPreferencesTable()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIPreferencesTable.vtable, __CLASS_org_xmlvm_iphone_UIView.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIPreferencesTable.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTable_setDataSource___org_xmlvm_iphone_UIPreferencesTableDataSource;
-    __CLASS_org_xmlvm_iphone_UIPreferencesTable.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTable_getDataSource__;
+    __CLASS_org_xmlvm_iphone_UIPreferencesTable.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTable_setDataSource___org_xmlvm_iphone_UIPreferencesTableDataSource;
+    __CLASS_org_xmlvm_iphone_UIPreferencesTable.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTable_getDataSource__;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UIPreferencesTable.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_UIPreferencesTable.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIPreferencesTable]
+    //XMLVM_END_WRAPPER
+}
+
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIPreferencesTable(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIPreferencesTable]
     //XMLVM_END_WRAPPER
 }
 
@@ -40,6 +46,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPreferencesTable()
     me->__class = &__CLASS_org_xmlvm_iphone_UIPreferencesTable;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIPreferencesTable]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIPreferencesTable);
     return me;
 }
 
@@ -47,12 +55,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPreferencesTable()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIPreferencesTable(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIPreferencesTable]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIPreferencesTable___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)

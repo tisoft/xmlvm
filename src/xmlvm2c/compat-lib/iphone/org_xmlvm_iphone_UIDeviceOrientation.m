@@ -43,6 +43,12 @@ void __INIT_org_xmlvm_iphone_UIDeviceOrientation()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIDeviceOrientation(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIDeviceOrientation]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDeviceOrientation()
 {
     if (!__CLASS_org_xmlvm_iphone_UIDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_UIDeviceOrientation();
@@ -50,6 +56,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDeviceOrientation()
     me->__class = &__CLASS_org_xmlvm_iphone_UIDeviceOrientation;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIDeviceOrientation]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIDeviceOrientation);
     return me;
 }
 
@@ -59,12 +67,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIDeviceOrientation()
     me = __NEW_org_xmlvm_iphone_UIDeviceOrientation();
     org_xmlvm_iphone_UIDeviceOrientation___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIDeviceOrientation(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIDeviceOrientation]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_UIDeviceOrientation_GET_Unknown()

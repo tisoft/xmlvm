@@ -41,6 +41,12 @@ void __INIT_org_xmlvm_iphone_UILineBreakMode()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UILineBreakMode(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UILineBreakMode]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UILineBreakMode()
 {
     if (!__CLASS_org_xmlvm_iphone_UILineBreakMode.classInitialized) __INIT_org_xmlvm_iphone_UILineBreakMode();
@@ -48,6 +54,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UILineBreakMode()
     me->__class = &__CLASS_org_xmlvm_iphone_UILineBreakMode;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UILineBreakMode]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UILineBreakMode);
     return me;
 }
 
@@ -57,12 +65,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UILineBreakMode()
     me = __NEW_org_xmlvm_iphone_UILineBreakMode();
     org_xmlvm_iphone_UILineBreakMode___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UILineBreakMode(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UILineBreakMode]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_UILineBreakMode_GET_WordWrap()

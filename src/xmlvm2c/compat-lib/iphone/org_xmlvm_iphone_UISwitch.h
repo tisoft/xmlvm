@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(java_util_Set)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 // Class declarations for org.xmlvm.iphone.UISwitch
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISwitch, 72)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISwitch, 75)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UISwitch
@@ -43,10 +43,10 @@ struct org_xmlvm_iphone_UISwitch {
 typedef struct org_xmlvm_iphone_UISwitch org_xmlvm_iphone_UISwitch;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISwitch 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_setOn___boolean 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_isOn__ 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect 20
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISwitch 75
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_setOn___boolean 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_isOn__ 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect 21
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 16
 
 void __INIT_org_xmlvm_iphone_UISwitch();
@@ -58,11 +58,11 @@ JAVA_FLOAT org_xmlvm_iphone_UISwitch_GET_kSwitchButtonHeight();
 void org_xmlvm_iphone_UISwitch_PUT_kSwitchButtonHeight(JAVA_FLOAT v);
 void org_xmlvm_iphone_UISwitch___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UISwitch___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 70
+// Vtable index: 73
 void org_xmlvm_iphone_UISwitch_setOn___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 71
+// Vtable index: 74
 JAVA_BOOLEAN org_xmlvm_iphone_UISwitch_isOn__(JAVA_OBJECT me);
-// Vtable index: 20
+// Vtable index: 21
 void org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 16
 void org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);

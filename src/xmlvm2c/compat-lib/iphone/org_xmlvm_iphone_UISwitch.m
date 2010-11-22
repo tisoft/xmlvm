@@ -25,9 +25,9 @@ void __INIT_org_xmlvm_iphone_UISwitch()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UISwitch.vtable, __CLASS_org_xmlvm_iphone_UIControl.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UISwitch.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setOn___boolean;
-    __CLASS_org_xmlvm_iphone_UISwitch.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_isOn__;
-    __CLASS_org_xmlvm_iphone_UISwitch.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect;
+    __CLASS_org_xmlvm_iphone_UISwitch.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setOn___boolean;
+    __CLASS_org_xmlvm_iphone_UISwitch.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_isOn__;
+    __CLASS_org_xmlvm_iphone_UISwitch.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect;
     __CLASS_org_xmlvm_iphone_UISwitch.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UISwitch.numImplementedInterfaces = 0;
@@ -40,6 +40,12 @@ void __INIT_org_xmlvm_iphone_UISwitch()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UISwitch(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UISwitch]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISwitch()
 {
     if (!__CLASS_org_xmlvm_iphone_UISwitch.classInitialized) __INIT_org_xmlvm_iphone_UISwitch();
@@ -47,6 +53,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UISwitch()
     me->__class = &__CLASS_org_xmlvm_iphone_UISwitch;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UISwitch]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UISwitch);
     return me;
 }
 
@@ -56,12 +64,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UISwitch()
     me = __NEW_org_xmlvm_iphone_UISwitch();
     org_xmlvm_iphone_UISwitch___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UISwitch(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UISwitch]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_FLOAT org_xmlvm_iphone_UISwitch_GET_kSwitchButtonWidth()

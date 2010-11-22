@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UITextField
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextField, 98)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextField, 101)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextField
@@ -51,102 +51,102 @@ struct org_xmlvm_iphone_UITextField {
 typedef struct org_xmlvm_iphone_UITextField org_xmlvm_iphone_UITextField;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITextField 98
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getAutocapitalizationType__ 69
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setAutocapitalizationType___int 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getAutocorrectionType__ 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setAutocorrectionType___int 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_isEnablesReturnKeyAutomatically__ 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setEnablesReturnKeyAutomatically___boolean 74
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getKeyboardAppearance__ 75
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setKeyboardAppearance___int 76
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getKeyboardType__ 77
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setKeyboardType___int 78
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getReturnKeyType__ 79
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setReturnKeyType___int 80
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_isSecureTextEntry__ 81
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setSecureTextEntry___boolean 82
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setText___java_lang_String 83
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getText__ 84
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setTextColor___org_xmlvm_iphone_UIColor 85
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getTextColor__ 86
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setBorderStyle___int 87
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getBorderStyle__ 88
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getFont__ 89
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setFont___org_xmlvm_iphone_UIFont 90
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_isAdjustsFontSizeToFitWidth__ 91
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setAdjustsFontSizeToFitWidth___boolean 92
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getTextAlignment__ 93
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setTextAlignment___int 94
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_keyTyped___char 39
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String 95
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate 96
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getDelegate__ 97
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITextField 101
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getAutocapitalizationType__ 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setAutocapitalizationType___int 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getAutocorrectionType__ 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setAutocorrectionType___int 75
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_isEnablesReturnKeyAutomatically__ 76
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setEnablesReturnKeyAutomatically___boolean 77
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getKeyboardAppearance__ 78
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setKeyboardAppearance___int 79
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getKeyboardType__ 80
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setKeyboardType___int 81
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getReturnKeyType__ 82
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setReturnKeyType___int 83
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_isSecureTextEntry__ 84
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setSecureTextEntry___boolean 85
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setText___java_lang_String 86
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getText__ 87
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setTextColor___org_xmlvm_iphone_UIColor 88
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getTextColor__ 89
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setBorderStyle___int 90
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getBorderStyle__ 91
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getFont__ 92
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setFont___org_xmlvm_iphone_UIFont 93
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_isAdjustsFontSizeToFitWidth__ 94
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setAdjustsFontSizeToFitWidth___boolean 95
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getTextAlignment__ 96
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setTextAlignment___int 97
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_keyTyped___char 42
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String 98
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate 99
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getDelegate__ 100
 
 void __INIT_org_xmlvm_iphone_UITextField();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITextField();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITextField();
 void org_xmlvm_iphone_UITextField___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UITextField___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 69
-JAVA_INT org_xmlvm_iphone_UITextField_getAutocapitalizationType__(JAVA_OBJECT me);
-// Vtable index: 70
-void org_xmlvm_iphone_UITextField_setAutocapitalizationType___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 71
-JAVA_INT org_xmlvm_iphone_UITextField_getAutocorrectionType__(JAVA_OBJECT me);
 // Vtable index: 72
-void org_xmlvm_iphone_UITextField_setAutocorrectionType___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_INT org_xmlvm_iphone_UITextField_getAutocapitalizationType__(JAVA_OBJECT me);
 // Vtable index: 73
-JAVA_BOOLEAN org_xmlvm_iphone_UITextField_isEnablesReturnKeyAutomatically__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UITextField_setAutocapitalizationType___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 74
-void org_xmlvm_iphone_UITextField_setEnablesReturnKeyAutomatically___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_INT org_xmlvm_iphone_UITextField_getAutocorrectionType__(JAVA_OBJECT me);
 // Vtable index: 75
-JAVA_INT org_xmlvm_iphone_UITextField_getKeyboardAppearance__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UITextField_setAutocorrectionType___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 76
-void org_xmlvm_iphone_UITextField_setKeyboardAppearance___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_UITextField_isEnablesReturnKeyAutomatically__(JAVA_OBJECT me);
 // Vtable index: 77
-JAVA_INT org_xmlvm_iphone_UITextField_getKeyboardType__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UITextField_setEnablesReturnKeyAutomatically___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 // Vtable index: 78
-void org_xmlvm_iphone_UITextField_setKeyboardType___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_INT org_xmlvm_iphone_UITextField_getKeyboardAppearance__(JAVA_OBJECT me);
 // Vtable index: 79
-JAVA_INT org_xmlvm_iphone_UITextField_getReturnKeyType__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UITextField_setKeyboardAppearance___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 80
-void org_xmlvm_iphone_UITextField_setReturnKeyType___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_INT org_xmlvm_iphone_UITextField_getKeyboardType__(JAVA_OBJECT me);
 // Vtable index: 81
-JAVA_BOOLEAN org_xmlvm_iphone_UITextField_isSecureTextEntry__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UITextField_setKeyboardType___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 82
-void org_xmlvm_iphone_UITextField_setSecureTextEntry___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_INT org_xmlvm_iphone_UITextField_getReturnKeyType__(JAVA_OBJECT me);
 // Vtable index: 83
-void org_xmlvm_iphone_UITextField_setText___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UITextField_setReturnKeyType___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 84
-JAVA_OBJECT org_xmlvm_iphone_UITextField_getText__(JAVA_OBJECT me);
+JAVA_BOOLEAN org_xmlvm_iphone_UITextField_isSecureTextEntry__(JAVA_OBJECT me);
 // Vtable index: 85
-void org_xmlvm_iphone_UITextField_setTextColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UITextField_setSecureTextEntry___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 // Vtable index: 86
-JAVA_OBJECT org_xmlvm_iphone_UITextField_getTextColor__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UITextField_setText___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 87
-void org_xmlvm_iphone_UITextField_setBorderStyle___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_OBJECT org_xmlvm_iphone_UITextField_getText__(JAVA_OBJECT me);
 // Vtable index: 88
-JAVA_INT org_xmlvm_iphone_UITextField_getBorderStyle__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UITextField_setTextColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 89
-JAVA_OBJECT org_xmlvm_iphone_UITextField_getFont__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_UITextField_getTextColor__(JAVA_OBJECT me);
 // Vtable index: 90
-void org_xmlvm_iphone_UITextField_setFont___org_xmlvm_iphone_UIFont(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UITextField_setBorderStyle___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 91
-JAVA_BOOLEAN org_xmlvm_iphone_UITextField_isAdjustsFontSizeToFitWidth__(JAVA_OBJECT me);
+JAVA_INT org_xmlvm_iphone_UITextField_getBorderStyle__(JAVA_OBJECT me);
 // Vtable index: 92
-void org_xmlvm_iphone_UITextField_setAdjustsFontSizeToFitWidth___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_OBJECT org_xmlvm_iphone_UITextField_getFont__(JAVA_OBJECT me);
 // Vtable index: 93
-JAVA_INT org_xmlvm_iphone_UITextField_getTextAlignment__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UITextField_setFont___org_xmlvm_iphone_UIFont(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 94
-void org_xmlvm_iphone_UITextField_setTextAlignment___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 39
-void org_xmlvm_iphone_UITextField_keyTyped___char(JAVA_OBJECT me, JAVA_CHAR n1);
+JAVA_BOOLEAN org_xmlvm_iphone_UITextField_isAdjustsFontSizeToFitWidth__(JAVA_OBJECT me);
 // Vtable index: 95
-void org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UITextField_setAdjustsFontSizeToFitWidth___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 // Vtable index: 96
-void org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_INT org_xmlvm_iphone_UITextField_getTextAlignment__(JAVA_OBJECT me);
 // Vtable index: 97
+void org_xmlvm_iphone_UITextField_setTextAlignment___int(JAVA_OBJECT me, JAVA_INT n1);
+// Vtable index: 42
+void org_xmlvm_iphone_UITextField_keyTyped___char(JAVA_OBJECT me, JAVA_CHAR n1);
+// Vtable index: 98
+void org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 99
+void org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 100
 JAVA_OBJECT org_xmlvm_iphone_UITextField_getDelegate__(JAVA_OBJECT me);
 
 #endif

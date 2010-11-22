@@ -21,15 +21,21 @@ void __INIT_org_xmlvm_iphone_UIPreferencesTextTableCell()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable, __CLASS_org_xmlvm_iphone_UIPreferencesTableCell.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIPreferencesTableCell.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_setValue___java_lang_String;
-    __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_getValue__;
-    __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[39] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_keyTyped___char;
+    __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_setValue___java_lang_String;
+    __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_getValue__;
+    __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[42] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_keyTyped___char;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIPreferencesTextTableCell]
+    //XMLVM_END_WRAPPER
+}
+
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIPreferencesTextTableCell(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIPreferencesTextTableCell]
     //XMLVM_END_WRAPPER
 }
 
@@ -40,6 +46,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPreferencesTextTableCell()
     me->__class = &__CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIPreferencesTextTableCell]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIPreferencesTextTableCell);
     return me;
 }
 
@@ -49,12 +57,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPreferencesTextTableCell()
     me = __NEW_org_xmlvm_iphone_UIPreferencesTextTableCell();
     org_xmlvm_iphone_UIPreferencesTextTableCell___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIPreferencesTextTableCell(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIPreferencesTextTableCell]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIPreferencesTextTableCell___INIT___(JAVA_OBJECT me)

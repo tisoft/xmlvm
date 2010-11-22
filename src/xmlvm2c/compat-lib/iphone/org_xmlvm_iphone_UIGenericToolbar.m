@@ -22,18 +22,24 @@ void __INIT_org_xmlvm_iphone_UIGenericToolbar()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIGenericToolbar.vtable, __CLASS_org_xmlvm_iphone_UIGenericBar.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIGenericBar.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIGenericToolbar.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIGenericToolbar_getBarStyle__;
-    __CLASS_org_xmlvm_iphone_UIGenericToolbar.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIGenericToolbar_setBarStyle___int;
-    __CLASS_org_xmlvm_iphone_UIGenericToolbar.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIGenericToolbar_getTintColor__;
-    __CLASS_org_xmlvm_iphone_UIGenericToolbar.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIGenericToolbar_setTintColor___org_xmlvm_iphone_UIColor;
-    __CLASS_org_xmlvm_iphone_UIGenericToolbar.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIGenericToolbar_isTranslucent__;
-    __CLASS_org_xmlvm_iphone_UIGenericToolbar.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIGenericToolbar_setTranslucent___boolean;
+    __CLASS_org_xmlvm_iphone_UIGenericToolbar.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIGenericToolbar_getBarStyle__;
+    __CLASS_org_xmlvm_iphone_UIGenericToolbar.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIGenericToolbar_setBarStyle___int;
+    __CLASS_org_xmlvm_iphone_UIGenericToolbar.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIGenericToolbar_getTintColor__;
+    __CLASS_org_xmlvm_iphone_UIGenericToolbar.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIGenericToolbar_setTintColor___org_xmlvm_iphone_UIColor;
+    __CLASS_org_xmlvm_iphone_UIGenericToolbar.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIGenericToolbar_isTranslucent__;
+    __CLASS_org_xmlvm_iphone_UIGenericToolbar.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIGenericToolbar_setTranslucent___boolean;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UIGenericToolbar.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_UIGenericToolbar.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIGenericToolbar]
+    //XMLVM_END_WRAPPER
+}
+
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIGenericToolbar(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIGenericToolbar]
     //XMLVM_END_WRAPPER
 }
 
@@ -44,6 +50,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIGenericToolbar()
     me->__class = &__CLASS_org_xmlvm_iphone_UIGenericToolbar;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIGenericToolbar]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIGenericToolbar);
     return me;
 }
 
@@ -53,12 +61,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIGenericToolbar()
     me = __NEW_org_xmlvm_iphone_UIGenericToolbar();
     org_xmlvm_iphone_UIGenericToolbar___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIGenericToolbar(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIGenericToolbar]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIGenericToolbar___INIT___(JAVA_OBJECT me)

@@ -25,30 +25,36 @@ void __INIT_org_xmlvm_iphone_UILabel()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UILabel.vtable, __CLASS_org_xmlvm_iphone_UIView.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setText___java_lang_String;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getText__;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setFont___org_xmlvm_iphone_UIFont;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getFont__;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setTextColor___org_xmlvm_iphone_UIColor;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getTextColor__;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setTextAlignment___int;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getTextAlignment__;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getLineBreakMode__;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setLineBreakMode___int;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getNumberOfLines__;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setNumberOfLines___int;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getShadowOffset__;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setShadowOffset___org_xmlvm_iphone_CGSize;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getShadowColor__;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setShadowColor___org_xmlvm_iphone_UIColor;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_isAdjustsFontSizeToFitWidth__;
-    __CLASS_org_xmlvm_iphone_UILabel.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setAdjustsFontSizeToFitWidth___boolean;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setText___java_lang_String;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getText__;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setFont___org_xmlvm_iphone_UIFont;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getFont__;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setTextColor___org_xmlvm_iphone_UIColor;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getTextColor__;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setTextAlignment___int;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getTextAlignment__;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getLineBreakMode__;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setLineBreakMode___int;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getNumberOfLines__;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setNumberOfLines___int;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getShadowOffset__;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setShadowOffset___org_xmlvm_iphone_CGSize;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_getShadowColor__;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setShadowColor___org_xmlvm_iphone_UIColor;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_isAdjustsFontSizeToFitWidth__;
+    __CLASS_org_xmlvm_iphone_UILabel.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UILabel_setAdjustsFontSizeToFitWidth___boolean;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UILabel.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_UILabel.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UILabel]
+    //XMLVM_END_WRAPPER
+}
+
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UILabel(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UILabel]
     //XMLVM_END_WRAPPER
 }
 
@@ -59,6 +65,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UILabel()
     me->__class = &__CLASS_org_xmlvm_iphone_UILabel;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UILabel]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UILabel);
     return me;
 }
 
@@ -68,12 +76,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UILabel()
     me = __NEW_org_xmlvm_iphone_UILabel();
     org_xmlvm_iphone_UILabel___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UILabel(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UILabel]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UILabel___INIT___(JAVA_OBJECT me)

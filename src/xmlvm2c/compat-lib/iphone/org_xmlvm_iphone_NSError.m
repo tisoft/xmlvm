@@ -35,6 +35,12 @@ void __INIT_org_xmlvm_iphone_NSError()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_NSError(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSError]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSError()
 {
     if (!__CLASS_org_xmlvm_iphone_NSError.classInitialized) __INIT_org_xmlvm_iphone_NSError();
@@ -42,6 +48,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSError()
     me->__class = &__CLASS_org_xmlvm_iphone_NSError;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSError]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSError);
     return me;
 }
 
@@ -49,12 +57,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSError()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_NSError(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSError]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSError___INIT____java_lang_String_int_java_util_Map(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_OBJECT n3)

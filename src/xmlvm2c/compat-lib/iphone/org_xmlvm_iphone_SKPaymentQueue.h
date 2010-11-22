@@ -1,0 +1,81 @@
+#ifndef __ORG_XMLVM_IPHONE_SKPAYMENTQUEUE__
+#define __ORG_XMLVM_IPHONE_SKPAYMENTQUEUE__
+
+#include "xmlvm.h"
+#include "org_xmlvm_iphone_NSObject.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentTransactionObserver
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentTransactionObserver
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPaymentTransactionObserver)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentQueue
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentQueue
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPaymentQueue)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
+#define XMLVM_FORWARD_DECL_java_util_ArrayList
+XMLVM_FORWARD_DECL(java_util_ArrayList)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPayment
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPayment
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPayment)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentTransaction
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentTransaction
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPaymentTransaction)
+#endif
+// Class declarations for org.xmlvm.iphone.SKPaymentQueue
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKPaymentQueue, 20)
+
+//XMLVM_BEGIN_MEMBERS
+#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentQueue
+//XMLVM_END_MEMBERS
+
+#define __INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentQueue \
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+    struct { \
+        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentQueue \
+    } org_xmlvm_iphone_SKPaymentQueue
+
+struct org_xmlvm_iphone_SKPaymentQueue {
+    __CLASS_DEFINITION_org_xmlvm_iphone_SKPaymentQueue* __class;
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentQueue;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentQueue
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentQueue
+typedef struct org_xmlvm_iphone_SKPaymentQueue org_xmlvm_iphone_SKPaymentQueue;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_SKPaymentQueue 20
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentQueue_addTransactionObserver___org_xmlvm_iphone_SKPaymentTransactionObserver 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentQueue_removeTransactionObserver___org_xmlvm_iphone_SKPaymentTransactionObserver 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentQueue_getTransactions__ 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentQueue_addPayment___org_xmlvm_iphone_SKPayment 17
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentQueue_finishTransaction___org_xmlvm_iphone_SKPaymentTransaction 18
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentQueue_restoreCompletedTransactions__ 19
+
+void __INIT_org_xmlvm_iphone_SKPaymentQueue();
+JAVA_OBJECT __NEW_org_xmlvm_iphone_SKPaymentQueue();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKPaymentQueue();
+JAVA_BOOLEAN org_xmlvm_iphone_SKPaymentQueue_canMakePayments__();
+JAVA_OBJECT org_xmlvm_iphone_SKPaymentQueue_defaultQueue__();
+// Vtable index: 14
+void org_xmlvm_iphone_SKPaymentQueue_addTransactionObserver___org_xmlvm_iphone_SKPaymentTransactionObserver(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 15
+void org_xmlvm_iphone_SKPaymentQueue_removeTransactionObserver___org_xmlvm_iphone_SKPaymentTransactionObserver(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 16
+JAVA_OBJECT org_xmlvm_iphone_SKPaymentQueue_getTransactions__(JAVA_OBJECT me);
+// Vtable index: 17
+void org_xmlvm_iphone_SKPaymentQueue_addPayment___org_xmlvm_iphone_SKPayment(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 18
+void org_xmlvm_iphone_SKPaymentQueue_finishTransaction___org_xmlvm_iphone_SKPaymentTransaction(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 19
+void org_xmlvm_iphone_SKPaymentQueue_restoreCompletedTransactions__(JAVA_OBJECT me);
+void org_xmlvm_iphone_SKPaymentQueue___CLINIT_();
+
+#endif

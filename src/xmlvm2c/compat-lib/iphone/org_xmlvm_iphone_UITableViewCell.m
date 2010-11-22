@@ -23,25 +23,31 @@ void __INIT_org_xmlvm_iphone_UITableViewCell()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UITableViewCell.vtable, __CLASS_org_xmlvm_iphone_UIView.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setSelected___boolean;
-    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_isSelected__;
-    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getEditingStyle__;
-    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getContentView__;
-    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setBackgroundView___org_xmlvm_iphone_UIView;
-    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getBackgroundView__;
-    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setSelectedBackgroundView___org_xmlvm_iphone_UIView;
-    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getSelectedBackgroundView__;
-    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getTextLabel__;
-    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getDetailTextLabel__;
-    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getImageView__;
-    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getAccessoryView__;
-    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setAccessoryView___org_xmlvm_iphone_UIView;
+    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setSelected___boolean;
+    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_isSelected__;
+    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getEditingStyle__;
+    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getContentView__;
+    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setBackgroundView___org_xmlvm_iphone_UIView;
+    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getBackgroundView__;
+    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setSelectedBackgroundView___org_xmlvm_iphone_UIView;
+    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getSelectedBackgroundView__;
+    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getTextLabel__;
+    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getDetailTextLabel__;
+    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getImageView__;
+    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getAccessoryView__;
+    __CLASS_org_xmlvm_iphone_UITableViewCell.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setAccessoryView___org_xmlvm_iphone_UIView;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UITableViewCell.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_UITableViewCell.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITableViewCell]
+    //XMLVM_END_WRAPPER
+}
+
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UITableViewCell(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UITableViewCell]
     //XMLVM_END_WRAPPER
 }
 
@@ -53,6 +59,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCell()
     me->org_xmlvm_iphone_UITableViewCell.selected_ = 0;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewCell]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UITableViewCell);
     return me;
 }
 
@@ -62,12 +70,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewCell()
     me = __NEW_org_xmlvm_iphone_UITableViewCell();
     org_xmlvm_iphone_UITableViewCell___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UITableViewCell(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UITableViewCell]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITableViewCell___INIT___(JAVA_OBJECT me)

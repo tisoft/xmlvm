@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.UIFont
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIFont, 15)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIFont, 18)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIFont
@@ -39,8 +39,11 @@ struct org_xmlvm_iphone_UIFont {
 typedef struct org_xmlvm_iphone_UIFont org_xmlvm_iphone_UIFont;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIFont 15
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIFont 18
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIFont_fontWithSize___float 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIFont_familyName__ 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIFont_fontName__ 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIFont_pointSize__ 17
 
 void __INIT_org_xmlvm_iphone_UIFont();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIFont();
@@ -53,5 +56,11 @@ JAVA_OBJECT org_xmlvm_iphone_UIFont_fontWithSize___float(JAVA_OBJECT me, JAVA_FL
 JAVA_OBJECT org_xmlvm_iphone_UIFont_fontWithNameSize___java_lang_String_float(JAVA_OBJECT n1, JAVA_FLOAT n2);
 JAVA_FLOAT org_xmlvm_iphone_UIFont_buttonFontSize__();
 JAVA_FLOAT org_xmlvm_iphone_UIFont_labelFontSize__();
+// Vtable index: 15
+JAVA_OBJECT org_xmlvm_iphone_UIFont_familyName__(JAVA_OBJECT me);
+// Vtable index: 16
+JAVA_OBJECT org_xmlvm_iphone_UIFont_fontName__(JAVA_OBJECT me);
+// Vtable index: 17
+JAVA_FLOAT org_xmlvm_iphone_UIFont_pointSize__(JAVA_OBJECT me);
 
 #endif

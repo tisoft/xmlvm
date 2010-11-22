@@ -33,6 +33,12 @@ void __INIT_org_xmlvm_iphone_NSIndexPath()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_NSIndexPath(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSIndexPath]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSIndexPath()
 {
     if (!__CLASS_org_xmlvm_iphone_NSIndexPath.classInitialized) __INIT_org_xmlvm_iphone_NSIndexPath();
@@ -40,6 +46,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSIndexPath()
     me->__class = &__CLASS_org_xmlvm_iphone_NSIndexPath;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSIndexPath]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSIndexPath);
     return me;
 }
 
@@ -51,15 +59,17 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSIndexPath()
     return me;
 }
 
-void __DELETE_org_xmlvm_iphone_NSIndexPath(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSIndexPath]
-    //XMLVM_END_WRAPPER
-}
-
 void org_xmlvm_iphone_NSIndexPath___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSIndexPath___INIT___]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_NSIndexPath_indexPathForRow___int_int(JAVA_INT n1, JAVA_INT n2)
+{
+    if (!__CLASS_org_xmlvm_iphone_NSIndexPath.classInitialized) __INIT_org_xmlvm_iphone_NSIndexPath();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSIndexPath_indexPathForRow___int_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

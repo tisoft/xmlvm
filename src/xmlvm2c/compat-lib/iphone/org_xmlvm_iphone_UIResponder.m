@@ -28,12 +28,19 @@ void __INIT_org_xmlvm_iphone_UIResponder()
     __CLASS_org_xmlvm_iphone_UIResponder.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent;
     __CLASS_org_xmlvm_iphone_UIResponder.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_getNextResponder__;
     __CLASS_org_xmlvm_iphone_UIResponder.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_resignFirstResponder__;
+    __CLASS_org_xmlvm_iphone_UIResponder.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_becomeFirstResponder__;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UIResponder.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_UIResponder.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIResponder]
+    //XMLVM_END_WRAPPER
+}
+
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIResponder(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIResponder]
     //XMLVM_END_WRAPPER
 }
 
@@ -45,6 +52,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIResponder()
     me->org_xmlvm_iphone_UIResponder.callDelegates_ = 0;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIResponder]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIResponder);
     return me;
 }
 
@@ -54,12 +63,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIResponder()
     me = __NEW_org_xmlvm_iphone_UIResponder();
     org_xmlvm_iphone_UIResponder___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIResponder(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIResponder]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIResponder___INIT___(JAVA_OBJECT me)
@@ -107,6 +110,13 @@ JAVA_OBJECT org_xmlvm_iphone_UIResponder_getNextResponder__(JAVA_OBJECT me)
 JAVA_BOOLEAN org_xmlvm_iphone_UIResponder_resignFirstResponder__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIResponder_resignFirstResponder__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_UIResponder_becomeFirstResponder__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIResponder_becomeFirstResponder__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

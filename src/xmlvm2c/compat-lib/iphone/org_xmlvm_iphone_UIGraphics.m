@@ -66,8 +66,6 @@ JAVA_OBJECT org_xmlvm_iphone_UIGraphics_getCurrentContext__()
     //XMLVM_END_WRAPPER
 }
 
-
-
 void org_xmlvm_iphone_UIGraphics_pushContext___org_xmlvm_iphone_CGContext(JAVA_OBJECT n1)
 {
     if (!__CLASS_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();

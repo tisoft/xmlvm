@@ -41,6 +41,12 @@ void __INIT_org_xmlvm_iphone_UIButtonType()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIButtonType(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIButtonType]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIButtonType()
 {
     if (!__CLASS_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
@@ -48,6 +54,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIButtonType()
     me->__class = &__CLASS_org_xmlvm_iphone_UIButtonType;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIButtonType]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIButtonType);
     return me;
 }
 
@@ -57,12 +65,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIButtonType()
     me = __NEW_org_xmlvm_iphone_UIButtonType();
     org_xmlvm_iphone_UIButtonType___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIButtonType(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIButtonType]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_UIButtonType_GET_Custom()

@@ -20,16 +20,22 @@ void __INIT_org_xmlvm_iphone_UIProgressView()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIProgressView.vtable, __CLASS_org_xmlvm_iphone_UIControl.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIProgressView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgress___float;
-    __CLASS_org_xmlvm_iphone_UIProgressView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgress__;
-    __CLASS_org_xmlvm_iphone_UIProgressView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgressViewStyle__;
-    __CLASS_org_xmlvm_iphone_UIProgressView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgressViewStyle___int;
+    __CLASS_org_xmlvm_iphone_UIProgressView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgress___float;
+    __CLASS_org_xmlvm_iphone_UIProgressView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgress__;
+    __CLASS_org_xmlvm_iphone_UIProgressView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgressViewStyle__;
+    __CLASS_org_xmlvm_iphone_UIProgressView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgressViewStyle___int;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UIProgressView.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_UIProgressView.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIProgressView]
+    //XMLVM_END_WRAPPER
+}
+
+GC_CALLBACK __DELETE_org_xmlvm_iphone_UIProgressView(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIProgressView]
     //XMLVM_END_WRAPPER
 }
 
@@ -40,6 +46,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIProgressView()
     me->__class = &__CLASS_org_xmlvm_iphone_UIProgressView;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIProgressView]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIProgressView);
     return me;
 }
 
@@ -47,12 +55,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIProgressView()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_UIProgressView(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIProgressView]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIProgressView___INIT____int(JAVA_OBJECT me, JAVA_INT n1)

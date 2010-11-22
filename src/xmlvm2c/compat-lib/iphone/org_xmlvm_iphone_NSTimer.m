@@ -1,4 +1,3 @@
-#include "java_lang_Runnable.h"
 #include "org_xmlvm_iphone_NSTimerDelegate.h"
 #include "java_lang_Object.h"
 
@@ -30,8 +29,7 @@ __CLASS_DEFINITION_org_xmlvm_iphone_NSTimer __CLASS_org_xmlvm_iphone_NSTimer = {
 
 - (void)timeFire: (NSTimer*) param
 {
-	// 11 should be timer fire ?
-	Func_VOO toCall = XMLVM_LOOKUP_INTERFACE_METHOD(self->target, "org.xmlvm.iphone.NSTimerDelegate", 11);
+	Func_VOO toCall = XMLVM_LOOKUP_INTERFACE_METHOD(self->target, "org.xmlvm.iphone.NSTimerDelegate", XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSTimerDelegate_timerEvent___java_lang_Object);
 	toCall(self->target, self->obj);
 }
 
@@ -59,32 +57,21 @@ void __INIT_org_xmlvm_iphone_NSTimer()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_NSTimer.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_NSTimer.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimer_run__;
-    __CLASS_org_xmlvm_iphone_NSTimer.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimer_invalidate__;
+    __CLASS_org_xmlvm_iphone_NSTimer.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimer_invalidate__;
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_NSTimer.numImplementedInterfaces = 1;
-    __CLASS_org_xmlvm_iphone_NSTimer.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 1);
-    __INIT_java_lang_Runnable(&__CLASS_org_xmlvm_iphone_NSTimer.implementedInterfaces[0][0]);
-    __CLASS_org_xmlvm_iphone_NSTimer.implementedInterfaces[0][0]->vtable[11] = __CLASS_org_xmlvm_iphone_NSTimer.vtable[14];
+    __CLASS_org_xmlvm_iphone_NSTimer.numImplementedInterfaces = 0;
+    __CLASS_org_xmlvm_iphone_NSTimer.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSTimer]
     //XMLVM_END_WRAPPER
 }
 
-
-JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(JAVA_FLOAT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4)
+GC_CALLBACK __DELETE_org_xmlvm_iphone_NSTimer(void * me, void * client_data)
 {
-    if (!__CLASS_org_xmlvm_iphone_NSTimer.classInitialized) __INIT_org_xmlvm_iphone_NSTimer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean]
-	org_xmlvm_iphone_NSTimer* tim = __NEW_org_xmlvm_iphone_NSTimer();
-	org_xmlvm_iphone_NSTimer___INIT____float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(tim, n1, n2, n3, n4);
-	return tim;
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSTimer]
     //XMLVM_END_WRAPPER
 }
-
-
-
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSTimer()
 {
@@ -93,6 +80,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSTimer()
     me->__class = &__CLASS_org_xmlvm_iphone_NSTimer;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSTimer]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSTimer);
     return me;
 }
 
@@ -102,34 +91,47 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSTimer()
     return me;
 }
 
-void __DELETE_org_xmlvm_iphone_NSTimer(JAVA_OBJECT me)
+JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(JAVA_FLOAT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4)
 {
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSTimer]
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_NSTimer___INIT____float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer___INIT____float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean]
-	org_xmlvm_iphone_NSTimer *thiz = me;
+    if (!__CLASS_org_xmlvm_iphone_NSTimer.classInitialized) __INIT_org_xmlvm_iphone_NSTimer();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean]
+	org_xmlvm_iphone_NSTimer* tim = __NEW_org_xmlvm_iphone_NSTimer();
 	// n1 = timerInterval
 	// n2 = NSTimerDelegate target
 	// n3 = userInfo
 	// n4 = repeats 
-	thiz->org_xmlvm_iphone_NSTimer.ocTimer = [[WrapTimer alloc] initWithDelegate: n3: n2: n1 : n4];
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_NSTimer_run__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_run__]
-    XMLVM_NOT_IMPLEMENTED();
+	tim->org_xmlvm_iphone_NSTimer.ocTimer = [[WrapTimer alloc] initWithDelegate: n3: n2: n1 : n4];
+	return tim;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSTimer_invalidate__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_invalidate__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_LONG org_xmlvm_iphone_NSTimer_access$000___org_xmlvm_iphone_NSTimer(JAVA_OBJECT n1)
+{
+    if (!__CLASS_org_xmlvm_iphone_NSTimer.classInitialized) __INIT_org_xmlvm_iphone_NSTimer();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_access$000___org_xmlvm_iphone_NSTimer]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_NSTimer_access$100___org_xmlvm_iphone_NSTimer(JAVA_OBJECT n1)
+{
+    if (!__CLASS_org_xmlvm_iphone_NSTimer.classInitialized) __INIT_org_xmlvm_iphone_NSTimer();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_access$100___org_xmlvm_iphone_NSTimer]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_NSTimer_access$200___org_xmlvm_iphone_NSTimer(JAVA_OBJECT n1)
+{
+    if (!__CLASS_org_xmlvm_iphone_NSTimer.classInitialized) __INIT_org_xmlvm_iphone_NSTimer();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_access$200___org_xmlvm_iphone_NSTimer]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

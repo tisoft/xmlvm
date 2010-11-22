@@ -33,6 +33,12 @@ void __INIT_org_xmlvm_iphone_CGLayer()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_CGLayer(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_CGLayer]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGLayer()
 {
     if (!__CLASS_org_xmlvm_iphone_CGLayer.classInitialized) __INIT_org_xmlvm_iphone_CGLayer();
@@ -40,28 +46,15 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_CGLayer()
     me->__class = &__CLASS_org_xmlvm_iphone_CGLayer;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGLayer]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_CGLayer);
     return me;
 }
 
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGLayer()
 {
     JAVA_OBJECT me = JAVA_NULL;
-    me = __NEW_org_xmlvm_iphone_CGLayer();
-    org_xmlvm_iphone_CGLayer___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_CGLayer(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_CGLayer]
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_CGLayer___INIT___(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGLayer___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_CGLayer_createWithContext___org_xmlvm_iphone_CGContext_org_xmlvm_iphone_CGSize(JAVA_OBJECT n1, JAVA_OBJECT n2)

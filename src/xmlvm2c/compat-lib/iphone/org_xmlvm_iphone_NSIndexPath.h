@@ -9,6 +9,10 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSIndexPath)
+#endif
 // Class declarations for org.xmlvm.iphone.NSIndexPath
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSIndexPath, 18)
 
@@ -41,6 +45,7 @@ void __INIT_org_xmlvm_iphone_NSIndexPath();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSIndexPath();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSIndexPath();
 void org_xmlvm_iphone_NSIndexPath___INIT___(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSIndexPath_indexPathForRow___int_int(JAVA_INT n1, JAVA_INT n2);
 // Vtable index: 14
 JAVA_INT org_xmlvm_iphone_NSIndexPath_getSection__(JAVA_OBJECT me);
 // Vtable index: 15

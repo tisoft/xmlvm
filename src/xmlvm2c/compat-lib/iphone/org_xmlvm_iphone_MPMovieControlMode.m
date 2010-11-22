@@ -35,6 +35,12 @@ void __INIT_org_xmlvm_iphone_MPMovieControlMode()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_MPMovieControlMode(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_MPMovieControlMode]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MPMovieControlMode()
 {
     if (!__CLASS_org_xmlvm_iphone_MPMovieControlMode.classInitialized) __INIT_org_xmlvm_iphone_MPMovieControlMode();
@@ -42,6 +48,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_MPMovieControlMode()
     me->__class = &__CLASS_org_xmlvm_iphone_MPMovieControlMode;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MPMovieControlMode]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_MPMovieControlMode);
     return me;
 }
 
@@ -51,12 +59,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MPMovieControlMode()
     me = __NEW_org_xmlvm_iphone_MPMovieControlMode();
     org_xmlvm_iphone_MPMovieControlMode___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_MPMovieControlMode(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_MPMovieControlMode]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_MPMovieControlMode_GET_Default()

@@ -31,7 +31,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPickerViewDelegate)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIPickerView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPickerView, 83)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPickerView, 86)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPickerView
@@ -52,54 +52,54 @@ struct org_xmlvm_iphone_UIPickerView {
 typedef struct org_xmlvm_iphone_UIPickerView org_xmlvm_iphone_UIPickerView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPickerView 83
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_getNumberOfComponents__ 69
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_numberOfRowsInComponent___int 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_rowSizeForComponent___int 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_reloadAllComponents__ 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_reloadComponent___int 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_selectedRowInComponent___int 74
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_selectRow___int_int_boolean 75
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_viewForRow___int_int 76
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_getDataSource__ 77
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_setDataSource___org_xmlvm_iphone_UIPickerViewDataSource 78
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_getDelegate__ 79
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_setDelegate___org_xmlvm_iphone_UIPickerViewDelegate 80
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_showsSelectionIndicator__ 81
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_setShowsSelectionIndicator___boolean 82
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPickerView 86
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_getNumberOfComponents__ 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_numberOfRowsInComponent___int 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_rowSizeForComponent___int 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_reloadAllComponents__ 75
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_reloadComponent___int 76
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_selectedRowInComponent___int 77
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_selectRow___int_int_boolean 78
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_viewForRow___int_int 79
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_getDataSource__ 80
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_setDataSource___org_xmlvm_iphone_UIPickerViewDataSource 81
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_getDelegate__ 82
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_setDelegate___org_xmlvm_iphone_UIPickerViewDelegate 83
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_showsSelectionIndicator__ 84
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_setShowsSelectionIndicator___boolean 85
 
 void __INIT_org_xmlvm_iphone_UIPickerView();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPickerView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPickerView();
 void org_xmlvm_iphone_UIPickerView___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIPickerView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 69
-JAVA_INT org_xmlvm_iphone_UIPickerView_getNumberOfComponents__(JAVA_OBJECT me);
-// Vtable index: 70
-JAVA_INT org_xmlvm_iphone_UIPickerView_numberOfRowsInComponent___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 71
-JAVA_OBJECT org_xmlvm_iphone_UIPickerView_rowSizeForComponent___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 72
-void org_xmlvm_iphone_UIPickerView_reloadAllComponents__(JAVA_OBJECT me);
+JAVA_INT org_xmlvm_iphone_UIPickerView_getNumberOfComponents__(JAVA_OBJECT me);
 // Vtable index: 73
-void org_xmlvm_iphone_UIPickerView_reloadComponent___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_INT org_xmlvm_iphone_UIPickerView_numberOfRowsInComponent___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 74
-JAVA_INT org_xmlvm_iphone_UIPickerView_selectedRowInComponent___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIPickerView_rowSizeForComponent___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 75
-void org_xmlvm_iphone_UIPickerView_selectRow___int_int_boolean(JAVA_OBJECT me, JAVA_INT n1, JAVA_INT n2, JAVA_BOOLEAN n3);
+void org_xmlvm_iphone_UIPickerView_reloadAllComponents__(JAVA_OBJECT me);
 // Vtable index: 76
-JAVA_OBJECT org_xmlvm_iphone_UIPickerView_viewForRow___int_int(JAVA_OBJECT me, JAVA_INT n1, JAVA_INT n2);
+void org_xmlvm_iphone_UIPickerView_reloadComponent___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 77
-JAVA_OBJECT org_xmlvm_iphone_UIPickerView_getDataSource__(JAVA_OBJECT me);
+JAVA_INT org_xmlvm_iphone_UIPickerView_selectedRowInComponent___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 78
-void org_xmlvm_iphone_UIPickerView_setDataSource___org_xmlvm_iphone_UIPickerViewDataSource(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIPickerView_selectRow___int_int_boolean(JAVA_OBJECT me, JAVA_INT n1, JAVA_INT n2, JAVA_BOOLEAN n3);
 // Vtable index: 79
-JAVA_OBJECT org_xmlvm_iphone_UIPickerView_getDelegate__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_UIPickerView_viewForRow___int_int(JAVA_OBJECT me, JAVA_INT n1, JAVA_INT n2);
 // Vtable index: 80
-void org_xmlvm_iphone_UIPickerView_setDelegate___org_xmlvm_iphone_UIPickerViewDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIPickerView_getDataSource__(JAVA_OBJECT me);
 // Vtable index: 81
-JAVA_BOOLEAN org_xmlvm_iphone_UIPickerView_showsSelectionIndicator__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIPickerView_setDataSource___org_xmlvm_iphone_UIPickerViewDataSource(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 82
+JAVA_OBJECT org_xmlvm_iphone_UIPickerView_getDelegate__(JAVA_OBJECT me);
+// Vtable index: 83
+void org_xmlvm_iphone_UIPickerView_setDelegate___org_xmlvm_iphone_UIPickerViewDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 84
+JAVA_BOOLEAN org_xmlvm_iphone_UIPickerView_showsSelectionIndicator__(JAVA_OBJECT me);
+// Vtable index: 85
 void org_xmlvm_iphone_UIPickerView_setShowsSelectionIndicator___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 
 #endif

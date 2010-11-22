@@ -3,13 +3,8 @@
 
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_NSObject.h"
-#include "java_lang_Runnable.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_lang_Runnable
-#define XMLVM_FORWARD_DECL_java_lang_Runnable
-XMLVM_FORWARD_DECL(java_lang_Runnable)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
@@ -22,8 +17,12 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimerDelegate)
 #define XMLVM_FORWARD_DECL_java_lang_Object
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimer
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimer
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimer)
+#endif
 // Class declarations for org.xmlvm.iphone.NSTimer
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSTimer, 16)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSTimer, 15)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSTimer void *ocTimer;
@@ -44,18 +43,17 @@ struct org_xmlvm_iphone_NSTimer {
 typedef struct org_xmlvm_iphone_NSTimer org_xmlvm_iphone_NSTimer;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSTimer 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSTimer_run__ 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSTimer_invalidate__ 15
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSTimer 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSTimer_invalidate__ 14
 
 void __INIT_org_xmlvm_iphone_NSTimer();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSTimer();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSTimer();
-void org_xmlvm_iphone_NSTimer___INIT____float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4);
 JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(JAVA_FLOAT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4);
 // Vtable index: 14
-void org_xmlvm_iphone_NSTimer_run__(JAVA_OBJECT me);
-// Vtable index: 15
 void org_xmlvm_iphone_NSTimer_invalidate__(JAVA_OBJECT me);
+JAVA_LONG org_xmlvm_iphone_NSTimer_access$000___org_xmlvm_iphone_NSTimer(JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSTimer_access$100___org_xmlvm_iphone_NSTimer(JAVA_OBJECT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_NSTimer_access$200___org_xmlvm_iphone_NSTimer(JAVA_OBJECT n1);
 
 #endif

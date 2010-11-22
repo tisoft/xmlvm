@@ -33,6 +33,12 @@ void __INIT_org_xmlvm_iphone_NSMutableData()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_NSMutableData(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSMutableData]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSMutableData()
 {
     if (!__CLASS_org_xmlvm_iphone_NSMutableData.classInitialized) __INIT_org_xmlvm_iphone_NSMutableData();
@@ -40,6 +46,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSMutableData()
     me->__class = &__CLASS_org_xmlvm_iphone_NSMutableData;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSMutableData]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSMutableData);
     return me;
 }
 
@@ -49,12 +57,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSMutableData()
     me = __NEW_org_xmlvm_iphone_NSMutableData();
     org_xmlvm_iphone_NSMutableData___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_NSMutableData(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSMutableData]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSMutableData___INIT___(JAVA_OBJECT me)

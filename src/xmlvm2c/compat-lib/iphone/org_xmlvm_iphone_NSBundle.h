@@ -47,7 +47,6 @@ typedef struct org_xmlvm_iphone_NSBundle org_xmlvm_iphone_NSBundle;
 void __INIT_org_xmlvm_iphone_NSBundle();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSBundle();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSBundle();
-void org_xmlvm_iphone_NSBundle___CLINIT_();
 JAVA_OBJECT org_xmlvm_iphone_NSBundle_mainBundle__();
 // Vtable index: 14
 JAVA_OBJECT org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_lang_String_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
@@ -55,5 +54,6 @@ JAVA_OBJECT org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_la
 JAVA_OBJECT org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 // Vtable index: 16
 JAVA_OBJECT org_xmlvm_iphone_NSBundle_bundlePath__(JAVA_OBJECT me);
+void org_xmlvm_iphone_NSBundle___CLINIT_();
 
 #endif

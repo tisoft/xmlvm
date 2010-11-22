@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGImage)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 #endif
 // Class declarations for org.xmlvm.iphone.CGBitmapContext
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGBitmapContext, 36)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGBitmapContext, 42)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CGBitmapContext
@@ -39,15 +39,12 @@ struct org_xmlvm_iphone_CGBitmapContext {
 typedef struct org_xmlvm_iphone_CGBitmapContext org_xmlvm_iphone_CGBitmapContext;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGBitmapContext 36
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGBitmapContext_release__ 12
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGBitmapContext 42
 
 void __INIT_org_xmlvm_iphone_CGBitmapContext();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGBitmapContext();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGBitmapContext();
 JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_createWithSize___int_int_org_xmlvm_iphone_CGImage(JAVA_INT n1, JAVA_INT n2, JAVA_OBJECT n3);
 JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_createWithSize___int_int(JAVA_INT n1, JAVA_INT n2);
-// Vtable index: 12
-void org_xmlvm_iphone_CGBitmapContext_release__(JAVA_OBJECT me);
 
 #endif

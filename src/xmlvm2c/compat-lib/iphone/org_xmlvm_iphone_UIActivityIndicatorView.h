@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIActivityIndicatorView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActivityIndicatorView, 75)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActivityIndicatorView, 78)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActivityIndicatorView
@@ -31,30 +31,30 @@ struct org_xmlvm_iphone_UIActivityIndicatorView {
 typedef struct org_xmlvm_iphone_UIActivityIndicatorView org_xmlvm_iphone_UIActivityIndicatorView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIActivityIndicatorView 75
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActivityIndicatorView_setActivityIndicatorViewStyle___int 69
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActivityIndicatorView_getActivityIndicatorViewStyle__ 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActivityIndicatorView_setHidesWhenStopped___boolean 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActivityIndicatorView_getHidesWhenStopped__ 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActivityIndicatorView_startAnimating__ 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActivityIndicatorView_stopAnimating__ 74
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIActivityIndicatorView 78
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActivityIndicatorView_setActivityIndicatorViewStyle___int 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActivityIndicatorView_getActivityIndicatorViewStyle__ 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActivityIndicatorView_setHidesWhenStopped___boolean 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActivityIndicatorView_getHidesWhenStopped__ 75
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActivityIndicatorView_startAnimating__ 76
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActivityIndicatorView_stopAnimating__ 77
 
 void __INIT_org_xmlvm_iphone_UIActivityIndicatorView();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActivityIndicatorView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIActivityIndicatorView();
 void org_xmlvm_iphone_UIActivityIndicatorView___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIActivityIndicatorView___INIT____int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 69
-void org_xmlvm_iphone_UIActivityIndicatorView_setActivityIndicatorViewStyle___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 70
-JAVA_INT org_xmlvm_iphone_UIActivityIndicatorView_getActivityIndicatorViewStyle__(JAVA_OBJECT me);
-// Vtable index: 71
-void org_xmlvm_iphone_UIActivityIndicatorView_setHidesWhenStopped___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 // Vtable index: 72
-JAVA_BOOLEAN org_xmlvm_iphone_UIActivityIndicatorView_getHidesWhenStopped__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIActivityIndicatorView_setActivityIndicatorViewStyle___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 73
-void org_xmlvm_iphone_UIActivityIndicatorView_startAnimating__(JAVA_OBJECT me);
+JAVA_INT org_xmlvm_iphone_UIActivityIndicatorView_getActivityIndicatorViewStyle__(JAVA_OBJECT me);
 // Vtable index: 74
+void org_xmlvm_iphone_UIActivityIndicatorView_setHidesWhenStopped___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+// Vtable index: 75
+JAVA_BOOLEAN org_xmlvm_iphone_UIActivityIndicatorView_getHidesWhenStopped__(JAVA_OBJECT me);
+// Vtable index: 76
+void org_xmlvm_iphone_UIActivityIndicatorView_startAnimating__(JAVA_OBJECT me);
+// Vtable index: 77
 void org_xmlvm_iphone_UIActivityIndicatorView_stopAnimating__(JAVA_OBJECT me);
 
 #endif

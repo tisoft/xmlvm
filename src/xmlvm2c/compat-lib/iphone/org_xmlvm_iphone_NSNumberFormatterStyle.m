@@ -41,6 +41,12 @@ void __INIT_org_xmlvm_iphone_NSNumberFormatterStyle()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_NSNumberFormatterStyle(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSNumberFormatterStyle]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNumberFormatterStyle()
 {
     if (!__CLASS_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
@@ -48,6 +54,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNumberFormatterStyle()
     me->__class = &__CLASS_org_xmlvm_iphone_NSNumberFormatterStyle;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSNumberFormatterStyle]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSNumberFormatterStyle);
     return me;
 }
 
@@ -57,12 +65,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSNumberFormatterStyle()
     me = __NEW_org_xmlvm_iphone_NSNumberFormatterStyle();
     org_xmlvm_iphone_NSNumberFormatterStyle___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_NSNumberFormatterStyle(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSNumberFormatterStyle]
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_NSNumberFormatterStyle_GET_NoStyle()

@@ -29,6 +29,12 @@ void __INIT_org_xmlvm_iphone_NSNotification()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_NSNotification(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSNotification]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNotification()
 {
     if (!__CLASS_org_xmlvm_iphone_NSNotification.classInitialized) __INIT_org_xmlvm_iphone_NSNotification();
@@ -36,6 +42,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNotification()
     me->__class = &__CLASS_org_xmlvm_iphone_NSNotification;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSNotification]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSNotification);
     return me;
 }
 
@@ -45,12 +53,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSNotification()
     me = __NEW_org_xmlvm_iphone_NSNotification();
     org_xmlvm_iphone_NSNotification___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_NSNotification(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSNotification]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSNotification___INIT___(JAVA_OBJECT me)

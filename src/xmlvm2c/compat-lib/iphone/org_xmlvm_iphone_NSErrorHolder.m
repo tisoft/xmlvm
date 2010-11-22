@@ -32,6 +32,12 @@ void __INIT_org_xmlvm_iphone_NSErrorHolder()
     //XMLVM_END_WRAPPER
 }
 
+GC_CALLBACK __DELETE_org_xmlvm_iphone_NSErrorHolder(void * me, void * client_data)
+{
+    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSErrorHolder]
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSErrorHolder()
 {
     if (!__CLASS_org_xmlvm_iphone_NSErrorHolder.classInitialized) __INIT_org_xmlvm_iphone_NSErrorHolder();
@@ -40,6 +46,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSErrorHolder()
     me->org_xmlvm_iphone_NSErrorHolder.error_ = (org_xmlvm_iphone_NSError*) JAVA_NULL;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSErrorHolder]
     //XMLVM_END_WRAPPER
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSErrorHolder);
     return me;
 }
 
@@ -49,12 +57,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSErrorHolder()
     me = __NEW_org_xmlvm_iphone_NSErrorHolder();
     org_xmlvm_iphone_NSErrorHolder___INIT___(me);
     return me;
-}
-
-void __DELETE_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSErrorHolder]
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSErrorHolder___INIT___(JAVA_OBJECT me)

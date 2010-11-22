@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(java_util_Set)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 // Class declarations for org.xmlvm.iphone.UISlider
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISlider, 76)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISlider, 79)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UISlider
@@ -43,13 +43,13 @@ struct org_xmlvm_iphone_UISlider {
 typedef struct org_xmlvm_iphone_UISlider org_xmlvm_iphone_UISlider;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISlider 76
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_setValue___float 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_getValue__ 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_setMinimumValue___float 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_getMinimumValue__ 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_setMaximumValue___float 74
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_getMaximumValue__ 75
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISlider 79
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_setValue___float 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_getValue__ 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_setMinimumValue___float 75
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_getMinimumValue__ 76
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_setMaximumValue___float 77
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_getMaximumValue__ 78
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 16
 
 void __INIT_org_xmlvm_iphone_UISlider();
@@ -57,17 +57,17 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UISlider();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UISlider();
 void org_xmlvm_iphone_UISlider___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UISlider___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 70
-void org_xmlvm_iphone_UISlider_setValue___float(JAVA_OBJECT me, JAVA_FLOAT n1);
-// Vtable index: 71
-JAVA_FLOAT org_xmlvm_iphone_UISlider_getValue__(JAVA_OBJECT me);
-// Vtable index: 72
-void org_xmlvm_iphone_UISlider_setMinimumValue___float(JAVA_OBJECT me, JAVA_FLOAT n1);
 // Vtable index: 73
-JAVA_FLOAT org_xmlvm_iphone_UISlider_getMinimumValue__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UISlider_setValue___float(JAVA_OBJECT me, JAVA_FLOAT n1);
 // Vtable index: 74
-void org_xmlvm_iphone_UISlider_setMaximumValue___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+JAVA_FLOAT org_xmlvm_iphone_UISlider_getValue__(JAVA_OBJECT me);
 // Vtable index: 75
+void org_xmlvm_iphone_UISlider_setMinimumValue___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+// Vtable index: 76
+JAVA_FLOAT org_xmlvm_iphone_UISlider_getMinimumValue__(JAVA_OBJECT me);
+// Vtable index: 77
+void org_xmlvm_iphone_UISlider_setMaximumValue___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+// Vtable index: 78
 JAVA_FLOAT org_xmlvm_iphone_UISlider_getMaximumValue__(JAVA_OBJECT me);
 // Vtable index: 16
 void org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);

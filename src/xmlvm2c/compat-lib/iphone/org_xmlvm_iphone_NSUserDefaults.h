@@ -64,7 +64,6 @@ typedef struct org_xmlvm_iphone_NSUserDefaults org_xmlvm_iphone_NSUserDefaults;
 void __INIT_org_xmlvm_iphone_NSUserDefaults();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSUserDefaults();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSUserDefaults();
-void org_xmlvm_iphone_NSUserDefaults___CLINIT_();
 void org_xmlvm_iphone_NSUserDefaults___INIT___(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_standardUserDefaults__();
 // Vtable index: 14
@@ -91,5 +90,6 @@ JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_dataForKey___java_lang_String(JAVA_O
 JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_stringForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 25
 void org_xmlvm_iphone_NSUserDefaults_remove___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSUserDefaults___CLINIT_();
 
 #endif
