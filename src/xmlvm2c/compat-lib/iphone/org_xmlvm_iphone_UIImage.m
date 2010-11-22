@@ -44,7 +44,7 @@ void __INIT_org_xmlvm_iphone_UIImage()
     //XMLVM_END_WRAPPER
 }
 
-GC_CALLBACK __DELETE_org_xmlvm_iphone_UIImage(void * me, void * client_data)
+void __DELETE_org_xmlvm_iphone_UIImage(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIImage]
 	org_xmlvm_iphone_UIImage* thiz = (org_xmlvm_iphone_UIImage*) me;
@@ -58,9 +58,9 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImage()
     org_xmlvm_iphone_UIImage* me = (org_xmlvm_iphone_UIImage*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImage));
     me->__class = &__CLASS_org_xmlvm_iphone_UIImage;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImage]
-    //XMLVM_END_WRAPPER
     // Tell the GC to finalize us
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIImage);
+    //XMLVM_END_WRAPPER
     return me;
 }
 

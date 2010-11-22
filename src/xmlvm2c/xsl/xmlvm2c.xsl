@@ -584,9 +584,9 @@ int main(int argc, char* argv[])
     
     
     <!-- Emit destructor -->
-    <xsl:text>GC_CALLBACK __DELETE_</xsl:text>
+    <xsl:text>void __DELETE_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>(void * me, void * client_data)&nl;{&nl;</xsl:text>
+    <xsl:text>(void* me, void* client_data)&nl;{&nl;</xsl:text>
     <xsl:if test="$genWrapper = 'true'">
       <xsl:text>    //XMLVM_BEGIN_WRAPPER[__DELETE_</xsl:text>
       <xsl:value-of select="$clname"/>
@@ -656,7 +656,7 @@ int main(int argc, char* argv[])
   
     <xsl:if test="(vm:method[@name='finalize' and 
                         not(vm:signature/vm:parameter) and 
-                        vm:signature/vm:return[@type='void']]) or $genWrapper = 'true'">
+                        vm:signature/vm:return[@type='void']])">
       <xsl:text>    // Tell the GC to finalize us&nl;</xsl:text>
       <xsl:text>    XMLVM_FINALIZE(me, __DELETE_</xsl:text>
    	  <xsl:value-of select="$clname"/>

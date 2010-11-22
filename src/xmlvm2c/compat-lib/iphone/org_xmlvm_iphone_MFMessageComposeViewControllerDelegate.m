@@ -30,7 +30,7 @@ void __INIT_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate()
     //XMLVM_END_WRAPPER
 }
 
-GC_CALLBACK __DELETE_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate(void * me, void * client_data)
+void __DELETE_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate]
     //XMLVM_END_WRAPPER
@@ -43,8 +43,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate()
     me->__class = &__CLASS_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate]
     //XMLVM_END_WRAPPER
-    // Tell the GC to finalize us
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate);
     return me;
 }
 

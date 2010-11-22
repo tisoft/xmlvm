@@ -55,7 +55,7 @@ void __INIT_org_xmlvm_iphone_CGRect()
     //XMLVM_END_WRAPPER
 }
 
-GC_CALLBACK __DELETE_org_xmlvm_iphone_CGRect(void * me, void * client_data)
+void __DELETE_org_xmlvm_iphone_CGRect(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_CGRect]
     //XMLVM_END_WRAPPER
@@ -72,8 +72,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_CGRect()
  	me->org_xmlvm_iphone_CGRect.origin_ = __NEW_org_xmlvm_iphone_CGPoint();
     me->org_xmlvm_iphone_CGRect.size_ = __NEW_org_xmlvm_iphone_CGSize();
     //XMLVM_END_WRAPPER
-    // Tell the GC to finalize us
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_CGRect);
     return me;
 }
 

@@ -30,32 +30,32 @@ void __INIT_org_xmlvm_iphone_CAAnimation()
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_CAAnimation.numImplementedInterfaces = 2;
     __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 2);
-    __INIT_org_xmlvm_iphone_CAAction(&__CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]);
+    __INIT_org_xmlvm_iphone_CAMediaTiming(&__CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]);
     __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[11] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __INIT_org_xmlvm_iphone_CAMediaTiming(&__CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]);
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[12] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[13] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[14] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[15] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[16] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[17] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[18] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[19] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[20] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[21] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[22] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[23] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[24] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[25] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[26] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
+    __INIT_org_xmlvm_iphone_CAAction(&__CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]);
     __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[11] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[12] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[13] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[14] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[15] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[16] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[17] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[18] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[19] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[20] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[21] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[22] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[23] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[24] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[25] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
-    __CLASS_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[26] = __CLASS_org_xmlvm_iphone_CAAnimation.vtable[-1];
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CAAnimation]
     //XMLVM_END_WRAPPER
 }
 
-GC_CALLBACK __DELETE_org_xmlvm_iphone_CAAnimation(void * me, void * client_data)
+void __DELETE_org_xmlvm_iphone_CAAnimation(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_CAAnimation]
     //XMLVM_END_WRAPPER
@@ -68,8 +68,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_CAAnimation()
     me->__class = &__CLASS_org_xmlvm_iphone_CAAnimation;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CAAnimation]
     //XMLVM_END_WRAPPER
-    // Tell the GC to finalize us
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_CAAnimation);
     return me;
 }
 
