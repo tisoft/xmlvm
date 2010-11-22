@@ -75,16 +75,11 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(JAVA_OBJECT n
     if (!__CLASS_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_imageNamed___java_lang_String]
 	NSString *nsStr = toNSString(n1);
-	NSMutableString* s = [[NSMutableString alloc] init];
-	//TODO why do we need to prepend 'res' although the Objective-C backend does not need to do this?
-	[s setString:@"res/"];
-	[s appendString:nsStr];
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	UIImage *named = [UIImage imageNamed:s];
+	UIImage *named = [UIImage imageNamed:nsStr];
 	[named retain];
 	[pool release];
 	[nsStr release];
-	[s release];
 	
 	org_xmlvm_iphone_UIImage *toRet = __NEW_org_xmlvm_iphone_UIImage();
 	//TODO need to call a constructor but UIImage does not have a public default constructor
