@@ -2562,6 +2562,18 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="dex:ushr-int|dex:ushr-int-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.i = ((unsigned int) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.i) &gt;&gt; (0x1f &amp; ((unsigned int) _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.i));
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="dex:ushr-int-lit8|dex:ushr-int-lit16">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
@@ -2570,6 +2582,18 @@ int main(int argc, char* argv[])
   <xsl:text>.i &gt;&gt; (0x1f &amp; </xsl:text>
   <xsl:value-of select="@value"/>
   <xsl:text>);
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:shr-long|dex:shr-long-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l &gt;&gt; (0x3f &amp; _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.l);
 </xsl:text>
 </xsl:template>
 
@@ -3141,6 +3165,16 @@ int main(int argc, char* argv[])
   <xsl:text>.i = -_r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.i;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="dex:neg-long">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = -_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l;
 </xsl:text>
 </xsl:template>
 
