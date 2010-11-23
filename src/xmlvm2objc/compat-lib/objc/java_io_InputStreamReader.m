@@ -25,32 +25,32 @@
 //----------------------------------------------------------------------------
 @implementation java_io_InputStreamReader
 
-static const char LF = '\n';
-static const char CR = '\r';
-
 - (void) __init_java_io_InputStreamReader___java_io_InputStream: (java_io_InputStream*) input
 {
-	[self __init_java_io_InputStreamReader___java_io_InputStream_java_lang_String: input : @"ASCII"];
+	[super __init_java_io_Reader___java_lang_Object:input];
+	self->target = [input retain];
 }
 
-- (void) __init_java_io_InputStreamReader___java_io_InputStream_java_lang_String: (java_io_InputStream*) input: (java_lang_String*) enc
+- (void) __init_java_io_InputStreamReader___java_io_InputStream_java_lang_String: (java_io_InputStream*) input: (java_lang_String*) charsetName
 {
-	target = input;
-	encoding = enc;
-	[target retain];
-	[encoding retain];
+	[super __init_java_io_Reader___java_lang_Object:input];
+	self->target = [input retain];
+
+	//charsetName is currently ignored (which is not consistent with the Java API, but I didn't want to remove an implemented constructor)
 }
 
 - (int) read__
 {
-	return [target read__]; //TODO: works only for ASCII
+	return [super read__];
 }
-	 
-- (void) dealloc
-{
-	[target release];
-	[encoding release];
-	[super dealloc];
+
+- (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len {
+	return [target read___byte_ARRAYTYPE_int_int:buffer:pos:len];
+}
+
+- (bool) ready__ {
+	//TODO this isn't consistent with the Java API since we're not using StreamDecoder
+	return true;
 }
 
 - (void) close__
@@ -58,29 +58,10 @@ static const char CR = '\r';
 	[target close__];
 }
 
-- (java_lang_String*) readLine__
+- (void) dealloc
 {
-	java_lang_StringBuffer* b = [[java_lang_StringBuffer alloc] init];
-	int i;
-	while ((i = [self read__]) != -1 && ((char) i) != LF) {
-		if (i < 0) {
-			i += 256;
-		}
-		[b append___char: (char) i];
-	}
-	if ([b length] == 0 && i == -1) {
-		[b release];
-		return JAVA_NULL;
-	}
-	java_lang_String* result = [b toString__];
-	[b release];
-	int j = [result indexOf___int: CR];
-	if (j > -1) {
-		java_lang_String * newresult = [[result substring___int_int: 0: j] retain];
-		[result release];
-		return newresult;
-	}
-	return result;
+	[target release];
+	[super dealloc];
 }
 
 @end

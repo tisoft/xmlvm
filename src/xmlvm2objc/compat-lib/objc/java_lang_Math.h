@@ -39,9 +39,11 @@
 + (float) max___float_float :(float) x :(float) y;
 + (double) max___double_double :(double) x :(double) y;
 + (int) max___int_int :(int) x :(int) y;
++ (int) max___long_long :(long) x :(long) y;
 + (float) min___float_float :(float) x :(float) y;
 + (double) min___double_double :(double) x :(double) y;
 + (int) min___int_int :(int) x :(int) y;
++ (int) min___long_long :(long) x :(long) y;
 + (float) round___float: (float) a;
 + (double) round___double: (double) a;
 + (double) floor___double:(double) a;

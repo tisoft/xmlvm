@@ -20,15 +20,40 @@
 
 #import "xmlvm.h"
 #import "java_io_Reader.h"
+#import "java_lang_StringBuilder.h"
 
 @interface java_io_BufferedReader : java_io_Reader {
 	java_io_Reader *target;
+	XMLVMArray* cb;
+	int nChars;
+	int nextChar;
+	int markedChar;
+	int readAheadLimit;
+	BOOL skipLF;
+	BOOL markedSkipLF;
 }
 
+//Private methods
+- (void) ensureOpen;
+- (void) fill;
+- (int) read1: (XMLVMArray *) cbuf: (int) off: (int) len;
+
++ (void) appendChars: (java_lang_StringBuilder*)sb : (XMLVMArray*)src: (int)offset: (int)count;
+
+//Protected or Package methods
+- (java_lang_String*) readLine___boolean:(BOOL)ignoreLF;
+
+//Public methods
 - (void) __init_java_io_BufferedReader___java_io_Reader: (java_io_Reader *) reader;
-- (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len;
+- (void) __init_java_io_BufferedReader___java_io_Reader_int: (java_io_Reader *) reader: (int) sz;
+- (int) read__;
+- (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) cbuf: (int) off: (int) len;
 - (bool) ready__;
+- (void) mark___int: (int) readAheadLimitArg;
+- (BOOL) markSupported__;
 - (java_lang_String*) readLine__;
+- (long) skip___long: (long) n;
+- (void) reset__;
 - (void) close__;
 
 @end

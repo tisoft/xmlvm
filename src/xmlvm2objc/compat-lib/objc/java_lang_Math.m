@@ -96,6 +96,11 @@
 	return x < y ? y : x;
 }
 
++ (int) max___long_long :(long) x :(long) y
+{
+	return x < y ? y : x;
+}
+
 + (float) min___float_float :(float) x :(float) y
 {
 	return x >  y ? y : x;
@@ -107,6 +112,11 @@
 }
 
 + (int) min___int_int :(int) x :(int) y
+{
+	return x >  y ? y : x;
+}
+
++ (int) min___long_long :(long) x :(long) y
 {
 	return x >  y ? y : x;
 }

@@ -28,14 +28,14 @@
 - (id) init
 {
 	[super init];
-	lock = (java_lang_Object*) JAVA_NULL;
+	self->lock = (java_lang_Object*) JAVA_NULL;
 	writeBuffer = (XMLVMArray*) JAVA_NULL;
 	return self;
 }
 
 - (java_lang_Object*) getProtectedLock
 {
-	return lock;
+	return self->lock;
 }
 
 - (void) __init_java_io_Writer__
@@ -50,8 +50,13 @@
 //		[ex __init_java_lang_NullPointerException___java_lang_String:@"Locking object cannot be NULL!"];
 		@throw ex;
 	}
-	[lockObject retain];
+
 	self->lock = lockObject;
+	// Avoid cyclic dependency where self is never released if it references itself in self->lock. Similar logic is in "dealloc".
+	// If self were to be retained again, the "retainCount" would never get to 0 and would not be deallocated.
+	if (self != self->lock) {
+		[self->lock retain];
+	}
 }
 
 
@@ -123,7 +128,12 @@
 
 - (void) dealloc
 {
-	[lock release];
+	// In order to avoid cyclic dependency, self->lock was NOT retained during initialization if it was equal to self.
+	// Otherwise, the "retainCount" would never get to 0 and this "dealloc" method wouldn't even be called, causing a memory leak.
+	// Since it was not retained, it should not be released either. It already has a "retainCount" of 0 right now.
+	if (self != self->lock) {
+		[self->lock release];
+	}
 	[writeBuffer release];
 	[super dealloc];
 }
