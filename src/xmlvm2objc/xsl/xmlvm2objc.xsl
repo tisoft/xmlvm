@@ -1541,7 +1541,7 @@ int main(int argc, char* argv[])
       <xsl:text>int</xsl:text>
     </xsl:when>
     <xsl:when test="$type = 'long'">
-      <xsl:text>long</xsl:text>
+      <xsl:text>long long</xsl:text>
     </xsl:when>
     <xsl:when test="$type = 'float'">
       <xsl:text>float</xsl:text>
@@ -1831,7 +1831,7 @@ int main(int argc, char* argv[])
 <xsl:template match="jvm:lushr">
   <xsl:text>    _op2.i = _stack[--_sp].i;
     _op1.l = _stack[--_sp].l;
-    _stack[_sp++].l = ((unsigned long) _op1.l) &gt;&gt; _op2.i;</xsl:text>
+    _stack[_sp++].l = ((unsigned long long) _op1.l) &gt;&gt; _op2.i;</xsl:text>
 </xsl:template>
 
 <xsl:template match="jvm:iushr">
@@ -2577,9 +2577,9 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:ushr-long|dex:ushr-long-2addr">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.l = ((unsigned long) _r</xsl:text>
+  <xsl:text>.l = ((unsigned long long) _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.l) &gt;&gt; (0x3f &amp; ((unsigned long) _r</xsl:text>
+  <xsl:text>.l) &gt;&gt; (0x3f &amp; ((unsigned long long) _r</xsl:text>
   <xsl:value-of select="@vz"/>
   <xsl:text>.l));
 </xsl:text>
@@ -2968,7 +2968,7 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:int-to-long">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.l = (long) _r</xsl:text>
+  <xsl:text>.l = (long long) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.i;
 </xsl:text>
@@ -3038,7 +3038,7 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:double-to-long">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.l = (long) _r</xsl:text>
+  <xsl:text>.l = (long long) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.d;
 </xsl:text>

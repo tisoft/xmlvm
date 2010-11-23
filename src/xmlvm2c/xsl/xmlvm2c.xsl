@@ -2019,9 +2019,9 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:ushr-long|dex:ushr-long-2addr">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.l = ((unsigned long) _r</xsl:text>
+  <xsl:text>.l = ((unsigned long long) _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.l) &gt;&gt; (0x3f &amp; ((unsigned long) _r</xsl:text>
+  <xsl:text>.l) &gt;&gt; (0x3f &amp; ((unsigned long long) _r</xsl:text>
   <xsl:value-of select="@vz"/>
   <xsl:text>.l));
 </xsl:text>

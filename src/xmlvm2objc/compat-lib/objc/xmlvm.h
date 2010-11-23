@@ -44,11 +44,11 @@
 void xmlvm_init();
 
 typedef union {
-    id      o;
-    int     i;
-    float   f;
-    double  d;
-    long    l;
+    id        o;
+    int       i;
+    float     f;
+    double    d;
+    long long l;
 } XMLVMElem;
 
 typedef union {
@@ -59,8 +59,8 @@ typedef union {
     int*            i;
     float*          f;
     double*         d;
-    long*           l;
-      void*           data;
+    long long*      l;
+    void*           data;
 } XMLVMElemPtr;
 
 
