@@ -2406,6 +2406,18 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="dex:add-long|dex:add-long-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l + _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.l;
+</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="dex:sub-long|dex:sub-long-2addr">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
