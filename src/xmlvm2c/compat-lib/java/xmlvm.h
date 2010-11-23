@@ -48,16 +48,16 @@ void* xmalloc(int size);
 void xmlvm_init();
 
 
-typedef void   JAVA_VOID;
-typedef int    JAVA_BOOLEAN;
-typedef int    JAVA_CHAR;
-typedef int    JAVA_BYTE;
-typedef int    JAVA_SHORT;
-typedef int    JAVA_INT;
-typedef long   JAVA_LONG;
-typedef float  JAVA_FLOAT;
-typedef double JAVA_DOUBLE;
-typedef void*  JAVA_OBJECT;
+typedef void      JAVA_VOID;
+typedef int       JAVA_BOOLEAN;
+typedef int       JAVA_CHAR;
+typedef int       JAVA_BYTE;
+typedef int       JAVA_SHORT;
+typedef int       JAVA_INT;
+typedef long long JAVA_LONG;
+typedef float     JAVA_FLOAT;
+typedef double    JAVA_DOUBLE;
+typedef void*     JAVA_OBJECT;
 
 //TODO which values should we use for Double.INFINITY?
 #define Infinity 0
@@ -67,7 +67,7 @@ typedef char              JAVA_ARRAY_BYTE;
 typedef unsigned short    JAVA_ARRAY_CHAR;
 typedef short             JAVA_ARRAY_SHORT;
 typedef int               JAVA_ARRAY_INT;
-typedef long              JAVA_ARRAY_LONG;
+typedef long long         JAVA_ARRAY_LONG;
 typedef float             JAVA_ARRAY_FLOAT;
 typedef double            JAVA_ARRAY_DOUBLE;
 typedef JAVA_OBJECT       JAVA_ARRAY_OBJECT;
