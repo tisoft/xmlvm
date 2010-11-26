@@ -1995,11 +1995,11 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:ushr-int-lit8|dex:ushr-int-lit16">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.i = _r</xsl:text>
+  <xsl:text>.i = ((unsigned JAVA_INT _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.i &gt;&gt; (0x1f &amp; </xsl:text>
+  <xsl:text>.i) &gt;&gt; (0x1f &amp; ((unsigned JAVA_INT) </xsl:text>
   <xsl:value-of select="@value"/>
-  <xsl:text>);
+  <xsl:text>));
 </xsl:text>
 </xsl:template>
 
@@ -2007,9 +2007,9 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:ushr-int|dex:ushr-int-2addr">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.i = ((unsigned int) _r</xsl:text>
+  <xsl:text>.i = ((unsigned JAVA_INT) _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.i) &gt;&gt; (0x1f &amp; ((unsigned int) _r</xsl:text>
+  <xsl:text>.i) &gt;&gt; (0x1f &amp; ((unsigned JAVA_INT) _r</xsl:text>
   <xsl:value-of select="@vz"/>
   <xsl:text>.i));
 </xsl:text>
@@ -2019,9 +2019,9 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:ushr-long|dex:ushr-long-2addr">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.l = ((unsigned long long) _r</xsl:text>
+  <xsl:text>.l = ((unsigned JAVA_LONG) _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.l) &gt;&gt; (0x3f &amp; ((unsigned long long) _r</xsl:text>
+  <xsl:text>.l) &gt;&gt; (0x3f &amp; ((unsigned JAVA_LONG) _r</xsl:text>
   <xsl:value-of select="@vz"/>
   <xsl:text>.l));
 </xsl:text>

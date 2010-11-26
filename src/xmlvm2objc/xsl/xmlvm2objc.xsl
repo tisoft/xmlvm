@@ -2577,11 +2577,11 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:ushr-int-lit8|dex:ushr-int-lit16">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.i = _r</xsl:text>
+  <xsl:text>.i = ((unsigned int _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.i &gt;&gt; (0x1f &amp; </xsl:text>
+  <xsl:text>.i) &gt;&gt; (0x1f &amp; ((unsigned int) </xsl:text>
   <xsl:value-of select="@value"/>
-  <xsl:text>);
+  <xsl:text>));
 </xsl:text>
 </xsl:template>
 
