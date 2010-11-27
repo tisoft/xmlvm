@@ -138,6 +138,7 @@
 {
 	unsigned int count, i;
 
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	NSMutableString* mangledConstructorName = [[NSMutableString alloc] init];
 	[mangledConstructorName appendString: @"__init_"];
 	NSMutableString* name = [[NSMutableString alloc] initWithCString: class_getName(clazz) encoding: NSASCIIStringEncoding];
@@ -162,6 +163,7 @@
 	java_lang_reflect_Constructor* c = [[java_lang_reflect_Constructor alloc] initWithClass:self
 	                                        andSignature:signature andMangledConstructorName:mangledConstructorName];
 	[mangledConstructorName release];
+	[pool release];
 	return c;
 }
 

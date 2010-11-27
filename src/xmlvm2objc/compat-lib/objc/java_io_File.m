@@ -140,12 +140,12 @@
 
 - (long) length__
 {
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	NSFileManager *man = [NSFileManager defaultManager];
 	NSDictionary *attrs = [man attributesOfItemAtPath: path error: NULL];
-	if (attrs == nil) {
-		return -1;
-	}
-	return [attrs fileSize];
+	long size = attrs == nil ? -1 : [attrs fileSize];
+	[pool release];
+	return size;
 }
 
 - (java_lang_String*) getName__

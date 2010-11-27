@@ -28,12 +28,12 @@
 
 + (NSData*) dataWithContentsOfFile___java_lang_String: (java_lang_String*) path
 {
-	return_XMLVM_SELECTOR(NSData dataWithContentsOfFile:path)
+	return [[NSData alloc] initWithContentsOfFile:path];
 }
 
 + (NSData*) dataWithContentsOfURL___org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSURL*) url
 {
-	return_XMLVM_SELECTOR(NSData dataWithContentsOfURL:url)
+	return [[NSData alloc] initWithContentsOfURL:url];
 }
 
 - (int) getByte___int: (int) index;
