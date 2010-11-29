@@ -104,6 +104,7 @@ public class Window {
         // the content views.
         iWindow = new UIWindow();
         iScrollView = new UIScrollView();
+        iScrollView.setScrollEnabled(false);
         iWindow.addSubview(iScrollView);
         internalView = new FrameLayout(activity);
         internalView.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT,
