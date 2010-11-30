@@ -20,6 +20,31 @@
 
 #import "org_xmlvm_iphone_UIControl.h"
 
+@interface UIControl_members : NSObject {
+
+	id<org_xmlvm_iphone_UIControlDelegate> delegate;
+	
+}
+
+@property (nonatomic, retain) id<org_xmlvm_iphone_UIControlDelegate> delegate;
+
+- (void) dealloc;
+
+@end
+
+@implementation UIControl_members
+
+@synthesize delegate;
+
+- (void) dealloc
+{
+	[delegate release];
+	[super dealloc];
+}
+
+@end
+
+
 // UIControl
 //----------------------------------------------------------------------------
 @implementation UIControl (cat_org_xmlvm_iphone_UIControl)
@@ -34,13 +59,30 @@
 }
 
 
+static char memberKey; // key for associative reference for member variables
+
+- (UIControl_members*) getMembers
+{
+	UIControl_members *members = nil;
+	@synchronized(self) {
+		members = (UIControl_members *)objc_getAssociatedObject(self, &memberKey);
+		if (members == nil) {
+			members = [[UIControl_members alloc] init];
+			objc_setAssociatedObject(self, &memberKey, members, OBJC_ASSOCIATION_RETAIN);
+			[members release];
+		}
+	}
+	return members;
+}
+
 // DELEGATE
 
 - (void) addTarget___org_xmlvm_iphone_UIControlDelegate_int
                    :(id<org_xmlvm_iphone_UIControlDelegate>) delegate
                    :(int) controlEvents
 {
-	[delegate retain];
+	UIControl_members* m = [self getMembers];
+	m.delegate = delegate;
 	[self addTarget:delegate action:@selector(raiseEvent___org_xmlvm_iphone_UIControl_int::)
 	      forControlEvents:controlEvents];
 }
