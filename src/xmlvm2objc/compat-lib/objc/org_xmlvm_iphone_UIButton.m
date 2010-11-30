@@ -27,7 +27,11 @@
 
 + (org_xmlvm_iphone_UIButton*) buttonWithType___int :(int) buttonType
 {
-	return_XMLVM_SELECTOR(UIButton buttonWithType: buttonType)
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	id button = [UIButton buttonWithType: buttonType];
+	[button retain];
+	[pool release];
+	return button;	
 }
 
 - (void) setTitle___java_lang_String_int :(java_lang_String*) label :(int) state
