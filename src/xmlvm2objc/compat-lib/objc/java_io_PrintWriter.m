@@ -66,7 +66,9 @@
 {
 	if (outWriter == (java_io_Writer*) JAVA_NULL) {
 		java_io_IOException* ex = [[java_io_IOException alloc] init];
-		[ex __init_java_io_IOException___java_lang_String:[NSMutableString stringWithString:@"Stream closed!"]];
+		NSMutableString* str = [[NSMutableString alloc] initWithString:@"Stream closed!"];
+		[ex __init_java_io_IOException___java_lang_String:str];
+		[str release];
 		@throw ex;
 	}
 }
@@ -74,9 +76,12 @@
 - (void) print___java_lang_String: (java_lang_String*)s
 {
 	if (s == (java_lang_String*) JAVA_NULL) {
-		s = [NSMutableString stringWithString:@"null"];
+		NSMutableString* str = [[NSMutableString alloc] initWithString:@"null"];
+		[self write___java_lang_String:str];
+		[str release];
+	} else {
+		[self write___java_lang_String:s];
 	}
-	[self write___java_lang_String:s];
 }
 
 - (void) println___java_lang_String: (java_lang_String*)x
@@ -97,7 +102,9 @@
 	@try {
 		@synchronized([self getProtectedLock]) {
 			[self ensureOpen];
-			[outWriter write___java_lang_String:[NSMutableString stringWithString:@"\n"]];
+			NSMutableString* str = [[NSMutableString alloc] initWithString:@"\n"];
+			[outWriter write___java_lang_String:str];
+			[str release];
 			if (self->autoFlush == 1) {
 				[outWriter flush__];
 			}
@@ -212,9 +219,14 @@
 
 - (void) print___boolean: (int) b
 {
-	NSMutableString* str = [NSMutableString stringWithString:(b == 1 ? @"true" : @"false")];
+	NSMutableString* str = NULL;
+	if (b == 1) {
+		str = [[NSMutableString alloc] initWithString:@"true"];
+	} else {
+		str = [[NSMutableString alloc] initWithString:@"false"];
+	}
 	[self write___java_lang_String:str];
-	//[str release];
+	[str release];
 }
 
 - (void) println___boolean: (int) x

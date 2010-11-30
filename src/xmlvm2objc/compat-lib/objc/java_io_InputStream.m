@@ -30,7 +30,6 @@
 
 - (int) available__
 {
-	[self xmlvmSubclassResponsibility];
 	return 0;
 }
 

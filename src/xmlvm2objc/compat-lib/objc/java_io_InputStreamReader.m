@@ -50,7 +50,7 @@
 
 - (bool) ready__ {
 	//TODO this isn't consistent with the Java API since we're not using StreamDecoder
-	return true;
+	return [target available__] > 0;
 }
 
 - (void) close__

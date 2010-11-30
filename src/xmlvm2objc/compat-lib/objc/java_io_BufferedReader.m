@@ -55,7 +55,9 @@ static const int defaultExpectedLineLength = 80;
 	[super __init_java_io_Reader___java_lang_Object:reader];
 	if (sz <= 0) {
 		java_lang_IllegalArgumentException* ex = [[java_lang_IllegalArgumentException alloc] init];
-		[ex __init_java_lang_IllegalArgumentException___java_lang_String:[NSMutableString stringWithString:@"Buffer size <= 0"]];
+		NSMutableString* str = [[NSMutableString alloc] initWithString:@"Buffer size <= 0"];
+		[ex __init_java_lang_IllegalArgumentException___java_lang_String:str];
+		[str release];
 		@throw ex;
 	}
 	self->target = [reader retain];
@@ -69,7 +71,9 @@ static const int defaultExpectedLineLength = 80;
 - (void) ensureOpen {
 	if (target == (java_io_Reader*) JAVA_NULL) {
 		java_io_IOException* ex = [[java_io_IOException alloc] init];
-		[ex __init_java_io_IOException___java_lang_String:[NSMutableString stringWithString:@"Stream closed"]];
+		NSMutableString* str = [[NSMutableString alloc] initWithString:@"Stream closed"];
+		[ex __init_java_io_IOException___java_lang_String:str];
+		[str release];
 		@throw ex;
 	}
 }
@@ -129,7 +133,7 @@ static const int defaultExpectedLineLength = 80;
 	}
 	if (skipLF) {
 		skipLF = FALSE;
-		if (cb->array.c[nextChar] == '\n') {
+		if (cb->array.b[nextChar] == '\n') {
 			nextChar++;
 			if (nextChar >= nChars) {
 				[self fill];
@@ -157,12 +161,12 @@ static const int defaultExpectedLineLength = 80;
 			}
 			if (skipLF) {
 				skipLF = FALSE;
-				if (cb->array.c[nextChar] == '\n') {
+				if (cb->array.b[nextChar] == '\n') {
 					nextChar++;
 					continue;
 				}
 			}
-			return cb->array.c[nextChar++];
+			return cb->array.b[nextChar++];
 		}
 	}
 	return -1;
@@ -205,7 +209,7 @@ static const int defaultExpectedLineLength = 80;
 				[self fill];
 			}
 			if (nextChar < nChars) {
-				if (cb->array.c[nextChar] == '\n') {
+				if (cb->array.b[nextChar] == '\n') {
 					nextChar++;
 				}
 				skipLF = FALSE;
@@ -219,7 +223,9 @@ static const int defaultExpectedLineLength = 80;
 - (void) mark___int: (int) readAheadLimitArg {
 	if (readAheadLimitArg < 0) {
 		java_lang_IllegalArgumentException* ex = [[java_lang_IllegalArgumentException alloc] init];
-		[ex __init_java_lang_IllegalArgumentException___java_lang_String:[NSMutableString stringWithString:@"Read-ahead limit < 0"]];
+		NSMutableString* str = [[NSMutableString alloc] initWithString:@"Read-ahead limit < 0"];
+		[ex __init_java_lang_IllegalArgumentException___java_lang_String:str];
+		[str release];
 		@throw ex;
 	}
 	@synchronized([self getProtectedLock]) {
@@ -236,7 +242,7 @@ static const int defaultExpectedLineLength = 80;
 
 + (void) appendChars: (java_lang_StringBuilder*)sb : (XMLVMArray*)src: (int)offset: (int)count {
 	for (int i = offset; i < offset + count; i++) {
-		[[sb append___char:(char) src->array.c[i]] release];
+		[[sb append___char:(char) src->array.b[i]] release];
 	}
 }
 
@@ -265,7 +271,7 @@ static const int defaultExpectedLineLength = 80;
 			int i = 0;
 
 			// Skip a leftover '\n', if necessary
-			if (omitLF && cb->array.c[nextChar] == '\n') {
+			if (omitLF && cb->array.b[nextChar] == '\n') {
 				nextChar++;
 			}
 			skipLF = FALSE;
@@ -273,7 +279,7 @@ static const int defaultExpectedLineLength = 80;
 
 			//Char loop
 			for (i = nextChar; i < nChars; i++) {
-				c = cb->array.c[i];
+				c = cb->array.b[i];
 				if (c == '\n' || c == '\r') {
 					eol = TRUE;
 					break; //break out of Char loop
@@ -322,7 +328,9 @@ static const int defaultExpectedLineLength = 80;
 - (long) skip___long: (long) n {
 	if (n < 0) {
 		java_lang_IllegalArgumentException* ex = [[java_lang_IllegalArgumentException alloc] init];
-		[ex __init_java_lang_IllegalArgumentException___java_lang_String:[NSMutableString stringWithString:@"skip value is negative"]];
+		NSMutableString* str = [[NSMutableString alloc] initWithString:@"skip value is negative"];
+		[ex __init_java_lang_IllegalArgumentException___java_lang_String:str];
+		[str release];
 		@throw ex;
 	}
 	long result = 0;
@@ -339,7 +347,7 @@ static const int defaultExpectedLineLength = 80;
 			} else {
 				if (skipLF) {
 					skipLF = FALSE;
-					if (cb->array.c[nextChar] == '\n') {
+					if (cb->array.b[nextChar] == '\n') {
 						nextChar++;
 					}
 				}
@@ -366,11 +374,12 @@ static const int defaultExpectedLineLength = 80;
 			java_io_IOException* ex = [[java_io_IOException alloc] init];
 			NSMutableString* str = NULL;
 			if (markedChar == INVALIDATED) {
-				str = [NSMutableString stringWithString:@"Mark invalid"];
+				str = [[NSMutableString alloc] initWithString:@"Mark invalid"];
 			} else {
-				str = [NSMutableString stringWithString:@"Stream not marked"];
+				str = [[NSMutableString alloc] initWithString:@"Stream not marked"];
 			}
 			[ex __init_java_io_IOException___java_lang_String:str];
+			[str release];
 			@throw ex;
 		}
 		nextChar = markedChar;

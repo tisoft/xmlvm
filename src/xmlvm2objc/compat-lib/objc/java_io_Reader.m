@@ -65,7 +65,7 @@
 	XMLVMArray* cb = [XMLVMArray createSingleDimensionWithType: 2 andSize:1]; //char array
 	int result = -1;
 	if ([self read___char_ARRAYTYPE_int_int:cb:0:1] != -1) {
-		result = cb->array.c[0];
+		result = cb->array.b[0];
 	}
 	return result;
 }
@@ -88,7 +88,9 @@
 - (void) mark___int: (int) readAheadLimit
 {
 	java_io_IOException* ex = [[java_io_IOException alloc] init];
-	[ex __init_java_io_IOException___java_lang_String:[NSMutableString stringWithString:@"mark() not supported"]];
+	NSMutableString* str = [[NSMutableString alloc] initWithString:@"mark() not supported"];
+	[ex __init_java_io_IOException___java_lang_String:str];
+	[str release];
 	@throw ex;
 }
 
@@ -102,7 +104,9 @@
 {
 	if (n < 0) {
 		java_lang_IllegalArgumentException* ex = [[java_lang_IllegalArgumentException alloc] init];
-		[ex __init_java_lang_IllegalArgumentException___java_lang_String:[NSMutableString stringWithString:@"skip value is negative"]];
+		NSMutableString* str = [[NSMutableString alloc] initWithString:@"skip value is negative"];
+		[ex __init_java_lang_IllegalArgumentException___java_lang_String:str];
+		[str release];
 		@throw ex;
 	}
 	int maxSkipBufferSize = 8192;
@@ -129,7 +133,9 @@
 - (void) reset__
 {
 	java_io_IOException* ex = [[java_io_IOException alloc] init];
-	[ex __init_java_io_IOException___java_lang_String:[NSMutableString stringWithString:@"reset() not supported"]];
+	NSMutableString* str = [[NSMutableString alloc] initWithString:@"reset() not supported"];
+	[ex __init_java_io_IOException___java_lang_String:str];
+	[str release];
 	@throw ex;
 }
 

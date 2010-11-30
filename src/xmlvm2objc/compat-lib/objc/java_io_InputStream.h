@@ -24,7 +24,7 @@
 
 @interface java_io_InputStream : java_lang_Object 
 - (void) __init_java_io_InputStream__;
-- (bool) available__;
+- (int) available__;
 - (bool) markSupported__;
 - (void) mark___int: (int) readlimit;
 - (void) mark___long: (long) readlimit;

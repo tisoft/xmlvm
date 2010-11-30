@@ -54,7 +54,9 @@
 	[super __init_java_io_Writer__java_lang_Object:ioWriter];
 	if (sz <= 0) {
 		java_lang_IllegalArgumentException* ex = [[java_lang_IllegalArgumentException alloc] init];
-		[ex __init_java_lang_IllegalArgumentException___java_lang_String:[NSMutableString stringWithString:@"Buffer size <= 0"]];
+		NSMutableString* str = [[NSMutableString alloc] initWithString:@"Buffer size <= 0"];
+		[ex __init_java_lang_IllegalArgumentException___java_lang_String:str];
+		[str release];
 		@throw ex;
 	}
 	[ioWriter retain];
@@ -70,7 +72,9 @@
 {
 	if (writer == (java_io_Writer*) JAVA_NULL) {
 		java_io_IOException* ex = [[java_io_IOException alloc] init];
-		[ex __init_java_io_IOException___java_lang_String:[NSMutableString stringWithString:@"Stream closed!"]];
+		NSMutableString* str = [[NSMutableString alloc] initWithString:@"Stream closed!"];
+		[ex __init_java_io_IOException___java_lang_String:str];
+		[str release];
 		@throw ex;
 	}
 }
@@ -82,7 +86,7 @@
 		if (nextChar >= nChars) {
 			[self flushBuffer__];
 		}
-		cb->array.c[nextChar++] = (char)c;
+		cb->array.b[nextChar++] = (char)c;
 	}
 }
 
@@ -145,7 +149,9 @@
 
 - (void) newLine__
 {
-	[self write___java_lang_String:[NSMutableString stringWithString:@"\n"]];
+	NSMutableString* str = [[NSMutableString alloc] initWithString:@"\n"];
+	[self write___java_lang_String:str];
+	[str release];
 }
 
 - (void) close__
