@@ -1,5 +1,5 @@
-XMLVM is published under a GPL license. The exact terms of this license can be
-found in the LICENSE-GPL file. 
+XMLVM is published under the L-GPL license. The exact terms of this license can be
+found in the LICENSE-LGPL file. 
 
 For all 3rd party libraries facilitated by XMLVM their individual licenses apply.
 These can be found in the 3rdparty-license folder.
