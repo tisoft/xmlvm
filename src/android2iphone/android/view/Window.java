@@ -24,6 +24,7 @@ import org.xmlvm.iphone.CGAffineTransform;
 import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
+import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UIScrollView;
 import org.xmlvm.iphone.UITextField;
@@ -34,6 +35,7 @@ import org.xmlvm.iphone.UIWindow;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
+import android.internal.AndroidAppLauncher;
 import android.internal.Assert;
 import android.internal.DecorView;
 import android.internal.LayoutManager;
@@ -50,7 +52,7 @@ import android.widget.FrameLayout;
 public class Window {
     public static final int     FEATURE_NO_TITLE = 1;
     private Activity            activity;
-    private UIWindow            iWindow;
+    private UIView              iContainerView;
     private UIScrollView        iScrollView;
     private UITextFieldDelegate iTextFieldDelegate;
     private View                toast;
@@ -102,10 +104,11 @@ public class Window {
 
         // Create UIWindow and transparent internal FrameLayout used to layout
         // the content views.
-        iWindow = new UIWindow();
+        iContainerView = new UIView();
+        iContainerView.setBackgroundColor(UIColor.clearColor);
         iScrollView = new UIScrollView();
         iScrollView.setScrollEnabled(false);
-        iWindow.addSubview(iScrollView);
+        iContainerView.addSubview(iScrollView);
         internalView = new FrameLayout(activity);
         internalView.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT,
                 LayoutParams.FILL_PARENT));
@@ -134,6 +137,9 @@ public class Window {
 
         adjustFrameSize();
         setEditTextDelegates(view);
+
+        UIWindow topLevelWindow = AndroidAppLauncher.getApplication().xmlvmGetTopLevelWindow();
+        topLevelWindow.addSubview(iContainerView);
         xmlvmSetHidden(false);
     }
 
@@ -173,7 +179,7 @@ public class Window {
         layoutContentView(toast);
         UIView itoast = toast.xmlvmGetViewHandler().getMetricsView();
         itoast.setUserInteractionEnabled(false);
-        iWindow.addSubview(itoast);
+        iContainerView.addSubview(itoast);
     }
 
     public void xmlvmRemoveToast() {
@@ -185,27 +191,24 @@ public class Window {
     }
 
     public void xmlvmSetHidden(boolean flag) {
-        if (iWindow != null) {
-            if (flag) {
-                iWindow.setHidden(true);
-            } else {
-                iWindow.makeKeyAndVisible();
-                iWindow.setHidden(false);
-            }
+        if (iContainerView != null) {
+            iContainerView.setHidden(flag);
         }
     }
 
     public void xmlvmRemoveWindow() {
-        if (iWindow != null) {
+        if (iContainerView != null) {
             xmlvmSetHidden(true);
-            iWindow = null;
-            iScrollView = null;
             internalView.removeAllViews();
             internalView = null;
             decorView.removeAllViews();
             decorView = null;
             contentParent.removeAllViews();
             contentParent = null;
+            iScrollView.removeFromSuperview();
+            iScrollView = null;
+            iContainerView.removeFromSuperview();
+            iContainerView = null;
         }
     }
 
@@ -215,11 +218,13 @@ public class Window {
      * bar is made invisible).
      */
     private void adjustFrameSize() {
-        if (iWindow == null)
+        if (iContainerView == null) {
             return;
-        iWindow.setTransform(null);
+        }
         CGRect rect = getCGRect();
-        iWindow.setFrame(rect);
+        // AndroidAppLauncher.getApplication().xmlvmGetTopLevelWindow().setFrame(rect);
+        iContainerView.setTransform(null);
+        iContainerView.setFrame(rect);
         rect.origin.x = 0;
         rect.origin.y = 0;
         iScrollView.setFrame(rect);
@@ -229,7 +234,7 @@ public class Window {
             // TODO Translate should be 90, 90 for visible status bar (i.e.,
             // non-fullscreen)
             CGAffineTransform translation = CGAffineTransform.translate(rotation, 80, 80);
-            iWindow.setTransform(translation);
+            iContainerView.setTransform(translation);
         }
 
         layoutContentView(internalView);
