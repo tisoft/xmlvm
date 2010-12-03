@@ -325,7 +325,7 @@ static const int defaultExpectedLineLength = 80;
 	return [self readLine___boolean:FALSE];
 }
 
-- (long) skip___long: (long) n {
+- (long long) skip___long: (long long) n {
 	if (n < 0) {
 		java_lang_IllegalArgumentException* ex = [[java_lang_IllegalArgumentException alloc] init];
 		NSMutableString* str = [[NSMutableString alloc] initWithString:@"skip value is negative"];
@@ -333,10 +333,10 @@ static const int defaultExpectedLineLength = 80;
 		[str release];
 		@throw ex;
 	}
-	long result = 0;
+	long long result = 0;
 	@synchronized([self getProtectedLock]) {
 		[self ensureOpen];
-		long r = n;
+		long long r = n;
 		BOOL done = FALSE;
 		while (r > 0 && !done) {
 			if (nextChar >= nChars) {
@@ -351,7 +351,7 @@ static const int defaultExpectedLineLength = 80;
 						nextChar++;
 					}
 				}
-				long d = nChars - nextChar;
+				long long d = nChars - nextChar;
 				if (r <= d) {
 					nextChar += r;
 					r = 0;

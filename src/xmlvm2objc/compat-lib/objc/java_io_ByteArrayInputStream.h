@@ -27,8 +27,8 @@
 @interface java_io_ByteArrayInputStream : java_io_InputStream {
   char *buffer;
   int length;
-  int pos;
-  int marked;
+  long long pos;
+  long long marked;
 }
 
 - (void) __init_java_io_ByteArrayInputStream___byte_ARRAYTYPE_int_int :(XMLVMArray*)buf :(int)from :(int)len;

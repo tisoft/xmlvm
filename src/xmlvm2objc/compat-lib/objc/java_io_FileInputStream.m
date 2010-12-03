@@ -75,7 +75,7 @@
 	return i;
 }
 
-- (long) skip___long: (long) n
+- (long long) skip___long: (long long) n
 {
 	NSFileHandle* fh = [self->fd getFileHandle];
 	long initialPos = [fh offsetInFile];
@@ -111,7 +111,7 @@
 	marked = [fh offsetInFile];
 }
 
-- (void) mark___long: (long) max
+- (void) mark___long: (long long) max
 {
 	NSFileHandle* fh = [self->fd getFileHandle];
 	marked = [fh offsetInFile];

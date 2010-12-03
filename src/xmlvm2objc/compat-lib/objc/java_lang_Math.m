@@ -96,7 +96,7 @@
 	return x < y ? y : x;
 }
 
-+ (int) max___long_long :(long) x :(long) y
++ (int) max___long_long :(long long) x :(long long) y
 {
 	return x < y ? y : x;
 }
@@ -116,7 +116,7 @@
 	return x >  y ? y : x;
 }
 
-+ (int) min___long_long :(long) x :(long) y
++ (int) min___long_long :(long long) x :(long long) y
 {
 	return x >  y ? y : x;
 }

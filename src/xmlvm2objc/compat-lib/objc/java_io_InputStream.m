@@ -42,7 +42,7 @@
 {
 }
 
-- (void) mark___long: (long) readlimit
+- (void) mark___long: (long long) readlimit
 {
 }
 
@@ -78,7 +78,7 @@
 {
 }
 
-- (long) skip___long: (long) n
+- (long long) skip___long: (long long) n
 {
 	return 0;
 }

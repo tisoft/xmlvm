@@ -36,7 +36,7 @@
 	srand(seed);
 }
 
-- (void) __init_java_util_Random___long :(long) seed {
+- (void) __init_java_util_Random___long :(long long) seed {
 	srand(seed);
 }
 

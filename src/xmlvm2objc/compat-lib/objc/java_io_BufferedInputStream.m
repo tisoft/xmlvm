@@ -81,7 +81,7 @@
 	[target reset__];
 }
 
-- (long) skip___long: (long) n
+- (long long) skip___long: (long long) n
 {
 	return [target skip___long: n];
 }

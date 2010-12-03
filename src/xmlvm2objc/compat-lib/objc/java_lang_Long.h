@@ -27,7 +27,7 @@
 //----------------------------------------------------------------------------
 @interface java_lang_Long : java_lang_Object <NSCopying, java_lang_Comparable> {
 
-long number;
+long long number;
 
 }
 
@@ -36,10 +36,10 @@ long number;
 - (NSUInteger) hash;
 - (void) __init_java_lang_Long___long :(long) l;
 - (BOOL) isEqual:(id)anObject;
-- (long) longValue__;
-+ (long) parseLong___java_lang_String: (java_lang_String *) str;
-+ (long) parseLong___java_lang_String_int: (java_lang_String*) str :(int) radix;
-+ (java_lang_Long*) valueOf___long: (long) l;
+- (long long) longValue__;
++ (long long) parseLong___java_lang_String: (java_lang_String *) str;
++ (long long) parseLong___java_lang_String_int: (java_lang_String*) str :(int) radix;
++ (java_lang_Long*) valueOf___long: (long long) l;
 - (int) compareTo___java_lang_Object: (java_lang_Object*) obj;
 - (int) compareTo___java_lang_Long: (java_lang_Long*) l;
 

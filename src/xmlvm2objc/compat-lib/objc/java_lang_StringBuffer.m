@@ -92,9 +92,9 @@
 }
 
 
-- (java_lang_StringBuffer*) append___long: (long) l
+- (java_lang_StringBuffer*) append___long: (long long) l
 {
-	NSNumber* n = [NSNumber numberWithInt: l];
+	NSNumber* n = [NSNumber numberWithLong: l];
 	[self appendString: [n stringValue]];
     [self retain];
 	return self;

@@ -61,8 +61,8 @@ typedef AVAudioPlayer org_xmlvm_iphone_AVAudioPlayer;
 			
 + (AVAudioPlayer*) initWithContentsOfFileDescriptor___java_io_FileDescriptor_long_long_org_xmlvm_iphone_NSErrorHolder
 			: (java_io_FileDescriptor*) fd
-			: (long) offset
-			: (long) length
+			: (long long) offset
+			: (long long) length
 			: (org_xmlvm_iphone_NSErrorHolder*) outError;
 
 - (void) play__;

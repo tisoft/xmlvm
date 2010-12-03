@@ -61,7 +61,7 @@
   return length - pos;
 }
 
-- (long) skip___long: (long) shift
+- (long long) skip___long: (long long) shift
 {
   pos += shift;
   if (pos >= length) {
@@ -70,7 +70,7 @@
   return pos;
 }
 
-- (void) mark___long: (long) max
+- (void) mark___long: (long long) max
 {
   marked = pos;
 }

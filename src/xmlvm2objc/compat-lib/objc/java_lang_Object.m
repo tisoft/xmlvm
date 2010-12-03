@@ -355,7 +355,7 @@ static char memberKey; // key for associative reference for member variables
 	}
 }
 
-- (void) wait___long: (long)timeout
+- (void) wait___long: (long long)timeout
 {
 	//NSLog(@"Waiting %i", timeout);
 	if (timeout < 0L) {
