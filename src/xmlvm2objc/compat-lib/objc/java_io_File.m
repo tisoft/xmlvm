@@ -138,7 +138,7 @@
 	return [man fileExistsAtPath: path];
 }
 
-- (long long) length__
+- (JAVA_LONG) length__
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	NSFileManager *man = [NSFileManager defaultManager];
@@ -189,13 +189,13 @@
 	return [n boolValue];
 }
 
-- (long long) lastModified__
+- (JAVA_LONG) lastModified__
 {
 /*	NSFileManager *man = [NSFileManager defaultManager];
 	NSDictionary *attrs = [man attributesOfItemAtPath: path error: NULL];
 	NSDate *n = [attrs fileModificationDate];*/
 	NSDate *n = [NSDate date];//TODO real
-	return (long long) ([n timeIntervalSince1970] * 1000);
+	return (JAVA_LONG) ([n timeIntervalSince1970] * 1000);
 }
 
 - (XMLVMArray*) list__
@@ -332,7 +332,7 @@
 }
 
 
-- (long long) getUsableSpace__
+- (JAVA_LONG) getUsableSpace__
 {
 	int64_t totalSpace = 0;  
     NSError *error = nil;  

@@ -43,12 +43,17 @@
 
 void xmlvm_init();
 
+//TODO JAVA_LONG should be typedef'ed to long long, but when we do that,
+// weird things happen with some applications. Before we figure out what
+// is going wrong, we leave it for long.
+typedef long JAVA_LONG;
+
 typedef union {
     id        o;
     int       i;
     float     f;
     double    d;
-    long long l;
+    JAVA_LONG l;
 } XMLVMElem;
 
 typedef union {
@@ -59,7 +64,7 @@ typedef union {
     int*            i;
     float*          f;
     double*         d;
-    long long*      l;
+    JAVA_LONG*      l;
     void*           data;
 } XMLVMElemPtr;
 

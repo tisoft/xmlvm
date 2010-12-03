@@ -75,7 +75,7 @@
 	return i;
 }
 
-- (long long) skip___long: (long long) n
+- (JAVA_LONG) skip___long: (JAVA_LONG) n
 {
 	NSFileHandle* fh = [self->fd getFileHandle];
 	long initialPos = [fh offsetInFile];
@@ -111,7 +111,7 @@
 	marked = [fh offsetInFile];
 }
 
-- (void) mark___long: (long long) max
+- (void) mark___long: (JAVA_LONG) max
 {
 	NSFileHandle* fh = [self->fd getFileHandle];
 	marked = [fh offsetInFile];

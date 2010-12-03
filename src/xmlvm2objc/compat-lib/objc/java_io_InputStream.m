@@ -42,7 +42,7 @@
 {
 }
 
-- (void) mark___long: (long long) readlimit
+- (void) mark___long: (JAVA_LONG) readlimit
 {
 }
 
@@ -78,7 +78,7 @@
 {
 }
 
-- (long long) skip___long: (long long) n
+- (JAVA_LONG) skip___long: (JAVA_LONG) n
 {
 	return 0;
 }

@@ -49,7 +49,7 @@ java_io_InputStream* _STATIC_java_lang_System_in;
  value it doesn't return an accurate time according to the Java spec for this method.
  Problems lie in the long representation on the 32 bit target architecture.
  */
-+ (long long) currentTimeMillis__
++ (JAVA_LONG) currentTimeMillis__
 {
     static NSDate* now_time;
     static long    msec_since_1970;
@@ -63,7 +63,7 @@ java_io_InputStream* _STATIC_java_lang_System_in;
     return sinceNow + msec_since_1970;
 }
 
-+ (long long) nanoTime__
++ (JAVA_LONG) nanoTime__
 {
     static NSDate* now_time;
     
@@ -74,7 +74,7 @@ java_io_InputStream* _STATIC_java_lang_System_in;
     time *= -1000.0; // milli
     time *= 1000.0; // micro
     time *= 1000.0; // nano
-    return (long long) floor(time + 0.5);
+    return (JAVA_LONG) floor(time + 0.5);
 }
 
 + (void) initialize

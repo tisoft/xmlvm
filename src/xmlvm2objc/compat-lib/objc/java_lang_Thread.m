@@ -111,7 +111,7 @@ static NSMutableDictionary* threadMap;
 	[thread start];
 }
 
-+ (void) sleep___long: (long long) millis
++ (void) sleep___long: (JAVA_LONG) millis
 {
 	java_lang_Object* obj = [[java_lang_Object alloc] init];
 	[obj __init_java_lang_Object__];
@@ -135,7 +135,7 @@ static NSMutableDictionary* threadMap;
 	return result;
 }
 
-- (void) join___long:(long long)millis {
+- (void) join___long:(JAVA_LONG)millis {
 	[self acquireLockRecursive];
 	@try {
 		long base = [java_lang_System currentTimeMillis__];

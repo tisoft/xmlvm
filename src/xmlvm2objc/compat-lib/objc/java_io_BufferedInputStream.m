@@ -81,7 +81,7 @@
 	[target reset__];
 }
 
-- (long long) skip___long: (long long) n
+- (JAVA_LONG) skip___long: (JAVA_LONG) n
 {
 	return [target skip___long: n];
 }

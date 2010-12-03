@@ -44,7 +44,7 @@
 	return number;
 }
 
-- (void) __init_java_lang_Long___long :(long long) l
+- (void) __init_java_lang_Long___long :(JAVA_LONG) l
 {
 	number = l;
 }
@@ -54,22 +54,22 @@
 	return [anObject isKindOfClass: [java_lang_Long class]] && ((java_lang_Long*) anObject)-> number == number;
 }
 
-- (long long) longValue__
+- (JAVA_LONG) longValue__
 {
 	return number;
 }
 
-+ (long long) parseLong___java_lang_String: (java_lang_String *) str
++ (JAVA_LONG) parseLong___java_lang_String: (java_lang_String *) str
 {
 	return atol([str UTF8String]);
 }
 
-+ (long long) parseLong___java_lang_String_int: (java_lang_String*) str :(int) radix
++ (JAVA_LONG) parseLong___java_lang_String_int: (java_lang_String*) str :(int) radix
 {
     return strtoul([str UTF8String], nil, radix);
 }
 
-+ (java_lang_Long*) valueOf___long: (long long) l {
++ (java_lang_Long*) valueOf___long: (JAVA_LONG) l {
 	java_lang_Long* result = [[java_lang_Long alloc] init];
 	[result __init_java_lang_Long___long:l];
 	return result;	

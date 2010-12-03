@@ -32,8 +32,8 @@
 + (void) setOut___java_io_PrintStream: (java_io_PrintStream*) ps;
 + (void) _PUT_in: (java_io_InputStream*) v;
 + (java_io_InputStream*) _GET_in;
-+ (long long) currentTimeMillis__;
-+ (long long) nanoTime__;
++ (JAVA_LONG) currentTimeMillis__;
++ (JAVA_LONG) nanoTime__;
 + (java_lang_String *) setProperty___java_lang_String_java_lang_String: (java_lang_String *) s1: (java_lang_String *) s2;
 + (void) arraycopy___java_lang_Object_int_java_lang_Object_int_int
                :(java_lang_Object*) src

@@ -109,7 +109,7 @@ void xmlvm_init()
        sizeOfBaseType = sizeof(double);
        break;
     case 8: // long
-       sizeOfBaseType = sizeof(long long);
+       sizeOfBaseType = sizeof(JAVA_LONG);
        break;
     default: // object reference
        sizeOfBaseType = sizeof(id);

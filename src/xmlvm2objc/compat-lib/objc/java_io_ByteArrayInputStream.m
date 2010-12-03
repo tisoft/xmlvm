@@ -61,7 +61,7 @@
   return length - pos;
 }
 
-- (long long) skip___long: (long long) shift
+- (JAVA_LONG) skip___long: (JAVA_LONG) shift
 {
   pos += shift;
   if (pos >= length) {
@@ -70,7 +70,7 @@
   return pos;
 }
 
-- (void) mark___long: (long long) max
+- (void) mark___long: (JAVA_LONG) max
 {
   marked = pos;
 }

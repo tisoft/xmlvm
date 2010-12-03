@@ -308,14 +308,14 @@
 	}
 }
 
-- (void) print___long: (long long) l
+- (void) print___long: (JAVA_LONG) l
 {
 	java_lang_String* str = [java_lang_String valueOf___long:l];
 	[self write___java_lang_String:str];
 	[str release];
 }
 
-- (void) println___long: (long long) x
+- (void) println___long: (JAVA_LONG) x
 {
 	@synchronized([self getProtectedLock]) {
 		[self print___long:x];

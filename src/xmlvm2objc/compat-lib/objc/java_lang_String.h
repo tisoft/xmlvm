@@ -32,7 +32,7 @@ typedef NSMutableString java_lang_String;
 - (void) __init_java_lang_String___char_ARRAYTYPE: (XMLVMArray*) chars;
 - (void) __init_java_lang_String___char_ARRAYTYPE_int_int: (XMLVMArray*) chars :(int) offset :(int) count;
 + (java_lang_String*) valueOf___int: (int) i;
-+ (java_lang_String*) valueOf___long: (long long) l;
++ (java_lang_String*) valueOf___long: (JAVA_LONG) l;
 + (java_lang_String*) valueOf___float: (float) f;
 + (java_lang_String*) valueOf___double: (double) d;
 + (java_lang_String*) valueOf___java_lang_Object: (java_lang_Object*) o;

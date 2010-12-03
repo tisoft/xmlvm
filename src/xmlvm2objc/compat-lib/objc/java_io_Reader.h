@@ -39,7 +39,7 @@
 - (bool) ready__;
 - (void) mark___int: (int) readAheadLimit;
 - (BOOL) markSupported__;
-- (long long) skip___long: (long) n;
+- (JAVA_LONG) skip___long: (long) n;
 - (void) reset__;
 - (void) close__;
 

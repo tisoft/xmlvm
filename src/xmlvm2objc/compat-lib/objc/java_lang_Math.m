@@ -96,7 +96,7 @@
 	return x < y ? y : x;
 }
 
-+ (int) max___long_long :(long long) x :(long long) y
++ (int) max___long_long :(JAVA_LONG) x :(JAVA_LONG) y
 {
 	return x < y ? y : x;
 }
@@ -116,7 +116,7 @@
 	return x >  y ? y : x;
 }
 
-+ (int) min___long_long :(long long) x :(long long) y
++ (int) min___long_long :(JAVA_LONG) x :(JAVA_LONG) y
 {
 	return x >  y ? y : x;
 }

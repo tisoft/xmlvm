@@ -100,7 +100,7 @@
 	return false;
 }
 
-- (long long) skip___long: (long long) n
+- (JAVA_LONG) skip___long: (JAVA_LONG) n
 {
 	if (n < 0) {
 		java_lang_IllegalArgumentException* ex = [[java_lang_IllegalArgumentException alloc] init];
@@ -110,16 +110,16 @@
 		@throw ex;
 	}
 	int maxSkipBufferSize = 8192;
-	int nn = (int) [java_lang_Math min___long_long:n:(long long)maxSkipBufferSize];
-	long long result = 0;
+	int nn = (int) [java_lang_Math min___long_long:n:(JAVA_LONG)maxSkipBufferSize];
+	JAVA_LONG result = 0;
 	@synchronized([self getProtectedLock]) {
 		if (skipBuffer == NULL || [skipBuffer count] < nn) {
 			skipBuffer = [XMLVMArray createSingleDimensionWithType: 2 andSize:nn];
 		}
-		long long r = n;
+		JAVA_LONG r = n;
 		int nc = 0;
 		while (r > 0 && nc != -1) {
-			int len = (int)[java_lang_Math min___long_long:r:(long long)nn];
+			int len = (int)[java_lang_Math min___long_long:r:(JAVA_LONG)nn];
 			nc = [self read___char_ARRAYTYPE_int_int:skipBuffer:0:len];
 			if (nc != -1) {
 				r -= nc;

@@ -65,7 +65,7 @@
 	return [[NSString alloc] initWithString: [n stringValue]];
 }
 
-+ (java_lang_String*) valueOf___long: (long long) l {
++ (java_lang_String*) valueOf___long: (JAVA_LONG) l {
 	NSNumber* n = [NSNumber numberWithLong: l];
 	return [[NSString alloc] initWithString: [n stringValue]];
 }
