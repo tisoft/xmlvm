@@ -89,7 +89,7 @@
 			writeBuffer = [XMLVMArray createSingleDimensionWithType: 2 andSize:writeBufferSize]; //char array
 			[writeBuffer retain];
 		}
-		writeBuffer->array.b[0] = (char)c;
+		writeBuffer->array.c[0] = (char)c;
 		[self write___char_ARRAYTYPE_int_int:writeBuffer:0:1];
 	}
 }
@@ -119,7 +119,7 @@
 
 		//The following is: str.getChars(off, (off + len), cbuf, 0);
         for (int i = 0; i < len; i++) {
-            cbuf->array.b[i] = [str charAt___int:i + off];
+            cbuf->array.c[i] = [str charAt___int:i + off];
         }
 
 		[self write___char_ARRAYTYPE_int_int:cbuf:0:len];

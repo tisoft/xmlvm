@@ -65,7 +65,7 @@
 	XMLVMArray* cb = [XMLVMArray createSingleDimensionWithType: 2 andSize:1]; //char array
 	int result = -1;
 	if ([self read___char_ARRAYTYPE_int_int:cb:0:1] != -1) {
-		result = cb->array.b[0];
+		result = cb->array.c[0];
 	}
 	return result;
 }

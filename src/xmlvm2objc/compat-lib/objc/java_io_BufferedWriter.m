@@ -86,7 +86,7 @@
 		if (nextChar >= nChars) {
 			[self flushBuffer__];
 		}
-		cb->array.b[nextChar++] = (char)c;
+		cb->array.c[nextChar++] = (char)c;
 	}
 }
 

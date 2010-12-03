@@ -45,7 +45,14 @@
 }
 
 - (int) read___char_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len {
-	return [target read___byte_ARRAYTYPE_int_int:buffer:pos:len];
+	int tempSize = [buffer count] - pos;
+	XMLVMArray* temp = [XMLVMArray createSingleDimensionWithType: 3 andSize:tempSize]; //byte array
+	int result = [target read___byte_ARRAYTYPE_int_int:temp:0:len];
+	for (int i = 0; i < result; i++) {
+		buffer->array.c[i + pos] = temp->array.b[i];
+	}
+	[temp release];
+	return result;
 }
 
 - (bool) ready__ {

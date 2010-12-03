@@ -133,7 +133,7 @@ static const int defaultExpectedLineLength = 80;
 	}
 	if (skipLF) {
 		skipLF = FALSE;
-		if (cb->array.b[nextChar] == '\n') {
+		if (cb->array.c[nextChar] == '\n') {
 			nextChar++;
 			if (nextChar >= nChars) {
 				[self fill];
@@ -161,12 +161,12 @@ static const int defaultExpectedLineLength = 80;
 			}
 			if (skipLF) {
 				skipLF = FALSE;
-				if (cb->array.b[nextChar] == '\n') {
+				if (cb->array.c[nextChar] == '\n') {
 					nextChar++;
 					continue;
 				}
 			}
-			return cb->array.b[nextChar++];
+			return cb->array.c[nextChar++];
 		}
 	}
 	return -1;
@@ -209,7 +209,7 @@ static const int defaultExpectedLineLength = 80;
 				[self fill];
 			}
 			if (nextChar < nChars) {
-				if (cb->array.b[nextChar] == '\n') {
+				if (cb->array.c[nextChar] == '\n') {
 					nextChar++;
 				}
 				skipLF = FALSE;
@@ -242,7 +242,7 @@ static const int defaultExpectedLineLength = 80;
 
 + (void) appendChars: (java_lang_StringBuilder*)sb : (XMLVMArray*)src: (int)offset: (int)count {
 	for (int i = offset; i < offset + count; i++) {
-		[[sb append___char:(char) src->array.b[i]] release];
+		[[sb append___char:(char) src->array.c[i]] release];
 	}
 }
 
@@ -271,7 +271,7 @@ static const int defaultExpectedLineLength = 80;
 			int i = 0;
 
 			// Skip a leftover '\n', if necessary
-			if (omitLF && cb->array.b[nextChar] == '\n') {
+			if (omitLF && cb->array.c[nextChar] == '\n') {
 				nextChar++;
 			}
 			skipLF = FALSE;
@@ -279,7 +279,7 @@ static const int defaultExpectedLineLength = 80;
 
 			//Char loop
 			for (i = nextChar; i < nChars; i++) {
-				c = cb->array.b[i];
+				c = cb->array.c[i];
 				if (c == '\n' || c == '\r') {
 					eol = TRUE;
 					break; //break out of Char loop
@@ -347,7 +347,7 @@ static const int defaultExpectedLineLength = 80;
 			} else {
 				if (skipLF) {
 					skipLF = FALSE;
-					if (cb->array.b[nextChar] == '\n') {
+					if (cb->array.c[nextChar] == '\n') {
 						nextChar++;
 					}
 				}
