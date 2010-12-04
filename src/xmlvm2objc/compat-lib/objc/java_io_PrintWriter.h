@@ -64,8 +64,8 @@
 - (void) println___float: (float) x;
 - (void) print___int: (int) i;
 - (void) println___int: (int) x;
-- (void) print___long: (long) l;
-- (void) println___long: (long) x;
+- (void) print___long: (JAVA_LONG) l;
+- (void) println___long: (JAVA_LONG) x;
 
 // TODO implement these
 //append(CharSequence)

@@ -38,7 +38,7 @@ typedef NSObject java_lang_Object;
 - (void) releaseLockRecursive;
 
 - (void) wait__;
-- (void) wait___long: (long)timeout;
+- (void) wait___long: (JAVA_LONG)timeout;
 - (void) notify__;
 - (void) notifyAll__;
 

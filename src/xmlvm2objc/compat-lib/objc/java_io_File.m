@@ -143,7 +143,7 @@
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	NSFileManager *man = [NSFileManager defaultManager];
 	NSDictionary *attrs = [man attributesOfItemAtPath: path error: NULL];
-	long size = attrs == nil ? -1 : [attrs fileSize];
+	JAVA_LONG size = attrs == nil ? -1 : [attrs fileSize];
 	[pool release];
 	return size;
 }

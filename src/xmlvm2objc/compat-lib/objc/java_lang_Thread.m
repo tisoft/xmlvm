@@ -138,8 +138,8 @@ static NSMutableDictionary* threadMap;
 - (void) join___long:(JAVA_LONG)millis {
 	[self acquireLockRecursive];
 	@try {
-		long base = [java_lang_System currentTimeMillis__];
-		long now = 0;
+		JAVA_LONG base = [java_lang_System currentTimeMillis__];
+		JAVA_LONG now = 0;
 
 		if (millis < 0) {
 			java_lang_IllegalArgumentException* ex = [[java_lang_IllegalArgumentException alloc] init];
@@ -154,7 +154,7 @@ static NSMutableDictionary* threadMap;
 		} else {
 			BOOL done = FALSE;
 			while (!done && [self isAlive__]) {
-				long delay = millis - now;
+				JAVA_LONG delay = millis - now;
 				if (delay <= 0) {
 					done = TRUE;
 				} else {

@@ -52,7 +52,7 @@
 - (void) mark___int: (int) readAheadLimitArg;
 - (BOOL) markSupported__;
 - (java_lang_String*) readLine__;
-- (long) skip___long: (long) n;
+- (JAVA_LONG) skip___long: (JAVA_LONG) n;
 - (void) reset__;
 - (void) close__;
 

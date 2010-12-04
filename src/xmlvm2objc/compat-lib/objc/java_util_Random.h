@@ -30,7 +30,7 @@
 - (double) nextDouble__;
 - (void) __init_java_util_Random__;
 - (void) __init_java_util_Random___int :(int) seed;
-- (void) __init_java_util_Random___long :(long) seed;
+- (void) __init_java_util_Random___long :(JAVA_LONG) seed;
 - (int) nextInt___int :(int)n;
 
 @end

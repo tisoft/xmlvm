@@ -93,8 +93,8 @@ static BOOL instanceof(id obj, const char *className) {
 }
 
 - (int) compareTo___java_lang_Long: (java_lang_Long*) l {
-	long thisVal = [self longValue__];
-	long anotherVal = [l longValue__];
+	JAVA_LONG thisVal = [self longValue__];
+	JAVA_LONG anotherVal = [l longValue__];
 	return (thisVal < anotherVal ? -1 : (thisVal == anotherVal ? 0 : 1));
 }
 

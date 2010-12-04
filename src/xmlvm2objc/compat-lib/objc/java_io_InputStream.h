@@ -27,11 +27,11 @@
 - (int) available__;
 - (bool) markSupported__;
 - (void) mark___int: (int) readlimit;
-- (void) mark___long: (long) readlimit;
+- (void) mark___long: (JAVA_LONG) readlimit;
 - (int) read__;
 - (int) read___byte_ARRAYTYPE: (XMLVMArray *) buffer;
 - (int) read___byte_ARRAYTYPE_int_int: (XMLVMArray *) buffer: (int) pos: (int) len;
 - (void) close__;
 - (void) reset__;
-- (long) skip___long: (long) n;
+- (JAVA_LONG) skip___long: (JAVA_LONG) n;
 @end
