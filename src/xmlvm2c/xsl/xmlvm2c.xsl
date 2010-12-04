@@ -2856,8 +2856,8 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:fill-array-data">
-  <!-- Replace char[] with short[] since the values have already been converted to short. Otherwise, junk is produced. Similar requirement for byte[] as well? -->
-  <xsl:variable name="base-type" select="replace(substring(@vx-type, 1, string-length(@vx-type) - 2), 'char', 'short')"/>
+  <!-- Replace char[] with short[] since the values have already been converted to short. Otherwise, junk is produced. Similar requirement for byte[] -->
+  <xsl:variable name="base-type" select="replace(replace(substring(@vx-type, 1, string-length(@vx-type) - 2), 'char', 'short'), 'byte', 'char')"/>
   <xsl:text>    XMLVMArray_fillArray(</xsl:text>
   <xsl:value-of select="vm:cast-register('XMLVMArray', @vx)"/>
   <xsl:text>, (</xsl:text>

@@ -3513,7 +3513,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="@vx"/>
   <xsl:text>.o withData:(</xsl:text>
   <!-- Replace char[] with short[] since the values have already been converted to short. Otherwise, junk is produced. Similar requirement for byte[] -->
-  <xsl:value-of select="replace(replace(@vx-type, 'char', 'short'), 'byte', 'char')"/>
+  <xsl:value-of select="replace(replace(replace(@vx-type, 'char', 'short'), 'byte', 'char'), 'long', 'JAVA_LONG')"/>
   <xsl:text>){</xsl:text>
   <xsl:for-each select="dex:constant">
     <xsl:value-of select="@value"/>
