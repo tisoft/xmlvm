@@ -1831,7 +1831,7 @@ int main(int argc, char* argv[])
 <xsl:template match="jvm:lushr">
   <xsl:text>    _op2.i = _stack[--_sp].i;
     _op1.l = _stack[--_sp].l;
-    _stack[_sp++].l = ((unsigned) (JAVA_LONG) _op1.l) &gt;&gt; _op2.i;</xsl:text>
+    _stack[_sp++].l = ((JAVA_ULONG) _op1.l) &gt;&gt; _op2.i;</xsl:text>
 </xsl:template>
 
 <xsl:template match="jvm:iushr">
@@ -2601,9 +2601,9 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:ushr-long|dex:ushr-long-2addr">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.l = ((unsigned) (JAVA_LONG) _r</xsl:text>
+  <xsl:text>.l = ((JAVA_ULONG) _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.l) &gt;&gt; (0x3f &amp; ((unsigned) (JAVA_LONG) _r</xsl:text>
+  <xsl:text>.l) &gt;&gt; (0x3f &amp; ((U_JAVA_LONG) _r</xsl:text>
   <xsl:value-of select="@vz"/>
   <xsl:text>.l));
 </xsl:text>

@@ -44,6 +44,7 @@
 void xmlvm_init();
 
 typedef long long JAVA_LONG;
+typedef unsigned long long JAVA_ULONG;
 
 typedef union {
     id        o;
