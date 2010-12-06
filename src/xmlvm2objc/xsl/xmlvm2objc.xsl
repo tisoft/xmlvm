@@ -2603,7 +2603,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="@vx"/>
   <xsl:text>.l = ((JAVA_ULONG) _r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.l) &gt;&gt; (0x3f &amp; ((U_JAVA_LONG) _r</xsl:text>
+  <xsl:text>.l) &gt;&gt; (0x3f &amp; ((JAVA_ULONG) _r</xsl:text>
   <xsl:value-of select="@vz"/>
   <xsl:text>.l));
 </xsl:text>
