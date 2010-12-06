@@ -42,9 +42,8 @@
 
 - (java_lang_Object*) next__
 {
-	id next = self->nextObj;
+	id next = [self->nextObj retain];
 	self->nextObj = [enumerator nextObject];
-	[next retain];
 	return (java_lang_Object*) next;
 }
 

@@ -31,13 +31,7 @@
 
 - (void) __init_java_util_HashSet___java_util_Collection:(java_util_Collection*)c
 {
-	java_util_Iterator* iter = [c iterator__];
-	while ([iter hasNext__]) {
-		java_lang_Object* obj = [iter next__];
-		[self add___java_lang_Object:obj];
-		[obj release];
-	}
-	[iter release];
+	[self addAll___java_util_Collection: c];
 }
 
 - (BOOL) add___java_lang_Object:(java_lang_Object*)e
@@ -45,6 +39,20 @@
 	BOOL contains = [self containsObject:e];
 	[self addObject:e];
 	return !contains;
+}
+
+// TODO move this to AbstractCollection where it really belongs
+- (BOOL) addAll___java_util_Collection: (java_util_Collection*) c
+{
+	int origSize = [self size__];
+	java_util_Iterator* iter = [c iterator__];
+	while ([iter hasNext__]) {
+		java_lang_Object* obj = [iter next__];
+		[self add___java_lang_Object:obj];
+		[obj release];
+	}
+	[iter release];
+	return origSize == [self size__];
 }
 
 - (int) size__

@@ -39,6 +39,8 @@
 - (int) indexOf___java_lang_Object :(java_lang_Object*) item;
 - (int) contains___java_lang_Object :(java_lang_Object*) item;
 - (void) clear__;
+- (XMLVMArray*) toArray__;
+- (XMLVMArray*) toArray___java_lang_Object_ARRAYTYPE;
 
 @end
 

@@ -83,4 +83,12 @@ static java_lang_Class* primitiveBooleanClass;
 	return result;
 }
 
++ (java_lang_String*) toString___boolean:(BOOL) b {
+	return b ? @"true" : @"false";
+}
+
+- (java_lang_String*) toString__ {
+	return value ? @"true" : @"false";
+}
+
 @end

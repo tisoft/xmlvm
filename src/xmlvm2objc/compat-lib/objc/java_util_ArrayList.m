@@ -150,4 +150,32 @@
 	[self removeAllObjects];
 }
 
+- (XMLVMArray*) toArray__
+{
+	XMLVMArray* a = [XMLVMArray createSingleDimensionWithType:0 andSize:[self size__]]; //Object array
+	for (int i = 0; i < [self size__]; i++) {
+		java_lang_Object* obj = [self get___int:i];
+		[a replaceObjectAtIndex:i withObject:obj];
+		[obj release];
+	}
+	return a;
+}
+
+- (XMLVMArray*) toArray___java_lang_Object_ARRAYTYPE:(XMLVMArray*) contents
+{
+	if ([self size__] > contents->length) {
+		return [self toArray__];
+	} else {
+		for (int i = 0; i < [self size__]; i++) {
+			java_lang_Object* obj = [self get___int:i];
+			[contents replaceObjectAtIndex:i withObject:obj];
+			[obj release];
+		}
+	}
+	if ([self size__] < contents->length) {
+		[contents replaceObjectAtIndex:[self size__] withObject:JAVA_NULL];
+	}
+	return [contents retain];
+}
+
 @end

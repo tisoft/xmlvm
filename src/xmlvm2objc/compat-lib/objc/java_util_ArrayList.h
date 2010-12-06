@@ -48,4 +48,6 @@ typedef NSMutableArray java_util_ArrayList;
 - (BOOL) remove___java_lang_Object :(java_lang_Object*) item;
 - (BOOL) removeAll___java_util_Collection:(java_util_Collection*) c;
 - (void) clear__;
+- (XMLVMArray*) toArray__;
+- (XMLVMArray*) toArray___java_lang_Object_ARRAYTYPE:(XMLVMArray*) contents;
 @end
