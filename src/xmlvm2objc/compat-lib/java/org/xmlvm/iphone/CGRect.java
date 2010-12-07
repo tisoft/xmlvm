@@ -20,8 +20,6 @@
 
 package org.xmlvm.iphone;
 
-import java.awt.Rectangle;
-
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
@@ -40,10 +38,6 @@ public class CGRect extends NSObject {
     public CGRect(float x, float y, float width, float height) {
         origin = new CGPoint(x, y);
         size = new CGSize(width, height);
-        origin.x = x;
-        origin.y = y;
-        size.width = width;
-        size.height = height;
     }
 
     public CGRect(CGRect other) {
@@ -68,12 +62,22 @@ public class CGRect extends NSObject {
     }
 
     public static CGRect Intersection(CGRect r1, CGRect r2) {
-        Rectangle _r1 = new Rectangle((int) r1.origin.x, (int) r1.origin.y, (int) r1.size.width,
-                (int) r1.size.height);
-        Rectangle _r2 = new Rectangle((int) r2.origin.x, (int) r2.origin.y, (int) r2.size.width,
-                (int) r2.size.height);
-        Rectangle _r3 = _r1.intersection(_r2);
-        return new CGRect(_r3.x, _r3.y, _r3.width, _r3.height);
+        if (r1 == null || r2 == null) {
+            return Null();
+        }
+
+        float maxleft = r1.origin.x > r2.origin.x ? r1.origin.x : r2.origin.x;
+        float maxtop = r1.origin.y > r2.origin.y ? r1.origin.y : r2.origin.y;
+        float minright = (r1.origin.x + r1.size.width) < (r2.origin.x + r2.size.width) ? r1.origin.x
+                + r1.size.width
+                : r2.origin.x + r2.size.width;
+        float minbottom = (r1.origin.y + r1.size.height) < (r2.origin.y + r2.size.height) ? r1.origin.y
+                + r1.size.height
+                : r2.origin.y + r2.size.height;
+        if (maxleft > minright || maxtop > minbottom) {
+            return Null();
+        }
+        return new CGRect(maxleft, maxtop, minright - maxleft, minbottom - maxtop);
     }
 
     public boolean isNull() {

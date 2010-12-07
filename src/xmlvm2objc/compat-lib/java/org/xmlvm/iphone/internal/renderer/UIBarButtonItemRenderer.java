@@ -28,8 +28,8 @@ import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIBarButtonItem;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIFont;
-import org.xmlvm.iphone.UIGenericToolbar;
 import org.xmlvm.iphone.internal.UIBarButtonItemView;
+import org.xmlvm.iphone.internal.UIGenericBarHelper;
 
 /**
  * 
@@ -60,15 +60,11 @@ public class UIBarButtonItemRenderer extends UIBarItemRenderer {
 
     @Override
     protected void drawButton(Graphics2D g, CGRect rect) {
-        UIGenericToolbar bar = (UIGenericToolbar) getBar();
-        if (bar == null)
-            return;
-
         int x = (int) rect.origin.x;
         int y = (int) rect.origin.y;
         int w = (int) rect.size.width;
         int h = (int) rect.size.height;
-        UIColor base = bar.getTintColor();
+        UIColor base = UIGenericBarHelper.getTintColor(view);
 
         if (base.xmlvmGetPaint() instanceof Color) {
             float newbright;

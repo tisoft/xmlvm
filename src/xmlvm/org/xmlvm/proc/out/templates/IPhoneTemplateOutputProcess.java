@@ -24,6 +24,8 @@ import static org.xmlvm.proc.out.templates.TemplateFile.Mode.BACKUP;
 import static org.xmlvm.proc.out.templates.TemplateFile.Mode.KEEP;
 import static org.xmlvm.proc.out.templates.TemplateFile.Mode.OVERWRITE;
 import static org.xmlvm.proc.out.templates.TemplateFile.Mode.ABORT;
+import static org.xmlvm.proc.out.templates.TemplateFile.Mode.IGNORE;
+import static org.xmlvm.proc.out.templates.TemplateFile.Mode.NEWFILE;
 
 import java.util.ArrayList;
 import org.xmlvm.main.Arguments;
@@ -46,13 +48,14 @@ public class IPhoneTemplateOutputProcess extends TemplateOutputProcess {
         list.add(new TemplateFile("build.xml", migrate ? BACKUP : ABORT));
         list.add(new TemplateFile("xcode.xml", "nbproject", migrate ? OVERWRITE : ABORT));
 
+        list.add(new TemplateFile("project.properties", "nbproject", NEWFILE));
+
         list.add(new TemplateFile("manifest.mf", KEEP));
         list.add(new TemplateFile("xmlvm.properties", KEEP));
         list.add(new TemplateFile(".classpath", KEEP));
         list.add(new TemplateFile(".project", KEEP));
         list.add(new TemplateFile("build-impl.xml", "nbproject", KEEP));
         list.add(new TemplateFile("genfiles.properties", "nbproject", KEEP));
-        list.add(new TemplateFile("project.properties", "nbproject", KEEP));
         list.add(new TemplateFile("project.xml", "nbproject", KEEP));
         list
                 .add(new TemplateFile("empty.properties", "Java.properties", "nbproject/configs",
@@ -61,11 +64,10 @@ public class IPhoneTemplateOutputProcess extends TemplateOutputProcess {
                 .add(new TemplateFile("empty.properties", "Xcode.properties", "nbproject/configs",
                         KEEP));
         list.add(new TemplateFile("org.eclipse.jdt.core.prefs", ".settings", KEEP));
-        
-        if (!migrate) {
-            list.add(new TemplateFile("demo.png", "resources", KEEP));
-            list.add(new TemplateFile("Main.java", "src/java/" + pack_name.replace(".", "/"), KEEP));
-        }
+
+        list.add(new TemplateFile("demo.png", "resources", migrate ? IGNORE : KEEP));
+        list.add(new TemplateFile("Main.java", "src/java/" + pack_name.replace(".", "/"),
+                migrate ? IGNORE : KEEP));
         return list;
     }
 

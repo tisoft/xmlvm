@@ -1566,8 +1566,7 @@ public class Paint {
     private native void nativeGetCharArrayBounds(char[] text, int index, int count, Rect bounds);
 
     public UIFont xmlvmGetUIFont() {
-        return mTypeface == null ? Typeface.DEFAULT.xmlvmGenUIFont(mTextSize, mFlags) : mTypeface
-                .xmlvmGenUIFont(mTextSize, mFlags);
+        return (mTypeface == null ? Typeface.create(Typeface.DEFAULT, mFlags) : Typeface.create(mTypeface, mFlags)).xmlvmGetUIFont(mTextSize);
     }
 
     public float[] xmlvmGetColor() {

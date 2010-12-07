@@ -36,7 +36,7 @@ public abstract class UIBarItem extends NSObject {
     private UIEdgeInsets imageInsets;
     private int          tag;
     private String       title;
-    private UIGenericBar bar;
+    private UIView       bar;
 
 
     public UIBarItem() {
@@ -47,11 +47,11 @@ public abstract class UIBarItem extends NSObject {
         title = null;
     }
 
-    protected UIGenericBar getBar() {
+    protected UIView getBar() {
         return bar;
     }
 
-    protected void setBar(UIGenericBar bar) {
+    protected void setBar(UIView bar) {
         this.bar = bar;
     }
 
@@ -104,7 +104,7 @@ public abstract class UIBarItem extends NSObject {
             return;
         try {
             /* Need reflection not to present non-documented API */
-            Method m = UIGenericBar.class.getDeclaredMethod("updateViews", new Class[0]);
+            Method m = bar.getClass().getDeclaredMethod("updateViews", new Class[0]);
             m.setAccessible(true);
             m.invoke(bar, new Object[0]);
         } catch (Exception ex) {

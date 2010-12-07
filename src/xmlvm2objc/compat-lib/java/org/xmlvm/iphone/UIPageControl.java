@@ -36,7 +36,7 @@ public class UIPageControl extends UIView {
 
 
     public UIPageControl() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
     }
 
     public UIPageControl(CGRect rect) {

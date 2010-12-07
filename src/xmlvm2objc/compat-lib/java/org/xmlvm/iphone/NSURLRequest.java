@@ -36,7 +36,7 @@ public class NSURLRequest extends NSObject {
         return new NSURLRequest(theURL);
     }
 
-    public NSURL xmlvmGetUrl() {
+    public NSURL URL() {
         return url;
     }
 }

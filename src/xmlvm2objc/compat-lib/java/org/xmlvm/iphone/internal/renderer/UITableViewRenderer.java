@@ -78,14 +78,14 @@ public class UITableViewRenderer extends UIViewRenderer<UITableView> {
 
     public void reloadData() {
         UITableViewDelegate delegate = view.getTableViewDelegate();
-        UITableViewDataSource datasource = view.getTableViewDataSource();
+        UITableViewDataSource datasource = view.getDataSource();
 
         view.getSubviews().clear();
         sectionFrames.clear();
         horizontalDividers.clear();
         float width = view.getFrame().size.width * 0.9f;
         float leftEdge = view.getFrame().origin.x + view.getFrame().size.width * 0.05f;
-        int numOfSections = datasource.numberOfSectionsInTableView(view);
+        int numOfSections = (datasource == null) ? 0 : datasource.numberOfSectionsInTableView(view);
         int y = 0;
         NSIndexPath idx = new NSIndexPath();
         for (int section = 0; section < numOfSections; section++) {

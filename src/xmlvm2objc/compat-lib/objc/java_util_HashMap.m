@@ -90,12 +90,7 @@
 
 - (java_lang_Object*) get___java_lang_Object:(java_lang_Object*) key {
 	id k = [key conformsToProtocol: @protocol(NSCopying)] ? key : [NSValue valueWithPointer: key];
-	id value = [self objectForKey: k];
-	if (value == nil) {
-		return JAVA_NULL;
-	}
-	[value retain];
-	return (java_lang_Object*) value;
+	return_XMLVM(objectForKey: k);
 }
 
 - (BOOL) containsKey___java_lang_Object: (java_lang_Object*) key
@@ -103,8 +98,26 @@
 	return [self objectForKey:key] != nil;
 }
 
-- (void)dealloc {
-	[super dealloc];
+- (BOOL) containsValue___java_lang_Object: (java_lang_Object*) value
+{
+	NSEnumerator *enumerator = [self objectEnumerator];	
+	id enumval;
+	while ((enumval = [enumerator nextObject])) {
+		if (enumval==value) {
+			return YES;
+		}
+	}
+	return NO;
+}
+
+
+- (java_lang_Object*) remove___java_lang_Object:(java_lang_Object*) key
+{
+	id k = [key conformsToProtocol: @protocol(NSCopying)] ? key : [NSValue valueWithPointer: key];
+	java_lang_Object* item = [[self objectForKey:k] retain];
+	item = XMLVM_NIL2NULL(item);
+	[self removeObjectForKey:k];
+	return item;
 }
 
 @end

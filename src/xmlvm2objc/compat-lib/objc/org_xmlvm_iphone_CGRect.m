@@ -55,14 +55,6 @@
     [super dealloc];
 }
 
-- (id) init
-{
-    [super init];
-	[origin_org_xmlvm_iphone_CGPoint init];
-	[origin_org_xmlvm_iphone_CGPoint init];
-    return self;
-}
-
 - (org_xmlvm_iphone_CGRect*) initWithCGRect:(CGRect) rect
 {
 	[self __init_org_xmlvm_iphone_CGRect___float_float_float_float: 

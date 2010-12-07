@@ -62,6 +62,6 @@ class TemplateFile {
 
     enum Mode {
 
-        OVERWRITE, KEEP, BACKUP, ABORT;
+        OVERWRITE, KEEP, BACKUP, ABORT, IGNORE, NEWFILE;
     }
 }

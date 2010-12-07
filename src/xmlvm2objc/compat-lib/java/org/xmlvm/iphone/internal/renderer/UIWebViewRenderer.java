@@ -47,7 +47,7 @@ public class UIWebViewRenderer extends UIViewRenderer<UIWebView> {
         int h = (int) displayRect.size.height;
         g.fillRect(x, y, w, h);
         g.setColor(Color.WHITE);
-        g.drawString(webView.xmlvmGetRequest().xmlvmGetUrl().absoluteString(), x + 20, y + 20);
+        g.drawString(webView.xmlvmGetRequest().URL().absoluteString(), x + 20, y + 20);
     }
 
 }

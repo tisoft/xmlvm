@@ -42,9 +42,21 @@
 	return hasObj;
 }
 
+- (BOOL) remove___java_lang_Object:(java_lang_Object*) obj
+{
+	BOOL hasObj = [self containsObject:obj];
+	[self removeObject:obj];
+	return hasObj;
+}
+
 - (int) size__
 {
 	return [self count];
+}
+
+- (BOOL) isEmpty__
+{
+	return [self count]<1;
 }
 
 @end

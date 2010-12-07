@@ -24,6 +24,8 @@ import static org.xmlvm.proc.out.templates.TemplateFile.Mode.BACKUP;
 import static org.xmlvm.proc.out.templates.TemplateFile.Mode.KEEP;
 import static org.xmlvm.proc.out.templates.TemplateFile.Mode.OVERWRITE;
 import static org.xmlvm.proc.out.templates.TemplateFile.Mode.ABORT;
+import static org.xmlvm.proc.out.templates.TemplateFile.Mode.IGNORE;
+import static org.xmlvm.proc.out.templates.TemplateFile.Mode.NEWFILE;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -50,7 +52,8 @@ public class AndroidTemplateOutputProcess extends TemplateOutputProcess {
     public boolean process() {
         if (super.process()) {
             getOutputFiles().add(new EmptyDirectory(gen));
-            Log.warn("Currently the Android plugin for Netbeans does not support local.properties file and has a bug which prevents the usage of GUI platform customization. It is required to MANUALLY set your platfom under \"nbproject/project.properties\" by editing property \"platform.active\" or else Netbeans might crash.");
+            Log
+                    .warn("Currently the Android plugin for Netbeans does not support local.properties file and has a bug which prevents the usage of GUI platform customization. It is required to MANUALLY set your platfom under \"nbproject/project.properties\" by editing property \"platform.active\" or else Netbeans might crash.");
             return true;
         }
         return false;
@@ -61,9 +64,12 @@ public class AndroidTemplateOutputProcess extends TemplateOutputProcess {
         ArrayList<TemplateFile> list = new ArrayList<TemplateFile>();
 
         list.add(new TemplateFile("AndroidManifest.xml", migrate ? KEEP : ABORT));
-        list.add(new TemplateFile("build.xml", migrate ? BACKUP : ABORT));
         list.add(new TemplateFile("xcode.xml", "nbproject", migrate ? OVERWRITE : ABORT));
+        list.add(new TemplateFile("build.xml", migrate ? BACKUP : ABORT));
+        list.add(new TemplateFile("project.xml", "nbproject", migrate ? BACKUP : ABORT));
+        list.add(new TemplateFile("build-impl.xml", "nbproject", migrate ? BACKUP : ABORT));
 
+        list.add(new TemplateFile("project.properties", "nbproject", NEWFILE));
         list.add(new TemplateFile("androidsupport.xml", "nbproject", OVERWRITE));
 
         list.add(new TemplateFile("xmlvm.properties", KEEP));
@@ -73,9 +79,6 @@ public class AndroidTemplateOutputProcess extends TemplateOutputProcess {
         list.add(new TemplateFile(".classpath", KEEP));
         list.add(new TemplateFile(".project", KEEP));
         list.add(new TemplateFile("genfiles.properties", "nbproject", KEEP));
-        list.add(new TemplateFile("project.xml", "nbproject", KEEP));
-        list.add(new TemplateFile("build-impl.xml", "nbproject", KEEP));
-        list.add(new TemplateFile("project.properties", "nbproject", KEEP));
         list
                 .add(new TemplateFile("empty.properties", "Java.properties", "nbproject/configs",
                         KEEP));
@@ -85,12 +88,11 @@ public class AndroidTemplateOutputProcess extends TemplateOutputProcess {
         list.add(new TemplateFile("empty.properties", "Android.properties", "nbproject/configs",
                 KEEP));
 
-        if (!migrate) {
-            list.add(new TemplateFile("demo.png", "res/drawable", KEEP));
-            list.add(new TemplateFile("main.xml", "res/layout", KEEP));
-            list.add(new TemplateFile("strings.xml", "res/values", KEEP));
-            list.add(new TemplateFile("MainActivity.java", "src/" + pack_name.replace(".", "/"), KEEP));
-        }
+        list.add(new TemplateFile("demo.png", "res/drawable", migrate ? IGNORE : KEEP));
+        list.add(new TemplateFile("main.xml", "res/layout", migrate ? IGNORE : KEEP));
+        list.add(new TemplateFile("strings.xml", "res/values", migrate ? IGNORE : KEEP));
+        list.add(new TemplateFile("MainActivity.java", "src/" + pack_name.replace(".", "/"),
+                migrate ? IGNORE : KEEP));
         return list;
     }
 

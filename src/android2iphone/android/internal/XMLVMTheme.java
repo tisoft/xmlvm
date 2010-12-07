@@ -29,18 +29,44 @@ import android.R;
 public class XMLVMTheme {
 
     /**
-     * Uses the Android theme for widgets.
+     * Background color used in various widgets
      */
-    public static final int XMLVM_THEME_ANDROID = 0;
-
+    public static final int BACKGROUND_COLOR;
     /**
-     * Uses the native theme of the destination platform.
+     * Text color used in widgets
      */
-    public static final int XMLVM_THEME_NATIVE  = 1;
-
-    public static int getTheme() {
-//        return XMLVM_THEME_ANDROID;
-        return AndroidManifest.getTheme() == R.style.Theme_Light ? XMLVM_THEME_NATIVE
-                : XMLVM_THEME_ANDROID;
+    public static final int TEXT_COLOR;
+    /**
+     * Window background color
+     */
+    public static final int DECOR_COLOR;
+    /** 
+     * Toast background 
+     */
+    public static final int TOAST_COLOR;
+    /**
+     * UIButton background
+     */
+    public static final int BUTTONTEXT_COLOR;
+    
+    /**
+     * No background
+     */
+    public static final int NOBACKGROUND_COLOR;
+    
+    static {
+        if (AndroidManifest.getTheme() == R.style.Theme_Light) {
+            BACKGROUND_COLOR = 0xFFFFFFFF;
+            TEXT_COLOR = 0xFF000000;
+            DECOR_COLOR = 0xFFFFFFFF;
+            TOAST_COLOR = 0xAAFFFFFF;
+        } else {
+            BACKGROUND_COLOR = 0xFF000000;
+            TEXT_COLOR = 0xFFFFFFFF;
+            DECOR_COLOR = 0xFF191919;
+            TOAST_COLOR = 0xAA000000;
+        }
+        BUTTONTEXT_COLOR = 0xFF324F85;
+        NOBACKGROUND_COLOR = 0x00000000;
     }
 }

@@ -42,7 +42,7 @@ public class UITextView extends UIView {
 
 
     public UITextView() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
     }
 
     public UITextView(CGRect rect) {
@@ -144,7 +144,7 @@ public class UITextView extends UIView {
 
     /* TODO : this has to be removed from here */
     @Override
-    public void keyTyped(char key) {
+    public void xmlvmKeyTyped(char key) {
         if (key == '\b' && !text.equals(""))
             text = text.substring(0, text.length() - 1);
         else

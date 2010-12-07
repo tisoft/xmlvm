@@ -31,7 +31,7 @@
              :(java_lang_Object*) userInfo
              :(int) r
 {
-	t=XMLVM_VALUE(t);
+	t=XMLVM_NULL2NIL(t);
     NSTimer * nstimer = [NSTimer scheduledTimerWithTimeInterval:timerInterval
                      target:t
                      selector:NSSelectorFromString(@"timerEvent___java_lang_Object:")

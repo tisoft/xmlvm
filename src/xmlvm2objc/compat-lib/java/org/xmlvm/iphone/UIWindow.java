@@ -26,7 +26,7 @@ import org.xmlvm.XMLVMSkeletonOnly;
 public class UIWindow extends UIView {
 
     public UIWindow() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
     }
 
     public UIWindow(CGRect rect) {

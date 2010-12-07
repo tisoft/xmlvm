@@ -32,6 +32,7 @@ public class UIImage extends NSObject {
 
     private BufferedImage image;
 
+
     @XMLVMIgnore
     UIImage(BufferedImage image) {
         this.image = image;

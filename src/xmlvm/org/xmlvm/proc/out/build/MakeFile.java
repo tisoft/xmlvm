@@ -44,7 +44,7 @@ public class MakeFile extends BuildFile {
         makefile_data = makefile_data.replace(TEMPL_PROJNAME, arguments.option_app_name());
         OutputFile makefile = new OutputFile(makefile_data);
         makefile.setFileName("Makefile");
-        makefile.setLocation(arguments.option_out() + BUILDFILE_LOCATION );
+        makefile.setLocation(arguments.option_out() + BUILDFILE_LOCATION);
         result.add(makefile);
         return null;
     }

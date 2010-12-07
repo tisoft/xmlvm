@@ -20,6 +20,8 @@
 
 #import "java_lang_Boolean.h"
 
+java_lang_Boolean* _STATIC_java_lang_Boolean_FALSE;
+java_lang_Boolean* _STATIC_java_lang_Boolean_TRUE;
 
 @interface PrimitiveBoolean : java_lang_Object
 @end
@@ -34,6 +36,16 @@ static java_lang_Class* primitiveBooleanClass;
 // java.lang.Boolean
 //----------------------------------------------------------------------------
 @implementation java_lang_Boolean
+
++ (void) initialize
+{
+    if (strcmp(class_getName(self), "java_lang_Boolean") == 0) {
+        _STATIC_java_lang_Boolean_FALSE = [[java_lang_Boolean alloc] init];
+		_STATIC_java_lang_Boolean_FALSE->value = 0;
+        _STATIC_java_lang_Boolean_TRUE = [[java_lang_Boolean alloc] init];
+		_STATIC_java_lang_Boolean_TRUE->value = 1;
+    }
+}
 
 - (id) init
 {
@@ -65,6 +77,16 @@ static java_lang_Class* primitiveBooleanClass;
 + (BOOL) parseBoolean___java_lang_String:(java_lang_String*) str
 {
 	return str != JAVA_NULL && [str caseInsensitiveCompare:@"true"] == 0;
+}
+
++ (java_lang_Boolean*) _GET_FALSE
+{
+	return [_STATIC_java_lang_Boolean_FALSE retain];
+}
+
++ (java_lang_Boolean*) _GET_TRUE
+{
+	return [_STATIC_java_lang_Boolean_TRUE retain];
 }
 
 - (BOOL)isEqual:(id)anObject

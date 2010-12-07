@@ -40,7 +40,8 @@ import org.xmlvm.util.FileUtil;
 public abstract class BuildFile {
 
     protected final static String BUILDFILE_LOCATION = File.separator + "dist" + File.separator;
-    
+
+
     /**
      * Read data either from inside a JAR or from a file
      * 

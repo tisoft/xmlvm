@@ -30,6 +30,7 @@ import org.xmlvm.iphone.UIControlState;
 import org.xmlvm.iphone.UIFont;
 
 import android.content.Context;
+import android.internal.XMLVMTheme;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
@@ -54,6 +55,8 @@ public class Button extends TextView {
         if (attrs != null && attrs.getAttributeCount() > 0) {
             parseButtonAttributes(attrs);
         }
+        setTextColor(XMLVMTheme.BUTTONTEXT_COLOR);
+        xmlvmGetViewHandler().setUserInteractionEnabled(true);
     }
 
     @Override
@@ -81,6 +84,17 @@ public class Button extends TextView {
         this.text = text;
         ((UIButton) xmlvmGetViewHandler().getContentView()).setTitle(text, UIControlState.Normal);
         requestLayout();
+    }
+
+    @Override
+    public void setTextColor(int color) {
+        ((UIButton) xmlvmGetViewHandler().getContentView()).setTitleColor(xmlvmConvertIntToUIColor(color), UIControlState.Normal);
+    }
+
+    @Override
+    public void setGravity(int gravity) {
+        this.gravity = gravity;
+        // gravity not supported under iOS UIButton
     }
 
     @Override

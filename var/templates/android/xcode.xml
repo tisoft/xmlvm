@@ -79,7 +79,7 @@
 	<target name="-xproject-pipeline" depends="-pre-xproject,-xproject-plugins,-do-xproject,-post-xproject,-trim,-post-trim,-xproject-updater,-post-updater"/>
 
 	<target name="-xmlvm-exists" depends="-x-pre-init">
-		<fail unless="xmlvm.jar.exists" message="xmlvm.jar location error.${line.separator}Unable to locate file 'xmlvm.jar' under '${xmlvm.sdk.jar}'. Please update 'nbproject/project.properties' file and define the path location of 'xmlvm.jar'.${line.separator}Compilation will abort."/>
+		<fail unless="xmlvm.jar.exists" message="xmlvm.jar location error.${line.separator}Unable to locate file 'xmlvm.jar' under '${xmlvm.sdk.jar}'. Please update 'nbproject/project.properties' file and define the path location of 'xmlvm.jar' in property 'xmlvm.sdk.jar'.${line.separator}Compilation will abort."/>
 	</target>
 
 	<target name="-trim" if="xmlvm.trimmer.allowed" depends="-xmlvm-exists">

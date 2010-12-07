@@ -69,7 +69,6 @@ public class OutputProcessFactory {
             return new IPhoneOutputProcess(arguments);
         case IPHONEC:
             return new IPhoneCOutputProcess(arguments);
-        case ANDROIDONIPHONE:
         case IPHONEANDROID:
             return new Android2IPhoneOutputProcess(arguments);
         case WEBOS:

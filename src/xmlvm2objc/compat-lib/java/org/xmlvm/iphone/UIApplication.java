@@ -25,7 +25,6 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
-import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
 import org.xmlvm.iphone.internal.SimulatorDesktop;
@@ -36,10 +35,7 @@ public class UIApplication extends UIResponder {
     private boolean               idleTimerDisabled;
     private UIApplicationDelegate delegate;
     private static UIApplication  instance;
-    @XMLVMIgnore
-    List<UIWindow>                windows;
-    @XMLVMIgnore
-    UIWindow                      keyWindow;
+    private List<UIWindow>        windows;
     private int                   statusBarStyle;
     private boolean               networkActivityIndicatorVisible;
 
@@ -76,15 +72,18 @@ public class UIApplication extends UIResponder {
         return this.idleTimerDisabled;
     }
 
-    public void setKeyWindow(UIWindow window) {
-        if (!windows.contains(window))
+    void setKeyWindow(UIWindow window) {
+        if (!windows.contains(window)) {
             windows.add(window);
-        keyWindow = window;
+        }
         Simulator.redrawDisplay();
     }
 
     public UIWindow getKeyWindow() {
-        return keyWindow;
+        if (windows.size() < 1) {
+            return null;
+        }
+        return windows.get(windows.size() - 1);
     }
 
     public List<UIWindow> getWindows() {
@@ -96,6 +95,10 @@ public class UIApplication extends UIResponder {
     }
 
     public void setStatusBarHidden(boolean flag) {
+        setStatusBarHidden(flag, false);
+    }
+
+    public void setStatusBarHidden(boolean flag, boolean animated) {
         Simulator.setStatusBarHidden(flag);
     }
 

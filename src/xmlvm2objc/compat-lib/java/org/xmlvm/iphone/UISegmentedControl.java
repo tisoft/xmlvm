@@ -54,7 +54,7 @@ public class UISegmentedControl extends UIControl {
     // Java
 
     public UISegmentedControl() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
     }
 
     public UISegmentedControl(CGRect rect) {

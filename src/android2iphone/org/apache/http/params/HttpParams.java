@@ -23,6 +23,6 @@ package org.apache.http.params;
 
 public interface HttpParams {
     
-    public void setParameter(String name, Object value);
-
+    public HttpParams setParameter(String name, Object value);
+    public HttpParams setBooleanParameter (String name, boolean value);
 }

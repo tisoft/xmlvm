@@ -49,7 +49,7 @@ public class UISearchBar extends UIControl {
 
 
     public UISearchBar() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
     }
 
     public UISearchBar(CGRect rect) {

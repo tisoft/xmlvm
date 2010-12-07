@@ -28,19 +28,26 @@ import static org.xmlvm.iphone.internal.renderer.UIToolbarRenderer.TOP_OFFSET;
 import java.util.ArrayList;
 
 import org.xmlvm.XMLVMSkeletonOnly;
+import org.xmlvm.iphone.internal.renderer.UIToolbarRenderer;
 
 /**
  * 
  * @author teras
  */
 @XMLVMSkeletonOnly
-public class UIToolbar extends UIGenericToolbar {
+public class UIToolbar extends UIView {
 
     private ArrayList<UIBarButtonItem> items;
+    private UIColor                    tintColor;
+    private boolean                    translucent;
+    private int                        barStyle;
 
 
     public UIToolbar() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
+        translucent = false;
+        tintColor = UIToolbarRenderer.defaultColor;
+        xmlvmSetRenderer(new UIToolbarRenderer(this));
     }
 
     public UIToolbar(CGRect frame) {
@@ -65,7 +72,35 @@ public class UIToolbar extends UIGenericToolbar {
         updateViews();
     }
 
-    @Override
+    public int getBarStyle() {
+        return barStyle;
+    }
+
+    public void setBarStyle(int UIBarStyle) {
+        this.barStyle = UIBarStyle;
+        updateViews();
+    }
+
+    public UIColor getTintColor() {
+        return tintColor;
+    }
+
+    public final void setTintColor(UIColor tintColor) {
+        if (tintColor == null)
+            throw new NullPointerException("Tint color can not be null");
+        this.tintColor = tintColor;
+        updateViews();
+    }
+
+    public boolean isTranslucent() {
+        return translucent;
+    }
+
+    public void setTranslucent(boolean translucent) {
+        this.translucent = translucent;
+        updateViews();
+    }
+
     protected void updateViews() {
         if (items == null)
             return;

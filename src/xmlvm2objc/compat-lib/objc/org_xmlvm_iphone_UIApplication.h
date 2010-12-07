@@ -35,6 +35,7 @@
 - (void) setDelegate___org_xmlvm_iphone_UIApplicationDelegate :(org_xmlvm_iphone_UIApplicationDelegate*) newdelegate;
 - (org_xmlvm_iphone_UIApplicationDelegate*) getDelegate__;
 - (void) setStatusBarHidden___boolean:(bool) flag;
+- (void) setStatusBarHidden___boolean_boolean:(int) hidden :(int) animated;
 - (void) setStatusBarOrientation___int: (int) orientation;
 - (void) setStatusBarStyle___int: (int) style;
 - (void) setStatusBarStyle___int_boolean: (int) style :(int) animated;

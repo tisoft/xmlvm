@@ -270,18 +270,14 @@ public class View {
 
 
     public View(Context c) {
-        initView(c, null);
+        this(c, null, 0);
     }
 
     public View(Context c, AttributeSet attrs) {
-        initView(c, attrs);
+        this(c, attrs, 0);
     }
 
     public View(Context c, AttributeSet attrs, int defStyle) {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    private void initView(Context c, AttributeSet attrs) {
         flags |= FORCE_LAYOUT;
         this.c = new WeakReference<Context>(c);
         mResources = c != null ? c.getResources() : null;
@@ -499,12 +495,8 @@ public class View {
         requestLayout();
     }
 
-    public void setBackgroundColor(int color) {
-        float alpha = (float) (((color >> 24) & 0xff) / 255.0f);
-        float red = (float) (((color >> 16) & 0xff) / 255.0f);
-        float green = (float) (((color >> 8) & 0xff) / 255.0f);
-        float blue = (float) ((color & 0xff) / 255.0f);
-        viewHandler.setBackgroundColor(UIColor.colorWithRGBA(red, green, blue, alpha));
+    public void setBackgroundColor(int color) {        
+        viewHandler.setBackgroundColor(xmlvmConvertIntToUIColor(color));
     }
 
     public boolean postDelayed(Runnable runnable, long delay) {
@@ -976,14 +968,14 @@ public class View {
     }
 
     public void postInvalidate() {
-        Handler handler = new Handler() {
+        Handler invalidatehandler = new Handler() {
 
             @Override
             public void handleMessage(Message msg) {
                 viewHandler.setNeedsDisplay();
             }
         };
-        handler.sendEmptyMessage(0);
+        invalidatehandler.sendEmptyMessage(0);
     }
 
     public void requestFocus() {
@@ -996,5 +988,13 @@ public class View {
 
     protected OnClickListener getOnClickListener() {
         return this.onClickListener;
+    }
+    
+    protected UIColor xmlvmConvertIntToUIColor(int color) {
+        float alpha = (float) (((color >> 24) & 0xff) / 255.0f);
+        float red = (float) (((color >> 16) & 0xff) / 255.0f);
+        float green = (float) (((color >> 8) & 0xff) / 255.0f);
+        float blue = (float) ((color & 0xff) / 255.0f);
+        return UIColor.colorWithRGBA(red, green, blue, alpha);
     }
 }

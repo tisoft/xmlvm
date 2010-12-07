@@ -36,7 +36,7 @@ public class UIControl extends UIView {
 
 
     public UIControl() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
     }
 
     public UIControl(CGRect rect) {
@@ -50,7 +50,7 @@ public class UIControl extends UIView {
 
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-        if (touchedInsideView(touches)) {
+        if (xmlvmTouchedInsideView(touches)) {
             for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet()
                     .iterator(); it.hasNext();) {
                 Map.Entry<Integer, UIControlDelegate> e = it.next();

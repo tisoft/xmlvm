@@ -29,25 +29,32 @@ import static org.xmlvm.iphone.internal.renderer.UIToolbarRenderer.TOP_OFFSET;
 import java.util.ArrayList;
 
 import org.xmlvm.XMLVMSkeletonOnly;
+import org.xmlvm.iphone.internal.renderer.UIToolbarRenderer;
 
 /**
  * @author teras
  */
 @XMLVMSkeletonOnly
-public class UINavigationBar extends UIGenericToolbar {
+public class UINavigationBar extends UIView {
 
     private ArrayList<UINavigationItem> items;
     private UINavigationBarDelegate     delegate;
-    UINavigationController              controller;
+    UINavigationController              nbcontroller;
+    private UIColor                     tintColor;
+    private boolean                     translucent;
+    private int                         barStyle;
 
 
     public UINavigationBar() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
     }
 
     public UINavigationBar(CGRect rect) {
         super(rect);
         items = new ArrayList<UINavigationItem>();
+        translucent = false;
+        tintColor = UIToolbarRenderer.defaultColor;
+        xmlvmSetRenderer(new UIToolbarRenderer(this));
     }
 
     public void pushNavigationItem(UINavigationItem item, boolean animated) {
@@ -67,8 +74,8 @@ public class UINavigationBar extends UIGenericToolbar {
                 return null;
         UINavigationItem pop = items.get(items.size() - 1);
         items.remove(items.size() - 1);
-        updateViews();
         pop.setToolbar(this);
+        updateViews();
         if (delegate != null)
             delegate.didPopItem(this, pop);
         return pop;
@@ -94,7 +101,7 @@ public class UINavigationBar extends UIGenericToolbar {
     }
 
     public UINavigationItem getTopItem() {
-        if (items == null || items.size() == 0)
+        if (items == null || items.isEmpty())
             return null;
         return items.get(items.size() - 1);
     }
@@ -107,7 +114,35 @@ public class UINavigationBar extends UIGenericToolbar {
         return items;
     }
 
-    @Override
+    public int getBarStyle() {
+        return barStyle;
+    }
+
+    public void setBarStyle(int UIBarStyle) {
+        this.barStyle = UIBarStyle;
+        updateViews();
+    }
+
+    public UIColor getTintColor() {
+        return tintColor;
+    }
+
+    public void setTintColor(UIColor tintColor) {
+        if (tintColor == null)
+            throw new NullPointerException("Tint color can not be null");
+        this.tintColor = tintColor;
+        updateViews();
+    }
+
+    public boolean isTranslucent() {
+        return translucent;
+    }
+
+    public void setTranslucent(boolean translucent) {
+        this.translucent = translucent;
+        updateViews();
+    }
+
     protected void updateViews() {
         UINavigationItem item = getTopItem();
         if (item == null)

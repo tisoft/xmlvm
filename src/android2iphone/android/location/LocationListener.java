@@ -18,9 +18,17 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.location;
 
-public interface LocationListener {
+import android.os.Bundle;
 
+public abstract class LocationListener {
+
+    public abstract void onLocationChanged(Location location);
+
+    public abstract void onProviderDisabled(String provider);
+
+    public abstract void onProviderEnabled(String provider);
+
+    public abstract void onStatusChanged(String provider, int status, Bundle extras);
 }

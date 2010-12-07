@@ -42,7 +42,7 @@ public class UISlider extends UIControl {
 
 
     public UISlider() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
     }
 
     public UISlider(CGRect rect) {

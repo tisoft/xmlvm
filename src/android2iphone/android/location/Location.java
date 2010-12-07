@@ -20,49 +20,91 @@
 
 package android.location;
 
-import android.internal.Assert;
-
 public class Location {
 
+    private String provider;
+    private double longitude = 0;
+    private double latitude = 0;
+    private double altitude = 0;
+    private float accuracy = 0;
+    private float bearing = 0;
+    private float speed = 0;
+    private boolean hasAltitude = false;
+    private boolean hasSpeed = false;
+    private boolean hasBearing = false;
+
     public Location(String provider) {
-        Assert.NOT_IMPLEMENTED();
+        this.provider = provider;
     }
 
-    public void setLongitude(double longitude) {
-        Assert.NOT_IMPLEMENTED();
+    public boolean hasAltitude() {
+        return hasAltitude;
+    }
+
+    public double getAltitude() {
+        return altitude;
+    }
+
+    public void setAltitude(double altitude) {
+        this.altitude = altitude;
+        hasAltitude = true;
+    }
+
+    public boolean hasBearing() {
+        return hasBearing;
+    }
+
+    public float getBearing() {
+        return bearing;
+    }
+
+    public void setBearing(float bearing) {
+        this.bearing = bearing;
+        hasBearing = true;
+    }
+
+    public boolean hasSpeed() {
+        return hasSpeed;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+        hasSpeed = true;
+    }
+
+    public float getAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(float accuracy) {
+        this.accuracy = accuracy;
+    }
+
+    public double getLatitude() {
+        return latitude;
     }
 
     public void setLatitude(double latitude) {
-        Assert.NOT_IMPLEMENTED();
+        this.latitude = latitude;
     }
-    
-    public long getTime() {
-        Assert.NOT_IMPLEMENTED();
-        return 0;
-    }
-    
-    public boolean hasAccuracy() {
-        Assert.NOT_IMPLEMENTED();
-        return false;
-    }
-    
-    public float getAccuracy() {
-        Assert.NOT_IMPLEMENTED();
-        return 0.0f;
-    }
-    
+
     public double getLongitude() {
-        Assert.NOT_IMPLEMENTED();
-        return 0.0;
+        return longitude;
     }
-    
-    public double getLatitude() {
-        Assert.NOT_IMPLEMENTED();
-        return 0.0;
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
-    
+
     public String getProvider() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
     }
 }

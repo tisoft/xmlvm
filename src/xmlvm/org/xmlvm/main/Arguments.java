@@ -110,7 +110,6 @@ public class Arguments {
             "    exe              .NET executable",
             "    dex              DEX bytecode",
             "    js               JavaScript",
-            "    jsandroid        Android to JS (experimental)",
             "    c                C source code",
             "    gen-c-wrappers   Generates C wrappers while preserving hand-written code from overridden files in the 'out' directory.",
             "    python           Python",
@@ -134,11 +133,11 @@ public class Arguments {
             "    <LIB>.dylib      iPhone dynamic library <LIB>",
             "    <LIB>.Framework  iPhone framework <LIB>",
             "",
-            " --app-name=<name> Application name, required for iphone, android-on-iphone and qooxdoo targets",
+            " --app-name=<name> Application name, required for iphone, android-based and qooxdoo targets",
             "",
             " --resource=<path> "
                     + (File.pathSeparatorChar == ':' ? "Colon" : "Semicolon")
-                    + " separated list of external non parsable files and directories. Used in iphone and android-on-iphone templates to register auxilliary files. If this argument ends with '/', then the contents of this directory will be copied. If it is a directory and does not end with '/', then a verbatim copy of the directory will be performed. This argument can also be used to add extra C/C++/Obj-C source files in the produced Xcode project.",
+                    + " separated list of external non parsable files and directories. Used in iphone-based templates to register auxilliary files. If this argument ends with '/', then the contents of this directory will be copied. If it is a directory and does not end with '/', then a verbatim copy of the directory will be performed. This argument can also be used to add extra C/C++/Obj-C source files in the produced Xcode project.",
             "", " --qx-main=<class> Entry point of Qooxdoo application", "",
             " --qx-debug        Create debug information of Qooxdoo target", "",
             " -Dkey=value       Set an Xcode property",
@@ -209,6 +208,8 @@ public class Arguments {
         option_lib.add("MessageUI.framework~");
         option_lib.add("MediaPlayer.framework~");
         option_lib.add("StoreKit.framework~");
+        option_lib.add("CoreLocation.framework~");
+        option_lib.add("MapKit.framework~");
 
         // Read command line arguments
         for (int i = 0; i < argv.length; i++) {

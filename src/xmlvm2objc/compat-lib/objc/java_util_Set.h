@@ -31,6 +31,8 @@ typedef NSMutableSet java_util_Set;
 - (java_util_Iterator*) iterator__;
 - (void) clear__;
 - (BOOL) add___java_lang_Object: (java_lang_Object*) obj;
+- (BOOL) remove___java_lang_Object:(java_lang_Object*) obj;
 - (int) size__;
+- (BOOL) isEmpty__;
 
 @end

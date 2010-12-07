@@ -25,6 +25,8 @@
 
 @interface org_xmlvm_iphone_UIViewAnimationDelegate : java_lang_Object
 
+- (void) __init_org_xmlvm_iphone_UIViewAnimationDelegate__;
+
 - (void) animationWillStart___java_lang_String:(NSString*)animationID;
 - (void) animationDidStop___java_lang_String_boolean :(NSString*)n1 :(int)finished;
 

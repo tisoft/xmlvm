@@ -47,7 +47,7 @@ public class UIPreferencesTextTableCell extends UIPreferencesTableCell {
 
     /* TODO teras: again even handling here */
     @Override
-    public void keyTyped(char key) {
+    public void xmlvmKeyTyped(char key) {
         if (key == '\b' && !text.equals(""))
             text = text.substring(0, text.length() - 1);
         else

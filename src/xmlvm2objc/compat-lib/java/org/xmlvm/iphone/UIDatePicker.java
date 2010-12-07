@@ -40,7 +40,7 @@ public class UIDatePicker extends UIControl {
 
 
     public UIDatePicker() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
     }
 
     public UIDatePicker(CGRect rect) {

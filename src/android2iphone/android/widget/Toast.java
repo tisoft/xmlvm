@@ -20,15 +20,17 @@
 
 package android.widget;
 
-import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.internal.TopActivity;
-import android.os.Handler;
-import android.util.Log;
+import android.internal.XMLVMTheme;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.ViewGroup.LayoutParams;
+import java.util.LinkedList;
+import org.xmlvm.iphone.NSObject;
+import org.xmlvm.iphone.NSTimer;
+import org.xmlvm.iphone.NSTimerDelegate;
 
 /**
  * @author arno
@@ -36,34 +38,57 @@ import android.view.ViewGroup.LayoutParams;
  */
 public class Toast {
 
-    public static final int LENGTH_LONG  = 1;
+    public static final int LENGTH_LONG = 1;
     public static final int LENGTH_SHORT = 0;
+    private int duration;
+    private View view;
+    private RelativeLayout metricsview;
+    private final Context context;
+    //
+    // Toast display manager lock
+    private static final Toast NO_TOAST;
+    private static Toast lasttoast;
+    private static final LinkedList<Toast> registry;
+    private static final RelativeLayout.LayoutParams layoutParams;
 
-    private View            view;
-    private Window          window;
-    private Handler         handler;
-    private Runnable        runnable;
-    private int             duration     = LENGTH_SHORT;
+    static {
+        registry = new LinkedList<Toast>();
+        layoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
+        layoutParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
+        NO_TOAST = new Toast(null);
+        lasttoast = NO_TOAST;
+    }
 
     public Toast(Context context) {
+        this.context = context;
+        duration = LENGTH_SHORT;
     }
 
     public static Toast makeText(Context context, int resId, int duration) {
-        String str = context.getResources().getText(resId);
-        return makeText(context, str, duration);
+        return makeText(context, context.getResources().getText(resId), duration);
     }
 
     public static Toast makeText(Context context, CharSequence text, int duration) {
-        Toast toast = new Toast(context);
-        toast.setDuration(duration);
         TextView textView = new TextView(context);
+        textView.setBackgroundColor(XMLVMTheme.TOAST_COLOR);
+        textView.setTextSize(16);
+        textView.setTypeface(null, Typeface.BOLD);
+        textView.setGravity(Gravity.CENTER);
+
+        Toast toast = new Toast(context);
         toast.setView(textView);
+        toast.setDuration(duration);
         toast.setText(text);
         return toast;
     }
 
     public void setText(CharSequence text) {
-        ((TextView) view).setText(text);
+        if (view instanceof TextView) {
+            ((TextView) view).setText(text);
+        } else {
+            throw new RuntimeException("This Toast was not created with Toast.makeText()");
+        }
     }
 
     public void setView(View view) {
@@ -71,7 +96,9 @@ public class Toast {
     }
 
     public void setGravity(int gravity, int xOffset, int yOffset) {
-        Log.w("xmlvm", "Toast.setGravity() not implemented");
+        if (view instanceof TextView) {
+            ((TextView) view).setGravity(gravity);
+        }
     }
 
     public void setDuration(int duration) {
@@ -79,49 +106,46 @@ public class Toast {
     }
 
     public void show() {
-        setToastAttributes(view);
-        Activity activity = TopActivity.get();
-        RelativeLayout l = new RelativeLayout(activity);
-        RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT);
-        p.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
-        p.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-        l.addView(view, p);
-        window = activity.getWindow();
-        window.xmlvmShowToast(l);
-        handler = new Handler();
-        runnable = new Runnable() {
-
-            @Override
-            public void run() {
-                window.xmlvmRemoveToast();
-            }
-        };
-        handler.postDelayed(runnable, duration == LENGTH_SHORT ? 2000 : 4000);
+        NSObject.performSelectorOnMainThread(this, "updateVisuals", Boolean.TRUE, true);
     }
 
     public void cancel() {
-        if (handler != null) {
-            handler.removeCallbacks(runnable);
-        }
-        handler = null;
-        runnable = null;
-        if (window != null) {
-            window.xmlvmRemoveToast();
-        }
-        window = null;
+        NSObject.performSelectorOnMainThread(this, "updateVisuals", Boolean.FALSE, true);
     }
-    
-    private void setToastAttributes(View v) {
-        if (v instanceof TextView) {
-            ((TextView)v).setToastAttributes();
-        }
-        else if (v instanceof ViewGroup) {
-            ViewGroup vg = (ViewGroup) v;
-            for (int i = 0; i < vg.getChildCount(); i++ ) {
-                setToastAttributes(vg.getChildAt(i));
+
+    private void updateVisuals(Object setVisible) {
+        synchronized (lasttoast) {
+            if (((Boolean) setVisible).booleanValue()) {
+                if (lasttoast == NO_TOAST) {
+                    showToastVisuals();
+                }
+                registry.offer(this);
+            } else {
+                registry.remove(this);
+                if (lasttoast == this) {
+                    if (metricsview != null) {
+                        metricsview.xmlvmGetViewHandler().getMetricsView().removeFromSuperview();
+                    }
+                    if (registry.size() > 0) {
+                        registry.peek().showToastVisuals();
+                    } else {
+                        lasttoast = NO_TOAST;
+                    }
+                }
             }
         }
     }
 
+    private void showToastVisuals() {
+        NSTimer.scheduledTimerWithTimeInterval(duration == LENGTH_SHORT ? 2 : 4, new NSTimerDelegate() {
+
+            public void timerEvent(Object userInfo) {
+                cancel();
+            }
+        }, null, false);
+        lasttoast = this;
+        metricsview = new RelativeLayout(context);
+        metricsview.addView(view, layoutParams);
+        TopActivity.get().getWindow().xmlvmShowToast(metricsview);
+    }
 }

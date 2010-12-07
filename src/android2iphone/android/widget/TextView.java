@@ -20,19 +20,14 @@
 
 package android.widget;
 
-import java.util.Set;
 
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.NSString;
-import org.xmlvm.iphone.UIColor;
-import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UILineBreakMode;
 import org.xmlvm.iphone.UIScreen;
-import org.xmlvm.iphone.UITextAlignment;
 import org.xmlvm.iphone.UITextField;
-import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
@@ -44,10 +39,11 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.view.MotionEvent;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
+import org.xmlvm.iphone.UITextAlignment;
 
 public class TextView extends View {
 
@@ -55,6 +51,7 @@ public class TextView extends View {
     private static final int INSETS_Y = 0;
 
     protected String         text     = "";
+    protected int            gravity  = Gravity.FILL_HORIZONTAL;
 
 
     public TextView(Context c) {
@@ -71,6 +68,9 @@ public class TextView extends View {
         if (attrs != null && attrs.getAttributeCount() > 0) {
             parseTextViewAttributes(attrs);
         }
+        setBackgroundColor(XMLVMTheme.NOBACKGROUND_COLOR);
+        setTextColor(XMLVMTheme.TEXT_COLOR);
+        xmlvmGetViewHandler().setUserInteractionEnabled(false);
     }
 
     @Override
@@ -130,66 +130,29 @@ public class TextView extends View {
         }
     }
 
-    public void setTypeface(Typeface tf, int style) {
-        UITextField content = (UITextField) xmlvmGetViewHandler().getContentView();
-        UIFont font;
-
-        if (tf != null) {
-            // TODO Implement this
-            Assert.NOT_IMPLEMENTED();
+    public float getTextSize() {
+        UIFont font = ((UITextField) xmlvmGetViewHandler().getContentView()).getFont();
+        if (font == null) {
+            return UIFont.labelFontSize();
         } else {
-            font = content.getFont();
-            if (font == null) {
-                float size = UIFont.labelFontSize();
-                font = UIFont.systemFontOfSize(size);
-            }
+            return font.pointSize();
+        }
+    }
 
-            String family = font.familyName();
-            String type = "";
-            if ((style & Typeface.BOLD) > 0) {
-                type += "Bold";
-            }
-            if ((style & Typeface.ITALIC) > 0) {
-                type += "Italic";
-            }
-            content.setFont(UIFont.fontWithNameSize(family + "-" + type, font.pointSize()));
+    public void setTypeface(Typeface tf, int style) {
+        setTypeface(Typeface.create(tf, style));
+    }
+
+    public void setTypeface(Typeface tf) {
+        if (tf != null) {
+            UITextField content = (UITextField) xmlvmGetViewHandler().getContentView();
+            content.setFont(tf.xmlvmGetUIFont(content.getFont().pointSize()));
         }
     }
 
     @Override
     protected UIView xmlvmNewUIView(AttributeSet attrs) {
-        UITextField view = new UITextField() {
-
-            @Override
-            public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-                xmlvmTouchesEvent(MotionEvent.ACTION_DOWN, touches, event);
-            }
-
-            @Override
-            public void touchesMoved(Set<UITouch> touches, UIEvent event) {
-                xmlvmTouchesEvent(MotionEvent.ACTION_MOVE, touches, event);
-            }
-
-            @Override
-            public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
-                xmlvmTouchesEvent(MotionEvent.ACTION_CANCEL, touches, event);
-            }
-
-            @Override
-            public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-                xmlvmTouchesEvent(MotionEvent.ACTION_UP, touches, event);
-            }
-        };
-
-        if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_NATIVE) {
-            view.setBackgroundColor(UIColor.whiteColor);
-            view.setTextColor(UIColor.blackColor);
-        } else {
-            view.setTextColor(UIColor.whiteColor);
-        }
-
-        // view.setEditable(false);
-        return view;
+        return new UITextField();
     }
 
     private void parseTextViewAttributes(AttributeSet attrs) {
@@ -264,6 +227,19 @@ public class TextView extends View {
         setIgnoreRequestLayout(false);
     }
 
+    public void setTextColor(int color) {
+        ((UITextField) xmlvmGetViewHandler().getContentView()).setTextColor(xmlvmConvertIntToUIColor(color));
+    }
+
+    public void setGravity(int gravity) {
+        this.gravity = gravity;
+        ((UITextField) xmlvmGetViewHandler().getContentView()).setTextAlignment(xmlvmGetAlignmentFromGravity(gravity));
+    }
+
+    public int getGravity() {
+        return gravity;
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int minWidth = getSuggestedMinimumWidth();
@@ -327,14 +303,20 @@ public class TextView extends View {
         return INSETS_Y;
     }
 
-    public void addTextChangedListener(TextWatcher watcher) {
-        Assert.NOT_IMPLEMENTED();
+    protected int xmlvmGetAlignmentFromGravity(int gravity) {
+        switch (gravity & Gravity.HORIZONTAL_GRAVITY_MASK) {
+            case Gravity.CENTER_HORIZONTAL:
+                return UITextAlignment.Center;
+            case Gravity.RIGHT:
+                return UITextAlignment.Right;
+            case Gravity.LEFT:
+            default:
+                return UITextAlignment.Left;
+        }
     }
 
-    void setToastAttributes() {
-        UITextField content = (UITextField) xmlvmGetViewHandler().getContentView();
-        content.setTextAlignment(UITextAlignment.Center);
-        content.setFont(UIFont.boldSystemFontOfSize(16));
+    public void addTextChangedListener(TextWatcher watcher) {
+        Assert.NOT_IMPLEMENTED();
     }
 
     public void setHint(CharSequence hint) {

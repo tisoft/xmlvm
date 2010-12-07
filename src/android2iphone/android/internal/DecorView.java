@@ -41,11 +41,6 @@ public class DecorView extends FrameLayout {
     }
 
     private void init() {
-        if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
-            setBackgroundColor(0xff191919);
-        }
-        else {
-            setBackgroundColor(0xffffffff);
-        }
+        setBackgroundColor(XMLVMTheme.DECOR_COLOR);
     }
 }

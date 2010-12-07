@@ -32,6 +32,7 @@ import android.hardware.SensorManager;
 import android.internal.AndroidManifest;
 import android.internal.Assert;
 import android.internal.IPhoneManager;
+import android.location.LocationManager;
 import android.media.AudioManager;
 import android.os.PowerManager;
 import android.view.LayoutInflater;
@@ -126,6 +127,7 @@ public abstract class Context {
     private static WindowManager      windowManager           = null;
     private static InputMethodManager inputMethodManager      = null;
     private static IPhoneManager      iphoneManager           = null;
+    private static LocationManager    locationManager         = null;
 
     /**
      * Return the handle to a system-level service by name. The class of the
@@ -168,7 +170,12 @@ public abstract class Context {
                 iphoneManager = new IPhoneManager();
             }
             return iphoneManager;
-        }
+        } else if (service.equals(LOCATION_SERVICE)) {
+            if (locationManager == null) {
+                locationManager = new LocationManager();
+            }
+            return locationManager;
+        } 
         return null;
     }
 
@@ -259,12 +266,8 @@ public abstract class Context {
         try {
             androidActivityClazz = Class.forName(activityName);
             newActivity = (Activity) androidActivityClazz.newInstance();
-        } catch (ClassNotFoundException e) {
-            Assert.FAIL("Couldn't start activity");
-        } catch (InstantiationException e) {
-            Assert.FAIL("Couldn't start activity");
-        } catch (IllegalAccessException e) {
-            Assert.FAIL("Couldn't start activity");
+        } catch (Exception e) {
+            Assert.FAIL("Couldn't start activity " + activityName + ", " + e.getClass().getName() + ": " + e.getMessage());
         }
         return newActivity;
     }

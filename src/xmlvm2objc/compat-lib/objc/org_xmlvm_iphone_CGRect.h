@@ -32,7 +32,6 @@
 + (org_xmlvm_iphone_CGRect*) Zero__;
 + (org_xmlvm_iphone_CGRect*) Infinite__;
 
-- (id) init;
 - (void) dealloc;
 - (org_xmlvm_iphone_CGRect*) initWithCGRect:(CGRect) rect;
 - (CGRect) getCGRect;

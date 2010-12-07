@@ -30,7 +30,7 @@ public class UIImageView extends UIView {
 
 
     public UIImageView() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
         setUserInteractionEnabled(false);
     }
 

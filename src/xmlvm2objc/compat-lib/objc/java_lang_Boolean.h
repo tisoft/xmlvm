@@ -36,6 +36,8 @@ int value;
 - (void) __init_java_lang_Boolean___boolean :(BOOL) b;
 + (java_lang_Class*) _GET_TYPE;
 + (BOOL) parseBoolean___java_lang_String:(java_lang_String*) str;
++ (java_lang_Boolean*) _GET_FALSE;
++ (java_lang_Boolean*) _GET_TRUE;
 - (BOOL)isEqual:(id)anObject;
 - (int) booleanValue__;
 + (java_lang_Boolean*) valueOf___java_lang_String:(java_lang_String*) s;

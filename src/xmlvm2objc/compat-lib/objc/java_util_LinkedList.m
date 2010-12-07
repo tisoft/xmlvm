@@ -31,11 +31,42 @@
 
 - (java_lang_Object*) removeFirst__
 {
-	java_lang_Object* o = [self objectAtIndex:0];
-	[o retain];
-	// TODO should throw exception if list is empty
-	[self removeObjectAtIndex:0];
+	return [self remove__];
+}
+
+- (bool) offer___java_lang_Object:(java_lang_Object *) item
+{
+	[self addObject:item];
+	return YES;
+}
+
+- (java_lang_Object*) peek__
+{
+	if ([self count]<1) {
+		return [JAVA_NULL retain];
+	}
+	return [[self objectAtIndex:0] retain];
+}
+
+- (java_lang_Object*) poll__
+{
+	java_lang_Object *o = [self peek__];
+	if (o != JAVA_NULL) {
+		[self removeObjectAtIndex:0];
+	}
 	return o;
+}
+
+- (java_lang_Object*) element__
+{
+	// TODO should throw exception if list is empty
+	return [self peek__];
+}
+
+- (java_lang_Object*) remove__
+{
+	// TODO should throw exception if list is empty
+	return [self poll__];
 }
 
 @end

@@ -38,7 +38,7 @@ public class UIPickerView extends UIView {
 
 
     public UIPickerView() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
     }
 
     public UIPickerView(CGRect rect) {

@@ -54,11 +54,11 @@
 }
 
 - (void) setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem :(org_xmlvm_iphone_UIBarButtonItem*)n1 { 
-	[self setLeftBarButtonItem:XMLVM_VALUE(n1)];
+	[self setLeftBarButtonItem:XMLVM_NULL2NIL(n1)];
 }
 
 - (void) setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean :(org_xmlvm_iphone_UIBarButtonItem*)but :(int)anim { 
-	[self setLeftBarButtonItem:XMLVM_VALUE(but) animated:anim];
+	[self setLeftBarButtonItem:XMLVM_NULL2NIL(but) animated:anim];
 }
 
 - (java_lang_String*) getPrompt__ {
@@ -74,11 +74,11 @@
 }
 
 - (void) setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem :(org_xmlvm_iphone_UIBarButtonItem*)n1 { 
-	[self setRightBarButtonItem:XMLVM_VALUE(n1)];
+	[self setRightBarButtonItem:XMLVM_NULL2NIL(n1)];
 }
 
 - (void) setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean :(org_xmlvm_iphone_UIBarButtonItem*)but :(int)anim { 
-	[self setRightBarButtonItem:XMLVM_VALUE(but) animated:anim];
+	[self setRightBarButtonItem:XMLVM_NULL2NIL(but) animated:anim];
 }
 
 - (java_lang_String*) getTitle__ { 

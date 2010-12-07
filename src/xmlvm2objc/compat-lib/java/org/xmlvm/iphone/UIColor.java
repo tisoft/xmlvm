@@ -83,7 +83,50 @@ public class UIColor extends NSObject {
     }
 
     public static UIColor colorWithHSBA(float hue, float saturation, float brightness, float alpha) {
-        return new UIColor(Color.HSBtoRGB(hue, saturation, brightness), alpha);
+        float red = 0.0f;
+        float green = 0.0f;
+        float blue = 0.0f;
+
+        final float hf = (hue - (int) hue) * 6.0f;
+        final int ihf = (int) hf;
+        final float f = hf - ihf;
+        final float pv = brightness * (1.0f - saturation);
+        final float qv = brightness * (1.0f - saturation * f);
+        final float tv = brightness * (1.0f - saturation * (1.0f - f));
+
+        switch (ihf) {
+        case 0: // Red is the dominant color
+            red = brightness;
+            green = tv;
+            blue = pv;
+            break;
+        case 1: // Green is the dominant color
+            red = qv;
+            green = brightness;
+            blue = pv;
+            break;
+        case 2:
+            red = pv;
+            green = brightness;
+            blue = tv;
+            break;
+        case 3: // Blue is the dominant color
+            red = pv;
+            green = qv;
+            blue = brightness;
+            break;
+        case 4:
+            red = tv;
+            green = pv;
+            blue = brightness;
+            break;
+        case 5: // Red is the dominant color
+            red = brightness;
+            green = pv;
+            blue = qv;
+            break;
+        }
+        return new UIColor(red, green, blue, alpha);
     }
 
     public static UIColor colorWithRGBA(float red, float green, float blue, float alpha) {

@@ -23,6 +23,7 @@
 #import "org_xmlvm_iphone_UIView.h"
 #import "org_xmlvm_iphone_UILabel.h"
 #import "org_xmlvm_iphone_UIImageView.h"
+#import "java_lang_String.h"
 
 // UITableViewCell
 //----------------------------------------------------------------------------
@@ -47,5 +48,6 @@
 - (int) getEditingStyle__;
 - (org_xmlvm_iphone_UIView*) getAccessoryView__;
 - (void) setAccessoryView___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*)acc;
+- (java_lang_String*) getReuseIdentifier__;
 
 @end

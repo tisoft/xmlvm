@@ -35,15 +35,15 @@ public enum XcodeSkeleton {
     /**
      * Create an iPhone project
      */
-    IPHONE("iphoneos4.1", "1"),
+    IPHONE("iphoneos", "1"),
     /**
      * Create an iPad project
      */
-    IPAD("iphoneos4.1", "2"),
+    IPAD("iphoneos", "2"),
     /**
      * Create an iPhone project
      */
-    IOS("iphoneos4.1", "1,2");
+    IOS("iphoneos", "1,2");
     public final String root;
     public final String target;
     public final String architecture;

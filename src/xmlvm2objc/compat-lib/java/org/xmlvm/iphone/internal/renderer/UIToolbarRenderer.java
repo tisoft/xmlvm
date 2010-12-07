@@ -25,13 +25,14 @@ import java.awt.Graphics2D;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIGraphics;
-import org.xmlvm.iphone.UIGenericToolbar;
+import org.xmlvm.iphone.UIView;
+import org.xmlvm.iphone.internal.UIGenericBarHelper;
 
 /**
  * 
  * @author teras
  */
-public class UIToolbarRenderer extends UIViewRenderer<UIGenericToolbar> {
+public class UIToolbarRenderer extends UIViewRenderer {
 
     public final static int      HEIGHT_NOPROMT   = 44;
     public final static int      HEIGHT_WITHPROMT = 74;
@@ -47,7 +48,7 @@ public class UIToolbarRenderer extends UIViewRenderer<UIGenericToolbar> {
     public static final float    BOTTOM_OFFSET    = 6;
 
 
-    public UIToolbarRenderer(UIGenericToolbar view) {
+    public UIToolbarRenderer(UIView view) {
         super(view);
     }
 
@@ -59,8 +60,9 @@ public class UIToolbarRenderer extends UIViewRenderer<UIGenericToolbar> {
         int y = (int) rect.origin.y;
         int w = (int) rect.size.width;
         int h = (int) rect.size.height;
-        UIColor base = RendererUtilities.getUIColor(view.getTintColor(),
-                view.isTranslucent() ? TRANSLUCENT : 1);
+
+        UIColor base = RendererUtilities.getUIColor(UIGenericBarHelper.getTintColor(view),
+                UIGenericBarHelper.isTranslucent(view) ? TRANSLUCENT : 1);
         g.setPaint(RendererUtilities.getHalfPaint(base, rect, false));
         g.fillRect(x, y, w, h);
         g.setPaint(RendererUtilities.getTransColor(base, 1, 0.5f, 0.5f));

@@ -30,27 +30,27 @@
              :(org_xmlvm_iphone_UIAlertViewDelegate*) currentdelegate
              :(java_lang_String*) cancelButtonTitle
 {
-	XMLVM_PROPERTY_WITHCOMMAND(delegate,XMLVM_VALUE(currentdelegate),)
-	[self initWithTitle:XMLVM_VALUE(title) message:XMLVM_VALUE(message) delegate:XMLVM_VALUE(currentdelegate)
-	      cancelButtonTitle:XMLVM_VALUE(cancelButtonTitle) otherButtonTitles: nil];
+	XMLVM_PROPERTY_WITHCOMMAND(delegate,XMLVM_NULL2NIL(currentdelegate),)
+	[self initWithTitle:XMLVM_NULL2NIL(title) message:XMLVM_NULL2NIL(message) delegate:XMLVM_NULL2NIL(currentdelegate)
+	      cancelButtonTitle:XMLVM_NULL2NIL(cancelButtonTitle) otherButtonTitles: nil];
 }
 
 - (void) setTitle___java_lang_String
 			 :(java_lang_String*) title;
 {
-	self.title = XMLVM_VALUE(title);
+	self.title = XMLVM_NULL2NIL(title);
 }
 
 - (void) setMessage___java_lang_String
 			 :(java_lang_String*) message;
 {
-	self.message = XMLVM_VALUE(message);
+	self.message = XMLVM_NULL2NIL(message);
 }
 
 - (int) addButtonWithTitle___java_lang_String
              :(java_lang_String*) title;
 {
-	return [self addButtonWithTitle:XMLVM_VALUE(title)];
+	return [self addButtonWithTitle:XMLVM_NULL2NIL(title)];
 }
 
 - (void) show__

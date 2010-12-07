@@ -28,7 +28,7 @@
 }
 
 + (void) pushContext___org_xmlvm_iphone_CGContext :(org_xmlvm_iphone_CGContext*)cxt {	
-	UIGraphicsPushContext(XMLVM_VALUE([cxt getCGContextRef]));
+	UIGraphicsPushContext(XMLVM_NULL2NIL([cxt getCGContextRef]));
 }
 
 + (void) popContext__

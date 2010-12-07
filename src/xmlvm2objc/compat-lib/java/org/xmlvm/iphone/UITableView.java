@@ -36,6 +36,10 @@ public class UITableView extends UIScrollView {
     private float                 rowHeight;
 
 
+    public UITableView() {
+        this(CGRect.Zero());
+    }
+
     public UITableView(CGRect rect) {
         this(rect, UITableViewStyle.Plain);
     }
@@ -50,11 +54,8 @@ public class UITableView extends UIScrollView {
 
     public void setDataSource(UITableViewDataSource dataSource) {
         this.dataSource = dataSource;
-        ((UITableViewRenderer) xmlvmGetRenderer()).reloadData();
-    }
-
-    public UITableViewDataSource getTableViewDataSource() {
-        return dataSource;
+        if (this.dataSource != null)
+            ((UITableViewRenderer) xmlvmGetRenderer()).reloadData();
     }
 
     public void setDelegate(UITableViewDelegate delegate) {

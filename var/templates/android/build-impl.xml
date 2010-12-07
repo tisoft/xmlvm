@@ -18,7 +18,7 @@ is divided into following sections:
   - cleanup
 
         -->
-<project xmlns:androidproject1="http://www.netbeans.org/ns/android-project/1" basedir=".." default="default" name="__PROJECTNAME__-impl">
+<project xmlns:androidproject1="http://www.netbeans.org/ns/android-project/1" basedir=".." default="default" name="__PROJNAME__-impl">
     <target depends="test,jar,javadoc" description="Build and test whole project." name="default"/>
     <!-- 
                 ======================

@@ -25,6 +25,12 @@
 //----------------------------------------------------------------------------
 @implementation UITableView (cat_org_xmlvm_iphone_UITableView)
 
+
+- (void) __init_org_xmlvm_iphone_UITableView__
+{
+	[self initWithFrame:CGRectZero style: UITableViewStylePlain];
+}
+
 - (void) __init_org_xmlvm_iphone_UITableView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*) rect
 {
 	[self initWithFrame: [rect getCGRect] style: UITableViewStylePlain];
@@ -127,7 +133,7 @@
 
 - (org_xmlvm_iphone_UITableViewCell*) dequeueReusableCellWithIdentifier___java_lang_String :(NSString*)identifier 
 {
-	return_XMLVM(dequeueReusableCellWithIdentifier:identifier)
+	return_XMLVM(dequeueReusableCellWithIdentifier:XMLVM_NULL2NIL(identifier))
 }
 
 - (void) deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean:(org_xmlvm_iphone_NSIndexPath*)indexPath :(int)animation

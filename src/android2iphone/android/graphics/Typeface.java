@@ -183,12 +183,15 @@ public class Typeface {
      */
     public static native void setGammaForText(float blackGamma, float whiteGamma);
 
-    public UIFont xmlvmGenUIFont(float fontSize, int flags) {
-        // TODO what to do with mStyle?
-        if (mFamilyName == null) {
-            return (flags & Paint.FAKE_BOLD_TEXT_FLAG) != 0 ? UIFont.boldSystemFontOfSize(fontSize)
-                    : UIFont.systemFontOfSize(fontSize);
+    public UIFont xmlvmGetUIFont(float pointSize) {
+        String family = mFamilyName == null ? UIFont.systemFontOfSize(pointSize).familyName() : mFamilyName;
+        String type = "";
+        if ((mStyle & Typeface.BOLD) > 0) {
+            type += "Bold";
         }
-        return UIFont.fontWithNameSize(mFamilyName, fontSize);
+        if ((mStyle & Typeface.ITALIC) > 0) {
+            type += "Italic";
+        }
+        return UIFont.fontWithNameSize(family + "-" + type, pointSize);
     }
 }

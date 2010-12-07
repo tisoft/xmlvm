@@ -18,9 +18,11 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.widget;
 
 public interface ListAdapter extends Adapter {
 
+    abstract boolean areAllItemsEnabled();
+
+    abstract boolean isEnabled(int position);
 }

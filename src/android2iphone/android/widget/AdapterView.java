@@ -21,7 +21,7 @@
 package android.widget;
 
 import android.content.Context;
-import android.internal.Assert;
+import android.view.View;
 import android.view.ViewGroup;
 
 ;
@@ -30,11 +30,10 @@ public abstract class AdapterView<T extends Adapter> extends ViewGroup {
 
     public AdapterView(Context context) {
         super(context);
-        Assert.NOT_IMPLEMENTED();
     }
 
-    public Object getItemAtPosition(int position) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+    public static interface OnItemClickListener {
+
+        abstract void onItemClick(AdapterView<?> parent, View view, int position, long id);
     }
 }

@@ -52,7 +52,7 @@ public class UINavigationController extends UIViewController {
         toolbarHidden = true;
         navigationBarHidden = false;
         navigationBar = new UINavigationBar();
-        navigationBar.controller = this;
+        navigationBar.nbcontroller = this;
         toolbar = new UIToolbar();
         items = new ArrayList<UIViewController>();
         pushViewController(rootViewController, false);
@@ -99,7 +99,7 @@ public class UINavigationController extends UIViewController {
 
     public UIViewController popViewControllerAnimated(boolean animated) {
         int idx = items.size() - 1;
-        if (idx < 0)
+        if (idx < 1)
             return null;
         UIViewController viewc = items.get(idx);
         items.remove(idx);

@@ -18,9 +18,33 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-
 package android.widget;
 
+import android.database.DataSetObserver;
+import android.view.View;
+import android.view.ViewGroup;
+
 public interface Adapter {
+
+    
+    abstract int getCount();
+
+    abstract Object getItem(int position);
+
+    abstract long getItemId(int position);
+
+    abstract int getItemViewType(int position);
+
+    abstract View getView(int position, View convertView, ViewGroup parent);
+
+    abstract int getViewTypeCount();
+
+    abstract boolean hasStableIds();
+
+    abstract boolean isEmpty();
+    
+     void registerDataSetObserver(DataSetObserver observer);
+
+     void unregisterDataSetObserver(DataSetObserver observer);
 
 }

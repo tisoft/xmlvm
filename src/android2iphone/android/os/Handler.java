@@ -42,14 +42,14 @@ public class Handler {
     public final boolean postDelayed(Runnable r, long delayMillis) {
         this.toRun = r;
         this.delay = ((float) delayMillis) / 1000;
-        NSObject.performSelectorOnMainThread(this, "xmlvmStartTimer", null, true);
+        NSObject.performSelectorOnMainThread(this, "startTimer", null, true);
         return true;
     }
 
     public void post(Runnable r) {
         this.toRun = r;
         this.delay = 0;
-        NSObject.performSelectorOnMainThread(this, "xmlvmStartTimer", null, true);
+        NSObject.performSelectorOnMainThread(this, "startTimer", null, true);
     }
 
     public void removeCallbacks(Runnable runnable) {
@@ -58,7 +58,7 @@ public class Handler {
         }
     }
 
-    public void xmlvmStartTimer(Object ticks) {
+    private void startTimer(Object ticks) {
         // TODO what to do witch ticks?
         timer = NSTimer.scheduledTimerWithTimeInterval(delay, new NSTimerDelegate() {
             public void timerEvent(Object notUsed) {
@@ -67,7 +67,7 @@ public class Handler {
         }, null, false);
     }
 
-    public void xmlvmHandleMessage(Object msg) {
+    private void handleMessage(Object msg) {
         handleMessage((Message) msg);
     }
 
@@ -80,7 +80,7 @@ public class Handler {
     }
 
     public boolean sendMessage(Message message) {
-        NSObject.performSelectorOnMainThread(this, "xmlvmHandleMessage", message, false);
+        NSObject.performSelectorOnMainThread(this, "handleMessage", message, false);
         return true;
     }
 

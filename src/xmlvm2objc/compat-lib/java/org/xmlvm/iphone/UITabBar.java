@@ -30,17 +30,20 @@ import org.xmlvm.iphone.internal.renderer.UITabBarRenderer;
  * @author teras
  */
 @XMLVMSkeletonOnly
-public class UITabBar extends UIGenericBar {
+public class UITabBar extends UIView {
 
     private UITabBarDelegate        delegate;
     private ArrayList<UITabBarItem> items;
     private UITabBarItem            selectedItem;
     /* For connectivity with UITabBarController */
     UITabBarController              tbcontrol;
+    private UIColor                 tintColor;
+    private boolean                 translucent;
+    private int                     barStyle;
 
 
     public UITabBar() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
     }
 
     public UITabBar(CGRect rect) {
@@ -115,7 +118,35 @@ public class UITabBar extends UIGenericBar {
         return false;
     }
 
-    @Override
+    public int getBarStyle() {
+        return barStyle;
+    }
+
+    public void setBarStyle(int UIBarStyle) {
+        this.barStyle = UIBarStyle;
+        updateViews();
+    }
+
+    public UIColor getTintColor() {
+        return tintColor;
+    }
+
+    public final void setTintColor(UIColor tintColor) {
+        if (tintColor == null)
+            throw new NullPointerException("Tint color can not be null");
+        this.tintColor = tintColor;
+        updateViews();
+    }
+
+    public boolean isTranslucent() {
+        return translucent;
+    }
+
+    public void setTranslucent(boolean translucent) {
+        this.translucent = translucent;
+        updateViews();
+    }
+
     protected void updateViews() {
         if (items == null || items.size() < 1)
             return;

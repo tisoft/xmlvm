@@ -71,7 +71,7 @@
 		<condition property="extensible.libs.classpath" value="${tested.project.absolute.dir}/libs" else="./libs">
 			<isset property="tested.project.absolute.dir" />
 		</condition>
-		<xmlvm.ajavac encoding="ascii" target="1.5" debug="true" extdirs=""
+		<xmlvm.ajavac encoding="utf-8" target="1.5" debug="true" extdirs=""
 				destdir="${out.classes.absolute.dir}"
 				verbose="${verbose}" classpath="${extensible.classpath}"
 				classpathref="android.libraries.jars">

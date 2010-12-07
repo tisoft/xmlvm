@@ -41,7 +41,7 @@ public class NSTimer extends NSObject {
         thread = new Thread() {
 
             @Override
-            @SuppressWarnings("SleepWhileHoldingLock")
+            @SuppressWarnings( { "SleepWhileHoldingLock", "SleepWhileInLoop" })
             public void run() {
                 while (true) {
                     try {

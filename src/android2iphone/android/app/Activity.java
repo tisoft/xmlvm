@@ -34,7 +34,6 @@ import android.content.res.Configuration;
 import android.internal.Assert;
 import android.internal.TopActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -177,7 +176,8 @@ public class Activity extends ContextThemeWrapper {
                 theParent.child = child;
             }
         } else {
-            theParent.child = null;
+            if (theParent != null)
+                theParent.child = null;
         }
         child = null;
 
@@ -423,5 +423,13 @@ public class Activity extends ContextThemeWrapper {
     @Override
     public String getString(int id) {
         return this.getResources().getText(id);
+    }
+    
+    public final void runOnUiThread (Runnable action) {
+        NSObject.performSelectorOnMainThread(this, "runOnUiThreadImpl", action, true);
+    }
+    
+    private void runOnUiThreadImpl(Object runnable) {
+        ((Runnable)runnable).run();
     }
 }

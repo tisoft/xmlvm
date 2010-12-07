@@ -24,6 +24,10 @@
 
 @implementation org_xmlvm_iphone_UIViewAnimationDelegate
 
+- (void) __init_org_xmlvm_iphone_UIViewAnimationDelegate__
+{
+}
+
 - (void) animationWillStart___java_lang_String:(NSString*)animationID
 {
 	// Will be overriden in Java

@@ -29,12 +29,14 @@
 
 - (void) __init_org_xmlvm_iphone_UITableViewCell__
 {
-	[self __init_org_xmlvm_iphone_UITableViewCell___int_java_lang_String:UITableViewCellStyleDefault :nil];
+	NSString *classname = [NSString stringWithUTF8String:object_getClassName(self)];
+	NSString * reuse = [classname stringByReplacingOccurrencesOfString:@"_" withString:@"."];
+	[self __init_org_xmlvm_iphone_UITableViewCell___int_java_lang_String:UITableViewCellStyleDefault :reuse];
 }
 
 - (void) __init_org_xmlvm_iphone_UITableViewCell___int_java_lang_String :(int)style :(NSString*)reuseIdentifier
 {
-	[self initWithStyle:style reuseIdentifier:reuseIdentifier];
+	[self initWithStyle:style reuseIdentifier:XMLVM_NULL2NIL(reuseIdentifier)];
 }
 
 
@@ -115,6 +117,11 @@
 - (void) setAccessoryView___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*)acc
 {
 	[self setAccessoryView:acc];
+}
+
+- (java_lang_String*) getReuseIdentifier__
+{
+	return_XMLVM(reuseIdentifier)
 }
 
 @end

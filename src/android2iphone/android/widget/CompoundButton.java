@@ -29,6 +29,7 @@ import android.content.Context;
 import android.internal.Assert;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import org.xmlvm.iphone.UIFont;
 
 /**
  * @author wkorn
@@ -83,6 +84,25 @@ public abstract class CompoundButton extends Button {
 
     public void toggle() {
         setChecked(!checked);
+    }
+
+    @Override
+    public void setText(String text) {
+        // NOTE: setText should be overriden in child classes or else this method will break,
+        // if child is not derived from UIButton
+    }
+
+    @Override
+    public void setTextColor(int color) {
+        // NOTE: setTextColor should be overriden in child classes or else this method will break,
+        // if child is not derived from UIButton
+    }
+
+    @Override
+    protected UIFont xmlvmGetUIFont() {
+        // NOTE: xmlvmGetUIFont should be overriden in child classes or else this method will break,
+        // if child is not derived from UIButton
+        return null;
     }
 
     protected abstract void xmlvmUpdateUIView(boolean checked);

@@ -92,6 +92,11 @@
     [self setStatusBarHidden: flag];
 }
 
+- (void) setStatusBarHidden___boolean_boolean:(int) hidden :(int) animated
+{
+	[self setStatusBarHidden:hidden animated:animated];
+}
+
 - (void) setStatusBarOrientation___int: (int) orientation
 {
 	[self setStatusBarOrientation: orientation];

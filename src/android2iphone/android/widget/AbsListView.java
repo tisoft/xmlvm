@@ -21,7 +21,6 @@
 package android.widget;
 
 import android.content.Context;
-import android.internal.Assert;
 
 public abstract class AbsListView extends AdapterView<ListAdapter> {
 
@@ -30,6 +29,8 @@ public abstract class AbsListView extends AdapterView<ListAdapter> {
 
     public AbsListView(Context context) {
         super(context);
-        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void setTextFilterEnabled(boolean textFilterEnabled) {
     }
 }

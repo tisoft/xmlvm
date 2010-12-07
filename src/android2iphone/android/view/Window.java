@@ -29,7 +29,6 @@ import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UIScrollView;
 import org.xmlvm.iphone.UITextField;
 import org.xmlvm.iphone.UITextFieldDelegate;
-import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
 
 import android.app.Activity;
@@ -43,6 +42,7 @@ import android.view.View.MeasureSpec;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import org.xmlvm.iphone.UIView;
 
 /**
  * iPhone Implementation of Android's Window class.
@@ -55,7 +55,6 @@ public class Window {
     private UIView              iContainerView;
     private UIScrollView        iScrollView;
     private UITextFieldDelegate iTextFieldDelegate;
-    private View                toast;
     private FrameLayout         internalView;
     private DecorView           decorView;
     private FrameLayout         contentParent;
@@ -174,20 +173,10 @@ public class Window {
     }
 
     public void xmlvmShowToast(View toast) {
-        Assert.CHECK(this.toast == null);
-        this.toast = toast;
         layoutContentView(toast);
         UIView itoast = toast.xmlvmGetViewHandler().getMetricsView();
         itoast.setUserInteractionEnabled(false);
         iContainerView.addSubview(itoast);
-    }
-
-    public void xmlvmRemoveToast() {
-        if (toast == null)
-            return;
-        UIView itoast = toast.xmlvmGetViewHandler().getMetricsView();
-        itoast.removeFromSuperview();
-        toast = null;
     }
 
     public void xmlvmSetHidden(boolean flag) {

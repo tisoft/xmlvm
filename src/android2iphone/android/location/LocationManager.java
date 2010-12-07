@@ -20,54 +20,128 @@
 
 package android.location;
 
-import android.internal.Assert;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import org.xmlvm.iphone.CLLocation;
+import org.xmlvm.iphone.CLLocationCoordinate2D;
+import org.xmlvm.iphone.CLLocationManager;
+import org.xmlvm.iphone.CLLocationManagerDelegate;
 
 public class LocationManager {
 
-    /**
-     * Name of the network location provider. This provider determines location
-     * based on availability of cell tower and WiFi access points. Results are
-     * retrieved by means of a network lookup.
-     * 
-     * Requires either of the permissions
-     * android.permission.ACCESS_COARSE_LOCATION or
-     * android.permission.ACCESS_FINE_LOCATION.
-     */
     public static final String NETWORK_PROVIDER = "network";
+    public static final String GPS_PROVIDER = "gps";
+    private final CLLocationManager manager;
+    private final HashSet<LocationListener> fine_listeners;
+    private final HashSet<LocationListener> coarse_listeners;
+    private Location lastKnownLocation = null;
 
-    /**
-     * Name of the GPS location provider. This provider determines location
-     * using satellites. Depending on conditions, this provider may take a while
-     * to return a location fix.
-     * 
-     * Requires the permission android.permission.ACCESS_FINE_LOCATION.
-     * 
-     * <p>
-     * The extras Bundle for the GPS location provider can contain the following
-     * key/value pairs:
-     * 
-     * <ul>
-     * <li>satellites - the number of satellites used to derive the fix
-     * </ul>
-     */
-    public static final String GPS_PROVIDER     = "gps";
+    public LocationManager() {
+        fine_listeners = new HashSet<LocationListener>();
+        coarse_listeners = new HashSet<LocationListener>();
 
+        manager = new CLLocationManager();
+        manager.setDelegate(new CLLocationManagerDelegate() {
+
+            @Override
+            public void didUpdateToLocation(CLLocationManager manager, CLLocation newLocation, CLLocation oldLocation) {
+                lastKnownLocation = convertCLLocation(newLocation);
+                for (LocationListener props : fine_listeners) {
+                    props.onLocationChanged(lastKnownLocation);
+                }
+                for (LocationListener props : coarse_listeners) {
+                    props.onLocationChanged(lastKnownLocation);
+                }
+            }
+        });
+        manager.startMonitoringSignificantLocationChanges();
+    }
+
+    @SuppressWarnings("SleepWhileInLoop")
     public Location getLastKnownLocation(String provider) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        // 500 milliseconds maximum delay
+        for (int i = 0; i < 5; i++) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+            }
+            lastKnownLocation = convertCLLocation(manager.getLocation());
+            if (lastKnownLocation != null) {
+                break;
+            }
+        }
+        if (coarse_listeners.isEmpty()) {
+            manager.stopMonitoringSignificantLocationChanges();
+        }
+        return lastKnownLocation;
     }
 
     public boolean isProviderEnabled(String provider) {
-        Assert.NOT_IMPLEMENTED();
-        return false;
+        return CLLocationManager.locationServicesEnabled();
     }
 
     public void removeUpdates(LocationListener locationListener) {
-        Assert.NOT_IMPLEMENTED();
+        if (locationListener == null) {
+            return;
+        }
+        if (fine_listeners.remove(locationListener) && fine_listeners.isEmpty()) {
+            manager.stopUpdatingLocation();
+        } else if (coarse_listeners.remove(locationListener) && coarse_listeners.isEmpty()) {
+            manager.stopMonitoringSignificantLocationChanges();
+        }
     }
 
     public void requestLocationUpdates(String provider, long minTime, float minDistance,
-            LocationListener listener) {
-        Assert.NOT_IMPLEMENTED();
+            LocationListener locationListener) {
+        if (locationListener == null) {
+            return;
+        }
+
+        if (GPS_PROVIDER.equals(provider)) {
+            fine_listeners.add(locationListener);
+            manager.startUpdatingLocation();
+        } else if (NETWORK_PROVIDER.equals(provider)) {
+            coarse_listeners.add(locationListener);
+            manager.stopMonitoringSignificantLocationChanges();
+        } else {
+            // Not a valid provider
+            return;
+        }
+        // TODO : There is an issue here, the minimum distance is set globally
+        // and not for every different LocationListener. Probably create more
+        // than one CLLocationManager ?
+        manager.setDistanceFilter(minDistance);
+    }
+
+    public List<String> getProviders(boolean enabledOnly) {
+        return getProviders(null, enabledOnly);
+    }
+
+    public List<String> getProviders(Criteria criteria, boolean enabledOnly) {
+        ArrayList<String> result = new ArrayList<String>();
+        if ((!enabledOnly) || CLLocationManager.locationServicesEnabled()) {
+            result.add(NETWORK_PROVIDER);
+            result.add(GPS_PROVIDER);
+        }
+        return result;
+    }
+
+    private static Location convertCLLocation(CLLocation loc) {
+        if (loc == null) {
+            return null;
+        }
+
+        Location location = new Location(GPS_PROVIDER);
+        CLLocationCoordinate2D coords = loc.getCoordinate();
+        location.setLatitude(coords.latitude);
+        location.setLongitude(coords.longitude);
+        location.setAltitude(loc.getAltitude());
+        location.setAccuracy((float) loc.getHorizontalAccuracy());
+        double heading = loc.getCourse();
+        if (heading >= 0) {
+            location.setBearing((float) heading);
+        }
+        return location;
     }
 }

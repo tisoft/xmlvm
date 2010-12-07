@@ -84,7 +84,7 @@ public class UIView extends UIResponder {
     }
 
     public UIView() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
     }
 
     public void setFrame(CGRect rect) {
@@ -214,7 +214,8 @@ public class UIView extends UIResponder {
         // TODO : Java implementation
     }
 
-    public void keyTyped(char key) {
+    @XMLVMIgnore
+    public void xmlvmKeyTyped(char key) {
         // Do nothing
     }
 
@@ -235,7 +236,8 @@ public class UIView extends UIResponder {
         this.alpha = alpha;
     }
 
-    public boolean touchedInsideView(Set<UITouch> touches) {
+    @XMLVMIgnore
+    public boolean xmlvmTouchedInsideView(Set<UITouch> touches) {
         UITouch t = touches.iterator().next();
         CGPoint p = t.locationInView(this);
         CGRect r = this.getFrame();

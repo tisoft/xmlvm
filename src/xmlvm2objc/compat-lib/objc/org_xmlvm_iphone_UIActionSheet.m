@@ -11,10 +11,10 @@
 	XMLVM_PROPERTY_WITHCOMMAND(deldel, delg,)
 	UIActionSheet * result;
 	
-	title = XMLVM_VALUE(title);
-	delg = XMLVM_VALUE(delg);
-	cancelButtonTitle = XMLVM_VALUE(cancelButtonTitle);
-	destructiveButtonTitle = XMLVM_VALUE(destructiveButtonTitle);
+	title = XMLVM_NULL2NIL(title);
+	delg = XMLVM_NULL2NIL(delg);
+	cancelButtonTitle = XMLVM_NULL2NIL(cancelButtonTitle);
+	destructiveButtonTitle = XMLVM_NULL2NIL(destructiveButtonTitle);
 	
 	int howmany = 0;
 	if (o!=nil && o!=JAVA_NULL)

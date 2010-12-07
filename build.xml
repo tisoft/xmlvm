@@ -275,6 +275,7 @@
 		<ant dir="demo/iphone/iremote" target="xproject"/>
 		<ant dir="demo/iphone/isound" target="xproject"/>
 		<ant dir="demo/iphone/gl/nehelesson4" target="xproject"/>
+		<ant dir="demo/iphone/navigation" target="xproject"/>
 	</target>
 
 
@@ -328,6 +329,7 @@
 		<ant dir="demo/iphone/iremote" target="clean"/>
 		<ant dir="demo/iphone/isound" target="clean"/>
 		<ant dir="demo/iphone/gl/nehelesson4" target="clean"/>
+		<ant dir="demo/iphone/navigation" target="clean"/>
 	</target>
 
 	<!-- clean android subprojects -->

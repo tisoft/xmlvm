@@ -25,8 +25,9 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class UITableViewCell extends UIView {
 
-    protected boolean selected = false;
-    private UIView    accessoryView;
+    private boolean      selected = false;
+    private UIView       accessoryView;
+    private final String reuseIdentifier;
 
 
     public UITableViewCell() {
@@ -34,9 +35,10 @@ public class UITableViewCell extends UIView {
     }
 
     public UITableViewCell(int uiTableViewCellStyle, String reuseIdentifier) {
-        super(new CGRect(0, 0, 0, 0));
+        super(CGRect.Zero());
         setBackgroundColor(UIColor.clearColor);
         accessoryView = null;
+        this.reuseIdentifier = reuseIdentifier;
     }
 
     public void setSelected(boolean sel) {
@@ -96,4 +98,7 @@ public class UITableViewCell extends UIView {
         this.accessoryView = accessoryView;
     }
 
+    public String getReuseIdentifier() {
+        return reuseIdentifier;
+    }
 }

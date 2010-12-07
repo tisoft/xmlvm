@@ -44,7 +44,7 @@ public class UITextField extends UIView {
 
 
     public UITextField() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
     }
 
     public UITextField(CGRect rect) {
@@ -161,7 +161,7 @@ public class UITextField extends UIView {
 
     /* TODO teras: this has to be removed from here */
     @Override
-    public void keyTyped(char key) {
+    public void xmlvmKeyTyped(char key) {
         if (key == '\b' && !text.equals(""))
             text = text.substring(0, text.length() - 1);
         else

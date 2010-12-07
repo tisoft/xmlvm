@@ -78,19 +78,22 @@ public abstract class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputP
         pack_name = "my." + safe_name;
 
         Log.debug("Size is " + getTemplateList().size());
-        for (TemplateFile file : getTemplateList())
-            if (!addFile(file.source, file.dest, outpath + file.path, projname, file.mode))
+        for (TemplateFile file : getTemplateList()) {
+            if (!addFile(file.source, file.dest, outpath + file.path, projname, file.mode)) {
                 return false;
+            }
+        }
         return true;
     }
 
     private boolean addFile(String source, String dest, String path, String projname,
             TemplateFile.Mode mode) {
-        OutputFile file = new OutputFile();
-        file.setFileName(dest);
-        file.setLocation(path);
-        Log.debug("Adding template file " + source + " to destination " + path + dest);
 
+        if (mode == TemplateFile.Mode.IGNORE) {
+            return true;
+        }
+
+        String outpath = path + (path.equals("") ? "" : "/") + dest;
         File destfileref = new File(path, dest);
         if (destfileref.exists()) {
             switch (mode) {
@@ -102,8 +105,12 @@ public abstract class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputP
                 return true;
             case BACKUP:
                 String backupname = dest + ".back";
-                Log.warn("Renaming " + dest + " to " + backupname);
+                Log.warn("Renaming " + outpath + " to " + outpath + ".back");
                 destfileref.renameTo(new File(path, backupname));
+                break;
+            case NEWFILE:
+                Log.warn("Creating new version of file " + outpath);
+                dest += ".new";
                 break;
             case OVERWRITE:
             default:
@@ -111,6 +118,11 @@ public abstract class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputP
                 break;
             }
         }
+
+        OutputFile file = new OutputFile();
+        file.setFileName(dest);
+        file.setLocation(path);
+        Log.debug("Adding template file " + source + " to destination " + outpath);
 
         if (!file.setDataFromStream(JarUtil.getStream(getTemplateLocation() + source))) {
             Log.error("Unable to find input file " + source);
@@ -135,11 +147,13 @@ public abstract class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputP
         StringBuilder b = new StringBuilder();
         for (char c : appname.toCharArray()) {
             if (b.length() > 0) {
-                if (safe.indexOf(c) >= 0 || others.indexOf(c) >= 0)
+                if (safe.indexOf(c) >= 0 || others.indexOf(c) >= 0) {
                     b.append(c);
+                }
             } else {
-                if (safe.indexOf(c) >= 0)
+                if (safe.indexOf(c) >= 0) {
                     b.append(c);
+                }
             }
         }
         return b.toString().toLowerCase();

@@ -32,4 +32,6 @@ typedef NSURLRequest org_xmlvm_iphone_NSURLRequest;
 + (org_xmlvm_iphone_NSURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL
                                          :(org_xmlvm_iphone_NSURL*) url;
 
+- (org_xmlvm_iphone_NSURL*) URL__;
+
 @end

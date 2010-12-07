@@ -20,13 +20,19 @@
 
 package org.apache.http.params;
 
-import android.internal.Assert;
+import android.util.Log;
 
 public class AbstractHttpParams implements HttpParams {
 
     @Override
-    public void setParameter(String name, Object value) {
-        Assert.NOT_IMPLEMENTED();
+    public HttpParams setParameter(String name, Object value) {
+        Log.w("HttpParams", "Not yet implemented: public HttpParams setParameter(String name, Object value)");
+        return this;
     }
 
+    @Override
+    public HttpParams setBooleanParameter(String name, boolean value) {
+        Log.w("HttpParams", "Not yet implemented: public HttpParams setBooleanParameter(String name, boolean value)");
+        return this;
+    }
 }

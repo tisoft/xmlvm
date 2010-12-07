@@ -182,7 +182,7 @@ public class Display implements ImageObserver {
 
     public void keyTyped(KeyEvent e) {
         if (keyListener != null)
-            keyListener.keyTyped(e.getKeyChar());
+            keyListener.xmlvmKeyTyped(e.getKeyChar());
     }
 
     public void addKeyListener(UIView listener) {
@@ -229,7 +229,7 @@ public class Display implements ImageObserver {
             return;
         }
         if ((!uiView.isHidden()) && uiView.isUserInteractionEnabled()
-                && uiView.touchedInsideView(touches)) {
+                && uiView.xmlvmTouchedInsideView(touches)) {
             result.level = nesting;
             result.uiView = uiView;
         }

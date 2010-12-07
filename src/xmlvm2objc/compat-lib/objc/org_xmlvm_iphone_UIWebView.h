@@ -37,4 +37,6 @@ typedef UIWebView org_xmlvm_iphone_UIWebView;
 - (void) setDelegate___org_xmlvm_iphone_UIWebViewDelegate:(org_xmlvm_iphone_UIWebViewDelegate*)newdelegate;
 - (org_xmlvm_iphone_UIWebViewDelegate*) getWebViewDelegate__;
 - (void) reload__;
+- (void) setDataDetectorTypes___int:(int) types;
+- (int) getDataDetectorTypes__;
 @end

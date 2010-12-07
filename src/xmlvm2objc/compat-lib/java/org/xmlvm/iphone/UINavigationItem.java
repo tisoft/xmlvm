@@ -51,8 +51,8 @@ public class UINavigationItem extends NSObject {
 
                     public void clicked() {
                         if (bar != null)
-                            if (bar.controller != null)
-                                bar.controller.popViewControllerAnimated(true);
+                            if (bar.nbcontroller != null)
+                                bar.nbcontroller.popViewControllerAnimated(true);
                             else
                                 bar.popNavigationItemAnimated(true);
                     }

@@ -20,14 +20,12 @@
 
 package android.widget;
 
-import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UITextBorderStyle;
 import org.xmlvm.iphone.UITextField;
 import org.xmlvm.iphone.UITextFieldDelegate;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
-import android.internal.XMLVMTheme;
 import android.text.InputType;
 import android.util.AttributeSet;
 
@@ -37,21 +35,17 @@ public class EditText extends TextView {
     private static final int INSETS_Y = 3;
 
     public EditText(Context c) {
-        super(c);
-        initEditText(c, null);
+        this(c, null);
     }
 
     public EditText(Context c, AttributeSet attrs) {
         super(c, attrs);
-        initEditText(c, attrs);
-    }
-
-    private void initEditText(Context c, AttributeSet attrs) {
         ((UITextField) xmlvmGetViewHandler().getContentView()).setText("");
 
         if (attrs != null && attrs.getAttributeCount() > 0) {
             parseEditTextAttributes(attrs);
         }
+        xmlvmGetViewHandler().setUserInteractionEnabled(true);
     }
 
     public void setRawInputType(int inputType) {
@@ -62,13 +56,9 @@ public class EditText extends TextView {
 
     @Override
     protected UIView xmlvmNewUIView(AttributeSet attrs) {
-        UITextField field = (UITextField) super.xmlvmNewUIView(attrs);
-        
+        UITextField field = (UITextField) super.xmlvmNewUIView(attrs);        
         field.setBorderStyle(UITextBorderStyle.Bezel);
-        field.setTextColor(UIColor.blackColor);
-        if (XMLVMTheme.getTheme() == XMLVMTheme.XMLVM_THEME_ANDROID) {
-            field.setBackgroundColor(UIColor.whiteColor);
-        }
+        field.setUserInteractionEnabled(true);
         return field;
     }
 

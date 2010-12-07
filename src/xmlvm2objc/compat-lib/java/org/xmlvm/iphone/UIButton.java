@@ -203,7 +203,7 @@ public class UIButton extends UIControl {
 
     @Override
     public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-        if (touchedInsideView(touches)) {
+        if (xmlvmTouchedInsideView(touches)) {
             ((UIButtonRenderer) xmlvmGetRenderer()).setHighlighted(true);
             setNeedsDisplay();
         }
@@ -214,7 +214,7 @@ public class UIButton extends UIControl {
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
         UIButtonRenderer gui = (UIButtonRenderer) xmlvmGetRenderer();
-        if (gui.isHighlighted() && touchedInsideView(touches))
+        if (gui.isHighlighted() && xmlvmTouchedInsideView(touches))
             for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet()
                     .iterator(); it.hasNext();) {
                 Map.Entry<Integer, UIControlDelegate> e = it.next();

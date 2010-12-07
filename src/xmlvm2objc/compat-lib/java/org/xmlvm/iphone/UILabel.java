@@ -38,7 +38,7 @@ public class UILabel extends UIView {
 
 
     public UILabel() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.Zero());
     }
 
     public UILabel(CGRect rect) {

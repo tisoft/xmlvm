@@ -170,7 +170,7 @@
 }
 
 - (void) setBackgroundColor___org_xmlvm_iphone_UIColor:(org_xmlvm_iphone_UIColor*) col {
-	[self setBackgroundColor:XMLVM_VALUE(col)];
+	[self setBackgroundColor:XMLVM_NULL2NIL(col)];
 }
 
 - (void) setClearsContextBeforeDrawing___boolean :(int)clear
@@ -281,25 +281,25 @@
 
 - (org_xmlvm_iphone_CGPoint*) convertPointFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIView*) view
 {
-	CGPoint to = [self convertPoint:[point getCGPoint] fromView:XMLVM_VALUE(view)];
+	CGPoint to = [self convertPoint:[point getCGPoint] fromView:XMLVM_NULL2NIL(view)];
 	return [[org_xmlvm_iphone_CGPoint alloc] initWithCGPoint:to];
 }
 
 - (org_xmlvm_iphone_CGPoint*) convertPointToView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIView*) view
 {
-	CGPoint to = [self convertPoint:[point getCGPoint] toView:XMLVM_VALUE(view)];
+	CGPoint to = [self convertPoint:[point getCGPoint] toView:XMLVM_NULL2NIL(view)];
 	return [[org_xmlvm_iphone_CGPoint alloc] initWithCGPoint:to];
 }
 
 - (org_xmlvm_iphone_CGRect*) convertRectFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGRect*)rect :(org_xmlvm_iphone_UIView*) view
 {
-	CGRect to = [self convertRect:[rect getCGRect] fromView:XMLVM_VALUE(view)];
+	CGRect to = [self convertRect:[rect getCGRect] fromView:XMLVM_NULL2NIL(view)];
 	return [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:to];
 }
 
 - (org_xmlvm_iphone_CGRect*) convertRectToView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGRect*)rect :(org_xmlvm_iphone_UIView*) view
 {
-	CGRect to = [self convertRect:[rect getCGRect] toView:XMLVM_VALUE(view)];
+	CGRect to = [self convertRect:[rect getCGRect] toView:XMLVM_NULL2NIL(view)];
 	return [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:to];
 }
 
@@ -370,8 +370,8 @@
 {
 	[animdelegate retain];
 	[UIView setAnimationDelegate:animdelegate];
-	[UIView setAnimationWillStartSelector:@selector(animationWillStart)];
-	[UIView setAnimationDidStopSelector:@selector(animationDidStop)];
+	[UIView setAnimationWillStartSelector:@selector(animationWillStart:context:)];
+	[UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
 }
 
 @end

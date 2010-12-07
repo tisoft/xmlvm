@@ -31,5 +31,10 @@
 	return_XMLVM_SELECTOR(NSURLRequest requestWithURL:url)
 }
 
+- (org_xmlvm_iphone_NSURL*) URL__
+{
+	return_XMLVM_SELECTOR(self URL)
+}
+
 @end
 

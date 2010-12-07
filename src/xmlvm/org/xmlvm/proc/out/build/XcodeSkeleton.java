@@ -28,8 +28,22 @@ import org.xmlvm.Log;
  */
 public enum XcodeSkeleton {
 
-    IPHONE3("iphoneos3.1", "1"), IPHONE("iphoneos4.1", "1"), IPAD("iphoneos4.1", "2"), IOS(
-            "iphoneos4.1", "1,2");
+    /**
+     * Create a legacy iPhone 3.1 project
+     */
+    IPHONE3("iphoneos3.1", "1"),
+    /**
+     * Create an iPhone project
+     */
+    IPHONE("iphoneos", "1"),
+    /**
+     * Create an iPad project
+     */
+    IPAD("iphoneos", "2"),
+    /**
+     * Create an iPhone project
+     */
+    IOS("iphoneos", "1,2");
     public final String root;
     public final String target;
     public final String architecture;
