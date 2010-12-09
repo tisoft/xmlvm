@@ -21,22 +21,25 @@
 package android.media;
 
 import java.io.FileDescriptor;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
 
 import org.xmlvm.iphone.AVAudioPlayer;
 import org.xmlvm.iphone.AVAudioPlayerDelegate;
+import org.xmlvm.iphone.NSData;
 import org.xmlvm.iphone.NSError;
 import org.xmlvm.iphone.NSErrorHolder;
+import org.xmlvm.iphone.NSMutableData;
 
 public class MediaPlayer {
-    
-    private OnCompletionListener onCompletionListener = null;
 
     class AudioPlayerDelegate implements AVAudioPlayerDelegate {
-        
+
         private WeakReference<MediaPlayer> mediaPlayer;
-        
+
+
         public AudioPlayerDelegate(MediaPlayer mediaPlayer) {
             this.mediaPlayer = new WeakReference<MediaPlayer>(mediaPlayer);
         }
@@ -48,7 +51,7 @@ public class MediaPlayer {
         @Override
         public void audioPlayerDecodeErrorDidOccur(AVAudioPlayer player, NSError error) {
         }
-        
+
         @Override
         public void audioPlayerDidFinishPlaying(AVAudioPlayer player, boolean successfully) {
             if (onCompletionListener != null) {
@@ -59,29 +62,38 @@ public class MediaPlayer {
         @Override
         public void audioPlayerEndInterruption(AVAudioPlayer player) {
         }
-        
+
     }
-    
+
+
     public static interface OnCompletionListener {
         abstract void onCompletion(MediaPlayer mp);
     }
 
-    private AVAudioPlayer player  = null;
-    private boolean       looping = false;
+
+    private static final int     BUF_SIZE             = 32767;
+
+    private AVAudioPlayer        player               = null;
+    private boolean              looping              = false;
+    private NSData               data                 = null;
+    private AudioPlayerDelegate  delegate             = null;
+    private double               currentPosition      = 0.0d;
+    private OnCompletionListener onCompletionListener = null;
+
+
+    public MediaPlayer() {
+        delegate = new AudioPlayerDelegate(this);
+    }
 
     public boolean isPlaying() {
         return player != null && player.isPlaying();
     }
 
     public void setDataSource(FileDescriptor fd, long offset, long length) throws IOException {
-        NSErrorHolder error = new NSErrorHolder();
-        player = AVAudioPlayer.initWithContentsOfFileDescriptor(fd, offset, length, error);
-        if (player == null) {
-            throw new IOException(error.description());
-        }
-
-        player.setNumberOfLoops(looping ? -1 : 0);
-        player.setDelegate(new AudioPlayerDelegate(this));
+        FileInputStream fis = new FileInputStream(fd);
+        data = readData(fis, offset, length);
+        fis.close();
+        createPlayer();
     }
 
     public void setAudioStreamType(int streamtype) {
@@ -112,6 +124,10 @@ public class MediaPlayer {
 
     public void start() throws IllegalStateException {
         if (player != null) {
+            if (currentPosition != 0.0d) {
+                player.setCurrentTime(currentPosition);
+            }
+            
             player.play();
         } else {
             throw new IllegalStateException("Player not initialized");
@@ -120,8 +136,15 @@ public class MediaPlayer {
 
     public void stop() {
         if (player != null) {
-            player.setCurrentTime(0.0);
             player.stop();
+            currentPosition = 0.0d;
+
+            // Create new player
+            try {
+                createPlayer();
+            } catch (IOException exc) {
+                // Should not happen since all data has already been loaded
+            }
         } else {
             throw new IllegalStateException("Player not initialized");
         }
@@ -130,6 +153,14 @@ public class MediaPlayer {
     public void pause() {
         if (player != null) {
             player.stop();
+            currentPosition = player.getCurrentTime();
+
+            // Create new player
+            try {
+                createPlayer();
+            } catch (IOException exc) {
+                // Should not happen since all data has already been loaded
+            }
         } else {
             throw new IllegalStateException("Player not initialized");
         }
@@ -137,7 +168,11 @@ public class MediaPlayer {
 
     public void seekTo(int msec) {
         if (player != null) {
-            player.setCurrentTime(Math.round(msec / 1000));
+            currentPosition = Math.round(msec / 1000);
+
+            if (player.isPlaying()) {
+                player.setCurrentTime(currentPosition);
+            }
         } else {
             throw new IllegalStateException("Player not initialized");
         }
@@ -157,4 +192,46 @@ public class MediaPlayer {
     public void setOnCompletionListener(OnCompletionListener onCompletionListener) {
         this.onCompletionListener = onCompletionListener;
     }
+
+    private void createPlayer() throws IOException {
+        NSErrorHolder error = new NSErrorHolder();
+        player = AVAudioPlayer.initWithData(data, error);
+        if (player == null) {
+            throw new IOException(error.description());
+        }
+
+        player.setNumberOfLoops(looping ? -1 : 0);
+        player.setDelegate(delegate);
+    }
+
+    private NSData readData(InputStream is, long offset, long length) {
+        long remaining = length;
+        NSMutableData nsData = new NSMutableData();
+        try {
+
+            if (offset > 0) {
+                is.skip(offset);
+            }
+
+            int bytesRead;
+            do {
+                int toRead = remaining == -1 ? BUF_SIZE : (int) Math.min(BUF_SIZE, remaining);
+                byte[] b = new byte[toRead];
+                bytesRead = is.read(b, 0, toRead);
+
+                if (bytesRead > 0) {
+                    nsData.appendBytes(b);
+                }
+
+                if (remaining > 0) {
+                    remaining -= bytesRead;
+                }
+            } while (bytesRead > 0);
+        } catch (IOException e) {
+            // Do nothing, just return what we've read so far
+        }
+
+        return nsData;
+    }
+
 }
