@@ -1,4 +1,7 @@
 <?php
+  $site_title = "Documentation";
+?>
+<?php
   include("../header.html");
   include("../content_top.html");
 ?>

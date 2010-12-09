@@ -1,4 +1,7 @@
 <?php
+  $site_title = "Stories";
+?>
+<?php
   include("../header.html");
   include("../content_top.html") ;
 ?>

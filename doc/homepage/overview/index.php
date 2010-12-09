@@ -1,4 +1,7 @@
 <?php
+  $site_title = "Overview";
+?>
+<?php
   include("../header.html");
   include("../nav.html");
 ?>

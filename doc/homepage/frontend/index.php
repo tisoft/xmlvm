@@ -1,7 +1,8 @@
 <?php
-include("../header.html");
+  $site_title = "Frontend";
 ?>
 <?php
+include("../header.html");
 include("../nav.html");
 ?>	
 

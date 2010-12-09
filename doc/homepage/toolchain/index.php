@@ -1,4 +1,7 @@
 <?php
+  $site_title = "Toolchain";
+?>
+<?php
 include("../header.html");
 ?>
 <?php

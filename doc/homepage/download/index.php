@@ -1,4 +1,7 @@
 <?php
+  $site_title = "Download";
+?>
+<?php
   include("../header.html");
   include("../content_top.html") ;
 ?>
@@ -15,7 +18,11 @@ contain all necessary libraries required to compile and use XMLVM.
 </p>
 
 <h2>License</h2>
-<p>XMLVM is released under the GNU General Public License.</p>
+<p>XMLVM is released under the
+  <a href="http://www.gnu.org/licenses/lgpl-2.1.html" target="_blank">
+    GNU Lesser General Public License, version 2.1.
+  </a>
+</p>
 
 <h2>Stable Releases</h2>
 <p>

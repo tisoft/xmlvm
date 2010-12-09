@@ -1,4 +1,7 @@
 <?php
+  $site_title = "Android to iPhone";
+?>
+<?php
 	include("../header.html");
 ?>
 <style>

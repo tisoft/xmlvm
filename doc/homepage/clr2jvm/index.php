@@ -1,7 +1,8 @@
 <?php
-include("../header.html");
+  $site_title = "CLR to JVM";
 ?>
 <?php
+include("../header.html");
 include("../nav.html");
 ?>	
 
