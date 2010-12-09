@@ -49,6 +49,14 @@ public class Application extends ContextWrapper {
             TopActivity.get().xmlvmDestroy();
     }
 
+    public void onStart() {
+        TopActivity.get().onStart();
+    }
+
+    public void onStop() {
+        TopActivity.get().onStop();
+    }
+
     public void onLowMemory() {
     }
 

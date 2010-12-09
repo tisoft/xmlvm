@@ -28,7 +28,8 @@ import org.xmlvm.iphone.UIApplicationDelegate;
  */
 public class AndroidAppLauncher extends UIApplicationDelegate {
 
-    private static Application app         = new Application();
+    private static Application app = new Application();
+
 
     @Override
     public void applicationDidFinishLaunching(UIApplication iphone_app) {
@@ -43,6 +44,16 @@ public class AndroidAppLauncher extends UIApplicationDelegate {
     @Override
     public void applicationDidReceiveMemoryWarning(UIApplication iphone_app) {
         app.onLowMemory();
+    }
+
+    @Override
+    public void applicationDidBecomeActive(UIApplication iphone_app) {
+        app.onStart();
+    }
+
+    @Override
+    public void applicationWillResignActive(UIApplication iphone_app) {
+        app.onStop();
     }
 
     public static void main(String[] args) {
