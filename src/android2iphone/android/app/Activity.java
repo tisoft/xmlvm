@@ -79,6 +79,7 @@ public class Activity extends ContextThemeWrapper {
     private int                     screenOrientation   = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
     private boolean                 finishing           = false;
 
+
     public void xmlvmSetParent(Activity parent) {
         this.parent = new WeakReference<Activity>(parent);
         parent.child = this;
@@ -100,7 +101,6 @@ public class Activity extends ContextThemeWrapper {
         this.componentName = componentName;
     }
 
-
     public void xmlvmCreate(Bundle savedInstanceState) {
         NSObject.performSelectorOnMainThread(this, "create", savedInstanceState, true);
     }
@@ -109,20 +109,37 @@ public class Activity extends ContextThemeWrapper {
         NSObject.performSelectorOnMainThread(this, "destroy", null, true);
     }
 
+    public void xmlvmRestart() {
+        NSObject.performSelectorOnMainThread(this, "restart", null, true);
+    }
+
+    public void xmlvmStop() {
+        NSObject.performSelectorOnMainThread(this, "stop", null, true);
+    }
+
     private void create(Object savedInstanceState) {
         Activity prev = TopActivity.get();
-        if (prev != null && prev.state == STATE_ACTIVE)
+        if (prev != null && prev.state == STATE_ACTIVE) {
             prev.pause();
+        }
 
         TopActivity.set(this);
         window = new Window(this);
         setRequestedOrientation(screenOrientation);
         setResult(Activity.RESULT_CANCELED);
         onContentChanged();
-        onCreate((Bundle)savedInstanceState);
+        onCreate((Bundle) savedInstanceState);
         start();
         if (TopActivity.get() == this)
             resume();
+    }
+
+    private void restart(Object unused) {
+        if (state == STATE_ACTIVE) {
+            return;
+        }
+        onRestart();
+        start();
     }
 
     private void start() {
@@ -132,35 +149,48 @@ public class Activity extends ContextThemeWrapper {
     }
 
     private void resume() {
-        if (state == STATE_ACTIVE)
+        if (state == STATE_ACTIVE) {
             return;
-        if (state == STATE_STOPPED)
+        }
+        if (state == STATE_STOPPED) {
             start();
+        }
         window.xmlvmSetHidden(false);
         onResume();
         state = STATE_ACTIVE;
     }
 
     private void pause() {
-        if (state == STATE_PAUSED)
+        if (state == STATE_PAUSED) {
             return;
+        }
         onPause();
         state = STATE_PAUSED;
     }
 
+    private void stop(Object unused) {
+        stop();
+    }
+
     private void stop() {
-        if (state == STATE_STOPPED)
+        if (state == STATE_STOPPED) {
             return;
-        if (state == STATE_ACTIVE)
+        }
+        if (state == STATE_ACTIVE) {
             pause();
-        window.xmlvmSetHidden(true);
+        }
+        // We don't make the window invisible because iOS will capture
+        // the current content of the screen for its multitasking
+        // menu
+        //window.xmlvmSetHidden(true);
         onStop();
         state = STATE_STOPPED;
     }
 
     private void destroy(Object unused) {
-        if (state == STATE_DESTROYED)
+        if (state == STATE_DESTROYED) {
             return;
+        }
         stop();
         onDestroy();
         if (window != null) {
@@ -225,7 +255,7 @@ public class Activity extends ContextThemeWrapper {
     }
 
     /**
-     *
+     * 
      * @param requestCode
      * @param resultCode
      *            unused as of now
@@ -424,12 +454,12 @@ public class Activity extends ContextThemeWrapper {
     public String getString(int id) {
         return this.getResources().getText(id);
     }
-    
-    public final void runOnUiThread (Runnable action) {
+
+    public final void runOnUiThread(Runnable action) {
         NSObject.performSelectorOnMainThread(this, "runOnUiThreadImpl", action, true);
     }
-    
+
     private void runOnUiThreadImpl(Object runnable) {
-        ((Runnable)runnable).run();
+        ((Runnable) runnable).run();
     }
 }

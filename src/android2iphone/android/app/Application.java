@@ -31,9 +31,11 @@ import android.internal.TopActivity;
 public class Application extends ContextWrapper {
 
     private UIWindow topLevelWindow;
+    private boolean  appJustCreated;
 
 
     public void onCreate() {
+        appJustCreated = true;
         // Important: the UIWindow instance should *not* be created in the
         // constructor of class Application because it will then be created
         // before UIAppication exists. That seems to be illegal in iOS.
@@ -44,17 +46,22 @@ public class Application extends ContextWrapper {
         startActivity(new Intent("android.intent.action.MAIN"));
     }
 
-    public void onTerminate() {
-        while (TopActivity.get() != null)
-            TopActivity.get().xmlvmDestroy();
-    }
-
-    public void onStart() {
-        TopActivity.get().onStart();
+    public void onRestart() {
+        if (!appJustCreated) {
+            // Only call onRestart() when this application is brought back to
+            // the foreground.
+            TopActivity.get().xmlvmRestart();
+        }
+        appJustCreated = false;
     }
 
     public void onStop() {
-        TopActivity.get().onStop();
+        TopActivity.get().xmlvmStop();
+    }
+
+    public void onTerminate() {
+        while (TopActivity.get() != null)
+            TopActivity.get().xmlvmDestroy();
     }
 
     public void onLowMemory() {

@@ -48,7 +48,7 @@ public class AndroidAppLauncher extends UIApplicationDelegate {
 
     @Override
     public void applicationDidBecomeActive(UIApplication iphone_app) {
-        app.onStart();
+        app.onRestart();
     }
 
     @Override
