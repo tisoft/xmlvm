@@ -116,7 +116,7 @@
 	return [self play];
 }
 
-- (BOOL) playAtTime: (double) time
+- (BOOL) playAtTime___double: (double) time
 {
 	return [self playAtTime: time];
 }
