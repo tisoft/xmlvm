@@ -20,7 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -104,6 +106,7 @@ public class AVAudioPlayer extends NSObject {
     private BasicPlayer           player        = null;
     private boolean               stopRequested = false;
     private NSURL                 url           = null;
+    private NSData                nsData        = null;
     private AVAudioPlayerDelegate delegate      = null;
     private boolean               playing       = false;
     private byte[]                data          = null;
@@ -130,6 +133,16 @@ public class AVAudioPlayer extends NSObject {
         }
     }
 
+    private AVAudioPlayer(NSData nsData) throws BasicPlayerException {
+        this.nsData = nsData;
+        player = new BasicPlayer();
+        player.addBasicPlayerListener(new AVAudioPlayerListener(this));
+
+        data = this.nsData.getBytes();
+        ByteArrayInputStream bis = new ByteArrayInputStream(data, 0, this.nsData.length());
+        player.open(new DataInputStream(bis));
+    }
+
     private AVAudioPlayer(FileDescriptor fd, long offset, long length) throws BasicPlayerException,
             IOException {
 
@@ -144,12 +157,23 @@ public class AVAudioPlayer extends NSObject {
         ByteArrayInputStream bis = new ByteArrayInputStream(data, 0, (int) length);
         player = new BasicPlayer();
         player.addBasicPlayerListener(new AVAudioPlayerListener(this));
-        player.open(bis);
+        player.open(new BufferedInputStream(bis));
     }
 
     public static AVAudioPlayer initWithContentsOfURL(NSURL url, NSErrorHolder error) {
         try {
             AVAudioPlayer player = new AVAudioPlayer(url);
+            error.error = null;
+            return player;
+        } catch (BasicPlayerException exc) {
+            error.error = new NSError(exc.getMessage(), -1, null);
+            return null;
+        }
+    }
+
+    public static AVAudioPlayer initWithData(NSData nsData, NSErrorHolder error) {
+        try {
+            AVAudioPlayer player = new AVAudioPlayer(nsData);
             error.error = null;
             return player;
         } catch (BasicPlayerException exc) {
@@ -174,7 +198,8 @@ public class AVAudioPlayer extends NSObject {
         }
     }
 
-    public void play() {
+    public boolean play() {
+        boolean success = true;
         try {
             stopRequested = false;
             if (player.getStatus() == BasicPlayer.PAUSED) {
@@ -187,7 +212,15 @@ public class AVAudioPlayer extends NSObject {
         } catch (BasicPlayerException exc) {
             System.err.println("Unable to start playback: " + exc.getMessage());
             exc.printStackTrace();
+            success = false;
         }
+
+        return success;
+    }
+
+    public boolean playAtTime(double time) {
+        // The Java simulator's player only supports playing from the beginning
+        return play();
     }
 
     public void stop() {
@@ -300,7 +333,6 @@ public class AVAudioPlayer extends NSObject {
     }
 
     public NSData getData() {
-        // TODO : Java implementation
-        return null;
+        return nsData;
     }
 }

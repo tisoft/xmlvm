@@ -65,7 +65,13 @@ typedef AVAudioPlayer org_xmlvm_iphone_AVAudioPlayer;
 			: (JAVA_LONG) length
 			: (org_xmlvm_iphone_NSErrorHolder*) outError;
 
-- (void) play__;
++ (AVAudioPlayer*) initWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder
+			: (org_xmlvm_iphone_NSData*) data
+			: (org_xmlvm_iphone_NSErrorHolder*) outError;
+
+- (BOOL) play__;
+
+- (BOOL) playAtTime___double: (double) time;
 
 - (void) stop__;
 
