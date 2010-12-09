@@ -20,14 +20,14 @@
 
 package org.xmlvm.iphone;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
@@ -35,7 +35,8 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class NSData extends NSObject {
 
-    private String data;
+    private static final int READ_BUF_SIZE = 32767;
+    private byte[]           data;
 
 
     @XMLVMIgnore
@@ -44,36 +45,43 @@ public class NSData extends NSObject {
     }
 
     protected NSData() {
-        this.data = "";
+        this.data = new byte[0];
     }
 
     private void readData(InputStream in) {
-        data = "";
-        String line;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        List<byte[]> l = new ArrayList<byte[]>();
+        int bytesRead = 0;
+        int i;
+
         try {
-            while ((line = reader.readLine()) != null) {
-                data += line;
-                data += System.getProperty("line.separator");
+            do {
+                byte[] buf = new byte[READ_BUF_SIZE];
+                i = in.read(buf);
+
+                if (i > 0) {
+                    l.add(buf);
+                    bytesRead += i;
+                }
+            } while (i == READ_BUF_SIZE);
+
+            data = new byte[bytesRead];
+            int currentPos = 0;
+            for (byte[] buf : l) {
+                i = 0;
+                while (i < buf.length && currentPos < bytesRead) {
+                    data[currentPos++] = buf[i++];
+                }
             }
-            reader.close();
-        } catch (IOException e) {
-            // do nothing
+
+            in.close();
+        } catch (IOException ex) {
+            // Do nothon
         }
     }
 
     @XMLVMIgnore
     public InputStream getInputStream() {
-        return new ByteArrayInputStream(data.getBytes());
-    }
-
-    @Override
-    public String toString() {
-        return this.data;
-    }
-
-    public String toString(int encoding) {
-        return this.data;
+        return new ByteArrayInputStream(data);
     }
 
     public static NSData dataWithContentsOfFile(String path) {
@@ -105,10 +113,10 @@ public class NSData extends NSObject {
     }
 
     public int length() {
-        return data.length();
+        return data.length;
     }
 
     public byte[] getBytes() {
-        return data.getBytes();
+        return data;
     }
 }
