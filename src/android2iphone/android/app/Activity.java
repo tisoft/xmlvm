@@ -139,7 +139,7 @@ public class Activity extends ContextThemeWrapper {
             return;
         }
         onRestart();
-        start();
+        resume();
     }
 
     private void start() {
