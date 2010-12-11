@@ -26,6 +26,7 @@ import org.xmlvm.iphone.UITextFieldDelegate;
 import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.InputType;
 import android.util.AttributeSet;
 
@@ -45,6 +46,8 @@ public class EditText extends TextView {
         if (attrs != null && attrs.getAttributeCount() > 0) {
             parseEditTextAttributes(attrs);
         }
+        setBackgroundColor(Color.WHITE);
+        setTextColor(Color.BLACK);
         xmlvmGetViewHandler().setUserInteractionEnabled(true);
     }
 

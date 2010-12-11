@@ -64,6 +64,11 @@ public class NSBundle extends NSObject {
             filename = directory + "/" + filename;
         }
 
+        /* Check if the resource file has an absolute pathname */
+        if (filename.startsWith(File.separator) && new File(filename).exists()) {
+            return filename;
+        }
+
         /* Check it as a local resource file */
         for (String dname : getDeclaredResources()) {
             File dfile = new File(dname);
