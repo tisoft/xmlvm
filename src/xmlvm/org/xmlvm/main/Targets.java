@@ -28,25 +28,35 @@ import static org.xmlvm.main.Targets.Affinity.TARGET;
  */
 public enum Targets {
 
-    NONE(TARGET), XMLVM(TARGET), DEXMLVM(TARGET), JVM(TARGET), CLR(TARGET), DFA(TARGET), CLASS(
-            TARGET), EXE(TARGET), DEX(TARGET), JS(TARGET), C(TARGET), GENCWRAPPERS(TARGET), PYTHON(
-            TARGET), OBJC(TARGET), QOOXDOO(TARGET), IPHONE(TARGET), IPHONEC(TARGET), IPHONEANDROID(
-            TARGET), WEBOS(TARGET), IPHONETEMPLATE(SKELETON), ANDROIDTEMPLATE(SKELETON), ANDROIDMIGRATETEMPLATE(
-            SKELETON), IPHONEUPDATETEMPLATE(SKELETON), ANDROIDUPDATETEMPLATE(SKELETON);
+    NONE, XMLVM, DEXMLVM, JVM, CLR, DFA, CLASS, EXE, DEX, JS, JSANDROID, C, GENCWRAPPERS, PYTHON,
+    OBJC, QOOXDOO, IPHONE, IPHONEC, IPHONEANDROID, WEBOS, IPHONETEMPLATE(SKELETON),
+    ANDROIDTEMPLATE(SKELETON), ANDROIDMIGRATETEMPLATE(SKELETON), IPHONEUPDATETEMPLATE(SKELETON),
+    ANDROIDUPDATETEMPLATE(SKELETON);
 
     public static Targets getTarget(String target) {
         try {
-            return Targets.valueOf(target.toUpperCase().replace("_", "").replace("-", "").replace(
-                    ":", ""));
+            return Targets.valueOf(target.toUpperCase().replace("_", "").replace("-", "")
+                    .replace(":", ""));
         } catch (IllegalArgumentException ex) {
         }
         return null;
     }
 
 
+    /** The affinity of the target. */
     public final Affinity affinity;
 
 
+    /**
+     * Creates a new target with the default affinity TARGET.
+     */
+    private Targets() {
+        affinity = TARGET;
+    }
+
+    /**
+     * Creates a new target with the given affinity.
+     */
     private Targets(Affinity af) {
         affinity = af;
     }
