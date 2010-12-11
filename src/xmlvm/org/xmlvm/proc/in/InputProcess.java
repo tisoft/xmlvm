@@ -124,8 +124,7 @@ public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl<Xml
             Log.warn("InputProcess.getOutputFiles(): Input File does not exist or is not a file.");
             return null;
         }
-        byte[] fileContents = input.getFile().getFileAsBytes();
-        OutputFile outputFile = new OutputFile(fileContents);
+        OutputFile outputFile = new OutputFile(input.getFile());
         outputFile.setLocation(arguments.option_out());
         outputFile.setFileName(input.getFile().getName());
         List<OutputFile> result = new ArrayList<OutputFile>();
