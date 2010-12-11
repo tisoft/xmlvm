@@ -24,24 +24,24 @@ void __INIT_org_xmlvm_iphone_UIScrollView()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIScrollView.vtable, __CLASS_org_xmlvm_iphone_UIView.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint_boolean;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_getContentOffset__;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setScrollEnabled___boolean;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_isScrollEnabled__;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_isPagingEnabled__;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setPagingEnabled___boolean;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_getContentSize__;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setContentSize___org_xmlvm_iphone_CGSize;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_getDelegate__;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setDelegate___org_xmlvm_iphone_UIScrollViewDelegate;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_isScrollsToTop__;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setScrollsToTop___boolean;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_isShowsHorizontalScrollIndicator__;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setShowsHorizontalScrollIndicator___boolean;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_isShowsVerticalScrollIndicator__;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean;
-    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint_boolean;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_getContentOffset__;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setScrollEnabled___boolean;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_isScrollEnabled__;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_isPagingEnabled__;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setPagingEnabled___boolean;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_getContentSize__;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setContentSize___org_xmlvm_iphone_CGSize;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_getDelegate__;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setDelegate___org_xmlvm_iphone_UIScrollViewDelegate;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_isScrollsToTop__;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setScrollsToTop___boolean;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_isShowsHorizontalScrollIndicator__;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setShowsHorizontalScrollIndicator___boolean;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_isShowsVerticalScrollIndicator__;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean;
+    __CLASS_org_xmlvm_iphone_UIScrollView.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UIScrollView.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_UIScrollView.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);

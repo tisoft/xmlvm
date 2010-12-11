@@ -48,7 +48,7 @@ void __DELETE_org_xmlvm_iphone_UIImage(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIImage]
 	org_xmlvm_iphone_UIImage* thiz = (org_xmlvm_iphone_UIImage*) me;
-	[thiz->org_xmlvm_iphone_UIImage.ocImage release];
+	[((UIImage*) thiz->org_xmlvm_iphone_NSObject.wrappedObjCObj) release];
     //XMLVM_END_WRAPPER
 }
 
@@ -74,16 +74,16 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(JAVA_OBJECT n
 {
     if (!__CLASS_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_imageNamed___java_lang_String]
-	NSString *nsStr = toNSString(n1);
+	NSString* nsStr = toNSString(n1);
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	UIImage *named = [UIImage imageNamed:nsStr];
+	UIImage* named = [UIImage imageNamed:nsStr];
 	[named retain];
 	[pool release];
 	[nsStr release];
 	
 	org_xmlvm_iphone_UIImage *toRet = __NEW_org_xmlvm_iphone_UIImage();
 	//TODO need to call a constructor but UIImage does not have a public default constructor
-	toRet->org_xmlvm_iphone_UIImage.ocImage = named; //[UIImage imageWithContentsOfFile: nsStr];
+	toRet->org_xmlvm_iphone_NSObject.wrappedObjCObj = named; //[UIImage imageWithContentsOfFile: nsStr];
 	return toRet;
     //XMLVM_END_WRAPPER
 }
@@ -92,12 +92,15 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String(
 {
     if (!__CLASS_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String]
-	
-	NSString *nsStr = toNSString(n1);
-	UIImage *named = [UIImage imageNamed:nsStr];
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	NSString* nsStr = toNSString(n1);
+	UIImage* named = [UIImage imageNamed:nsStr];
+	[named retain];
+	[pool release];
+	[nsStr release];
 	
 	org_xmlvm_iphone_UIImage *toRet = __NEW_org_xmlvm_iphone_UIImage();
-	toRet->org_xmlvm_iphone_UIImage.ocImage = named; //[UIImage imageWithContentsOfFile: nsStr];
+	toRet->org_xmlvm_iphone_NSObject.wrappedObjCObj = named; //[UIImage imageWithContentsOfFile: nsStr];
 	return toRet;
     //XMLVM_END_WRAPPER
 }
@@ -128,7 +131,7 @@ void org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT m
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect]
 	org_xmlvm_iphone_UIImage *thiz = me;
-	UIImage *realImg = thiz->org_xmlvm_iphone_UIImage.ocImage;
+	UIImage* realImg = thiz->org_xmlvm_iphone_NSObject.wrappedObjCObj;
 	CGRect drawIn = toCGRect(n1);
 	[realImg drawInRect: drawIn];
     //XMLVM_END_WRAPPER

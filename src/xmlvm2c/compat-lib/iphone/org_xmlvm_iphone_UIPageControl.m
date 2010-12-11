@@ -22,16 +22,16 @@ void __INIT_org_xmlvm_iphone_UIPageControl()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIPageControl.vtable, __CLASS_org_xmlvm_iphone_UIView.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_sizeForNumberOfPages___int;
-    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_updateCurrentPageDisplay__;
-    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_getCurrentPage__;
-    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setCurrentPage___int;
-    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_isDefersCurrentPageDisplay__;
-    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setDefersCurrentPageDisplay___boolean;
-    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_isHidesForSinglePage__;
-    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setHidesForSinglePage___boolean;
-    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_getNumberOfPages__;
-    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setNumberOfPages___int;
+    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_sizeForNumberOfPages___int;
+    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_updateCurrentPageDisplay__;
+    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_getCurrentPage__;
+    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setCurrentPage___int;
+    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_isDefersCurrentPageDisplay__;
+    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setDefersCurrentPageDisplay___boolean;
+    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_isHidesForSinglePage__;
+    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setHidesForSinglePage___boolean;
+    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_getNumberOfPages__;
+    __CLASS_org_xmlvm_iphone_UIPageControl.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setNumberOfPages___int;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UIPageControl.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_UIPageControl.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);

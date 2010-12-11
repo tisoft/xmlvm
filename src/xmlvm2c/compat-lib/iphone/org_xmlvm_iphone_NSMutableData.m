@@ -20,10 +20,10 @@ void __INIT_org_xmlvm_iphone_NSMutableData()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_NSMutableData.vtable, __CLASS_org_xmlvm_iphone_NSData.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSData.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_NSMutableData.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_byteCount__;
-    __CLASS_org_xmlvm_iphone_NSMutableData.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_getByte___int;
-    __CLASS_org_xmlvm_iphone_NSMutableData.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_appendByte___int;
-    __CLASS_org_xmlvm_iphone_NSMutableData.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_appendBytes___byte_ARRAYTYPE;
+    __CLASS_org_xmlvm_iphone_NSMutableData.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_byteCount__;
+    __CLASS_org_xmlvm_iphone_NSMutableData.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_getByte___int;
+    __CLASS_org_xmlvm_iphone_NSMutableData.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_appendByte___int;
+    __CLASS_org_xmlvm_iphone_NSMutableData.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_appendBytes___byte_ARRAYTYPE;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_NSMutableData.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_NSMutableData.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);

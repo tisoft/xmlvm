@@ -1,0 +1,145 @@
+#ifndef __ORG_XMLVM_IPHONE_CLLOCATIONMANAGER__
+#define __ORG_XMLVM_IPHONE_CLLOCATIONMANAGER__
+
+#include "xmlvm.h"
+#include "org_xmlvm_iphone_NSObject.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationManagerDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationManagerDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationManagerDelegate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLHeading
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLHeading
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLHeading)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_Set
+#define XMLVM_FORWARD_DECL_java_util_Set
+XMLVM_FORWARD_DECL(java_util_Set)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocation)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLRegion
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLRegion
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLRegion)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+// Class declarations for org.xmlvm.iphone.CLLocationManager
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLLocationManager, 39)
+
+//XMLVM_BEGIN_MEMBERS
+#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationManager
+//XMLVM_END_MEMBERS
+
+#define __INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationManager \
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+    struct { \
+        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationManager \
+    } org_xmlvm_iphone_CLLocationManager
+
+struct org_xmlvm_iphone_CLLocationManager {
+    __CLASS_DEFINITION_org_xmlvm_iphone_CLLocationManager* __class;
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationManager;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationManager
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationManager
+typedef struct org_xmlvm_iphone_CLLocationManager org_xmlvm_iphone_CLLocationManager;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CLLocationManager 39
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_startUpdatingLocation__ 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_stopUpdatingLocation__ 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_startMonitoringSignificantLocationChanges__ 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_stopMonitoringSignificantLocationChanges__ 17
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_startUpdatingHeading__ 18
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_stopUpdatingHeading__ 19
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_dismissHeadingCalibrationDisplay__ 20
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_startMonitoringForRegion___org_xmlvm_iphone_CLRegion_double 21
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_stopMonitoringForRegion___org_xmlvm_iphone_CLRegion 22
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_getDelegate__ 23
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_setDelegate___org_xmlvm_iphone_CLLocationManagerDelegate 24
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_getDesiredAccuracy__ 25
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_setDesiredAccuracy___double 26
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_getDistanceFilter__ 27
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_setDistanceFilter___double 28
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_getHeadingFilter__ 29
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_setHeadingFilter___double 30
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_getHeadingOrientation__ 31
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_setHeadingOrientation___int 32
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_getMonitoredRegions__ 33
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_getMaximumRegionMonitoringDistance__ 34
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_getHeading__ 35
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_getLocation__ 36
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_getPurpose__ 37
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_setPurpose___java_lang_String 38
+
+void __INIT_org_xmlvm_iphone_CLLocationManager();
+JAVA_OBJECT __NEW_org_xmlvm_iphone_CLLocationManager();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CLLocationManager();
+void org_xmlvm_iphone_CLLocationManager___INIT___(JAVA_OBJECT me);
+JAVA_BOOLEAN org_xmlvm_iphone_CLLocationManager_locationServicesEnabled__();
+JAVA_BOOLEAN org_xmlvm_iphone_CLLocationManager_significantLocationChangeMonitoringAvailable__();
+JAVA_BOOLEAN org_xmlvm_iphone_CLLocationManager_headingAvailable__();
+JAVA_BOOLEAN org_xmlvm_iphone_CLLocationManager_regionMonitoringAvailable__();
+JAVA_BOOLEAN org_xmlvm_iphone_CLLocationManager_regionMonitoringEnabled__();
+// Vtable index: 14
+void org_xmlvm_iphone_CLLocationManager_startUpdatingLocation__(JAVA_OBJECT me);
+// Vtable index: 15
+void org_xmlvm_iphone_CLLocationManager_stopUpdatingLocation__(JAVA_OBJECT me);
+// Vtable index: 16
+void org_xmlvm_iphone_CLLocationManager_startMonitoringSignificantLocationChanges__(JAVA_OBJECT me);
+// Vtable index: 17
+void org_xmlvm_iphone_CLLocationManager_stopMonitoringSignificantLocationChanges__(JAVA_OBJECT me);
+// Vtable index: 18
+void org_xmlvm_iphone_CLLocationManager_startUpdatingHeading__(JAVA_OBJECT me);
+// Vtable index: 19
+void org_xmlvm_iphone_CLLocationManager_stopUpdatingHeading__(JAVA_OBJECT me);
+// Vtable index: 20
+void org_xmlvm_iphone_CLLocationManager_dismissHeadingCalibrationDisplay__(JAVA_OBJECT me);
+// Vtable index: 21
+void org_xmlvm_iphone_CLLocationManager_startMonitoringForRegion___org_xmlvm_iphone_CLRegion_double(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_DOUBLE n2);
+// Vtable index: 22
+void org_xmlvm_iphone_CLLocationManager_stopMonitoringForRegion___org_xmlvm_iphone_CLRegion(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 23
+JAVA_OBJECT org_xmlvm_iphone_CLLocationManager_getDelegate__(JAVA_OBJECT me);
+// Vtable index: 24
+void org_xmlvm_iphone_CLLocationManager_setDelegate___org_xmlvm_iphone_CLLocationManagerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 25
+JAVA_DOUBLE org_xmlvm_iphone_CLLocationManager_getDesiredAccuracy__(JAVA_OBJECT me);
+// Vtable index: 26
+void org_xmlvm_iphone_CLLocationManager_setDesiredAccuracy___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
+// Vtable index: 27
+JAVA_DOUBLE org_xmlvm_iphone_CLLocationManager_getDistanceFilter__(JAVA_OBJECT me);
+// Vtable index: 28
+void org_xmlvm_iphone_CLLocationManager_setDistanceFilter___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
+// Vtable index: 29
+JAVA_DOUBLE org_xmlvm_iphone_CLLocationManager_getHeadingFilter__(JAVA_OBJECT me);
+// Vtable index: 30
+void org_xmlvm_iphone_CLLocationManager_setHeadingFilter___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
+// Vtable index: 31
+JAVA_INT org_xmlvm_iphone_CLLocationManager_getHeadingOrientation__(JAVA_OBJECT me);
+// Vtable index: 32
+void org_xmlvm_iphone_CLLocationManager_setHeadingOrientation___int(JAVA_OBJECT me, JAVA_INT n1);
+// Vtable index: 33
+JAVA_OBJECT org_xmlvm_iphone_CLLocationManager_getMonitoredRegions__(JAVA_OBJECT me);
+// Vtable index: 34
+JAVA_DOUBLE org_xmlvm_iphone_CLLocationManager_getMaximumRegionMonitoringDistance__(JAVA_OBJECT me);
+// Vtable index: 35
+JAVA_OBJECT org_xmlvm_iphone_CLLocationManager_getHeading__(JAVA_OBJECT me);
+// Vtable index: 36
+JAVA_OBJECT org_xmlvm_iphone_CLLocationManager_getLocation__(JAVA_OBJECT me);
+// Vtable index: 37
+JAVA_OBJECT org_xmlvm_iphone_CLLocationManager_getPurpose__(JAVA_OBJECT me);
+// Vtable index: 38
+void org_xmlvm_iphone_CLLocationManager_setPurpose___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+
+#endif

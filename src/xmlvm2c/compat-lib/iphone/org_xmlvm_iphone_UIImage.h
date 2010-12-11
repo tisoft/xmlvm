@@ -41,7 +41,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIImage, 22)
 
 //XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImage void *ocImage;
+#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImage
 //XMLVM_END_MEMBERS
 
 #define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIImage \

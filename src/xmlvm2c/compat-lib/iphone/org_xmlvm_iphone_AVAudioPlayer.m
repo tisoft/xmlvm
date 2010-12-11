@@ -26,22 +26,23 @@ void __INIT_org_xmlvm_iphone_AVAudioPlayer()
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
     __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_play__;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_stop__;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_pause__;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_prepareToPlay__;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getNumberOfLoops__;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_setNumberOfLoops___int;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getDelegate__;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_isPlaying__;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_setCurrentTime___double;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getCurrentTime__;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_setVolume___float;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getVolume__;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getNumberOfChannels__;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getDuration__;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getURL__;
-    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getData__;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_playAtTime___double;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_stop__;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_pause__;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_prepareToPlay__;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getNumberOfLoops__;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_setNumberOfLoops___int;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getDelegate__;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_isPlaying__;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_setCurrentTime___double;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getCurrentTime__;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_setVolume___float;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getVolume__;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getNumberOfChannels__;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getDuration__;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getURL__;
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getData__;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_AVAudioPlayer.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_AVAudioPlayer.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
@@ -81,9 +82,24 @@ JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_initWithContentsOfURL___org_xmlvm_iph
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_AVAudioPlayer_play__(JAVA_OBJECT me)
+JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_initWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    if (!__CLASS_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_initWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_play__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_play__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_playAtTime___double(JAVA_OBJECT me, JAVA_DOUBLE n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_playAtTime___double]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

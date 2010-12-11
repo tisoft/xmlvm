@@ -22,8 +22,8 @@ void __INIT_org_xmlvm_iphone_UIPreferencesTable()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIPreferencesTable.vtable, __CLASS_org_xmlvm_iphone_UIView.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIPreferencesTable.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTable_setDataSource___org_xmlvm_iphone_UIPreferencesTableDataSource;
-    __CLASS_org_xmlvm_iphone_UIPreferencesTable.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTable_getDataSource__;
+    __CLASS_org_xmlvm_iphone_UIPreferencesTable.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTable_setDataSource___org_xmlvm_iphone_UIPreferencesTableDataSource;
+    __CLASS_org_xmlvm_iphone_UIPreferencesTable.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTable_getDataSource__;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UIPreferencesTable.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_UIPreferencesTable.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);

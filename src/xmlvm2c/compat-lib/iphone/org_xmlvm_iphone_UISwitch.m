@@ -25,8 +25,8 @@ void __INIT_org_xmlvm_iphone_UISwitch()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UISwitch.vtable, __CLASS_org_xmlvm_iphone_UIControl.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UISwitch.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setOn___boolean;
-    __CLASS_org_xmlvm_iphone_UISwitch.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_isOn__;
+    __CLASS_org_xmlvm_iphone_UISwitch.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setOn___boolean;
+    __CLASS_org_xmlvm_iphone_UISwitch.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_isOn__;
     __CLASS_org_xmlvm_iphone_UISwitch.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect;
     __CLASS_org_xmlvm_iphone_UISwitch.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
     // Initialize vtable for implementing interfaces

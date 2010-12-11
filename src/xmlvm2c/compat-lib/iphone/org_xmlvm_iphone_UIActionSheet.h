@@ -35,7 +35,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIActionSheetDelegate)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIActionSheet
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActionSheet, 76)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActionSheet, 74)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheet
@@ -56,23 +56,23 @@ struct org_xmlvm_iphone_UIActionSheet {
 typedef struct org_xmlvm_iphone_UIActionSheet org_xmlvm_iphone_UIActionSheet;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIActionSheet 76
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheet_showFromTabBar___org_xmlvm_iphone_UITabBar 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheet_showFromToolbar___org_xmlvm_iphone_UIToolbar 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheet_showInView___org_xmlvm_iphone_UIView 74
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheet_dismissWithClickedButtonIndex___int_boolean 75
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIActionSheet 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheet_showFromTabBar___org_xmlvm_iphone_UITabBar 70
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheet_showFromToolbar___org_xmlvm_iphone_UIToolbar 71
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheet_showInView___org_xmlvm_iphone_UIView 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheet_dismissWithClickedButtonIndex___int_boolean 73
 
 void __INIT_org_xmlvm_iphone_UIActionSheet();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActionSheet();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIActionSheet();
 JAVA_OBJECT org_xmlvm_iphone_UIActionSheet_init___java_lang_String_org_xmlvm_iphone_UIActionSheetDelegate_java_lang_String_java_lang_String_java_lang_String_ARRAYTYPE(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4, JAVA_OBJECT n5);
-// Vtable index: 72
+// Vtable index: 70
 void org_xmlvm_iphone_UIActionSheet_showFromTabBar___org_xmlvm_iphone_UITabBar(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 73
+// Vtable index: 71
 void org_xmlvm_iphone_UIActionSheet_showFromToolbar___org_xmlvm_iphone_UIToolbar(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 74
+// Vtable index: 72
 void org_xmlvm_iphone_UIActionSheet_showInView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 75
+// Vtable index: 73
 void org_xmlvm_iphone_UIActionSheet_dismissWithClickedButtonIndex___int_boolean(JAVA_OBJECT me, JAVA_INT n1, JAVA_BOOLEAN n2);
 
 #endif

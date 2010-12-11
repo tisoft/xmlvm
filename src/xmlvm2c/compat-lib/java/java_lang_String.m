@@ -32,7 +32,7 @@ NSString* toNSString(JAVA_OBJECT o)
 
 JAVA_OBJECT __NEW_java_lang_String()
 {
-    java_lang_String* s = (java_lang_String*) malloc(sizeof(java_lang_String));
+    java_lang_String* s = (java_lang_String*) XMLVM_MALLOC(sizeof(java_lang_String));
     s->str = "";
     return s;
 }
@@ -43,7 +43,7 @@ void java_lang_String___INIT____char_ARRAYTYPE(JAVA_OBJECT n0, JAVA_OBJECT n1)
 	int i;
 	java_lang_String* me = (java_lang_String*) n0;
 	XMLVMArray* s = (XMLVMArray*) n1;
-    me->str = (char*) malloc(s->length + 1);
+    me->str = (char*) XMLVM_MALLOC(s->length + 1);
     memcpy(me->str, s->array.c, s->length);
     ((char*) me->str)[s->length] = '\0';
 }

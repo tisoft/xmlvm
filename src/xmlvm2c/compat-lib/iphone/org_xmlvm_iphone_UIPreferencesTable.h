@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIPreferencesTable
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPreferencesTable, 74)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPreferencesTable, 72)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTable
@@ -39,17 +39,17 @@ struct org_xmlvm_iphone_UIPreferencesTable {
 typedef struct org_xmlvm_iphone_UIPreferencesTable org_xmlvm_iphone_UIPreferencesTable;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPreferencesTable 74
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTable_setDataSource___org_xmlvm_iphone_UIPreferencesTableDataSource 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTable_getDataSource__ 73
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPreferencesTable 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTable_setDataSource___org_xmlvm_iphone_UIPreferencesTableDataSource 70
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTable_getDataSource__ 71
 
 void __INIT_org_xmlvm_iphone_UIPreferencesTable();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPreferencesTable();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPreferencesTable();
 void org_xmlvm_iphone_UIPreferencesTable___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 72
+// Vtable index: 70
 void org_xmlvm_iphone_UIPreferencesTable_setDataSource___org_xmlvm_iphone_UIPreferencesTableDataSource(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 73
+// Vtable index: 71
 JAVA_OBJECT org_xmlvm_iphone_UIPreferencesTable_getDataSource__(JAVA_OBJECT me);
 
 #endif

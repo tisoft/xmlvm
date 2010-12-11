@@ -21,9 +21,9 @@ void __INIT_org_xmlvm_iphone_UIPreferencesTextTableCell()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable, __CLASS_org_xmlvm_iphone_UIPreferencesTableCell.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIPreferencesTableCell.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_setValue___java_lang_String;
-    __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_getValue__;
-    __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[42] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_keyTyped___char;
+    __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_setValue___java_lang_String;
+    __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_getValue__;
+    __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_xmlvmKeyTyped___char;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
@@ -78,9 +78,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIPreferencesTextTableCell_getValue__(JAVA_OBJECT m
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UIPreferencesTextTableCell_keyTyped___char(JAVA_OBJECT me, JAVA_CHAR n1)
+void org_xmlvm_iphone_UIPreferencesTextTableCell_xmlvmKeyTyped___char(JAVA_OBJECT me, JAVA_CHAR n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIPreferencesTextTableCell_keyTyped___char]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIPreferencesTextTableCell_xmlvmKeyTyped___char]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

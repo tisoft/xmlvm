@@ -26,7 +26,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSObject, 14)
 
 //XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject
+#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject void *wrappedObjCObj;
 //XMLVM_END_MEMBERS
 
 #define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject \

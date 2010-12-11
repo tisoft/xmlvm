@@ -21,7 +21,7 @@ void __INIT_org_xmlvm_iphone_NSURLRequest()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_NSURLRequest.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_NSURLRequest.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSURLRequest_xmlvmGetUrl__;
+    __CLASS_org_xmlvm_iphone_NSURLRequest.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSURLRequest_URL__;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_NSURLRequest.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_NSURLRequest.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
@@ -61,9 +61,9 @@ JAVA_OBJECT org_xmlvm_iphone_NSURLRequest_requestWithURL___org_xmlvm_iphone_NSUR
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_NSURLRequest_xmlvmGetUrl__(JAVA_OBJECT me)
+JAVA_OBJECT org_xmlvm_iphone_NSURLRequest_URL__(JAVA_OBJECT me)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSURLRequest_xmlvmGetUrl__]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSURLRequest_URL__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

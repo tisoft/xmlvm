@@ -22,11 +22,9 @@ void __INIT_org_xmlvm_iphone_NSData()
     // Copy vtable from base class
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_NSData.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_NSData.vtable[4] = (VTABLE_PTR) &org_xmlvm_iphone_NSData_toString__;
-    __CLASS_org_xmlvm_iphone_NSData.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSData_toString___int;
-    __CLASS_org_xmlvm_iphone_NSData.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSData_writeToFile___java_lang_String_boolean;
-    __CLASS_org_xmlvm_iphone_NSData.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSData_length__;
-    __CLASS_org_xmlvm_iphone_NSData.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSData_getBytes__;
+    __CLASS_org_xmlvm_iphone_NSData.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSData_writeToFile___java_lang_String_boolean;
+    __CLASS_org_xmlvm_iphone_NSData.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSData_length__;
+    __CLASS_org_xmlvm_iphone_NSData.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSData_getBytes__;
     // Initialize vtable for implementing interfaces
     __CLASS_org_xmlvm_iphone_NSData.numImplementedInterfaces = 0;
     __CLASS_org_xmlvm_iphone_NSData.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
@@ -63,20 +61,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSData()
 void org_xmlvm_iphone_NSData___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-JAVA_OBJECT org_xmlvm_iphone_NSData_toString__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_toString__]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-JAVA_OBJECT org_xmlvm_iphone_NSData_toString___int(JAVA_OBJECT me, JAVA_INT n1)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_toString___int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

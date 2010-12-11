@@ -1,0 +1,51 @@
+#ifndef __ORG_XMLVM_IPHONE_MKCOORDINATEREGION__
+#define __ORG_XMLVM_IPHONE_MKCOORDINATEREGION__
+
+#include "xmlvm.h"
+#include "org_xmlvm_iphone_NSObject.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKCoordinateSpan
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKCoordinateSpan
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKCoordinateSpan)
+#endif
+// Class declarations for org.xmlvm.iphone.MKCoordinateRegion
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKCoordinateRegion, 14)
+
+//XMLVM_BEGIN_MEMBERS
+#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateRegion
+//XMLVM_END_MEMBERS
+
+#define __INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateRegion \
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+    struct { \
+        JAVA_OBJECT center_; \
+        JAVA_OBJECT span_; \
+        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateRegion \
+    } org_xmlvm_iphone_MKCoordinateRegion
+
+struct org_xmlvm_iphone_MKCoordinateRegion {
+    __CLASS_DEFINITION_org_xmlvm_iphone_MKCoordinateRegion* __class;
+    __INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateRegion;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKCoordinateRegion
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKCoordinateRegion
+typedef struct org_xmlvm_iphone_MKCoordinateRegion org_xmlvm_iphone_MKCoordinateRegion;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKCoordinateRegion 14
+
+void __INIT_org_xmlvm_iphone_MKCoordinateRegion();
+JAVA_OBJECT __NEW_org_xmlvm_iphone_MKCoordinateRegion();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKCoordinateRegion();
+void org_xmlvm_iphone_MKCoordinateRegion___INIT____org_xmlvm_iphone_CLLocationCoordinate2D_org_xmlvm_iphone_MKCoordinateSpan(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+
+#endif

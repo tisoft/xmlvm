@@ -5,6 +5,10 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
@@ -16,10 +20,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEdgeInsets
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEdgeInsets
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEdgeInsets)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIGenericBar
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIGenericBar
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIGenericBar)
 #endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
@@ -49,7 +49,7 @@ typedef struct org_xmlvm_iphone_UIBarItem org_xmlvm_iphone_UIBarItem;
 
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIBarItem 27
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarItem_getBar__ 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarItem_setBar___org_xmlvm_iphone_UIGenericBar 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarItem_setBar___org_xmlvm_iphone_UIView 15
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarItem_isEnabled__ 16
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarItem_setEnabled___boolean 17
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarItem_getImage__ 18
@@ -69,7 +69,7 @@ void org_xmlvm_iphone_UIBarItem___INIT___(JAVA_OBJECT me);
 // Vtable index: 14
 JAVA_OBJECT org_xmlvm_iphone_UIBarItem_getBar__(JAVA_OBJECT me);
 // Vtable index: 15
-void org_xmlvm_iphone_UIBarItem_setBar___org_xmlvm_iphone_UIGenericBar(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIBarItem_setBar___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 16
 JAVA_BOOLEAN org_xmlvm_iphone_UIBarItem_isEnabled__(JAVA_OBJECT me);
 // Vtable index: 17

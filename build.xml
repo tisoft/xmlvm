@@ -291,7 +291,24 @@
 		<ant dir="demo/android/xokoban" target="xproject"/>
 	</target>
 
-	
+	<target name="gen-c-wrappers" depends="jar">
+		<mkdir dir="tmp"/>
+		<copy todir="tmp">
+			<fileset dir="build/cocoa-java/org/xmlvm/iphone/">
+				<include name="*.class"/>
+    			<exclude name="*$*"/>
+			</fileset>
+		</copy>
+		<java jar="dist/xmlvm.jar" fork="true" failonerror="true">
+			<jvmarg value="-Xmx512m"/>
+			<arg value="--in=tmp"/>
+			<arg value="--target=gen-c-wrappers"/>
+			<arg value="--out=src/xmlvm2c/compat-lib/iphone"/>
+			<arg value="--c-source-extension=m"/>
+		</java>
+		<delete dir="tmp"/>
+	</target>
+
 	<!-- In Android projects we can not use the proper clean task to clean up the project,
 		 since these projects require the AndroidSDK to be present.
 		 Thus, a macro has been used instead -->

@@ -26,7 +26,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIWindow
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWindow, 78)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWindow, 76)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWindow
@@ -47,30 +47,30 @@ struct org_xmlvm_iphone_UIWindow {
 typedef struct org_xmlvm_iphone_UIWindow org_xmlvm_iphone_UIWindow;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIWindow 78
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWindow_makeKeyAndVisible__ 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWindow_sendEvent___org_xmlvm_iphone_UIEvent 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWindow_convertPointToWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow 74
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWindow_convertPointFromWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow 75
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWindow_convertRectToWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow 76
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWindow_convertRectFromWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow 77
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIWindow 76
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWindow_makeKeyAndVisible__ 70
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWindow_sendEvent___org_xmlvm_iphone_UIEvent 71
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWindow_convertPointToWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWindow_convertPointFromWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWindow_convertRectToWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWindow_convertRectFromWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow 75
 
 void __INIT_org_xmlvm_iphone_UIWindow();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWindow();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIWindow();
 void org_xmlvm_iphone_UIWindow___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIWindow___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 72
+// Vtable index: 70
 void org_xmlvm_iphone_UIWindow_makeKeyAndVisible__(JAVA_OBJECT me);
-// Vtable index: 73
+// Vtable index: 71
 void org_xmlvm_iphone_UIWindow_sendEvent___org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 74
+// Vtable index: 72
 JAVA_OBJECT org_xmlvm_iphone_UIWindow_convertPointToWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 75
+// Vtable index: 73
 JAVA_OBJECT org_xmlvm_iphone_UIWindow_convertPointFromWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 76
+// Vtable index: 74
 JAVA_OBJECT org_xmlvm_iphone_UIWindow_convertRectToWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 77
+// Vtable index: 75
 JAVA_OBJECT org_xmlvm_iphone_UIWindow_convertRectFromWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 
 #endif

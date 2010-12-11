@@ -1,6 +1,6 @@
+#include "org_xmlvm_iphone_UIView.h"
 #include "org_xmlvm_iphone_UIImage.h"
 #include "org_xmlvm_iphone_UIEdgeInsets.h"
-#include "org_xmlvm_iphone_UIGenericBar.h"
 #include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_UIBarItem.h"
@@ -25,7 +25,7 @@ void __INIT_org_xmlvm_iphone_UIBarItem()
     XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIBarItem.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
     __CLASS_org_xmlvm_iphone_UIBarItem.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getBar__;
-    __CLASS_org_xmlvm_iphone_UIBarItem.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setBar___org_xmlvm_iphone_UIGenericBar;
+    __CLASS_org_xmlvm_iphone_UIBarItem.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setBar___org_xmlvm_iphone_UIView;
     __CLASS_org_xmlvm_iphone_UIBarItem.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_isEnabled__;
     __CLASS_org_xmlvm_iphone_UIBarItem.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setEnabled___boolean;
     __CLASS_org_xmlvm_iphone_UIBarItem.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getImage__;
@@ -84,9 +84,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIBarItem_getBar__(JAVA_OBJECT me)
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UIBarItem_setBar___org_xmlvm_iphone_UIGenericBar(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_UIBarItem_setBar___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIBarItem_setBar___org_xmlvm_iphone_UIGenericBar]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIBarItem_setBar___org_xmlvm_iphone_UIView]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

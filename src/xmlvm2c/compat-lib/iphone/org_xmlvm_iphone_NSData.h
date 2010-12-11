@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.NSData
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSData, 18)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSData, 17)
 
 //XMLVM_BEGIN_MEMBERS
 #define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSData
@@ -43,28 +43,22 @@ struct org_xmlvm_iphone_NSData {
 typedef struct org_xmlvm_iphone_NSData org_xmlvm_iphone_NSData;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSData 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSData_toString__ 4
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSData_toString___int 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSData_writeToFile___java_lang_String_boolean 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSData_length__ 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSData_getBytes__ 17
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSData 17
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSData_writeToFile___java_lang_String_boolean 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSData_length__ 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSData_getBytes__ 16
 
 void __INIT_org_xmlvm_iphone_NSData();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSData();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSData();
 void org_xmlvm_iphone_NSData___INIT___(JAVA_OBJECT me);
-// Vtable index: 4
-JAVA_OBJECT org_xmlvm_iphone_NSData_toString__(JAVA_OBJECT me);
-// Vtable index: 14
-JAVA_OBJECT org_xmlvm_iphone_NSData_toString___int(JAVA_OBJECT me, JAVA_INT n1);
 JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithContentsOfFile___java_lang_String(JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithContentsOfURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1);
-// Vtable index: 15
+// Vtable index: 14
 JAVA_BOOLEAN org_xmlvm_iphone_NSData_writeToFile___java_lang_String_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
-// Vtable index: 16
+// Vtable index: 15
 JAVA_INT org_xmlvm_iphone_NSData_length__(JAVA_OBJECT me);
-// Vtable index: 17
+// Vtable index: 16
 JAVA_OBJECT org_xmlvm_iphone_NSData_getBytes__(JAVA_OBJECT me);
 
 #endif
