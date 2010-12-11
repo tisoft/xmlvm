@@ -23,6 +23,8 @@ package org.xmlvm.main;
 import static org.xmlvm.main.Targets.Affinity.SKELETON;
 import static org.xmlvm.main.Targets.Affinity.TARGET;
 
+import org.xmlvm.Log;
+
 /**
  * All possible targets for the cross-compilation.
  */
@@ -33,11 +35,20 @@ public enum Targets {
     ANDROIDTEMPLATE(SKELETON), ANDROIDMIGRATETEMPLATE(SKELETON), IPHONEUPDATETEMPLATE(SKELETON),
     ANDROIDUPDATETEMPLATE(SKELETON);
 
+    /**
+     * Returns a target with the given name.
+     * 
+     * @param target
+     *            the name of the target
+     * @return The target or <code>null</code>, if a target by that name cannot
+     *         be found.
+     */
     public static Targets getTarget(String target) {
         try {
             return Targets.valueOf(target.toUpperCase().replace("_", "").replace("-", "")
                     .replace(":", ""));
         } catch (IllegalArgumentException ex) {
+            Log.error(Targets.class.getSimpleName(), "Could not find target by name: " + target);
         }
         return null;
     }
