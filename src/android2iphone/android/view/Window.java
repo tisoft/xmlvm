@@ -29,20 +29,19 @@ import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UIScrollView;
 import org.xmlvm.iphone.UITextField;
 import org.xmlvm.iphone.UITextFieldDelegate;
+import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.internal.AndroidAppLauncher;
-import android.internal.Assert;
 import android.internal.DecorView;
 import android.internal.LayoutManager;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import org.xmlvm.iphone.UIView;
 
 /**
  * iPhone Implementation of Android's Window class.
