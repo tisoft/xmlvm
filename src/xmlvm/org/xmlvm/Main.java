@@ -18,10 +18,10 @@
  * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
-package org.xmlvm.proc;
+package org.xmlvm;
 
-import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.XmlvmProcessor;
 
 /**
  * This is a new starting point of the suggested refactoring of the old
@@ -31,7 +31,7 @@ import org.xmlvm.main.Arguments;
  * NOTE(shaeberling): This is work in progress and somewhat experimental as
  * well. Use this only of you know what you are doing.
  */
-public class NewMain {
+public class Main {
     /**
      * XMLVM entry point.
      */

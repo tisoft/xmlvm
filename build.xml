@@ -86,7 +86,7 @@
 	<target name="cc-android-compat-lib.impl" unless="cc-android-compat-lib.notrequired">
 		<echo message="Building android compatibility lib"/>
 		<mkdir dir="${xmlvm.android-compat-lib.objc}" />
-		<java classname="org.xmlvm.proc.NewMain">
+		<java classname="org.xmlvm.Main">
 			<arg value="--out=${xmlvm.android-compat-lib.objc}" />
 			<arg value="--target=objc" />
 			<arg value="--in=${xmlvm.android-compat-lib.java}/" />
@@ -210,7 +210,7 @@
 				<attribute name="Implementation-Title" value="XMLVM" />
 				<attribute name="Implementation-Version" value="alpha" />
 				<attribute name="Main-Class" value="com.simontuffs.onejar.Boot" />
-				<attribute name="One-Jar-Main-Class" value="org.xmlvm.proc.NewMain" />
+				<attribute name="One-Jar-Main-Class" value="org.xmlvm.Main" />
 			</manifest>
 		</jar>
 
@@ -221,7 +221,7 @@
 				<attribute name="Implementation-Title" value="XMLVM" />
 				<attribute name="Implementation-Version" value="alpha" />
 				<attribute name="Main-Class" value="com.simontuffs.onejar.Boot" />
-				<attribute name="One-Jar-Main-Class" value="org.xmlvm.proc.NewMain" />
+				<attribute name="One-Jar-Main-Class" value="org.xmlvm.Main" />
 			</manifest>
 			<fileset dir="${xmlvm.build}" />
 		</jar>

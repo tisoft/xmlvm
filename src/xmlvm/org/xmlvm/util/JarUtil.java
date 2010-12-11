@@ -35,7 +35,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
 import org.xmlvm.Log;
-import org.xmlvm.proc.NewMain;
+import org.xmlvm.Main;
 
 public class JarUtil {
 
@@ -52,7 +52,7 @@ public class JarUtil {
      */
     public static boolean copyFromArchive(String resourceName, String toPath) {
         try {
-            JarInputStream libFiles = new JarInputStream(NewMain.class
+            JarInputStream libFiles = new JarInputStream(Main.class
                     .getResourceAsStream(resourceName));
             if (!toPath.endsWith(File.separator))
                 toPath += File.separator;
@@ -81,11 +81,11 @@ public class JarUtil {
     }
 
     public static BufferedReader getFile(String name) {
-        return new BufferedReader(new InputStreamReader(NewMain.class.getResourceAsStream(name)));
+        return new BufferedReader(new InputStreamReader(Main.class.getResourceAsStream(name)));
     }
 
     public static BufferedInputStream getStream(String name) {
-        InputStream in = NewMain.class.getResourceAsStream(name);
+        InputStream in = Main.class.getResourceAsStream(name);
         if (in == null)
             return null;
         return new BufferedInputStream(in);
@@ -95,7 +95,7 @@ public class JarUtil {
      * Returns whether the resource with the given name exists.
      */
     public static boolean resourceExists(String name) {
-        return NewMain.class.getResourceAsStream(name) != null;
+        return Main.class.getResourceAsStream(name) != null;
     }
 
     public static List<String> list(String fromJar) {
