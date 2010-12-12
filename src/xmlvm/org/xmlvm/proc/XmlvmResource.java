@@ -199,7 +199,7 @@ public class XmlvmResource {
 
         /**
          * Determines if two Java methods can override each other. Two methods
-         * override each other, iff their names as well as all their input
+         * override each other, if their names as well as all their input
          * parameter types are identical. Note that the return types need not be
          * identical since Java allows covariant returns.
          * <code>doesOverrideMethod()</code> does not check for subtype
@@ -209,7 +209,7 @@ public class XmlvmResource {
          * 
          * @param method
          *            {@link #XmlvmResource} to be checked.
-         * @return true, iff <code>method</code> overrides <code>this</code>.
+         * @return true, if <code>method</code> overrides <code>this</code>.
          */
         @SuppressWarnings("unchecked")
         public boolean doesOverrideMethod(XmlvmMethod method) {
@@ -219,7 +219,7 @@ public class XmlvmResource {
 
         /**
          * Determines if two Java methods can override each other. Two methods
-         * override each other, iff their names as well as all their input
+         * override each other, if their names as well as all their input
          * parameter types are identical. Note that the return types need not be
          * identical since Java allows covariant returns.
          * <code>doesOverrideMethod()</code> does not check for subtype
@@ -229,7 +229,7 @@ public class XmlvmResource {
          * 
          * @param method
          *            {@link #XmlvmInvokeVirtual} to be checked.
-         * @return true, iff <code>method</code> overrides <code>this</code>.
+         * @return true, if <code>method</code> overrides <code>this</code>.
          */
         @SuppressWarnings("unchecked")
         public boolean doesOverrideMethod(XmlvmInvokeInstruction instruction) {
