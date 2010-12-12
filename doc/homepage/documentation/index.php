@@ -5,23 +5,28 @@
   include("../header.html");
   include("../content_top.html");
 ?>
-<h1>Documentation</h1>
 
-<h2>Usage Manual</h2>
-
-For usage information, please see our <a href="/manual">HTML</a> or <a href="manual.pdf">PDF</a>. We are working on a more detailed user manual
-that will also give you a step by step howto.
-
-<h2>Making XMLVM better</h2>
-
-<p>
-If you are interested in contributing to the XMLVM project, we have a special page for you.
-
-<b><a href="../contribute">Contribute: Making XMLVM better</a></b>
-
-We are constantly trying to improve it. Let us know if something is missing or deserves more
-attention.
-</p>
+<div style="font-size:12px; font-weight:bold; margin-top:-10px; margin-bottom:10px; width:100%; text-align:right;">
+	<a href="https://sites.google.com/a/xmlvm.org/documentation/?tmpl=/system/app/templates/print/&showPrintDialog=1"
+	   target="_blank">
+	  Print
+	</a>
+</div>
+<iframe  style="width:100%;border:0;margin:0;padding:0;" id="manual_iframe" frameborder="0"
+         src="https://sites.google.com/a/xmlvm.org/documentation/" >
+</iframe>
+<script>
+  function resizeIframe() {
+    var window_height = (typeof window.innerHeight != 'undefined' ? window.innerHeight : document.body.offsetHeight);
+    var iframe = document.getElementById('manual_iframe');
+	// iframe's height = height of window - footer - header.
+	iframe.height = (window_height - 240);
+  }
+  resizeIframe();
+  window.onresize = function(event) {
+    resizeIframe();
+  }
+</script>
 
 <?php
   include("../footer.html");
