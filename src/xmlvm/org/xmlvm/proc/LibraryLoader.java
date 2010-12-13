@@ -34,38 +34,11 @@ import org.xmlvm.proc.out.DEXmlvmOutputProcess;
 import org.xmlvm.util.universalfile.UniversalFile;
 
 /**
- * This class is able to load classes from the Java JDK and runs them through
- * the XMLVM processing pipeline.
+ * The LibraryLoader is responsible for loading classes from a set of given
+ * libraries, that are not a part of the application to be translated. Such
+ * classes include the JavaJDK or the AndroidSDK.
  */
 public class LibraryLoader {
-
-    /**
-     * In order to process the loading of additional resources in parallel, we
-     * put the loading code into threads.
-     */
-    private class LoaderThread extends Thread {
-        private final String[]           classesToLoad;
-        private final int                start;
-        private final int                end;
-        final Map<String, XmlvmResource> loadedResources;
-
-
-        public LoaderThread(String[] classesToLoad, int start, int end) {
-            this.classesToLoad = classesToLoad;
-            this.start = start;
-            this.end = end;
-            loadedResources = new HashMap<String, XmlvmResource>((end - start) + 1);
-        }
-
-        @Override
-        public void run() {
-            for (int i = start; i <= end; ++i) {
-                loadedResources.put(classesToLoad[i], load(classesToLoad[i]));
-            }
-        }
-    }
-
-
     private static final String       TAG  = LibraryLoader.class.getSimpleName();
     private static final Libraries    LIBS = new Libraries();
 
@@ -196,34 +169,10 @@ public class LibraryLoader {
 
         // Load missing dependencies.
         String[] classesToLoad = toLoad.toArray(new String[0]);
-        // int threadCount = Runtime.getRuntime().availableProcessors();
-        int threadCount = 1; // TODO(Sascha): Make UniveralFile API thread-safe.
-        int itemsPerThread = (int) Math.ceil(classesToLoad.length / (float) threadCount);
-        LoaderThread[] threads = new LoaderThread[threadCount];
-
-        // Divide work and start the threads.
-        for (int i = 0; i < threadCount; ++i) {
-            int start = i * itemsPerThread;
-            int end = Math.min(start + itemsPerThread - 1, classesToLoad.length - 1);
-            if (end >= start) {
-                threads[i] = new LoaderThread(classesToLoad, start, end);
-                threads[i].start();
-            }
+        for (String classToLoad : classesToLoad) {
+            resources.put(classToLoad, load(classToLoad));
         }
-
-        // Wait for threads to finish and add their results;
-        for (int i = 0; i < threadCount; ++i) {
-            try {
-                if (threads[i] != null) {
-                    threads[i].join();
-                    resources.putAll(threads[i].loadedResources);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                return false;
-            }
-        }
-        return false;
+        return classesToLoad.length == 0;
     }
 
     private static boolean isBasicType(String typeName) {
