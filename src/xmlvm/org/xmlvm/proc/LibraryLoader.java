@@ -39,11 +39,11 @@ import org.xmlvm.util.universalfile.UniversalFile;
  * classes include the JavaJDK or the AndroidSDK.
  */
 public class LibraryLoader {
-    private static final String       TAG  = LibraryLoader.class.getSimpleName();
-    private static final Libraries    LIBS = new Libraries();
+    private static final String                     TAG   = LibraryLoader.class.getSimpleName();
+    private static final Libraries                  LIBS  = new Libraries();
 
-    private final Arguments           arguments;
-    private final List<UniversalFile> libraries;
+    private final Arguments                         arguments;
+    private final List<UniversalFile>               libraries;
     private final static Map<String, XmlvmResource> cache = new HashMap<String, XmlvmResource>();
 
 
@@ -62,7 +62,7 @@ public class LibraryLoader {
         if (cache.containsKey(typeName)) {
             return cache.get(typeName);
         }
-        
+
         for (UniversalFile library : libraries) {
             XmlvmResource resource = load(typeName, library);
             if (resource != null) {
