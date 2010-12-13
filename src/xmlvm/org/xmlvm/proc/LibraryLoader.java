@@ -44,6 +44,7 @@ public class LibraryLoader {
 
     private final Arguments           arguments;
     private final List<UniversalFile> libraries;
+    private final static Map<String, XmlvmResource> cache = new HashMap<String, XmlvmResource>();
 
 
     public LibraryLoader(Arguments arguments) {
@@ -58,9 +59,14 @@ public class LibraryLoader {
      *            can be e.g. "java.lang.Object"
      */
     public XmlvmResource load(String typeName) {
+        if (cache.containsKey(typeName)) {
+            return cache.get(typeName);
+        }
+        
         for (UniversalFile library : libraries) {
             XmlvmResource resource = load(typeName, library);
             if (resource != null) {
+                cache.put(typeName, resource);
                 return resource;
             }
         }
