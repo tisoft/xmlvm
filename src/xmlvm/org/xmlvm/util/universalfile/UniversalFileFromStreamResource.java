@@ -32,6 +32,9 @@ public class UniversalFileFromStreamResource extends UniversalFile {
 
     private String      absoluteName;
 
+    private byte[]      cachedBytes  = null;
+    private String      cachedString = null;
+
 
     UniversalFileFromStreamResource(String absoluteName, InputStream stream) {
         this.absoluteName = absoluteName;
@@ -45,12 +48,18 @@ public class UniversalFileFromStreamResource extends UniversalFile {
 
     @Override
     public byte[] getFileAsBytes() {
-        return FileUtil.readBytesFromStream(stream);
+        if (cachedBytes == null) {
+            initContent();
+        }
+        return cachedBytes;
     }
 
     @Override
     public String getFileAsString() {
-        return FileUtil.readStringFromStream(stream);
+        if (cachedString == null) {
+            initContent();
+        }
+        return cachedString;
     }
 
     @Override
@@ -71,5 +80,10 @@ public class UniversalFileFromStreamResource extends UniversalFile {
     @Override
     public UniversalFile[] listFiles() {
         return new UniversalFile[0];
+    }
+
+    private void initContent() {
+        cachedBytes = FileUtil.readBytesFromStream(stream);
+        cachedString = new String(cachedBytes);
     }
 }
