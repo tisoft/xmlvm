@@ -60,6 +60,9 @@ public class Arguments {
     public static final String    ARG_USE_JVM                 = "--use-jvm";
     // Enables the experimental dependency resolution feature.
     public static final String    ARG_EXP_LOAD_DEPS           = "--exp-load-deps";
+    // Enables the experimental dependency size optimization with the given
+    // config file.
+    public static final String    ARG_DEP_OPTIMIZATION_CONFIG = "--dep-optimization-config=";
     // Enables reference counting for DEX input.
     public static final String    ARG_ENABLE_REF_COUNTING     = "--enable-ref-counting";
     public static final String    ARG_C_SOURCE_EXTENSION      = "--c-source-extension=";
@@ -81,9 +84,13 @@ public class Arguments {
     private String                option_skeleton             = null;
     private boolean               option_use_jvm              = false;
     private boolean               option_exp_load_deps        = false;
+    private String                option_dep_opt_config       = "";
     private boolean               option_enable_ref_counting  = false;
     private String                option_c_source_extension   = "c";
     private Map<String, String>   option_property             = new HashMap<String, String>();
+
+    // Options for internal use only.
+    private boolean               option_library_loader       = false;
 
     private static final String[] shortUsage                  = {
             "Usage: ",
@@ -266,6 +273,8 @@ public class Arguments {
                 option_use_jvm = true;
             } else if (arg.equals(ARG_EXP_LOAD_DEPS)) {
                 option_exp_load_deps = true;
+            } else if (arg.startsWith(ARG_DEP_OPTIMIZATION_CONFIG)) {
+                option_dep_opt_config = arg.substring(ARG_DEP_OPTIMIZATION_CONFIG.length());
             } else if (arg.equals(ARG_ENABLE_REF_COUNTING)) {
                 option_enable_ref_counting = true;
             } else if (arg.startsWith(ARG_C_SOURCE_EXTENSION)) {
@@ -276,8 +285,8 @@ public class Arguments {
                 if (equal < 1) {
                     parseError("Unable to parse kay/value: " + value);
                 }
-                option_property.put(value.substring(0, equal).toLowerCase(), value
-                        .substring(equal + 1));
+                option_property.put(value.substring(0, equal).toLowerCase(),
+                        value.substring(equal + 1));
             } else {
                 parseError("Unknown parameter: " + arg);
             }
@@ -443,6 +452,10 @@ public class Arguments {
         return option_exp_load_deps;
     }
 
+    public String option_dep_optimization_config() {
+        return option_dep_opt_config;
+    }
+
     public boolean option_enable_ref_counting() {
         return option_enable_ref_counting;
     }
@@ -453,6 +466,14 @@ public class Arguments {
 
     public Set<String> option_lib() {
         return option_lib;
+    }
+
+    public void set_option_library_loader(boolean value) {
+        option_library_loader = value;
+    }
+
+    public boolean option_library_loader() {
+        return option_library_loader;
     }
 
     public String option_property(String key) {

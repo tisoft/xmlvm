@@ -36,8 +36,8 @@ public class Libraries {
     private static final String  TAG        = Libraries.class.getSimpleName();
     private static final String  CACHE_PATH = ".cache/";
 
-    private static UniversalFile jdk;
-    private static UniversalFile cocoaJava;
+    private UniversalFile jdk;
+    private UniversalFile cocoaJava;
 
     private List<UniversalFile>  libraries  = new ArrayList<UniversalFile>();
 

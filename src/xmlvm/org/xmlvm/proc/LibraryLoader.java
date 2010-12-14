@@ -49,6 +49,7 @@ public class LibraryLoader {
 
     public LibraryLoader(Arguments arguments) {
         this.arguments = arguments;
+        this.arguments.set_option_library_loader(true);
         this.libraries = LIBS.getLibraries();
     }
 
@@ -59,18 +60,13 @@ public class LibraryLoader {
      *            can be e.g. "java.lang.Object"
      */
     public XmlvmResource load(String typeName) {
-        if (cache.containsKey(typeName)) {
-            return cache.get(typeName);
-        }
-
         for (UniversalFile library : libraries) {
             XmlvmResource resource = load(typeName, library);
             if (resource != null) {
-                cache.put(typeName, resource);
                 return resource;
             }
         }
-        Log.warn(TAG, "Could not find resource: " + typeName);
+        Log.debug(TAG, "Could not find resource: " + typeName);
         return null;
     }
 
@@ -78,9 +74,7 @@ public class LibraryLoader {
         if (typeName.contains(".")) {
             String packageName = typeName.substring(0, typeName.indexOf("."));
             UniversalFile subDir;
-            synchronized (this) {
-                subDir = directory.getEntry(packageName);
-            }
+            subDir = directory.getEntry(packageName);
             if (subDir != null && subDir.isDirectory()) {
                 return load(typeName.substring(typeName.indexOf(".") + 1), subDir);
             } else {
@@ -88,9 +82,7 @@ public class LibraryLoader {
             }
         } else {
             UniversalFile classFile;
-            synchronized (this) {
-                classFile = directory.getEntry(typeName + ".class");
-            }
+            classFile = directory.getEntry(typeName + ".class");
             if (classFile != null && classFile.isFile()) {
 
                 // Success, we found the class file we were looking for. Let's
@@ -103,6 +95,10 @@ public class LibraryLoader {
     }
 
     private XmlvmResource process(UniversalFile file) {
+        if (cache.containsKey(file.getAbsolutePath())) {
+            return cache.get(file.getAbsolutePath());
+        }
+
         ClassFile classFile = new ClassFile(file);
 
         ClassInputProcess inputProcess = new ClassInputProcess(arguments, classFile);
@@ -113,9 +109,9 @@ public class LibraryLoader {
         List<XmlvmResource> resources = outputProcess.getXmlvmResources();
 
         if (resources.size() != 1) {
-            Log.error(TAG, "Did not get exactly one resource: " + resources.size());
             return null;
         }
+        cache.put(file.getAbsolutePath(), resources.get(0));
         return resources.get(0);
     }
 
