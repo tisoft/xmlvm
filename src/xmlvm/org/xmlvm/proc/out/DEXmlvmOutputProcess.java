@@ -1077,7 +1077,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     }
                     dexInstruction.setAttribute("value", value);
                 } else {
-                    dexInstruction.setAttribute("value", constant.toHuman());
+                    if (opname.equals("new-instance") && isRedClass(constant.toHuman())) {
+                        dexInstruction = createAssertElement(constant.toHuman(), "<new>");
+                    } else {
+                        dexInstruction.setAttribute("value", constant.toHuman());
+                    }
                 }
                 if (cstInsn.getOpcode().getName().startsWith("filled-new-array")) {
                     addRegistersAsChildren(cstInsn.getRegisters(), dexInstruction);
