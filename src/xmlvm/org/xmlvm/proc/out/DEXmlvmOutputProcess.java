@@ -959,7 +959,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             Map<Integer, SwitchData> switchDataBlocks, Map<Integer, ArrayData> arrayData,
             List<Integer> sourceLinesAlreadyPut, Set<String> referencedTypes) {
         Element dexInstruction = null;
-
         String opname = instruction.getOpcode().getName();
         if (opname.equals("instance-of") || opname.equals("const-class")) {
             CstInsn isaInsn = (CstInsn) instruction;
@@ -1051,13 +1050,21 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     CstMemberRef memberRef = (CstMemberRef) constant;
                     String definingClassType = memberRef.getDefiningClass().getClassType()
                             .toHuman();
+
                     dexInstruction.setAttribute("class-type", definingClassType);
                     referencedTypes.add(definingClassType);
                     CstNat nameAndType = memberRef.getNat();
                     String memberType = nameAndType.getFieldType().getType().toHuman();
                     dexInstruction.setAttribute("member-type", memberType);
                     referencedTypes.add(memberType);
-                    dexInstruction.setAttribute("member-name", nameAndType.getName().toHuman());
+                    String memberName = nameAndType.getName().toHuman();
+                    dexInstruction.setAttribute("member-name", memberName);
+
+                    // if this is a member access to a red class, we need to
+                    // eliminate it.
+                    if (isRedClass(definingClassType)) {
+                        dexInstruction = createAssertElement(definingClassType, memberName);
+                    }
                 } else if (constant instanceof CstString) {
                     CstString cstString = (CstString) constant;
                     String valueOriginal = cstString.getString().getString();
@@ -1219,10 +1226,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         // class we are about to call is a red class, we remove the call and
         // replace it with an assert.
         if (isRedClass(classType)) {
-            Element assertElement = new Element("assert-red-class", NS_XMLVM);
-            assertElement.setAttribute("type", classType);
-            assertElement.setAttribute("member", methodName);
-            return assertElement;
+            return createAssertElement(classType, methodName);
         }
         referencedTypes.add(classType);
         result.setAttribute("class-type", classType);
@@ -1387,5 +1391,12 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             }
         }
         return false;
+    }
+
+    private static Element createAssertElement(String typeName, String memberName) {
+        Element assertElement = new Element("assert-red-class", NS_XMLVM);
+        assertElement.setAttribute("type", typeName);
+        assertElement.setAttribute("member", memberName);
+        return assertElement;
     }
 }

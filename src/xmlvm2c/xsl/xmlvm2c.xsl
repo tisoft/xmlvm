@@ -1376,6 +1376,12 @@ int main(int argc, char* argv[])
   <!-- Ignore annotations -->
 </xsl:template>
 
+<xsl:template match="vm:assert-red-class">
+  <!-- Red classes are removed for optimization and cannot be called. -->
+  // Red class access removed: <xsl:value-of select="@type"/>::<xsl:value-of select="@member"/>
+</xsl:template>
+
+
 
 <!-- ********************************************************************************** -->
 <!-- ********************************************************************************** -->
