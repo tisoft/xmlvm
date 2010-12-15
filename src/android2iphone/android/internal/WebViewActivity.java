@@ -20,6 +20,9 @@
 
 package android.internal;
 
+import org.xmlvm.iphone.NSURL;
+import org.xmlvm.iphone.UIApplication;
+
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,8 +37,23 @@ public class WebViewActivity extends Activity {
 
     private WebView webView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        /*
+         * Right now we launch the external browser. The code below that is
+         * DISABLED instantiated an internal WebView with a simple back-button
+         * to go back to the last activity. Since iOS supports multitasking now,
+         * it is probably better to launch an external browser and then switch
+         * back to the calling application.
+         */
+        Uri uri = this.getIntent().xmlvmGetUri();
+        NSURL url = NSURL.URLWithString(uri.xmlvmGetUri());
+        UIApplication.sharedApplication().openURL(url);
+    }
+
+    protected void onCreateDISABLED(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         RelativeLayout layout = new RelativeLayout(this);
         Button returnButton = new Button(this);
@@ -67,8 +85,7 @@ public class WebViewActivity extends Activity {
         setContentView(layout);
     }
 
-    @Override
-    protected void onResume() {
+    protected void onResumeDISABLED() {
         super.onResume();
         Uri uri = this.getIntent().xmlvmGetUri();
         webView.loadUrl(uri.xmlvmGetUri());
