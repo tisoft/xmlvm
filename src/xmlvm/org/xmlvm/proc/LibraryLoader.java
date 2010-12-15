@@ -49,7 +49,6 @@ public class LibraryLoader {
 
     public LibraryLoader(Arguments arguments) {
         this.arguments = arguments;
-        this.arguments.set_option_library_loader(true);
         this.libraries = LIBS.getLibraries();
     }
 

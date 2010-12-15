@@ -89,9 +89,6 @@ public class Arguments {
     private String                option_c_source_extension   = "c";
     private Map<String, String>   option_property             = new HashMap<String, String>();
 
-    // Options for internal use only.
-    private boolean               option_library_loader       = false;
-
     private static final String[] shortUsage                  = {
             "Usage: ",
             "xmlvm [--in=<path> [--out=<dir>]]",
@@ -466,14 +463,6 @@ public class Arguments {
 
     public Set<String> option_lib() {
         return option_lib;
-    }
-
-    public void set_option_library_loader(boolean value) {
-        option_library_loader = value;
-    }
-
-    public boolean option_library_loader() {
-        return option_library_loader;
     }
 
     public String option_property(String key) {
