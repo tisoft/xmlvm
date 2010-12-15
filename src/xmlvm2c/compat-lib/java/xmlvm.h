@@ -27,15 +27,28 @@
 #include <stdio.h>
 #include <string.h>
 #include <setjmp.h>
+
+#ifdef XMLVM_NO_GC
+
+#define XMLVM_MALLOC(size) malloc(size)
+#define XMLVM_FREE(pointer) free(pointer)
+#define XMLVM_FINALIZE(me, func)
+
+#else
+
 #include "gc.h"
-
-#define XMLVM_FINALIZE(me, func) GC_REGISTER_FINALIZER ((void *)me, func, (void *)NULL, (GC_finalization_proc *)0, (void * *)0);
-
-#define XMLVM_NOT_IMPLEMENTED() printf("Unimplemented: %s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__)
-void* xmalloc(int size);
 
 #define XMLVM_MALLOC(size) GC_MALLOC(size)
 #define XMLVM_FREE(pointer) GC_FREE(pointer)
+#define XMLVM_FINALIZE(me, func) GC_REGISTER_FINALIZER ((void *)me, func, (void *)NULL, (GC_finalization_proc *)0, (void * *)0);
+
+#endif
+
+
+#define XMLVM_NOT_IMPLEMENTED() printf("Unimplemented: %s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__)
+#define XMLVM_RED_CLASS_DEPENDENCY() printf("Unsatisfied red class dependency: %s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__)
+//void* xmalloc(int size);
+
 #define XMLVM_BZERO(pointer, size) memset((pointer), 0, size)
 #define XMLVM_MEMCPY(dest, src, size) memcpy(dest, src, size)
 

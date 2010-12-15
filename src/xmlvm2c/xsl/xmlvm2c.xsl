@@ -1377,8 +1377,9 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 <xsl:template match="vm:assert-red-class">
-  <!-- Red classes are removed for optimization and cannot be called. -->
-  // Red class access removed: <xsl:value-of select="@type"/>::<xsl:value-of select="@member"/>
+    <!-- Red classes are removed for optimization and cannot be called. -->
+    // Red class access removed: <xsl:value-of select="@type"/>::<xsl:value-of select="@member"/>
+    XMLVM_RED_CLASS_DEPENDENCY();
 </xsl:template>
 
 
@@ -2001,7 +2002,7 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:ushr-int-lit8|dex:ushr-int-lit16">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.i = ((JAVA_UINT _r</xsl:text>
+  <xsl:text>.i = ((JAVA_UINT) _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.i) &gt;&gt; (0x1f &amp; ((JAVA_UINT) </xsl:text>
   <xsl:value-of select="@value"/>
