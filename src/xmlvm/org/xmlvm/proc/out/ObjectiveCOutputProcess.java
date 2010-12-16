@@ -79,7 +79,7 @@ public class ObjectiveCOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
         String headerFileName = fileNameStem + H_EXTENSION;
         String mFileName = fileNameStem + M_EXTENSION;
 
-        StringBuffer headerBuffer = new StringBuffer();
+        StringBuilder headerBuffer = new StringBuilder();
         headerBuffer.append("#import \"xmlvm.h\"\n");
         for (String i : getTypesForHeader(doc)) {
             if (i.equals(inheritsFrom)) {
@@ -102,7 +102,7 @@ public class ObjectiveCOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
         headerFile.setData(headerBuffer.toString() + headerFile.getData());
         headerFile.setFileName(headerFileName);
 
-        StringBuffer mBuffer = new StringBuffer();
+        StringBuilder mBuffer = new StringBuilder();
         for (String i : getTypesForHeader(doc)) {
             String toIgnore = (namespaceName + "_" + className).replace('.', '_');
             if (!i.equals(inheritsFrom) && !i.equals(toIgnore)) {

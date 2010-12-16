@@ -56,17 +56,17 @@ public class ClassSkeleton {
     private static final char   DOT       = '_';
     private static final String PARAM     = "___";
     /* */
-    private StringBuffer        hfile;
-    private StringBuffer        mfile;
-    private StringBuffer        test;
+    private StringBuilder        hfile;
+    private StringBuilder        mfile;
+    private StringBuilder        test;
     private final Class         c;
 
 
     public ClassSkeleton(Class c) {
         this.c = c;
-        hfile = new StringBuffer();
-        mfile = new StringBuffer();
-        test = new StringBuffer();
+        hfile = new StringBuilder();
+        mfile = new StringBuilder();
+        test = new StringBuilder();
 
         String jclass = c.getName();
         String classname = fixName(jclass);
@@ -115,8 +115,8 @@ public class ClassSkeleton {
 
     private String getMethodDecleration(String method, Class[] parameters, Class returntype,
             int type) {
-        StringBuffer name = new StringBuffer();
-        StringBuffer params = new StringBuffer();
+        StringBuilder name = new StringBuilder();
+        StringBuilder params = new StringBuilder();
 
         name.append((type & Modifier.STATIC) == 0 ? "- (" : "+ (");
         name.append(getTypeRef(returntype)).append(") ");
@@ -153,7 +153,7 @@ public class ClassSkeleton {
         return classname.substring(lastdot + 1, classname.length());
     }
 
-    private boolean storeBuffer(String filename, StringBuffer buffer) {
+    private boolean storeBuffer(String filename, StringBuilder buffer) {
         FileWriter out = null;
         try {
             out = new FileWriter(filename);
