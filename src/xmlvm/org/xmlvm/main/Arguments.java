@@ -65,6 +65,8 @@ public class Arguments {
     public static final String    ARG_DEP_OPTIMIZATION_CONFIG = "--dep-optimization-config=";
     // Enables reference counting for DEX input.
     public static final String    ARG_ENABLE_REF_COUNTING     = "--enable-ref-counting";
+    // Enables a debug counter for measuring execution time.
+    public static final String    ARG_ENABLE_TIMER            = "--enable-timer";
     public static final String    ARG_C_SOURCE_EXTENSION      = "--c-source-extension=";
     // This argument will store various properties to XMLVM
     // An example of these values can be found in the long help
@@ -86,6 +88,7 @@ public class Arguments {
     private boolean               option_exp_load_deps        = false;
     private String                option_dep_opt_config       = "";
     private boolean               option_enable_ref_counting  = false;
+    private boolean               option_enable_timer         = false;
     private String                option_c_source_extension   = "c";
     private Map<String, String>   option_property             = new HashMap<String, String>();
 
@@ -272,6 +275,8 @@ public class Arguments {
                 option_exp_load_deps = true;
             } else if (arg.startsWith(ARG_DEP_OPTIMIZATION_CONFIG)) {
                 option_dep_opt_config = arg.substring(ARG_DEP_OPTIMIZATION_CONFIG.length());
+            } else if (arg.equals(ARG_ENABLE_TIMER)) {
+                option_enable_timer = true;
             } else if (arg.equals(ARG_ENABLE_REF_COUNTING)) {
                 option_enable_ref_counting = true;
             } else if (arg.startsWith(ARG_C_SOURCE_EXTENSION)) {
@@ -455,6 +460,10 @@ public class Arguments {
 
     public boolean option_enable_ref_counting() {
         return option_enable_ref_counting;
+    }
+
+    public boolean option_enable_timer() {
+        return option_enable_timer;
     }
 
     public String option_c_source_extension() {

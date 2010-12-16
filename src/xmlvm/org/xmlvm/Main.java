@@ -22,6 +22,7 @@ package org.xmlvm;
 
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessor;
+import org.xmlvm.util.Timer;
 
 /**
  * This is a new starting point of the suggested refactoring of the old
@@ -43,6 +44,12 @@ public class Main {
         // Sets whether log messages should be shown or not.
         Log.setLevel(arguments.option_debug());
 
+        // Enable a timer if wanted.
+        Timer timer = null;
+        if (arguments.option_enable_timer()) {
+            (timer = new Timer("XMLVM total execution time")).start();
+        }
+
         // Instantiate the processor.
         XmlvmProcessor processor = new XmlvmProcessor(arguments);
 
@@ -63,6 +70,11 @@ public class Main {
             }
         } else {
             Log.error("Something went wrong during processing.");
+        }
+
+        // If timer was configured, print result.
+        if (timer != null) {
+            Log.debug(timer.stop().toString());
         }
     }
 }
