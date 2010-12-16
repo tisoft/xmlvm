@@ -327,8 +327,17 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 Log.debug(TAG + "-ref", "Done processing methods!");
             }
         }
+
+        // Make sure no red classes are in the list of referenced types.
+        Set<String> filteredReferencesTypes = new HashSet<String>();
+        for (String referencedType : referencedTypes) {
+            if (!isRedClass(referencedType)) {
+                filteredReferencesTypes.add(referencedType);
+            }
+        }
+
         generatedResources.add(new XmlvmResource(className, type.superTypeName, Type.DEX, document,
-                referencedTypes));
+                filteredReferencesTypes));
         String fileName = className + DEXMLVM_ENDING;
 
         // Some processes depending on this processor don't actually need the
