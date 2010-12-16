@@ -594,7 +594,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
         String headerEpilog = "\n#endif\n";
 
-        StringBuffer headerBuffer = new StringBuffer();
+        StringBuilder headerBuffer = new StringBuilder();
         headerBuffer.append("#include \"xmlvm.h\"\n");
         List<String> typesForHeader = getTypesForHeader(doc.getRootElement());
         for (String i : typesForHeader) {
@@ -623,7 +623,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                 + headerEpilog);
         headerFile.setFileName(headerFileName);
 
-        StringBuffer mBuffer = new StringBuffer();
+        StringBuilder mBuffer = new StringBuilder();
         for (String i : typesForHeader) {
             String toIgnore = (namespaceName + "_" + className).replace('.', '_');
             if (!i.equals(inheritsFrom) && !i.equals(toIgnore)) {
@@ -647,6 +647,12 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                 continue;
             }
             Element cur = (Element) o;
+
+            // Ignore assertions.
+            if (cur.getName().equals("assert-red-class")) {
+                continue;
+            }
+
             // If we generate a wrapper, do not collect types for private
             // fields, private methods or the code-segment of public methods
             if (arguments.option_gen_wrapper()) {
@@ -725,7 +731,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         String headerFileName = fileNameStem + headerExtension;
         String mFileName = "native_" + fileNameStem + sourceExtension;
 
-        StringBuffer mBuffer = new StringBuffer();
+        StringBuilder mBuffer = new StringBuilder();
         mBuffer.append("\n#include \"" + headerFileName + "\"\n\n");
 
         OutputFile mFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
