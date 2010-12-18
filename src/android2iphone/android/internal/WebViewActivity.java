@@ -20,6 +20,7 @@
 
 package android.internal;
 
+import org.xmlvm.iphone.NSObject;
 import org.xmlvm.iphone.NSURL;
 import org.xmlvm.iphone.UIApplication;
 
@@ -51,6 +52,18 @@ public class WebViewActivity extends Activity {
         Uri uri = this.getIntent().xmlvmGetUri();
         NSURL url = NSURL.URLWithString(uri.xmlvmGetUri());
         UIApplication.sharedApplication().openURL(url);
+    }
+
+    @Override
+    protected void onRestart() {
+        //TODO it should suffice to call finish() here directly, but the synchronous nature of
+        // xmlvm's activity lifecycle messes things up. We have to make sure that finish() is
+        // called asynchronously
+        NSObject.performSelectorOnMainThread(this, "doFinish", null, false);
+    }
+
+    private void doFinish(Object unused) {
+        finish();
     }
 
     protected void onCreateDISABLED(Bundle savedInstanceState) {
@@ -90,5 +103,4 @@ public class WebViewActivity extends Activity {
         Uri uri = this.getIntent().xmlvmGetUri();
         webView.loadUrl(uri.xmlvmGetUri());
     }
-
 }
