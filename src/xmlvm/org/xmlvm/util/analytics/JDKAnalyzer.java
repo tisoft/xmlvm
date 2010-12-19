@@ -103,15 +103,13 @@ public class JDKAnalyzer {
         // It might become interesting for other libraries or for when the rules
         // change.
 
-        // // Compute the type hierarhy of the given set of classes.
-        // HierarchyAnalyzer hierarchyAnalyzer = new
-        // HierarchyAnalyzer(libraryPath);
-        // TypeHierarchy hierarchy = hierarchyAnalyzer.analyze();
-        //
-        // // First we determine the list of mock methods we need to insert into
-        // // green classes to prevent bubbling up of calls into red methods.
-        // Set<String> mockMethods = determineGreenMockMethods(dependencies,
-        // hierarchy);
+        // Compute the type hierarchy of the given set of classes.
+        HierarchyAnalyzer hierarchyAnalyzer = new HierarchyAnalyzer(libraryPath);
+        TypeHierarchy hierarchy = hierarchyAnalyzer.analyze();
+
+        // First we determine the list of mock methods we need to insert into
+        // green classes to prevent bubbling up of calls into red methods.
+        Set<String> mockMethods = determineGreenMockMethods(dependencies, hierarchy);
 
         Pair<Set<String>, Set<String>> orangeLists = constructOrangeList(dependencies);
         Set<String> redList = constructRedList(dependencies, orangeLists.first);
@@ -137,6 +135,15 @@ public class JDKAnalyzer {
         // classes and doing an import on all of java.security.
         // sun.misc.Unsafe: Very low-level functionality.
 
+        GOOD_CLASSES.add("java.security.Permission");
+        // Interfaces
+        GOOD_CLASSES.add("java.security.Guard");
+
+        // Super-class of a few good classes and not much functionality as it is
+        // primarily abstract.
+        GOOD_CLASSES.add("java.security.PermissionCollection");
+
+        GOOD_CLASSES.add("java.security.BasicPermission");
         GOOD_CLASSES.add("java.security.PrivilegedAction");
         GOOD_CLASSES.add("java.security.PrivilegedActionException");
         GOOD_CLASSES.add("java.security.PrivilegedExceptionAction");
@@ -145,6 +152,15 @@ public class JDKAnalyzer {
         BAD_CLASSES.add("java.lang.management.ManagementFactory");
         BAD_CLASSES.add("java.util.JapaneseImperialCalendar");
         BAD_CLASSES.add("java.lang.ClassLoader");
+        BAD_CLASSES.add("java.net.URLClassLoader");
+        BAD_CLASSES.add("java.net.FactoryURLClassLoader");
+
+        // This one is a subclass of java.lang.ClassLoader, so it must go as
+        // well.
+        BAD_CLASSES.add("java.util.ResourceBundle$RBClassLoader");
+
+        // Sub-class of bad class sun.misc.LRUCache.
+        BAD_CLASSES.add("java.util.Scanner$1");
     }
 
     /**
