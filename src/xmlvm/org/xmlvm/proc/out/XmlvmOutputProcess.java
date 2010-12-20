@@ -43,7 +43,7 @@ public class XmlvmOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> 
 
     public XmlvmOutputProcess(Arguments arguments) {
         super(arguments);
-        addAllXmlvmEmittingProcessesAsInput();
+        addSupportedInput(RecursiveResourceLoadingProcess.class);
     }
 
     @Override
@@ -57,7 +57,9 @@ public class XmlvmOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> 
         for (XmlvmResourceProvider process : preprocesses) {
             List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
             for (XmlvmResource xmlvm : xmlvmResources) {
-                outputFiles.add(createOutputFromDocument(xmlvm));
+                if (xmlvm != null) {
+                    outputFiles.add(createOutputFromDocument(xmlvm));
+                }
             }
         }
         return true;
@@ -77,7 +79,7 @@ public class XmlvmOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> 
             return new OutputFile("");
         }
         OutputFile result = new OutputFile(writer.toString());
-        result.setFileName(resource.getName() + XmlvmFile.XMLVM_ENDING);
+        result.setFileName(resource.getFullName() + XmlvmFile.XMLVM_ENDING);
         result.setLocation(arguments.option_out());
         return result;
     }

@@ -32,17 +32,15 @@ import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResourceProvider;
 
 /**
- * Processes XMLVM documents and adds vtable information that is required by
- * some output processes, like the C backend.
+ * Makes sure that all referenced resources from the input resources are loaded.
+ * This is done recursively.
  */
-public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
+public class RecursiveResourceLoadingProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
         implements XmlvmResourceProvider {
-    private final static String TAG    = XmlvmJavaRuntimeAnnotationProcess.class.getSimpleName();
-
-    List<XmlvmResource>         result = new ArrayList<XmlvmResource>();
+    List<XmlvmResource> result = new ArrayList<XmlvmResource>();
 
 
-    public XmlvmJavaRuntimeAnnotationProcess(Arguments arguments) {
+    public RecursiveResourceLoadingProcess(Arguments arguments) {
         super(arguments);
         addAllXmlvmEmittingProcessesAsInput();
     }
@@ -64,11 +62,6 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
             (new LibraryLoader(arguments)).loadAllReferencedTypes(xmlvmResources);
         }
 
-        // *************************************************************
-        // * TODO(Arno): Do whatever you need with the XMLVM resources *
-        // * to add the vtable information. *
-        // *************************************************************
-
         result.addAll(xmlvmResources.values());
         return true;
     }
@@ -82,5 +75,4 @@ public class XmlvmJavaRuntimeAnnotationProcess extends XmlvmProcessImpl<XmlvmRes
     public List<OutputFile> getOutputFiles() {
         return null;
     }
-
 }

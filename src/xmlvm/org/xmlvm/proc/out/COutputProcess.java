@@ -175,7 +175,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         // addAllXmlvmEmittingProcessesAsInput();
         // We need the special Vtable information in order to be able to produce
         // C code.
-        addSupportedInput(XmlvmJavaRuntimeAnnotationProcess.class);
+        addSupportedInput(RecursiveResourceLoadingProcess.class);
     }
 
     @Override
