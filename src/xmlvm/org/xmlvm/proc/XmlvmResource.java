@@ -213,8 +213,10 @@ public class XmlvmResource {
          */
         @SuppressWarnings("unchecked")
         public boolean doesOverrideMethod(XmlvmMethod method) {
-            return doesOverrideMethod(method.getName(), method.methodElement.getChild("signature",
-                    nsXMLVM).getChildren("parameter", nsXMLVM));
+            return doesOverrideMethod(
+                    method.getName(),
+                    method.methodElement.getChild("signature", nsXMLVM).getChildren("parameter",
+                            nsXMLVM));
         }
 
         /**
@@ -444,6 +446,11 @@ public class XmlvmResource {
         this.type = type;
         this.xmlvmDocument = xmlvmDocument;
         this.referencedTypes = referencedTypes;
+    }
+
+    @Override
+    public String toString() {
+        return getFullName();
     }
 
     /**
