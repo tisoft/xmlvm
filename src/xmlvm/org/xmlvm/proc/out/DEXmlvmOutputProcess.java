@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -202,6 +203,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private static final boolean   LOTS_OF_DEBUG      = false;
     private static final boolean   REF_LOGGING        = true;
 
+    private static final String    JLO                = "java.lang.Object";
     private static final String    DEXMLVM_ENDING     = ".dexmlvm";
     private static final Namespace NS_XMLVM           = XmlvmResource.nsXMLVM;
     private static final Namespace NS_DEX             = Namespace.getNamespace("dex",
@@ -273,7 +275,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         // green class list, and this process is run by a library loaded, then
         // we expect the class to be a library class. Hence, it must be in the
         // green class list. If it's not, we discard it.
-        if (isRedClass(packagePlusClassName)) {
+        if (isRedType(packagePlusClassName)) {
             return null;
         }
 
@@ -331,7 +333,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         // Make sure no red classes are in the list of referenced types.
         Set<String> filteredReferencesTypes = new HashSet<String>();
         for (String referencedType : referencedTypes) {
-            if (!isRedClass(referencedType)) {
+            if (!isRedType(referencedType)) {
                 filteredReferencesTypes.add(referencedType);
             }
         }
@@ -370,7 +372,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      *            e.g. "java.lang.Object".
      * @return whether the class is a red class, that should be avoided.
      */
-    private boolean isRedClass(String packagePlusClassName) {
+    private boolean isRedType(String packagePlusClassName) {
         return redClasses != null && redClasses.contains(packagePlusClassName);
     }
 
@@ -526,8 +528,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * 
      * @param skeletonOnly
      */
-    private static void processFields(FieldList fieldList, Element classElement,
-            boolean skeletonOnly) {
+    private void processFields(FieldList fieldList, Element classElement, boolean skeletonOnly) {
         for (int i = 0; i < fieldList.size(); ++i) {
             Field field = fieldList.get(i);
             if (hasIgnoreAnnotation(field.getAttributes())) {
@@ -543,6 +544,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             Element fieldElement = new Element("field", NS_XMLVM);
             fieldElement.setAttribute("name", field.getName().toHuman());
             String fieldType = field.getNat().getFieldType().toHuman();
+            if (isRedType(fieldType)) {
+                fieldType = JLO;
+            }
             fieldElement.setAttribute("type", fieldType);
             TypedConstant value = field.getConstantValue();
             if (value != null) {
@@ -556,7 +560,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     /**
      * Debugging use: Builds a catch-table in XML.
      */
-    private static void processCatchTable(CatchTable catchTable, Element codeElement,
+    private void processCatchTable(CatchTable catchTable, Element codeElement,
             Set<String> referencedTypes) {
         if (catchTable.size() == 0) {
             return;
@@ -573,12 +577,19 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             CatchHandlerList catchHandlers = entry.getHandlers();
             for (int j = 0; j < catchHandlers.size(); ++j) {
                 com.android.dx.dex.code.CatchHandlerList.Entry handlerEntry = catchHandlers.get(j);
-                Element handlerElement = new Element("handler", NS_DEX);
                 String exceptionType = handlerEntry.getExceptionType().toHuman();
-                handlerElement.setAttribute("type", exceptionType);
-                referencedTypes.add(exceptionType);
-                handlerElement.setAttribute("target", String.valueOf(handlerEntry.getHandler()));
-                entryElement.addContent(handlerElement);
+
+                // We can remove the exception because a red type exception
+                // will never be created or thrown.
+                // This change is in sync with the one in processMethod.
+                if (!isRedType(exceptionType)) {
+                    Element handlerElement = new Element("handler", NS_DEX);
+                    handlerElement.setAttribute("type", exceptionType);
+                    referencedTypes.add(exceptionType);
+                    handlerElement
+                            .setAttribute("target", String.valueOf(handlerEntry.getHandler()));
+                    entryElement.addContent(handlerElement);
+                }
             }
             catchTableElement.addContent(entryElement);
         }
@@ -698,12 +709,18 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 // try-catch element.
                 CatchHandlerList handlers = catches.get(i).getHandlers();
                 for (int j = 0; j < handlers.size(); ++j) {
-                    Element catchElement = new Element("catch", NS_DEX);
-                    catchElement.setAttribute("exception-type", handlers.get(j).getExceptionType()
-                            .toHuman());
-                    catchElement.setAttribute("target",
-                            String.valueOf(handlers.get(j).getHandler()));
-                    tryCatchElement.addContent(catchElement);
+                    String exceptionType = handlers.get(j).getExceptionType().toHuman();
+
+                    // We can remove the exception because a red type exception
+                    // will never be created or thrown.
+                    // This change is in sync with the one in processCatchTable
+                    if (!isRedType(exceptionType)) {
+                        Element catchElement = new Element("catch", NS_DEX);
+                        catchElement.setAttribute("exception-type", exceptionType);
+                        catchElement.setAttribute("target",
+                                String.valueOf(handlers.get(j).getHandler()));
+                        tryCatchElement.addContent(catchElement);
+                    }
                 }
                 tryCatchElements.put(catches.get(i).getStart(), tryCatchElement);
             }
@@ -820,7 +837,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * Adds local {@code var} elements to the {@code code} element for each
      * parameter and the {@code this} reference, if applicable.
      */
-    private static void processLocals(int registerSize, boolean isStatic, String classType,
+    private void processLocals(int registerSize, boolean isStatic, String classType,
             StdTypeList parameterTypes, Element codeElement, Set<String> referencedTypes) {
 
         // The parameters are stored in the last N registers.
@@ -842,8 +859,14 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             varElement.setAttribute("name", "var-register-" + (registerSize - 1 - j));
             varElement.setAttribute("register", String.valueOf(registerSize - 1 - j));
             String localsType = paramType.getType().toHuman();
+
+            // For red locals, we set them to object.
+            if (isRedType(localsType)) {
+                localsType = JLO;
+            } else {
+                referencedTypes.add(localsType);
+            }
             varElement.setAttribute("type", localsType);
-            referencedTypes.add(localsType);
             varElements.add(varElement);
         }
 
@@ -969,6 +992,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             List<Integer> sourceLinesAlreadyPut, Set<String> referencedTypes) {
         Element dexInstruction = null;
         String opname = instruction.getOpcode().getName();
+
         if (opname.equals("instance-of") || opname.equals("const-class")) {
             CstInsn isaInsn = (CstInsn) instruction;
             referencedTypes.add(isaInsn.getConstant().toHuman());
@@ -1071,8 +1095,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
 
                     // if this is a member access to a red class, we need to
                     // eliminate it.
-                    if (isRedClass(definingClassType)) {
-                        dexInstruction = createAssertElement(definingClassType, memberName);
+                    if (isRedType(definingClassType) || isRedType(memberType)) {
+                        dexInstruction = createAssertElement(definingClassType + "," + memberType,
+                                memberName);
                     }
                 } else if (constant instanceof CstString) {
                     CstString cstString = (CstString) constant;
@@ -1086,8 +1111,12 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     }
                     dexInstruction.setAttribute("value", value);
                 } else {
-                    if (opname.equals("new-instance") && isRedClass(constant.toHuman())) {
-                        dexInstruction = createAssertElement(constant.toHuman(), "<new>");
+                    // These are CstInsn instructions that we need to remove, if
+                    // their constant is a red type.
+                    List<String> instructionsToCheck = Arrays.asList(new String[] { "new-instance",
+                            "instance-of", "check-cast", "const-class" });
+                    if (instructionsToCheck.contains(opname) && isRedType(constant.toHuman())) {
+                        dexInstruction = createAssertElement(constant.toHuman(), opname);
                     } else {
                         dexInstruction.setAttribute("value", constant.toHuman());
                     }
@@ -1238,7 +1267,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         // Optimization: If the red/green class optimization is enabled, and the
         // class we are about to call is a red class, we remove the call and
         // replace it with an assert.
-        if (isRedClass(classType)) {
+        if (isRedType(classType)) {
             return createAssertElement(classType, methodName);
         }
         referencedTypes.add(classType);
@@ -1270,7 +1299,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * Processes the signature of the given method reference and returns a
      * corresponding element.
      */
-    private static Element processParameterList(CstMethodRef methodRef, List<RegisterSpec> registers) {
+    private Element processParameterList(CstMethodRef methodRef, List<RegisterSpec> registers) {
         Element result = new Element("parameters", NS_DEX);
         Prototype prototype = methodRef.getPrototype();
         StdTypeList parameters = prototype.getParameterTypes();
@@ -1284,13 +1313,18 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
 
         for (int i = 0; i < parameters.size(); ++i) {
             Element parameterElement = new Element("parameter", NS_DEX);
-            parameterElement.setAttribute("type", parameters.get(i).toHuman());
+            String parameterType = parameters.get(i).toHuman();
+            parameterElement.setAttribute("type", parameterType);
             parameterElement.setAttribute("register",
                     String.valueOf(registerNumber(registers.get(i).regString())));
             result.addContent(parameterElement);
         }
         Element returnElement = new Element("return", NS_DEX);
-        returnElement.setAttribute("type", prototype.getReturnType().getType().toHuman());
+        String returnType = prototype.getReturnType().getType().toHuman();
+        if (isRedType(returnType)) {
+            returnType = JLO;
+        }
+        returnElement.setAttribute("type", returnType);
         result.addContent(returnElement);
         return result;
     }
@@ -1299,7 +1333,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * Processes the signature of the given method reference and returns a
      * corresponding element. It uses 'registers' to add register
      */
-    private static Element processSignature(CstMethodRef methodRef, Set<String> referencedTypes) {
+    private Element processSignature(CstMethodRef methodRef, Set<String> referencedTypes) {
         Prototype prototype = methodRef.getPrototype();
         StdTypeList parameters = prototype.getParameterTypes();
 
@@ -1307,14 +1341,20 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         for (int i = 0; i < parameters.size(); ++i) {
             Element parameterElement = new Element("parameter", NS_XMLVM);
             String parameterType = parameters.get(i).toHuman();
+            if (!isRedType(parameterType)) {
+                referencedTypes.add(parameterType);
+            }
             parameterElement.setAttribute("type", parameterType);
-            referencedTypes.add(parameterType);
             result.addContent(parameterElement);
         }
         Element returnElement = new Element("return", NS_XMLVM);
         String returnType = prototype.getReturnType().getType().toHuman();
+        if (isRedType(returnType)) {
+            returnType = JLO;
+        } else {
+            referencedTypes.add(returnType);
+        }
         returnElement.setAttribute("type", returnType);
-        referencedTypes.add(returnType);
         result.addContent(returnElement);
         return result;
     }

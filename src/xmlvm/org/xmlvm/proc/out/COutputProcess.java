@@ -172,9 +172,6 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         // Add empty class name that acts as a base class for java.lang.Object
         vtables.put("", new Vtable());
 
-        // addAllXmlvmEmittingProcessesAsInput();
-        // We need the special Vtable information in order to be able to produce
-        // C code.
         addSupportedInput(RecursiveResourceLoadingProcess.class);
     }
 
@@ -598,6 +595,9 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         headerBuffer.append("#include \"xmlvm.h\"\n");
         List<String> typesForHeader = getTypesForHeader(doc.getRootElement());
         for (String i : typesForHeader) {
+            if(i.equals("java_nio_charset_CharsetEncoder")) {
+                System.out.println("BreakPoint");
+            }
             if (i.equals(inheritsFrom)) {
                 headerBuffer.append("#include \"" + i + ".h\"\n");
             }
@@ -605,8 +605,8 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         String interfaces = xmlvm.getInterfaces();
         if (interfaces != null) {
             for (String i : interfaces.split(",")) {
-                headerBuffer.append("#include \"" + i.replace('.', '_').replace('$', '_')
-                        + ".h\"\n");
+                i = i.replace('.', '_').replace('$', '_') + ".h\"\n";
+                headerBuffer.append("#include \"" + i);
             }
         }
         headerBuffer.append("\n// Circular references:\n");
@@ -647,6 +647,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                 continue;
             }
             Element cur = (Element) o;
+            String curName = cur.getName();
 
             // Ignore assertions.
             if (cur.getName().equals("assert-red-class")) {
@@ -665,8 +666,9 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                     continue;
                 }
             }
+
             Attribute a = cur.getAttribute("type");
-            if (a != null) {
+            if (a != null && !curName.equals("parameter")) {
                 seen.add(a.getValue());
             }
             a = cur.getAttribute("extends");
@@ -680,7 +682,12 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                 }
             }
             a = cur.getAttribute("class-type");
-            if (a != null) {
+
+            // In the C code we don't care about the type in move-exception and
+            // throw.
+            // We also don't care (yet) about monitor-enter etc.
+            if (a != null && !curName.equals("move-exception") && !curName.equals("throw")
+                    && !curName.startsWith("monitor-")) {
                 seen.add(a.getValue());
             }
             if (cur.getName().equals("const-class")) {
@@ -700,7 +707,7 @@ public class COutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         }
         HashSet<String> bad = new HashSet<String>();
         for (String t : new String[] { "char", "float", "double", "int", "void", "boolean",
-                "short", "byte", "float", "long" }) {
+                "short", "byte", "float", "long", "null" }) {
             bad.add(t);
         }
         List<String> toRet = new ArrayList<String>();
