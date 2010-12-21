@@ -68,10 +68,6 @@ public class XmlvmToXmlvmProcess extends XmlvmProcessImpl<XmlvmInputProcess> imp
 
             XmlvmResource resource = new XmlvmResource("someName", null,
                     org.xmlvm.proc.XmlvmResource.Type.DEX, doc, null);
-
-            if (resource == null) {
-                return false;
-            }
             xmlvmResources.add(resource);
         }
 
