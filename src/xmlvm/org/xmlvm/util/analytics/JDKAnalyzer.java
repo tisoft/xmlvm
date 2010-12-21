@@ -148,6 +148,21 @@ public class JDKAnalyzer {
         GOOD_CLASSES.add("java.security.PrivilegedActionException");
         GOOD_CLASSES.add("java.security.PrivilegedExceptionAction");
 
+        // Interfaces from which good classes are created.
+        // TODO(Sascha): Maybe do this automatically.
+        GOOD_CLASSES.add("sun.reflect.LangReflectAccess");
+        GOOD_CLASSES.add("sun.misc.JavaNetAccess");
+        GOOD_CLASSES.add("sun.misc.JavaIOAccess");
+        GOOD_CLASSES.add("org.xml.sax.EntityResolver");
+        GOOD_CLASSES.add("sun.net.spi.nameservice.NameService");
+        GOOD_CLASSES.add("org.xml.sax.ErrorHandler");
+        GOOD_CLASSES.add("sun.misc.JavaIODeleteOnExitAccess");
+        GOOD_CLASSES.add("sun.misc.SignalHandler");
+        GOOD_CLASSES.add("sun.misc.JavaLangAccess");
+        GOOD_CLASSES.add("sun.misc.JavaUtilJarAccess");
+        GOOD_CLASSES.add("sun.misc.JavaIOFileDescriptorAccess");
+        GOOD_CLASSES.add("sun.util.LocaleServiceProviderPool$LocalizedObjectGetter");
+
         BAD_CLASSES.add("java.util.jar.JarVerifier");
         BAD_CLASSES.add("java.lang.management.ManagementFactory");
         BAD_CLASSES.add("java.util.JapaneseImperialCalendar");
@@ -422,7 +437,7 @@ public class JDKAnalyzer {
         // this data.
         File resultsFile = new File(RESULTS_FILENAME);
         if (resultsFile.exists()) {
-            Log.debug(TAG, "Trying to load results from " + RESULTS_FILENAME + " ...");
+            Log.debug(TAG, "Loading results from " + RESULTS_FILENAME + " ...");
             ObjectInputStream ois;
             try {
                 ois = new ObjectInputStream(new FileInputStream(resultsFile));
