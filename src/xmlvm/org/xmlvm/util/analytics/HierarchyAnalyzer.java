@@ -8,6 +8,7 @@ import org.xmlvm.util.universalfile.UniversalFileFilter;
 
 import com.android.dx.cf.direct.DirectClassFile;
 import com.android.dx.cf.direct.StdAttributeFactory;
+import com.android.dx.rop.type.TypeList;
 
 /**
  * The HierarchyAnalyzer takes a set of classes and analyzes their hierarchy. It
@@ -68,10 +69,22 @@ public class HierarchyAnalyzer {
             final int DOT_CLASS_LENGTH = ".class".length();
             String className = fileName.substring(0, fileName.length() - DOT_CLASS_LENGTH).replace(
                     '/', '.');
+
+            // Super-class.
             if (classFile.getSuperclass() != null) {
                 String superClassName = Util.parseClassName(
                         classFile.getSuperclass().getClassType().getClassName()).toString();
                 result.addDirectSubType(className, superClassName);
+            }
+
+            // Interfaces
+            TypeList interfaces = classFile.getInterfaces();
+            if (interfaces != null) {
+                for (int i = 0; i < interfaces.size(); i++) {
+                    String interfaceName = Util
+                            .parseClassName(interfaces.getType(i).getClassName()).toString();
+                    result.addDirectSubType(className, interfaceName);
+                }
             }
         }
         return result;
