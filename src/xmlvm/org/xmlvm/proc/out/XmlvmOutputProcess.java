@@ -79,7 +79,8 @@ public class XmlvmOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> 
             return new OutputFile("");
         }
         OutputFile result = new OutputFile(writer.toString());
-        result.setFileName(resource.getFullName() + XmlvmFile.XMLVM_ENDING);
+        result.setFileName(resource.getFullName().replace('.', '_').replace('$', '_')
+                + XmlvmFile.XMLVM_ENDING);
         result.setLocation(arguments.option_out());
         return result;
     }
