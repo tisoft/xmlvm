@@ -5,34 +5,28 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISearchBar
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISearchBar
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UISearchBar)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
-#endif
 // Class declarations for org.xmlvm.iphone.UISearchBarDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISearchBarDelegate, 23)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBarDelegate
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UISearchBarDelegate
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBarDelegate \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UISearchBarDelegate \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBarDelegate \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UISearchBarDelegate \
     } org_xmlvm_iphone_UISearchBarDelegate
 
 struct org_xmlvm_iphone_UISearchBarDelegate {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UISearchBarDelegate* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBarDelegate;
+    __TIB_DEFINITION_org_xmlvm_iphone_UISearchBarDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UISearchBarDelegate;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISearchBarDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISearchBarDelegate

@@ -1,5 +1,5 @@
 
 #include "org_xml_sax_helpers_DefaultHandler.h"
 
-__CLASS_DEFINITION_org_xml_sax_helpers_DefaultHandler __CLASS_org_xml_sax_helpers_DefaultHandler;
+__TIB_DEFINITION_org_xml_sax_helpers_DefaultHandler __TIB_org_xml_sax_helpers_DefaultHandler;
 

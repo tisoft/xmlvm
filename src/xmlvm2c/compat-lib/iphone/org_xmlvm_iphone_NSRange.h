@@ -12,21 +12,23 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 // Class declarations for org.xmlvm.iphone.NSRange
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSRange, 14)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSRange
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSRange
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSRange \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSRange \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
         JAVA_INT location_; \
         JAVA_INT length_; \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSRange \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSRange \
     } org_xmlvm_iphone_NSRange
 
 struct org_xmlvm_iphone_NSRange {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSRange* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSRange;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSRange* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSRange;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSRange
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSRange

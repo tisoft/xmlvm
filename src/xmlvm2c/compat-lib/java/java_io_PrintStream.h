@@ -27,13 +27,13 @@
 
 XMLVM_DEFINE_CLASS(java_io_PrintStream, 39)
 
-#define __INSTANCE_MEMBERS_java_io_PrintStream \
-    __INSTANCE_MEMBERS_java_lang_Object
+#define __INSTANCE_FIELDS_java_io_PrintStream \
+    __INSTANCE_FIELDS_java_lang_Object
 
 
 struct java_io_PrintStream {
-    __CLASS_DEFINITION_java_io_PrintStream* __class;
-    __INSTANCE_MEMBERS_java_io_PrintStream;
+    __TIB_DEFINITION_java_io_PrintStream* tib;
+    __INSTANCE_FIELDS_java_io_PrintStream;
 };
 
 #ifndef XMLVM_FORWARD_DECL_java_io_PrintStream

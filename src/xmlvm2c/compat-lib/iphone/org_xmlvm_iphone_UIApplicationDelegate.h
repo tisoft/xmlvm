@@ -9,26 +9,24 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIApplication
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIApplication
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIApplication)
-#endif
 // Class declarations for org.xmlvm.iphone.UIApplicationDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIApplicationDelegate, 19)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIApplicationDelegate
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIApplicationDelegate
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIApplicationDelegate \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIApplicationDelegate \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIApplicationDelegate \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIApplicationDelegate \
     } org_xmlvm_iphone_UIApplicationDelegate
 
 struct org_xmlvm_iphone_UIApplicationDelegate {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIApplicationDelegate* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIApplicationDelegate;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIApplicationDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIApplicationDelegate;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIApplicationDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIApplicationDelegate

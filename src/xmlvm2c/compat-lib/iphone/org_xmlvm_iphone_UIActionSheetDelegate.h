@@ -5,10 +5,6 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheet
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheet
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIActionSheet)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
@@ -16,19 +12,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 // Class declarations for org.xmlvm.iphone.UIActionSheetDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActionSheetDelegate, 20)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheetDelegate
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIActionSheetDelegate
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheetDelegate \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIActionSheetDelegate \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheetDelegate \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIActionSheetDelegate \
     } org_xmlvm_iphone_UIActionSheetDelegate
 
 struct org_xmlvm_iphone_UIActionSheetDelegate {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIActionSheetDelegate* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheetDelegate;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIActionSheetDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIActionSheetDelegate;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheetDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheetDelegate

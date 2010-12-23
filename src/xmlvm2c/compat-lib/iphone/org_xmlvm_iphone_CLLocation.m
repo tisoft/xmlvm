@@ -3,10 +3,10 @@
 
 #include "org_xmlvm_iphone_CLLocation.h"
 
-__CLASS_DEFINITION_org_xmlvm_iphone_CLLocation __CLASS_org_xmlvm_iphone_CLLocation = {
+__TIB_DEFINITION_org_xmlvm_iphone_CLLocation __TIB_org_xmlvm_iphone_CLLocation = {
     0, // classInitialized
     "org.xmlvm.iphone.CLLocation", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_org_xmlvm_iphone_NSObject, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -15,24 +15,24 @@ __CLASS_DEFINITION_org_xmlvm_iphone_CLLocation __CLASS_org_xmlvm_iphone_CLLocati
 
 void __INIT_org_xmlvm_iphone_CLLocation()
 {
-    __CLASS_org_xmlvm_iphone_CLLocation.classInitialized = 1;
+    __TIB_org_xmlvm_iphone_CLLocation.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __CLASS_org_xmlvm_iphone_CLLocation.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLLocation;
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __TIB_org_xmlvm_iphone_CLLocation.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLLocation;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_CLLocation.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLLocation.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_CLLocation.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getAltitude__;
-    __CLASS_org_xmlvm_iphone_CLLocation.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getCoordinate__;
-    __CLASS_org_xmlvm_iphone_CLLocation.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getCourse__;
-    __CLASS_org_xmlvm_iphone_CLLocation.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getHorizontalAccuracy__;
-    __CLASS_org_xmlvm_iphone_CLLocation.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getSpeed__;
-    __CLASS_org_xmlvm_iphone_CLLocation.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getTimestamp__;
-    __CLASS_org_xmlvm_iphone_CLLocation.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getVerticalAccuracy__;
-    __CLASS_org_xmlvm_iphone_CLLocation.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_distanceFromLocation___org_xmlvm_iphone_CLLocation;
+    __TIB_org_xmlvm_iphone_CLLocation.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getAltitude__;
+    __TIB_org_xmlvm_iphone_CLLocation.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getCoordinate__;
+    __TIB_org_xmlvm_iphone_CLLocation.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getCourse__;
+    __TIB_org_xmlvm_iphone_CLLocation.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getHorizontalAccuracy__;
+    __TIB_org_xmlvm_iphone_CLLocation.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getSpeed__;
+    __TIB_org_xmlvm_iphone_CLLocation.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getTimestamp__;
+    __TIB_org_xmlvm_iphone_CLLocation.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getVerticalAccuracy__;
+    __TIB_org_xmlvm_iphone_CLLocation.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_distanceFromLocation___org_xmlvm_iphone_CLLocation;
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_CLLocation.numImplementedInterfaces = 0;
-    __CLASS_org_xmlvm_iphone_CLLocation.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
+    __TIB_org_xmlvm_iphone_CLLocation.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_CLLocation.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CLLocation]
@@ -47,9 +47,9 @@ void __DELETE_org_xmlvm_iphone_CLLocation(void* me, void* client_data)
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLLocation()
 {
-    if (!__CLASS_org_xmlvm_iphone_CLLocation.classInitialized) __INIT_org_xmlvm_iphone_CLLocation();
+    if (!__TIB_org_xmlvm_iphone_CLLocation.classInitialized) __INIT_org_xmlvm_iphone_CLLocation();
     org_xmlvm_iphone_CLLocation* me = (org_xmlvm_iphone_CLLocation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLLocation));
-    me->__class = &__CLASS_org_xmlvm_iphone_CLLocation;
+    me->tib = &__TIB_org_xmlvm_iphone_CLLocation;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CLLocation]
     //XMLVM_END_WRAPPER
     return me;

@@ -12,19 +12,21 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for org.xmlvm.iphone.UITextAutocapitalizationType
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextAutocapitalizationType, 11)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAutocapitalizationType
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITextAutocapitalizationType
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAutocapitalizationType \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UITextAutocapitalizationType \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAutocapitalizationType \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITextAutocapitalizationType \
     } org_xmlvm_iphone_UITextAutocapitalizationType
 
 struct org_xmlvm_iphone_UITextAutocapitalizationType {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UITextAutocapitalizationType* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAutocapitalizationType;
+    __TIB_DEFINITION_org_xmlvm_iphone_UITextAutocapitalizationType* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UITextAutocapitalizationType;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextAutocapitalizationType
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextAutocapitalizationType

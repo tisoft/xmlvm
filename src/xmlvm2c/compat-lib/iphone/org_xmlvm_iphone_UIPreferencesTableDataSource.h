@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPreferencesTable
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPreferencesTable
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPreferencesTable)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPreferencesTableCell
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPreferencesTableCell
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPreferencesTableCell)
@@ -20,19 +16,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPreferencesTableCell)
 // Class declarations for org.xmlvm.iphone.UIPreferencesTableDataSource
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPreferencesTableDataSource, 20)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableDataSource
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPreferencesTableDataSource
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableDataSource \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIPreferencesTableDataSource \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableDataSource \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPreferencesTableDataSource \
     } org_xmlvm_iphone_UIPreferencesTableDataSource
 
 struct org_xmlvm_iphone_UIPreferencesTableDataSource {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIPreferencesTableDataSource* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableDataSource;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIPreferencesTableDataSource* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIPreferencesTableDataSource;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPreferencesTableDataSource
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPreferencesTableDataSource

@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_java_util_ArrayList
 XMLVM_FORWARD_DECL(java_util_ArrayList)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
@@ -24,19 +20,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 // Class declarations for org.xmlvm.iphone.UIToolbar
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIToolbar, 80)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIToolbar
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIToolbar
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIToolbar \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIView; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIToolbar \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIView; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIToolbar \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIToolbar \
     } org_xmlvm_iphone_UIToolbar
 
 struct org_xmlvm_iphone_UIToolbar {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIToolbar* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIToolbar;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIToolbar* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIToolbar;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIToolbar
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIToolbar

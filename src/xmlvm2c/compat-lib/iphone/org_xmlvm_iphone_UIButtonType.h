@@ -12,19 +12,21 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for org.xmlvm.iphone.UIButtonType
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIButtonType, 11)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIButtonType
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIButtonType
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIButtonType \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIButtonType \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIButtonType \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIButtonType \
     } org_xmlvm_iphone_UIButtonType
 
 struct org_xmlvm_iphone_UIButtonType {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIButtonType* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIButtonType;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIButtonType* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIButtonType;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIButtonType
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIButtonType

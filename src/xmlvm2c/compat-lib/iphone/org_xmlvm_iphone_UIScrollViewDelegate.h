@@ -13,26 +13,24 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIScrollView)
-#endif
 // Class declarations for org.xmlvm.iphone.UIScrollViewDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIScrollViewDelegate, 24)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollViewDelegate
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIScrollViewDelegate
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollViewDelegate \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIScrollViewDelegate \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollViewDelegate \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIScrollViewDelegate \
     } org_xmlvm_iphone_UIScrollViewDelegate
 
 struct org_xmlvm_iphone_UIScrollViewDelegate {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIScrollViewDelegate* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollViewDelegate;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIScrollViewDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIScrollViewDelegate;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollViewDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollViewDelegate

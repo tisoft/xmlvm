@@ -4,10 +4,10 @@
 
 #include "org_xmlvm_iphone_NSUserDefaults.h"
 
-__CLASS_DEFINITION_org_xmlvm_iphone_NSUserDefaults __CLASS_org_xmlvm_iphone_NSUserDefaults = {
+__TIB_DEFINITION_org_xmlvm_iphone_NSUserDefaults __TIB_org_xmlvm_iphone_NSUserDefaults = {
     0, // classInitialized
     "org.xmlvm.iphone.NSUserDefaults", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_org_xmlvm_iphone_NSObject, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -16,28 +16,28 @@ __CLASS_DEFINITION_org_xmlvm_iphone_NSUserDefaults __CLASS_org_xmlvm_iphone_NSUs
 
 void __INIT_org_xmlvm_iphone_NSUserDefaults()
 {
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.classInitialized = 1;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSUserDefaults;
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __TIB_org_xmlvm_iphone_NSUserDefaults.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSUserDefaults;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_NSUserDefaults.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSUserDefaults.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String;
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_setObject___java_lang_Object_java_lang_String;
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_setInteger___int_java_lang_String;
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_integerForKey___java_lang_String;
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_synchronize__;
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_setBool___boolean_java_lang_String;
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_boolForKey___java_lang_String;
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_setFloat___float_java_lang_String;
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_floatForKey___java_lang_String;
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_dataForKey___java_lang_String;
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_stringForKey___java_lang_String;
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_remove___java_lang_String;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_setObject___java_lang_Object_java_lang_String;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_setInteger___int_java_lang_String;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_integerForKey___java_lang_String;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_synchronize__;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_setBool___boolean_java_lang_String;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_boolForKey___java_lang_String;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_setFloat___float_java_lang_String;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_floatForKey___java_lang_String;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_dataForKey___java_lang_String;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_stringForKey___java_lang_String;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_remove___java_lang_String;
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.numImplementedInterfaces = 0;
-    __CLASS_org_xmlvm_iphone_NSUserDefaults.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
+    __TIB_org_xmlvm_iphone_NSUserDefaults.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
     org_xmlvm_iphone_NSUserDefaults___CLINIT_();
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSUserDefaults]
@@ -52,9 +52,9 @@ void __DELETE_org_xmlvm_iphone_NSUserDefaults(void* me, void* client_data)
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSUserDefaults()
 {
-    if (!__CLASS_org_xmlvm_iphone_NSUserDefaults.classInitialized) __INIT_org_xmlvm_iphone_NSUserDefaults();
+    if (!__TIB_org_xmlvm_iphone_NSUserDefaults.classInitialized) __INIT_org_xmlvm_iphone_NSUserDefaults();
     org_xmlvm_iphone_NSUserDefaults* me = (org_xmlvm_iphone_NSUserDefaults*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSUserDefaults));
-    me->__class = &__CLASS_org_xmlvm_iphone_NSUserDefaults;
+    me->tib = &__TIB_org_xmlvm_iphone_NSUserDefaults;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSUserDefaults]
     //XMLVM_END_WRAPPER
     return me;
@@ -77,7 +77,7 @@ void org_xmlvm_iphone_NSUserDefaults___INIT___(JAVA_OBJECT me)
 
 JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_standardUserDefaults__()
 {
-    if (!__CLASS_org_xmlvm_iphone_NSUserDefaults.classInitialized) __INIT_org_xmlvm_iphone_NSUserDefaults();
+    if (!__TIB_org_xmlvm_iphone_NSUserDefaults.classInitialized) __INIT_org_xmlvm_iphone_NSUserDefaults();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_standardUserDefaults__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -169,7 +169,7 @@ void org_xmlvm_iphone_NSUserDefaults_remove___java_lang_String(JAVA_OBJECT me, J
 
 void org_xmlvm_iphone_NSUserDefaults___CLINIT_()
 {
-    if (!__CLASS_org_xmlvm_iphone_NSUserDefaults.classInitialized) __INIT_org_xmlvm_iphone_NSUserDefaults();
+    if (!__TIB_org_xmlvm_iphone_NSUserDefaults.classInitialized) __INIT_org_xmlvm_iphone_NSUserDefaults();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults___CLINIT___]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

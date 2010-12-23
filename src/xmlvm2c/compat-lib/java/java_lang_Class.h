@@ -19,8 +19,8 @@
  */
 
 
-#ifndef __CLASS_H__
-#define __CLASS_H__
+#ifndef __TIB_H__
+#define __TIB_H__
 
 #include "xmlvm.h"
 #include "java_lang_Object.h"
@@ -30,15 +30,15 @@
 
 XMLVM_DEFINE_CLASS(java_lang_Class, XMLVM_VTABLE_SIZE_java_lang_Class)
 
-#define __INSTANCE_MEMBERS_java_lang_Class \
-__INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_java_lang_Class \
+__INSTANCE_FIELDS_java_lang_Object; \
 struct { \
 	int dummy;\
 } java_lang_Class
 
 struct java_lang_Class {
-    __CLASS_DEFINITION_java_lang_Class* __class;
-    __INSTANCE_MEMBERS_java_lang_Class;
+    __TIB_DEFINITION_java_lang_Class* tib;
+    __INSTANCE_FIELDS_java_lang_Class;
 };
 #ifndef XMLVM_FORWARD_DECL_java_lang_Class
 #define XMLVM_FORWARD_DECL_java_lang_Class

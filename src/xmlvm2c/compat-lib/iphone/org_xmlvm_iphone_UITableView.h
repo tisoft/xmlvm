@@ -5,10 +5,6 @@
 #include "org_xmlvm_iphone_UIScrollView.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
-#define XMLVM_FORWARD_DECL_java_util_ArrayList
-XMLVM_FORWARD_DECL(java_util_ArrayList)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableViewCell)
@@ -17,46 +13,36 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableViewCell)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollView
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIScrollView)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewDataSource
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewDataSource
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableViewDataSource)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableViewDelegate)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSIndexPath)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewDataSource
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewDataSource
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableViewDataSource)
 #endif
 // Class declarations for org.xmlvm.iphone.UITableView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableView, 108)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableView
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITableView
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UITableView \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollView; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UITableView \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIScrollView; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableView \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITableView \
     } org_xmlvm_iphone_UITableView
 
 struct org_xmlvm_iphone_UITableView {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UITableView* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UITableView;
+    __TIB_DEFINITION_org_xmlvm_iphone_UITableView* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UITableView;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableView

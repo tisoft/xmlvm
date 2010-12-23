@@ -3,13 +3,8 @@
 
 #include "xmlvm.h"
 #include "java_lang_Object.h"
-#include "java_lang_Object.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_Object
 #define XMLVM_FORWARD_DECL_java_lang_Object
 XMLVM_FORWARD_DECL(java_lang_Object)
@@ -18,26 +13,24 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
-#endif
 // Class declarations for org.xmlvm.iphone.NSObject
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSObject, 14)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject void *wrappedObjCObj;
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSObject void *wrappedObjCObj;
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSObject \
     } org_xmlvm_iphone_NSObject
 
 struct org_xmlvm_iphone_NSObject {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSObject* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSObject* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject

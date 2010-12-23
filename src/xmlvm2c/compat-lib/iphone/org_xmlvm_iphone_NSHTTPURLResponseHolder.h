@@ -12,19 +12,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 // Class declarations for org.xmlvm.iphone.NSHTTPURLResponseHolder
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSHTTPURLResponseHolder, 14)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSHTTPURLResponseHolder
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSHTTPURLResponseHolder
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSHTTPURLResponseHolder \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSHTTPURLResponseHolder \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSHTTPURLResponseHolder \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSHTTPURLResponseHolder \
     } org_xmlvm_iphone_NSHTTPURLResponseHolder
 
 struct org_xmlvm_iphone_NSHTTPURLResponseHolder {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSHTTPURLResponseHolder* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSHTTPURLResponseHolder;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSHTTPURLResponseHolder* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSHTTPURLResponseHolder;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSHTTPURLResponseHolder
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSHTTPURLResponseHolder

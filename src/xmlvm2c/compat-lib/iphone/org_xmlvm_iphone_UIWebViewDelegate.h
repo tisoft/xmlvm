@@ -5,38 +5,28 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWebView)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURLRequest)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
-#endif
 // Class declarations for org.xmlvm.iphone.UIWebViewDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWebViewDelegate, 18)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewDelegate
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIWebViewDelegate
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewDelegate \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIWebViewDelegate \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewDelegate \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIWebViewDelegate \
     } org_xmlvm_iphone_UIWebViewDelegate
 
 struct org_xmlvm_iphone_UIWebViewDelegate {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIWebViewDelegate* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewDelegate;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIWebViewDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIWebViewDelegate;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebViewDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebViewDelegate

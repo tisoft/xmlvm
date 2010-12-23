@@ -13,10 +13,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPickerView)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -24,19 +20,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.UIPickerViewDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPickerViewDelegate, 19)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPickerViewDelegate
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPickerViewDelegate
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIPickerViewDelegate \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIPickerViewDelegate \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPickerViewDelegate \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPickerViewDelegate \
     } org_xmlvm_iphone_UIPickerViewDelegate
 
 struct org_xmlvm_iphone_UIPickerViewDelegate {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIPickerViewDelegate* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIPickerViewDelegate;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIPickerViewDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIPickerViewDelegate;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerViewDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerViewDelegate

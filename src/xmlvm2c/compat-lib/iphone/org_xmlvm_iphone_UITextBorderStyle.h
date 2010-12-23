@@ -12,19 +12,21 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for org.xmlvm.iphone.UITextBorderStyle
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextBorderStyle, 11)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextBorderStyle
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITextBorderStyle
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UITextBorderStyle \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UITextBorderStyle \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextBorderStyle \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITextBorderStyle \
     } org_xmlvm_iphone_UITextBorderStyle
 
 struct org_xmlvm_iphone_UITextBorderStyle {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UITextBorderStyle* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UITextBorderStyle;
+    __TIB_DEFINITION_org_xmlvm_iphone_UITextBorderStyle* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UITextBorderStyle;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextBorderStyle
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextBorderStyle

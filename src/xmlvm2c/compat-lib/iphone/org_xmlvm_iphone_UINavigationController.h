@@ -37,19 +37,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
 // Class declarations for org.xmlvm.iphone.UINavigationController
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UINavigationController, 85)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationController
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationController
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationController \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationController \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIViewController; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationController \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationController \
     } org_xmlvm_iphone_UINavigationController
 
 struct org_xmlvm_iphone_UINavigationController {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UINavigationController* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationController;
+    __TIB_DEFINITION_org_xmlvm_iphone_UINavigationController* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationController;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController

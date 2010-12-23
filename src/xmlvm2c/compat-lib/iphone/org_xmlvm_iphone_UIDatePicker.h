@@ -21,10 +21,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSLocale)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSCalendar
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSCalendar
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSCalendar)
@@ -32,19 +28,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSCalendar)
 // Class declarations for org.xmlvm.iphone.UIDatePicker
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIDatePicker, 90)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePicker
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIDatePicker
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePicker \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIDatePicker \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIControl; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePicker \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIDatePicker \
     } org_xmlvm_iphone_UIDatePicker
 
 struct org_xmlvm_iphone_UIDatePicker {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIDatePicker* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePicker;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIDatePicker* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIDatePicker;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIDatePicker
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIDatePicker

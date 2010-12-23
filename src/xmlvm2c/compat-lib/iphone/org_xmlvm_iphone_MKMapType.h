@@ -12,19 +12,21 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for org.xmlvm.iphone.MKMapType
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapType, 11)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapType
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKMapType
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapType \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_MKMapType \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapType \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKMapType \
     } org_xmlvm_iphone_MKMapType
 
 struct org_xmlvm_iphone_MKMapType {
-    __CLASS_DEFINITION_org_xmlvm_iphone_MKMapType* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapType;
+    __TIB_DEFINITION_org_xmlvm_iphone_MKMapType* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_MKMapType;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapType
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapType

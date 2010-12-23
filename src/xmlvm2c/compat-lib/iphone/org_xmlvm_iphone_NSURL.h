@@ -20,19 +20,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.NSURL
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSURL, 15)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURL
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSURL
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSURL \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSURL \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURL \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSURL \
     } org_xmlvm_iphone_NSURL
 
 struct org_xmlvm_iphone_NSURL {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSURL* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSURL;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSURL* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSURL;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL

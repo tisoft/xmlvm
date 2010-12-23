@@ -17,10 +17,6 @@ XMLVM_FORWARD_DECL(java_util_ArrayList)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarController
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarController)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
@@ -36,20 +32,22 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 // Class declarations for org.xmlvm.iphone.UITabBar
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBar, 88)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBar
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITabBar
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBar \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIView; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UITabBar \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIView; \
     struct { \
         JAVA_OBJECT tbcontrol_; \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBar \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITabBar \
     } org_xmlvm_iphone_UITabBar
 
 struct org_xmlvm_iphone_UITabBar {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UITabBar* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBar;
+    __TIB_DEFINITION_org_xmlvm_iphone_UITabBar* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UITabBar;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBar
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBar

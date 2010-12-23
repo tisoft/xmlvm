@@ -13,10 +13,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
 #define XMLVM_FORWARD_DECL_java_lang_Object
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
@@ -24,19 +20,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 // Class declarations for org.xmlvm.iphone.UIGraphics
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIGraphics, 11)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIGraphics
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIGraphics
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIGraphics \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIGraphics \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIGraphics \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIGraphics \
     } org_xmlvm_iphone_UIGraphics
 
 struct org_xmlvm_iphone_UIGraphics {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIGraphics* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIGraphics;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIGraphics* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIGraphics;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIGraphics
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIGraphics

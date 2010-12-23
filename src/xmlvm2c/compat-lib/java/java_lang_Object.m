@@ -21,16 +21,16 @@
 #include "java_lang_Object.h"
 
 
-__CLASS_DEFINITION_java_lang_Object __CLASS_java_lang_Object;
+__TIB_DEFINITION_java_lang_Object __TIB_java_lang_Object;
 
 void __INIT_java_lang_Object()
 {
-	__CLASS_java_lang_Object.className = "java.lang.Object";
-	__CLASS_java_lang_Object.extends = (__CLASS_DEFINITION_TEMPLATE*) JAVA_NULL;
-	__CLASS_java_lang_Object.numInterfaces = 0;
-	__CLASS_java_lang_Object.numImplementedInterfaces = 0;
-//	__CLASS_java_lang_Object.interfaces = (__CLASS_DEFINITION_TEMPLATE*) 0;
-	__CLASS_java_lang_Object.classInitialized = 1;
+	__TIB_java_lang_Object.className = "java.lang.Object";
+	__TIB_java_lang_Object.extends = (__TIB_DEFINITION_TEMPLATE*) JAVA_NULL;
+	__TIB_java_lang_Object.numInterfaces = 0;
+	__TIB_java_lang_Object.numImplementedInterfaces = 0;
+//	__TIB_java_lang_Object.interfaces = (__TIB_DEFINITION_TEMPLATE*) 0;
+	__TIB_java_lang_Object.classInitialized = 1;
 }
 
 void java_lang_Object___INIT___(JAVA_OBJECT me)

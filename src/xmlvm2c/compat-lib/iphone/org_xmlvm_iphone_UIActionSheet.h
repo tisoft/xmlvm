@@ -3,32 +3,11 @@
 
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_UIView.h"
-#include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIToolbar
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIToolbar
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIToolbar)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheet
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheet
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIActionSheet)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBar
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBar
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBar)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheetDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheetDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIActionSheetDelegate)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
@@ -37,19 +16,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 // Class declarations for org.xmlvm.iphone.UIActionSheet
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActionSheet, 74)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheet
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIActionSheet
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheet \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIView; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIActionSheet \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIView; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheet \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIActionSheet \
     } org_xmlvm_iphone_UIActionSheet
 
 struct org_xmlvm_iphone_UIActionSheet {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIActionSheet* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheet;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIActionSheet* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIActionSheet;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheet
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheet

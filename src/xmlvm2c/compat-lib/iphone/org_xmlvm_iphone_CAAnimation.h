@@ -16,10 +16,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAMediaTiming
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CAMediaTiming)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CAAnimation)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
@@ -35,19 +31,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.CAAnimation
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CAAnimation, 20)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CAAnimation
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CAAnimation
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_CAAnimation \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_CAAnimation \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CAAnimation \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CAAnimation \
     } org_xmlvm_iphone_CAAnimation
 
 struct org_xmlvm_iphone_CAAnimation {
-    __CLASS_DEFINITION_org_xmlvm_iphone_CAAnimation* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_CAAnimation;
+    __TIB_DEFINITION_org_xmlvm_iphone_CAAnimation* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_CAAnimation;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation

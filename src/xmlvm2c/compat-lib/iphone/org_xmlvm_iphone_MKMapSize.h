@@ -12,21 +12,23 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 // Class declarations for org.xmlvm.iphone.MKMapSize
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapSize, 14)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapSize
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKMapSize
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapSize \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_MKMapSize \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
         JAVA_DOUBLE width_; \
         JAVA_DOUBLE height_; \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapSize \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKMapSize \
     } org_xmlvm_iphone_MKMapSize
 
 struct org_xmlvm_iphone_MKMapSize {
-    __CLASS_DEFINITION_org_xmlvm_iphone_MKMapSize* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapSize;
+    __TIB_DEFINITION_org_xmlvm_iphone_MKMapSize* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_MKMapSize;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapSize
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapSize

@@ -13,10 +13,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocation)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
@@ -24,19 +20,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
 // Class declarations for org.xmlvm.iphone.CLLocation
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLLocation, 22)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocation
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CLLocation
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocation \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_CLLocation \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocation \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CLLocation \
     } org_xmlvm_iphone_CLLocation
 
 struct org_xmlvm_iphone_CLLocation {
-    __CLASS_DEFINITION_org_xmlvm_iphone_CLLocation* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocation;
+    __TIB_DEFINITION_org_xmlvm_iphone_CLLocation* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_CLLocation;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation

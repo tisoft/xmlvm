@@ -12,19 +12,21 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for org.xmlvm.iphone.UITextAutocorrectionType
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextAutocorrectionType, 11)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAutocorrectionType
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITextAutocorrectionType
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAutocorrectionType \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UITextAutocorrectionType \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAutocorrectionType \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITextAutocorrectionType \
     } org_xmlvm_iphone_UITextAutocorrectionType
 
 struct org_xmlvm_iphone_UITextAutocorrectionType {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UITextAutocorrectionType* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAutocorrectionType;
+    __TIB_DEFINITION_org_xmlvm_iphone_UITextAutocorrectionType* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UITextAutocorrectionType;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextAutocorrectionType
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextAutocorrectionType

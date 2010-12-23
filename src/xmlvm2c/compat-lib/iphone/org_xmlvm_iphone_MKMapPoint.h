@@ -12,21 +12,23 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 // Class declarations for org.xmlvm.iphone.MKMapPoint
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapPoint, 14)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapPoint
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKMapPoint
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapPoint \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_MKMapPoint \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
         JAVA_DOUBLE x_; \
         JAVA_DOUBLE y_; \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapPoint \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKMapPoint \
     } org_xmlvm_iphone_MKMapPoint
 
 struct org_xmlvm_iphone_MKMapPoint {
-    __CLASS_DEFINITION_org_xmlvm_iphone_MKMapPoint* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapPoint;
+    __TIB_DEFINITION_org_xmlvm_iphone_MKMapPoint* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_MKMapPoint;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapPoint
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapPoint

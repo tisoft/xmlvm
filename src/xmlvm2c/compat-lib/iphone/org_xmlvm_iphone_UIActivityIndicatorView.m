@@ -1,10 +1,10 @@
 
 #include "org_xmlvm_iphone_UIActivityIndicatorView.h"
 
-__CLASS_DEFINITION_org_xmlvm_iphone_UIActivityIndicatorView __CLASS_org_xmlvm_iphone_UIActivityIndicatorView = {
+__TIB_DEFINITION_org_xmlvm_iphone_UIActivityIndicatorView __TIB_org_xmlvm_iphone_UIActivityIndicatorView = {
     0, // classInitialized
     "org.xmlvm.iphone.UIActivityIndicatorView", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_org_xmlvm_iphone_UIView, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -13,22 +13,22 @@ __CLASS_DEFINITION_org_xmlvm_iphone_UIActivityIndicatorView __CLASS_org_xmlvm_ip
 
 void __INIT_org_xmlvm_iphone_UIActivityIndicatorView()
 {
-    __CLASS_org_xmlvm_iphone_UIActivityIndicatorView.classInitialized = 1;
+    __TIB_org_xmlvm_iphone_UIActivityIndicatorView.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
-    __CLASS_org_xmlvm_iphone_UIActivityIndicatorView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIActivityIndicatorView;
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    __TIB_org_xmlvm_iphone_UIActivityIndicatorView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIActivityIndicatorView;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIActivityIndicatorView.vtable, __CLASS_org_xmlvm_iphone_UIView.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIView.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIActivityIndicatorView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_setActivityIndicatorViewStyle___int;
-    __CLASS_org_xmlvm_iphone_UIActivityIndicatorView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_getActivityIndicatorViewStyle__;
-    __CLASS_org_xmlvm_iphone_UIActivityIndicatorView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_setHidesWhenStopped___boolean;
-    __CLASS_org_xmlvm_iphone_UIActivityIndicatorView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_getHidesWhenStopped__;
-    __CLASS_org_xmlvm_iphone_UIActivityIndicatorView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_startAnimating__;
-    __CLASS_org_xmlvm_iphone_UIActivityIndicatorView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_stopAnimating__;
+    __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_setActivityIndicatorViewStyle___int;
+    __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_getActivityIndicatorViewStyle__;
+    __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_setHidesWhenStopped___boolean;
+    __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_getHidesWhenStopped__;
+    __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_startAnimating__;
+    __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_stopAnimating__;
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_UIActivityIndicatorView.numImplementedInterfaces = 0;
-    __CLASS_org_xmlvm_iphone_UIActivityIndicatorView.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
+    __TIB_org_xmlvm_iphone_UIActivityIndicatorView.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UIActivityIndicatorView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIActivityIndicatorView]
@@ -43,9 +43,9 @@ void __DELETE_org_xmlvm_iphone_UIActivityIndicatorView(void* me, void* client_da
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActivityIndicatorView()
 {
-    if (!__CLASS_org_xmlvm_iphone_UIActivityIndicatorView.classInitialized) __INIT_org_xmlvm_iphone_UIActivityIndicatorView();
+    if (!__TIB_org_xmlvm_iphone_UIActivityIndicatorView.classInitialized) __INIT_org_xmlvm_iphone_UIActivityIndicatorView();
     org_xmlvm_iphone_UIActivityIndicatorView* me = (org_xmlvm_iphone_UIActivityIndicatorView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIActivityIndicatorView));
-    me->__class = &__CLASS_org_xmlvm_iphone_UIActivityIndicatorView;
+    me->tib = &__TIB_org_xmlvm_iphone_UIActivityIndicatorView;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIActivityIndicatorView]
     //XMLVM_END_WRAPPER
     return me;

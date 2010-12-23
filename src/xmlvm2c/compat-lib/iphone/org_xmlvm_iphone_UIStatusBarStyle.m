@@ -1,10 +1,10 @@
 
 #include "org_xmlvm_iphone_UIStatusBarStyle.h"
 
-__CLASS_DEFINITION_org_xmlvm_iphone_UIStatusBarStyle __CLASS_org_xmlvm_iphone_UIStatusBarStyle = {
+__TIB_DEFINITION_org_xmlvm_iphone_UIStatusBarStyle __TIB_org_xmlvm_iphone_UIStatusBarStyle = {
     0, // classInitialized
     "org.xmlvm.iphone.UIStatusBarStyle", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_java_lang_Object, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -16,16 +16,16 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UIStatusBarStyle_BlackOpaque;
 
 void __INIT_org_xmlvm_iphone_UIStatusBarStyle()
 {
-    __CLASS_org_xmlvm_iphone_UIStatusBarStyle.classInitialized = 1;
+    __TIB_org_xmlvm_iphone_UIStatusBarStyle.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_java_lang_Object.classInitialized) __INIT_java_lang_Object();
-    __CLASS_org_xmlvm_iphone_UIStatusBarStyle.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIStatusBarStyle;
+    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    __TIB_org_xmlvm_iphone_UIStatusBarStyle.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIStatusBarStyle;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIStatusBarStyle.vtable, __CLASS_java_lang_Object.vtable, sizeof(__CLASS_java_lang_Object.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIStatusBarStyle.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
     // Initialize vtable for this class
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_UIStatusBarStyle.numImplementedInterfaces = 0;
-    __CLASS_org_xmlvm_iphone_UIStatusBarStyle.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
+    __TIB_org_xmlvm_iphone_UIStatusBarStyle.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UIStatusBarStyle.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
     _STATIC_org_xmlvm_iphone_UIStatusBarStyle_Default = 0;
     _STATIC_org_xmlvm_iphone_UIStatusBarStyle_BlackTranslucent = 1;
     _STATIC_org_xmlvm_iphone_UIStatusBarStyle_BlackOpaque = 2;
@@ -43,9 +43,9 @@ void __DELETE_org_xmlvm_iphone_UIStatusBarStyle(void* me, void* client_data)
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIStatusBarStyle()
 {
-    if (!__CLASS_org_xmlvm_iphone_UIStatusBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIStatusBarStyle();
+    if (!__TIB_org_xmlvm_iphone_UIStatusBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIStatusBarStyle();
     org_xmlvm_iphone_UIStatusBarStyle* me = (org_xmlvm_iphone_UIStatusBarStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIStatusBarStyle));
-    me->__class = &__CLASS_org_xmlvm_iphone_UIStatusBarStyle;
+    me->tib = &__TIB_org_xmlvm_iphone_UIStatusBarStyle;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIStatusBarStyle]
     //XMLVM_END_WRAPPER
     return me;
@@ -61,37 +61,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIStatusBarStyle()
 
 JAVA_INT org_xmlvm_iphone_UIStatusBarStyle_GET_Default()
 {
-    if (!__CLASS_org_xmlvm_iphone_UIStatusBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIStatusBarStyle();
+    if (!__TIB_org_xmlvm_iphone_UIStatusBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIStatusBarStyle();
     return _STATIC_org_xmlvm_iphone_UIStatusBarStyle_Default;
 }
 
 void org_xmlvm_iphone_UIStatusBarStyle_PUT_Default(JAVA_INT v)
 {
-    if (!__CLASS_org_xmlvm_iphone_UIStatusBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIStatusBarStyle();
+    if (!__TIB_org_xmlvm_iphone_UIStatusBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIStatusBarStyle();
     _STATIC_org_xmlvm_iphone_UIStatusBarStyle_Default = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIStatusBarStyle_GET_BlackTranslucent()
 {
-    if (!__CLASS_org_xmlvm_iphone_UIStatusBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIStatusBarStyle();
+    if (!__TIB_org_xmlvm_iphone_UIStatusBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIStatusBarStyle();
     return _STATIC_org_xmlvm_iphone_UIStatusBarStyle_BlackTranslucent;
 }
 
 void org_xmlvm_iphone_UIStatusBarStyle_PUT_BlackTranslucent(JAVA_INT v)
 {
-    if (!__CLASS_org_xmlvm_iphone_UIStatusBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIStatusBarStyle();
+    if (!__TIB_org_xmlvm_iphone_UIStatusBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIStatusBarStyle();
     _STATIC_org_xmlvm_iphone_UIStatusBarStyle_BlackTranslucent = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIStatusBarStyle_GET_BlackOpaque()
 {
-    if (!__CLASS_org_xmlvm_iphone_UIStatusBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIStatusBarStyle();
+    if (!__TIB_org_xmlvm_iphone_UIStatusBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIStatusBarStyle();
     return _STATIC_org_xmlvm_iphone_UIStatusBarStyle_BlackOpaque;
 }
 
 void org_xmlvm_iphone_UIStatusBarStyle_PUT_BlackOpaque(JAVA_INT v)
 {
-    if (!__CLASS_org_xmlvm_iphone_UIStatusBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIStatusBarStyle();
+    if (!__TIB_org_xmlvm_iphone_UIStatusBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIStatusBarStyle();
     _STATIC_org_xmlvm_iphone_UIStatusBarStyle_BlackOpaque = v;
 }
 

@@ -2,10 +2,10 @@
 
 #include "org_xmlvm_iphone_NSTimeZone.h"
 
-__CLASS_DEFINITION_org_xmlvm_iphone_NSTimeZone __CLASS_org_xmlvm_iphone_NSTimeZone = {
+__TIB_DEFINITION_org_xmlvm_iphone_NSTimeZone __TIB_org_xmlvm_iphone_NSTimeZone = {
     0, // classInitialized
     "org.xmlvm.iphone.NSTimeZone", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_org_xmlvm_iphone_NSObject, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -14,18 +14,18 @@ __CLASS_DEFINITION_org_xmlvm_iphone_NSTimeZone __CLASS_org_xmlvm_iphone_NSTimeZo
 
 void __INIT_org_xmlvm_iphone_NSTimeZone()
 {
-    __CLASS_org_xmlvm_iphone_NSTimeZone.classInitialized = 1;
+    __TIB_org_xmlvm_iphone_NSTimeZone.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __CLASS_org_xmlvm_iphone_NSTimeZone.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSTimeZone;
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __TIB_org_xmlvm_iphone_NSTimeZone.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSTimeZone;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_NSTimeZone.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSTimeZone.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_NSTimeZone.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimeZone_name__;
-    __CLASS_org_xmlvm_iphone_NSTimeZone.vtable[4] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimeZone_toString__;
+    __TIB_org_xmlvm_iphone_NSTimeZone.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimeZone_name__;
+    __TIB_org_xmlvm_iphone_NSTimeZone.vtable[4] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimeZone_toString__;
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_NSTimeZone.numImplementedInterfaces = 0;
-    __CLASS_org_xmlvm_iphone_NSTimeZone.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
+    __TIB_org_xmlvm_iphone_NSTimeZone.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_NSTimeZone.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSTimeZone]
@@ -40,9 +40,9 @@ void __DELETE_org_xmlvm_iphone_NSTimeZone(void* me, void* client_data)
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSTimeZone()
 {
-    if (!__CLASS_org_xmlvm_iphone_NSTimeZone.classInitialized) __INIT_org_xmlvm_iphone_NSTimeZone();
+    if (!__TIB_org_xmlvm_iphone_NSTimeZone.classInitialized) __INIT_org_xmlvm_iphone_NSTimeZone();
     org_xmlvm_iphone_NSTimeZone* me = (org_xmlvm_iphone_NSTimeZone*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSTimeZone));
-    me->__class = &__CLASS_org_xmlvm_iphone_NSTimeZone;
+    me->tib = &__TIB_org_xmlvm_iphone_NSTimeZone;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSTimeZone]
     //XMLVM_END_WRAPPER
     return me;

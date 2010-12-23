@@ -12,23 +12,25 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 // Class declarations for org.xmlvm.iphone.UIEdgeInsets
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIEdgeInsets, 14)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIEdgeInsets
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIEdgeInsets
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIEdgeInsets \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIEdgeInsets \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
         JAVA_FLOAT top_; \
         JAVA_FLOAT left_; \
         JAVA_FLOAT bottom_; \
         JAVA_FLOAT right_; \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIEdgeInsets \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIEdgeInsets \
     } org_xmlvm_iphone_UIEdgeInsets
 
 struct org_xmlvm_iphone_UIEdgeInsets {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIEdgeInsets* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIEdgeInsets;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIEdgeInsets* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIEdgeInsets;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEdgeInsets
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEdgeInsets

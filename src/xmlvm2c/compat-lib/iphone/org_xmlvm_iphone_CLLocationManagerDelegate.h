@@ -5,46 +5,28 @@
 #include "java_lang_Object.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLHeading
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLHeading
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLHeading)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationManager
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationManager
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationManager)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_Object
 #define XMLVM_FORWARD_DECL_java_lang_Object
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocation)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLRegion
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLRegion
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLRegion)
-#endif
 // Class declarations for org.xmlvm.iphone.CLLocationManagerDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLLocationManagerDelegate, 18)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationManagerDelegate
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CLLocationManagerDelegate
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationManagerDelegate \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_CLLocationManagerDelegate \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationManagerDelegate \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CLLocationManagerDelegate \
     } org_xmlvm_iphone_CLLocationManagerDelegate
 
 struct org_xmlvm_iphone_CLLocationManagerDelegate {
-    __CLASS_DEFINITION_org_xmlvm_iphone_CLLocationManagerDelegate* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationManagerDelegate;
+    __TIB_DEFINITION_org_xmlvm_iphone_CLLocationManagerDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_CLLocationManagerDelegate;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationManagerDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationManagerDelegate

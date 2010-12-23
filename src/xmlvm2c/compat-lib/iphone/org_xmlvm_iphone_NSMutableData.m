@@ -1,10 +1,10 @@
 
 #include "org_xmlvm_iphone_NSMutableData.h"
 
-__CLASS_DEFINITION_org_xmlvm_iphone_NSMutableData __CLASS_org_xmlvm_iphone_NSMutableData = {
+__TIB_DEFINITION_org_xmlvm_iphone_NSMutableData __TIB_org_xmlvm_iphone_NSMutableData = {
     0, // classInitialized
     "org.xmlvm.iphone.NSMutableData", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_org_xmlvm_iphone_NSData, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSData, // extends
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -13,20 +13,20 @@ __CLASS_DEFINITION_org_xmlvm_iphone_NSMutableData __CLASS_org_xmlvm_iphone_NSMut
 
 void __INIT_org_xmlvm_iphone_NSMutableData()
 {
-    __CLASS_org_xmlvm_iphone_NSMutableData.classInitialized = 1;
+    __TIB_org_xmlvm_iphone_NSMutableData.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData();
-    __CLASS_org_xmlvm_iphone_NSMutableData.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSMutableData;
+    if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData();
+    __TIB_org_xmlvm_iphone_NSMutableData.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSMutableData;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_NSMutableData.vtable, __CLASS_org_xmlvm_iphone_NSData.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSData.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSMutableData.vtable, __TIB_org_xmlvm_iphone_NSData.vtable, sizeof(__TIB_org_xmlvm_iphone_NSData.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_NSMutableData.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_byteCount__;
-    __CLASS_org_xmlvm_iphone_NSMutableData.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_getByte___int;
-    __CLASS_org_xmlvm_iphone_NSMutableData.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_appendByte___int;
-    __CLASS_org_xmlvm_iphone_NSMutableData.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_appendBytes___byte_ARRAYTYPE;
+    __TIB_org_xmlvm_iphone_NSMutableData.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_byteCount__;
+    __TIB_org_xmlvm_iphone_NSMutableData.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_getByte___int;
+    __TIB_org_xmlvm_iphone_NSMutableData.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_appendByte___int;
+    __TIB_org_xmlvm_iphone_NSMutableData.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_appendBytes___byte_ARRAYTYPE;
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_NSMutableData.numImplementedInterfaces = 0;
-    __CLASS_org_xmlvm_iphone_NSMutableData.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
+    __TIB_org_xmlvm_iphone_NSMutableData.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_NSMutableData.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSMutableData]
@@ -41,9 +41,9 @@ void __DELETE_org_xmlvm_iphone_NSMutableData(void* me, void* client_data)
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSMutableData()
 {
-    if (!__CLASS_org_xmlvm_iphone_NSMutableData.classInitialized) __INIT_org_xmlvm_iphone_NSMutableData();
+    if (!__TIB_org_xmlvm_iphone_NSMutableData.classInitialized) __INIT_org_xmlvm_iphone_NSMutableData();
     org_xmlvm_iphone_NSMutableData* me = (org_xmlvm_iphone_NSMutableData*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSMutableData));
-    me->__class = &__CLASS_org_xmlvm_iphone_NSMutableData;
+    me->tib = &__TIB_org_xmlvm_iphone_NSMutableData;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSMutableData]
     //XMLVM_END_WRAPPER
     return me;

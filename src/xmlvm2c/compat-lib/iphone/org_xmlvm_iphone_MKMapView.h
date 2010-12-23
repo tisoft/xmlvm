@@ -3,13 +3,8 @@
 
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_UIView.h"
-#include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKCoordinateRegion
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKCoordinateRegion
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKCoordinateRegion)
@@ -22,21 +17,17 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKMapViewDelegate)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKMapRect)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEdgeInsets
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEdgeInsets
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEdgeInsets)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKUserLocation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKUserLocation
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKUserLocation)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
@@ -49,19 +40,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 // Class declarations for org.xmlvm.iphone.MKMapView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapView, 99)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapView
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKMapView
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapView \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIView; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_MKMapView \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIView; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapView \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKMapView \
     } org_xmlvm_iphone_MKMapView
 
 struct org_xmlvm_iphone_MKMapView {
-    __CLASS_DEFINITION_org_xmlvm_iphone_MKMapView* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapView;
+    __TIB_DEFINITION_org_xmlvm_iphone_MKMapView* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_MKMapView;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapView

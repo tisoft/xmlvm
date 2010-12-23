@@ -5,17 +5,25 @@
 #include "org_xmlvm_iphone_UIResponder.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewAnimationDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewAnimationDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewAnimationDelegate)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGAffineTransform)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CALayer
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CALayer
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CALayer)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
@@ -29,50 +37,32 @@ XMLVM_FORWARD_DECL(java_util_List)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CALayer
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CALayer
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CALayer)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 #endif
 // Class declarations for org.xmlvm.iphone.UIView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIView, 70)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIView
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIView \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIView \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIResponder; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIView \
     } org_xmlvm_iphone_UIView
 
 struct org_xmlvm_iphone_UIView {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIView* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIView;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIView* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIView;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView

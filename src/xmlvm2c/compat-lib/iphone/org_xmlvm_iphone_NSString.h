@@ -5,10 +5,6 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIFont)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
@@ -17,17 +13,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
 #define XMLVM_FORWARD_DECL_java_util_ArrayList
 XMLVM_FORWARD_DECL(java_util_ArrayList)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
@@ -40,19 +28,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.NSString
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSString, 14)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSString
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSString
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSString \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSString \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSString \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSString \
     } org_xmlvm_iphone_NSString
 
 struct org_xmlvm_iphone_NSString {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSString* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSString;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSString* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSString;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSString
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSString

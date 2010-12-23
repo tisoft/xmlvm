@@ -5,38 +5,28 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentQueue
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentQueue
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPaymentQueue)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
-#define XMLVM_FORWARD_DECL_java_util_ArrayList
-XMLVM_FORWARD_DECL(java_util_ArrayList)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
-#endif
 // Class declarations for org.xmlvm.iphone.SKPaymentTransactionObserver
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKPaymentTransactionObserver, 18)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionObserver
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_SKPaymentTransactionObserver
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionObserver \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_SKPaymentTransactionObserver \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionObserver \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_SKPaymentTransactionObserver \
     } org_xmlvm_iphone_SKPaymentTransactionObserver
 
 struct org_xmlvm_iphone_SKPaymentTransactionObserver {
-    __CLASS_DEFINITION_org_xmlvm_iphone_SKPaymentTransactionObserver* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionObserver;
+    __TIB_DEFINITION_org_xmlvm_iphone_SKPaymentTransactionObserver* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_SKPaymentTransactionObserver;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentTransactionObserver
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentTransactionObserver

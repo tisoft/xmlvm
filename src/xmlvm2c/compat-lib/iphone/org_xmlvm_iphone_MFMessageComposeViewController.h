@@ -24,19 +24,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.MFMessageComposeViewController
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MFMessageComposeViewController, 91)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMessageComposeViewController
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MFMessageComposeViewController
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_MFMessageComposeViewController \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationController; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_MFMessageComposeViewController \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationController; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMessageComposeViewController \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MFMessageComposeViewController \
     } org_xmlvm_iphone_MFMessageComposeViewController
 
 struct org_xmlvm_iphone_MFMessageComposeViewController {
-    __CLASS_DEFINITION_org_xmlvm_iphone_MFMessageComposeViewController* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_MFMessageComposeViewController;
+    __TIB_DEFINITION_org_xmlvm_iphone_MFMessageComposeViewController* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_MFMessageComposeViewController;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMessageComposeViewController
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMessageComposeViewController

@@ -28,11 +28,11 @@
 
 XMLVM_DEFINE_CLASS(java_lang_Object, XMLVM_VTABLE_SIZE_java_lang_Object)
 
-#define __INSTANCE_MEMBERS_java_lang_Object int dummy
+#define __INSTANCE_FIELDS_java_lang_Object int dummy
 
 struct java_lang_Object {
-    __CLASS_DEFINITION_java_lang_Object* __class;
-    __INSTANCE_MEMBERS_java_lang_Object;
+    __TIB_DEFINITION_java_lang_Object* tib;
+    __INSTANCE_FIELDS_java_lang_Object;
 };
 
 #ifndef XMLVM_FORWARD_DECL_java_lang_Object

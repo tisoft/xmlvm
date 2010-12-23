@@ -17,10 +17,6 @@ XMLVM_FORWARD_DECL(java_util_ArrayList)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISearchBarDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UISearchBarDelegate)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
@@ -32,19 +28,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.UISearchBar
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISearchBar, 101)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBar
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UISearchBar
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBar \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UISearchBar \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIControl; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBar \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UISearchBar \
     } org_xmlvm_iphone_UISearchBar
 
 struct org_xmlvm_iphone_UISearchBar {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UISearchBar* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBar;
+    __TIB_DEFINITION_org_xmlvm_iphone_UISearchBar* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UISearchBar;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISearchBar
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISearchBar

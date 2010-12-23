@@ -52,6 +52,6 @@ typedef struct java_util_Collection java_util_Collection;
 #define XMLVM_VTABLE_IDX_java_util_Collection_equals___java_lang_Object 2
 #define XMLVM_VTABLE_IDX_java_util_Collection_hashCode__ 1
 
-void __INIT_java_util_Collection(__CLASS_DEFINITION_TEMPLATE** interface);
+void __INIT_java_util_Collection(__TIB_DEFINITION_TEMPLATE** interface);
 
 #endif

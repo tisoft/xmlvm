@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
@@ -28,19 +24,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDateComponents)
 // Class declarations for org.xmlvm.iphone.NSCalendar
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSCalendar, 18)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSCalendar
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSCalendar
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSCalendar \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSCalendar \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSCalendar \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSCalendar \
     } org_xmlvm_iphone_NSCalendar
 
 struct org_xmlvm_iphone_NSCalendar {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSCalendar* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSCalendar;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSCalendar* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSCalendar;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSCalendar
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSCalendar

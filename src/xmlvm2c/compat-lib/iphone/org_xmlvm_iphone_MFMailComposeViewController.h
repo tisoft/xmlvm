@@ -5,46 +5,32 @@
 #include "org_xmlvm_iphone_UINavigationController.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationController)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
-#define XMLVM_FORWARD_DECL_java_util_ArrayList
-XMLVM_FORWARD_DECL(java_util_ArrayList)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMailComposeViewControllerDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMailComposeViewControllerDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MFMailComposeViewControllerDelegate)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSString
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSString
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSString)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
-#endif
 // Class declarations for org.xmlvm.iphone.MFMailComposeViewController
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MFMailComposeViewController, 93)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewController
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MFMailComposeViewController
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewController \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationController; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_MFMailComposeViewController \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationController; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewController \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MFMailComposeViewController \
     } org_xmlvm_iphone_MFMailComposeViewController
 
 struct org_xmlvm_iphone_MFMailComposeViewController {
-    __CLASS_DEFINITION_org_xmlvm_iphone_MFMailComposeViewController* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewController;
+    __TIB_DEFINITION_org_xmlvm_iphone_MFMailComposeViewController* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_MFMailComposeViewController;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMailComposeViewController
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMailComposeViewController

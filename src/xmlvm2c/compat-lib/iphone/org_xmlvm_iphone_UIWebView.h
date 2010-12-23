@@ -9,17 +9,9 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURLRequest)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebViewDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebViewDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWebViewDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
@@ -32,19 +24,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 // Class declarations for org.xmlvm.iphone.UIWebView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWebView, 79)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebView
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIWebView
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebView \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIView; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIWebView \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIView; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebView \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIWebView \
     } org_xmlvm_iphone_UIWebView
 
 struct org_xmlvm_iphone_UIWebView {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIWebView* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebView;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIWebView* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIWebView;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebView

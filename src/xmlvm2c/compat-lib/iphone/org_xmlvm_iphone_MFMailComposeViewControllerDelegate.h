@@ -5,34 +5,28 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMailComposeViewController
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMailComposeViewController
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_MFMailComposeViewController)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
-#endif
 // Class declarations for org.xmlvm.iphone.MFMailComposeViewControllerDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MFMailComposeViewControllerDelegate, 15)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate \
     } org_xmlvm_iphone_MFMailComposeViewControllerDelegate
 
 struct org_xmlvm_iphone_MFMailComposeViewControllerDelegate {
-    __CLASS_DEFINITION_org_xmlvm_iphone_MFMailComposeViewControllerDelegate* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate;
+    __TIB_DEFINITION_org_xmlvm_iphone_MFMailComposeViewControllerDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMailComposeViewControllerDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMailComposeViewControllerDelegate

@@ -12,19 +12,21 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for org.xmlvm.iphone.UIBarButtonSystemItem
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarButtonSystemItem, 11)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarButtonSystemItem
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIBarButtonSystemItem
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarButtonSystemItem \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIBarButtonSystemItem \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarButtonSystemItem \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIBarButtonSystemItem \
     } org_xmlvm_iphone_UIBarButtonSystemItem
 
 struct org_xmlvm_iphone_UIBarButtonSystemItem {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIBarButtonSystemItem* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarButtonSystemItem;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIBarButtonSystemItem* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIBarButtonSystemItem;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonSystemItem
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonSystemItem

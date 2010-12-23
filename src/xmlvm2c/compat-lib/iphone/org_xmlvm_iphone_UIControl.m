@@ -1,15 +1,11 @@
-#include "org_xmlvm_iphone_UIEvent.h"
-#include "java_util_Set.h"
-#include "org_xmlvm_iphone_CGRect.h"
 #include "java_util_Map.h"
-#include "org_xmlvm_iphone_UIControlDelegate.h"
 
 #include "org_xmlvm_iphone_UIControl.h"
 
-__CLASS_DEFINITION_org_xmlvm_iphone_UIControl __CLASS_org_xmlvm_iphone_UIControl = {
+__TIB_DEFINITION_org_xmlvm_iphone_UIControl __TIB_org_xmlvm_iphone_UIControl = {
     0, // classInitialized
     "org.xmlvm.iphone.UIControl", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_org_xmlvm_iphone_UIView, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -18,18 +14,18 @@ __CLASS_DEFINITION_org_xmlvm_iphone_UIControl __CLASS_org_xmlvm_iphone_UIControl
 
 void __INIT_org_xmlvm_iphone_UIControl()
 {
-    __CLASS_org_xmlvm_iphone_UIControl.classInitialized = 1;
+    __TIB_org_xmlvm_iphone_UIControl.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
-    __CLASS_org_xmlvm_iphone_UIControl.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIControl;
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    __TIB_org_xmlvm_iphone_UIControl.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIControl;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIControl.vtable, __CLASS_org_xmlvm_iphone_UIView.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIView.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIControl.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIControl.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int;
-    __CLASS_org_xmlvm_iphone_UIControl.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+    __TIB_org_xmlvm_iphone_UIControl.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int;
+    __TIB_org_xmlvm_iphone_UIControl.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_UIControl.numImplementedInterfaces = 0;
-    __CLASS_org_xmlvm_iphone_UIControl.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
+    __TIB_org_xmlvm_iphone_UIControl.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UIControl.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIControl]
@@ -44,10 +40,10 @@ void __DELETE_org_xmlvm_iphone_UIControl(void* me, void* client_data)
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIControl()
 {
-    if (!__CLASS_org_xmlvm_iphone_UIControl.classInitialized) __INIT_org_xmlvm_iphone_UIControl();
+    if (!__TIB_org_xmlvm_iphone_UIControl.classInitialized) __INIT_org_xmlvm_iphone_UIControl();
     org_xmlvm_iphone_UIControl* me = (org_xmlvm_iphone_UIControl*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIControl));
-    me->__class = &__CLASS_org_xmlvm_iphone_UIControl;
-    me->org_xmlvm_iphone_UIControl.delegates_ = (java_util_Map*) JAVA_NULL;
+    me->tib = &__TIB_org_xmlvm_iphone_UIControl;
+    me->fields.org_xmlvm_iphone_UIControl.delegates_ = (java_util_Map*) JAVA_NULL;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIControl]
     //XMLVM_END_WRAPPER
     return me;

@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControl)
@@ -29,10 +25,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIFont)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_Set
-#define XMLVM_FORWARD_DECL_java_util_Set
-XMLVM_FORWARD_DECL(java_util_Set)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
@@ -44,19 +36,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.UIButton
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIButton, 91)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIButton
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIButton
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIButton \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIButton \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIControl; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIButton \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIButton \
     } org_xmlvm_iphone_UIButton
 
 struct org_xmlvm_iphone_UIButton {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIButton* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIButton;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIButton* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIButton;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIButton
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIButton

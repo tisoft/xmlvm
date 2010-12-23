@@ -1,11 +1,10 @@
-#include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_NSStringInputStream.h"
 
-__CLASS_DEFINITION_org_xmlvm_iphone_NSStringInputStream __CLASS_org_xmlvm_iphone_NSStringInputStream = {
+__TIB_DEFINITION_org_xmlvm_iphone_NSStringInputStream __TIB_org_xmlvm_iphone_NSStringInputStream = {
     0, // classInitialized
     "org.xmlvm.iphone.NSStringInputStream", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_java_io_InputStream, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_io_InputStream, // extends
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -14,27 +13,27 @@ __CLASS_DEFINITION_org_xmlvm_iphone_NSStringInputStream __CLASS_org_xmlvm_iphone
 
 void __INIT_org_xmlvm_iphone_NSStringInputStream()
 {
-    __CLASS_org_xmlvm_iphone_NSStringInputStream.classInitialized = 1;
+    __TIB_org_xmlvm_iphone_NSStringInputStream.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_java_io_InputStream.classInitialized) __INIT_java_io_InputStream();
-    __CLASS_org_xmlvm_iphone_NSStringInputStream.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSStringInputStream;
+    if (!__TIB_java_io_InputStream.classInitialized) __INIT_java_io_InputStream();
+    __TIB_org_xmlvm_iphone_NSStringInputStream.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSStringInputStream;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_NSStringInputStream.vtable, __CLASS_java_io_InputStream.vtable, sizeof(__CLASS_java_io_InputStream.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSStringInputStream.vtable, __TIB_java_io_InputStream.vtable, sizeof(__TIB_java_io_InputStream.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_NSStringInputStream.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_available__;
-    __CLASS_org_xmlvm_iphone_NSStringInputStream.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_close__;
-    __CLASS_org_xmlvm_iphone_NSStringInputStream.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_mark___int;
-    __CLASS_org_xmlvm_iphone_NSStringInputStream.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_markSupported__;
-    __CLASS_org_xmlvm_iphone_NSStringInputStream.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE_int_int;
-    __CLASS_org_xmlvm_iphone_NSStringInputStream.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE;
-    __CLASS_org_xmlvm_iphone_NSStringInputStream.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_reset__;
-    __CLASS_org_xmlvm_iphone_NSStringInputStream.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_skip___long;
-    __CLASS_org_xmlvm_iphone_NSStringInputStream.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_read__;
+    __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_available__;
+    __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_close__;
+    __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_mark___int;
+    __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_markSupported__;
+    __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE_int_int;
+    __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE;
+    __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_reset__;
+    __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_skip___long;
+    __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_read__;
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_NSStringInputStream.numImplementedInterfaces = 1;
-    __CLASS_org_xmlvm_iphone_NSStringInputStream.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 1);
-    __INIT_java_io_Closeable(&__CLASS_org_xmlvm_iphone_NSStringInputStream.implementedInterfaces[0][0]);
-    __CLASS_org_xmlvm_iphone_NSStringInputStream.implementedInterfaces[0][0]->vtable[11] = __CLASS_org_xmlvm_iphone_NSStringInputStream.vtable[16];
+    __TIB_org_xmlvm_iphone_NSStringInputStream.numImplementedInterfaces = 1;
+    __TIB_org_xmlvm_iphone_NSStringInputStream.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 1);
+    __INIT_java_io_Closeable(&__TIB_org_xmlvm_iphone_NSStringInputStream.implementedInterfaces[0][0]);
+    __TIB_org_xmlvm_iphone_NSStringInputStream.implementedInterfaces[0][0]->vtable[11] = __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[16];
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSStringInputStream]
@@ -49,9 +48,9 @@ void __DELETE_org_xmlvm_iphone_NSStringInputStream(void* me, void* client_data)
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSStringInputStream()
 {
-    if (!__CLASS_org_xmlvm_iphone_NSStringInputStream.classInitialized) __INIT_org_xmlvm_iphone_NSStringInputStream();
+    if (!__TIB_org_xmlvm_iphone_NSStringInputStream.classInitialized) __INIT_org_xmlvm_iphone_NSStringInputStream();
     org_xmlvm_iphone_NSStringInputStream* me = (org_xmlvm_iphone_NSStringInputStream*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSStringInputStream));
-    me->__class = &__CLASS_org_xmlvm_iphone_NSStringInputStream;
+    me->tib = &__TIB_org_xmlvm_iphone_NSStringInputStream;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSStringInputStream]
     //XMLVM_END_WRAPPER
     return me;

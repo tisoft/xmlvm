@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarItem
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarItem)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarItem
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarItem
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarItem)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -20,19 +16,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.UITabBarItem
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBarItem, 29)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarItem
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITabBarItem
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarItem \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarItem; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UITabBarItem \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIBarItem; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarItem \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITabBarItem \
     } org_xmlvm_iphone_UITabBarItem
 
 struct org_xmlvm_iphone_UITabBarItem {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UITabBarItem* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarItem;
+    __TIB_DEFINITION_org_xmlvm_iphone_UITabBarItem* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UITabBarItem;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarItem
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarItem

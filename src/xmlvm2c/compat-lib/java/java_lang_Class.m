@@ -22,14 +22,14 @@
 #include "java_lang_Class.h"
 
 
-__CLASS_DEFINITION_java_lang_Class __CLASS_java_lang_Class;
+__TIB_DEFINITION_java_lang_Class __TIB_java_lang_Class;
 
 void __INIT_java_lang_Class()
 {
-	__CLASS_java_lang_Class.className = "java.lang.Class";
-	__CLASS_java_lang_Class.extends = (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_java_lang_Object;
-	__CLASS_java_lang_Class.numImplementedInterfaces = 0;
-	__CLASS_java_lang_Class.classInitialized = 1;
+	__TIB_java_lang_Class.className = "java.lang.Class";
+	__TIB_java_lang_Class.extends = (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object;
+	__TIB_java_lang_Class.numImplementedInterfaces = 0;
+	__TIB_java_lang_Class.classInitialized = 1;
 }
 
 JAVA_OBJECT __NEW_java_lang_Class()

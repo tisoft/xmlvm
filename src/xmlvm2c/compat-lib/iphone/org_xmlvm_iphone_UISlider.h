@@ -5,38 +5,28 @@
 #include "org_xmlvm_iphone_UIControl.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControl)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_Set
-#define XMLVM_FORWARD_DECL_java_util_Set
-XMLVM_FORWARD_DECL(java_util_Set)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
-#endif
 // Class declarations for org.xmlvm.iphone.UISlider
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISlider, 77)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UISlider
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UISlider
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UISlider \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UISlider \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIControl; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UISlider \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UISlider \
     } org_xmlvm_iphone_UISlider
 
 struct org_xmlvm_iphone_UISlider {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UISlider* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UISlider;
+    __TIB_DEFINITION_org_xmlvm_iphone_UISlider* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UISlider;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISlider
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISlider

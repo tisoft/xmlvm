@@ -20,19 +20,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.CLHeading
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLHeading, 22)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CLHeading
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CLHeading
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_CLHeading \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_CLHeading \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CLHeading \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CLHeading \
     } org_xmlvm_iphone_CLHeading
 
 struct org_xmlvm_iphone_CLHeading {
-    __CLASS_DEFINITION_org_xmlvm_iphone_CLHeading* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_CLHeading;
+    __TIB_DEFINITION_org_xmlvm_iphone_CLHeading* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_CLHeading;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLHeading
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLHeading

@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGBitmapContext
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGBitmapContext)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGImage
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGImage
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGImage)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
@@ -20,19 +16,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 // Class declarations for org.xmlvm.iphone.CGBitmapContext
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGBitmapContext, 42)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CGBitmapContext
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGBitmapContext
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_CGBitmapContext \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_CGContext; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_CGBitmapContext \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_CGContext; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CGBitmapContext \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGBitmapContext \
     } org_xmlvm_iphone_CGBitmapContext
 
 struct org_xmlvm_iphone_CGBitmapContext {
-    __CLASS_DEFINITION_org_xmlvm_iphone_CGBitmapContext* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_CGBitmapContext;
+    __TIB_DEFINITION_org_xmlvm_iphone_CGBitmapContext* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_CGBitmapContext;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGBitmapContext
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGBitmapContext

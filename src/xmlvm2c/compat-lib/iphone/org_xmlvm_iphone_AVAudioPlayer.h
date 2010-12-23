@@ -21,10 +21,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_AVAudioPlayer)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSErrorHolder)
-#endif
 #ifndef XMLVM_FORWARD_DECL_javazoom_jlgui_basicplayer_BasicPlayer
 #define XMLVM_FORWARD_DECL_javazoom_jlgui_basicplayer_BasicPlayer
 XMLVM_FORWARD_DECL(javazoom_jlgui_basicplayer_BasicPlayer)
@@ -36,19 +32,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_AVAudioPlayerDelegate)
 // Class declarations for org.xmlvm.iphone.AVAudioPlayer
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_AVAudioPlayer, 32)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_AVAudioPlayer
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_AVAudioPlayer
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_AVAudioPlayer \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_AVAudioPlayer \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_AVAudioPlayer \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_AVAudioPlayer \
     } org_xmlvm_iphone_AVAudioPlayer
 
 struct org_xmlvm_iphone_AVAudioPlayer {
-    __CLASS_DEFINITION_org_xmlvm_iphone_AVAudioPlayer* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_AVAudioPlayer;
+    __TIB_DEFINITION_org_xmlvm_iphone_AVAudioPlayer* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_AVAudioPlayer;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_AVAudioPlayer
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_AVAudioPlayer

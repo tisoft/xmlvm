@@ -17,10 +17,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPayment
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPayment)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKProduct
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKProduct
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKProduct)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -28,19 +24,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.SKPayment
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKPayment, 17)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPayment
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_SKPayment
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_SKPayment \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_SKPayment \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPayment \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_SKPayment \
     } org_xmlvm_iphone_SKPayment
 
 struct org_xmlvm_iphone_SKPayment {
-    __CLASS_DEFINITION_org_xmlvm_iphone_SKPayment* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_SKPayment;
+    __TIB_DEFINITION_org_xmlvm_iphone_SKPayment* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_SKPayment;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPayment
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPayment

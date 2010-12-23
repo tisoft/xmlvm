@@ -16,19 +16,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGAffineTransform)
 // Class declarations for org.xmlvm.iphone.CGAffineTransform
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGAffineTransform, 14)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CGAffineTransform
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGAffineTransform
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_CGAffineTransform \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_CGAffineTransform \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CGAffineTransform \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGAffineTransform \
     } org_xmlvm_iphone_CGAffineTransform
 
 struct org_xmlvm_iphone_CGAffineTransform {
-    __CLASS_DEFINITION_org_xmlvm_iphone_CGAffineTransform* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_CGAffineTransform;
+    __TIB_DEFINITION_org_xmlvm_iphone_CGAffineTransform* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_CGAffineTransform;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform

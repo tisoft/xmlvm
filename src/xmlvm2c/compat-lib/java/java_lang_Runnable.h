@@ -20,6 +20,6 @@ typedef struct java_lang_Runnable java_lang_Runnable;
 #define XMLVM_VTABLE_SIZE_java_lang_Runnable 12
 #define XMLVM_VTABLE_IDX_java_lang_Runnable_run__ 11
 
-void __INIT_java_lang_Runnable(__CLASS_DEFINITION_TEMPLATE** interface);
+void __INIT_java_lang_Runnable(__TIB_DEFINITION_TEMPLATE** interface);
 
 #endif

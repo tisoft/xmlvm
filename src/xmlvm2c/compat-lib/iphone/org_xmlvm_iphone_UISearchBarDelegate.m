@@ -1,12 +1,10 @@
-#include "org_xmlvm_iphone_UISearchBar.h"
-#include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_UISearchBarDelegate.h"
 
-__CLASS_DEFINITION_org_xmlvm_iphone_UISearchBarDelegate __CLASS_org_xmlvm_iphone_UISearchBarDelegate = {
+__TIB_DEFINITION_org_xmlvm_iphone_UISearchBarDelegate __TIB_org_xmlvm_iphone_UISearchBarDelegate = {
     0, // classInitialized
     "org.xmlvm.iphone.UISearchBarDelegate", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_org_xmlvm_iphone_NSObject, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -15,25 +13,25 @@ __CLASS_DEFINITION_org_xmlvm_iphone_UISearchBarDelegate __CLASS_org_xmlvm_iphone
 
 void __INIT_org_xmlvm_iphone_UISearchBarDelegate()
 {
-    __CLASS_org_xmlvm_iphone_UISearchBarDelegate.classInitialized = 1;
+    __TIB_org_xmlvm_iphone_UISearchBarDelegate.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __CLASS_org_xmlvm_iphone_UISearchBarDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UISearchBarDelegate;
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __TIB_org_xmlvm_iphone_UISearchBarDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UISearchBarDelegate;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UISearchBarDelegate.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UISearchBarDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarTextDidChange___org_xmlvm_iphone_UISearchBar_java_lang_String;
-    __CLASS_org_xmlvm_iphone_UISearchBarDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarShouldBeginEditing___org_xmlvm_iphone_UISearchBar;
-    __CLASS_org_xmlvm_iphone_UISearchBarDelegate.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarTextDidBeginEditing___org_xmlvm_iphone_UISearchBar;
-    __CLASS_org_xmlvm_iphone_UISearchBarDelegate.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarShouldEndEditing___org_xmlvm_iphone_UISearchBar;
-    __CLASS_org_xmlvm_iphone_UISearchBarDelegate.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarTextDidEndEditing___org_xmlvm_iphone_UISearchBar;
-    __CLASS_org_xmlvm_iphone_UISearchBarDelegate.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarBookmarkButtonClicked___org_xmlvm_iphone_UISearchBar;
-    __CLASS_org_xmlvm_iphone_UISearchBarDelegate.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarCancelButtonClicked___org_xmlvm_iphone_UISearchBar;
-    __CLASS_org_xmlvm_iphone_UISearchBarDelegate.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarSearchButtonClicked___org_xmlvm_iphone_UISearchBar;
-    __CLASS_org_xmlvm_iphone_UISearchBarDelegate.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarSelectedScopeButtonIndexDidChange___org_xmlvm_iphone_UISearchBar_int;
+    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarTextDidChange___org_xmlvm_iphone_UISearchBar_java_lang_String;
+    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarShouldBeginEditing___org_xmlvm_iphone_UISearchBar;
+    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarTextDidBeginEditing___org_xmlvm_iphone_UISearchBar;
+    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarShouldEndEditing___org_xmlvm_iphone_UISearchBar;
+    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarTextDidEndEditing___org_xmlvm_iphone_UISearchBar;
+    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarBookmarkButtonClicked___org_xmlvm_iphone_UISearchBar;
+    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarCancelButtonClicked___org_xmlvm_iphone_UISearchBar;
+    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarSearchButtonClicked___org_xmlvm_iphone_UISearchBar;
+    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarSelectedScopeButtonIndexDidChange___org_xmlvm_iphone_UISearchBar_int;
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_UISearchBarDelegate.numImplementedInterfaces = 0;
-    __CLASS_org_xmlvm_iphone_UISearchBarDelegate.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
+    __TIB_org_xmlvm_iphone_UISearchBarDelegate.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UISearchBarDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UISearchBarDelegate]
@@ -48,9 +46,9 @@ void __DELETE_org_xmlvm_iphone_UISearchBarDelegate(void* me, void* client_data)
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISearchBarDelegate()
 {
-    if (!__CLASS_org_xmlvm_iphone_UISearchBarDelegate.classInitialized) __INIT_org_xmlvm_iphone_UISearchBarDelegate();
+    if (!__TIB_org_xmlvm_iphone_UISearchBarDelegate.classInitialized) __INIT_org_xmlvm_iphone_UISearchBarDelegate();
     org_xmlvm_iphone_UISearchBarDelegate* me = (org_xmlvm_iphone_UISearchBarDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UISearchBarDelegate));
-    me->__class = &__CLASS_org_xmlvm_iphone_UISearchBarDelegate;
+    me->tib = &__TIB_org_xmlvm_iphone_UISearchBarDelegate;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UISearchBarDelegate]
     //XMLVM_END_WRAPPER
     return me;

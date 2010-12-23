@@ -20,19 +20,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.MKUserLocation
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKUserLocation, 20)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MKUserLocation
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKUserLocation
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_MKUserLocation \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_MKUserLocation \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MKUserLocation \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKUserLocation \
     } org_xmlvm_iphone_MKUserLocation
 
 struct org_xmlvm_iphone_MKUserLocation {
-    __CLASS_DEFINITION_org_xmlvm_iphone_MKUserLocation* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_MKUserLocation;
+    __TIB_DEFINITION_org_xmlvm_iphone_MKUserLocation* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_MKUserLocation;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKUserLocation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKUserLocation

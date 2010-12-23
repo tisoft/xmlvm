@@ -12,19 +12,21 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for org.xmlvm.iphone.UIUserInterfaceIdiom
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIUserInterfaceIdiom, 11)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIUserInterfaceIdiom
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIUserInterfaceIdiom
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIUserInterfaceIdiom \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIUserInterfaceIdiom \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIUserInterfaceIdiom \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIUserInterfaceIdiom \
     } org_xmlvm_iphone_UIUserInterfaceIdiom
 
 struct org_xmlvm_iphone_UIUserInterfaceIdiom {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIUserInterfaceIdiom* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIUserInterfaceIdiom;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIUserInterfaceIdiom* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIUserInterfaceIdiom;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIUserInterfaceIdiom
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIUserInterfaceIdiom

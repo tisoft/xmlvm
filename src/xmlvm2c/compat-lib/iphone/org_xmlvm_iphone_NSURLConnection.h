@@ -5,10 +5,6 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSMutableURLRequest
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSMutableURLRequest
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSMutableURLRequest)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
@@ -21,34 +17,24 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLConnection
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURLConnection)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSHTTPURLResponseHolder
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSHTTPURLResponseHolder
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSHTTPURLResponseHolder)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLConnectionDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLConnectionDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURLConnectionDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSErrorHolder)
-#endif
 // Class declarations for org.xmlvm.iphone.NSURLConnection
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSURLConnection, 14)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLConnection
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSURLConnection
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLConnection \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSURLConnection \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLConnection \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSURLConnection \
     } org_xmlvm_iphone_NSURLConnection
 
 struct org_xmlvm_iphone_NSURLConnection {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSURLConnection* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLConnection;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSURLConnection* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSURLConnection;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLConnection
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLConnection

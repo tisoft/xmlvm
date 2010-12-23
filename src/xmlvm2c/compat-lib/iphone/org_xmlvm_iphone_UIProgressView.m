@@ -1,10 +1,10 @@
 
 #include "org_xmlvm_iphone_UIProgressView.h"
 
-__CLASS_DEFINITION_org_xmlvm_iphone_UIProgressView __CLASS_org_xmlvm_iphone_UIProgressView = {
+__TIB_DEFINITION_org_xmlvm_iphone_UIProgressView __TIB_org_xmlvm_iphone_UIProgressView = {
     0, // classInitialized
     "org.xmlvm.iphone.UIProgressView", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_org_xmlvm_iphone_UIControl, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIControl, // extends
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -13,20 +13,20 @@ __CLASS_DEFINITION_org_xmlvm_iphone_UIProgressView __CLASS_org_xmlvm_iphone_UIPr
 
 void __INIT_org_xmlvm_iphone_UIProgressView()
 {
-    __CLASS_org_xmlvm_iphone_UIProgressView.classInitialized = 1;
+    __TIB_org_xmlvm_iphone_UIProgressView.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_org_xmlvm_iphone_UIControl.classInitialized) __INIT_org_xmlvm_iphone_UIControl();
-    __CLASS_org_xmlvm_iphone_UIProgressView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIProgressView;
+    if (!__TIB_org_xmlvm_iphone_UIControl.classInitialized) __INIT_org_xmlvm_iphone_UIControl();
+    __TIB_org_xmlvm_iphone_UIProgressView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIProgressView;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIProgressView.vtable, __CLASS_org_xmlvm_iphone_UIControl.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIControl.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIProgressView.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIProgressView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgress___float;
-    __CLASS_org_xmlvm_iphone_UIProgressView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgress__;
-    __CLASS_org_xmlvm_iphone_UIProgressView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgressViewStyle__;
-    __CLASS_org_xmlvm_iphone_UIProgressView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgressViewStyle___int;
+    __TIB_org_xmlvm_iphone_UIProgressView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgress___float;
+    __TIB_org_xmlvm_iphone_UIProgressView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgress__;
+    __TIB_org_xmlvm_iphone_UIProgressView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgressViewStyle__;
+    __TIB_org_xmlvm_iphone_UIProgressView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgressViewStyle___int;
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_UIProgressView.numImplementedInterfaces = 0;
-    __CLASS_org_xmlvm_iphone_UIProgressView.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
+    __TIB_org_xmlvm_iphone_UIProgressView.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UIProgressView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIProgressView]
@@ -41,9 +41,9 @@ void __DELETE_org_xmlvm_iphone_UIProgressView(void* me, void* client_data)
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIProgressView()
 {
-    if (!__CLASS_org_xmlvm_iphone_UIProgressView.classInitialized) __INIT_org_xmlvm_iphone_UIProgressView();
+    if (!__TIB_org_xmlvm_iphone_UIProgressView.classInitialized) __INIT_org_xmlvm_iphone_UIProgressView();
     org_xmlvm_iphone_UIProgressView* me = (org_xmlvm_iphone_UIProgressView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIProgressView));
-    me->__class = &__CLASS_org_xmlvm_iphone_UIProgressView;
+    me->tib = &__TIB_org_xmlvm_iphone_UIProgressView;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIProgressView]
     //XMLVM_END_WRAPPER
     return me;

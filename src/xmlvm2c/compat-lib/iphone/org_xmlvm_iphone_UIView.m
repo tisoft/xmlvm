@@ -1,21 +1,18 @@
-#include "org_xmlvm_iphone_UIViewAnimationDelegate.h"
 #include "org_xmlvm_iphone_CGPoint.h"
+#include "org_xmlvm_iphone_UIWindow.h"
 #include "org_xmlvm_iphone_CGAffineTransform.h"
+#include "org_xmlvm_iphone_CALayer.h"
 #include "java_util_List.h"
 #include "org_xmlvm_iphone_CGSize.h"
-#include "org_xmlvm_iphone_UIColor.h"
 #include "org_xmlvm_iphone_CGRect.h"
-#include "org_xmlvm_iphone_UIWindow.h"
-#include "org_xmlvm_iphone_NSDate.h"
-#include "org_xmlvm_iphone_CALayer.h"
-#include "java_lang_String.h"
+#include "org_xmlvm_iphone_UIColor.h"
 
 #include "org_xmlvm_iphone_UIView.h"
 
-__CLASS_DEFINITION_org_xmlvm_iphone_UIView __CLASS_org_xmlvm_iphone_UIView = {
+__TIB_DEFINITION_org_xmlvm_iphone_UIView __TIB_org_xmlvm_iphone_UIView = {
     0, // classInitialized
     "org.xmlvm.iphone.UIView", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_org_xmlvm_iphone_UIResponder, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIResponder, // extends
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -79,7 +76,7 @@ __CLASS_DEFINITION_org_xmlvm_iphone_UIView __CLASS_org_xmlvm_iphone_UIView = {
 	
 	// Get the function pointer to method drawRect by accessing the vtable of the C object
 	Func_VOO drawRect = 
-	self->wrappedCObj->__class->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect];
+	self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect];
     drawRect(self->wrappedCObj, r);
 }
 
@@ -90,65 +87,65 @@ __CLASS_DEFINITION_org_xmlvm_iphone_UIView __CLASS_org_xmlvm_iphone_UIView = {
 
 void __INIT_org_xmlvm_iphone_UIView()
 {
-    __CLASS_org_xmlvm_iphone_UIView.classInitialized = 1;
+    __TIB_org_xmlvm_iphone_UIView.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_org_xmlvm_iphone_UIResponder.classInitialized) __INIT_org_xmlvm_iphone_UIResponder();
-    __CLASS_org_xmlvm_iphone_UIView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIView;
+    if (!__TIB_org_xmlvm_iphone_UIResponder.classInitialized) __INIT_org_xmlvm_iphone_UIResponder();
+    __TIB_org_xmlvm_iphone_UIView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIView;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIView.vtable, __CLASS_org_xmlvm_iphone_UIResponder.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIResponder.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIView.vtable, __TIB_org_xmlvm_iphone_UIResponder.vtable, sizeof(__TIB_org_xmlvm_iphone_UIResponder.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIView.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getFrame__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getCenter__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setCenter___org_xmlvm_iphone_CGPoint;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setLocation___float_float;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setSize___float_float;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_addSubview___org_xmlvm_iphone_UIView;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_sendSubviewToBack___org_xmlvm_iphone_UIView;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_insertSubview___org_xmlvm_iphone_UIView_int;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_bringSubviewToFront___org_xmlvm_iphone_UIView;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_removeFromSuperview__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getSubviews__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getSuperview__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getWindow__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_layoutSubviews__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[36] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getBounds__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[37] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setBounds___org_xmlvm_iphone_CGRect;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[38] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setNeedsDisplay__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[39] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setOpaque___boolean;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[40] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_isOpaque__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[41] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setClearsContextBeforeDrawing___boolean;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[42] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getBackgroundColor__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[43] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setBackgroundColor___org_xmlvm_iphone_UIColor;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[44] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getAlpha__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[45] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAlpha___float;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[46] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_isHidden__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[47] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setHidden___boolean;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[48] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setContentMode___int;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[49] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getContentMode__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[50] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_isUserInteractionEnabled__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[51] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setUserInteractionEnabled___boolean;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[52] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getTransform__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[53] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setTransform___org_xmlvm_iphone_CGAffineTransform;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[54] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_clipsToBounds__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[55] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setClipsToBounds___boolean;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[56] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getTag__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[57] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setTag___int;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[58] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_convertPointToView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[59] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_convertPointFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[60] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_convertRectToView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[61] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_convertRectFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[62] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getLayer__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[63] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getAutoresizingMask__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[64] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAutoresizingMask___int;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[65] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_isAutoresizesSubviews__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAutoresizesSubviews___boolean;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_sizeToFit__;
-    __CLASS_org_xmlvm_iphone_UIView.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect;
+    __TIB_org_xmlvm_iphone_UIView.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect;
+    __TIB_org_xmlvm_iphone_UIView.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getFrame__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getCenter__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setCenter___org_xmlvm_iphone_CGPoint;
+    __TIB_org_xmlvm_iphone_UIView.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setLocation___float_float;
+    __TIB_org_xmlvm_iphone_UIView.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setSize___float_float;
+    __TIB_org_xmlvm_iphone_UIView.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_addSubview___org_xmlvm_iphone_UIView;
+    __TIB_org_xmlvm_iphone_UIView.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_sendSubviewToBack___org_xmlvm_iphone_UIView;
+    __TIB_org_xmlvm_iphone_UIView.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_insertSubview___org_xmlvm_iphone_UIView_int;
+    __TIB_org_xmlvm_iphone_UIView.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_bringSubviewToFront___org_xmlvm_iphone_UIView;
+    __TIB_org_xmlvm_iphone_UIView.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_removeFromSuperview__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getSubviews__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getSuperview__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getWindow__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_layoutSubviews__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[36] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getBounds__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[37] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setBounds___org_xmlvm_iphone_CGRect;
+    __TIB_org_xmlvm_iphone_UIView.vtable[38] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setNeedsDisplay__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[39] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setOpaque___boolean;
+    __TIB_org_xmlvm_iphone_UIView.vtable[40] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_isOpaque__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[41] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setClearsContextBeforeDrawing___boolean;
+    __TIB_org_xmlvm_iphone_UIView.vtable[42] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getBackgroundColor__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[43] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setBackgroundColor___org_xmlvm_iphone_UIColor;
+    __TIB_org_xmlvm_iphone_UIView.vtable[44] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getAlpha__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[45] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAlpha___float;
+    __TIB_org_xmlvm_iphone_UIView.vtable[46] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_isHidden__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[47] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setHidden___boolean;
+    __TIB_org_xmlvm_iphone_UIView.vtable[48] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setContentMode___int;
+    __TIB_org_xmlvm_iphone_UIView.vtable[49] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getContentMode__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[50] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_isUserInteractionEnabled__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[51] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setUserInteractionEnabled___boolean;
+    __TIB_org_xmlvm_iphone_UIView.vtable[52] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getTransform__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[53] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setTransform___org_xmlvm_iphone_CGAffineTransform;
+    __TIB_org_xmlvm_iphone_UIView.vtable[54] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_clipsToBounds__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[55] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setClipsToBounds___boolean;
+    __TIB_org_xmlvm_iphone_UIView.vtable[56] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getTag__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[57] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setTag___int;
+    __TIB_org_xmlvm_iphone_UIView.vtable[58] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_convertPointToView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView;
+    __TIB_org_xmlvm_iphone_UIView.vtable[59] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_convertPointFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView;
+    __TIB_org_xmlvm_iphone_UIView.vtable[60] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_convertRectToView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView;
+    __TIB_org_xmlvm_iphone_UIView.vtable[61] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_convertRectFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView;
+    __TIB_org_xmlvm_iphone_UIView.vtable[62] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getLayer__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[63] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getAutoresizingMask__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[64] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAutoresizingMask___int;
+    __TIB_org_xmlvm_iphone_UIView.vtable[65] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_isAutoresizesSubviews__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAutoresizesSubviews___boolean;
+    __TIB_org_xmlvm_iphone_UIView.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize;
+    __TIB_org_xmlvm_iphone_UIView.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_sizeToFit__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect;
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_UIView.numImplementedInterfaces = 0;
-    __CLASS_org_xmlvm_iphone_UIView.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
+    __TIB_org_xmlvm_iphone_UIView.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UIView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIView]
@@ -167,15 +164,15 @@ void __DELETE_org_xmlvm_iphone_UIView(void* me, void* client_data)
 	 * it the 'release' message.
 	 */
 	org_xmlvm_iphone_UIView *thiz = me;
-	[((UIView*) thiz->org_xmlvm_iphone_NSObject.wrappedObjCObj) release];
+	[((UIView*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) release];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIView()
 {
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     org_xmlvm_iphone_UIView* me = (org_xmlvm_iphone_UIView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIView));
-    me->__class = &__CLASS_org_xmlvm_iphone_UIView;
+    me->tib = &__TIB_org_xmlvm_iphone_UIView;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIView]
 
 	/*********************************************************************************************
@@ -217,7 +214,7 @@ void org_xmlvm_iphone_UIView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, J
     //TODO need to call base class constructor
 	org_xmlvm_iphone_UIView* thiz = me;
 	UIViewWrapper* obj = [[UIViewWrapper alloc] initWithFrame: toCGRect(n1)];
-	thiz->org_xmlvm_iphone_NSObject.wrappedObjCObj = obj;
+	thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = obj;
 	[obj setWrappedCObj:thiz];
     //XMLVM_END_WRAPPER
 }
@@ -228,7 +225,7 @@ void org_xmlvm_iphone_UIView___INIT___(JAVA_OBJECT me)
     //TODO need to call base class constructor
 	org_xmlvm_iphone_UIView *thiz = me;
 	UIViewWrapper* obj = [[UIViewWrapper alloc] init];
-	thiz->org_xmlvm_iphone_NSObject.wrappedObjCObj = obj;
+	thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = obj;
 	[obj setWrappedCObj:thiz];
     //XMLVM_END_WRAPPER
 }
@@ -245,7 +242,7 @@ void org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, 
 	 * a value-type as required by the signature of setFrame.
 	 */
 	org_xmlvm_iphone_UIView* thiz = me;
-	UIView* wrappedObjCObj = thiz->org_xmlvm_iphone_NSObject.wrappedObjCObj;
+	UIView* wrappedObjCObj = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
 	[wrappedObjCObj setFrame: toCGRect(n1)];
     //XMLVM_END_WRAPPER
 }
@@ -289,10 +286,10 @@ void org_xmlvm_iphone_UIView_addSubview___org_xmlvm_iphone_UIView(JAVA_OBJECT me
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_addSubview___org_xmlvm_iphone_UIView]
 	org_xmlvm_iphone_UIView* view = me;
-	UIView* realViewParent = view->org_xmlvm_iphone_NSObject.wrappedObjCObj;
+	UIView* realViewParent = view->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
 	
 	org_xmlvm_iphone_UIView *otherView = n1;
-	UIView* realViewChild = otherView->org_xmlvm_iphone_NSObject.wrappedObjCObj;
+	UIView* realViewChild = otherView->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
 	
 	[realViewParent addSubview: realViewChild];
     //XMLVM_END_WRAPPER
@@ -372,7 +369,7 @@ void org_xmlvm_iphone_UIView_setNeedsDisplay__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setNeedsDisplay__]
 	org_xmlvm_iphone_UIView *view = me;
-	UIView *realView = view->org_xmlvm_iphone_NSObject.wrappedObjCObj;
+	UIView *realView = view->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
 	[realView setNeedsDisplay];
     //XMLVM_END_WRAPPER
 }
@@ -575,7 +572,7 @@ void org_xmlvm_iphone_UIView_setAutoresizesSubviews___boolean(JAVA_OBJECT me, JA
 
 void org_xmlvm_iphone_UIView_beginAnimations___java_lang_String(JAVA_OBJECT n1)
 {
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_beginAnimations___java_lang_String]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -583,7 +580,7 @@ void org_xmlvm_iphone_UIView_beginAnimations___java_lang_String(JAVA_OBJECT n1)
 
 void org_xmlvm_iphone_UIView_commitAnimations__()
 {
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_commitAnimations__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -591,7 +588,7 @@ void org_xmlvm_iphone_UIView_commitAnimations__()
 
 void org_xmlvm_iphone_UIView_setAnimationStartDate___org_xmlvm_iphone_NSDate(JAVA_OBJECT n1)
 {
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationStartDate___org_xmlvm_iphone_NSDate]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -599,7 +596,7 @@ void org_xmlvm_iphone_UIView_setAnimationStartDate___org_xmlvm_iphone_NSDate(JAV
 
 void org_xmlvm_iphone_UIView_setAnimationsEnabled___boolean(JAVA_BOOLEAN n1)
 {
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationsEnabled___boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -607,7 +604,7 @@ void org_xmlvm_iphone_UIView_setAnimationsEnabled___boolean(JAVA_BOOLEAN n1)
 
 void org_xmlvm_iphone_UIView_setAnimationDuration___double(JAVA_DOUBLE n1)
 {
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationDuration___double]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -615,7 +612,7 @@ void org_xmlvm_iphone_UIView_setAnimationDuration___double(JAVA_DOUBLE n1)
 
 void org_xmlvm_iphone_UIView_setAnimationDelay___double(JAVA_DOUBLE n1)
 {
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationDelay___double]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -623,7 +620,7 @@ void org_xmlvm_iphone_UIView_setAnimationDelay___double(JAVA_DOUBLE n1)
 
 void org_xmlvm_iphone_UIView_setAnimationCurve___int(JAVA_INT n1)
 {
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationCurve___int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -631,7 +628,7 @@ void org_xmlvm_iphone_UIView_setAnimationCurve___int(JAVA_INT n1)
 
 void org_xmlvm_iphone_UIView_setAnimationRepeatCount___float(JAVA_FLOAT n1)
 {
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationRepeatCount___float]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -639,7 +636,7 @@ void org_xmlvm_iphone_UIView_setAnimationRepeatCount___float(JAVA_FLOAT n1)
 
 void org_xmlvm_iphone_UIView_setAnimationRepeatAutoreverses___boolean(JAVA_BOOLEAN n1)
 {
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationRepeatAutoreverses___boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -647,7 +644,7 @@ void org_xmlvm_iphone_UIView_setAnimationRepeatAutoreverses___boolean(JAVA_BOOLE
 
 void org_xmlvm_iphone_UIView_setAnimationBeginsFromCurrentState___boolean(JAVA_BOOLEAN n1)
 {
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationBeginsFromCurrentState___boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -655,7 +652,7 @@ void org_xmlvm_iphone_UIView_setAnimationBeginsFromCurrentState___boolean(JAVA_B
 
 void org_xmlvm_iphone_UIView_setAnimationTransitionForView___int_org_xmlvm_iphone_UIView_boolean(JAVA_INT n1, JAVA_OBJECT n2, JAVA_BOOLEAN n3)
 {
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationTransitionForView___int_org_xmlvm_iphone_UIView_boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -663,7 +660,7 @@ void org_xmlvm_iphone_UIView_setAnimationTransitionForView___int_org_xmlvm_iphon
 
 JAVA_BOOLEAN org_xmlvm_iphone_UIView_areAnimationsEnabled__()
 {
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_areAnimationsEnabled__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -671,7 +668,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIView_areAnimationsEnabled__()
 
 void org_xmlvm_iphone_UIView_setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate(JAVA_OBJECT n1)
 {
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

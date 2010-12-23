@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarItem
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarItem
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarItem)
@@ -25,26 +21,24 @@ XMLVM_FORWARD_DECL(java_util_Set)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItemDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarButtonItemDelegate)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
-#endif
 // Class declarations for org.xmlvm.iphone.UIBarButtonItem
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarButtonItem, 37)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarButtonItem
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIBarButtonItem
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarButtonItem \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarItem; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIBarButtonItem \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIBarItem; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarButtonItem \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIBarButtonItem \
     } org_xmlvm_iphone_UIBarButtonItem
 
 struct org_xmlvm_iphone_UIBarButtonItem {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIBarButtonItem* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarButtonItem;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIBarButtonItem* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIBarButtonItem;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItem
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItem

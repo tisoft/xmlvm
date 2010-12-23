@@ -24,6 +24,6 @@ typedef struct java_lang_Iterable java_lang_Iterable;
 #define XMLVM_VTABLE_SIZE_java_lang_Iterable 12
 #define XMLVM_VTABLE_IDX_java_lang_Iterable_iterator__ 11
 
-void __INIT_java_lang_Iterable(__CLASS_DEFINITION_TEMPLATE** interface);
+void __INIT_java_lang_Iterable(__TIB_DEFINITION_TEMPLATE** interface);
 
 #endif

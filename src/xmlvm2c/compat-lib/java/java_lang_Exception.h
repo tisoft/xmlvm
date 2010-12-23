@@ -26,11 +26,11 @@
 
 XMLVM_DEFINE_CLASS(java_lang_Exception, 11)
 
-#define __INSTANCE_MEMBERS_java_lang_Exception
+#define __INSTANCE_FIELDS_java_lang_Exception
 
 typedef struct {
-    __CLASS_DEFINITION_java_lang_Exception* __class;
-    __INSTANCE_MEMBERS_java_lang_Exception
+    __TIB_DEFINITION_java_lang_Exception* tib;
+    __INSTANCE_FIELDS_java_lang_Exception
 } java_lang_Exception;
 
 

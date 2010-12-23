@@ -5,14 +5,6 @@
 #include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAlertView)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertViewDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertViewDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAlertViewDelegate)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -24,19 +16,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 // Class declarations for org.xmlvm.iphone.UIAlertView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAlertView, 76)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAlertView
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIAlertView
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIAlertView \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIView; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIAlertView \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIView; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAlertView \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIAlertView \
     } org_xmlvm_iphone_UIAlertView
 
 struct org_xmlvm_iphone_UIAlertView {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIAlertView* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIAlertView;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIAlertView* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIAlertView;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertView

@@ -21,17 +21,17 @@
 #include "java_lang_Exception.h"
 #include "java_lang_Object.h"
 
-__CLASS_DEFINITION_java_lang_Exception __CLASS_java_lang_Exception;
+__TIB_DEFINITION_java_lang_Exception __TIB_java_lang_Exception;
 
 void __INIT_java_lang_Exception()
 {
-    if (!__CLASS_java_lang_Object.classInitialized) __INIT_java_lang_Object();
-	__CLASS_java_lang_Exception.className = "java.lang.Exception";
-	__CLASS_java_lang_Exception.extends = (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_java_lang_Object;
-	__CLASS_java_lang_Exception.numInterfaces = 0;
-	__CLASS_java_lang_Exception.numImplementedInterfaces = 0;
-	//	__CLASS_java_lang_Exception.interfaces = (__CLASS_DEFINITION_TEMPLATE*) 0;
-	__CLASS_java_lang_Exception.classInitialized = 1;
+    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+	__TIB_java_lang_Exception.className = "java.lang.Exception";
+	__TIB_java_lang_Exception.extends = (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object;
+	__TIB_java_lang_Exception.numInterfaces = 0;
+	__TIB_java_lang_Exception.numImplementedInterfaces = 0;
+	//	__TIB_java_lang_Exception.interfaces = (__TIB_DEFINITION_TEMPLATE*) 0;
+	__TIB_java_lang_Exception.classInitialized = 1;
 }
 
 void java_lang_Exception___INIT___(JAVA_OBJECT me)
@@ -41,8 +41,8 @@ void java_lang_Exception___INIT___(JAVA_OBJECT me)
 JAVA_OBJECT __NEW_java_lang_Exception()
 {
 	java_lang_Exception* me;
-    if (!__CLASS_java_lang_Exception.classInitialized) __INIT_java_lang_Exception();
+    if (!__TIB_java_lang_Exception.classInitialized) __INIT_java_lang_Exception();
     me = (java_lang_Exception*) XMLVM_MALLOC(sizeof(java_lang_Exception));
-    me->__class = &__CLASS_java_lang_Exception;
+    me->tib = &__TIB_java_lang_Exception;
     return me;
 }

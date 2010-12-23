@@ -29,30 +29,30 @@
 XMLVM_JMP_BUF xmlvm_exception_env;
 JAVA_OBJECT xmlvm_exception;
 
-__CLASS_DEFINITION_XMLVMArray __CLASS_XMLVMArray;
+__TIB_DEFINITION_XMLVMArray __TIB_XMLVMArray;
 
-__CLASS_DEFINITION_java_lang_Object_ARRAYTYPE __CLASS_java_lang_Object_ARRAYTYPE;
-__CLASS_DEFINITION_boolean_ARRAYTYPE          __CLASS_boolean_ARRAYTYPE;
-__CLASS_DEFINITION_byte_ARRAYTYPE             __CLASS_byte_ARRAYTYPE;
-__CLASS_DEFINITION_char_ARRAYTYPE             __CLASS_char_ARRAYTYPE;
-__CLASS_DEFINITION_short_ARRAYTYPE            __CLASS_short_ARRAYTYPE;
-__CLASS_DEFINITION_int_ARRAYTYPE              __CLASS_int_ARRAYTYPE;
-__CLASS_DEFINITION_long_ARRAYTYPE             __CLASS_long_ARRAYTYPE;
-__CLASS_DEFINITION_float_ARRAYTYPE            __CLASS_float_ARRAYTYPE;
-__CLASS_DEFINITION_double_ARRAYTYPE           __CLASS_double_ARRAYTYPE;
+__TIB_DEFINITION_java_lang_Object_ARRAYTYPE __TIB_java_lang_Object_ARRAYTYPE;
+__TIB_DEFINITION_boolean_ARRAYTYPE          __TIB_boolean_ARRAYTYPE;
+__TIB_DEFINITION_byte_ARRAYTYPE             __TIB_byte_ARRAYTYPE;
+__TIB_DEFINITION_char_ARRAYTYPE             __TIB_char_ARRAYTYPE;
+__TIB_DEFINITION_short_ARRAYTYPE            __TIB_short_ARRAYTYPE;
+__TIB_DEFINITION_int_ARRAYTYPE              __TIB_int_ARRAYTYPE;
+__TIB_DEFINITION_long_ARRAYTYPE             __TIB_long_ARRAYTYPE;
+__TIB_DEFINITION_float_ARRAYTYPE            __TIB_float_ARRAYTYPE;
+__TIB_DEFINITION_double_ARRAYTYPE           __TIB_double_ARRAYTYPE;
 
 
 void __INIT_XMLVMArray()
 {
-	if (!__CLASS_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+	if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_XMLVMArray.vtable, __CLASS_java_lang_Object.vtable, sizeof(__CLASS_java_lang_Object.vtable));
+    XMLVM_MEMCPY(__TIB_XMLVMArray.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
 	// Initialize vtable for XMLVMArray
 	// TODO "1" below should be done via some #define
-	__CLASS_XMLVMArray.vtable[1] = (VTABLE_PTR) XMLVMArray_clone__;
+	__TIB_XMLVMArray.vtable[1] = (VTABLE_PTR) XMLVMArray_clone__;
     // Initialize vtable for implementing interfaces
 	// TODO Array do implement two interfaces
-    __CLASS_XMLVMArray.numImplementedInterfaces = 0;
+    __TIB_XMLVMArray.numImplementedInterfaces = 0;
 }
 
 void xmlvm_init_system_class()
@@ -62,7 +62,7 @@ void xmlvm_init_system_class()
 
 JAVA_OBJECT native_java_lang_Object_getClass__(JAVA_OBJECT me)
 {
-	return __NEW_XMLVMClass((__CLASS_DEFINITION_TEMPLATE*) ((java_lang_Object*) me)->__class);
+	return __NEW_XMLVMClass((__TIB_DEFINITION_TEMPLATE*) ((java_lang_Object*) me)->tib);
 }
 
 JAVA_OBJECT native_java_lang_Class_getName__(JAVA_OBJECT me);
@@ -70,14 +70,14 @@ JAVA_OBJECT native_java_lang_Class_getName__(JAVA_OBJECT me);
 void xmlvm_init_java_lang_Object()
 {
 	__INIT_java_lang_Object();
-	__CLASS_java_lang_Object.vtable[XMLVM_VTABLE_IDX_java_lang_Object_getClass__] =
+	__TIB_java_lang_Object.vtable[XMLVM_VTABLE_IDX_java_lang_Object_getClass__] =
 	(VTABLE_PTR) native_java_lang_Object_getClass__;
 }
 
 void xmlvm_init_java_lang_Class()
 {
 	__INIT_java_lang_Class();
-	__CLASS_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getName__] =
+	__TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getName__] =
 	(VTABLE_PTR) native_java_lang_Class_getName__;
 }
 
@@ -99,13 +99,13 @@ void xmlvm_init()
 int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz)
 {
 	int i;
-	__CLASS_DEFINITION_TEMPLATE* objClass;
-	__CLASS_DEFINITION_TEMPLATE* cl;
+	__TIB_DEFINITION_TEMPLATE* objClass;
+	__TIB_DEFINITION_TEMPLATE* cl;
 	if (obj == JAVA_NULL) {
 		return 0;
 	}
-	objClass = (__CLASS_DEFINITION_TEMPLATE*) ((java_lang_Object*) obj)->__class;
-	cl = (__CLASS_DEFINITION_TEMPLATE*) clazz;
+	objClass = (__TIB_DEFINITION_TEMPLATE*) ((java_lang_Object*) obj)->tib;
+	cl = (__TIB_DEFINITION_TEMPLATE*) clazz;
 	while (objClass != JAVA_NULL) {
 		if (strcmp(objClass->className, cl->className) == 0) {
 			return 1;
@@ -123,12 +123,12 @@ int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz)
 
 VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, int vtableIndex)
 {
-    __CLASS_DEFINITION_TEMPLATE* clazz = (__CLASS_DEFINITION_TEMPLATE*) ((java_lang_Object*) me)->__class;
+    __TIB_DEFINITION_TEMPLATE* clazz = (__TIB_DEFINITION_TEMPLATE*) ((java_lang_Object*) me)->tib;
     int numInterfaces = clazz->numImplementedInterfaces;
 	int i;
 	for (i = 0; i < numInterfaces; i++) {
-		__CLASS_DEFINITION_TEMPLATE* (*ifaces)[1] = clazz->implementedInterfaces;
-		__CLASS_DEFINITION_TEMPLATE* iface = (*ifaces)[i];
+		__TIB_DEFINITION_TEMPLATE* (*ifaces)[1] = clazz->implementedInterfaces;
+		__TIB_DEFINITION_TEMPLATE* iface = (*ifaces)[i];
 		if (strcmp(ifaceName, iface->className) == 0) {
 			return iface->vtable[vtableIndex];
 		}
@@ -143,23 +143,23 @@ VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, 
 
 XMLVM_DEFINE_CLASS(XMLVMClass, XMLVM_VTABLE_SIZE_java_lang_Class)
 
-#define __INSTANCE_MEMBERS_XMLVMClass \
-__INSTANCE_MEMBERS_java_lang_Class; \
+#define __INSTANCE_FIELDS_XMLVMClass \
+__INSTANCE_FIELDS_java_lang_Class; \
 struct { \
-__CLASS_DEFINITION_TEMPLATE* clazz; \
+__TIB_DEFINITION_TEMPLATE* clazz; \
 } XMLVMClass
 
 struct XMLVMClass {
-    __CLASS_DEFINITION_XMLVMClass* __class;
-    __INSTANCE_MEMBERS_XMLVMClass;
+    __TIB_DEFINITION_XMLVMClass* tib;
+    __INSTANCE_FIELDS_XMLVMClass;
 };
 
 typedef struct XMLVMClass XMLVMClass;
 
-__CLASS_DEFINITION_XMLVMClass __CLASS_XMLVMClass = {
+__TIB_DEFINITION_XMLVMClass __TIB_XMLVMClass = {
     0, // classInitialized
     "XMLVMClass", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_java_lang_Class, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Class, // extends
 };
 
 JAVA_OBJECT XMLVMClass_newInstance(JAVA_OBJECT me)
@@ -170,23 +170,23 @@ JAVA_OBJECT XMLVMClass_newInstance(JAVA_OBJECT me)
 
 void __INIT_XMLVMClass()
 {
-    __CLASS_XMLVMClass.classInitialized = 1;
+    __TIB_XMLVMClass.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_java_lang_Class.classInitialized) __INIT_java_lang_Class();
+    if (!__TIB_java_lang_Class.classInitialized) __INIT_java_lang_Class();
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_XMLVMClass.vtable, __CLASS_java_lang_Class.vtable, sizeof(__CLASS_java_lang_Class.vtable));
+    XMLVM_MEMCPY(__TIB_XMLVMClass.vtable, __TIB_java_lang_Class.vtable, sizeof(__TIB_java_lang_Class.vtable));
     // Initialize vtable for this class
-	__CLASS_XMLVMClass.vtable[11] = (VTABLE_PTR) XMLVMClass_newInstance;
+	__TIB_XMLVMClass.vtable[11] = (VTABLE_PTR) XMLVMClass_newInstance;
     // Initialize vtable for implementing interfaces
-    __CLASS_XMLVMClass.numImplementedInterfaces = 0;
+    __TIB_XMLVMClass.numImplementedInterfaces = 0;
 }
 
-JAVA_OBJECT __NEW_XMLVMClass(__CLASS_DEFINITION_TEMPLATE* clazz)
+JAVA_OBJECT __NEW_XMLVMClass(__TIB_DEFINITION_TEMPLATE* clazz)
 {
 	XMLVMClass* me;
-    if (!__CLASS_XMLVMClass.classInitialized) __INIT_XMLVMClass();
+    if (!__TIB_XMLVMClass.classInitialized) __INIT_XMLVMClass();
 	me = (XMLVMClass*) XMLVM_MALLOC(sizeof(XMLVMClass));
-    me->__class = &__CLASS_XMLVMClass;
+    me->tib = &__TIB_XMLVMClass;
 	me->XMLVMClass.clazz = clazz;
     return me;
 }
@@ -206,7 +206,7 @@ JAVA_OBJECT native_java_lang_Class_getName__(JAVA_OBJECT me)
 XMLVMArray* __NEW_XMLVMArray()
 {
 	XMLVMArray* array = (XMLVMArray*) XMLVM_MALLOC(sizeof(XMLVMArray));
-	array->__class = &__CLASS_XMLVMArray;
+	array->tib = &__TIB_XMLVMArray;
 	return array;
 }
 

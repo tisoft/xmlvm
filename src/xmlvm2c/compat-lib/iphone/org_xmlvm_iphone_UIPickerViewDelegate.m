@@ -1,13 +1,12 @@
 #include "org_xmlvm_iphone_UIView.h"
-#include "org_xmlvm_iphone_UIPickerView.h"
 #include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_UIPickerViewDelegate.h"
 
-__CLASS_DEFINITION_org_xmlvm_iphone_UIPickerViewDelegate __CLASS_org_xmlvm_iphone_UIPickerViewDelegate = {
+__TIB_DEFINITION_org_xmlvm_iphone_UIPickerViewDelegate __TIB_org_xmlvm_iphone_UIPickerViewDelegate = {
     0, // classInitialized
     "org.xmlvm.iphone.UIPickerViewDelegate", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_org_xmlvm_iphone_NSObject, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -16,21 +15,21 @@ __CLASS_DEFINITION_org_xmlvm_iphone_UIPickerViewDelegate __CLASS_org_xmlvm_iphon
 
 void __INIT_org_xmlvm_iphone_UIPickerViewDelegate()
 {
-    __CLASS_org_xmlvm_iphone_UIPickerViewDelegate.classInitialized = 1;
+    __TIB_org_xmlvm_iphone_UIPickerViewDelegate.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __CLASS_org_xmlvm_iphone_UIPickerViewDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIPickerViewDelegate;
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __TIB_org_xmlvm_iphone_UIPickerViewDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIPickerViewDelegate;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_UIPickerViewDelegate.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIPickerViewDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_UIPickerViewDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_rowHeightForComponent___org_xmlvm_iphone_UIPickerView_int;
-    __CLASS_org_xmlvm_iphone_UIPickerViewDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_widthForComponent___org_xmlvm_iphone_UIPickerView_int;
-    __CLASS_org_xmlvm_iphone_UIPickerViewDelegate.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_viewForRow___org_xmlvm_iphone_UIPickerView_int_int_org_xmlvm_iphone_UIView;
-    __CLASS_org_xmlvm_iphone_UIPickerViewDelegate.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_titleForRow___org_xmlvm_iphone_UIPickerView_int_int;
-    __CLASS_org_xmlvm_iphone_UIPickerViewDelegate.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_didSelectRow___org_xmlvm_iphone_UIPickerView_int_int;
+    __TIB_org_xmlvm_iphone_UIPickerViewDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_rowHeightForComponent___org_xmlvm_iphone_UIPickerView_int;
+    __TIB_org_xmlvm_iphone_UIPickerViewDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_widthForComponent___org_xmlvm_iphone_UIPickerView_int;
+    __TIB_org_xmlvm_iphone_UIPickerViewDelegate.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_viewForRow___org_xmlvm_iphone_UIPickerView_int_int_org_xmlvm_iphone_UIView;
+    __TIB_org_xmlvm_iphone_UIPickerViewDelegate.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_titleForRow___org_xmlvm_iphone_UIPickerView_int_int;
+    __TIB_org_xmlvm_iphone_UIPickerViewDelegate.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_didSelectRow___org_xmlvm_iphone_UIPickerView_int_int;
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_UIPickerViewDelegate.numImplementedInterfaces = 0;
-    __CLASS_org_xmlvm_iphone_UIPickerViewDelegate.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
+    __TIB_org_xmlvm_iphone_UIPickerViewDelegate.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UIPickerViewDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIPickerViewDelegate]
@@ -45,9 +44,9 @@ void __DELETE_org_xmlvm_iphone_UIPickerViewDelegate(void* me, void* client_data)
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPickerViewDelegate()
 {
-    if (!__CLASS_org_xmlvm_iphone_UIPickerViewDelegate.classInitialized) __INIT_org_xmlvm_iphone_UIPickerViewDelegate();
+    if (!__TIB_org_xmlvm_iphone_UIPickerViewDelegate.classInitialized) __INIT_org_xmlvm_iphone_UIPickerViewDelegate();
     org_xmlvm_iphone_UIPickerViewDelegate* me = (org_xmlvm_iphone_UIPickerViewDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIPickerViewDelegate));
-    me->__class = &__CLASS_org_xmlvm_iphone_UIPickerViewDelegate;
+    me->tib = &__TIB_org_xmlvm_iphone_UIPickerViewDelegate;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIPickerViewDelegate]
     //XMLVM_END_WRAPPER
     return me;

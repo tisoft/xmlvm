@@ -5,10 +5,6 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
@@ -20,19 +16,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 // Class declarations for org.xmlvm.iphone.UIColor
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIColor, 14)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIColor
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIColor
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIColor \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIColor \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIColor \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIColor \
     } org_xmlvm_iphone_UIColor
 
 struct org_xmlvm_iphone_UIColor {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIColor* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIColor;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIColor* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIColor;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor

@@ -1,18 +1,17 @@
 #include "org_xmlvm_iphone_MKCoordinateRegion.h"
 #include "org_xmlvm_iphone_MKMapViewDelegate.h"
 #include "org_xmlvm_iphone_MKMapRect.h"
-#include "org_xmlvm_iphone_UIEdgeInsets.h"
 #include "org_xmlvm_iphone_CGPoint.h"
-#include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_MKUserLocation.h"
+#include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_CLLocationCoordinate2D.h"
 
 #include "org_xmlvm_iphone_MKMapView.h"
 
-__CLASS_DEFINITION_org_xmlvm_iphone_MKMapView __CLASS_org_xmlvm_iphone_MKMapView = {
+__TIB_DEFINITION_org_xmlvm_iphone_MKMapView __TIB_org_xmlvm_iphone_MKMapView = {
     0, // classInitialized
     "org.xmlvm.iphone.MKMapView", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_org_xmlvm_iphone_UIView, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -21,45 +20,45 @@ __CLASS_DEFINITION_org_xmlvm_iphone_MKMapView __CLASS_org_xmlvm_iphone_MKMapView
 
 void __INIT_org_xmlvm_iphone_MKMapView()
 {
-    __CLASS_org_xmlvm_iphone_MKMapView.classInitialized = 1;
+    __TIB_org_xmlvm_iphone_MKMapView.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
-    __CLASS_org_xmlvm_iphone_MKMapView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKMapView;
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    __TIB_org_xmlvm_iphone_MKMapView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKMapView;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_MKMapView.vtable, __CLASS_org_xmlvm_iphone_UIView.vtable, sizeof(__CLASS_org_xmlvm_iphone_UIView.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKMapView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getMapType__;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setMapType___int;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_isScrollEnabled__;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setScrollEnabled___boolean;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_isZoomEnabled__;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setZoomEnabled___boolean;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getDelegate__;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setDelegate___org_xmlvm_iphone_MKMapViewDelegate;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getRegion__;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setRegion___org_xmlvm_iphone_MKCoordinateRegion;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setRegion___org_xmlvm_iphone_MKCoordinateRegion_boolean;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getCenterCoordinate__;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setCenterCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setCenterCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D_boolean;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getVisibleMapRect__;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setVisibleMapRect___org_xmlvm_iphone_MKMapRect;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setVisibleMapRect___org_xmlvm_iphone_MKMapRect_boolean;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setVisibleMapRect___org_xmlvm_iphone_MKMapRect_org_xmlvm_iphone_UIEdgeInsets_boolean;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_isShowsUserLocation__;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setShowsUserLocation___boolean;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getUserLocation__;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_isUserLocationVisible__;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_convertCoordinateToPointToView___org_xmlvm_iphone_CLLocationCoordinate2D_org_xmlvm_iphone_UIView;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_convertPointToCoordinateFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_convertRegionToRectToView___org_xmlvm_iphone_MKCoordinateRegion_org_xmlvm_iphone_UIView;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_convertRectToRegionFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_regionThatFits___org_xmlvm_iphone_MKCoordinateRegion;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapRect;
-    __CLASS_org_xmlvm_iphone_MKMapView.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapRect_org_xmlvm_iphone_UIEdgeInsets;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getMapType__;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setMapType___int;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_isScrollEnabled__;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setScrollEnabled___boolean;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_isZoomEnabled__;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setZoomEnabled___boolean;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getDelegate__;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setDelegate___org_xmlvm_iphone_MKMapViewDelegate;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getRegion__;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setRegion___org_xmlvm_iphone_MKCoordinateRegion;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setRegion___org_xmlvm_iphone_MKCoordinateRegion_boolean;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getCenterCoordinate__;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setCenterCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setCenterCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D_boolean;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getVisibleMapRect__;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setVisibleMapRect___org_xmlvm_iphone_MKMapRect;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setVisibleMapRect___org_xmlvm_iphone_MKMapRect_boolean;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setVisibleMapRect___org_xmlvm_iphone_MKMapRect_org_xmlvm_iphone_UIEdgeInsets_boolean;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_isShowsUserLocation__;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setShowsUserLocation___boolean;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getUserLocation__;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_isUserLocationVisible__;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_convertCoordinateToPointToView___org_xmlvm_iphone_CLLocationCoordinate2D_org_xmlvm_iphone_UIView;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_convertPointToCoordinateFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_convertRegionToRectToView___org_xmlvm_iphone_MKCoordinateRegion_org_xmlvm_iphone_UIView;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_convertRectToRegionFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_regionThatFits___org_xmlvm_iphone_MKCoordinateRegion;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapRect;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapRect_org_xmlvm_iphone_UIEdgeInsets;
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_MKMapView.numImplementedInterfaces = 0;
-    __CLASS_org_xmlvm_iphone_MKMapView.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
+    __TIB_org_xmlvm_iphone_MKMapView.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_MKMapView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MKMapView]
@@ -74,9 +73,9 @@ void __DELETE_org_xmlvm_iphone_MKMapView(void* me, void* client_data)
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKMapView()
 {
-    if (!__CLASS_org_xmlvm_iphone_MKMapView.classInitialized) __INIT_org_xmlvm_iphone_MKMapView();
+    if (!__TIB_org_xmlvm_iphone_MKMapView.classInitialized) __INIT_org_xmlvm_iphone_MKMapView();
     org_xmlvm_iphone_MKMapView* me = (org_xmlvm_iphone_MKMapView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKMapView));
-    me->__class = &__CLASS_org_xmlvm_iphone_MKMapView;
+    me->tib = &__TIB_org_xmlvm_iphone_MKMapView;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKMapView]
     //XMLVM_END_WRAPPER
     return me;

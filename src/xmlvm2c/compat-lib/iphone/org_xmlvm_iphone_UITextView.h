@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIFont)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
@@ -28,19 +24,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 // Class declarations for org.xmlvm.iphone.UITextView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextView, 95)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextView
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITextView
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UITextView \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIView; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UITextView \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIView; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextView \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITextView \
     } org_xmlvm_iphone_UITextView
 
 struct org_xmlvm_iphone_UITextView {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UITextView* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UITextView;
+    __TIB_DEFINITION_org_xmlvm_iphone_UITextView* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UITextView;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextView

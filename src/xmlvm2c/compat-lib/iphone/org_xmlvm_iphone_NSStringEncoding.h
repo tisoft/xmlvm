@@ -16,19 +16,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.NSStringEncoding
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSStringEncoding, 11)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringEncoding
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSStringEncoding
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringEncoding \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSStringEncoding \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringEncoding \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSStringEncoding \
     } org_xmlvm_iphone_NSStringEncoding
 
 struct org_xmlvm_iphone_NSStringEncoding {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSStringEncoding* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringEncoding;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSStringEncoding* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSStringEncoding;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSStringEncoding
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSStringEncoding

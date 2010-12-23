@@ -9,26 +9,24 @@
 #define XMLVM_FORWARD_DECL_java_io_InputStream
 XMLVM_FORWARD_DECL(java_io_InputStream)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
-#endif
 // Class declarations for org.xmlvm.iphone.NSStringInputStream
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSStringInputStream, 20)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringInputStream
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSStringInputStream
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringInputStream \
-    __INSTANCE_MEMBERS_java_io_InputStream; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSStringInputStream \
+    __INSTANCE_FIELDS_java_io_InputStream; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringInputStream \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSStringInputStream \
     } org_xmlvm_iphone_NSStringInputStream
 
 struct org_xmlvm_iphone_NSStringInputStream {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSStringInputStream* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringInputStream;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSStringInputStream* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSStringInputStream;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSStringInputStream
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSStringInputStream

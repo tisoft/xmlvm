@@ -9,14 +9,6 @@
 #define XMLVM_FORWARD_DECL_java_lang_Object
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAccelerometer
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAccelerometer
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAccelerometer)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAcceleration
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAcceleration
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAcceleration)
-#endif
 
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAccelerometerDelegate, 12)
 
@@ -28,6 +20,6 @@ typedef struct org_xmlvm_iphone_UIAccelerometerDelegate org_xmlvm_iphone_UIAccel
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIAccelerometerDelegate 12
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAccelerometerDelegate_accelerometerDidAccelerate___org_xmlvm_iphone_UIAccelerometer_org_xmlvm_iphone_UIAcceleration 11
 
-void __INIT_org_xmlvm_iphone_UIAccelerometerDelegate(__CLASS_DEFINITION_TEMPLATE** interface);
+void __INIT_org_xmlvm_iphone_UIAccelerometerDelegate(__TIB_DEFINITION_TEMPLATE** interface);
 
 #endif

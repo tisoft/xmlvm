@@ -27,6 +27,6 @@ typedef struct java_util_Iterator java_util_Iterator;
 #define XMLVM_VTABLE_IDX_java_util_Iterator_next__ 12
 #define XMLVM_VTABLE_IDX_java_util_Iterator_remove__ 13
 
-void __INIT_java_util_Iterator(__CLASS_DEFINITION_TEMPLATE** interface);
+void __INIT_java_util_Iterator(__TIB_DEFINITION_TEMPLATE** interface);
 
 #endif

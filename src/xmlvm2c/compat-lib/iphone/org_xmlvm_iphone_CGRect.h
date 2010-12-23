@@ -13,10 +13,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
@@ -32,26 +28,28 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.CGRect
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGRect, 17)
 
-//XMLVM_BEGIN_MEMBERS
+//XMLVM_BEGIN_FIELDS
 
 #import <CoreGraphics/CoreGraphics.h>
 
 CGRect toCGRect(void* rect);
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CGRect
 
-//XMLVM_END_MEMBERS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGRect
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_CGRect \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_CGRect \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
         JAVA_OBJECT origin_; \
         JAVA_OBJECT size_; \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CGRect \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGRect \
     } org_xmlvm_iphone_CGRect
 
 struct org_xmlvm_iphone_CGRect {
-    __CLASS_DEFINITION_org_xmlvm_iphone_CGRect* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_CGRect;
+    __TIB_DEFINITION_org_xmlvm_iphone_CGRect* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_CGRect;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect

@@ -22,15 +22,15 @@
 #include <stdio.h>
 
 
-__CLASS_DEFINITION_java_io_PrintStream __CLASS_java_io_PrintStream;
+__TIB_DEFINITION_java_io_PrintStream __TIB_java_io_PrintStream;
 
 
 JAVA_OBJECT __NEW_java_io_PrintStream()
 {
 	java_io_PrintStream* me;
-    if (!__CLASS_java_io_PrintStream.classInitialized) __INIT_java_io_PrintStream();
+    if (!__TIB_java_io_PrintStream.classInitialized) __INIT_java_io_PrintStream();
 	me = (java_io_PrintStream*) XMLVM_MALLOC(sizeof(java_io_PrintStream));
-    me->__class = &__CLASS_java_io_PrintStream;
+    me->tib = &__TIB_java_io_PrintStream;
     return me;
 }
 
@@ -52,15 +52,15 @@ void java_io_PrintStream_println___float(JAVA_OBJECT me, JAVA_FLOAT f)
 void __INIT_java_io_PrintStream()
 {
     // Initialize base class if necessary
-    if (__CLASS_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    if (__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_java_io_PrintStream.vtable, __CLASS_java_lang_Object.vtable, sizeof(__CLASS_java_lang_Object.vtable));
+    XMLVM_MEMCPY(__TIB_java_io_PrintStream.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
     // Initialize vtable for this class
-    __CLASS_java_io_PrintStream.vtable[36] = (VTABLE_PTR) &java_io_PrintStream_println___java_lang_String;
-    __CLASS_java_io_PrintStream.vtable[31] = (VTABLE_PTR) &java_io_PrintStream_println___int;
-    __CLASS_java_io_PrintStream.vtable[19] = (VTABLE_PTR) &java_io_PrintStream_println___float;
+    __TIB_java_io_PrintStream.vtable[36] = (VTABLE_PTR) &java_io_PrintStream_println___java_lang_String;
+    __TIB_java_io_PrintStream.vtable[31] = (VTABLE_PTR) &java_io_PrintStream_println___int;
+    __TIB_java_io_PrintStream.vtable[19] = (VTABLE_PTR) &java_io_PrintStream_println___float;
 
-    __CLASS_java_io_PrintStream.classInitialized = 1;
+    __TIB_java_io_PrintStream.classInitialized = 1;
 
 }
 

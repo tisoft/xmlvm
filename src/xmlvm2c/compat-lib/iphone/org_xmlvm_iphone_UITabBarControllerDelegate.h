@@ -9,34 +9,24 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
-#define XMLVM_FORWARD_DECL_java_util_ArrayList
-XMLVM_FORWARD_DECL(java_util_ArrayList)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarController
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarController
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarController)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
-#endif
 // Class declarations for org.xmlvm.iphone.UITabBarControllerDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBarControllerDelegate, 19)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarControllerDelegate
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITabBarControllerDelegate
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarControllerDelegate \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UITabBarControllerDelegate \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarControllerDelegate \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITabBarControllerDelegate \
     } org_xmlvm_iphone_UITabBarControllerDelegate
 
 struct org_xmlvm_iphone_UITabBarControllerDelegate {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UITabBarControllerDelegate* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarControllerDelegate;
+    __TIB_DEFINITION_org_xmlvm_iphone_UITabBarControllerDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UITabBarControllerDelegate;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarControllerDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarControllerDelegate

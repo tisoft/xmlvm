@@ -116,19 +116,19 @@ typedef JAVA_OBJECT (*Func_O)();
 
 
 #define XMLVM_DEFINE_CLASS(name, vtableSize) \
-typedef struct __CLASS_DEFINITION_##name { \
+typedef struct __TIB_DEFINITION_##name { \
     int                                 classInitialized; \
     const char*                         className; \
-    struct __CLASS_DEFINITION_TEMPLATE* extends; \
+    struct __TIB_DEFINITION_TEMPLATE* extends; \
     Func_O                              newInstanceFunc; \
 	int                                 numInterfaces; \
-    struct __CLASS_DEFINITION_TEMPLATE* (*interfaces)[1]; \
+    struct __TIB_DEFINITION_TEMPLATE* (*interfaces)[1]; \
 	int                                 numImplementedInterfaces; \
-    struct __CLASS_DEFINITION_TEMPLATE* (*implementedInterfaces)[1]; \
+    struct __TIB_DEFINITION_TEMPLATE* (*implementedInterfaces)[1]; \
     VTABLE_PTR                          vtable[vtableSize]; \
-} __CLASS_DEFINITION_##name; \
+} __TIB_DEFINITION_##name; \
 \
-extern __CLASS_DEFINITION_##name __CLASS_##name;
+extern __TIB_DEFINITION_##name __TIB_##name;
 
 XMLVM_DEFINE_CLASS(TEMPLATE, 0)
 
@@ -140,7 +140,7 @@ VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, 
 //---------------------------------------------------------------------------------------------
 // XMLVMClass
 
-JAVA_OBJECT __NEW_XMLVMClass(__CLASS_DEFINITION_TEMPLATE* clazz);
+JAVA_OBJECT __NEW_XMLVMClass(__TIB_DEFINITION_TEMPLATE* clazz);
 
 
 
@@ -151,7 +151,7 @@ JAVA_OBJECT __NEW_XMLVMClass(__CLASS_DEFINITION_TEMPLATE* clazz);
 XMLVM_DEFINE_CLASS(XMLVMArray, XMLVM_SIZE_OF_OBJECT_VTABLE)
 
 typedef struct {
-	__CLASS_DEFINITION_XMLVMArray* __class;
+	__TIB_DEFINITION_XMLVMArray* tib;
     XMLVMElemPtr                   array;
     int                            type;
     int                            length;

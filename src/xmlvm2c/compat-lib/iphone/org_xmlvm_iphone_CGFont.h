@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGDataProvider
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGDataProvider
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGDataProvider)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGFont
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGFont
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGFont)
@@ -20,19 +16,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGFont)
 // Class declarations for org.xmlvm.iphone.CGFont
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGFont, 17)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CGFont
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGFont
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_CGFont \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_CGFont \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CGFont \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGFont \
     } org_xmlvm_iphone_CGFont
 
 struct org_xmlvm_iphone_CGFont {
-    __CLASS_DEFINITION_org_xmlvm_iphone_CGFont* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_CGFont;
+    __TIB_DEFINITION_org_xmlvm_iphone_CGFont* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_CGFont;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGFont
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGFont

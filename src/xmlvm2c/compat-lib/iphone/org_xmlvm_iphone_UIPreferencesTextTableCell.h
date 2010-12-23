@@ -16,19 +16,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.UIPreferencesTextTableCell
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPreferencesTextTableCell, 78)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTextTableCell
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPreferencesTextTableCell
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTextTableCell \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableCell; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIPreferencesTextTableCell \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIPreferencesTableCell; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTextTableCell \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPreferencesTextTableCell \
     } org_xmlvm_iphone_UIPreferencesTextTableCell
 
 struct org_xmlvm_iphone_UIPreferencesTextTableCell {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIPreferencesTextTableCell* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTextTableCell;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIPreferencesTextTableCell* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIPreferencesTextTableCell;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPreferencesTextTableCell
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPreferencesTextTableCell

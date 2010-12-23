@@ -21,10 +21,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationBar
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationBar)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationItem)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -32,19 +28,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.UINavigationItem
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UINavigationItem, 32)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationItem
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationItem
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationItem \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationItem \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationItem \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationItem \
     } org_xmlvm_iphone_UINavigationItem
 
 struct org_xmlvm_iphone_UINavigationItem {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UINavigationItem* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationItem;
+    __TIB_DEFINITION_org_xmlvm_iphone_UINavigationItem* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationItem;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem

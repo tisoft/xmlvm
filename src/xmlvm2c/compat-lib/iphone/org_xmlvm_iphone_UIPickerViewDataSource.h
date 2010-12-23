@@ -9,26 +9,24 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPickerView)
-#endif
 // Class declarations for org.xmlvm.iphone.UIPickerViewDataSource
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPickerViewDataSource, 16)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPickerViewDataSource
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPickerViewDataSource
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIPickerViewDataSource \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIPickerViewDataSource \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPickerViewDataSource \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPickerViewDataSource \
     } org_xmlvm_iphone_UIPickerViewDataSource
 
 struct org_xmlvm_iphone_UIPickerViewDataSource {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIPickerViewDataSource* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIPickerViewDataSource;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIPickerViewDataSource* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIPickerViewDataSource;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerViewDataSource
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerViewDataSource

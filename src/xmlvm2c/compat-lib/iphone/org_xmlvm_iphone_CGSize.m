@@ -1,12 +1,11 @@
-#include "java_lang_Object.h"
 #include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_CGSize.h"
 
-__CLASS_DEFINITION_org_xmlvm_iphone_CGSize __CLASS_org_xmlvm_iphone_CGSize = {
+__TIB_DEFINITION_org_xmlvm_iphone_CGSize __TIB_org_xmlvm_iphone_CGSize = {
     0, // classInitialized
     "org.xmlvm.iphone.CGSize", // className
-    (__CLASS_DEFINITION_TEMPLATE*) &__CLASS_org_xmlvm_iphone_NSObject, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -15,18 +14,18 @@ __CLASS_DEFINITION_org_xmlvm_iphone_CGSize __CLASS_org_xmlvm_iphone_CGSize = {
 
 void __INIT_org_xmlvm_iphone_CGSize()
 {
-    __CLASS_org_xmlvm_iphone_CGSize.classInitialized = 1;
+    __TIB_org_xmlvm_iphone_CGSize.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__CLASS_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __CLASS_org_xmlvm_iphone_CGSize.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGSize;
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __TIB_org_xmlvm_iphone_CGSize.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGSize;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__CLASS_org_xmlvm_iphone_CGSize.vtable, __CLASS_org_xmlvm_iphone_NSObject.vtable, sizeof(__CLASS_org_xmlvm_iphone_NSObject.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGSize.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __CLASS_org_xmlvm_iphone_CGSize.vtable[4] = (VTABLE_PTR) &org_xmlvm_iphone_CGSize_toString__;
-    __CLASS_org_xmlvm_iphone_CGSize.vtable[2] = (VTABLE_PTR) &org_xmlvm_iphone_CGSize_equals___java_lang_Object;
+    __TIB_org_xmlvm_iphone_CGSize.vtable[4] = (VTABLE_PTR) &org_xmlvm_iphone_CGSize_toString__;
+    __TIB_org_xmlvm_iphone_CGSize.vtable[2] = (VTABLE_PTR) &org_xmlvm_iphone_CGSize_equals___java_lang_Object;
     // Initialize vtable for implementing interfaces
-    __CLASS_org_xmlvm_iphone_CGSize.numImplementedInterfaces = 0;
-    __CLASS_org_xmlvm_iphone_CGSize.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * 0);
+    __TIB_org_xmlvm_iphone_CGSize.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_CGSize.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGSize]
@@ -41,11 +40,11 @@ void __DELETE_org_xmlvm_iphone_CGSize(void* me, void* client_data)
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGSize()
 {
-    if (!__CLASS_org_xmlvm_iphone_CGSize.classInitialized) __INIT_org_xmlvm_iphone_CGSize();
+    if (!__TIB_org_xmlvm_iphone_CGSize.classInitialized) __INIT_org_xmlvm_iphone_CGSize();
     org_xmlvm_iphone_CGSize* me = (org_xmlvm_iphone_CGSize*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGSize));
-    me->__class = &__CLASS_org_xmlvm_iphone_CGSize;
-    me->org_xmlvm_iphone_CGSize.width_ = 0;
-    me->org_xmlvm_iphone_CGSize.height_ = 0;
+    me->tib = &__TIB_org_xmlvm_iphone_CGSize;
+    me->fields.org_xmlvm_iphone_CGSize.width_ = 0;
+    me->fields.org_xmlvm_iphone_CGSize.height_ = 0;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGSize]
     //XMLVM_END_WRAPPER
     return me;
@@ -68,8 +67,8 @@ void org_xmlvm_iphone_CGSize___INIT____float_float(JAVA_OBJECT me, JAVA_FLOAT n1
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGSize___INIT____float_float]
 	org_xmlvm_iphone_CGSize* thiz = me;
-    thiz->org_xmlvm_iphone_CGSize.width_ = n1;
-    thiz->org_xmlvm_iphone_CGSize.height_ = n2;
+    thiz->fields.org_xmlvm_iphone_CGSize.width_ = n1;
+    thiz->fields.org_xmlvm_iphone_CGSize.height_ = n2;
     //XMLVM_END_WRAPPER
 }
 

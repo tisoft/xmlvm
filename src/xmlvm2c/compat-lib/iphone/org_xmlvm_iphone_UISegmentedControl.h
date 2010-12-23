@@ -5,29 +5,9 @@
 #include "org_xmlvm_iphone_UIControl.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControl)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
-#define XMLVM_FORWARD_DECL_java_util_ArrayList
-XMLVM_FORWARD_DECL(java_util_ArrayList)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_util_Set
-#define XMLVM_FORWARD_DECL_java_util_Set
-XMLVM_FORWARD_DECL(java_util_Set)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
@@ -40,19 +20,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.UISegmentedControl
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISegmentedControl, 86)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UISegmentedControl
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UISegmentedControl
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UISegmentedControl \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UISegmentedControl \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIControl; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UISegmentedControl \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UISegmentedControl \
     } org_xmlvm_iphone_UISegmentedControl
 
 struct org_xmlvm_iphone_UISegmentedControl {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UISegmentedControl* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UISegmentedControl;
+    __TIB_DEFINITION_org_xmlvm_iphone_UISegmentedControl* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UISegmentedControl;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISegmentedControl
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISegmentedControl

@@ -5,25 +5,9 @@
 #include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_util_Set
-#define XMLVM_FORWARD_DECL_java_util_Set
-XMLVM_FORWARD_DECL(java_util_Set)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_util_Map
 #define XMLVM_FORWARD_DECL_java_util_Map
 XMLVM_FORWARD_DECL(java_util_Map)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControlDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControlDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControlDelegate)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
@@ -32,20 +16,22 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 // Class declarations for org.xmlvm.iphone.UIControl
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIControl, 71)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIControl
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIView; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIControl \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIView; \
     struct { \
         JAVA_OBJECT delegates_; \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIControl \
     } org_xmlvm_iphone_UIControl
 
 struct org_xmlvm_iphone_UIControl {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIControl* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIControl* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIControl;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl

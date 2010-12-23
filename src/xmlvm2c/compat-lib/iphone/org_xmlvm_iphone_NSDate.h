@@ -16,19 +16,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
 // Class declarations for org.xmlvm.iphone.NSDate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSDate, 15)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSDate
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSDate
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSDate \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSDate \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSDate \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSDate \
     } org_xmlvm_iphone_NSDate
 
 struct org_xmlvm_iphone_NSDate {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSDate* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSDate;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSDate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSDate;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate

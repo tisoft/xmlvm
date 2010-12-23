@@ -5,10 +5,6 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIResponder)
@@ -17,27 +13,25 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIResponder)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_Set
-#define XMLVM_FORWARD_DECL_java_util_Set
-XMLVM_FORWARD_DECL(java_util_Set)
-#endif
 // Class declarations for org.xmlvm.iphone.UIResponder
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIResponder, 21)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIResponder
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIResponder \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
         JAVA_BOOLEAN callDelegates_; \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIResponder \
     } org_xmlvm_iphone_UIResponder
 
 struct org_xmlvm_iphone_UIResponder {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIResponder* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIResponder* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIResponder;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder

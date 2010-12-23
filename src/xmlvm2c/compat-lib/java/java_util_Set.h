@@ -52,6 +52,6 @@ typedef struct java_util_Set java_util_Set;
 #define XMLVM_VTABLE_IDX_java_util_Set_equals___java_lang_Object 2
 #define XMLVM_VTABLE_IDX_java_util_Set_hashCode__ 1
 
-void __INIT_java_util_Set(__CLASS_DEFINITION_TEMPLATE** interface);
+void __INIT_java_util_Set(__TIB_DEFINITION_TEMPLATE** interface);
 
 #endif

@@ -20,19 +20,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.CATransition
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CATransition, 28)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CATransition
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CATransition
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_CATransition \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_CAAnimation; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_CATransition \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_CAAnimation; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CATransition \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CATransition \
     } org_xmlvm_iphone_CATransition
 
 struct org_xmlvm_iphone_CATransition {
-    __CLASS_DEFINITION_org_xmlvm_iphone_CATransition* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_CATransition;
+    __TIB_DEFINITION_org_xmlvm_iphone_CATransition* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_CATransition;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CATransition
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CATransition

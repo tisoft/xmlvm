@@ -16,19 +16,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKRequestDelegate)
 // Class declarations for org.xmlvm.iphone.SKRequest
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKRequest, 18)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_SKRequest
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_SKRequest
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_SKRequest \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_SKRequest \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_SKRequest \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_SKRequest \
     } org_xmlvm_iphone_SKRequest
 
 struct org_xmlvm_iphone_SKRequest {
-    __CLASS_DEFINITION_org_xmlvm_iphone_SKRequest* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_SKRequest;
+    __TIB_DEFINITION_org_xmlvm_iphone_SKRequest* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_SKRequest;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKRequest
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKRequest

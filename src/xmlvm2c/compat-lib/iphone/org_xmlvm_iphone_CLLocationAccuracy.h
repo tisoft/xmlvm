@@ -12,19 +12,21 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for org.xmlvm.iphone.CLLocationAccuracy
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLLocationAccuracy, 11)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationAccuracy
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CLLocationAccuracy
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationAccuracy \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_CLLocationAccuracy \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationAccuracy \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CLLocationAccuracy \
     } org_xmlvm_iphone_CLLocationAccuracy
 
 struct org_xmlvm_iphone_CLLocationAccuracy {
-    __CLASS_DEFINITION_org_xmlvm_iphone_CLLocationAccuracy* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationAccuracy;
+    __TIB_DEFINITION_org_xmlvm_iphone_CLLocationAccuracy* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_CLLocationAccuracy;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationAccuracy
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationAccuracy

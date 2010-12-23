@@ -12,21 +12,23 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 // Class declarations for org.xmlvm.iphone.MKCoordinateSpan
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKCoordinateSpan, 14)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateSpan
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKCoordinateSpan
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateSpan \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_MKCoordinateSpan \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
         JAVA_DOUBLE latitudeDelta_; \
         JAVA_DOUBLE longitudeDelta_; \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateSpan \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKCoordinateSpan \
     } org_xmlvm_iphone_MKCoordinateSpan
 
 struct org_xmlvm_iphone_MKCoordinateSpan {
-    __CLASS_DEFINITION_org_xmlvm_iphone_MKCoordinateSpan* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateSpan;
+    __TIB_DEFINITION_org_xmlvm_iphone_MKCoordinateSpan* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_MKCoordinateSpan;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKCoordinateSpan
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKCoordinateSpan

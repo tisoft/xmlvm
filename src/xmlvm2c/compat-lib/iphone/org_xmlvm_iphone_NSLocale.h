@@ -16,19 +16,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSLocale)
 // Class declarations for org.xmlvm.iphone.NSLocale
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSLocale, 14)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLocale
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSLocale
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSLocale \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSLocale \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLocale \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSLocale \
     } org_xmlvm_iphone_NSLocale
 
 struct org_xmlvm_iphone_NSLocale {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSLocale* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSLocale;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSLocale* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSLocale;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSLocale
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSLocale

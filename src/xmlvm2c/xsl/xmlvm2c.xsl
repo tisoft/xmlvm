@@ -5,7 +5,7 @@
 ]>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:xs = "http://www.w3.org/2001/XMLSchema"
+                xmlns:xs ="http://www.w3.org/2001/XMLSchema"
                 xmlns:vm ="http://xmlvm.org"
                 xmlns:jvm="http://xmlvm.org/jvm"
                 xmlns:dex="http://xmlvm.org/dex"
@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
           </xsl:call-template>
           <xsl:call-template name="appendSignature"/>
         </xsl:variable>
-        <xsl:text>    __CLASS_</xsl:text>
+        <xsl:text>    __TIB_</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.vtable[XMLVM_VTABLE_IDX_</xsl:text>
         <xsl:value-of select="$mangledMethodName"/>
@@ -139,16 +139,16 @@ int main(int argc, char* argv[])
     <xsl:value-of select="@vtableSize"/>
     <xsl:text>)&nl;&nl;</xsl:text>
     <xsl:if test="$genWrapper = 'true'">
-      <xsl:text>//XMLVM_BEGIN_MEMBERS&nl;</xsl:text>
-      <xsl:text>#define __ADDITIONAL_INSTANCE_MEMBERS_</xsl:text>
+      <xsl:text>//XMLVM_BEGIN_FIELDS&nl;</xsl:text>
+      <xsl:text>#define __ADDITIONAL_INSTANCE_FIELDS_</xsl:text>
       <xsl:value-of select="$clname"/>
-      <xsl:text>&nl;//XMLVM_END_MEMBERS&nl;&nl;</xsl:text>
+      <xsl:text>&nl;//XMLVM_END_FIELDS&nl;&nl;</xsl:text>
     </xsl:if>
-    <xsl:text>#define __INSTANCE_MEMBERS_</xsl:text>
+    <xsl:text>#define __INSTANCE_FIELDS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text> \&nl;</xsl:text>
     <xsl:if test="@extends ne ''">
-      <xsl:text>    __INSTANCE_MEMBERS_</xsl:text>
+      <xsl:text>    __INSTANCE_FIELDS_</xsl:text>
       <xsl:value-of select="vm:fixname(@extends)"/>
       <xsl:text>; \&nl;</xsl:text>
     </xsl:if>
@@ -166,7 +166,7 @@ int main(int argc, char* argv[])
       </xsl:if>
     </xsl:for-each>
     <xsl:if test="$genWrapper = 'true'">
-      <xsl:text>    __ADDITIONAL_INSTANCE_MEMBERS_</xsl:text>
+      <xsl:text>    __ADDITIONAL_INSTANCE_FIELDS_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text> \&nl;    </xsl:text>
     </xsl:if>
@@ -176,12 +176,13 @@ int main(int argc, char* argv[])
 
     <xsl:text>struct </xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text> {&nl;    __CLASS_DEFINITION_</xsl:text>
+    <xsl:text> {&nl;    __TIB_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>* __class;
-    __INSTANCE_MEMBERS_</xsl:text>
+    <xsl:text>* tib;
+    struct {
+        __INSTANCE_FIELDS_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>;&nl;};&nl;</xsl:text>
+    <xsl:text>;&nl;    } fields;&nl;};&nl;</xsl:text>
     <xsl:text>#ifndef XMLVM_FORWARD_DECL_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>&nl;</xsl:text>
@@ -327,7 +328,7 @@ int main(int argc, char* argv[])
     <!-- Emit interface initializers -->
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>(__CLASS_DEFINITION_TEMPLATE** interface);&nl;</xsl:text>
+    <xsl:text>(__TIB_DEFINITION_TEMPLATE** interface);&nl;</xsl:text>
 
     <!-- Emit code for class initializer if there is one -->
     <xsl:for-each select="vm:method[@name = '&lt;clinit&gt;']">
@@ -385,19 +386,19 @@ int main(int argc, char* argv[])
 <xsl:template name="emitClassImplementation">
     <xsl:variable name="clname" select="vm:fixname(concat(@package, '.', @name))"/>
 
-    <xsl:text>__CLASS_DEFINITION_</xsl:text>
+    <xsl:text>__TIB_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text> __CLASS_</xsl:text>
+    <xsl:text> __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text> = {
     0, // classInitialized
     "</xsl:text>
     <xsl:value-of select="concat(@package, '.' , @name)"/>
     <xsl:text>", // className&nl;</xsl:text>
-    <xsl:text>    (__CLASS_DEFINITION_TEMPLATE*) </xsl:text>
+    <xsl:text>    (__TIB_DEFINITION_TEMPLATE*) </xsl:text>
     <xsl:choose>
       <xsl:when test="@extends ne ''">
-        <xsl:text>&amp;__CLASS_</xsl:text>
+        <xsl:text>&amp;__TIB_</xsl:text>
         <xsl:value-of select="vm:fixname(@extends)"/> 
       </xsl:when>
       <xsl:otherwise>
@@ -433,34 +434,34 @@ int main(int argc, char* argv[])
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>()&nl;{&nl;</xsl:text>
-    <xsl:text>    __CLASS_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized = 1;&nl;</xsl:text>
     <xsl:if test="@extends ne ''">
       <xsl:text>    // Initialize base class if necessary&nl;</xsl:text>
-      <xsl:text>    if (!__CLASS_</xsl:text>
+      <xsl:text>    if (!__TIB_</xsl:text>
       <xsl:value-of select="vm:fixname(@extends)"/>
       <xsl:text>.classInitialized) __INIT_</xsl:text>
       <xsl:value-of select="vm:fixname(@extends)"/>
       <xsl:text>();&nl;</xsl:text>
-      <xsl:text>    __CLASS_</xsl:text>
+      <xsl:text>    __TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>.newInstanceFunc = __NEW_INSTANCE_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>;&nl;</xsl:text>
       <xsl:text>    // Copy vtable from base class&nl;</xsl:text>
-      <xsl:text>    XMLVM_MEMCPY(__CLASS_</xsl:text>
+      <xsl:text>    XMLVM_MEMCPY(__TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
-      <xsl:text>.vtable, __CLASS_</xsl:text>
+      <xsl:text>.vtable, __TIB_</xsl:text>
       <xsl:value-of select="vm:fixname(@extends)"/>
-      <xsl:text>.vtable, sizeof(__CLASS_</xsl:text>
+      <xsl:text>.vtable, sizeof(__TIB_</xsl:text>
       <xsl:value-of select="vm:fixname(@extends)"/>
       <xsl:text>.vtable));&nl;</xsl:text>
     </xsl:if>
     <xsl:text>    // Initialize vtable for this class
     </xsl:text>
     <xsl:for-each select="vm:method[@vtableIndex and not(@isAbstract = 'true')]">
-      <xsl:text>__CLASS_</xsl:text>
+      <xsl:text>__TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>.vtable[</xsl:text>
       <xsl:value-of select="@vtableIndex"/>
@@ -489,14 +490,14 @@ int main(int argc, char* argv[])
     
     <xsl:variable name="numImplementedInterfaces" select="count(vm:vtable[@kind='interface-vtable'])"/>
     <xsl:text>// Initialize vtable for implementing interfaces
-    __CLASS_</xsl:text>
+    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.numImplementedInterfaces = </xsl:text>
     <xsl:value-of select="$numImplementedInterfaces"/>
     <xsl:text>;
-    __CLASS_</xsl:text>
+    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>.implementedInterfaces = (__CLASS_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_TEMPLATE*) * </xsl:text>
+    <xsl:text>.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * </xsl:text>
     <xsl:value-of select="$numImplementedInterfaces"/>
     <xsl:text>);</xsl:text>
     <xsl:for-each select="vm:vtable[@kind='interface-vtable']">
@@ -504,19 +505,19 @@ int main(int argc, char* argv[])
       <xsl:variable name="idx" select="position() - 1"/>
       <xsl:text>&nl;    __INIT_</xsl:text>
       <xsl:value-of select="$iname"/>
-      <xsl:text>(&amp;__CLASS_</xsl:text>
+      <xsl:text>(&amp;__TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>.implementedInterfaces[0][</xsl:text>
       <xsl:value-of select="$idx"/>
       <xsl:text>]);</xsl:text>
       <xsl:for-each select="vm:map">
-        <xsl:text>&nl;    __CLASS_</xsl:text>
+        <xsl:text>&nl;    __TIB_</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.implementedInterfaces[0][</xsl:text>
         <xsl:value-of select="$idx"/>
         <xsl:text>]->vtable[</xsl:text>
         <xsl:value-of select="@vtableIndexInterface"/>
-        <xsl:text>] = __CLASS_</xsl:text>
+        <xsl:text>] = __TIB_</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.vtable[</xsl:text>
         <xsl:value-of select="@vtableIndexClass"/>
@@ -524,7 +525,7 @@ int main(int argc, char* argv[])
       </xsl:for-each>
     </xsl:for-each>
     
-    <!-- Initialize static members -->
+    <!-- Initialize static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
       <xsl:if test="not($genWrapper = 'true' and @isPrivate = 'true')">
         <xsl:text>&nl;    _STATIC_</xsl:text>
@@ -597,7 +598,7 @@ int main(int argc, char* argv[])
                         not(vm:signature/vm:parameter) and 
                         vm:signature/vm:return[@type='void']]">
       <xsl:text>    // Call the finalizer&nl;</xsl:text>
-      <xsl:text>    (*(void (*)(JAVA_OBJECT)) ((java_lang_Object*) me)->__class->vtable[XMLVM_VTABLE_IDX_java_lang_Object_finalize_java_lang_Object__])(me);&nl;</xsl:text>
+      <xsl:text>    (*(void (*)(JAVA_OBJECT)) ((java_lang_Object*) me)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Object_finalize_java_lang_Object__])(me);&nl;</xsl:text>
     </xsl:if>
 	<xsl:text>}&nl;&nl;</xsl:text>
 	
@@ -607,7 +608,7 @@ int main(int argc, char* argv[])
     <xsl:text>JAVA_OBJECT __NEW_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>()&nl;{
-    if (!__CLASS_</xsl:text>
+    if (!__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized) __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
@@ -619,14 +620,14 @@ int main(int argc, char* argv[])
     <xsl:text>*) XMLVM_MALLOC(sizeof(</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>));
-    me->__class = &amp;__CLASS_</xsl:text>
+    me->tib = &amp;__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;&nl;</xsl:text>
 	
-    <!-- Emit initializations for all non-static member fields -->
+    <!-- Emit initializations for all non-static fields -->
     <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
       <xsl:if test="not($genWrapper = 'true' and @isPrivate = 'true')">
-        <xsl:text>    me-></xsl:text>
+        <xsl:text>    me->fields.</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.</xsl:text>
         <xsl:value-of select="vm:fixname(@name)"/>
@@ -701,7 +702,7 @@ int main(int argc, char* argv[])
         <xsl:value-of select="$clname"/>
         <xsl:text>_GET_</xsl:text>
         <xsl:value-of select="vm:fixname(@name)"/>
-        <xsl:text>()&nl;{&nl;    if (!__CLASS_</xsl:text>
+        <xsl:text>()&nl;{&nl;    if (!__TIB_</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.classInitialized) __INIT_</xsl:text>
         <xsl:value-of select="$clname"/>
@@ -719,7 +720,7 @@ int main(int argc, char* argv[])
         <xsl:call-template name="emitType">
           <xsl:with-param name="type" select="@type"/>
         </xsl:call-template>
-        <xsl:text> v)&nl;{&nl;    if (!__CLASS_</xsl:text>
+        <xsl:text> v)&nl;{&nl;    if (!__TIB_</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.classInitialized) __INIT_</xsl:text>
         <xsl:value-of select="$clname"/>
@@ -744,7 +745,7 @@ int main(int argc, char* argv[])
         <xsl:if test="not(@isNative = 'true') and dex:code">
           <xsl:text>&nl;{&nl;</xsl:text>
           <xsl:if test="@isStatic = 'true'">
-            <xsl:text>    if (!__CLASS_</xsl:text>
+            <xsl:text>    if (!__TIB_</xsl:text>
             <xsl:value-of select="$clname"/>
             <xsl:text>.classInitialized) __INIT_</xsl:text>
             <xsl:value-of select="$clname"/>
@@ -781,9 +782,9 @@ int main(int argc, char* argv[])
     <xsl:variable name="clname" select="vm:fixname($cclname)"/>
     <xsl:variable name="numBaseInterfaces" select="count(tokenize(@interfaces, ','))"/>
     
-    <xsl:text>__CLASS_DEFINITION_</xsl:text>
+    <xsl:text>__TIB_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text> __CLASS_</xsl:text>
+    <xsl:text> __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;
 
@@ -806,21 +807,21 @@ int main(int argc, char* argv[])
     <!-- Emit interface initializers -->
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>(__CLASS_DEFINITION_TEMPLATE** interface)&nl;{
-    if (!__CLASS_</xsl:text>
+    <xsl:text>(__TIB_DEFINITION_TEMPLATE** interface)&nl;{
+    if (!__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized) {
-        __CLASS_</xsl:text>
+        __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.className = "</xsl:text>
     <xsl:value-of select="$cclname"/>
     <xsl:text>";
-        __CLASS_</xsl:text>
+        __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>.extends = (__CLASS_DEFINITION_TEMPLATE*) &amp;__CLASS_</xsl:text>
+    <xsl:text>.extends = (__TIB_DEFINITION_TEMPLATE*) &amp;__TIB_</xsl:text>
     <xsl:value-of select="vm:fixname(@extends)"/>
     <xsl:text>;
-        __CLASS_</xsl:text>
+        __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.numInterfaces = </xsl:text>
     <xsl:value-of select="$numBaseInterfaces"/>
@@ -828,7 +829,7 @@ int main(int argc, char* argv[])
     <xsl:if test="$numBaseInterfaces gt 0">
       <xsl:for-each select="tokenize(@interfaces, ',')">
         <xsl:text>
-        //__CLASS_</xsl:text>
+        //__TIB_</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.baseInterfaces[</xsl:text>
         <xsl:value-of select="position() - 1"/>
@@ -837,7 +838,7 @@ int main(int argc, char* argv[])
         <xsl:text>;</xsl:text>
       </xsl:for-each>
     </xsl:if>
-    <!-- Initialize static members -->
+    <!-- Initialize static fields -->
     <xsl:for-each select="vm:field">
       <xsl:text>&nl;        _STATIC_</xsl:text>
       <xsl:value-of select="vm:fixname(../@package)"/>
@@ -872,17 +873,17 @@ int main(int argc, char* argv[])
       <xsl:text>;</xsl:text>
     </xsl:for-each>
     
-    <xsl:text>&nl;        __CLASS_</xsl:text>
+    <xsl:text>&nl;        __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized = 1;
     }
     if (interface != JAVA_NULL) {
-        *interface = (__CLASS_DEFINITION_TEMPLATE*) XMLVM_MALLOC(sizeof(__CLASS_DEFINITION_</xsl:text>
+        *interface = (__TIB_DEFINITION_TEMPLATE*) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>));
-        XMLVM_MEMCPY(*interface, &amp;__CLASS_</xsl:text>
+        XMLVM_MEMCPY(*interface, &amp;__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>, sizeof(__CLASS_DEFINITION_</xsl:text>
+    <xsl:text>, sizeof(__TIB_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>));</xsl:text>
 
@@ -926,7 +927,7 @@ int main(int argc, char* argv[])
       <xsl:value-of select="$clname"/>
       <xsl:text>_GET_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
-      <xsl:text>()&nl;{&nl;    if (!__CLASS_</xsl:text>
+      <xsl:text>()&nl;{&nl;    if (!__TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>.classInitialized) __INIT_</xsl:text>
       <xsl:value-of select="$clname"/>
@@ -1489,7 +1490,7 @@ int main(int argc, char* argv[])
   </xsl:call-template>
   <xsl:text>) _r</xsl:text>
   <xsl:value-of select="@register"/>
-  <xsl:text>.o)->__class->vtable[</xsl:text>
+  <xsl:text>.o)->tib->vtable[</xsl:text>
   <xsl:value-of select="$vtable-index"/>
   <xsl:text>])</xsl:text>
   <xsl:text>(_r</xsl:text>
@@ -1630,7 +1631,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="$id"/>
   <xsl:text>, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
   <xsl:for-each select="dex:catch">
-    <xsl:text>        if (XMLVM_ISA(xmlvm_exception, &amp;__CLASS_</xsl:text>
+    <xsl:text>        if (XMLVM_ISA(xmlvm_exception, &amp;__TIB_</xsl:text>
     <xsl:value-of select="vm:fixname(@exception-type)"/>
     <xsl:text>)) goto label</xsl:text>
     <xsl:value-of select="@target"/>
@@ -2141,7 +2142,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="$m"/>
   <xsl:text> = </xsl:text>
   <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
-  <xsl:text>-></xsl:text>
+  <xsl:text>->fields.</xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text>.</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
@@ -2161,7 +2162,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="$m" />
   <xsl:text> = </xsl:text>
   <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
-  <xsl:text>-></xsl:text>
+  <xsl:text>->fields.</xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)" />
   <xsl:text>.</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)" />
@@ -2178,7 +2179,7 @@ int main(int argc, char* argv[])
   </xsl:variable>
   <xsl:text>    </xsl:text>
   <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
-  <xsl:text>-></xsl:text>
+  <xsl:text>->fields.</xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text>.</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
@@ -2202,7 +2203,7 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:iput-object">
   <xsl:text>    </xsl:text>
   <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
-  <xsl:text>-></xsl:text>
+  <xsl:text>->fields.</xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)" />
   <xsl:text>.</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)" />
@@ -2278,7 +2279,7 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:const-class"> 
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o = __NEW_XMLVMClass((__CLASS_DEFINITION_TEMPLATE*) &amp;__CLASS_</xsl:text>
+  <xsl:text>.o = __NEW_XMLVMClass((__TIB_DEFINITION_TEMPLATE*) &amp;__TIB_</xsl:text>
   <xsl:value-of select="vm:fixname(@value)"/>
   <xsl:text>);&nl;</xsl:text>
 </xsl:template>
@@ -2983,7 +2984,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="@vx"/>
   <xsl:text>.i = XMLVM_ISA(_r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.o, (JAVA_OBJECT) &amp;__CLASS_</xsl:text>
+  <xsl:text>.o, (JAVA_OBJECT) &amp;__TIB_</xsl:text>
   <xsl:value-of select="vm:fixname(@value)"/>
   <xsl:text>);
 </xsl:text>

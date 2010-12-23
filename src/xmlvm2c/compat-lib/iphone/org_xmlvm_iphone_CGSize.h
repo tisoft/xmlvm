@@ -9,14 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -24,21 +16,23 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.CGSize
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGSize, 14)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CGSize
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGSize
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_CGSize \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_CGSize \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
         JAVA_FLOAT width_; \
         JAVA_FLOAT height_; \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CGSize \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGSize \
     } org_xmlvm_iphone_CGSize
 
 struct org_xmlvm_iphone_CGSize {
-    __CLASS_DEFINITION_org_xmlvm_iphone_CGSize* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_CGSize;
+    __TIB_DEFINITION_org_xmlvm_iphone_CGSize* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_CGSize;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize

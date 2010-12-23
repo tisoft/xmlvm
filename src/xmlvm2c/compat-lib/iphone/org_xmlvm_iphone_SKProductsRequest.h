@@ -13,26 +13,24 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKProductsRequestDelegate)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKRequest
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKRequest)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_Set
-#define XMLVM_FORWARD_DECL_java_util_Set
-XMLVM_FORWARD_DECL(java_util_Set)
-#endif
 // Class declarations for org.xmlvm.iphone.SKProductsRequest
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKProductsRequest, 20)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_SKProductsRequest
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_SKProductsRequest
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_SKProductsRequest \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_SKRequest; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_SKProductsRequest \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_SKRequest; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_SKProductsRequest \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_SKProductsRequest \
     } org_xmlvm_iphone_SKProductsRequest
 
 struct org_xmlvm_iphone_SKProductsRequest {
-    __CLASS_DEFINITION_org_xmlvm_iphone_SKProductsRequest* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_SKProductsRequest;
+    __TIB_DEFINITION_org_xmlvm_iphone_SKProductsRequest* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_SKProductsRequest;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKProductsRequest
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKProductsRequest

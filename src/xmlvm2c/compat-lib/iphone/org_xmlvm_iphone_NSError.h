@@ -24,19 +24,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.NSError
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSError, 18)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSError
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSError \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSError \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSError \
     } org_xmlvm_iphone_NSError
 
 struct org_xmlvm_iphone_NSError {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSError* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSError;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSError* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSError;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError

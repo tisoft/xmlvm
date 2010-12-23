@@ -12,19 +12,21 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for org.xmlvm.iphone.UIDataDetectorType
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIDataDetectorType, 11)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDataDetectorType
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIDataDetectorType
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIDataDetectorType \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIDataDetectorType \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDataDetectorType \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIDataDetectorType \
     } org_xmlvm_iphone_UIDataDetectorType
 
 struct org_xmlvm_iphone_UIDataDetectorType {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIDataDetectorType* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIDataDetectorType;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIDataDetectorType* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIDataDetectorType;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIDataDetectorType
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIDataDetectorType

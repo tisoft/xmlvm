@@ -20,19 +20,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.UIFont
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIFont, 18)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIFont
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIFont
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIFont \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIFont \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIFont \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIFont \
     } org_xmlvm_iphone_UIFont
 
 struct org_xmlvm_iphone_UIFont {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIFont* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIFont;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIFont* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIFont;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont

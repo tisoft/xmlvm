@@ -13,18 +13,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableViewCell)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableView)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSIndexPath)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -32,19 +20,21 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.UITableViewDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewDelegate, 28)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewDelegate
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewDelegate
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewDelegate \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewDelegate \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewDelegate \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewDelegate \
     } org_xmlvm_iphone_UITableViewDelegate
 
 struct org_xmlvm_iphone_UITableViewDelegate {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UITableViewDelegate* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewDelegate;
+    __TIB_DEFINITION_org_xmlvm_iphone_UITableViewDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewDelegate;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewDelegate

@@ -12,19 +12,21 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for org.xmlvm.iphone.SKPaymentTransactionState
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKPaymentTransactionState, 11)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionState
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_SKPaymentTransactionState
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionState \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_SKPaymentTransactionState \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionState \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_SKPaymentTransactionState \
     } org_xmlvm_iphone_SKPaymentTransactionState
 
 struct org_xmlvm_iphone_SKPaymentTransactionState {
-    __CLASS_DEFINITION_org_xmlvm_iphone_SKPaymentTransactionState* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionState;
+    __TIB_DEFINITION_org_xmlvm_iphone_SKPaymentTransactionState* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_SKPaymentTransactionState;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentTransactionState
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentTransactionState

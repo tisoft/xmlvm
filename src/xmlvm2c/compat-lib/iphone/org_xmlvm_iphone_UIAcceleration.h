@@ -12,19 +12,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 // Class declarations for org.xmlvm.iphone.UIAcceleration
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAcceleration, 17)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAcceleration
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIAcceleration
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UIAcceleration \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIAcceleration \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAcceleration \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIAcceleration \
     } org_xmlvm_iphone_UIAcceleration
 
 struct org_xmlvm_iphone_UIAcceleration {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UIAcceleration* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIAcceleration;
+    __TIB_DEFINITION_org_xmlvm_iphone_UIAcceleration* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIAcceleration;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAcceleration
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAcceleration

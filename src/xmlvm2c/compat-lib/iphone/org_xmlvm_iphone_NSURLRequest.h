@@ -20,19 +20,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
 // Class declarations for org.xmlvm.iphone.NSURLRequest
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSURLRequest, 15)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLRequest
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSURLRequest
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLRequest \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSURLRequest \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLRequest \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSURLRequest \
     } org_xmlvm_iphone_NSURLRequest
 
 struct org_xmlvm_iphone_NSURLRequest {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSURLRequest* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLRequest;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSURLRequest* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSURLRequest;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest

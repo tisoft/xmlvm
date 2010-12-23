@@ -5,34 +5,28 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParserDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParserDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSXMLParserDelegate)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
-#endif
 // Class declarations for org.xmlvm.iphone.NSXMLParser
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSXMLParser, 20)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParser
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSXMLParser
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParser \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSXMLParser \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParser \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSXMLParser \
     } org_xmlvm_iphone_NSXMLParser
 
 struct org_xmlvm_iphone_NSXMLParser {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSXMLParser* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParser;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSXMLParser* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSXMLParser;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParser
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParser

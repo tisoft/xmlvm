@@ -17,34 +17,24 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGImage
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGImage
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGImage)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGFont
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGFont
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGFont)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
-#endif
 // Class declarations for org.xmlvm.iphone.CGContext
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGContext, 42)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CGContext void *ocContext;
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGContext void *ocContext;
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_CGContext \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_CGContext \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_CGContext \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGContext \
     } org_xmlvm_iphone_CGContext
 
 struct org_xmlvm_iphone_CGContext {
-    __CLASS_DEFINITION_org_xmlvm_iphone_CGContext* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_CGContext;
+    __TIB_DEFINITION_org_xmlvm_iphone_CGContext* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_CGContext;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext

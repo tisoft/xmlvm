@@ -29,19 +29,21 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 // Class declarations for org.xmlvm.iphone.UITableViewCell
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewCell, 84)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCell
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewCell
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCell \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UIView; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewCell \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIView; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCell \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewCell \
     } org_xmlvm_iphone_UITableViewCell
 
 struct org_xmlvm_iphone_UITableViewCell {
-    __CLASS_DEFINITION_org_xmlvm_iphone_UITableViewCell* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCell;
+    __TIB_DEFINITION_org_xmlvm_iphone_UITableViewCell* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewCell;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell

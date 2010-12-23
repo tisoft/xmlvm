@@ -5,46 +5,32 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParserDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParserDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSXMLParserDelegate)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParser
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParser
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSXMLParser)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_Map
-#define XMLVM_FORWARD_DECL_java_util_Map
-XMLVM_FORWARD_DECL(java_util_Map)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
-#endif
 // Class declarations for org.xmlvm.iphone.NSXMLParserDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSXMLParserDelegate, 21)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParserDelegate
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSXMLParserDelegate
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParserDelegate \
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject; \
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSXMLParserDelegate \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParserDelegate \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSXMLParserDelegate \
     } org_xmlvm_iphone_NSXMLParserDelegate
 
 struct org_xmlvm_iphone_NSXMLParserDelegate {
-    __CLASS_DEFINITION_org_xmlvm_iphone_NSXMLParserDelegate* __class;
-    __INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParserDelegate;
+    __TIB_DEFINITION_org_xmlvm_iphone_NSXMLParserDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSXMLParserDelegate;
+    } fields;
 };
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParserDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParserDelegate

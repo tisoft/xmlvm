@@ -12,19 +12,19 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for java.lang.Math
 XMLVM_DEFINE_CLASS(java_lang_Math, 11)
 
-//XMLVM_BEGIN_MEMBERS
-#define __ADDITIONAL_INSTANCE_MEMBERS_java_lang_Math
-//XMLVM_END_MEMBERS
+//XMLVM_BEGIN_FIELDS
+#define __ADDITIONAL_INSTANCE_FIELDS_java_lang_Math
+//XMLVM_END_FIELDS
 
-#define __INSTANCE_MEMBERS_java_lang_Math \
-    __INSTANCE_MEMBERS_java_lang_Object; \
+#define __INSTANCE_FIELDS_java_lang_Math \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
-        __ADDITIONAL_INSTANCE_MEMBERS_java_lang_Math \
+        __ADDITIONAL_INSTANCE_FIELDS_java_lang_Math \
     } java_lang_Math
 
 struct java_lang_Math {
-    __CLASS_DEFINITION_java_lang_Math* __class;
-    __INSTANCE_MEMBERS_java_lang_Math;
+    __TIB_DEFINITION_java_lang_Math* tib;
+    __INSTANCE_FIELDS_java_lang_Math;
 };
 #ifndef XMLVM_FORWARD_DECL_java_lang_Math
 #define XMLVM_FORWARD_DECL_java_lang_Math
