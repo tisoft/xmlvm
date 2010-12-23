@@ -95,7 +95,6 @@
 - (void) dealloc
 {
 	[delegate release];
-	[delegate release];
 	[super dealloc];
 }
 
@@ -183,6 +182,7 @@ static char memberKey; // key for associative reference for member variables
 		AVAudioPlayerDelegateWrapper* wrapper = [[AVAudioPlayerDelegateWrapper alloc] initWithDelegate: delegate];
 		self.delegate = wrapper;
 		m.delegate = wrapper;
+		[wrapper release];
 	}
 	else {
 		self.delegate = nil;
