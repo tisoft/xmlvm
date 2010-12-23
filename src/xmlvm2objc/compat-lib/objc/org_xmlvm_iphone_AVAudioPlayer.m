@@ -76,6 +76,33 @@
 @end
 
 
+
+@interface AVAudioPlayer_members : NSObject {
+	AVAudioPlayerDelegateWrapper* delegate;
+}
+
+@property (nonatomic, retain) AVAudioPlayerDelegateWrapper* delegate;
+
+- (void) dealloc;
+
+@end
+
+
+@implementation AVAudioPlayer_members
+
+@synthesize delegate;
+
+- (void) dealloc
+{
+	[delegate release];
+	[delegate release];
+	[super dealloc];
+}
+
+@end
+
+
+
 @implementation AVAudioPlayer (cat_org_xmlvm_iphone_AVAudioPlayer)
 
 + (AVAudioPlayer*) initWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder
@@ -111,6 +138,22 @@
 	return XMLVM_NIL2NULL([[AVAudioPlayer alloc] initWithData: data error: &(outError->error_org_xmlvm_iphone_NSError)]);
 }
 
+static char memberKey; // key for associative reference for member variables
+
+- (AVAudioPlayer_members*) getMembers
+{
+	AVAudioPlayer_members *members = nil;
+	@synchronized(self) {
+		members = (AVAudioPlayer_members *)objc_getAssociatedObject(self, &memberKey);
+		if (members == nil) {
+			members = [[AVAudioPlayer_members alloc] init];
+			objc_setAssociatedObject(self, &memberKey, members, OBJC_ASSOCIATION_RETAIN);
+			[members release];
+		}
+	}
+	return members;
+}
+
 - (BOOL) play__
 {
 	return [self play];
@@ -134,9 +177,12 @@
 - (void) setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate
 			: (id<org_xmlvm_iphone_AVAudioPlayerDelegate>) delegate
 {
+	AVAudioPlayer_members* m = [self getMembers];
+
 	if (delegate != JAVA_NULL) {
 		AVAudioPlayerDelegateWrapper* wrapper = [[AVAudioPlayerDelegateWrapper alloc] initWithDelegate: delegate];
 		self.delegate = wrapper;
+		m.delegate = wrapper;
 	}
 	else {
 		self.delegate = nil;
