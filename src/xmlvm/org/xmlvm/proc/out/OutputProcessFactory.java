@@ -53,6 +53,8 @@ public class OutputProcessFactory {
      */
     public XmlvmProcess<?> createTargetProcess(Targets target, String out) {
         switch (target) {
+        case JAVA:
+            return new JavaOutputProcess(arguments);
         case JS:
             return new JavaScriptOutputProcess(arguments);
         case PYTHON:

@@ -95,7 +95,7 @@ public class Arguments {
     private static final String[] shortUsage                  = {
             "Usage: ",
             "xmlvm [--in=<path> [--out=<dir>]]",
-            "      [--target=[xmlvm|dexmlvm|jvm|clr|dfa|class|exe|dex|js|c|python|objc|iphone|qooxdoo|webos]]",
+            "      [--target=[xmlvm|dexmlvm|jvm|clr|dfa|class|exe|dex|js|java|c|python|objc|iphone|qooxdoo|webos]]",
             "      [--skeleton=<type>]", "      [--lib=<name>", "      [--app-name=<app-name>]",
             "      [--resource=<path>]", "      [--qx-main=<main-class> [--qx-debug]]",
             "      [--debug=[none|error|warning|all]]", "      [--version] [--help]" };
@@ -117,6 +117,7 @@ public class Arguments {
             "    exe              .NET executable",
             "    dex              DEX bytecode",
             "    js               JavaScript",
+            "    java             Java source code",
             "    c                C source code",
             "    gen-c-wrappers   Generates C wrappers while preserving hand-written code from overridden files in the 'out' directory.",
             "    python           Python",

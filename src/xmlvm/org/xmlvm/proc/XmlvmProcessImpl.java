@@ -36,7 +36,7 @@ import org.xmlvm.proc.out.XmlvmToXmlvmProcess;
  */
 enum XmlvmProcessId {
     XMLVM_JVM("xmlvmjvm"), XMLVM_CLR("xmlvmclr"), XMLVM_CLR_DFA("xmlvmclrdfa"), CLASS("class"), EXE(
-            "exe"), JS("js"), OBJC("objc"), CPP("cpp"), PYTHON("python"), IPHONE("iphone"), QOOXDOO(
+            "exe"), JS("js"), JAVA("java"), OBJC("objc"), CPP("cpp"), PYTHON("python"), IPHONE("iphone"), QOOXDOO(
             "qooxdoo");
     String name;
 
