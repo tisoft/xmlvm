@@ -27,10 +27,6 @@ import org.xmlvm.util.Timer;
 /**
  * This is a new starting point of the suggested refactoring of the old
  * Main.java.
- * 
- * <p>
- * NOTE(shaeberling): This is work in progress and somewhat experimental as
- * well. Use this only of you know what you are doing.
  */
 public class Main {
     /**
