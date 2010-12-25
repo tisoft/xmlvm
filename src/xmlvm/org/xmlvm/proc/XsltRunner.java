@@ -80,8 +80,7 @@ public class XsltRunner {
      *            Parameters that should be applied to the transformation.
      * @return The output file with the result of the transformation.
      */
-    public synchronized static OutputFile runXSLT(String xsltFileName, Document doc,
-            String[][] xsltParams) {
+    public static OutputFile runXSLT(String xsltFileName, Document doc, String[][] xsltParams) {
         StringWriter writer = new StringWriter();
         try {
             Transformer transformer = getTransformer(xsltFileName);
@@ -112,8 +111,9 @@ public class XsltRunner {
      *         could be created.
      */
     private static Transformer getTransformer(String xsltFileName) {
-        if (transformers.containsKey(xsltFileName)) {
-            return transformers.get(xsltFileName);
+        String key = xsltFileName + "-" + Thread.currentThread().getId();
+        if (transformers.containsKey(key)) {
+            return transformers.get(key);
         }
         InputStream xsltFile = OutputFile.class.getResourceAsStream("/" + xsltFileName);
         if (xsltFile == null) {
@@ -124,7 +124,7 @@ public class XsltRunner {
             Source xsltSource = new StreamSource(xsltFile);
             TransformerFactory transFactory = TransformerFactory.newInstance();
             Transformer transformer = transFactory.newTransformer(xsltSource);
-            transformers.put(xsltFileName, transformer);
+            transformers.put(key, transformer);
             return transformer;
         } catch (TransformerConfigurationException e) {
             Log.error(TAG,
