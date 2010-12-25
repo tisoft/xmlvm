@@ -102,10 +102,7 @@ public class JavaOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         long startTime = System.currentTimeMillis();
 
         XmlvmResource[] resources = mappedResources.values().toArray(new XmlvmResource[0]);
-        // TODO(Sascha): We still got some issues with parallel processing in
-        // the XsltRunner which leads to problems when accessed multi-threaded.
-        // int threadCount = Runtime.getRuntime().availableProcessors();
-        int threadCount = 1;
+        int threadCount = Runtime.getRuntime().availableProcessors();
         int itemsPerThread = (int) Math.ceil(resources.length / (float) threadCount);
         Log.debug(TAG, "Threads: " + threadCount);
         Log.debug(TAG, "Items per thread: " + itemsPerThread);
