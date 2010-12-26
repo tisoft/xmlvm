@@ -28,14 +28,14 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.CGRect
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGRect, 17)
 
-//XMLVM_BEGIN_FIELDS
+//XMLVM_BEGIN_DECLARATIONS
 
 #import <CoreGraphics/CoreGraphics.h>
 
 CGRect toCGRect(void* rect);
 
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGRect
-//XMLVM_END_FIELDS
+//XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_CGRect \
     __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \

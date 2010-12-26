@@ -24,9 +24,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDateComponents)
 // Class declarations for org.xmlvm.iphone.NSCalendar
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSCalendar, 18)
 
-//XMLVM_BEGIN_FIELDS
+//XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSCalendar
-//XMLVM_END_FIELDS
+//XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_NSCalendar \
     __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \

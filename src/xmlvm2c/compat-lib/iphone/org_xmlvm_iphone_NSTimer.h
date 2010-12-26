@@ -9,14 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimerDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimerDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimerDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimer
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimer
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimer)
@@ -24,9 +16,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimer)
 // Class declarations for org.xmlvm.iphone.NSTimer
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSTimer, 15)
 
-//XMLVM_BEGIN_FIELDS
+//XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSTimer void *ocTimer;
-//XMLVM_END_FIELDS
+//XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_NSTimer \
     __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \

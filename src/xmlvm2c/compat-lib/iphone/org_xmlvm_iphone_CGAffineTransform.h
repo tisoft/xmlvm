@@ -16,9 +16,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGAffineTransform)
 // Class declarations for org.xmlvm.iphone.CGAffineTransform
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGAffineTransform, 14)
 
-//XMLVM_BEGIN_FIELDS
+//XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGAffineTransform
-//XMLVM_END_FIELDS
+//XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_CGAffineTransform \
     __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \

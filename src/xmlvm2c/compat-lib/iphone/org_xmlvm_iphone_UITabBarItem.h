@@ -16,9 +16,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.UITabBarItem
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBarItem, 29)
 
-//XMLVM_BEGIN_FIELDS
+//XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITabBarItem
-//XMLVM_END_FIELDS
+//XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UITabBarItem \
     __INSTANCE_FIELDS_org_xmlvm_iphone_UIBarItem; \

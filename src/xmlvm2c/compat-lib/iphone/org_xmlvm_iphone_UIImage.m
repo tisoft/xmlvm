@@ -1,7 +1,6 @@
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_CGSize.h"
 #include "org_xmlvm_iphone_CGImage.h"
-#include "org_xmlvm_iphone_CGRect.h"
 
 #include "org_xmlvm_iphone_UIImage.h"
 

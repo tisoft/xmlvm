@@ -139,10 +139,10 @@ int main(int argc, char* argv[])
     <xsl:value-of select="@vtableSize"/>
     <xsl:text>)&nl;&nl;</xsl:text>
     <xsl:if test="$genWrapper = 'true'">
-      <xsl:text>//XMLVM_BEGIN_FIELDS&nl;</xsl:text>
+      <xsl:text>//XMLVM_BEGIN_DECLARATIONS&nl;</xsl:text>
       <xsl:text>#define __ADDITIONAL_INSTANCE_FIELDS_</xsl:text>
       <xsl:value-of select="$clname"/>
-      <xsl:text>&nl;//XMLVM_END_FIELDS&nl;&nl;</xsl:text>
+      <xsl:text>&nl;//XMLVM_END_DECLARATIONS&nl;&nl;</xsl:text>
     </xsl:if>
     <xsl:text>#define __INSTANCE_FIELDS_</xsl:text>
     <xsl:value-of select="$clname"/>

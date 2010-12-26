@@ -12,9 +12,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for org.xmlvm.iphone.CLLocationManagerDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLLocationManagerDelegate, 18)
 
-//XMLVM_BEGIN_FIELDS
+//XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CLLocationManagerDelegate
-//XMLVM_END_FIELDS
+//XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_CLLocationManagerDelegate \
     __INSTANCE_FIELDS_java_lang_Object; \

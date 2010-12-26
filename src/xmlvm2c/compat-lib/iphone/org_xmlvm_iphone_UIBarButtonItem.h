@@ -24,9 +24,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarButtonItemDelegate)
 // Class declarations for org.xmlvm.iphone.UIBarButtonItem
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarButtonItem, 37)
 
-//XMLVM_BEGIN_FIELDS
+//XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIBarButtonItem
-//XMLVM_END_FIELDS
+//XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UIBarButtonItem \
     __INSTANCE_FIELDS_org_xmlvm_iphone_UIBarItem; \

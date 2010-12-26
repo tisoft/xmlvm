@@ -24,9 +24,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.NSError
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSError, 18)
 
-//XMLVM_BEGIN_FIELDS
+//XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSError
-//XMLVM_END_FIELDS
+//XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_NSError \
     __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \

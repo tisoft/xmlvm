@@ -1,7 +1,6 @@
 #include "org_xmlvm_iphone_UIApplicationDelegate.h"
 #include "org_xmlvm_iphone_UIWindow.h"
 #include "java_util_List.h"
-#include "java_lang_Class.h"
 
 #include "org_xmlvm_iphone_UIApplication.h"
 

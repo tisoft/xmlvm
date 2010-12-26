@@ -16,9 +16,9 @@ XMLVM_FORWARD_DECL(java_util_Set)
 // Class declarations for org.xmlvm.iphone.UIEvent
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIEvent, 15)
 
-//XMLVM_BEGIN_FIELDS
+//XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIEvent
-//XMLVM_END_FIELDS
+//XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UIEvent \
     __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \

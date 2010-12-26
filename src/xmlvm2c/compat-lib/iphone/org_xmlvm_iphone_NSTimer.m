@@ -1,5 +1,4 @@
 
-#include "org_xmlvm_iphone_NSTimerDelegate.h"
 #include "org_xmlvm_iphone_NSTimer.h"
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSTimer __TIB_org_xmlvm_iphone_NSTimer = {

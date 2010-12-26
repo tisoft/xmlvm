@@ -24,9 +24,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
 // Class declarations for org.xmlvm.iphone.UITouch
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITouch, 20)
 
-//XMLVM_BEGIN_FIELDS
+//XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITouch
-//XMLVM_END_FIELDS
+//XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UITouch \
     __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
