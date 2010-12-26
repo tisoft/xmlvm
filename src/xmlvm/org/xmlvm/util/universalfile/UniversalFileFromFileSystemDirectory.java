@@ -79,4 +79,9 @@ public class UniversalFileFromFileSystemDirectory extends UniversalFile {
         }
         return result.toArray(new UniversalFile[0]);
     }
+
+    @Override
+    public long getLastModified() {
+        return directory.lastModified();
+    }
 }

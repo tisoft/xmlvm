@@ -28,11 +28,13 @@ import java.io.UnsupportedEncodingException;
 public class UniversalFileFromMemory extends UniversalFile {
     private final String absoluteName;
     private final byte[] data;
+    private final long   lastModified;
 
 
     UniversalFileFromMemory(String absoluteName, byte[] data) {
         this.absoluteName = absoluteName;
         this.data = data;
+        this.lastModified = System.currentTimeMillis();
     }
 
     @Override
@@ -72,5 +74,10 @@ public class UniversalFileFromMemory extends UniversalFile {
         } catch (UnsupportedEncodingException e) {
             return new String(data);
         }
+    }
+
+    @Override
+    public long getLastModified() {
+        return lastModified;
     }
 }

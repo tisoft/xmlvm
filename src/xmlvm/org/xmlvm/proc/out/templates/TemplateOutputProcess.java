@@ -20,11 +20,6 @@
 
 package org.xmlvm.proc.out.templates;
 
-import static org.xmlvm.proc.out.templates.TemplateFile.Mode.BACKUP;
-import static org.xmlvm.proc.out.templates.TemplateFile.Mode.KEEP;
-import static org.xmlvm.proc.out.templates.TemplateFile.Mode.OVERWRITE;
-import static org.xmlvm.proc.out.templates.TemplateFile.Mode.ABORT;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -124,18 +119,19 @@ public abstract class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputP
         file.setLocation(path);
         Log.debug("Adding template file " + source + " to destination " + outpath);
 
-        if (!file.setDataFromStream(JarUtil.getStream(getTemplateLocation() + source))) {
+        if (!file.setDataFromStream(JarUtil.getStream(getTemplateLocation() + source),
+                System.currentTimeMillis())) {
             Log.error("Unable to find input file " + source);
             return false;
         }
         if (!source.endsWith(".png")) {
-            file.setData(file.getData().replace(TEMPL_PROJNAME, projname).replace(TEMPL_PACKNAME,
-                    pack_name).replace(TEMPL_SAFENAME, safe_name));
+            file.setData(file.getData().replace(TEMPL_PROJNAME, projname)
+                    .replace(TEMPL_PACKNAME, pack_name).replace(TEMPL_SAFENAME, safe_name));
         }
         if (source.endsWith(".properties") || source.endsWith(".classpath")) {
-            file.setData(file.getData().replace(TEMPL_TRIMSEED,
-                    String.valueOf(new Random().nextLong())).replace(TEMPL_XVMLSDK,
-                    JarUtil.findSelfJar()));
+            file.setData(file.getData()
+                    .replace(TEMPL_TRIMSEED, String.valueOf(new Random().nextLong()))
+                    .replace(TEMPL_XVMLSDK, JarUtil.findSelfJar()));
         }
         result.add(file);
         return true;

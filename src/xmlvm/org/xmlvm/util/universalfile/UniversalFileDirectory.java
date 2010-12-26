@@ -31,10 +31,12 @@ import java.util.List;
 public class UniversalFileDirectory extends UniversalFile {
     private String              absoluteName;
     private List<UniversalFile> files = new ArrayList<UniversalFile>();
+    private long                lastModified;
 
 
-    UniversalFileDirectory(String absoluteName) {
+    UniversalFileDirectory(String absoluteName, long lastModified) {
         this.absoluteName = absoluteName;
+        this.lastModified = lastModified;
     }
 
     @Override
@@ -77,6 +79,7 @@ public class UniversalFileDirectory extends UniversalFile {
      */
     public void add(UniversalFile file) {
         files.add(file);
+        this.lastModified = System.currentTimeMillis();
     }
 
     /**
@@ -94,5 +97,10 @@ public class UniversalFileDirectory extends UniversalFile {
             }
         }
         return null;
+    }
+
+    @Override
+    public long getLastModified() {
+        return lastModified;
     }
 }

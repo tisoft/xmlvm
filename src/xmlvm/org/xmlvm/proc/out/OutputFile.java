@@ -131,11 +131,11 @@ public class OutputFile {
      *            The InputStream to use - only UTF-8 streams are supported
      * @return true, if everything was successful
      */
-    public boolean setDataFromStream(InputStream stream) {
+    public boolean setDataFromStream(InputStream stream, long lastModified) {
         if (stream == null) {
             return false;
         }
-        this.data = UniversalFileCreator.createFile("", stream);
+        this.data = UniversalFileCreator.createFile("", stream, lastModified);
         return true;
     }
 
@@ -291,5 +291,13 @@ public class OutputFile {
             data = provider.getData();
             provider = null;
         }
+    }
+
+    /**
+     * Returns the time stamp when the contents of this file have been changed
+     * the last time.
+     */
+    public long getLastModified() {
+        return data.getLastModified();
     }
 }

@@ -243,9 +243,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     @Override
     public boolean process() {
         generatedResources.clear();
-        List<XmlvmProcess<?>> preprocesses = preprocess();
-        for (XmlvmProcess<?> process : preprocesses) {
-            for (OutputFile preOutputFile : process.getOutputFiles()) {
+        for (XmlvmProcess<?> preprocess : preprocess()) {
+            for (OutputFile preOutputFile : preprocess.getOutputFiles()) {
                 OutputFile outputFile = generateDEXmlvmFile(preOutputFile);
                 if (outputFile != null) {
                     outputFiles.add(outputFile);

@@ -22,7 +22,9 @@ package org.xmlvm.proc;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
@@ -36,8 +38,8 @@ import org.xmlvm.proc.out.XmlvmToXmlvmProcess;
  */
 enum XmlvmProcessId {
     XMLVM_JVM("xmlvmjvm"), XMLVM_CLR("xmlvmclr"), XMLVM_CLR_DFA("xmlvmclrdfa"), CLASS("class"), EXE(
-            "exe"), JS("js"), JAVA("java"), OBJC("objc"), CPP("cpp"), PYTHON("python"), IPHONE("iphone"), QOOXDOO(
-            "qooxdoo");
+            "exe"), JS("js"), JAVA("java"), OBJC("objc"), CPP("cpp"), PYTHON("python"), IPHONE(
+            "iphone"), QOOXDOO("qooxdoo");
     String name;
 
 
@@ -60,11 +62,13 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
 
     private static final String            TAG             = "XmlvmProcessImpl";
 
+    /** The list of process instances that get executed BEFORE this process. */
     private List<XmlvmProcess<?>>          preprocesses    = new ArrayList<XmlvmProcess<?>>();
 
-    /**
-     * This list contains all the supported input processes.
-     */
+    /** The list of process instances that get executed AFTER this process. */
+    private Set<XmlvmProcess<?>>           postProcesses   = new HashSet<XmlvmProcess<?>>();
+
+    /** This list contains all the supported input processes. */
     protected List<Class<XmlvmProcess<?>>> supportedInputs = new ArrayList<Class<XmlvmProcess<?>>>();
 
     protected Arguments                    arguments;
@@ -178,6 +182,12 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
         Log.debug("Adding preprocess " + xmlvmProcess.getClass().getName() + " to process "
                 + this.getClass().getName());
         preprocesses.add(xmlvmProcess);
+        xmlvmProcess.addPostProcess(this);
+    }
+
+    @Override
+    public void addPostProcess(XmlvmProcess<?> xmlvmProcess) {
+        postProcesses.add(xmlvmProcess);
     }
 
     @SuppressWarnings("unchecked")
@@ -200,7 +210,7 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
                 process.process();
                 if (process instanceof XmlvmProcessImpl) {
                     // Mark the process as processed.
-                    ((XmlvmProcessImpl) process).isProcessed = true;
+                    ((XmlvmProcessImpl<?>) process).isProcessed = true;
                 } else {
                     Log.error(TAG, "Internal Error: Preprocess found that is not an "
                             + "XmlvmProcessImpl instance.");
@@ -237,5 +247,37 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
     @Override
     public boolean isProcessed() {
         return isProcessed;
+    }
+
+    @Override
+    public boolean hasCachedOutput(String inputResourceName, long lastModified) {
+        return false;
+    }
+
+    @Override
+    public boolean isProcessingRequired(String inputResourceName, long lastModified) {
+        // If we have it caches, we don't need to process.
+        if (hasCachedOutput(inputResourceName, lastModified)) {
+            return false;
+        }
+
+        // If this process doesn't have it cached and there are not
+        // post-processes, this process needs to process the resource.
+        if (postProcesses.size() == 0) {
+            return true;
+        }
+
+        // If this process doesn't have it cached and one of the post processes
+        // doesn't, then this process needs to process.
+        for (XmlvmProcess<?> postProcess : postProcesses) {
+            if (postProcess.isProcessingRequired(inputResourceName, lastModified)) {
+                return true;
+            }
+        }
+
+        // If this process doesn't have the resource cached, and we have
+        // post-processes and all post-processes have it cached, then we don't
+        // have to process the resource.
+        return false;
     }
 }

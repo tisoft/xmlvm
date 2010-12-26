@@ -95,7 +95,7 @@ public class ZipArchiveExtractor {
                 }
                 String name = archiveFile.getAbsolutePath() + File.separator + entry.getName();
                 result.add(UniversalFileCreator.createFile(name, new ByteArrayInputStream(
-                        outputStream.toByteArray())));
+                        outputStream.toByteArray()), entry.getTime()));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

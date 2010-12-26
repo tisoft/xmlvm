@@ -95,6 +95,11 @@ public abstract class UniversalFile {
     public abstract boolean exists();
 
     /**
+     * Returns the timestamp when this file has been changed the last time.
+     */
+    public abstract long getLastModified();
+
+    /**
      * If this universal file is a directory, this returns the files contained
      * in it. This only lists file on one level, and can thus return files and
      * sub-directories.

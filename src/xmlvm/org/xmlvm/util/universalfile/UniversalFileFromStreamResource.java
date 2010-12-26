@@ -28,17 +28,18 @@ import java.io.InputStream;
  * A {@link UniversalFile} that is based on an {@link InputStream};
  */
 public class UniversalFileFromStreamResource extends UniversalFile {
-    private InputStream stream;
+    private final String      absoluteName;
+    private final InputStream stream;
+    private final long        lastModified;
 
-    private String      absoluteName;
-
-    private byte[]      cachedBytes  = null;
-    private String      cachedString = null;
+    private byte[]            cachedBytes  = null;
+    private String            cachedString = null;
 
 
-    UniversalFileFromStreamResource(String absoluteName, InputStream stream) {
+    UniversalFileFromStreamResource(String absoluteName, InputStream stream, long lastModified) {
         this.absoluteName = absoluteName;
         this.stream = stream;
+        this.lastModified = lastModified;
     }
 
     @Override
@@ -85,5 +86,10 @@ public class UniversalFileFromStreamResource extends UniversalFile {
     private void initContent() {
         cachedBytes = FileUtil.readBytesFromStream(stream);
         cachedString = new String(cachedBytes);
+    }
+
+    @Override
+    public long getLastModified() {
+        return lastModified;
     }
 }

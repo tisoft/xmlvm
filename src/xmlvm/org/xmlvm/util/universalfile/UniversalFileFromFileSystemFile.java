@@ -70,4 +70,9 @@ public class UniversalFileFromFileSystemFile extends UniversalFile {
     public UniversalFile[] listFiles() {
         return new UniversalFile[0];
     }
+
+    @Override
+    public long getLastModified() {
+        return file.lastModified();
+    }
 }

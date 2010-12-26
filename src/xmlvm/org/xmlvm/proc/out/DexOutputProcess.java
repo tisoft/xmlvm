@@ -61,8 +61,8 @@ public class DexOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
     public boolean process() {
         List<XmlvmProcess<?>> preprocesses = preprocess();
 
-        for (XmlvmProcess<?> process : preprocesses) {
-            for (OutputFile preOutputFile : process.getOutputFiles()) {
+        for (XmlvmProcess<?> preprocess : preprocesses) {
+            for (OutputFile preOutputFile : preprocess.getOutputFiles()) {
                 OutputFile outputFile = generateDexFile(preOutputFile);
                 if (outputFile == null) {
                     return false;

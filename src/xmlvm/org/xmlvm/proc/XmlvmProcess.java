@@ -73,6 +73,15 @@ public interface XmlvmProcess<T> {
     public void addPreprocess(XmlvmProcess<?> xmlvmProcess);
 
     /**
+     * Adds a process to the list of processes that get executed directly after
+     * this process.
+     * 
+     * @param xmlvmProcess
+     *            A process that is executed directly after this process.
+     */
+    public void addPostProcess(XmlvmProcess<?> xmlvmProcess);
+
+    /**
      * Runs all pre-processes synchronously. Will return when all pre-processes
      * have finished executing.
      */
@@ -97,4 +106,30 @@ public interface XmlvmProcess<T> {
     public boolean isProcessed();
 
     public List<OutputFile> getOutputFiles();
+
+    /**
+     * Returns whether this process has a cached version for the specified input
+     * resource.
+     * 
+     * @param name
+     *            The name of the input resource.
+     * @param lastModified
+     *            The timestamp from when the input resource was change the last
+     *            time.
+     * @return Whether a cached output exists.
+     */
+    public boolean hasCachedOutput(String inputResourceName, long lastModified);
+
+    /**
+     * Returns whether processing is required. It's not, if the given resource
+     * is cached somewhere down the line in a post-process.
+     * 
+     * @param inputResourceName
+     *            The name of the input resource.
+     * @param lastModified
+     *            The timestamp from when the input resource was change the last
+     *            time.
+     * @return Whether this process needs to process the given resource.
+     */
+    public boolean isProcessingRequired(String inputResourceName, long lastModified);
 }

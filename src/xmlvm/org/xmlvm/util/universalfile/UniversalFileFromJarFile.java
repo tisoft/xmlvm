@@ -40,11 +40,22 @@ public class UniversalFileFromJarFile extends UniversalFile {
     private String                 absoluteName;
     private JarInputStream         jarStream;
     private UniversalFileDirectory directory;
+    private long                   lastModified;
 
 
     UniversalFileFromJarFile(String absoluteName, JarInputStream jarStream) {
         this.absoluteName = absoluteName;
         this.jarStream = jarStream;
+        this.lastModified = calcLastModified();
+    }
+
+    private long calcLastModified() {
+        File file = new File(absoluteName);
+        if (file.exists()) {
+            return file.lastModified();
+        } else {
+            return System.currentTimeMillis();
+        }
     }
 
     @Override
@@ -86,7 +97,7 @@ public class UniversalFileFromJarFile extends UniversalFile {
     }
 
     private UniversalFileDirectory initialize() {
-        UniversalFileDirectory result = new UniversalFileDirectory(absoluteName);
+        UniversalFileDirectory result = new UniversalFileDirectory(absoluteName, lastModified);
         JarEntry entry;
         try {
             byte data[] = new byte[4096];
@@ -96,7 +107,8 @@ public class UniversalFileFromJarFile extends UniversalFile {
                 while ((len = jarStream.read(data)) != -1) {
                     outputStream.write(data, 0, len);
                 }
-                put(result, entry.getName(), new ByteArrayInputStream(outputStream.toByteArray()));
+                put(result, entry.getName(), new ByteArrayInputStream(outputStream.toByteArray()),
+                        entry.getTime());
             }
         } catch (IOException e) {
             Log.error(TAG, "Error reading JAR file.");
@@ -104,7 +116,8 @@ public class UniversalFileFromJarFile extends UniversalFile {
         return result;
     }
 
-    private void put(UniversalFileDirectory addToDir, String name, InputStream stream) {
+    private void put(UniversalFileDirectory addToDir, String name, InputStream stream,
+            long entryLastModified) {
         int index;
 
         // A JAR file is a compressed ZIP file that only gives back a list of
@@ -116,7 +129,7 @@ public class UniversalFileFromJarFile extends UniversalFile {
                 UniversalFileDirectory subDirectory = addToDir.getDirectory(subDirName);
                 if (subDirectory == null) {
                     subDirectory = new UniversalFileDirectory(addToDir.getAbsolutePath()
-                            + File.separator + subDirName);
+                            + File.separator + subDirName, entryLastModified);
                     addToDir.add(subDirectory);
                 }
                 addToDir = subDirectory;
@@ -127,7 +140,12 @@ public class UniversalFileFromJarFile extends UniversalFile {
         // If this entry is a directory, we don't need to add it.
         if (!name.isEmpty()) {
             addToDir.add(new UniversalFileFromStreamResource(addToDir.getAbsolutePath()
-                    + File.separator + name, stream));
+                    + File.separator + name, stream, entryLastModified));
         }
+    }
+
+    @Override
+    public long getLastModified() {
+        return this.lastModified;
     }
 }

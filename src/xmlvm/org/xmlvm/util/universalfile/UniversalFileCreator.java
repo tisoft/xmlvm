@@ -60,8 +60,8 @@ public class UniversalFileCreator {
         } else if (location.isFile()) {
             return new UniversalFileFromFileSystemFile(location);
         } else {
-            Log.error(TAG, "Location is neither a File nor a directory: "
-                    + location.getAbsolutePath());
+            Log.error(TAG,
+                    "Location is neither a File nor a directory: " + location.getAbsolutePath());
             return null;
         }
     }
@@ -73,10 +73,13 @@ public class UniversalFileCreator {
      *            the absolute name of the resource
      * @param stream
      *            the stream containing the data of the resource
+     * @param lastModified
+     *            when this file was modified the last time
      * @return The {@link UniversalFile} instance.
      */
-    public static UniversalFile createFile(String absoluteName, InputStream stream) {
-        return new UniversalFileFromStreamResource(absoluteName, stream);
+    public static UniversalFile createFile(String absoluteName, InputStream stream,
+            long lastModified) {
+        return new UniversalFileFromStreamResource(absoluteName, stream, lastModified);
     }
 
     /**
@@ -207,7 +210,11 @@ public class UniversalFileCreator {
                     return null;
                 }
             } else {
-                return new UniversalFileFromStreamResource(oneJarResource, stream);
+                // TODO(Sascha): This will effectively disable caching of such
+                // resources. Find out how to find the true last-mofidied time
+                // stamp of the resource.
+                return new UniversalFileFromStreamResource(oneJarResource, stream,
+                        System.currentTimeMillis());
             }
         } else {
             if (isDirectory) {
