@@ -61,7 +61,8 @@ public abstract class UniversalFile {
     }
 
     /**
-     * Returns the absolute path of this {@link UniversalFile}
+     * Returns the absolute path of this {@link UniversalFile}. The returned
+     * value is analog to {@link File#getAbsolutePath()}.
      */
     public abstract String getAbsolutePath();
 

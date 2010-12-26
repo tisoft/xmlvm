@@ -36,8 +36,8 @@ import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XmlvmResource.Type;
+import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.in.InputProcess;
 import org.xmlvm.proc.in.InputProcess.ExeInputProcess;
 import org.xmlvm.proc.in.file.ExeFile;
@@ -191,7 +191,7 @@ public class ExeToXmlvmProcess extends XmlvmProcessImpl<ExeInputProcess> impleme
                 Document xmlvmDoc = genXMLVM(cilClass);
                 String className = exeFile.getName().substring(0,
                         exeFile.getName().length() - ExeFile.EXE_ENDING.length());
-                return new XmlvmResource(className, null, Type.CLI, xmlvmDoc, null);
+                return new XmlvmResource(Type.CLI, xmlvmDoc);
             } catch (FileNotFoundException e) {
                 Log.error("File not found: " + exeFile.getAbsolutePath());
             } catch (IOException e) {

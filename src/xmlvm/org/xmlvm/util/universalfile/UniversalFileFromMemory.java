@@ -32,9 +32,13 @@ public class UniversalFileFromMemory extends UniversalFile {
 
 
     UniversalFileFromMemory(String absoluteName, byte[] data) {
+        this(absoluteName, data, System.currentTimeMillis());
+    }
+
+    UniversalFileFromMemory(String absoluteName, byte[] data, long lastModified) {
         this.absoluteName = absoluteName;
         this.data = data;
-        this.lastModified = System.currentTimeMillis();
+        this.lastModified = lastModified;
     }
 
     @Override

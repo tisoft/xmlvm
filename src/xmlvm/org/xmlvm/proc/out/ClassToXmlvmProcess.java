@@ -162,9 +162,8 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
                 return null;
             }
             new DescendingVisitor(clazz, visitor).visit();
-            return new XmlvmResource(visitor.getClassName().replace('.', '_'),
-                    visitor.superClassName, org.xmlvm.proc.XmlvmResource.Type.JVM, visitor
-                            .getXmlvmDocument(), null);
+            return new XmlvmResource(org.xmlvm.proc.XmlvmResource.Type.JVM,
+                    visitor.getXmlvmDocument());
         }
 
 
@@ -387,16 +386,16 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
                     node.setAttribute("type", s);
                 } else if (c instanceof ConstantDouble) {
                     node.setAttribute("type", "double");
-                    node.setAttribute("value", java.lang.String.valueOf(((ConstantDouble) c)
-                            .getBytes()));
+                    node.setAttribute("value",
+                            java.lang.String.valueOf(((ConstantDouble) c).getBytes()));
                 } else if (c instanceof ConstantLong) {
                     node.setAttribute("type", "long");
-                    node.setAttribute("value", java.lang.String.valueOf(((ConstantLong) c)
-                            .getBytes()));
+                    node.setAttribute("value",
+                            java.lang.String.valueOf(((ConstantLong) c).getBytes()));
                 } else if (c instanceof ConstantFloat) {
                     node.setAttribute("type", "float");
-                    node.setAttribute("value", java.lang.String.valueOf(((ConstantFloat) c)
-                            .getBytes()));
+                    node.setAttribute("value",
+                            java.lang.String.valueOf(((ConstantFloat) c).getBytes()));
                 } else if (c instanceof ConstantInteger) {
                     node.setAttribute("type", "int");
                     node.setAttribute("value", String.valueOf(((ConstantInteger) c).getBytes()));

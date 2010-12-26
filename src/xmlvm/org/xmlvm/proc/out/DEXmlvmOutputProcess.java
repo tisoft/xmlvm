@@ -28,6 +28,7 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -45,6 +46,7 @@ import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.ResourceCache;
 import org.xmlvm.proc.XmlvmProcess;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
@@ -209,16 +211,21 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private static final Namespace NS_DEX             = Namespace.getNamespace("dex",
                                                               "http://xmlvm.org/dex");
 
-    private List<OutputFile>       outputFiles        = new ArrayList<OutputFile>();
-    private List<XmlvmResource>    generatedResources = new ArrayList<XmlvmResource>();
-
-    private static Element         lastDexInstruction = null;
-
     /**
      * Green classes are classes that are OK to translate. Red classes are
      * excluded from the compilation.
      */
     private static Set<String>     redClasses         = null;
+
+    private List<OutputFile>       outputFiles        = new ArrayList<OutputFile>();
+    private List<XmlvmResource>    generatedResources = new ArrayList<XmlvmResource>();
+
+    private Element                lastDexInstruction = null;
+
+    private ResourceCache          cache              = ResourceCache
+                                                              .getCache(DEXmlvmOutputProcess.class
+                                                                      .getName());
+    private List<OutputFile>       filesFromCache     = new ArrayList<OutputFile>();
 
 
     public DEXmlvmOutputProcess(Arguments arguments) {
@@ -245,8 +252,23 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         generatedResources.clear();
         for (XmlvmProcess<?> preprocess : preprocess()) {
             for (OutputFile preOutputFile : preprocess.getOutputFiles()) {
-                OutputFile outputFile = generateDEXmlvmFile(preOutputFile);
+                String resourceName = preOutputFile.getOrigin();
+                long lastModified = preOutputFile.getLastModified();
+                OutputFile outputFile = null;
+
+                // Check whether we can get the file from memory or disk cache.
+                if (cache.contains(resourceName, lastModified)) {
+                    Log.debug(TAG, "Getting resource from cache: " + resourceName);
+                    outputFile = new OutputFile(cache.get(resourceName, lastModified), lastModified);
+                    filesFromCache.add(outputFile);
+                } else {
+                    outputFile = generateDEXmlvmFile(preOutputFile);
+                    if (outputFile != null) {
+                        cache.put(resourceName, lastModified, outputFile.getDataAsBytes());
+                    }
+                }
                 if (outputFile != null) {
+                    outputFile.setOrigin(preOutputFile.getOrigin());
                     outputFiles.add(outputFile);
                 }
             }
@@ -256,11 +278,18 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
 
     @Override
     public List<XmlvmResource> getXmlvmResources() {
+        addResourcesFromCachedFiles();
         return generatedResources;
     }
 
+    private void addResourcesFromCachedFiles() {
+        for (OutputFile cachedFile : filesFromCache) {
+            generatedResources.add(XmlvmResource.fromFile(cachedFile));
+        }
+    }
+
     @SuppressWarnings("unchecked")
-    private OutputFile generateDEXmlvmFile(OutputFile classFile) {
+    private OutputFile generateDEXmlvmFile(final OutputFile classFile) {
         Log.debug(TAG, "DExing:" + classFile.getFileName());
 
         DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(),
@@ -336,9 +365,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 filteredReferencesTypes.add(referencedType);
             }
         }
-
-        generatedResources.add(new XmlvmResource(className, type.superTypeName, Type.DEX, document,
-                filteredReferencesTypes));
+        addReferences(document, filteredReferencesTypes);
+        generatedResources.add(new XmlvmResource(Type.DEX, document));
         String fileName = className + DEXMLVM_ENDING;
 
         // Some processes depending on this processor don't actually need the
@@ -349,7 +377,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             public UniversalFile getData() {
                 String data = documentToString(document);
                 try {
-                    return UniversalFileCreator.createFile("", data.getBytes("UTF-8"));
+                    return UniversalFileCreator.createFile("", data.getBytes("UTF-8"),
+                            classFile.getLastModified());
                 } catch (UnsupportedEncodingException e) {
                     Log.error(TAG, e.getMessage());
                 }
@@ -361,6 +390,19 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         result.setFileName(fileName);
 
         return result;
+    }
+
+    /**
+     * Adds the given set of references to the given XMLVM document.
+     */
+    private static void addReferences(Document xmlvmDocument, Collection<String> referencedTypes) {
+        Element references = new Element("references", NS_XMLVM);
+        for (String referencedType : referencedTypes) {
+            Element reference = new Element("reference", NS_XMLVM);
+            reference.setAttribute("name", referencedType);
+            references.addContent(reference);
+        }
+        xmlvmDocument.getRootElement().addContent(references);
     }
 
     /**

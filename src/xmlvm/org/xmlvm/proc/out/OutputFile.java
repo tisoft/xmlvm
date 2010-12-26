@@ -53,6 +53,7 @@ public class OutputFile {
     private DelayedDataProvider provider;
     private String              location = "";
     private String              fileName = "";
+    private String              origin   = null;
 
 
     /**
@@ -76,7 +77,14 @@ public class OutputFile {
      * Create a new file with the given string content.
      */
     public OutputFile(byte[] data) {
-        setData(data);
+        setData(data, System.currentTimeMillis());
+    }
+
+    /**
+     * Create a new file with the given string content.
+     */
+    public OutputFile(byte[] data, long lastModified) {
+        setData(data, lastModified);
     }
 
     public OutputFile(UniversalFile file) {
@@ -106,11 +114,18 @@ public class OutputFile {
      * Sets the content of this file.
      */
     public final void setData(String data) {
+        setData(data, System.currentTimeMillis());
+    }
+
+    /**
+     * Sets the content of this file.
+     */
+    public final void setData(String data, long lastModified) {
         if (data == null) {
             this.data = null;
         } else {
             try {
-                setData(data.getBytes("UTF-8"));
+                setData(data.getBytes("UTF-8"), lastModified);
             } catch (UnsupportedEncodingException ex) {
                 Log.error(ex.getMessage());
             }
@@ -120,8 +135,8 @@ public class OutputFile {
     /**
      * Sets the content of this file.
      */
-    public final void setData(byte[] data) {
-        this.data = UniversalFileCreator.createFile("", data);
+    public final void setData(byte[] data, long lastModified) {
+        this.data = UniversalFileCreator.createFile("", data, lastModified);
     }
 
     /**
@@ -183,6 +198,26 @@ public class OutputFile {
      */
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    /**
+     * Returns the path from which this resource originated from. Returns
+     * <code>null</code>, if no origin can be assigned.
+     * <p>
+     * The origin is used to cache resources generated from the original
+     * resource.
+     */
+    public String getOrigin() {
+        return origin;
+    }
+
+    /**
+     * Sets the origin of this file. This is typically a path to the original
+     * file from which this resource has been generated from and is typically
+     * used for caching.
+     */
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
 
     /**

@@ -20,7 +20,9 @@
 
 package org.xmlvm.proc;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -28,7 +30,9 @@ import java.util.Set;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.Namespace;
+import org.jdom.input.SAXBuilder;
 import org.jdom.output.XMLOutputter;
+import org.xmlvm.proc.out.OutputFile;
 
 /**
  * This class describes a XMLVM resource, that is e.g. produces by
@@ -432,20 +436,36 @@ public class XmlvmResource {
     public static Namespace   nsDEX   = Namespace.getNamespace("dex", "http://xmlvm.org/dex");
     public static Namespace   nsJVM   = Namespace.getNamespace("jvm", "http://xmlvm.org/jvm");
 
-    private String            name;
-    private final String      superTypeName;
     private final Type        type;
     private final Document    xmlvmDocument;
     private final Set<String> referencedTypes;
+    private final String      name;
+    private final String      superTypeName;
 
 
-    public XmlvmResource(String name, String superTypeName, Type type, Document xmlvmDocument,
-            Set<String> referencedTypes) {
-        this.name = name;
-        this.superTypeName = superTypeName;
+    public XmlvmResource(Type type, Document xmlvmDocument) {
         this.type = type;
         this.xmlvmDocument = xmlvmDocument;
-        this.referencedTypes = referencedTypes;
+        this.referencedTypes = extractReferencedTypes(xmlvmDocument);
+
+        Element classElement = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
+        this.name = classElement.getAttributeValue("name");
+        this.superTypeName = classElement.getAttributeValue("extends");
+    }
+
+    private static Set<String> extractReferencedTypes(Document xmlvmDocument) {
+        Set<String> result = new HashSet<String>();
+        Element referencesElement = xmlvmDocument.getRootElement().getChild("references", nsXMLVM);
+        if (referencesElement == null) {
+            return result;
+        }
+
+        @SuppressWarnings("unchecked")
+        List<Element> references = referencesElement.getChildren("reference", nsXMLVM);
+        for (Element reference : references) {
+            result.add(reference.getAttributeValue("name"));
+        }
+        return result;
     }
 
     @Override
@@ -640,7 +660,7 @@ public class XmlvmResource {
     public void collectInstructions(List<XmlvmInvokeInstruction> invokeInstructions,
             List<XmlvmMemberReadWrite> readWriteInstructions) {
         Element root = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
-        Iterator iter = root.getDescendants();
+        Iterator<Object> iter = root.getDescendants();
         while (iter.hasNext()) {
             Object o = iter.next();
             if (o instanceof Element) {
@@ -655,5 +675,17 @@ public class XmlvmResource {
                 }
             }
         }
+    }
+
+    public static XmlvmResource fromFile(OutputFile file) {
+        Document doc = null;
+        SAXBuilder builder = new SAXBuilder();
+        try {
+            doc = builder.build(new ByteArrayInputStream(file.getDataAsBytes()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new XmlvmResource(org.xmlvm.proc.XmlvmResource.Type.DEX, doc);
     }
 }

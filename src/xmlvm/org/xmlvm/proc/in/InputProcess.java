@@ -125,6 +125,7 @@ public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl<Xml
             return null;
         }
         OutputFile outputFile = new OutputFile(input.getFile());
+        outputFile.setOrigin(input.getFile().getAbsolutePath());
         outputFile.setLocation(arguments.option_out());
         outputFile.setFileName(input.getFile().getName());
         List<OutputFile> result = new ArrayList<OutputFile>();

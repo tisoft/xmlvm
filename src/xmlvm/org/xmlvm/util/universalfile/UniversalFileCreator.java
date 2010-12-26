@@ -89,10 +89,12 @@ public class UniversalFileCreator {
      *            the absolute name of the resource
      * @param data
      *            the contents of the file
+     * @param lastModified
+     *            when this file was modified the last time
      * @return The {@link UniversalFile} instance.
      */
-    public static UniversalFile createFile(String absoluteName, byte[] data) {
-        return new UniversalFileFromMemory(absoluteName, data);
+    public static UniversalFile createFile(String absoluteName, byte[] data, long lastModified) {
+        return new UniversalFileFromMemory(absoluteName, data, lastModified);
     }
 
     /**

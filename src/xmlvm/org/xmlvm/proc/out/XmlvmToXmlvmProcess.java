@@ -60,14 +60,12 @@ public class XmlvmToXmlvmProcess extends XmlvmProcessImpl<XmlvmInputProcess> imp
             FileInputStream in;
             try {
                 in = new FileInputStream(preProcess.getInputFile().getPath());
-
                 doc = builder.build(in);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            XmlvmResource resource = new XmlvmResource("someName", null,
-                    org.xmlvm.proc.XmlvmResource.Type.DEX, doc, null);
+            XmlvmResource resource = new XmlvmResource(org.xmlvm.proc.XmlvmResource.Type.DEX, doc);
             xmlvmResources.add(resource);
         }
 
