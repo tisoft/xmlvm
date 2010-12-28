@@ -124,6 +124,7 @@ public class Arguments {
             "    objc             Objective C source code",
             "    iphone           iPhone Objective-C",
             "    qooxdoo          JavaScript Qooxdoo web application",
+            "    vtable           Vtable calculation (pre-step for e.g. C generation)",
             "    webos            WebOS JavaScript Project",
             "",
             "--gen-native-skeletons Generates skeletons for Java native methods in the target",

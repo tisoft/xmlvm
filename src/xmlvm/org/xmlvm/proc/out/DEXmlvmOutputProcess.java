@@ -1,21 +1,21 @@
-/*
- * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
- * 
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
- * 
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
- * 
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
- * Ave, Cambridge, MA 02139, USA.
- * 
- * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+/* Copyright (c) 2002-2011 by XMLVM.org
+ *
+ * Project Info:  http://www.xmlvm.org
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
  */
 
 package org.xmlvm.proc.out;
@@ -24,8 +24,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -42,10 +40,9 @@ import org.jdom.DataConversionException;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.Namespace;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.DelayedXmlvmSerializationProvider;
 import org.xmlvm.proc.ResourceCache;
 import org.xmlvm.proc.XmlvmProcess;
 import org.xmlvm.proc.XmlvmProcessImpl;
@@ -53,12 +50,9 @@ import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResource.Type;
 import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
-import org.xmlvm.proc.out.OutputFile.DelayedDataProvider;
 import org.xmlvm.refcount.InstructionProcessor;
 import org.xmlvm.refcount.ReferenceCounting;
 import org.xmlvm.refcount.ReferenceCountingException;
-import org.xmlvm.util.universalfile.UniversalFile;
-import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 import com.android.dx.cf.attrib.AttRuntimeInvisibleAnnotations;
 import com.android.dx.cf.attrib.BaseAnnotations;
@@ -372,19 +366,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         // Some processes depending on this processor don't actually need the
         // String version of the DEXMLVM files. As generating them takes some
         // time, we want to make sure we only generate it when necessary.
-        OutputFile result = new OutputFile(new DelayedDataProvider() {
-            @Override
-            public UniversalFile getData() {
-                String data = documentToString(document);
-                try {
-                    return UniversalFileCreator.createFile("", data.getBytes("UTF-8"),
-                            classFile.getLastModified());
-                } catch (UnsupportedEncodingException e) {
-                    Log.error(TAG, e.getMessage());
-                }
-                return null;
-            }
-        });
+        OutputFile result = new OutputFile(new DelayedXmlvmSerializationProvider(document));
 
         result.setLocation(arguments.option_out());
         result.setFileName(fileName);
@@ -1437,21 +1419,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             throw new RuntimeErrorException(new Error(
                     "Couldn't extract register number from register name: " + vFormat, ex));
         }
-    }
-
-    /**
-     * Converts a {@link Document} into XML text.
-     */
-    private String documentToString(Document document) {
-        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-        StringWriter writer = new StringWriter();
-        try {
-            outputter.output(document, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "";
-        }
-        return writer.toString();
     }
 
     /**

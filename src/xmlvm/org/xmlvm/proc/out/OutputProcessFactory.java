@@ -94,6 +94,8 @@ public class OutputProcessFactory {
             return new DexOutputProcess(arguments);
         case DEXMLVM:
             return new DEXmlvmOutputProcess(arguments);
+        case VTABLE:
+            return new VtableOutputProcess(arguments);
         }
         Log.error("Could not create target process for target '" + target + "'.");
         return null;
