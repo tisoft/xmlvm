@@ -120,8 +120,7 @@ public class ObjectiveCOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
 
     private List<String> getTypesForHeader(Document doc) {
         HashSet<String> seen = new HashSet<String>();
-        @SuppressWarnings("unchecked")
-        Iterator i = doc.getDescendants();
+        Iterator<?> i = doc.getDescendants();
         while (i.hasNext()) {
             Object cur = i.next();
             if (cur instanceof Element) {
