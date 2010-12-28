@@ -27,8 +27,9 @@
 	return [[org_xmlvm_iphone_CGContext alloc] initWithCGContextRef:UIGraphicsGetCurrentContext()];
 }
 
-+ (void) pushContext___org_xmlvm_iphone_CGContext :(org_xmlvm_iphone_CGContext*)cxt {	
-	UIGraphicsPushContext(XMLVM_NULL2NIL([cxt getCGContextRef]));
++ (void) pushContext___org_xmlvm_iphone_CGContext :(org_xmlvm_iphone_CGContext*)cxt {
+	id context = [cxt getCGContextRef];
+	UIGraphicsPushContext(XMLVM_NULL2NIL(context));
 }
 
 + (void) popContext__

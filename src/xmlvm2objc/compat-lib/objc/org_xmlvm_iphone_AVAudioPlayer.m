@@ -108,7 +108,8 @@
 			: (org_xmlvm_iphone_NSURL*) url
 			: (org_xmlvm_iphone_NSErrorHolder*) outError
 {
-	return XMLVM_NIL2NULL([[AVAudioPlayer alloc] initWithContentsOfURL: url error: &(outError->error_org_xmlvm_iphone_NSError)]);
+	id player = [[AVAudioPlayer alloc] initWithContentsOfURL: url error: &(outError->error_org_xmlvm_iphone_NSError)];
+	return XMLVM_NIL2NULL(player);
 }
 
 + (AVAudioPlayer*) initWithContentsOfFileDescriptor___java_io_FileDescriptor_long_long_org_xmlvm_iphone_NSErrorHolder
@@ -134,7 +135,8 @@
 			: (org_xmlvm_iphone_NSData*) data
 			: (org_xmlvm_iphone_NSErrorHolder*) outError
 {
-	return XMLVM_NIL2NULL([[AVAudioPlayer alloc] initWithData: data error: &(outError->error_org_xmlvm_iphone_NSError)]);
+	id player = [[AVAudioPlayer alloc] initWithData: data error: &(outError->error_org_xmlvm_iphone_NSError)];
+	return XMLVM_NIL2NULL(player);
 }
 
 static char memberKey; // key for associative reference for member variables
