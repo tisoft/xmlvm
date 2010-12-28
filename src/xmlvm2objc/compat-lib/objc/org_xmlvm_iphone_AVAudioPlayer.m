@@ -136,6 +136,10 @@
 			: (org_xmlvm_iphone_NSErrorHolder*) outError
 {
 	id player = [[AVAudioPlayer alloc] initWithData: data error: &(outError->error_org_xmlvm_iphone_NSError)];
+	if (player == nil) {
+		[data release];
+	}
+
 	return XMLVM_NIL2NULL(player);
 }
 
