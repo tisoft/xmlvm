@@ -545,7 +545,6 @@ public class VtableOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
         Log.debug(TAG, "Loading JDK class: " + className);
         LibraryLoader loader = new LibraryLoader(new Arguments(new String[] { "--in=foo",
                 "--out=bar" }));
-        loader.getLastModified();
         resource = loader.load(className);
         alreadyLoadedResources.put(className, resource);
         return resource;
