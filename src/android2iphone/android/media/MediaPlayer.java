@@ -184,6 +184,10 @@ public class MediaPlayer {
             player.setDelegate(null);
             player = null;
         }
+        
+        data = null;
+        delegate = null;
+        onCompletionListener = null;
     }
 
     /**
