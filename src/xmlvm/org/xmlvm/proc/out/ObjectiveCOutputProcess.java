@@ -149,8 +149,6 @@ public class ObjectiveCOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
                         seen.add(a.getValue());
                     }
                 }
-            } else {
-                System.out.println(cur);
             }
         }
         HashSet<String> bad = new HashSet<String>();
