@@ -26,26 +26,31 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.NativeResourceLoader;
 import org.xmlvm.proc.XmlvmProcess;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XsltRunner;
+import org.xmlvm.util.universalfile.UniversalFile;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 /**
  * This process takes XMLVM and generates C source code from it.
  */
 public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
 
-    private final String               sourceExtension;
-    private final String               headerExtension = ".h";
-    private List<OutputFile>           outputFiles     = new ArrayList<OutputFile>();
+    private final String                     sourceExtension;
+    private final String                     headerExtension = ".h";
+    private final List<OutputFile>           outputFiles     = new ArrayList<OutputFile>();
 
-    private Map<String, XmlvmResource> resourcePool    = new HashMap<String, XmlvmResource>();
+    private final Map<String, XmlvmResource> resourcePool    = new HashMap<String, XmlvmResource>();
+    private final NativeResourceLoader       nativeResourceLoader;
 
 
     /**
@@ -54,8 +59,11 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
     public COutputProcess(Arguments arguments) {
         super(arguments);
         sourceExtension = "." + arguments.option_c_source_extension();
-
         addSupportedInput(VtableOutputProcess.class);
+
+        // TODO(Sascha): Create a resource for the directory inside the OneJar.
+        nativeResourceLoader = new NativeResourceLoader(UniversalFileCreator.createDirectory("",
+                "src/xmlvm2c/lib/native"), "c");
     }
 
     @Override
@@ -106,7 +114,32 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
                 outputFiles.add(file);
             }
         }
+
+        // Makes sure that for each type we create, the native parts, if
+        // present, are added to the list of outputFiles.
+        loadNativeResources();
         return true;
+    }
+
+    /**
+     * For the given set of outputFiles, this methods loads all native parts.
+     */
+    private void loadNativeResources() {
+        Set<String> types = new HashSet<String>();
+        for (OutputFile outputFile : outputFiles) {
+            String fileName = outputFile.getFileName();
+            if (fileName.endsWith(sourceExtension)) {
+                String typeName = fileName.substring(0,
+                        fileName.length() - sourceExtension.length());
+                types.add(typeName);
+            }
+        }
+        for (UniversalFile nativeFile : nativeResourceLoader.load(types)) {
+            OutputFile outputFile = new OutputFile(nativeFile);
+            outputFile.setLocation(arguments.option_out());
+            outputFile.setFileName(nativeFile.getName());
+            outputFiles.add(outputFile);
+        }
     }
 
     /**
