@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!--
-/* Copyright (c) 2002-2011 by XMLVM.org
+ * Copyright (c) 2002-2011 by XMLVM.org
  *
  * Project Info:  http://www.xmlvm.org
  *
