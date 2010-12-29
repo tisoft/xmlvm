@@ -329,6 +329,17 @@
 		</java>
 		<delete dir="tmp"/>
 	</target>
+		
+	<target name="gen-c-native-skeletons" depends="jar">
+		<java jar="dist/xmlvm.jar" fork="true" failonerror="true">
+			<jvmarg value="-Xmx1G"/>
+			<arg value="--in=lib/openjdk6-build.jar"/>
+			<arg value="--target=gen-c-wrappers"/>
+			<arg value="--out=src/xmlvm2c/lib/native"/>
+			<arg value="--dep-optimization-config=lib/redlist.txt"/>
+			<arg value="--gen-native-skeletons"/>
+		</java>
+	</target>
 
 	<!-- In Android projects we can not use the proper clean task to clean up the project,
 		 since these projects require the AndroidSDK to be present.
