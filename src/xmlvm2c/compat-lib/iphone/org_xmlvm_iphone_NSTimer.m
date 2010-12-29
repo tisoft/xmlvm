@@ -12,6 +12,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSTimer __TIB_org_xmlvm_iphone_NSTimer = {
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "org_xmlvm_iphone_NSTimerDelegate.h"
 
 
 @interface WrapTimer: NSObject <UIAccelerometerDelegate>

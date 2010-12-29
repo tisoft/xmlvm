@@ -12,6 +12,8 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIImage __TIB_org_xmlvm_iphone_UIImage = {
 
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <UIKit/UIImage.h>
+
+#import "org_xmlvm_iphone_CGRect.h"
 //XMLVM_END_IMPLEMENTATION
 
 

@@ -13,6 +13,8 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIApplication __TIB_org_xmlvm_iphone_UIApplica
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <UIKit/UIApplication.h>
 
+#import "java_lang_Class.h"
+
 org_xmlvm_iphone_UIApplicationDelegate *appToRun;
 org_xmlvm_iphone_UIApplication *curApp;
 
