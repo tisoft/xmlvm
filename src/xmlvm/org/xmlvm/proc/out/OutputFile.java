@@ -318,7 +318,7 @@ public class OutputFile {
      */
     public boolean isEmpty() {
         maybeLoadDelayedData();
-        return data == null;
+        return data == null || data.getFileAsBytes().length == 0;
     }
 
     private void maybeLoadDelayedData() {
