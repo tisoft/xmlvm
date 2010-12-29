@@ -169,9 +169,8 @@ public class Arguments {
             "    all              All debug information (including errors and warnings)", "",
             " --version         Display version information", "",
             " --help            This message", ""            };
-    private static final String[] Version                     = {
-            "XMLVM 2 alpha (experimental rebuild)",
-            "Note: Not all command like arguments activated yet." };
+    private static final String[] Version                     = { "XMLVM 2",
+            "Note: Not all command line arguments activated yet." };
 
 
     public static void printVersion() {
@@ -308,12 +307,10 @@ public class Arguments {
         if (option_gen_wrapper && option_target != Targets.C) {
             parseError("--gen-wrapper only available for --target=c");
         }
-        if (option_gen_native_skeletons && option_target != Targets.C) {
-            parseError("--gen-native-skeletons only available for --target=c");
+        if (option_gen_native_skeletons
+                && (option_target != Targets.C && option_target != Targets.GENCWRAPPERS)) {
+            parseError("--gen-native-skeletons only available for targets 'c' and 'gen-c-wrappers'.");
         }
-        // if (option_skeleton != null && option_lib.size() > 0) {
-        // parseError("Argument '--skeleton' does not support '--lib'");
-        // }
 
         if ((option_target == Targets.IPHONE || option_target == Targets.IPHONEC
                 || option_target == Targets.IPHONEANDROID || option_target == Targets.WEBOS || option_skeleton != null)
