@@ -329,7 +329,7 @@
 		</java>
 		<delete dir="tmp"/>
 	</target>
-		
+
 	<target name="gen-c-native-skeletons" depends="jar">
 		<java jar="dist/xmlvm.jar" fork="true" failonerror="true">
 			<jvmarg value="-Xmx1G"/>
