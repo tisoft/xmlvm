@@ -98,6 +98,19 @@ public class UniversalFileCreator {
     }
 
     /**
+     * Creates a {@link UniversalFile} from memory.
+     * 
+     * @param absoluteName
+     *            the absolute name of the resource
+     * @param data
+     *            the contents of the file
+     * @return The {@link UniversalFile} instance.
+     */
+    public static UniversalFile createFile(String absoluteName, byte[] data) {
+        return createFile(absoluteName, data, System.currentTimeMillis());
+    }
+
+    /**
      * Creates a {@link UniversalFile} instance for a single file.
      * 
      * @param oneJarResource
