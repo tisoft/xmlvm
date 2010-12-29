@@ -104,7 +104,7 @@
 
 @implementation AVAudioPlayer (cat_org_xmlvm_iphone_AVAudioPlayer)
 
-+ (AVAudioPlayer*) initWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder
++ (AVAudioPlayer*) audioPlayerWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder
 			: (org_xmlvm_iphone_NSURL*) url
 			: (org_xmlvm_iphone_NSErrorHolder*) outError
 {
@@ -112,26 +112,7 @@
 	return XMLVM_NIL2NULL(player);
 }
 
-+ (AVAudioPlayer*) initWithContentsOfFileDescriptor___java_io_FileDescriptor_long_long_org_xmlvm_iphone_NSErrorHolder
-			: (java_io_FileDescriptor*) fd
-			: (JAVA_LONG) offset
-			: (JAVA_LONG) length
-			: (org_xmlvm_iphone_NSErrorHolder*) outError
-{
-	NSFileHandle* fileHandle = [fd getFileHandle];
-	if (offset > 0 ) {
-		[fileHandle seekToFileOffset: offset];
-	}
-	
-	NSData* data = [fileHandle readDataOfLength: length];
-	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData: data error: &(outError->error_org_xmlvm_iphone_NSError)];
-	[outError->error_org_xmlvm_iphone_NSError retain];
-	[fileHandle release];
-	[data release];
-	return XMLVM_NIL2NULL(player);
-}
-
-+ (AVAudioPlayer*) initWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder
++ (AVAudioPlayer*) audioPlayerWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder
 			: (org_xmlvm_iphone_NSData*) data
 			: (org_xmlvm_iphone_NSErrorHolder*) outError
 {

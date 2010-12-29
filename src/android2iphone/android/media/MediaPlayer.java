@@ -199,7 +199,7 @@ public class MediaPlayer {
 
     private void createPlayer() throws IOException {
         NSErrorHolder error = new NSErrorHolder();
-        player = AVAudioPlayer.initWithData(data, error);
+        player = AVAudioPlayer.audioPlayerWithData(data, error);
         if (player == null) {
             throw new IOException(error.description());
         }

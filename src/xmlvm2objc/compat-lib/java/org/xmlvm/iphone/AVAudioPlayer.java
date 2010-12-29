@@ -160,7 +160,28 @@ public class AVAudioPlayer extends NSObject {
         player.open(new BufferedInputStream(bis));
     }
 
-    public static AVAudioPlayer initWithContentsOfURL(NSURL url, NSErrorHolder error) {
+    /**
+     * 
+     * Creates a new AVAudioPlayer based on a provided URL.
+     * audioPlayerWithContentsOfURL is not part of the original Cocoa class.
+     * Cocoa instead uses constructors to create new AVAudioPlayers which can
+     * return nil in case of errors. Since this is not possible in Java this is
+     * mapped to a static factory method following the naming conventions of
+     * other Cocoa classes (i.e NSData.initWithBytes is a constructor whereas
+     * NSData.dataWithBytes is the corresponding factory method.).
+     * 
+     * @param url
+     *            The URL of the file to be played by the AVAudioPlayer.
+     * 
+     * @param error
+     *            Output parameters providing error information. If no error
+     *            occurs the encapsulated error value is null.
+     * 
+     * @return The created AVAudioPlayer or null in case of errors.
+     * 
+     */
+
+    public static AVAudioPlayer audioPlayerWithContentsOfURL(NSURL url, NSErrorHolder error) {
         try {
             AVAudioPlayer player = new AVAudioPlayer(url);
             error.error = null;
@@ -171,28 +192,33 @@ public class AVAudioPlayer extends NSObject {
         }
     }
 
-    public static AVAudioPlayer initWithData(NSData nsData, NSErrorHolder error) {
+    /**
+     * 
+     * Creates a new AVAudioPlayer based on provided sound data.
+     * audioPlayerWithData is not part of the original Cocoa class. Cocoa
+     * instead uses constructors to create new AVAudioPlayers which can return
+     * nil in case of errors. Since this is not possible in Java this is mapped
+     * to a static factory method following the naming conventions of other
+     * Cocoa classes (i.e NSData.initWithBytes is a constructor whereas
+     * NSData.dataWithBytes is the corresponding factory method.).
+     * 
+     * @param nsData
+     *            The sound data to be played by the AVAudioPlayer.
+     * 
+     * @param error
+     *            Output parameters providing error information. If no error
+     *            occurs the encapsulated error value is null.
+     * 
+     * @return The created AVAudioPlayer or null in case of errors.
+     * 
+     */
+
+    public static AVAudioPlayer audioPlayerWithData(NSData nsData, NSErrorHolder error) {
         try {
             AVAudioPlayer player = new AVAudioPlayer(nsData);
             error.error = null;
             return player;
         } catch (BasicPlayerException exc) {
-            error.error = new NSError(exc.getMessage(), -1, null);
-            return null;
-        }
-    }
-
-    @XMLVMIgnore
-    public static AVAudioPlayer initWithContentsOfFileDescriptor(FileDescriptor fd, long offset,
-            long length, NSErrorHolder error) {
-        try {
-            AVAudioPlayer player = new AVAudioPlayer(fd, offset, length);
-            error.error = null;
-            return player;
-        } catch (BasicPlayerException exc) {
-            error.error = new NSError(exc.getMessage(), -1, null);
-            return null;
-        } catch (IOException exc) {
             error.error = new NSError(exc.getMessage(), -1, null);
             return null;
         }

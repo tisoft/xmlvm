@@ -55,17 +55,11 @@
 typedef AVAudioPlayer org_xmlvm_iphone_AVAudioPlayer;
 @interface AVAudioPlayer (cat_org_xmlvm_iphone_AVAudioPlayer)
 
-+ (AVAudioPlayer*) initWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder
++ (AVAudioPlayer*) audioPlayerWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder
 			: (org_xmlvm_iphone_NSURL*) url
 			: (org_xmlvm_iphone_NSErrorHolder*) outError;
 			
-+ (AVAudioPlayer*) initWithContentsOfFileDescriptor___java_io_FileDescriptor_long_long_org_xmlvm_iphone_NSErrorHolder
-			: (java_io_FileDescriptor*) fd
-			: (JAVA_LONG) offset
-			: (JAVA_LONG) length
-			: (org_xmlvm_iphone_NSErrorHolder*) outError;
-
-+ (AVAudioPlayer*) initWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder
++ (AVAudioPlayer*) audioPlayerWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder
 			: (org_xmlvm_iphone_NSData*) data
 			: (org_xmlvm_iphone_NSErrorHolder*) outError;
 
