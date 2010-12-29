@@ -8,10 +8,6 @@ package __PACKNAME__;
 import android.app.Activity;
 import android.os.Bundle;
 
-/**
- *
- * @author teras
- */
 public class MainActivity extends Activity {
 
     /** Called when the activity is first created. */
