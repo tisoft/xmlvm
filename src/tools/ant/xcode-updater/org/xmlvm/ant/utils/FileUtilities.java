@@ -1,21 +1,21 @@
-/*
- * Copyright (c) 2004-2008 XMLVM --- An XML-based Programming Language
+/* Copyright (c) 2002-2011 by XMLVM.org
  *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
+ * Project Info:  http://www.xmlvm.org
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
  *
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
- * Ave, Cambridge, MA 02139, USA.
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
  *
- * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
  */
 
 package org.xmlvm.ant.utils;
@@ -36,18 +36,21 @@ import org.apache.tools.ant.BuildException;
 
 /**
  * Various methods, to help working with files.
- * @author teras
  */
 public class FileUtilities {
 
     /**
      * where xcode source file is located
      */
-    public static final String SRCLOC = "build" + File.separator + "xcode" + File.separator + "src" + File.separator;
+    public static final String SRCLOC = "build" + File.separator + "xcode" + File.separator + "src"
+                                              + File.separator;
+
 
     /**
      * Root location of source files
-     * @param project Location of the project
+     * 
+     * @param project
+     *            Location of the project
      * @return Source root location
      */
     public static String coreDir(String project) {
@@ -56,7 +59,9 @@ public class FileUtilities {
 
     /**
      * Get the location of the application directory
-     * @param project Location of the project
+     * 
+     * @param project
+     *            Location of the project
      * @return Application directory location
      */
     public static String appDir(String project) {
@@ -65,7 +70,9 @@ public class FileUtilities {
 
     /**
      * Get the location of the source code of the libraries
-     * @param project Location of the project
+     * 
+     * @param project
+     *            Location of the project
      * @return Libraries directory location
      */
     public static String compDir(String project) {
@@ -74,7 +81,9 @@ public class FileUtilities {
 
     /**
      * Get the location of the iphone directory
-     * @param project Location of the project
+     * 
+     * @param project
+     *            Location of the project
      * @return iPhone directory location
      */
     public static String iphoneDir(String project) {
@@ -83,7 +92,9 @@ public class FileUtilities {
 
     /**
      * Get the location of the android directory
-     * @param project Location of the project
+     * 
+     * @param project
+     *            Location of the project
      * @return Android directory location
      */
     public static String androidDir(String project) {
@@ -92,7 +103,9 @@ public class FileUtilities {
 
     /**
      * Get the output directory of the trimmed project
-     * @param project Location of the project
+     * 
+     * @param project
+     *            Location of the project
      * @return Trimmed project directory location
      */
     public static String trimDir(String project) {
@@ -100,10 +113,13 @@ public class FileUtilities {
     }
 
     /**
-     * Locate a source file, either in application source code, iphone or android
-     * directory
-     * @param path the path to search for
-     * @param filename the name of the file to search for
+     * Locate a source file, either in application source code, iphone or
+     * android directory
+     * 
+     * @param path
+     *            the path to search for
+     * @param filename
+     *            the name of the file to search for
      * @return a File object of this filename
      */
     public static File locateSrcFile(String path, String filename) {
@@ -128,10 +144,14 @@ public class FileUtilities {
     }
 
     /**
-     * Get a list of all source files (i.e. files ending in .m, .c., .cpp, .c++ and .h
-     * @param path Path to search for
+     * Get a list of all source files (i.e. files ending in .m, .c., .cpp, .c++
+     * and .h
+     * 
+     * @param path
+     *            Path to search for
      * @return list of source files
-     * @throws FileNotFoundException if path is not found
+     * @throws FileNotFoundException
+     *             if path is not found
      */
     public static File[] listSourceFiles(String path) throws FileNotFoundException {
         File dir = new File(path);
@@ -149,12 +169,8 @@ public class FileUtilities {
                     return false;
                 }
                 String name = file.getName().toLowerCase();
-                if (name.endsWith(".h")
-                        || name.endsWith(".m")
-                        || name.endsWith(".c")
-                        || name.endsWith(".cpp")
-                        || name.endsWith(".mm")
-                        || name.endsWith(".c++")) {
+                if (name.endsWith(".h") || name.endsWith(".m") || name.endsWith(".c")
+                        || name.endsWith(".cpp") || name.endsWith(".mm") || name.endsWith(".c++")) {
                     return true;
                 }
                 return false;
@@ -164,8 +180,11 @@ public class FileUtilities {
     }
 
     /**
-     * Get a list of all source files, and issue a warning insted of throwing exception
-     * @param path Path to search for
+     * Get a list of all source files, and issue a warning insted of throwing
+     * exception
+     * 
+     * @param path
+     *            Path to search for
      * @return list of source files
      */
     public static File[] listSourceFilesWithWarning(String path) {
@@ -179,9 +198,13 @@ public class FileUtilities {
 
     /**
      * Read a file and parse it, based on the given closure
-     * @param path the file directory
-     * @param filename the name of the file
-     * @param cl the closure to use
+     * 
+     * @param path
+     *            the file directory
+     * @param filename
+     *            the name of the file
+     * @param cl
+     *            the closure to use
      * @return true if everything was successful, false if an error occured
      */
     public static boolean parseFile(String path, String filename, Closure cl) {
@@ -212,8 +235,11 @@ public class FileUtilities {
 
     /**
      * Read a file in memory
-     * @param path the file directory
-     * @param filename the name of the file
+     * 
+     * @param path
+     *            the file directory
+     * @param filename
+     *            the name of the file
      * @return The contents of this file
      */
     public static String readFile(String path, String filename) {
@@ -232,8 +258,11 @@ public class FileUtilities {
 
     /**
      * Output a String to a file
-     * @param outfile the file name and location
-     * @param data String containing the date to save 
+     * 
+     * @param outfile
+     *            the file name and location
+     * @param data
+     *            String containing the date to save
      * @return true, if everything was successful, false if an error occurred
      */
     public static boolean writeFile(String outfile, String data) {
@@ -257,20 +286,29 @@ public class FileUtilities {
     }
 
     /**
-     * Write the Xcode project file with the new file list, and overwrite the old one
-     * @param projecthome The home directory of the project
-     * @param projectname The name of the project
-     * @param data The project date
-     * @param replace the replacement list to use
+     * Write the Xcode project file with the new file list, and overwrite the
+     * old one
+     * 
+     * @param projecthome
+     *            The home directory of the project
+     * @param projectname
+     *            The name of the project
+     * @param data
+     *            The project date
+     * @param replace
+     *            the replacement list to use
      * @return true, if everything was successful, false if an error occurred
      */
-    public static boolean writeProjectFile(String projecthome, String projectname, String data, ReplacementList replace) {
+    public static boolean writeProjectFile(String projecthome, String projectname, String data,
+            ReplacementList replace) {
         return writeFile(getProjectFile(projecthome).getPath(), replace.actOnData(data));
     }
 
     /**
-     * Get the name of the project, based on the project directory. 
-     * @param projecthome The home directory of the project
+     * Get the name of the project, based on the project directory.
+     * 
+     * @param projecthome
+     *            The home directory of the project
      * @return The project name
      */
     public static String getProjectName(String projecthome) {
@@ -282,9 +320,11 @@ public class FileUtilities {
     /**
      * Get the location of the project, based on the given directory. It
      * searches for the *.xcodeproj directory in the current directory, in
-     * directory "dist" and in directory "build".
-     * If it is not found a RuntimeException is thrown
-     * @param projecthome The home directory of the project
+     * directory "dist" and in directory "build". If it is not found a
+     * RuntimeException is thrown
+     * 
+     * @param projecthome
+     *            The home directory of the project
      * @return The project directory
      */
     public static File getProjectDir(String projecthome) {
@@ -295,7 +335,8 @@ public class FileUtilities {
         if (projdir == null)
             projdir = getProjectDirImpl(projecthome + File.separator + "build");
         if (projdir == null)
-            throw new RuntimeException("Unable to find Xcode project under directory " + projecthome);
+            throw new RuntimeException("Unable to find Xcode project under directory "
+                    + projecthome);
         return projdir;
     }
 
@@ -303,7 +344,10 @@ public class FileUtilities {
         return new File(getProjectDir(projecthome), "project.pbxproj");
     }
 
-    /* Actual implementation of searching for project name under a specific directory */
+    /*
+     * Actual implementation of searching for project name under a specific
+     * directory
+     */
     private static File getProjectDirImpl(String dirname) {
         File projecthomefile = new File(dirname);
         File[] list = projecthomefile.listFiles();
@@ -318,14 +362,18 @@ public class FileUtilities {
 
     /**
      * Get a list of defined project libraries
-     * @param projecthome The home directory of the project
-     * @param projectname The name of the project
+     * 
+     * @param projecthome
+     *            The home directory of the project
+     * @param projectname
+     *            The name of the project
      * @return A list of libraries required for this project
      */
     public static HashSet<String> getProjectLibs(String projecthome, String projectname) {
         File oldproj = getProjectFile(projecthome);
         if (!oldproj.exists()) {
-            throw new RuntimeException("Unable to find old project " + projectname + " under directory " + projecthome);
+            throw new RuntimeException("Unable to find old project " + projectname
+                    + " under directory " + projecthome);
         }
 
         HashSet<String> results = new HashSet<String>();
@@ -347,13 +395,18 @@ public class FileUtilities {
     }
 
     /**
-     *  Copy a list files based on the project diretory
-     * @param projecthome The home directory of the project
-     * @param list List of files to copy
-     * @param replace the replacement list to use
+     * Copy a list files based on the project diretory
+     * 
+     * @param projecthome
+     *            The home directory of the project
+     * @param list
+     *            List of files to copy
+     * @param replace
+     *            the replacement list to use
      * @return true, if everything was successful, false if an error occured
      */
-    public static boolean transferFiles(String projecthome, ArrayList<String> list, ReplacementList replace) {
+    public static boolean transferFiles(String projecthome, ArrayList<String> list,
+            ReplacementList replace) {
         boolean status = true;
         String outdir = trimDir(projecthome) + File.separator;
         if (!new File(outdir).mkdirs()) {
@@ -374,7 +427,9 @@ public class FileUtilities {
 
     /**
      * Recursively remove a directory or file
-     * @param current the directory or file to remove
+     * 
+     * @param current
+     *            the directory or file to remove
      * @return true, if everything was successful, false if an error occured
      */
     public static boolean removeDirectory(File current) {
@@ -396,9 +451,13 @@ public class FileUtilities {
 
     /**
      * Copy a file or a directory to a specified directory
-     * @param source source file or directory
-     * @param dest destination file or directory
-     * @throws BuildException  this exception is thrown when copying can not be performed
+     * 
+     * @param source
+     *            source file or directory
+     * @param dest
+     *            destination file or directory
+     * @throws BuildException
+     *             this exception is thrown when copying can not be performed
      */
     public static void copy(File source, File dest) throws BuildException {
         dest = new File(dest, source.getName());

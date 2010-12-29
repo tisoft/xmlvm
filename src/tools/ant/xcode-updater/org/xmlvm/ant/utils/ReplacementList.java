@@ -1,21 +1,21 @@
-/*
- * Copyright (c) 2004-2008 XMLVM --- An XML-based Programming Language
+/* Copyright (c) 2002-2011 by XMLVM.org
  *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
+ * Project Info:  http://www.xmlvm.org
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
  *
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
- * Ave, Cambridge, MA 02139, USA.
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
  *
- * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
  */
 
 package org.xmlvm.ant.utils;
@@ -29,33 +29,38 @@ import org.xmlvm.ant.xcode.AntResourceManager;
 import static org.xmlvm.ant.xcode.XCodeFile.*;
 
 /**
- * This is a list of possible replacements, when trimming source code.
- * By replacing long names with smaller ones, the size of the produced code is
+ * This is a list of possible replacements, when trimming source code. By
+ * replacing long names with smaller ones, the size of the produced code is
  * smaller.
- * @author teras
  */
 public class ReplacementList extends ArrayList<ReplaceItem> {
 
     /**
      * How big the identifiers will be
      */
-    private static final int IDENT_SIZE = 2;
-    private static final String FIRST_LETTER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private static final String OTHER_LETTERS = FIRST_LETTER.toLowerCase();
+    private static final int      IDENT_SIZE       = 2;
+    private static final String   FIRST_LETTER     = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String   OTHER_LETTERS    = FIRST_LETTER.toLowerCase();
     //
-    public static final String DEFAULT_TEMPLATE = "My";
+    public static final String    DEFAULT_TEMPLATE = "My";
     //
-    private final Random rnd;
-    private final HashSet<String> used = new HashSet<String>();
+    private final Random          rnd;
+    private final HashSet<String> used             = new HashSet<String>();
+
 
     /**
      * Create a new replacement list
-     * @param should_replace whether we actually want to do any replacement.
-     * @param template The template to use
-     * @param seed The random seed to use. If it is equal to Long.MAX_VALUE, then
-     * a random seed based on system clock is used.
+     * 
+     * @param should_replace
+     *            whether we actually want to do any replacement.
+     * @param template
+     *            The template to use
+     * @param seed
+     *            The random seed to use. If it is equal to Long.MAX_VALUE, then
+     *            a random seed based on system clock is used.
      */
-    public ReplacementList(boolean should_replace, String template, long seed, String resources, String resourceroot) {
+    public ReplacementList(boolean should_replace, String template, long seed, String resources,
+            String resourceroot) {
         if (seed == Long.MAX_VALUE) {
             rnd = new Random();
         } else {
@@ -88,7 +93,8 @@ public class ReplacementList extends ArrayList<ReplaceItem> {
             add(new ReplaceItem("org_xmlvm_iphone_", template));
 
             add(new ReplaceItem("__init", "init" + template + "With"));
-            add(new ReplaceItem("ARRAYTYPE", getUniqueIdentifier(IDENT_SIZE) + getUniqueIdentifier(IDENT_SIZE)));
+            add(new ReplaceItem("ARRAYTYPE", getUniqueIdentifier(IDENT_SIZE)
+                    + getUniqueIdentifier(IDENT_SIZE)));
             add(new ReplaceItem("_GET_", getUniqueIdentifier(IDENT_SIZE)));
             add(new ReplaceItem("_PUT_", getUniqueIdentifier(IDENT_SIZE)));
 
@@ -110,9 +116,12 @@ public class ReplacementList extends ArrayList<ReplaceItem> {
             add(new ReplaceItem("java", template.toLowerCase()));
         }
 
-        /* These are for Xcode resource copying. It is requireld to be called later,
-         * in the case some files are under a path named "xmlvm" */
-        add(new ReplaceItem(TEMPL_RESOURCE_LIST, AntResourceManager.getResourcesAsRegExQuoteList(resources, resourceroot)));
+        /*
+         * These are for Xcode resource copying. It is requireld to be called
+         * later, in the case some files are under a path named "xmlvm"
+         */
+        add(new ReplaceItem(TEMPL_RESOURCE_LIST, AntResourceManager.getResourcesAsRegExQuoteList(
+                resources, resourceroot)));
         add(new ReplaceItem(TEMPL_RESOURCE_DIR, resourceroot));
 
         // Post replalcements
@@ -138,7 +147,9 @@ public class ReplacementList extends ArrayList<ReplaceItem> {
 
     /**
      * Perform the actual replace on the given data
-     * @param data Data to perform the replacements
+     * 
+     * @param data
+     *            Data to perform the replacements
      * @return A new String with the replaced data
      */
     public String actOnData(String data) {
@@ -148,10 +159,12 @@ public class ReplacementList extends ArrayList<ReplaceItem> {
         return data;
     }
 
+
     class ReplaceItem {
 
         private String from;
         private String to;
+
 
         public ReplaceItem(String key, String value) {
             this.from = key;

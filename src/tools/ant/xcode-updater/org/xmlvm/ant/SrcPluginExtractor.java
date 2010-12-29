@@ -1,21 +1,21 @@
-/*
- * Copyright (c) 2004-2008 XMLVM --- An XML-based Programming Language
+/* Copyright (c) 2002-2011 by XMLVM.org
  *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
+ * Project Info:  http://www.xmlvm.org
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
  *
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
- * Ave, Cambridge, MA 02139, USA.
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
  *
- * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
  */
 
 package org.xmlvm.ant;
@@ -34,21 +34,26 @@ import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 
 /**
- * Use this task to parse classpath, and copy the Obj-c part of each plugin (if it exists) to destination directory.
- * Each plugin is a regular JAR file, which inside the "/objc" directory it is possible to add *.m, *.h. *.c, *.cpp
- * and *.c++ files. These files will be copied along the produced Obj-c files to the Xcode project, and compiled together.
- * @author teras
+ * Use this task to parse classpath, and copy the Obj-c part of each plugin (if
+ * it exists) to destination directory. Each plugin is a regular JAR file, which
+ * inside the "/objc" directory it is possible to add *.m, *.h. *.c, *.cpp and
+ * *.c++ files. These files will be copied along the produced Obj-c files to the
+ * Xcode project, and compiled together.
  */
 public class SrcPluginExtractor extends Task {
 
-    private final static String PREFIX = "objc/";
-    private File dest;
-    private String classpath;
-    private int howmany = 0;
+    private final static String PREFIX  = "objc/";
+    private File                dest;
+    private String              classpath;
+    private int                 howmany = 0;
+
 
     /**
-     * provide the classpath to the task, in order to parse *.JAR files for possible C code. Every JAR file is searched
-     * if the directory "/objc" exists, and if it exists, it copies all files found there to the "dest" directory
+     * provide the classpath to the task, in order to parse *.JAR files for
+     * possible C code. Every JAR file is searched if the directory "/objc"
+     * exists, and if it exists, it copies all files found there to the "dest"
+     * directory
+     * 
      * @param classpath
      */
     public void setClasspath(String classpath) {
@@ -57,6 +62,7 @@ public class SrcPluginExtractor extends Task {
 
     /**
      * Set the destination folder, where Obj-c files will be stored
+     * 
      * @param dest
      */
     public void setDest(File dest) {
@@ -65,16 +71,20 @@ public class SrcPluginExtractor extends Task {
 
     /**
      * Start the SrcPluginExtractor task
+     * 
      * @throws BuildException
      */
     @Override
     public void execute() throws BuildException {
         if (classpath == null || classpath.equals(""))
-            throw new BuildException(new NullPointerException("Attribute \"classpath\" for SrcPluginExtractor should be properly defined."));
+            throw new BuildException(new NullPointerException(
+                    "Attribute \"classpath\" for SrcPluginExtractor should be properly defined."));
         if (dest == null)
-            throw new BuildException(new NullPointerException("Attribute \"dest\" for SrcPluginExtractor should be properly defined."));
+            throw new BuildException(new NullPointerException(
+                    "Attribute \"dest\" for SrcPluginExtractor should be properly defined."));
         if (dest.exists() && (!dest.isDirectory()))
-            throw new BuildException(new IOException("Path " + dest.getPath() + " exists and is not a directory"));
+            throw new BuildException(new IOException("Path " + dest.getPath()
+                    + " exists and is not a directory"));
         dest.mkdirs();
         if (!dest.exists())
             throw new BuildException(new IOException("Unable to use path " + dest.getPath()));
@@ -108,7 +118,8 @@ public class SrcPluginExtractor extends Task {
             int buflength;
             while ((item = in.getNextJarEntry()) != null)
                 if (item.getName().startsWith(PREFIX) && (!item.getName().endsWith("/"))) {
-                    out = new BufferedOutputStream(new FileOutputStream( new File(dest, getFileName(item))));
+                    out = new BufferedOutputStream(new FileOutputStream(new File(dest,
+                            getFileName(item))));
                     while ((buflength = in.read(buffer)) != -1)
                         out.write(buffer, 0, buflength);
                     howmany++;

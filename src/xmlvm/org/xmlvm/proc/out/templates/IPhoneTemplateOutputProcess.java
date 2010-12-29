@@ -32,8 +32,6 @@ import org.xmlvm.main.Arguments;
 
 /**
  * Template for new iPhone projects
- * 
- * @author teras
  */
 public class IPhoneTemplateOutputProcess extends TemplateOutputProcess {
 

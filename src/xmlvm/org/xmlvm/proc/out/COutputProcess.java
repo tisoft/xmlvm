@@ -130,6 +130,12 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
         StringBuilder headerBuffer = new StringBuilder();
         headerBuffer.append("#include \"xmlvm.h\"\n");
         List<String> typesForHeader = getTypesForHeader(doc.getRootElement());
+        for (String type : typesForHeader) {
+            if (!xmlvm.getReferencedTypes().contains(type)) {
+                System.out.println("Argh!");
+            }
+        }
+
         for (String i : typesForHeader) {
             if (i.equals(inheritsFrom)) {
                 headerBuffer.append("#include \"" + i + ".h\"\n");

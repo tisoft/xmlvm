@@ -26,8 +26,6 @@ import org.xmlvm.util.FileUtil;
 
 /**
  * This output file is responsible to copy resources to a project
- * 
- * @author teras
  */
 public class VerbatimOutputFile extends OutputFile {
 

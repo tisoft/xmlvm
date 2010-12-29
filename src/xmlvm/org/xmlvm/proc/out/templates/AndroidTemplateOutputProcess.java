@@ -35,8 +35,6 @@ import org.xmlvm.proc.out.EmptyDirectory;
 
 /**
  * Template for new Android projects
- * 
- * @author teras
  */
 public class AndroidTemplateOutputProcess extends TemplateOutputProcess {
 

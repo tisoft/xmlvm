@@ -26,8 +26,6 @@ import org.xmlvm.Log;
 /**
  * This output file is responsible to create empty directories, especially while
  * creating templates.
- * 
- * @author teras
  */
 public class EmptyDirectory extends OutputFile {
 

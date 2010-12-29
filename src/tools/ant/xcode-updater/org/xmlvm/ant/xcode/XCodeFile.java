@@ -1,21 +1,21 @@
-/*
- * Copyright (c) 2004-2008 XMLVM --- An XML-based Programming Language
+/* Copyright (c) 2002-2011 by XMLVM.org
  *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
+ * Project Info:  http://www.xmlvm.org
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
  *
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
- * Ave, Cambridge, MA 02139, USA.
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
  *
- * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
  */
 
 package org.xmlvm.ant.xcode;
@@ -26,31 +26,35 @@ import java.util.HashSet;
 
 /**
  * Create an xcode project
- * @author teras
  */
 public class XCodeFile {
 
     /* Templates */
-    public static final String TEMPL_RESOURCE_LIST = "__RESOURCE_LIST__";
-    public static final String TEMPL_RESOURCE_DIR = "__RESOURCE_DIR__";
+    public static final String  TEMPL_RESOURCE_LIST   = "__RESOURCE_LIST__";
+    public static final String  TEMPL_RESOURCE_DIR    = "__RESOURCE_DIR__";
     /* Private templates */
-    private static final String TEMPL_PROJNAME = "__PROJNAME__";
-    private static final String TEMPL_FILEREFS = "__FILEREFS__";
-    private static final String TEMPL_BUILDREFS = "__BUILDREFS__";
-    private static final String TEMPL_BUILDFRAMS = "__BUILDFRAMS__";
-    private static final String TEMPL_FRAMEWORKS = "__FRAMEWORKS__";
-    private static final String TEMPL_APP_SRC = "__APPSRC__";
-    private static final String TEMPL_RESOURCES = "__RESOURCES__";
-    private static final String TEMPL_SRC_BUILD = "__SRC_BUILD__";
+    private static final String TEMPL_PROJNAME        = "__PROJNAME__";
+    private static final String TEMPL_FILEREFS        = "__FILEREFS__";
+    private static final String TEMPL_BUILDREFS       = "__BUILDREFS__";
+    private static final String TEMPL_BUILDFRAMS      = "__BUILDFRAMS__";
+    private static final String TEMPL_FRAMEWORKS      = "__FRAMEWORKS__";
+    private static final String TEMPL_APP_SRC         = "__APPSRC__";
+    private static final String TEMPL_RESOURCES       = "__RESOURCES__";
+    private static final String TEMPL_SRC_BUILD       = "__SRC_BUILD__";
     private static final String TEMPL_RESOURCES_BUILD = "__RESOURCES_BUILD__";
-    private static final String TEMPL_SDK_ROOT = "__SDK_ROOT__";
-    private static final String TEMPL_SDK_TARGET = "__SDK_TARGET__";
-    private static final String TEMPL_ARCHITECTURE = "__ARCHITECTURE__";
-    /* Project creation constants*/
-    private static final int FIRST_ID = 1000;
+    private static final String TEMPL_SDK_ROOT        = "__SDK_ROOT__";
+    private static final String TEMPL_SDK_TARGET      = "__SDK_TARGET__";
+    private static final String TEMPL_ARCHITECTURE    = "__ARCHITECTURE__";
+    /* Project creation constants */
+    private static final int    FIRST_ID              = 1000;
     /* */
-    private String data = "";    // Actual XCode data
-    private int nextid; // Next reference id
+    private String              data                  = "";                   // Actual
+                                                                               // XCode
+                                                                               // data
+    private int                 nextid;                                       // Next
+                                                                               // reference
+                                                                               // id
+
 
     public XCodeFile(String projname, ArrayList<String> projfiles, HashSet<String> libraries,
             XcodeSkeleton target) {
@@ -62,6 +66,7 @@ public class XCodeFile {
         injectFiles(projfiles);
         finalizeObject(target);
     }
+
     /* Requested libraries */
 
     public String getProjectData() {
@@ -69,14 +74,10 @@ public class XCodeFile {
     }
 
     private void finalizeObject(XcodeSkeleton target) {
-        data = data.replace(TEMPL_FILEREFS, "")
-                .replace(TEMPL_BUILDREFS, "")
-                .replace(TEMPL_RESOURCES_BUILD, "")
-                .replace(TEMPL_SRC_BUILD, "")
-                .replace(TEMPL_RESOURCES, "")
-                .replace(TEMPL_BUILDFRAMS, "")
-                .replace(TEMPL_FRAMEWORKS, "")
-                .replace(TEMPL_SDK_ROOT, target.root)
+        data = data.replace(TEMPL_FILEREFS, "").replace(TEMPL_BUILDREFS, "")
+                .replace(TEMPL_RESOURCES_BUILD, "").replace(TEMPL_SRC_BUILD, "")
+                .replace(TEMPL_RESOURCES, "").replace(TEMPL_BUILDFRAMS, "")
+                .replace(TEMPL_FRAMEWORKS, "").replace(TEMPL_SDK_ROOT, target.root)
                 .replace(TEMPL_SDK_TARGET, target.target)
                 .replace(TEMPL_ARCHITECTURE, target.architecture);
     }
@@ -125,8 +126,10 @@ public class XCodeFile {
                 filerefs.append("; path = ").append(path).append(lib);
                 filerefs.append("; sourceTree = SDKROOT; };\n");
                 /* Add references frameworks */
-                buildframs.append("\t\t\t\t").append(buildid).append(" /* ").append(lib).append(" in Frameworks */,\n");
-                frameworks.append("\t\t\t\t").append(fileid).append(" /* ").append(lib).append(" */,\n");
+                buildframs.append("\t\t\t\t").append(buildid).append(" /* ").append(lib)
+                        .append(" in Frameworks */,\n");
+                frameworks.append("\t\t\t\t").append(fileid).append(" /* ").append(lib)
+                        .append(" */,\n");
             }
         }
         data = data.replace(TEMPL_FILEREFS, filerefs.toString() + TEMPL_FILEREFS);

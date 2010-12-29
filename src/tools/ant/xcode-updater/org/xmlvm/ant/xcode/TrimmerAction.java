@@ -1,21 +1,21 @@
-/*
- * Copyright (c) 2004-2008 XMLVM --- An XML-based Programming Language
+/* Copyright (c) 2002-2011 by XMLVM.org
  *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
+ * Project Info:  http://www.xmlvm.org
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
  *
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
- * Ave, Cambridge, MA 02139, USA.
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
  *
- * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
  */
 
 package org.xmlvm.ant.xcode;
@@ -32,28 +32,30 @@ import java.util.HashSet;
 
 /**
  * Perform the actual trimming of the project. It is called by the ant script
- * @author teras
  */
 public class TrimmerAction {
 
-    private static final String INCLUDE = "#include ";
-    private static final int INCLUDE_SIZE = INCLUDE.length();
-    private static final String IMPORT = "#import ";
-    private static final int IMPORT_SIZE = IMPORT.length();
+    private static final String INCLUDE      = "#include ";
+    private static final int    INCLUDE_SIZE = INCLUDE.length();
+    private static final String IMPORT       = "#import ";
+    private static final int    IMPORT_SIZE  = IMPORT.length();
     /* */
-    private final String projecthome;
-    private final boolean shorten;
-    private final boolean cleanup;
-    private final String template;
-    private final long seed;
+    private final String        projecthome;
+    private final boolean       shorten;
+    private final boolean       cleanup;
+    private final String        template;
+    private final long          seed;
     private final XcodeSkeleton target;
-    private final String resources;
-    private final String resourceroot;
+    private final String        resources;
+    private final String        resourceroot;
+
 
     /**
-     * Initialize the trimmer object. For actual parameter definition, refer to the corresponding ant task
+     * Initialize the trimmer object. For actual parameter definition, refer to
+     * the corresponding ant task
      */
-    public TrimmerAction(boolean shorten, boolean cleanup, String projecthome, String template, long seed, XcodeSkeleton target, String resources, String resourceroot) {
+    public TrimmerAction(boolean shorten, boolean cleanup, String projecthome, String template,
+            long seed, XcodeSkeleton target, String resources, String resourceroot) {
         this.projecthome = projecthome;
         this.shorten = shorten;
         this.cleanup = cleanup;
@@ -66,13 +68,16 @@ public class TrimmerAction {
 
     /**
      * Perform the trimming procedure
-     * @throws FileNotFoundException In the case that a file was not found
+     * 
+     * @throws FileNotFoundException
+     *             In the case that a file was not found
      */
     public void trim() throws FileNotFoundException {
         Log.debug("Parsing files");
 
         /* useful variables */
-        ReplacementList replace = new ReplacementList(shorten, template, seed, resources, resourceroot);
+        ReplacementList replace = new ReplacementList(shorten, template, seed, resources,
+                resourceroot);
         String projname = FileUtilities.getProjectName(projecthome);
 
         HashSet<String> files;
@@ -110,10 +115,12 @@ public class TrimmerAction {
         for (File f : FileUtilities.listSourceFiles(FileUtilities.appDir(projecthome))) {
             files.add(f.getName());
         }
-        for (File f : FileUtilities.listSourceFilesWithWarning(FileUtilities.iphoneDir(projecthome))) {
+        for (File f : FileUtilities
+                .listSourceFilesWithWarning(FileUtilities.iphoneDir(projecthome))) {
             files.add(f.getName());
         }
-        for (File f : FileUtilities.listSourceFilesWithWarning(FileUtilities.androidDir(projecthome))) {
+        for (File f : FileUtilities.listSourceFilesWithWarning(FileUtilities
+                .androidDir(projecthome))) {
             files.add(f.getName());
         }
         return files;
@@ -155,7 +162,8 @@ public class TrimmerAction {
                                 return;
                             }
                             if (line.charAt(0) != '"') {
-                                throw new RuntimeException("Missing '\"' while parsing line: " + original_line);
+                                throw new RuntimeException("Missing '\"' while parsing line: "
+                                        + original_line);
                             }
 
                             int upto = line.indexOf('"', 1);

@@ -25,8 +25,6 @@ import java.io.FileFilter;
 
 /**
  * Filters on whether a given path is within a given location.
- * 
- * @author teras
  */
 public class PathFileFilter implements FileFilter {
     private String inLocation;

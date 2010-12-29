@@ -1,21 +1,21 @@
-/*
- * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+/* Copyright (c) 2002-2011 by XMLVM.org
  *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
+ * Project Info:  http://www.xmlvm.org
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
  *
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
- * Ave, Cambridge, MA 02139, USA.
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
  *
- * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
  */
 
 package org.xmlvm.ant.xcode;
@@ -26,15 +26,15 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
- * This object is a copy of ResourceManager of core xmlvm project.
- * It also contains source code of Arguments object.
- * @author teras
+ * This object is a copy of ResourceManager of core xmlvm project. It also
+ * contains source code of Arguments object.
  */
 public class AntResourceManager {
 
     /**
      * This method does not exist in Resource Manager. It is a convenient method
      * to create set of arguments.
+     * 
      * @param resources
      * @return
      */
@@ -46,7 +46,9 @@ public class AntResourceManager {
 
     /**
      * Get a list of resources, each one inside double quotes
-     * @param args command line arguments, used to find given resources
+     * 
+     * @param args
+     *            command line arguments, used to find given resources
      * @return list of resources
      */
     public static String getResourcesAsRegExQuoteList(Set<String> reslist, String resourceroot) {
@@ -57,22 +59,28 @@ public class AntResourceManager {
         return out.toString();
     }
 
-    private static Set<String> getFilteredList(Set<String> reslist, String resourceroot, boolean accept_sources) {
+    private static Set<String> getFilteredList(Set<String> reslist, String resourceroot,
+            boolean accept_sources) {
         Set<String> list = new HashSet<String>();
         if (resourceroot == null)
             resourceroot = System.getProperty("user.dir");
         for (String resource : reslist) {
             File rfile = new File(resourceroot, resource);
             if (rfile.exists())
-                if (rfile.isFile() || (!resource.endsWith(File.separator))) // Is a file
+                if (rfile.isFile() || (!resource.endsWith(File.separator))) // Is
+                                                                            // a
+                                                                            // file
                     addSourceFilter(list, resource, accept_sources);
                 else // Is a directory
-                if (resource.endsWith("/")) { // We only need the contents of this directory
+                if (resource.endsWith("/")) { // We only need the contents of
+                                              // this directory
                     File[] entries = rfile.listFiles();
                     if (entries != null) { // This directory is not empty
                         for (File entry : entries) {
-                            String name = resource + entry.getName(); // Get the filename
-                            if (entry.isFile()) // If it is a file, only add non-source files
+                            String name = resource + entry.getName(); // Get the
+                                                                      // filename
+                            if (entry.isFile()) // If it is a file, only add
+                                                // non-source files
                                 addSourceFilter(list, name, accept_sources);
                             else { // If it is a directory, keep a verbatim copy
                                 if (!accept_sources)
@@ -90,16 +98,22 @@ public class AntResourceManager {
 
     /**
      * Add a resource file in list, depending if it is a resource or not
-     * @param list list to add this resource file
-     * @param resource resource file name
-     * @param accept_source whether we accept source files. This is a toggle. If sources are
-     * accepted, then ONLY source files will be added. When sources are not accepted, then
-     * not any source file will be added.
+     * 
+     * @param list
+     *            list to add this resource file
+     * @param resource
+     *            resource file name
+     * @param accept_source
+     *            whether we accept source files. This is a toggle. If sources
+     *            are accepted, then ONLY source files will be added. When
+     *            sources are not accepted, then not any source file will be
+     *            added.
      */
     private static void addSourceFilter(Set<String> list, String resource, boolean accept_source) {
         String resourceLC = resource.toLowerCase();
-        boolean is_source = resourceLC.endsWith(".c") || resourceLC.endsWith(".h") || resourceLC.endsWith(".m")
-                || resourceLC.endsWith(".cpp") || resourceLC.endsWith(".c++") || resourceLC.endsWith(".mm");
+        boolean is_source = resourceLC.endsWith(".c") || resourceLC.endsWith(".h")
+                || resourceLC.endsWith(".m") || resourceLC.endsWith(".cpp")
+                || resourceLC.endsWith(".c++") || resourceLC.endsWith(".mm");
         if (accept_source == is_source)
             list.add(resource);
     }

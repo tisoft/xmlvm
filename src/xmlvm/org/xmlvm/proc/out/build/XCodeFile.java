@@ -34,9 +34,6 @@ import org.xmlvm.proc.out.IPhoneCOutputProcess;
 import org.xmlvm.proc.out.IPhoneOutputProcess;
 import org.xmlvm.proc.out.OutputFile;
 
-/**
- * @author teras
- */
 public class XCodeFile extends BuildFile {
 
     private static final String                  IPHONE_XCODE_IN_JAR_RESOURCE = "/iphone/project.template";

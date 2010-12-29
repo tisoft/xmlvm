@@ -47,9 +47,19 @@ public class LibraryLoader {
     private final static Map<String, XmlvmResource> cache = new HashMap<String, XmlvmResource>();
 
 
+    /**
+     * Initializes the LibraryLoader with the given arguments.
+     */
     public LibraryLoader(Arguments arguments) {
         this.arguments = arguments;
         this.libraries = LIBS.getLibraries();
+    }
+
+    /**
+     * Gets the last modified date of all libraries combined.
+     */
+    public long getLastModified() {
+        return LIBS.getLastModified();
     }
 
     /**

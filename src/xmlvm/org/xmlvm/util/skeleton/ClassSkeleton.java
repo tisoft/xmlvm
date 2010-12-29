@@ -26,10 +26,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-/**
- * 
- * @author teras
- */
 public class ClassSkeleton {
 
     private static final String COPYRIGHT = "/*\n"

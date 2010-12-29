@@ -25,10 +25,6 @@ import java.util.List;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.OutputFile;
 
-/**
- * @author teras
- */
-
 public class MakeFile extends BuildFile {
 
     private static final String TEMPL_PROJNAME                 = "__PROJNAME__";

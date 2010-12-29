@@ -27,9 +27,6 @@ import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.IPhoneOutputProcess;
 import org.xmlvm.proc.out.VerbatimOutputFile;
 
-/**
- * @author teras
- */
 public class ResourceManager {
 
     /**

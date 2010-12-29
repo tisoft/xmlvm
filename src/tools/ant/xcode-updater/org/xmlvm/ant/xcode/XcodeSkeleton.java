@@ -1,21 +1,21 @@
-/*
- * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+/* Copyright (c) 2002-2011 by XMLVM.org
  *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
+ * Project Info:  http://www.xmlvm.org
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
  *
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
- * Ave, Cambridge, MA 02139, USA.
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
  *
- * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
  */
 
 package org.xmlvm.ant.xcode;
@@ -24,7 +24,6 @@ import org.xmlvm.ant.utils.Log;
 
 /**
  * Option of Xcode target project
- * @author teras
  */
 public enum XcodeSkeleton {
 
@@ -48,6 +47,7 @@ public enum XcodeSkeleton {
     public final String target;
     public final String architecture;
 
+
     private XcodeSkeleton(String root, String target) {
         this.root = root;
         this.target = target;
@@ -56,8 +56,11 @@ public enum XcodeSkeleton {
 
     /**
      * Safely get a target based on skeleton name
-     * @param skeleton the name of the target
-     * @return always return a XcodeSkeleton object. If an error occurs this is logged.
+     * 
+     * @param skeleton
+     *            the name of the target
+     * @return always return a XcodeSkeleton object. If an error occurs this is
+     *         logged.
      */
     public static XcodeSkeleton getTarget(String skeleton) {
         skeleton = skeleton.toUpperCase();

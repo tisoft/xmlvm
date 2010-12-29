@@ -28,10 +28,6 @@ import java.util.StringTokenizer;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
-/**
- * 
- * @author teras
- */
 public class ClassList extends ArrayList<Class> {
 
     private String pkg;

@@ -34,8 +34,6 @@ import org.xmlvm.util.FileUtil;
 /**
  * Create a file responsible to "build" the selected target (i.e. a Makefile or
  * a Xcode file)
- * 
- * @author teras
  */
 public abstract class BuildFile {
 

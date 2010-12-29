@@ -22,10 +22,6 @@ package org.xmlvm.proc.out.build;
 
 import org.xmlvm.Log;
 
-/**
- * 
- * @author teras
- */
 public enum XcodeSkeleton {
 
     /**

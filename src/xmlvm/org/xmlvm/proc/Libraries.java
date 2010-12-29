@@ -20,6 +20,7 @@
 
 package org.xmlvm.proc;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,13 +34,13 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * to date.
  */
 public class Libraries {
-    private static final String  TAG        = Libraries.class.getSimpleName();
-    private static final String  CACHE_PATH = ".cache/";
+    private static final String TAG        = Libraries.class.getSimpleName();
+    private static final String CACHE_PATH = ".cache/";
 
-    private UniversalFile jdk;
-    private UniversalFile cocoaJava;
+    private UniversalFile       jdk;
+    private UniversalFile       cocoaJava;
 
-    private List<UniversalFile>  libraries  = new ArrayList<UniversalFile>();
+    private List<UniversalFile> libraries  = new ArrayList<UniversalFile>();
 
 
     public Libraries() {
@@ -50,14 +51,29 @@ public class Libraries {
         libraries.add(cocoaJava);
     }
 
+    /**
+     * Returns the most recent lastModified date of all the libraries.
+     */
+    public long getLastModified() {
+        long mostRecentLastModified = 0;
+
+        for (UniversalFile library : libraries) {
+            if (library.getLastModified() > mostRecentLastModified) {
+                mostRecentLastModified = library.getLastModified();
+            }
+        }
+
+        return mostRecentLastModified;
+    }
+
     private void maybeInitialize() {
         if (jdk == null) {
             jdk = UniversalFileCreator.createDirectory("/lib/openjdk6-build.jar",
                     "lib/openjdk6-build.jar");
         }
         if (cocoaJava == null) {
-            cocoaJava = UniversalFileCreator.createDirectory("/lib/cocoa-java.jar", prepareTempJar(
-                    "bin/org/xmlvm/iphone", "org/xmlvm/iphone/"));
+            cocoaJava = UniversalFileCreator.createDirectory("/lib/cocoa-java.jar",
+                    prepareTempJar("bin/org/xmlvm/iphone", "org/xmlvm/iphone/"));
         }
     }
 
@@ -82,19 +98,40 @@ public class Libraries {
      *         path was not found.
      */
     private String prepareTempJar(String path, String pathPrefix) {
-        String tempFileName = createTempFileName(path);
-        Log.debug(TAG, "Preparing temp JAR for '" + path + "' at '" + tempFileName + "'.");
 
         UniversalFile source = UniversalFileCreator.createDirectory(null, path);
         if (source == null || !source.exists()) {
             Log.debug(TAG, "Couldn't find library path: " + path);
             return null;
         }
+        long lastModified = lastModifiedRecursive(source);
+        String tempFileName = createTempFileName(path, lastModified);
+
+        // Check whether the temp jar already exists with the given time stamp.
+        if (exists(tempFileName)) {
+            return tempFileName;
+        }
+
+        Log.debug(TAG, "Preparing temp JAR for '" + path + "' at '" + tempFileName + "'.");
         source.archiveTo(tempFileName, pathPrefix);
         return tempFileName;
     }
 
-    private static String createTempFileName(String path) {
-        return CACHE_PATH + path.replace("/", "_").replace("\\", "_") + ".jar";
+    private long lastModifiedRecursive(UniversalFile directory) {
+        long lastModified = 0;
+        for (UniversalFile file : directory.listFilesRecursively()) {
+            if (file.getLastModified() > lastModified) {
+                lastModified = file.getLastModified();
+            }
+        }
+        return lastModified;
+    }
+
+    private static String createTempFileName(String path, long lastModified) {
+        return CACHE_PATH + path.replace("/", "_").replace("\\", "_") + "." + lastModified + ".jar";
+    }
+
+    private static boolean exists(String fileName) {
+        return (new File(fileName)).exists();
     }
 }

@@ -20,10 +20,6 @@
 
 package org.xmlvm.proc.out.templates;
 
-/**
- * 
- * @author teras
- */
 class TemplateFile {
 
     final String source;
