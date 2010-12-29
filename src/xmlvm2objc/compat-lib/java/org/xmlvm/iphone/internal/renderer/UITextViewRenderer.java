@@ -28,10 +28,6 @@ import org.xmlvm.iphone.UILineBreakMode;
 
 import org.xmlvm.iphone.UITextView;
 
-/**
- * 
- * @author teras
- */
 public class UITextViewRenderer extends UITextRenderer<UITextView> {
 
     private static final Insets INSETS = new Insets(8, 8, 8, 8);

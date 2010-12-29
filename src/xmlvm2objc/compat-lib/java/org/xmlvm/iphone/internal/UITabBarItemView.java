@@ -25,10 +25,6 @@ import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UITabBarItem;
 import org.xmlvm.iphone.internal.renderer.UITabBarItemRenderer;
 
-/**
- * 
- * @author teras
- */
 public class UITabBarItemView extends UIBarItemView {
 
     private final static UIFont  DEFAULT_FONT  = UIFont.fontWithNameSize("Arial Bold", 10);

@@ -28,9 +28,6 @@ import static org.xmlvm.iphone.internal.renderer.UIProgressViewRenderer.kProgres
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UIProgressViewRenderer;
 
-/**
- * @author teras
- */
 @XMLVMSkeletonOnly
 public class UIProgressView extends UIControl {
 

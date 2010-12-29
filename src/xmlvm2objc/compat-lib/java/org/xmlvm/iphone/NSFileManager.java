@@ -26,10 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.xmlvm.XMLVMSkeletonOnly;
 
-/**
- * 
- * @author teras
- */
 @XMLVMSkeletonOnly
 public class NSFileManager extends NSObject {
 

@@ -37,10 +37,6 @@ import org.xmlvm.iphone.UILineBreakMode;
 import org.xmlvm.iphone.UITextBorderStyle;
 import org.xmlvm.iphone.UITextField;
 
-/**
- * 
- * @author teras
- */
 public class UITextFieldRenderer extends UITextRenderer<UITextField> {
 
     private static final Insets INSETS           = new Insets(1, 8, 1, 8);

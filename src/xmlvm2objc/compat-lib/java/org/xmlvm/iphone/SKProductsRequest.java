@@ -24,10 +24,6 @@ import java.util.Set;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
-/**
- * 
- * @author teras
- */
 @XMLVMSkeletonOnly
 public class SKProductsRequest extends SKRequest {
 

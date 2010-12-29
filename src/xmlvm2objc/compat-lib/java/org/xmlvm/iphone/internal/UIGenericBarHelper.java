@@ -27,10 +27,6 @@ import org.xmlvm.iphone.UIToolbar;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.internal.renderer.UIToolbarRenderer;
 
-/**
- * 
- * @author teras
- */
 public class UIGenericBarHelper {
 
     public static UIColor getTintColor(UIView view) {

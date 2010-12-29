@@ -28,10 +28,6 @@ import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UITabBar;
 
-/**
- * 
- * @author teras
- */
 public class UITabBarRenderer extends UIViewRenderer<UITabBar> {
 
     private final static Color TOPCOLOR      = new Color(46, 46, 46);

@@ -20,10 +20,6 @@
 
 package org.xmlvm.iphone;
 
-/**
- * 
- * @author teras
- */
 public interface UINavigationBarDelegate {
 
     public boolean shouldPushItem(UINavigationBar bar, UINavigationItem item);

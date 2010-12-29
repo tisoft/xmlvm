@@ -21,10 +21,6 @@ package org.xmlvm.iphone.internal.renderer;
 
 import org.xmlvm.iphone.UIPageControl;
 
-/**
- * 
- * @author teras
- */
 public class UIPageControlRenderer extends UIViewRenderer<UIPageControl> {
 
     public UIPageControlRenderer(UIPageControl view) {

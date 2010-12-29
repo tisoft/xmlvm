@@ -25,10 +25,6 @@ import java.util.HashSet;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
-/**
- * 
- * @author teras
- */
 @XMLVMSkeletonOnly
 public class SKPaymentQueue extends NSObject {
 

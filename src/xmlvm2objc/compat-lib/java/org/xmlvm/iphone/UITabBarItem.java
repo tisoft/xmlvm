@@ -24,10 +24,6 @@ import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.UITabBarItemView;
 
-/**
- * 
- * @author teras
- */
 @XMLVMSkeletonOnly
 public class UITabBarItem extends UIBarItem {
 

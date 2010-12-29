@@ -159,7 +159,7 @@ public class UITextField extends UIView {
         this.textAlignment = uiTextAlignment;
     }
 
-    /* TODO teras: this has to be removed from here */
+    /* TODO(teras): this has to be removed from here */
     @Override
     public void xmlvmKeyTyped(char key) {
         if (key == '\b' && !text.equals(""))

@@ -20,10 +20,6 @@
 
 package org.xmlvm.iphone;
 
-/**
- * 
- * @author teras
- */
 public class CLDeviceOrientation {
 
     public static final int Unknown            = 0;

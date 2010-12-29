@@ -20,10 +20,6 @@
 
 package org.xmlvm.iphone;
 
-/**
- * 
- * @author teras
- */
 public interface UINavigationControllerDelegate {
 
     public void willShowViewController(UINavigationController navigationController,

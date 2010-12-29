@@ -23,10 +23,6 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
-/**
- * 
- * @author teras
- */
 @XMLVMSkeletonOnly
 public class SKProduct extends NSObject {
 

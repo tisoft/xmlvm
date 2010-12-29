@@ -32,10 +32,6 @@ import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UISegmentedControl;
 import org.xmlvm.iphone.UISegmentedControlStyle;
 
-/**
- * 
- * @author teras
- */
 public class UISegmentedControlRenderer extends UIViewRenderer<UISegmentedControl> {
 
     private static Font      FONT_DEFAULT = new Font("Arial", Font.BOLD, 18);

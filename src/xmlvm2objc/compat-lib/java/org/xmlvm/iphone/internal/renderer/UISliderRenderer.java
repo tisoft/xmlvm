@@ -28,10 +28,6 @@ import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UISlider;
 
-/**
- * 
- * @author teras
- */
 public class UISliderRenderer extends UIViewRenderer<UISlider> {
 
     private static final int  THICKNESS            = 8;

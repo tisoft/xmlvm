@@ -23,10 +23,6 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UIPickerViewRenderer;
 
-/**
- * 
- * @author teras
- */
 @XMLVMSkeletonOnly
 public class UIPickerView extends UIView {
     private final static float     ROWHEIGHT = 10;

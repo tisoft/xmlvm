@@ -57,8 +57,6 @@ package org.xmlvm.iphone.internal;
  *     preferredHeight = 50f;
  * }
  * </pre>
- * 
- * @author teras
  */
 public class OptionalSelectorException extends NullPointerException {
 

@@ -23,10 +23,6 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.OptionalSelectorException;
 
-/**
- * 
- * @author teras
- */
 @XMLVMSkeletonOnly
 public abstract class UIPickerViewDelegate extends NSObject {
 

@@ -24,10 +24,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.xmlvm.XMLVMSkeletonOnly;
 
-/**
- * 
- * @author teras
- */
 @XMLVMSkeletonOnly
 public class NSLog extends NSObject {
 

@@ -25,10 +25,6 @@ import org.xmlvm.iphone.UIBarButtonItem;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.internal.renderer.UIBarButtonItemRenderer;
 
-/**
- * 
- * @author teras
- */
 public class UIBarButtonItemView extends UIBarItemView {
 
     public UIBarButtonItemView(UIBarButtonItem item, boolean isBack) {

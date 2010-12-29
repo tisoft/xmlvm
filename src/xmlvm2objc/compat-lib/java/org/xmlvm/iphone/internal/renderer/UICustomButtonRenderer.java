@@ -29,10 +29,6 @@ import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIButton;
 import org.xmlvm.iphone.UIImage;
 
-/**
- * 
- * @author teras
- */
 public class UICustomButtonRenderer extends UIButtonRenderer {
 
     public UICustomButtonRenderer(UIButton view) {

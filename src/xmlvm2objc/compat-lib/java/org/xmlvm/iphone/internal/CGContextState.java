@@ -30,10 +30,6 @@ import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.util.Stack;
 
-/**
- * 
- * @author teras
- */
 public class CGContextState {
 
     private static final Stack<CGContextState> stack = new Stack<CGContextState>();

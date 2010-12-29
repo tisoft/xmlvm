@@ -31,9 +31,6 @@ import java.util.ArrayList;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UIToolbarRenderer;
 
-/**
- * @author teras
- */
 @XMLVMSkeletonOnly
 public class UINavigationBar extends UIView {
 

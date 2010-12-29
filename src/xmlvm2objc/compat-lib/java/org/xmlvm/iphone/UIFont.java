@@ -24,10 +24,6 @@ import java.awt.Font;
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
-/**
- * @author teras
- * 
- */
 @XMLVMSkeletonOnly
 public class UIFont extends NSObject {
 

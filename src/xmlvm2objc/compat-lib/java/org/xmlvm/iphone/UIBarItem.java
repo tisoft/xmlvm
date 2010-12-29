@@ -24,10 +24,6 @@ import java.lang.reflect.Method;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
-/**
- * 
- * @author teras
- */
 @XMLVMSkeletonOnly
 public abstract class UIBarItem extends NSObject {
 

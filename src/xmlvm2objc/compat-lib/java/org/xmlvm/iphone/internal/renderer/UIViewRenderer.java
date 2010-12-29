@@ -78,8 +78,8 @@ public class UIViewRenderer<T extends UIView> {
         }
     }
 
-    // TODO (arno) Fix the clipping rect computation
-    // TODO teras: find exactly which part to redraw
+    // TODO(arno): Fix the clipping rect computation
+    // TODO(teras): find exactly which part to redraw
     public void redraw() {
         CGRect rect = view.getFrame();
         CGRect displayRect = view.getFrame();

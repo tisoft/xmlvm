@@ -30,9 +30,6 @@ import java.util.Set;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UISliderRenderer;
 
-/**
- * @author teras
- */
 @XMLVMSkeletonOnly
 public class UISlider extends UIControl {
 

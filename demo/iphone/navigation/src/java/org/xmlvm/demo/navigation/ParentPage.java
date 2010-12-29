@@ -31,10 +31,6 @@ import org.xmlvm.iphone.UIControlState;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIViewController;
 
-/**
- *
- * @author teras
- */
 public class ParentPage extends UIViewController {
 
     public ParentPage() {

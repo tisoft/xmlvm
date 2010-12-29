@@ -29,10 +29,6 @@ import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIButton;
 import org.xmlvm.iphone.UIControlState;
 
-/**
- * 
- * @author teras
- */
 public class UIRoundRectButtonRenderer extends UICustomButtonRenderer {
 
     public UIRoundRectButtonRenderer(UIButton view) {

@@ -22,10 +22,6 @@ package org.xmlvm.demo.navigation;
 
 import org.xmlvm.iphone.UINavigationController;
 
-/**
- *
- * @author teras
- */
 public class SecondPage extends UINavigationController {
 
     public SecondPage() {

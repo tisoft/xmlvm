@@ -20,10 +20,6 @@
 
 package org.xmlvm.iphone;
 
-/**
- * 
- * @author teras
- */
 public class CLDistanceFilter {
 
     public static final double None = -1;

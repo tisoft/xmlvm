@@ -21,10 +21,6 @@ package org.xmlvm.iphone;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
-/**
- * 
- * @author teras
- */
 @XMLVMSkeletonOnly
 public abstract class CAAnimation extends NSObject implements CAAction, CAMediaTiming {
 

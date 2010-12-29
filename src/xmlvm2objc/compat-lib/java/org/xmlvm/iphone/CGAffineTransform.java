@@ -18,11 +18,6 @@
  * USA.
  */
 
-/**
- * 
- * @author teras
- */
-
 package org.xmlvm.iphone;
 
 import java.awt.geom.AffineTransform;

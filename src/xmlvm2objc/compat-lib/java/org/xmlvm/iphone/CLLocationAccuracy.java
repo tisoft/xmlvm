@@ -20,10 +20,6 @@
 
 package org.xmlvm.iphone;
 
-/**
- * 
- * @author teras
- */
 public class CLLocationAccuracy {
 
     public static final double BestForNavigation = -2;

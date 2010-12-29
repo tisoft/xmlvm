@@ -22,10 +22,6 @@ package org.xmlvm.iphone;
 
 import org.xmlvm.XMLVMIgnore;
 
-/**
- * 
- * @author teras
- */
 @XMLVMIgnore
 public class UIDataDetectorType {
     public static final int PhoneNumber   = 1 << 0;

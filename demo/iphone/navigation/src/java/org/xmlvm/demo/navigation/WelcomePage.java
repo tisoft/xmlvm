@@ -29,10 +29,6 @@ import org.xmlvm.iphone.UITextAlignment;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIViewController;
 
-/**
- *
- * @author teras
- */
 public class WelcomePage extends UIViewController {
 
     public WelcomePage() {

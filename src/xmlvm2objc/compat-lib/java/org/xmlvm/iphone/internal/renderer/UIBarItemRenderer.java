@@ -23,10 +23,6 @@ package org.xmlvm.iphone.internal.renderer;
 import org.xmlvm.iphone.UIBarItem;
 import org.xmlvm.iphone.UIButton;
 
-/**
- * 
- * @author teras
- */
 public abstract class UIBarItemRenderer extends UIButtonRenderer {
 
     protected UIBarItem item;

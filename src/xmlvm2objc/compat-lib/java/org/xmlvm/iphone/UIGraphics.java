@@ -27,8 +27,6 @@ import org.xmlvm.XMLVMSkeletonOnly;
 
 /**
  * ToDO: Java implementation
- * 
- * @author teras
  */
 @XMLVMSkeletonOnly
 public final class UIGraphics {

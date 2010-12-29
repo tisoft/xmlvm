@@ -31,10 +31,6 @@ import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.internal.UIBarButtonItemView;
 import org.xmlvm.iphone.internal.UIGenericBarHelper;
 
-/**
- * 
- * @author teras
- */
 public class UIBarButtonItemRenderer extends UIBarItemRenderer {
 
     public static final UIFont BAR_BUTTON_FONT = UIFont.fontWithNameSize("Arial Bold", 12);

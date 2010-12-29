@@ -24,9 +24,6 @@ import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.gl.CAEAGLLayer;
 
-/**
- * @author teras
- */
 @XMLVMSkeletonOnly
 public class UIViewGL extends UIView {
 

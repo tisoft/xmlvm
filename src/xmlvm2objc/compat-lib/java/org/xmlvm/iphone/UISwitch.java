@@ -65,7 +65,7 @@ public class UISwitch extends UIControl {
         super.setFrame(rect);
     }
 
-    /* TODO teras: find a better way to receive this type of events */
+    /* TODO(teras): find a better way to receive this type of events */
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
         UITouch t = touches.iterator().next();

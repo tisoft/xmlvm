@@ -31,10 +31,6 @@ import org.xmlvm.iphone.UIImageView;
 import org.xmlvm.iphone.UIViewContentMode;
 import org.xmlvm.iphone.internal.Simulator;
 
-/**
- * 
- * @author teras
- */
 public class UIImageViewRenderer extends UIViewRenderer<UIImageView> {
 
     public UIImageViewRenderer(UIImageView view) {

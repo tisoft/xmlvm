@@ -31,9 +31,6 @@ import java.util.Set;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UISegmentedControlRenderer;
 
-/**
- * @author teras
- */
 @XMLVMSkeletonOnly
 public class UISegmentedControl extends UIControl {
 
@@ -152,7 +149,7 @@ public class UISegmentedControl extends UIControl {
         this.momentary = momentary;
     }
 
-    /* TODO teras: again should remove this type of code */
+    /* TODO(teras): again should remove this type of code */
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
         UITouch t = touches.iterator().next();

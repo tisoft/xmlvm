@@ -29,10 +29,6 @@ import java.util.StringTokenizer;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
-/**
- * @author arno, teras
- * 
- */
 @XMLVMSkeletonOnly
 public class NSBundle extends NSObject {
 

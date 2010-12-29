@@ -22,10 +22,6 @@ package org.xmlvm.iphone.internal.renderer;
 
 import org.xmlvm.iphone.UISearchBar;
 
-/**
- * 
- * @author teras
- */
 public class UISearchBarRenderer extends UIViewRenderer<UISearchBar> {
 
     public UISearchBarRenderer(UISearchBar view) {

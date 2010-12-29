@@ -28,10 +28,6 @@ import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIPreferencesTableCell;
 
-/**
- * 
- * @author teras
- */
 public class UIPreferencesTableCellRenderer extends UIViewRenderer<UIPreferencesTableCell> {
 
     private final int INSET = 10;

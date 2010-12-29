@@ -45,7 +45,7 @@ public class UIPreferencesTextTableCell extends UIPreferencesTableCell {
         return text;
     }
 
-    /* TODO teras: again even handling here */
+    /* TODO(teras): again even handling here */
     @Override
     public void xmlvmKeyTyped(char key) {
         if (key == '\b' && !text.equals(""))

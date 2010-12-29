@@ -20,10 +20,6 @@
 
 package org.xmlvm.iphone;
 
-/**
- * 
- * @author teras
- */
 public class MessageComposeResult {
 
     public static final int Cancelled = 0;

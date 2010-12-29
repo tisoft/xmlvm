@@ -27,10 +27,6 @@ import java.util.ArrayList;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
-/**
- * 
- * @author teras
- */
 @XMLVMSkeletonOnly
 public class UINavigationController extends UIViewController {
 

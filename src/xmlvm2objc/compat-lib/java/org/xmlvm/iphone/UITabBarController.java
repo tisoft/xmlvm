@@ -25,10 +25,6 @@ import java.util.ArrayList;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UITabBarRenderer;
 
-/**
- * 
- * @author teras
- */
 @XMLVMSkeletonOnly
 public class UITabBarController extends UIViewController {
 

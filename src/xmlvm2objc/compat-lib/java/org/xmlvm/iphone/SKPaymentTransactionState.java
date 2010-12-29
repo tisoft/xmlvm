@@ -20,10 +20,6 @@
 
 package org.xmlvm.iphone;
 
-/**
- * 
- * @author teras
- */
 public class SKPaymentTransactionState {
 
     public static final int Purchasing = 0;

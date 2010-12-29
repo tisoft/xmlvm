@@ -30,10 +30,6 @@ import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIPickerView;
 
-/**
- * 
- * @author teras
- */
 public class UIPickerViewRenderer extends UIViewRenderer<UIPickerView> {
 
     public final static int    INSET             = 11;
