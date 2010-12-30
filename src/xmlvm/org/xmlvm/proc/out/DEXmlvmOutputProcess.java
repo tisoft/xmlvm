@@ -583,8 +583,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     /**
      * Debugging use: Builds a catch-table in XML.
      */
-    private void processCatchTable(CatchTable catchTable, Element codeElement,
-            Set<String> referencedTypes) {
+    private void processCatchTable(CatchTable catchTable, Element codeElement) {
         if (catchTable.size() == 0) {
             return;
         }
@@ -608,7 +607,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 if (!isRedType(exceptionType)) {
                     Element handlerElement = new Element("handler", NS_DEX);
                     handlerElement.setAttribute("type", exceptionType);
-                    referencedTypes.add(exceptionType);
                     handlerElement
                             .setAttribute("target", String.valueOf(handlerEntry.getHandler()));
                     entryElement.addContent(handlerElement);
@@ -663,7 +661,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         processAccessFlags(accessFlags, methodElement);
 
         // Create signature element.
-        methodElement.addContent(processSignature(meth, referencedTypes));
+        methodElement.addContent(processSignature(meth));
 
         // Create code element.
         Element codeElement = new Element("code", NS_DEX);
@@ -709,11 +707,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     String.valueOf(instructions.getRegistersSize()));
             processLocals(instructions.getRegistersSize(), isStatic,
                     parseClassName(cf.getThisClass().getClassType().getClassName()).toString(),
-                    meth.getPrototype().getParameterTypes(), codeElement, referencedTypes);
+                    meth.getPrototype().getParameterTypes(), codeElement);
             Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
             Map<Integer, ArrayData> arrayData = extractArrayData(instructions);
             CatchTable catches = code.getCatches();
-            processCatchTable(catches, codeElement, referencedTypes);
+            processCatchTable(catches, codeElement);
             Map<Integer, Target> targets = extractTargets(instructions, catches);
 
             // For each entry in the catch table, we create a try-catch element,
@@ -861,12 +859,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * parameter and the {@code this} reference, if applicable.
      */
     private void processLocals(int registerSize, boolean isStatic, String classType,
-            StdTypeList parameterTypes, Element codeElement, Set<String> referencedTypes) {
+            StdTypeList parameterTypes, Element codeElement) {
 
         // The parameters are stored in the last N registers.
         // If the method is not static, the reference to "this" is stored right
         // before the parameters.
-
         List<Element> varElements = new ArrayList<Element>();
 
         // We go through the list of parameters backwards, as we need to change
@@ -886,8 +883,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             // For red locals, we set them to object.
             if (isRedType(localsType)) {
                 localsType = JLO;
-            } else {
-                referencedTypes.add(localsType);
             }
             varElement.setAttribute("type", localsType);
             varElements.add(varElement);
@@ -1356,7 +1351,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * Processes the signature of the given method reference and returns a
      * corresponding element. It uses 'registers' to add register
      */
-    private Element processSignature(CstMethodRef methodRef, Set<String> referencedTypes) {
+    private Element processSignature(CstMethodRef methodRef) {
         Prototype prototype = methodRef.getPrototype();
         StdTypeList parameters = prototype.getParameterTypes();
 
@@ -1364,9 +1359,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         for (int i = 0; i < parameters.size(); ++i) {
             Element parameterElement = new Element("parameter", NS_XMLVM);
             String parameterType = parameters.get(i).toHuman();
-            if (!isRedType(parameterType)) {
-                referencedTypes.add(parameterType);
-            }
             parameterElement.setAttribute("type", parameterType);
             result.addContent(parameterElement);
         }
@@ -1374,9 +1366,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         String returnType = prototype.getReturnType().getType().toHuman();
         if (isRedType(returnType)) {
             returnType = JLO;
-        } else {
-            referencedTypes.add(returnType);
         }
+
         returnElement.setAttribute("type", returnType);
         result.addContent(returnElement);
         return result;

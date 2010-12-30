@@ -239,7 +239,7 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
             }
 
             Attribute a = cur.getAttribute("type");
-            if (a != null && !curName.equals("parameter")) {
+            if (a != null && !curName.equals("parameter") && !curName.equals("var")) {
                 seen.add(a.getValue());
             }
             a = cur.getAttribute("extends");
