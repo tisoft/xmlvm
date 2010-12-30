@@ -12,7 +12,15 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSString __TIB_org_xmlvm_iphone_NSString = {
 };
 
 //XMLVM_BEGIN_IMPLEMENTATION
-//XMLVM_END_IMPLEMENTATION
+NSString* toNSString(JAVA_OBJECT o)
+{
+	java_lang_String* s = (java_lang_String*) o;
+	XMLVMArray* value = s->fields.java_lang_String.value_;
+	JAVA_INT offset = s->fields.java_lang_String.offset_;
+	JAVA_INT count = s->fields.java_lang_String.count_;
+	const unichar* str = &value->array.c[offset];
+	return [[NSString alloc] initWithCharacters:str length:count];
+}//XMLVM_END_IMPLEMENTATION
 
 
 void __INIT_org_xmlvm_iphone_NSString()

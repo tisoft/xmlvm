@@ -45,10 +45,6 @@
 #endif
 
 
-#define XMLVM_NOT_IMPLEMENTED() printf("Unimplemented: %s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__)
-#define XMLVM_RED_CLASS_DEPENDENCY() printf("Unsatisfied red class dependency: %s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__)
-//void* xmalloc(int size);
-
 #define XMLVM_BZERO(pointer, size) memset((pointer), 0, size)
 #define XMLVM_MEMCPY(dest, src, size) memcpy(dest, src, size)
 
@@ -138,11 +134,14 @@ int xmlvm_java_string_cmp(JAVA_OBJECT* s1, const char* s2);
 
 #define XMLVM_SIZE_OF_OBJECT_VTABLE 11
 
+
 //---------------------------------------------------------------------------------------------
 // XMLVMClass
 
-JAVA_OBJECT __NEW_XMLVMClass(__TIB_DEFINITION_TEMPLATE* clazz);
-
+JAVA_OBJECT __NEW_XMLVMClass(/*__TIB_DEFINITION_TEMPLATE*/ void* clazz);
+JAVA_BOOLEAN XMLVMClass_isArray(JAVA_OBJECT* clazz);
+JAVA_BOOLEAN XMLVMClass_isPrimitive(JAVA_OBJECT* clazz);
+void XMLVMClass_setPrimitive(JAVA_OBJECT* clazz, JAVA_BOOLEAN flag);
 
 
 //---------------------------------------------------------------------------------------------
@@ -195,7 +194,10 @@ extern XMLVM_JMP_BUF xmlvm_exception_env;
 // TODO not thread safe!
 extern JAVA_OBJECT xmlvm_exception;
 
+#define XMLVM_NOT_IMPLEMENTED() XMLVM_ERROR("Not implemented", __FILE__, __FUNCTION__, __LINE__)
+#define XMLVM_RED_CLASS_DEPENDENCY() XMLVM_ERROR("Unsatisfied red class dependency", __FILE__, __FUNCTION__, __LINE__)
+
 void xmlvm_unimplemented_native_method();
-void XMLVM_ERROR(const char* msg);
+void XMLVM_ERROR(const char* msg, const char* file, const char* function, int line);
 
 #endif

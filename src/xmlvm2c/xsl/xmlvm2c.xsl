@@ -1475,7 +1475,7 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:invoke-virtual|dex:invoke-virtual-range">
   <xsl:variable name="vtable-index" select="if (@vtable-index) then @vtable-index else -1"/>
   <xsl:if test="$vtable-index = -1">
-    <xsl:text>XMLVM_ERROR("Missing @vtable-index");&nl;</xsl:text>
+    <xsl:text>XMLVM_ERROR("Missing @vtable-index", __FILE__, __FUNCTION__, __LINE__);&nl;</xsl:text>
   </xsl:if>
   <xsl:text>    //</xsl:text>
   <xsl:call-template name="emitMethodName">
@@ -1573,7 +1573,7 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:invoke-interface|dex:invoke-interface-range">
   <xsl:variable name="vtable-index" select="if (@vtable-index) then @vtable-index else -1"/>
   <xsl:if test="$vtable-index = -1">
-    <xsl:text>XMLVM_ERROR("Missing @vtable-index");&nl;</xsl:text>
+    <xsl:text>XMLVM_ERROR("Missing @vtable-index", __FILE__, __FUNCTION__, __LINE__);&nl;</xsl:text>
   </xsl:if>
   <xsl:text>    //</xsl:text>
   <xsl:call-template name="emitMethodName">
@@ -3054,8 +3054,7 @@ int main(int argc, char* argv[])
 <xsl:template match="*">
   <xsl:text>      XMLVM_ERROR("</xsl:text>
   <xsl:value-of select="name()"/>
-    <xsl:text>");
-</xsl:text>
+  <xsl:text>", __FILE__, __FUNCTION__, __LINE__);&nl;</xsl:text>
   <xsl:message select="."/>
 </xsl:template>
 

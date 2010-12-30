@@ -165,17 +165,22 @@ int xmlvm_java_string_cmp(JAVA_OBJECT* s1, const char* s2)
 XMLVM_DEFINE_CLASS(XMLVMClass, XMLVM_VTABLE_SIZE_java_lang_Class)
 
 #define __INSTANCE_FIELDS_XMLVMClass \
-__INSTANCE_FIELDS_java_lang_Class; \
-struct { \
-__TIB_DEFINITION_TEMPLATE* clazz; \
-} XMLVMClass
+    __INSTANCE_FIELDS_java_lang_Class; \
+    struct { \
+        __TIB_DEFINITION_TEMPLATE* clazz; \
+        JAVA_BOOLEAN               isArray; \
+        JAVA_BOOLEAN               isPrimitive; \
+    } XMLVMClass
 
 struct XMLVMClass {
     __TIB_DEFINITION_XMLVMClass* tib;
-    __INSTANCE_FIELDS_XMLVMClass;
+	struct {
+        __INSTANCE_FIELDS_XMLVMClass;
+	} fields;
 };
 
 typedef struct XMLVMClass XMLVMClass;
+
 
 __TIB_DEFINITION_XMLVMClass __TIB_XMLVMClass = {
     0, // classInitialized
@@ -183,10 +188,28 @@ __TIB_DEFINITION_XMLVMClass __TIB_XMLVMClass = {
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Class, // extends
 };
 
+JAVA_BOOLEAN XMLVMClass_isArray(JAVA_OBJECT* clazz)
+{
+	XMLVMClass* c = (XMLVMClass*) clazz;
+	return c->fields.XMLVMClass.isArray;
+}
+
+JAVA_BOOLEAN XMLVMClass_isPrimitive(JAVA_OBJECT* clazz)
+{
+	XMLVMClass* c = (XMLVMClass*) clazz;
+	return c->fields.XMLVMClass.isPrimitive;
+}
+
+void XMLVMClass_setPrimitive(JAVA_OBJECT* clazz, JAVA_BOOLEAN flag)
+{
+	XMLVMClass* c = (XMLVMClass*) clazz;
+	c->fields.XMLVMClass.isPrimitive = flag;
+}
+
 JAVA_OBJECT XMLVMClass_newInstance(JAVA_OBJECT me)
 {
 	XMLVMClass* clazz = (XMLVMClass*) me;
-	return (*(clazz->XMLVMClass.clazz->newInstanceFunc))();
+	return (*(clazz->fields.XMLVMClass.clazz->newInstanceFunc))();
 }
 
 void __INIT_XMLVMClass()
@@ -197,18 +220,21 @@ void __INIT_XMLVMClass()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_XMLVMClass.vtable, __TIB_java_lang_Class.vtable, sizeof(__TIB_java_lang_Class.vtable));
     // Initialize vtable for this class
-	__TIB_XMLVMClass.vtable[11] = (VTABLE_PTR) XMLVMClass_newInstance;
+	__TIB_XMLVMClass.vtable[XMLVM_VTABLE_IDX_java_lang_Class_newInstance__] = (VTABLE_PTR) XMLVMClass_newInstance;
     // Initialize vtable for implementing interfaces
     __TIB_XMLVMClass.numImplementedInterfaces = 0;
 }
 
-JAVA_OBJECT __NEW_XMLVMClass(__TIB_DEFINITION_TEMPLATE* clazz)
+JAVA_OBJECT __NEW_XMLVMClass(/*__TIB_DEFINITION_TEMPLATE*/ void* clazz)
 {
 	XMLVMClass* me;
     if (!__TIB_XMLVMClass.classInitialized) __INIT_XMLVMClass();
+	__TIB_DEFINITION_TEMPLATE* c = (__TIB_DEFINITION_TEMPLATE*) clazz;
 	me = (XMLVMClass*) XMLVM_MALLOC(sizeof(XMLVMClass));
     me->tib = &__TIB_XMLVMClass;
-	me->XMLVMClass.clazz = clazz;
+	me->fields.XMLVMClass.clazz = c;
+	me->fields.XMLVMClass.isArray = 0;
+	me->fields.XMLVMClass.isPrimitive = 0;
     return me;
 }
 
@@ -216,7 +242,7 @@ JAVA_OBJECT native_java_lang_Class_getName__(JAVA_OBJECT me)
 {
 	XMLVMClass* clazz = (XMLVMClass*) me;
 	java_lang_String* name = __NEW_java_lang_String();
-    java_lang_String___INIT____char_ARRAYTYPE(name, XMLVMArray_createFromString(clazz->XMLVMClass.clazz->className));
+    java_lang_String___INIT____char_ARRAYTYPE(name, XMLVMArray_createFromString(clazz->fields.XMLVMClass.clazz->className));
 	return name;
 }
 
@@ -397,11 +423,12 @@ XMLVMArray* XMLVMArray_clone__(XMLVMArray* array)
 
 void xmlvm_unimplemented_native_method()
 {
-	XMLVM_ERROR("Unimplemented native method");
+	XMLVM_ERROR("Unimplemented native method", __FILE__, __FUNCTION__, __LINE__);
 }
 
-void XMLVM_ERROR(const char* msg)
+void XMLVM_ERROR(const char* msg, const char* file, const char* function, int line)
 {
-    printf("XMLVM Error: '%s'\n", msg);
+	printf("XMLVM Error: %s: (%s):%s:%d", function, file, line);
 	exit(-1);
 }
+
