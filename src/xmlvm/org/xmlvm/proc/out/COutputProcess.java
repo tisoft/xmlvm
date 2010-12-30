@@ -31,6 +31,7 @@ import java.util.Set;
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
+import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.NativeResourceLoader;
 import org.xmlvm.proc.XmlvmProcess;
@@ -44,7 +45,7 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * This process takes XMLVM and generates C source code from it.
  */
 public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
-
+    private static final String              TAG             = COutputProcess.class.getSimpleName();
     private static final String              C_SOURCE_SUFFIX = "c";
     private final String                     sourceExtension;
     private final String                     headerExtension = ".h";
@@ -126,6 +127,7 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
      * For the given set of outputFiles, this methods loads all native parts.
      */
     private void loadNativeResources() {
+        Log.debug(TAG, "Loading native resources");
         Set<String> types = new HashSet<String>();
         for (OutputFile outputFile : outputFiles) {
             String fileName = outputFile.getFileName();
