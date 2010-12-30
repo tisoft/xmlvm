@@ -45,6 +45,7 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  */
 public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
 
+    private static final String              C_SOURCE_SUFFIX = "c";
     private final String                     sourceExtension;
     private final String                     headerExtension = ".h";
     private final List<OutputFile>           outputFiles     = new ArrayList<OutputFile>();
@@ -63,7 +64,7 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
 
         // TODO(Sascha): Create a resource for the directory inside the OneJar.
         nativeResourceLoader = new NativeResourceLoader(UniversalFileCreator.createDirectory("",
-                "src/xmlvm2c/lib/native"), "c");
+                "src/xmlvm2c/lib/native"), C_SOURCE_SUFFIX);
     }
 
     @Override
@@ -137,7 +138,10 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
         for (UniversalFile nativeFile : nativeResourceLoader.load(types)) {
             OutputFile outputFile = new OutputFile(nativeFile);
             outputFile.setLocation(arguments.option_out());
-            outputFile.setFileName(nativeFile.getName());
+            String nativeFileName = nativeFile.getName();
+            outputFile.setFileName(nativeFileName.substring(0, nativeFileName.length()
+                    - (C_SOURCE_SUFFIX.length() + 1))
+                    + sourceExtension);
             outputFiles.add(outputFile);
         }
     }
