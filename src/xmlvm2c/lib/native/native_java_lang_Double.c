@@ -15,7 +15,7 @@ JAVA_LONG java_lang_Double_doubleToRawLongBits___double(JAVA_DOUBLE n1)
 JAVA_DOUBLE java_lang_Double_longBitsToDouble___long(JAVA_LONG n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Double_longBitsToDouble___long]
-    xmlvm_unimplemented_native_method();
+	return (JAVA_DOUBLE) n1;
     //XMLVM_END_NATIVE
 }
 

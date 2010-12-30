@@ -15,7 +15,7 @@ JAVA_INT java_lang_Float_floatToRawIntBits___float(JAVA_FLOAT n1)
 JAVA_FLOAT java_lang_Float_intBitsToFloat___int(JAVA_INT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Float_intBitsToFloat___int]
-    xmlvm_unimplemented_native_method();
+	return (JAVA_FLOAT) n1;
     //XMLVM_END_NATIVE
 }
 
