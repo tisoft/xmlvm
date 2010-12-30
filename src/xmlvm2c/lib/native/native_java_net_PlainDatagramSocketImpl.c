@@ -1,6 +1,10 @@
 
 #include "java_net_PlainDatagramSocketImpl.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 void java_net_PlainDatagramSocketImpl_bind0___int_java_net_InetAddress(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_net_PlainDatagramSocketImpl_bind0___int_java_net_InetAddress]

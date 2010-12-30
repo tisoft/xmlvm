@@ -1,6 +1,10 @@
 
 #include "java_lang_String.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 JAVA_OBJECT java_lang_String_intern__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_String_intern__]

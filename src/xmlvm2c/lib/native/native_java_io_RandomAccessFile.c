@@ -1,6 +1,10 @@
 
 #include "java_io_RandomAccessFile.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 void java_io_RandomAccessFile_open___java_lang_String_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_io_RandomAccessFile_open___java_lang_String_int]

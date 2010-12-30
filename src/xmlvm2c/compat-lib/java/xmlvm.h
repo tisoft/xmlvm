@@ -1,21 +1,21 @@
-/* Copyright (c) 2002-2011 by XMLVM.org
- *
- * Project Info:  http://www.xmlvm.org
- *
- * This program is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 2.1 of the License, or
- * (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
- * License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
- * USA.
+/*
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ * 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
+ * Ave, Cambridge, MA 02139, USA.
+ * 
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
 #ifndef __XMLVM_H__
@@ -134,6 +134,7 @@ XMLVM_DEFINE_CLASS(TEMPLATE, 0)
 
 int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz);
 VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, int vtableIndex);
+int xmlvm_java_string_cmp(JAVA_OBJECT* s1, const char* s2);
 
 #define XMLVM_SIZE_OF_OBJECT_VTABLE 11
 

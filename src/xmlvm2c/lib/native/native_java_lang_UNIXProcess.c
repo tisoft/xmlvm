@@ -1,6 +1,10 @@
 
 #include "java_lang_UNIXProcess.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 JAVA_INT java_lang_UNIXProcess_waitForProcessExit___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_UNIXProcess_waitForProcessExit___int]

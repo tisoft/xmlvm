@@ -1,6 +1,10 @@
 
 #include "java_net_Inet6AddressImpl.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 JAVA_OBJECT java_net_Inet6AddressImpl_getLocalHostName__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_net_Inet6AddressImpl_getLocalHostName__]

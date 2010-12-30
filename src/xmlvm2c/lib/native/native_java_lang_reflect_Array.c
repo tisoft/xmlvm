@@ -1,6 +1,10 @@
 
 #include "java_lang_reflect_Array.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 JAVA_INT java_lang_reflect_Array_getLength___java_lang_Object(JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Array_getLength___java_lang_Object]

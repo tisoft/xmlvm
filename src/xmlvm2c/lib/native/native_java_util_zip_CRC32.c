@@ -1,6 +1,10 @@
 
 #include "java_util_zip_CRC32.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 JAVA_INT java_util_zip_CRC32_update___int_int(JAVA_INT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_util_zip_CRC32_update___int_int]

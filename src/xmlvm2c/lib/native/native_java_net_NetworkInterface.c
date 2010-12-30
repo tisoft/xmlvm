@@ -1,6 +1,10 @@
 
 #include "java_net_NetworkInterface.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 JAVA_OBJECT java_net_NetworkInterface_getByIndex___int(JAVA_INT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_net_NetworkInterface_getByIndex___int]

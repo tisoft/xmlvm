@@ -1,10 +1,47 @@
 
 #include "java_lang_Class.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+XMLVM_DEFINE_CLASS(boolean_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(byte_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(char_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(short_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(int_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(long_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(float_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+XMLVM_DEFINE_CLASS(double_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+
+__TIB_DEFINITION_boolean_TYPE          __TIB_boolean_TYPE;
+__TIB_DEFINITION_byte_TYPE             __TIB_byte_TYPE;
+__TIB_DEFINITION_char_TYPE             __TIB_char_TYPE;
+__TIB_DEFINITION_short_TYPE            __TIB_short_TYPE;
+__TIB_DEFINITION_int_TYPE              __TIB_int_TYPE;
+__TIB_DEFINITION_long_TYPE             __TIB_long_TYPE;
+__TIB_DEFINITION_float_TYPE            __TIB_float_TYPE;
+__TIB_DEFINITION_double_TYPE           __TIB_double_TYPE;
+
+void init_primitive_class(void* clazz, const char* name)
+{
+	__TIB_DEFINITION_TEMPLATE* c = (__TIB_DEFINITION_TEMPLATE*) clazz;
+	c->classInitialized = 0;
+	c->className = name;
+	c->extends = (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Class;
+}
+
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 void java_lang_Class_registerNatives__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_registerNatives__]
-    xmlvm_unimplemented_native_method();
+	init_primitive_class(&__TIB_boolean_TYPE, "boolean");
+	init_primitive_class(&__TIB_byte_TYPE, "byte");
+	init_primitive_class(&__TIB_char_TYPE, "char");
+	init_primitive_class(&__TIB_short_TYPE, "short");
+	init_primitive_class(&__TIB_int_TYPE, "int");
+	init_primitive_class(&__TIB_long_TYPE, "long");
+	init_primitive_class(&__TIB_float_TYPE, "float");
+	init_primitive_class(&__TIB_double_TYPE, "double");
     //XMLVM_END_NATIVE
 }
 
@@ -137,6 +174,12 @@ void java_lang_Class_setProtectionDomain0___java_security_ProtectionDomain(JAVA_
 JAVA_OBJECT java_lang_Class_getPrimitiveClass___java_lang_String(JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getPrimitiveClass___java_lang_String]
+	if (xmlvm_java_string_cmp(n1, "float")) {
+		return &__TIB_float_TYPE;
+	}
+	if (xmlvm_java_string_cmp(n1, "double")) {
+		return &__TIB_double_TYPE;
+	}
     xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }

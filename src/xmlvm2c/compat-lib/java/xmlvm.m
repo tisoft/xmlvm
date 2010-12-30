@@ -1,30 +1,31 @@
-/* Copyright (c) 2002-2011 by XMLVM.org
- *
- * Project Info:  http://www.xmlvm.org
- *
- * This program is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 2.1 of the License, or
- * (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
- * License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
- * USA.
+/*
+ * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ * 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
+ * Ave, Cambridge, MA 02139, USA.
+ * 
+ * For more information, visit the XMLVM Home Page at http://www.xmlvm.org
  */
 
 
 #include "xmlvm.h"
 #include "java_lang_System.h"
 #include "java_lang_Class.h"
+#include "java_lang_String.h"
 #include <stdio.h>
 #include <string.h>
-#include "gc.h"
+
 
 XMLVM_JMP_BUF xmlvm_exception_env;
 JAVA_OBJECT xmlvm_exception;
@@ -83,8 +84,10 @@ void xmlvm_init_java_lang_Class()
 
 void xmlvm_init()
 {
+#ifndef XMLVM_NO_GC
 	setenv("GC_PRINT_STATS", "1", 1);
 	GC_INIT();
+#endif
 	
 	if (XMLVM_SETJMP(xmlvm_exception_env)) {
 		XMLVM_ERROR("Unhandled exception thrown");
@@ -135,6 +138,24 @@ VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, 
 	}
 	XMLVM_ERROR("XMLVM_LOOKUP_INTERFACE_METHOD() could not find interface");
 	return (VTABLE_PTR) 0;
+}
+
+int xmlvm_java_string_cmp(JAVA_OBJECT* s1, const char* s2)
+{
+	java_lang_String* str = (java_lang_String*) s1;
+	JAVA_INT len = str->fields.java_lang_String.count_;
+	if (len != strlen(s2)) {
+		return 0;
+	}
+	JAVA_INT offset = str->fields.java_lang_String.offset_;
+	XMLVMArray* value = (XMLVMArray*) str->fields.java_lang_String.value_;
+	for (int i = 0; i < len; i++) {
+		//TODO should be array.c?
+		if (value->array.c[i + offset] != s2[i]) {
+			return 0;
+		}
+	}
+	return 1;
 }
 
 //---------------------------------------------------------------------------------------------
@@ -282,17 +303,12 @@ XMLVMArray* XMLVMArray_createFromString(const char* str)
 	int len = strlen(str);
 	int i;
 
-    //retval->type = 2; // CHAR
-    retval->type = 3; // BYTE
+    retval->type = 2; // CHAR
     retval->length = len;
-    //retval->array.data = XMLVM_MALLOC(len * sizeof(JAVA_ARRAY_CHAR));
-    retval->array.data = XMLVM_MALLOC(len + 1);
+    retval->array.data = XMLVM_MALLOC(len * sizeof(JAVA_ARRAY_CHAR));
 	for (i = 0; i < len; i++) {
-	    //retval->array.c[i] = *str++;
-	    retval->array.b[i] = *str++;
+	    retval->array.c[i] = *str++;
 	}
-	//retval->array.c[i] = '\0';
-	retval->array.b[i] = '\0';
     retval->ownsData = 1;
     return retval;
 }

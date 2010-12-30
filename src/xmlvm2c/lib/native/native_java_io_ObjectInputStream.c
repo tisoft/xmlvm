@@ -1,6 +1,10 @@
 
 #include "java_io_ObjectInputStream.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 void java_io_ObjectInputStream_bytesToFloats___byte_ARRAYTYPE_int_float_ARRAYTYPE_int_int(JAVA_OBJECT n1, JAVA_INT n2, JAVA_OBJECT n3, JAVA_INT n4, JAVA_INT n5)
 {
     //XMLVM_BEGIN_NATIVE[java_io_ObjectInputStream_bytesToFloats___byte_ARRAYTYPE_int_float_ARRAYTYPE_int_int]

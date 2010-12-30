@@ -87,6 +87,12 @@ int main(int argc, char* argv[])
   <xsl:for-each select="vm:class">
     <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
     <xsl:variable name="clname" select="vm:fixname($cclname)"/>
+    
+    <xsl:if test="vm:method[@isNative = 'true']">
+      <xsl:text>&nl;//XMLVM_BEGIN_NATIVE_IMPLEMENTATION</xsl:text>
+      <xsl:text>&nl;//XMLVM_END_NATIVE_IMPLEMENTATION&nl;&nl;</xsl:text>
+    </xsl:if>
+    
     <xsl:for-each select="vm:method[@isNative = 'true']">
       <xsl:variable name="mangledMethodName">
         <xsl:call-template name="emitMethodName">

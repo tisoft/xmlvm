@@ -1,6 +1,10 @@
 
 #include "java_lang_ClassLoader_NativeLibrary.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 void java_lang_ClassLoader_NativeLibrary_load___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_ClassLoader_NativeLibrary_load___java_lang_String]

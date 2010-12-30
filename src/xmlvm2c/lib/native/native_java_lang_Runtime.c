@@ -1,6 +1,10 @@
 
 #include "java_lang_Runtime.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 JAVA_INT java_lang_Runtime_availableProcessors__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Runtime_availableProcessors__]

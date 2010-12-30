@@ -1,10 +1,14 @@
 
 #include "java_lang_Object.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 void java_lang_Object_registerNatives__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_registerNatives__]
-    xmlvm_unimplemented_native_method();
+    // Do nothing
     //XMLVM_END_NATIVE
 }
 

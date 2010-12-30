@@ -1,6 +1,10 @@
 
 #include "java_util_zip_ZipFile.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 void java_util_zip_ZipFile_initIDs__()
 {
     //XMLVM_BEGIN_NATIVE[java_util_zip_ZipFile_initIDs__]

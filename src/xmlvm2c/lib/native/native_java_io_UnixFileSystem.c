@@ -1,6 +1,10 @@
 
 #include "java_io_UnixFileSystem.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 JAVA_OBJECT java_io_UnixFileSystem_canonicalize0___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_UnixFileSystem_canonicalize0___java_lang_String]

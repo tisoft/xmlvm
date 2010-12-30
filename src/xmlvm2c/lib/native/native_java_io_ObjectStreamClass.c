@@ -1,6 +1,10 @@
 
 #include "java_io_ObjectStreamClass.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 void java_io_ObjectStreamClass_initNative__()
 {
     //XMLVM_BEGIN_NATIVE[java_io_ObjectStreamClass_initNative__]

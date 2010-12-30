@@ -1,6 +1,10 @@
 
 #include "java_net_PlainSocketImpl.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 void java_net_PlainSocketImpl_socketCreate___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_NATIVE[java_net_PlainSocketImpl_socketCreate___boolean]

@@ -1,6 +1,10 @@
 
 #include "java_lang_StrictMath.h"
 
+
+//XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+//XMLVM_END_NATIVE_IMPLEMENTATION
+
 JAVA_DOUBLE java_lang_StrictMath_sin___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_StrictMath_sin___double]
