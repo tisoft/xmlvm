@@ -200,6 +200,10 @@
 		<jar destfile="${xmlvm.bin}/lib/cocoa-java.jar">
 			<fileset dir="${xmlvm.cocoa-java}" />
 		</jar>
+		<jar destfile="${xmlvm.bin}/lib/native-c-lib.jar">
+			<fileset dir="src/xmlvm2c/lib/native/" />
+		</jar>
+
 
 		<copy todir="${xmlvm.bin}/iphone">
 			<fileset file="var/iphone/Makefile" />

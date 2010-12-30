@@ -63,9 +63,8 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
         sourceExtension = "." + arguments.option_c_source_extension();
         addSupportedInput(VtableOutputProcess.class);
 
-        // TODO(Sascha): Create a resource for the directory inside the OneJar.
-        nativeResourceLoader = new NativeResourceLoader(UniversalFileCreator.createDirectory("",
-                "src/xmlvm2c/lib/native"), C_SOURCE_SUFFIX);
+        nativeResourceLoader = new NativeResourceLoader(UniversalFileCreator.createDirectory(
+                "/lib/native-c-lib.jar", "src/xmlvm2c/lib/native"), C_SOURCE_SUFFIX);
     }
 
     @Override
