@@ -38,7 +38,7 @@ import org.xmlvm.Log;
  */
 public abstract class UniversalFile {
 
-    private static final String TAG = "UniversalFile";
+    private static final String TAG = UniversalFile.class.getSimpleName();
 
 
     /**

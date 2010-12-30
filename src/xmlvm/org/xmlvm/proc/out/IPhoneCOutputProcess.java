@@ -29,7 +29,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
@@ -41,8 +43,9 @@ import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
+    private static final String        TAG                     = IPhoneCOutputProcess.class
+                                                                       .getSimpleName();
 
-    // TODO: Replace with actual one-jar jar.
     private static final UniversalFile IPHONE_COCOA_COMPAT_LIB = UniversalFileCreator
                                                                        .createDirectory(
                                                                                "/iphone/cocoa-compat-lib.jar",
@@ -58,7 +61,7 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
 
     public static final String         IPHONE_BOEHMGC_LIB      = IPHONE_SRC + "/lib/boehmgc";
 
-    private List<OutputFile>           result                  = new ArrayList<OutputFile>();
+    private List<OutputFile>           outputFiles             = new ArrayList<OutputFile>();
 
 
     public IPhoneCOutputProcess(Arguments arguments) {
@@ -69,7 +72,7 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
 
     @Override
     public List<OutputFile> getOutputFiles() {
-        return result;
+        return outputFiles;
     }
 
     @Override
@@ -84,64 +87,107 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
                 OutputFile out = new OutputFile(in.getData());
                 out.setFileName(in.getFileName());
                 out.setLocation(in.getLocation() + IPHONE_SRC_APP);
-                result.add(out);
+                outputFiles.add(out);
             }
         }
 
         OutputFile iPhoneCocoaCompatLib = new OutputFile(IPHONE_COCOA_COMPAT_LIB);
         iPhoneCocoaCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
-        result.add(iPhoneCocoaCompatLib);
+        outputFiles.add(iPhoneCocoaCompatLib);
 
         OutputFile iPhoneJavaCompatLib = new OutputFile(IPHONE_JAVA_COMPAT_LIB);
         iPhoneJavaCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
-        result.add(iPhoneJavaCompatLib);
+        outputFiles.add(iPhoneJavaCompatLib);
 
         OutputFile bohemGc = new OutputFile(BOEHM_GC_LIB);
         bohemGc.setLocation(arguments.option_out() + IPHONE_BOEHMGC_LIB);
-        result.add(bohemGc);
+        outputFiles.add(bohemGc);
 
         try {
             // Create Info.plist
             UniversalFile infoInFile = UniversalFileCreator.createFile("/iphone/Info.plist",
                     "var/iphone/Info.plist");
-            BufferedReader infoIn = new BufferedReader(new StringReader(infoInFile
-                    .getFileAsString()));
+            BufferedReader infoIn = new BufferedReader(new StringReader(
+                    infoInFile.getFileAsString()));
             StringBuilder infoOut = new StringBuilder();
             String line = null;
             while ((line = infoIn.readLine()) != null) {
-                line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER", arguments
-                        .option_property("bundleidentifier"));
-                line = line.replaceAll("PROPERTY_BUNDLEVERSION", arguments
-                        .option_property("bundleversion"));
-                line = line.replaceAll("PROPERTY_BUNDLEDISPLAYNAME", arguments
-                        .option_property("bundledisplayname"));
-                line = line.replaceAll("PROPERTY_STATUSBARHIDDEN", arguments.option_property(
-                        "statusbarhidden").toLowerCase().equals("true") ? "true" : "false");
-                line = line.replaceAll("PROPERTY_PRERENDEREDICON", arguments.option_property(
-                        "prerenderedicon").toLowerCase().equals("true") ? "true" : "false");
-                line = line.replaceAll("PROPERTY_APPLICATIONEXITS", arguments.option_property(
-                        "applicationexits").toLowerCase().equals("true") ? "true" : "false");
+                line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER",
+                        arguments.option_property("bundleidentifier"));
+                line = line.replaceAll("PROPERTY_BUNDLEVERSION",
+                        arguments.option_property("bundleversion"));
+                line = line.replaceAll("PROPERTY_BUNDLEDISPLAYNAME",
+                        arguments.option_property("bundledisplayname"));
+                line = line
+                        .replaceAll(
+                                "PROPERTY_STATUSBARHIDDEN",
+                                arguments.option_property("statusbarhidden").toLowerCase()
+                                        .equals("true") ? "true" : "false");
+                line = line
+                        .replaceAll(
+                                "PROPERTY_PRERENDEREDICON",
+                                arguments.option_property("prerenderedicon").toLowerCase()
+                                        .equals("true") ? "true" : "false");
+                line = line
+                        .replaceAll(
+                                "PROPERTY_APPLICATIONEXITS",
+                                arguments.option_property("applicationexits").toLowerCase()
+                                        .equals("true") ? "true" : "false");
                 line = line.replaceAll("XMLVM_APP", arguments.option_app_name());
                 infoOut.append(line).append("\n");
             }
             OutputFile infoPlistFile = new OutputFile(infoOut.toString());
             infoPlistFile.setLocation(arguments.option_out() + IPHONE_RESOURCES_SYS);
             infoPlistFile.setFileName(arguments.option_app_name() + "-Info.plist");
-            result.add(infoPlistFile);
+            outputFiles.add(infoPlistFile);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            Log.error(TAG, ex.getMessage());
             return false;
         }
 
-        /* Add extra source files, as resource files, if found */
-        result.addAll(ResourceManager.getSourceResources(arguments));
+        // Add extra source files, as resource files, if found
+        outputFiles.addAll(ResourceManager.getSourceResources(arguments));
 
-        /* Create various buildfiles */
+        // Remove files that have manual overrides from the list of output
+        // files.
+        eliminateOverridenResources(new UniversalFile[] { IPHONE_COCOA_COMPAT_LIB,
+                IPHONE_JAVA_COMPAT_LIB });
+
+        // Create various buildfiles
         MakeFile makefile = new MakeFile();
-        Log.error(makefile.composeBuildFiles(result, arguments));
+        Log.error(makefile.composeBuildFiles(outputFiles, arguments));
         XCodeFile xcode = new XCodeFile();
-        Log.error(xcode.composeBuildFiles(result, arguments));
-
+        Log.error(xcode.composeBuildFiles(outputFiles, arguments));
         return true;
+    }
+
+    /**
+     * They way things are right now, we do cross-compile all the simulator
+     * classes. However, we don't use them, but instead use the manually
+     * implemented files. This methods makes sure that those cross-compiled
+     * resources are removed.
+     * 
+     * @param manualOverrides
+     *            Contains files that are provided manually.
+     */
+    private void eliminateOverridenResources(UniversalFile[] manualOverrides) {
+        Log.debug(TAG, "Eliminating for manual overrides.");
+        Set<String> fileNamesToRemove = new HashSet<String>();
+        for (UniversalFile directory : manualOverrides) {
+            for (UniversalFile manualOverride : directory.listFiles()) {
+                fileNamesToRemove.add(manualOverride.getName());
+            }
+        }
+
+        Set<OutputFile> filesToRemove = new HashSet<OutputFile>();
+        for (OutputFile outputFile : outputFiles) {
+            if (fileNamesToRemove.contains(outputFile.getFileName())) {
+                filesToRemove.add(outputFile);
+            }
+        }
+
+        for (OutputFile fileToRemove : filesToRemove) {
+            outputFiles.remove(fileToRemove);
+        }
     }
 }
