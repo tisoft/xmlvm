@@ -255,6 +255,21 @@ public abstract class UniversalFile {
     }
 
     /**
+     * If this is a file, this function returns whether it doesn't exist or has
+     * no content. This always returns <code>true</code> for directories, if
+     * they exist.
+     */
+    public boolean isEmpty() {
+        if (!exists()) {
+            return true;
+        }
+        if (isDirectory()) {
+            return false;
+        }
+        return getFileAsBytes().length == 0;
+    }
+
+    /**
      * Stores this universal file to the given file system path (which includes
      * the file name itself).
      * 
