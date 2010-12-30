@@ -115,11 +115,11 @@ typedef JAVA_OBJECT (*Func_O)();
 typedef struct __TIB_DEFINITION_##name { \
     int                                 classInitialized; \
     const char*                         className; \
-    struct __TIB_DEFINITION_TEMPLATE* extends; \
+    struct __TIB_DEFINITION_TEMPLATE*   extends; \
     Func_O                              newInstanceFunc; \
-	int                                 numInterfaces; \
+    int                                 numInterfaces; \
     struct __TIB_DEFINITION_TEMPLATE* (*interfaces)[1]; \
-	int                                 numImplementedInterfaces; \
+    int                                 numImplementedInterfaces; \
     struct __TIB_DEFINITION_TEMPLATE* (*implementedInterfaces)[1]; \
     VTABLE_PTR                          vtable[vtableSize]; \
 } __TIB_DEFINITION_##name; \
@@ -151,11 +151,11 @@ void XMLVMClass_setPrimitive(JAVA_OBJECT* clazz, JAVA_BOOLEAN flag);
 XMLVM_DEFINE_CLASS(XMLVMArray, XMLVM_SIZE_OF_OBJECT_VTABLE)
 
 typedef struct {
-	__TIB_DEFINITION_XMLVMArray* tib;
-    XMLVMElemPtr                   array;
-    int                            type;
-    int                            length;
-    int                            ownsData;
+    __TIB_DEFINITION_XMLVMArray* tib;
+    XMLVMElemPtr                 array;
+    int                          type;
+    int                          length;
+    int                          ownsData;
 } XMLVMArray;
 
 void __DELETE_XMLVMArray(XMLVMArray* me);

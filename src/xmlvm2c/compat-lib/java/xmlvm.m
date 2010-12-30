@@ -45,117 +45,117 @@ __TIB_DEFINITION_double_ARRAYTYPE           __TIB_double_ARRAYTYPE;
 
 void __INIT_XMLVMArray()
 {
-	if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_XMLVMArray.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-	// Initialize vtable for XMLVMArray
-	// TODO "1" below should be done via some #define
-	__TIB_XMLVMArray.vtable[1] = (VTABLE_PTR) XMLVMArray_clone__;
+    // Initialize vtable for XMLVMArray
+    // TODO "1" below should be done via some #define
+    __TIB_XMLVMArray.vtable[1] = (VTABLE_PTR) XMLVMArray_clone__;
     // Initialize vtable for implementing interfaces
-	// TODO Array do implement two interfaces
+    // TODO Array do implement two interfaces
     __TIB_XMLVMArray.numImplementedInterfaces = 0;
 }
 
 void xmlvm_init_system_class()
 {
-	//java_lang_System_initializeSystemClass__();
+    //java_lang_System_initializeSystemClass__();
 }
 
 JAVA_OBJECT native_java_lang_Object_getClass__(JAVA_OBJECT me)
 {
-	return __NEW_XMLVMClass((__TIB_DEFINITION_TEMPLATE*) ((java_lang_Object*) me)->tib);
+    return __NEW_XMLVMClass((__TIB_DEFINITION_TEMPLATE*) ((java_lang_Object*) me)->tib);
 }
 
 JAVA_OBJECT native_java_lang_Class_getName__(JAVA_OBJECT me);
 
 void xmlvm_init_java_lang_Object()
 {
-	__INIT_java_lang_Object();
-	__TIB_java_lang_Object.vtable[XMLVM_VTABLE_IDX_java_lang_Object_getClass__] =
-	(VTABLE_PTR) native_java_lang_Object_getClass__;
+    __INIT_java_lang_Object();
+    __TIB_java_lang_Object.vtable[XMLVM_VTABLE_IDX_java_lang_Object_getClass__] =
+    (VTABLE_PTR) native_java_lang_Object_getClass__;
 }
 
 void xmlvm_init_java_lang_Class()
 {
-	__INIT_java_lang_Class();
-	__TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getName__] =
-	(VTABLE_PTR) native_java_lang_Class_getName__;
+    __INIT_java_lang_Class();
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getName__] =
+    (VTABLE_PTR) native_java_lang_Class_getName__;
 }
 
 void xmlvm_init()
 {
 #ifndef XMLVM_NO_GC
-	setenv("GC_PRINT_STATS", "1", 1);
-	GC_INIT();
+    setenv("GC_PRINT_STATS", "1", 1);
+    GC_INIT();
 #endif
-	
-	if (XMLVM_SETJMP(xmlvm_exception_env)) {
-		XMLVM_ERROR("Unhandled exception thrown");
-	}
-	xmlvm_init_java_lang_Object();
-	xmlvm_init_java_lang_Class();
-	__INIT_XMLVMArray();
-	__INIT_java_lang_System();
-	xmlvm_init_system_class();
+    
+    if (XMLVM_SETJMP(xmlvm_exception_env)) {
+        XMLVM_ERROR("Unhandled exception thrown", __FILE__, __FUNCTION__, __LINE__);
+    }
+    xmlvm_init_java_lang_Object();
+    xmlvm_init_java_lang_Class();
+    __INIT_XMLVMArray();
+    __INIT_java_lang_System();
+    xmlvm_init_system_class();
 }
 
 int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz)
 {
-	int i;
-	__TIB_DEFINITION_TEMPLATE* objClass;
-	__TIB_DEFINITION_TEMPLATE* cl;
-	if (obj == JAVA_NULL) {
-		return 0;
-	}
-	objClass = (__TIB_DEFINITION_TEMPLATE*) ((java_lang_Object*) obj)->tib;
-	cl = (__TIB_DEFINITION_TEMPLATE*) clazz;
-	while (objClass != JAVA_NULL) {
-		if (strcmp(objClass->className, cl->className) == 0) {
-			return 1;
-		}
-		// Check all implemented interfaces
-		for (i = 0; i < objClass->numImplementedInterfaces; i++) {
-			if (strcmp(objClass->implementedInterfaces[0][i]->className, cl->className) == 0) {
-				return 1;
-			}
-		}
-		objClass = objClass->extends;
-	}
-	return 0;
+    int i;
+    __TIB_DEFINITION_TEMPLATE* objClass;
+    __TIB_DEFINITION_TEMPLATE* cl;
+    if (obj == JAVA_NULL) {
+        return 0;
+    }
+    objClass = (__TIB_DEFINITION_TEMPLATE*) ((java_lang_Object*) obj)->tib;
+    cl = (__TIB_DEFINITION_TEMPLATE*) clazz;
+    while (objClass != JAVA_NULL) {
+        if (strcmp(objClass->className, cl->className) == 0) {
+            return 1;
+        }
+        // Check all implemented interfaces
+        for (i = 0; i < objClass->numImplementedInterfaces; i++) {
+            if (strcmp(objClass->implementedInterfaces[0][i]->className, cl->className) == 0) {
+                return 1;
+            }
+        }
+        objClass = objClass->extends;
+    }
+    return 0;
 }
 
 VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, int vtableIndex)
 {
     __TIB_DEFINITION_TEMPLATE* clazz = (__TIB_DEFINITION_TEMPLATE*) ((java_lang_Object*) me)->tib;
     int numInterfaces = clazz->numImplementedInterfaces;
-	int i;
-	for (i = 0; i < numInterfaces; i++) {
-		__TIB_DEFINITION_TEMPLATE* (*ifaces)[1] = clazz->implementedInterfaces;
-		__TIB_DEFINITION_TEMPLATE* iface = (*ifaces)[i];
-		if (strcmp(ifaceName, iface->className) == 0) {
-			return iface->vtable[vtableIndex];
-		}
-	}
-	XMLVM_ERROR("XMLVM_LOOKUP_INTERFACE_METHOD() could not find interface");
-	return (VTABLE_PTR) 0;
+    int i;
+    for (i = 0; i < numInterfaces; i++) {
+        __TIB_DEFINITION_TEMPLATE* (*ifaces)[1] = clazz->implementedInterfaces;
+        __TIB_DEFINITION_TEMPLATE* iface = (*ifaces)[i];
+        if (strcmp(ifaceName, iface->className) == 0) {
+            return iface->vtable[vtableIndex];
+        }
+    }
+    XMLVM_ERROR("XMLVM_LOOKUP_INTERFACE_METHOD() could not find interface", __FILE__, __FUNCTION__, __LINE__);
+    return (VTABLE_PTR) 0;
 }
 
 int xmlvm_java_string_cmp(JAVA_OBJECT* s1, const char* s2)
 {
-	java_lang_String* str = (java_lang_String*) s1;
-	JAVA_INT len = str->fields.java_lang_String.count_;
-	if (len != strlen(s2)) {
-		return 0;
-	}
-	JAVA_INT offset = str->fields.java_lang_String.offset_;
-	XMLVMArray* value = (XMLVMArray*) str->fields.java_lang_String.value_;
-	for (int i = 0; i < len; i++) {
-		//TODO should be array.c?
-		if (value->array.c[i + offset] != s2[i]) {
-			return 0;
-		}
-	}
-	return 1;
+    java_lang_String* str = (java_lang_String*) s1;
+    JAVA_INT len = str->fields.java_lang_String.count_;
+    if (len != strlen(s2)) {
+        return 0;
+    }
+    JAVA_INT offset = str->fields.java_lang_String.offset_;
+    XMLVMArray* value = (XMLVMArray*) str->fields.java_lang_String.value_;
+    for (int i = 0; i < len; i++) {
+        //TODO should be array.c?
+        if (value->array.c[i + offset] != s2[i]) {
+            return 0;
+        }
+    }
+    return 1;
 }
 
 //---------------------------------------------------------------------------------------------
@@ -174,9 +174,9 @@ XMLVM_DEFINE_CLASS(XMLVMClass, XMLVM_VTABLE_SIZE_java_lang_Class)
 
 struct XMLVMClass {
     __TIB_DEFINITION_XMLVMClass* tib;
-	struct {
+    struct {
         __INSTANCE_FIELDS_XMLVMClass;
-	} fields;
+    } fields;
 };
 
 typedef struct XMLVMClass XMLVMClass;
@@ -190,26 +190,26 @@ __TIB_DEFINITION_XMLVMClass __TIB_XMLVMClass = {
 
 JAVA_BOOLEAN XMLVMClass_isArray(JAVA_OBJECT* clazz)
 {
-	XMLVMClass* c = (XMLVMClass*) clazz;
-	return c->fields.XMLVMClass.isArray;
+    XMLVMClass* c = (XMLVMClass*) clazz;
+    return c->fields.XMLVMClass.isArray;
 }
 
 JAVA_BOOLEAN XMLVMClass_isPrimitive(JAVA_OBJECT* clazz)
 {
-	XMLVMClass* c = (XMLVMClass*) clazz;
-	return c->fields.XMLVMClass.isPrimitive;
+    XMLVMClass* c = (XMLVMClass*) clazz;
+    return c->fields.XMLVMClass.isPrimitive;
 }
 
 void XMLVMClass_setPrimitive(JAVA_OBJECT* clazz, JAVA_BOOLEAN flag)
 {
-	XMLVMClass* c = (XMLVMClass*) clazz;
-	c->fields.XMLVMClass.isPrimitive = flag;
+    XMLVMClass* c = (XMLVMClass*) clazz;
+    c->fields.XMLVMClass.isPrimitive = flag;
 }
 
 JAVA_OBJECT XMLVMClass_newInstance(JAVA_OBJECT me)
 {
-	XMLVMClass* clazz = (XMLVMClass*) me;
-	return (*(clazz->fields.XMLVMClass.clazz->newInstanceFunc))();
+    XMLVMClass* clazz = (XMLVMClass*) me;
+    return (*(clazz->fields.XMLVMClass.clazz->newInstanceFunc))();
 }
 
 void __INIT_XMLVMClass()
@@ -220,30 +220,30 @@ void __INIT_XMLVMClass()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_XMLVMClass.vtable, __TIB_java_lang_Class.vtable, sizeof(__TIB_java_lang_Class.vtable));
     // Initialize vtable for this class
-	__TIB_XMLVMClass.vtable[XMLVM_VTABLE_IDX_java_lang_Class_newInstance__] = (VTABLE_PTR) XMLVMClass_newInstance;
+    __TIB_XMLVMClass.vtable[XMLVM_VTABLE_IDX_java_lang_Class_newInstance__] = (VTABLE_PTR) XMLVMClass_newInstance;
     // Initialize vtable for implementing interfaces
     __TIB_XMLVMClass.numImplementedInterfaces = 0;
 }
 
 JAVA_OBJECT __NEW_XMLVMClass(/*__TIB_DEFINITION_TEMPLATE*/ void* clazz)
 {
-	XMLVMClass* me;
+    XMLVMClass* me;
     if (!__TIB_XMLVMClass.classInitialized) __INIT_XMLVMClass();
-	__TIB_DEFINITION_TEMPLATE* c = (__TIB_DEFINITION_TEMPLATE*) clazz;
-	me = (XMLVMClass*) XMLVM_MALLOC(sizeof(XMLVMClass));
+    __TIB_DEFINITION_TEMPLATE* c = (__TIB_DEFINITION_TEMPLATE*) clazz;
+    me = (XMLVMClass*) XMLVM_MALLOC(sizeof(XMLVMClass));
     me->tib = &__TIB_XMLVMClass;
-	me->fields.XMLVMClass.clazz = c;
-	me->fields.XMLVMClass.isArray = 0;
-	me->fields.XMLVMClass.isPrimitive = 0;
+    me->fields.XMLVMClass.clazz = c;
+    me->fields.XMLVMClass.isArray = 0;
+    me->fields.XMLVMClass.isPrimitive = 0;
     return me;
 }
 
 JAVA_OBJECT native_java_lang_Class_getName__(JAVA_OBJECT me)
 {
-	XMLVMClass* clazz = (XMLVMClass*) me;
-	java_lang_String* name = __NEW_java_lang_String();
+    XMLVMClass* clazz = (XMLVMClass*) me;
+    java_lang_String* name = __NEW_java_lang_String();
     java_lang_String___INIT____char_ARRAYTYPE(name, XMLVMArray_createFromString(clazz->fields.XMLVMClass.clazz->className));
-	return name;
+    return name;
 }
 
 
@@ -252,9 +252,9 @@ JAVA_OBJECT native_java_lang_Class_getName__(JAVA_OBJECT me)
 
 XMLVMArray* __NEW_XMLVMArray()
 {
-	XMLVMArray* array = (XMLVMArray*) XMLVM_MALLOC(sizeof(XMLVMArray));
-	array->tib = &__TIB_XMLVMArray;
-	return array;
+    XMLVMArray* array = (XMLVMArray*) XMLVM_MALLOC(sizeof(XMLVMArray));
+    array->tib = &__TIB_XMLVMArray;
+    return array;
 }
 
 void __DELETE_XMLVMArray(XMLVMArray* me)
@@ -266,16 +266,16 @@ void __DELETE_XMLVMArray(XMLVMArray* me)
         }
     }
 */
-	if (me->ownsData) {
+    if (me->ownsData) {
         XMLVM_FREE(me->array.data);
-	}
-	XMLVM_FREE(me);
+    }
+    XMLVM_FREE(me);
 }
 
 XMLVMArray* XMLVMArray_createSingleDimension(int type, int size)
 {
     XMLVMArray *retval = __NEW_XMLVMArray();
-	int sizeOfBaseType;
+    int sizeOfBaseType;
     retval->type = type;
     retval->length = size;
     retval->ownsData = 1;
@@ -285,7 +285,7 @@ XMLVMArray* XMLVMArray_createSingleDimension(int type, int size)
     XMLVM_BZERO(retval->array.data, sizeOfBaseType * size);
 
     if (type == 0) {
-		int i;
+        int i;
         for (i = 0; i < size; i++) {
             retval->array.o[i] = JAVA_NULL;
         }
@@ -306,35 +306,35 @@ XMLVMArray* XMLVMArray_createSingleDimensionWithData(int type, int size, void* d
 
 XMLVMArray* XMLVMArray_createMultiDimensions(int type, XMLVMElem* dim, int count)
 {
-	int dimensions = dim->i;
-	XMLVMArray* slice;
-	int i;
-	dim++;
-	count--;
-	if (count == 0) {
-		return XMLVMArray_createSingleDimension(type, dimensions);
-	}
-	slice = XMLVMArray_createSingleDimension(0, dimensions);
+    int dimensions = dim->i;
+    XMLVMArray* slice;
+    int i;
+    dim++;
+    count--;
+    if (count == 0) {
+        return XMLVMArray_createSingleDimension(type, dimensions);
+    }
+    slice = XMLVMArray_createSingleDimension(0, dimensions);
 
-	for (i = 0; i < dimensions; i++) {
-		XMLVMArray* o = XMLVMArray_createMultiDimensions(type, dim, count);
-		XMLVMArray_replaceObjectAtIndex(slice, i, o);
-	}
-	return slice;
+    for (i = 0; i < dimensions; i++) {
+        XMLVMArray* o = XMLVMArray_createMultiDimensions(type, dim, count);
+        XMLVMArray_replaceObjectAtIndex(slice, i, o);
+    }
+    return slice;
 }
 
 XMLVMArray* XMLVMArray_createFromString(const char* str)
 {
     XMLVMArray *retval = __NEW_XMLVMArray();
-	int len = strlen(str);
-	int i;
+    int len = strlen(str);
+    int i;
 
     retval->type = 2; // CHAR
     retval->length = len;
     retval->array.data = XMLVM_MALLOC(len * sizeof(JAVA_ARRAY_CHAR));
-	for (i = 0; i < len; i++) {
-	    retval->array.c[i] = *str++;
-	}
+    for (i = 0; i < len; i++) {
+        retval->array.c[i] = *str++;
+    }
     retval->ownsData = 1;
     return retval;
 }
@@ -348,8 +348,8 @@ void XMLVMArray_fillArray(XMLVMArray* array, void* data)
 
 int XMLVMArray_sizeOfBaseTypeInBytes(int type)
 {
-	int sizeOfBaseType;
-	
+    int sizeOfBaseType;
+    
     // 'type' values are defined by vm:sizeOf in xmlvm2cpp.xsl
     switch (type) {
     case 1: // boolean
@@ -392,14 +392,14 @@ void XMLVMArray_replaceObjectAtIndex(XMLVMArray* array, int idx, JAVA_OBJECT obj
 
 int XMLVMArray_count(XMLVMArray* array)
 {
-	return array->length;
+    return array->length;
 }
 
 XMLVMArray* XMLVMArray_clone__(XMLVMArray* array)
 {
     XMLVMArray *retval = __NEW_XMLVMArray();
-	int sizeOfBaseType;
-	int sizeOfArrayInBytes;
+    int sizeOfBaseType;
+    int sizeOfArrayInBytes;
     retval->type = array->type;
     retval->length = array->length;
     retval->ownsData = 1;
@@ -409,13 +409,13 @@ XMLVMArray* XMLVMArray_clone__(XMLVMArray* array)
     retval->array.data = XMLVM_MALLOC(sizeOfArrayInBytes);
 
     if (array->type == 0) {
-		int i;
+        int i;
         for (i = 0; i < array->length; i++) {
             //retval->array.o[i] = array.o[i]->__retain();
         }
     }
     else {
-	    XMLVM_MEMCPY(retval->array.data, array->array.data, sizeOfArrayInBytes);
+        XMLVM_MEMCPY(retval->array.data, array->array.data, sizeOfArrayInBytes);
     }
 
     return retval;
@@ -423,12 +423,12 @@ XMLVMArray* XMLVMArray_clone__(XMLVMArray* array)
 
 void xmlvm_unimplemented_native_method()
 {
-	XMLVM_ERROR("Unimplemented native method", __FILE__, __FUNCTION__, __LINE__);
+    XMLVM_ERROR("Unimplemented native method", __FILE__, __FUNCTION__, __LINE__);
 }
 
 void XMLVM_ERROR(const char* msg, const char* file, const char* function, int line)
 {
-	printf("XMLVM Error: %s: (%s):%s:%d", function, file, line);
-	exit(-1);
+    printf("XMLVM Error: %s: (%s):%s:%d", function, file, line);
+    exit(-1);
 }
 
