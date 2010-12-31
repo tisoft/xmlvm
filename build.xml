@@ -200,10 +200,22 @@
 		<jar destfile="${xmlvm.bin}/lib/cocoa-java.jar">
 			<fileset dir="${xmlvm.cocoa-java}" />
 		</jar>
+		
+		<mkdir dir="${xmlvm.proxies-java}" />
+		<javac srcdir="./src/xmlvm2c/lib/proxies" destdir="${xmlvm.proxies-java}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.bin}" />
+			</classpath>
+			<classpath refid="classpath.compile" />
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.bin}/lib/proxies-java.jar">
+			<fileset dir="${xmlvm.proxies-java}" />
+		</jar>
+		
 		<jar destfile="${xmlvm.bin}/lib/native-c-lib.jar">
 			<fileset dir="src/xmlvm2c/lib/native/" />
 		</jar>
-
 
 		<copy todir="${xmlvm.bin}/iphone">
 			<fileset file="var/iphone/Makefile" />

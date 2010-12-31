@@ -21,6 +21,7 @@
 package org.xmlvm.proc.out;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -53,6 +54,10 @@ import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
 import org.xmlvm.refcount.InstructionProcessor;
 import org.xmlvm.refcount.ReferenceCounting;
 import org.xmlvm.refcount.ReferenceCountingException;
+import org.xmlvm.util.universalfile.FileSuffixFilter;
+import org.xmlvm.util.universalfile.UniversalFile;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
+import org.xmlvm.util.universalfile.UniversalFileFilter;
 
 import com.android.dx.cf.attrib.AttRuntimeInvisibleAnnotations;
 import com.android.dx.cf.attrib.BaseAnnotations;
@@ -195,31 +200,39 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     }
 
 
-    private static final String    TAG                = DEXmlvmOutputProcess.class.getSimpleName();
-    private static final boolean   LOTS_OF_DEBUG      = false;
-    private static final boolean   REF_LOGGING        = true;
+    private static final String                     TAG                     = DEXmlvmOutputProcess.class
+                                                                                    .getSimpleName();
+    private static final boolean                    LOTS_OF_DEBUG           = false;
+    private static final boolean                    REF_LOGGING             = true;
 
-    private static final String    JLO                = "java.lang.Object";
-    private static final String    DEXMLVM_ENDING     = ".dexmlvm";
-    private static final Namespace NS_XMLVM           = XmlvmResource.nsXMLVM;
-    private static final Namespace NS_DEX             = Namespace.getNamespace("dex",
-                                                              "http://xmlvm.org/dex");
+    private static final String                     JLO                     = "java.lang.Object";
+    private static final String                     DEXMLVM_ENDING          = ".dexmlvm";
+    private static final Namespace                  NS_XMLVM                = XmlvmResource.nsXMLVM;
+    private static final Namespace                  NS_DEX                  = Namespace
+                                                                                    .getNamespace(
+                                                                                            "dex",
+                                                                                            "http://xmlvm.org/dex");
+    private static final String                     BIN_PROXIES_PATH        = "bin-proxies";
+    private static final String                     BIN_PROXIES_ONEJAR_PATH = "/lib/proxies-java.jar";
+
+    private static final Map<String, UniversalFile> proxies                 = initializeProxies();
+    private static final long                       proxiesLastModified     = getLastModifiedProxy();
 
     /**
      * Green classes are classes that are OK to translate. Red classes are
      * excluded from the compilation.
      */
-    private static Set<String>     redClasses         = null;
+    private static Set<String>                      redClasses              = null;
 
-    private List<OutputFile>       outputFiles        = new ArrayList<OutputFile>();
-    private List<XmlvmResource>    generatedResources = new ArrayList<XmlvmResource>();
+    private List<OutputFile>                        outputFiles             = new ArrayList<OutputFile>();
+    private List<XmlvmResource>                     generatedResources      = new ArrayList<XmlvmResource>();
 
-    private Element                lastDexInstruction = null;
+    private Element                                 lastDexInstruction      = null;
 
-    private ResourceCache          cache              = ResourceCache
-                                                              .getCache(DEXmlvmOutputProcess.class
-                                                                      .getName());
-    private List<OutputFile>       filesFromCache     = new ArrayList<OutputFile>();
+    private ResourceCache                           cache                   = ResourceCache
+                                                                                    .getCache(DEXmlvmOutputProcess.class
+                                                                                            .getName());
+    private List<OutputFile>                        filesFromCache          = new ArrayList<OutputFile>();
 
 
     public DEXmlvmOutputProcess(Arguments arguments) {
@@ -231,8 +244,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         addSupportedInput(JavaByteCodeOutputProcess.class);
 
         String redFilename = arguments.option_dep_optimization_config();
-        if (redClasses == null && !arguments.option_dep_optimization_config().isEmpty()) {
-            redClasses = initializeGreenList(redFilename);
+        if (redClasses == null && !redFilename.isEmpty()) {
+            redClasses = initializeRedList(redFilename, proxies.keySet());
         }
     }
 
@@ -248,6 +261,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             for (OutputFile preOutputFile : preprocess.getOutputFiles()) {
                 String resourceName = preOutputFile.getOrigin();
                 long lastModified = preOutputFile.getLastModified();
+
+                // If the proxies change, we invalidate the cache.
+                lastModified = Math.max(lastModified, proxiesLastModified);
+
                 OutputFile outputFile = null;
 
                 // Check whether we can get the file from memory or disk cache.
@@ -282,8 +299,12 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         }
     }
 
-    @SuppressWarnings("unchecked")
     private OutputFile generateDEXmlvmFile(final OutputFile classFile) {
+        return generateDEXmlvmFile(classFile, false);
+    }
+
+    @SuppressWarnings("unchecked")
+    private OutputFile generateDEXmlvmFile(final OutputFile classFile, boolean proxy) {
         Log.debug(TAG, "DExing:" + classFile.getFileName());
 
         DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(),
@@ -292,6 +313,15 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         directClassFile.getMagic();
 
         String packagePlusClassName = directClassFile.getThisClass().getClassType().toHuman();
+
+        // If a proxy exists for this type, we use it instead of the file we got
+        // originally.
+        if (!proxy && proxies.containsKey(packagePlusClassName)) {
+            UniversalFile proxyUniversalFile = proxies.get(packagePlusClassName);
+            OutputFile proxyResult = new OutputFile(proxyUniversalFile);
+            proxyResult.setFileName(classFile.getFileName());
+            return generateDEXmlvmFile(proxyResult, true);
+        }
 
         // We want to prevent "red" classes from being loaded. If the there is a
         // green class list, and this process is run by a library loaded, then
@@ -399,22 +429,57 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         return redClasses != null && redClasses.contains(packagePlusClassName);
     }
 
-    private static Set<String> initializeGreenList(String fileName) {
+    private static Set<String> initializeRedList(String redListFileName, Set<String> proxies) {
         try {
             Set<String> result = new HashSet<String>();
             BufferedReader reader;
-            reader = new BufferedReader(new FileReader(fileName));
+            reader = new BufferedReader(new FileReader(redListFileName));
             String line;
             while ((line = reader.readLine()) != null) {
                 result.add(line);
             }
+
+            // Red types might be replaced by proxies, in which case they are
+            // no longer red.
+            for (String proxyTypeName : proxies) {
+                result.remove(proxyTypeName);
+            }
             return result;
         } catch (FileNotFoundException e) {
-            Log.error(TAG, "Problem reading green file: " + fileName + ": " + e.getMessage());
+            Log.error(TAG, "Problem finding red file: " + redListFileName + ": " + e.getMessage());
         } catch (IOException e) {
-            Log.error(TAG, "Problem reading green file: " + fileName + ": " + e.getMessage());
+            Log.error(TAG, "Problem reading red file: " + redListFileName + ": " + e.getMessage());
         }
         return null;
+    }
+
+    private static Map<String, UniversalFile> initializeProxies() {
+        Map<String, UniversalFile> result = new HashMap<String, UniversalFile>();
+        UniversalFile basePath = UniversalFileCreator.createDirectory(BIN_PROXIES_ONEJAR_PATH,
+                BIN_PROXIES_PATH);
+
+        final String classEnding = ".class";
+        UniversalFileFilter classFilter = new FileSuffixFilter(classEnding);
+        for (UniversalFile proxyFile : basePath.listFilesRecursively(classFilter)) {
+            String proxyFileName = proxyFile.getRelativePath((new File(basePath.getAbsolutePath()))
+                    .getAbsolutePath());
+            String proxyTypeName = proxyFileName.substring(0,
+                    proxyFileName.length() - (classEnding.length())).replace(File.separatorChar,
+                    '.');
+            result.put(proxyTypeName, proxyFile);
+        }
+        return result;
+    }
+
+    private static long getLastModifiedProxy() {
+        long result = 0;
+        for (UniversalFile proxyFile : proxies.values()) {
+            long lastModified = proxyFile.getLastModified();
+            if (lastModified > result) {
+                result = lastModified;
+            }
+        }
+        return result;
     }
 
     /**
