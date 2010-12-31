@@ -944,7 +944,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             }
             varElement.setAttribute("name", "var-register-" + (registerSize - 1 - j));
             varElement.setAttribute("register", String.valueOf(registerSize - 1 - j));
-            varElement.setAttribute("param-index", "" + i);
+            varElement.setAttribute("param-index", String.valueOf(i));
             String localsType = paramType.getType().toHuman();
 
             // For red locals, we set them to object.
