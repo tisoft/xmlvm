@@ -428,7 +428,7 @@ void xmlvm_unimplemented_native_method()
 
 void XMLVM_ERROR(const char* msg, const char* file, const char* function, int line)
 {
-    printf("XMLVM Error: %s: (%s):%s:%d", function, file, line);
+    printf("XMLVM Error: %s: (%s):%s:%d\n", msg, function, file, line);
     exit(-1);
 }
 

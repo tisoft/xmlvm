@@ -20,7 +20,8 @@ NSString* toNSString(JAVA_OBJECT o)
 	JAVA_INT count = s->fields.java_lang_String.count_;
 	const unichar* str = &value->array.c[offset];
 	return [[NSString alloc] initWithCharacters:str length:count];
-}//XMLVM_END_IMPLEMENTATION
+}
+//XMLVM_END_IMPLEMENTATION
 
 
 void __INIT_org_xmlvm_iphone_NSString()

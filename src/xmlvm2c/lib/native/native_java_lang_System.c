@@ -44,7 +44,8 @@ JAVA_LONG java_lang_System_currentTimeMillis__()
 JAVA_LONG java_lang_System_nanoTime__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_System_nanoTime__]
-    xmlvm_unimplemented_native_method();
+    //TODO implement
+    return 1L;
     //XMLVM_END_NATIVE
 }
 

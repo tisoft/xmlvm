@@ -104,7 +104,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIApplication()
 void org_xmlvm_iphone_UIApplication___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

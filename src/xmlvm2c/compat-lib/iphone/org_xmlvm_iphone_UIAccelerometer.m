@@ -119,14 +119,14 @@ JAVA_OBJECT org_xmlvm_iphone_UIAccelerometer_sharedAccelerometer__()
 void org_xmlvm_iphone_UIAccelerometer_setUpdateInterval___double(JAVA_OBJECT me, JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAccelerometer_setUpdateInterval___double]
-    XMLVM_NOT_IMPLEMENTED();
+    NSLog(@"NOT IMPLEMENTED: org_xmlvm_iphone_UIAccelerometer_setUpdateInterval___double");
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate]
-    XMLVM_NOT_IMPLEMENTED();
+    NSLog(@"NOT IMPLEMENTED: org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate");
     //XMLVM_END_WRAPPER
 }
 
@@ -134,7 +134,6 @@ void org_xmlvm_iphone_UIAccelerometer___CLINIT_()
 {
     if (!__TIB_org_xmlvm_iphone_UIAccelerometer.classInitialized) __INIT_org_xmlvm_iphone_UIAccelerometer();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAccelerometer___CLINIT___]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

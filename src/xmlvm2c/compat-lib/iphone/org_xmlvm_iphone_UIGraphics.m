@@ -115,7 +115,6 @@ void org_xmlvm_iphone_UIGraphics___CLINIT_()
 {
     if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics___CLINIT___]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

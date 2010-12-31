@@ -1375,26 +1375,9 @@ int main(int argc, char* argv[])
 
 <xsl:template name="initArguments">
   <xsl:variable name="numRegs" select="dex:code/@register-size" as="xs:integer"/>
-  <xsl:variable name="numArgs" select="count(vm:signature/vm:parameter)" as="xs:integer"/>
   <xsl:for-each select="1 to $numRegs">
     <xsl:text>    XMLVMElem _r</xsl:text>
     <xsl:value-of select="position() - 1"/>
-    <xsl:text>;&nl;</xsl:text>
-  </xsl:for-each>
-  <xsl:if test="not(@isStatic = 'true')">
-    <!-- Initialize 'this' parameter -->
-    <xsl:text>    _r</xsl:text>
-    <xsl:value-of select="$numRegs - ($numArgs + 1)"/>
-    <xsl:text>.o = me;&nl;</xsl:text>
-  </xsl:if>
-  <xsl:for-each select="vm:signature/vm:parameter">
-    <xsl:text>    _r</xsl:text>
-    <xsl:value-of select="$numRegs - ($numArgs - position()) - 1"/>
-    <xsl:call-template name="emitTypedAccess">
-      <xsl:with-param name="type" select="@type"/>
-    </xsl:call-template>
-    <xsl:text> = n</xsl:text>
-    <xsl:value-of select="position()"/>
     <xsl:text>;&nl;</xsl:text>
   </xsl:for-each>
 </xsl:template>
@@ -1427,8 +1410,21 @@ int main(int argc, char* argv[])
   <xsl:apply-templates/>
 </xsl:template>
 
+<xsl:template match="dex:var[@name='this']">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@register"/>
+  <xsl:text>.o = me;&nl;</xsl:text>
+</xsl:template>
+
 <xsl:template match="dex:var">
-  <!-- Do nothing -->
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@register"/>
+  <xsl:call-template name="emitTypedAccess">
+      <xsl:with-param name="type" select="@type"/>
+  </xsl:call-template>
+  <xsl:text> = n</xsl:text>
+  <xsl:value-of select="1 + @param-index"/>
+  <xsl:text>;&nl;</xsl:text>
 </xsl:template>
 
 <xsl:template match="vm:source-position">

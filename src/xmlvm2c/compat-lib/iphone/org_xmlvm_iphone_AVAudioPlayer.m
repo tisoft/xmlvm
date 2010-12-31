@@ -1,6 +1,6 @@
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSURL.h"
-#include "javazoom_jlgui_basicplayer_BasicPlayer.h"
+//#include "javazoom_jlgui_basicplayer_BasicPlayer.h"
 #include "org_xmlvm_iphone_AVAudioPlayerDelegate.h"
 
 #include "org_xmlvm_iphone_AVAudioPlayer.h"
@@ -73,18 +73,18 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_AVAudioPlayer()
     return me;
 }
 
-JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_initWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT n1, JAVA_OBJECT n2)
+JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     if (!__TIB_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_initWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_initWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT n1, JAVA_OBJECT n2)
+JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     if (!__TIB_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_initWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
