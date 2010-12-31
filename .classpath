@@ -12,7 +12,7 @@
 	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/objc"/>
 	<classpathentry kind="src" path="src/xmlvm2objc/compat-lib/java"/>
 	<classpathentry kind="src" path="src/xmlvm2c/xsl"/>
-	<classpathentry kind="src" path="src/xmlvm2c/lib/proxies"/>
+	<classpathentry kind="src" output="bin-proxies" path="src/xmlvm2c/lib/proxies"/>
 	<classpathentry kind="src" path="src/xmlvm2c/lib/native"/>
 	<classpathentry kind="src" path="src/xmlvm2c/compat-lib/iphone"/>
 	<classpathentry kind="src" path="src/xmlvm2c/compat-lib/java"/>
