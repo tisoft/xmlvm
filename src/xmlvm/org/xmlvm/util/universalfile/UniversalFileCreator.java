@@ -184,7 +184,7 @@ public class UniversalFileCreator {
         }
 
         if (!resourceFound) {
-            Log.error(TAG, "Could not find either resource: " + "(One-JAR resource: "
+            Log.debug(TAG, "Could not find either resource: " + "(One-JAR resource: "
                     + oneJarResource + " / file system resource: " + fileSystemLocation + ")");
             return null;
         }
