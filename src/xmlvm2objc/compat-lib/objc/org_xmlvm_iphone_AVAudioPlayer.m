@@ -108,7 +108,12 @@
 			: (org_xmlvm_iphone_NSURL*) url
 			: (org_xmlvm_iphone_NSErrorHolder*) outError
 {
-	id player = [[AVAudioPlayer alloc] initWithContentsOfURL: url error: &(outError->error_org_xmlvm_iphone_NSError)];
+	org_xmlvm_iphone_NSError** error = outError == JAVA_NULL ? NULL : &(outError->error_org_xmlvm_iphone_NSError);
+	id player = [[AVAudioPlayer alloc] initWithContentsOfURL: url error: error];
+	if (outError->error_org_xmlvm_iphone_NSError == nil) {
+		outError->error_org_xmlvm_iphone_NSError = JAVA_NULL;
+	}
+	
 	return XMLVM_NIL2NULL(player);
 }
 
@@ -116,11 +121,16 @@
 			: (org_xmlvm_iphone_NSData*) data
 			: (org_xmlvm_iphone_NSErrorHolder*) outError
 {
-	id player = [[AVAudioPlayer alloc] initWithData: data error: &(outError->error_org_xmlvm_iphone_NSError)];
+	org_xmlvm_iphone_NSError** error = outError == JAVA_NULL ? NULL : &(outError->error_org_xmlvm_iphone_NSError);
+	id player = [[AVAudioPlayer alloc] initWithData: data error: error];
 	if (player == nil) {
 		[data release];
 	}
 
+	if (outError->error_org_xmlvm_iphone_NSError == nil) {
+		outError->error_org_xmlvm_iphone_NSError = JAVA_NULL;
+	}
+	
 	return XMLVM_NIL2NULL(player);
 }
 
