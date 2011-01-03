@@ -30,8 +30,11 @@ public class ReflectionTest {
 
     public static void main(String[] args) throws InstantiationException, IllegalAccessException {
         Class<ReflectionTest> clazz = ReflectionTest.class;
+        System.out.println(clazz.getName());
         ReflectionTest obj = clazz.newInstance();
+        System.out.println(obj.getClass().getName());
         System.out.println(obj.x);
+        System.out.println(int.class.getName());
     }
 
 }

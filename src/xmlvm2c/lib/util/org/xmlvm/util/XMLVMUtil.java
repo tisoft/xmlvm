@@ -23,9 +23,18 @@ import java.io.PrintStream;
 
 import org.xmlvm.util.XMLVMOutputStream;
 
+/**
+ * Offers some utility functions to cross-compiled XMLVM applications.
+ * 
+ */
 public class XMLVMUtil {
 
-    public static void init() {
+    /**
+     * Method init() is called from within C function xmlvm_init() in file
+     * xmlvm.m. It is declared as private so that a Java program cannot call it.
+     */
+    @SuppressWarnings("unused")
+    private static void init() {
         System.setOut(new PrintStream(new XMLVMOutputStream()));
     }
 }

@@ -1042,6 +1042,43 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template name="emitArrayType">
+  <xsl:param name="type"/>
+  <xsl:choose>
+    <xsl:when test="$type = 'char'">
+      <xsl:text>JAVA_ARRAY_CHAR</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'byte'">
+      <xsl:text>JAVA_ARRAY_BYTE</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'short'">
+      <xsl:text>JAVA_ARRAY_SHORT</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'int'">
+      <xsl:text>JAVA_ARRAY_INT</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'long'">
+      <xsl:text>JAVA_ARRAY_LONG</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'float'">
+      <xsl:text>JAVA_ARRAY_FLOAT</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'double'">
+      <xsl:text>JAVA_ARRAY_DOUBLE</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'boolean'">
+      <xsl:text>JAVA_ARRAY_BOOLEAN</xsl:text>
+    </xsl:when>
+    <xsl:when test="ends-with($type, '[]')">
+      <xsl:text>XMLVMArray*</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>JAVA_ARRAY_OBJECT</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+
 <!-- The difference between emitType and emitTrueType is that the latter
      emits the proper type for reference types while the former emits JAVA_OBJECT -->
 <xsl:template name="emitType">
@@ -2866,6 +2903,7 @@ int main(int argc, char* argv[])
   <xsl:variable name="base-type" select="substring(@value, 1, string-length(@value) - 2)"/>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
+  <!-- TODO the cast below is most likely not correct -->
   <xsl:text>.o = ((XMLVMElem[]) {</xsl:text>
   <xsl:for-each select="dex:value">
     <xsl:text>_r</xsl:text>
@@ -2887,12 +2925,12 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:fill-array-data">
-  <!-- Replace char[] with short[] since the values have already been converted to short. Otherwise, junk is produced. Similar requirement for byte[] -->
-  <xsl:variable name="base-type" select="replace(replace(substring(@vx-type, 1, string-length(@vx-type) - 2), 'char', 'short'), 'byte', 'char')"/>
+  <!-- Remove the trailing '[]' -->
+  <xsl:variable name="base-type" select="substring(@vx-type, 1, string-length(@vx-type) - 2)"/>
   <xsl:text>    XMLVMArray_fillArray(</xsl:text>
   <xsl:value-of select="vm:cast-register('XMLVMArray', @vx)"/>
   <xsl:text>, (</xsl:text>
-  <xsl:call-template name="emitTrueType">
+  <xsl:call-template name="emitArrayType">
     <xsl:with-param name="type" select="$base-type"/>
   </xsl:call-template>
   <xsl:text>[]){</xsl:text>
@@ -3039,6 +3077,10 @@ int main(int argc, char* argv[])
   </xsl:choose>
 </xsl:template>
 
+
+<!-- Ignore whitespaces -->
+<xsl:template match="text()">
+</xsl:template>
 
 
 <!--

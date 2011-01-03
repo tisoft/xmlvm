@@ -61,27 +61,6 @@ void xmlvm_init_system_class()
     //java_lang_System_initializeSystemClass__();
 }
 
-JAVA_OBJECT native_java_lang_Object_getClass__(JAVA_OBJECT me)
-{
-    return __NEW_XMLVMClass((__TIB_DEFINITION_TEMPLATE*) ((java_lang_Object*) me)->tib);
-}
-
-JAVA_OBJECT native_java_lang_Class_getName__(JAVA_OBJECT me);
-
-void xmlvm_init_java_lang_Object()
-{
-    __INIT_java_lang_Object();
-    __TIB_java_lang_Object.vtable[XMLVM_VTABLE_IDX_java_lang_Object_getClass__] =
-    (VTABLE_PTR) native_java_lang_Object_getClass__;
-}
-
-void xmlvm_init_java_lang_Class()
-{
-    __INIT_java_lang_Class();
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getName__] =
-    (VTABLE_PTR) native_java_lang_Class_getName__;
-}
-
 void xmlvm_init()
 {
 #ifndef XMLVM_NO_GC
@@ -92,11 +71,10 @@ void xmlvm_init()
     if (XMLVM_SETJMP(xmlvm_exception_env)) {
         XMLVM_ERROR("Unhandled exception thrown", __FILE__, __FUNCTION__, __LINE__);
     }
-    xmlvm_init_java_lang_Object();
-    xmlvm_init_java_lang_Class();
     __INIT_XMLVMArray();
     __INIT_java_lang_System();
     xmlvm_init_system_class();
+    org_xmlvm_util_XMLVMUtil_init__();
 }
 
 int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz)
@@ -156,6 +134,14 @@ int xmlvm_java_string_cmp(JAVA_OBJECT* s1, const char* s2)
         }
     }
     return 1;
+}
+
+JAVA_OBJECT xmlvm_create_java_string(const char* s)
+{
+    java_lang_String* str = __NEW_java_lang_String();
+    XMLVMArray* charArray = XMLVMArray_createFromString(s);
+    java_lang_String___INIT____char_ARRAYTYPE(str, charArray);
+    return str;
 }
 
 //---------------------------------------------------------------------------------------------
@@ -238,12 +224,10 @@ JAVA_OBJECT __NEW_XMLVMClass(/*__TIB_DEFINITION_TEMPLATE*/ void* clazz)
     return me;
 }
 
-JAVA_OBJECT native_java_lang_Class_getName__(JAVA_OBJECT me)
+__TIB_DEFINITION_TEMPLATE* xmlvm_get_tib(JAVA_OBJECT clazz)
 {
-    XMLVMClass* clazz = (XMLVMClass*) me;
-    java_lang_String* name = __NEW_java_lang_String();
-    java_lang_String___INIT____char_ARRAYTYPE(name, XMLVMArray_createFromString(clazz->fields.XMLVMClass.clazz->className));
-    return name;
+    XMLVMClass* c = (XMLVMClass*) clazz;
+    return c->fields.XMLVMClass.clazz;
 }
 
 

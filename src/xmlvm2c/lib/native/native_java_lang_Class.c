@@ -116,7 +116,8 @@ JAVA_BOOLEAN java_lang_Class_isPrimitive__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Class_getName0__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getName0__]
-    xmlvm_unimplemented_native_method();
+    __TIB_DEFINITION_TEMPLATE* tib = xmlvm_get_tib(me);
+    return xmlvm_create_java_string(tib->className);
     //XMLVM_END_NATIVE
 }
 

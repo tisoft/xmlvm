@@ -131,6 +131,7 @@ XMLVM_DEFINE_CLASS(TEMPLATE, 0)
 int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz);
 VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, int vtableIndex);
 int xmlvm_java_string_cmp(JAVA_OBJECT* s1, const char* s2);
+JAVA_OBJECT xmlvm_create_java_string(const char* s);
 
 #define XMLVM_SIZE_OF_OBJECT_VTABLE 11
 
@@ -142,6 +143,7 @@ JAVA_OBJECT __NEW_XMLVMClass(/*__TIB_DEFINITION_TEMPLATE*/ void* clazz);
 JAVA_BOOLEAN XMLVMClass_isArray(JAVA_OBJECT* clazz);
 JAVA_BOOLEAN XMLVMClass_isPrimitive(JAVA_OBJECT* clazz);
 void XMLVMClass_setPrimitive(JAVA_OBJECT* clazz, JAVA_BOOLEAN flag);
+__TIB_DEFINITION_TEMPLATE* xmlvm_get_tib(JAVA_OBJECT clazz);
 
 
 //---------------------------------------------------------------------------------------------

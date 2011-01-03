@@ -15,7 +15,8 @@ void java_lang_Object_registerNatives__()
 JAVA_OBJECT java_lang_Object_getClass__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_getClass__]
-    xmlvm_unimplemented_native_method();
+    java_lang_Object* o = (java_lang_Object*) me;
+    return __NEW_XMLVMClass(o->tib);
     //XMLVM_END_NATIVE
 }
 
