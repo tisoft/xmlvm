@@ -416,7 +416,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIView_getBackgroundColor__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIView_setBackgroundColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setBackgroundColor___org_xmlvm_iphone_UIColor]
-    XMLVM_NOT_IMPLEMENTED();
+	UIView* view = (UIView*) ((org_xmlvm_iphone_UIView*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+	UIColor* color = (UIColor*) ((org_xmlvm_iphone_UIColor*) n1)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+	[view setBackgroundColor: color];
     //XMLVM_END_WRAPPER
 }
 
