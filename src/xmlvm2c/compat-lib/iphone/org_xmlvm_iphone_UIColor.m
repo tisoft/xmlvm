@@ -12,6 +12,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIColor;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIColor_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <UIKit/UIKit.h>
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_OBJECT _STATIC_org_xmlvm_iphone_UIColor_blackColor;
@@ -497,7 +498,101 @@ void org_xmlvm_iphone_UIColor___CLINIT_()
 {
     if (!__TIB_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor___CLINIT___]
-    XMLVM_NOT_IMPLEMENTED();
+	JAVA_OBJECT color;
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor blackColor];
+	org_xmlvm_iphone_UIColor_PUT_blackColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor darkGrayColor];
+	org_xmlvm_iphone_UIColor_PUT_darkGrayColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor lightGrayColor];
+	org_xmlvm_iphone_UIColor_PUT_lightGrayColor(color);
+
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor whiteColor];
+	org_xmlvm_iphone_UIColor_PUT_whiteColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor grayColor];
+	org_xmlvm_iphone_UIColor_PUT_grayColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor redColor];
+	org_xmlvm_iphone_UIColor_PUT_redColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor greenColor];
+	org_xmlvm_iphone_UIColor_PUT_greenColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor blueColor];
+	org_xmlvm_iphone_UIColor_PUT_blueColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor cyanColor];
+	org_xmlvm_iphone_UIColor_PUT_cyanColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor yellowColor];
+	org_xmlvm_iphone_UIColor_PUT_yellowColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor magentaColor];
+	org_xmlvm_iphone_UIColor_PUT_magentaColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor orangeColor];
+	org_xmlvm_iphone_UIColor_PUT_orangeColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor purpleColor];
+	org_xmlvm_iphone_UIColor_PUT_purpleColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor brownColor];
+	org_xmlvm_iphone_UIColor_PUT_brownColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor clearColor];
+	org_xmlvm_iphone_UIColor_PUT_clearColor(color);
+
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor lightTextColor];
+	org_xmlvm_iphone_UIColor_PUT_lightTextColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor darkTextColor];
+	org_xmlvm_iphone_UIColor_PUT_darkTextColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor groupTableViewBackgroundColor];
+	org_xmlvm_iphone_UIColor_PUT_groupTableViewBackgroundColor(color);
+	
+	color = __NEW_org_xmlvm_iphone_UIColor();
+	org_xmlvm_iphone_NSObject___INIT___(color);
+	((org_xmlvm_iphone_UIColor*) color)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [UIColor viewFlipsideBackgroundColor];
+	org_xmlvm_iphone_UIColor_PUT_viewFlipsideBackgroundColor(color);
     //XMLVM_END_WRAPPER
 }
 
