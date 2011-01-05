@@ -16,9 +16,23 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIViewController __TIB_org_xmlvm_iphone_UIView
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIResponder, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"pcontroller",
+    &__CLASS_org_xmlvm_iphone_UIViewController,
+    0,
+    XMLVM_OFFSETOF(org_xmlvm_iphone_UIViewController, fields.org_xmlvm_iphone_UIViewController.pcontroller_),
+    0,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIViewController()
 {
@@ -78,6 +92,10 @@ void __INIT_org_xmlvm_iphone_UIViewController()
     __TIB_org_xmlvm_iphone_UIViewController.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIViewController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_UIViewController.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIViewController.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIViewController = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIViewController);
+    __TIB_org_xmlvm_iphone_UIViewController.clazz = __CLASS_org_xmlvm_iphone_UIViewController;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIViewController]
     //XMLVM_END_WRAPPER

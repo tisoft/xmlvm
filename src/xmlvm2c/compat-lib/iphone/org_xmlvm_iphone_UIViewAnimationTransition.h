@@ -12,6 +12,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for org.xmlvm.iphone.UIViewAnimationTransition
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewAnimationTransition, 11)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationTransition;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationTransition_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIViewAnimationTransition
 //XMLVM_END_DECLARATIONS

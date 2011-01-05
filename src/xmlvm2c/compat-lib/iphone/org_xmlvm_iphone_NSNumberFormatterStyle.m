@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSNumberFormatterStyle __TIB_org_xmlvm_iphone_
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNumberFormatterStyle;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNumberFormatterStyle_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -16,6 +20,51 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_CurrencyStyle;
 static JAVA_INT _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_PercentStyle;
 static JAVA_INT _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_ScientificStyle;
 static JAVA_INT _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_SpellOutStyle;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"NoStyle",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_NoStyle,
+    "",
+    JAVA_NULL},
+    {"DecimalStyle",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_DecimalStyle,
+    "",
+    JAVA_NULL},
+    {"CurrencyStyle",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_CurrencyStyle,
+    "",
+    JAVA_NULL},
+    {"PercentStyle",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_PercentStyle,
+    "",
+    JAVA_NULL},
+    {"ScientificStyle",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_ScientificStyle,
+    "",
+    JAVA_NULL},
+    {"SpellOutStyle",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_SpellOutStyle,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_NSNumberFormatterStyle()
 {
@@ -36,6 +85,10 @@ void __INIT_org_xmlvm_iphone_NSNumberFormatterStyle()
     _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_ScientificStyle = 4;
     _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_SpellOutStyle = 5;
 
+    __TIB_org_xmlvm_iphone_NSNumberFormatterStyle.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSNumberFormatterStyle.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_NSNumberFormatterStyle = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_NSNumberFormatterStyle);
+    __TIB_org_xmlvm_iphone_NSNumberFormatterStyle.clazz = __CLASS_org_xmlvm_iphone_NSNumberFormatterStyle;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSNumberFormatterStyle]
     //XMLVM_END_WRAPPER

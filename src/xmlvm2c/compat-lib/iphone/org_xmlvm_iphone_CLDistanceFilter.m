@@ -7,10 +7,24 @@ __TIB_DEFINITION_org_xmlvm_iphone_CLDistanceFilter __TIB_org_xmlvm_iphone_CLDist
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLDistanceFilter;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLDistanceFilter_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_DOUBLE _STATIC_org_xmlvm_iphone_CLDistanceFilter_None;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"None",
+    &__CLASS_double_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CLDistanceFilter_None,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_CLDistanceFilter()
 {
@@ -26,6 +40,10 @@ void __INIT_org_xmlvm_iphone_CLDistanceFilter()
     __TIB_org_xmlvm_iphone_CLDistanceFilter.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
     _STATIC_org_xmlvm_iphone_CLDistanceFilter_None = -1.0;
 
+    __TIB_org_xmlvm_iphone_CLDistanceFilter.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CLDistanceFilter.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_CLDistanceFilter = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_CLDistanceFilter);
+    __TIB_org_xmlvm_iphone_CLDistanceFilter.clazz = __CLASS_org_xmlvm_iphone_CLDistanceFilter;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CLDistanceFilter]
     //XMLVM_END_WRAPPER

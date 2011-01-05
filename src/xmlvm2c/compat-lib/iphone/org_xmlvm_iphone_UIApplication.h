@@ -28,6 +28,9 @@ XMLVM_FORWARD_DECL(java_util_List)
 // Class declarations for org.xmlvm.iphone.UIApplication
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIApplication, 37)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIApplication void *ocApp;
 //XMLVM_END_DECLARATIONS

@@ -10,9 +10,16 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIPickerView __TIB_org_xmlvm_iphone_UIPickerVi
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPickerView;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPickerView_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+};
 
 void __INIT_org_xmlvm_iphone_UIPickerView()
 {
@@ -41,6 +48,10 @@ void __INIT_org_xmlvm_iphone_UIPickerView()
     __TIB_org_xmlvm_iphone_UIPickerView.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIPickerView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_UIPickerView.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIPickerView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIPickerView = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIPickerView);
+    __TIB_org_xmlvm_iphone_UIPickerView.clazz = __CLASS_org_xmlvm_iphone_UIPickerView;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIPickerView]
     //XMLVM_END_WRAPPER

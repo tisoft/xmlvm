@@ -3,6 +3,9 @@
 
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+
+#include "java_lang_reflect_Field.h"
+
 XMLVM_DEFINE_CLASS(boolean_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
 XMLVM_DEFINE_CLASS(byte_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
 XMLVM_DEFINE_CLASS(char_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
@@ -116,7 +119,7 @@ JAVA_BOOLEAN java_lang_Class_isPrimitive__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Class_getName0__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getName0__]
-    __TIB_DEFINITION_TEMPLATE* tib = xmlvm_get_tib(me);
+    __TIB_DEFINITION_TEMPLATE* tib = XMLVMClass_getTIB(me);
     return xmlvm_create_java_string(tib->className);
     //XMLVM_END_NATIVE
 }
@@ -254,7 +257,26 @@ JAVA_OBJECT java_lang_Class_getConstantPool__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Class_getDeclaredFields0___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredFields0___boolean]
-    xmlvm_unimplemented_native_method();
+    //TODO n1 arg
+    __TIB_DEFINITION_TEMPLATE* tib = XMLVMClass_getTIB(me);
+    int numFields = tib->numDeclaredFields;
+    XMLVMArray* fields = XMLVMArray_createSingleDimension(0, numFields);
+    int i = 0;
+    for (i = 0; i < numFields; i++) {
+        java_lang_reflect_Field* field = __NEW_java_lang_reflect_Field();
+        XMLVM_FIELD_REFLECTION_DATA* currentField = (tib->declaredFields) + i;
+        java_lang_Class* declaringClass = tib->clazz;
+        java_lang_String* name = xmlvm_create_java_string(currentField->name);
+        java_lang_Class* type = *(currentField->type);
+        JAVA_INT modifiers = currentField->modifiers;
+        JAVA_INT offset = currentField->offset;
+        JAVA_OBJECT* address = currentField->address;
+        java_lang_String* signature = xmlvm_create_java_string(currentField->signature);
+        XMLVMArray* annotations = currentField->annotations;
+        java_lang_reflect_Field___INIT____java_lang_Class_java_lang_String_java_lang_Class_int_int_java_lang_Object_java_lang_String_byte_ARRAYTYPE(field, declaringClass, name, type, modifiers, offset, address, signature, annotations);                                                                                                                     
+        fields->array.o[i] = field;
+    }
+    return fields;
     //XMLVM_END_NATIVE
 }
 

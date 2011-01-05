@@ -165,6 +165,14 @@ int main(int argc, char* argv[])
     <xsl:text>, </xsl:text>
     <xsl:value-of select="@vtableSize"/>
     <xsl:text>)&nl;&nl;</xsl:text>
+    
+    <xsl:text>extern JAVA_OBJECT __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;&nl;</xsl:text>
+    <xsl:text>extern JAVA_OBJECT __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>_ARRAYTYPE;&nl;&nl;</xsl:text>
+    
     <xsl:if test="$genWrapper = 'true'">
       <xsl:text>//XMLVM_BEGIN_DECLARATIONS&nl;</xsl:text>
       <xsl:text>#define __ADDITIONAL_INSTANCE_FIELDS_</xsl:text>
@@ -320,6 +328,13 @@ int main(int argc, char* argv[])
     <xsl:value-of select="@vtableSize"/>
     <xsl:text>)&nl;&nl;</xsl:text>
 
+    <xsl:text>extern JAVA_OBJECT __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;&nl;</xsl:text>
+    <xsl:text>extern JAVA_OBJECT __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>_ARRAYTYPE;&nl;&nl;</xsl:text>
+    
     <xsl:text>#ifndef XMLVM_FORWARD_DECL_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>&nl;</xsl:text>
@@ -411,7 +426,8 @@ int main(int argc, char* argv[])
 
 
 <xsl:template name="emitClassImplementation">
-    <xsl:variable name="clname" select="vm:fixname(concat(@package, '.', @name))"/>
+    <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
+    <xsl:variable name="clname" select="vm:fixname($cclname)"/>
 
     <xsl:text>__TIB_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
@@ -420,7 +436,7 @@ int main(int argc, char* argv[])
     <xsl:text> = {
     0, // classInitialized
     "</xsl:text>
-    <xsl:value-of select="concat(@package, '.' , @name)"/>
+    <xsl:value-of select="$cclname"/>
     <xsl:text>", // className&nl;</xsl:text>
     <xsl:text>    (__TIB_DEFINITION_TEMPLATE*) </xsl:text>
     <xsl:choose>
@@ -433,6 +449,14 @@ int main(int argc, char* argv[])
       </xsl:otherwise>
     </xsl:choose>
     <xsl:text>, // extends&nl;};&nl;&nl;</xsl:text>
+
+    <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;&nl;</xsl:text>
+    <xsl:text>//TODO _ARRAYTYPE not initialized&nl;</xsl:text>
+    <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>_ARRAYTYPE;&nl;&nl;</xsl:text>
 
     <xsl:if test="$genWrapper = 'true'">
       <xsl:text>//XMLVM_BEGIN_IMPLEMENTATION&nl;</xsl:text>
@@ -457,6 +481,9 @@ int main(int argc, char* argv[])
     </xsl:for-each>
     <xsl:text>&nl;</xsl:text>
 
+    <!-- Emit reflection information -->
+    <xsl:call-template name="emitReflectionInformation"/>
+    
     <!-- Emit XMLVM-specific class initializer -->
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
@@ -590,6 +617,26 @@ int main(int argc, char* argv[])
       </xsl:if>
     </xsl:for-each>
     <xsl:text>&nl;&nl;</xsl:text>
+    
+    <!-- Initialize reflection information for fields -->
+    <xsl:text>    __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.declaredFields = &amp;__field_reflection_data[0];&nl;</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);&nl;</xsl:text>
+    
+    <!-- Create the java.lang.Class instance for this class -->
+    <xsl:text>    __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text> = __NEW_XMLVMClass(&amp;__TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>);&nl;    </xsl:text>
+    <xsl:text>__TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.clazz = __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;&nl;</xsl:text>
     
     <!-- If there is a Java class initializer, call it. -->
     <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
@@ -813,10 +860,16 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text> __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>;
+    <xsl:text>;&nl;&nl;</xsl:text>
 
-</xsl:text>
-
+    <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;&nl;</xsl:text>
+    <xsl:text>//TODO _ARRAYTYPE not initialized&nl;</xsl:text>
+    <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>_ARRAYTYPE;&nl;&nl;</xsl:text>
+    
     <!-- Emit global variable definition for all fields (which must be final and static for interfaces) -->
     <xsl:for-each select="vm:field">
       <xsl:text>static </xsl:text>
@@ -831,6 +884,9 @@ int main(int argc, char* argv[])
     </xsl:for-each>
     <xsl:text>&nl;</xsl:text>
 
+    <!-- Emit reflection information -->
+    <xsl:call-template name="emitReflectionInformation"/>
+    
     <!-- Emit interface initializers -->
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
@@ -914,9 +970,29 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text>));</xsl:text>
 
+    <!-- Initialize reflection information for fields -->
+    <xsl:text>    __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.declaredFields = &amp;__field_reflection_data[0];&nl;</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);&nl;</xsl:text>
+    
+    <!-- Create the java.lang.Class instance for this class -->
+    <xsl:text>&nl;    __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text> = __NEW_XMLVMClass(&amp;__TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>);&nl;    </xsl:text>
+    <xsl:text>__TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.clazz = __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;</xsl:text>
+    
     <!-- If there is a Java class initializer, call it. -->
     <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
-      <xsl:text>&nl;        </xsl:text>
+      <xsl:text>&nl;    </xsl:text>
       <xsl:value-of select="vm:fixname(@package)"/>
       <xsl:text>_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
@@ -979,6 +1055,120 @@ int main(int argc, char* argv[])
 
     </xsl:for-each>
     
+</xsl:template>
+
+
+<xsl:template name="emitReflectionInformation">
+  <xsl:call-template name="emitReflectionInformationForFields"/>
+</xsl:template>
+
+<xsl:template name="emitReflectionInformationForFields">
+  <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
+  <xsl:variable name="clname" select="vm:fixname($cclname)"/>
+
+  <xsl:text>static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {&nl;</xsl:text>
+  <xsl:for-each select="vm:field">
+    <xsl:if test="not($genWrapper = 'true' and @isPrivate='true')">
+      <xsl:text>    {"</xsl:text>
+      <!-- name -->
+      <xsl:value-of select="@name"/>
+      <xsl:text>",&nl;    </xsl:text>
+      <!-- type -->
+      <xsl:text>&amp;</xsl:text>
+      <xsl:call-template name="emitJavaLangClassReference">
+        <xsl:with-param name="type" select="@type"/>
+      </xsl:call-template>
+      <xsl:text>,&nl;    </xsl:text>
+      <!-- modifier -->
+      <xsl:call-template name="emitModifier"/>
+      <xsl:text>,&nl;    </xsl:text>
+      <!-- offset -->
+      <xsl:choose>
+        <xsl:when test="@isStatic = 'true'">
+          <xsl:text>0</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>XMLVM_OFFSETOF(</xsl:text>
+          <xsl:value-of select="$clname"/>
+          <xsl:text>, fields.</xsl:text>
+          <xsl:value-of select="$clname"/>
+          <xsl:text>.</xsl:text>
+          <xsl:value-of select="vm:fixname(@name)"/>
+          <xsl:text>_)</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:text>,&nl;    </xsl:text>
+      <!-- address -->
+      <xsl:choose>
+        <xsl:when test="@isStatic = 'true'">
+          <xsl:text>&amp;_STATIC_</xsl:text>
+          <xsl:value-of select="$clname"/>
+          <xsl:text>_</xsl:text>
+          <xsl:value-of select="vm:fixname(@name)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>0</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:text>,&nl;    </xsl:text>
+      <!-- signature -->
+      <xsl:text>""</xsl:text>
+      <xsl:text>,&nl;    </xsl:text>
+      <!-- annotations -->
+      <xsl:text>JAVA_NULL</xsl:text>
+      <xsl:text>},&nl;</xsl:text>
+    </xsl:if>
+  </xsl:for-each>
+  <xsl:text>};&nl;&nl;</xsl:text>
+</xsl:template>
+
+<xsl:template name="emitJavaLangClassReference">
+   <xsl:param name="type"/>
+   
+   <xsl:text>__CLASS_</xsl:text>
+   <xsl:choose>
+     <xsl:when test="$type = 'boolean'">
+       <xsl:text>boolean_TYPE</xsl:text>
+     </xsl:when>
+     <xsl:when test="$type = 'byte'">
+       <xsl:text>byte_TYPE</xsl:text>
+     </xsl:when>
+     <xsl:when test="$type = 'char'">
+       <xsl:text>char_TYPE</xsl:text>
+     </xsl:when>
+     <xsl:when test="$type = 'short'">
+       <xsl:text>short_TYPE</xsl:text>
+     </xsl:when>
+     <xsl:when test="$type = 'int'">
+       <xsl:text>int_TYPE</xsl:text>
+     </xsl:when>
+     <xsl:when test="$type = 'float'">
+       <xsl:text>float_TYPE</xsl:text>
+     </xsl:when>
+     <xsl:when test="$type = 'long'">
+       <xsl:text>long_TYPE</xsl:text>
+     </xsl:when>
+     <xsl:when test="$type = 'double'">
+       <xsl:text>double_TYPE</xsl:text>
+     </xsl:when>
+     <xsl:otherwise>
+       <xsl:value-of select="vm:fixname($type)"/>
+     </xsl:otherwise>
+   </xsl:choose>
+</xsl:template>
+
+<xsl:template name="emitModifier">
+  <xsl:text>0</xsl:text>
+  <xsl:if test="@isPublic = 'true'">
+    <xsl:text> | java_lang_reflect_Modifier_PUBLIC</xsl:text>
+  </xsl:if>
+  <xsl:if test="@isPrivate = 'true'">
+    <xsl:text> | java_lang_reflect_Modifier_PRIVATE</xsl:text>
+  </xsl:if>
+  <xsl:if test="@isStatic = 'true'">
+    <xsl:text> | java_lang_reflect_Modifier_STATIC</xsl:text>
+  </xsl:if>
+  <!-- TODO other modifiers are missing here -->
 </xsl:template>
 
 

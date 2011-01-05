@@ -16,6 +16,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimer)
 // Class declarations for org.xmlvm.iphone.NSTimer
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSTimer, 15)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSTimer void *ocTimer;
 //XMLVM_END_DECLARATIONS

@@ -9,9 +9,30 @@ __TIB_DEFINITION_org_xmlvm_iphone_MKMapRect __TIB_org_xmlvm_iphone_MKMapRect = {
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapRect;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapRect_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"origin",
+    &__CLASS_org_xmlvm_iphone_MKMapPoint,
+    0 | java_lang_reflect_Modifier_PUBLIC,
+    XMLVM_OFFSETOF(org_xmlvm_iphone_MKMapRect, fields.org_xmlvm_iphone_MKMapRect.origin_),
+    0,
+    "",
+    JAVA_NULL},
+    {"size",
+    &__CLASS_org_xmlvm_iphone_MKMapSize,
+    0 | java_lang_reflect_Modifier_PUBLIC,
+    XMLVM_OFFSETOF(org_xmlvm_iphone_MKMapRect, fields.org_xmlvm_iphone_MKMapRect.size_),
+    0,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_MKMapRect()
 {
@@ -26,6 +47,10 @@ void __INIT_org_xmlvm_iphone_MKMapRect()
     __TIB_org_xmlvm_iphone_MKMapRect.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_MKMapRect.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_MKMapRect.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MKMapRect.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_MKMapRect = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_MKMapRect);
+    __TIB_org_xmlvm_iphone_MKMapRect.clazz = __CLASS_org_xmlvm_iphone_MKMapRect;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MKMapRect]
     //XMLVM_END_WRAPPER

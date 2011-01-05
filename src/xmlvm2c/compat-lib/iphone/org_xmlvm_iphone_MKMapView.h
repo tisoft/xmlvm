@@ -40,6 +40,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 // Class declarations for org.xmlvm.iphone.MKMapView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapView, 99)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapView;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapView_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKMapView
 //XMLVM_END_DECLARATIONS

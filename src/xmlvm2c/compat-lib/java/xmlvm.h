@@ -47,6 +47,8 @@
 
 #define XMLVM_BZERO(pointer, size) memset((pointer), 0, size)
 #define XMLVM_MEMCPY(dest, src, size) memcpy(dest, src, size)
+#define XMLVM_OFFSETOF(type, field) ((unsigned long) &(((type *) 0)->field))
+
 
 #define XMLVM_FORWARD_DECL(class) \
     JAVA_OBJECT __NEW_ ##class(); \
@@ -104,6 +106,39 @@ typedef union {
     void*              data;
 } XMLVMElemPtr;
 
+#ifndef XMLVM_FORWARD_DECL_java_lang_Class
+#define XMLVM_FORWARD_DECL_java_lang_Class
+XMLVM_FORWARD_DECL(java_lang_Class)
+#endif
+
+#define java_lang_reflect_Modifier_PUBLIC       1
+#define java_lang_reflect_Modifier_PRIVATE      2
+#define java_lang_reflect_Modifier_PROTECTED    4
+#define java_lang_reflect_Modifier_STATIC       8
+#define java_lang_reflect_Modifier_FINAL        16
+#define java_lang_reflect_Modifier_SYNCHRONIZED 32
+#define java_lang_reflect_Modifier_VOLATILE     64
+#define java_lang_reflect_Modifier_TRANSIENT    128
+#define java_lang_reflect_Modifier_NATIVE       256
+#define java_lang_reflect_Modifier_INTERFACE    512
+#define java_lang_reflect_Modifier_ABSTRACT     1024
+#define java_lang_reflect_Modifier_STRICT       2048
+#define java_lang_reflect_Modifier_BRIDGE       64
+#define java_lang_reflect_Modifier_VARARGS      128
+#define java_lang_reflect_Modifier_SYNTHETIC    4096
+#define java_lang_reflect_Modifier_ANNOTATION   8192
+#define java_lang_reflect_Modifier_ENUM         16384
+
+typedef struct {
+    const char*  name;
+    JAVA_OBJECT* type;
+    JAVA_INT     modifiers;
+    JAVA_INT     offset;
+    JAVA_OBJECT* address;
+    const char*  signature;
+    JAVA_OBJECT  annotations; // XMLVMArray(byte)
+} XMLVM_FIELD_REFLECTION_DATA;
+
 #define JAVA_NULL ((JAVA_OBJECT) 0)
 
 typedef void (*VTABLE_PTR)();
@@ -116,6 +151,9 @@ typedef struct __TIB_DEFINITION_##name { \
     int                                 classInitialized; \
     const char*                         className; \
     struct __TIB_DEFINITION_TEMPLATE*   extends; \
+    JAVA_OBJECT                         clazz; \
+    XMLVM_FIELD_REFLECTION_DATA*        declaredFields; \
+    int                                 numDeclaredFields; \
     Func_O                              newInstanceFunc; \
     int                                 numInterfaces; \
     struct __TIB_DEFINITION_TEMPLATE* (*interfaces)[1]; \
@@ -139,11 +177,36 @@ JAVA_OBJECT xmlvm_create_java_string(const char* s);
 //---------------------------------------------------------------------------------------------
 // XMLVMClass
 
+
+extern java_lang_Class* __CLASS_boolean_TYPE;
+extern java_lang_Class* __CLASS_byte_TYPE;
+extern java_lang_Class* __CLASS_char_TYPE;
+extern java_lang_Class* __CLASS_short_TYPE;
+extern java_lang_Class* __CLASS_int_TYPE;
+extern java_lang_Class* __CLASS_long_TYPE;
+extern java_lang_Class* __CLASS_float_TYPE;
+extern java_lang_Class* __CLASS_double_TYPE;
+
+extern JAVA_OBJECT __CLASS_boolean_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_byte_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_char_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_short_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_int_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_long_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_float_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_double_ARRAYTYPE;
+
+//TODO Needed for java_lang_CharacterData00.c
+extern JAVA_OBJECT __CLASS_char_ARRAYTYPE_ARRAYTYPE_ARRAYTYPE;
+//TODO Needed for java_math_BigDecimal.c
+extern JAVA_OBJECT __CLASS_long_ARRAYTYPE_ARRAYTYPE;
+
+
 JAVA_OBJECT __NEW_XMLVMClass(/*__TIB_DEFINITION_TEMPLATE*/ void* clazz);
-JAVA_BOOLEAN XMLVMClass_isArray(JAVA_OBJECT* clazz);
-JAVA_BOOLEAN XMLVMClass_isPrimitive(JAVA_OBJECT* clazz);
-void XMLVMClass_setPrimitive(JAVA_OBJECT* clazz, JAVA_BOOLEAN flag);
-__TIB_DEFINITION_TEMPLATE* xmlvm_get_tib(JAVA_OBJECT clazz);
+__TIB_DEFINITION_TEMPLATE* XMLVMClass_getTIB(JAVA_OBJECT clazz);
+JAVA_BOOLEAN XMLVMClass_isArray(JAVA_OBJECT clazz);
+JAVA_BOOLEAN XMLVMClass_isPrimitive(JAVA_OBJECT clazz);
+void XMLVMClass_setPrimitive(JAVA_OBJECT clazz, JAVA_BOOLEAN flag);
 
 
 //---------------------------------------------------------------------------------------------

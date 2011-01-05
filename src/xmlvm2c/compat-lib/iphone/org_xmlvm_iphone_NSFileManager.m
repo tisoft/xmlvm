@@ -8,9 +8,16 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSFileManager __TIB_org_xmlvm_iphone_NSFileMan
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSFileManager;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSFileManager_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+};
 
 void __INIT_org_xmlvm_iphone_NSFileManager()
 {
@@ -28,6 +35,10 @@ void __INIT_org_xmlvm_iphone_NSFileManager()
     __TIB_org_xmlvm_iphone_NSFileManager.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSFileManager.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_NSFileManager.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSFileManager.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_NSFileManager = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_NSFileManager);
+    __TIB_org_xmlvm_iphone_NSFileManager.clazz = __CLASS_org_xmlvm_iphone_NSFileManager;
     org_xmlvm_iphone_NSFileManager___CLINIT_();
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSFileManager]
     //XMLVM_END_WRAPPER

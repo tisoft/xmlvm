@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIDeviceBatteryState __TIB_org_xmlvm_iphone_UI
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDeviceBatteryState;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDeviceBatteryState_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -14,6 +18,37 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UIDeviceBatteryState_Unknown;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIDeviceBatteryState_Unplugged;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIDeviceBatteryState_Charging;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIDeviceBatteryState_Full;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Unknown",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIDeviceBatteryState_Unknown,
+    "",
+    JAVA_NULL},
+    {"Unplugged",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIDeviceBatteryState_Unplugged,
+    "",
+    JAVA_NULL},
+    {"Charging",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIDeviceBatteryState_Charging,
+    "",
+    JAVA_NULL},
+    {"Full",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIDeviceBatteryState_Full,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIDeviceBatteryState()
 {
@@ -32,6 +67,10 @@ void __INIT_org_xmlvm_iphone_UIDeviceBatteryState()
     _STATIC_org_xmlvm_iphone_UIDeviceBatteryState_Charging = 2;
     _STATIC_org_xmlvm_iphone_UIDeviceBatteryState_Full = 3;
 
+    __TIB_org_xmlvm_iphone_UIDeviceBatteryState.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIDeviceBatteryState.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIDeviceBatteryState = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIDeviceBatteryState);
+    __TIB_org_xmlvm_iphone_UIDeviceBatteryState.clazz = __CLASS_org_xmlvm_iphone_UIDeviceBatteryState;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIDeviceBatteryState]
     //XMLVM_END_WRAPPER

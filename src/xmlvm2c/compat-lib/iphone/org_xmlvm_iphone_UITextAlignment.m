@@ -7,12 +7,40 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITextAlignment __TIB_org_xmlvm_iphone_UITextA
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextAlignment;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextAlignment_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITextAlignment_Left;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITextAlignment_Center;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITextAlignment_Right;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Left",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITextAlignment_Left,
+    "",
+    JAVA_NULL},
+    {"Center",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITextAlignment_Center,
+    "",
+    JAVA_NULL},
+    {"Right",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITextAlignment_Right,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UITextAlignment()
 {
@@ -30,6 +58,10 @@ void __INIT_org_xmlvm_iphone_UITextAlignment()
     _STATIC_org_xmlvm_iphone_UITextAlignment_Center = 1;
     _STATIC_org_xmlvm_iphone_UITextAlignment_Right = 2;
 
+    __TIB_org_xmlvm_iphone_UITextAlignment.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITextAlignment.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UITextAlignment = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UITextAlignment);
+    __TIB_org_xmlvm_iphone_UITextAlignment.clazz = __CLASS_org_xmlvm_iphone_UITextAlignment;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITextAlignment]
     //XMLVM_END_WRAPPER

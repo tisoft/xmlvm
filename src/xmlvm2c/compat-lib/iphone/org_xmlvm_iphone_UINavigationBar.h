@@ -32,6 +32,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 // Class declarations for org.xmlvm.iphone.UINavigationBar
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UINavigationBar, 86)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBar;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBar_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationBar
 //XMLVM_END_DECLARATIONS

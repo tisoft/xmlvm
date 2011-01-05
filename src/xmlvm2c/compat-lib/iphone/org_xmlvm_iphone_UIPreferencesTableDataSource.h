@@ -16,6 +16,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPreferencesTableCell)
 // Class declarations for org.xmlvm.iphone.UIPreferencesTableDataSource
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPreferencesTableDataSource, 20)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPreferencesTableDataSource;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPreferencesTableDataSource_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPreferencesTableDataSource
 //XMLVM_END_DECLARATIONS

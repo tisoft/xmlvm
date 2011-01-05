@@ -7,12 +7,40 @@ __TIB_DEFINITION_org_xmlvm_iphone_MessageComposeResult __TIB_org_xmlvm_iphone_Me
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MessageComposeResult;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MessageComposeResult_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_MessageComposeResult_Cancelled;
 static JAVA_INT _STATIC_org_xmlvm_iphone_MessageComposeResult_Sent;
 static JAVA_INT _STATIC_org_xmlvm_iphone_MessageComposeResult_Failed;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Cancelled",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_MessageComposeResult_Cancelled,
+    "",
+    JAVA_NULL},
+    {"Sent",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_MessageComposeResult_Sent,
+    "",
+    JAVA_NULL},
+    {"Failed",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_MessageComposeResult_Failed,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_MessageComposeResult()
 {
@@ -30,6 +58,10 @@ void __INIT_org_xmlvm_iphone_MessageComposeResult()
     _STATIC_org_xmlvm_iphone_MessageComposeResult_Sent = 1;
     _STATIC_org_xmlvm_iphone_MessageComposeResult_Failed = 2;
 
+    __TIB_org_xmlvm_iphone_MessageComposeResult.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MessageComposeResult.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_MessageComposeResult = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_MessageComposeResult);
+    __TIB_org_xmlvm_iphone_MessageComposeResult.clazz = __CLASS_org_xmlvm_iphone_MessageComposeResult;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MessageComposeResult]
     //XMLVM_END_WRAPPER

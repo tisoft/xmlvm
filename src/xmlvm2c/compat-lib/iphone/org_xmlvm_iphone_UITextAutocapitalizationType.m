@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITextAutocapitalizationType __TIB_org_xmlvm_i
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -14,6 +18,37 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UITextAutocapitalizationType_None;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITextAutocapitalizationType_Words;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITextAutocapitalizationType_Sentences;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITextAutocapitalizationType_AllCharacters;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"None",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITextAutocapitalizationType_None,
+    "",
+    JAVA_NULL},
+    {"Words",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITextAutocapitalizationType_Words,
+    "",
+    JAVA_NULL},
+    {"Sentences",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITextAutocapitalizationType_Sentences,
+    "",
+    JAVA_NULL},
+    {"AllCharacters",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITextAutocapitalizationType_AllCharacters,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UITextAutocapitalizationType()
 {
@@ -32,6 +67,10 @@ void __INIT_org_xmlvm_iphone_UITextAutocapitalizationType()
     _STATIC_org_xmlvm_iphone_UITextAutocapitalizationType_Sentences = 2;
     _STATIC_org_xmlvm_iphone_UITextAutocapitalizationType_AllCharacters = 3;
 
+    __TIB_org_xmlvm_iphone_UITextAutocapitalizationType.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITextAutocapitalizationType.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UITextAutocapitalizationType);
+    __TIB_org_xmlvm_iphone_UITextAutocapitalizationType.clazz = __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITextAutocapitalizationType]
     //XMLVM_END_WRAPPER

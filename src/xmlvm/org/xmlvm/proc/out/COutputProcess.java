@@ -283,8 +283,10 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
         }
         List<String> toRet = new ArrayList<String>();
         for (String t : seen) {
-            if (!bad.contains(t) && t.indexOf("[]") == -1) {
-                toRet.add(t.replace('.', '_').replace('$', '_'));
+            int i = t.indexOf('[');
+            String baseType = i == -1 ? t : t.substring(0, i);
+            if (!bad.contains(baseType)) {
+                toRet.add(baseType.replace('.', '_').replace('$', '_'));
             }
         }
         return toRet;

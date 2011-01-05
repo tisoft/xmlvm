@@ -12,6 +12,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIControlDelegate, 12)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlDelegate;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlDelegate_ARRAYTYPE;
+
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControlDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControlDelegate
 typedef struct org_xmlvm_iphone_UIControlDelegate org_xmlvm_iphone_UIControlDelegate;

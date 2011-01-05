@@ -24,6 +24,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 // Class declarations for org.xmlvm.iphone.UIScrollView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIScrollView, 88)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIScrollView
 //XMLVM_END_DECLARATIONS

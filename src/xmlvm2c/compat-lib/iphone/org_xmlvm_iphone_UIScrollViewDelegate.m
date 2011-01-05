@@ -8,9 +8,16 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIScrollViewDelegate __TIB_org_xmlvm_iphone_UI
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollViewDelegate;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollViewDelegate_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+};
 
 void __INIT_org_xmlvm_iphone_UIScrollViewDelegate()
 {
@@ -35,6 +42,10 @@ void __INIT_org_xmlvm_iphone_UIScrollViewDelegate()
     __TIB_org_xmlvm_iphone_UIScrollViewDelegate.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIScrollViewDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIScrollViewDelegate = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIScrollViewDelegate);
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.clazz = __CLASS_org_xmlvm_iphone_UIScrollViewDelegate;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIScrollViewDelegate]
     //XMLVM_END_WRAPPER

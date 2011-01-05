@@ -28,6 +28,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSCalendar)
 // Class declarations for org.xmlvm.iphone.UIDatePicker
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIDatePicker, 90)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIDatePicker
 //XMLVM_END_DECLARATIONS

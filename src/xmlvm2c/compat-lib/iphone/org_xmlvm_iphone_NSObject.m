@@ -7,9 +7,16 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSObject __TIB_org_xmlvm_iphone_NSObject = {
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+};
 
 void __INIT_org_xmlvm_iphone_NSObject()
 {
@@ -27,6 +34,10 @@ void __INIT_org_xmlvm_iphone_NSObject()
     __TIB_org_xmlvm_iphone_NSObject.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSObject.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_NSObject.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSObject.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_NSObject = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_NSObject);
+    __TIB_org_xmlvm_iphone_NSObject.clazz = __CLASS_org_xmlvm_iphone_NSObject;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSObject]
     //XMLVM_END_WRAPPER
@@ -59,7 +70,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSObject()
 void org_xmlvm_iphone_NSObject___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    java_lang_Object___INIT___(me);
     //XMLVM_END_WRAPPER
 }
 

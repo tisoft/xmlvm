@@ -7,12 +7,40 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIStatusBarStyle __TIB_org_xmlvm_iphone_UIStat
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIStatusBarStyle;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIStatusBarStyle_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIStatusBarStyle_Default;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIStatusBarStyle_BlackTranslucent;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIStatusBarStyle_BlackOpaque;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Default",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIStatusBarStyle_Default,
+    "",
+    JAVA_NULL},
+    {"BlackTranslucent",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIStatusBarStyle_BlackTranslucent,
+    "",
+    JAVA_NULL},
+    {"BlackOpaque",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIStatusBarStyle_BlackOpaque,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIStatusBarStyle()
 {
@@ -30,6 +58,10 @@ void __INIT_org_xmlvm_iphone_UIStatusBarStyle()
     _STATIC_org_xmlvm_iphone_UIStatusBarStyle_BlackTranslucent = 1;
     _STATIC_org_xmlvm_iphone_UIStatusBarStyle_BlackOpaque = 2;
 
+    __TIB_org_xmlvm_iphone_UIStatusBarStyle.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIStatusBarStyle.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIStatusBarStyle = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIStatusBarStyle);
+    __TIB_org_xmlvm_iphone_UIStatusBarStyle.clazz = __CLASS_org_xmlvm_iphone_UIStatusBarStyle;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIStatusBarStyle]
     //XMLVM_END_WRAPPER

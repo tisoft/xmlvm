@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_SKPaymentTransactionState __TIB_org_xmlvm_ipho
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentTransactionState;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentTransactionState_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -14,6 +18,37 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Purchasing;
 static JAVA_INT _STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Purchased;
 static JAVA_INT _STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Failed;
 static JAVA_INT _STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Restored;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Purchasing",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Purchasing,
+    "",
+    JAVA_NULL},
+    {"Purchased",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Purchased,
+    "",
+    JAVA_NULL},
+    {"Failed",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Failed,
+    "",
+    JAVA_NULL},
+    {"Restored",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Restored,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_SKPaymentTransactionState()
 {
@@ -32,6 +67,10 @@ void __INIT_org_xmlvm_iphone_SKPaymentTransactionState()
     _STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Failed = 2;
     _STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Restored = 3;
 
+    __TIB_org_xmlvm_iphone_SKPaymentTransactionState.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_SKPaymentTransactionState.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_SKPaymentTransactionState = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_SKPaymentTransactionState);
+    __TIB_org_xmlvm_iphone_SKPaymentTransactionState.clazz = __CLASS_org_xmlvm_iphone_SKPaymentTransactionState;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_SKPaymentTransactionState]
     //XMLVM_END_WRAPPER

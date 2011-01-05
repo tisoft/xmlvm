@@ -7,9 +7,44 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIEdgeInsets __TIB_org_xmlvm_iphone_UIEdgeInse
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEdgeInsets;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEdgeInsets_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"top",
+    &__CLASS_float_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC,
+    XMLVM_OFFSETOF(org_xmlvm_iphone_UIEdgeInsets, fields.org_xmlvm_iphone_UIEdgeInsets.top_),
+    0,
+    "",
+    JAVA_NULL},
+    {"left",
+    &__CLASS_float_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC,
+    XMLVM_OFFSETOF(org_xmlvm_iphone_UIEdgeInsets, fields.org_xmlvm_iphone_UIEdgeInsets.left_),
+    0,
+    "",
+    JAVA_NULL},
+    {"bottom",
+    &__CLASS_float_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC,
+    XMLVM_OFFSETOF(org_xmlvm_iphone_UIEdgeInsets, fields.org_xmlvm_iphone_UIEdgeInsets.bottom_),
+    0,
+    "",
+    JAVA_NULL},
+    {"right",
+    &__CLASS_float_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC,
+    XMLVM_OFFSETOF(org_xmlvm_iphone_UIEdgeInsets, fields.org_xmlvm_iphone_UIEdgeInsets.right_),
+    0,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIEdgeInsets()
 {
@@ -24,6 +59,10 @@ void __INIT_org_xmlvm_iphone_UIEdgeInsets()
     __TIB_org_xmlvm_iphone_UIEdgeInsets.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIEdgeInsets.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_UIEdgeInsets.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIEdgeInsets.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIEdgeInsets = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIEdgeInsets);
+    __TIB_org_xmlvm_iphone_UIEdgeInsets.clazz = __CLASS_org_xmlvm_iphone_UIEdgeInsets;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIEdgeInsets]
     //XMLVM_END_WRAPPER

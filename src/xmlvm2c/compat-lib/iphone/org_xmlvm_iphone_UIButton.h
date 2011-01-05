@@ -36,6 +36,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.UIButton
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIButton, 91)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButton;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButton_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIButton
 //XMLVM_END_DECLARATIONS

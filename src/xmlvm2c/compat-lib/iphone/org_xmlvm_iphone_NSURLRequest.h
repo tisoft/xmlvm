@@ -20,6 +20,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
 // Class declarations for org.xmlvm.iphone.NSURLRequest
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSURLRequest, 15)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLRequest;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLRequest_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSURLRequest
 //XMLVM_END_DECLARATIONS

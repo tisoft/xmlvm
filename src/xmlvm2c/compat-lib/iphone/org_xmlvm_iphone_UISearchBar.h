@@ -28,6 +28,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.UISearchBar
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISearchBar, 101)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISearchBar;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISearchBar_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UISearchBar
 //XMLVM_END_DECLARATIONS

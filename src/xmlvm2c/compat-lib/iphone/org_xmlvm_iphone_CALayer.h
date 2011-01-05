@@ -28,6 +28,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CAAnimation)
 // Class declarations for org.xmlvm.iphone.CALayer
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CALayer, 22)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CALayer
 //XMLVM_END_DECLARATIONS

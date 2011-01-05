@@ -11,9 +11,16 @@ __TIB_DEFINITION_org_xmlvm_iphone_AVAudioPlayer __TIB_org_xmlvm_iphone_AVAudioPl
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayer;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayer_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+};
 
 void __INIT_org_xmlvm_iphone_AVAudioPlayer()
 {
@@ -46,6 +53,10 @@ void __INIT_org_xmlvm_iphone_AVAudioPlayer()
     __TIB_org_xmlvm_iphone_AVAudioPlayer.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_AVAudioPlayer.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_AVAudioPlayer.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_AVAudioPlayer.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_AVAudioPlayer = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_AVAudioPlayer);
+    __TIB_org_xmlvm_iphone_AVAudioPlayer.clazz = __CLASS_org_xmlvm_iphone_AVAudioPlayer;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_AVAudioPlayer]
     //XMLVM_END_WRAPPER

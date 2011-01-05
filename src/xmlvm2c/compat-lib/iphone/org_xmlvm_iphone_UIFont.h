@@ -20,6 +20,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.UIFont
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIFont, 18)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIFont;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIFont_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIFont
 //XMLVM_END_DECLARATIONS

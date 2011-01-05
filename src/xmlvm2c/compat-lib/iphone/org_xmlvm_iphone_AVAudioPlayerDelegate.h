@@ -12,6 +12,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_AVAudioPlayerDelegate, 15)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate_ARRAYTYPE;
+
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_AVAudioPlayerDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_AVAudioPlayerDelegate
 typedef struct org_xmlvm_iphone_AVAudioPlayerDelegate org_xmlvm_iphone_AVAudioPlayerDelegate;

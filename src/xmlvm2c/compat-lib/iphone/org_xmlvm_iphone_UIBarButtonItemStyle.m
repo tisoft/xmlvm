@@ -7,12 +7,40 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIBarButtonItemStyle __TIB_org_xmlvm_iphone_UI
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItemStyle;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItemStyle_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIBarButtonItemStyle_Plain;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIBarButtonItemStyle_Bordered;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIBarButtonItemStyle_Done;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Plain",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIBarButtonItemStyle_Plain,
+    "",
+    JAVA_NULL},
+    {"Bordered",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIBarButtonItemStyle_Bordered,
+    "",
+    JAVA_NULL},
+    {"Done",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIBarButtonItemStyle_Done,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIBarButtonItemStyle()
 {
@@ -30,6 +58,10 @@ void __INIT_org_xmlvm_iphone_UIBarButtonItemStyle()
     _STATIC_org_xmlvm_iphone_UIBarButtonItemStyle_Bordered = 1;
     _STATIC_org_xmlvm_iphone_UIBarButtonItemStyle_Done = 2;
 
+    __TIB_org_xmlvm_iphone_UIBarButtonItemStyle.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIBarButtonItemStyle.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIBarButtonItemStyle = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIBarButtonItemStyle);
+    __TIB_org_xmlvm_iphone_UIBarButtonItemStyle.clazz = __CLASS_org_xmlvm_iphone_UIBarButtonItemStyle;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIBarButtonItemStyle]
     //XMLVM_END_WRAPPER

@@ -12,9 +12,23 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITabBar __TIB_org_xmlvm_iphone_UITabBar = {
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBar;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBar_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"tbcontrol",
+    &__CLASS_org_xmlvm_iphone_UITabBarController,
+    0,
+    XMLVM_OFFSETOF(org_xmlvm_iphone_UITabBar, fields.org_xmlvm_iphone_UITabBar.tbcontrol_),
+    0,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UITabBar()
 {
@@ -47,6 +61,10 @@ void __INIT_org_xmlvm_iphone_UITabBar()
     __TIB_org_xmlvm_iphone_UITabBar.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UITabBar.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_UITabBar.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITabBar.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UITabBar = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UITabBar);
+    __TIB_org_xmlvm_iphone_UITabBar.clazz = __CLASS_org_xmlvm_iphone_UITabBar;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITabBar]
     //XMLVM_END_WRAPPER

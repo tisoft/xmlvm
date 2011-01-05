@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITouchPhase __TIB_org_xmlvm_iphone_UITouchPha
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouchPhase;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouchPhase_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -15,6 +19,44 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UITouchPhase_Moved;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITouchPhase_Stationary;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITouchPhase_Ended;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITouchPhase_Cancelled;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Began",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITouchPhase_Began,
+    "",
+    JAVA_NULL},
+    {"Moved",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITouchPhase_Moved,
+    "",
+    JAVA_NULL},
+    {"Stationary",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITouchPhase_Stationary,
+    "",
+    JAVA_NULL},
+    {"Ended",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITouchPhase_Ended,
+    "",
+    JAVA_NULL},
+    {"Cancelled",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITouchPhase_Cancelled,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UITouchPhase()
 {
@@ -34,6 +76,10 @@ void __INIT_org_xmlvm_iphone_UITouchPhase()
     _STATIC_org_xmlvm_iphone_UITouchPhase_Ended = 3;
     _STATIC_org_xmlvm_iphone_UITouchPhase_Cancelled = 4;
 
+    __TIB_org_xmlvm_iphone_UITouchPhase.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITouchPhase.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UITouchPhase = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UITouchPhase);
+    __TIB_org_xmlvm_iphone_UITouchPhase.clazz = __CLASS_org_xmlvm_iphone_UITouchPhase;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITouchPhase]
     //XMLVM_END_WRAPPER

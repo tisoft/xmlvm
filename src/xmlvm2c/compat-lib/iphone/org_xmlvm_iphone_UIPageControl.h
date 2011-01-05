@@ -16,6 +16,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 // Class declarations for org.xmlvm.iphone.UIPageControl
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPageControl, 80)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPageControl;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPageControl_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPageControl
 //XMLVM_END_DECLARATIONS

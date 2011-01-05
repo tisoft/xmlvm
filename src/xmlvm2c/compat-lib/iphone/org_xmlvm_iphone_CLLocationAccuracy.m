@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_CLLocationAccuracy __TIB_org_xmlvm_iphone_CLLo
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationAccuracy;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationAccuracy_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -16,6 +20,51 @@ static JAVA_DOUBLE _STATIC_org_xmlvm_iphone_CLLocationAccuracy_NearestTenMeters;
 static JAVA_DOUBLE _STATIC_org_xmlvm_iphone_CLLocationAccuracy_HundredMeters;
 static JAVA_DOUBLE _STATIC_org_xmlvm_iphone_CLLocationAccuracy_Kilometer;
 static JAVA_DOUBLE _STATIC_org_xmlvm_iphone_CLLocationAccuracy_ThreeKilometers;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"BestForNavigation",
+    &__CLASS_double_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CLLocationAccuracy_BestForNavigation,
+    "",
+    JAVA_NULL},
+    {"Best",
+    &__CLASS_double_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CLLocationAccuracy_Best,
+    "",
+    JAVA_NULL},
+    {"NearestTenMeters",
+    &__CLASS_double_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CLLocationAccuracy_NearestTenMeters,
+    "",
+    JAVA_NULL},
+    {"HundredMeters",
+    &__CLASS_double_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CLLocationAccuracy_HundredMeters,
+    "",
+    JAVA_NULL},
+    {"Kilometer",
+    &__CLASS_double_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CLLocationAccuracy_Kilometer,
+    "",
+    JAVA_NULL},
+    {"ThreeKilometers",
+    &__CLASS_double_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CLLocationAccuracy_ThreeKilometers,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_CLLocationAccuracy()
 {
@@ -36,6 +85,10 @@ void __INIT_org_xmlvm_iphone_CLLocationAccuracy()
     _STATIC_org_xmlvm_iphone_CLLocationAccuracy_Kilometer = 1000.0;
     _STATIC_org_xmlvm_iphone_CLLocationAccuracy_ThreeKilometers = 3000.0;
 
+    __TIB_org_xmlvm_iphone_CLLocationAccuracy.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CLLocationAccuracy.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_CLLocationAccuracy = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_CLLocationAccuracy);
+    __TIB_org_xmlvm_iphone_CLLocationAccuracy.clazz = __CLASS_org_xmlvm_iphone_CLLocationAccuracy;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CLLocationAccuracy]
     //XMLVM_END_WRAPPER

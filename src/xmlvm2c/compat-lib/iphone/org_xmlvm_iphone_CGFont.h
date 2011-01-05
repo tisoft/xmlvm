@@ -16,6 +16,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGFont)
 // Class declarations for org.xmlvm.iphone.CGFont
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGFont, 17)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGFont;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGFont_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGFont
 //XMLVM_END_DECLARATIONS

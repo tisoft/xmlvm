@@ -37,6 +37,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
 // Class declarations for org.xmlvm.iphone.UITabBarController
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBarController, 79)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarController;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarController_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITabBarController
 //XMLVM_END_DECLARATIONS

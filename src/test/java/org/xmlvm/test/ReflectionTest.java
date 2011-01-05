@@ -20,12 +20,19 @@
 
 package org.xmlvm.test;
 
+import java.lang.reflect.Field;
+
 public class ReflectionTest {
 
-    public int x;
+    public static String staticLabel = "Hello World";
+
+    public int           x;
+    public String        label;
+
 
     public ReflectionTest() {
         x = 42;
+        label = "XMLVM";
     }
 
     public static void main(String[] args) throws InstantiationException, IllegalAccessException {
@@ -35,6 +42,10 @@ public class ReflectionTest {
         System.out.println(obj.getClass().getName());
         System.out.println(obj.x);
         System.out.println(int.class.getName());
+
+        for (Field field : ReflectionTest.class.getDeclaredFields()) {
+            System.out.println(field.getName() + " (" + field.getType().getName() + ") = " + field.get(obj));
+        }
     }
 
 }

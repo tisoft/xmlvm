@@ -35,6 +35,13 @@ public class XMLVMUtil {
      */
     @SuppressWarnings("unused")
     private static void init() {
-        System.setOut(new PrintStream(new XMLVMOutputStream()));
+        PrintStream stream = new PrintStream(new XMLVMOutputStream());
+        System.setOut(stream);
+        System.setErr(stream);
+    }
+    
+    public static void notImplemented() {
+        System.err.println("XMLVMUtil.notImplemented()");
+        System.exit(-1);
     }
 }

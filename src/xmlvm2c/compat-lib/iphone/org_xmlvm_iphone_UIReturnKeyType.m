@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIReturnKeyType __TIB_org_xmlvm_iphone_UIRetur
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIReturnKeyType;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIReturnKeyType_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -21,6 +25,86 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UIReturnKeyType_Send;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIReturnKeyType_Yahoo;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIReturnKeyType_Done;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIReturnKeyType_EmergencyCall;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Default",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIReturnKeyType_Default,
+    "",
+    JAVA_NULL},
+    {"Go",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIReturnKeyType_Go,
+    "",
+    JAVA_NULL},
+    {"Google",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIReturnKeyType_Google,
+    "",
+    JAVA_NULL},
+    {"Join",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIReturnKeyType_Join,
+    "",
+    JAVA_NULL},
+    {"Next",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIReturnKeyType_Next,
+    "",
+    JAVA_NULL},
+    {"Route",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIReturnKeyType_Route,
+    "",
+    JAVA_NULL},
+    {"Search",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIReturnKeyType_Search,
+    "",
+    JAVA_NULL},
+    {"Send",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIReturnKeyType_Send,
+    "",
+    JAVA_NULL},
+    {"Yahoo",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIReturnKeyType_Yahoo,
+    "",
+    JAVA_NULL},
+    {"Done",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIReturnKeyType_Done,
+    "",
+    JAVA_NULL},
+    {"EmergencyCall",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIReturnKeyType_EmergencyCall,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIReturnKeyType()
 {
@@ -46,6 +130,10 @@ void __INIT_org_xmlvm_iphone_UIReturnKeyType()
     _STATIC_org_xmlvm_iphone_UIReturnKeyType_Done = 9;
     _STATIC_org_xmlvm_iphone_UIReturnKeyType_EmergencyCall = 10;
 
+    __TIB_org_xmlvm_iphone_UIReturnKeyType.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIReturnKeyType.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIReturnKeyType = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIReturnKeyType);
+    __TIB_org_xmlvm_iphone_UIReturnKeyType.clazz = __CLASS_org_xmlvm_iphone_UIReturnKeyType;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIReturnKeyType]
     //XMLVM_END_WRAPPER

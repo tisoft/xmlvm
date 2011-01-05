@@ -32,6 +32,7 @@ JAVA_OBJECT xmlvm_exception;
 
 __TIB_DEFINITION_XMLVMArray __TIB_XMLVMArray;
 
+//TODO these are not initialized anywhere!
 __TIB_DEFINITION_java_lang_Object_ARRAYTYPE __TIB_java_lang_Object_ARRAYTYPE;
 __TIB_DEFINITION_boolean_ARRAYTYPE          __TIB_boolean_ARRAYTYPE;
 __TIB_DEFINITION_byte_ARRAYTYPE             __TIB_byte_ARRAYTYPE;
@@ -41,6 +42,21 @@ __TIB_DEFINITION_int_ARRAYTYPE              __TIB_int_ARRAYTYPE;
 __TIB_DEFINITION_long_ARRAYTYPE             __TIB_long_ARRAYTYPE;
 __TIB_DEFINITION_float_ARRAYTYPE            __TIB_float_ARRAYTYPE;
 __TIB_DEFINITION_double_ARRAYTYPE           __TIB_double_ARRAYTYPE;
+
+//TODO these are not initialized anywhere!
+JAVA_OBJECT __CLASS_boolean_ARRAYTYPE;
+JAVA_OBJECT __CLASS_byte_ARRAYTYPE;
+JAVA_OBJECT __CLASS_char_ARRAYTYPE;
+JAVA_OBJECT __CLASS_short_ARRAYTYPE;
+JAVA_OBJECT __CLASS_int_ARRAYTYPE;
+JAVA_OBJECT __CLASS_long_ARRAYTYPE;
+JAVA_OBJECT __CLASS_float_ARRAYTYPE;
+JAVA_OBJECT __CLASS_double_ARRAYTYPE;
+
+//TODO Needed for java_lang_CharacterData00.c. Needs to be initialized.
+JAVA_OBJECT __CLASS_char_ARRAYTYPE_ARRAYTYPE_ARRAYTYPE;
+//TODO Needed for java_math_BigDecimal.c. Needs to be initialized.
+JAVA_OBJECT __CLASS_long_ARRAYTYPE_ARRAYTYPE;
 
 
 void __INIT_XMLVMArray()
@@ -54,6 +70,12 @@ void __INIT_XMLVMArray()
     // Initialize vtable for implementing interfaces
     // TODO Array do implement two interfaces
     __TIB_XMLVMArray.numImplementedInterfaces = 0;
+    //TODO
+    __TIB_XMLVMArray.clazz = JAVA_NULL;
+    __TIB_XMLVMArray.declaredFields = JAVA_NULL;
+    __TIB_XMLVMArray.numDeclaredFields = 0;
+    
+    
 }
 
 void xmlvm_init_system_class()
@@ -128,7 +150,6 @@ int xmlvm_java_string_cmp(JAVA_OBJECT* s1, const char* s2)
     JAVA_INT offset = str->fields.java_lang_String.offset_;
     XMLVMArray* value = (XMLVMArray*) str->fields.java_lang_String.value_;
     for (int i = 0; i < len; i++) {
-        //TODO should be array.c?
         if (value->array.c[i + offset] != s2[i]) {
             return 0;
         }
@@ -153,7 +174,7 @@ XMLVM_DEFINE_CLASS(XMLVMClass, XMLVM_VTABLE_SIZE_java_lang_Class)
 #define __INSTANCE_FIELDS_XMLVMClass \
     __INSTANCE_FIELDS_java_lang_Class; \
     struct { \
-        __TIB_DEFINITION_TEMPLATE* clazz; \
+        __TIB_DEFINITION_TEMPLATE* tib; \
         JAVA_BOOLEAN               isArray; \
         JAVA_BOOLEAN               isPrimitive; \
     } XMLVMClass
@@ -174,19 +195,25 @@ __TIB_DEFINITION_XMLVMClass __TIB_XMLVMClass = {
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Class, // extends
 };
 
-JAVA_BOOLEAN XMLVMClass_isArray(JAVA_OBJECT* clazz)
+__TIB_DEFINITION_TEMPLATE* XMLVMClass_getTIB(JAVA_OBJECT clazz)
+{
+    XMLVMClass* c = (XMLVMClass*) clazz;
+    return c->fields.XMLVMClass.tib;
+}
+
+JAVA_BOOLEAN XMLVMClass_isArray(JAVA_OBJECT clazz)
 {
     XMLVMClass* c = (XMLVMClass*) clazz;
     return c->fields.XMLVMClass.isArray;
 }
 
-JAVA_BOOLEAN XMLVMClass_isPrimitive(JAVA_OBJECT* clazz)
+JAVA_BOOLEAN XMLVMClass_isPrimitive(JAVA_OBJECT clazz)
 {
     XMLVMClass* c = (XMLVMClass*) clazz;
     return c->fields.XMLVMClass.isPrimitive;
 }
 
-void XMLVMClass_setPrimitive(JAVA_OBJECT* clazz, JAVA_BOOLEAN flag)
+void XMLVMClass_setPrimitive(JAVA_OBJECT clazz, JAVA_BOOLEAN flag)
 {
     XMLVMClass* c = (XMLVMClass*) clazz;
     c->fields.XMLVMClass.isPrimitive = flag;
@@ -195,7 +222,7 @@ void XMLVMClass_setPrimitive(JAVA_OBJECT* clazz, JAVA_BOOLEAN flag)
 JAVA_OBJECT XMLVMClass_newInstance(JAVA_OBJECT me)
 {
     XMLVMClass* clazz = (XMLVMClass*) me;
-    return (*(clazz->fields.XMLVMClass.clazz->newInstanceFunc))();
+    return (*(clazz->fields.XMLVMClass.tib->newInstanceFunc))();
 }
 
 void __INIT_XMLVMClass()
@@ -218,16 +245,10 @@ JAVA_OBJECT __NEW_XMLVMClass(/*__TIB_DEFINITION_TEMPLATE*/ void* clazz)
     __TIB_DEFINITION_TEMPLATE* c = (__TIB_DEFINITION_TEMPLATE*) clazz;
     me = (XMLVMClass*) XMLVM_MALLOC(sizeof(XMLVMClass));
     me->tib = &__TIB_XMLVMClass;
-    me->fields.XMLVMClass.clazz = c;
+    me->fields.XMLVMClass.tib = c;
     me->fields.XMLVMClass.isArray = 0;
     me->fields.XMLVMClass.isPrimitive = 0;
     return me;
-}
-
-__TIB_DEFINITION_TEMPLATE* xmlvm_get_tib(JAVA_OBJECT clazz)
-{
-    XMLVMClass* c = (XMLVMClass*) clazz;
-    return c->fields.XMLVMClass.clazz;
 }
 
 

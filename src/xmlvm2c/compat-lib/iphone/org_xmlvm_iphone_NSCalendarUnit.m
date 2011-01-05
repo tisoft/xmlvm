@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSCalendarUnit __TIB_org_xmlvm_iphone_NSCalend
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSCalendarUnit;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSCalendarUnit_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -20,6 +24,79 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_NSCalendarUnit_Second;
 static JAVA_INT _STATIC_org_xmlvm_iphone_NSCalendarUnit_Week;
 static JAVA_INT _STATIC_org_xmlvm_iphone_NSCalendarUnit_Weekday;
 static JAVA_INT _STATIC_org_xmlvm_iphone_NSCalendarUnit_WeekdayOrdinal;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Era",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSCalendarUnit_Era,
+    "",
+    JAVA_NULL},
+    {"Year",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSCalendarUnit_Year,
+    "",
+    JAVA_NULL},
+    {"Month",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSCalendarUnit_Month,
+    "",
+    JAVA_NULL},
+    {"Day",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSCalendarUnit_Day,
+    "",
+    JAVA_NULL},
+    {"Hour",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSCalendarUnit_Hour,
+    "",
+    JAVA_NULL},
+    {"Minute",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSCalendarUnit_Minute,
+    "",
+    JAVA_NULL},
+    {"Second",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSCalendarUnit_Second,
+    "",
+    JAVA_NULL},
+    {"Week",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSCalendarUnit_Week,
+    "",
+    JAVA_NULL},
+    {"Weekday",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSCalendarUnit_Weekday,
+    "",
+    JAVA_NULL},
+    {"WeekdayOrdinal",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSCalendarUnit_WeekdayOrdinal,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_NSCalendarUnit()
 {
@@ -44,6 +121,10 @@ void __INIT_org_xmlvm_iphone_NSCalendarUnit()
     _STATIC_org_xmlvm_iphone_NSCalendarUnit_Weekday = 512;
     _STATIC_org_xmlvm_iphone_NSCalendarUnit_WeekdayOrdinal = 1024;
 
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_NSCalendarUnit = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_NSCalendarUnit);
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.clazz = __CLASS_org_xmlvm_iphone_NSCalendarUnit;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSCalendarUnit]
     //XMLVM_END_WRAPPER

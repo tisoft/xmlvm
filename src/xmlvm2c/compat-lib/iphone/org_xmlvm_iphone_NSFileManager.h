@@ -20,6 +20,9 @@ XMLVM_FORWARD_DECL(java_util_List)
 // Class declarations for org.xmlvm.iphone.NSFileManager
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSFileManager, 17)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSFileManager;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSFileManager_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSFileManager
 //XMLVM_END_DECLARATIONS

@@ -7,11 +7,32 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITableViewCellSeparatorStyle __TIB_org_xmlvm_
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCellSeparatorStyle;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCellSeparatorStyle_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITableViewCellSeparatorStyle_None;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITableViewCellSeparatorStyle_SingleLine;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"None",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewCellSeparatorStyle_None,
+    "",
+    JAVA_NULL},
+    {"SingleLine",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewCellSeparatorStyle_SingleLine,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UITableViewCellSeparatorStyle()
 {
@@ -28,6 +49,10 @@ void __INIT_org_xmlvm_iphone_UITableViewCellSeparatorStyle()
     _STATIC_org_xmlvm_iphone_UITableViewCellSeparatorStyle_None = 0;
     _STATIC_org_xmlvm_iphone_UITableViewCellSeparatorStyle_SingleLine = 1;
 
+    __TIB_org_xmlvm_iphone_UITableViewCellSeparatorStyle.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITableViewCellSeparatorStyle.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UITableViewCellSeparatorStyle = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UITableViewCellSeparatorStyle);
+    __TIB_org_xmlvm_iphone_UITableViewCellSeparatorStyle.clazz = __CLASS_org_xmlvm_iphone_UITableViewCellSeparatorStyle;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITableViewCellSeparatorStyle]
     //XMLVM_END_WRAPPER

@@ -7,12 +7,40 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITableViewCellEditingStyle __TIB_org_xmlvm_ip
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCellEditingStyle;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCellEditingStyle_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_None;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_Delete;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_Insert;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"None",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_None,
+    "",
+    JAVA_NULL},
+    {"Delete",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_Delete,
+    "",
+    JAVA_NULL},
+    {"Insert",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_Insert,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UITableViewCellEditingStyle()
 {
@@ -30,6 +58,10 @@ void __INIT_org_xmlvm_iphone_UITableViewCellEditingStyle()
     _STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_Delete = 1;
     _STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_Insert = 2;
 
+    __TIB_org_xmlvm_iphone_UITableViewCellEditingStyle.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITableViewCellEditingStyle.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UITableViewCellEditingStyle = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UITableViewCellEditingStyle);
+    __TIB_org_xmlvm_iphone_UITableViewCellEditingStyle.clazz = __CLASS_org_xmlvm_iphone_UITableViewCellEditingStyle;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITableViewCellEditingStyle]
     //XMLVM_END_WRAPPER

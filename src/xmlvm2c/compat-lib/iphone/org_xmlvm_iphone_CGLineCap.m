@@ -7,12 +7,40 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGLineCap __TIB_org_xmlvm_iphone_CGLineCap = {
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLineCap;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLineCap_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapButt;
 static JAVA_INT _STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapRound;
 static JAVA_INT _STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapSquare;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"kCGLineCapButt",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapButt,
+    "",
+    JAVA_NULL},
+    {"kCGLineCapRound",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapRound,
+    "",
+    JAVA_NULL},
+    {"kCGLineCapSquare",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapSquare,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_CGLineCap()
 {
@@ -30,6 +58,10 @@ void __INIT_org_xmlvm_iphone_CGLineCap()
     _STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapRound = 1;
     _STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapSquare = 2;
 
+    __TIB_org_xmlvm_iphone_CGLineCap.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CGLineCap.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_CGLineCap = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_CGLineCap);
+    __TIB_org_xmlvm_iphone_CGLineCap.clazz = __CLASS_org_xmlvm_iphone_CGLineCap;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGLineCap]
     //XMLVM_END_WRAPPER

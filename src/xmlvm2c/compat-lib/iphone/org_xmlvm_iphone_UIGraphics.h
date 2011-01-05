@@ -20,6 +20,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 // Class declarations for org.xmlvm.iphone.UIGraphics
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIGraphics, 11)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGraphics;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGraphics_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIGraphics
 //XMLVM_END_DECLARATIONS

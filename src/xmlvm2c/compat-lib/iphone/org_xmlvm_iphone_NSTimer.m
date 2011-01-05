@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSTimer __TIB_org_xmlvm_iphone_NSTimer = {
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <CoreFoundation/CoreFoundation.h>
 #import <Foundation/Foundation.h>
@@ -47,6 +51,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSTimer __TIB_org_xmlvm_iphone_NSTimer = {
 //XMLVM_END_IMPLEMENTATION
 
 
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+};
+
 void __INIT_org_xmlvm_iphone_NSTimer()
 {
     __TIB_org_xmlvm_iphone_NSTimer.classInitialized = 1;
@@ -61,6 +68,10 @@ void __INIT_org_xmlvm_iphone_NSTimer()
     __TIB_org_xmlvm_iphone_NSTimer.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSTimer.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_NSTimer.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSTimer.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_NSTimer = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_NSTimer);
+    __TIB_org_xmlvm_iphone_NSTimer.clazz = __CLASS_org_xmlvm_iphone_NSTimer;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSTimer]
     //XMLVM_END_WRAPPER

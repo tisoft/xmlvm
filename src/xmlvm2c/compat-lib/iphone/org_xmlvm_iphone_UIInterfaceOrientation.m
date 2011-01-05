@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIInterfaceOrientation __TIB_org_xmlvm_iphone_
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIInterfaceOrientation;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIInterfaceOrientation_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -14,6 +18,37 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_Portrait;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_PortraitUpsideDown;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_LandscapeLeft;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_LandscapeRight;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Portrait",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIInterfaceOrientation_Portrait,
+    "",
+    JAVA_NULL},
+    {"PortraitUpsideDown",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIInterfaceOrientation_PortraitUpsideDown,
+    "",
+    JAVA_NULL},
+    {"LandscapeLeft",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIInterfaceOrientation_LandscapeLeft,
+    "",
+    JAVA_NULL},
+    {"LandscapeRight",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIInterfaceOrientation_LandscapeRight,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIInterfaceOrientation()
 {
@@ -32,6 +67,10 @@ void __INIT_org_xmlvm_iphone_UIInterfaceOrientation()
     _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_LandscapeLeft = 3;
     _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_LandscapeRight = 4;
 
+    __TIB_org_xmlvm_iphone_UIInterfaceOrientation.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIInterfaceOrientation.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIInterfaceOrientation = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIInterfaceOrientation);
+    __TIB_org_xmlvm_iphone_UIInterfaceOrientation.clazz = __CLASS_org_xmlvm_iphone_UIInterfaceOrientation;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIInterfaceOrientation]
     //XMLVM_END_WRAPPER

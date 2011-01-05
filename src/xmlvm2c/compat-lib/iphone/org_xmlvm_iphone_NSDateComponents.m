@@ -7,10 +7,24 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSDateComponents __TIB_org_xmlvm_iphone_NSDate
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSDateComponents;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSDateComponents_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_NSDateComponents_Wrap;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Wrap",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_NSDateComponents_Wrap,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_NSDateComponents()
 {
@@ -46,6 +60,10 @@ void __INIT_org_xmlvm_iphone_NSDateComponents()
     __TIB_org_xmlvm_iphone_NSDateComponents.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
     _STATIC_org_xmlvm_iphone_NSDateComponents_Wrap = 1;
 
+    __TIB_org_xmlvm_iphone_NSDateComponents.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSDateComponents.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_NSDateComponents = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_NSDateComponents);
+    __TIB_org_xmlvm_iphone_NSDateComponents.clazz = __CLASS_org_xmlvm_iphone_NSDateComponents;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSDateComponents]
     //XMLVM_END_WRAPPER

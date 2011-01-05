@@ -12,6 +12,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControl)
 // Class declarations for org.xmlvm.iphone.UIProgressView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIProgressView, 75)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIProgressView;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIProgressView_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIProgressView
 //XMLVM_END_DECLARATIONS

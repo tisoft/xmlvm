@@ -12,6 +12,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for org.xmlvm.iphone.UITableViewCellSeparatorStyle
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewCellSeparatorStyle, 11)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCellSeparatorStyle;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCellSeparatorStyle_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewCellSeparatorStyle
 //XMLVM_END_DECLARATIONS

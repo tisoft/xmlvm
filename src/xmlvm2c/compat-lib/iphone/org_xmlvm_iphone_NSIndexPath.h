@@ -16,6 +16,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSIndexPath)
 // Class declarations for org.xmlvm.iphone.NSIndexPath
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSIndexPath, 18)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSIndexPath;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSIndexPath_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSIndexPath
 //XMLVM_END_DECLARATIONS

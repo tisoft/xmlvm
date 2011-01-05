@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIWebViewNavigationType __TIB_org_xmlvm_iphone
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebViewNavigationType;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebViewNavigationType_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -16,6 +20,51 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_BackForward;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_Reload;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_FormResubmitted;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_Other;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"LinkClicked",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIWebViewNavigationType_LinkClicked,
+    "",
+    JAVA_NULL},
+    {"FormSubmitted",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIWebViewNavigationType_FormSubmitted,
+    "",
+    JAVA_NULL},
+    {"BackForward",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIWebViewNavigationType_BackForward,
+    "",
+    JAVA_NULL},
+    {"Reload",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIWebViewNavigationType_Reload,
+    "",
+    JAVA_NULL},
+    {"FormResubmitted",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIWebViewNavigationType_FormResubmitted,
+    "",
+    JAVA_NULL},
+    {"Other",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIWebViewNavigationType_Other,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIWebViewNavigationType()
 {
@@ -36,6 +85,10 @@ void __INIT_org_xmlvm_iphone_UIWebViewNavigationType()
     _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_FormResubmitted = 4;
     _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_Other = 5;
 
+    __TIB_org_xmlvm_iphone_UIWebViewNavigationType.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIWebViewNavigationType.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIWebViewNavigationType = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIWebViewNavigationType);
+    __TIB_org_xmlvm_iphone_UIWebViewNavigationType.clazz = __CLASS_org_xmlvm_iphone_UIWebViewNavigationType;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIWebViewNavigationType]
     //XMLVM_END_WRAPPER

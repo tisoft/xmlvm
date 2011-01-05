@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UILineBreakMode __TIB_org_xmlvm_iphone_UILineB
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILineBreakMode;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILineBreakMode_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -16,6 +20,51 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UILineBreakMode_HeadTruncation;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UILineBreakMode_Clip;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UILineBreakMode_TailTruncation;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UILineBreakMode_MiddleTruncation;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"WordWrap",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UILineBreakMode_WordWrap,
+    "",
+    JAVA_NULL},
+    {"CharacterWrap",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UILineBreakMode_CharacterWrap,
+    "",
+    JAVA_NULL},
+    {"HeadTruncation",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UILineBreakMode_HeadTruncation,
+    "",
+    JAVA_NULL},
+    {"Clip",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UILineBreakMode_Clip,
+    "",
+    JAVA_NULL},
+    {"TailTruncation",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UILineBreakMode_TailTruncation,
+    "",
+    JAVA_NULL},
+    {"MiddleTruncation",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UILineBreakMode_MiddleTruncation,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UILineBreakMode()
 {
@@ -36,6 +85,10 @@ void __INIT_org_xmlvm_iphone_UILineBreakMode()
     _STATIC_org_xmlvm_iphone_UILineBreakMode_TailTruncation = 4;
     _STATIC_org_xmlvm_iphone_UILineBreakMode_MiddleTruncation = 5;
 
+    __TIB_org_xmlvm_iphone_UILineBreakMode.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UILineBreakMode.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UILineBreakMode = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UILineBreakMode);
+    __TIB_org_xmlvm_iphone_UILineBreakMode.clazz = __CLASS_org_xmlvm_iphone_UILineBreakMode;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UILineBreakMode]
     //XMLVM_END_WRAPPER

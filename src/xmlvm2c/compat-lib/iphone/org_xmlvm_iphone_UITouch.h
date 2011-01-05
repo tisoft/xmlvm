@@ -24,6 +24,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
 // Class declarations for org.xmlvm.iphone.UITouch
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITouch, 20)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITouch
 //XMLVM_END_DECLARATIONS

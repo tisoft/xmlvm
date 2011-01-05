@@ -12,9 +12,16 @@ __TIB_DEFINITION_org_xmlvm_iphone_SKPaymentTransaction __TIB_org_xmlvm_iphone_SK
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentTransaction;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentTransaction_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+};
 
 void __INIT_org_xmlvm_iphone_SKPaymentTransaction()
 {
@@ -36,6 +43,10 @@ void __INIT_org_xmlvm_iphone_SKPaymentTransaction()
     __TIB_org_xmlvm_iphone_SKPaymentTransaction.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_SKPaymentTransaction.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_SKPaymentTransaction.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_SKPaymentTransaction.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_SKPaymentTransaction = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_SKPaymentTransaction);
+    __TIB_org_xmlvm_iphone_SKPaymentTransaction.clazz = __CLASS_org_xmlvm_iphone_SKPaymentTransaction;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_SKPaymentTransaction]
     //XMLVM_END_WRAPPER

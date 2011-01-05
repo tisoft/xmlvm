@@ -7,11 +7,32 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIProgressViewStyle __TIB_org_xmlvm_iphone_UIP
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIProgressViewStyle;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIProgressViewStyle_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIProgressViewStyle_Default;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIProgressViewStyle_Bar;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Default",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIProgressViewStyle_Default,
+    "",
+    JAVA_NULL},
+    {"Bar",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIProgressViewStyle_Bar,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIProgressViewStyle()
 {
@@ -28,6 +49,10 @@ void __INIT_org_xmlvm_iphone_UIProgressViewStyle()
     _STATIC_org_xmlvm_iphone_UIProgressViewStyle_Default = 0;
     _STATIC_org_xmlvm_iphone_UIProgressViewStyle_Bar = 1;
 
+    __TIB_org_xmlvm_iphone_UIProgressViewStyle.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIProgressViewStyle.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIProgressViewStyle = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIProgressViewStyle);
+    __TIB_org_xmlvm_iphone_UIProgressViewStyle.clazz = __CLASS_org_xmlvm_iphone_UIProgressViewStyle;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIProgressViewStyle]
     //XMLVM_END_WRAPPER

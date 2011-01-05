@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_CLDeviceOrientation __TIB_org_xmlvm_iphone_CLD
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLDeviceOrientation;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLDeviceOrientation_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -17,6 +21,58 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_CLDeviceOrientation_LandscapeLeft;
 static JAVA_INT _STATIC_org_xmlvm_iphone_CLDeviceOrientation_LandscapeRight;
 static JAVA_INT _STATIC_org_xmlvm_iphone_CLDeviceOrientation_FaceUp;
 static JAVA_INT _STATIC_org_xmlvm_iphone_CLDeviceOrientation_FaceDown;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Unknown",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CLDeviceOrientation_Unknown,
+    "",
+    JAVA_NULL},
+    {"Portrait",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CLDeviceOrientation_Portrait,
+    "",
+    JAVA_NULL},
+    {"PortraitUpsideDown",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CLDeviceOrientation_PortraitUpsideDown,
+    "",
+    JAVA_NULL},
+    {"LandscapeLeft",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CLDeviceOrientation_LandscapeLeft,
+    "",
+    JAVA_NULL},
+    {"LandscapeRight",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CLDeviceOrientation_LandscapeRight,
+    "",
+    JAVA_NULL},
+    {"FaceUp",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CLDeviceOrientation_FaceUp,
+    "",
+    JAVA_NULL},
+    {"FaceDown",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CLDeviceOrientation_FaceDown,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_CLDeviceOrientation()
 {
@@ -38,6 +94,10 @@ void __INIT_org_xmlvm_iphone_CLDeviceOrientation()
     _STATIC_org_xmlvm_iphone_CLDeviceOrientation_FaceUp = 5;
     _STATIC_org_xmlvm_iphone_CLDeviceOrientation_FaceDown = 6;
 
+    __TIB_org_xmlvm_iphone_CLDeviceOrientation.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CLDeviceOrientation.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_CLDeviceOrientation = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_CLDeviceOrientation);
+    __TIB_org_xmlvm_iphone_CLDeviceOrientation.clazz = __CLASS_org_xmlvm_iphone_CLDeviceOrientation;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CLDeviceOrientation]
     //XMLVM_END_WRAPPER

@@ -24,6 +24,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.MFMessageComposeViewController
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MFMessageComposeViewController, 91)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMessageComposeViewController;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMessageComposeViewController_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MFMessageComposeViewController
 //XMLVM_END_DECLARATIONS

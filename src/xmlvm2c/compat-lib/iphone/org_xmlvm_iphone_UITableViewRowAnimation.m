@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITableViewRowAnimation __TIB_org_xmlvm_iphone
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewRowAnimation;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewRowAnimation_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -16,6 +20,51 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Left;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Top;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Bottom;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_None;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Fade",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Fade,
+    "",
+    JAVA_NULL},
+    {"Right",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Right,
+    "",
+    JAVA_NULL},
+    {"Left",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Left,
+    "",
+    JAVA_NULL},
+    {"Top",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Top,
+    "",
+    JAVA_NULL},
+    {"Bottom",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Bottom,
+    "",
+    JAVA_NULL},
+    {"None",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewRowAnimation_None,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UITableViewRowAnimation()
 {
@@ -36,6 +85,10 @@ void __INIT_org_xmlvm_iphone_UITableViewRowAnimation()
     _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Bottom = 4;
     _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_None = 5;
 
+    __TIB_org_xmlvm_iphone_UITableViewRowAnimation.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITableViewRowAnimation.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UITableViewRowAnimation = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UITableViewRowAnimation);
+    __TIB_org_xmlvm_iphone_UITableViewRowAnimation.clazz = __CLASS_org_xmlvm_iphone_UITableViewRowAnimation;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITableViewRowAnimation]
     //XMLVM_END_WRAPPER

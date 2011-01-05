@@ -7,11 +7,32 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIUserInterfaceIdiom __TIB_org_xmlvm_iphone_UI
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIUserInterfaceIdiom;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIUserInterfaceIdiom_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIUserInterfaceIdiom_Phone;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIUserInterfaceIdiom_Pad;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Phone",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIUserInterfaceIdiom_Phone,
+    "",
+    JAVA_NULL},
+    {"Pad",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIUserInterfaceIdiom_Pad,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIUserInterfaceIdiom()
 {
@@ -28,6 +49,10 @@ void __INIT_org_xmlvm_iphone_UIUserInterfaceIdiom()
     _STATIC_org_xmlvm_iphone_UIUserInterfaceIdiom_Phone = 0;
     _STATIC_org_xmlvm_iphone_UIUserInterfaceIdiom_Pad = 1;
 
+    __TIB_org_xmlvm_iphone_UIUserInterfaceIdiom.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIUserInterfaceIdiom.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIUserInterfaceIdiom = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIUserInterfaceIdiom);
+    __TIB_org_xmlvm_iphone_UIUserInterfaceIdiom.clazz = __CLASS_org_xmlvm_iphone_UIUserInterfaceIdiom;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIUserInterfaceIdiom]
     //XMLVM_END_WRAPPER

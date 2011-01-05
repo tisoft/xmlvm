@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIButtonType __TIB_org_xmlvm_iphone_UIButtonTy
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButtonType;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButtonType_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -16,6 +20,51 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UIButtonType_DetailDisclosure;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIButtonType_InfoLight;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIButtonType_InfoDark;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIButtonType_ContactAdd;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Custom",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIButtonType_Custom,
+    "",
+    JAVA_NULL},
+    {"RoundedRect",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIButtonType_RoundedRect,
+    "",
+    JAVA_NULL},
+    {"DetailDisclosure",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIButtonType_DetailDisclosure,
+    "",
+    JAVA_NULL},
+    {"InfoLight",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIButtonType_InfoLight,
+    "",
+    JAVA_NULL},
+    {"InfoDark",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIButtonType_InfoDark,
+    "",
+    JAVA_NULL},
+    {"ContactAdd",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIButtonType_ContactAdd,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIButtonType()
 {
@@ -36,6 +85,10 @@ void __INIT_org_xmlvm_iphone_UIButtonType()
     _STATIC_org_xmlvm_iphone_UIButtonType_InfoDark = 4;
     _STATIC_org_xmlvm_iphone_UIButtonType_ContactAdd = 5;
 
+    __TIB_org_xmlvm_iphone_UIButtonType.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIButtonType.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIButtonType = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIButtonType);
+    __TIB_org_xmlvm_iphone_UIButtonType.clazz = __CLASS_org_xmlvm_iphone_UIButtonType;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIButtonType]
     //XMLVM_END_WRAPPER

@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIControlState __TIB_org_xmlvm_iphone_UIContro
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlState;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlState_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -16,6 +20,51 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UIControlState_Disabled;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIControlState_Selected;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIControlState_ApplicationReserved;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIControlState_Reserved;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Normal",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIControlState_Normal,
+    "",
+    JAVA_NULL},
+    {"Highlighted",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIControlState_Highlighted,
+    "",
+    JAVA_NULL},
+    {"Disabled",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIControlState_Disabled,
+    "",
+    JAVA_NULL},
+    {"Selected",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIControlState_Selected,
+    "",
+    JAVA_NULL},
+    {"ApplicationReserved",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIControlState_ApplicationReserved,
+    "",
+    JAVA_NULL},
+    {"Reserved",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIControlState_Reserved,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIControlState()
 {
@@ -36,6 +85,10 @@ void __INIT_org_xmlvm_iphone_UIControlState()
     _STATIC_org_xmlvm_iphone_UIControlState_ApplicationReserved = 16711680;
     _STATIC_org_xmlvm_iphone_UIControlState_Reserved = -16777216;
 
+    __TIB_org_xmlvm_iphone_UIControlState.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIControlState.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIControlState = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIControlState);
+    __TIB_org_xmlvm_iphone_UIControlState.clazz = __CLASS_org_xmlvm_iphone_UIControlState;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIControlState]
     //XMLVM_END_WRAPPER

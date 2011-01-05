@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIKeyboardType __TIB_org_xmlvm_iphone_UIKeyboa
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIKeyboardType;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIKeyboardType_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -19,6 +23,72 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UIKeyboardType_PhonePad;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIKeyboardType_NamePhonePad;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIKeyboardType_EmailAddress;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIKeyboardType_Alphabet;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Default",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIKeyboardType_Default,
+    "",
+    JAVA_NULL},
+    {"ASCIICapable",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIKeyboardType_ASCIICapable,
+    "",
+    JAVA_NULL},
+    {"NumbersAndPunctuation",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIKeyboardType_NumbersAndPunctuation,
+    "",
+    JAVA_NULL},
+    {"URL",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIKeyboardType_URL,
+    "",
+    JAVA_NULL},
+    {"NumberPad",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIKeyboardType_NumberPad,
+    "",
+    JAVA_NULL},
+    {"PhonePad",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIKeyboardType_PhonePad,
+    "",
+    JAVA_NULL},
+    {"NamePhonePad",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIKeyboardType_NamePhonePad,
+    "",
+    JAVA_NULL},
+    {"EmailAddress",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIKeyboardType_EmailAddress,
+    "",
+    JAVA_NULL},
+    {"Alphabet",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIKeyboardType_Alphabet,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIKeyboardType()
 {
@@ -42,6 +112,10 @@ void __INIT_org_xmlvm_iphone_UIKeyboardType()
     _STATIC_org_xmlvm_iphone_UIKeyboardType_EmailAddress = 7;
     _STATIC_org_xmlvm_iphone_UIKeyboardType_Alphabet = 1;
 
+    __TIB_org_xmlvm_iphone_UIKeyboardType.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIKeyboardType.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIKeyboardType = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIKeyboardType);
+    __TIB_org_xmlvm_iphone_UIKeyboardType.clazz = __CLASS_org_xmlvm_iphone_UIKeyboardType;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIKeyboardType]
     //XMLVM_END_WRAPPER

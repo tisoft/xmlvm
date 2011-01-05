@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITextBorderStyle __TIB_org_xmlvm_iphone_UITex
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextBorderStyle;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextBorderStyle_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -14,6 +18,37 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UITextBorderStyle_None;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITextBorderStyle_Line;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITextBorderStyle_Bezel;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITextBorderStyle_RoundedRect;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"None",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITextBorderStyle_None,
+    "",
+    JAVA_NULL},
+    {"Line",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITextBorderStyle_Line,
+    "",
+    JAVA_NULL},
+    {"Bezel",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITextBorderStyle_Bezel,
+    "",
+    JAVA_NULL},
+    {"RoundedRect",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITextBorderStyle_RoundedRect,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UITextBorderStyle()
 {
@@ -32,6 +67,10 @@ void __INIT_org_xmlvm_iphone_UITextBorderStyle()
     _STATIC_org_xmlvm_iphone_UITextBorderStyle_Bezel = 2;
     _STATIC_org_xmlvm_iphone_UITextBorderStyle_RoundedRect = 3;
 
+    __TIB_org_xmlvm_iphone_UITextBorderStyle.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITextBorderStyle.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UITextBorderStyle = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UITextBorderStyle);
+    __TIB_org_xmlvm_iphone_UITextBorderStyle.clazz = __CLASS_org_xmlvm_iphone_UITextBorderStyle;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITextBorderStyle]
     //XMLVM_END_WRAPPER

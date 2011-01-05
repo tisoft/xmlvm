@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIViewAnimationTransition __TIB_org_xmlvm_ipho
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationTransition;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationTransition_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -15,6 +19,44 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_FlipFromLeft;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_FlipFromRight;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_CurlUp;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_CurlDown;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"None",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewAnimationTransition_None,
+    "",
+    JAVA_NULL},
+    {"FlipFromLeft",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewAnimationTransition_FlipFromLeft,
+    "",
+    JAVA_NULL},
+    {"FlipFromRight",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewAnimationTransition_FlipFromRight,
+    "",
+    JAVA_NULL},
+    {"CurlUp",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewAnimationTransition_CurlUp,
+    "",
+    JAVA_NULL},
+    {"CurlDown",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewAnimationTransition_CurlDown,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIViewAnimationTransition()
 {
@@ -34,6 +76,10 @@ void __INIT_org_xmlvm_iphone_UIViewAnimationTransition()
     _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_CurlUp = 3;
     _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_CurlDown = 4;
 
+    __TIB_org_xmlvm_iphone_UIViewAnimationTransition.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIViewAnimationTransition.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIViewAnimationTransition = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIViewAnimationTransition);
+    __TIB_org_xmlvm_iphone_UIViewAnimationTransition.clazz = __CLASS_org_xmlvm_iphone_UIViewAnimationTransition;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIViewAnimationTransition]
     //XMLVM_END_WRAPPER

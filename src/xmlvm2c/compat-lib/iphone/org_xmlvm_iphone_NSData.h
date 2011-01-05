@@ -16,6 +16,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 // Class declarations for org.xmlvm.iphone.NSData
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSData, 17)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSData;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSData_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSData
 //XMLVM_END_DECLARATIONS

@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITableViewCellStyle __TIB_org_xmlvm_iphone_UI
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCellStyle;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCellStyle_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -14,6 +18,37 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UITableViewCellStyle_Default;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITableViewCellStyle_Value1;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITableViewCellStyle_Value2;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UITableViewCellStyle_Subtitle;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Default",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewCellStyle_Default,
+    "",
+    JAVA_NULL},
+    {"Value1",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewCellStyle_Value1,
+    "",
+    JAVA_NULL},
+    {"Value2",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewCellStyle_Value2,
+    "",
+    JAVA_NULL},
+    {"Subtitle",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UITableViewCellStyle_Subtitle,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UITableViewCellStyle()
 {
@@ -32,6 +67,10 @@ void __INIT_org_xmlvm_iphone_UITableViewCellStyle()
     _STATIC_org_xmlvm_iphone_UITableViewCellStyle_Value2 = 2;
     _STATIC_org_xmlvm_iphone_UITableViewCellStyle_Subtitle = 3;
 
+    __TIB_org_xmlvm_iphone_UITableViewCellStyle.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITableViewCellStyle.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UITableViewCellStyle = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UITableViewCellStyle);
+    __TIB_org_xmlvm_iphone_UITableViewCellStyle.clazz = __CLASS_org_xmlvm_iphone_UITableViewCellStyle;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITableViewCellStyle]
     //XMLVM_END_WRAPPER

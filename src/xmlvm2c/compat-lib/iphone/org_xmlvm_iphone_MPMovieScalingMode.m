@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_MPMovieScalingMode __TIB_org_xmlvm_iphone_MPMo
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPMovieScalingMode;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPMovieScalingMode_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -14,6 +18,37 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_MPMovieScalingMode_None;
 static JAVA_INT _STATIC_org_xmlvm_iphone_MPMovieScalingMode_AspectFit;
 static JAVA_INT _STATIC_org_xmlvm_iphone_MPMovieScalingMode_AspectFill;
 static JAVA_INT _STATIC_org_xmlvm_iphone_MPMovieScalingMode_Fill;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"None",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_MPMovieScalingMode_None,
+    "",
+    JAVA_NULL},
+    {"AspectFit",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_MPMovieScalingMode_AspectFit,
+    "",
+    JAVA_NULL},
+    {"AspectFill",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_MPMovieScalingMode_AspectFill,
+    "",
+    JAVA_NULL},
+    {"Fill",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_MPMovieScalingMode_Fill,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_MPMovieScalingMode()
 {
@@ -32,6 +67,10 @@ void __INIT_org_xmlvm_iphone_MPMovieScalingMode()
     _STATIC_org_xmlvm_iphone_MPMovieScalingMode_AspectFill = 2;
     _STATIC_org_xmlvm_iphone_MPMovieScalingMode_Fill = 3;
 
+    __TIB_org_xmlvm_iphone_MPMovieScalingMode.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MPMovieScalingMode.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_MPMovieScalingMode = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_MPMovieScalingMode);
+    __TIB_org_xmlvm_iphone_MPMovieScalingMode.clazz = __CLASS_org_xmlvm_iphone_MPMovieScalingMode;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MPMovieScalingMode]
     //XMLVM_END_WRAPPER

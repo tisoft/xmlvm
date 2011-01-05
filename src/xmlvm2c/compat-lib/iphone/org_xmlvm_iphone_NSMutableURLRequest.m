@@ -7,9 +7,16 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSMutableURLRequest __TIB_org_xmlvm_iphone_NSM
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSMutableURLRequest;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSMutableURLRequest_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+};
 
 void __INIT_org_xmlvm_iphone_NSMutableURLRequest()
 {
@@ -25,6 +32,10 @@ void __INIT_org_xmlvm_iphone_NSMutableURLRequest()
     __TIB_org_xmlvm_iphone_NSMutableURLRequest.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSMutableURLRequest.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_NSMutableURLRequest.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSMutableURLRequest.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_NSMutableURLRequest = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_NSMutableURLRequest);
+    __TIB_org_xmlvm_iphone_NSMutableURLRequest.clazz = __CLASS_org_xmlvm_iphone_NSMutableURLRequest;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSMutableURLRequest]
     //XMLVM_END_WRAPPER

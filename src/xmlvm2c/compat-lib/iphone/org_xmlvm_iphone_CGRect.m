@@ -10,6 +10,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGRect __TIB_org_xmlvm_iphone_CGRect = {
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 
 CGRect toCGRect(void *rect)
@@ -31,6 +35,23 @@ CGRect toCGRect(void *rect)
 //XMLVM_END_IMPLEMENTATION
 
 
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"origin",
+    &__CLASS_org_xmlvm_iphone_CGPoint,
+    0 | java_lang_reflect_Modifier_PUBLIC,
+    XMLVM_OFFSETOF(org_xmlvm_iphone_CGRect, fields.org_xmlvm_iphone_CGRect.origin_),
+    0,
+    "",
+    JAVA_NULL},
+    {"size",
+    &__CLASS_org_xmlvm_iphone_CGSize,
+    0 | java_lang_reflect_Modifier_PUBLIC,
+    XMLVM_OFFSETOF(org_xmlvm_iphone_CGRect, fields.org_xmlvm_iphone_CGRect.size_),
+    0,
+    "",
+    JAVA_NULL},
+};
+
 void __INIT_org_xmlvm_iphone_CGRect()
 {
     __TIB_org_xmlvm_iphone_CGRect.classInitialized = 1;
@@ -49,6 +70,10 @@ void __INIT_org_xmlvm_iphone_CGRect()
     __TIB_org_xmlvm_iphone_CGRect.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_CGRect.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_CGRect.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CGRect.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_CGRect = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_CGRect);
+    __TIB_org_xmlvm_iphone_CGRect.clazz = __CLASS_org_xmlvm_iphone_CGRect;
     org_xmlvm_iphone_CGRect___CLINIT_();
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGRect]
     //XMLVM_END_WRAPPER

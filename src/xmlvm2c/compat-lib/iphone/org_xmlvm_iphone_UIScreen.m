@@ -8,10 +8,17 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIScreen __TIB_org_xmlvm_iphone_UIScreen = {
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScreen;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScreen_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 #import "UIKit/UIScreen.h"
 //XMLVM_END_IMPLEMENTATION
 
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+};
 
 void __INIT_org_xmlvm_iphone_UIScreen()
 {
@@ -28,6 +35,10 @@ void __INIT_org_xmlvm_iphone_UIScreen()
     __TIB_org_xmlvm_iphone_UIScreen.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIScreen.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_UIScreen.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIScreen.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIScreen = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIScreen);
+    __TIB_org_xmlvm_iphone_UIScreen.clazz = __CLASS_org_xmlvm_iphone_UIScreen;
     org_xmlvm_iphone_UIScreen___CLINIT_();
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIScreen]
     //XMLVM_END_WRAPPER

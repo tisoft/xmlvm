@@ -12,6 +12,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 // Class declarations for org.xmlvm.iphone.MKMapPoint
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapPoint, 14)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapPoint;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapPoint_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKMapPoint
 //XMLVM_END_DECLARATIONS

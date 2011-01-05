@@ -16,6 +16,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CAMediaTiming, 27)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAMediaTiming;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAMediaTiming_ARRAYTYPE;
+
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAMediaTiming
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAMediaTiming
 typedef struct org_xmlvm_iphone_CAMediaTiming org_xmlvm_iphone_CAMediaTiming;

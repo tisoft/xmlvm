@@ -9,9 +9,30 @@ __TIB_DEFINITION_org_xmlvm_iphone_MKCoordinateRegion __TIB_org_xmlvm_iphone_MKCo
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKCoordinateRegion;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKCoordinateRegion_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"center",
+    &__CLASS_org_xmlvm_iphone_CLLocationCoordinate2D,
+    0 | java_lang_reflect_Modifier_PUBLIC,
+    XMLVM_OFFSETOF(org_xmlvm_iphone_MKCoordinateRegion, fields.org_xmlvm_iphone_MKCoordinateRegion.center_),
+    0,
+    "",
+    JAVA_NULL},
+    {"span",
+    &__CLASS_org_xmlvm_iphone_MKCoordinateSpan,
+    0 | java_lang_reflect_Modifier_PUBLIC,
+    XMLVM_OFFSETOF(org_xmlvm_iphone_MKCoordinateRegion, fields.org_xmlvm_iphone_MKCoordinateRegion.span_),
+    0,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_MKCoordinateRegion()
 {
@@ -26,6 +47,10 @@ void __INIT_org_xmlvm_iphone_MKCoordinateRegion()
     __TIB_org_xmlvm_iphone_MKCoordinateRegion.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_MKCoordinateRegion.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
+    __TIB_org_xmlvm_iphone_MKCoordinateRegion.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MKCoordinateRegion.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_MKCoordinateRegion = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_MKCoordinateRegion);
+    __TIB_org_xmlvm_iphone_MKCoordinateRegion.clazz = __CLASS_org_xmlvm_iphone_MKCoordinateRegion;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MKCoordinateRegion]
     //XMLVM_END_WRAPPER

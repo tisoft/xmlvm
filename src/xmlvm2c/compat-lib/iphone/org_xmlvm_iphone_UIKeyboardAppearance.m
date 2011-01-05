@@ -7,11 +7,32 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIKeyboardAppearance __TIB_org_xmlvm_iphone_UI
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIKeyboardAppearance;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIKeyboardAppearance_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIKeyboardAppearance_Default;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIKeyboardAppearance_Alert;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Default",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIKeyboardAppearance_Default,
+    "",
+    JAVA_NULL},
+    {"Alert",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIKeyboardAppearance_Alert,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIKeyboardAppearance()
 {
@@ -28,6 +49,10 @@ void __INIT_org_xmlvm_iphone_UIKeyboardAppearance()
     _STATIC_org_xmlvm_iphone_UIKeyboardAppearance_Default = 0;
     _STATIC_org_xmlvm_iphone_UIKeyboardAppearance_Alert = 1;
 
+    __TIB_org_xmlvm_iphone_UIKeyboardAppearance.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIKeyboardAppearance.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIKeyboardAppearance = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIKeyboardAppearance);
+    __TIB_org_xmlvm_iphone_UIKeyboardAppearance.clazz = __CLASS_org_xmlvm_iphone_UIKeyboardAppearance;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIKeyboardAppearance]
     //XMLVM_END_WRAPPER

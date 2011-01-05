@@ -29,7 +29,7 @@ void java_lang_System_setOut0___java_io_PrintStream(JAVA_OBJECT n1)
 void java_lang_System_setErr0___java_io_PrintStream(JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_System_setErr0___java_io_PrintStream]
-    xmlvm_unimplemented_native_method();
+    java_lang_System_PUT_err(n1);
     //XMLVM_END_NATIVE
 }
 

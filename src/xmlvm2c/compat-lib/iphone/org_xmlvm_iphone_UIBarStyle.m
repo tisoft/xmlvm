@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIBarStyle __TIB_org_xmlvm_iphone_UIBarStyle =
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarStyle;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarStyle_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -14,6 +18,37 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UIBarStyle_Default;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIBarStyle_Black;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIBarStyle_BlackOpaque;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIBarStyle_BlackTranslucent;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"Default",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIBarStyle_Default,
+    "",
+    JAVA_NULL},
+    {"Black",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIBarStyle_Black,
+    "",
+    JAVA_NULL},
+    {"BlackOpaque",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIBarStyle_BlackOpaque,
+    "",
+    JAVA_NULL},
+    {"BlackTranslucent",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIBarStyle_BlackTranslucent,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIBarStyle()
 {
@@ -32,6 +67,10 @@ void __INIT_org_xmlvm_iphone_UIBarStyle()
     _STATIC_org_xmlvm_iphone_UIBarStyle_BlackOpaque = 1;
     _STATIC_org_xmlvm_iphone_UIBarStyle_BlackTranslucent = 2;
 
+    __TIB_org_xmlvm_iphone_UIBarStyle.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIBarStyle.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIBarStyle = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIBarStyle);
+    __TIB_org_xmlvm_iphone_UIBarStyle.clazz = __CLASS_org_xmlvm_iphone_UIBarStyle;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIBarStyle]
     //XMLVM_END_WRAPPER

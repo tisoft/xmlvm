@@ -28,6 +28,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGImage)
 // Class declarations for org.xmlvm.iphone.UIImage
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIImage, 22)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImage;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImage_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIImage
 //XMLVM_END_DECLARATIONS

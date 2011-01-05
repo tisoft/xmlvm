@@ -16,6 +16,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSLocale)
 // Class declarations for org.xmlvm.iphone.NSLocale
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSLocale, 14)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSLocale;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSLocale_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSLocale
 //XMLVM_END_DECLARATIONS

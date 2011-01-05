@@ -12,6 +12,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSTimerDelegate, 12)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimerDelegate;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimerDelegate_ARRAYTYPE;
+
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimerDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimerDelegate
 typedef struct org_xmlvm_iphone_NSTimerDelegate org_xmlvm_iphone_NSTimerDelegate;

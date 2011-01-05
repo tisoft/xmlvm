@@ -12,6 +12,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 // Class declarations for org.xmlvm.iphone.UIWebViewNavigationType
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWebViewNavigationType, 11)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebViewNavigationType;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebViewNavigationType_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIWebViewNavigationType
 //XMLVM_END_DECLARATIONS

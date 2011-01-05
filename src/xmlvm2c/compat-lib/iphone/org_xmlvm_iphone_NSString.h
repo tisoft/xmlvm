@@ -28,6 +28,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.NSString
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSString, 14)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #import <Foundation/Foundation.h>
 

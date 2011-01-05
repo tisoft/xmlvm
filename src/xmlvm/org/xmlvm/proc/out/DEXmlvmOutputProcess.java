@@ -425,7 +425,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * @return whether the class is a red class, that should be avoided.
      */
     private boolean isRedType(String packagePlusClassName) {
-        return redClasses != null && redClasses.contains(packagePlusClassName);
+        // In case packagePlusClassName is an array, perform the red-class-test on the base type
+        int i = packagePlusClassName.indexOf('[');
+        String baseType = i == -1 ? packagePlusClassName : packagePlusClassName.substring(0, i);
+        return redClasses != null && redClasses.contains(baseType);
     }
 
     private static Set<String> initializeRedList(String redListFileName, Set<String> proxies) {
@@ -1203,7 +1206,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     // These are CstInsn instructions that we need to remove, if
                     // their constant is a red type.
                     List<String> instructionsToCheck = Arrays.asList(new String[] { "new-instance",
-                            "instance-of", "check-cast", "const-class" });
+                            "instance-of", "check-cast", "const-class", "new-array" });
                     if (instructionsToCheck.contains(opname) && isRedType(constant.toHuman())) {
                         dexInstruction = createAssertElement(constant.toHuman(), opname);
                     } else {

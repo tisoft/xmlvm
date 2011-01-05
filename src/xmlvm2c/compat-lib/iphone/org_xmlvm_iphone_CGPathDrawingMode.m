@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGPathDrawingMode __TIB_org_xmlvm_iphone_CGPat
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPathDrawingMode;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPathDrawingMode_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -15,6 +19,44 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathEOFill;
 static JAVA_INT _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathStroke;
 static JAVA_INT _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathFillStroke;
 static JAVA_INT _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathEOFillStroke;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"kCGPathFill",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathFill,
+    "",
+    JAVA_NULL},
+    {"kCGPathEOFill",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathEOFill,
+    "",
+    JAVA_NULL},
+    {"kCGPathStroke",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathStroke,
+    "",
+    JAVA_NULL},
+    {"kCGPathFillStroke",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathFillStroke,
+    "",
+    JAVA_NULL},
+    {"kCGPathEOFillStroke",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathEOFillStroke,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_CGPathDrawingMode()
 {
@@ -34,6 +76,10 @@ void __INIT_org_xmlvm_iphone_CGPathDrawingMode()
     _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathFillStroke = 3;
     _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathEOFillStroke = 4;
 
+    __TIB_org_xmlvm_iphone_CGPathDrawingMode.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CGPathDrawingMode.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_CGPathDrawingMode = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_CGPathDrawingMode);
+    __TIB_org_xmlvm_iphone_CGPathDrawingMode.clazz = __CLASS_org_xmlvm_iphone_CGPathDrawingMode;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGPathDrawingMode]
     //XMLVM_END_WRAPPER

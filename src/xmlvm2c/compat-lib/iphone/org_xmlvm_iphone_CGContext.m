@@ -9,12 +9,33 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGContext __TIB_org_xmlvm_iphone_CGContext = {
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <CoreGraphics/CoreGraphics.h>
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_CGContext_kCGTextInvisible;
 static JAVA_INT _STATIC_org_xmlvm_iphone_CGContext_kCGTextFill;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"kCGTextInvisible",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CGContext_kCGTextInvisible,
+    "",
+    JAVA_NULL},
+    {"kCGTextFill",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_CGContext_kCGTextFill,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_CGContext()
 {
@@ -59,6 +80,10 @@ void __INIT_org_xmlvm_iphone_CGContext()
     _STATIC_org_xmlvm_iphone_CGContext_kCGTextInvisible = 1;
     _STATIC_org_xmlvm_iphone_CGContext_kCGTextFill = 2;
 
+    __TIB_org_xmlvm_iphone_CGContext.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CGContext.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_CGContext = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_CGContext);
+    __TIB_org_xmlvm_iphone_CGContext.clazz = __CLASS_org_xmlvm_iphone_CGContext;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGContext]
     //XMLVM_END_WRAPPER

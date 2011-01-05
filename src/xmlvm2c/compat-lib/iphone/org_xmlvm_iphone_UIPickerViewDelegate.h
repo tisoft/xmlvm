@@ -20,6 +20,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 // Class declarations for org.xmlvm.iphone.UIPickerViewDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPickerViewDelegate, 19)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPickerViewDelegate;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPickerViewDelegate_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPickerViewDelegate
 //XMLVM_END_DECLARATIONS

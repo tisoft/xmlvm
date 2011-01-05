@@ -7,6 +7,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIViewContentMode __TIB_org_xmlvm_iphone_UIVie
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
 };
 
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode;
+//TODO _ARRAYTYPE not initialized
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode_ARRAYTYPE;
+
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -23,6 +27,100 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UIViewContentMode_TopLeft;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIViewContentMode_TopRight;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIViewContentMode_BottomLeft;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIViewContentMode_BottomRight;
+
+static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"ScaleToFill",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleToFill,
+    "",
+    JAVA_NULL},
+    {"ScaleAspectFit",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleAspectFit,
+    "",
+    JAVA_NULL},
+    {"ScaleAspectFill",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleAspectFill,
+    "",
+    JAVA_NULL},
+    {"Redraw",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewContentMode_Redraw,
+    "",
+    JAVA_NULL},
+    {"Center",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewContentMode_Center,
+    "",
+    JAVA_NULL},
+    {"Top",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewContentMode_Top,
+    "",
+    JAVA_NULL},
+    {"Bottom",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewContentMode_Bottom,
+    "",
+    JAVA_NULL},
+    {"Left",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewContentMode_Left,
+    "",
+    JAVA_NULL},
+    {"Right",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewContentMode_Right,
+    "",
+    JAVA_NULL},
+    {"TopLeft",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewContentMode_TopLeft,
+    "",
+    JAVA_NULL},
+    {"TopRight",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewContentMode_TopRight,
+    "",
+    JAVA_NULL},
+    {"BottomLeft",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewContentMode_BottomLeft,
+    "",
+    JAVA_NULL},
+    {"BottomRight",
+    &__CLASS_int_TYPE,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIViewContentMode_BottomRight,
+    "",
+    JAVA_NULL},
+};
 
 void __INIT_org_xmlvm_iphone_UIViewContentMode()
 {
@@ -50,6 +148,10 @@ void __INIT_org_xmlvm_iphone_UIViewContentMode()
     _STATIC_org_xmlvm_iphone_UIViewContentMode_BottomLeft = 11;
     _STATIC_org_xmlvm_iphone_UIViewContentMode_BottomRight = 12;
 
+    __TIB_org_xmlvm_iphone_UIViewContentMode.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIViewContentMode.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIViewContentMode = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIViewContentMode);
+    __TIB_org_xmlvm_iphone_UIViewContentMode.clazz = __CLASS_org_xmlvm_iphone_UIViewContentMode;
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIViewContentMode]
     //XMLVM_END_WRAPPER

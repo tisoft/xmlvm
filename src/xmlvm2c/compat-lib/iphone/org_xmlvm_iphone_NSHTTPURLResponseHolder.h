@@ -12,6 +12,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 // Class declarations for org.xmlvm.iphone.NSHTTPURLResponseHolder
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSHTTPURLResponseHolder, 14)
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSHTTPURLResponseHolder;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSHTTPURLResponseHolder_ARRAYTYPE;
+
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSHTTPURLResponseHolder
 //XMLVM_END_DECLARATIONS
