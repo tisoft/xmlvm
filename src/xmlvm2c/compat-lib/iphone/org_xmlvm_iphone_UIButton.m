@@ -1,3 +1,6 @@
+#include <UIKit/UIKit.h>
+
+#include "org_xmlvm_iphone_NSString.h"
 #include "org_xmlvm_iphone_UIImage.h"
 #include "org_xmlvm_iphone_UIFont.h"
 #include "org_xmlvm_iphone_CGSize.h"
@@ -71,6 +74,8 @@ void __INIT_org_xmlvm_iphone_UIButton()
 void __DELETE_org_xmlvm_iphone_UIButton(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIButton]
+	org_xmlvm_iphone_UIButton *thiz = me;
+	[((UIButton*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) release];
     //XMLVM_END_WRAPPER
 }
 
@@ -80,6 +85,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIButton()
     org_xmlvm_iphone_UIButton* me = (org_xmlvm_iphone_UIButton*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIButton));
     me->tib = &__TIB_org_xmlvm_iphone_UIButton;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIButton]
+	XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIButton);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -101,7 +107,15 @@ JAVA_OBJECT org_xmlvm_iphone_UIButton_buttonWithType___int(JAVA_INT n1)
 {
     if (!__TIB_org_xmlvm_iphone_UIButton.classInitialized) __INIT_org_xmlvm_iphone_UIButton();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_buttonWithType___int]
-    XMLVM_NOT_IMPLEMENTED();
+	NSAutoreleasePool* p = [[NSAutoreleasePool alloc] init];
+	UIButton* objcBtn = [UIButton buttonWithType: (UIButtonType) n1];
+	[objcBtn retain];
+	[p release];
+	
+	JAVA_OBJECT b = __NEW_org_xmlvm_iphone_UIButton();
+	org_xmlvm_iphone_NSObject___INIT___(b);
+	((org_xmlvm_iphone_UIButton*) b)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = objcBtn;
+	return b;
     //XMLVM_END_WRAPPER
 }
 
@@ -129,7 +143,10 @@ JAVA_INT org_xmlvm_iphone_UIButton_getButtonType__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIButton_setTitle___java_lang_String_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_setTitle___java_lang_String_int]
-    XMLVM_NOT_IMPLEMENTED();
+	UIButton* button = (UIButton*) ((org_xmlvm_iphone_UIButton*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+	NSString* title = toNSString(n1);
+	[button setTitle: title forState: n2];
+	[title release];
     //XMLVM_END_WRAPPER
 }
 
