@@ -88,7 +88,6 @@ typedef struct org_xmlvm_iphone_UIButton org_xmlvm_iphone_UIButton;
 void __INIT_org_xmlvm_iphone_UIButton();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIButton();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIButton();
-void org_xmlvm_iphone_UIButton___INIT____int(JAVA_OBJECT me, JAVA_INT n1);
 JAVA_OBJECT org_xmlvm_iphone_UIButton_buttonWithType___int(JAVA_INT n1);
 // Vtable index: 71
 void org_xmlvm_iphone_UIButton_setFont___org_xmlvm_iphone_UIFont(JAVA_OBJECT me, JAVA_OBJECT n1);

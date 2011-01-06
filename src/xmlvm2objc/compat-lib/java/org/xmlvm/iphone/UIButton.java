@@ -28,6 +28,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UIAlertButtonRenderer;
 import org.xmlvm.iphone.internal.renderer.UIButtonRenderer;
@@ -48,6 +49,7 @@ public class UIButton extends UIControl {
     private CGSize           titleShadowOffset;
 
 
+    @XMLVMIgnore
     protected UIButton(int uiButtonType) {
         super();
         callDelegates = false;

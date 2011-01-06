@@ -1,6 +1,3 @@
-#include <UIKit/UIKit.h>
-
-#include "org_xmlvm_iphone_NSString.h"
 #include "org_xmlvm_iphone_UIImage.h"
 #include "org_xmlvm_iphone_UIFont.h"
 #include "org_xmlvm_iphone_CGSize.h"
@@ -20,6 +17,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButton;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButton_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <UIKit/UIKit.h>
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -94,13 +92,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIButton()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
-}
-
-void org_xmlvm_iphone_UIButton___INIT____int(JAVA_OBJECT me, JAVA_INT n1)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton___INIT____int]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIButton_buttonWithType___int(JAVA_INT n1)
