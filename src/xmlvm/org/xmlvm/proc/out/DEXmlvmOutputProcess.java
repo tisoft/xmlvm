@@ -268,13 +268,13 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 OutputFile outputFile = null;
 
                 // Check whether we can get the file from memory or disk cache.
-                if (cache.contains(resourceName, lastModified)) {
+                if (!arguments.option_no_cache() && cache.contains(resourceName, lastModified)) {
                     Log.debug(TAG, "Getting resource from cache: " + resourceName);
                     outputFile = new OutputFile(cache.get(resourceName, lastModified), lastModified);
                     filesFromCache.add(outputFile);
                 } else {
                     outputFile = generateDEXmlvmFile(preOutputFile);
-                    if (outputFile != null) {
+                    if (outputFile != null && !arguments.option_no_cache()) {
                         cache.put(resourceName, lastModified, outputFile.getDataAsBytes());
                     }
                 }

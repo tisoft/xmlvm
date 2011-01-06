@@ -69,6 +69,7 @@ public class Arguments {
     // Enables a debug counter for measuring execution time.
     public static final String    ARG_ENABLE_TIMER            = "--enable-timer";
     public static final String    ARG_C_SOURCE_EXTENSION      = "--c-source-extension=";
+    public static final String    ARG_NO_CACHE                = "--no-cache";
     // This argument will store various properties to XMLVM
     // An example of these values can be found in the long help
     public static final String    ARG_PROPERTY                = "-D";
@@ -91,6 +92,7 @@ public class Arguments {
     private boolean               option_enable_ref_counting  = false;
     private boolean               option_enable_timer         = false;
     private String                option_c_source_extension   = "c";
+    private boolean               option_no_cache           = false;
     private Map<String, String>   option_property             = new HashMap<String, String>();
 
     private static final String[] shortUsage                  = {
@@ -283,6 +285,8 @@ public class Arguments {
                 option_enable_ref_counting = true;
             } else if (arg.startsWith(ARG_C_SOURCE_EXTENSION)) {
                 option_c_source_extension = arg.substring(ARG_C_SOURCE_EXTENSION.length());
+            } else if (arg.equals(ARG_NO_CACHE)) {
+                option_no_cache = true;
             } else if (arg.startsWith(ARG_PROPERTY)) {
                 String value = arg.substring(ARG_PROPERTY.length());
                 int equal = value.indexOf("=");
@@ -468,6 +472,10 @@ public class Arguments {
 
     public String option_c_source_extension() {
         return option_c_source_extension;
+    }
+
+    public boolean option_no_cache() {
+        return option_no_cache;
     }
 
     public Set<String> option_lib() {
