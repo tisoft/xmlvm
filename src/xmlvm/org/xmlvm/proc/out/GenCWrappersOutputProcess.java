@@ -89,8 +89,8 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
         }
 
         if (destination.isFile()) {
-            Log.error(TAG, "Destination is a file, but must be a directory: "
-                    + arguments.option_out());
+            Log.error(TAG,
+                    "Destination is a file, but must be a directory: " + arguments.option_out());
             return false;
         }
 
@@ -175,17 +175,10 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
 
                 if (line.contains(END_MARKER)) {
                     if (section == null) {
-                        Log
-                                .error(TAG, "Found end marker without matching starting marker: "
-                                        + line);
+                        Log.error(TAG, "Found end marker without matching starting marker: " + line);
                         continue;
                     }
-                    String content = section.toString();
-
-                    // Only add sections that are not empty.
-                    if (!content.trim().isEmpty()) {
-                        sections.put(currentKey, section.toString());
-                    }
+                    sections.put(currentKey, section.toString());
                     section = null;
                 }
 
