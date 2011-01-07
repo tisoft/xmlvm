@@ -62,6 +62,8 @@ public class OutputProcessFactory {
             return new PythonOutputProcess(arguments);
         case C:
             return new COutputProcess(arguments);
+        case POSIX:
+            return new PosixOutputProcess(arguments);
         case GENCWRAPPERS:
             return new GenCWrappersOutputProcess(arguments);
         case OBJC:
