@@ -27,16 +27,14 @@ import java.util.Vector;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.LibraryLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XsltRunner;
 
 /**
  * This process takes XMLVM and turns it into JavaScript.
  */
-public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
+public class JavaScriptOutputProcess extends XmlvmProcessImpl<RecursiveResourceLoadingProcess> {
 
     private class JavaScriptTranslationThread extends Thread {
         private final XmlvmResource[] resources;
@@ -82,7 +80,7 @@ public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
 
     public JavaScriptOutputProcess(Arguments arguments) {
         super(arguments);
-        addAllXmlvmEmittingProcessesAsInput();
+        addSupportedInput(RecursiveResourceLoadingProcess.class);
     }
 
     @Override
@@ -92,17 +90,12 @@ public class JavaScriptOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
 
     public boolean process() {
         Map<String, XmlvmResource> mappedResources = new HashMap<String, XmlvmResource>();
-        List<XmlvmResourceProvider> preprocesses = preprocess();
-        for (XmlvmResourceProvider process : preprocesses) {
+        List<RecursiveResourceLoadingProcess> preprocesses = preprocess();
+        for (RecursiveResourceLoadingProcess process : preprocesses) {
             List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
             for (XmlvmResource resource : xmlvmResources) {
                 mappedResources.put(resource.getFullName(), resource);
             }
-        }
-
-        if (arguments.option_exp_load_deps()) {
-            // Make sure we have all types that are referenced loaded.
-            (new LibraryLoader(arguments)).loadAllReferencedTypes(mappedResources);
         }
 
         long startTime = System.currentTimeMillis();

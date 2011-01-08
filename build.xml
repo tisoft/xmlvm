@@ -171,6 +171,7 @@
 			<fileset dir="src">
 				<include name="**/*.xsl" />
 			</fileset>
+			<fileset file="lib/redlist.txt" />
 		</copy>
 
 		<jar destfile="${xmlvm.bin}/iphone/cocoa-compat-lib.jar">

@@ -89,14 +89,14 @@ public class UniversalFileFromJarFile extends UniversalFile {
     }
 
     @Override
-    public UniversalFile[] listFiles() {
+    public synchronized UniversalFile[] listFiles() {
         if (directory == null) {
             directory = initialize();
         }
         return directory.listFiles();
     }
 
-    private UniversalFileDirectory initialize() {
+    private synchronized UniversalFileDirectory initialize() {
         UniversalFileDirectory result = new UniversalFileDirectory(absoluteName, lastModified);
         JarEntry entry;
         try {
@@ -116,7 +116,7 @@ public class UniversalFileFromJarFile extends UniversalFile {
         return result;
     }
 
-    private void put(UniversalFileDirectory addToDir, String name, InputStream stream,
+    private synchronized void put(UniversalFileDirectory addToDir, String name, InputStream stream,
             long entryLastModified) {
         int index;
 

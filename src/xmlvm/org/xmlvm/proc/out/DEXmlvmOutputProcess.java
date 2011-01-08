@@ -22,9 +22,8 @@ package org.xmlvm.proc.out;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -214,6 +213,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                                                                                             "http://xmlvm.org/dex");
     private static final String                     BIN_PROXIES_PATH        = "bin-proxies";
     private static final String                     BIN_PROXIES_ONEJAR_PATH = "/lib/proxies-java.jar";
+    private static final UniversalFile              redListFile             = UniversalFileCreator
+                                                                                    .createFile(
+                                                                                            "/redlist.txt",
+                                                                                            "lib/redlist.txt");
 
     private static final Map<String, UniversalFile> proxies                 = initializeProxies();
     private static final long                       proxiesLastModified     = getLastModifiedProxy();
@@ -243,9 +246,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         addSupportedInput(ClassInputProcess.class);
         addSupportedInput(JavaByteCodeOutputProcess.class);
 
-        String redFilename = arguments.option_dep_optimization_config();
-        if (redClasses == null && !redFilename.isEmpty()) {
-            redClasses = initializeRedList(redFilename, proxies.keySet());
+        if (redClasses == null) {
+            redClasses = initializeRedList(redListFile, proxies.keySet());
         }
     }
 
@@ -433,11 +435,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         return redClasses != null && redClasses.contains(baseType);
     }
 
-    private static Set<String> initializeRedList(String redListFileName, Set<String> proxies) {
+    private static Set<String> initializeRedList(UniversalFile redListFile, Set<String> proxies) {
         try {
             Set<String> result = new HashSet<String>();
             BufferedReader reader;
-            reader = new BufferedReader(new FileReader(redListFileName));
+            reader = new BufferedReader(new StringReader(redListFile.getFileAsString()));
             String line;
             while ((line = reader.readLine()) != null) {
                 result.add(line);
@@ -449,10 +451,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 result.remove(proxyTypeName);
             }
             return result;
-        } catch (FileNotFoundException e) {
-            Log.error(TAG, "Problem finding red file: " + redListFileName + ": " + e.getMessage());
         } catch (IOException e) {
-            Log.error(TAG, "Problem reading red file: " + redListFileName + ": " + e.getMessage());
+            Log.error(
+                    TAG,
+                    "Problem reading red file: " + redListFile.getAbsolutePath() + ": "
+                            + e.getMessage());
         }
         return null;
     }

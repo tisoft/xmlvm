@@ -57,7 +57,7 @@ public class RecursiveResourceLoadingProcess extends XmlvmProcessImpl<XmlvmResou
                 xmlvmResources.put(resource.getFullName(), resource);
             }
         }
-        if (arguments.option_exp_load_deps()) {
+        if (arguments.option_load_dependencies() && !arguments.option_disable_load_dependencies()) {
             // Make sure we have all types that are referenced loaded.
             (new LibraryLoader(arguments)).loadAllReferencedTypes(xmlvmResources);
         }
