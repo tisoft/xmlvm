@@ -125,11 +125,11 @@ public abstract class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputP
             return false;
         }
         if (!source.endsWith(".png")) {
-            file.setData(file.getData().replace(TEMPL_PROJNAME, projname)
+            file.setData(file.getDataAsString().replace(TEMPL_PROJNAME, projname)
                     .replace(TEMPL_PACKNAME, pack_name).replace(TEMPL_SAFENAME, safe_name));
         }
         if (source.endsWith(".properties") || source.endsWith(".classpath")) {
-            file.setData(file.getData()
+            file.setData(file.getDataAsString()
                     .replace(TEMPL_TRIMSEED, String.valueOf(new Random().nextLong()))
                     .replace(TEMPL_XVMLSDK, JarUtil.findSelfJar()));
         }

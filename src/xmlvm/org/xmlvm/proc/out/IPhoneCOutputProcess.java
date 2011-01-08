@@ -50,10 +50,6 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
                                                                        .createDirectory(
                                                                                "/iphone/cocoa-compat-lib.jar",
                                                                                "src/xmlvm2c/compat-lib/iphone");
-    private static final UniversalFile IPHONE_JAVA_COMPAT_LIB  = UniversalFileCreator
-                                                                       .createDirectory(
-                                                                               "/iphone/java-compat-lib.jar",
-                                                                               "src/xmlvm2c/compat-lib/java");
     private static final UniversalFile BOEHM_GC_LIB            = UniversalFileCreator
                                                                        .createDirectory(
                                                                                "/lib/boehmgc.jar",
@@ -94,10 +90,6 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
         OutputFile iPhoneCocoaCompatLib = new OutputFile(IPHONE_COCOA_COMPAT_LIB);
         iPhoneCocoaCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
         outputFiles.add(iPhoneCocoaCompatLib);
-
-        OutputFile iPhoneJavaCompatLib = new OutputFile(IPHONE_JAVA_COMPAT_LIB);
-        iPhoneJavaCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
-        outputFiles.add(iPhoneJavaCompatLib);
 
         OutputFile bohemGc = new OutputFile(BOEHM_GC_LIB);
         bohemGc.setLocation(arguments.option_out() + IPHONE_BOEHMGC_LIB);
@@ -150,8 +142,7 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
 
         // Remove files that have manual overrides from the list of output
         // files.
-        eliminateOverridenResources(new UniversalFile[] { IPHONE_COCOA_COMPAT_LIB,
-                IPHONE_JAVA_COMPAT_LIB });
+        eliminateOverridenResources(new UniversalFile[] { IPHONE_COCOA_COMPAT_LIB });
 
         // Create various buildfiles
         MakeFile makefile = new MakeFile();

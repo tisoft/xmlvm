@@ -230,7 +230,7 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
      *            in.
      */
     private void injectSections(Map<String, String> sections, OutputFile file) {
-        BufferedReader reader = new BufferedReader(new StringReader(file.getData()));
+        BufferedReader reader = new BufferedReader(new StringReader(file.getDataAsString()));
 
         try {
             StringBuilder fileContent = new StringBuilder();

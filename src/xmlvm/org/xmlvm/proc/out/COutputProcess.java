@@ -45,13 +45,20 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * This process takes XMLVM and generates C source code from it.
  */
 public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
-    private static final String              TAG             = COutputProcess.class.getSimpleName();
-    private static final String              C_SOURCE_SUFFIX = "c";
-    private final String                     sourceExtension;
-    private final String                     headerExtension = ".h";
-    private final List<OutputFile>           outputFiles     = new ArrayList<OutputFile>();
+    private static final String              TAG                    = COutputProcess.class
+                                                                            .getSimpleName();
+    private static final String              C_SOURCE_SUFFIX        = "c";
 
-    private final Map<String, XmlvmResource> resourcePool    = new HashMap<String, XmlvmResource>();
+    private static final UniversalFile       C_JAVA_COMPAT_LIB = UniversalFileCreator
+                                                                            .createDirectory(
+                                                                                    "/iphone/java-compat-lib.jar",
+                                                                                    "src/xmlvm2c/compat-lib/java");
+
+    private final String                     sourceExtension;
+    private final String                     headerExtension        = ".h";
+    private final List<OutputFile>           outputFiles            = new ArrayList<OutputFile>();
+
+    private final Map<String, XmlvmResource> resourcePool           = new HashMap<String, XmlvmResource>();
     private final NativeResourceLoader       nativeResourceLoader;
 
 
@@ -89,7 +96,7 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
             List<OutputFile> files = ((XmlvmProcess<?>) process).getOutputFiles();
             if (files != null) {
                 for (OutputFile outputFile : files) {
-                    if (!outputFile.getFileName().endsWith("xmlvm")) {
+                    if (!outputFile.getFileName().endsWith(".xmlvm")) {
                         outputFiles.add(outputFile);
                     }
                 }
@@ -119,6 +126,12 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
         // Makes sure that for each type we create, the native parts, if
         // present, are added to the list of outputFiles.
         loadNativeResources();
+
+        // This is mainly xmlvm.m. and xmlvm.h
+        OutputFile iPhoneJavaCompatLib = new OutputFile(C_JAVA_COMPAT_LIB);
+        iPhoneJavaCompatLib.setLocation(arguments.option_out());
+        outputFiles.add(iPhoneJavaCompatLib);
+
         return true;
     }
 
@@ -190,7 +203,7 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
         OutputFile headerFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
                 { "pass", "emitHeader" }, { "header", headerFileName },
                 { "genWrapper", "" + arguments.option_gen_wrapper() } });
-        headerFile.setData(headerProlog + headerBuffer.toString() + headerFile.getData()
+        headerFile.setData(headerProlog + headerBuffer.toString() + headerFile.getDataAsString()
                 + headerEpilog);
         headerFile.setFileName(headerFileName);
 
@@ -205,7 +218,7 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
         OutputFile mFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
                 { "pass", "emitImplementation" }, { "header", headerFileName },
                 { "genWrapper", "" + arguments.option_gen_wrapper() } });
-        mFile.setData(mBuffer.toString() + mFile.getData());
+        mFile.setData(mBuffer.toString() + mFile.getDataAsString());
         mFile.setFileName(mFileName);
 
         return new OutputFile[] { headerFile, mFile };
@@ -322,7 +335,7 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
             return null;
         }
 
-        mFile.setData(mBuffer.toString() + mFile.getData());
+        mFile.setData(mBuffer.toString() + mFile.getDataAsString());
         mFile.setFileName(mFileName);
 
         return mFile;

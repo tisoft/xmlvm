@@ -99,7 +99,7 @@ public class ObjectiveCOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
         }
         OutputFile headerFile = XsltRunner.runXSLT("xmlvm2objc.xsl", doc, new String[][] {
                 { "pass", "emitHeader" }, { "header", headerFileName } });
-        headerFile.setData(headerBuffer.toString() + headerFile.getData());
+        headerFile.setData(headerBuffer.toString() + headerFile.getDataAsString());
         headerFile.setFileName(headerFileName);
 
         StringBuilder mBuffer = new StringBuilder();
@@ -112,7 +112,7 @@ public class ObjectiveCOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
 
         OutputFile mFile = XsltRunner.runXSLT("xmlvm2objc.xsl", doc, new String[][] {
                 { "pass", "emitImplementation" }, { "header", headerFileName } });
-        mFile.setData(mBuffer.toString() + mFile.getData());
+        mFile.setData(mBuffer.toString() + mFile.getDataAsString());
         mFile.setFileName(mFileName);
 
         return new OutputFile[] { headerFile, mFile };

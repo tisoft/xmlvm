@@ -94,20 +94,32 @@ public class OutputFile {
     /**
      * Returns the contents of this file.
      */
-    public String getData() {
+    public UniversalFile getData() {
         maybeLoadDelayedData();
         if (data == null) {
             return null;
         }
-        return data.getFileAsString();
+        return data;
     }
 
     /**
      * Returns the data as a byte array.
+     * <p>
+     * Same as getData().getFileAsBytes();
      */
     public byte[] getDataAsBytes() {
         maybeLoadDelayedData();
         return data.getFileAsBytes();
+    }
+
+    /**
+     * Returns the data as a string.
+     * <p>
+     * Same as getData().getFileAsString();
+     */
+    public String getDataAsString() {
+        maybeLoadDelayedData();
+        return data.getFileAsString();
     }
 
     /**
