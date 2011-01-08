@@ -51,7 +51,7 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
 
     private static final UniversalFile       C_JAVA_COMPAT_LIB = UniversalFileCreator
                                                                             .createDirectory(
-                                                                                    "/iphone/java-compat-lib.jar",
+                                                                                    "/xmlvm2c/java-compat-lib.jar",
                                                                                     "src/xmlvm2c/compat-lib/java");
 
     private final String                     sourceExtension;

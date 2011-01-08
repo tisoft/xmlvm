@@ -66,6 +66,7 @@
 		<mkdir dir="${xmlvm.bin}" />
 		<mkdir dir="${xmlvm.bin}/iphone" />
 		<mkdir dir="${xmlvm.bin}/lib" />
+		<mkdir dir="${xmlvm.bin}/xmlvm2c" />
 	</target>
 
 
@@ -178,7 +179,7 @@
 			<fileset dir="src/xmlvm2c/compat-lib/iphone/" />
 		</jar>
 
-		<jar destfile="${xmlvm.bin}/iphone/java-compat-lib.jar">
+		<jar destfile="${xmlvm.bin}/xmlvm2c/java-compat-lib.jar">
 			<fileset dir="src/xmlvm2c/compat-lib/java/" />
 		</jar>
 
