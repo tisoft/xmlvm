@@ -37,19 +37,17 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * libraries to the output, such as basic compatibility libraries.
  */
 public class AugmentedCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
-    private static final String        TAG                     = AugmentedCOutputProcess.class
-                                                                       .getSimpleName();
+    private static final String        TAG               = AugmentedCOutputProcess.class
+                                                                 .getSimpleName();
 
-    private static final UniversalFile C_JAVA_COMPAT_LIB       = UniversalFileCreator
-                                                                       .createDirectory(
-                                                                               "/xmlvm2c/java-compat-lib.jar",
-                                                                               "src/xmlvm2c/compat-lib/java");
-    private static final UniversalFile XMLVM_JAVA_UTILS        = UniversalFileCreator
-                                                                       .createDirectory(
-                                                                               "/lib/xmlvm-util-java.jar",
-                                                                               "bin-util");
+    private static final UniversalFile C_JAVA_COMPAT_LIB = UniversalFileCreator.createDirectory(
+                                                                 "/xmlvm2c/java-compat-lib.jar",
+                                                                 "src/xmlvm2c/compat-lib/java");
+    private static final UniversalFile XMLVM_JAVA_UTILS  = UniversalFileCreator.createDirectory(
+                                                                 "/lib/xmlvm-util-java.jar",
+                                                                 "bin-util");
 
-    private final List<OutputFile>     outputFiles             = new ArrayList<OutputFile>();
+    private final List<OutputFile>     outputFiles       = new ArrayList<OutputFile>();
 
 
     /**
@@ -89,6 +87,11 @@ public class AugmentedCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
         return true;
     }
 
+    /**
+     * This initiates a sub process which will take the class files from the
+     * XMLVM Java Utils library, and send it through the whole processing
+     * pipeline for generating C files.
+     */
     private List<OutputFile> crossCompileXmlvmJavaUtils() {
         List<UniversalFile> xmlvmUtilsFiles = Arrays
                 .asList(XMLVM_JAVA_UTILS.listFilesRecursively());
