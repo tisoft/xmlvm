@@ -213,7 +213,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                                                                                             "http://xmlvm.org/dex");
     private static final String                     BIN_PROXIES_PATH        = "bin-proxies";
     private static final String                     BIN_PROXIES_ONEJAR_PATH = "/lib/proxies-java.jar";
-    private static final UniversalFile              redListFile             = UniversalFileCreator
+    private static final UniversalFile              RED_LIST_FILE           = UniversalFileCreator
                                                                                     .createFile(
                                                                                             "/redlist.txt",
                                                                                             "lib/redlist.txt");
@@ -225,7 +225,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * Green classes are classes that are OK to translate. Red classes are
      * excluded from the compilation.
      */
-    private static Set<String>                      redClasses              = null;
+    private static Set<String>                      redTypes                = null;
 
     private List<OutputFile>                        outputFiles             = new ArrayList<OutputFile>();
     private List<XmlvmResource>                     generatedResources      = new ArrayList<XmlvmResource>();
@@ -246,8 +246,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         addSupportedInput(ClassInputProcess.class);
         addSupportedInput(JavaByteCodeOutputProcess.class);
 
-        if (redClasses == null) {
-            redClasses = initializeRedList(redListFile, proxies.keySet());
+        // Red type elimination should only be performed when load_dependencies
+        // is enabled.
+        if (redTypes == null && arguments.option_load_dependencies()
+                && !arguments.option_disable_load_dependencies()) {
+            redTypes = initializeRedList(RED_LIST_FILE, proxies.keySet());
         }
     }
 
@@ -432,7 +435,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         // on the base type
         int i = packagePlusClassName.indexOf('[');
         String baseType = i == -1 ? packagePlusClassName : packagePlusClassName.substring(0, i);
-        return redClasses != null && redClasses.contains(baseType);
+        return redTypes != null && redTypes.contains(baseType);
     }
 
     private static Set<String> initializeRedList(UniversalFile redListFile, Set<String> proxies) {
