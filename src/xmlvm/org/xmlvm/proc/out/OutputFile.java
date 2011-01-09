@@ -39,6 +39,8 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * file system.
  */
 public class OutputFile {
+    public static final String TAG_LIB_NAME       = "lib-name";
+
 
     /**
      * Defines a data provider that can be used to de-couple the creation of the

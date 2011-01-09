@@ -20,6 +20,8 @@
 
 package org.xmlvm.proc.out;
 
+import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_SRC;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,17 +39,23 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * libraries to the output, such as basic compatibility libraries.
  */
 public class AugmentedCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
-    private static final String        TAG               = AugmentedCOutputProcess.class
-                                                                 .getSimpleName();
+    private static final String        TAG                = AugmentedCOutputProcess.class
+                                                                  .getSimpleName();
 
-    private static final UniversalFile C_JAVA_COMPAT_LIB = UniversalFileCreator.createDirectory(
-                                                                 "/xmlvm2c/java-compat-lib.jar",
-                                                                 "src/xmlvm2c/compat-lib/java");
-    private static final UniversalFile XMLVM_JAVA_UTILS  = UniversalFileCreator.createDirectory(
-                                                                 "/lib/xmlvm-util-java.jar",
-                                                                 "bin-util");
+    private static final UniversalFile C_JAVA_COMPAT_LIB  = UniversalFileCreator.createDirectory(
+                                                                  "/xmlvm2c/java-compat-lib.jar",
+                                                                  "src/xmlvm2c/compat-lib/java");
+    private static final UniversalFile XMLVM_JAVA_UTILS   = UniversalFileCreator.createDirectory(
+                                                                  "/lib/xmlvm-util-java.jar",
+                                                                  "bin-util");
+    private static final UniversalFile BOEHM_GC_LIB       = UniversalFileCreator.createDirectory(
+                                                                  "/lib/boehmgc.jar",
+                                                                  "lib/boehmgc.jar");
+    private static final String        BOEHM_LIB_NAME     = "boehmgc";
 
-    private final List<OutputFile>     outputFiles       = new ArrayList<OutputFile>();
+    public static final String         IPHONE_BOEHMGC_LIB = IPHONE_SRC + BOEHM_LIB_NAME;
+
+    private final List<OutputFile>     outputFiles        = new ArrayList<OutputFile>();
 
 
     /**
@@ -75,7 +83,13 @@ public class AugmentedCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
         // over.
         OutputFile iPhoneJavaCompatLib = new OutputFile(C_JAVA_COMPAT_LIB);
         iPhoneJavaCompatLib.setLocation(arguments.option_out());
+        iPhoneJavaCompatLib.setTag(OutputFile.TAG_LIB_NAME, "");
         outputFiles.add(iPhoneJavaCompatLib);
+
+        OutputFile boehmGc = new OutputFile(BOEHM_GC_LIB);
+        boehmGc.setLocation(arguments.option_out());
+        boehmGc.setTag(OutputFile.TAG_LIB_NAME, BOEHM_LIB_NAME);
+        outputFiles.add(boehmGc);
 
         // XMLVM utility classes written in Java that first need to be
         // cross-compiled.

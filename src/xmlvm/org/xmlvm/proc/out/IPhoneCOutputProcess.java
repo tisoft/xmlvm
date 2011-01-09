@@ -50,12 +50,6 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProce
                                                                        .createDirectory(
                                                                                "/iphone/cocoa-compat-lib.jar",
                                                                                "src/xmlvm2c/compat-lib/iphone");
-    private static final UniversalFile BOEHM_GC_LIB            = UniversalFileCreator
-                                                                       .createDirectory(
-                                                                               "/lib/boehmgc.jar",
-                                                                               "lib/boehmgc.jar");
-
-    public static final String         IPHONE_BOEHMGC_LIB      = IPHONE_SRC + "/lib/boehmgc";
 
     private List<OutputFile>           outputFiles             = new ArrayList<OutputFile>();
 
@@ -82,7 +76,16 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProce
             for (OutputFile in : preprocess.getOutputFiles()) {
                 OutputFile out = new OutputFile(in.getData());
                 out.setFileName(in.getFileName());
-                out.setLocation(in.getLocation() + IPHONE_SRC_APP);
+                if (in.hasTag(OutputFile.TAG_LIB_NAME)) {
+                    if (!in.getTag(OutputFile.TAG_LIB_NAME).isEmpty()) {
+                        out.setLocation(arguments.option_out() + IPHONE_SRC + "/lib/"
+                                + in.getTag(OutputFile.TAG_LIB_NAME));
+                    } else {
+                        out.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
+                    }
+                } else {
+                    out.setLocation(in.getLocation() + IPHONE_SRC_APP);
+                }
                 outputFiles.add(out);
             }
         }
@@ -90,10 +93,6 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProce
         OutputFile iPhoneCocoaCompatLib = new OutputFile(IPHONE_COCOA_COMPAT_LIB);
         iPhoneCocoaCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
         outputFiles.add(iPhoneCocoaCompatLib);
-
-        OutputFile bohemGc = new OutputFile(BOEHM_GC_LIB);
-        bohemGc.setLocation(arguments.option_out() + IPHONE_BOEHMGC_LIB);
-        outputFiles.add(bohemGc);
 
         try {
             // Create Info.plist

@@ -25,12 +25,12 @@ import java.io.FileFilter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-
 import java.util.Set;
+
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.Android2IPhoneOutputProcess;
-import org.xmlvm.proc.out.IPhoneCOutputProcess;
+import org.xmlvm.proc.out.AugmentedCOutputProcess;
 import org.xmlvm.proc.out.IPhoneOutputProcess;
 import org.xmlvm.proc.out.OutputFile;
 
@@ -46,7 +46,7 @@ public class XCodeFile extends BuildFile {
     private static final FileFilter              FILTER_ANDROID               = new PathFileFilter(
                                                                                       Android2IPhoneOutputProcess.ANDROID_SRC_LIB);
     private static final PathFileFilter          FILTER_BOHEMGC               = new PathFileFilter(
-                                                                                      IPhoneCOutputProcess.IPHONE_BOEHMGC_LIB);
+                                                                                      AugmentedCOutputProcess.IPHONE_BOEHMGC_LIB);
     /* Templates */
     private static final String                  TEMPL_PROJNAME               = "__PROJNAME__";
     private static final String                  TEMPL_FILEREFS               = "__FILEREFS__";
