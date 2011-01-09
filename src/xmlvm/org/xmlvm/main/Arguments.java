@@ -199,6 +199,13 @@ public class Arguments {
      * Creates a new instance that will parse the arguments of the given array.
      */
     public Arguments(String[] argv) {
+        this(argv, true);
+    }
+
+    /**
+     * Creates a new instance that will parse the arguments of the given array.
+     */
+    public Arguments(String[] argv , boolean performSanityChecks) {
         // Add default properties
         option_property.put("xcodeproject", "iphone");
         option_property.put("bundleidentifier", "org.xmlvm.iphone.XMLVM_APP");
@@ -298,8 +305,10 @@ public class Arguments {
             }
         }
 
-        // Sanity check command line arguments
-        performSanityChecks();
+        if (performSanityChecks) {
+            // Sanity check command line arguments
+            performSanityChecks();
+        }
     }
 
     private void performSanityChecks() {

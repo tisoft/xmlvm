@@ -89,6 +89,20 @@ public class InputProcessFactory {
     }
 
     /**
+     * Creates a list of {@link InputProcess} instances for each provided input.
+     */
+    public List<InputProcess<?>> createInputProcessesFromFiles(List<UniversalFile> inputFiles) {
+        List<InputProcess<?>> processes = new ArrayList<InputProcess<?>>();
+        for (UniversalFile inputFile : inputFiles) {
+            InputProcess<?> inputProcess = createInputProcess(inputFile);
+            if (inputProcess != null) {
+                processes.add(inputProcess);
+            }
+        }
+        return processes;
+    }
+
+    /**
      * This method decides which concrete subclass of InputProcesses should be
      * instantiated, depending on the input given.
      * 

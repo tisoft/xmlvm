@@ -26,10 +26,12 @@ import java.util.Vector;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.main.Targets;
 import org.xmlvm.proc.in.InputProcess;
 import org.xmlvm.proc.in.InputProcessFactory;
 import org.xmlvm.proc.out.OutputFileWriter;
 import org.xmlvm.proc.out.OutputProcessFactory;
+import org.xmlvm.util.universalfile.UniversalFile;
 
 public class XmlvmProcessor {
     /**
@@ -57,8 +59,33 @@ public class XmlvmProcessor {
         addProcesses(inputProcesses);
 
         // Set the target process.
-        setTargetProcess(outputProcessFactory.createTargetProcess(arguments.option_target(),
-                arguments.option_out()));
+        setTargetProcess(outputProcessFactory.createTargetProcess(arguments.option_target()));
+    }
+
+    public XmlvmProcessor(List<UniversalFile> inputFiles, Targets target,
+            String[] additionalArguments) {
+        if (additionalArguments == null) {
+            additionalArguments = new String[0];
+        }
+
+        String[] argv = new String[additionalArguments.length + 1];
+        argv[0] = Arguments.ARG_TARGET + target.toString();
+        for (int i = 1; i < (additionalArguments.length - 1); ++i) {
+            argv[i] = additionalArguments[i - 1];
+        }
+        Arguments arguments = new Arguments(argv, false);
+        InputProcessFactory inputProcessFactory = new InputProcessFactory(arguments);
+        OutputProcessFactory outputProcessFactory = new OutputProcessFactory(arguments);
+
+        // For every given input we instantiate a new input process.
+        Iterable<InputProcess<?>> inputProcesses = inputProcessFactory
+                .createInputProcessesFromFiles(inputFiles);
+
+        // Add input processes to the pipeline.
+        addProcesses(inputProcesses);
+
+        // Set the target process.
+        setTargetProcess(outputProcessFactory.createTargetProcess(arguments.option_target()));
     }
 
     /**
