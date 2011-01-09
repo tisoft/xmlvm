@@ -26,6 +26,8 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.xmlvm.Log;
 import org.xmlvm.util.FileUtil;
@@ -54,6 +56,7 @@ public class OutputFile {
     private String              location = "";
     private String              fileName = "";
     private String              origin   = null;
+    private Map<String, String> tags     = new HashMap<String, String>();
 
 
     /**
@@ -346,5 +349,31 @@ public class OutputFile {
      */
     public long getLastModified() {
         return data.getLastModified();
+    }
+
+    /**
+     * Sets a new or overrides an existing tag value.
+     * 
+     * @param tagName
+     *            The name of the tag.
+     * @param value
+     *            The value of the tag.
+     */
+    public void setTag(String tagName, String value) {
+        tags.put(tagName, value);
+    }
+
+    /**
+     * Returns whether the tag with the given name exists on this file.
+     */
+    public boolean hasTag(String tagName) {
+        return tags.containsKey(tagName);
+    }
+
+    /**
+     * Returns the value of the tag with the given name.
+     */
+    public String getTag(String tagName) {
+        return tags.get(tagName);
     }
 }
