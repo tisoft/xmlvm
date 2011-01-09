@@ -215,6 +215,18 @@
 			<fileset dir="${xmlvm.proxies-java}" />
 		</jar>
 		
+		<mkdir dir="${xmlvm.xmlvm-util-java}" />
+		<javac srcdir="./src/xmlvm2c/lib/util" destdir="${xmlvm.xmlvm-util-java}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.bin}" />
+			</classpath>
+			<classpath refid="classpath.compile" />
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.bin}/lib/xmlvm-util-java.jar">
+			<fileset dir="${xmlvm.xmlvm-util-java}" />
+		</jar>
+		
 		<jar destfile="${xmlvm.bin}/lib/native-c-lib.jar">
 			<fileset dir="src/xmlvm2c/lib/native/" />
 		</jar>
@@ -352,9 +364,9 @@
 		<java jar="dist/xmlvm.jar" fork="true" failonerror="true">
 			<jvmarg value="-Xmx1G"/>
 			<arg value="--in=lib/openjdk6-build.jar"/>
+			<arg value="--in=${xmlvm.bin}/lib/xmlvm-util-java.jar"/>
 			<arg value="--target=gen-c-wrappers"/>
 			<arg value="--out=src/xmlvm2c/lib/native"/>
-			<arg value="--dep-optimization-config=lib/redlist.txt"/>
 			<arg value="--gen-native-skeletons"/>
 		</java>
 	</target>
