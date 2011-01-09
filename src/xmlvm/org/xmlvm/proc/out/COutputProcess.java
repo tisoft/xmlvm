@@ -49,11 +49,6 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
                                                                             .getSimpleName();
     private static final String              C_SOURCE_SUFFIX        = "c";
 
-    private static final UniversalFile       C_JAVA_COMPAT_LIB = UniversalFileCreator
-                                                                            .createDirectory(
-                                                                                    "/xmlvm2c/java-compat-lib.jar",
-                                                                                    "src/xmlvm2c/compat-lib/java");
-
     private final String                     sourceExtension;
     private final String                     headerExtension        = ".h";
     private final List<OutputFile>           outputFiles            = new ArrayList<OutputFile>();
@@ -126,12 +121,6 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
         // Makes sure that for each type we create, the native parts, if
         // present, are added to the list of outputFiles.
         loadNativeResources();
-
-        // This is mainly xmlvm.m. and xmlvm.h
-        OutputFile iPhoneJavaCompatLib = new OutputFile(C_JAVA_COMPAT_LIB);
-        iPhoneJavaCompatLib.setLocation(arguments.option_out());
-        outputFiles.add(iPhoneJavaCompatLib);
-
         return true;
     }
 

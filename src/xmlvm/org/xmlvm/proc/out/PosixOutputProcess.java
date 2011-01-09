@@ -30,7 +30,7 @@ import org.xmlvm.proc.XmlvmProcessImpl;
  * A process that takes C files and creates a compilable POSIX project that
  * includes all required resources.
  */
-public class PosixOutputProcess extends XmlvmProcessImpl<COutputProcess> {
+public class PosixOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProcess> {
     private List<OutputFile> outputFiles = new ArrayList<OutputFile>();
 
 
@@ -39,7 +39,7 @@ public class PosixOutputProcess extends XmlvmProcessImpl<COutputProcess> {
      */
     public PosixOutputProcess(Arguments arguments) {
         super(arguments);
-        addSupportedInput(COutputProcess.class);
+        addSupportedInput(AugmentedCOutputProcess.class);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class PosixOutputProcess extends XmlvmProcessImpl<COutputProcess> {
 
     @Override
     public boolean process() {
-        for (COutputProcess preProcess : preprocess()) {
+        for (AugmentedCOutputProcess preProcess : preprocess()) {
             outputFiles.addAll(preProcess.getOutputFiles());
         }
 

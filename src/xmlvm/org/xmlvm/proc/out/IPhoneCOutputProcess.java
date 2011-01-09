@@ -42,7 +42,7 @@ import org.xmlvm.proc.out.build.XCodeFile;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
-public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
+public class IPhoneCOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProcess> {
     private static final String        TAG                     = IPhoneCOutputProcess.class
                                                                        .getSimpleName();
 
@@ -63,7 +63,7 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
     public IPhoneCOutputProcess(Arguments arguments) {
         super(arguments);
         // Only COutputProcesses are supported as input.
-        addSupportedInput(COutputProcess.class);
+        addSupportedInput(AugmentedCOutputProcess.class);
     }
 
     @Override
@@ -73,12 +73,12 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
 
     @Override
     public boolean process() {
-        List<COutputProcess> preprocesses = preprocess();
+        List<AugmentedCOutputProcess> preprocesses = preprocess();
 
         Log.debug("Processing IPhoneCOutputProcess");
 
         // Add all the files from the preprocesses to our result list.
-        for (COutputProcess preprocess : preprocesses) {
+        for (AugmentedCOutputProcess preprocess : preprocesses) {
             for (OutputFile in : preprocess.getOutputFiles()) {
                 OutputFile out = new OutputFile(in.getData());
                 out.setFileName(in.getFileName());
