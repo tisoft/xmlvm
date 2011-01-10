@@ -34,6 +34,9 @@ import org.xmlvm.proc.out.OutputProcessFactory;
 import org.xmlvm.util.universalfile.UniversalFile;
 
 public class XmlvmProcessor {
+    private static final String                 TAG                    = XmlvmProcessor.class
+                                                                               .getSimpleName();
+
     /**
      * The processes that are being or will be processed.
      */
@@ -124,6 +127,11 @@ public class XmlvmProcessor {
      * @return Whether the processing was successful.
      */
     public boolean process() {
+        if (pool.isEmpty()) {
+            Log.error(TAG, "No inputs to process.");
+            return false;
+        }
+
         if (!buildProcessingPipeline()) {
             Log.error("There are still " + pool.size() + " processes left.");
             return false;
