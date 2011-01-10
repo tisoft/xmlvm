@@ -53,7 +53,7 @@ public class AugmentedCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
                                                                   "lib/boehmgc.jar");
     private static final String        BOEHM_LIB_NAME     = "boehmgc";
 
-    public static final String         IPHONE_BOEHMGC_LIB = IPHONE_SRC + BOEHM_LIB_NAME;
+    public static final String         IPHONE_BOEHMGC_LIB = IPHONE_SRC + "/lib/" + BOEHM_LIB_NAME;
 
     private final List<OutputFile>     outputFiles        = new ArrayList<OutputFile>();
 
