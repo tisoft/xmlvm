@@ -28,10 +28,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import org.xmlvm.iphone.UIGraphics;
 
-/**
- * @author arno
- * 
- */
 public final class Bitmap {
 
     public static enum Config {

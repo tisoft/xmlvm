@@ -37,8 +37,6 @@ import java.util.List;
 /**
  * Bundles functionality to retrieve data from Google's Picasa GDATA API.
  * 
- * @author Sascha Haeberling
- * 
  */
 public class PicasaRequest {
   private static final String REQUEST_BASE_URL =

@@ -27,10 +27,6 @@ import org.xml.sax.helpers.DefaultHandler;
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
-/**
- * @author arno
- * 
- */
 @XMLVMSkeletonOnly
 public class NSXMLParserDelegate extends NSObject {
 

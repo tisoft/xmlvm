@@ -24,10 +24,6 @@ package org.apache.http.client;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.Credentials;
 
-/**
- * @author arno
- *
- */
 public interface CredentialsProvider {
 
     void setCredentials(AuthScope scope, Credentials credentials);

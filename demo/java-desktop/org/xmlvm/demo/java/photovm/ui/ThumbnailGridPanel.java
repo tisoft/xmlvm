@@ -37,8 +37,6 @@ import java.util.List;
  * Displays a grid of thumbnails. The number of columns is automatically adapted
  * to the available horizontal space.
  * 
- * @author haeberling@google.com (Sascha Haeberling)
- * 
  */
 public class ThumbnailGridPanel extends ScrollPane implements
     UpdatePhotosListener {

@@ -22,10 +22,6 @@ package org.apache.http.auth;
 
 import android.internal.Assert;
 
-/**
- * @author arno
- * 
- */
 public class AuthState {
 
     public AuthScheme getAuthScheme() {

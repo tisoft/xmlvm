@@ -24,10 +24,6 @@ import org.apache.http.conn.ClientConnectionManager;
 
 import android.util.Log;
 
-/**
- * @author arno
- * 
- */
 public class ClientConnectionManagerImpl implements ClientConnectionManager {
 
     @Override

@@ -27,8 +27,6 @@ import java.util.List;
 /**
  * Classes implementing this interface can be given a list of photos.
  * 
- * @author haeberling@google.com (Sascha Haeberling)
- * 
  */
 public interface UpdatePhotosListener {
   public void updatePhotos(List<Photo> photos);

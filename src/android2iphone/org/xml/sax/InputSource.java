@@ -22,10 +22,6 @@ package org.xml.sax;
 
 import java.io.Reader;
 
-/**
- * @author arno
- * 
- */
 public class InputSource {
 
     private Reader reader;

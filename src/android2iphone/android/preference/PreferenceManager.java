@@ -25,10 +25,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 
-/**
- * @author arno
- *
- */
 public class PreferenceManager {
 
     public static SharedPreferences getDefaultSharedPreferences(Context context) {

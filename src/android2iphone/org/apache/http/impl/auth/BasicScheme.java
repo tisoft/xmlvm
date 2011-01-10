@@ -21,10 +21,6 @@
 
 package org.apache.http.impl.auth;
 
-/**
- * @author arno
- *
- */
 public class BasicScheme {
 
 }

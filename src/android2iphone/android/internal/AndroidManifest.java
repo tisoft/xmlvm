@@ -100,10 +100,6 @@ class AndroidManifestParser extends NSXMLParserDelegate {
 }
 
 
-/**
- * @author arno
- * 
- */
 public class AndroidManifest {
 
     static class Activity {

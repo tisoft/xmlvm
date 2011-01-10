@@ -24,10 +24,8 @@ package org.xmlvm;
  * This class parses the arguments given in a string array and makes them easily
  * accessible for the application to use.
  * 
- * TODO(shaeberling): Look at other open source argument parsing libraries to
+ * TODO(Sascha): Look at other open source argument parsing libraries to
  * replace this.
- * 
- * @author Sascha Haeberling
  * 
  */
 @Deprecated

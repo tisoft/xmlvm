@@ -22,10 +22,6 @@ package org.apache.http;
 
 import android.internal.Assert;
 
-/**
- * @author arno
- * 
- */
 public class HttpException extends Exception {
 
     public HttpException(String reason) {

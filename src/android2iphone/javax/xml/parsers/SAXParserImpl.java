@@ -31,10 +31,6 @@ import org.xmlvm.iphone.NSData;
 import org.xmlvm.iphone.NSMutableData;
 import org.xmlvm.iphone.NSXMLParser;
 
-/**
- * @author arno
- * 
- */
 public class SAXParserImpl extends SAXParser {
 
     public void parse(InputSource is, DefaultHandler dh) throws SAXException, IOException {

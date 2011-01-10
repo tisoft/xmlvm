@@ -171,10 +171,6 @@ class LayoutParser extends NSXMLParserDelegate {
     }
 }
 
-/**
- * @author arno
- * 
- */
 public class LayoutManager {
 
     public static View getLayout(Context context, int id, ViewGroup root) {

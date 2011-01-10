@@ -29,10 +29,6 @@ import org.xmlvm.iphone.NSHTTPURLResponseHolder;
 
 import android.internal.Assert;
 
-/**
- * @author arno
- * 
- */
 public class HttpResponseImpl implements HttpResponse {
 
     private NSHTTPURLResponseHolder response;

@@ -24,10 +24,6 @@
 package org.xmlvm.test;
 
 
-/**
- * @author Arno
- *
- */
 public class Main
 {
 

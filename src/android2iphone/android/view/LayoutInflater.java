@@ -23,10 +23,6 @@ package android.view;
 import android.content.Context;
 import android.internal.LayoutManager;
 
-/**
- * @author arno
- * 
- */
 public class LayoutInflater {
 
     private Context context;

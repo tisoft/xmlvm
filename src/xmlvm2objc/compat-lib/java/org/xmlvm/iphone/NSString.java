@@ -38,10 +38,6 @@ import java.util.Arrays;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
-/**
- * @author arno
- * 
- */
 @XMLVMSkeletonOnly
 public class NSString extends NSObject {
 

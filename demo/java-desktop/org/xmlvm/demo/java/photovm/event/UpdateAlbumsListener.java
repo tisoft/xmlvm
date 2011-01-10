@@ -26,8 +26,6 @@ import java.util.List;
 
 /**
  * Classes implementing this interface can be given a list of albums.
- * 
- * @author haeberling@google.com (Sascha Haeberling)
  */
 public interface UpdateAlbumsListener {
   public void updateAlbums(List<Album> albums);

@@ -24,10 +24,6 @@ import java.io.IOException;
 
 import org.apache.http.protocol.HttpContext;
 
-/**
- * @author arno
- * 
- */
 public interface HttpRequestInterceptor {
 
     public void process(HttpRequest request, HttpContext context) throws HttpException, IOException;

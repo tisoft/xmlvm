@@ -32,10 +32,6 @@ import org.xmlvm.iphone.NSObject;
 import org.xmlvm.iphone.NSTimer;
 import org.xmlvm.iphone.NSTimerDelegate;
 
-/**
- * @author arno
- * 
- */
 public class Toast {
 
     public static final int LENGTH_LONG = 1;

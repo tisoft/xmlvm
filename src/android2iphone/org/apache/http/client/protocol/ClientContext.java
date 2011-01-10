@@ -20,10 +20,6 @@
 
 package org.apache.http.client.protocol;
 
-/**
- * @author arno
- * 
- */
 public interface ClientContext {
 
     final static String TARGET_AUTH_STATE = "http.auth.target-scope";

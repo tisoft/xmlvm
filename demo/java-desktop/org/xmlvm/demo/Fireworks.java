@@ -35,8 +35,6 @@ import org.xmlvm.client.Timer;
  * Implements a small fireworks application with randomly exploding bombs that
  * emit sparks.
  * 
- * @author Sascha Haeberling
- * 
  */
 public class Fireworks implements ActionListener {
     public static final long serialVersionUID = 1;
@@ -112,8 +110,6 @@ public class Fireworks implements ActionListener {
 /**
  * In principle an image with a given position and speed vector.
  * 
- * @author Sascha Haeberling
- * 
  */
 class Spark {
     ImagePanel   panel;
@@ -126,8 +122,6 @@ class Spark {
 /**
  * A bomb contains a number of sparks. It also contains the logic to calculate
  * the next position of a spark.
- * 
- * @author Sascha Haeberling
  * 
  */
 class Bomb {

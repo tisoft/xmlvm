@@ -28,10 +28,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-/**
- * @author arno
- *
- */
 abstract public class SAXParser {
 
     abstract public void parse(InputSource is, DefaultHandler dh) throws SAXException, IOException;

@@ -20,10 +20,6 @@
 
 package org.apache.http.auth;
 
-/**
- * @author arno
- * 
- */
 public class UsernamePasswordCredentials implements Credentials {
 
     private String user;

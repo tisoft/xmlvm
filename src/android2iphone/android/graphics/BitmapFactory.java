@@ -23,10 +23,6 @@ package android.graphics;
 
 import android.content.res.Resources;
 
-/**
- * @author arno
- *
- */
 public class BitmapFactory {
 
     /**

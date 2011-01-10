@@ -22,10 +22,6 @@ package org.apache.http.protocol;
 
 import java.util.HashMap;
 
-/**
- * @author arno
- * 
- */
 public class BasicHttpContext implements HttpContext {
 
     private HashMap<String, Object> attributes = new HashMap<String, Object>();

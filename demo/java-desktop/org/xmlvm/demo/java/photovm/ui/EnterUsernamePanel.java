@@ -38,8 +38,6 @@ import java.awt.event.KeyEvent;
 /**
  * A panel containing the logo of the application, and a text field where a
  * Picasa username can be entered.
- * 
- * @author haeberling@google.com (Sascha Haeberling)
  */
 public class EnterUsernamePanel extends Panel {
   private final ImagePanel logo =

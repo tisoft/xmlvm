@@ -20,10 +20,6 @@
 
 package org.apache.http.protocol;
 
-/**
- * @author arno
- * 
- */
 public interface HttpContext {
 
     Object getAttribute(String id);

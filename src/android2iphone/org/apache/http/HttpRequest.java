@@ -21,10 +21,6 @@
 
 package org.apache.http;
 
-/**
- * @author arno
- *
- */
 public interface HttpRequest {
 
 }

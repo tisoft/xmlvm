@@ -30,10 +30,6 @@ import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 
-/**
- * @author arno
- * 
- */
 public class ToggleButton extends CompoundButton {
 
     public ToggleButton(Context c) {

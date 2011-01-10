@@ -22,10 +22,6 @@ package android.internal;
 
 import android.R;
 
-/**
- * @author arno
- * 
- */
 public class XMLVMTheme {
 
     /**

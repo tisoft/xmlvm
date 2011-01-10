@@ -20,10 +20,6 @@
 
 package org.apache.http.protocol;
 
-/**
- * @author arno
- * 
- */
 public interface ExecutionContext {
 
     final static String HTTP_TARGET_HOST = "http.target_host";

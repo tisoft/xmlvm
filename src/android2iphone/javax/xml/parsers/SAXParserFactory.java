@@ -20,10 +20,6 @@
 
 package javax.xml.parsers;
 
-/**
- * @author arno
- * 
- */
 public class SAXParserFactory {
 
     private boolean isNamespaceAware = false;

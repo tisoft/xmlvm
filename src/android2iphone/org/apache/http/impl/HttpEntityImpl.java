@@ -30,10 +30,6 @@ import org.xmlvm.iphone.NSData;
 
 import android.internal.Assert;
 
-/**
- * @author arno
- *
- */
 public class HttpEntityImpl implements HttpEntity {
 
     private NSData data;

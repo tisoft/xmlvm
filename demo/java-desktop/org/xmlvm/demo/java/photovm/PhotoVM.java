@@ -31,9 +31,9 @@ import java.awt.event.WindowEvent;
 /**
  * Main class of the application with some basic wiring.
  * 
- * @author haeberling@google.com (Sascha Haeberling)
- * 
  */
+
+
 public class PhotoVM extends Frame {
   private static final long serialVersionUID = 1L;
 

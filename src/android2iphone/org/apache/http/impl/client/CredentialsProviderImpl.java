@@ -26,10 +26,6 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.Credentials;
 import org.apache.http.client.CredentialsProvider;
 
-/**
- * @author arno
- * 
- */
 public class CredentialsProviderImpl implements CredentialsProvider {
 
     private HashMap<AuthScope, Credentials> credentials = new HashMap<AuthScope, Credentials>();

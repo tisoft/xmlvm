@@ -29,8 +29,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 /**
  * Helper class for making HTTP requests.
  * 
- * @author Sascha Haeberling
- * 
  */
 public class HTTPRequest {
     private static DefaultHttpClient client = new DefaultHttpClient();

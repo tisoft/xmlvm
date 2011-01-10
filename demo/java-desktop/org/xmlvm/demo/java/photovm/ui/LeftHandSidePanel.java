@@ -30,8 +30,6 @@ import java.awt.Panel;
  * Combines the username panel and the album list to the left-hand side of the
  * application.
  * 
- * @author haeberling@google.com (Sascha Haeberling)
- * 
  */
 public class LeftHandSidePanel extends Panel {
   private AlbumListPanel albumListPanel;

@@ -22,9 +22,6 @@ package org.xmlvm.demo.java.photovm.data;
 
 /**
  * Data about a Picasa photo entry.
- * 
- * @author haeberling@google.com (Sascha Haeberling)
- *
  */
 public class Photo {
   private String title;

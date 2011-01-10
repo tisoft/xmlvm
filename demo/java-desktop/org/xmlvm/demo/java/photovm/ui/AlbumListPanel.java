@@ -42,8 +42,6 @@ import java.util.List;
  * This panel shows a list of all albums available. When clicking on an entry, a
  * request is made and the listener will be given the resulting photos from that
  * request.
- * 
- * @author haeberling@google.com (Sascha Haeberling)
  */
 public class AlbumListPanel extends ScrollPane implements UpdateAlbumsListener {
   final UpdatePhotosListener listener;
@@ -67,8 +65,6 @@ public class AlbumListPanel extends ScrollPane implements UpdateAlbumsListener {
 
   /**
    * A single UI entry for an Album.
-   * 
-   * @author haeberling@google.com (Sascha Haeberling)
    */
   private class AlbumEntry extends Panel {
     public AlbumEntry(final Album album) {

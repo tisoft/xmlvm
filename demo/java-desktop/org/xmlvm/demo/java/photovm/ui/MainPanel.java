@@ -26,8 +26,6 @@ import java.awt.Panel;
 /**
  * Combining the left-hand side panel with the main thumbnail grid panel.
  * 
- * @author haeberling@google.com (Sascha Haeberling)
- * 
  */
 public class MainPanel extends Panel {
   private ThumbnailGridPanel thumbnailGridPanel = new ThumbnailGridPanel();

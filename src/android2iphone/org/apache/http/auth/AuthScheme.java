@@ -21,10 +21,6 @@
 
 package org.apache.http.auth;
 
-/**
- * @author arno
- *
- */
 public interface AuthScheme {
 
 }

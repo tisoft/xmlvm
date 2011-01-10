@@ -28,10 +28,6 @@ import android.graphics.Rect;
 import android.internal.Assert;
 import android.util.StateSet;
 
-/**
- * @author arno
- * 
- */
 public abstract class Drawable {
     private static final Rect ZERO_BOUNDS_RECT = new Rect();
     private Rect              bounds           = ZERO_BOUNDS_RECT;
