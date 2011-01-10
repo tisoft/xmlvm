@@ -1437,6 +1437,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             Element parameterElement = new Element("parameter", NS_XMLVM);
             String parameterType = parameters.get(i).toHuman();
             parameterElement.setAttribute("type", parameterType);
+            if (isRedType(parameterType)) {
+                parameterElement.setAttribute("isRedType", "true");
+            }
             result.addContent(parameterElement);
         }
         Element returnElement = new Element("return", NS_XMLVM);
