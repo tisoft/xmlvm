@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.OutputFile;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 public class MakeFile extends BuildFile {
 
@@ -34,7 +35,8 @@ public class MakeFile extends BuildFile {
 
     @Override
     public String composeBuildFiles(List<OutputFile> result, Arguments arguments) {
-        String makefile_data = readData(IPHONE_MAKFILE_IN_JAR_RESOURCE, IPHONE_MAKEFILE_PATH);
+        String makefile_data = UniversalFileCreator.createFile(IPHONE_MAKFILE_IN_JAR_RESOURCE,
+                IPHONE_MAKEFILE_PATH).getFileAsString();
         if (makefile_data == null)
             return "Could not initialize Makefile";
         makefile_data = makefile_data.replace(TEMPL_PROJNAME, arguments.option_app_name());

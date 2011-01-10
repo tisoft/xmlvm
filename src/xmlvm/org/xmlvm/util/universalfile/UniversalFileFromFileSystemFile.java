@@ -21,7 +21,10 @@
 package org.xmlvm.util.universalfile;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
+import org.xmlvm.Log;
 import org.xmlvm.util.FileUtil;
 
 /**
@@ -43,12 +46,12 @@ public class UniversalFileFromFileSystemFile extends UniversalFile {
 
     @Override
     public byte[] getFileAsBytes() {
-        return FileUtil.readFileAsBytes(file);
+        return readFileAsBytes(file);
     }
 
     @Override
     public String getFileAsString() {
-        return FileUtil.readFileAsString(file);
+        return readFileAsString(file);
     }
 
     @Override
@@ -74,5 +77,36 @@ public class UniversalFileFromFileSystemFile extends UniversalFile {
     @Override
     public long getLastModified() {
         return file.lastModified();
+    }
+
+    /**
+     * Read the content of a file as bytes.
+     * 
+     * @param file
+     *            the file to read
+     * @return The content of the file.
+     */
+    public static byte[] readFileAsBytes(File file) {
+        try {
+            return FileUtil.readBytesFromStream(new FileInputStream(file));
+        } catch (FileNotFoundException e) {
+            Log.error("Could not read file: " + file.getAbsolutePath());
+            return new byte[0];
+        }
+    }
+
+    /**
+     * Read the content of a file as String.
+     * 
+     * @param file
+     *            the file to read.
+     */
+    public static String readFileAsString(File file) {
+        try {
+            return FileUtil.readStringFromStream(new FileInputStream(file));
+        } catch (FileNotFoundException e) {
+            Log.error("Could not read file: " + file.getAbsolutePath());
+            return "";
+        }
     }
 }

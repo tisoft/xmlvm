@@ -20,16 +20,13 @@
 
 package org.xmlvm.proc.out.build;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.OutputFile;
-import org.xmlvm.util.FileUtil;
 
 /**
  * Create a file responsible to "build" the selected target (i.e. a Makefile or
@@ -38,26 +35,6 @@ import org.xmlvm.util.FileUtil;
 public abstract class BuildFile {
 
     protected final static String BUILDFILE_LOCATION = File.separator + "dist" + File.separator;
-
-
-    /**
-     * Read data either from inside a JAR or from a file
-     * 
-     * @param jarResource
-     *            The filename inside the JAR file.
-     * @param fileResource
-     *            The filename in the local directory.
-     * @return The data read either from JAR or from a local file.
-     */
-    protected String readData(String jarResource, String fileResource) {
-        StringWriter out = new StringWriter();
-        BufferedReader in = FileUtil.findReaderResource(jarResource, fileResource);
-        if (in == null)
-            return "Can not read data from resources " + jarResource + " / " + fileResource;
-        if (!FileUtil.copyReaders(in, out))
-            return "Can not copy data from resources " + jarResource + " / " + fileResource;
-        return out.toString();
-    }
 
     /**
      * Get a list of filenames from a OutputFile list, which are in accordance

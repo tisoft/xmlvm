@@ -208,7 +208,8 @@ public class WebOsOutputProcess extends XmlvmProcessImpl<QooxdooOutputProcess> {
             return false;
         }
 
-        String sceneAssistantFileContent = FileUtil.readFileAsString(sceneAssistantFile);
+        String sceneAssistantFileContent = UniversalFileCreator.createFile(sceneAssistantFile)
+                .getFileAsString();
         String[] parts = sceneAssistantFileContent.split("\\Q" + setupMethodDeclarationPattern
                 + "\\E");
 
@@ -339,8 +340,8 @@ public class WebOsOutputProcess extends XmlvmProcessImpl<QooxdooOutputProcess> {
             options[i] = options[i].replaceAll("\\$SCENE", sceneName);
         }
 
-        Process process = getPalmBinProcess(PALM_GENERATE_CMD, options, new File(arguments
-                .option_out()));
+        Process process = getPalmBinProcess(PALM_GENERATE_CMD, options,
+                new File(arguments.option_out()));
         printOutputOfProcess(process, PALM_GENERATE_CMD);
         try {
             if (process.waitFor() != 0) {

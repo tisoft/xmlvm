@@ -20,7 +20,6 @@
 
 package org.xmlvm.util;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -29,10 +28,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
 import org.xmlvm.Log;
@@ -44,43 +41,6 @@ import org.xmlvm.util.universalfile.UniversalFile;
 public class FileUtil {
     private static final String TAG = "FileUtil";
 
-
-    /**
-     * Returns whether the file or directory with the given name exists.
-     * <p>
-     * This implementation of fileExists searches inside the OneJar as well as
-     * on the file system and operates therefore transparent.
-     * 
-     * @param name
-     *            The name of the file or directory to check
-     * @return Whether the file or directory exists.
-     */
-    public static boolean fileExists(String name) {
-        return (FileUtil.class.getResourceAsStream(name) != null || (new File(name)).exists());
-    }
-
-    /**
-     * Copies the contents of a directory. This operation is not recursive.
-     * 
-     * @param source
-     *            The source directory.
-     * @param destination
-     *            The destination directory.
-     * 
-     * @return Whether the operation was successful.
-     */
-    public static boolean copyDirectory(String source, String destination) {
-        File sourceFile = new File(source);
-        File destinationFile = new File(destination);
-
-        if (!destinationFile.exists()) {
-            if (!destinationFile.mkdirs()) {
-                Log.error("copyDirectory failed: Could to make directory: " + destination);
-                return false;
-            }
-        }
-        return copyFiles(sourceFile.listFiles(), destination);
-    }
 
     /**
      * Copies the given source directory to the given destination.
@@ -110,40 +70,6 @@ public class FileUtil {
                 copyDirectory(file, subPath, recursive);
             } else if (file.isFile()) {
                 file.saveAs(destination + File.separator + file.getName());
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Copies the files to the given destination directory.
-     * 
-     * @param files
-     *            The files to be copied.
-     * @param destination
-     *            The destination path to where the files should be copied to.
-     * @return Whether the operation was successful.
-     */
-    public static boolean copyFiles(File[] files, String destination) {
-        File destinationFile = new File(destination);
-
-        if (!destinationFile.exists()) {
-            if (!destinationFile.mkdirs()) {
-                Log.error("copyDirectory failed: Could to make directory: " + destination);
-                return false;
-            }
-        }
-
-        // Copy the files, ignore directories.
-        for (File file : files) {
-            if (!file.isDirectory()) {
-                if (!copyFile(file, new File(destinationFile, file.getName()))) {
-                    Log.error("Could not copy file: " + file.getAbsolutePath() + " to "
-                            + destinationFile.getAbsolutePath());
-                } else {
-                    Log.debug("Copy file " + file.getAbsolutePath() + " to "
-                            + destinationFile.getAbsolutePath());
-                }
             }
         }
         return true;
@@ -240,101 +166,11 @@ public class FileUtil {
     }
 
     /**
-     * Search for a resource (namely a file) either inside a JAR file or in a
-     * local file. First try to find the requested filename inside the JAR. If
-     * it is not found, then it tries to locate this resource on the file. In
-     * any case it returns a BufferedReader of this resource.
-     * 
-     * This method is useful to read text-line resources either from a JAR file
-     * or a local file.
-     * 
-     * @param jarResource
-     *            The name of the resource inside the JAR file.
-     * @param fileResource
-     *            The filename of the resource as a local file.
-     * @return the BufferedReader of this resource, or null if resource was not
-     *         found in either places.
-     */
-    public static BufferedReader findReaderResource(String jarResource, String fileResource) {
-        BufferedReader in = null;
-        try {
-            if (JarUtil.resourceExists(jarResource))
-                in = JarUtil.getFile(jarResource);
-            else
-                in = new BufferedReader(new InputStreamReader(new FileInputStream(fileResource),
-                        "UTF-8"));
-        } catch (FileNotFoundException ex) {
-        } catch (UnsupportedEncodingException ex) {
-        }
-        return in;
-    }
-
-    /**
-     * Search for a resource (namely a file) either inside a JAR file or in a
-     * local file. First try to find the requested filename inside the JAR. If
-     * it is not found, then it tries to locate this resource on the file. In
-     * any case it returns a BufferedInputStream of this resource.
-     * 
-     * This method is useful to read binary resources (e.g. images) either from
-     * a JAR file or a local file.
-     * 
-     * 
-     * @param jarResource
-     *            The name of the resource inside the JAR file.
-     * @param fileResource
-     *            The filename of the resource as a local file.
-     * @return the BufferedInputStream of this resource, or null if resource was
-     *         not found in either places.
-     */
-    public static BufferedInputStream findStreamResource(String jarResource, String fileResource) {
-        BufferedInputStream in = null;
-        try {
-            if (JarUtil.resourceExists(jarResource))
-                in = JarUtil.getStream(jarResource);
-            else
-                in = new BufferedInputStream(new FileInputStream(fileResource));
-        } catch (FileNotFoundException ex) {
-        }
-        return in;
-    }
-
-    /**
      * Returns the path to the bin directory, where Eclipse typically stores
      * compiled class files.
      */
     public static String getBinDirectory() {
         return (new File("bin")).getAbsolutePath();
-    }
-
-    /**
-     * Read the content of a file as bytes.
-     * 
-     * @param file
-     *            the file to read
-     * @return The content of the file.
-     */
-    public static byte[] readFileAsBytes(File file) {
-        try {
-            return readBytesFromStream(new FileInputStream(file));
-        } catch (FileNotFoundException e) {
-            Log.error("Could not read file: " + file.getAbsolutePath());
-            return new byte[0];
-        }
-    }
-
-    /**
-     * Read the content of a file as String.
-     * 
-     * @param file
-     *            the file to read.
-     */
-    public static String readFileAsString(File file) {
-        try {
-            return readStringFromStream(new FileInputStream(file));
-        } catch (FileNotFoundException e) {
-            Log.error("Could not read file: " + file.getAbsolutePath());
-            return "";
-        }
     }
 
     /**

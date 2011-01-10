@@ -33,6 +33,7 @@ import org.xmlvm.proc.out.Android2IPhoneOutputProcess;
 import org.xmlvm.proc.out.AugmentedCOutputProcess;
 import org.xmlvm.proc.out.IPhoneOutputProcess;
 import org.xmlvm.proc.out.OutputFile;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 public class XCodeFile extends BuildFile {
 
@@ -121,7 +122,8 @@ public class XCodeFile extends BuildFile {
 
 
         private XCodeProj(String name, List<OutputFile> allfiles) throws IOException {
-            data = readData(IPHONE_XCODE_IN_JAR_RESOURCE, IPHONE_XCODE_PATH);
+            data = UniversalFileCreator.createFile(IPHONE_XCODE_IN_JAR_RESOURCE, IPHONE_XCODE_PATH)
+                    .getFileAsString();
             if (data == null)
                 throw new RuntimeException("XCode template not found");
             data = data.replace(TEMPL_PROJNAME, name);
@@ -134,16 +136,17 @@ public class XCodeFile extends BuildFile {
         }
 
         private void finalizeObject(Arguments arguments) {
-            data = data.replace(TEMPL_FILEREFS, "").replace(TEMPL_BUILDREFS, "").replace(
-                    TEMPL_RESOURCES_BUILD, "").replace(TEMPL_SRC_BUILD, "").replace(
-                    TEMPL_BUILDFRAMS, "").replace(TEMPL_FRAMEWORKS, "").replace(TEMPL_BOEHMGC, "");
+            data = data.replace(TEMPL_FILEREFS, "").replace(TEMPL_BUILDREFS, "")
+                    .replace(TEMPL_RESOURCES_BUILD, "").replace(TEMPL_SRC_BUILD, "")
+                    .replace(TEMPL_BUILDFRAMS, "").replace(TEMPL_FRAMEWORKS, "")
+                    .replace(TEMPL_BOEHMGC, "");
             XcodeSkeleton skel = XcodeSkeleton.getTarget(arguments.option_property("xcodeproject"));
             data = data.replace(TEMPL_SDK_ROOT, skel.root).replace(TEMPL_SDK_TARGET, skel.target)
                     .replace(TEMPL_ARCHITECTURE, skel.architecture);
-            data = data.replace(TEMPL_RESOURCE_LIST, ResourceManager.getResourcesAsEscQuoteList(
-                    arguments.option_resource(), null));
-            data = data.replace(TEMPL_RESOURCE_DIR, new File(System.getProperty("user.dir"))
-                    .getAbsolutePath());
+            data = data.replace(TEMPL_RESOURCE_LIST,
+                    ResourceManager.getResourcesAsEscQuoteList(arguments.option_resource(), null));
+            data = data.replace(TEMPL_RESOURCE_DIR,
+                    new File(System.getProperty("user.dir")).getAbsolutePath());
         }
 
         private void injectLibraries(Set<String> libraries) {
@@ -199,8 +202,8 @@ public class XCodeFile extends BuildFile {
                     /* Add references frameworks */
                     buildframs.append("\t\t\t\t").append(buildid).append(" /* ").append(lib)
                             .append(" in Frameworks */,\n");
-                    frameworks.append("\t\t\t\t").append(fileid).append(" /* ").append(lib).append(
-                            " */,\n");
+                    frameworks.append("\t\t\t\t").append(fileid).append(" /* ").append(lib)
+                            .append(" */,\n");
                 }
             }
             data = data.replace(TEMPL_FILEREFS, filerefs.toString() + TEMPL_FILEREFS);
@@ -224,8 +227,7 @@ public class XCodeFile extends BuildFile {
                 if (fres.isValid) {
                     filerefs.append("\t\t").append(nextid);
                     filerefs.append(" /* ").append(fname).append(" */");
-                    filerefs
-                            .append(" = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = ");
+                    filerefs.append(" = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = ");
                     filerefs.append(fres.type).append("; path = \"");
                     filerefs.append(fname).append("\"; sourceTree = \"<group>\"; };");
                     filerefs.append('\n');
