@@ -205,7 +205,7 @@ public class Arguments {
     /**
      * Creates a new instance that will parse the arguments of the given array.
      */
-    public Arguments(String[] argv , boolean performSanityChecks) {
+    public Arguments(String[] argv, boolean performSanityChecks) {
         // Add default properties
         option_property.put("xcodeproject", "iphone");
         option_property.put("bundleidentifier", "org.xmlvm.iphone.XMLVM_APP");
@@ -298,8 +298,8 @@ public class Arguments {
                 if (equal < 1) {
                     parseError("Unable to parse kay/value: " + value);
                 }
-                option_property.put(value.substring(0, equal).toLowerCase(),
-                        value.substring(equal + 1));
+                option_property.put(value.substring(0, equal).toLowerCase(), value
+                        .substring(equal + 1));
             } else {
                 parseError("Unknown parameter: " + arg);
             }
@@ -323,8 +323,9 @@ public class Arguments {
             parseError("--gen-native-skeletons only available for targets 'c' and 'gen-c-wrappers'.");
         }
 
-        if ((option_target == Targets.IPHONE || option_target == Targets.IPHONEC
-                || option_target == Targets.IPHONEANDROID || option_target == Targets.WEBOS || option_skeleton != null)
+        if ((option_target == Targets.POSIX || option_target == Targets.IPHONE
+                || option_target == Targets.IPHONEC || option_target == Targets.IPHONEANDROID
+                || option_target == Targets.WEBOS || option_skeleton != null)
                 && option_app_name == null) {
             option_app_name = guessAppName();
             if (option_app_name == null)

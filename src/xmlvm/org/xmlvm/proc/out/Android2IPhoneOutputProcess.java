@@ -41,6 +41,7 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * the Android API.
  */
 public class Android2IPhoneOutputProcess extends XmlvmProcessImpl<IPhoneOutputProcess> {
+    private static final String PLATFORM                      = "iphone";
     public static final String  ANDROID_SRC_LIB               = IPhoneOutputProcess.IPHONE_SRC
                                                                       + "/lib/android";
 
@@ -102,7 +103,7 @@ public class Android2IPhoneOutputProcess extends XmlvmProcessImpl<IPhoneOutputPr
         }
 
         // Create various buildfiles
-        MakeFile makefile = new MakeFile();
+        MakeFile makefile = new MakeFile(PLATFORM);
         Log.error(makefile.composeBuildFiles(result, arguments));
         XCodeFile xcode = new XCodeFile();
         Log.error(xcode.composeBuildFiles(result, arguments));

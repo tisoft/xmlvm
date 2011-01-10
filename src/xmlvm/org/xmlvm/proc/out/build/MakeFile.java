@@ -28,17 +28,26 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 public class MakeFile extends BuildFile {
 
-    private static final String TEMPL_PROJNAME                 = "__PROJNAME__";
-    private static final String IPHONE_MAKFILE_IN_JAR_RESOURCE = "/iphone/Makefile";
-    private static final String IPHONE_MAKEFILE_PATH           = "var/iphone/Makefile";
+    private static final String TEMPL_PROJNAME          = "__PROJNAME__";
+    private static final String MAKFILE_IN_JAR_RESOURCE = "/__PLATFORM__/Makefile";
+    private static final String MAKEFILE_PATH           = "var/__PLATFORM__/Makefile";
 
+    private String              platform;
+
+
+    public MakeFile(String platform) {
+        this.platform = platform;
+    }
 
     @Override
     public String composeBuildFiles(List<OutputFile> result, Arguments arguments) {
-        String makefile_data = UniversalFileCreator.createFile(IPHONE_MAKFILE_IN_JAR_RESOURCE,
-                IPHONE_MAKEFILE_PATH).getFileAsString();
-        if (makefile_data == null)
+        String makefileInJarResource = MAKFILE_IN_JAR_RESOURCE.replace("__PLATFORM__", platform);
+        String makefilePath = MAKEFILE_PATH.replace("__PLATFORM__", platform);
+        String makefile_data = UniversalFileCreator.createFile(makefileInJarResource, makefilePath)
+                .getFileAsString();
+        if (makefile_data == null) {
             return "Could not initialize Makefile";
+        }
         makefile_data = makefile_data.replace(TEMPL_PROJNAME, arguments.option_app_name());
         OutputFile makefile = new OutputFile(makefile_data);
         makefile.setFileName("Makefile");

@@ -46,6 +46,7 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProce
     private static final String        TAG                     = IPhoneCOutputProcess.class
                                                                        .getSimpleName();
 
+    private static final String        PLATFORM             = "iphone";
     private static final UniversalFile IPHONE_COCOA_COMPAT_LIB = UniversalFileCreator
                                                                        .createDirectory(
                                                                                "/iphone/cocoa-compat-lib.jar",
@@ -144,7 +145,7 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProce
         eliminateOverridenResources(new UniversalFile[] { IPHONE_COCOA_COMPAT_LIB });
 
         // Create various buildfiles
-        MakeFile makefile = new MakeFile();
+        MakeFile makefile = new MakeFile(PLATFORM);
         Log.error(makefile.composeBuildFiles(outputFiles, arguments));
         XCodeFile xcode = new XCodeFile();
         Log.error(xcode.composeBuildFiles(outputFiles, arguments));

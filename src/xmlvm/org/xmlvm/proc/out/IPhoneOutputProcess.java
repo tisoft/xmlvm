@@ -37,6 +37,7 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProcess> {
 
+    private static final String        PLATFORM             = "iphone";
     private static final UniversalFile IPHONE_COMPAT_LIB    = UniversalFileCreator
                                                                     .createDirectory(
                                                                             "/iphone/compat-lib.jar",
@@ -115,7 +116,7 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
         result.addAll(ResourceManager.getSourceResources(arguments));
 
         /* Create various buildfiles */
-        MakeFile makefile = new MakeFile();
+        MakeFile makefile = new MakeFile(PLATFORM);
         Log.error(makefile.composeBuildFiles(result, arguments));
         XCodeFile xcode = new XCodeFile();
         Log.error(xcode.composeBuildFiles(result, arguments));

@@ -237,6 +237,10 @@
 			<fileset file="var/iphone/Info.plist" />
 		</copy>
 
+		<copy todir="${xmlvm.bin}/posix">
+			<fileset file="var/posix/Makefile" />
+		</copy>
+
 		<mkdir dir="${xmlvm.build}/xmlvm2js" />
 		<jar destfile="${xmlvm.build}/xmlvm2js/xmlvm2js.jar">
 			<fileset dir="src/xmlvm2js/" />
