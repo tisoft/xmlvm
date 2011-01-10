@@ -42,10 +42,12 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * Used for creating input processes.
  */
 public class InputProcessFactory {
+    private static final String TAG = InputProcessFactory.class.getSimpleName();
+
     /**
      * The arguments that should be given to the created processes.
      */
-    private Arguments arguments;
+    private Arguments           arguments;
 
 
     public InputProcessFactory(Arguments arguments) {
@@ -81,8 +83,12 @@ public class InputProcessFactory {
                     processes.add(createInputProcess(file));
                 }
             } else {
-                processes.add(createInputProcess(UniversalFileCreator.createFile(new File(
-                        inputElement))));
+                UniversalFile file = UniversalFileCreator.createFile(new File(inputElement));
+                if (file != null) {
+                    processes.add(createInputProcess(file));
+                } else {
+                    Log.error(TAG, "Could not find input resource: " + inputElement);
+                }
             }
         }
         return processes;
