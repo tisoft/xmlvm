@@ -38,7 +38,8 @@ public class ResourceList extends XFile {
      * ignored when creating xml output.
      */
     public static boolean isResourceList(UniversalFile file) {
-        return file.isFile() && file.getAbsolutePath().toLowerCase().endsWith(RESOURCE_ENDING);
+        return file != null && file.isFile()
+                && file.getAbsolutePath().toLowerCase().endsWith(RESOURCE_ENDING);
     }
 
 }

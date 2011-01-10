@@ -37,6 +37,7 @@ public class ClassFile extends XFile {
      * Returns whether the given input is a class file.
      */
     public static boolean isClassInput(UniversalFile file) {
-        return file.isFile() && file.getAbsolutePath().toLowerCase().endsWith(CLASS_ENDING);
+        return file != null && file.isFile()
+                && file.getAbsolutePath().toLowerCase().endsWith(CLASS_ENDING);
     }
 }

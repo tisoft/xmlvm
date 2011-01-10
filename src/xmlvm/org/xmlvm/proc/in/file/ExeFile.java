@@ -37,7 +37,8 @@ public class ExeFile extends XFile {
      * Returns whether the input is an EXE file.
      */
     public static boolean isExeInput(UniversalFile file) {
-        return file.isFile() && file.getAbsolutePath().toLowerCase().endsWith(EXE_ENDING);
+        return file != null && file.isFile()
+                && file.getAbsolutePath().toLowerCase().endsWith(EXE_ENDING);
     }
 
 }

@@ -37,6 +37,7 @@ public class XmlvmFile extends XFile {
      * Returns whether the input is an XMLVM file.
      */
     public static boolean isXmlvmInput(UniversalFile file) {
-        return file.isFile() && file.getAbsolutePath().toLowerCase().endsWith(XMLVM_ENDING);
+        return file != null && file.isFile()
+                && file.getAbsolutePath().toLowerCase().endsWith(XMLVM_ENDING);
     }
 }
