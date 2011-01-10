@@ -171,6 +171,7 @@ public class Arguments {
             " --help            This message", ""                 };
     private static final String[] Version                          = { "XMLVM 2",
             "Note: Not all command line arguments activated yet." };
+    private boolean               performSanityChecks              = true;
 
 
     public static void printVersion() {
@@ -298,13 +299,14 @@ public class Arguments {
                 if (equal < 1) {
                     parseError("Unable to parse kay/value: " + value);
                 }
-                option_property.put(value.substring(0, equal).toLowerCase(), value
-                        .substring(equal + 1));
+                option_property.put(value.substring(0, equal).toLowerCase(),
+                        value.substring(equal + 1));
             } else {
                 parseError("Unknown parameter: " + arg);
             }
         }
 
+        this.performSanityChecks = performSanityChecks;
         if (performSanityChecks) {
             // Sanity check command line arguments
             performSanityChecks();
@@ -428,7 +430,9 @@ public class Arguments {
             else {
                 option_out = option_app_name;
             }
-            Log.warn("Using '" + option_out + "' as output directory");
+            if (performSanityChecks) {
+                Log.warn("Using '" + option_out + "' as output directory");
+            }
         }
         return option_out;
     }
