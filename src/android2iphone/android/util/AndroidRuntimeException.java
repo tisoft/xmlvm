@@ -23,10 +23,6 @@ package android.util;
 
 import android.internal.Assert;
 
-/**
- * @author wkorn
- *
- */
 public class AndroidRuntimeException extends RuntimeException {
     
     public AndroidRuntimeException(Exception cause) {

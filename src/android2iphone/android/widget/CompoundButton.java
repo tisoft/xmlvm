@@ -31,10 +31,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import org.xmlvm.iphone.UIFont;
 
-/**
- * @author wkorn
- * 
- */
 public abstract class CompoundButton extends Button {
 
     private boolean              checked           = false;

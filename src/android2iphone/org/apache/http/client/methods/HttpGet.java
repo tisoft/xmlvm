@@ -24,10 +24,6 @@ import java.net.URI;
 
 import android.internal.Assert;
 
-/**
- * @author wkorn
- * 
- */
 public class HttpGet extends HttpRequestBase implements HttpUriRequest {
 
     private String uri;

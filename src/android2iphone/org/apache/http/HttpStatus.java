@@ -21,10 +21,6 @@
 
 package org.apache.http;
 
-/**
- * @author wkorn
- *
- */
 public interface HttpStatus {
 
     public static final int SC_OK = 200;

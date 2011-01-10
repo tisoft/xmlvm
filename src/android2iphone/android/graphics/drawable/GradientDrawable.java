@@ -25,10 +25,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 
-/**
- * @author wkorn
- * 
- */
 public class GradientDrawable extends Drawable {
 
     public static final int RECTANGLE     = 0x00000000;

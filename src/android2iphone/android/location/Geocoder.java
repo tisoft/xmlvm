@@ -27,10 +27,6 @@ import java.util.Locale;
 import android.content.Context;
 import android.internal.Assert;
 
-/**
- * @author wkorn
- * 
- */
 public class Geocoder {
 
     public Geocoder(Context context, Locale locale) {
