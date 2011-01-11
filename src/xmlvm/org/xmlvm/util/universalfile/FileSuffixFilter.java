@@ -39,6 +39,6 @@ public class FileSuffixFilter implements UniversalFileFilter {
 
     @Override
     public boolean accept(UniversalFile file) {
-        return file.getName().endsWith(suffix);
+        return file.isFile() && file.getName().endsWith(suffix);
     }
 }
