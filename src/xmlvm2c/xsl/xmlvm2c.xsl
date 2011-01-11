@@ -626,6 +626,17 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text>.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);&nl;</xsl:text>
     
+    <!-- Initialize reflection information for constructors -->
+    <xsl:text>    __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.constructorDispatcherFunc = constructor_dispatcher;&nl;</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.declaredConstructors = &amp;__constructor_reflection_data[0];&nl;</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);&nl;</xsl:text>
+    
     <!-- Create the java.lang.Class instance for this class -->
     <xsl:text>    __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
@@ -884,8 +895,8 @@ int main(int argc, char* argv[])
     </xsl:for-each>
     <xsl:text>&nl;</xsl:text>
 
-    <!-- Emit reflection information -->
-    <xsl:call-template name="emitReflectionInformation"/>
+    <!-- Emit reflection information (for fields only) -->
+    <xsl:call-template name="emitReflectionInformationForFields"/>
     
     <!-- Emit interface initializers -->
     <xsl:text>void __INIT_</xsl:text>
@@ -1059,7 +1070,9 @@ int main(int argc, char* argv[])
 
 
 <xsl:template name="emitReflectionInformation">
+  <xsl:text>#include "xmlvm-reflection.h"&nl;&nl;</xsl:text>
   <xsl:call-template name="emitReflectionInformationForFields"/>
+  <xsl:call-template name="emitReflectionInformationForConstructors"/>
 </xsl:template>
 
 <xsl:template name="emitReflectionInformationForFields">
@@ -1077,6 +1090,7 @@ int main(int argc, char* argv[])
       <xsl:text>&amp;</xsl:text>
       <xsl:call-template name="emitJavaLangClassReference">
         <xsl:with-param name="type" select="@type"/>
+        <xsl:with-param name="isRedType" select="@isRedType"/>
       </xsl:call-template>
       <xsl:text>,&nl;    </xsl:text>
       <!-- modifier -->
@@ -1122,11 +1136,146 @@ int main(int argc, char* argv[])
   <xsl:text>};&nl;&nl;</xsl:text>
 </xsl:template>
 
+<xsl:template name="emitReflectionInformationForConstructors">
+  <xsl:call-template name="emitConstructorArgumentTypes"/>
+  <xsl:call-template name="emitConstructorReflectionData"/>
+  <xsl:call-template name="emitConstructorDispatcherFunction"/>
+</xsl:template>
+
+<xsl:template name="emitConstructorArgumentTypes">
+  <xsl:for-each select="vm:method[@name = '&lt;init&gt;' and not($genWrapper = 'true' and @isPrivate='true')]">
+    <xsl:text>static JAVA_OBJECT* __constructor</xsl:text>
+    <xsl:value-of select="position() - 1"/>
+    <xsl:text>_arg_types[] = {&nl;</xsl:text>
+    <xsl:for-each select="vm:signature/vm:parameter">
+      <xsl:text>    &amp;</xsl:text>
+      <xsl:call-template name="emitJavaLangClassReference">
+        <xsl:with-param name="type" select="@type"/>
+        <xsl:with-param name="isRedType" select="@isRedType"/>
+      </xsl:call-template>
+      <xsl:text>,&nl;</xsl:text>
+    </xsl:for-each>
+    <xsl:text>};&nl;&nl;</xsl:text>
+  </xsl:for-each>
+</xsl:template>
+
+<xsl:template name="emitConstructorReflectionData">
+  <xsl:text>static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {&nl;</xsl:text>
+  <xsl:for-each select="vm:method[@name = '&lt;init&gt;' and not($genWrapper = 'true' and @isPrivate='true')]">
+    <xsl:text>    {&amp;__constructor</xsl:text>
+    <xsl:value-of select="position() - 1"/>
+    <xsl:text>_arg_types[0],&nl;</xsl:text>
+    <xsl:text>    sizeof(__constructor</xsl:text>
+    <xsl:value-of select="position() - 1"/>
+    <xsl:text>_arg_types) / sizeof(JAVA_OBJECT*),&nl;</xsl:text>
+    <xsl:text>    JAVA_NULL,&nl;</xsl:text>
+    <xsl:text>    0,&nl;</xsl:text>
+    <xsl:text>    0,&nl;</xsl:text>
+    <xsl:text>    "",&nl;</xsl:text>
+    <xsl:text>    JAVA_NULL,&nl;</xsl:text>
+    <xsl:text>    JAVA_NULL},&nl;</xsl:text>
+  </xsl:for-each>
+  <xsl:text>};&nl;&nl;</xsl:text>
+</xsl:template>
+
+<xsl:template name="emitConstructorDispatcherFunction">
+  <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
+  <xsl:variable name="clname" select="vm:fixname($cclname)"/>
+
+  <xsl:text>static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)&nl;</xsl:text>
+  <xsl:text>{&nl;</xsl:text>
+  <xsl:text>    JAVA_OBJECT obj = __NEW_</xsl:text>
+  <xsl:value-of select="$clname"/>
+  <xsl:text>();&nl;</xsl:text>
+  <xsl:text>    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;&nl;</xsl:text>
+  <xsl:text>    XMLVMArray* args = (XMLVMArray*) arguments;&nl;</xsl:text>
+  <xsl:text>    switch (c->fields.java_lang_reflect_Constructor.slot_) {&nl;</xsl:text>
+  <xsl:for-each select="vm:method[@name = '&lt;init&gt;' and not($genWrapper = 'true' and @isPrivate='true')]">
+    <xsl:text>    case </xsl:text>
+    <xsl:value-of select="position() - 1"/>
+    <xsl:text>:&nl;</xsl:text>
+    <xsl:text>        </xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>___INIT_</xsl:text>
+    <xsl:call-template name="appendSignature"/>
+    <xsl:text>(obj</xsl:text>
+    <xsl:for-each select="vm:signature/vm:parameter">
+      <xsl:text>, </xsl:text>
+      <xsl:call-template name="emitConstructorActualParameter">
+        <xsl:with-param name="index" select="position() - 1"/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:text>);&nl;</xsl:text>
+    <xsl:text>        break;&nl;</xsl:text>
+  </xsl:for-each>
+  <xsl:text>    default:&nl;</xsl:text>
+  <xsl:text>        XMLVM_INTERNAL_ERROR();&nl;</xsl:text>
+  <xsl:text>        break;&nl;</xsl:text>
+  <xsl:text>    }&nl;</xsl:text>
+  <xsl:text>    return obj;&nl;</xsl:text>
+  <xsl:text>}&nl;&nl;</xsl:text>
+</xsl:template>
+
+<xsl:template name="emitConstructorActualParameter">
+  <xsl:param name="index"/>
+  <xsl:choose>
+    <xsl:when test="@type = 'byte'">
+      <xsl:text>((java_lang_Byte*) args->array.o[</xsl:text>
+      <xsl:value-of select="$index"/>
+      <xsl:text>])->fields.java_lang_Byte.value_</xsl:text>
+    </xsl:when>
+    <xsl:when test="@type = 'boolean'">
+      <xsl:text>((java_lang_Boolean*) args->array.o[</xsl:text>
+      <xsl:value-of select="$index"/>
+      <xsl:text>])->fields.java_lang_Boolean.value_</xsl:text>
+    </xsl:when>
+    <xsl:when test="@type = 'char'">
+      <xsl:text>((java_lang_Character*) args->array.o[</xsl:text>
+      <xsl:value-of select="$index"/>
+      <xsl:text>])->fields.java_lang_Character.value_</xsl:text>
+    </xsl:when>
+    <xsl:when test="@type = 'short'">
+      <xsl:text>((java_lang_Short*) args->array.o[</xsl:text>
+      <xsl:value-of select="$index"/>
+      <xsl:text>])->fields.java_lang_Short.value_</xsl:text>
+    </xsl:when>
+    <xsl:when test="@type = 'int'">
+      <xsl:text>((java_lang_Integer*) args->array.o[</xsl:text>
+      <xsl:value-of select="$index"/>
+      <xsl:text>])->fields.java_lang_Integer.value_</xsl:text>
+    </xsl:when>
+    <xsl:when test="@type = 'float'">
+      <xsl:text>((java_lang_Float*) args->array.o[</xsl:text>
+      <xsl:value-of select="$index"/>
+      <xsl:text>])->fields.java_lang_Float.value_</xsl:text>
+    </xsl:when>
+    <xsl:when test="@type = 'long'">
+      <xsl:text>((java_lang_Long*) args->array.o[</xsl:text>
+      <xsl:value-of select="$index"/>
+      <xsl:text>])->fields.java_lang_Long.value_</xsl:text>
+    </xsl:when>
+    <xsl:when test="@type = 'double'">
+      <xsl:text>((java_lang_Double*) args->array.o[</xsl:text>
+      <xsl:value-of select="$index"/>
+      <xsl:text>])->fields.java_lang_Double.value_</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>args->array.o[</xsl:text>
+      <xsl:value-of select="$index"/>
+      <xsl:text>]</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template name="emitJavaLangClassReference">
    <xsl:param name="type"/>
+   <xsl:param name="isRedType"/>
    
    <xsl:text>__CLASS_</xsl:text>
    <xsl:choose>
+     <xsl:when test="$isRedType = 'true'">
+       <xsl:text>org_xmlvm_util_RedTypeMarker</xsl:text>
+     </xsl:when>
      <xsl:when test="$type = 'boolean'">
        <xsl:text>boolean_TYPE</xsl:text>
      </xsl:when>
@@ -2529,9 +2678,9 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:const-class"> 
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o = __NEW_XMLVMClass((__TIB_DEFINITION_TEMPLATE*) &amp;__TIB_</xsl:text>
+  <xsl:text>.o = __CLASS_</xsl:text>
   <xsl:value-of select="vm:fixname(@value)"/>
-  <xsl:text>);&nl;</xsl:text>
+  <xsl:text>;&nl;</xsl:text>
 </xsl:template>
 
 

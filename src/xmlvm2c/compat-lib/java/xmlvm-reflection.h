@@ -1,0 +1,12 @@
+
+#include "org_xmlvm_util_RedTypeMarker.h"
+#include "java_lang_reflect_Constructor.h"
+#include "java_lang_String.h"
+#include "java_lang_Byte.h"
+#include "java_lang_Boolean.h"
+#include "java_lang_Character.h"
+#include "java_lang_Short.h"
+#include "java_lang_Integer.h"
+#include "java_lang_Float.h"
+#include "java_lang_Long.h"
+#include "java_lang_Double.h"

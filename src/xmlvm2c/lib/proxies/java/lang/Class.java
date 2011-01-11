@@ -2724,7 +2724,8 @@ public final
         for (int i = 0; i < constructors.length; i++) {
             if (arrayContentsEq(parameterTypes,
                                 constructors[i].getParameterTypes())) {
-                return getReflectionFactory().copyConstructor(constructors[i]);
+//                return getReflectionFactory().copyConstructor(constructors[i]);
+                return constructors[i];
             }
         }
         throw new NoSuchMethodException(getName() + ".<init>" + argumentTypesToString(parameterTypes));

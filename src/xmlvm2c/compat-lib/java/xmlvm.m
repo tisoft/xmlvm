@@ -66,7 +66,7 @@ void __INIT_XMLVMArray()
     XMLVM_MEMCPY(__TIB_XMLVMArray.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
     // Initialize vtable for XMLVMArray
     // TODO "1" below should be done via some #define
-    __TIB_XMLVMArray.vtable[1] = (VTABLE_PTR) XMLVMArray_clone__;
+    __TIB_XMLVMArray.vtable[XMLVM_VTABLE_IDX_java_lang_Object_clone__] = (VTABLE_PTR) XMLVMArray_clone__;
     // Initialize vtable for implementing interfaces
     // TODO Array do implement two interfaces
     __TIB_XMLVMArray.numImplementedInterfaces = 0;
@@ -86,7 +86,9 @@ void xmlvm_init_system_class()
 void xmlvm_init()
 {
 #ifndef XMLVM_NO_GC
+#ifdef DEBUG
     setenv("GC_PRINT_STATS", "1", 1);
+#endif
     GC_INIT();
 #endif
     
@@ -413,15 +415,7 @@ XMLVMArray* XMLVMArray_clone__(XMLVMArray* array)
     sizeOfArrayInBytes = sizeOfBaseType * array->length;
     retval->array.data = XMLVM_MALLOC(sizeOfArrayInBytes);
 
-    if (array->type == 0) {
-        int i;
-        for (i = 0; i < array->length; i++) {
-            //retval->array.o[i] = array.o[i]->__retain();
-        }
-    }
-    else {
-        XMLVM_MEMCPY(retval->array.data, array->array.data, sizeOfArrayInBytes);
-    }
+    XMLVM_MEMCPY(retval->array.data, array->array.data, sizeOfArrayInBytes);
 
     return retval;
 }

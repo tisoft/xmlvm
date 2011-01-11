@@ -45,15 +45,14 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * This process takes XMLVM and generates C source code from it.
  */
 public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
-    private static final String              TAG                    = COutputProcess.class
-                                                                            .getSimpleName();
-    private static final String              C_SOURCE_SUFFIX        = "c";
+    private static final String              TAG             = COutputProcess.class.getSimpleName();
+    private static final String              C_SOURCE_SUFFIX = "c";
 
     private final String                     sourceExtension;
-    private final String                     headerExtension        = ".h";
-    private final List<OutputFile>           outputFiles            = new ArrayList<OutputFile>();
+    private final String                     headerExtension = ".h";
+    private final List<OutputFile>           outputFiles     = new ArrayList<OutputFile>();
 
-    private final Map<String, XmlvmResource> resourcePool           = new HashMap<String, XmlvmResource>();
+    private final Map<String, XmlvmResource> resourcePool    = new HashMap<String, XmlvmResource>();
     private final NativeResourceLoader       nativeResourceLoader;
 
 
@@ -133,8 +132,8 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
         for (OutputFile outputFile : outputFiles) {
             String fileName = outputFile.getFileName();
             if (fileName.endsWith(sourceExtension)) {
-                String typeName = fileName.substring(0,
-                        fileName.length() - sourceExtension.length());
+                String typeName = fileName.substring(0, fileName.length()
+                        - sourceExtension.length());
                 types.add(typeName);
             }
         }
@@ -227,6 +226,11 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
                 continue;
             }
 
+            // Ignore parameter types of invoke instructions
+            if (cur.getName().equals("parameters")) {
+                continue;
+            }
+            
             // If we generate a wrapper, do not collect types for private
             // fields, private methods or the code-segment of public methods
             if (arguments.option_gen_wrapper()) {
@@ -241,8 +245,15 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
             }
 
             Attribute a = cur.getAttribute("type");
-            if (a != null && !curName.equals("parameter") && !curName.equals("var")) {
-                seen.add(a.getValue());
+            if (a != null) {
+                if (curName.equals("parameter")) {
+                    Attribute redType = cur.getAttribute("isRedType");
+                    if (redType == null || !redType.getValue().equals("true")) {
+                        seen.add(a.getValue());
+                    }
+                } else if (!curName.equals("var")) {
+                    seen.add(a.getValue());
+                }
             }
             a = cur.getAttribute("extends");
             if (a != null && !a.getValue().equals("")) {

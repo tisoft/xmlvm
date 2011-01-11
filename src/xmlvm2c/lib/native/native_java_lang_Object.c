@@ -16,7 +16,7 @@ JAVA_OBJECT java_lang_Object_getClass__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_getClass__]
     java_lang_Object* o = (java_lang_Object*) me;
-    return __NEW_XMLVMClass(o->tib);
+    return o->tib->clazz;
     //XMLVM_END_NATIVE
 }
 

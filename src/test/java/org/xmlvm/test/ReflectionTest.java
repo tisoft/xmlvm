@@ -20,7 +20,9 @@
 
 package org.xmlvm.test;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 
 public class ReflectionTest {
 
@@ -35,10 +37,13 @@ public class ReflectionTest {
         label = "XMLVM";
     }
 
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
-        Class<ReflectionTest> clazz = ReflectionTest.class;
-        System.out.println(clazz.getName());
-        ReflectionTest obj = clazz.newInstance();
+    public ReflectionTest(int x, String label) {
+        this.x = x;
+        this.label = label;
+    }
+    
+    public static void print(ReflectionTest obj) throws IllegalArgumentException, IllegalAccessException {
+        System.out.println("----------------------------");
         System.out.println(obj.getClass().getName());
         System.out.println(obj.x);
         System.out.println(int.class.getName());
@@ -46,6 +51,19 @@ public class ReflectionTest {
         for (Field field : ReflectionTest.class.getDeclaredFields()) {
             System.out.println(field.getName() + " (" + field.getType().getName() + ") = " + field.get(obj));
         }
+    }
+
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException,
+            SecurityException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException {
+        Class<ReflectionTest> clazz = ReflectionTest.class;
+        System.out.println(clazz.getName());
+        ReflectionTest obj = clazz.newInstance();
+        print(obj);
+        Integer arg1 = new Integer(4711);
+        String arg2 = new String("foobar");
+        Constructor<ReflectionTest> ctor = ReflectionTest.class.getDeclaredConstructor(int.class, String.class);
+        obj = (ReflectionTest) ctor.newInstance(arg1, arg2);
+        print(obj);
     }
 
 }

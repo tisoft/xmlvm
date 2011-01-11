@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004-2009 XMLVM --- An XML-based Programming Language
+ * Copyright (c) 2002-2011 XMLVM --- An XML-based Programming Language
  * 
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -106,10 +106,12 @@ typedef union {
     void*              data;
 } XMLVMElemPtr;
 
-#ifndef XMLVM_FORWARD_DECL_java_lang_Class
-#define XMLVM_FORWARD_DECL_java_lang_Class
-XMLVM_FORWARD_DECL(java_lang_Class)
-#endif
+#define JAVA_NULL ((JAVA_OBJECT) 0)
+
+typedef void (*VTABLE_PTR)();
+typedef void (*Func_VOO)(JAVA_OBJECT o1, JAVA_OBJECT o2);
+typedef JAVA_OBJECT (*Func_OOO)(JAVA_OBJECT o1, JAVA_OBJECT o2);
+typedef JAVA_OBJECT (*Func_O)();
 
 #define java_lang_reflect_Modifier_PUBLIC       1
 #define java_lang_reflect_Modifier_PRIVATE      2
@@ -139,12 +141,16 @@ typedef struct {
     JAVA_OBJECT  annotations; // XMLVMArray(byte)
 } XMLVM_FIELD_REFLECTION_DATA;
 
-#define JAVA_NULL ((JAVA_OBJECT) 0)
-
-typedef void (*VTABLE_PTR)();
-typedef void (*Func_VOO)(JAVA_OBJECT me, JAVA_OBJECT o1);
-typedef JAVA_OBJECT (*Func_O)();
-
+typedef struct {
+    JAVA_OBJECT** parameterTypes;
+    int           numParameterTypes;
+    JAVA_OBJECT*  checkedExceptions;
+    int           numCheckedExceptions;
+    int           modifiers;
+    const char*   signature;
+    JAVA_OBJECT   annotations;
+    JAVA_OBJECT   parameterAnnotations;
+} XMLVM_CONSTRUCTOR_REFLECTION_DATA;
 
 #define XMLVM_DEFINE_CLASS(name, vtableSize) \
 typedef struct __TIB_DEFINITION_##name { \
@@ -154,6 +160,9 @@ typedef struct __TIB_DEFINITION_##name { \
     JAVA_OBJECT                         clazz; \
     XMLVM_FIELD_REFLECTION_DATA*        declaredFields; \
     int                                 numDeclaredFields; \
+    XMLVM_CONSTRUCTOR_REFLECTION_DATA*  declaredConstructors; \
+    int                                 numDeclaredConstructors; \
+    Func_OOO                            constructorDispatcherFunc; \
     Func_O                              newInstanceFunc; \
     int                                 numInterfaces; \
     struct __TIB_DEFINITION_TEMPLATE* (*interfaces)[1]; \
@@ -178,14 +187,14 @@ JAVA_OBJECT xmlvm_create_java_string(const char* s);
 // XMLVMClass
 
 
-extern java_lang_Class* __CLASS_boolean_TYPE;
-extern java_lang_Class* __CLASS_byte_TYPE;
-extern java_lang_Class* __CLASS_char_TYPE;
-extern java_lang_Class* __CLASS_short_TYPE;
-extern java_lang_Class* __CLASS_int_TYPE;
-extern java_lang_Class* __CLASS_long_TYPE;
-extern java_lang_Class* __CLASS_float_TYPE;
-extern java_lang_Class* __CLASS_double_TYPE;
+extern JAVA_OBJECT __CLASS_boolean_TYPE;
+extern JAVA_OBJECT __CLASS_byte_TYPE;
+extern JAVA_OBJECT __CLASS_char_TYPE;
+extern JAVA_OBJECT __CLASS_short_TYPE;
+extern JAVA_OBJECT __CLASS_int_TYPE;
+extern JAVA_OBJECT __CLASS_long_TYPE;
+extern JAVA_OBJECT __CLASS_float_TYPE;
+extern JAVA_OBJECT __CLASS_double_TYPE;
 
 extern JAVA_OBJECT __CLASS_boolean_ARRAYTYPE;
 extern JAVA_OBJECT __CLASS_byte_ARRAYTYPE;
@@ -260,6 +269,7 @@ extern XMLVM_JMP_BUF xmlvm_exception_env;
 extern JAVA_OBJECT xmlvm_exception;
 
 #define XMLVM_NOT_IMPLEMENTED() XMLVM_ERROR("Not implemented", __FILE__, __FUNCTION__, __LINE__)
+#define XMLVM_INTERNAL_ERROR() XMLVM_ERROR("Internal error", __FILE__, __FUNCTION__, __LINE__)
 #define XMLVM_RED_CLASS_DEPENDENCY() XMLVM_ERROR("Unsatisfied red class dependency", __FILE__, __FUNCTION__, __LINE__)
 
 void xmlvm_unimplemented_native_method();

@@ -5,6 +5,8 @@
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 
 #include "java_lang_reflect_Field.h"
+#include "java_lang_reflect_Constructor.h"
+
 
 XMLVM_DEFINE_CLASS(boolean_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
 XMLVM_DEFINE_CLASS(byte_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
@@ -24,18 +26,19 @@ __TIB_DEFINITION_long_TYPE    __TIB_long_TYPE;
 __TIB_DEFINITION_float_TYPE   __TIB_float_TYPE;
 __TIB_DEFINITION_double_TYPE  __TIB_double_TYPE;
 
-java_lang_Class* __CLASS_boolean_TYPE;
-java_lang_Class* __CLASS_byte_TYPE;
-java_lang_Class* __CLASS_char_TYPE;
-java_lang_Class* __CLASS_short_TYPE;
-java_lang_Class* __CLASS_int_TYPE;
-java_lang_Class* __CLASS_long_TYPE;
-java_lang_Class* __CLASS_float_TYPE;
-java_lang_Class* __CLASS_double_TYPE;
+JAVA_OBJECT __CLASS_boolean_TYPE;
+JAVA_OBJECT __CLASS_byte_TYPE;
+JAVA_OBJECT __CLASS_char_TYPE;
+JAVA_OBJECT __CLASS_short_TYPE;
+JAVA_OBJECT __CLASS_int_TYPE;
+JAVA_OBJECT __CLASS_long_TYPE;
+JAVA_OBJECT __CLASS_float_TYPE;
+JAVA_OBJECT __CLASS_double_TYPE;
 
 void init_primitive_class(void* clazz, const char* name)
 {
     __TIB_DEFINITION_TEMPLATE* c = (__TIB_DEFINITION_TEMPLATE*) clazz;
+    //TODO who is initializing this class?
     c->classInitialized = 0;
     c->className = name;
     c->extends = (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Class;
@@ -98,7 +101,8 @@ JAVA_BOOLEAN java_lang_Class_isAssignableFrom___java_lang_Class(JAVA_OBJECT me, 
 JAVA_BOOLEAN java_lang_Class_isInterface__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_isInterface__]
-    xmlvm_unimplemented_native_method();
+    //TODO
+    return 0;
     //XMLVM_END_NATIVE
 }
 
@@ -290,7 +294,32 @@ JAVA_OBJECT java_lang_Class_getDeclaredMethods0___boolean(JAVA_OBJECT me, JAVA_B
 JAVA_OBJECT java_lang_Class_getDeclaredConstructors0___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredConstructors0___boolean]
-    xmlvm_unimplemented_native_method();
+    //TODO n1 == publicOnly
+    __TIB_DEFINITION_TEMPLATE* tib = XMLVMClass_getTIB(me);
+    int numConstructors = tib->numDeclaredConstructors;
+    Func_OOO dispatcher = tib->constructorDispatcherFunc;
+    XMLVMArray* constructors = XMLVMArray_createSingleDimension(0, numConstructors);
+    JAVA_INT slot = 0;
+    for (slot = 0; slot < numConstructors; slot++) {
+        java_lang_reflect_Constructor* constructor = __NEW_java_lang_reflect_Constructor();
+        XMLVM_CONSTRUCTOR_REFLECTION_DATA* currentConstructor = (tib->declaredConstructors) + slot;
+        int numParameters = currentConstructor->numParameterTypes;
+        XMLVMArray* parameters = XMLVMArray_createSingleDimension(0, numParameters);
+        int j = 0;
+        JAVA_OBJECT** paramTypes = currentConstructor->parameterTypes;
+        for (j = 0; j < numParameters; j++) {
+            parameters->array.o[j] = *(paramTypes[j]);
+        }            
+        JAVA_OBJECT*  checkedExceptions = JAVA_NULL;
+        int          numCheckedExceptions = 0;
+        int          modifiers = 0;
+        java_lang_String* signature = xmlvm_create_java_string(currentConstructor->signature);
+        JAVA_OBJECT  annotations = JAVA_NULL;
+        JAVA_OBJECT  parameterAnnotations = JAVA_NULL;
+        java_lang_reflect_Constructor___INIT____java_lang_Class_java_lang_Class_ARRAYTYPE_java_lang_Class_ARRAYTYPE_int_java_lang_Object_int_java_lang_String_byte_ARRAYTYPE_byte_ARRAYTYPE(constructor, tib->clazz, parameters, checkedExceptions, modifiers, dispatcher, slot, signature, annotations, parameterAnnotations);
+        constructors->array.o[slot] = constructor;
+    }
+    return constructors;
     //XMLVM_END_NATIVE
 }
 
