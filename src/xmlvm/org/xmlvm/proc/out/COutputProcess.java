@@ -46,6 +46,7 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  */
 public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
     private static final String              TAG             = COutputProcess.class.getSimpleName();
+    public static final String               TAG_CLASS_NAME  = "CLASS-NAME";
     private static final String              C_SOURCE_SUFFIX = "c";
 
     private final String                     sourceExtension;
@@ -209,6 +210,9 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
         mFile.setData(mBuffer.toString() + mFile.getDataAsString());
         mFile.setFileName(mFileName);
 
+        String clazz = "__CLASS_" + xmlvm.getFullName().replace('.', '_').replace('$', '_');
+        mFile.setTag(TAG_CLASS_NAME, clazz);
+
         return new OutputFile[] { headerFile, mFile };
     }
 
@@ -230,7 +234,7 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
             if (cur.getName().equals("parameters")) {
                 continue;
             }
-            
+
             // If we generate a wrapper, do not collect types for private
             // fields, private methods or the code-segment of public methods
             if (arguments.option_gen_wrapper()) {
