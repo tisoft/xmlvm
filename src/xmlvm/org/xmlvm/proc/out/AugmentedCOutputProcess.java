@@ -23,14 +23,10 @@ package org.xmlvm.proc.out;
 import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_SRC;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
-import org.xmlvm.main.Targets;
 import org.xmlvm.proc.XmlvmProcessImpl;
-import org.xmlvm.proc.XmlvmProcessor;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
@@ -45,9 +41,6 @@ public class AugmentedCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
     private static final UniversalFile C_JAVA_COMPAT_LIB  = UniversalFileCreator.createDirectory(
                                                                   "/xmlvm2c/java-compat-lib.jar",
                                                                   "src/xmlvm2c/compat-lib/java");
-    private static final UniversalFile XMLVM_JAVA_UTILS   = UniversalFileCreator.createDirectory(
-                                                                  "/lib/xmlvm-util-java.jar",
-                                                                  "bin-util");
     private static final UniversalFile BOEHM_GC_LIB       = UniversalFileCreator.createDirectory(
                                                                   "/lib/boehmgc.jar",
                                                                   "lib/boehmgc.jar");
@@ -90,31 +83,6 @@ public class AugmentedCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
         boehmGc.setLocation(arguments.option_out());
         boehmGc.setTag(OutputFile.TAG_LIB_NAME, BOEHM_LIB_NAME);
         outputFiles.add(boehmGc);
-
-        // XMLVM utility classes written in Java that first need to be
-        // cross-compiled.
-        List<OutputFile> xmlvmJavaUtilFiles = crossCompileXmlvmJavaUtils();
-        for (OutputFile xmlvmJavaUtilFile : xmlvmJavaUtilFiles) {
-            xmlvmJavaUtilFile.setLocation(arguments.option_out());
-            outputFiles.add(xmlvmJavaUtilFile);
-        }
         return true;
-    }
-
-    /**
-     * This initiates a sub process which will take the class files from the
-     * XMLVM Java Utils library, and send it through the whole processing
-     * pipeline for generating C files.
-     */
-    private List<OutputFile> crossCompileXmlvmJavaUtils() {
-        List<UniversalFile> xmlvmUtilsFiles = Arrays
-                .asList(XMLVM_JAVA_UTILS.listFilesRecursively());
-        XmlvmProcessor processor = new XmlvmProcessor(xmlvmUtilsFiles, Targets.C, null);
-        if (!processor.process()) {
-            Log.error(TAG, "Compilation of the XMLVM Java Utils lib failed.");
-            return new ArrayList<OutputFile>();
-        }
-
-        return processor.getTargetProcess().getOutputFiles();
     }
 }

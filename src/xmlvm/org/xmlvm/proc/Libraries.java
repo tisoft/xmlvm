@@ -34,13 +34,24 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * to date.
  */
 public class Libraries {
-    private static final String TAG        = Libraries.class.getSimpleName();
-    private static final String CACHE_PATH = ".cache/";
+    private static final String TAG               = Libraries.class.getSimpleName();
+    private static final String CACHE_PATH        = ".cache/";
 
     private UniversalFile       jdk;
     private UniversalFile       cocoaJava;
+    private UniversalFile       xmlvmJavaUtils;
 
-    private List<UniversalFile> libraries  = new ArrayList<UniversalFile>();
+    /**
+     * The libraries will be loaded on an as-needed basis.
+     */
+    private List<UniversalFile> libraries         = new ArrayList<UniversalFile>();
+
+    /**
+     * These are all the libraries that need to be loaded completely all the
+     * time, because they might not be referenced directly by other Java
+     * resources.
+     */
+    private List<UniversalFile> requiredLibraries = new ArrayList<UniversalFile>();
 
 
     public Libraries() {
@@ -49,6 +60,8 @@ public class Libraries {
         // Add all libraries. First entry has highest priority.
         libraries.add(jdk);
         libraries.add(cocoaJava);
+
+        requiredLibraries.add(xmlvmJavaUtils);
     }
 
     /**
@@ -62,11 +75,10 @@ public class Libraries {
                 mostRecentLastModified = library.getLastModified();
             }
         }
-
         return mostRecentLastModified;
     }
 
-    private void maybeInitialize() {
+    private synchronized void maybeInitialize() {
         if (jdk == null) {
             jdk = UniversalFileCreator.createDirectory("/lib/openjdk6-build.jar",
                     "lib/openjdk6-build.jar");
@@ -75,10 +87,28 @@ public class Libraries {
             cocoaJava = UniversalFileCreator.createDirectory("/lib/cocoa-java.jar",
                     prepareTempJar("bin/org/xmlvm/iphone", "org/xmlvm/iphone/"));
         }
+        if (xmlvmJavaUtils == null) {
+            // TODO(Sascha): We might want to compile bin-util ourselves at some
+            // point, as we are getting into some classpath issues in Eclipse
+            // with this approach.
+            xmlvmJavaUtils = UniversalFileCreator.createDirectory("/lib/xmlvm-util-java.jar",
+                    "bin-util");
+        }
     }
 
+    /**
+     * Returns the libraries that can be loaded as they are needed.
+     */
     public List<UniversalFile> getLibraries() {
         return libraries;
+    }
+
+    /**
+     * Required libraries that should be completely added to the input resources
+     * set.
+     */
+    public List<UniversalFile> getRequredLibraries() {
+        return requiredLibraries;
     }
 
     /**

@@ -20,6 +20,7 @@
 
 package org.xmlvm.proc;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -31,6 +32,7 @@ import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
 import org.xmlvm.proc.in.file.ClassFile;
 import org.xmlvm.proc.out.DEXmlvmOutputProcess;
+import org.xmlvm.util.universalfile.FileSuffixFilter;
 import org.xmlvm.util.universalfile.UniversalFile;
 
 /**
@@ -96,14 +98,14 @@ public class LibraryLoader {
 
                 // Success, we found the class file we were looking for. Let's
                 // process it.
-                return process(classFile);
+                return processClassFile(classFile);
             } else {
                 return null;
             }
         }
     }
 
-    private XmlvmResource process(UniversalFile file) {
+    private XmlvmResource processClassFile(UniversalFile file) {
         if (cache.containsKey(file.getAbsolutePath())) {
             return cache.get(file.getAbsolutePath());
         }
@@ -146,6 +148,20 @@ public class LibraryLoader {
         Log.debug(TAG, "Processing took: " + (endTime - startTime) + " ms.");
     }
 
+    /**
+     * This loads a list of libraries that will be required, but wouldn't be
+     * picked up by reference loading.
+     */
+    public List<XmlvmResource> loadRequiredLibraries() {
+        List<XmlvmResource> result = new ArrayList<XmlvmResource>();
+        for (UniversalFile library : LIBS.getRequredLibraries()) {
+            for (UniversalFile file : library.listFilesRecursively(new FileSuffixFilter(".class"))) {
+                result.add(processClassFile(file));
+            }
+        }
+        return result;
+    }
+
     private boolean loadReferencedTypes(Map<String, XmlvmResource> resources) {
         Set<String> toLoad = new HashSet<String>();
 
@@ -180,6 +196,7 @@ public class LibraryLoader {
 
         // Load missing dependencies.
         String[] classesToLoad = toLoad.toArray(new String[0]);
+
         for (String classToLoad : classesToLoad) {
             resources.put(classToLoad, load(classToLoad));
         }
