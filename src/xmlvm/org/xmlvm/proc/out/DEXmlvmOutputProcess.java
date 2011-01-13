@@ -42,6 +42,7 @@ import org.jdom.Element;
 import org.jdom.Namespace;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.main.Targets;
 import org.xmlvm.proc.DelayedXmlvmSerializationProvider;
 import org.xmlvm.proc.ResourceCache;
 import org.xmlvm.proc.XmlvmProcess;
@@ -247,9 +248,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         addSupportedInput(JavaByteCodeOutputProcess.class);
 
         // Red type elimination should only be performed when load_dependencies
-        // is enabled.
-        if (redTypes == null && arguments.option_load_dependencies()
-                && !arguments.option_disable_load_dependencies()) {
+        // is enabled or we are generating c wrappers.
+        if (redTypes == null
+                && (arguments.option_load_dependencies() && !arguments
+                        .option_disable_load_dependencies())
+                || arguments.option_target() == Targets.GENCWRAPPERS) {
             redTypes = initializeRedList(RED_LIST_FILE, proxies.keySet());
         }
     }
