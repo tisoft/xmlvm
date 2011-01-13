@@ -55,6 +55,8 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_ARRAYTYPE;
 
 #import <UIKit/UIView.h>
 #import <UIKit/UIViewController.h>
+#include "xmlvm-util.h"
+
 
 @interface UIViewWrapper : UIView 
 {
@@ -185,7 +187,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIView()
     org_xmlvm_iphone_UIView* me = (org_xmlvm_iphone_UIView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIView));
     me->tib = &__TIB_org_xmlvm_iphone_UIView;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIView]
-
+    //TODO This should be done in a constructor of UIView
+    me->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
 	/*********************************************************************************************
 	 * README: Ordinarily the garbage collector will just silently release the memory of
 	 * garbage collected objects. If some cleanup needs to be done before this happens, we
@@ -296,13 +299,12 @@ void org_xmlvm_iphone_UIView_setSize___float_float(JAVA_OBJECT me, JAVA_FLOAT n1
 void org_xmlvm_iphone_UIView_addSubview___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_addSubview___org_xmlvm_iphone_UIView]
-	org_xmlvm_iphone_UIView* view = me;
-	UIView* realViewParent = view->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-	
-	org_xmlvm_iphone_UIView *otherView = n1;
-	UIView* realViewChild = otherView->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-	
-	[realViewParent addSubview: realViewChild];
+    org_xmlvm_iphone_UIView* view = me;
+    XMLVMUtil_ArrayList_add(view->fields.org_xmlvm_iphone_UIView.subviews, n1);
+    UIView* realViewParent = view->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    org_xmlvm_iphone_UIView *otherView = n1;
+    UIView* realViewChild = otherView->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    [realViewParent addSubview: realViewChild];
     //XMLVM_END_WRAPPER
 }
 
@@ -704,7 +706,7 @@ void org_xmlvm_iphone_UIView_sizeToFit__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+    // Do nothing. Will be overwritten in derived classes
     //XMLVM_END_WRAPPER
 }
 

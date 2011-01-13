@@ -52,7 +52,8 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
-#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIView
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIView \
+    JAVA_OBJECT subviews
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UIView \

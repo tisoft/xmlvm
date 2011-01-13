@@ -19,14 +19,22 @@
  * USA.
  */
 
-#include "org_xmlvm_util_RedTypeMarker.h"
-#include "java_lang_reflect_Constructor.h"
-#include "java_lang_String.h"
-#include "java_lang_Byte.h"
-#include "java_lang_Boolean.h"
-#include "java_lang_Character.h"
-#include "java_lang_Short.h"
-#include "java_lang_Integer.h"
-#include "java_lang_Float.h"
-#include "java_lang_Long.h"
-#include "java_lang_Double.h"
+#include "xmlvm-util.h"
+#include "java_util_ArrayList.h"
+
+JAVA_OBJECT XMLVMUtil_NEW_ArrayList()
+{
+    JAVA_OBJECT obj = __NEW_java_util_ArrayList();
+    java_util_ArrayList___INIT___(obj);
+    return obj;
+}
+
+JAVA_BOOLEAN XMLVMUtil_ArrayList_add(JAVA_OBJECT me, JAVA_OBJECT obj)
+{
+#ifdef XMLVM_VTABLE_IDX_java_util_ArrayList_add___java_lang_Object
+    return (*(JAVA_BOOLEAN (*)(JAVA_OBJECT, JAVA_OBJECT)) ((java_util_ArrayList*) me)->
+        tib->vtable[XMLVM_VTABLE_IDX_java_util_ArrayList_add___java_lang_Object])(me, obj);
+#else
+    return java_util_ArrayList_add___java_lang_Object(me, obj);
+#endif
+}

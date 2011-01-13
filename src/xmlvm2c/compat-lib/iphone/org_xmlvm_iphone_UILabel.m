@@ -16,6 +16,10 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILabel;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILabel_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <UIKit/UILabel.h>
+#include "org_xmlvm_iphone_NSString.h"
+#include "org_xmlvm_iphone_CGRect.h"
+#include "xmlvm-util.h"
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -65,6 +69,8 @@ void __INIT_org_xmlvm_iphone_UILabel()
 void __DELETE_org_xmlvm_iphone_UILabel(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UILabel]
+    org_xmlvm_iphone_UILabel *thiz = me;
+	[((UILabel*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) release];
     //XMLVM_END_WRAPPER
 }
 
@@ -74,6 +80,9 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UILabel()
     org_xmlvm_iphone_UILabel* me = (org_xmlvm_iphone_UILabel*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UILabel));
     me->tib = &__TIB_org_xmlvm_iphone_UILabel;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UILabel]
+    //TODO This should be done in a constructor of UIView
+    me->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UILabel);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -96,14 +105,21 @@ void org_xmlvm_iphone_UILabel___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_UILabel___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel___INIT____org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+    //TODO need to call UIView constructor
+    org_xmlvm_iphone_UILabel* thiz = me;
+	UILabel* obj = [[UILabel alloc] initWithFrame: toCGRect(n1)];
+	thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = obj;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UILabel_setText___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel_setText___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    NSString* nsStr = toNSString(n1);
+	org_xmlvm_iphone_UILabel *thiz = me;
+	UILabel* obj = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    [obj setText:nsStr];
+    [nsStr release];
     //XMLVM_END_WRAPPER
 }
 
@@ -145,7 +161,9 @@ JAVA_OBJECT org_xmlvm_iphone_UILabel_getTextColor__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UILabel_setTextAlignment___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel_setTextAlignment___int]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UILabel* thiz = (org_xmlvm_iphone_UILabel*) me;
+    UILabel* obj = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    [obj setTextAlignment:n1];
     //XMLVM_END_WRAPPER
 }
 

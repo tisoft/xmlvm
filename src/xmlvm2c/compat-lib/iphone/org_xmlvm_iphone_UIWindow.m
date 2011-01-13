@@ -15,6 +15,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWindow_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <UIKit/UIKit.h>
+#include "xmlvm-util.h"
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -61,6 +62,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWindow()
     org_xmlvm_iphone_UIWindow* me = (org_xmlvm_iphone_UIWindow*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIWindow));
     me->tib = &__TIB_org_xmlvm_iphone_UIWindow;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIWindow]
+    //TODO This should be done in a constructor of UIView
+    me->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
     //XMLVM_END_WRAPPER
     return me;
 }
