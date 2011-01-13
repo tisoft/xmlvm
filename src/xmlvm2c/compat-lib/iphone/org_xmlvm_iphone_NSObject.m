@@ -12,6 +12,12 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+void org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me)
+{
+    java_lang_Object___INIT___(me);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 

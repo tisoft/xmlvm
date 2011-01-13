@@ -12,6 +12,12 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIResponder;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIResponder_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+void org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 

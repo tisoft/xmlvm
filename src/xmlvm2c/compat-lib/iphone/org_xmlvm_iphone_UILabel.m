@@ -80,8 +80,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UILabel()
     org_xmlvm_iphone_UILabel* me = (org_xmlvm_iphone_UILabel*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UILabel));
     me->tib = &__TIB_org_xmlvm_iphone_UILabel;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UILabel]
-    //TODO This should be done in a constructor of UIView
-    me->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UILabel);
     //XMLVM_END_WRAPPER
     return me;
@@ -105,7 +103,7 @@ void org_xmlvm_iphone_UILabel___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_UILabel___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel___INIT____org_xmlvm_iphone_CGRect]
-    //TODO need to call UIView constructor
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me);
     org_xmlvm_iphone_UILabel* thiz = me;
 	UILabel* obj = [[UILabel alloc] initWithFrame: toCGRect(n1)];
 	thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = obj;

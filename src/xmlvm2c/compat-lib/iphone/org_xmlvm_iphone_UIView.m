@@ -88,6 +88,23 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_ARRAYTYPE;
 
 @end
 
+/*
+ * README: All public constructors of org.xmlvm.iphone.UIView also instantiate
+ * Objective-C class UIView. The problem arises when a class such as UILabel is
+ * derived from UIView. The constructor of org.xmlvm.iphone.UILabel itself instantiates
+ * a UILabel. At the same time UILabel needs to call a base-class constructor (UIView's
+ * constructor in this case). We need a constructor for UIView that does not create its
+ * Objective-C counterpart since this was already done in the derived class UILabel. For
+ * this reason we introduce a new constructor that may only be used internally (i.e.,
+ * it is not accessible from Java).
+ */
+void org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me)
+{
+    org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me);
+    org_xmlvm_iphone_UIView* thiz = (org_xmlvm_iphone_UIView*) me;
+    thiz->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -187,7 +204,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIView()
     org_xmlvm_iphone_UIView* me = (org_xmlvm_iphone_UIView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIView));
     me->tib = &__TIB_org_xmlvm_iphone_UIView;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIView]
-    //TODO This should be done in a constructor of UIView
     me->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
 	/*********************************************************************************************
 	 * README: Ordinarily the garbage collector will just silently release the memory of
@@ -339,7 +355,8 @@ void org_xmlvm_iphone_UIView_removeFromSuperview__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_UIView_getSubviews__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getSubviews__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIView* thiz = me;
+    return thiz->fields.org_xmlvm_iphone_UIView.subviews;
     //XMLVM_END_WRAPPER
 }
 

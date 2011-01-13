@@ -62,8 +62,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWindow()
     org_xmlvm_iphone_UIWindow* me = (org_xmlvm_iphone_UIWindow*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIWindow));
     me->tib = &__TIB_org_xmlvm_iphone_UIWindow;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIWindow]
-    //TODO This should be done in a constructor of UIView
-    me->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -79,6 +77,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIWindow()
 void org_xmlvm_iphone_UIWindow___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWindow___INIT___]
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me);
 	org_xmlvm_iphone_UIWindow* thiz = me;
 	thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [[UIWindow alloc] init];
     //XMLVM_END_WRAPPER
@@ -87,6 +86,7 @@ void org_xmlvm_iphone_UIWindow___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIWindow___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWindow___INIT____org_xmlvm_iphone_CGRect]
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me);
 	org_xmlvm_iphone_UIWindow* thiz = me;
 	CGRect frame = toCGRect(n1);
 	thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = [[UIWindow alloc] initWithFrame: frame];
