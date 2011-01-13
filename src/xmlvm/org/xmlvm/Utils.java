@@ -26,9 +26,40 @@ package org.xmlvm;
 public class Utils {
 
     /**
+     * Operating system type.
+     */
+    public static enum OS {
+        WINDOWS, MAC, UNIX, UNKNOWN;
+    }
+
+
+    private static final String osName = System.getProperty("os.name").toLowerCase();
+    private static final OS     os     = getOSValue();
+
+
+    /**
      * Returns whether XMLVM is running in one-jar mode.
      */
     public static boolean isOneJarMode() {
         return Main.class.getResourceAsStream("/main/main.jar") != null;
+    }
+
+    /**
+     * Returns the kind of operating system, XMLVM is currently running on.
+     */
+    public static OS getOs() {
+        return os;
+    }
+
+    private static OS getOSValue() {
+        if (osName.contains("win")) {
+            return OS.WINDOWS;
+        } else if (osName.contains("mac")) {
+            return OS.MAC;
+        } else if (osName.contains("nix") || osName.contains("nux")) {
+            return OS.UNIX;
+        } else {
+            return OS.UNKNOWN;
+        }
     }
 }
