@@ -29,6 +29,8 @@ JAVA_OBJECT java_lang_Throwable_getStackTraceElement___int(JAVA_OBJECT me, JAVA_
 
 void xmlvm_init_native_java_lang_Throwable()
 {
+#ifdef XMLVM_VTABLE_IDX_java_lang_Throwable_fillInStackTrace__
     __TIB_java_lang_Throwable.vtable[XMLVM_VTABLE_IDX_java_lang_Throwable_fillInStackTrace__] = 
         (VTABLE_PTR) java_lang_Throwable_fillInStackTrace__;
+#endif
 }

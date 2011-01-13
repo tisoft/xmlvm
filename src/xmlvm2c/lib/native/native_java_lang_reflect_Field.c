@@ -68,6 +68,8 @@ JAVA_OBJECT java_lang_reflect_Field_get___java_lang_Object(JAVA_OBJECT me, JAVA_
 
 void xmlvm_init_native_java_lang_reflect_Field()
 {
+#ifdef XMLVM_VTABLE_IDX_java_lang_reflect_Field_get___java_lang_Object
     __TIB_java_lang_reflect_Field.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Field_get___java_lang_Object] = 
         (VTABLE_PTR) java_lang_reflect_Field_get___java_lang_Object;
+#endif
 }

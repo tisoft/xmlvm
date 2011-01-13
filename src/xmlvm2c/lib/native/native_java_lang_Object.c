@@ -58,16 +58,28 @@ void java_lang_Object_wait___long(JAVA_OBJECT me, JAVA_LONG n1)
 
 void xmlvm_init_native_java_lang_Object()
 {
+#ifdef XMLVM_VTABLE_IDX_java_lang_Object_getClass__
     __TIB_java_lang_Object.vtable[XMLVM_VTABLE_IDX_java_lang_Object_getClass__] = 
         (VTABLE_PTR) java_lang_Object_getClass__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Object_hashCode__
     __TIB_java_lang_Object.vtable[XMLVM_VTABLE_IDX_java_lang_Object_hashCode__] = 
         (VTABLE_PTR) java_lang_Object_hashCode__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Object_clone__
     __TIB_java_lang_Object.vtable[XMLVM_VTABLE_IDX_java_lang_Object_clone__] = 
         (VTABLE_PTR) java_lang_Object_clone__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Object_notify__
     __TIB_java_lang_Object.vtable[XMLVM_VTABLE_IDX_java_lang_Object_notify__] = 
         (VTABLE_PTR) java_lang_Object_notify__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Object_notifyAll__
     __TIB_java_lang_Object.vtable[XMLVM_VTABLE_IDX_java_lang_Object_notifyAll__] = 
         (VTABLE_PTR) java_lang_Object_notifyAll__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Object_wait___long
     __TIB_java_lang_Object.vtable[XMLVM_VTABLE_IDX_java_lang_Object_wait___long] = 
         (VTABLE_PTR) java_lang_Object_wait___long;
+#endif
 }

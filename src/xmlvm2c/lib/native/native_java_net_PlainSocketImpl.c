@@ -99,28 +99,52 @@ void java_net_PlainSocketImpl_socketSendUrgentData___int(JAVA_OBJECT me, JAVA_IN
 
 void xmlvm_init_native_java_net_PlainSocketImpl()
 {
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketCreate___boolean
     __TIB_java_net_PlainSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketCreate___boolean] = 
         (VTABLE_PTR) java_net_PlainSocketImpl_socketCreate___boolean;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketConnect___java_net_InetAddress_int_int
     __TIB_java_net_PlainSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketConnect___java_net_InetAddress_int_int] = 
         (VTABLE_PTR) java_net_PlainSocketImpl_socketConnect___java_net_InetAddress_int_int;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketBind___java_net_InetAddress_int
     __TIB_java_net_PlainSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketBind___java_net_InetAddress_int] = 
         (VTABLE_PTR) java_net_PlainSocketImpl_socketBind___java_net_InetAddress_int;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketListen___int
     __TIB_java_net_PlainSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketListen___int] = 
         (VTABLE_PTR) java_net_PlainSocketImpl_socketListen___int;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketAccept___java_net_SocketImpl
     __TIB_java_net_PlainSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketAccept___java_net_SocketImpl] = 
         (VTABLE_PTR) java_net_PlainSocketImpl_socketAccept___java_net_SocketImpl;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketAvailable__
     __TIB_java_net_PlainSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketAvailable__] = 
         (VTABLE_PTR) java_net_PlainSocketImpl_socketAvailable__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketClose0___boolean
     __TIB_java_net_PlainSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketClose0___boolean] = 
         (VTABLE_PTR) java_net_PlainSocketImpl_socketClose0___boolean;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketShutdown___int
     __TIB_java_net_PlainSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketShutdown___int] = 
         (VTABLE_PTR) java_net_PlainSocketImpl_socketShutdown___int;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketSetOption___int_boolean_java_lang_Object
     __TIB_java_net_PlainSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketSetOption___int_boolean_java_lang_Object] = 
         (VTABLE_PTR) java_net_PlainSocketImpl_socketSetOption___int_boolean_java_lang_Object;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketGetOption___int_java_lang_Object
     __TIB_java_net_PlainSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketGetOption___int_java_lang_Object] = 
         (VTABLE_PTR) java_net_PlainSocketImpl_socketGetOption___int_java_lang_Object;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketGetOption1___int_java_lang_Object_java_io_FileDescriptor
     __TIB_java_net_PlainSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketGetOption1___int_java_lang_Object_java_io_FileDescriptor] = 
         (VTABLE_PTR) java_net_PlainSocketImpl_socketGetOption1___int_java_lang_Object_java_io_FileDescriptor;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketSendUrgentData___int
     __TIB_java_net_PlainSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainSocketImpl_socketSendUrgentData___int] = 
         (VTABLE_PTR) java_net_PlainSocketImpl_socketSendUrgentData___int;
+#endif
 }

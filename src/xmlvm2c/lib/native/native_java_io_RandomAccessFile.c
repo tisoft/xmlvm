@@ -85,16 +85,28 @@ void java_io_RandomAccessFile_close0__(JAVA_OBJECT me)
 
 void xmlvm_init_native_java_io_RandomAccessFile()
 {
+#ifdef XMLVM_VTABLE_IDX_java_io_RandomAccessFile_read__
     __TIB_java_io_RandomAccessFile.vtable[XMLVM_VTABLE_IDX_java_io_RandomAccessFile_read__] = 
         (VTABLE_PTR) java_io_RandomAccessFile_read__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_io_RandomAccessFile_write___int
     __TIB_java_io_RandomAccessFile.vtable[XMLVM_VTABLE_IDX_java_io_RandomAccessFile_write___int] = 
         (VTABLE_PTR) java_io_RandomAccessFile_write___int;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_io_RandomAccessFile_getFilePointer__
     __TIB_java_io_RandomAccessFile.vtable[XMLVM_VTABLE_IDX_java_io_RandomAccessFile_getFilePointer__] = 
         (VTABLE_PTR) java_io_RandomAccessFile_getFilePointer__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_io_RandomAccessFile_seek___long
     __TIB_java_io_RandomAccessFile.vtable[XMLVM_VTABLE_IDX_java_io_RandomAccessFile_seek___long] = 
         (VTABLE_PTR) java_io_RandomAccessFile_seek___long;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_io_RandomAccessFile_length__
     __TIB_java_io_RandomAccessFile.vtable[XMLVM_VTABLE_IDX_java_io_RandomAccessFile_length__] = 
         (VTABLE_PTR) java_io_RandomAccessFile_length__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_io_RandomAccessFile_setLength___long
     __TIB_java_io_RandomAccessFile.vtable[XMLVM_VTABLE_IDX_java_io_RandomAccessFile_setLength___long] = 
         (VTABLE_PTR) java_io_RandomAccessFile_setLength___long;
+#endif
 }

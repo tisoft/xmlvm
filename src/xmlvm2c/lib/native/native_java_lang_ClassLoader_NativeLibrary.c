@@ -29,10 +29,16 @@ void java_lang_ClassLoader_NativeLibrary_unload__(JAVA_OBJECT me)
 
 void xmlvm_init_native_java_lang_ClassLoader_NativeLibrary()
 {
+#ifdef XMLVM_VTABLE_IDX_java_lang_ClassLoader_NativeLibrary_load___java_lang_String
     __TIB_java_lang_ClassLoader_NativeLibrary.vtable[XMLVM_VTABLE_IDX_java_lang_ClassLoader_NativeLibrary_load___java_lang_String] = 
         (VTABLE_PTR) java_lang_ClassLoader_NativeLibrary_load___java_lang_String;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_ClassLoader_NativeLibrary_find___java_lang_String
     __TIB_java_lang_ClassLoader_NativeLibrary.vtable[XMLVM_VTABLE_IDX_java_lang_ClassLoader_NativeLibrary_find___java_lang_String] = 
         (VTABLE_PTR) java_lang_ClassLoader_NativeLibrary_find___java_lang_String;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_ClassLoader_NativeLibrary_unload__
     __TIB_java_lang_ClassLoader_NativeLibrary.vtable[XMLVM_VTABLE_IDX_java_lang_ClassLoader_NativeLibrary_unload__] = 
         (VTABLE_PTR) java_lang_ClassLoader_NativeLibrary_unload__;
+#endif
 }

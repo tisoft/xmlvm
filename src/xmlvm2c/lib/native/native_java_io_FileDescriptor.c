@@ -22,6 +22,8 @@ void java_io_FileDescriptor_initIDs__()
 
 void xmlvm_init_native_java_io_FileDescriptor()
 {
+#ifdef XMLVM_VTABLE_IDX_java_io_FileDescriptor_sync__
     __TIB_java_io_FileDescriptor.vtable[XMLVM_VTABLE_IDX_java_io_FileDescriptor_sync__] = 
         (VTABLE_PTR) java_io_FileDescriptor_sync__;
+#endif
 }

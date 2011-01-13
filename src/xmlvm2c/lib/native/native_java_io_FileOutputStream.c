@@ -50,6 +50,8 @@ void java_io_FileOutputStream_initIDs__()
 
 void xmlvm_init_native_java_io_FileOutputStream()
 {
+#ifdef XMLVM_VTABLE_IDX_java_io_FileOutputStream_write___int
     __TIB_java_io_FileOutputStream.vtable[XMLVM_VTABLE_IDX_java_io_FileOutputStream_write___int] = 
         (VTABLE_PTR) java_io_FileOutputStream_write___int;
+#endif
 }

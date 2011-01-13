@@ -57,10 +57,16 @@ void java_io_FileInputStream_close0__(JAVA_OBJECT me)
 
 void xmlvm_init_native_java_io_FileInputStream()
 {
+#ifdef XMLVM_VTABLE_IDX_java_io_FileInputStream_read__
     __TIB_java_io_FileInputStream.vtable[XMLVM_VTABLE_IDX_java_io_FileInputStream_read__] = 
         (VTABLE_PTR) java_io_FileInputStream_read__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_io_FileInputStream_skip___long
     __TIB_java_io_FileInputStream.vtable[XMLVM_VTABLE_IDX_java_io_FileInputStream_skip___long] = 
         (VTABLE_PTR) java_io_FileInputStream_skip___long;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_io_FileInputStream_available__
     __TIB_java_io_FileInputStream.vtable[XMLVM_VTABLE_IDX_java_io_FileInputStream_available__] = 
         (VTABLE_PTR) java_io_FileInputStream_available__;
+#endif
 }

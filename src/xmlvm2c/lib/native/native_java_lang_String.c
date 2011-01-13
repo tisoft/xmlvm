@@ -15,6 +15,8 @@ JAVA_OBJECT java_lang_String_intern__(JAVA_OBJECT me)
 
 void xmlvm_init_native_java_lang_String()
 {
+#ifdef XMLVM_VTABLE_IDX_java_lang_String_intern__
     __TIB_java_lang_String.vtable[XMLVM_VTABLE_IDX_java_lang_String_intern__] = 
         (VTABLE_PTR) java_lang_String_intern__;
+#endif
 }

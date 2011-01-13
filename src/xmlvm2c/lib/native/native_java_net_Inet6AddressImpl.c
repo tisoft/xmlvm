@@ -36,10 +36,16 @@ JAVA_BOOLEAN java_net_Inet6AddressImpl_isReachable0___byte_ARRAYTYPE_int_int_byt
 
 void xmlvm_init_native_java_net_Inet6AddressImpl()
 {
+#ifdef XMLVM_VTABLE_IDX_java_net_Inet6AddressImpl_getLocalHostName__
     __TIB_java_net_Inet6AddressImpl.vtable[XMLVM_VTABLE_IDX_java_net_Inet6AddressImpl_getLocalHostName__] = 
         (VTABLE_PTR) java_net_Inet6AddressImpl_getLocalHostName__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_Inet6AddressImpl_lookupAllHostAddr___java_lang_String
     __TIB_java_net_Inet6AddressImpl.vtable[XMLVM_VTABLE_IDX_java_net_Inet6AddressImpl_lookupAllHostAddr___java_lang_String] = 
         (VTABLE_PTR) java_net_Inet6AddressImpl_lookupAllHostAddr___java_lang_String;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_Inet6AddressImpl_getHostByAddr___byte_ARRAYTYPE
     __TIB_java_net_Inet6AddressImpl.vtable[XMLVM_VTABLE_IDX_java_net_Inet6AddressImpl_getHostByAddr___byte_ARRAYTYPE] = 
         (VTABLE_PTR) java_net_Inet6AddressImpl_getHostByAddr___byte_ARRAYTYPE;
+#endif
 }

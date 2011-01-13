@@ -120,8 +120,12 @@ void java_lang_Thread_interrupt0__(JAVA_OBJECT me)
 
 void xmlvm_init_native_java_lang_Thread()
 {
+#ifdef XMLVM_VTABLE_IDX_java_lang_Thread_isAlive__
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_isAlive__] = 
         (VTABLE_PTR) java_lang_Thread_isAlive__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Thread_countStackFrames__
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_countStackFrames__] = 
         (VTABLE_PTR) java_lang_Thread_countStackFrames__;
+#endif
 }

@@ -43,8 +43,12 @@ JAVA_OBJECT java_lang_SecurityManager_currentLoadedClass0__(JAVA_OBJECT me)
 
 void xmlvm_init_native_java_lang_SecurityManager()
 {
+#ifdef XMLVM_VTABLE_IDX_java_lang_SecurityManager_getClassContext__
     __TIB_java_lang_SecurityManager.vtable[XMLVM_VTABLE_IDX_java_lang_SecurityManager_getClassContext__] = 
         (VTABLE_PTR) java_lang_SecurityManager_getClassContext__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_SecurityManager_classDepth___java_lang_String
     __TIB_java_lang_SecurityManager.vtable[XMLVM_VTABLE_IDX_java_lang_SecurityManager_classDepth___java_lang_String] = 
         (VTABLE_PTR) java_lang_SecurityManager_classDepth___java_lang_String;
+#endif
 }

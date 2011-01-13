@@ -64,18 +64,32 @@ void java_lang_Runtime_traceMethodCalls___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n
 
 void xmlvm_init_native_java_lang_Runtime()
 {
+#ifdef XMLVM_VTABLE_IDX_java_lang_Runtime_availableProcessors__
     __TIB_java_lang_Runtime.vtable[XMLVM_VTABLE_IDX_java_lang_Runtime_availableProcessors__] = 
         (VTABLE_PTR) java_lang_Runtime_availableProcessors__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Runtime_freeMemory__
     __TIB_java_lang_Runtime.vtable[XMLVM_VTABLE_IDX_java_lang_Runtime_freeMemory__] = 
         (VTABLE_PTR) java_lang_Runtime_freeMemory__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Runtime_totalMemory__
     __TIB_java_lang_Runtime.vtable[XMLVM_VTABLE_IDX_java_lang_Runtime_totalMemory__] = 
         (VTABLE_PTR) java_lang_Runtime_totalMemory__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Runtime_maxMemory__
     __TIB_java_lang_Runtime.vtable[XMLVM_VTABLE_IDX_java_lang_Runtime_maxMemory__] = 
         (VTABLE_PTR) java_lang_Runtime_maxMemory__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Runtime_gc__
     __TIB_java_lang_Runtime.vtable[XMLVM_VTABLE_IDX_java_lang_Runtime_gc__] = 
         (VTABLE_PTR) java_lang_Runtime_gc__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Runtime_traceInstructions___boolean
     __TIB_java_lang_Runtime.vtable[XMLVM_VTABLE_IDX_java_lang_Runtime_traceInstructions___boolean] = 
         (VTABLE_PTR) java_lang_Runtime_traceInstructions___boolean;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Runtime_traceMethodCalls___boolean
     __TIB_java_lang_Runtime.vtable[XMLVM_VTABLE_IDX_java_lang_Runtime_traceMethodCalls___boolean] = 
         (VTABLE_PTR) java_lang_Runtime_traceMethodCalls___boolean;
+#endif
 }

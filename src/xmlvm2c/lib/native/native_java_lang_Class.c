@@ -340,34 +340,64 @@ JAVA_BOOLEAN java_lang_Class_desiredAssertionStatus0___java_lang_Class(JAVA_OBJE
 
 void xmlvm_init_native_java_lang_Class()
 {
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isInstance___java_lang_Object
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isInstance___java_lang_Object] = 
-    (VTABLE_PTR) java_lang_Class_isInstance___java_lang_Object;
+        (VTABLE_PTR) java_lang_Class_isInstance___java_lang_Object;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isAssignableFrom___java_lang_Class
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isAssignableFrom___java_lang_Class] = 
-    (VTABLE_PTR) java_lang_Class_isAssignableFrom___java_lang_Class;
+        (VTABLE_PTR) java_lang_Class_isAssignableFrom___java_lang_Class;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isInterface__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isInterface__] = 
-    (VTABLE_PTR) java_lang_Class_isInterface__;
+        (VTABLE_PTR) java_lang_Class_isInterface__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isArray__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isArray__] = 
-    (VTABLE_PTR) java_lang_Class_isArray__;
+        (VTABLE_PTR) java_lang_Class_isArray__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isPrimitive__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isPrimitive__] = 
-    (VTABLE_PTR) java_lang_Class_isPrimitive__;
+        (VTABLE_PTR) java_lang_Class_isPrimitive__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getClassLoader0__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getClassLoader0__] = 
-    (VTABLE_PTR) java_lang_Class_getClassLoader0__;
+        (VTABLE_PTR) java_lang_Class_getClassLoader0__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getSuperclass__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getSuperclass__] = 
-    (VTABLE_PTR) java_lang_Class_getSuperclass__;
+        (VTABLE_PTR) java_lang_Class_getSuperclass__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getInterfaces__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getInterfaces__] = 
-    (VTABLE_PTR) java_lang_Class_getInterfaces__;
+        (VTABLE_PTR) java_lang_Class_getInterfaces__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getComponentType__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getComponentType__] = 
-    (VTABLE_PTR) java_lang_Class_getComponentType__;
+        (VTABLE_PTR) java_lang_Class_getComponentType__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getModifiers__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getModifiers__] = 
-    (VTABLE_PTR) java_lang_Class_getModifiers__;
+        (VTABLE_PTR) java_lang_Class_getModifiers__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getSigners__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getSigners__] = 
-    (VTABLE_PTR) java_lang_Class_getSigners__;
+        (VTABLE_PTR) java_lang_Class_getSigners__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_setSigners___java_lang_Object_ARRAYTYPE
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_setSigners___java_lang_Object_ARRAYTYPE] = 
-    (VTABLE_PTR) java_lang_Class_setSigners___java_lang_Object_ARRAYTYPE;
+        (VTABLE_PTR) java_lang_Class_setSigners___java_lang_Object_ARRAYTYPE;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getDeclaringClass__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getDeclaringClass__] = 
-    (VTABLE_PTR) java_lang_Class_getDeclaringClass__;
+        (VTABLE_PTR) java_lang_Class_getDeclaringClass__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_setProtectionDomain0___java_security_ProtectionDomain
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_setProtectionDomain0___java_security_ProtectionDomain] = 
-    (VTABLE_PTR) java_lang_Class_setProtectionDomain0___java_security_ProtectionDomain;
+        (VTABLE_PTR) java_lang_Class_setProtectionDomain0___java_security_ProtectionDomain;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getConstantPool__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getConstantPool__] = 
-    (VTABLE_PTR) java_lang_Class_getConstantPool__;
+        (VTABLE_PTR) java_lang_Class_getConstantPool__;
+#endif
 }

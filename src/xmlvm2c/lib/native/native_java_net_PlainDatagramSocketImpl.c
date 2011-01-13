@@ -134,38 +134,72 @@ void java_net_PlainDatagramSocketImpl_init__()
 
 void xmlvm_init_native_java_net_PlainDatagramSocketImpl()
 {
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_bind0___int_java_net_InetAddress
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_bind0___int_java_net_InetAddress] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_bind0___int_java_net_InetAddress;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_send___java_net_DatagramPacket
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_send___java_net_DatagramPacket] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_send___java_net_DatagramPacket;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_peek___java_net_InetAddress
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_peek___java_net_InetAddress] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_peek___java_net_InetAddress;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_peekData___java_net_DatagramPacket
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_peekData___java_net_DatagramPacket] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_peekData___java_net_DatagramPacket;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_receive0___java_net_DatagramPacket
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_receive0___java_net_DatagramPacket] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_receive0___java_net_DatagramPacket;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_setTimeToLive___int
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_setTimeToLive___int] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_setTimeToLive___int;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_getTimeToLive__
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_getTimeToLive__] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_getTimeToLive__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_setTTL___byte
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_setTTL___byte] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_setTTL___byte;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_getTTL__
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_getTTL__] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_getTTL__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_join___java_net_InetAddress_java_net_NetworkInterface
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_join___java_net_InetAddress_java_net_NetworkInterface] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_join___java_net_InetAddress_java_net_NetworkInterface;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_leave___java_net_InetAddress_java_net_NetworkInterface
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_leave___java_net_InetAddress_java_net_NetworkInterface] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_leave___java_net_InetAddress_java_net_NetworkInterface;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_datagramSocketCreate__
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_datagramSocketCreate__] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_datagramSocketCreate__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_datagramSocketClose__
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_datagramSocketClose__] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_datagramSocketClose__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_socketSetOption___int_java_lang_Object
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_socketSetOption___int_java_lang_Object] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_socketSetOption___int_java_lang_Object;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_socketGetOption___int
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_socketGetOption___int] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_socketGetOption___int;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_connect0___java_net_InetAddress_int
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_connect0___java_net_InetAddress_int] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_connect0___java_net_InetAddress_int;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_disconnect0___int
     __TIB_java_net_PlainDatagramSocketImpl.vtable[XMLVM_VTABLE_IDX_java_net_PlainDatagramSocketImpl_disconnect0___int] = 
         (VTABLE_PTR) java_net_PlainDatagramSocketImpl_disconnect0___int;
+#endif
 }

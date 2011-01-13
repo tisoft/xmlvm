@@ -17,6 +17,8 @@ JAVA_OBJECT java_lang_reflect_Constructor_newInstance___java_lang_Object_ARRAYTY
 
 void xmlvm_init_native_java_lang_reflect_Constructor()
 {
+#ifdef XMLVM_VTABLE_IDX_java_lang_reflect_Constructor_newInstance___java_lang_Object_ARRAYTYPE
     __TIB_java_lang_reflect_Constructor.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Constructor_newInstance___java_lang_Object_ARRAYTYPE] = 
         (VTABLE_PTR) java_lang_reflect_Constructor_newInstance___java_lang_Object_ARRAYTYPE;
+#endif
 }
