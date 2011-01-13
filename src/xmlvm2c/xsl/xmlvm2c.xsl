@@ -124,6 +124,9 @@ int main(int argc, char* argv[])
           </xsl:call-template>
           <xsl:call-template name="appendSignature"/>
         </xsl:variable>
+        <xsl:text>#ifdef XMLVM_VTABLE_IDX_</xsl:text>
+        <xsl:value-of select="$mangledMethodName"/>
+        <xsl:text>&nl;</xsl:text>
         <xsl:text>    __TIB_</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.vtable[XMLVM_VTABLE_IDX_</xsl:text>
@@ -132,6 +135,7 @@ int main(int argc, char* argv[])
         <xsl:text>        (VTABLE_PTR) </xsl:text>
         <xsl:value-of select="$mangledMethodName"/>
         <xsl:text>;&nl;</xsl:text>
+        <xsl:text>#endif&nl;</xsl:text>
       </xsl:for-each>
       <xsl:text>}&nl;</xsl:text>
     </xsl:if>
