@@ -139,6 +139,18 @@ public class UniversalFileCreator {
     }
 
     /**
+     * Create a {@link UniversalFile} instance for a file system directory.
+     * 
+     * @param fileSystemLocation
+     *            the location of that directory on the file system. Can be a
+     *            directory or a JAR file itself.
+     * @return An instance representing this directory.
+     */
+    public static UniversalFile createDirectory(String fileSystemLocation) {
+        return create(null, fileSystemLocation, true);
+    }
+
+    /**
      * Create a {@link UniversalFile} instance and perform sanity checks.
      * 
      * @param oneJarResource
