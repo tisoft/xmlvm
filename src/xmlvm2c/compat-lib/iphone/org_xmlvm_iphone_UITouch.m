@@ -15,6 +15,12 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+void org_xmlvm_iphone_UITouch_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, UITouch* touch)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, touch);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -81,7 +87,10 @@ void org_xmlvm_iphone_UITouch___INIT____int_org_xmlvm_iphone_UIView_int_int(JAVA
 JAVA_OBJECT org_xmlvm_iphone_UITouch_locationInView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITouch_locationInView___org_xmlvm_iphone_UIView]
-    XMLVM_NOT_IMPLEMENTED();
+    UITouch* touch = ((org_xmlvm_iphone_NSObject*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    UIView* view = ((org_xmlvm_iphone_NSObject*) n1)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    CGPoint point = [touch locationInView:view];
+    return fromCGPoint(point);
     //XMLVM_END_WRAPPER
 }
 

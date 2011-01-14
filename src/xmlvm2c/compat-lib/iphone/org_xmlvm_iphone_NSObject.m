@@ -13,9 +13,11 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 
-void org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me)
+void org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
 {
     java_lang_Object___INIT___(me);
+    org_xmlvm_iphone_NSObject* thiz = (org_xmlvm_iphone_NSObject*) me;
+    thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = wrappedObjCObj;
 }
 
 //XMLVM_END_IMPLEMENTATION

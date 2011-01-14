@@ -103,10 +103,8 @@ void org_xmlvm_iphone_UILabel___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_UILabel___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel___INIT____org_xmlvm_iphone_CGRect]
-    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me);
-    org_xmlvm_iphone_UILabel* thiz = me;
 	UILabel* obj = [[UILabel alloc] initWithFrame: toCGRect(n1)];
-	thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = obj;
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 

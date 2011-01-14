@@ -23,7 +23,7 @@ JAVA_OBJECT java_lang_Object_getClass__(JAVA_OBJECT me)
 JAVA_INT java_lang_Object_hashCode__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_hashCode__]
-    xmlvm_unimplemented_native_method();
+    return (JAVA_INT) me;
     //XMLVM_END_NATIVE
 }
 

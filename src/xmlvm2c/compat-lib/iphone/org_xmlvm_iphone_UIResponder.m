@@ -13,9 +13,180 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIResponder_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 
-void org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me)
+#import <UIKit/UIResponder.h>
+#import <objc/runtime.h>
+#include "java_util_HashSet.h"
+#include "org_xmlvm_iphone_UITouch.h"
+#include "org_xmlvm_iphone_UIEvent.h"
+#include "xmlvm-util.h"
+
+
+/*
+ * Convert an NSSet of UITouch objects to a HashSet
+ */
+static JAVA_OBJECT convertTouchesSet(NSSet* set)
 {
-    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me);
+    JAVA_OBJECT hashSet = XMLVMUtil_NEW_HashSet();
+    NSEnumerator* enumerator = [set objectEnumerator];
+	id obj = nil;
+	while ((obj = [enumerator nextObject]) != nil) {
+        org_xmlvm_iphone_UITouch* touch = __NEW_org_xmlvm_iphone_UITouch();
+        org_xmlvm_iphone_UITouch_INTERNAL_CONSTRUCTOR(touch, (UITouch*) obj);
+        XMLVMUtil_HashSet_add(hashSet, touch);
+
+	}
+	return hashSet;
+}
+
+/*
+ * Convert a UIEvent to its C counterpart
+ */
+static JAVA_OBJECT convertEvent(UIEvent* event)
+{
+    JAVA_OBJECT eventObj = __NEW_org_xmlvm_iphone_UIEvent();
+    org_xmlvm_iphone_UIEvent_INTERNAL_CONSTRUCTOR(eventObj, event);
+    return eventObj;
+}
+
+
+/*
+ * Class UIResponder_members is used to associate additional state to
+ * UIResponder instances. In particular, we keep a reference to the
+ * wrapping C object. This makes it possible to access the C object
+ * from within the Objective-C category cat_org_xmlvm_iphone_UIResponder.
+ */
+@interface UIResponder_members : NSObject {
+@public org_xmlvm_iphone_UIResponder* responder;
+}
+
+- (id) init;
+
+@end
+
+@implementation UIResponder_members
+
+- (id) init
+{
+    self = [super init];
+    self->responder = JAVA_NULL;
+    return self;
+}
+
+@end
+
+
+@interface UIResponder (cat_org_xmlvm_iphone_UIResponder)
+@end
+
+@implementation UIResponder (cat_org_xmlvm_iphone_UIResponder)
+
+static char memberKey; // key for associative reference for member variables
+
+- (UIResponder_members*) getResponderMembers
+{
+    UIResponder_members* members = nil;
+    @synchronized(self) {
+        members = (UIResponder_members*) objc_getAssociatedObject(self, &memberKey);
+        if (members == nil) {
+            members = [[UIResponder_members alloc] init];
+            objc_setAssociatedObject(self, &memberKey, members, OBJC_ASSOCIATION_RETAIN);
+            [members release];
+        }
+    }
+    return members;
+}
+
+- (void) touchesBegan:(NSSet*) touches withEvent:(UIEvent*) event
+{
+    UIResponder_members* members = [self getResponderMembers];
+    org_xmlvm_iphone_UIResponder* thiz = members->responder;
+    if (thiz == JAVA_NULL) {
+        // We don't handle this object on the Java-side
+        [[self nextResponder] touchesBegan:touches withEvent:event];
+        return;
+    }
+    VTABLE_PTR func = thiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent];
+    if (func == (VTABLE_PTR) org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent) {
+        // vtable index for this method still points to the implementation of
+        // class UIResponder. Delegate event to the next responder
+		[[self nextResponder] touchesBegan:touches withEvent:event];
+    } else {
+        JAVA_OBJECT touchesObj = convertTouchesSet(touches);
+        JAVA_OBJECT eventObj = convertEvent(event);
+        (*(void (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) func)(thiz, touchesObj, eventObj);
+    }
+}
+
+- (void) touchesCancelled:(NSSet*) touches withEvent:(UIEvent*) event
+{
+    UIResponder_members* members = [self getResponderMembers];
+    org_xmlvm_iphone_UIResponder* thiz = members->responder;
+    if (thiz == JAVA_NULL) {
+        // We don't handle this object on the Java-side
+        [[self nextResponder] touchesCancelled:touches withEvent:event];
+        return;
+    }
+    VTABLE_PTR func = thiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent];
+    if (func == (VTABLE_PTR) org_xmlvm_iphone_UIResponder_touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent) {
+        // vtable index for this method still points to the implementation of
+        // class UIResponder. Delegate event to the next responder
+		[[self nextResponder] touchesCancelled:touches withEvent:event];
+    } else {
+        JAVA_OBJECT touchesObj = convertTouchesSet(touches);
+        JAVA_OBJECT eventObj = convertEvent(event);
+        (*(void (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) func)(thiz, touchesObj, eventObj);
+    }
+}
+
+- (void) touchesEnded:(NSSet*) touches withEvent:(UIEvent*) event
+{
+    UIResponder_members* members = [self getResponderMembers];
+    org_xmlvm_iphone_UIResponder* thiz = members->responder;
+    if (thiz == JAVA_NULL) {
+        // We don't handle this object on the Java-side
+        [[self nextResponder] touchesEnded:touches withEvent:event];
+        return;
+    }
+    VTABLE_PTR func = thiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent];
+    if (func == (VTABLE_PTR) org_xmlvm_iphone_UIResponder_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent) {
+        // vtable index for this method still points to the implementation of
+        // class UIResponder. Delegate event to the next responder
+		[[self nextResponder] touchesEnded:touches withEvent:event];
+    } else {
+        JAVA_OBJECT touchesObj = convertTouchesSet(touches);
+        JAVA_OBJECT eventObj = convertEvent(event);
+        (*(void (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) func)(thiz, touchesObj, eventObj);
+    }
+}
+
+- (void) touchesMoved:(NSSet*) touches withEvent:(UIEvent*) event
+{
+    UIResponder_members* members = [self getResponderMembers];
+    org_xmlvm_iphone_UIResponder* thiz = members->responder;
+    if (thiz == JAVA_NULL) {
+        // We don't handle this object on the Java-side
+        [[self nextResponder] touchesMoved:touches withEvent:event];
+        return;
+    }
+    VTABLE_PTR func = thiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent];
+    if (func == (VTABLE_PTR) org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent) {
+        // vtable index for this method still points to the implementation of
+        // class UIResponder. Delegate event to the next responder
+		[[self nextResponder] touchesMoved:touches withEvent:event];
+    } else {
+        JAVA_OBJECT touchesObj = convertTouchesSet(touches);
+        JAVA_OBJECT eventObj = convertEvent(event);
+        (*(void (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) func)(thiz, touchesObj, eventObj);
+    }
+}
+
+@end
+
+void org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
+    UIResponder_members* members = [wrappedObjCObj getResponderMembers];
+    members->responder = me;
 }
 
 //XMLVM_END_IMPLEMENTATION

@@ -28,7 +28,13 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
+
+#import <UIKit/UITouch.h>
+
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITouch
+
+void org_xmlvm_iphone_UITouch_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, UITouch* touch);
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UITouch \

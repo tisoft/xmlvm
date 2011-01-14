@@ -13,6 +13,12 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+void org_xmlvm_iphone_UIEvent_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, UIEvent* event)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, event);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 

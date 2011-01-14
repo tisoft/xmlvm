@@ -98,9 +98,9 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_ARRAYTYPE;
  * this reason we introduce a new constructor that may only be used internally (i.e.,
  * it is not accessible from Java).
  */
-void org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me)
+void org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
 {
-    org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me);
+    org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
     org_xmlvm_iphone_UIView* thiz = (org_xmlvm_iphone_UIView*) me;
     thiz->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
 }
@@ -241,22 +241,18 @@ void org_xmlvm_iphone_UIView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, J
 	 * we don't instantiate a UIView directly, but UIViewWrapper as defined earlier in this
 	 * file.
 	 */
-    //TODO need to call base class constructor
-	org_xmlvm_iphone_UIView* thiz = me;
 	UIViewWrapper* obj = [[UIViewWrapper alloc] initWithFrame: toCGRect(n1)];
-	thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = obj;
-	[obj setWrappedCObj:thiz];
+	[obj setWrappedCObj:me];
+    org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIView___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView___INIT___]
-    //TODO need to call base class constructor
-	org_xmlvm_iphone_UIView *thiz = me;
 	UIViewWrapper* obj = [[UIViewWrapper alloc] init];
-	thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = obj;
-	[obj setWrappedCObj:thiz];
+	[obj setWrappedCObj:me];
+    org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
