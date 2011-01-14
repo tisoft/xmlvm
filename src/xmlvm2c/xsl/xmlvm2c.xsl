@@ -3247,10 +3247,17 @@ int main(int argc, char* argv[])
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
   <!-- TODO the cast below is most likely not correct -->
-  <xsl:text>.o = ((XMLVMElem[]) {</xsl:text>
+  <xsl:text>.o = ((</xsl:text>
+  <xsl:call-template name="emitArrayType">
+    <xsl:with-param name="type" select="$base-type"/>
+  </xsl:call-template>
+  <xsl:text>[]) {</xsl:text>
   <xsl:for-each select="dex:value">
     <xsl:text>_r</xsl:text>
     <xsl:value-of select="@register"/>
+    <xsl:call-template name="emitTypedAccess">
+      <xsl:with-param name="type" select="$base-type"/>
+    </xsl:call-template>
     <xsl:text>, </xsl:text>
   </xsl:for-each>
   <xsl:text>});&nl;</xsl:text>

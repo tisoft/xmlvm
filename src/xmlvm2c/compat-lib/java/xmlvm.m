@@ -264,28 +264,12 @@ XMLVMArray* __NEW_XMLVMArray()
     return array;
 }
 
-void __DELETE_XMLVMArray(XMLVMArray* me)
-{
-/*
-    if (type == 0) {
-        for (int i = 0; i < length; i++) {
-            array.o[i]->__release();
-        }
-    }
-*/
-    if (me->ownsData) {
-        XMLVM_FREE(me->array.data);
-    }
-    XMLVM_FREE(me);
-}
-
 XMLVMArray* XMLVMArray_createSingleDimension(int type, int size)
 {
     XMLVMArray *retval = __NEW_XMLVMArray();
     int sizeOfBaseType;
     retval->type = type;
     retval->length = size;
-    retval->ownsData = 1;
 
     sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(type);
     retval->array.data = XMLVM_MALLOC(sizeOfBaseType * size);
@@ -307,13 +291,12 @@ XMLVMArray* XMLVMArray_createSingleDimensionWithData(int type, int size, void* d
     retval->type = type;
     retval->length = size;
     retval->array.data = data;
-    retval->ownsData = 0;
     return retval;
 }
 
-XMLVMArray* XMLVMArray_createMultiDimensions(int type, XMLVMElem* dim, int count)
+static XMLVMArray* XMLVMArray_createMultiDimensionsWithCount(int type, JAVA_ARRAY_INT* dim, int count)
 {
-    int dimensions = dim->i;
+    JAVA_ARRAY_INT dimensions = *dim;
     XMLVMArray* slice;
     int i;
     dim++;
@@ -322,12 +305,23 @@ XMLVMArray* XMLVMArray_createMultiDimensions(int type, XMLVMElem* dim, int count
         return XMLVMArray_createSingleDimension(type, dimensions);
     }
     slice = XMLVMArray_createSingleDimension(0, dimensions);
-
+    
     for (i = 0; i < dimensions; i++) {
-        XMLVMArray* o = XMLVMArray_createMultiDimensions(type, dim, count);
+        XMLVMArray* o = XMLVMArray_createMultiDimensionsWithCount(type, dim, count);
         XMLVMArray_replaceObjectAtIndex(slice, i, o);
     }
     return slice;
+}
+
+XMLVMArray* XMLVMArray_createMultiDimensions(int type, JAVA_OBJECT dimensions)
+{
+    XMLVMArray* dimArray = (XMLVMArray*) dimensions;
+    if (dimArray->type != 5 /* int */) {
+        XMLVM_INTERNAL_ERROR();
+    }
+    int count = dimArray->length;
+    JAVA_ARRAY_INT* dims = dimArray->array.i;
+    return XMLVMArray_createMultiDimensionsWithCount(type, dims, count);
 }
 
 XMLVMArray* XMLVMArray_createFromString(const char* str)
@@ -342,7 +336,6 @@ XMLVMArray* XMLVMArray_createFromString(const char* str)
     for (i = 0; i < len; i++) {
         retval->array.c[i] = *str++;
     }
-    retval->ownsData = 1;
     return retval;
 }
 
@@ -409,7 +402,6 @@ XMLVMArray* XMLVMArray_clone__(XMLVMArray* array)
     int sizeOfArrayInBytes;
     retval->type = array->type;
     retval->length = array->length;
-    retval->ownsData = 1;
 
     sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(array->type);
     sizeOfArrayInBytes = sizeOfBaseType * array->length;

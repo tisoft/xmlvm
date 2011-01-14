@@ -232,13 +232,11 @@ typedef struct {
     XMLVMElemPtr                 array;
     int                          type;
     int                          length;
-    int                          ownsData;
 } XMLVMArray;
 
-void __DELETE_XMLVMArray(XMLVMArray* me);
 XMLVMArray* XMLVMArray_createSingleDimension(int type, int size);
 XMLVMArray* XMLVMArray_createSingleDimensionWithData(int type, int size, void* data);
-XMLVMArray* XMLVMArray_createMultiDimensions(int type, XMLVMElem* dimensions, int count);
+XMLVMArray* XMLVMArray_createMultiDimensions(int type, JAVA_OBJECT dimensions);
 XMLVMArray* XMLVMArray_createFromString(const char* str);
 void XMLVMArray_fillArray(XMLVMArray* array, void* data);
 int XMLVMArray_sizeOfBaseTypeInBytes(int type);

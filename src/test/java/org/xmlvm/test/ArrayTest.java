@@ -20,39 +20,53 @@
 
 package org.xmlvm.test;
 
-
-public class ArrayTest
-{
+public class ArrayTest {
 
     private int idx;
 
 
-
-    public ArrayTest(int idx)
-    {
+    public ArrayTest(int idx) {
         this.idx = idx;
     }
 
-
-
-    static private void printArray(float[] color)
-    {
+    static private void printArray(float[] color) {
         for (int i = 0; i < color.length; i++)
             System.out.println(color[i]);
     }
 
-
-
-    static private void testFloatArray()
-    {
-        float[] someColor = {3.0f, 4.0f, 5.0f};
+    static private void testFloatArray() {
+        float[] someColor = { 3.0f, 4.0f, 5.0f };
         printArray(someColor);
     }
 
+    static private void testIntArray() {
+        int val1 = 42;
+        int val2 = 44;
+        int val3 = 46;
+        int[] intArray = { val1, val2, val3 };
+        for (int i : intArray) {
+            System.out.println(i);
+        }
+    }
+    
+    static private void testCharArray() {
+        int j = 2;
+        int k = 3;
+        char ch = 'A';
+        char[][] charArray = new char[j][k];
+        for (int x = 0; x < j; x++) {
+            for (int y = 0; y < k; y++) {
+                charArray[x][y] = ch++; 
+            }
+        }
+        for (int x = 0; x < j; x++) {
+            for (int y = 0; y < k; y++) {
+                System.out.println(charArray[x][y]); 
+            }
+        }
+    }
 
-
-    static private void testObjectArray()
-    {
+    static private void testObjectArray() {
         ArrayTest[] array = new ArrayTest[5];
         for (int i = 0; i < 5; i++) {
             array[i] = new ArrayTest(i * 2);
@@ -62,14 +76,10 @@ public class ArrayTest
         }
     }
 
-
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         testFloatArray();
+        testIntArray();
+        testCharArray();
         testObjectArray();
     }
 

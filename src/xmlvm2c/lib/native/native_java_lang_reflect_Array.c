@@ -148,7 +148,31 @@ JAVA_OBJECT java_lang_reflect_Array_newArray___java_lang_Class_int(JAVA_OBJECT n
 JAVA_OBJECT java_lang_reflect_Array_multiNewArray___java_lang_Class_int_ARRAYTYPE(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Array_multiNewArray___java_lang_Class_int_ARRAYTYPE]
-    xmlvm_unimplemented_native_method();
+    JAVA_OBJECT clazz = n1;
+    JAVA_OBJECT dimensions = n2;
+    int baseTypeId = -1;
+    
+    if (clazz == __CLASS_byte_TYPE) {
+        baseTypeId = 3;
+    } else if (clazz == __CLASS_boolean_TYPE) {
+		baseTypeId = 1;
+	} else if (clazz == __CLASS_char_TYPE) {
+		baseTypeId = 2;
+    } else if (clazz == __CLASS_short_TYPE) {
+        baseTypeId = 4;
+	} else if (clazz == __CLASS_int_TYPE) {
+		baseTypeId = 5;
+	} else if (clazz == __CLASS_float_TYPE) {
+		baseTypeId = 6;
+    } else if (clazz == __CLASS_long_TYPE) {
+        baseTypeId = 8;
+	} else if (clazz == __CLASS_double_TYPE) {
+		baseTypeId = 7;
+	} else {
+		baseTypeId = 0;
+	}
+	
+    return XMLVMArray_createMultiDimensions(baseTypeId, dimensions);
     //XMLVM_END_NATIVE
 }
 
