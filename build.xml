@@ -134,7 +134,12 @@
 				<include name="**/*.jar/" />
 				<exclude name="one-jar-boot.jar" />
 				<exclude name="lwjgl.jar" />
+				<exclude name="harmony6-build.jar" />
 			</fileset>
+		</copy>
+
+		<copy todir="${xmlvm.bin}/lib">
+			<fileset file="lib/harmony6-build.jar" />
 		</copy>
 
 		<unjar src="lib/one-jar-boot.jar" dest="${xmlvm.build}">
@@ -371,7 +376,7 @@
 	<target name="gen-c-native-skeletons" depends="jar">
 		<java jar="dist/xmlvm.jar" fork="true" failonerror="true">
 			<jvmarg value="-Xmx1G"/>
-			<arg value="--in=lib/openjdk6-build.jar"/>
+			<arg value="--in=lib/harmony6-build.jar"/>
 			<arg value="--in=${xmlvm.bin}/lib/xmlvm-util-java.jar"/>
 			<arg value="--target=gen-c-wrappers"/>
 			<arg value="--out=src/xmlvm2c/lib/native"/>
@@ -395,9 +400,9 @@
 	</macrodef>
 
 	<target name="clean" description="Remove all build files" depends="clean-iphone,clean-android">
+		<delete dir=".cache" />
 		<delete dir="dist" />
 		<delete dir="build" />
-		<delete dir="bin" />
 		<delete dir="${doc.dir}/homepage/lib" />
 		<delete file="${doc.dir}/homepage/android/demo/xokoban.jar" />
 		<delete file="${doc.dir}/homepage/iphone/demo/ifireworks.jar" />
