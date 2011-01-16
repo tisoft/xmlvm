@@ -135,11 +135,13 @@
 				<exclude name="one-jar-boot.jar" />
 				<exclude name="lwjgl.jar" />
 				<exclude name="harmony6-build.jar" />
+				<exclude name="openjdk6-build.jar" />
 			</fileset>
 		</copy>
 
 		<copy todir="${xmlvm.bin}/lib">
 			<fileset file="lib/harmony6-build.jar" />
+			<fileset file="lib/openjdk6-build.jar" />
 		</copy>
 
 		<unjar src="lib/one-jar-boot.jar" dest="${xmlvm.build}">
