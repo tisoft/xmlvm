@@ -131,7 +131,7 @@ public class UniversalFileCreator {
      *            the contents of the directory
      * @param fileSystemLocation
      *            the location of that directory on the file system. Can be a
-     *            directory or a JAR file itself.
+     *            directory or a JAR/ZIP file itself.
      * @return An instance representing this directory.
      */
     public static UniversalFile createDirectory(String oneJarResourceJar, String fileSystemLocation) {
@@ -143,7 +143,7 @@ public class UniversalFileCreator {
      * 
      * @param fileSystemLocation
      *            the location of that directory on the file system. Can be a
-     *            directory or a JAR file itself.
+     *            directory or a JAR/ZIP file itself.
      * @return An instance representing this directory.
      */
     public static UniversalFile createDirectory(String fileSystemLocation) {
@@ -180,7 +180,9 @@ public class UniversalFileCreator {
         boolean fileSystemIsJar = false;
         if (fileSystemLocation != null) {
             file = new File(fileSystemLocation);
-            fileSystemIsJar = file.isFile() && file.getName().toLowerCase().endsWith(".jar");
+            String fileName = file.getName().toLowerCase();
+            fileSystemIsJar = file.isFile()
+                    && (fileName.endsWith(".jar") || fileName.endsWith(".zip"));
         }
 
         // Check whether the One-JAR resource exists.
@@ -204,7 +206,8 @@ public class UniversalFileCreator {
         if (isOneJarMode && isDirectory) {
             // If this resource is taken from the One-JAR and represents a
             // directory, the resource must be a JAR archive.
-            if (!oneJarResource.toLowerCase().endsWith(".jar")) {
+            if (!(oneJarResource.toLowerCase().endsWith(".jar") || oneJarResource.toLowerCase()
+                    .endsWith(".zip"))) {
                 Log.error(TAG,
                         "For a directory, the One-JAR resource must be a jar archive, but is: "
                                 + oneJarResource);
