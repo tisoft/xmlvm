@@ -70,6 +70,7 @@ import com.android.dx.cf.iface.Field;
 import com.android.dx.cf.iface.FieldList;
 import com.android.dx.cf.iface.Method;
 import com.android.dx.cf.iface.MethodList;
+import com.android.dx.cf.iface.ParseException;
 import com.android.dx.dex.cf.CfTranslator;
 import com.android.dx.dex.code.ArrayData;
 import com.android.dx.dex.code.CatchHandlerList;
@@ -318,7 +319,12 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(), classFile
                 .getFileName(), false);
         directClassFile.setAttributeFactory(StdAttributeFactory.THE_ONE);
-        directClassFile.getMagic();
+        try {
+            directClassFile.getMagic();
+        } catch(ParseException ex) {
+            Log.debug(TAG, "Could not parse class.");
+            return null;
+        }
 
         String packagePlusClassName = directClassFile.getThisClass().getClassType().toHuman();
 
