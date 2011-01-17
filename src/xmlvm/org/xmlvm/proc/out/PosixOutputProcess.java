@@ -25,8 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlvm.Log;
-import org.xmlvm.Utils;
-import org.xmlvm.Utils.OS;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.out.build.MakeFile;
@@ -67,9 +65,7 @@ public class PosixOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProcess
             file.setLocation(arguments.option_out() + SRCFILE_LOCATION);
         }
 
-        // TODO: This is just temporary, as long as the GC is not working on
-        // non-Mac platforms.
-        MakeFile makefile = new MakeFile(PLATFORM + (Utils.getOs() != OS.MAC ? "-nomac" : ""));
+        MakeFile makefile = new MakeFile(PLATFORM);
         Log.error(makefile.composeBuildFiles(outputFiles, arguments));
 
         return true;

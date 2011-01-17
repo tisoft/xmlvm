@@ -25,8 +25,6 @@ import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_SRC;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.xmlvm.Utils;
-import org.xmlvm.Utils.OS;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.util.universalfile.UniversalFile;
@@ -37,9 +35,6 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * libraries to the output, such as basic compatibility libraries.
  */
 public class AugmentedCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
-    private static final String        TAG                = AugmentedCOutputProcess.class
-                                                                  .getSimpleName();
-
     private static final UniversalFile C_JAVA_COMPAT_LIB  = UniversalFileCreator.createDirectory(
                                                                   "/xmlvm2c/java-compat-lib.jar",
                                                                   "src/xmlvm2c/compat-lib/java");
@@ -102,14 +97,10 @@ public class AugmentedCOutputProcess extends XmlvmProcessImpl<COutputProcess> {
         iPhoneJavaCompatLib.setTag(OutputFile.TAG_LIB_NAME, "");
         outputFiles.add(iPhoneJavaCompatLib);
 
-        // Right now, the GC is only working on OSX. So we don't copy the files
-        // on other operating systems.
-        if (Utils.getOs() == OS.MAC) {
-            OutputFile boehmGc = new OutputFile(BOEHM_GC_LIB);
-            boehmGc.setLocation(arguments.option_out());
-            boehmGc.setTag(OutputFile.TAG_LIB_NAME, BOEHM_LIB_NAME);
-            outputFiles.add(boehmGc);
-        }
+        OutputFile boehmGc = new OutputFile(BOEHM_GC_LIB);
+        boehmGc.setLocation(arguments.option_out());
+        boehmGc.setTag(OutputFile.TAG_LIB_NAME, BOEHM_LIB_NAME);
+        outputFiles.add(boehmGc);
         return true;
     }
 }

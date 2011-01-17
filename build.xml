@@ -248,10 +248,6 @@
 			<fileset file="var/posix/Makefile" />
 		</copy>
 
-		<copy todir="${xmlvm.bin}/posix-nomac">
-			<fileset file="var/posix-nomac/Makefile" />
-		</copy>
-
 		<mkdir dir="${xmlvm.build}/xmlvm2js" />
 		<jar destfile="${xmlvm.build}/xmlvm2js/xmlvm2js.jar">
 			<fileset dir="src/xmlvm2js/" />
