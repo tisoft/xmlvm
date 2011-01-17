@@ -168,6 +168,7 @@ public class ResourceCache {
     }
 
     private static String createCacheKey(String resourceName, long lastModified) {
-        return "C" + resourceName.replace("/", "-").replace("\\", "-") + "-" + lastModified;
+        return "C" + resourceName.replace("/", "-").replace("\\", "-").replace(":", "-") + "-"
+                + lastModified;
     }
 }
