@@ -243,7 +243,7 @@ public abstract class UniversalFile {
      * @return Whether the operation was successful.
      */
     public boolean archiveTo(String destination, String pathPrefix) {
-        if (!pathPrefix.endsWith("/")) {
+        if (!pathPrefix.isEmpty() && !pathPrefix.endsWith("/")) {
             pathPrefix += "/";
         }
         if (isFile()) {
