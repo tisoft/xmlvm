@@ -5,6 +5,10 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheet
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheet
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIActionSheet)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)

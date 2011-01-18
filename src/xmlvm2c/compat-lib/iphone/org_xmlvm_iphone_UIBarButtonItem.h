@@ -9,6 +9,10 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarItem
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarItem
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarItem)
@@ -20,6 +24,10 @@ XMLVM_FORWARD_DECL(java_util_Set)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItemDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItemDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarButtonItemDelegate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.UIBarButtonItem
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarButtonItem, 37)

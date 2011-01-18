@@ -1,4 +1,5 @@
 
+#include "xmlvm.h"
 #include "java_util_concurrent_atomic_AtomicLong.h"
 
 

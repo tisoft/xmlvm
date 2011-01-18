@@ -16,6 +16,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAMediaTiming
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CAMediaTiming)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CAAnimation)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)

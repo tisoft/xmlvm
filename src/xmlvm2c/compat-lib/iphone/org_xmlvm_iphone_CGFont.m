@@ -1,3 +1,5 @@
+#include "xmlvm.h"
+#include "org_xmlvm_iphone_CGDataProvider.h"
 
 #include "org_xmlvm_iphone_CGFont.h"
 
@@ -5,18 +7,36 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGFont __TIB_org_xmlvm_iphone_CGFont = {
     0, // classInitialized
     "org.xmlvm.iphone.CGFont", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGFont;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGFont_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_CGFont();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_CGFont()
 {
@@ -36,8 +56,12 @@ void __INIT_org_xmlvm_iphone_CGFont()
 
     __TIB_org_xmlvm_iphone_CGFont.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_CGFont.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_CGFont = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_CGFont);
+    __TIB_org_xmlvm_iphone_CGFont.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_CGFont.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CGFont.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_CGFont = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CGFont);
     __TIB_org_xmlvm_iphone_CGFont.clazz = __CLASS_org_xmlvm_iphone_CGFont;
+    __CLASS_org_xmlvm_iphone_CGFont_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGFont, 1);
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGFont]
     //XMLVM_END_WRAPPER

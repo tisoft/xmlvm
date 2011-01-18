@@ -1,9 +1,17 @@
 
+#include "xmlvm.h"
 #include "java_lang_Float.h"
 
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 //XMLVM_END_NATIVE_IMPLEMENTATION
+
+JAVA_INT java_lang_Float_floatToIntBits___float(JAVA_FLOAT n1)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Float_floatToIntBits___float]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
 
 JAVA_INT java_lang_Float_floatToRawIntBits___float(JAVA_FLOAT n1)
 {

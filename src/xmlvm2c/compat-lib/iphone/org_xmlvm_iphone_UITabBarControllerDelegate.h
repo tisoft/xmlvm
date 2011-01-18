@@ -9,6 +9,18 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
+#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
+#define XMLVM_FORWARD_DECL_java_util_ArrayList
+XMLVM_FORWARD_DECL(java_util_ArrayList)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarController)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
+#endif
 // Class declarations for org.xmlvm.iphone.UITabBarControllerDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBarControllerDelegate, 19)
 

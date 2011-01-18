@@ -5,9 +5,17 @@
 #include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect

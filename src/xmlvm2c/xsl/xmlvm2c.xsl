@@ -372,9 +372,12 @@ int main(int argc, char* argv[])
     <xsl:text>&nl;</xsl:text>
 
     <!-- Emit interface initializers -->
-    <xsl:text>void __INIT_</xsl:text>
+    <xsl:text>void __INIT_FOR_CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>(__TIB_DEFINITION_TEMPLATE** interface);&nl;</xsl:text>
+    <xsl:text>void __INIT_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>();&nl;</xsl:text>
 
     <!-- Emit code for class initializer if there is one -->
     <xsl:for-each select="vm:method[@name = '&lt;clinit&gt;']">
@@ -452,12 +455,12 @@ int main(int argc, char* argv[])
         <xsl:text>JAVA_NULL</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:text>, // extends&nl;};&nl;&nl;</xsl:text>
+    <xsl:text>, // extends&nl;</xsl:text>
+    <xsl:text>    XMLVM_TYPE_CLASS};&nl;&nl;</xsl:text>
 
     <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;&nl;</xsl:text>
-    <xsl:text>//TODO _ARRAYTYPE not initialized&nl;</xsl:text>
     <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>_ARRAYTYPE;&nl;&nl;</xsl:text>
@@ -561,7 +564,7 @@ int main(int argc, char* argv[])
     <xsl:for-each select="vm:vtable[@kind='interface-vtable']">
       <xsl:variable name="iname" select="vm:fixname(@name)"/>
       <xsl:variable name="idx" select="position() - 1"/>
-      <xsl:text>&nl;    __INIT_</xsl:text>
+      <xsl:text>&nl;    __INIT_FOR_CLASS_</xsl:text>
       <xsl:value-of select="$iname"/>
       <xsl:text>(&amp;__TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
@@ -644,7 +647,7 @@ int main(int argc, char* argv[])
     <!-- Create the java.lang.Class instance for this class -->
     <xsl:text>    __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text> = __NEW_XMLVMClass(&amp;__TIB_</xsl:text>
+    <xsl:text> = XMLVM_CREATE_CLASS_OBJECT(&amp;__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>);&nl;    </xsl:text>
     <xsl:text>__TIB_</xsl:text>
@@ -652,6 +655,12 @@ int main(int argc, char* argv[])
     <xsl:text>.clazz = __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;&nl;</xsl:text>
+
+    <xsl:text>    __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>, 1);&nl;</xsl:text>
     
     <!-- If there is a Java class initializer, call it. -->
     <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
@@ -880,7 +889,6 @@ int main(int argc, char* argv[])
     <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;&nl;</xsl:text>
-    <xsl:text>//TODO _ARRAYTYPE not initialized&nl;</xsl:text>
     <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>_ARRAYTYPE;&nl;&nl;</xsl:text>
@@ -903,7 +911,7 @@ int main(int argc, char* argv[])
     <xsl:call-template name="emitReflectionInformationForFields"/>
     
     <!-- Emit interface initializers -->
-    <xsl:text>void __INIT_</xsl:text>
+    <xsl:text>void __INIT_FOR_CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>(__TIB_DEFINITION_TEMPLATE** interface)&nl;{
     if (!__TIB_</xsl:text>
@@ -918,8 +926,11 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text>.extends = (__TIB_DEFINITION_TEMPLATE*) &amp;__TIB_</xsl:text>
     <xsl:value-of select="vm:fixname(@extends)"/>
-    <xsl:text>;
-        __TIB_</xsl:text>
+    <xsl:text>;&nl;</xsl:text>
+    <xsl:text>        __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.flags = XMLVM_TYPE_INTERFACE;&nl;</xsl:text>
+    <xsl:text>        __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.numInterfaces = </xsl:text>
     <xsl:value-of select="$numBaseInterfaces"/>
@@ -971,6 +982,32 @@ int main(int argc, char* argv[])
       <xsl:text>;</xsl:text>
     </xsl:for-each>
     
+    <!-- Initialize reflection information for fields -->
+    <xsl:text>&nl;        __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.declaredFields = &amp;__field_reflection_data[0];&nl;</xsl:text>
+    <xsl:text>        __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);&nl;</xsl:text>
+    
+    <!-- Create the java.lang.Class instance for this class -->
+    <xsl:text>&nl;        __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text> = XMLVM_CREATE_CLASS_OBJECT(&amp;__TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>);&nl;        </xsl:text>
+    <xsl:text>__TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.clazz = __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;</xsl:text>
+    
+    <xsl:text>&nl;        __CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>, 1);</xsl:text>
+    
     <xsl:text>&nl;        __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized = 1;
@@ -985,26 +1022,6 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text>));</xsl:text>
 
-    <!-- Initialize reflection information for fields -->
-    <xsl:text>    __TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.declaredFields = &amp;__field_reflection_data[0];&nl;</xsl:text>
-    <xsl:text>    __TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);&nl;</xsl:text>
-    
-    <!-- Create the java.lang.Class instance for this class -->
-    <xsl:text>&nl;    __CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text> = __NEW_XMLVMClass(&amp;__TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>);&nl;    </xsl:text>
-    <xsl:text>__TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.clazz = __CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>;</xsl:text>
-    
     <!-- If there is a Java class initializer, call it. -->
     <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
       <xsl:text>&nl;    </xsl:text>
@@ -1016,6 +1033,14 @@ int main(int argc, char* argv[])
     
     <xsl:text>&nl;    }&nl;}&nl;&nl;</xsl:text>
 
+	<xsl:text>void __INIT_</xsl:text>
+	<xsl:value-of select="$clname"/>
+	<xsl:text>()&nl;{&nl;</xsl:text>
+	<xsl:text>    __INIT_FOR_CLASS_</xsl:text>
+	<xsl:value-of select="$clname"/>
+	<xsl:text>(JAVA_NULL);&nl;</xsl:text>
+	<xsl:text>}&nl;&nl;</xsl:text>
+		
     <!-- Emit code for class initializer if there is one -->
     <xsl:for-each select="vm:method[@name = '&lt;clinit&gt;']">
       <xsl:call-template name="emitMethodSignature">
@@ -1047,7 +1072,7 @@ int main(int argc, char* argv[])
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>()&nl;{&nl;    if (!__TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
-      <xsl:text>.classInitialized) __INIT_</xsl:text>
+      <xsl:text>.classInitialized) __INIT_FOR_CLASS_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>(JAVA_NULL);&nl;    return </xsl:text>
       <xsl:text>_STATIC_</xsl:text>
@@ -1192,7 +1217,8 @@ int main(int argc, char* argv[])
   <xsl:value-of select="$clname"/>
   <xsl:text>();&nl;</xsl:text>
   <xsl:text>    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;&nl;</xsl:text>
-  <xsl:text>    XMLVMArray* args = (XMLVMArray*) arguments;&nl;</xsl:text>
+  <xsl:text>    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;&nl;</xsl:text>
+  <xsl:text>    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;&nl;</xsl:text>
   <xsl:text>    switch (c->fields.java_lang_reflect_Constructor.slot_) {&nl;</xsl:text>
   <xsl:for-each select="vm:method[@name = '&lt;init&gt;' and not($genWrapper = 'true' and @isPrivate='true')]">
     <xsl:text>    case </xsl:text>
@@ -1224,47 +1250,47 @@ int main(int argc, char* argv[])
   <xsl:param name="index"/>
   <xsl:choose>
     <xsl:when test="@type = 'byte'">
-      <xsl:text>((java_lang_Byte*) args->array.o[</xsl:text>
+      <xsl:text>((java_lang_Byte*) argsArray[</xsl:text>
       <xsl:value-of select="$index"/>
       <xsl:text>])->fields.java_lang_Byte.value_</xsl:text>
     </xsl:when>
     <xsl:when test="@type = 'boolean'">
-      <xsl:text>((java_lang_Boolean*) args->array.o[</xsl:text>
+      <xsl:text>((java_lang_Boolean*) argsArray[</xsl:text>
       <xsl:value-of select="$index"/>
       <xsl:text>])->fields.java_lang_Boolean.value_</xsl:text>
     </xsl:when>
     <xsl:when test="@type = 'char'">
-      <xsl:text>((java_lang_Character*) args->array.o[</xsl:text>
+      <xsl:text>((java_lang_Character*) argsArray[</xsl:text>
       <xsl:value-of select="$index"/>
       <xsl:text>])->fields.java_lang_Character.value_</xsl:text>
     </xsl:when>
     <xsl:when test="@type = 'short'">
-      <xsl:text>((java_lang_Short*) args->array.o[</xsl:text>
+      <xsl:text>((java_lang_Short*) argsArray[</xsl:text>
       <xsl:value-of select="$index"/>
       <xsl:text>])->fields.java_lang_Short.value_</xsl:text>
     </xsl:when>
     <xsl:when test="@type = 'int'">
-      <xsl:text>((java_lang_Integer*) args->array.o[</xsl:text>
+      <xsl:text>((java_lang_Integer*) argsArray[</xsl:text>
       <xsl:value-of select="$index"/>
       <xsl:text>])->fields.java_lang_Integer.value_</xsl:text>
     </xsl:when>
     <xsl:when test="@type = 'float'">
-      <xsl:text>((java_lang_Float*) args->array.o[</xsl:text>
+      <xsl:text>((java_lang_Float*) argsArray[</xsl:text>
       <xsl:value-of select="$index"/>
       <xsl:text>])->fields.java_lang_Float.value_</xsl:text>
     </xsl:when>
     <xsl:when test="@type = 'long'">
-      <xsl:text>((java_lang_Long*) args->array.o[</xsl:text>
+      <xsl:text>((java_lang_Long*) argsArray[</xsl:text>
       <xsl:value-of select="$index"/>
       <xsl:text>])->fields.java_lang_Long.value_</xsl:text>
     </xsl:when>
     <xsl:when test="@type = 'double'">
-      <xsl:text>((java_lang_Double*) args->array.o[</xsl:text>
+      <xsl:text>((java_lang_Double*) argsArray[</xsl:text>
       <xsl:value-of select="$index"/>
       <xsl:text>])->fields.java_lang_Double.value_</xsl:text>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:text>args->array.o[</xsl:text>
+      <xsl:text>argsArray[</xsl:text>
       <xsl:value-of select="$index"/>
       <xsl:text>]</xsl:text>
     </xsl:otherwise>
@@ -1278,31 +1304,7 @@ int main(int argc, char* argv[])
    <xsl:text>__CLASS_</xsl:text>
    <xsl:choose>
      <xsl:when test="$isRedType = 'true'">
-       <xsl:text>org_xmlvm_util_RedTypeMarker</xsl:text>
-     </xsl:when>
-     <xsl:when test="$type = 'boolean'">
-       <xsl:text>boolean_TYPE</xsl:text>
-     </xsl:when>
-     <xsl:when test="$type = 'byte'">
-       <xsl:text>byte_TYPE</xsl:text>
-     </xsl:when>
-     <xsl:when test="$type = 'char'">
-       <xsl:text>char_TYPE</xsl:text>
-     </xsl:when>
-     <xsl:when test="$type = 'short'">
-       <xsl:text>short_TYPE</xsl:text>
-     </xsl:when>
-     <xsl:when test="$type = 'int'">
-       <xsl:text>int_TYPE</xsl:text>
-     </xsl:when>
-     <xsl:when test="$type = 'float'">
-       <xsl:text>float_TYPE</xsl:text>
-     </xsl:when>
-     <xsl:when test="$type = 'long'">
-       <xsl:text>long_TYPE</xsl:text>
-     </xsl:when>
-     <xsl:when test="$type = 'double'">
-       <xsl:text>double_TYPE</xsl:text>
+       <xsl:text>org_xmlvm_runtime_RedTypeMarker</xsl:text>
      </xsl:when>
      <xsl:otherwise>
        <xsl:value-of select="vm:fixname($type)"/>
@@ -1375,7 +1377,7 @@ int main(int argc, char* argv[])
       <xsl:text>JAVA_BOOLEAN</xsl:text>
     </xsl:when>
     <xsl:when test="ends-with($type, '[]')">
-      <xsl:text>XMLVMArray*</xsl:text>
+      <xsl:text>org_xmlvm_runtime_XMLVMArray*</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="vm:fixname($type)"/>
@@ -1413,7 +1415,7 @@ int main(int argc, char* argv[])
       <xsl:text>JAVA_ARRAY_BOOLEAN</xsl:text>
     </xsl:when>
     <xsl:when test="ends-with($type, '[]')">
-      <xsl:text>XMLVMArray*</xsl:text>
+      <xsl:text>org_xmlvm_runtime_XMLVMArray*</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:text>JAVA_ARRAY_OBJECT</xsl:text>
@@ -2034,7 +2036,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="$id"/>
   <xsl:text>, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
   <xsl:for-each select="dex:catch">
-    <xsl:text>        if (XMLVM_ISA(xmlvm_exception, &amp;__TIB_</xsl:text>
+    <xsl:text>        if (XMLVM_ISA(xmlvm_exception, __CLASS_</xsl:text>
     <xsl:value-of select="vm:fixname(@exception-type)"/>
     <xsl:text>)) goto label</xsl:text>
     <xsl:value-of select="@target"/>
@@ -2518,8 +2520,11 @@ int main(int argc, char* argv[])
 
 <xsl:template match="dex:return|dex:return-wide|dex:return-object">
   <xsl:variable name="return-type" select="ancestor::vm:method/vm:signature/vm:return/@type" />
-  <xsl:text>    return </xsl:text>
-  <xsl:value-of select="vm:cast-register($return-type, @vx)"/>
+  <xsl:text>    return _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:call-template name="emitTypedAccess">
+    <xsl:with-param name="type" select="$return-type"/>
+  </xsl:call-template>
   <xsl:text>;&nl;</xsl:text>
 </xsl:template>
 
@@ -3244,9 +3249,16 @@ int main(int argc, char* argv[])
 
 <xsl:template match="dex:filled-new-array|dex:filled-new-array-range">
   <xsl:variable name="base-type" select="substring(@value, 1, string-length(@value) - 2)"/>
+  <!-- Make sure the underlying class has been initialized -->
+  <xsl:variable name="zero-base-type" select="vm:fixname(replace(@value, '\[\]', ''))"/>
+  <xsl:text>    if (!__TIB_</xsl:text>
+  <xsl:value-of select="$zero-base-type"/>
+  <xsl:text>.classInitialized) __INIT_</xsl:text>
+  <xsl:value-of select="$zero-base-type"/>
+  <xsl:text>();&nl;</xsl:text>
+  
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
-  <!-- TODO the cast below is most likely not correct -->
   <xsl:text>.o = ((</xsl:text>
   <xsl:call-template name="emitArrayType">
     <xsl:with-param name="type" select="$base-type"/>
@@ -3264,7 +3276,10 @@ int main(int argc, char* argv[])
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
   <xsl:text>.o = XMLVMArray_createSingleDimensionWithData(</xsl:text>
-  <xsl:value-of select="vm:typeID($base-type)"/>
+  <xsl:call-template name="emitJavaLangClassReference">
+    <xsl:with-param name="type" select="@value"/>
+    <xsl:with-param name="isRedType" select="false"/>
+  </xsl:call-template>
   <xsl:text>, </xsl:text>
   <xsl:value-of select="count(dex:value)"/>
   <xsl:text>, _r</xsl:text>
@@ -3278,7 +3293,7 @@ int main(int argc, char* argv[])
   <!-- Remove the trailing '[]' -->
   <xsl:variable name="base-type" select="substring(@vx-type, 1, string-length(@vx-type) - 2)"/>
   <xsl:text>    XMLVMArray_fillArray(</xsl:text>
-  <xsl:value-of select="vm:cast-register('XMLVMArray', @vx)"/>
+  <xsl:value-of select="vm:cast-register('org_xmlvm_runtime_XMLVMArray', @vx)"/>
   <xsl:text>, (</xsl:text>
   <xsl:call-template name="emitArrayType">
     <xsl:with-param name="type" select="$base-type"/>
@@ -3294,11 +3309,22 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:new-array">
+  <!-- Make sure the underlying class has been initialized -->
+  <xsl:variable name="zero-base-type" select="vm:fixname(replace(@value, '\[\]', ''))"/>
+  <xsl:text>    if (!__TIB_</xsl:text>
+  <xsl:value-of select="$zero-base-type"/>
+  <xsl:text>.classInitialized) __INIT_</xsl:text>
+  <xsl:value-of select="$zero-base-type"/>
+  <xsl:text>();&nl;</xsl:text>
+
   <xsl:variable name="base-type" select="substring(@value, 1, string-length(@value) - 2)"/>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.o = XMLVMArray_createSingleDimension(</xsl:text>
-  <xsl:value-of select="vm:typeID($base-type)"/>
+  <xsl:call-template name="emitJavaLangClassReference">
+    <xsl:with-param name="type" select="@value"/>
+    <xsl:with-param name="isRedType" select="false"/>
+  </xsl:call-template>
   <xsl:text>, _r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.i);
@@ -3310,24 +3336,26 @@ int main(int argc, char* argv[])
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.i = XMLVMArray_count(</xsl:text>
-  <xsl:value-of select="vm:cast-register('XMLVMArray', @vy)"/>
+  <xsl:value-of select="vm:cast-register('org_xmlvm_runtime_XMLVMArray', @vy)"/>
   <xsl:text>);
 </xsl:text>
 </xsl:template>
 
 
-<xsl:template match="dex:aget|dex:aget-wide|dex:aget-boolean|dex:aget-byte|dex:aget-char|dex:aget-short">
+<xsl:template match="dex:aget|dex:aget-wide|dex:aget-boolean|dex:aget-byte|dex:aget-char|dex:aget-short|dex:aget-object">
+  <xsl:variable name="base-type" select="substring(@vy-type, 1, string-length(@vy-type) - 2)"/>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:call-template name="emitTypedAccess">
     <xsl:with-param name="type" select="@vx-type"/>
   </xsl:call-template>
-  <xsl:text> = </xsl:text>
-  <xsl:value-of select="vm:cast-register('XMLVMArray', @vy)"/>
-  <xsl:text>->array</xsl:text>
-  <xsl:call-template name="emitTypedArrayAccess">
-    <xsl:with-param name="type" select="@vy-type"/>
+  <xsl:text> = ((</xsl:text>
+  <xsl:call-template name="emitArrayType">
+    <xsl:with-param name="type" select="$base-type"/>
   </xsl:call-template>
+  <xsl:text>*) (</xsl:text>
+  <xsl:value-of select="vm:cast-register('org_xmlvm_runtime_XMLVMArray', @vy)"/>
+  <xsl:text>->fields.org_xmlvm_runtime_XMLVMArray.array_))</xsl:text>
   <xsl:text>[_r</xsl:text>
   <xsl:value-of select="@vz"/>
   <xsl:text>.i];
@@ -3335,25 +3363,15 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:aget-object">
-  <xsl:text>    _r</xsl:text>
-  <xsl:value-of select="@vx" />
-  <xsl:text>.o = </xsl:text>
-  <xsl:value-of select="vm:cast-register('XMLVMArray', @vy)"/>
-  <xsl:text>->array.o[_r</xsl:text>
-  <xsl:value-of select="@vz" />
-  <xsl:text>.i];
-</xsl:text>
-</xsl:template>
-
-
-<xsl:template match="dex:aput|dex:aput-wide|dex:aput-boolean|dex:aput-char|dex:aput-byte|dex:aput-short">
-  <xsl:text>    </xsl:text>
-  <xsl:value-of select="vm:cast-register('XMLVMArray', @vy)"/>
-  <xsl:text>->array</xsl:text>
-  <xsl:call-template name="emitTypedArrayAccess">
-    <xsl:with-param name="type" select="@vy-type"/>
+<xsl:template match="dex:aput|dex:aput-wide|dex:aput-boolean|dex:aput-char|dex:aput-byte|dex:aput-short|dex:aput-object">
+  <xsl:variable name="base-type" select="substring(@vy-type, 1, string-length(@vy-type) - 2)"/>
+  <xsl:text>    ((</xsl:text>
+  <xsl:call-template name="emitArrayType">
+    <xsl:with-param name="type" select="$base-type"/>
   </xsl:call-template>
+  <xsl:text>*) (</xsl:text>
+  <xsl:value-of select="vm:cast-register('org_xmlvm_runtime_XMLVMArray', @vy)"/>
+  <xsl:text>->fields.org_xmlvm_runtime_XMLVMArray.array_))</xsl:text>
   <xsl:text>[_r</xsl:text>
   <xsl:value-of select="@vz"/>
   <xsl:text>.i] = _r</xsl:text>
@@ -3366,18 +3384,6 @@ int main(int argc, char* argv[])
 </xsl:template>
 
   
-<xsl:template match="dex:aput-object">
-  <xsl:text>    </xsl:text>
-  <xsl:value-of select="vm:cast-register('XMLVMArray', @vy)"/>
-  <xsl:text>->array.o[_r</xsl:text>
-  <xsl:value-of select="@vz" />
-  <xsl:text>.i] = _r</xsl:text>
-  <xsl:value-of select="@vx" />
-  <xsl:text>.o;
-</xsl:text>
-</xsl:template>
-
-
 <xsl:template match="dex:check-cast">
   <!-- TODO should do a runtime type check -->
   <xsl:text>    _r</xsl:text>
@@ -3395,7 +3401,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="@vx"/>
   <xsl:text>.i = XMLVM_ISA(_r</xsl:text>
   <xsl:value-of select="@vy"/>
-  <xsl:text>.o, (JAVA_OBJECT) &amp;__TIB_</xsl:text>
+  <xsl:text>.o, __CLASS_</xsl:text>
   <xsl:value-of select="vm:fixname(@value)"/>
   <xsl:text>);
 </xsl:text>

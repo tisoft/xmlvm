@@ -1,4 +1,5 @@
-#include "java_lang_String.h"
+#include "xmlvm.h"
+#include "java_lang_Object.h"
 
 #include "org_xmlvm_iphone_CGPoint.h"
 
@@ -6,10 +7,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGPoint __TIB_org_xmlvm_iphone_CGPoint = {
     0, // classInitialized
     "org.xmlvm.iphone.CGPoint", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPoint;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPoint_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -24,22 +24,72 @@ JAVA_OBJECT fromCGPoint(CGPoint point)
 //XMLVM_END_IMPLEMENTATION
 
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
     {"x",
-    &__CLASS_float_TYPE,
+    &__CLASS_float,
     0 | java_lang_reflect_Modifier_PUBLIC,
     XMLVM_OFFSETOF(org_xmlvm_iphone_CGPoint, fields.org_xmlvm_iphone_CGPoint.x_),
     0,
     "",
     JAVA_NULL},
     {"y",
-    &__CLASS_float_TYPE,
+    &__CLASS_float,
     0 | java_lang_reflect_Modifier_PUBLIC,
     XMLVM_OFFSETOF(org_xmlvm_iphone_CGPoint, fields.org_xmlvm_iphone_CGPoint.y_),
     0,
     "",
     JAVA_NULL},
 };
+
+static JAVA_OBJECT* __constructor0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGPoint,
+};
+
+static JAVA_OBJECT* __constructor1_arg_types[] = {
+    &__CLASS_float,
+    &__CLASS_float,
+};
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+    {&__constructor0_arg_types[0],
+    sizeof(__constructor0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {&__constructor1_arg_types[0],
+    sizeof(__constructor1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_CGPoint();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    case 0:
+        org_xmlvm_iphone_CGPoint___INIT____org_xmlvm_iphone_CGPoint(obj, argsArray[0]);
+        break;
+    case 1:
+        org_xmlvm_iphone_CGPoint___INIT____float_float(obj, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_CGPoint()
 {
@@ -50,16 +100,20 @@ void __INIT_org_xmlvm_iphone_CGPoint()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGPoint.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_CGPoint.vtable[4] = (VTABLE_PTR) &org_xmlvm_iphone_CGPoint_toString__;
-    __TIB_org_xmlvm_iphone_CGPoint.vtable[2] = (VTABLE_PTR) &org_xmlvm_iphone_CGPoint_equals___java_lang_Object;
+    __TIB_org_xmlvm_iphone_CGPoint.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_CGPoint_toString__;
+    __TIB_org_xmlvm_iphone_CGPoint.vtable[1] = (VTABLE_PTR) &org_xmlvm_iphone_CGPoint_equals___java_lang_Object;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_CGPoint.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_CGPoint.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
     __TIB_org_xmlvm_iphone_CGPoint.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_CGPoint.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_CGPoint = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_CGPoint);
+    __TIB_org_xmlvm_iphone_CGPoint.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_CGPoint.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CGPoint.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_CGPoint = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CGPoint);
     __TIB_org_xmlvm_iphone_CGPoint.clazz = __CLASS_org_xmlvm_iphone_CGPoint;
+    __CLASS_org_xmlvm_iphone_CGPoint_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGPoint, 1);
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGPoint]
     //XMLVM_END_WRAPPER

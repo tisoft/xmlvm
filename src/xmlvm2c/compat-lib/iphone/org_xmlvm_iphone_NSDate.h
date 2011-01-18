@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
-#endif
 // Class declarations for org.xmlvm.iphone.NSDate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSDate, 15)
 

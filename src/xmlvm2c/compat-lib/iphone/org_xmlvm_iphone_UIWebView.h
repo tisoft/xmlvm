@@ -9,9 +9,17 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURLRequest)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebViewDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebViewDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWebViewDelegate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String

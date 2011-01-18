@@ -30,58 +30,13 @@
 XMLVM_JMP_BUF xmlvm_exception_env;
 JAVA_OBJECT xmlvm_exception;
 
-__TIB_DEFINITION_XMLVMArray __TIB_XMLVMArray;
-
-//TODO these are not initialized anywhere!
-__TIB_DEFINITION_java_lang_Object_ARRAYTYPE __TIB_java_lang_Object_ARRAYTYPE;
-__TIB_DEFINITION_boolean_ARRAYTYPE          __TIB_boolean_ARRAYTYPE;
-__TIB_DEFINITION_byte_ARRAYTYPE             __TIB_byte_ARRAYTYPE;
-__TIB_DEFINITION_char_ARRAYTYPE             __TIB_char_ARRAYTYPE;
-__TIB_DEFINITION_short_ARRAYTYPE            __TIB_short_ARRAYTYPE;
-__TIB_DEFINITION_int_ARRAYTYPE              __TIB_int_ARRAYTYPE;
-__TIB_DEFINITION_long_ARRAYTYPE             __TIB_long_ARRAYTYPE;
-__TIB_DEFINITION_float_ARRAYTYPE            __TIB_float_ARRAYTYPE;
-__TIB_DEFINITION_double_ARRAYTYPE           __TIB_double_ARRAYTYPE;
-
-//TODO these are not initialized anywhere!
-JAVA_OBJECT __CLASS_boolean_ARRAYTYPE;
-JAVA_OBJECT __CLASS_byte_ARRAYTYPE;
-JAVA_OBJECT __CLASS_char_ARRAYTYPE;
-JAVA_OBJECT __CLASS_short_ARRAYTYPE;
-JAVA_OBJECT __CLASS_int_ARRAYTYPE;
-JAVA_OBJECT __CLASS_long_ARRAYTYPE;
-JAVA_OBJECT __CLASS_float_ARRAYTYPE;
-JAVA_OBJECT __CLASS_double_ARRAYTYPE;
-
-//TODO Needed for java_lang_CharacterData00.c. Needs to be initialized.
-JAVA_OBJECT __CLASS_char_ARRAYTYPE_ARRAYTYPE_ARRAYTYPE;
-//TODO Needed for java_math_BigDecimal.c. Needs to be initialized.
-JAVA_OBJECT __CLASS_long_ARRAYTYPE_ARRAYTYPE;
 
 
-void __INIT_XMLVMArray()
-{
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_XMLVMArray.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-    // Initialize vtable for XMLVMArray
-    // TODO "1" below should be done via some #define
-    __TIB_XMLVMArray.vtable[XMLVM_VTABLE_IDX_java_lang_Object_clone__] = (VTABLE_PTR) XMLVMArray_clone__;
-    // Initialize vtable for implementing interfaces
-    // TODO Array do implement two interfaces
-    __TIB_XMLVMArray.numImplementedInterfaces = 0;
-    //TODO
-    __TIB_XMLVMArray.clazz = JAVA_NULL;
-    __TIB_XMLVMArray.declaredFields = JAVA_NULL;
-    __TIB_XMLVMArray.numDeclaredFields = 0;
-    
-    
-}
+//TODO Needed for java_math_Primality.c. Needs to be initialized.
+JAVA_OBJECT __CLASS_int_ARRAYTYPE_ARRAYTYPE;
+//TODO Needed for java_util_regex_AbstractCharClass_PredefinedCharacter.c. Needs to be initialized.
+JAVA_OBJECT __CLASS_java_lang_Object_ARRAYTYPE_ARRAYTYPE;
 
-void xmlvm_init_system_class()
-{
-    //java_lang_System_initializeSystemClass__();
-}
 
 void xmlvm_init()
 {
@@ -95,35 +50,10 @@ void xmlvm_init()
     if (XMLVM_SETJMP(xmlvm_exception_env)) {
         XMLVM_ERROR("Unhandled exception thrown", __FILE__, __FUNCTION__, __LINE__);
     }
-    __INIT_XMLVMArray();
+    __INIT_org_xmlvm_runtime_XMLVMArray();
+    java_lang_Class_initNativeLayer__();
     __INIT_java_lang_System();
-    xmlvm_init_system_class();
-    org_xmlvm_util_XMLVMUtil_init__();
-}
-
-int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz)
-{
-    int i;
-    __TIB_DEFINITION_TEMPLATE* objClass;
-    __TIB_DEFINITION_TEMPLATE* cl;
-    if (obj == JAVA_NULL) {
-        return 0;
-    }
-    objClass = (__TIB_DEFINITION_TEMPLATE*) ((java_lang_Object*) obj)->tib;
-    cl = (__TIB_DEFINITION_TEMPLATE*) clazz;
-    while (objClass != JAVA_NULL) {
-        if (strcmp(objClass->className, cl->className) == 0) {
-            return 1;
-        }
-        // Check all implemented interfaces
-        for (i = 0; i < objClass->numImplementedInterfaces; i++) {
-            if (strcmp(objClass->implementedInterfaces[0][i]->className, cl->className) == 0) {
-                return 1;
-            }
-        }
-        objClass = objClass->extends;
-    }
-    return 0;
+    org_xmlvm_runtime_XMLVMUtil_init__();
 }
 
 VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, int vtableIndex)
@@ -142,7 +72,7 @@ VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, 
     return (VTABLE_PTR) 0;
 }
 
-int xmlvm_java_string_cmp(JAVA_OBJECT* s1, const char* s2)
+int xmlvm_java_string_cmp(JAVA_OBJECT s1, const char* s2)
 {
     java_lang_String* str = (java_lang_String*) s1;
     JAVA_INT len = str->fields.java_lang_String.count_;
@@ -150,9 +80,10 @@ int xmlvm_java_string_cmp(JAVA_OBJECT* s1, const char* s2)
         return 0;
     }
     JAVA_INT offset = str->fields.java_lang_String.offset_;
-    XMLVMArray* value = (XMLVMArray*) str->fields.java_lang_String.value_;
+    org_xmlvm_runtime_XMLVMArray* value = (org_xmlvm_runtime_XMLVMArray*) str->fields.java_lang_String.value_;
+    JAVA_ARRAY_CHAR* valueArray = (JAVA_ARRAY_CHAR*) value->fields.org_xmlvm_runtime_XMLVMArray.array_;
     for (int i = 0; i < len; i++) {
-        if (value->array.c[i + offset] != s2[i]) {
+        if (valueArray[i + offset] != s2[i]) {
             return 0;
         }
     }
@@ -162,7 +93,7 @@ int xmlvm_java_string_cmp(JAVA_OBJECT* s1, const char* s2)
 JAVA_OBJECT xmlvm_create_java_string(const char* s)
 {
     java_lang_String* str = __NEW_java_lang_String();
-    XMLVMArray* charArray = XMLVMArray_createFromString(s);
+    org_xmlvm_runtime_XMLVMArray* charArray = XMLVMArray_createFromString(s);
     java_lang_String___INIT____char_ARRAYTYPE(str, charArray);
     return str;
 }
@@ -170,246 +101,98 @@ JAVA_OBJECT xmlvm_create_java_string(const char* s)
 //---------------------------------------------------------------------------------------------
 // XMLVMClass
 
-
-XMLVM_DEFINE_CLASS(XMLVMClass, XMLVM_VTABLE_SIZE_java_lang_Class)
-
-#define __INSTANCE_FIELDS_XMLVMClass \
-    __INSTANCE_FIELDS_java_lang_Class; \
-    struct { \
-        __TIB_DEFINITION_TEMPLATE* tib; \
-        JAVA_BOOLEAN               isArray; \
-        JAVA_BOOLEAN               isPrimitive; \
-    } XMLVMClass
-
-struct XMLVMClass {
-    __TIB_DEFINITION_XMLVMClass* tib;
-    struct {
-        __INSTANCE_FIELDS_XMLVMClass;
-    } fields;
-};
-
-typedef struct XMLVMClass XMLVMClass;
-
-
-__TIB_DEFINITION_XMLVMClass __TIB_XMLVMClass = {
-    0, // classInitialized
-    "XMLVMClass", // className
-    (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Class, // extends
-};
-
-__TIB_DEFINITION_TEMPLATE* XMLVMClass_getTIB(JAVA_OBJECT clazz)
+JAVA_OBJECT XMLVM_CREATE_CLASS_OBJECT(void* tib)
 {
-    XMLVMClass* c = (XMLVMClass*) clazz;
-    return c->fields.XMLVMClass.tib;
+    JAVA_OBJECT clazz = __NEW_java_lang_Class();
+    java_lang_Class___INIT____java_lang_Object(clazz, tib);
+    return clazz;
 }
 
-JAVA_BOOLEAN XMLVMClass_isArray(JAVA_OBJECT clazz)
+
+JAVA_OBJECT XMLVM_CREATE_ARRAY_CLASS_OBJECT(JAVA_OBJECT baseType, int dimensions)
 {
-    XMLVMClass* c = (XMLVMClass*) clazz;
-    return c->fields.XMLVMClass.isArray;
+    __TIB_DEFINITION_org_xmlvm_runtime_XMLVMArray* tib = XMLVM_MALLOC(sizeof(__TIB_DEFINITION_org_xmlvm_runtime_XMLVMArray));
+    XMLVM_MEMCPY(tib, &__TIB_org_xmlvm_runtime_XMLVMArray, sizeof(__TIB_DEFINITION_org_xmlvm_runtime_XMLVMArray));
+    tib->flags = XMLVM_TYPE_ARRAY;
+    tib->baseType = baseType;
+    tib->dimensions = dimensions;
+    JAVA_OBJECT clazz = __NEW_java_lang_Class();
+    java_lang_Class___INIT____java_lang_Object(clazz, tib);
+    tib->clazz = clazz;
+    // Set the arrayType in in baseType to this newly created array type class
+    java_lang_Class* baseTypeClass = (java_lang_Class*) baseType;
+    __TIB_DEFINITION_TEMPLATE* baseTypeTIB = (__TIB_DEFINITION_TEMPLATE*) baseTypeClass->fields.java_lang_Class.tib_;
+    baseTypeTIB->arrayType = clazz;
+    return clazz;
 }
 
-JAVA_BOOLEAN XMLVMClass_isPrimitive(JAVA_OBJECT clazz)
-{
-    XMLVMClass* c = (XMLVMClass*) clazz;
-    return c->fields.XMLVMClass.isPrimitive;
-}
 
-void XMLVMClass_setPrimitive(JAVA_OBJECT clazz, JAVA_BOOLEAN flag)
+int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz)
 {
-    XMLVMClass* c = (XMLVMClass*) clazz;
-    c->fields.XMLVMClass.isPrimitive = flag;
-}
-
-JAVA_OBJECT XMLVMClass_newInstance(JAVA_OBJECT me)
-{
-    XMLVMClass* clazz = (XMLVMClass*) me;
-    return (*(clazz->fields.XMLVMClass.tib->newInstanceFunc))();
-}
-
-void __INIT_XMLVMClass()
-{
-    __TIB_XMLVMClass.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_java_lang_Class.classInitialized) __INIT_java_lang_Class();
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_XMLVMClass.vtable, __TIB_java_lang_Class.vtable, sizeof(__TIB_java_lang_Class.vtable));
-    // Initialize vtable for this class
-    __TIB_XMLVMClass.vtable[XMLVM_VTABLE_IDX_java_lang_Class_newInstance__] = (VTABLE_PTR) XMLVMClass_newInstance;
-    // Initialize vtable for implementing interfaces
-    __TIB_XMLVMClass.numImplementedInterfaces = 0;
-}
-
-JAVA_OBJECT __NEW_XMLVMClass(/*__TIB_DEFINITION_TEMPLATE*/ void* clazz)
-{
-    XMLVMClass* me;
-    if (!__TIB_XMLVMClass.classInitialized) __INIT_XMLVMClass();
-    __TIB_DEFINITION_TEMPLATE* c = (__TIB_DEFINITION_TEMPLATE*) clazz;
-    me = (XMLVMClass*) XMLVM_MALLOC(sizeof(XMLVMClass));
-    me->tib = &__TIB_XMLVMClass;
-    me->fields.XMLVMClass.tib = c;
-    me->fields.XMLVMClass.isArray = 0;
-    me->fields.XMLVMClass.isPrimitive = 0;
-    return me;
+    int i;
+    __TIB_DEFINITION_TEMPLATE* objClass;
+    if (obj == JAVA_NULL) {
+        return 0;
+    }
+    objClass = (__TIB_DEFINITION_TEMPLATE*) ((java_lang_Object*) obj)->tib;
+    __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) ((java_lang_Class*) clazz)->fields.java_lang_Class.tib_;
+    while (objClass != JAVA_NULL) {
+        if (strcmp(objClass->className, tib->className) == 0) {
+            return 1;
+        }
+        // Check all implemented interfaces
+        for (i = 0; i < objClass->numImplementedInterfaces; i++) {
+            if (strcmp(objClass->implementedInterfaces[0][i]->className, tib->className) == 0) {
+                return 1;
+            }
+        }
+        objClass = objClass->extends;
+    }
+    return 0;
 }
 
 
 //---------------------------------------------------------------------------------------------
 // XMLVMArray
 
-XMLVMArray* __NEW_XMLVMArray()
+
+JAVA_OBJECT XMLVMArray_createSingleDimension(JAVA_OBJECT type, JAVA_INT size)
 {
-    XMLVMArray* array = (XMLVMArray*) XMLVM_MALLOC(sizeof(XMLVMArray));
-    array->tib = &__TIB_XMLVMArray;
-    return array;
+    return org_xmlvm_runtime_XMLVMArray_createSingleDimension___java_lang_Class_int(type, size);
 }
 
-XMLVMArray* XMLVMArray_createSingleDimension(int type, int size)
+JAVA_OBJECT XMLVMArray_createSingleDimensionWithData(JAVA_OBJECT type, JAVA_INT size, JAVA_OBJECT data)
 {
-    XMLVMArray *retval = __NEW_XMLVMArray();
-    int sizeOfBaseType;
-    retval->type = type;
-    retval->length = size;
-
-    sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(type);
-    retval->array.data = XMLVM_MALLOC(sizeOfBaseType * size);
-    XMLVM_BZERO(retval->array.data, sizeOfBaseType * size);
-
-    if (type == 0) {
-        int i;
-        for (i = 0; i < size; i++) {
-            retval->array.o[i] = JAVA_NULL;
-        }
-    }
-
-    return retval;
+    return org_xmlvm_runtime_XMLVMArray_createSingleDimensionWithData___java_lang_Class_int_java_lang_Object(type, size, data);
 }
 
-XMLVMArray* XMLVMArray_createSingleDimensionWithData(int type, int size, void* data)
+
+JAVA_OBJECT XMLVMArray_createMultiDimensions(JAVA_OBJECT type, JAVA_OBJECT dimensions)
 {
-    XMLVMArray *retval = __NEW_XMLVMArray();
-    retval->type = type;
-    retval->length = size;
-    retval->array.data = data;
-    return retval;
+    return org_xmlvm_runtime_XMLVMArray_createMultiDimensions___java_lang_Class_org_xmlvm_runtime_XMLVMArray(type, dimensions);
 }
 
-static XMLVMArray* XMLVMArray_createMultiDimensionsWithCount(int type, JAVA_ARRAY_INT* dim, int count)
+JAVA_OBJECT XMLVMArray_createFromString(const char* str)
 {
-    JAVA_ARRAY_INT dimensions = *dim;
-    XMLVMArray* slice;
-    int i;
-    dim++;
-    count--;
-    if (count == 0) {
-        return XMLVMArray_createSingleDimension(type, dimensions);
-    }
-    slice = XMLVMArray_createSingleDimension(0, dimensions);
-    
-    for (i = 0; i < dimensions; i++) {
-        XMLVMArray* o = XMLVMArray_createMultiDimensionsWithCount(type, dim, count);
-        XMLVMArray_replaceObjectAtIndex(slice, i, o);
-    }
-    return slice;
-}
-
-XMLVMArray* XMLVMArray_createMultiDimensions(int type, JAVA_OBJECT dimensions)
-{
-    XMLVMArray* dimArray = (XMLVMArray*) dimensions;
-    if (dimArray->type != 5 /* int */) {
-        XMLVM_INTERNAL_ERROR();
-    }
-    int count = dimArray->length;
-    JAVA_ARRAY_INT* dims = dimArray->array.i;
-    return XMLVMArray_createMultiDimensionsWithCount(type, dims, count);
-}
-
-XMLVMArray* XMLVMArray_createFromString(const char* str)
-{
-    XMLVMArray *retval = __NEW_XMLVMArray();
     int len = strlen(str);
-    int i;
-
-    retval->type = 2; // CHAR
-    retval->length = len;
-    retval->array.data = XMLVM_MALLOC(len * sizeof(JAVA_ARRAY_CHAR));
+    int size = len * sizeof(JAVA_ARRAY_CHAR);
+    int i;    
+    JAVA_ARRAY_CHAR* data = XMLVM_MALLOC(size);
     for (i = 0; i < len; i++) {
-        retval->array.c[i] = *str++;
+        data[i] = *str++;
     }
-    return retval;
+    return XMLVMArray_createSingleDimensionWithData(__CLASS_char_ARRAYTYPE, len, data);
 }
 
-void XMLVMArray_fillArray(XMLVMArray* array, void* data)
+void XMLVMArray_fillArray(JAVA_OBJECT array, void* data)
 {
-    int sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(array->type);
-    int n = sizeOfBaseType * array->length;
-    XMLVM_MEMCPY(array->array.data, data, n);
+    org_xmlvm_runtime_XMLVMArray_fillArray___org_xmlvm_runtime_XMLVMArray_java_lang_Object(array, data);
 }
 
-int XMLVMArray_sizeOfBaseTypeInBytes(int type)
+int XMLVMArray_count(JAVA_OBJECT array)
 {
-    int sizeOfBaseType;
-    
-    // 'type' values are defined by vm:sizeOf in xmlvm2cpp.xsl
-    switch (type) {
-    case 1: // boolean
-    case 3: // byte
-       sizeOfBaseType = sizeof(JAVA_ARRAY_BYTE);
-       break;
-    case 2: // char
-    case 4: // short
-       sizeOfBaseType = sizeof(JAVA_ARRAY_SHORT);
-       break;
-    case 5: // int
-       sizeOfBaseType = sizeof(JAVA_ARRAY_INT);
-       break;
-    case 6: // float
-       sizeOfBaseType = sizeof(JAVA_ARRAY_FLOAT);
-       break;
-    case 7: // double
-       sizeOfBaseType = sizeof(JAVA_ARRAY_DOUBLE);
-       break;
-    case 8: // long
-       sizeOfBaseType = sizeof(JAVA_ARRAY_LONG);
-       break;
-    default: // object reference
-       sizeOfBaseType = sizeof(void*);
-       break;
-    }
-    
-    return sizeOfBaseType;
-}
-
-JAVA_OBJECT XMLVMArray_objectAtIndex(XMLVMArray* array, int idx)
-{
-    return array->array.o[idx];
-}
-
-void XMLVMArray_replaceObjectAtIndex(XMLVMArray* array, int idx, JAVA_OBJECT obj)
-{
-    array->array.o[idx] = obj;
-}
-
-int XMLVMArray_count(XMLVMArray* array)
-{
-    return array->length;
-}
-
-XMLVMArray* XMLVMArray_clone__(XMLVMArray* array)
-{
-    XMLVMArray *retval = __NEW_XMLVMArray();
-    int sizeOfBaseType;
-    int sizeOfArrayInBytes;
-    retval->type = array->type;
-    retval->length = array->length;
-
-    sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(array->type);
-    sizeOfArrayInBytes = sizeOfBaseType * array->length;
-    retval->array.data = XMLVM_MALLOC(sizeOfArrayInBytes);
-
-    XMLVM_MEMCPY(retval->array.data, array->array.data, sizeOfArrayInBytes);
-
-    return retval;
+    org_xmlvm_runtime_XMLVMArray* a = (org_xmlvm_runtime_XMLVMArray*) array;
+    return a->fields.org_xmlvm_runtime_XMLVMArray.length_;
 }
 
 void xmlvm_unimplemented_native_method()

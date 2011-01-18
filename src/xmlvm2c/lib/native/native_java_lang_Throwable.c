@@ -1,4 +1,5 @@
 
+#include "xmlvm.h"
 #include "java_lang_Throwable.h"
 
 
@@ -12,16 +13,9 @@ JAVA_OBJECT java_lang_Throwable_fillInStackTrace__(JAVA_OBJECT me)
     //XMLVM_END_NATIVE
 }
 
-JAVA_INT java_lang_Throwable_getStackTraceDepth__(JAVA_OBJECT me)
+JAVA_OBJECT java_lang_Throwable_getStackTraceImpl__(JAVA_OBJECT me)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Throwable_getStackTraceDepth__]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
-JAVA_OBJECT java_lang_Throwable_getStackTraceElement___int(JAVA_OBJECT me, JAVA_INT n1)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Throwable_getStackTraceElement___int]
+    //XMLVM_BEGIN_NATIVE[java_lang_Throwable_getStackTraceImpl__]
     xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }

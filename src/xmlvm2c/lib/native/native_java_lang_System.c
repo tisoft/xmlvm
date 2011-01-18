@@ -1,35 +1,15 @@
 
+#include "xmlvm.h"
 #include "java_lang_System.h"
 
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
-void java_lang_System_registerNatives__()
+void java_lang_System_initNativeLayer__()
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_System_registerNatives__]
-    // Do nothing
-    //XMLVM_END_NATIVE
-}
-
-void java_lang_System_setIn0___java_io_InputStream(JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_System_setIn0___java_io_InputStream]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
-void java_lang_System_setOut0___java_io_PrintStream(JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_System_setOut0___java_io_PrintStream]
-    java_lang_System_PUT_out(n1);
-    //XMLVM_END_NATIVE
-}
-
-void java_lang_System_setErr0___java_io_PrintStream(JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_System_setErr0___java_io_PrintStream]
-    java_lang_System_PUT_err(n1);
+    //XMLVM_BEGIN_NATIVE[java_lang_System_initNativeLayer__]
+    // Nothing to be done
     //XMLVM_END_NATIVE
 }
 
@@ -49,106 +29,23 @@ JAVA_LONG java_lang_System_nanoTime__()
     //XMLVM_END_NATIVE
 }
 
-void java_lang_System_arraycopy___java_lang_Object_int_java_lang_Object_int_int(JAVA_OBJECT n1, JAVA_INT n2, JAVA_OBJECT n3, JAVA_INT n4, JAVA_INT n5)
+JAVA_OBJECT java_lang_System_getPropertyList__()
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_System_arraycopy___java_lang_Object_int_java_lang_Object_int_int]
-#if 0
-    if ([src class] != [XMLVMArray class] ||
-        [dest class] != [XMLVMArray class] ||
-        ((XMLVMArray*) src)->type != ((XMLVMArray*) dest)->type) {
-        // TODO need to do much more thorough error checking
-        java_lang_RuntimeException* ex = [[java_lang_RuntimeException alloc] init];
-        @throw ex;
-    }
-#endif
-    XMLVMArray* src = (XMLVMArray*) n1;
-    JAVA_INT srcPos = n2;
-    XMLVMArray* dest = (XMLVMArray*) n3;
-    JAVA_INT destPos = n4;
-    JAVA_INT length = n5;
+    //XMLVM_BEGIN_NATIVE[java_lang_System_getPropertyList__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
 
-    if (length == 0) {
-        // Nothing to do
-        return;
-    }
-    XMLVMArray* srcArr = (XMLVMArray*) src;
-    XMLVMArray* destArr = (XMLVMArray*) dest;
-    int d = 1;
-    if (srcArr == destArr) {
-        if (srcPos == destPos) {
-            // Nothing to do
-            return;
-        }
-        if (srcPos < destPos) {
-            // We have to copy backwards to ensure we don't overwrite ourselves while copying
-            srcPos += length - 1;
-            destPos += length - 1;
-            d = -1;
-        }
-    }
-    int i = 0;
-    switch (srcArr->type) {
-        case 0:
-            // We copy object references
-            for (i = 0; i < length; i++) {
-                destArr->array.o[destPos] = srcArr->array.o[srcPos];
-                srcPos += d;
-                destPos += d;
-            }
-            break;
-        case 1: // boolean
-        case 3: // byte
-            for (i = 0; i < length; i++) {
-                destArr->array.b[destPos] = srcArr->array.b[srcPos];
-                srcPos += d;
-                destPos += d;
-            }
-            break;
-        case 2: // char
-        case 4: // short
-            for (i = 0; i < length; i++) {
-                destArr->array.s[destPos] = srcArr->array.s[srcPos];
-                srcPos += d;
-                destPos += d;
-            }
-            break;
-        case 5: // int
-        case 6: // float
-            for (i = 0; i < length; i++) {
-                destArr->array.i[destPos] = srcArr->array.i[srcPos];
-                srcPos += d;
-                destPos += d;
-            }
-            break;
-        case 7: // double
-        case 8: // long
-            for (i = 0; i < length; i++) {
-                destArr->array.l[destPos] = srcArr->array.l[srcPos];
-                srcPos += d;
-                destPos += d;
-            }
-            break;
-    }
+JAVA_OBJECT java_lang_System_getEncoding___int(JAVA_INT n1)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_System_getEncoding___int]
+    xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT java_lang_System_identityHashCode___java_lang_Object(JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_System_identityHashCode___java_lang_Object]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
-JAVA_OBJECT java_lang_System_initProperties___java_util_Properties(JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_System_initProperties___java_util_Properties]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
-JAVA_OBJECT java_lang_System_mapLibraryName___java_lang_String(JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_System_mapLibraryName___java_lang_String]
     xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }

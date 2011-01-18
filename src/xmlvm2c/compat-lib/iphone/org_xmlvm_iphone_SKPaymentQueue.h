@@ -5,17 +5,21 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentQueue
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentQueue
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPaymentQueue)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentTransactionObserver
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentTransactionObserver
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPaymentTransactionObserver)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
-#define XMLVM_FORWARD_DECL_java_util_ArrayList
-XMLVM_FORWARD_DECL(java_util_ArrayList)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPayment
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPayment
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPayment)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentTransaction
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentTransaction
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPaymentTransaction)
 #endif
 // Class declarations for org.xmlvm.iphone.SKPaymentQueue
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKPaymentQueue, 20)

@@ -9,14 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
-#endif
 // Class declarations for org.xmlvm.iphone.CLHeading
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLHeading, 22)
 
@@ -53,7 +45,7 @@ typedef struct org_xmlvm_iphone_CLHeading org_xmlvm_iphone_CLHeading;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLHeading_getY__ 19
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLHeading_getZ__ 20
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLHeading_description__ 21
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLHeading_toString__ 4
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLHeading_toString__ 7
 
 void __INIT_org_xmlvm_iphone_CLHeading();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLHeading();
@@ -74,7 +66,7 @@ JAVA_DOUBLE org_xmlvm_iphone_CLHeading_getY__(JAVA_OBJECT me);
 JAVA_DOUBLE org_xmlvm_iphone_CLHeading_getZ__(JAVA_OBJECT me);
 // Vtable index: 21
 JAVA_OBJECT org_xmlvm_iphone_CLHeading_description__(JAVA_OBJECT me);
-// Vtable index: 4
+// Vtable index: 7
 JAVA_OBJECT org_xmlvm_iphone_CLHeading_toString__(JAVA_OBJECT me);
 
 #endif

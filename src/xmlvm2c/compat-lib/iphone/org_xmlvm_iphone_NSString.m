@@ -1,5 +1,8 @@
+#include "xmlvm.h"
+#include "org_xmlvm_iphone_UIFont.h"
 #include "org_xmlvm_iphone_NSData.h"
-#include "java_util_ArrayList.h"
+#include "org_xmlvm_iphone_CGPoint.h"
+#include "org_xmlvm_iphone_NSURL.h"
 #include "org_xmlvm_iphone_CGSize.h"
 #include "java_lang_String.h"
 
@@ -9,27 +12,45 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSString __TIB_org_xmlvm_iphone_NSString = {
     0, // classInitialized
     "org.xmlvm.iphone.NSString", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 NSString* toNSString(JAVA_OBJECT o)
 {
 	java_lang_String* s = (java_lang_String*) o;
-	XMLVMArray* value = s->fields.java_lang_String.value_;
+	org_xmlvm_runtime_XMLVMArray* value = s->fields.java_lang_String.value_;
 	JAVA_INT offset = s->fields.java_lang_String.offset_;
 	JAVA_INT count = s->fields.java_lang_String.count_;
-	const unichar* str = &value->array.c[offset];
+	const unichar* str = ((JAVA_ARRAY_CHAR*) value->fields.org_xmlvm_runtime_XMLVMArray.array_) + offset;
 	return [[NSString alloc] initWithCharacters:str length:count];
 }
 //XMLVM_END_IMPLEMENTATION
 
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_NSString();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_NSString()
 {
@@ -46,8 +67,12 @@ void __INIT_org_xmlvm_iphone_NSString()
 
     __TIB_org_xmlvm_iphone_NSString.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_NSString.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_NSString = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_NSString);
+    __TIB_org_xmlvm_iphone_NSString.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_NSString.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSString.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_NSString = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSString);
     __TIB_org_xmlvm_iphone_NSString.clazz = __CLASS_org_xmlvm_iphone_NSString;
+    __CLASS_org_xmlvm_iphone_NSString_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSString, 1);
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSString]
     //XMLVM_END_WRAPPER

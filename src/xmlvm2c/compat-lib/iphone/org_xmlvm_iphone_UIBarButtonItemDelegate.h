@@ -23,6 +23,7 @@ typedef struct org_xmlvm_iphone_UIBarButtonItemDelegate org_xmlvm_iphone_UIBarBu
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIBarButtonItemDelegate 12
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItemDelegate_clicked__ 11
 
-void __INIT_org_xmlvm_iphone_UIBarButtonItemDelegate(__TIB_DEFINITION_TEMPLATE** interface);
+void __INIT_FOR_CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate(__TIB_DEFINITION_TEMPLATE** interface);
+void __INIT_org_xmlvm_iphone_UIBarButtonItemDelegate();
 
 #endif

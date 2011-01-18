@@ -9,13 +9,17 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGImage
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGImage
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGImage)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGDataProvider
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGDataProvider
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGDataProvider)
 #endif
 // Class declarations for org.xmlvm.iphone.CGImage
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGImage, 15)

@@ -80,8 +80,8 @@ public class Libraries {
 
     private synchronized void maybeInitialize() {
         if (jdk == null) {
-            jdk = UniversalFileCreator.createDirectory("/lib/openjdk6-build.jar",
-                    "lib/openjdk6-build.jar");
+            jdk = UniversalFileCreator.createDirectory("/lib/harmony6-build.jar",
+                    "lib/harmony6-build.jar");
         }
         if (cocoaJava == null) {
             cocoaJava = UniversalFileCreator.createDirectory("/lib/cocoa-java.jar",

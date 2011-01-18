@@ -9,9 +9,9 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAccelerometer
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAccelerometer
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAccelerometer)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAccelerometerDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAccelerometerDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAccelerometerDelegate)
 #endif
 // Class declarations for org.xmlvm.iphone.UIAccelerometer
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAccelerometer, 16)

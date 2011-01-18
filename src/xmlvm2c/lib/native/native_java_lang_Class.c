@@ -1,4 +1,5 @@
 
+#include "xmlvm.h"
 #include "java_lang_Class.h"
 
 
@@ -6,145 +7,188 @@
 
 #include "java_lang_reflect_Field.h"
 #include "java_lang_reflect_Constructor.h"
+#include "org_xmlvm_runtime_XMLVMArray.h"
 
 
-XMLVM_DEFINE_CLASS(boolean_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
-XMLVM_DEFINE_CLASS(byte_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
-XMLVM_DEFINE_CLASS(char_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
-XMLVM_DEFINE_CLASS(short_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
-XMLVM_DEFINE_CLASS(int_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
-XMLVM_DEFINE_CLASS(long_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
-XMLVM_DEFINE_CLASS(float_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
-XMLVM_DEFINE_CLASS(double_TYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
+__TIB_DEFINITION_boolean __TIB_boolean;
+__TIB_DEFINITION_byte    __TIB_byte;
+__TIB_DEFINITION_char    __TIB_char;
+__TIB_DEFINITION_short   __TIB_short;
+__TIB_DEFINITION_int     __TIB_int;
+__TIB_DEFINITION_long    __TIB_long;
+__TIB_DEFINITION_float   __TIB_float;
+__TIB_DEFINITION_double  __TIB_double;
 
-__TIB_DEFINITION_boolean_TYPE __TIB_boolean_TYPE;
-__TIB_DEFINITION_byte_TYPE    __TIB_byte_TYPE;
-__TIB_DEFINITION_char_TYPE    __TIB_char_TYPE;
-__TIB_DEFINITION_short_TYPE   __TIB_short_TYPE;
-__TIB_DEFINITION_int_TYPE     __TIB_int_TYPE;
-__TIB_DEFINITION_long_TYPE    __TIB_long_TYPE;
-__TIB_DEFINITION_float_TYPE   __TIB_float_TYPE;
-__TIB_DEFINITION_double_TYPE  __TIB_double_TYPE;
+JAVA_OBJECT __CLASS_boolean;
+JAVA_OBJECT __CLASS_byte;
+JAVA_OBJECT __CLASS_char;
+JAVA_OBJECT __CLASS_short;
+JAVA_OBJECT __CLASS_int;
+JAVA_OBJECT __CLASS_long;
+JAVA_OBJECT __CLASS_float;
+JAVA_OBJECT __CLASS_double;
 
-JAVA_OBJECT __CLASS_boolean_TYPE;
-JAVA_OBJECT __CLASS_byte_TYPE;
-JAVA_OBJECT __CLASS_char_TYPE;
-JAVA_OBJECT __CLASS_short_TYPE;
-JAVA_OBJECT __CLASS_int_TYPE;
-JAVA_OBJECT __CLASS_long_TYPE;
-JAVA_OBJECT __CLASS_float_TYPE;
-JAVA_OBJECT __CLASS_double_TYPE;
+
+JAVA_OBJECT __CLASS_boolean_ARRAYTYPE;
+JAVA_OBJECT __CLASS_byte_ARRAYTYPE;
+JAVA_OBJECT __CLASS_char_ARRAYTYPE;
+JAVA_OBJECT __CLASS_short_ARRAYTYPE;
+JAVA_OBJECT __CLASS_int_ARRAYTYPE;
+JAVA_OBJECT __CLASS_long_ARRAYTYPE;
+JAVA_OBJECT __CLASS_float_ARRAYTYPE;
+JAVA_OBJECT __CLASS_double_ARRAYTYPE;
 
 void init_primitive_class(void* clazz, const char* name)
 {
     __TIB_DEFINITION_TEMPLATE* c = (__TIB_DEFINITION_TEMPLATE*) clazz;
     //TODO who is initializing this class?
-    c->classInitialized = 0;
+    c->classInitialized = 1;
     c->className = name;
     c->extends = (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Class;
+    c->flags = XMLVM_TYPE_PRIMITIVE;
 }
 
+void __INIT_boolean()
+{
+    init_primitive_class(&__TIB_boolean, "boolean");
+}
+
+void __INIT_byte()
+{
+    init_primitive_class(&__TIB_byte, "byte");
+}
+
+void __INIT_char()
+{
+    init_primitive_class(&__TIB_char, "char");
+}
+
+void __INIT_short()
+{
+    init_primitive_class(&__TIB_short, "short");
+}
+
+void __INIT_int()
+{
+    init_primitive_class(&__TIB_int, "int");
+}
+
+void __INIT_long()
+{
+    init_primitive_class(&__TIB_long, "long");
+}
+
+void __INIT_float()
+{
+    init_primitive_class(&__TIB_float, "float");
+}
+
+void __INIT_double()
+{
+    init_primitive_class(&__TIB_double, "double");
+}
+
+    
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
-void java_lang_Class_registerNatives__()
+void java_lang_Class_initNativeLayer__()
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_registerNatives__]
-    init_primitive_class(&__TIB_boolean_TYPE, "boolean");
-    init_primitive_class(&__TIB_byte_TYPE, "byte");
-    init_primitive_class(&__TIB_char_TYPE, "char");
-    init_primitive_class(&__TIB_short_TYPE, "short");
-    init_primitive_class(&__TIB_int_TYPE, "int");
-    init_primitive_class(&__TIB_long_TYPE, "long");
-    init_primitive_class(&__TIB_float_TYPE, "float");
-    init_primitive_class(&__TIB_double_TYPE, "double");
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_initNativeLayer__]
+    __INIT_boolean();
+    __INIT_byte();
+    __INIT_char();
+    __INIT_short();
+    __INIT_int();
+    __INIT_long();
+    __INIT_float();
+    __INIT_double();
     
-    __CLASS_boolean_TYPE = __NEW_XMLVMClass(&__TIB_boolean_TYPE);
-    XMLVMClass_setPrimitive(__CLASS_boolean_TYPE, 1);
-    __CLASS_byte_TYPE = __NEW_XMLVMClass(&__TIB_byte_TYPE);
-    XMLVMClass_setPrimitive(__CLASS_byte_TYPE, 1);
-    __CLASS_char_TYPE = __NEW_XMLVMClass(&__TIB_char_TYPE);
-    XMLVMClass_setPrimitive(__CLASS_char_TYPE, 1);
-    __CLASS_short_TYPE = __NEW_XMLVMClass(&__TIB_short_TYPE);
-    XMLVMClass_setPrimitive(__CLASS_short_TYPE, 1);
-    __CLASS_int_TYPE = __NEW_XMLVMClass(&__TIB_int_TYPE);
-    XMLVMClass_setPrimitive(__CLASS_int_TYPE, 1);
-    __CLASS_long_TYPE = __NEW_XMLVMClass(&__TIB_long_TYPE);
-    XMLVMClass_setPrimitive(__CLASS_long_TYPE, 1);
-    __CLASS_float_TYPE = __NEW_XMLVMClass(&__TIB_float_TYPE);
-    XMLVMClass_setPrimitive(__CLASS_float_TYPE, 1);
-    __CLASS_double_TYPE = __NEW_XMLVMClass(&__TIB_double_TYPE);
-    XMLVMClass_setPrimitive(__CLASS_double_TYPE, 1);
+    __CLASS_boolean = XMLVM_CREATE_CLASS_OBJECT(&__TIB_boolean);
+    __CLASS_byte = XMLVM_CREATE_CLASS_OBJECT(&__TIB_byte);
+    __CLASS_char = XMLVM_CREATE_CLASS_OBJECT(&__TIB_char);
+    __CLASS_short = XMLVM_CREATE_CLASS_OBJECT(&__TIB_short);
+    __CLASS_int = XMLVM_CREATE_CLASS_OBJECT(&__TIB_int);
+    __CLASS_long = XMLVM_CREATE_CLASS_OBJECT(&__TIB_long);
+    __CLASS_float = XMLVM_CREATE_CLASS_OBJECT(&__TIB_float);
+    __CLASS_double = XMLVM_CREATE_CLASS_OBJECT(&__TIB_double);
+
+    __CLASS_boolean_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_boolean, 1);
+    __CLASS_byte_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_byte, 1);
+    __CLASS_char_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_char, 1);
+    __CLASS_short_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_short, 1);
+    __CLASS_int_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_int, 1);
+    __CLASS_long_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_long, 1);
+    __CLASS_float_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_float, 1);
+    __CLASS_double_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_double, 1);
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_Class_forName0___java_lang_String_boolean_java_lang_ClassLoader(JAVA_OBJECT n1, JAVA_BOOLEAN n2, JAVA_OBJECT n3)
+JAVA_OBJECT java_lang_Class_getStackClasses___int_boolean(JAVA_INT n1, JAVA_BOOLEAN n2)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_forName0___java_lang_String_boolean_java_lang_ClassLoader]
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getStackClasses___int_boolean]
     xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }
 
-JAVA_BOOLEAN java_lang_Class_isInstance___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
+JAVA_OBJECT java_lang_Class_forName___java_lang_String(JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_isInstance___java_lang_Object]
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_forName___java_lang_String]
     xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }
 
-JAVA_BOOLEAN java_lang_Class_isAssignableFrom___java_lang_Class(JAVA_OBJECT me, JAVA_OBJECT n1)
+JAVA_OBJECT java_lang_Class_forName___java_lang_String_boolean_java_lang_ClassLoader(JAVA_OBJECT n1, JAVA_BOOLEAN n2, JAVA_OBJECT n3)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_isAssignableFrom___java_lang_Class]
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_forName___java_lang_String_boolean_java_lang_ClassLoader]
     xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }
 
-JAVA_BOOLEAN java_lang_Class_isInterface__(JAVA_OBJECT me)
+JAVA_OBJECT java_lang_Class_getClasses__(JAVA_OBJECT me)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_isInterface__]
-    //TODO
-    return 0;
-    //XMLVM_END_NATIVE
-}
-
-JAVA_BOOLEAN java_lang_Class_isArray__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_isArray__]
-    return XMLVMClass_isArray(me);
-    //XMLVM_END_NATIVE
-}
-
-JAVA_BOOLEAN java_lang_Class_isPrimitive__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_isPrimitive__]
-    return XMLVMClass_isPrimitive(me);
-    //XMLVM_END_NATIVE
-}
-
-JAVA_OBJECT java_lang_Class_getName0__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getName0__]
-    __TIB_DEFINITION_TEMPLATE* tib = XMLVMClass_getTIB(me);
-    return xmlvm_create_java_string(tib->className);
-    //XMLVM_END_NATIVE
-}
-
-JAVA_OBJECT java_lang_Class_getClassLoader0__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getClassLoader0__]
-    return JAVA_NULL;
-    //XMLVM_END_NATIVE
-}
-
-JAVA_OBJECT java_lang_Class_getSuperclass__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getSuperclass__]
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getClasses__]
     xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_Class_getInterfaces__(JAVA_OBJECT me)
+void java_lang_Class_verify__(JAVA_OBJECT me)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getInterfaces__]
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_verify__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getAnnotation___java_lang_Class(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getAnnotation___java_lang_Class]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getAnnotations__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getAnnotations__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getCanonicalName__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getCanonicalName__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getClassLoader__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getClassLoader__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getClassLoaderImpl__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getClassLoaderImpl__]
     xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }
@@ -152,119 +196,95 @@ JAVA_OBJECT java_lang_Class_getInterfaces__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Class_getComponentType__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getComponentType__]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
-JAVA_INT java_lang_Class_getModifiers__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getModifiers__]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
-JAVA_OBJECT java_lang_Class_getSigners__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getSigners__]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
-void java_lang_Class_setSigners___java_lang_Object_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_setSigners___java_lang_Object_ARRAYTYPE]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
-JAVA_OBJECT java_lang_Class_getEnclosingMethod0__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getEnclosingMethod0__]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
-JAVA_OBJECT java_lang_Class_getDeclaringClass__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaringClass__]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
-JAVA_OBJECT java_lang_Class_getProtectionDomain0__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getProtectionDomain0__]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
-void java_lang_Class_setProtectionDomain0___java_security_ProtectionDomain(JAVA_OBJECT me, JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_setProtectionDomain0___java_security_ProtectionDomain]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
-JAVA_OBJECT java_lang_Class_getPrimitiveClass___java_lang_String(JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getPrimitiveClass___java_lang_String]
-    if (xmlvm_java_string_cmp(n1, "boolean")) {
-        return __CLASS_boolean_TYPE;
+    java_lang_Class* thiz = (java_lang_Class*) me;
+    __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    if ((tib->flags & XMLVM_TYPE_ARRAY) == 0) {
+        // This is not an array
+        return JAVA_NULL;
     }
-    if (xmlvm_java_string_cmp(n1, "byte")) {
-        return __CLASS_byte_TYPE;
-    }
-    if (xmlvm_java_string_cmp(n1, "char")) {
-        return __CLASS_char_TYPE;
-    }
-    if (xmlvm_java_string_cmp(n1, "short")) {
-        return __CLASS_short_TYPE;
-    }
-    if (xmlvm_java_string_cmp(n1, "int")) {
-        return __CLASS_int_TYPE;
-    }
-    if (xmlvm_java_string_cmp(n1, "float")) {
-        return __CLASS_float_TYPE;
-    }
-    if (xmlvm_java_string_cmp(n1, "double")) {
-        return __CLASS_double_TYPE;
-    }
-    if (xmlvm_java_string_cmp(n1, "long")) {
-        return __CLASS_long_TYPE;
-    }
-    xmlvm_unimplemented_native_method();
-    return JAVA_NULL;
+    return tib->baseType;
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_Class_getGenericSignature__(JAVA_OBJECT me)
+JAVA_OBJECT java_lang_Class_getConstructor___java_lang_Class_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getGenericSignature__]
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getConstructor___java_lang_Class_ARRAYTYPE]
     xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_Class_getRawAnnotations__(JAVA_OBJECT me)
+JAVA_OBJECT java_lang_Class_getConstructors__(JAVA_OBJECT me)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getRawAnnotations__]
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getConstructors__]
     xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_Class_getConstantPool__(JAVA_OBJECT me)
+JAVA_OBJECT java_lang_Class_getDeclaredAnnotations__(JAVA_OBJECT me)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getConstantPool__]
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredAnnotations__]
     xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_Class_getDeclaredFields0___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
+JAVA_OBJECT java_lang_Class_getDeclaredClasses__(JAVA_OBJECT me)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredFields0___boolean]
-    //TODO n1 arg
-    __TIB_DEFINITION_TEMPLATE* tib = XMLVMClass_getTIB(me);
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredClasses__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getDeclaredConstructors__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredConstructors__]
+    java_lang_Class* thiz = (java_lang_Class*) me;
+    __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    int numConstructors = tib->numDeclaredConstructors;
+    Func_OOO dispatcher = tib->constructorDispatcherFunc;
+    if (!__TIB_java_lang_reflect_Constructor.classInitialized) __INIT_java_lang_reflect_Constructor();
+    org_xmlvm_runtime_XMLVMArray* constructors = XMLVMArray_createSingleDimension(__CLASS_java_lang_reflect_Constructor_ARRAYTYPE, numConstructors);
+    JAVA_ARRAY_OBJECT* constructorArray = (JAVA_ARRAY_OBJECT*) constructors->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    JAVA_INT slot = 0;
+    for (slot = 0; slot < numConstructors; slot++) {
+        java_lang_reflect_Constructor* constructor = __NEW_java_lang_reflect_Constructor();
+        XMLVM_CONSTRUCTOR_REFLECTION_DATA* currentConstructor = (tib->declaredConstructors) + slot;
+        int numParameters = currentConstructor->numParameterTypes;
+        org_xmlvm_runtime_XMLVMArray* parameters = XMLVMArray_createSingleDimension(__CLASS_java_lang_Class_ARRAYTYPE, numParameters);
+        JAVA_ARRAY_OBJECT* parameterArray = (JAVA_ARRAY_OBJECT*) parameters->fields.org_xmlvm_runtime_XMLVMArray.array_;
+        int j = 0;
+        JAVA_OBJECT** paramTypes = currentConstructor->parameterTypes;
+        for (j = 0; j < numParameters; j++) {
+            parameterArray[j] = *(paramTypes[j]);
+        }            
+        JAVA_OBJECT*  checkedExceptions = JAVA_NULL;
+        int          numCheckedExceptions = 0;
+        int          modifiers = 0;
+        java_lang_String* signature = xmlvm_create_java_string(currentConstructor->signature);
+        JAVA_OBJECT  annotations = JAVA_NULL;
+        JAVA_OBJECT  parameterAnnotations = JAVA_NULL;
+        java_lang_reflect_Constructor___INIT____java_lang_Class_java_lang_Class_ARRAYTYPE_java_lang_Class_ARRAYTYPE_int_java_lang_Object_int_java_lang_String_byte_ARRAYTYPE_byte_ARRAYTYPE(constructor, tib->clazz, parameters, checkedExceptions, modifiers, dispatcher, slot, signature, annotations, parameterAnnotations);
+        constructorArray[slot] = constructor;
+    }
+    return constructors;
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getDeclaredField___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredField___java_lang_String]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getDeclaredFields__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredFields__]
+    java_lang_Class* thiz = (java_lang_Class*) me;
+    __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
     int numFields = tib->numDeclaredFields;
-    XMLVMArray* fields = XMLVMArray_createSingleDimension(0, numFields);
+    if (!__TIB_java_lang_reflect_Field.classInitialized) __INIT_java_lang_reflect_Field();
+    org_xmlvm_runtime_XMLVMArray* fields = XMLVMArray_createSingleDimension(__CLASS_java_lang_reflect_Field_ARRAYTYPE, numFields);
+    JAVA_ARRAY_OBJECT* fieldsArray = (JAVA_ARRAY_OBJECT*) fields->fields.org_xmlvm_runtime_XMLVMArray.array_;
     int i = 0;
     for (i = 0; i < numFields; i++) {
         java_lang_reflect_Field* field = __NEW_java_lang_reflect_Field();
@@ -276,128 +296,550 @@ JAVA_OBJECT java_lang_Class_getDeclaredFields0___boolean(JAVA_OBJECT me, JAVA_BO
         JAVA_INT offset = currentField->offset;
         JAVA_OBJECT* address = currentField->address;
         java_lang_String* signature = xmlvm_create_java_string(currentField->signature);
-        XMLVMArray* annotations = currentField->annotations;
+        org_xmlvm_runtime_XMLVMArray* annotations = currentField->annotations;
         java_lang_reflect_Field___INIT____java_lang_Class_java_lang_String_java_lang_Class_int_int_java_lang_Object_java_lang_String_byte_ARRAYTYPE(field, declaringClass, name, type, modifiers, offset, address, signature, annotations);                                                                                                                     
-        fields->array.o[i] = field;
+        fieldsArray[i] = field;
     }
     return fields;
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_Class_getDeclaredMethods0___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
+JAVA_OBJECT java_lang_Class_getDeclaredMethod___java_lang_String_java_lang_Class_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredMethods0___boolean]
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredMethod___java_lang_String_java_lang_Class_ARRAYTYPE]
     xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_Class_getDeclaredConstructors0___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
+JAVA_OBJECT java_lang_Class_getDeclaredMethods__(JAVA_OBJECT me)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredConstructors0___boolean]
-    //TODO n1 == publicOnly
-    __TIB_DEFINITION_TEMPLATE* tib = XMLVMClass_getTIB(me);
-    int numConstructors = tib->numDeclaredConstructors;
-    Func_OOO dispatcher = tib->constructorDispatcherFunc;
-    XMLVMArray* constructors = XMLVMArray_createSingleDimension(0, numConstructors);
-    JAVA_INT slot = 0;
-    for (slot = 0; slot < numConstructors; slot++) {
-        java_lang_reflect_Constructor* constructor = __NEW_java_lang_reflect_Constructor();
-        XMLVM_CONSTRUCTOR_REFLECTION_DATA* currentConstructor = (tib->declaredConstructors) + slot;
-        int numParameters = currentConstructor->numParameterTypes;
-        XMLVMArray* parameters = XMLVMArray_createSingleDimension(0, numParameters);
-        int j = 0;
-        JAVA_OBJECT** paramTypes = currentConstructor->parameterTypes;
-        for (j = 0; j < numParameters; j++) {
-            parameters->array.o[j] = *(paramTypes[j]);
-        }            
-        JAVA_OBJECT*  checkedExceptions = JAVA_NULL;
-        int          numCheckedExceptions = 0;
-        int          modifiers = 0;
-        java_lang_String* signature = xmlvm_create_java_string(currentConstructor->signature);
-        JAVA_OBJECT  annotations = JAVA_NULL;
-        JAVA_OBJECT  parameterAnnotations = JAVA_NULL;
-        java_lang_reflect_Constructor___INIT____java_lang_Class_java_lang_Class_ARRAYTYPE_java_lang_Class_ARRAYTYPE_int_java_lang_Object_int_java_lang_String_byte_ARRAYTYPE_byte_ARRAYTYPE(constructor, tib->clazz, parameters, checkedExceptions, modifiers, dispatcher, slot, signature, annotations, parameterAnnotations);
-        constructors->array.o[slot] = constructor;
-    }
-    return constructors;
-    //XMLVM_END_NATIVE
-}
-
-JAVA_OBJECT java_lang_Class_getDeclaredClasses0__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredClasses0__]
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredMethods__]
     xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }
 
-JAVA_BOOLEAN java_lang_Class_desiredAssertionStatus0___java_lang_Class(JAVA_OBJECT n1)
+JAVA_OBJECT java_lang_Class_getDeclaringClass__(JAVA_OBJECT me)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_desiredAssertionStatus0___java_lang_Class]
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaringClass__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getEnclosingClass__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getEnclosingClass__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getEnclosingConstructor__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getEnclosingConstructor__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getEnclosingMethod__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getEnclosingMethod__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getEnumConstants__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getEnumConstants__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getField___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getField___java_lang_String]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getFields__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getFields__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getGenericInterfaces__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getGenericInterfaces__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getGenericSuperclass__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getGenericSuperclass__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getInterfaces__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getInterfaces__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getMethod___java_lang_String_java_lang_Class_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getMethod___java_lang_String_java_lang_Class_ARRAYTYPE]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getMethods__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getMethods__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_INT java_lang_Class_getModifiers__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getModifiers__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getName__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getName__]
+    java_lang_Class* thiz = (java_lang_Class*) me;
+    __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    return xmlvm_create_java_string(tib->className);
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getSimpleName__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getSimpleName__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getProtectionDomain__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getProtectionDomain__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getPDImpl__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getPDImpl__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getResource___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getResource___java_lang_String]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getResourceAsStream___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getResourceAsStream___java_lang_String]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getSigners__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getSigners__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getSuperclass__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getSuperclass__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getTypeParameters__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getTypeParameters__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_BOOLEAN java_lang_Class_isAnnotation__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_isAnnotation__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_BOOLEAN java_lang_Class_isAnnotationPresent___java_lang_Class(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_isAnnotationPresent___java_lang_Class]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_BOOLEAN java_lang_Class_isAnonymousClass__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_isAnonymousClass__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_BOOLEAN java_lang_Class_isArray__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_isArray__]
+    java_lang_Class* thiz = (java_lang_Class*) me;
+    __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    return (tib->flags & XMLVM_TYPE_ARRAY) != 0;
+    //XMLVM_END_NATIVE
+}
+
+JAVA_BOOLEAN java_lang_Class_isAssignableFrom___java_lang_Class(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_isAssignableFrom___java_lang_Class]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_BOOLEAN java_lang_Class_isEnum__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_isEnum__]
+    java_lang_Class* thiz = (java_lang_Class*) me;
+    __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    return (tib->flags & XMLVM_TYPE_ENUM) != 0;
+    //XMLVM_END_NATIVE
+}
+
+JAVA_BOOLEAN java_lang_Class_isInstance___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_isInstance___java_lang_Object]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_BOOLEAN java_lang_Class_isInterface__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_isInterface__]
+    java_lang_Class* thiz = (java_lang_Class*) me;
+    __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    return (tib->flags & XMLVM_TYPE_INTERFACE) != 0;
+    //XMLVM_END_NATIVE
+}
+
+JAVA_BOOLEAN java_lang_Class_isLocalClass__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_isLocalClass__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_BOOLEAN java_lang_Class_isMemberClass__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_isMemberClass__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_BOOLEAN java_lang_Class_isPrimitive__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_isPrimitive__]
+    java_lang_Class* thiz = (java_lang_Class*) me;
+    __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    return (tib->flags & XMLVM_TYPE_PRIMITIVE) != 0;
+    //XMLVM_END_NATIVE
+}
+
+JAVA_BOOLEAN java_lang_Class_isSynthetic__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_isSynthetic__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_newInstance__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_newInstance__]
+    java_lang_Class* thiz = (java_lang_Class*) me;
+    __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    Func_O func = tib->newInstanceFunc;
+    return (*func)();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_toString__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_toString__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_getPackage__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_getPackage__]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_BOOLEAN java_lang_Class_desiredAssertionStatus__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_desiredAssertionStatus__]
     return 0;
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_asSubclass___java_lang_Class(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_asSubclass___java_lang_Class]
+    xmlvm_unimplemented_native_method();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_OBJECT java_lang_Class_cast___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Class_cast___java_lang_Object]
+    xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }
 
 
 void xmlvm_init_native_java_lang_Class()
 {
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isInstance___java_lang_Object
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isInstance___java_lang_Object] = 
-        (VTABLE_PTR) java_lang_Class_isInstance___java_lang_Object;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getClasses__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getClasses__] = 
+        (VTABLE_PTR) java_lang_Class_getClasses__;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isAssignableFrom___java_lang_Class
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isAssignableFrom___java_lang_Class] = 
-        (VTABLE_PTR) java_lang_Class_isAssignableFrom___java_lang_Class;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_verify__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_verify__] = 
+        (VTABLE_PTR) java_lang_Class_verify__;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isInterface__
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isInterface__] = 
-        (VTABLE_PTR) java_lang_Class_isInterface__;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getAnnotation___java_lang_Class
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getAnnotation___java_lang_Class] = 
+        (VTABLE_PTR) java_lang_Class_getAnnotation___java_lang_Class;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isArray__
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isArray__] = 
-        (VTABLE_PTR) java_lang_Class_isArray__;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getAnnotations__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getAnnotations__] = 
+        (VTABLE_PTR) java_lang_Class_getAnnotations__;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isPrimitive__
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isPrimitive__] = 
-        (VTABLE_PTR) java_lang_Class_isPrimitive__;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getCanonicalName__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getCanonicalName__] = 
+        (VTABLE_PTR) java_lang_Class_getCanonicalName__;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getClassLoader0__
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getClassLoader0__] = 
-        (VTABLE_PTR) java_lang_Class_getClassLoader0__;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getClassLoader__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getClassLoader__] = 
+        (VTABLE_PTR) java_lang_Class_getClassLoader__;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getSuperclass__
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getSuperclass__] = 
-        (VTABLE_PTR) java_lang_Class_getSuperclass__;
-#endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getInterfaces__
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getInterfaces__] = 
-        (VTABLE_PTR) java_lang_Class_getInterfaces__;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getClassLoaderImpl__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getClassLoaderImpl__] = 
+        (VTABLE_PTR) java_lang_Class_getClassLoaderImpl__;
 #endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_Class_getComponentType__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getComponentType__] = 
         (VTABLE_PTR) java_lang_Class_getComponentType__;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getModifiers__
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getModifiers__] = 
-        (VTABLE_PTR) java_lang_Class_getModifiers__;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getConstructor___java_lang_Class_ARRAYTYPE
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getConstructor___java_lang_Class_ARRAYTYPE] = 
+        (VTABLE_PTR) java_lang_Class_getConstructor___java_lang_Class_ARRAYTYPE;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getSigners__
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getSigners__] = 
-        (VTABLE_PTR) java_lang_Class_getSigners__;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getConstructors__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getConstructors__] = 
+        (VTABLE_PTR) java_lang_Class_getConstructors__;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_setSigners___java_lang_Object_ARRAYTYPE
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_setSigners___java_lang_Object_ARRAYTYPE] = 
-        (VTABLE_PTR) java_lang_Class_setSigners___java_lang_Object_ARRAYTYPE;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredAnnotations__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredAnnotations__] = 
+        (VTABLE_PTR) java_lang_Class_getDeclaredAnnotations__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredClasses__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredClasses__] = 
+        (VTABLE_PTR) java_lang_Class_getDeclaredClasses__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredConstructors__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredConstructors__] = 
+        (VTABLE_PTR) java_lang_Class_getDeclaredConstructors__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredField___java_lang_String
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredField___java_lang_String] = 
+        (VTABLE_PTR) java_lang_Class_getDeclaredField___java_lang_String;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredFields__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredFields__] = 
+        (VTABLE_PTR) java_lang_Class_getDeclaredFields__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredMethod___java_lang_String_java_lang_Class_ARRAYTYPE
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredMethod___java_lang_String_java_lang_Class_ARRAYTYPE] = 
+        (VTABLE_PTR) java_lang_Class_getDeclaredMethod___java_lang_String_java_lang_Class_ARRAYTYPE;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredMethods__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredMethods__] = 
+        (VTABLE_PTR) java_lang_Class_getDeclaredMethods__;
 #endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_Class_getDeclaringClass__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getDeclaringClass__] = 
         (VTABLE_PTR) java_lang_Class_getDeclaringClass__;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_setProtectionDomain0___java_security_ProtectionDomain
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_setProtectionDomain0___java_security_ProtectionDomain] = 
-        (VTABLE_PTR) java_lang_Class_setProtectionDomain0___java_security_ProtectionDomain;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getEnclosingClass__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getEnclosingClass__] = 
+        (VTABLE_PTR) java_lang_Class_getEnclosingClass__;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getConstantPool__
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getConstantPool__] = 
-        (VTABLE_PTR) java_lang_Class_getConstantPool__;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getEnclosingConstructor__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getEnclosingConstructor__] = 
+        (VTABLE_PTR) java_lang_Class_getEnclosingConstructor__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getEnclosingMethod__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getEnclosingMethod__] = 
+        (VTABLE_PTR) java_lang_Class_getEnclosingMethod__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getEnumConstants__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getEnumConstants__] = 
+        (VTABLE_PTR) java_lang_Class_getEnumConstants__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getField___java_lang_String
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getField___java_lang_String] = 
+        (VTABLE_PTR) java_lang_Class_getField___java_lang_String;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getFields__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getFields__] = 
+        (VTABLE_PTR) java_lang_Class_getFields__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getGenericInterfaces__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getGenericInterfaces__] = 
+        (VTABLE_PTR) java_lang_Class_getGenericInterfaces__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getGenericSuperclass__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getGenericSuperclass__] = 
+        (VTABLE_PTR) java_lang_Class_getGenericSuperclass__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getInterfaces__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getInterfaces__] = 
+        (VTABLE_PTR) java_lang_Class_getInterfaces__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getMethod___java_lang_String_java_lang_Class_ARRAYTYPE
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getMethod___java_lang_String_java_lang_Class_ARRAYTYPE] = 
+        (VTABLE_PTR) java_lang_Class_getMethod___java_lang_String_java_lang_Class_ARRAYTYPE;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getMethods__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getMethods__] = 
+        (VTABLE_PTR) java_lang_Class_getMethods__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getModifiers__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getModifiers__] = 
+        (VTABLE_PTR) java_lang_Class_getModifiers__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getName__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getName__] = 
+        (VTABLE_PTR) java_lang_Class_getName__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getSimpleName__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getSimpleName__] = 
+        (VTABLE_PTR) java_lang_Class_getSimpleName__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getProtectionDomain__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getProtectionDomain__] = 
+        (VTABLE_PTR) java_lang_Class_getProtectionDomain__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getPDImpl__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getPDImpl__] = 
+        (VTABLE_PTR) java_lang_Class_getPDImpl__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getResource___java_lang_String
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getResource___java_lang_String] = 
+        (VTABLE_PTR) java_lang_Class_getResource___java_lang_String;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getResourceAsStream___java_lang_String
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getResourceAsStream___java_lang_String] = 
+        (VTABLE_PTR) java_lang_Class_getResourceAsStream___java_lang_String;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getSigners__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getSigners__] = 
+        (VTABLE_PTR) java_lang_Class_getSigners__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getSuperclass__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getSuperclass__] = 
+        (VTABLE_PTR) java_lang_Class_getSuperclass__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getTypeParameters__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getTypeParameters__] = 
+        (VTABLE_PTR) java_lang_Class_getTypeParameters__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isAnnotation__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isAnnotation__] = 
+        (VTABLE_PTR) java_lang_Class_isAnnotation__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isAnnotationPresent___java_lang_Class
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isAnnotationPresent___java_lang_Class] = 
+        (VTABLE_PTR) java_lang_Class_isAnnotationPresent___java_lang_Class;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isAnonymousClass__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isAnonymousClass__] = 
+        (VTABLE_PTR) java_lang_Class_isAnonymousClass__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isArray__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isArray__] = 
+        (VTABLE_PTR) java_lang_Class_isArray__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isAssignableFrom___java_lang_Class
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isAssignableFrom___java_lang_Class] = 
+        (VTABLE_PTR) java_lang_Class_isAssignableFrom___java_lang_Class;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isEnum__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isEnum__] = 
+        (VTABLE_PTR) java_lang_Class_isEnum__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isInstance___java_lang_Object
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isInstance___java_lang_Object] = 
+        (VTABLE_PTR) java_lang_Class_isInstance___java_lang_Object;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isInterface__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isInterface__] = 
+        (VTABLE_PTR) java_lang_Class_isInterface__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isLocalClass__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isLocalClass__] = 
+        (VTABLE_PTR) java_lang_Class_isLocalClass__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isMemberClass__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isMemberClass__] = 
+        (VTABLE_PTR) java_lang_Class_isMemberClass__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isPrimitive__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isPrimitive__] = 
+        (VTABLE_PTR) java_lang_Class_isPrimitive__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_isSynthetic__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_isSynthetic__] = 
+        (VTABLE_PTR) java_lang_Class_isSynthetic__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_newInstance__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_newInstance__] = 
+        (VTABLE_PTR) java_lang_Class_newInstance__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_toString__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_toString__] = 
+        (VTABLE_PTR) java_lang_Class_toString__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getPackage__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getPackage__] = 
+        (VTABLE_PTR) java_lang_Class_getPackage__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_desiredAssertionStatus__
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_desiredAssertionStatus__] = 
+        (VTABLE_PTR) java_lang_Class_desiredAssertionStatus__;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_asSubclass___java_lang_Class
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_asSubclass___java_lang_Class] = 
+        (VTABLE_PTR) java_lang_Class_asSubclass___java_lang_Class;
+#endif
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_cast___java_lang_Object
+    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_cast___java_lang_Object] = 
+        (VTABLE_PTR) java_lang_Class_cast___java_lang_Object;
 #endif
 }

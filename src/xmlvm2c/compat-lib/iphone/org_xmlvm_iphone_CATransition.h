@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CAAnimation)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CATransition
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CATransition
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CATransition)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)

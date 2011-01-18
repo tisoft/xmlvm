@@ -1,3 +1,4 @@
+#include "xmlvm.h"
 
 #include "org_xmlvm_iphone_UILineBreakMode.h"
 
@@ -5,10 +6,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UILineBreakMode __TIB_org_xmlvm_iphone_UILineB
     0, // classInitialized
     "org.xmlvm.iphone.UILineBreakMode", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILineBreakMode;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILineBreakMode_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -21,50 +21,83 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UILineBreakMode_Clip;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UILineBreakMode_TailTruncation;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UILineBreakMode_MiddleTruncation;
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
     {"WordWrap",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UILineBreakMode_WordWrap,
     "",
     JAVA_NULL},
     {"CharacterWrap",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UILineBreakMode_CharacterWrap,
     "",
     JAVA_NULL},
     {"HeadTruncation",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UILineBreakMode_HeadTruncation,
     "",
     JAVA_NULL},
     {"Clip",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UILineBreakMode_Clip,
     "",
     JAVA_NULL},
     {"TailTruncation",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UILineBreakMode_TailTruncation,
     "",
     JAVA_NULL},
     {"MiddleTruncation",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UILineBreakMode_MiddleTruncation,
     "",
     JAVA_NULL},
 };
+
+static JAVA_OBJECT* __constructor0_arg_types[] = {
+};
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+    {&__constructor0_arg_types[0],
+    sizeof(__constructor0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_UILineBreakMode();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    case 0:
+        org_xmlvm_iphone_UILineBreakMode___INIT___(obj);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_UILineBreakMode()
 {
@@ -87,8 +120,12 @@ void __INIT_org_xmlvm_iphone_UILineBreakMode()
 
     __TIB_org_xmlvm_iphone_UILineBreakMode.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UILineBreakMode.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UILineBreakMode = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UILineBreakMode);
+    __TIB_org_xmlvm_iphone_UILineBreakMode.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UILineBreakMode.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UILineBreakMode.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UILineBreakMode = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UILineBreakMode);
     __TIB_org_xmlvm_iphone_UILineBreakMode.clazz = __CLASS_org_xmlvm_iphone_UILineBreakMode;
+    __CLASS_org_xmlvm_iphone_UILineBreakMode_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UILineBreakMode, 1);
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UILineBreakMode]
     //XMLVM_END_WRAPPER

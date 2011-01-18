@@ -17,6 +17,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIScrollViewDelegate)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)

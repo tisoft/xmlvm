@@ -3,8 +3,13 @@
 
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_UIView.h"
+#include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKCoordinateRegion
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKCoordinateRegion
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKCoordinateRegion)
@@ -17,13 +22,13 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKMapViewDelegate)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKMapRect)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEdgeInsets
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEdgeInsets
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEdgeInsets)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKUserLocation
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKUserLocation
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKUserLocation)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect

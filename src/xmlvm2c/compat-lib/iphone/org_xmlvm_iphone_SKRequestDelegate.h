@@ -9,6 +9,14 @@
 #define XMLVM_FORWARD_DECL_java_lang_Object
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKRequest
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKRequest
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKRequest)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
+#endif
 // Class declarations for org.xmlvm.iphone.SKRequestDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKRequestDelegate, 13)
 

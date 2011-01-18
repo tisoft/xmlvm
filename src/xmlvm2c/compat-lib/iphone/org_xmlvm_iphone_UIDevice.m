@@ -1,4 +1,4 @@
-#include "java_lang_String.h"
+#include "xmlvm.h"
 
 #include "org_xmlvm_iphone_UIDevice.h"
 
@@ -6,18 +6,36 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIDevice __TIB_org_xmlvm_iphone_UIDevice = {
     0, // classInitialized
     "org.xmlvm.iphone.UIDevice", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDevice;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDevice_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_UIDevice();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_UIDevice()
 {
@@ -53,8 +71,12 @@ void __INIT_org_xmlvm_iphone_UIDevice()
 
     __TIB_org_xmlvm_iphone_UIDevice.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIDevice.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIDevice = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIDevice);
+    __TIB_org_xmlvm_iphone_UIDevice.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UIDevice.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIDevice.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIDevice = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIDevice);
     __TIB_org_xmlvm_iphone_UIDevice.clazz = __CLASS_org_xmlvm_iphone_UIDevice;
+    __CLASS_org_xmlvm_iphone_UIDevice_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDevice, 1);
     org_xmlvm_iphone_UIDevice___CLINIT_();
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIDevice]
     //XMLVM_END_WRAPPER

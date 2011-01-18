@@ -10,14 +10,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImageView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImageView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImageView)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UILabel
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UILabel
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UILabel)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)

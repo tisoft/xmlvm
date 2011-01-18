@@ -5,9 +5,17 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMailComposeViewController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMailComposeViewController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MFMailComposeViewController)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
 #endif
 // Class declarations for org.xmlvm.iphone.MFMailComposeViewControllerDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MFMailComposeViewControllerDelegate, 15)

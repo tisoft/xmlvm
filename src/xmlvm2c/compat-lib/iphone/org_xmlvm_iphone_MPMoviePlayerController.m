@@ -1,3 +1,4 @@
+#include "xmlvm.h"
 #include "org_xmlvm_iphone_NSURL.h"
 #include "org_xmlvm_iphone_UIColor.h"
 
@@ -7,18 +8,36 @@ __TIB_DEFINITION_org_xmlvm_iphone_MPMoviePlayerController __TIB_org_xmlvm_iphone
     0, // classInitialized
     "org.xmlvm.iphone.MPMoviePlayerController", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPMoviePlayerController;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPMoviePlayerController_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_MPMoviePlayerController();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_MPMoviePlayerController()
 {
@@ -46,8 +65,12 @@ void __INIT_org_xmlvm_iphone_MPMoviePlayerController()
 
     __TIB_org_xmlvm_iphone_MPMoviePlayerController.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_MPMoviePlayerController.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_MPMoviePlayerController = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_MPMoviePlayerController);
+    __TIB_org_xmlvm_iphone_MPMoviePlayerController.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_MPMoviePlayerController.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MPMoviePlayerController.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_MPMoviePlayerController = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MPMoviePlayerController);
     __TIB_org_xmlvm_iphone_MPMoviePlayerController.clazz = __CLASS_org_xmlvm_iphone_MPMoviePlayerController;
+    __CLASS_org_xmlvm_iphone_MPMoviePlayerController_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPMoviePlayerController, 1);
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MPMoviePlayerController]
     //XMLVM_END_WRAPPER

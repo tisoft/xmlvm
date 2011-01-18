@@ -1,4 +1,5 @@
-#include "org_xmlvm_iphone_UIImage.h"
+#include "xmlvm.h"
+#include "org_xmlvm_iphone_CGSize.h"
 #include "org_xmlvm_iphone_CGContext.h"
 
 #include "org_xmlvm_iphone_UIGraphics.h"
@@ -7,18 +8,36 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIGraphics __TIB_org_xmlvm_iphone_UIGraphics =
     0, // classInitialized
     "org.xmlvm.iphone.UIGraphics", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGraphics;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGraphics_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_UIGraphics();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_UIGraphics()
 {
@@ -35,8 +54,12 @@ void __INIT_org_xmlvm_iphone_UIGraphics()
 
     __TIB_org_xmlvm_iphone_UIGraphics.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIGraphics.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIGraphics = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIGraphics);
+    __TIB_org_xmlvm_iphone_UIGraphics.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UIGraphics.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIGraphics.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIGraphics = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIGraphics);
     __TIB_org_xmlvm_iphone_UIGraphics.clazz = __CLASS_org_xmlvm_iphone_UIGraphics;
+    __CLASS_org_xmlvm_iphone_UIGraphics_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIGraphics, 1);
     org_xmlvm_iphone_UIGraphics___CLINIT_();
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIGraphics]
     //XMLVM_END_WRAPPER

@@ -1,3 +1,4 @@
+#include "xmlvm.h"
 
 #include "org_xmlvm_iphone_UIViewAutoresizing.h"
 
@@ -5,10 +6,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIViewAutoresizing __TIB_org_xmlvm_iphone_UIVi
     0, // classInitialized
     "org.xmlvm.iphone.UIViewAutoresizing", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAutoresizing;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAutoresizing_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -22,57 +22,90 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleTopMargin;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleHeight;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleBottomMargin;
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
     {"None",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIViewAutoresizing_None,
     "",
     JAVA_NULL},
     {"FlexibleLeftMargin",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleLeftMargin,
     "",
     JAVA_NULL},
     {"FlexibleWidth",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleWidth,
     "",
     JAVA_NULL},
     {"FlexibleRightMargin",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleRightMargin,
     "",
     JAVA_NULL},
     {"FlexibleTopMargin",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleTopMargin,
     "",
     JAVA_NULL},
     {"FlexibleHeight",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleHeight,
     "",
     JAVA_NULL},
     {"FlexibleBottomMargin",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleBottomMargin,
     "",
     JAVA_NULL},
 };
+
+static JAVA_OBJECT* __constructor0_arg_types[] = {
+};
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+    {&__constructor0_arg_types[0],
+    sizeof(__constructor0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_UIViewAutoresizing();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    case 0:
+        org_xmlvm_iphone_UIViewAutoresizing___INIT___(obj);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_UIViewAutoresizing()
 {
@@ -96,8 +129,12 @@ void __INIT_org_xmlvm_iphone_UIViewAutoresizing()
 
     __TIB_org_xmlvm_iphone_UIViewAutoresizing.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIViewAutoresizing.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIViewAutoresizing = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIViewAutoresizing);
+    __TIB_org_xmlvm_iphone_UIViewAutoresizing.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UIViewAutoresizing.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIViewAutoresizing.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIViewAutoresizing = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIViewAutoresizing);
     __TIB_org_xmlvm_iphone_UIViewAutoresizing.clazz = __CLASS_org_xmlvm_iphone_UIViewAutoresizing;
+    __CLASS_org_xmlvm_iphone_UIViewAutoresizing_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewAutoresizing, 1);
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIViewAutoresizing]
     //XMLVM_END_WRAPPER

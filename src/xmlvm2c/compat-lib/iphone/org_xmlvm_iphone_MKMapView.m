@@ -1,8 +1,9 @@
+#include "xmlvm.h"
 #include "org_xmlvm_iphone_MKCoordinateRegion.h"
 #include "org_xmlvm_iphone_MKMapViewDelegate.h"
 #include "org_xmlvm_iphone_MKMapRect.h"
+#include "org_xmlvm_iphone_UIEdgeInsets.h"
 #include "org_xmlvm_iphone_CGPoint.h"
-#include "org_xmlvm_iphone_MKUserLocation.h"
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_CLLocationCoordinate2D.h"
 
@@ -12,18 +13,65 @@ __TIB_DEFINITION_org_xmlvm_iphone_MKMapView __TIB_org_xmlvm_iphone_MKMapView = {
     0, // classInitialized
     "org.xmlvm.iphone.MKMapView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapView;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapView_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
+
+static JAVA_OBJECT* __constructor0_arg_types[] = {
+};
+
+static JAVA_OBJECT* __constructor1_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGRect,
+};
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+    {&__constructor0_arg_types[0],
+    sizeof(__constructor0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {&__constructor1_arg_types[0],
+    sizeof(__constructor1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_MKMapView();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    case 0:
+        org_xmlvm_iphone_MKMapView___INIT___(obj);
+        break;
+    case 1:
+        org_xmlvm_iphone_MKMapView___INIT____org_xmlvm_iphone_CGRect(obj, argsArray[0]);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_MKMapView()
 {
@@ -69,8 +117,12 @@ void __INIT_org_xmlvm_iphone_MKMapView()
 
     __TIB_org_xmlvm_iphone_MKMapView.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_MKMapView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_MKMapView = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_MKMapView);
+    __TIB_org_xmlvm_iphone_MKMapView.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_MKMapView.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MKMapView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_MKMapView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MKMapView);
     __TIB_org_xmlvm_iphone_MKMapView.clazz = __CLASS_org_xmlvm_iphone_MKMapView;
+    __CLASS_org_xmlvm_iphone_MKMapView_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKMapView, 1);
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MKMapView]
     //XMLVM_END_WRAPPER

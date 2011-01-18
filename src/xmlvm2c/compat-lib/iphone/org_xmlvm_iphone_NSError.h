@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_util_Map
 #define XMLVM_FORWARD_DECL_java_util_Map
 XMLVM_FORWARD_DECL(java_util_Map)

@@ -21,6 +21,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSLocale)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSCalendar
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSCalendar
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSCalendar)

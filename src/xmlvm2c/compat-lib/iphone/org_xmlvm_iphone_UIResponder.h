@@ -5,13 +5,17 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIResponder)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_Set
+#define XMLVM_FORWARD_DECL_java_util_Set
+XMLVM_FORWARD_DECL(java_util_Set)
 #endif
 // Class declarations for org.xmlvm.iphone.UIResponder
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIResponder, 21)

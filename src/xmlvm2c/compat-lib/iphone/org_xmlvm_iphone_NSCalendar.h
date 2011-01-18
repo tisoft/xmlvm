@@ -9,13 +9,13 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSCalendar
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSCalendar
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSCalendar)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDateComponents
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDateComponents

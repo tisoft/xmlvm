@@ -9,6 +9,18 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKMapView)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKUserLocation
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKUserLocation
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKUserLocation)
+#endif
 // Class declarations for org.xmlvm.iphone.MKMapViewDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapViewDelegate, 23)
 

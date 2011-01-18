@@ -9,9 +9,9 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPreferencesTableCell
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPreferencesTableCell
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPreferencesTableCell)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPreferencesTable
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPreferencesTable
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPreferencesTable)
 #endif
 // Class declarations for org.xmlvm.iphone.UIPreferencesTableDataSource
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPreferencesTableDataSource, 20)

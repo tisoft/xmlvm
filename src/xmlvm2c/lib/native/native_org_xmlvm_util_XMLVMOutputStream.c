@@ -1,4 +1,5 @@
 
+#include "xmlvm.h"
 #include "org_xmlvm_util_XMLVMOutputStream.h"
 
 
@@ -8,7 +9,7 @@
 void org_xmlvm_util_XMLVMOutputStream_nativeWrite___int(JAVA_INT n1)
 {
     //XMLVM_BEGIN_NATIVE[org_xmlvm_util_XMLVMOutputStream_nativeWrite___int]
-    printf("%c", (char) n1);
+    xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }
 

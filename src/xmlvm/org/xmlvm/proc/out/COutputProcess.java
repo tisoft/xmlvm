@@ -197,6 +197,7 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
         headerFile.setFileName(headerFileName);
 
         StringBuilder mBuffer = new StringBuilder();
+        mBuffer.append("#include \"xmlvm.h\"\n");
         for (String i : typesForHeader) {
             String toIgnore = (namespaceName + "_" + className).replace('.', '_');
             if (!i.equals(inheritsFrom) && !i.equals(toIgnore)) {
@@ -255,7 +256,7 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
                     if (redType == null || !redType.getValue().equals("true")) {
                         seen.add(a.getValue());
                     }
-                } else if (!curName.equals("var")) {
+                } else if (!curName.equals("var") && !curName.equals("return")) {
                     seen.add(a.getValue());
                 }
             }
@@ -329,7 +330,8 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
         String mFileName = "native_" + fileNameStem + sourceExtension;
 
         StringBuilder mBuffer = new StringBuilder();
-        mBuffer.append("\n#include \"" + headerFileName + "\"\n\n");
+        mBuffer.append("\n#include \"xmlvm.h\"\n");
+        mBuffer.append("#include \"" + headerFileName + "\"\n\n");
 
         OutputFile mFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
                 { "pass", "emitNativeSkeletons" }, { "header", headerFileName },

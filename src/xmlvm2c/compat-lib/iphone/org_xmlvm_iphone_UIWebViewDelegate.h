@@ -5,9 +5,21 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWebView)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURLRequest)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
 #endif
 // Class declarations for org.xmlvm.iphone.UIWebViewDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWebViewDelegate, 18)

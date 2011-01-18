@@ -5,13 +5,29 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParserDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParserDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSXMLParserDelegate)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParser
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParser
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSXMLParser)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_Map
+#define XMLVM_FORWARD_DECL_java_util_Map
+XMLVM_FORWARD_DECL(java_util_Map)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.NSXMLParserDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSXMLParserDelegate, 21)

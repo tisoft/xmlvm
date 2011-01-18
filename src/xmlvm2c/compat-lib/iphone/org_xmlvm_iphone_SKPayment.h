@@ -9,13 +9,9 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPayment
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPayment
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPayment)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKProduct
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKProduct
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKProduct)
 #endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String

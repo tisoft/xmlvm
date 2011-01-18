@@ -13,14 +13,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
-#endif
 // Class declarations for org.xmlvm.iphone.UITouch
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITouch, 20)
 

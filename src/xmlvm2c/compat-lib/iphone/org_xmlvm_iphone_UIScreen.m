@@ -1,4 +1,4 @@
-#include "org_xmlvm_iphone_CGRect.h"
+#include "xmlvm.h"
 
 #include "org_xmlvm_iphone_UIScreen.h"
 
@@ -6,19 +6,38 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIScreen __TIB_org_xmlvm_iphone_UIScreen = {
     0, // classInitialized
     "org.xmlvm.iphone.UIScreen", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScreen;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScreen_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 #import "UIKit/UIScreen.h"
+#include "org_xmlvm_iphone_CGRect.h"
 //XMLVM_END_IMPLEMENTATION
 
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_UIScreen();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_UIScreen()
 {
@@ -37,8 +56,12 @@ void __INIT_org_xmlvm_iphone_UIScreen()
 
     __TIB_org_xmlvm_iphone_UIScreen.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIScreen.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIScreen = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIScreen);
+    __TIB_org_xmlvm_iphone_UIScreen.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UIScreen.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIScreen.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIScreen = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIScreen);
     __TIB_org_xmlvm_iphone_UIScreen.clazz = __CLASS_org_xmlvm_iphone_UIScreen;
+    __CLASS_org_xmlvm_iphone_UIScreen_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIScreen, 1);
     org_xmlvm_iphone_UIScreen___CLINIT_();
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIScreen]
     //XMLVM_END_WRAPPER

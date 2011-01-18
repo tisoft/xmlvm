@@ -13,6 +13,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIScrollView)
+#endif
 // Class declarations for org.xmlvm.iphone.UIScrollViewDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIScrollViewDelegate, 24)
 

@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MPMoviePlayerController
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MPMoviePlayerController
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_MPMoviePlayerController)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)

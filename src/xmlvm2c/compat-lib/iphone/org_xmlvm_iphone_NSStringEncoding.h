@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_java_lang_Object
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
-#endif
 // Class declarations for org.xmlvm.iphone.NSStringEncoding
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSStringEncoding, 11)
 

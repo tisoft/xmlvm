@@ -19,7 +19,7 @@
  * USA.
  */
 
-#include "org_xmlvm_util_RedTypeMarker.h"
+#include "org_xmlvm_runtime_RedTypeMarker.h"
 #include "java_lang_reflect_Constructor.h"
 #include "java_lang_String.h"
 #include "java_lang_Byte.h"

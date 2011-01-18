@@ -3,20 +3,15 @@
 
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_UIView.h"
-#include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerViewDataSource
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerViewDataSource
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPickerViewDataSource)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerViewDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerViewDelegate

@@ -1,3 +1,5 @@
+#include "xmlvm.h"
+#include "org_xmlvm_iphone_UIAlertViewDelegate.h"
 #include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_UIAlertView.h"
@@ -6,18 +8,54 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIAlertView __TIB_org_xmlvm_iphone_UIAlertView
     0, // classInitialized
     "org.xmlvm.iphone.UIAlertView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertView;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertView_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
+
+static JAVA_OBJECT* __constructor0_arg_types[] = {
+    &__CLASS_java_lang_String,
+    &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_UIAlertViewDelegate,
+    &__CLASS_java_lang_String,
+};
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+    {&__constructor0_arg_types[0],
+    sizeof(__constructor0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_UIAlertView();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    case 0:
+        org_xmlvm_iphone_UIAlertView___INIT____java_lang_String_java_lang_String_org_xmlvm_iphone_UIAlertViewDelegate_java_lang_String(obj, argsArray[0], argsArray[1], argsArray[2], argsArray[3]);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_UIAlertView()
 {
@@ -40,8 +78,12 @@ void __INIT_org_xmlvm_iphone_UIAlertView()
 
     __TIB_org_xmlvm_iphone_UIAlertView.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIAlertView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIAlertView = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIAlertView);
+    __TIB_org_xmlvm_iphone_UIAlertView.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UIAlertView.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIAlertView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIAlertView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIAlertView);
     __TIB_org_xmlvm_iphone_UIAlertView.clazz = __CLASS_org_xmlvm_iphone_UIAlertView;
+    __CLASS_org_xmlvm_iphone_UIAlertView_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIAlertView, 1);
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIAlertView]
     //XMLVM_END_WRAPPER

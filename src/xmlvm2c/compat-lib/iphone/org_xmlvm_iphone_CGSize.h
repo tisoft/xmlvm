@@ -9,9 +9,13 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 #endif
 // Class declarations for org.xmlvm.iphone.CGSize
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGSize, 14)
@@ -43,17 +47,17 @@ typedef struct org_xmlvm_iphone_CGSize org_xmlvm_iphone_CGSize;
 #endif
 
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGSize 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGSize_toString__ 4
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGSize_equals___java_lang_Object 2
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGSize_toString__ 7
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGSize_equals___java_lang_Object 1
 
 void __INIT_org_xmlvm_iphone_CGSize();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGSize();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGSize();
 void org_xmlvm_iphone_CGSize___INIT____org_xmlvm_iphone_CGSize(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_CGSize___INIT____float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2);
-// Vtable index: 4
+// Vtable index: 7
 JAVA_OBJECT org_xmlvm_iphone_CGSize_toString__(JAVA_OBJECT me);
-// Vtable index: 2
+// Vtable index: 1
 JAVA_BOOLEAN org_xmlvm_iphone_CGSize_equals___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

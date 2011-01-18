@@ -9,6 +9,10 @@
 #define XMLVM_FORWARD_DECL_java_lang_Object
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMessageComposeViewController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMessageComposeViewController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MFMessageComposeViewController)
+#endif
 // Class declarations for org.xmlvm.iphone.MFMessageComposeViewControllerDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MFMessageComposeViewControllerDelegate, 12)
 

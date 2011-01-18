@@ -1,6 +1,9 @@
+#include "xmlvm.h"
 #include "org_xmlvm_iphone_UIImage.h"
+#include "org_xmlvm_iphone_UIEvent.h"
 #include "org_xmlvm_iphone_UIFont.h"
 #include "org_xmlvm_iphone_CGSize.h"
+#include "java_util_Set.h"
 #include "org_xmlvm_iphone_UIColor.h"
 #include "java_lang_String.h"
 
@@ -10,10 +13,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIButton __TIB_org_xmlvm_iphone_UIButton = {
     0, // classInitialized
     "org.xmlvm.iphone.UIButton", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIControl, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButton;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButton_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -21,8 +23,27 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButton_ARRAYTYPE;
 //XMLVM_END_IMPLEMENTATION
 
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_UIButton();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_UIButton()
 {
@@ -62,8 +83,12 @@ void __INIT_org_xmlvm_iphone_UIButton()
 
     __TIB_org_xmlvm_iphone_UIButton.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIButton.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIButton = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIButton);
+    __TIB_org_xmlvm_iphone_UIButton.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UIButton.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIButton.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIButton = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIButton);
     __TIB_org_xmlvm_iphone_UIButton.clazz = __CLASS_org_xmlvm_iphone_UIButton;
+    __CLASS_org_xmlvm_iphone_UIButton_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIButton, 1);
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIButton]
     //XMLVM_END_WRAPPER

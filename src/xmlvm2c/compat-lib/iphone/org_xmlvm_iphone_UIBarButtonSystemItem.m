@@ -1,3 +1,4 @@
+#include "xmlvm.h"
 
 #include "org_xmlvm_iphone_UIBarButtonSystemItem.h"
 
@@ -5,10 +6,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIBarButtonSystemItem __TIB_org_xmlvm_iphone_U
     0, // classInitialized
     "org.xmlvm.iphone.UIBarButtonSystemItem", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonSystemItem;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonSystemItem_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -38,169 +38,202 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_FastForward;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Undo;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Redo;
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
     {"Done",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Done,
     "",
     JAVA_NULL},
     {"Cancel",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Cancel,
     "",
     JAVA_NULL},
     {"Edit",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Edit,
     "",
     JAVA_NULL},
     {"Save",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Save,
     "",
     JAVA_NULL},
     {"Add",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Add,
     "",
     JAVA_NULL},
     {"FlexibleSpace",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_FlexibleSpace,
     "",
     JAVA_NULL},
     {"FixedSpace",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_FixedSpace,
     "",
     JAVA_NULL},
     {"Compose",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Compose,
     "",
     JAVA_NULL},
     {"Reply",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Reply,
     "",
     JAVA_NULL},
     {"Action",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Action,
     "",
     JAVA_NULL},
     {"Organize",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Organize,
     "",
     JAVA_NULL},
     {"Bookmarks",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Bookmarks,
     "",
     JAVA_NULL},
     {"Search",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Search,
     "",
     JAVA_NULL},
     {"Refresh",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Refresh,
     "",
     JAVA_NULL},
     {"Stop",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Stop,
     "",
     JAVA_NULL},
     {"Camera",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Camera,
     "",
     JAVA_NULL},
     {"Trash",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Trash,
     "",
     JAVA_NULL},
     {"Play",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Play,
     "",
     JAVA_NULL},
     {"Pause",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Pause,
     "",
     JAVA_NULL},
     {"Rewind",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Rewind,
     "",
     JAVA_NULL},
     {"FastForward",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_FastForward,
     "",
     JAVA_NULL},
     {"Undo",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Undo,
     "",
     JAVA_NULL},
     {"Redo",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Redo,
     "",
     JAVA_NULL},
 };
+
+static JAVA_OBJECT* __constructor0_arg_types[] = {
+};
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+    {&__constructor0_arg_types[0],
+    sizeof(__constructor0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_UIBarButtonSystemItem();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    case 0:
+        org_xmlvm_iphone_UIBarButtonSystemItem___INIT___(obj);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_UIBarButtonSystemItem()
 {
@@ -240,8 +273,12 @@ void __INIT_org_xmlvm_iphone_UIBarButtonSystemItem()
 
     __TIB_org_xmlvm_iphone_UIBarButtonSystemItem.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIBarButtonSystemItem.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIBarButtonSystemItem = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIBarButtonSystemItem);
+    __TIB_org_xmlvm_iphone_UIBarButtonSystemItem.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UIBarButtonSystemItem.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIBarButtonSystemItem.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIBarButtonSystemItem = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIBarButtonSystemItem);
     __TIB_org_xmlvm_iphone_UIBarButtonSystemItem.clazz = __CLASS_org_xmlvm_iphone_UIBarButtonSystemItem;
+    __CLASS_org_xmlvm_iphone_UIBarButtonSystemItem_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIBarButtonSystemItem, 1);
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIBarButtonSystemItem]
     //XMLVM_END_WRAPPER

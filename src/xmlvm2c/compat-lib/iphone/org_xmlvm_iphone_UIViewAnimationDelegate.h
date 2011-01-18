@@ -9,6 +9,10 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
+#endif
 // Class declarations for org.xmlvm.iphone.UIViewAnimationDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewAnimationDelegate, 16)
 

@@ -9,13 +9,13 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableViewCell)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableView)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSIndexPath)
 #endif
 // Class declarations for org.xmlvm.iphone.UITableViewDataSource
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewDataSource, 19)

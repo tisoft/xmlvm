@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_Set
-#define XMLVM_FORWARD_DECL_java_util_Set
-XMLVM_FORWARD_DECL(java_util_Set)
-#endif
 // Class declarations for org.xmlvm.iphone.UIEvent
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIEvent, 15)
 

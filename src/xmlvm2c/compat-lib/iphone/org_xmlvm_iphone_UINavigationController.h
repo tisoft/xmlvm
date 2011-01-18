@@ -6,14 +6,6 @@
 #include "org_xmlvm_iphone_UIViewController.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIToolbar
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIToolbar
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIToolbar)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationBar
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationBar
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationBar)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
 #define XMLVM_FORWARD_DECL_java_util_ArrayList
 XMLVM_FORWARD_DECL(java_util_ArrayList)
@@ -21,10 +13,6 @@ XMLVM_FORWARD_DECL(java_util_ArrayList)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationControllerDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationControllerDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationControllerDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController

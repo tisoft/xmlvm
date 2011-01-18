@@ -1,4 +1,4 @@
-#include "java_lang_String.h"
+#include "xmlvm.h"
 
 #include "org_xmlvm_iphone_NSStringEncoding.h"
 
@@ -6,10 +6,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSStringEncoding __TIB_org_xmlvm_iphone_NSStri
     0, // classInitialized
     "org.xmlvm.iphone.NSStringEncoding", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringEncoding;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringEncoding_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
@@ -39,169 +38,202 @@ static JAVA_INT _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF32;
 static JAVA_INT _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF32BigEndian;
 static JAVA_INT _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF32LittleEndian;
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
     {"ASCII",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_ASCII,
     "",
     JAVA_NULL},
     {"NEXTSTEP",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_NEXTSTEP,
     "",
     JAVA_NULL},
     {"JapaneseEUC",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_JapaneseEUC,
     "",
     JAVA_NULL},
     {"UTF8",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_UTF8,
     "",
     JAVA_NULL},
     {"ISOLatin1",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_ISOLatin1,
     "",
     JAVA_NULL},
     {"Symbol",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_Symbol,
     "",
     JAVA_NULL},
     {"NonLossyASCII",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_NonLossyASCII,
     "",
     JAVA_NULL},
     {"ShiftJIS",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_ShiftJIS,
     "",
     JAVA_NULL},
     {"ISOLatin2",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_ISOLatin2,
     "",
     JAVA_NULL},
     {"Unicode",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_Unicode,
     "",
     JAVA_NULL},
     {"WindowsCP1251",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1251,
     "",
     JAVA_NULL},
     {"WindowsCP1252",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1252,
     "",
     JAVA_NULL},
     {"WindowsCP1253",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1253,
     "",
     JAVA_NULL},
     {"WindowsCP1254",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1254,
     "",
     JAVA_NULL},
     {"WindowsCP1250",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1250,
     "",
     JAVA_NULL},
     {"ISO2022JP",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_ISO2022JP,
     "",
     JAVA_NULL},
     {"MacOSRoman",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_MacOSRoman,
     "",
     JAVA_NULL},
     {"UTF16",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_UTF16,
     "",
     JAVA_NULL},
     {"UTF16BigEndian",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_UTF16BigEndian,
     "",
     JAVA_NULL},
     {"UTF16LittleEndian",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_UTF16LittleEndian,
     "",
     JAVA_NULL},
     {"UTF32",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_UTF32,
     "",
     JAVA_NULL},
     {"UTF32BigEndian",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_UTF32BigEndian,
     "",
     JAVA_NULL},
     {"UTF32LittleEndian",
-    &__CLASS_int_TYPE,
+    &__CLASS_int,
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_NSStringEncoding_UTF32LittleEndian,
     "",
     JAVA_NULL},
 };
+
+static JAVA_OBJECT* __constructor0_arg_types[] = {
+};
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+    {&__constructor0_arg_types[0],
+    sizeof(__constructor0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_NSStringEncoding();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    case 0:
+        org_xmlvm_iphone_NSStringEncoding___INIT___(obj);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_NSStringEncoding()
 {
@@ -241,8 +273,12 @@ void __INIT_org_xmlvm_iphone_NSStringEncoding()
 
     __TIB_org_xmlvm_iphone_NSStringEncoding.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_NSStringEncoding.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_NSStringEncoding = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_NSStringEncoding);
+    __TIB_org_xmlvm_iphone_NSStringEncoding.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_NSStringEncoding.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSStringEncoding.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_NSStringEncoding = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSStringEncoding);
     __TIB_org_xmlvm_iphone_NSStringEncoding.clazz = __CLASS_org_xmlvm_iphone_NSStringEncoding;
+    __CLASS_org_xmlvm_iphone_NSStringEncoding_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSStringEncoding, 1);
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSStringEncoding]
     //XMLVM_END_WRAPPER

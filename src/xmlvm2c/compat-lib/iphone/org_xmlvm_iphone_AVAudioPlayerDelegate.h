@@ -9,6 +9,14 @@
 #define XMLVM_FORWARD_DECL_java_lang_Object
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_AVAudioPlayer
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_AVAudioPlayer
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_AVAudioPlayer)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
+#endif
 
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_AVAudioPlayerDelegate, 15)
 
@@ -26,6 +34,7 @@ typedef struct org_xmlvm_iphone_AVAudioPlayerDelegate org_xmlvm_iphone_AVAudioPl
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_AVAudioPlayerDelegate_audioPlayerBeginInterruption___org_xmlvm_iphone_AVAudioPlayer 13
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_AVAudioPlayerDelegate_audioPlayerEndInterruption___org_xmlvm_iphone_AVAudioPlayer 14
 
-void __INIT_org_xmlvm_iphone_AVAudioPlayerDelegate(__TIB_DEFINITION_TEMPLATE** interface);
+void __INIT_FOR_CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate(__TIB_DEFINITION_TEMPLATE** interface);
+void __INIT_org_xmlvm_iphone_AVAudioPlayerDelegate();
 
 #endif

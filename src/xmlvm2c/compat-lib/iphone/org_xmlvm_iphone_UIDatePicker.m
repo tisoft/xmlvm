@@ -1,6 +1,8 @@
+#include "xmlvm.h"
 #include "org_xmlvm_iphone_NSTimeZone.h"
 #include "org_xmlvm_iphone_NSLocale.h"
 #include "org_xmlvm_iphone_NSDate.h"
+#include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_NSCalendar.h"
 
 #include "org_xmlvm_iphone_UIDatePicker.h"
@@ -9,18 +11,65 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIDatePicker __TIB_org_xmlvm_iphone_UIDatePick
     0, // classInitialized
     "org.xmlvm.iphone.UIDatePicker", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIControl, // extends
-};
+    XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker;
-//TODO _ARRAYTYPE not initialized
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
 
+#include "xmlvm-reflection.h"
+
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
+
+static JAVA_OBJECT* __constructor0_arg_types[] = {
+};
+
+static JAVA_OBJECT* __constructor1_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGRect,
+};
+
+static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+    {&__constructor0_arg_types[0],
+    sizeof(__constructor0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {&__constructor1_arg_types[0],
+    sizeof(__constructor1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_UIDatePicker();
+    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    case 0:
+        org_xmlvm_iphone_UIDatePicker___INIT___(obj);
+        break;
+    case 1:
+        org_xmlvm_iphone_UIDatePicker___INIT____org_xmlvm_iphone_CGRect(obj, argsArray[0]);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return obj;
+}
 
 void __INIT_org_xmlvm_iphone_UIDatePicker()
 {
@@ -56,8 +105,12 @@ void __INIT_org_xmlvm_iphone_UIDatePicker()
 
     __TIB_org_xmlvm_iphone_UIDatePicker.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIDatePicker.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIDatePicker = __NEW_XMLVMClass(&__TIB_org_xmlvm_iphone_UIDatePicker);
+    __TIB_org_xmlvm_iphone_UIDatePicker.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UIDatePicker.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIDatePicker.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIDatePicker = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIDatePicker);
     __TIB_org_xmlvm_iphone_UIDatePicker.clazz = __CLASS_org_xmlvm_iphone_UIDatePicker;
+    __CLASS_org_xmlvm_iphone_UIDatePicker_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDatePicker, 1);
 
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIDatePicker]
     //XMLVM_END_WRAPPER

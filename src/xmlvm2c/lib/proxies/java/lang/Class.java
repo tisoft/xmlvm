@@ -1,2741 +1,390 @@
-/*
- * Copyright 1994-2006 Sun Microsystems, Inc.  All Rights Reserved.
- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
- *
- * This code is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License version 2 only, as
- * published by the Free Software Foundation.  Sun designates this
- * particular file as subject to the "Classpath" exception as provided
- * by Sun in the LICENSE file that accompanied this code.
- *
- * This code is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
- * version 2 for more details (a copy is included in the LICENSE file that
- * accompanied this code).
- *
- * You should have received a copy of the GNU General Public License version
- * 2 along with this work; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
- *
- * Please contact Sun Microsystems, Inc., 4150 Network Circle, Santa Clara,
- * CA 95054 USA or visit www.sun.com if you need additional information or
- * have any questions.
+/* 
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package java.lang;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.GenericArrayType;
-import java.lang.reflect.Member;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.GenericDeclaration;
+import java.lang.reflect.Member;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.ref.SoftReference;
-import java.io.InputStream;
-import java.io.ObjectStreamField;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.LinkedList;
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.Map;
-import java.util.HashMap;
-import sun.misc.Unsafe;
-import sun.reflect.ConstantPool;
-import sun.reflect.Reflection;
-import sun.reflect.ReflectionFactory;
-import sun.reflect.SignatureIterator;
-import sun.reflect.generics.factory.CoreReflectionFactory;
-import sun.reflect.generics.factory.GenericsFactory;
-import sun.reflect.generics.repository.ClassRepository;
-import sun.reflect.generics.repository.MethodRepository;
-import sun.reflect.generics.repository.ConstructorRepository;
-import sun.reflect.generics.scope.ClassScope;
-import sun.security.util.SecurityConstants;
-import java.lang.annotation.Annotation;
-
-
-import sun.reflect.annotation.*;
+import java.net.URL;
+import java.security.ProtectionDomain;
 
 /**
- * Instances of the class {@code Class} represent classes and
- * interfaces in a running Java application.  An enum is a kind of
- * class and an annotation is a kind of interface.  Every array also
- * belongs to a class that is reflected as a {@code Class} object
- * that is shared by all arrays with the same element type and number
- * of dimensions.  The primitive Java types ({@code boolean},
- * {@code byte}, {@code char}, {@code short},
- * {@code int}, {@code long}, {@code float}, and
- * {@code double}), and the keyword {@code void} are also
- * represented as {@code Class} objects.
- *
- * <p> {@code Class} has no public constructor. Instead {@code Class}
- * objects are constructed automatically by the Java Virtual Machine as classes
- * are loaded and by calls to the {@code defineClass} method in the class
- * loader.
- *
- * <p> The following example uses a {@code Class} object to print the
- * class name of an object:
- *
- * <p> <blockquote><pre>
- *     void printClassName(Object obj) {
- *         System.out.println("The class of " + obj +
- *                            " is " + obj.getClass().getName());
- *     }
- * </pre></blockquote>
- *
- * <p> It is also possible to get the {@code Class} object for a named
- * type (or for void) using a class literal
- * (JLS Section <A HREF="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#251530">15.8.2</A>).
- * For example:
- *
- * <p> <blockquote>
- *     {@code System.out.println("The name of class Foo is: "+Foo.class.getName());}
- * </blockquote>
- *
- * @param <T> the type of the class modeled by this {@code Class}
- * object.  For example, the type of {@code String.class} is {@code
- * Class<String>}.  Use {@code Class<?>} if the class being modeled is
- * unknown.
- *
- * @author  unascribed
- * @see     java.lang.ClassLoader#defineClass(byte[], int, int)
- * @since   JDK1.0
+ * The in-memory representation of a Java class. This representation serves as
+ * the starting point for querying class-related information, a process usually
+ * called "reflection". There are basically three types of {@code Class}
+ * instances: those representing real classes and interfaces, those representing
+ * primitive types, and those representing array classes.
+ * 
+ * <h4>Class instances representing object types (classes or interfaces)</h4>
+ * <p>
+ * These represent an ordinary class or interface as found in the class
+ * hierarchy. The name associated with these {@code Class} instances is simply
+ * the fully qualified class name of the class or interface that it represents.
+ * In addition to this human-readable name, each class is also associated by a
+ * so-called <em>signature</em>, which is the letter "L", followed by the class
+ * name and a semicolon (";"). The signature is what the runtime system uses
+ * internally for identifying the class (for example in a DEX file).
+ * </p>
+ * <h4>Classes representing primitive types</h4>
+ * <p>
+ * These represent the standard Java primitive types and hence share their names
+ * (for example "int" for the {@code int} primitive type). Although it is not
+ * possible to create new instances based on these {@code Class} instances, they
+ * are still useful for providing reflection information, and as the component
+ * type of array classes. There is one {@code Class} instance for each primitive
+ * type, and their signatures are:
+ * </p>
+ * <ul>
+ * <li>{@code B} representing the {@code byte} primitive type</li>
+ * <li>{@code S} representing the {@code short} primitive type</li>
+ * <li>{@code I} representing the {@code int} primitive type</li>
+ * <li>{@code J} representing the {@code long} primitive type</li>
+ * <li>{@code F} representing the {@code float} primitive type</li>
+ * <li>{@code D} representing the {@code double} primitive type</li>
+ * <li>{@code C} representing the {@code char} primitive type</li>
+ * <li>{@code Z} representing the {@code boolean} primitive type</li>
+ * <li>{@code V} representing void function return values</li>
+ * </ul>
+ * <p>
+ * <h4>Classes representing array classes</h4>
+ * <p>
+ * These represent the classes of Java arrays. There is one such {@code Class}
+ * instance per combination of array leaf component type and arity (number of
+ * dimensions). In this case, the name associated with the {@code Class}
+ * consists of one or more left square brackets (one per dimension in the array)
+ * followed by the signature of the class representing the leaf component type,
+ * which can be either an object type or a primitive type. The signature of a
+ * {@code Class} representing an array type is the same as its name. Examples of
+ * array class signatures are:
+ * </p>
+ * <ul>
+ * <li>{@code [I} representing the {@code int[]} type</li>
+ * <li>{@code [Ljava/lang/String;} representing the {@code String[]} type</li>
+ * <li>{@code [[[C} representing the {@code char[][][]} type (three dimensions!)
+ * </li>
+ * </ul>
+ * 
+ * @since 1.0
  */
-public final
-    class Class<T> implements java.io.Serializable,
-                              java.lang.reflect.GenericDeclaration,
-                              java.lang.reflect.Type,
-                              java.lang.reflect.AnnotatedElement {
-    private static final int ANNOTATION= 0x00002000;
-    private static final int ENUM      = 0x00004000;
-    private static final int SYNTHETIC = 0x00001000;
+public final class Class<T> implements Serializable, AnnotatedElement, GenericDeclaration, Type {
 
-    private static native void registerNatives();
+    /*
+     * This class must be implemented by the VM vendor. The documented natives
+     * must be implemented to support other provided class implementations in
+     * this package.
+     */
+
+    private static final long serialVersionUID = 3206093459760846163L;
+
+    private Object            tib;
+
+
+    native private static void initNativeLayer();
+
+
     static {
-        registerNatives();
-    }
-
-    /*
-     * Constructor. Only the Java Virtual Machine creates Class
-     * objects.
-     */
-    private Class() {}
-
-
-    /**
-     * Converts the object to a string. The string representation is the
-     * string "class" or "interface", followed by a space, and then by the
-     * fully qualified name of the class in the format returned by
-     * {@code getName}.  If this {@code Class} object represents a
-     * primitive type, this method returns the name of the primitive type.  If
-     * this {@code Class} object represents void this method returns
-     * "void".
-     *
-     * @return a string representation of this class object.
-     */
-    public String toString() {
-        return (isInterface() ? "interface " : (isPrimitive() ? "" : "class "))
-            + getName();
+        // We cannot initialize the native layer in the class initializer because things will happen in the wrong order
+        //initNativeLayer();
     }
 
 
+    private Class(Object tib) {
+        this.tib = tib;
+    }
+
     /**
-     * Returns the {@code Class} object associated with the class or
-     * interface with the given string name.  Invoking this method is
-     * equivalent to:
-     *
-     * <blockquote>
-     *  {@code Class.forName(className, true, currentLoader)}
-     * </blockquote>
-     *
-     * where {@code currentLoader} denotes the defining class loader of
-     * the current class.
-     *
-     * <p> For example, the following code fragment returns the
-     * runtime {@code Class} descriptor for the class named
-     * {@code java.lang.Thread}:
-     *
-     * <blockquote>
-     *   {@code Class t = Class.forName("java.lang.Thread")}
-     * </blockquote>
+     * This must be provided by the VM vendor, as it is used by other provided
+     * class implementations in this package. This method is used by
+     * SecurityManager.classDepth(), and getClassContext() which use the
+     * parameters (-1, false) and SecurityManager.classLoaderDepth(),
+     * currentClassLoader(), and currentLoadedClass() which use the parameters
+     * (-1, true). Walk the stack and answer an array containing the maxDepth
+     * most recent classes on the stack of the calling thread. Starting with the
+     * caller of the caller of getStackClasses(), return an array of not more
+     * than maxDepth Classes representing the classes of running methods on the
+     * stack (including native methods). Frames representing the VM
+     * implementation of java.lang.reflect are not included in the list. If
+     * stopAtPrivileged is true, the walk will terminate at any frame running
+     * one of the following methods: <code><ul>
+     * <li>java/security/AccessController.doPrivileged(Ljava/security/PrivilegedAction;)Ljava/lang/Object;</li>
+     * <li>java/security/AccessController.doPrivileged(Ljava/security/PrivilegedExceptionAction;)Ljava/lang/Object;</li>
+     * <li>java/security/AccessController.doPrivileged(Ljava/security/PrivilegedAction;Ljava/security/AccessControlContext;)Ljava/lang/Object;</li>
+     * <li>java/security/AccessController.doPrivileged(Ljava/security/PrivilegedExceptionAction;Ljava/security/AccessControlContext;)Ljava/lang/Object;</li>
+     * </ul></code> If one of the doPrivileged methods is found, the walk
+     * terminate and that frame is NOT included in the returned array. Notes:
+     * <ul>
+     * <li>This method operates on the defining classes of methods on stack. NOT
+     * the classes of receivers.</li>
+     * <li>The item at index zero in the result array describes the caller of
+     * the caller of this method.</li>
+     * </ul>
+     * 
+     * @param maxDepth
+     *            maximum depth to walk the stack, -1 for the entire stack
+     * @param stopAtPrivileged
+     *            stop at privileged classes
+     * @return the array of the most recent classes on the stack
+     */
+    native static final Class[] getStackClasses(int maxDepth, boolean stopAtPrivileged);
+
+    /**
+     * Returns a {@code Class} object which represents the class with the
+     * specified name. The name should be the name of a class as described in
+     * the {@link Class class definition}; however, {@code Class}es representing
+     * primitive types can not be found using this method.
      * <p>
-     * A call to {@code forName("X")} causes the class named
-     * {@code X} to be initialized.
-     *
-     * @param      className   the fully qualified name of the desired class.
-     * @return     the {@code Class} object for the class with the
-     *             specified name.
-     * @exception LinkageError if the linkage fails
-     * @exception ExceptionInInitializerError if the initialization provoked
-     *            by this method fails
-     * @exception ClassNotFoundException if the class cannot be located
+     * If the class has not been loaded so far, it is being loaded and linked
+     * first. This is done through either the class loader of the calling class
+     * or one of its parent class loaders. The class is also being initialized,
+     * which means that a possible static initializer block is executed.
+     * 
+     * @param className
+     *            the name of the non-primitive-type class to find.
+     * @return the named {@code Class} instance.
+     * @throws ClassNotFoundException
+     *             if the requested class can not be found.
+     * @throws LinkageError
+     *             if an error occurs during linkage
+     * @throws ExceptionInInitializerError
+     *             if an exception occurs during static initialization of a
+     *             class.
      */
-    public static Class<?> forName(String className)
-                throws ClassNotFoundException {
-        return forName0(className, true, ClassLoader.getCallerClassLoader());
-    }
-
+    native public static Class<?> forName(String className) throws ClassNotFoundException;
 
     /**
-     * Returns the {@code Class} object associated with the class or
-     * interface with the given string name, using the given class loader.
-     * Given the fully qualified name for a class or interface (in the same
-     * format returned by {@code getName}) this method attempts to
-     * locate, load, and link the class or interface.  The specified class
-     * loader is used to load the class or interface.  If the parameter
-     * {@code loader} is null, the class is loaded through the bootstrap
-     * class loader.  The class is initialized only if the
-     * {@code initialize} parameter is {@code true} and if it has
-     * not been initialized earlier.
-     *
-     * <p> If {@code name} denotes a primitive type or void, an attempt
-     * will be made to locate a user-defined class in the unnamed package whose
-     * name is {@code name}. Therefore, this method cannot be used to
-     * obtain any of the {@code Class} objects representing primitive
-     * types or void.
-     *
-     * <p> If {@code name} denotes an array class, the component type of
-     * the array class is loaded but not initialized.
-     *
-     * <p> For example, in an instance method the expression:
-     *
-     * <blockquote>
-     *  {@code Class.forName("Foo")}
-     * </blockquote>
-     *
-     * is equivalent to:
-     *
-     * <blockquote>
-     *  {@code Class.forName("Foo", true, this.getClass().getClassLoader())}
-     * </blockquote>
-     *
-     * Note that this method throws errors related to loading, linking or
-     * initializing as specified in Sections 12.2, 12.3 and 12.4 of <em>The
-     * Java Language Specification</em>.
-     * Note that this method does not check whether the requested class
-     * is accessible to its caller.
-     *
-     * <p> If the {@code loader} is {@code null}, and a security
-     * manager is present, and the caller's class loader is not null, then this
-     * method calls the security manager's {@code checkPermission} method
-     * with a {@code RuntimePermission("getClassLoader")} permission to
-     * ensure it's ok to access the bootstrap class loader.
-     *
-     * @param name       fully qualified name of the desired class
-     * @param initialize whether the class must be initialized
-     * @param loader     class loader from which the class must be loaded
-     * @return           class object representing the desired class
-     *
-     * @exception LinkageError if the linkage fails
-     * @exception ExceptionInInitializerError if the initialization provoked
-     *            by this method fails
-     * @exception ClassNotFoundException if the class cannot be located by
-     *            the specified class loader
-     *
-     * @see       java.lang.Class#forName(String)
-     * @see       java.lang.ClassLoader
-     * @since     1.2
+     * Returns a {@code Class} object which represents the class with the
+     * specified name. The name should be the name of a class as described in
+     * the {@link Class class definition}, however {@code Class}es representing
+     * primitive types can not be found using this method. Security rules will
+     * be obeyed.
+     * <p>
+     * If the class has not been loaded so far, it is being loaded and linked
+     * first. This is done through either the specified class loader or one of
+     * its parent class loaders. The caller can also request the class to be
+     * initialized, which means that a possible static initializer block is
+     * executed.
+     * 
+     * @param className
+     *            the name of the non-primitive-type class to find.
+     * @param initializeBoolean
+     *            indicates whether the class should be initialized.
+     * @param classLoader
+     *            the class loader to use to load the class.
+     * @return the named {@code Class} instance.
+     * @throws ClassNotFoundException
+     *             if the requested class can not be found.
+     * @throws LinkageError
+     *             if an error occurs during linkage
+     * @throws ExceptionInInitializerError
+     *             if an exception occurs during static initialization of a
+     *             class.
      */
-    public static Class<?> forName(String name, boolean initialize,
-                                   ClassLoader loader)
-        throws ClassNotFoundException
-    {
-        if (loader == null) {
-            SecurityManager sm = System.getSecurityManager();
-            if (sm != null) {
-                ClassLoader ccl = ClassLoader.getCallerClassLoader();
-                if (ccl != null) {
-                    sm.checkPermission(
-                        SecurityConstants.GET_CLASSLOADER_PERMISSION);
-                }
-            }
-        }
-        return forName0(name, initialize, loader);
-    }
-
-    /** Called after security checks have been made. */
-    private static native Class forName0(String name, boolean initialize,
-                                            ClassLoader loader)
-        throws ClassNotFoundException;
+    native public static Class<?> forName(String className, boolean initializeBoolean,
+            ClassLoader classLoader) throws ClassNotFoundException;
 
     /**
-     * Creates a new instance of the class represented by this {@code Class}
-     * object.  The class is instantiated as if by a {@code new}
-     * expression with an empty argument list.  The class is initialized if it
-     * has not already been initialized.
-     *
-     * <p>Note that this method propagates any exception thrown by the
-     * nullary constructor, including a checked exception.  Use of
-     * this method effectively bypasses the compile-time exception
-     * checking that would otherwise be performed by the compiler.
-     * The {@link
-     * java.lang.reflect.Constructor#newInstance(java.lang.Object...)
-     * Constructor.newInstance} method avoids this problem by wrapping
-     * any exception thrown by the constructor in a (checked) {@link
-     * java.lang.reflect.InvocationTargetException}.
-     *
-     * @return     a newly allocated instance of the class represented by this
-     *             object.
-     * @exception  IllegalAccessException  if the class or its nullary
-     *               constructor is not accessible.
-     * @exception  InstantiationException
-     *               if this {@code Class} represents an abstract class,
-     *               an interface, an array class, a primitive type, or void;
-     *               or if the class has no nullary constructor;
-     *               or if the instantiation fails for some other reason.
-     * @exception  ExceptionInInitializerError if the initialization
-     *               provoked by this method fails.
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.PUBLIC)} denies
-     *             creation of new instances of this class
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     */
-    public T newInstance()
-        throws InstantiationException, IllegalAccessException
-    {
-        if (System.getSecurityManager() != null) {
-            checkMemberAccess(Member.PUBLIC, ClassLoader.getCallerClassLoader());
-        }
-        return newInstance0();
-    }
-
-    private T newInstance0()
-        throws InstantiationException, IllegalAccessException
-    {
-        // NOTE: the following code may not be strictly correct under
-        // the current Java memory model.
-
-        // Constructor lookup
-        if (cachedConstructor == null) {
-            if (this == Class.class) {
-                throw new IllegalAccessException(
-                    "Can not call newInstance() on the Class for java.lang.Class"
-                );
-            }
-            try {
-                Class[] empty = {};
-                final Constructor<T> c = getConstructor0(empty, Member.DECLARED);
-                // Disable accessibility checks on the constructor
-                // since we have to do the security check here anyway
-                // (the stack depth is wrong for the Constructor's
-                // security check to work)
-                java.security.AccessController.doPrivileged
-                    (new java.security.PrivilegedAction() {
-                            public Object run() {
-                                c.setAccessible(true);
-                                return null;
-                            }
-                        });
-                cachedConstructor = c;
-            } catch (NoSuchMethodException e) {
-                throw new InstantiationException(getName());
-            }
-        }
-        Constructor<T> tmpConstructor = cachedConstructor;
-        // Security check (same as in java.lang.reflect.Constructor)
-        int modifiers = tmpConstructor.getModifiers();
-        if (!Reflection.quickCheckMemberAccess(this, modifiers)) {
-            Class caller = Reflection.getCallerClass(3);
-            if (newInstanceCallerCache != caller) {
-                Reflection.ensureMemberAccess(caller, this, null, modifiers);
-                newInstanceCallerCache = caller;
-            }
-        }
-        // Run constructor
-        try {
-            return tmpConstructor.newInstance((Object[])null);
-        } catch (InvocationTargetException e) {
-            Unsafe.getUnsafe().throwException(e.getTargetException());
-            // Not reached
-            return null;
-        }
-    }
-    private volatile transient Constructor<T> cachedConstructor;
-    private volatile transient Class       newInstanceCallerCache;
-
-
-    /**
-     * Determines if the specified {@code Object} is assignment-compatible
-     * with the object represented by this {@code Class}.  This method is
-     * the dynamic equivalent of the Java language {@code instanceof}
-     * operator. The method returns {@code true} if the specified
-     * {@code Object} argument is non-null and can be cast to the
-     * reference type represented by this {@code Class} object without
-     * raising a {@code ClassCastException.} It returns {@code false}
-     * otherwise.
-     *
-     * <p> Specifically, if this {@code Class} object represents a
-     * declared class, this method returns {@code true} if the specified
-     * {@code Object} argument is an instance of the represented class (or
-     * of any of its subclasses); it returns {@code false} otherwise. If
-     * this {@code Class} object represents an array class, this method
-     * returns {@code true} if the specified {@code Object} argument
-     * can be converted to an object of the array class by an identity
-     * conversion or by a widening reference conversion; it returns
-     * {@code false} otherwise. If this {@code Class} object
-     * represents an interface, this method returns {@code true} if the
-     * class or any superclass of the specified {@code Object} argument
-     * implements this interface; it returns {@code false} otherwise. If
-     * this {@code Class} object represents a primitive type, this method
-     * returns {@code false}.
-     *
-     * @param   obj the object to check
-     * @return  true if {@code obj} is an instance of this class
-     *
-     * @since JDK1.1
-     */
-    public native boolean isInstance(Object obj);
-
-
-    /**
-     * Determines if the class or interface represented by this
-     * {@code Class} object is either the same as, or is a superclass or
-     * superinterface of, the class or interface represented by the specified
-     * {@code Class} parameter. It returns {@code true} if so;
-     * otherwise it returns {@code false}. If this {@code Class}
-     * object represents a primitive type, this method returns
-     * {@code true} if the specified {@code Class} parameter is
-     * exactly this {@code Class} object; otherwise it returns
-     * {@code false}.
-     *
-     * <p> Specifically, this method tests whether the type represented by the
-     * specified {@code Class} parameter can be converted to the type
-     * represented by this {@code Class} object via an identity conversion
-     * or via a widening reference conversion. See <em>The Java Language
-     * Specification</em>, sections 5.1.1 and 5.1.4 , for details.
-     *
-     * @param cls the {@code Class} object to be checked
-     * @return the {@code boolean} value indicating whether objects of the
-     * type {@code cls} can be assigned to objects of this class
-     * @exception NullPointerException if the specified Class parameter is
-     *            null.
-     * @since JDK1.1
-     */
-    public native boolean isAssignableFrom(Class<?> cls);
-
-
-    /**
-     * Determines if the specified {@code Class} object represents an
-     * interface type.
-     *
-     * @return  {@code true} if this object represents an interface;
-     *          {@code false} otherwise.
-     */
-    public native boolean isInterface();
-
-
-    /**
-     * Determines if this {@code Class} object represents an array class.
-     *
-     * @return  {@code true} if this object represents an array class;
-     *          {@code false} otherwise.
-     * @since   JDK1.1
-     */
-    public native boolean isArray();
-
-
-    /**
-     * Determines if the specified {@code Class} object represents a
-     * primitive type.
-     *
-     * <p> There are nine predefined {@code Class} objects to represent
-     * the eight primitive types and void.  These are created by the Java
-     * Virtual Machine, and have the same names as the primitive types that
-     * they represent, namely {@code boolean}, {@code byte},
-     * {@code char}, {@code short}, {@code int},
-     * {@code long}, {@code float}, and {@code double}.
-     *
-     * <p> These objects may only be accessed via the following public static
-     * final variables, and are the only {@code Class} objects for which
-     * this method returns {@code true}.
-     *
-     * @return true if and only if this class represents a primitive type
-     *
-     * @see     java.lang.Boolean#TYPE
-     * @see     java.lang.Character#TYPE
-     * @see     java.lang.Byte#TYPE
-     * @see     java.lang.Short#TYPE
-     * @see     java.lang.Integer#TYPE
-     * @see     java.lang.Long#TYPE
-     * @see     java.lang.Float#TYPE
-     * @see     java.lang.Double#TYPE
-     * @see     java.lang.Void#TYPE
-     * @since JDK1.1
-     */
-    public native boolean isPrimitive();
-
-    /**
-     * Returns true if this {@code Class} object represents an annotation
-     * type.  Note that if this method returns true, {@link #isInterface()}
-     * would also return true, as all annotation types are also interfaces.
-     *
-     * @return {@code true} if this class object represents an annotation
-     *      type; {@code false} otherwise
-     * @since 1.5
-     */
-    public boolean isAnnotation() {
-        return (getModifiers() & ANNOTATION) != 0;
-    }
-
-    /**
-     * Returns {@code true} if this class is a synthetic class;
-     * returns {@code false} otherwise.
-     * @return {@code true} if and only if this class is a synthetic class as
-     *         defined by the Java Language Specification.
-     * @since 1.5
-     */
-    public boolean isSynthetic() {
-        return (getModifiers() & SYNTHETIC) != 0;
-    }
-
-    /**
-     * Returns the  name of the entity (class, interface, array class,
-     * primitive type, or void) represented by this {@code Class} object,
-     * as a {@code String}.
-     *
-     * <p> If this class object represents a reference type that is not an
-     * array type then the binary name of the class is returned, as specified
-     * by the Java Language Specification, Second Edition.
-     *
-     * <p> If this class object represents a primitive type or void, then the
-     * name returned is a {@code String} equal to the Java language
-     * keyword corresponding to the primitive type or void.
-     *
-     * <p> If this class object represents a class of arrays, then the internal
-     * form of the name consists of the name of the element type preceded by
-     * one or more '{@code [}' characters representing the depth of the array
-     * nesting.  The encoding of element type names is as follows:
-     *
-     * <blockquote><table summary="Element types and encodings">
-     * <tr><th> Element Type <th> &nbsp;&nbsp;&nbsp; <th> Encoding
-     * <tr><td> boolean      <td> &nbsp;&nbsp;&nbsp; <td align=center> Z
-     * <tr><td> byte         <td> &nbsp;&nbsp;&nbsp; <td align=center> B
-     * <tr><td> char         <td> &nbsp;&nbsp;&nbsp; <td align=center> C
-     * <tr><td> class or interface
-     *                       <td> &nbsp;&nbsp;&nbsp; <td align=center> L<i>classname</i>;
-     * <tr><td> double       <td> &nbsp;&nbsp;&nbsp; <td align=center> D
-     * <tr><td> float        <td> &nbsp;&nbsp;&nbsp; <td align=center> F
-     * <tr><td> int          <td> &nbsp;&nbsp;&nbsp; <td align=center> I
-     * <tr><td> long         <td> &nbsp;&nbsp;&nbsp; <td align=center> J
-     * <tr><td> short        <td> &nbsp;&nbsp;&nbsp; <td align=center> S
-     * </table></blockquote>
-     *
-     * <p> The class or interface name <i>classname</i> is the binary name of
-     * the class specified above.
-     *
-     * <p> Examples:
-     * <blockquote><pre>
-     * String.class.getName()
-     *     returns "java.lang.String"
-     * byte.class.getName()
-     *     returns "byte"
-     * (new Object[3]).getClass().getName()
-     *     returns "[Ljava.lang.Object;"
-     * (new int[3][4][5][6][7][8][9]).getClass().getName()
-     *     returns "[[[[[[[I"
-     * </pre></blockquote>
-     *
-     * @return  the name of the class or interface
-     *          represented by this object.
-     */
-    public String getName() {
-        if (name == null)
-            name = getName0();
-        return name;
-    }
-
-    // cache the name to reduce the number of calls into the VM
-    private transient String name;
-    private native String getName0();
-
-    /**
-     * Returns the class loader for the class.  Some implementations may use
-     * null to represent the bootstrap class loader. This method will return
-     * null in such implementations if this class was loaded by the bootstrap
-     * class loader.
-     *
-     * <p> If a security manager is present, and the caller's class loader is
-     * not null and the caller's class loader is not the same as or an ancestor of
-     * the class loader for the class whose class loader is requested, then
-     * this method calls the security manager's {@code checkPermission}
-     * method with a {@code RuntimePermission("getClassLoader")}
-     * permission to ensure it's ok to access the class loader for the class.
-     *
-     * <p>If this object
-     * represents a primitive type or void, null is returned.
-     *
-     * @return  the class loader that loaded the class or interface
-     *          represented by this object.
+     * Returns an array containing {@code Class} objects for all public classes
+     * and interfaces that are members of this class. This includes public
+     * members inherited from super classes and interfaces. If there are no such
+     * class members or if this object represents a primitive type then an array
+     * of length 0 is returned.
+     * 
+     * @return the public class members of the class represented by this object.
      * @throws SecurityException
-     *    if a security manager exists and its
-     *    {@code checkPermission} method denies
-     *    access to the class loader for the class.
-     * @see java.lang.ClassLoader
-     * @see SecurityManager#checkPermission
-     * @see java.lang.RuntimePermission
+     *             if a security manager exists and it does not allow member
+     *             access.
      */
-    public ClassLoader getClassLoader() {
-        ClassLoader cl = getClassLoader0();
-        if (cl == null)
-            return null;
-        SecurityManager sm = System.getSecurityManager();
-        if (sm != null) {
-            ClassLoader ccl = ClassLoader.getCallerClassLoader();
-            if (ccl != null && ccl != cl && !cl.isAncestor(ccl)) {
-                sm.checkPermission(SecurityConstants.GET_CLASSLOADER_PERMISSION);
-            }
-        }
-        return cl;
-    }
-
-    // Package-private to allow ClassLoader access
-    native ClassLoader getClassLoader0();
-
+    @SuppressWarnings("unchecked")
+    // According to spec
+    native public Class[] getClasses();
 
     /**
-     * Returns an array of {@code TypeVariable} objects that represent the
-     * type variables declared by the generic declaration represented by this
-     * {@code GenericDeclaration} object, in declaration order.  Returns an
-     * array of length 0 if the underlying generic declaration declares no type
-     * variables.
-     *
-     * @return an array of {@code TypeVariable} objects that represent
-     *     the type variables declared by this generic declaration
-     * @throws GenericSignatureFormatError if the generic
-     *     signature of this generic declaration does not conform to
-     *     the format specified in the Java Virtual Machine Specification,
-     *     3rd edition
+     * Verify the specified Class using the VM byte code verifier.
+     * 
+     * @throws VerifyError
+     *             if the Class cannot be verified
+     */
+    native void verify();
+
+    /**
+     * Returns the annotation of the given type. If there is no such annotation
+     * then the method returns {@code null}.
+     * 
+     * @param annotationClass
+     *            the annotation type.
+     * @return the annotation of the given type, or {@code null} if there is no
+     *         such annotation.
      * @since 1.5
      */
-    public TypeVariable<Class<T>>[] getTypeParameters() {
-        if (getGenericSignature() != null)
-            return (TypeVariable<Class<T>>[])getGenericInfo().getTypeParameters();
-        else
-            return (TypeVariable<Class<T>>[])new TypeVariable[0];
-    }
-
+    native public <A extends Annotation> A getAnnotation(Class<A> annotationClass);
 
     /**
-     * Returns the {@code Class} representing the superclass of the entity
-     * (class, interface, primitive type or void) represented by this
-     * {@code Class}.  If this {@code Class} represents either the
-     * {@code Object} class, an interface, a primitive type, or void, then
-     * null is returned.  If this object represents an array class then the
-     * {@code Class} object representing the {@code Object} class is
-     * returned.
-     *
-     * @return the superclass of the class represented by this object.
+     * Returns all the annotations of this class. If there are no annotations
+     * then an empty array is returned.
+     * 
+     * @return a copy of the array containing this class' annotations.
+     * @see #getDeclaredAnnotations()
      */
-    public native Class<? super T> getSuperclass();
-
-
-    /**
-     * Returns the {@code Type} representing the direct superclass of
-     * the entity (class, interface, primitive type or void) represented by
-     * this {@code Class}.
-     *
-     * <p>If the superclass is a parameterized type, the {@code Type}
-     * object returned must accurately reflect the actual type
-     * parameters used in the source code. The parameterized type
-     * representing the superclass is created if it had not been
-     * created before. See the declaration of {@link
-     * java.lang.reflect.ParameterizedType ParameterizedType} for the
-     * semantics of the creation process for parameterized types.  If
-     * this {@code Class} represents either the {@code Object}
-     * class, an interface, a primitive type, or void, then null is
-     * returned.  If this object represents an array class then the
-     * {@code Class} object representing the {@code Object} class is
-     * returned.
-     *
-     * @throws GenericSignatureFormatError if the generic
-     *     class signature does not conform to the format specified in the
-     *     Java Virtual Machine Specification, 3rd edition
-     * @throws TypeNotPresentException if the generic superclass
-     *     refers to a non-existent type declaration
-     * @throws MalformedParameterizedTypeException if the
-     *     generic superclass refers to a parameterized type that cannot be
-     *     instantiated  for any reason
-     * @return the superclass of the class represented by this object
-     * @since 1.5
-     */
-    public Type getGenericSuperclass() {
-        if (getGenericSignature() != null) {
-            // Historical irregularity:
-            // Generic signature marks interfaces with superclass = Object
-            // but this API returns null for interfaces
-            if (isInterface())
-                return null;
-            return getGenericInfo().getSuperclass();
-        } else
-            return getSuperclass();
-    }
+    native public Annotation[] getAnnotations();
 
     /**
-     * Gets the package for this class.  The class loader of this class is used
-     * to find the package.  If the class was loaded by the bootstrap class
-     * loader the set of packages loaded from CLASSPATH is searched to find the
-     * package of the class. Null is returned if no package object was created
-     * by the class loader of this class.
-     *
-     * <p> Packages have attributes for versions and specifications only if the
-     * information was defined in the manifests that accompany the classes, and
-     * if the class loader created the package instance with the attributes
-     * from the manifest.
-     *
-     * @return the package of the class, or null if no package
-     *         information is available from the archive or codebase.
-     */
-    public Package getPackage() {
-        return Package.getPackage(this);
-    }
-
-
-    /**
-     * Determines the interfaces implemented by the class or interface
-     * represented by this object.
-     *
-     * <p> If this object represents a class, the return value is an array
-     * containing objects representing all interfaces implemented by the
-     * class. The order of the interface objects in the array corresponds to
-     * the order of the interface names in the {@code implements} clause
-     * of the declaration of the class represented by this object. For
-     * example, given the declaration:
-     * <blockquote>
-     * {@code class Shimmer implements FloorWax, DessertTopping { ... }}
-     * </blockquote>
-     * suppose the value of {@code s} is an instance of
-     * {@code Shimmer}; the value of the expression:
-     * <blockquote>
-     * {@code s.getClass().getInterfaces()[0]}
-     * </blockquote>
-     * is the {@code Class} object that represents interface
-     * {@code FloorWax}; and the value of:
-     * <blockquote>
-     * {@code s.getClass().getInterfaces()[1]}
-     * </blockquote>
-     * is the {@code Class} object that represents interface
-     * {@code DessertTopping}.
-     *
-     * <p> If this object represents an interface, the array contains objects
-     * representing all interfaces extended by the interface. The order of the
-     * interface objects in the array corresponds to the order of the interface
-     * names in the {@code extends} clause of the declaration of the
-     * interface represented by this object.
-     *
-     * <p> If this object represents a class or interface that implements no
-     * interfaces, the method returns an array of length 0.
-     *
-     * <p> If this object represents a primitive type or void, the method
-     * returns an array of length 0.
-     *
-     * @return an array of interfaces implemented by this class.
-     */
-    public native Class<?>[] getInterfaces();
-
-    /**
-     * Returns the {@code Type}s representing the interfaces
-     * directly implemented by the class or interface represented by
-     * this object.
-     *
-     * <p>If a superinterface is a parameterized type, the
-     * {@code Type} object returned for it must accurately reflect
-     * the actual type parameters used in the source code. The
-     * parameterized type representing each superinterface is created
-     * if it had not been created before. See the declaration of
-     * {@link java.lang.reflect.ParameterizedType ParameterizedType}
-     * for the semantics of the creation process for parameterized
-     * types.
-     *
-     * <p> If this object represents a class, the return value is an
-     * array containing objects representing all interfaces
-     * implemented by the class. The order of the interface objects in
-     * the array corresponds to the order of the interface names in
-     * the {@code implements} clause of the declaration of the class
-     * represented by this object.  In the case of an array class, the
-     * interfaces {@code Cloneable} and {@code Serializable} are
-     * returned in that order.
-     *
-     * <p>If this object represents an interface, the array contains
-     * objects representing all interfaces directly extended by the
-     * interface.  The order of the interface objects in the array
-     * corresponds to the order of the interface names in the
-     * {@code extends} clause of the declaration of the interface
-     * represented by this object.
-     *
-     * <p>If this object represents a class or interface that
-     * implements no interfaces, the method returns an array of length
-     * 0.
-     *
-     * <p>If this object represents a primitive type or void, the
-     * method returns an array of length 0.
-     *
-     * @throws GenericSignatureFormatError
-     *     if the generic class signature does not conform to the format
-     *     specified in the Java Virtual Machine Specification, 3rd edition
-     * @throws TypeNotPresentException if any of the generic
-     *     superinterfaces refers to a non-existent type declaration
-     * @throws MalformedParameterizedTypeException if any of the
-     *     generic superinterfaces refer to a parameterized type that cannot
-     *     be instantiated  for any reason
-     * @return an array of interfaces implemented by this class
-     * @since 1.5
-     */
-    public Type[] getGenericInterfaces() {
-        if (getGenericSignature() != null)
-            return getGenericInfo().getSuperInterfaces();
-        else
-            return getInterfaces();
-    }
-
-
-    /**
-     * Returns the {@code Class} representing the component type of an
-     * array.  If this class does not represent an array class this method
-     * returns null.
-     *
-     * @return the {@code Class} representing the component type of this
-     * class if this class is an array
-     * @see     java.lang.reflect.Array
-     * @since JDK1.1
-     */
-    public native Class<?> getComponentType();
-
-
-    /**
-     * Returns the Java language modifiers for this class or interface, encoded
-     * in an integer. The modifiers consist of the Java Virtual Machine's
-     * constants for {@code public}, {@code protected},
-     * {@code private}, {@code final}, {@code static},
-     * {@code abstract} and {@code interface}; they should be decoded
-     * using the methods of class {@code Modifier}.
-     *
-     * <p> If the underlying class is an array class, then its
-     * {@code public}, {@code private} and {@code protected}
-     * modifiers are the same as those of its component type.  If this
-     * {@code Class} represents a primitive type or void, its
-     * {@code public} modifier is always {@code true}, and its
-     * {@code protected} and {@code private} modifiers are always
-     * {@code false}. If this object represents an array class, a
-     * primitive type or void, then its {@code final} modifier is always
-     * {@code true} and its interface modifier is always
-     * {@code false}. The values of its other modifiers are not determined
-     * by this specification.
-     *
-     * <p> The modifier encodings are defined in <em>The Java Virtual Machine
-     * Specification</em>, table 4.1.
-     *
-     * @return the {@code int} representing the modifiers for this class
-     * @see     java.lang.reflect.Modifier
-     * @since JDK1.1
-     */
-    public native int getModifiers();
-
-
-    /**
-     * Gets the signers of this class.
-     *
-     * @return  the signers of this class, or null if there are no signers.  In
-     *          particular, this method returns null if this object represents
-     *          a primitive type or void.
-     * @since   JDK1.1
-     */
-    public native Object[] getSigners();
-
-
-    /**
-     * Set the signers of this class.
-     */
-    native void setSigners(Object[] signers);
-
-
-    /**
-     * If this {@code Class} object represents a local or anonymous
-     * class within a method, returns a {@link
-     * java.lang.reflect.Method Method} object representing the
-     * immediately enclosing method of the underlying class. Returns
-     * {@code null} otherwise.
-     *
-     * In particular, this method returns {@code null} if the underlying
-     * class is a local or anonymous class immediately enclosed by a type
-     * declaration, instance initializer or static initializer.
-     *
-     * @return the immediately enclosing method of the underlying class, if
-     *     that class is a local or anonymous class; otherwise {@code null}.
-     * @since 1.5
-     */
-    public Method getEnclosingMethod() {
-        EnclosingMethodInfo enclosingInfo = getEnclosingMethodInfo();
-
-        if (enclosingInfo == null)
-            return null;
-        else {
-            if (!enclosingInfo.isMethod())
-                return null;
-
-            MethodRepository typeInfo = MethodRepository.make(enclosingInfo.getDescriptor(),
-                                                              getFactory());
-            Class      returnType       = toClass(typeInfo.getReturnType());
-            Type []    parameterTypes   = typeInfo.getParameterTypes();
-            Class<?>[] parameterClasses = new Class<?>[parameterTypes.length];
-
-            // Convert Types to Classes; returned types *should*
-            // be class objects since the methodDescriptor's used
-            // don't have generics information
-            for(int i = 0; i < parameterClasses.length; i++)
-                parameterClasses[i] = toClass(parameterTypes[i]);
-
-            /*
-             * Loop over all declared methods; match method name,
-             * number of and type of parameters, *and* return
-             * type.  Matching return type is also necessary
-             * because of covariant returns, etc.
-             */
-            for(Method m: enclosingInfo.getEnclosingClass().getDeclaredMethods()) {
-                if (m.getName().equals(enclosingInfo.getName()) ) {
-                    Class<?>[] candidateParamClasses = m.getParameterTypes();
-                    if (candidateParamClasses.length == parameterClasses.length) {
-                        boolean matches = true;
-                        for(int i = 0; i < candidateParamClasses.length; i++) {
-                            if (!candidateParamClasses[i].equals(parameterClasses[i])) {
-                                matches = false;
-                                break;
-                            }
-                        }
-
-                        if (matches) { // finally, check return type
-                            if (m.getReturnType().equals(returnType) )
-                                return m;
-                        }
-                    }
-                }
-            }
-
-            throw new InternalError("Enclosing method not found");
-        }
-    }
-
-    private native Object[] getEnclosingMethod0();
-
-    private EnclosingMethodInfo getEnclosingMethodInfo() {
-        Object[] enclosingInfo = getEnclosingMethod0();
-        if (enclosingInfo == null)
-            return null;
-        else {
-            return new EnclosingMethodInfo(enclosingInfo);
-        }
-    }
-
-    private final static class EnclosingMethodInfo {
-        private Class<?> enclosingClass;
-        private String name;
-        private String descriptor;
-
-        private EnclosingMethodInfo(Object[] enclosingInfo) {
-            if (enclosingInfo.length != 3)
-                throw new InternalError("Malformed enclosing method information");
-            try {
-                // The array is expected to have three elements:
-
-                // the immediately enclosing class
-                enclosingClass = (Class<?>) enclosingInfo[0];
-                assert(enclosingClass != null);
-
-                // the immediately enclosing method or constructor's
-                // name (can be null).
-                name            = (String)   enclosingInfo[1];
-
-                // the immediately enclosing method or constructor's
-                // descriptor (null iff name is).
-                descriptor      = (String)   enclosingInfo[2];
-                assert((name != null && descriptor != null) || name == descriptor);
-            } catch (ClassCastException cce) {
-                throw new InternalError("Invalid type in enclosing method information");
-            }
-        }
-
-        boolean isPartial() {
-            return enclosingClass == null || name == null || descriptor == null;
-        }
-
-        boolean isConstructor() { return !isPartial() && "<init>".equals(name); }
-
-        boolean isMethod() { return !isPartial() && !isConstructor() && !"<clinit>".equals(name); }
-
-        Class<?> getEnclosingClass() { return enclosingClass; }
-
-        String getName() { return name; }
-
-        String getDescriptor() { return descriptor; }
-
-    }
-
-    private static Class toClass(Type o) {
-        if (o instanceof GenericArrayType)
-            return Array.newInstance(toClass(((GenericArrayType)o).getGenericComponentType()),
-                                     0)
-                .getClass();
-        return (Class)o;
-     }
-
-    /**
-     * If this {@code Class} object represents a local or anonymous
-     * class within a constructor, returns a {@link
-     * java.lang.reflect.Constructor Constructor} object representing
-     * the immediately enclosing constructor of the underlying
-     * class. Returns {@code null} otherwise.  In particular, this
-     * method returns {@code null} if the underlying class is a local
-     * or anonymous class immediately enclosed by a type declaration,
-     * instance initializer or static initializer.
-     *
-     * @return the immediately enclosing constructor of the underlying class, if
-     *     that class is a local or anonymous class; otherwise {@code null}.
-     * @since 1.5
-     */
-    public Constructor<?> getEnclosingConstructor() {
-        EnclosingMethodInfo enclosingInfo = getEnclosingMethodInfo();
-
-        if (enclosingInfo == null)
-            return null;
-        else {
-            if (!enclosingInfo.isConstructor())
-                return null;
-
-            ConstructorRepository typeInfo = ConstructorRepository.make(enclosingInfo.getDescriptor(),
-                                                                        getFactory());
-            Type []    parameterTypes   = typeInfo.getParameterTypes();
-            Class<?>[] parameterClasses = new Class<?>[parameterTypes.length];
-
-            // Convert Types to Classes; returned types *should*
-            // be class objects since the methodDescriptor's used
-            // don't have generics information
-            for(int i = 0; i < parameterClasses.length; i++)
-                parameterClasses[i] = toClass(parameterTypes[i]);
-
-            /*
-             * Loop over all declared constructors; match number
-             * of and type of parameters.
-             */
-            for(Constructor c: enclosingInfo.getEnclosingClass().getDeclaredConstructors()) {
-                Class<?>[] candidateParamClasses = c.getParameterTypes();
-                if (candidateParamClasses.length == parameterClasses.length) {
-                    boolean matches = true;
-                    for(int i = 0; i < candidateParamClasses.length; i++) {
-                        if (!candidateParamClasses[i].equals(parameterClasses[i])) {
-                            matches = false;
-                            break;
-                        }
-                    }
-
-                    if (matches)
-                        return c;
-                }
-            }
-
-            throw new InternalError("Enclosing constructor not found");
-        }
-    }
-
-
-    /**
-     * If the class or interface represented by this {@code Class} object
-     * is a member of another class, returns the {@code Class} object
-     * representing the class in which it was declared.  This method returns
-     * null if this class or interface is not a member of any other class.  If
-     * this {@code Class} object represents an array class, a primitive
-     * type, or void,then this method returns null.
-     *
-     * @return the declaring class for this class
-     * @since JDK1.1
-     */
-    public native Class<?> getDeclaringClass();
-
-
-    /**
-     * Returns the immediately enclosing class of the underlying
-     * class.  If the underlying class is a top level class this
+     * Returns the canonical name of this class. If this class does not have a
+     * canonical name as defined in the Java Language Specification, then the
      * method returns {@code null}.
-     * @return the immediately enclosing class of the underlying class
-     * @since 1.5
+     * 
+     * @return this class' canonical name, or {@code null} if it does not have a
+     *         canonical name.
      */
-    public Class<?> getEnclosingClass() {
-        // There are five kinds of classes (or interfaces):
-        // a) Top level classes
-        // b) Nested classes (static member classes)
-        // c) Inner classes (non-static member classes)
-        // d) Local classes (named classes declared within a method)
-        // e) Anonymous classes
-
-
-        // JVM Spec 4.8.6: A class must have an EnclosingMethod
-        // attribute if and only if it is a local class or an
-        // anonymous class.
-        EnclosingMethodInfo enclosingInfo = getEnclosingMethodInfo();
-
-        if (enclosingInfo == null) {
-            // This is a top level or a nested class or an inner class (a, b, or c)
-            return getDeclaringClass();
-        } else {
-            Class<?> enclosingClass = enclosingInfo.getEnclosingClass();
-            // This is a local class or an anonymous class (d or e)
-            if (enclosingClass == this || enclosingClass == null)
-                throw new InternalError("Malformed enclosing method information");
-            else
-                return enclosingClass;
-        }
-    }
+    native public String getCanonicalName();
 
     /**
-     * Returns the simple name of the underlying class as given in the
-     * source code. Returns an empty string if the underlying class is
-     * anonymous.
-     *
-     * <p>The simple name of an array is the simple name of the
-     * component type with "[]" appended.  In particular the simple
-     * name of an array whose component type is anonymous is "[]".
-     *
-     * @return the simple name of the underlying class
-     * @since 1.5
-     */
-    public String getSimpleName() {
-        if (isArray())
-            return getComponentType().getSimpleName()+"[]";
-
-        String simpleName = getSimpleBinaryName();
-        if (simpleName == null) { // top level class
-            simpleName = getName();
-            return simpleName.substring(simpleName.lastIndexOf(".")+1); // strip the package name
-        }
-        // According to JLS3 "Binary Compatibility" (13.1) the binary
-        // name of non-package classes (not top level) is the binary
-        // name of the immediately enclosing class followed by a '$' followed by:
-        // (for nested and inner classes): the simple name.
-        // (for local classes): 1 or more digits followed by the simple name.
-        // (for anonymous classes): 1 or more digits.
-
-        // Since getSimpleBinaryName() will strip the binary name of
-        // the immediatly enclosing class, we are now looking at a
-        // string that matches the regular expression "\$[0-9]*"
-        // followed by a simple name (considering the simple of an
-        // anonymous class to be the empty string).
-
-        // Remove leading "\$[0-9]*" from the name
-        int length = simpleName.length();
-        if (length < 1 || simpleName.charAt(0) != '$')
-            throw new InternalError("Malformed class name");
-        int index = 1;
-        while (index < length && isAsciiDigit(simpleName.charAt(index)))
-            index++;
-        // Eventually, this is the empty string iff this is an anonymous class
-        return simpleName.substring(index);
-    }
-
-    /**
-     * Character.isDigit answers {@code true} to some non-ascii
-     * digits.  This one does not.
-     */
-    private static boolean isAsciiDigit(char c) {
-        return '0' <= c && c <= '9';
-    }
-
-    /**
-     * Returns the canonical name of the underlying class as
-     * defined by the Java Language Specification.  Returns null if
-     * the underlying class does not have a canonical name (i.e., if
-     * it is a local or anonymous class or an array whose component
-     * type does not have a canonical name).
-     * @return the canonical name of the underlying class if it exists, and
-     * {@code null} otherwise.
-     * @since 1.5
-     */
-    public String getCanonicalName() {
-        if (isArray()) {
-            String canonicalName = getComponentType().getCanonicalName();
-            if (canonicalName != null)
-                return canonicalName + "[]";
-            else
-                return null;
-        }
-        if (isLocalOrAnonymousClass())
-            return null;
-        Class<?> enclosingClass = getEnclosingClass();
-        if (enclosingClass == null) { // top level class
-            return getName();
-        } else {
-            String enclosingName = enclosingClass.getCanonicalName();
-            if (enclosingName == null)
-                return null;
-            return enclosingName + "." + getSimpleName();
-        }
-    }
-
-    /**
-     * Returns {@code true} if and only if the underlying class
-     * is an anonymous class.
-     *
-     * @return {@code true} if and only if this class is an anonymous class.
-     * @since 1.5
-     */
-    public boolean isAnonymousClass() {
-        return "".equals(getSimpleName());
-    }
-
-    /**
-     * Returns {@code true} if and only if the underlying class
-     * is a local class.
-     *
-     * @return {@code true} if and only if this class is a local class.
-     * @since 1.5
-     */
-    public boolean isLocalClass() {
-        return isLocalOrAnonymousClass() && !isAnonymousClass();
-    }
-
-    /**
-     * Returns {@code true} if and only if the underlying class
-     * is a member class.
-     *
-     * @return {@code true} if and only if this class is a member class.
-     * @since 1.5
-     */
-    public boolean isMemberClass() {
-        return getSimpleBinaryName() != null && !isLocalOrAnonymousClass();
-    }
-
-    /**
-     * Returns the "simple binary name" of the underlying class, i.e.,
-     * the binary name without the leading enclosing class name.
-     * Returns {@code null} if the underlying class is a top level
-     * class.
-     */
-    private String getSimpleBinaryName() {
-        Class<?> enclosingClass = getEnclosingClass();
-        if (enclosingClass == null) // top level class
-            return null;
-        // Otherwise, strip the enclosing class' name
-        try {
-            return getName().substring(enclosingClass.getName().length());
-        } catch (IndexOutOfBoundsException ex) {
-            throw new InternalError("Malformed class name");
-        }
-    }
-
-    /**
-     * Returns {@code true} if this is a local class or an anonymous
-     * class.  Returns {@code false} otherwise.
-     */
-    private boolean isLocalOrAnonymousClass() {
-        // JVM Spec 4.8.6: A class must have an EnclosingMethod
-        // attribute if and only if it is a local class or an
-        // anonymous class.
-        return getEnclosingMethodInfo() != null;
-    }
-
-    /**
-     * Returns an array containing {@code Class} objects representing all
-     * the public classes and interfaces that are members of the class
-     * represented by this {@code Class} object.  This includes public
-     * class and interface members inherited from superclasses and public class
-     * and interface members declared by the class.  This method returns an
-     * array of length 0 if this {@code Class} object has no public member
-     * classes or interfaces.  This method also returns an array of length 0 if
-     * this {@code Class} object represents a primitive type, an array
-     * class, or void.
-     *
-     * @return the array of {@code Class} objects representing the public
-     * members of this class
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.PUBLIC)} method
-     *             denies access to the classes within this class
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     * @since JDK1.1
-     */
-    public Class<?>[] getClasses() {
-        // be very careful not to change the stack depth of this
-        // checkMemberAccess call for security reasons
-        // see java.lang.SecurityManager.checkMemberAccess
-        checkMemberAccess(Member.PUBLIC, ClassLoader.getCallerClassLoader());
-
-        // Privileged so this implementation can look at DECLARED classes,
-        // something the caller might not have privilege to do.  The code here
-        // is allowed to look at DECLARED classes because (1) it does not hand
-        // out anything other than public members and (2) public member access
-        // has already been ok'd by the SecurityManager.
-
-        Class[] result = (Class[]) java.security.AccessController.doPrivileged
-            (new java.security.PrivilegedAction() {
-                public Object run() {
-                    java.util.List<Class> list = new java.util.ArrayList();
-                    Class currentClass = Class.this;
-                    while (currentClass != null) {
-                        Class[] members = currentClass.getDeclaredClasses();
-                        for (int i = 0; i < members.length; i++) {
-                            if (Modifier.isPublic(members[i].getModifiers())) {
-                                list.add(members[i]);
-                            }
-                        }
-                        currentClass = currentClass.getSuperclass();
-                    }
-                    Class[] empty = {};
-                    return list.toArray(empty);
-                }
-            });
-
-        return result;
-    }
-
-
-    /**
-     * Returns an array containing {@code Field} objects reflecting all
-     * the accessible public fields of the class or interface represented by
-     * this {@code Class} object.  The elements in the array returned are
-     * not sorted and are not in any particular order.  This method returns an
-     * array of length 0 if the class or interface has no accessible public
-     * fields, or if it represents an array class, a primitive type, or void.
-     *
-     * <p> Specifically, if this {@code Class} object represents a class,
-     * this method returns the public fields of this class and of all its
-     * superclasses.  If this {@code Class} object represents an
-     * interface, this method returns the fields of this interface and of all
-     * its superinterfaces.
-     *
-     * <p> The implicit length field for array class is not reflected by this
-     * method. User code should use the methods of class {@code Array} to
-     * manipulate arrays.
-     *
-     * <p> See <em>The Java Language Specification</em>, sections 8.2 and 8.3.
-     *
-     * @return the array of {@code Field} objects representing the
-     * public fields
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.PUBLIC)} denies
-     *             access to the fields within this class
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     * @since JDK1.1
-     */
-    public Field[] getFields() throws SecurityException {
-        // be very careful not to change the stack depth of this
-        // checkMemberAccess call for security reasons
-        // see java.lang.SecurityManager.checkMemberAccess
-        checkMemberAccess(Member.PUBLIC, ClassLoader.getCallerClassLoader());
-        return copyFields(privateGetPublicFields(null));
-    }
-
-
-    /**
-     * Returns an array containing {@code Method} objects reflecting all
-     * the public <em>member</em> methods of the class or interface represented
-     * by this {@code Class} object, including those declared by the class
-     * or interface and those inherited from superclasses and
-     * superinterfaces.  Array classes return all the (public) member methods
-     * inherited from the {@code Object} class.  The elements in the array
-     * returned are not sorted and are not in any particular order.  This
-     * method returns an array of length 0 if this {@code Class} object
-     * represents a class or interface that has no public member methods, or if
-     * this {@code Class} object represents a primitive type or void.
-     *
-     * <p> The class initialization method {@code <clinit>} is not
-     * included in the returned array. If the class declares multiple public
-     * member methods with the same parameter types, they are all included in
-     * the returned array.
-     *
-     * <p> See <em>The Java Language Specification</em>, sections 8.2 and 8.4.
-     *
-     * @return the array of {@code Method} objects representing the
-     * public methods of this class
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.PUBLIC)} denies
-     *             access to the methods within this class
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     * @since JDK1.1
-     */
-    public Method[] getMethods() throws SecurityException {
-        // be very careful not to change the stack depth of this
-        // checkMemberAccess call for security reasons
-        // see java.lang.SecurityManager.checkMemberAccess
-        checkMemberAccess(Member.PUBLIC, ClassLoader.getCallerClassLoader());
-        return copyMethods(privateGetPublicMethods());
-    }
-
-
-    /**
-     * Returns an array containing {@code Constructor} objects reflecting
-     * all the public constructors of the class represented by this
-     * {@code Class} object.  An array of length 0 is returned if the
-     * class has no public constructors, or if the class is an array class, or
-     * if the class reflects a primitive type or void.
-     *
-     * Note that while this method returns an array of {@code
-     * Constructor<T>} objects (that is an array of constructors from
-     * this class), the return type of this method is {@code
-     * Constructor<?>[]} and <em>not</em> {@code Constructor<T>[]} as
-     * might be expected.  This less informative return type is
-     * necessary since after being returned from this method, the
-     * array could be modified to hold {@code Constructor} objects for
-     * different classes, which would violate the type guarantees of
-     * {@code Constructor<T>[]}.
-     *
-     * @return the array of {@code Constructor} objects representing the
-     *  public constructors of this class
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.PUBLIC)} denies
-     *             access to the constructors within this class
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     * @since JDK1.1
-     */
-    public Constructor<?>[] getConstructors() throws SecurityException {
-        // be very careful not to change the stack depth of this
-        // checkMemberAccess call for security reasons
-        // see java.lang.SecurityManager.checkMemberAccess
-        checkMemberAccess(Member.PUBLIC, ClassLoader.getCallerClassLoader());
-        return copyConstructors(privateGetDeclaredConstructors(true));
-    }
-
-
-    /**
-     * Returns a {@code Field} object that reflects the specified public
-     * member field of the class or interface represented by this
-     * {@code Class} object. The {@code name} parameter is a
-     * {@code String} specifying the simple name of the desired field.
-     *
-     * <p> The field to be reflected is determined by the algorithm that
-     * follows.  Let C be the class represented by this object:
-     * <OL>
-     * <LI> If C declares a public field with the name specified, that is the
-     *      field to be reflected.</LI>
-     * <LI> If no field was found in step 1 above, this algorithm is applied
-     *      recursively to each direct superinterface of C. The direct
-     *      superinterfaces are searched in the order they were declared.</LI>
-     * <LI> If no field was found in steps 1 and 2 above, and C has a
-     *      superclass S, then this algorithm is invoked recursively upon S.
-     *      If C has no superclass, then a {@code NoSuchFieldException}
-     *      is thrown.</LI>
-     * </OL>
-     *
-     * <p> See <em>The Java Language Specification</em>, sections 8.2 and 8.3.
-     *
-     * @param name the field name
-     * @return  the {@code Field} object of this class specified by
-     * {@code name}
-     * @exception NoSuchFieldException if a field with the specified name is
-     *              not found.
-     * @exception NullPointerException if {@code name} is {@code null}
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.PUBLIC)} denies
-     *             access to the field
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     * @since JDK1.1
-     */
-    public Field getField(String name)
-        throws NoSuchFieldException, SecurityException {
-        // be very careful not to change the stack depth of this
-        // checkMemberAccess call for security reasons
-        // see java.lang.SecurityManager.checkMemberAccess
-        checkMemberAccess(Member.PUBLIC, ClassLoader.getCallerClassLoader());
-        Field field = getField0(name);
-        if (field == null) {
-            throw new NoSuchFieldException(name);
-        }
-        return field;
-    }
-
-
-    /**
-     * Returns a {@code Method} object that reflects the specified public
-     * member method of the class or interface represented by this
-     * {@code Class} object. The {@code name} parameter is a
-     * {@code String} specifying the simple name of the desired method. The
-     * {@code parameterTypes} parameter is an array of {@code Class}
-     * objects that identify the method's formal parameter types, in declared
-     * order. If {@code parameterTypes} is {@code null}, it is
-     * treated as if it were an empty array.
-     *
-     * <p> If the {@code name} is "{@code <init>};"or "{@code <clinit>}" a
-     * {@code NoSuchMethodException} is raised. Otherwise, the method to
-     * be reflected is determined by the algorithm that follows.  Let C be the
-     * class represented by this object:
-     * <OL>
-     * <LI> C is searched for any <I>matching methods</I>. If no matching
-     *      method is found, the algorithm of step 1 is invoked recursively on
-     *      the superclass of C.</LI>
-     * <LI> If no method was found in step 1 above, the superinterfaces of C
-     *      are searched for a matching method. If any such method is found, it
-     *      is reflected.</LI>
-     * </OL>
-     *
-     * To find a matching method in a class C:&nbsp; If C declares exactly one
-     * public method with the specified name and exactly the same formal
-     * parameter types, that is the method reflected. If more than one such
-     * method is found in C, and one of these methods has a return type that is
-     * more specific than any of the others, that method is reflected;
-     * otherwise one of the methods is chosen arbitrarily.
-     *
-     * <p>Note that there may be more than one matching method in a
-     * class because while the Java language forbids a class to
-     * declare multiple methods with the same signature but different
-     * return types, the Java virtual machine does not.  This
-     * increased flexibility in the virtual machine can be used to
-     * implement various language features.  For example, covariant
-     * returns can be implemented with {@linkplain
-     * java.lang.reflect.Method#isBridge bridge methods}; the bridge
-     * method and the method being overridden would have the same
-     * signature but different return types.
-     *
-     * <p> See <em>The Java Language Specification</em>, sections 8.2 and 8.4.
-     *
-     * @param name the name of the method
-     * @param parameterTypes the list of parameters
-     * @return the {@code Method} object that matches the specified
-     * {@code name} and {@code parameterTypes}
-     * @exception NoSuchMethodException if a matching method is not found
-     *            or if the name is "&lt;init&gt;"or "&lt;clinit&gt;".
-     * @exception NullPointerException if {@code name} is {@code null}
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.PUBLIC)} denies
-     *             access to the method
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     * @since JDK1.1
-     */
-    public Method getMethod(String name, Class<?>... parameterTypes)
-        throws NoSuchMethodException, SecurityException {
-        // be very careful not to change the stack depth of this
-        // checkMemberAccess call for security reasons
-        // see java.lang.SecurityManager.checkMemberAccess
-        checkMemberAccess(Member.PUBLIC, ClassLoader.getCallerClassLoader());
-        Method method = getMethod0(name, parameterTypes);
-        if (method == null) {
-            throw new NoSuchMethodException(getName() + "." + name + argumentTypesToString(parameterTypes));
-        }
-        return method;
-    }
-
-
-    /**
-     * Returns a {@code Constructor} object that reflects the specified
-     * public constructor of the class represented by this {@code Class}
-     * object. The {@code parameterTypes} parameter is an array of
-     * {@code Class} objects that identify the constructor's formal
-     * parameter types, in declared order.
-     *
-     * If this {@code Class} object represents an inner class
-     * declared in a non-static context, the formal parameter types
-     * include the explicit enclosing instance as the first parameter.
-     *
-     * <p> The constructor to reflect is the public constructor of the class
-     * represented by this {@code Class} object whose formal parameter
-     * types match those specified by {@code parameterTypes}.
-     *
-     * @param parameterTypes the parameter array
-     * @return the {@code Constructor} object of the public constructor that
-     * matches the specified {@code parameterTypes}
-     * @exception NoSuchMethodException if a matching method is not found.
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.PUBLIC)} denies
-     *             access to the constructor
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     * @since JDK1.1
-     */
-    public Constructor<T> getConstructor(Class<?>... parameterTypes)
-        throws NoSuchMethodException, SecurityException {
-        // be very careful not to change the stack depth of this
-        // checkMemberAccess call for security reasons
-        // see java.lang.SecurityManager.checkMemberAccess
-        checkMemberAccess(Member.PUBLIC, ClassLoader.getCallerClassLoader());
-        return getConstructor0(parameterTypes, Member.PUBLIC);
-    }
-
-
-    /**
-     * Returns an array of {@code Class} objects reflecting all the
-     * classes and interfaces declared as members of the class represented by
-     * this {@code Class} object. This includes public, protected, default
-     * (package) access, and private classes and interfaces declared by the
-     * class, but excludes inherited classes and interfaces.  This method
-     * returns an array of length 0 if the class declares no classes or
-     * interfaces as members, or if this {@code Class} object represents a
-     * primitive type, an array class, or void.
-     *
-     * @return the array of {@code Class} objects representing all the
-     * declared members of this class
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.DECLARED)} denies
-     *             access to the declared classes within this class
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     * @since JDK1.1
-     */
-    public Class<?>[] getDeclaredClasses() throws SecurityException {
-        // be very careful not to change the stack depth of this
-        // checkMemberAccess call for security reasons
-        // see java.lang.SecurityManager.checkMemberAccess
-        checkMemberAccess(Member.DECLARED, ClassLoader.getCallerClassLoader());
-        return getDeclaredClasses0();
-    }
-
-
-    /**
-     * Returns an array of {@code Field} objects reflecting all the fields
-     * declared by the class or interface represented by this
-     * {@code Class} object. This includes public, protected, default
-     * (package) access, and private fields, but excludes inherited fields.
-     * The elements in the array returned are not sorted and are not in any
-     * particular order.  This method returns an array of length 0 if the class
-     * or interface declares no fields, or if this {@code Class} object
-     * represents a primitive type, an array class, or void.
-     *
-     * <p> See <em>The Java Language Specification</em>, sections 8.2 and 8.3.
-     *
-     * @return    the array of {@code Field} objects representing all the
-     * declared fields of this class
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.DECLARED)} denies
-     *             access to the declared fields within this class
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     * @since JDK1.1
-     */
-    public Field[] getDeclaredFields() throws SecurityException {
-        // be very careful not to change the stack depth of this
-        // checkMemberAccess call for security reasons
-        // see java.lang.SecurityManager.checkMemberAccess
-        checkMemberAccess(Member.DECLARED, ClassLoader.getCallerClassLoader());
-        return copyFields(privateGetDeclaredFields(false));
-    }
-
-
-    /**
-     * Returns an array of {@code Method} objects reflecting all the
-     * methods declared by the class or interface represented by this
-     * {@code Class} object. This includes public, protected, default
-     * (package) access, and private methods, but excludes inherited methods.
-     * The elements in the array returned are not sorted and are not in any
-     * particular order.  This method returns an array of length 0 if the class
-     * or interface declares no methods, or if this {@code Class} object
-     * represents a primitive type, an array class, or void.  The class
-     * initialization method {@code <clinit>} is not included in the
-     * returned array. If the class declares multiple public member methods
-     * with the same parameter types, they are all included in the returned
-     * array.
-     *
-     * <p> See <em>The Java Language Specification</em>, section 8.2.
-     *
-     * @return    the array of {@code Method} objects representing all the
-     * declared methods of this class
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.DECLARED)} denies
-     *             access to the declared methods within this class
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     * @since JDK1.1
-     */
-    public Method[] getDeclaredMethods() throws SecurityException {
-        // be very careful not to change the stack depth of this
-        // checkMemberAccess call for security reasons
-        // see java.lang.SecurityManager.checkMemberAccess
-        checkMemberAccess(Member.DECLARED, ClassLoader.getCallerClassLoader());
-        return copyMethods(privateGetDeclaredMethods(false));
-    }
-
-
-    /**
-     * Returns an array of {@code Constructor} objects reflecting all the
-     * constructors declared by the class represented by this
-     * {@code Class} object. These are public, protected, default
-     * (package) access, and private constructors.  The elements in the array
-     * returned are not sorted and are not in any particular order.  If the
-     * class has a default constructor, it is included in the returned array.
-     * This method returns an array of length 0 if this {@code Class}
-     * object represents an interface, a primitive type, an array class, or
-     * void.
-     *
-     * <p> See <em>The Java Language Specification</em>, section 8.2.
-     *
-     * @return    the array of {@code Constructor} objects representing all the
-     * declared constructors of this class
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.DECLARED)} denies
-     *             access to the declared constructors within this class
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     * @since JDK1.1
-     */
-    public Constructor<?>[] getDeclaredConstructors() throws SecurityException {
-        // be very careful not to change the stack depth of this
-        // checkMemberAccess call for security reasons
-        // see java.lang.SecurityManager.checkMemberAccess
-        checkMemberAccess(Member.DECLARED, ClassLoader.getCallerClassLoader());
-        return copyConstructors(privateGetDeclaredConstructors(false));
-    }
-
-
-    /**
-     * Returns a {@code Field} object that reflects the specified declared
-     * field of the class or interface represented by this {@code Class}
-     * object. The {@code name} parameter is a {@code String} that
-     * specifies the simple name of the desired field.  Note that this method
-     * will not reflect the {@code length} field of an array class.
-     *
-     * @param name the name of the field
-     * @return the {@code Field} object for the specified field in this
-     * class
-     * @exception NoSuchFieldException if a field with the specified name is
-     *              not found.
-     * @exception NullPointerException if {@code name} is {@code null}
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.DECLARED)} denies
-     *             access to the declared field
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     * @since JDK1.1
-     */
-    public Field getDeclaredField(String name)
-        throws NoSuchFieldException, SecurityException {
-        // be very careful not to change the stack depth of this
-        // checkMemberAccess call for security reasons
-        // see java.lang.SecurityManager.checkMemberAccess
-        checkMemberAccess(Member.DECLARED, ClassLoader.getCallerClassLoader());
-        Field field = searchFields(privateGetDeclaredFields(false), name);
-        if (field == null) {
-            throw new NoSuchFieldException(name);
-        }
-        return field;
-    }
-
-
-    /**
-     * Returns a {@code Method} object that reflects the specified
-     * declared method of the class or interface represented by this
-     * {@code Class} object. The {@code name} parameter is a
-     * {@code String} that specifies the simple name of the desired
-     * method, and the {@code parameterTypes} parameter is an array of
-     * {@code Class} objects that identify the method's formal parameter
-     * types, in declared order.  If more than one method with the same
-     * parameter types is declared in a class, and one of these methods has a
-     * return type that is more specific than any of the others, that method is
-     * returned; otherwise one of the methods is chosen arbitrarily.  If the
-     * name is "&lt;init&gt;"or "&lt;clinit&gt;" a {@code NoSuchMethodException}
-     * is raised.
-     *
-     * @param name the name of the method
-     * @param parameterTypes the parameter array
-     * @return    the {@code Method} object for the method of this class
-     * matching the specified name and parameters
-     * @exception NoSuchMethodException if a matching method is not found.
-     * @exception NullPointerException if {@code name} is {@code null}
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.DECLARED)} denies
-     *             access to the declared method
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     * @since JDK1.1
-     */
-    public Method getDeclaredMethod(String name, Class<?>... parameterTypes)
-        throws NoSuchMethodException, SecurityException {
-        // be very careful not to change the stack depth of this
-        // checkMemberAccess call for security reasons
-        // see java.lang.SecurityManager.checkMemberAccess
-        checkMemberAccess(Member.DECLARED, ClassLoader.getCallerClassLoader());
-        Method method = searchMethods(privateGetDeclaredMethods(false), name, parameterTypes);
-        if (method == null) {
-            throw new NoSuchMethodException(getName() + "." + name + argumentTypesToString(parameterTypes));
-        }
-        return method;
-    }
-
-
-    /**
-     * Returns a {@code Constructor} object that reflects the specified
-     * constructor of the class or interface represented by this
-     * {@code Class} object.  The {@code parameterTypes} parameter is
-     * an array of {@code Class} objects that identify the constructor's
-     * formal parameter types, in declared order.
-     *
-     * If this {@code Class} object represents an inner class
-     * declared in a non-static context, the formal parameter types
-     * include the explicit enclosing instance as the first parameter.
-     *
-     * @param parameterTypes the parameter array
-     * @return    The {@code Constructor} object for the constructor with the
-     * specified parameter list
-     * @exception NoSuchMethodException if a matching method is not found.
-     * @exception  SecurityException
-     *             If a security manager, <i>s</i>, is present and any of the
-     *             following conditions is met:
-     *
-     *             <ul>
-     *
-     *             <li> invocation of
-     *             {@link SecurityManager#checkMemberAccess
-     *             s.checkMemberAccess(this, Member.DECLARED)} denies
-     *             access to the declared constructor
-     *
-     *             <li> the caller's class loader is not the same as or an
-     *             ancestor of the class loader for the current class and
-     *             invocation of {@link SecurityManager#checkPackageAccess
-     *             s.checkPackageAccess()} denies access to the package
-     *             of this class
-     *
-     *             </ul>
-     *
-     * @since JDK1.1
-     */
-    public Constructor<T> getDeclaredConstructor(Class<?>... parameterTypes)
-        throws NoSuchMethodException, SecurityException {
-        // be very careful not to change the stack depth of this
-        // checkMemberAccess call for security reasons
-        // see java.lang.SecurityManager.checkMemberAccess
-        checkMemberAccess(Member.DECLARED, ClassLoader.getCallerClassLoader());
-        return getConstructor0(parameterTypes, Member.DECLARED);
-    }
-
-    /**
-     * Finds a resource with a given name.  The rules for searching resources
-     * associated with a given class are implemented by the defining
-     * {@linkplain ClassLoader class loader} of the class.  This method
-     * delegates to this object's class loader.  If this object was loaded by
-     * the bootstrap class loader, the method delegates to {@link
-     * ClassLoader#getSystemResourceAsStream}.
-     *
-     * <p> Before delegation, an absolute resource name is constructed from the
-     * given resource name using this algorithm:
-     *
-     * <ul>
-     *
-     * <li> If the {@code name} begins with a {@code '/'}
-     * (<tt>'&#92;u002f'</tt>), then the absolute name of the resource is the
-     * portion of the {@code name} following the {@code '/'}.
-     *
-     * <li> Otherwise, the absolute name is of the following form:
-     *
-     * <blockquote>
-     *   {@code modified_package_name/name}
-     * </blockquote>
-     *
-     * <p> Where the {@code modified_package_name} is the package name of this
-     * object with {@code '/'} substituted for {@code '.'}
-     * (<tt>'&#92;u002e'</tt>).
-     *
-     * </ul>
-     *
-     * @param  name name of the desired resource
-     * @return      A {@link java.io.InputStream} object or {@code null} if
-     *              no resource with this name is found
-     * @throws  NullPointerException If {@code name} is {@code null}
-     * @since  JDK1.1
-     */
-     public InputStream getResourceAsStream(String name) {
-        name = resolveName(name);
-        ClassLoader cl = getClassLoader0();
-        if (cl==null) {
-            // A system class.
-            return ClassLoader.getSystemResourceAsStream(name);
-        }
-        return cl.getResourceAsStream(name);
-    }
-
-    /**
-     * Finds a resource with a given name.  The rules for searching resources
-     * associated with a given class are implemented by the defining
-     * {@linkplain ClassLoader class loader} of the class.  This method
-     * delegates to this object's class loader.  If this object was loaded by
-     * the bootstrap class loader, the method delegates to {@link
-     * ClassLoader#getSystemResource}.
-     *
-     * <p> Before delegation, an absolute resource name is constructed from the
-     * given resource name using this algorithm:
-     *
-     * <ul>
-     *
-     * <li> If the {@code name} begins with a {@code '/'}
-     * (<tt>'&#92;u002f'</tt>), then the absolute name of the resource is the
-     * portion of the {@code name} following the {@code '/'}.
-     *
-     * <li> Otherwise, the absolute name is of the following form:
-     *
-     * <blockquote>
-     *   {@code modified_package_name/name}
-     * </blockquote>
-     *
-     * <p> Where the {@code modified_package_name} is the package name of this
-     * object with {@code '/'} substituted for {@code '.'}
-     * (<tt>'&#92;u002e'</tt>).
-     *
-     * </ul>
-     *
-     * @param  name name of the desired resource
-     * @return      A  {@link java.net.URL} object or {@code null} if no
-     *              resource with this name is found
-     * @since  JDK1.1
-     */
-    public java.net.URL getResource(String name) {
-        name = resolveName(name);
-        ClassLoader cl = getClassLoader0();
-        if (cl==null) {
-            // A system class.
-            return ClassLoader.getSystemResource(name);
-        }
-        return cl.getResource(name);
-    }
-
-
-
-    /** protection domain returned when the internal domain is null */
-    private static java.security.ProtectionDomain allPermDomain;
-
-
-    /**
-     * Returns the {@code ProtectionDomain} of this class.  If there is a
-     * security manager installed, this method first calls the security
-     * manager's {@code checkPermission} method with a
-     * {@code RuntimePermission("getProtectionDomain")} permission to
-     * ensure it's ok to get the
-     * {@code ProtectionDomain}.
-     *
-     * @return the ProtectionDomain of this class
-     *
+     * Returns the class loader which was used to load the class represented by
+     * this {@code Class}. Implementations are free to return {@code null} for
+     * classes that were loaded by the bootstrap class loader.
+     * 
+     * @return the class loader for the represented class.
      * @throws SecurityException
-     *        if a security manager exists and its
-     *        {@code checkPermission} method doesn't allow
-     *        getting the ProtectionDomain.
-     *
-     * @see java.security.ProtectionDomain
-     * @see SecurityManager#checkPermission
-     * @see java.lang.RuntimePermission
-     * @since 1.2
+     *             if a security manager exists and it does not allow accessing
+     *             the class loader.
+     * @see ClassLoader
      */
-    public java.security.ProtectionDomain getProtectionDomain() {
-        SecurityManager sm = System.getSecurityManager();
-        if (sm != null) {
-            sm.checkPermission(SecurityConstants.GET_PD_PERMISSION);
-        }
-        java.security.ProtectionDomain pd = getProtectionDomain0();
-        if (pd == null) {
-            if (allPermDomain == null) {
-                java.security.Permissions perms =
-                    new java.security.Permissions();
-                perms.add(SecurityConstants.ALL_PERMISSION);
-                allPermDomain =
-                    new java.security.ProtectionDomain(null, perms);
-            }
-            pd = allPermDomain;
-        }
-        return pd;
-    }
-
+    native public ClassLoader getClassLoader();
 
     /**
-     * Returns the ProtectionDomain of this class.
+     * This must be provided by the VM vendor, as it is used by other provided
+     * class implementations in this package. Outside of this class, it is used
+     * by SecurityManager.checkMemberAccess(), classLoaderDepth(),
+     * currentClassLoader() and currentLoadedClass(). Return the ClassLoader for
+     * this Class without doing any security checks. The bootstrap ClassLoader
+     * is returned, unlike getClassLoader() which returns null in place of the
+     * bootstrap ClassLoader.
+     * 
+     * @return the ClassLoader
+     * @see ClassLoader#isSystemClassLoader()
      */
-    private native java.security.ProtectionDomain getProtectionDomain0();
-
+    native ClassLoader getClassLoaderImpl();
 
     /**
-     * Set the ProtectionDomain for this class. Called by
-     * ClassLoader.defineClass.
+     * Returns a {@code Class} object which represents the component type if
+     * this class represents an array type. Returns {@code null} if this class
+     * does not represent an array type. The component type of an array type is
+     * the type of the elements of the array.
+     * 
+     * @return the component type of this class.
      */
-    native void setProtectionDomain0(java.security.ProtectionDomain pd);
-
-
-    /*
-     * Return the Virtual Machine's Class object for the named
-     * primitive type.
-     */
-    static native Class getPrimitiveClass(String name);
-
-
-    /*
-     * Check if client is allowed to access members.  If access is denied,
-     * throw a SecurityException.
-     *
-     * Be very careful not to change the stack depth of this checkMemberAccess
-     * call for security reasons.
-     * See java.lang.SecurityManager.checkMemberAccess.
-     *
-     * <p> Default policy: allow all clients access with normal Java access
-     * control.
-     */
-    private void checkMemberAccess(int which, ClassLoader ccl) {
-        SecurityManager s = System.getSecurityManager();
-        if (s != null) {
-            s.checkMemberAccess(this, which);
-            ClassLoader cl = getClassLoader0();
-            if ((ccl != null) && (ccl != cl) &&
-                  ((cl == null) || !cl.isAncestor(ccl))) {
-                String name = this.getName();
-                int i = name.lastIndexOf('.');
-                if (i != -1) {
-                    s.checkPackageAccess(name.substring(0, i));
-                }
-            }
-        }
-    }
+    native public Class<?> getComponentType();
 
     /**
-     * Add a package name prefix if the name is not absolute Remove leading "/"
-     * if name is absolute
+     * Returns a {@code Constructor} object which represents the public
+     * constructor matching the specified parameter types.
+     * 
+     * @param parameterTypes
+     *            the parameter types of the requested constructor.
+     * @return the constructor described by {@code parameterTypes}.
+     * @throws NoSuchMethodException
+     *             if the constructor can not be found.
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow member
+     *             access.
+     * @see #getDeclaredConstructor(Class[])
      */
-    private String resolveName(String name) {
-        if (name == null) {
-            return name;
-        }
-        if (!name.startsWith("/")) {
-            Class c = this;
-            while (c.isArray()) {
-                c = c.getComponentType();
-            }
-            String baseName = c.getName();
-            int index = baseName.lastIndexOf('.');
-            if (index != -1) {
-                name = baseName.substring(0, index).replace('.', '/')
-                    +"/"+name;
-            }
-        } else {
-            name = name.substring(1);
-        }
-        return name;
-    }
+    native public Constructor<T> getConstructor(Class... parameterTypes)
+            throws NoSuchMethodException, SecurityException;
 
     /**
-     * Reflection support.
+     * Returns an array containing {@code Constructor} objects for all public
+     * constructors for the class represented by this {@code Class}. If there
+     * are no public constructors or if this {@code Class} represents an array
+     * class, a primitive type or void then an empty array is returned.
+     * 
+     * @return an array with the public constructors of the class represented by
+     *         this {@code Class}.
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow member
+     *             access.
+     * @see #getDeclaredConstructors()
      */
+    native public Constructor[] getConstructors() throws SecurityException;
 
-    // Caches for certain reflective results
-//    private static boolean useCaches = true;
-    private static boolean useCaches = false;
-    private volatile transient SoftReference declaredFields;
-    private volatile transient SoftReference publicFields;
-    private volatile transient SoftReference declaredMethods;
-    private volatile transient SoftReference publicMethods;
-    private volatile transient SoftReference declaredConstructors;
-    private volatile transient SoftReference publicConstructors;
-    // Intermediate results for getFields and getMethods
-    private volatile transient SoftReference declaredPublicFields;
-    private volatile transient SoftReference declaredPublicMethods;
+    /**
+     * Returns the annotations that are directly defined on the class
+     * represented by this {@code Class}. Annotations that are inherited are not
+     * included in the result. If there are no annotations at all, an empty
+     * array is returned.
+     * 
+     * @return a copy of the array containing the annotations defined for the
+     *         class that this {@code Class} represents.
+     * @see #getAnnotations()
+     */
+    native public Annotation[] getDeclaredAnnotations();
 
-    // Incremented by the VM on each call to JVM TI RedefineClasses()
-    // that redefines this class or a superclass.
-    private volatile transient int classRedefinedCount = 0;
+    /**
+     * Returns an array containing {@code Class} objects for all classes and
+     * interfaces that are declared as members of the class which this {@code
+     * Class} represents. If there are no classes or interfaces declared or if
+     * this class represents an array class, a primitive type or void, then an
+     * empty array is returned.
+     * 
+     * @return an array with {@code Class} objects for all the classes and
+     *         interfaces that are used in member declarations.
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow member
+     *             access.
+     */
+    native public Class[] getDeclaredClasses() throws SecurityException;
 
-    // Value of classRedefinedCount when we last cleared the cached values
-    // that are sensitive to class redefinition.
-    private volatile transient int lastRedefinedCount = 0;
-
-    // Clears cached values that might possibly have been obsoleted by
-    // a class redefinition.
-    private void clearCachesOnClassRedefinition() {
-        if (lastRedefinedCount != classRedefinedCount) {
-            declaredFields = publicFields = declaredPublicFields = null;
-            declaredMethods = publicMethods = declaredPublicMethods = null;
-            declaredConstructors = publicConstructors = null;
-            annotations = declaredAnnotations = null;
-
-            // Use of "volatile" (and synchronization by caller in the case
-            // of annotations) ensures that no thread sees the update to
-            // lastRedefinedCount before seeing the caches cleared.
-            // We do not guard against brief windows during which multiple
-            // threads might redundantly work to fill an empty cache.
-            lastRedefinedCount = classRedefinedCount;
-        }
-    }
-
-    // Generic signature handling
-    private native String getGenericSignature();
-
-    // Generic info repository; lazily initialized
-    private transient ClassRepository genericInfo;
-
-    // accessor for factory
-    private GenericsFactory getFactory() {
-        // create scope and factory
-        return CoreReflectionFactory.make(this, ClassScope.make(this));
-    }
-
-    // accessor for generic info repository
-    private ClassRepository getGenericInfo() {
-        // lazily initialize repository if necessary
-        if (genericInfo == null) {
-            // create and cache generic info repository
-            genericInfo = ClassRepository.make(getGenericSignature(),
-                                               getFactory());
-        }
-        return genericInfo; //return cached repository
-    }
-
-    // Annotations handling
-    private native byte[] getRawAnnotations();
-
-    native ConstantPool getConstantPool();
-
-    //
-    //
-    // java.lang.reflect.Field handling
-    //
-    //
-
-    // Returns an array of "root" fields. These Field objects must NOT
-    // be propagated to the outside world, but must instead be copied
-    // via ReflectionFactory.copyField.
-    private Field[] privateGetDeclaredFields(boolean publicOnly) {
-        checkInitted();
-        Field[] res = null;
-        if (useCaches) {
-            clearCachesOnClassRedefinition();
-            if (publicOnly) {
-                if (declaredPublicFields != null) {
-                    res = (Field[]) declaredPublicFields.get();
-                }
-            } else {
-                if (declaredFields != null) {
-                    res = (Field[]) declaredFields.get();
-                }
-            }
-            if (res != null) return res;
-        }
-        // No cached value available; request value from VM
-        res = getDeclaredFields0(publicOnly);
-//        res = Reflection.filterFields(this, getDeclaredFields0(publicOnly));
-        if (useCaches) {
-            if (publicOnly) {
-                declaredPublicFields = new SoftReference(res);
-            } else {
-                declaredFields = new SoftReference(res);
-            }
-        }
-        return res;
-    }
-
-    // Returns an array of "root" fields. These Field objects must NOT
-    // be propagated to the outside world, but must instead be copied
-    // via ReflectionFactory.copyField.
-    private Field[] privateGetPublicFields(Set traversedInterfaces) {
-        checkInitted();
-        Field[] res = null;
-        if (useCaches) {
-            clearCachesOnClassRedefinition();
-            if (publicFields != null) {
-                res = (Field[]) publicFields.get();
-            }
-            if (res != null) return res;
-        }
-
-        // No cached value available; compute value recursively.
-        // Traverse in correct order for getField().
-        List fields = new ArrayList();
-        if (traversedInterfaces == null) {
-            traversedInterfaces = new HashSet();
-        }
-
-        // Local fields
-        Field[] tmp = privateGetDeclaredFields(true);
-        addAll(fields, tmp);
-
-        // Direct superinterfaces, recursively
-        Class[] interfaces = getInterfaces();
-        for (int i = 0; i < interfaces.length; i++) {
-            Class c = interfaces[i];
-            if (!traversedInterfaces.contains(c)) {
-                traversedInterfaces.add(c);
-                addAll(fields, c.privateGetPublicFields(traversedInterfaces));
-            }
-        }
-
-        // Direct superclass, recursively
-        if (!isInterface()) {
-            Class c = getSuperclass();
-            if (c != null) {
-                addAll(fields, c.privateGetPublicFields(traversedInterfaces));
-            }
-        }
-
-        res = new Field[fields.size()];
-        fields.toArray(res);
-        if (useCaches) {
-            publicFields = new SoftReference(res);
-        }
-        return res;
-    }
-
-    private static void addAll(Collection c, Field[] o) {
-        for (int i = 0; i < o.length; i++) {
-            c.add(o[i]);
-        }
-    }
-
-
-    //
-    //
-    // java.lang.reflect.Constructor handling
-    //
-    //
-
-    // Returns an array of "root" constructors. These Constructor
-    // objects must NOT be propagated to the outside world, but must
-    // instead be copied via ReflectionFactory.copyConstructor.
-    private Constructor[] privateGetDeclaredConstructors(boolean publicOnly) {
-        checkInitted();
-        Constructor[] res = null;
-        if (useCaches) {
-            clearCachesOnClassRedefinition();
-            if (publicOnly) {
-                if (publicConstructors != null) {
-                    res = (Constructor[]) publicConstructors.get();
-                }
-            } else {
-                if (declaredConstructors != null) {
-                    res = (Constructor[]) declaredConstructors.get();
-                }
-            }
-            if (res != null) return res;
-        }
-        // No cached value available; request value from VM
-        if (isInterface()) {
-            res = new Constructor[0];
-        } else {
-            res = getDeclaredConstructors0(publicOnly);
-        }
-        if (useCaches) {
-            if (publicOnly) {
-                publicConstructors = new SoftReference(res);
-            } else {
-                declaredConstructors = new SoftReference(res);
-            }
-        }
-        return res;
-    }
-
-    //
-    //
-    // java.lang.reflect.Method handling
-    //
-    //
-
-    // Returns an array of "root" methods. These Method objects must NOT
-    // be propagated to the outside world, but must instead be copied
-    // via ReflectionFactory.copyMethod.
-    private Method[] privateGetDeclaredMethods(boolean publicOnly) {
-        checkInitted();
-        Method[] res = null;
-        if (useCaches) {
-            clearCachesOnClassRedefinition();
-            if (publicOnly) {
-                if (declaredPublicMethods != null) {
-                    res = (Method[]) declaredPublicMethods.get();
-                }
-            } else {
-                if (declaredMethods != null) {
-                    res = (Method[]) declaredMethods.get();
-                }
-            }
-            if (res != null) return res;
-        }
-        // No cached value available; request value from VM
-        System.err.println("java.lang.Class.privateGetDeclaredMethods() not implemented");
-        System.exit(-1);
-        //TODO the following line causes a compile error
-//        res = Reflection.filterMethods(this, getDeclaredMethods0(publicOnly));
-        if (useCaches) {
-            if (publicOnly) {
-                declaredPublicMethods = new SoftReference(res);
-            } else {
-                declaredMethods = new SoftReference(res);
-            }
-        }
-        return res;
-    }
-
-    static class MethodArray {
-        private Method[] methods;
-        private int length;
-
-        MethodArray() {
-            methods = new Method[20];
-            length = 0;
-        }
-
-        void add(Method m) {
-            if (length == methods.length) {
-                methods = Arrays.copyOf(methods, 2 * methods.length);
-            }
-            methods[length++] = m;
-        }
-
-        void addAll(Method[] ma) {
-            for (int i = 0; i < ma.length; i++) {
-                add(ma[i]);
-            }
-        }
-
-        void addAll(MethodArray ma) {
-            for (int i = 0; i < ma.length(); i++) {
-                add(ma.get(i));
-            }
-        }
-
-        void addIfNotPresent(Method newMethod) {
-            for (int i = 0; i < length; i++) {
-                Method m = methods[i];
-                if (m == newMethod || (m != null && m.equals(newMethod))) {
-                    return;
-                }
-            }
-            add(newMethod);
-        }
-
-        void addAllIfNotPresent(MethodArray newMethods) {
-            for (int i = 0; i < newMethods.length(); i++) {
-                Method m = newMethods.get(i);
-                if (m != null) {
-                    addIfNotPresent(m);
-                }
-            }
-        }
-
-        int length() {
-            return length;
-        }
-
-        Method get(int i) {
-            return methods[i];
-        }
-
-        void removeByNameAndSignature(Method toRemove) {
-            for (int i = 0; i < length; i++) {
-                Method m = methods[i];
-                if (m != null &&
-                    m.getReturnType() == toRemove.getReturnType() &&
-                    m.getName() == toRemove.getName() &&
-                    arrayContentsEq(m.getParameterTypes(),
-                                    toRemove.getParameterTypes())) {
-                    methods[i] = null;
-                }
-            }
-        }
-
-        void compactAndTrim() {
-            int newPos = 0;
-            // Get rid of null slots
-            for (int pos = 0; pos < length; pos++) {
-                Method m = methods[pos];
-                if (m != null) {
-                    if (pos != newPos) {
-                        methods[newPos] = m;
-                    }
-                    newPos++;
-                }
-            }
-            if (newPos != methods.length) {
-                methods = Arrays.copyOf(methods, newPos);
-            }
-        }
-
-        Method[] getArray() {
-            return methods;
-        }
-    }
-
-
-    // Returns an array of "root" methods. These Method objects must NOT
-    // be propagated to the outside world, but must instead be copied
-    // via ReflectionFactory.copyMethod.
-    private Method[] privateGetPublicMethods() {
-        checkInitted();
-        Method[] res = null;
-        if (useCaches) {
-            clearCachesOnClassRedefinition();
-            if (publicMethods != null) {
-                res = (Method[]) publicMethods.get();
-            }
-            if (res != null) return res;
-        }
-
-        // No cached value available; compute value recursively.
-        // Start by fetching public declared methods
-        MethodArray methods = new MethodArray();
-        {
-            Method[] tmp = privateGetDeclaredMethods(true);
-            methods.addAll(tmp);
-        }
-        // Now recur over superclass and direct superinterfaces.
-        // Go over superinterfaces first so we can more easily filter
-        // out concrete implementations inherited from superclasses at
-        // the end.
-        MethodArray inheritedMethods = new MethodArray();
-        Class[] interfaces = getInterfaces();
-        for (int i = 0; i < interfaces.length; i++) {
-            inheritedMethods.addAll(interfaces[i].privateGetPublicMethods());
-        }
-        if (!isInterface()) {
-            Class c = getSuperclass();
-            if (c != null) {
-                MethodArray supers = new MethodArray();
-                supers.addAll(c.privateGetPublicMethods());
-                // Filter out concrete implementations of any
-                // interface methods
-                for (int i = 0; i < supers.length(); i++) {
-                    Method m = supers.get(i);
-                    if (m != null && !Modifier.isAbstract(m.getModifiers())) {
-                        inheritedMethods.removeByNameAndSignature(m);
-                    }
-                }
-                // Insert superclass's inherited methods before
-                // superinterfaces' to satisfy getMethod's search
-                // order
-                supers.addAll(inheritedMethods);
-                inheritedMethods = supers;
-            }
-        }
-        // Filter out all local methods from inherited ones
-        for (int i = 0; i < methods.length(); i++) {
-            Method m = methods.get(i);
-            inheritedMethods.removeByNameAndSignature(m);
-        }
-        methods.addAllIfNotPresent(inheritedMethods);
-        methods.compactAndTrim();
-        res = methods.getArray();
-        if (useCaches) {
-            publicMethods = new SoftReference(res);
-        }
-        return res;
-    }
-
-
-    //
-    // Helpers for fetchers of one field, method, or constructor
-    //
-
-    private Field searchFields(Field[] fields, String name) {
-        String internedName = name.intern();
-        for (int i = 0; i < fields.length; i++) {
-            if (fields[i].getName() == internedName) {
-                return getReflectionFactory().copyField(fields[i]);
-            }
-        }
-        return null;
-    }
-
-    private Field getField0(String name) throws NoSuchFieldException {
-        // Note: the intent is that the search algorithm this routine
-        // uses be equivalent to the ordering imposed by
-        // privateGetPublicFields(). It fetches only the declared
-        // public fields for each class, however, to reduce the number
-        // of Field objects which have to be created for the common
-        // case where the field being requested is declared in the
-        // class which is being queried.
-        Field res = null;
-        // Search declared public fields
-        if ((res = searchFields(privateGetDeclaredFields(true), name)) != null) {
-            return res;
-        }
-        // Direct superinterfaces, recursively
-        Class[] interfaces = getInterfaces();
-        for (int i = 0; i < interfaces.length; i++) {
-            Class c = interfaces[i];
-            if ((res = c.getField0(name)) != null) {
-                return res;
-            }
-        }
-        // Direct superclass, recursively
-        if (!isInterface()) {
-            Class c = getSuperclass();
-            if (c != null) {
-                if ((res = c.getField0(name)) != null) {
-                    return res;
-                }
-            }
-        }
-        return null;
-    }
-
-    private static Method searchMethods(Method[] methods,
-                                        String name,
-                                        Class[] parameterTypes)
-    {
-        Method res = null;
-        String internedName = name.intern();
-        for (int i = 0; i < methods.length; i++) {
-            Method m = methods[i];
-            if (m.getName() == internedName
-                && arrayContentsEq(parameterTypes, m.getParameterTypes())
-                && (res == null
-                    || res.getReturnType().isAssignableFrom(m.getReturnType())))
-                res = m;
-        }
-
-        return (res == null ? res : getReflectionFactory().copyMethod(res));
-    }
-
-
-    private Method getMethod0(String name, Class[] parameterTypes) {
-        // Note: the intent is that the search algorithm this routine
-        // uses be equivalent to the ordering imposed by
-        // privateGetPublicMethods(). It fetches only the declared
-        // public methods for each class, however, to reduce the
-        // number of Method objects which have to be created for the
-        // common case where the method being requested is declared in
-        // the class which is being queried.
-        Method res = null;
-        // Search declared public methods
-        if ((res = searchMethods(privateGetDeclaredMethods(true),
-                                 name,
-                                 parameterTypes)) != null) {
-            return res;
-        }
-        // Search superclass's methods
-        if (!isInterface()) {
-            Class c = getSuperclass();
-            if (c != null) {
-                if ((res = c.getMethod0(name, parameterTypes)) != null) {
-                    return res;
-                }
-            }
-        }
-        // Search superinterfaces' methods
-        Class[] interfaces = getInterfaces();
-        for (int i = 0; i < interfaces.length; i++) {
-            Class c = interfaces[i];
-            if ((res = c.getMethod0(name, parameterTypes)) != null) {
-                return res;
-            }
-        }
-        // Not found
-        return null;
-    }
-
-    private Constructor<T> getConstructor0(Class[] parameterTypes,
-                                        int which) throws NoSuchMethodException
-    {
-        Constructor[] constructors = privateGetDeclaredConstructors((which == Member.PUBLIC));
+    /**
+     * Returns a {@code Constructor} object which represents the constructor
+     * matching the specified parameter types that is declared by the class
+     * represented by this {@code Class}.
+     * 
+     * @param parameterTypes
+     *            the parameter types of the requested constructor.
+     * @return the constructor described by {@code parameterTypes}.
+     * @throws NoSuchMethodException
+     *             if the requested constructor can not be found.
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow member
+     *             access.
+     * @see #getConstructor(Class[])
+     */
+    public Constructor<T> getDeclaredConstructor(Class... parameterTypes)
+            throws NoSuchMethodException, SecurityException {
+        Constructor<T>[] constructors = getDeclaredConstructors();
         for (int i = 0; i < constructors.length; i++) {
-            if (arrayContentsEq(parameterTypes,
+            if (arrayEqual(parameterTypes,
                                 constructors[i].getParameterTypes())) {
-//                return getReflectionFactory().copyConstructor(constructors[i]);
                 return constructors[i];
             }
         }
-        throw new NoSuchMethodException(getName() + ".<init>" + argumentTypesToString(parameterTypes));
+        throw new NoSuchMethodException(getName() + ".<init>");
     }
-
-    //
-    // Other helpers and base implementation
-    //
-
-    private static boolean arrayContentsEq(Object[] a1, Object[] a2) {
+            
+    private static boolean arrayEqual(Object[] a1, Object[] a2) {
         if (a1 == null) {
             return a2 == null || a2.length == 0;
         }
@@ -2756,377 +405,543 @@ public final
 
         return true;
     }
-
-    private static Field[] copyFields(Field[] arg) {
-        //TODO copy arg
-        return arg;
-//        Field[] out = new Field[arg.length];
-//        ReflectionFactory fact = getReflectionFactory();
-//        for (int i = 0; i < arg.length; i++) {
-//            out[i] = fact.copyField(arg[i]);
-//        }
-//        return out;
-    }
-
-    private static Method[] copyMethods(Method[] arg) {
-        Method[] out = new Method[arg.length];
-        ReflectionFactory fact = getReflectionFactory();
-        for (int i = 0; i < arg.length; i++) {
-            out[i] = fact.copyMethod(arg[i]);
-        }
-        return out;
-    }
-
-    private static Constructor[] copyConstructors(Constructor[] arg) {
-        Constructor[] out = new Constructor[arg.length];
-        ReflectionFactory fact = getReflectionFactory();
-        for (int i = 0; i < arg.length; i++) {
-            out[i] = fact.copyConstructor(arg[i]);
-        }
-        return out;
-    }
-
-    private native Field[]       getDeclaredFields0(boolean publicOnly);
-    private native Method[]      getDeclaredMethods0(boolean publicOnly);
-    private native Constructor[] getDeclaredConstructors0(boolean publicOnly);
-    private native Class[]   getDeclaredClasses0();
-
-    private static String        argumentTypesToString(Class[] argTypes) {
-        StringBuilder buf = new StringBuilder();
-        buf.append("(");
-        if (argTypes != null) {
-            for (int i = 0; i < argTypes.length; i++) {
-                if (i > 0) {
-                    buf.append(", ");
-                }
-                Class c = argTypes[i];
-                buf.append((c == null) ? "null" : c.getName());
-            }
-        }
-        buf.append(")");
-        return buf.toString();
-    }
-
-    /** use serialVersionUID from JDK 1.1 for interoperability */
-    private static final long serialVersionUID = 3206093459760846163L;
-
-
+    
     /**
-     * Class Class is special cased within the Serialization Stream Protocol.
-     *
-     * A Class instance is written initially into an ObjectOutputStream in the
-     * following format:
-     * <pre>
-     *      {@code TC_CLASS} ClassDescriptor
-     *      A ClassDescriptor is a special cased serialization of
-     *      a {@code java.io.ObjectStreamClass} instance.
-     * </pre>
-     * A new handle is generated for the initial time the class descriptor
-     * is written into the stream. Future references to the class descriptor
-     * are written as references to the initial class descriptor instance.
-     *
-     * @see java.io.ObjectStreamClass
+     * Returns an array containing {@code Constructor} objects for all
+     * constructors declared in the class represented by this {@code Class}. If
+     * there are no constructors or if this {@code Class} represents an array
+     * class, a primitive type or void then an empty array is returned.
+     * 
+     * @return an array with the constructors declared in the class represented
+     *         by this {@code Class}.
+     * 
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow member
+     *             access.
+     * @see #getConstructors()
      */
-    private static final ObjectStreamField[] serialPersistentFields =
-        new ObjectStreamField[0];
-
+    native public Constructor[] getDeclaredConstructors() throws SecurityException;
 
     /**
-     * Returns the assertion status that would be assigned to this
-     * class if it were to be initialized at the time this method is invoked.
-     * If this class has had its assertion status set, the most recent
-     * setting will be returned; otherwise, if any package default assertion
-     * status pertains to this class, the most recent setting for the most
-     * specific pertinent package default assertion status is returned;
-     * otherwise, if this class is not a system class (i.e., it has a
-     * class loader) its class loader's default assertion status is returned;
-     * otherwise, the system class default assertion status is returned.
+     * Returns a {@code Field} object for the field with the specified name
+     * which is declared in the class represented by this {@code Class}.
+     * 
+     * @param name
+     *            the name of the requested field.
+     * @return the requested field in the class represented by this class.
+     * @throws NoSuchFieldException
+     *             if the requested field can not be found.
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow member
+     *             access.
+     * @see #getField(String)
+     */
+    native public Field getDeclaredField(String name) throws NoSuchFieldException,
+            SecurityException;
+
+    /**
+     * Returns an array containing {@code Field} objects for all fields declared
+     * in the class represented by this {@code Class}. If there are no fields or
+     * if this {@code Class} represents an array class, a primitive type or void
+     * then an empty array is returned.
+     * 
+     * @return an array with the fields declared in the class represented by
+     *         this class.
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow member
+     *             access.
+     * @see #getFields()
+     */
+    native public Field[] getDeclaredFields() throws SecurityException;
+
+    /**
+     * Returns a {@code Method} object which represents the method matching the
+     * specified name and parameter types that is declared by the class
+     * represented by this {@code Class}.
+     * 
+     * @param name
+     *            the requested method's name.
+     * @param parameterTypes
+     *            the parameter types of the requested method.
+     * @return the method described by {@code name} and {@code parameterTypes}.
+     * @throws NoSuchMethodException
+     *             if the requested constructor can not be found.
+     * @throws NullPointerException
+     *             if {@code name} is {@code null}.
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow member
+     *             access.
+     * @see #getMethod(String, Class[])
+     */
+    native public Method getDeclaredMethod(String name, Class... parameterTypes)
+            throws NoSuchMethodException, SecurityException;
+
+    /**
+     * Returns an array containing {@code Method} objects for all methods
+     * declared in the class represented by this {@code Class}. If there are no
+     * methods or if this {@code Class} represents an array class, a primitive
+     * type or void then an empty array is returned.
+     * 
+     * @return an array with the methods declared in the class represented by
+     *         this {@code Class}.
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow member
+     *             access.
+     * @see #getMethods()
+     */
+    native public Method[] getDeclaredMethods() throws SecurityException;
+
+    /**
+     * Returns the declaring {@code Class} of this {@code Class}. Returns
+     * {@code null} if the class is not a member of another class or if this
+     * {@code Class} represents an array class, a primitive type or void.
+     * 
+     * @return the declaring {@code Class} or {@code null}.
+     */
+    native public Class<?> getDeclaringClass();
+
+    /**
+     * Returns the enclosing {@code Class} of this {@code Class}. If there is no
+     * enclosing class the method returns {@code null}.
+     * 
+     * @return the enclosing {@code Class} or {@code null}.
+     */
+    native public Class<?> getEnclosingClass();
+
+    /**
+     * Gets the enclosing {@code Constructor} of this {@code Class}, if it is an
+     * anonymous or local/automatic class; otherwise {@code null}.
+     * 
+     * @return the enclosing {@code Constructor} instance or {@code null}.
+     */
+    native public Constructor<?> getEnclosingConstructor();
+
+    /**
+     * Gets the enclosing {@code Method} of this {@code Class}, if it is an
+     * anonymous or local/automatic class; otherwise {@code null}.
+     * 
+     * @return the enclosing {@code Method} instance or {@code null}.
+     */
+    native public Method getEnclosingMethod();
+
+    /**
+     * Gets the {@code enum} constants associated with this {@code Class}.
+     * Returns {@code null} if this {@code Class} does not represent an {@code
+     * enum} type.
+     * 
+     * @return an array with the {@code enum} constants or {@code null}.
+     * @since 1.5
+     */
+    native public T[] getEnumConstants();
+
+    /**
+     * Returns a {@code Field} object which represents the public field with the
+     * specified name. This method first searches the class C represented by
+     * this {@code Class}, then the interfaces implemented by C and finally the
+     * superclasses of C.
+     * 
+     * @param name
+     *            the name of the requested field.
+     * @return the public field specified by {@code name}.
+     * @throws NoSuchFieldException
+     *             if the field can not be found.
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow member
+     *             access.
+     * @see #getDeclaredField(String)
+     */
+    native public Field getField(String name) throws NoSuchFieldException, SecurityException;
+
+    /**
+     * Returns an array containing {@code Field} objects for all public fields
+     * for the class C represented by this {@code Class}. Fields may be declared
+     * in C, the interfaces it implements or in the superclasses of C. The
+     * elements in the returned array are in no particular order.
      * <p>
-     * Few programmers will have any need for this method; it is provided
-     * for the benefit of the JRE itself.  (It allows a class to determine at
-     * the time that it is initialized whether assertions should be enabled.)
-     * Note that this method is not guaranteed to return the actual
-     * assertion status that was (or will be) associated with the specified
-     * class when it was (or will be) initialized.
-     *
-     * @return the desired assertion status of the specified class.
-     * @see    java.lang.ClassLoader#setClassAssertionStatus
-     * @see    java.lang.ClassLoader#setPackageAssertionStatus
-     * @see    java.lang.ClassLoader#setDefaultAssertionStatus
-     * @since  1.4
+     * If there are no public fields or if this class represents an array class,
+     * a primitive type or {@code void} then an empty array is returned.
+     * </p>
+     * 
+     * @return an array with the public fields of the class represented by this
+     *         {@code Class}.
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow member
+     *             access.
+     * @see #getDeclaredFields()
      */
-    public boolean desiredAssertionStatus() {
-        ClassLoader loader = getClassLoader();
-        // If the loader is null this is a system class, so ask the VM
-        if (loader == null)
-            return desiredAssertionStatus0(this);
-
-        synchronized(loader) {
-            // If the classloader has been initialized with
-            // the assertion directives, ask it. Otherwise,
-            // ask the VM.
-            return (loader.classAssertionStatus == null ?
-                    desiredAssertionStatus0(this) :
-                    loader.desiredAssertionStatus(getName()));
-        }
-    }
-
-    // Retrieves the desired assertion status of this class from the VM
-    private static native boolean desiredAssertionStatus0(Class clazz);
+    native public Field[] getFields() throws SecurityException;
 
     /**
-     * Returns true if and only if this class was declared as an enum in the
-     * source code.
-     *
-     * @return true if and only if this class was declared as an enum in the
-     *     source code
+     * Gets the {@link Type}s of the interfaces that this {@code Class} directly
+     * implements. If the {@code Class} represents a primitive type or {@code
+     * void} then an empty array is returned.
+     * 
+     * @return an array of {@link Type} instances directly implemented by the
+     *         class represented by this {@code class}.
+     */
+    native public Type[] getGenericInterfaces();
+
+    /**
+     * Gets the {@code Type} that represents the superclass of this {@code
+     * class}.
+     * 
+     * @return an instance of {@code Type} representing the superclass.
      * @since 1.5
      */
-    public boolean isEnum() {
-        // An enum must both directly extend java.lang.Enum and have
-        // the ENUM bit set; classes for specialized enum constants
-        // don't do the former.
-        return (this.getModifiers() & ENUM) != 0 &&
-        this.getSuperclass() == java.lang.Enum.class;
-    }
-
-    // Fetches the factory for reflective objects
-    private static ReflectionFactory getReflectionFactory() {
-        if (reflectionFactory == null) {
-            reflectionFactory =  (ReflectionFactory)
-                java.security.AccessController.doPrivileged
-                    (new sun.reflect.ReflectionFactory.GetReflectionFactoryAction());
-        }
-        return reflectionFactory;
-    }
-    private static ReflectionFactory reflectionFactory;
-
-    // To be able to query system properties as soon as they're available
-//    private static boolean initted = false;
-    private static boolean initted = true;
-    private static void checkInitted() {
-        if (initted) return;
-        AccessController.doPrivileged(new PrivilegedAction() {
-                public Object run() {
-                    // Tests to ensure the system properties table is fully
-                    // initialized. This is needed because reflection code is
-                    // called very early in the initialization process (before
-                    // command-line arguments have been parsed and therefore
-                    // these user-settable properties installed.) We assume that
-                    // if System.out is non-null then the System class has been
-                    // fully initialized and that the bulk of the startup code
-                    // has been run.
-
-                    if (System.out == null) {
-                        // java.lang.System not yet fully initialized
-                        return null;
-                    }
-
-                    String val =
-                        System.getProperty("sun.reflect.noCaches");
-                    if (val != null && val.equals("true")) {
-                        useCaches = false;
-                    }
-
-                    initted = true;
-                    return null;
-                }
-            });
-    }
+    native public Type getGenericSuperclass();
 
     /**
-     * Returns the elements of this enum class or null if this
-     * Class object does not represent an enum type.
-     *
-     * @return an array containing the values comprising the enum class
-     *     represented by this Class object in the order they're
-     *     declared, or null if this Class object does not
-     *     represent an enum type
+     * Returns an array of {@code Class} objects that match the interfaces
+     * specified in the {@code implements} declaration of the class represented
+     * by this {@code Class}. The order of the elements in the array is
+     * identical to the order in the original class declaration. If the class
+     * does not implement any interfaces, an empty array is returned.
+     * 
+     * @return an array with the interfaces of the class represented by this
+     *         class.
+     */
+    native public Class[] getInterfaces();
+
+    /**
+     * Returns a {@code Method} object which represents the public method with
+     * the specified name and parameter types. This method first searches the
+     * class C represented by this {@code Class}, then the superclasses of C and
+     * finally the interfaces implemented by C and finally the superclasses of C
+     * for a method with matching name.
+     * 
+     * @param name
+     *            the requested method's name.
+     * @param parameterTypes
+     *            the parameter types of the requested method.
+     * @return the public field specified by {@code name}.
+     * @throws NoSuchMethodException
+     *             if the method can not be found.
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow member
+     *             access.
+     * @see #getDeclaredMethod(String, Class[])
+     */
+    native public Method getMethod(String name, Class... parameterTypes)
+            throws NoSuchMethodException, SecurityException;
+
+    /**
+     * Returns an array containing {@code Method} objects for all public methods
+     * for the class C represented by this {@code Class}. Methods may be
+     * declared in C, the interfaces it implements or in the superclasses of C.
+     * The elements in the returned array are in no particular order.
+     * <p>
+     * If there are no public methods or if this {@code Class} represents a
+     * primitive type or {@code void} then an empty array is returned.
+     * </p>
+     * 
+     * @return an array with the methods of the class represented by this
+     *         {@code Class}.
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow member
+     *             access.
+     * @see #getDeclaredMethods()
+     */
+    native public Method[] getMethods() throws SecurityException;
+
+    /**
+     * Returns an integer that represents the modifiers of the class represented
+     * by this {@code Class}. The returned value is a combination of bits
+     * defined by constants in the {@link Modifier} class.
+     * 
+     * @return the modifiers of the class represented by this {@code Class}.
+     */
+    native public int getModifiers();
+
+    /**
+     * Returns the name of the class represented by this {@code Class}. For a
+     * description of the format which is used, see the class definition of
+     * {@link Class}.
+     * 
+     * @return the name of the class represented by this {@code Class}.
+     */
+    native public String getName();
+
+    /**
+     * Returns the simple name of the class represented by this {@code Class} as
+     * defined in the source code. If there is no name (that is, the class is
+     * anonymous) then an empty string is returned. If the receiver is an array
+     * then the name of the underlying type with square braces appended (for
+     * example {@code &quot;Integer[]&quot;}) is returned.
+     * 
+     * @return the simple name of the class represented by this {@code Class}.
+     */
+    native public String getSimpleName();
+
+    /**
+     * Returns the {@code ProtectionDomain} of the class represented by this
+     * class.
+     * <p>
+     * Note: In order to conserve space in an embedded target like Android, we
+     * allow this method to return {@code null} for classes in the system
+     * protection domain (that is, for system classes). System classes are
+     * always given full permissions (that is, AllPermission). This can not be
+     * changed through the {@link java.security.Policy} class.
+     * </p>
+     * 
+     * @return the {@code ProtectionDomain} of the class represented by this
+     *         class.
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow member
+     *             access.
+     */
+    native public ProtectionDomain getProtectionDomain();
+
+    /**
+     * Answers the ProtectionDomain of the receiver.
+     * 
+     * This method is for internal use only.
+     * 
+     * @return ProtectionDomain the receiver's ProtectionDomain.
+     */
+    native ProtectionDomain getPDImpl();
+
+    /**
+     * Returns the URL of the resource specified by {@code resName}. The mapping
+     * between the resource name and the URL is managed by the class' class
+     * loader.
+     * 
+     * @param resName
+     *            the name of the resource.
+     * @return the requested resource's {@code URL} object or {@code null} if
+     *         the resource can not be found.
+     * @see ClassLoader
+     */
+    native public URL getResource(String resName);
+
+    /**
+     * Returns a read-only stream for the contents of the resource specified by
+     * {@code resName}. The mapping between the resource name and the stream is
+     * managed by the class' class loader.
+     * 
+     * @param resName
+     *            the name of the resource.
+     * @return a stream for the requested resource or {@code null} if no
+     *         resource with the specified name can be found.
+     * @see ClassLoader
+     */
+    native public InputStream getResourceAsStream(String resName);
+
+    /**
+     * Returns the signers for the class represented by this {@code Class} or
+     * {@code null} if either there are no signers or this {@code Class}
+     * represents a primitive type or void.
+     * 
+     * @return the signers of the class represented by this {@code Class}.
+     */
+    native public Object[] getSigners();
+
+    /**
+     * Returns the {@code Class} object which represents the superclass of the
+     * class represented by this {@code Class}. If this {@code Class} represents
+     * the {@code Object} class, a primitive type, an interface or void then the
+     * method returns {@code null}. If this {@code Class} represents an array
+     * class then the {@code Object} class is returned.
+     * 
+     * @return the superclass of the class represented by this {@code Class}.
+     */
+    native public Class<? super T> getSuperclass();
+
+    /**
+     * Returns an array containing {@code TypeVariable} objects for type
+     * variables declared by the generic class represented by this {@code Class}
+     * . Returns an empty array if the class is not generic.
+     * 
+     * @return an array with the type variables of the class represented by this
+     *         class.
      * @since 1.5
      */
-    public T[] getEnumConstants() {
-        T[] values = getEnumConstantsShared();
-        return (values != null) ? values.clone() : null;
-    }
+    @SuppressWarnings("unchecked")
+    native public TypeVariable<Class<T>>[] getTypeParameters();
 
     /**
-     * Returns the elements of this enum class or null if this
-     * Class object does not represent an enum type;
-     * identical to getEnumConstantsShared except that
-     * the result is uncloned, cached, and shared by all callers.
+     * Indicates whether this {@code Class} represents an annotation class.
+     * 
+     * @return {@code true} if this {@code Class} represents an annotation
+     *         class; {@code false} otherwise.
      */
-    T[] getEnumConstantsShared() {
-        if (enumConstants == null) {
-            if (!isEnum()) return null;
-            try {
-                final Method values = getMethod("values");
-                java.security.AccessController.doPrivileged
-                    (new java.security.PrivilegedAction() {
-                            public Object run() {
-                                values.setAccessible(true);
-                                return null;
-                            }
-                        });
-                enumConstants = (T[])values.invoke(null);
-            }
-            // These can happen when users concoct enum-like classes
-            // that don't comply with the enum spec.
-            catch (InvocationTargetException ex) { return null; }
-            catch (NoSuchMethodException ex) { return null; }
-            catch (IllegalAccessException ex) { return null; }
-        }
-        return enumConstants;
-    }
-    private volatile transient T[] enumConstants = null;
+    native public boolean isAnnotation();
 
     /**
-     * Returns a map from simple name to enum constant.  This package-private
-     * method is used internally by Enum to implement
-     *     public static <T extends Enum<T>> T valueOf(Class<T>, String)
-     * efficiently.  Note that the map is returned by this method is
-     * created lazily on first use.  Typically it won't ever get created.
-     */
-    Map<String, T> enumConstantDirectory() {
-        if (enumConstantDirectory == null) {
-            T[] universe = getEnumConstantsShared();
-            if (universe == null)
-                throw new IllegalArgumentException(
-                    getName() + " is not an enum type");
-            Map<String, T> m = new HashMap<String, T>(2 * universe.length);
-            for (T constant : universe)
-                m.put(((Enum)constant).name(), constant);
-            enumConstantDirectory = m;
-        }
-        return enumConstantDirectory;
-    }
-    private volatile transient Map<String, T> enumConstantDirectory = null;
-
-    /**
-     * Casts an object to the class or interface represented
-     * by this {@code Class} object.
-     *
-     * @param obj the object to be cast
-     * @return the object after casting, or null if obj is null
-     *
-     * @throws ClassCastException if the object is not
-     * null and is not assignable to the type T.
-     *
+     * Indicates whether the specified annotation is present for the class
+     * represented by this {@code Class}.
+     * 
+     * @param annotationClass
+     *            the annotation to look for.
+     * @return {@code true} if the class represented by this {@code Class} is
+     *         annotated with {@code annotationClass}; {@code false} otherwise.
      * @since 1.5
      */
-    public T cast(Object obj) {
-        if (obj != null && !isInstance(obj))
-            throw new ClassCastException(cannotCastMsg(obj));
-        return (T) obj;
-    }
-
-    private String cannotCastMsg(Object obj) {
-        return "Cannot cast " + obj.getClass().getName() + " to " + getName();
-    }
+    native public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass);
 
     /**
-     * Casts this {@code Class} object to represent a subclass of the class
-     * represented by the specified class object.  Checks that that the cast
-     * is valid, and throws a {@code ClassCastException} if it is not.  If
-     * this method succeeds, it always returns a reference to this class object.
-     *
-     * <p>This method is useful when a client needs to "narrow" the type of
-     * a {@code Class} object to pass it to an API that restricts the
-     * {@code Class} objects that it is willing to accept.  A cast would
-     * generate a compile-time warning, as the correctness of the cast
-     * could not be checked at runtime (because generic types are implemented
-     * by erasure).
-     *
-     * @return this {@code Class} object, cast to represent a subclass of
-     *    the specified class object.
-     * @throws ClassCastException if this {@code Class} object does not
-     *    represent a subclass of the specified class (here "subclass" includes
-     *    the class itself).
+     * Indicates whether the class represented by this {@code Class} is
+     * anonymously declared.
+     * 
+     * @return {@code true} if the class represented by this {@code Class} is
+     *         anonymous; {@code false} otherwise.
      * @since 1.5
      */
-    public <U> Class<? extends U> asSubclass(Class<U> clazz) {
-        if (clazz.isAssignableFrom(this))
-            return (Class<? extends U>) this;
-        else
-            throw new ClassCastException(this.toString());
-    }
+    native public boolean isAnonymousClass();
 
     /**
-     * @throws NullPointerException {@inheritDoc}
-     * @since 1.5
+     * Indicates whether the class represented by this {@code Class} is an array
+     * class.
+     * 
+     * @return {@code true} if the class represented by this {@code Class} is an
+     *         array class; {@code false} otherwise.
      */
-    public <A extends Annotation> A getAnnotation(Class<A> annotationClass) {
-        if (annotationClass == null)
-            throw new NullPointerException();
-
-        initAnnotationsIfNecessary();
-        return (A) annotations.get(annotationClass);
-    }
+    native public boolean isArray();
 
     /**
-     * @throws NullPointerException {@inheritDoc}
-     * @since 1.5
+     * Indicates whether the specified class type can be converted to the class
+     * represented by this {@code Class}. Conversion may be done via an identity
+     * conversion or a widening reference conversion (if either the receiver or
+     * the argument represent primitive types, only the identity conversion
+     * applies).
+     * 
+     * @param cls
+     *            the class to check.
+     * @return {@code true} if {@code cls} can be converted to the class
+     *         represented by this {@code Class}; {@code false} otherwise.
+     * @throws NullPointerException
+     *             if {@code cls} is {@code null}.
      */
-    public boolean isAnnotationPresent(
-        Class<? extends Annotation> annotationClass) {
-        if (annotationClass == null)
-            throw new NullPointerException();
-
-        return getAnnotation(annotationClass) != null;
-    }
-
-
-    private static Annotation[] EMPTY_ANNOTATIONS_ARRAY = new Annotation[0];
+    native public boolean isAssignableFrom(Class<?> cls);
 
     /**
-     * @since 1.5
+     * Indicates whether the class represented by this {@code Class} is an
+     * {@code enum}.
+     * 
+     * @return {@code true} if the class represented by this {@code Class} is an
+     *         {@code enum}; {@code false} otherwise.
      */
-    public Annotation[] getAnnotations() {
-        initAnnotationsIfNecessary();
-        return annotations.values().toArray(EMPTY_ANNOTATIONS_ARRAY);
-    }
+    native public boolean isEnum();
 
     /**
-     * @since 1.5
+     * Indicates whether the specified object can be cast to the class
+     * represented by this {@code Class}. This is the runtime version of the
+     * {@code instanceof} operator.
+     * 
+     * @param object
+     *            the object to check.
+     * @return {@code true} if {@code object} can be cast to the type
+     *         represented by this {@code Class}; {@code false} if {@code
+     *         object} is {@code null} or cannot be cast.
      */
-    public Annotation[] getDeclaredAnnotations()  {
-        initAnnotationsIfNecessary();
-        return declaredAnnotations.values().toArray(EMPTY_ANNOTATIONS_ARRAY);
-    }
+    native public boolean isInstance(Object object);
 
-    // Annotations cache
-    private transient Map<Class, Annotation> annotations;
-    private transient Map<Class, Annotation> declaredAnnotations;
+    /**
+     * Indicates whether this {@code Class} represents an interface.
+     * 
+     * @return {@code true} if this {@code Class} represents an interface;
+     *         {@code false} otherwise.
+     */
+    native public boolean isInterface();
 
-    private synchronized void initAnnotationsIfNecessary() {
-        clearCachesOnClassRedefinition();
-        if (annotations != null)
-            return;
-        declaredAnnotations = AnnotationParser.parseAnnotations(
-            getRawAnnotations(), getConstantPool(), this);
-        Class<?> superClass = getSuperclass();
-        if (superClass == null) {
-            annotations = declaredAnnotations;
-        } else {
-            annotations = new HashMap<Class, Annotation>();
-            superClass.initAnnotationsIfNecessary();
-            for (Map.Entry<Class, Annotation> e : superClass.annotations.entrySet()) {
-                Class annotationClass = e.getKey();
-                if (AnnotationType.getInstance(annotationClass).isInherited())
-                    annotations.put(annotationClass, e.getValue());
-            }
-            annotations.putAll(declaredAnnotations);
-        }
-    }
+    /**
+     * Indicates whether the class represented by this {@code Class} is defined
+     * locally.
+     * 
+     * @return {@code true} if the class represented by this {@code Class} is
+     *         defined locally; {@code false} otherwise.
+     */
+    native public boolean isLocalClass();
 
-    // Annotation types cache their internal (AnnotationType) form
+    /**
+     * Indicates whether the class represented by this {@code Class} is a member
+     * class.
+     * 
+     * @return {@code true} if the class represented by this {@code Class} is a
+     *         member class; {@code false} otherwise.
+     */
+    native public boolean isMemberClass();
 
-    private AnnotationType annotationType;
+    /**
+     * Indicates whether this {@code Class} represents a primitive type.
+     * 
+     * @return {@code true} if this {@code Class} represents a primitive type;
+     *         {@code false} otherwise.
+     */
+    native public boolean isPrimitive();
 
-    void setAnnotationType(AnnotationType type) {
-        annotationType = type;
-    }
+    /**
+     * Indicates whether this {@code Class} represents a synthetic type.
+     * 
+     * @return {@code true} if this {@code Class} represents a synthetic type;
+     *         {@code false} otherwise.
+     */
+    native public boolean isSynthetic();
 
-    AnnotationType getAnnotationType() {
-        return annotationType;
-    }
+    /**
+     * Returns a new instance of the class represented by this {@code Class},
+     * created by invoking the default (that is, zero-argument) constructor. If
+     * there is no such constructor, or if the creation fails (either because of
+     * a lack of available memory or because an exception is thrown by the
+     * constructor), an {@code InstantiationException} is thrown. If the default
+     * constructor exists but is not accessible from the context where this
+     * method is invoked, an {@code IllegalAccessException} is thrown.
+     * 
+     * @return a new instance of the class represented by this {@code Class}.
+     * @throws IllegalAccessException
+     *             if the default constructor is not visible.
+     * @throws InstantiationException
+     *             if the instance can not be created.
+     * @throws SecurityException
+     *             if a security manager exists and it does not allow creating
+     *             new instances.
+     */
+    native public T newInstance() throws IllegalAccessException, InstantiationException;
+
+    @Override
+    native public String toString();
+
+    /**
+     * Returns the {@code Package} of which the class represented by this
+     * {@code Class} is a member. Returns {@code null} if no {@code Package}
+     * object was created by the class loader of the class.
+     * 
+     * @return Package the {@code Package} of which this {@code Class} is a
+     *         member or {@code null}.
+     */
+    native public Package getPackage();
+
+    /**
+     * Returns the assertion status for the class represented by this {@code
+     * Class}. Assertion is enabled / disabled based on the class loader,
+     * package or class default at runtime.
+     * 
+     * @return the assertion status for the class represented by this {@code
+     *         Class}.
+     */
+    native public boolean desiredAssertionStatus();
+
+    /**
+     * Casts this {@code Class} to represent a subclass of the specified class.
+     * If successful, this {@code Class} is returned; otherwise a {@code
+     * ClassCastException} is thrown.
+     * 
+     * @param clazz
+     *            the required type.
+     * @return this {@code Class} cast as a subclass of the given type.
+     * @throws ClassCastException
+     *             if this {@code Class} cannot be cast to the specified type.
+     */
+    native public <U> Class<? extends U> asSubclass(Class<U> clazz);
+
+    /**
+     * Casts the specified object to the type represented by this {@code Class}.
+     * If the object is {@code null} then the result is also {@code null}.
+     * 
+     * @param obj
+     *            the object to cast.
+     * @return the object that has been cast.
+     * @throws ClassCastException
+     *             if the object cannot be cast to the specified type.
+     */
+    native public T cast(Object obj);
 }

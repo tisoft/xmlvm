@@ -5,6 +5,10 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIFont)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
@@ -13,9 +17,13 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
-#define XMLVM_FORWARD_DECL_java_util_ArrayList
-XMLVM_FORWARD_DECL(java_util_ArrayList)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize

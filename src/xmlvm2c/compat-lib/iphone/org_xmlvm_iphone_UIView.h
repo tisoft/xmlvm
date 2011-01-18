@@ -9,29 +9,25 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewAnimationDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewAnimationDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewAnimationDelegate)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGAffineTransform)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CALayer
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CALayer
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CALayer)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIResponder)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_util_List
-#define XMLVM_FORWARD_DECL_java_util_List
-XMLVM_FORWARD_DECL(java_util_List)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
@@ -44,6 +40,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.UIView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIView, 70)

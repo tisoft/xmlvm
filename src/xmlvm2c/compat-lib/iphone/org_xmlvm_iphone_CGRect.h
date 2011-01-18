@@ -13,6 +13,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
 #endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
@@ -20,10 +24,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.CGRect
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGRect, 17)
@@ -63,8 +63,8 @@ typedef struct org_xmlvm_iphone_CGRect org_xmlvm_iphone_CGRect;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGRect_isNull__ 14
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGRect_isEmpty__ 15
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGRect_isInfinite__ 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGRect_toString__ 4
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGRect_equals___java_lang_Object 2
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGRect_toString__ 7
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGRect_equals___java_lang_Object 1
 
 void __INIT_org_xmlvm_iphone_CGRect();
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGRect();
@@ -81,9 +81,9 @@ JAVA_BOOLEAN org_xmlvm_iphone_CGRect_isNull__(JAVA_OBJECT me);
 JAVA_BOOLEAN org_xmlvm_iphone_CGRect_isEmpty__(JAVA_OBJECT me);
 // Vtable index: 16
 JAVA_BOOLEAN org_xmlvm_iphone_CGRect_isInfinite__(JAVA_OBJECT me);
-// Vtable index: 4
+// Vtable index: 7
 JAVA_OBJECT org_xmlvm_iphone_CGRect_toString__(JAVA_OBJECT me);
-// Vtable index: 2
+// Vtable index: 1
 JAVA_BOOLEAN org_xmlvm_iphone_CGRect_equals___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_CGRect___CLINIT_();
 

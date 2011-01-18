@@ -9,13 +9,21 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGImage
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGImage
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGImage)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGFont
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGFont
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGFont)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.CGContext
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGContext, 42)

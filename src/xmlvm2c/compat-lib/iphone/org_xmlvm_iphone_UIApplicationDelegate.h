@@ -9,6 +9,10 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIApplication
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIApplication
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIApplication)
+#endif
 // Class declarations for org.xmlvm.iphone.UIApplicationDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIApplicationDelegate, 19)
 

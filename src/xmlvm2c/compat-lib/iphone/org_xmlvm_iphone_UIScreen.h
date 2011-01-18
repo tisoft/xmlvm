@@ -9,14 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScreen
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScreen
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIScreen)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
-#endif
 // Class declarations for org.xmlvm.iphone.UIScreen
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIScreen, 16)
 

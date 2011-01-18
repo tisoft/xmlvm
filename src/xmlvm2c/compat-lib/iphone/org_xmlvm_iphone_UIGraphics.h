@@ -5,13 +5,13 @@
 #include "java_lang_Object.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_Object
 #define XMLVM_FORWARD_DECL_java_lang_Object
 XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext

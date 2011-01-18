@@ -13,6 +13,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKProductsRequestDelegate)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKRequest
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKRequest)
 #endif
+#ifndef XMLVM_FORWARD_DECL_java_util_Set
+#define XMLVM_FORWARD_DECL_java_util_Set
+XMLVM_FORWARD_DECL(java_util_Set)
+#endif
 // Class declarations for org.xmlvm.iphone.SKProductsRequest
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKProductsRequest, 20)
 

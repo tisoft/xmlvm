@@ -9,6 +9,10 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarItem
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarItem)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarItem
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarItem
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarItem)
+#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
