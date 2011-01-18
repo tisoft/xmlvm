@@ -26,10 +26,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.LibraryLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResourceProvider;
+import org.xmlvm.proc.lib.LibraryLoader;
 
 /**
  * Makes sure that all referenced resources from the input resources are loaded.

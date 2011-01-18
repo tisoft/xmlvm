@@ -18,7 +18,7 @@
  * USA.
  */
 
-package org.xmlvm.proc;
+package org.xmlvm.proc.lib;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +29,7 @@ import java.util.Set;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
 import org.xmlvm.proc.in.file.ClassFile;
 import org.xmlvm.proc.out.DEXmlvmOutputProcess;
@@ -41,12 +42,12 @@ import org.xmlvm.util.universalfile.UniversalFile;
  * classes include the JavaJDK or the AndroidSDK.
  */
 public class LibraryLoader {
-    private static final String                     TAG   = LibraryLoader.class.getSimpleName();
-    private static final Libraries                  LIBS  = new Libraries();
+    private static final String                     TAG       = LibraryLoader.class.getSimpleName();
 
+    private final Libraries                         libs;
     private final Arguments                         arguments;
-    private final List<UniversalFile>               libraries;
-    private final static Map<String, XmlvmResource> cache = new HashMap<String, XmlvmResource>();
+    private final static Map<String, XmlvmResource> cache     = new HashMap<String, XmlvmResource>();
+    private List<UniversalFile>                     libraries = null;
 
 
     /**
@@ -54,14 +55,14 @@ public class LibraryLoader {
      */
     public LibraryLoader(Arguments arguments) {
         this.arguments = arguments;
-        this.libraries = LIBS.getLibraries();
+        libs = new Libraries(arguments);
     }
 
     /**
      * Gets the last modified date of all libraries combined.
      */
     public long getLastModified() {
-        return LIBS.getLastModified();
+        return libs.getLastModified();
     }
 
     /**
@@ -71,6 +72,10 @@ public class LibraryLoader {
      *            can be e.g. "java.lang.Object"
      */
     public XmlvmResource load(String typeName) {
+        if (libraries == null) {
+            libraries = libs.getLibraryFiles();
+        }
+
         for (UniversalFile library : libraries) {
             XmlvmResource resource = load(typeName, library);
             if (resource != null) {
@@ -154,7 +159,7 @@ public class LibraryLoader {
      */
     public List<XmlvmResource> loadRequiredLibraries() {
         List<XmlvmResource> result = new ArrayList<XmlvmResource>();
-        for (UniversalFile library : LIBS.getRequredLibraries()) {
+        for (UniversalFile library : libs.getMonolithicLibraryFiles()) {
             for (UniversalFile file : library.listFilesRecursively(new FileSuffixFilter(".class"))) {
                 result.add(processClassFile(file));
             }
