@@ -108,28 +108,34 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAcceleration()
 void org_xmlvm_iphone_UIAcceleration___INIT____double_double_double(JAVA_OBJECT me, JAVA_DOUBLE n1, JAVA_DOUBLE n2, JAVA_DOUBLE n3)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAcceleration___INIT____double_double_double]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIAcceleration* thiz = me;
+    thiz->fields.org_xmlvm_iphone_UIAcceleration.x = n1;
+    thiz->fields.org_xmlvm_iphone_UIAcceleration.y = n2;
+    thiz->fields.org_xmlvm_iphone_UIAcceleration.z = n3;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_DOUBLE org_xmlvm_iphone_UIAcceleration_x__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAcceleration_x__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIAcceleration* thiz = me;
+    return thiz->fields.org_xmlvm_iphone_UIAcceleration.x;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_DOUBLE org_xmlvm_iphone_UIAcceleration_y__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAcceleration_y__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIAcceleration* thiz = me;
+    return thiz->fields.org_xmlvm_iphone_UIAcceleration.y;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_DOUBLE org_xmlvm_iphone_UIAcceleration_z__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAcceleration_z__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIAcceleration* thiz = me;
+    return thiz->fields.org_xmlvm_iphone_UIAcceleration.z;
     //XMLVM_END_WRAPPER
 }
 

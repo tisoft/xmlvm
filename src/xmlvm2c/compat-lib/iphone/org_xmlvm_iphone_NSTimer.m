@@ -21,30 +21,37 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_ARRAYTYPE;
 #import "org_xmlvm_iphone_NSTimerDelegate.h"
 
 
-@interface WrapTimer: NSObject <UIAccelerometerDelegate>
+@interface NSTimerWrapper: NSObject
 {
-	org_xmlvm_iphone_NSTimerDelegate *target;
-	void *obj;
+	org_xmlvm_iphone_NSTimerDelegate* delegate;
+	JAVA_OBJECT                       userInfo;
 }
 
-- (id) initWithDelegate: (void *) obj: (org_xmlvm_iphone_NSTimerDelegate *) target: (float) interval: (bool) repeat;
+- (id) initWithDelegate:(org_xmlvm_iphone_NSTimerDelegate*) delegate_
+                       :(JAVA_OBJECT) userInfo_
+                       :(JAVA_FLOAT) interval
+                       :(JAVA_BOOLEAN) repeat;
 @end
 
-@implementation WrapTimer
 
-- (void)timeFire: (NSTimer*) param
+@implementation NSTimerWrapper
+
+- (id) initWithDelegate:(org_xmlvm_iphone_NSTimerDelegate*) delegate_
+                       :(JAVA_OBJECT) userInfo_
+                       :(JAVA_FLOAT) interval
+                       :(JAVA_BOOLEAN) repeat
 {
-	Func_VOO toCall = XMLVM_LOOKUP_INTERFACE_METHOD(self->target, "org.xmlvm.iphone.NSTimerDelegate", XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSTimerDelegate_timerEvent___java_lang_Object);
-	toCall(self->target, self->obj);
+    [super init];
+	self->delegate = delegate_;
+	self->userInfo = userInfo_;
+	[NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(timerEvent:) userInfo:NULL repeats:repeat];	
+	return self;
 }
 
-- (id) initWithDelegate: (void *) objIn: (org_xmlvm_iphone_NSTimerDelegate *) targetIn: (float) interval: (bool) repeat
+- (void) timerEvent:(NSTimer*) param
 {
-	self->obj = objIn;
-	self->target = targetIn;
-	
-	[NSTimer scheduledTimerWithTimeInterval:interval target:self selector: @selector(timeFire:) userInfo:NULL repeats:repeat];	
-	return self;
+	Func_VOO toCall = XMLVM_LOOKUP_INTERFACE_METHOD(self->delegate, "org.xmlvm.iphone.NSTimerDelegate", XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSTimerDelegate_timerEvent___java_lang_Object);
+	toCall(self->delegate, self->userInfo);
 }
 
 @end
@@ -105,6 +112,8 @@ void __INIT_org_xmlvm_iphone_NSTimer()
 void __DELETE_org_xmlvm_iphone_NSTimer(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSTimer]
+	org_xmlvm_iphone_NSTimer* thiz = me;
+	[((NSTimerWrapper*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) release];
     //XMLVM_END_WRAPPER
 }
 
@@ -114,6 +123,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSTimer()
     org_xmlvm_iphone_NSTimer* me = (org_xmlvm_iphone_NSTimer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSTimer));
     me->tib = &__TIB_org_xmlvm_iphone_NSTimer;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSTimer]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSTimer);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -128,13 +138,17 @@ JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_
 {
     if (!__TIB_org_xmlvm_iphone_NSTimer.classInitialized) __INIT_org_xmlvm_iphone_NSTimer();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean]
-	org_xmlvm_iphone_NSTimer* tim = __NEW_org_xmlvm_iphone_NSTimer();
+	org_xmlvm_iphone_NSTimer* timer = __NEW_org_xmlvm_iphone_NSTimer();
 	// n1 = timerInterval
 	// n2 = NSTimerDelegate target
 	// n3 = userInfo
 	// n4 = repeats 
-	tim->fields.org_xmlvm_iphone_NSTimer.ocTimer = [[WrapTimer alloc] initWithDelegate: n3: n2: n1 : n4];
-	return tim;
+	NSTimerWrapper* nsTimer = [[NSTimerWrapper alloc] initWithDelegate:n2
+                                                                      :n3
+                                                                      :n1
+                                                                      :n4];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(timer, nsTimer);
+	return timer;
     //XMLVM_END_WRAPPER
 }
 

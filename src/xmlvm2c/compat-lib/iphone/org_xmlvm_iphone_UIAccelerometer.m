@@ -13,60 +13,40 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometer;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometer_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
-/*
-#import <UIKit/UIAccelerometer.h>
 
-bridge_UIAccelerometer bridge_UIAccelerometer_sharedAccelerometer__()
-{
-	return (bridge_UIAccelerometer) [UIAccelerometer sharedAccelerometer];
-}
-void bridge_UIAccelerometer_setUpdateInterval(bridge_UIAccelerometer accel, double value)
-{
-	UIAccelerometer *a = (UIAccelerometer*)accel;
-	[a setUpdateInterval: value];
+@interface UIAccelerometerDelegateWrapper : NSObject <UIAccelerometerDelegate> {
+    
+    JAVA_OBJECT delegate;
+    JAVA_OBJECT accelerometer;
 }
 
-
-@interface WrapAccel: NSObject <UIAccelerometerDelegate>
-{
-	bridge_UIAccelerometerDelegateEventSink target;
-	void *obj;
-	bridge_UIAccelerometer accel;
-}
-
-- (id) initWithDelegate: (void *) obj: (bridge_UIAccelerometerDelegateEventSink) target: (bridge_UIAccelerometer) accel;
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_
+                       :(JAVA_OBJECT) accelerometer_;
+- (void) accelerometer:(UIAccelerometer*) accelerometer didAccelerate:(UIAcceleration*) acceleration;
 @end
 
-@implementation WrapAccel
 
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration;
+@implementation UIAccelerometerDelegateWrapper
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_
+                       :(JAVA_OBJECT) accelerometer_
 {
-	target(obj, 0);
+    [super init];
+    self->delegate = delegate_;
+    self->accelerometer = accelerometer_;
+    return self;
 }
 
-- (id) initWithDelegate: (void *) objIn: (bridge_UIAccelerometerDelegateEventSink) targetIn: (bridge_UIAccelerometer) accelIn
+- (void) accelerometer:(UIAccelerometer*) accelerometer didAccelerate:(UIAcceleration*) acceleration
 {
-	self->obj = objIn;
-	self->target = targetIn;
-	self->accel = accelIn;
-	
-	UIAccelerometer *a = (UIAccelerometer*)accel;
-	
-	[a setDelegate: self];
-	return self;
+    org_xmlvm_iphone_UIAcceleration* a = __NEW_org_xmlvm_iphone_UIAcceleration();
+    org_xmlvm_iphone_UIAcceleration___INIT____double_double_double(a, acceleration.x, acceleration.y, acceleration.z);
+    Func_VOOO toCall = XMLVM_LOOKUP_INTERFACE_METHOD(self->delegate, "org.xmlvm.iphone.UIAccelerometerDelegate", XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAccelerometerDelegate_accelerometerDidAccelerate___org_xmlvm_iphone_UIAccelerometer_org_xmlvm_iphone_UIAcceleration);
+	toCall(self->delegate, self->accelerometer, a);
 }
 
 @end
 
-
-//TODO: go where?
-bridge_UIAccelerometerDelegateEventSink toCall)
-{
-	WrapAccel *toRet = [[WrapAccel alloc] initWithDelegate: targetObject : toCall: accel];
-	return (bridge_UIAccelerometerDelegate) toRet;
-	
-}
-*/
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -123,6 +103,8 @@ void __INIT_org_xmlvm_iphone_UIAccelerometer()
 void __DELETE_org_xmlvm_iphone_UIAccelerometer(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIAccelerometer]
+	org_xmlvm_iphone_UIAccelerometer* thiz = me;
+    [thiz->fields.org_xmlvm_iphone_UIAccelerometer.delegateObjC release];
     //XMLVM_END_WRAPPER
 }
 
@@ -132,6 +114,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAccelerometer()
     org_xmlvm_iphone_UIAccelerometer* me = (org_xmlvm_iphone_UIAccelerometer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIAccelerometer));
     me->tib = &__TIB_org_xmlvm_iphone_UIAccelerometer;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIAccelerometer]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIAccelerometer);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -146,22 +129,33 @@ JAVA_OBJECT org_xmlvm_iphone_UIAccelerometer_sharedAccelerometer__()
 {
     if (!__TIB_org_xmlvm_iphone_UIAccelerometer.classInitialized) __INIT_org_xmlvm_iphone_UIAccelerometer();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAccelerometer_sharedAccelerometer__]
-	//TODO: real impl
-	return __NEW_org_xmlvm_iphone_UIAccelerometer();
+    org_xmlvm_iphone_UIAccelerometer* me = __NEW_org_xmlvm_iphone_UIAccelerometer();
+    UIAccelerometer* sharedAccelerometer = [UIAccelerometer sharedAccelerometer];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, sharedAccelerometer);
+	return me;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIAccelerometer_setUpdateInterval___double(JAVA_OBJECT me, JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAccelerometer_setUpdateInterval___double]
-    NSLog(@"NOT IMPLEMENTED: org_xmlvm_iphone_UIAccelerometer_setUpdateInterval___double");
+    org_xmlvm_iphone_UIAccelerometer* thiz = me;
+    UIAccelerometer* accelerometer = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    [accelerometer setUpdateInterval:n1];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate]
-    NSLog(@"NOT IMPLEMENTED: org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate");
+    org_xmlvm_iphone_UIAccelerometer* thiz = me;
+    if (thiz->fields.org_xmlvm_iphone_UIAccelerometer.delegateObjC != nil) {
+        [thiz->fields.org_xmlvm_iphone_UIAccelerometer.delegateObjC release];
+    }
+    UIAccelerometerDelegateWrapper* delegateWrapper = [[UIAccelerometerDelegateWrapper alloc] initWithDelegate:n1:me];
+    [((UIAccelerometer*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) setDelegate:delegateWrapper];
+    thiz->fields.org_xmlvm_iphone_UIAccelerometer.delegateObjC = delegateWrapper;
+    thiz->fields.org_xmlvm_iphone_UIAccelerometer.delegateC = n1;
     //XMLVM_END_WRAPPER
 }
 
