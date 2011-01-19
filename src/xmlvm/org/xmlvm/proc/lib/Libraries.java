@@ -39,6 +39,7 @@ public class Libraries {
         libraries.add(new JdkLibrary());
         libraries.add(new CocoaJavaLibrary());
         libraries.add(new XmlvmUtilLibrary());
+        libraries.add(new IPhoneAndroidLibrary());
     }
 
 
