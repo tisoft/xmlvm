@@ -402,7 +402,8 @@ public abstract class UniversalFile {
                     return false;
                 }
                 path = path.substring(basePath.length() + 1);
-                outputStream.putNextEntry(new ZipEntry(pathPrefix + path));
+                String entryPath = (pathPrefix + path).replace('\\', '/');
+                outputStream.putNextEntry(new ZipEntry(entryPath));
                 outputStream.write(fileToArchive.getFileAsBytes());
             }
             outputStream.close();
