@@ -46,6 +46,7 @@ typedef struct org_xmlvm_iphone_SKPaymentTransaction org_xmlvm_iphone_SKPaymentT
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getTransactionState__ 20
 
 void __INIT_org_xmlvm_iphone_SKPaymentTransaction();
+void __DELETE_org_xmlvm_iphone_SKPaymentTransaction(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKPaymentTransaction();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKPaymentTransaction();
 // Vtable index: 14

@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_CLHeadingFilter org_xmlvm_iphone_CLHeadingFilter
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CLHeadingFilter 11
 
 void __INIT_org_xmlvm_iphone_CLHeadingFilter();
+void __DELETE_org_xmlvm_iphone_CLHeadingFilter(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLHeadingFilter();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CLHeadingFilter();
 JAVA_DOUBLE org_xmlvm_iphone_CLHeadingFilter_GET_None();

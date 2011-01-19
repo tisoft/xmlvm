@@ -49,6 +49,7 @@ typedef struct org_xmlvm_iphone_MKMapRect org_xmlvm_iphone_MKMapRect;
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKMapRect 14
 
 void __INIT_org_xmlvm_iphone_MKMapRect();
+void __DELETE_org_xmlvm_iphone_MKMapRect(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKMapRect();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKMapRect();
 void org_xmlvm_iphone_MKMapRect___INIT____float_float_float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4);

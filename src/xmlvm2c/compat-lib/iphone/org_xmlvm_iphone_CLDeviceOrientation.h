@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_CLDeviceOrientation org_xmlvm_iphone_CLDeviceOri
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CLDeviceOrientation 11
 
 void __INIT_org_xmlvm_iphone_CLDeviceOrientation();
+void __DELETE_org_xmlvm_iphone_CLDeviceOrientation(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLDeviceOrientation();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CLDeviceOrientation();
 JAVA_INT org_xmlvm_iphone_CLDeviceOrientation_GET_Unknown();

@@ -15,6 +15,8 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <UIKit/UISwitch.h>
+#include "org_xmlvm_iphone_CGRect.h"
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_FLOAT _STATIC_org_xmlvm_iphone_UISwitch_kSwitchButtonWidth;
@@ -120,6 +122,7 @@ void __INIT_org_xmlvm_iphone_UISwitch()
 void __DELETE_org_xmlvm_iphone_UISwitch(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UISwitch]
+    __DELETE_org_xmlvm_iphone_UIControl(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -129,6 +132,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UISwitch()
     org_xmlvm_iphone_UISwitch* me = (org_xmlvm_iphone_UISwitch*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UISwitch));
     me->tib = &__TIB_org_xmlvm_iphone_UISwitch;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UISwitch]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UISwitch);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -175,21 +179,24 @@ void org_xmlvm_iphone_UISwitch___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_UISwitch___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISwitch___INIT____org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+    UISwitch* obj = [[UISwitch alloc] initWithFrame:toCGRect(n1)];
+    org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UISwitch_setOn___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISwitch_setOn___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIControl* thiz = me;
+    [((UISwitch*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setOn:n1];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UISwitch_isOn__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISwitch_isOn__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UISwitch* thiz = me;
+    return [(UISwitch*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) isOn];
     //XMLVM_END_WRAPPER
 }
 

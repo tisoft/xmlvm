@@ -92,6 +92,17 @@ void __INIT_org_xmlvm_iphone_NSObject()
 void __DELETE_org_xmlvm_iphone_NSObject(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSObject]
+    /*
+     * We implement the destructor of NSObject, but in NSObject itself
+     * we do not register a finalizer with the GC. Each subclass decides
+     * if it wants to register a finalizer in which case this __DELETE_
+     * function would be called. E.g., UIButton will register a finalizer
+     * because it needs to dispose the UIButton, but CGRect will not
+     * register a finalizer because it is a value type and not an Objective-C
+     * object that needs to be wrapped.
+     */
+    org_xmlvm_iphone_NSObject* thiz = me;
+	[((NSObject*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) release];
     //XMLVM_END_WRAPPER
 }
 

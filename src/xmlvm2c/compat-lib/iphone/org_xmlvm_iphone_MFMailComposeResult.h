@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_MFMailComposeResult org_xmlvm_iphone_MFMailCompo
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MFMailComposeResult 11
 
 void __INIT_org_xmlvm_iphone_MFMailComposeResult();
+void __DELETE_org_xmlvm_iphone_MFMailComposeResult(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMailComposeResult();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MFMailComposeResult();
 JAVA_INT org_xmlvm_iphone_MFMailComposeResult_GET_Cancelled();

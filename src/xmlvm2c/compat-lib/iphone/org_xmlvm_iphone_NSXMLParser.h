@@ -53,6 +53,7 @@ typedef struct org_xmlvm_iphone_NSXMLParser org_xmlvm_iphone_NSXMLParser;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParser_parse__ 19
 
 void __INIT_org_xmlvm_iphone_NSXMLParser();
+void __DELETE_org_xmlvm_iphone_NSXMLParser(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSXMLParser();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSXMLParser();
 void org_xmlvm_iphone_NSXMLParser___INIT____org_xmlvm_iphone_NSData(JAVA_OBJECT me, JAVA_OBJECT n1);

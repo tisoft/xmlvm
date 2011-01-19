@@ -243,10 +243,10 @@ void __DELETE_org_xmlvm_iphone_UIView(void* me, void* client_data)
 	 * This method will be called by the garbage collector whenever the object is deleted.
 	 * Since the C version of class UIView is a wrapper for the Objective-C class UIView,
 	 * we need to make sure the wrapped Objective-C object gets properly deleted by sending
-	 * it the 'release' message.
+	 * it the 'release' message. This happens in the destructor of NSObject that is implemented
+     * in __DELETE_org_xmlvm_iphone_NSObject().
 	 */
-	org_xmlvm_iphone_UIView *thiz = me;
-	[((UIView*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) release];
+    __DELETE_org_xmlvm_iphone_UIResponder(me, client_data);
     //XMLVM_END_WRAPPER
 }
 

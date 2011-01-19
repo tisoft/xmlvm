@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_UIActivityIndicatorViewStyle org_xmlvm_iphone_UI
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIActivityIndicatorViewStyle 11
 
 void __INIT_org_xmlvm_iphone_UIActivityIndicatorViewStyle();
+void __DELETE_org_xmlvm_iphone_UIActivityIndicatorViewStyle(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActivityIndicatorViewStyle();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIActivityIndicatorViewStyle();
 JAVA_INT org_xmlvm_iphone_UIActivityIndicatorViewStyle_GET_WhiteLarge();

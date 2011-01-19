@@ -17,6 +17,47 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#import <UIKit/UIControl.h>
+
+
+@interface UIControlDelegateWrapper : NSObject {
+    
+    JAVA_OBJECT delegate;
+    JAVA_OBJECT control;
+}
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_
+                       :(JAVA_OBJECT) control_;
+- (void) raiseEvent:(UIControl*) control :(int)event;
+@end
+
+
+@implementation UIControlDelegateWrapper
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_
+                       :(JAVA_OBJECT) control_
+{
+    [super init];
+    self->delegate = delegate_;
+    self->control = control_;
+    return self;
+}
+
+
+- (void) raiseEvent:(UIControl*) control :(int)event;
+{
+    Func_VOOI toCall = XMLVM_LOOKUP_INTERFACE_METHOD(self->delegate, "org.xmlvm.iphone.UIControlDelegate", XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControlDelegate_raiseEvent___org_xmlvm_iphone_UIControl_int);
+	toCall(self->delegate, self->control, event);
+}
+
+@end
+
+void org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
+{
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -109,6 +150,9 @@ void __INIT_org_xmlvm_iphone_UIControl()
 void __DELETE_org_xmlvm_iphone_UIControl(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIControl]
+    org_xmlvm_iphone_UIControl* thiz = me;
+    [((UIControl*) (thiz->fields.org_xmlvm_iphone_UIControl.delegateWrapper)) release];
+    __DELETE_org_xmlvm_iphone_UIView(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -148,7 +192,11 @@ void org_xmlvm_iphone_UIControl___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me
 void org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIControl* thiz = me;
+    UIControlDelegateWrapper* wrapper = [[UIControlDelegateWrapper alloc] initWithDelegate:n1 :me];
+    thiz->fields.org_xmlvm_iphone_UIControl.delegateWrapper = wrapper;
+    [((UIControl*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) addTarget:wrapper action:@selector(raiseEvent::)
+                                                                   forControlEvents:n2];
     //XMLVM_END_WRAPPER
 }
 

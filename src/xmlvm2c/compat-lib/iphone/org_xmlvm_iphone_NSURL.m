@@ -13,6 +13,14 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURL;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURL_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#include "org_xmlvm_iphone_NSString.h"
+
+void org_xmlvm_iphone_NSURL_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -99,7 +107,12 @@ JAVA_OBJECT org_xmlvm_iphone_NSURL_fileURLWithPath___java_lang_String(JAVA_OBJEC
 {
     if (!__TIB_org_xmlvm_iphone_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSURL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSURL_fileURLWithPath___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    NSString* path = toNSString(n1);
+    NSURL* url = [NSURL fileURLWithPath:path];
+    [path release];
+    org_xmlvm_iphone_NSURL* me = __NEW_org_xmlvm_iphone_NSURL();
+    org_xmlvm_iphone_NSURL_INTERNAL_CONSTRUCTOR(me, url);
+    return me;
     //XMLVM_END_WRAPPER
 }
 

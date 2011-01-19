@@ -65,6 +65,7 @@ typedef struct org_xmlvm_iphone_UIPickerView org_xmlvm_iphone_UIPickerView;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerView_setShowsSelectionIndicator___boolean 83
 
 void __INIT_org_xmlvm_iphone_UIPickerView();
+void __DELETE_org_xmlvm_iphone_UIPickerView(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPickerView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPickerView();
 void org_xmlvm_iphone_UIPickerView___INIT___(JAVA_OBJECT me);

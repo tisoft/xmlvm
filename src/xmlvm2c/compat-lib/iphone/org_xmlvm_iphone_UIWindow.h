@@ -61,6 +61,7 @@ typedef struct org_xmlvm_iphone_UIWindow org_xmlvm_iphone_UIWindow;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWindow_convertRectFromWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow 75
 
 void __INIT_org_xmlvm_iphone_UIWindow();
+void __DELETE_org_xmlvm_iphone_UIWindow(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWindow();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIWindow();
 void org_xmlvm_iphone_UIWindow___INIT___(JAVA_OBJECT me);

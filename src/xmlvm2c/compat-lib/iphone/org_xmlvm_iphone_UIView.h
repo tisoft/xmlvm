@@ -127,6 +127,7 @@ typedef struct org_xmlvm_iphone_UIView org_xmlvm_iphone_UIView;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect 69
 
 void __INIT_org_xmlvm_iphone_UIView();
+void __DELETE_org_xmlvm_iphone_UIView(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIView();
 void org_xmlvm_iphone_UIView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);

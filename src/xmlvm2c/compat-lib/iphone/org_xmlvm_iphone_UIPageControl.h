@@ -53,6 +53,7 @@ typedef struct org_xmlvm_iphone_UIPageControl org_xmlvm_iphone_UIPageControl;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPageControl_setNumberOfPages___int 79
 
 void __INIT_org_xmlvm_iphone_UIPageControl();
+void __DELETE_org_xmlvm_iphone_UIPageControl(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPageControl();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPageControl();
 void org_xmlvm_iphone_UIPageControl___INIT___(JAVA_OBJECT me);

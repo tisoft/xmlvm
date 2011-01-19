@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_UIKeyboardType org_xmlvm_iphone_UIKeyboardType;
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIKeyboardType 11
 
 void __INIT_org_xmlvm_iphone_UIKeyboardType();
+void __DELETE_org_xmlvm_iphone_UIKeyboardType(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIKeyboardType();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIKeyboardType();
 JAVA_INT org_xmlvm_iphone_UIKeyboardType_GET_Default();

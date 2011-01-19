@@ -101,6 +101,7 @@ typedef struct org_xmlvm_iphone_MKMapView org_xmlvm_iphone_MKMapView;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapRect_org_xmlvm_iphone_UIEdgeInsets 98
 
 void __INIT_org_xmlvm_iphone_MKMapView();
+void __DELETE_org_xmlvm_iphone_MKMapView(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKMapView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKMapView();
 void org_xmlvm_iphone_MKMapView___INIT___(JAVA_OBJECT me);

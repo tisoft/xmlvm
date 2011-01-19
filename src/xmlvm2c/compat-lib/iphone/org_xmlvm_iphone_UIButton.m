@@ -97,8 +97,7 @@ void __INIT_org_xmlvm_iphone_UIButton()
 void __DELETE_org_xmlvm_iphone_UIButton(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIButton]
-	org_xmlvm_iphone_UIButton *thiz = me;
-	[((UIButton*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) release];
+    __DELETE_org_xmlvm_iphone_UIControl(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -129,8 +128,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIButton_buttonWithType___int(JAVA_INT n1)
 	[p release];
 	
 	JAVA_OBJECT b = __NEW_org_xmlvm_iphone_UIButton();
-	org_xmlvm_iphone_NSObject___INIT___(b);
-	((org_xmlvm_iphone_UIButton*) b)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = objcBtn;
+    org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(b, objcBtn);
 	return b;
     //XMLVM_END_WRAPPER
 }

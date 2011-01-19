@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_NSNotification org_xmlvm_iphone_NSNotification;
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSNotification 14
 
 void __INIT_org_xmlvm_iphone_NSNotification();
+void __DELETE_org_xmlvm_iphone_NSNotification(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNotification();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSNotification();
 void org_xmlvm_iphone_NSNotification___INIT___(JAVA_OBJECT me);

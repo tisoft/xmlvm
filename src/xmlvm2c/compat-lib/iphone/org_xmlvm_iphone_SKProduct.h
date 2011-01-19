@@ -44,6 +44,7 @@ typedef struct org_xmlvm_iphone_SKProduct org_xmlvm_iphone_SKProduct;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProduct_getProductIdentifier__ 18
 
 void __INIT_org_xmlvm_iphone_SKProduct();
+void __DELETE_org_xmlvm_iphone_SKProduct(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKProduct();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKProduct();
 // Vtable index: 14

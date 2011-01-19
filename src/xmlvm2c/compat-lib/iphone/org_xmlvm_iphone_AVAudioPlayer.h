@@ -36,7 +36,11 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayer;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayer_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
-#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_AVAudioPlayer
+#import <AVFoundation/AVFoundation.h>
+
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_AVAudioPlayer \
+    JAVA_OBJECT delegateC; \
+    id<AVAudioPlayerDelegate> delegateObjC;
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_AVAudioPlayer \
@@ -77,6 +81,7 @@ typedef struct org_xmlvm_iphone_AVAudioPlayer org_xmlvm_iphone_AVAudioPlayer;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_AVAudioPlayer_getData__ 31
 
 void __INIT_org_xmlvm_iphone_AVAudioPlayer();
+void __DELETE_org_xmlvm_iphone_AVAudioPlayer(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_AVAudioPlayer();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_AVAudioPlayer();
 JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT n1, JAVA_OBJECT n2);

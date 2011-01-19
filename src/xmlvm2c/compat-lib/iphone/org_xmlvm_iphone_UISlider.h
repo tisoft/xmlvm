@@ -58,6 +58,7 @@ typedef struct org_xmlvm_iphone_UISlider org_xmlvm_iphone_UISlider;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 16
 
 void __INIT_org_xmlvm_iphone_UISlider();
+void __DELETE_org_xmlvm_iphone_UISlider(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISlider();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UISlider();
 void org_xmlvm_iphone_UISlider___INIT___(JAVA_OBJECT me);

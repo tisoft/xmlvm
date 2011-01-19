@@ -59,6 +59,7 @@ typedef struct org_xmlvm_iphone_NSDateComponents org_xmlvm_iphone_NSDateComponen
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSDateComponents_setWeekdayOrdinal___int 33
 
 void __INIT_org_xmlvm_iphone_NSDateComponents();
+void __DELETE_org_xmlvm_iphone_NSDateComponents(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSDateComponents();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSDateComponents();
 JAVA_INT org_xmlvm_iphone_NSDateComponents_GET_Wrap();

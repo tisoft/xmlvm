@@ -49,6 +49,7 @@ typedef struct org_xmlvm_iphone_SKProductsRequest org_xmlvm_iphone_SKProductsReq
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProductsRequest_setProductsDelegate___org_xmlvm_iphone_SKProductsRequestDelegate 19
 
 void __INIT_org_xmlvm_iphone_SKProductsRequest();
+void __DELETE_org_xmlvm_iphone_SKProductsRequest(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKProductsRequest();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKProductsRequest();
 void org_xmlvm_iphone_SKProductsRequest___INIT____java_util_Set(JAVA_OBJECT me, JAVA_OBJECT n1);

@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_UITableViewCellSeparatorStyle org_xmlvm_iphone_U
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewCellSeparatorStyle 11
 
 void __INIT_org_xmlvm_iphone_UITableViewCellSeparatorStyle();
+void __DELETE_org_xmlvm_iphone_UITableViewCellSeparatorStyle(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCellSeparatorStyle();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewCellSeparatorStyle();
 JAVA_INT org_xmlvm_iphone_UITableViewCellSeparatorStyle_GET_None();

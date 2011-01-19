@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_UIDataDetectorType org_xmlvm_iphone_UIDataDetect
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIDataDetectorType 11
 
 void __INIT_org_xmlvm_iphone_UIDataDetectorType();
+void __DELETE_org_xmlvm_iphone_UIDataDetectorType(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDataDetectorType();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIDataDetectorType();
 JAVA_INT org_xmlvm_iphone_UIDataDetectorType_GET_PhoneNumber();

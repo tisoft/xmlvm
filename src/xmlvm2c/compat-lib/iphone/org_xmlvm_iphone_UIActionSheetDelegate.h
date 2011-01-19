@@ -49,6 +49,7 @@ typedef struct org_xmlvm_iphone_UIActionSheetDelegate org_xmlvm_iphone_UIActionS
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheetDelegate_actionSheetCancel___org_xmlvm_iphone_UIActionSheet 19
 
 void __INIT_org_xmlvm_iphone_UIActionSheetDelegate();
+void __DELETE_org_xmlvm_iphone_UIActionSheetDelegate(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActionSheetDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIActionSheetDelegate();
 void org_xmlvm_iphone_UIActionSheetDelegate___INIT___(JAVA_OBJECT me);

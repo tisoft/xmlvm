@@ -46,6 +46,7 @@ typedef struct org_xmlvm_iphone_CGFont org_xmlvm_iphone_CGFont;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGFont_getUnitsPerEm__ 16
 
 void __INIT_org_xmlvm_iphone_CGFont();
+void __DELETE_org_xmlvm_iphone_CGFont(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGFont();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGFont();
 JAVA_OBJECT org_xmlvm_iphone_CGFont_createFromDataProider___org_xmlvm_iphone_CGDataProvider(JAVA_OBJECT n1);

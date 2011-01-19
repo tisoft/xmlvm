@@ -45,6 +45,7 @@ typedef struct org_xmlvm_iphone_UIPickerViewDataSource org_xmlvm_iphone_UIPicker
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerViewDataSource_numberOfRowsInComponent___org_xmlvm_iphone_UIPickerView_int 15
 
 void __INIT_org_xmlvm_iphone_UIPickerViewDataSource();
+void __DELETE_org_xmlvm_iphone_UIPickerViewDataSource(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPickerViewDataSource();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPickerViewDataSource();
 void org_xmlvm_iphone_UIPickerViewDataSource___INIT___(JAVA_OBJECT me);

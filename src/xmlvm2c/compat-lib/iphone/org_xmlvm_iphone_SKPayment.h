@@ -50,6 +50,7 @@ typedef struct org_xmlvm_iphone_SKPayment org_xmlvm_iphone_SKPayment;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPayment_getRequestData__ 16
 
 void __INIT_org_xmlvm_iphone_SKPayment();
+void __DELETE_org_xmlvm_iphone_SKPayment(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKPayment();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKPayment();
 JAVA_OBJECT org_xmlvm_iphone_SKPayment_paymentWithProduct___org_xmlvm_iphone_SKProduct(JAVA_OBJECT n1);

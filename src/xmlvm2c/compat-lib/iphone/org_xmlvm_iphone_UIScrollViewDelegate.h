@@ -57,6 +57,7 @@ typedef struct org_xmlvm_iphone_UIScrollViewDelegate org_xmlvm_iphone_UIScrollVi
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndScrollingAnimation___org_xmlvm_iphone_UIScrollView 23
 
 void __INIT_org_xmlvm_iphone_UIScrollViewDelegate();
+void __DELETE_org_xmlvm_iphone_UIScrollViewDelegate(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIScrollViewDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIScrollViewDelegate();
 void org_xmlvm_iphone_UIScrollViewDelegate___INIT___(JAVA_OBJECT me);

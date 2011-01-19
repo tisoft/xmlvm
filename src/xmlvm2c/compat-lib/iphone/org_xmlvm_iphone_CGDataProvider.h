@@ -43,6 +43,7 @@ typedef struct org_xmlvm_iphone_CGDataProvider org_xmlvm_iphone_CGDataProvider;
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGDataProvider 14
 
 void __INIT_org_xmlvm_iphone_CGDataProvider();
+void __DELETE_org_xmlvm_iphone_CGDataProvider(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGDataProvider();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGDataProvider();
 JAVA_OBJECT org_xmlvm_iphone_CGDataProvider_providerToPath___java_lang_String(JAVA_OBJECT n1);

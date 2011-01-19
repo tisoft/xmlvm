@@ -260,6 +260,11 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text>();&nl;</xsl:text>
 
+    <!-- Emit destructor -->
+    <xsl:text>void __DELETE_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>(void* me, void* client_data);&nl;</xsl:text>
+
     <!-- Emit new-operator -->
     <xsl:text>JAVA_OBJECT __NEW_</xsl:text>
     <xsl:value-of select="$clname"/>

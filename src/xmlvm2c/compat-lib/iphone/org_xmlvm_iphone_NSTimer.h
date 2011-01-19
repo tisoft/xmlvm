@@ -52,6 +52,7 @@ typedef struct org_xmlvm_iphone_NSTimer org_xmlvm_iphone_NSTimer;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSTimer_invalidate__ 14
 
 void __INIT_org_xmlvm_iphone_NSTimer();
+void __DELETE_org_xmlvm_iphone_NSTimer(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSTimer();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSTimer();
 JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(JAVA_FLOAT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4);

@@ -43,6 +43,7 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString_ARRAYTYPE;
 #import <Foundation/Foundation.h>
 
 NSString* toNSString(JAVA_OBJECT o);
+JAVA_OBJECT toJavaString(NSString* str);
 
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSString
 //XMLVM_END_DECLARATIONS
@@ -67,6 +68,7 @@ typedef struct org_xmlvm_iphone_NSString org_xmlvm_iphone_NSString;
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSString 14
 
 void __INIT_org_xmlvm_iphone_NSString();
+void __DELETE_org_xmlvm_iphone_NSString(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSString();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSString();
 JAVA_OBJECT org_xmlvm_iphone_NSString_stringWithContentsOfFile___java_lang_String(JAVA_OBJECT n1);

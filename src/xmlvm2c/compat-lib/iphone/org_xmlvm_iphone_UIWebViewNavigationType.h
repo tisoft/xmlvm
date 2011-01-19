@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_UIWebViewNavigationType org_xmlvm_iphone_UIWebVi
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIWebViewNavigationType 11
 
 void __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
+void __DELETE_org_xmlvm_iphone_UIWebViewNavigationType(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWebViewNavigationType();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIWebViewNavigationType();
 JAVA_INT org_xmlvm_iphone_UIWebViewNavigationType_GET_LinkClicked();

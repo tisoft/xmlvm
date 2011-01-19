@@ -18,6 +18,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
 NSString* toNSString(JAVA_OBJECT o)
 {
 	java_lang_String* s = (java_lang_String*) o;
@@ -27,6 +28,22 @@ NSString* toNSString(JAVA_OBJECT o)
 	const unichar* str = ((JAVA_ARRAY_CHAR*) value->fields.org_xmlvm_runtime_XMLVMArray.array_) + offset;
 	return [[NSString alloc] initWithCharacters:str length:count];
 }
+
+JAVA_OBJECT toJavaString(NSString* str)
+{
+    java_lang_String* s = __NEW_java_lang_String();
+    const char* chars = [str UTF8String];
+    int len = [str length];
+    JAVA_ARRAY_CHAR* data = XMLVM_MALLOC(len * 2);
+    int i;
+    for (i = 0; i < len; i++) {
+        data[i] = chars[i];
+    }
+    org_xmlvm_runtime_XMLVMArray* charArray = XMLVMArray_createSingleDimensionWithData(__CLASS_char_ARRAYTYPE, len, data);
+    java_lang_String___INIT____char_ARRAYTYPE(s, charArray);
+    return s;
+}
+    
 //XMLVM_END_IMPLEMENTATION
 
 

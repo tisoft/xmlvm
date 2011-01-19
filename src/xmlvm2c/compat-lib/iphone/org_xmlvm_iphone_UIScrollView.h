@@ -73,6 +73,7 @@ typedef struct org_xmlvm_iphone_UIScrollView org_xmlvm_iphone_UIScrollView;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean 87
 
 void __INIT_org_xmlvm_iphone_UIScrollView();
+void __DELETE_org_xmlvm_iphone_UIScrollView(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIScrollView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIScrollView();
 void org_xmlvm_iphone_UIScrollView___INIT___(JAVA_OBJECT me);

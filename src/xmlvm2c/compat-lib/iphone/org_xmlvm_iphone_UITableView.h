@@ -87,6 +87,7 @@ typedef struct org_xmlvm_iphone_UITableView org_xmlvm_iphone_UITableView;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableView_setRowHeight___float 107
 
 void __INIT_org_xmlvm_iphone_UITableView();
+void __DELETE_org_xmlvm_iphone_UITableView(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableView();
 void org_xmlvm_iphone_UITableView___INIT___(JAVA_OBJECT me);

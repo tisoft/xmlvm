@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_MKMapType org_xmlvm_iphone_MKMapType;
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKMapType 11
 
 void __INIT_org_xmlvm_iphone_MKMapType();
+void __DELETE_org_xmlvm_iphone_MKMapType(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKMapType();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKMapType();
 JAVA_INT org_xmlvm_iphone_MKMapType_GET_Standard();

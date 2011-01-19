@@ -67,6 +67,7 @@ typedef struct org_xmlvm_iphone_CGRect org_xmlvm_iphone_CGRect;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGRect_equals___java_lang_Object 1
 
 void __INIT_org_xmlvm_iphone_CGRect();
+void __DELETE_org_xmlvm_iphone_CGRect(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGRect();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGRect();
 void org_xmlvm_iphone_CGRect___INIT____float_float_float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4);

@@ -101,6 +101,9 @@ typedef union {
 
 typedef void (*VTABLE_PTR)();
 typedef void (*Func_VOO)(JAVA_OBJECT o1, JAVA_OBJECT o2);
+typedef void (*Func_VOOO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_OBJECT o3);
+typedef void (*Func_VOOB)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_BOOLEAN o3);
+typedef void (*Func_VOOI)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_INT o3);
 typedef JAVA_OBJECT (*Func_OOO)(JAVA_OBJECT o1, JAVA_OBJECT o2);
 typedef JAVA_OBJECT (*Func_O)();
 

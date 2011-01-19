@@ -44,6 +44,7 @@ typedef struct org_xmlvm_iphone_UIAlertViewDelegate org_xmlvm_iphone_UIAlertView
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertViewDelegate_clickedButtonAtIndex___org_xmlvm_iphone_UIAlertView_int 14
 
 void __INIT_org_xmlvm_iphone_UIAlertViewDelegate();
+void __DELETE_org_xmlvm_iphone_UIAlertViewDelegate(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAlertViewDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAlertViewDelegate();
 void org_xmlvm_iphone_UIAlertViewDelegate___INIT___(JAVA_OBJECT me);

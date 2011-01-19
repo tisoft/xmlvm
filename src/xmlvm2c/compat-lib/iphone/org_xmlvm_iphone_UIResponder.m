@@ -273,6 +273,7 @@ void __INIT_org_xmlvm_iphone_UIResponder()
 void __DELETE_org_xmlvm_iphone_UIResponder(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIResponder]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 

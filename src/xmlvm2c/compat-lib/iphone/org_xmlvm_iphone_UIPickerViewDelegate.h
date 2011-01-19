@@ -52,6 +52,7 @@ typedef struct org_xmlvm_iphone_UIPickerViewDelegate org_xmlvm_iphone_UIPickerVi
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerViewDelegate_didSelectRow___org_xmlvm_iphone_UIPickerView_int_int 18
 
 void __INIT_org_xmlvm_iphone_UIPickerViewDelegate();
+void __DELETE_org_xmlvm_iphone_UIPickerViewDelegate(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPickerViewDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPickerViewDelegate();
 void org_xmlvm_iphone_UIPickerViewDelegate___INIT___(JAVA_OBJECT me);

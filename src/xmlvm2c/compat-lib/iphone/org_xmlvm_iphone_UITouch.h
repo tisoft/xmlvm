@@ -55,6 +55,7 @@ typedef struct org_xmlvm_iphone_UITouch org_xmlvm_iphone_UITouch;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITouch_getPhase__ 19
 
 void __INIT_org_xmlvm_iphone_UITouch();
+void __DELETE_org_xmlvm_iphone_UITouch(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITouch();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITouch();
 void org_xmlvm_iphone_UITouch___INIT____int_org_xmlvm_iphone_UIView_int_int(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_INT n4);

@@ -56,6 +56,7 @@ typedef struct org_xmlvm_iphone_NSObject org_xmlvm_iphone_NSObject;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSObject_dealloc__ 13
 
 void __INIT_org_xmlvm_iphone_NSObject();
+void __DELETE_org_xmlvm_iphone_NSObject(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSObject();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSObject();
 void org_xmlvm_iphone_NSObject___INIT___(JAVA_OBJECT me);

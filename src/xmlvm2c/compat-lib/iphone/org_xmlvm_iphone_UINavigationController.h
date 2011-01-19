@@ -74,6 +74,7 @@ typedef struct org_xmlvm_iphone_UINavigationController org_xmlvm_iphone_UINaviga
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationController_updateViews__ 27
 
 void __INIT_org_xmlvm_iphone_UINavigationController();
+void __DELETE_org_xmlvm_iphone_UINavigationController(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationController();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UINavigationController();
 void org_xmlvm_iphone_UINavigationController___INIT___(JAVA_OBJECT me);

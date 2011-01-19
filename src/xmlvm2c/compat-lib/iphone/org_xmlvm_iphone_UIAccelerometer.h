@@ -22,8 +22,9 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometer_ARRAYTYPE;
 //XMLVM_BEGIN_DECLARATIONS
 #import <UIKit/UIAccelerometer.h>
 
-#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIAccelerometer JAVA_OBJECT delegateC; \
-                                                                      id<UIAccelerometerDelegate> delegateObjC;
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIAccelerometer \
+    JAVA_OBJECT delegateC; \
+    id<UIAccelerometerDelegate> delegateObjC;
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UIAccelerometer \
@@ -48,6 +49,7 @@ typedef struct org_xmlvm_iphone_UIAccelerometer org_xmlvm_iphone_UIAccelerometer
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate 15
 
 void __INIT_org_xmlvm_iphone_UIAccelerometer();
+void __DELETE_org_xmlvm_iphone_UIAccelerometer(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAccelerometer();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAccelerometer();
 JAVA_OBJECT org_xmlvm_iphone_UIAccelerometer_sharedAccelerometer__();

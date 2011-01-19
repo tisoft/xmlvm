@@ -41,6 +41,7 @@ typedef struct org_xmlvm_iphone_UIScreen org_xmlvm_iphone_UIScreen;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScreen_getApplicationFrame__ 15
 
 void __INIT_org_xmlvm_iphone_UIScreen();
+void __DELETE_org_xmlvm_iphone_UIScreen(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIScreen();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIScreen();
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_mainScreen__();

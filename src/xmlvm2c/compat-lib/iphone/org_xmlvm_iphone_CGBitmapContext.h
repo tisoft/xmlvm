@@ -43,6 +43,7 @@ typedef struct org_xmlvm_iphone_CGBitmapContext org_xmlvm_iphone_CGBitmapContext
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGBitmapContext 42
 
 void __INIT_org_xmlvm_iphone_CGBitmapContext();
+void __DELETE_org_xmlvm_iphone_CGBitmapContext(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGBitmapContext();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGBitmapContext();
 JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_createWithSize___int_int_org_xmlvm_iphone_CGImage(JAVA_INT n1, JAVA_INT n2, JAVA_OBJECT n3);

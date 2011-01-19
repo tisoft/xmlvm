@@ -50,6 +50,7 @@ typedef struct org_xmlvm_iphone_NSData org_xmlvm_iphone_NSData;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSData_getBytes__ 16
 
 void __INIT_org_xmlvm_iphone_NSData();
+void __DELETE_org_xmlvm_iphone_NSData(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSData();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSData();
 void org_xmlvm_iphone_NSData___INIT___(JAVA_OBJECT me);

@@ -56,6 +56,7 @@ typedef struct org_xmlvm_iphone_UISearchBarDelegate org_xmlvm_iphone_UISearchBar
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISearchBarDelegate_searchBarSelectedScopeButtonIndexDidChange___org_xmlvm_iphone_UISearchBar_int 22
 
 void __INIT_org_xmlvm_iphone_UISearchBarDelegate();
+void __DELETE_org_xmlvm_iphone_UISearchBarDelegate(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISearchBarDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UISearchBarDelegate();
 void org_xmlvm_iphone_UISearchBarDelegate___INIT___(JAVA_OBJECT me);

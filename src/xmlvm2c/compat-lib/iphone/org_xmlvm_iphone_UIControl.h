@@ -36,7 +36,10 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
-#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIControl
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIControl \
+    JAVA_OBJECT delegateWrapper;
+
+void org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj);
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UIControl \
@@ -62,6 +65,7 @@ typedef struct org_xmlvm_iphone_UIControl org_xmlvm_iphone_UIControl;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 16
 
 void __INIT_org_xmlvm_iphone_UIControl();
+void __DELETE_org_xmlvm_iphone_UIControl(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIControl();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIControl();
 void org_xmlvm_iphone_UIControl___INIT___(JAVA_OBJECT me);

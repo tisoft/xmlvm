@@ -77,6 +77,7 @@ typedef struct org_xmlvm_iphone_UILabel org_xmlvm_iphone_UILabel;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UILabel_setAdjustsFontSizeToFitWidth___boolean 87
 
 void __INIT_org_xmlvm_iphone_UILabel();
+void __DELETE_org_xmlvm_iphone_UILabel(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UILabel();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UILabel();
 void org_xmlvm_iphone_UILabel___INIT___(JAVA_OBJECT me);

@@ -83,6 +83,7 @@ typedef struct org_xmlvm_iphone_UISegmentedControl org_xmlvm_iphone_UISegmentedC
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISegmentedControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 16
 
 void __INIT_org_xmlvm_iphone_UISegmentedControl();
+void __DELETE_org_xmlvm_iphone_UISegmentedControl(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISegmentedControl();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UISegmentedControl();
 void org_xmlvm_iphone_UISegmentedControl___INIT___(JAVA_OBJECT me);

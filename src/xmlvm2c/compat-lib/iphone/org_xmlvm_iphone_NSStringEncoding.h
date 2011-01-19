@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_NSStringEncoding org_xmlvm_iphone_NSStringEncodi
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSStringEncoding 11
 
 void __INIT_org_xmlvm_iphone_NSStringEncoding();
+void __DELETE_org_xmlvm_iphone_NSStringEncoding(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSStringEncoding();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSStringEncoding();
 JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_ASCII();

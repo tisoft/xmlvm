@@ -68,6 +68,7 @@ typedef struct org_xmlvm_iphone_UIBarItem org_xmlvm_iphone_UIBarItem;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarItem_updateViews__ 26
 
 void __INIT_org_xmlvm_iphone_UIBarItem();
+void __DELETE_org_xmlvm_iphone_UIBarItem(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIBarItem();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIBarItem();
 void org_xmlvm_iphone_UIBarItem___INIT___(JAVA_OBJECT me);

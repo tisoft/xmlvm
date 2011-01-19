@@ -49,6 +49,7 @@ typedef struct org_xmlvm_iphone_MKUserLocation org_xmlvm_iphone_MKUserLocation;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_setTitle___java_lang_String 19
 
 void __INIT_org_xmlvm_iphone_MKUserLocation();
+void __DELETE_org_xmlvm_iphone_MKUserLocation(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKUserLocation();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKUserLocation();
 void org_xmlvm_iphone_MKUserLocation___INIT___(JAVA_OBJECT me);

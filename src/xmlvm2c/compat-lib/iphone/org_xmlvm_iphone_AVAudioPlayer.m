@@ -16,6 +16,61 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayer;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayer_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <AVFoundation/AVFoundation.h>
+
+@interface AVAudioPlayerDelegateWrapper : NSObject <AVAudioPlayerDelegate> {
+    
+    JAVA_OBJECT delegate;
+    JAVA_OBJECT player;
+}
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_
+                       :(JAVA_OBJECT) player_;
+- (void) audioPlayerDidFinishPlaying:(AVAudioPlayer*) player successfully:(BOOL) flag;
+- (void) audioPlayerDecodeErrorDidOccur:(AVAudioPlayer*) player error:(NSError*) error;
+- (void) audioPlayerBeginInterruption:(AVAudioPlayer*) player;
+- (void) audioPlayerEndInterruption:(AVAudioPlayer*) player;
+@end
+
+
+@implementation AVAudioPlayerDelegateWrapper
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_
+                       :(JAVA_OBJECT) player_
+{
+    [super init];
+    self->delegate = delegate_;
+    self->player = player_;
+    return self;
+}
+
+- (void) audioPlayerDidFinishPlaying:(AVAudioPlayer*) player successfully:(BOOL) flag
+{
+    Func_VOOB toCall = XMLVM_LOOKUP_INTERFACE_METHOD(self->delegate, "org.xmlvm.iphone.AVAudioPlayerDelegate", XMLVM_VTABLE_IDX_org_xmlvm_iphone_AVAudioPlayerDelegate_audioPlayerDidFinishPlaying___org_xmlvm_iphone_AVAudioPlayer_boolean);
+	toCall(self->delegate, self->player, flag);
+}
+
+- (void) audioPlayerDecodeErrorDidOccur:(AVAudioPlayer*) player error:(NSError*) error
+{
+    Func_VOOO toCall = XMLVM_LOOKUP_INTERFACE_METHOD(self->delegate, "org.xmlvm.iphone.AVAudioPlayerDelegate", XMLVM_VTABLE_IDX_org_xmlvm_iphone_AVAudioPlayerDelegate_audioPlayerDecodeErrorDidOccur___org_xmlvm_iphone_AVAudioPlayer_org_xmlvm_iphone_NSError);
+    //TODO wrap the error object
+	toCall(self->delegate, self->player, JAVA_NULL);
+}
+
+- (void) audioPlayerBeginInterruption:(AVAudioPlayer*) player
+{
+    Func_VOO toCall = XMLVM_LOOKUP_INTERFACE_METHOD(self->delegate, "org.xmlvm.iphone.AVAudioPlayerDelegate", XMLVM_VTABLE_IDX_org_xmlvm_iphone_AVAudioPlayerDelegate_audioPlayerBeginInterruption___org_xmlvm_iphone_AVAudioPlayer);
+	toCall(self->delegate, self->player);
+}
+
+- (void) audioPlayerEndInterruption:(AVAudioPlayer*) player
+{
+    Func_VOO toCall = XMLVM_LOOKUP_INTERFACE_METHOD(self->delegate, "org.xmlvm.iphone.AVAudioPlayerDelegate", XMLVM_VTABLE_IDX_org_xmlvm_iphone_AVAudioPlayerDelegate_audioPlayerEndInterruption___org_xmlvm_iphone_AVAudioPlayer);
+	toCall(self->delegate, self->player);
+}
+
+@end
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -88,6 +143,9 @@ void __INIT_org_xmlvm_iphone_AVAudioPlayer()
 void __DELETE_org_xmlvm_iphone_AVAudioPlayer(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_AVAudioPlayer]
+	org_xmlvm_iphone_AVAudioPlayer* thiz = me;
+    [thiz->fields.org_xmlvm_iphone_AVAudioPlayer.delegateObjC release];
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -97,6 +155,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_AVAudioPlayer()
     org_xmlvm_iphone_AVAudioPlayer* me = (org_xmlvm_iphone_AVAudioPlayer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_AVAudioPlayer));
     me->tib = &__TIB_org_xmlvm_iphone_AVAudioPlayer;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_AVAudioPlayer]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_AVAudioPlayer);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -111,7 +170,11 @@ JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithContentsOfURL___org_xm
 {
     if (!__TIB_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSURL* url = n1;
+    AVAudioPlayer* player = [[AVAudioPlayer alloc] initWithContentsOfURL:url->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj error:NULL];
+    org_xmlvm_iphone_AVAudioPlayer* me = __NEW_org_xmlvm_iphone_AVAudioPlayer();
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, player);
+    return me;
     //XMLVM_END_WRAPPER
 }
 
@@ -126,7 +189,8 @@ JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithData___org_xmlvm_iphon
 JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_play__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_play__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_AVAudioPlayer* thiz = me;
+    return [((AVAudioPlayer*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) play];
     //XMLVM_END_WRAPPER
 }
 
@@ -140,7 +204,8 @@ JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_playAtTime___double(JAVA_OBJECT me, 
 void org_xmlvm_iphone_AVAudioPlayer_stop__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_stop__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_AVAudioPlayer* thiz = me;
+    return [((AVAudioPlayer*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) stop];
     //XMLVM_END_WRAPPER
 }
 
@@ -168,7 +233,8 @@ JAVA_INT org_xmlvm_iphone_AVAudioPlayer_getNumberOfLoops__(JAVA_OBJECT me)
 void org_xmlvm_iphone_AVAudioPlayer_setNumberOfLoops___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_setNumberOfLoops___int]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_AVAudioPlayer* thiz = me;
+    [((AVAudioPlayer*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setNumberOfLoops:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -182,7 +248,15 @@ JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_getDelegate__(JAVA_OBJECT me)
 void org_xmlvm_iphone_AVAudioPlayer_setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_AVAudioPlayer* thiz = me;
+    if (thiz->fields.org_xmlvm_iphone_AVAudioPlayer.delegateObjC != nil) {
+        [thiz->fields.org_xmlvm_iphone_AVAudioPlayer.delegateObjC release];
+    }
+    AVAudioPlayerDelegateWrapper* delegateWrapper = [[AVAudioPlayerDelegateWrapper alloc] initWithDelegate:n1:me];
+    [((AVAudioPlayer*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) setDelegate:delegateWrapper];
+    thiz->fields.org_xmlvm_iphone_AVAudioPlayer.delegateObjC = delegateWrapper;
+    // We keep a C-reference to the delegate to tell the GC about the association
+    thiz->fields.org_xmlvm_iphone_AVAudioPlayer.delegateC = n1;
     //XMLVM_END_WRAPPER
 }
 

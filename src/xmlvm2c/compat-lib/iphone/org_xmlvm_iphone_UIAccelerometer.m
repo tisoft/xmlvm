@@ -14,6 +14,8 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometer_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 
+#include "org_xmlvm_iphone_UIAcceleration.h"
+
 @interface UIAccelerometerDelegateWrapper : NSObject <UIAccelerometerDelegate> {
     
     JAVA_OBJECT delegate;
@@ -36,6 +38,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometer_ARRAYTYPE;
     self->accelerometer = accelerometer_;
     return self;
 }
+
 
 - (void) accelerometer:(UIAccelerometer*) accelerometer didAccelerate:(UIAcceleration*) acceleration
 {
@@ -105,6 +108,7 @@ void __DELETE_org_xmlvm_iphone_UIAccelerometer(void* me, void* client_data)
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIAccelerometer]
 	org_xmlvm_iphone_UIAccelerometer* thiz = me;
     [thiz->fields.org_xmlvm_iphone_UIAccelerometer.delegateObjC release];
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -155,6 +159,7 @@ void org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerom
     UIAccelerometerDelegateWrapper* delegateWrapper = [[UIAccelerometerDelegateWrapper alloc] initWithDelegate:n1:me];
     [((UIAccelerometer*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) setDelegate:delegateWrapper];
     thiz->fields.org_xmlvm_iphone_UIAccelerometer.delegateObjC = delegateWrapper;
+    // We keep a C-reference to the delegate to tell the GC about the association
     thiz->fields.org_xmlvm_iphone_UIAccelerometer.delegateC = n1;
     //XMLVM_END_WRAPPER
 }

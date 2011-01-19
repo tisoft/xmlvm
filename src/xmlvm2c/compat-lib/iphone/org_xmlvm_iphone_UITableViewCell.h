@@ -62,6 +62,7 @@ typedef struct org_xmlvm_iphone_UITableViewCell org_xmlvm_iphone_UITableViewCell
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_getReuseIdentifier__ 83
 
 void __INIT_org_xmlvm_iphone_UITableViewCell();
+void __DELETE_org_xmlvm_iphone_UITableViewCell(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCell();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewCell();
 void org_xmlvm_iphone_UITableViewCell___INIT___(JAVA_OBJECT me);

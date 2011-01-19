@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_UIProgressViewStyle org_xmlvm_iphone_UIProgressV
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIProgressViewStyle 11
 
 void __INIT_org_xmlvm_iphone_UIProgressViewStyle();
+void __DELETE_org_xmlvm_iphone_UIProgressViewStyle(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIProgressViewStyle();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIProgressViewStyle();
 JAVA_INT org_xmlvm_iphone_UIProgressViewStyle_GET_Default();

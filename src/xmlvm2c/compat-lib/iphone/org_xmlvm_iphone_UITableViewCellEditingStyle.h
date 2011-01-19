@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_UITableViewCellEditingStyle org_xmlvm_iphone_UIT
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewCellEditingStyle 11
 
 void __INIT_org_xmlvm_iphone_UITableViewCellEditingStyle();
+void __DELETE_org_xmlvm_iphone_UITableViewCellEditingStyle(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCellEditingStyle();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewCellEditingStyle();
 JAVA_INT org_xmlvm_iphone_UITableViewCellEditingStyle_GET_None();

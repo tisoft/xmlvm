@@ -122,8 +122,7 @@ void __INIT_org_xmlvm_iphone_UILabel()
 void __DELETE_org_xmlvm_iphone_UILabel(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UILabel]
-    org_xmlvm_iphone_UILabel *thiz = me;
-	[((UILabel*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) release];
+    __DELETE_org_xmlvm_iphone_UIView(me, client_data);
     //XMLVM_END_WRAPPER
 }
 

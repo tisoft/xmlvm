@@ -59,6 +59,7 @@ typedef struct org_xmlvm_iphone_NSUserDefaults org_xmlvm_iphone_NSUserDefaults;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSUserDefaults_remove___java_lang_String 25
 
 void __INIT_org_xmlvm_iphone_NSUserDefaults();
+void __DELETE_org_xmlvm_iphone_NSUserDefaults(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSUserDefaults();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSUserDefaults();
 void org_xmlvm_iphone_NSUserDefaults___INIT___(JAVA_OBJECT me);

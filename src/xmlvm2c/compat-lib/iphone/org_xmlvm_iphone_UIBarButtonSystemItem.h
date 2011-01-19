@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_UIBarButtonSystemItem org_xmlvm_iphone_UIBarButt
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIBarButtonSystemItem 11
 
 void __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+void __DELETE_org_xmlvm_iphone_UIBarButtonSystemItem(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIBarButtonSystemItem();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIBarButtonSystemItem();
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Done();

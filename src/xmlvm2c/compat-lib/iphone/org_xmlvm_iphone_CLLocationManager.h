@@ -76,6 +76,7 @@ typedef struct org_xmlvm_iphone_CLLocationManager org_xmlvm_iphone_CLLocationMan
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocationManager_setPurpose___java_lang_String 38
 
 void __INIT_org_xmlvm_iphone_CLLocationManager();
+void __DELETE_org_xmlvm_iphone_CLLocationManager(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLLocationManager();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CLLocationManager();
 void org_xmlvm_iphone_CLLocationManager___INIT___(JAVA_OBJECT me);
