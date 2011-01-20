@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlvm.main.Targets;
-import org.xmlvm.proc.out.IPhoneOutputProcess;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
@@ -33,11 +32,8 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * Java-based cocoa library and is for use in iphone targets only.
  */
 public class IPhoneAndroidLibrary extends Library {
-    public static final String  ANDROID_SRC_LIB               = IPhoneOutputProcess.IPHONE_SRC
-                                                                      + "/lib/android";
-    private static final String ONE_JAR_LOCATION              = "/iphone/android-compat-lib.jar";
-    private static final String FILE_SYSTEM_LOCATION          = "bin-android2iphone";
-
+    private static final String ONE_JAR_LOCATION     = "/lib/iphone-android.jar";
+    private static final String FILE_SYSTEM_LOCATION = "bin-android2iphone";
 
     @Override
     public boolean isMonolithic() {
@@ -46,15 +42,16 @@ public class IPhoneAndroidLibrary extends Library {
 
     @Override
     protected UniversalFile getLibraryUncached() {
-        return UniversalFileCreator.createDirectory(ONE_JAR_LOCATION,
+        UniversalFile result = UniversalFileCreator.createDirectory(ONE_JAR_LOCATION,
                 prepareTempJar(FILE_SYSTEM_LOCATION, ""));
+        return result;
     }
 
     @Override
     protected List<Targets> includedTargets() {
         List<Targets> included = new ArrayList<Targets>();
-        included.add(Targets.IPHONE);
-        included.add(Targets.IPHONEC);
+        // Temporarily disabled
+//        included.add(Targets.IPHONEANDROID);
         return included;
     }
 
