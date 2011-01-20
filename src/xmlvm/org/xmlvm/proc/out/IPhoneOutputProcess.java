@@ -41,7 +41,7 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl<ObjectiveCOutputProces
     private static final UniversalFile IPHONE_COMPAT_LIB    = UniversalFileCreator
                                                                     .createDirectory(
                                                                             "/iphone/compat-lib.jar",
-                                                                            "src/xmlvm2objc/compat-lib/java");
+                                                                            "src/xmlvm2objc/compat-lib/objc");
     public static final String         IPHONE_SRC           = "/build/xcode/src";
     public static final String         IPHONE_SRC_LIB       = IPHONE_SRC + "/lib/iphone";
     public static final String         IPHONE_SRC_APP       = IPHONE_SRC + "/app";

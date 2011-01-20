@@ -91,7 +91,7 @@ public class Android2IPhoneOutputProcess extends XmlvmProcessImpl<IPhoneOutputPr
             // The arguments that are used to create a new XmlvmProcess which
             // will process the compatibility library.
             Arguments args = new Arguments(new String[] {
-                    "--in=" + FileUtil.getBinDirectory() + File.separatorChar + "android",
+                    "--in=" + (new File("bin-android2iphone")).getAbsolutePath(),
                     "--out=" + arguments.option_out() + ANDROID_SRC_LIB, "--target=objc" });
             XmlvmProcessor subProcessor = new XmlvmProcessor(args);
             if (subProcessor.process()) {
