@@ -51,6 +51,7 @@ import com.android.dx.cf.direct.DirectClassFile;
 import com.android.dx.cf.direct.StdAttributeFactory;
 import com.android.dx.cf.iface.Method;
 import com.android.dx.cf.iface.MethodList;
+import com.android.dx.cf.iface.ParseException;
 import com.android.dx.dex.code.CatchHandlerList;
 import com.android.dx.dex.code.CatchTable;
 import com.android.dx.dex.code.CatchTable.Entry;
@@ -77,7 +78,7 @@ import com.android.dx.rop.type.TypeList;
 
 /**
  * The JDKAnalyzer is a swiss army knife for analyzing dependencies between
- * classes in a library. Given a black- and white-list of classes and packages,
+ * classes in a library. Given a black- and white-list of classes and packages, 
  * it analyzes the border betweteen these two groups of classes. All
  * dependencies between classes are mapped and can be written as a graph file,
  * for visual analysis.
@@ -89,7 +90,7 @@ public class JDKAnalyzer {
     public static final String         RESULTS2_FILENAME = "results2.bin";
     public static final String         GRAPH_FILENAME    = "fulldeps.gdf";
     final static String[]              GOOD_PACKAGES     = { "java.lang", "java.util", "java.math",
-            "java.net", "java.io", "green"              };
+            "java.net", "java.io", "org.apache.harmony.luni.util" };
 
     /**
      * For manual classification override: Classes that will always be
@@ -182,12 +183,19 @@ public class JDKAnalyzer {
         GOOD_CLASSES.add("sun.misc.JavaUtilJarAccess");
         GOOD_CLASSES.add("sun.misc.JavaIOFileDescriptorAccess");
         GOOD_CLASSES.add("sun.util.LocaleServiceProviderPool$LocalizedObjectGetter");
+        GOOD_CLASSES.add("java.nio.channels.Channel");
+
+        GOOD_CLASSES.add("org.apache.harmony.luni.internal.nls.Messages");
+        GOOD_CLASSES.add("org.apache.harmony.math.internal.nls.Messages");
+        GOOD_CLASSES.add("org.apache.harmony.regex.internal.nls.Messages");
+        GOOD_CLASSES.add("org.apache.harmony.archive.internal.nls.Messages");
 
         BAD_CLASSES.add("java.util.jar.JarVerifier");
         BAD_CLASSES.add("java.lang.management.ManagementFactory");
         BAD_CLASSES.add("java.util.JapaneseImperialCalendar");
         BAD_CLASSES.add("java.lang.ClassLoader");
         BAD_CLASSES.add("java.net.URLClassLoader");
+        BAD_CLASSES.add("java.net.URLClassLoader$SubURLClassLoader");
         BAD_CLASSES.add("java.net.FactoryURLClassLoader");
 
         // This one is a subclass of java.lang.ClassLoader, so it must go as
@@ -196,6 +204,13 @@ public class JDKAnalyzer {
 
         // Sub-class of bad class sun.misc.LRUCache.
         BAD_CLASSES.add("java.util.Scanner$1");
+
+        // Sub-class of bad class org.apache.harmony.luni.util.ThreadLocalCache
+        BAD_CLASSES.add("java.io.ObjectStreamClass$OSCThreadLocalCache");
+        BAD_CLASSES.add("java.io.ObjectStreamClass$OSCThreadLocalCache$1");
+
+        // DEX cannot parse this.
+        BAD_CLASSES.add("org.apache.xerces.impl.xpath.regex.ParserForXMLSchema");
     }
 
     /**
@@ -525,7 +540,13 @@ public class JDKAnalyzer {
         Log.debug(TAG, relativePath);
         DirectClassFile classFile = new DirectClassFile(bytes, relativePath, false);
         classFile.setAttributeFactory(StdAttributeFactory.THE_ONE);
-        classFile.getMagic();
+        try {
+            classFile.getMagic();
+        } catch (ParseException ex) {
+            Log.warn(TAG, "Put to red-list as it couldn't be parsed: " + relativePath);
+            BAD_CLASSES.add(classDeps.getClassName());
+            return;
+        }
 
         String superClassName = "";
         // This can happen for java.lang.Object.
