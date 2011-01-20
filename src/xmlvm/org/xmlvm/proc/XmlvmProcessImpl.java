@@ -123,8 +123,8 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
         List<XmlvmProcess<?>> result = new ArrayList<XmlvmProcess<?>>();
         for (Class<XmlvmProcess<?>> supportedClass : getSupportedInputs()) {
             try {
-                XmlvmProcess<?> process = (XmlvmProcess<?>) supportedClass.getConstructors()[0]
-                        .newInstance(arguments);
+                XmlvmProcess<?> process = (XmlvmProcess<?>) supportedClass.getConstructor(
+                        Arguments.class).newInstance(arguments);
                 result.add(process);
                 // Add this process to the list of pre-processes.
                 addPreprocess(process);
@@ -139,6 +139,8 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
             } catch (SecurityException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             }
         }
