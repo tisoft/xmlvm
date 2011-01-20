@@ -430,30 +430,4 @@
 		<aproj-delete dir="demo/android/sayhello" projname="SayHello"/>
 		<aproj-delete dir="demo/android/xokoban" projname="Xokoban"/>
 	</target>
-
-	<target name="homepage" depends="_createDirTree,_copyDemoJars" description="Copies all document files from the XMLVM source tree to xml11.org/xmlvm homepage">
-		<copy todir="${homepage.dir}/htdocs/xmlvm">
-			<fileset dir="${doc.dir}/homepage">
-				<exclude name="**/CVS/*" />
-			</fileset>
-		</copy>
-	</target>
-
-	<target name="_createDirTree">
-		<mkdir dir="${homepage.dir}" />
-		<mkdir dir="${homepage.dir}/htdocs" />
-		<mkdir dir="${homepage.dir}/htdocs/xmlvm" />
-		<mkdir dir="${homepage.dir}/htdocs/xmlvm/download" />
-		<mkdir dir="${homepage.dir}/htdocs/xmlvm/download/dist" />
-	</target>
-
-	<target name="_copyDemoJars">
-		<ant dir="demo/iphone/ihelloworld/fullscreen" target="jar"/>
-		<ant dir="demo/android/xokoban" target="jar"/>
-		<mkdir dir="${doc.dir}/homepage/lib" />
-		<copy todir="${doc.dir}/homepage/lib" file="${xmlvm.libjars}/objc-compat.jar" />
-		<copy todir="${doc.dir}/homepage/lib" file="${xmlvm.libjars}/android-compat.jar" />
-		<copy todir="${doc.dir}/homepage/android/demo" file="demo/android/xokoban/dist/xokoban.jar" />
-		<copy todir="${doc.dir}/homepage/iphone/demo" file="demo/iphone/ifireworks/dist/ifireworks.jar" />
-	</target>
 </project>
