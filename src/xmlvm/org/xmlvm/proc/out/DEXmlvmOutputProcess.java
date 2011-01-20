@@ -241,6 +241,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
 
 
     public DEXmlvmOutputProcess(Arguments arguments) {
+        this(arguments, true);
+    }
+
+    public DEXmlvmOutputProcess(Arguments arguments, boolean useRedList) {
         super(arguments);
 
         // We can either read class files directly or use the
@@ -251,6 +255,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         // Red type elimination should only be performed when load_dependencies
         // is enabled or we are generating c wrappers.
         if (redTypes == null
+                && useRedList
                 && (arguments.option_load_dependencies() && !arguments
                         .option_disable_load_dependencies())
                 || arguments.option_target() == Targets.GENCWRAPPERS) {
@@ -316,12 +321,12 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private OutputFile generateDEXmlvmFile(final OutputFile classFile, boolean proxy) {
         Log.debug(TAG, "DExing:" + classFile.getFileName());
 
-        DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(), classFile
-                .getFileName(), false);
+        DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(),
+                classFile.getFileName(), false);
         directClassFile.setAttributeFactory(StdAttributeFactory.THE_ONE);
         try {
             directClassFile.getMagic();
-        } catch(ParseException ex) {
+        } catch (ParseException ex) {
             Log.debug(TAG, "Could not parse class.");
             return null;
         }
@@ -357,8 +362,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         String jClassName = document.getRootElement().getChild("class", InstructionProcessor.vm)
                 .getAttributeValue("name");
 
-        List<Element> methods = (List<Element>) document.getRootElement().getChild("class",
-                InstructionProcessor.vm).getChildren("method", InstructionProcessor.vm);
+        List<Element> methods = (List<Element>) document.getRootElement()
+                .getChild("class", InstructionProcessor.vm)
+                .getChildren("method", InstructionProcessor.vm);
 
         if (arguments.option_enable_ref_counting()) {
             if (REF_LOGGING) {
@@ -463,8 +469,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             }
             return result;
         } catch (IOException e) {
-            Log.error(TAG, "Problem reading red file: " + redListFile.getAbsolutePath() + ": "
-                    + e.getMessage());
+            Log.error(
+                    TAG,
+                    "Problem reading red file: " + redListFile.getAbsolutePath() + ": "
+                            + e.getMessage());
         }
         return null;
     }
@@ -785,11 +793,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             code.assignIndices(callback);
 
             DalvInsnList instructions = code.getInsns();
-            codeElement.setAttribute("register-size", String.valueOf(instructions
-                    .getRegistersSize()));
-            processLocals(instructions.getRegistersSize(), isStatic, parseClassName(
-                    cf.getThisClass().getClassType().getClassName()).toString(), meth
-                    .getPrototype().getParameterTypes(), codeElement);
+            codeElement.setAttribute("register-size",
+                    String.valueOf(instructions.getRegistersSize()));
+            processLocals(instructions.getRegistersSize(), isStatic,
+                    parseClassName(cf.getThisClass().getClassType().getClassName()).toString(),
+                    meth.getPrototype().getParameterTypes(), codeElement);
             Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
             Map<Integer, ArrayData> arrayData = extractArrayData(instructions);
             CatchTable catches = code.getCatches();
@@ -820,8 +828,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     if (!isRedType(exceptionType)) {
                         Element catchElement = new Element("catch", NS_DEX);
                         catchElement.setAttribute("exception-type", exceptionType);
-                        catchElement.setAttribute("target", String.valueOf(handlers.get(j)
-                                .getHandler()));
+                        catchElement.setAttribute("target",
+                                String.valueOf(handlers.get(j).getHandler()));
                         tryCatchElement.addContent(catchElement);
                     }
                 }
@@ -1011,9 +1019,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 SwitchData switchData = (SwitchData) instructions.get(i);
                 CodeAddress[] caseTargets = switchData.getTargets();
                 for (CodeAddress caseTarget : caseTargets) {
-                    targets
-                            .put(caseTarget.getAddress(),
-                                    new Target(caseTarget.getAddress(), false));
+                    targets.put(caseTarget.getAddress(), new Target(caseTarget.getAddress(), false));
                 }
             }
         }
@@ -1149,9 +1155,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             if (instructionName.startsWith("move-result")) {
                 // Sanity Check
                 if (simpleInsn.getRegisters().size() != 1) {
-                    Log
-                            .error(TAG,
-                                    "DEXmlvmOutputProcess: Register Size doesn't fit 'move-result'.");
+                    Log.error(TAG, "DEXmlvmOutputProcess: Register Size doesn't fit 'move-result'.");
                     System.exit(-1);
                 }
                 Element moveInstruction = new Element("move-result", NS_DEX);
@@ -1311,8 +1315,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             System.exit(-1);
         }
         for (int i = 0; i < registers.size(); ++i) {
-            element.setAttribute(REGISTER_NAMES[i], String.valueOf(registerNumber(registers.get(i)
-                    .regString())));
+            element.setAttribute(REGISTER_NAMES[i],
+                    String.valueOf(registerNumber(registers.get(i).regString())));
             element.setAttribute(REGISTER_NAMES[i] + "-type", registers.get(i).getType().toHuman());
         }
     }
@@ -1387,8 +1391,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         } else {
             // For non-static invoke instruction, the first register is the
             // instance the method is called on.
-            result.setAttribute("register", String.valueOf(registerNumber(registerList.get(0)
-                    .regString())));
+            result.setAttribute("register",
+                    String.valueOf(registerNumber(registerList.get(0).regString())));
         }
 
         // Adds the rest of the registers, if any.
@@ -1423,8 +1427,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             if (isRedType(parameterType)) {
                 parameterElement.setAttribute("isRedType", "true");
             }
-            parameterElement.setAttribute("register", String.valueOf(registerNumber(registers
-                    .get(i).regString())));
+            parameterElement.setAttribute("register",
+                    String.valueOf(registerNumber(registers.get(i).regString())));
             result.addContent(parameterElement);
         }
         Element returnElement = new Element("return", NS_DEX);

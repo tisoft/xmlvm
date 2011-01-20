@@ -103,14 +103,14 @@ public class LibraryLoader {
 
                 // Success, we found the class file we were looking for. Let's
                 // process it.
-                return processClassFile(classFile);
+                return processClassFile(classFile, true);
             } else {
                 return null;
             }
         }
     }
 
-    private XmlvmResource processClassFile(UniversalFile file) {
+    private XmlvmResource processClassFile(UniversalFile file, boolean enableRedList) {
         if (cache.containsKey(file.getAbsolutePath())) {
             return cache.get(file.getAbsolutePath());
         }
@@ -118,7 +118,7 @@ public class LibraryLoader {
         ClassFile classFile = new ClassFile(file);
 
         ClassInputProcess inputProcess = new ClassInputProcess(arguments, classFile);
-        DEXmlvmOutputProcess outputProcess = new DEXmlvmOutputProcess(arguments);
+        DEXmlvmOutputProcess outputProcess = new DEXmlvmOutputProcess(arguments, enableRedList);
         outputProcess.addPreprocess(inputProcess);
 
         outputProcess.process();
@@ -161,9 +161,9 @@ public class LibraryLoader {
         List<XmlvmResource> result = new ArrayList<XmlvmResource>();
         for (UniversalFile library : libs.getMonolithicLibraryFiles()) {
             for (UniversalFile file : library.listFilesRecursively(new FileSuffixFilter(".class"))) {
-                XmlvmResource resource = processClassFile(file);
+                XmlvmResource resource = processClassFile(file, false);
                 if (resource != null) {
-                    result.add(processClassFile(file));
+                    result.add(resource);
                 }
             }
         }
