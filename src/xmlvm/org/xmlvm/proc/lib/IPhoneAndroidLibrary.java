@@ -41,7 +41,7 @@ public class IPhoneAndroidLibrary extends Library {
 
     @Override
     public boolean isMonolithic() {
-        return false;
+        return true;
     }
 
     @Override
@@ -54,7 +54,6 @@ public class IPhoneAndroidLibrary extends Library {
     protected List<Targets> includedTargets() {
         List<Targets> included = new ArrayList<Targets>();
         included.add(Targets.IPHONE);
-        included.add(Targets.IPHONEANDROID);
         included.add(Targets.IPHONEC);
         return included;
     }
