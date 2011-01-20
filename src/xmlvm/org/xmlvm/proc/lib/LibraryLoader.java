@@ -161,7 +161,10 @@ public class LibraryLoader {
         List<XmlvmResource> result = new ArrayList<XmlvmResource>();
         for (UniversalFile library : libs.getMonolithicLibraryFiles()) {
             for (UniversalFile file : library.listFilesRecursively(new FileSuffixFilter(".class"))) {
-                result.add(processClassFile(file));
+                XmlvmResource resource = processClassFile(file);
+                if (resource != null) {
+                    result.add(processClassFile(file));
+                }
             }
         }
         return result;
