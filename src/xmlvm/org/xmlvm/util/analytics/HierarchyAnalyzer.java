@@ -28,6 +28,7 @@ import org.xmlvm.util.universalfile.UniversalFileFilter;
 
 import com.android.dx.cf.direct.DirectClassFile;
 import com.android.dx.cf.direct.StdAttributeFactory;
+import com.android.dx.cf.iface.ParseException;
 import com.android.dx.rop.type.TypeList;
 
 /**
@@ -84,7 +85,11 @@ public class HierarchyAnalyzer {
             String fileName = clazz.getRelativePath(basePath).replace('\\', '.');
             DirectClassFile classFile = new DirectClassFile(clazz.getFileAsBytes(), fileName, false);
             classFile.setAttributeFactory(StdAttributeFactory.THE_ONE);
-            classFile.getMagic();
+            try {
+                classFile.getMagic();
+            } catch (ParseException ex) {
+                continue;
+            }
 
             final int DOT_CLASS_LENGTH = ".class".length();
             String className = fileName.substring(0, fileName.length() - DOT_CLASS_LENGTH).replace(
