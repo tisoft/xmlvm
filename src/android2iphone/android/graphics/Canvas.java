@@ -218,4 +218,25 @@ public class Canvas {
             paint.xmlvmSetCGContextParameters(context);
         }
     }
+
+    public void drawPath(Path path, Paint paint) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void drawArc(RectF oval, float startAngle, float sweepAngle, boolean useCenter,
+            Paint paint) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void drawRoundRect(RectF rect, float rx, float ry, Paint paint) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void drawOval(RectF oval, Paint paint) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void drawRect(RectF rect, Paint paint) {
+        Assert.NOT_IMPLEMENTED();
+    }
 }

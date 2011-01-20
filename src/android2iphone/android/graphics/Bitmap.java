@@ -26,6 +26,8 @@ import org.xmlvm.iphone.UIImage;
 import android.content.res.Resources;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.internal.Assert;
+
 import org.xmlvm.iphone.UIGraphics;
 
 public final class Bitmap {
@@ -68,5 +70,18 @@ public final class Bitmap {
     public static Bitmap createBitmap(Bitmap source, int x, int y, int width, int height) {
         // TODO this only works for BitmapDrawable
         return new Bitmap(((BitmapDrawable) source.drawable).xmlvmCropImage(x, y, width, height));
+    }
+
+    public static Bitmap createBitmap (int[] colors, int width, int height, Bitmap.Config config) {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
+    public void getPixels (int[] pixels, int offset, int stride, int x, int y, int width, int height) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    public void recycle() {
+        Assert.NOT_IMPLEMENTED();
     }
 }

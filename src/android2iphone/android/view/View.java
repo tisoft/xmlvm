@@ -327,6 +327,10 @@ public class View {
         viewHandler.setNeedsDisplay();
     }
 
+    public void invalidate (int l, int t, int r, int b) {
+        Assert.NOT_IMPLEMENTED();
+    }
+    
     public void setLayoutParams(ViewGroup.LayoutParams l) {
         layoutParams = l;
     }

@@ -22,39 +22,12 @@ package android.graphics;
 
 import android.internal.Assert;
 
-public class Path {
+/**
+ *
+ */
+public class RectF {
 
-    public enum FillType {EVEN_ODD, INVERSE_EVEN_ODD, INVERSE_WINDING, WINDING}; 
-
-    public void rewind() {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    public void moveTo(float x, float y) {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    public void lineTo (float x, float y) {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    public void rLineTo(int cityNameMaxLength, int i) {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    public void setFillType(FillType fillType) {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    public void close() {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    public void cubicTo (float x1, float y1, float x2, float y2, float x3, float y3) {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    public void quadTo (float x1, float y1, float x2, float y2) {
+    public RectF(float left, float top, float right, float bottom) {
         Assert.NOT_IMPLEMENTED();
     }
 
