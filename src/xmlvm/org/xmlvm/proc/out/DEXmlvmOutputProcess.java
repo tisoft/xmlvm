@@ -21,7 +21,6 @@
 package org.xmlvm.proc.out;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -54,10 +53,8 @@ import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
 import org.xmlvm.refcount.InstructionProcessor;
 import org.xmlvm.refcount.ReferenceCounting;
 import org.xmlvm.refcount.ReferenceCountingException;
-import org.xmlvm.util.universalfile.FileSuffixFilter;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
-import org.xmlvm.util.universalfile.UniversalFileFilter;
 
 import com.android.dx.cf.attrib.AttRuntimeInvisibleAnnotations;
 import com.android.dx.cf.attrib.BaseAnnotations;
@@ -213,16 +210,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                                                                                     .getNamespace(
                                                                                             "dex",
                                                                                             "http://xmlvm.org/dex");
-    private static final String                     BIN_PROXIES_PATH        = "bin-proxies";
-    private static final String                     BIN_PROXIES_ONEJAR_PATH = "/lib/proxies-java.jar";
     private static final UniversalFile              RED_LIST_FILE           = UniversalFileCreator
                                                                                     .createFile(
                                                                                             "/redlist.txt",
                                                                                             "lib/redlist.txt");
-
-    private static final Map<String, UniversalFile> proxies                 = initializeProxies();
-    private static final long                       proxiesLastModified     = getLastModifiedProxy();
-
     /**
      * Green classes are classes that are OK to translate. Red classes are
      * excluded from the compilation.
@@ -259,7 +250,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 && (arguments.option_load_dependencies() && !arguments
                         .option_disable_load_dependencies())
                 || arguments.option_target() == Targets.GENCWRAPPERS) {
-            redTypes = initializeRedList(RED_LIST_FILE, proxies.keySet());
+            redTypes = initializeRedList(RED_LIST_FILE);
         }
     }
 
@@ -275,9 +266,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             for (OutputFile preOutputFile : preprocess.getOutputFiles()) {
                 String resourceName = preOutputFile.getOrigin();
                 long lastModified = preOutputFile.getLastModified();
-
-                // If the proxies change, we invalidate the cache.
-                lastModified = Math.max(lastModified, proxiesLastModified);
 
                 OutputFile outputFile = null;
 
@@ -332,15 +320,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         }
 
         String packagePlusClassName = directClassFile.getThisClass().getClassType().toHuman();
-
-        // If a proxy exists for this type, we use it instead of the file we got
-        // originally.
-        if (!proxy && proxies.containsKey(packagePlusClassName)) {
-            UniversalFile proxyUniversalFile = proxies.get(packagePlusClassName);
-            OutputFile proxyResult = new OutputFile(proxyUniversalFile);
-            proxyResult.setFileName(classFile.getFileName());
-            return generateDEXmlvmFile(proxyResult, true);
-        }
 
         // We want to prevent "red" classes from being loaded. If the there is a
         // green class list, and this process is run by a library loaded, then
@@ -452,7 +431,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         return redTypes != null && redTypes.contains(baseType);
     }
 
-    private static Set<String> initializeRedList(UniversalFile redListFile, Set<String> proxies) {
+    private static Set<String> initializeRedList(UniversalFile redListFile) {
         try {
             Set<String> result = new HashSet<String>();
             BufferedReader reader;
@@ -460,12 +439,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             String line;
             while ((line = reader.readLine()) != null) {
                 result.add(line);
-            }
-
-            // Red types might be replaced by proxies, in which case they are
-            // no longer red.
-            for (String proxyTypeName : proxies) {
-                result.remove(proxyTypeName);
             }
             return result;
         } catch (IOException e) {
@@ -475,34 +448,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                             + e.getMessage());
         }
         return null;
-    }
-
-    private static Map<String, UniversalFile> initializeProxies() {
-        Map<String, UniversalFile> result = new HashMap<String, UniversalFile>();
-        UniversalFile basePath = UniversalFileCreator.createDirectory(BIN_PROXIES_ONEJAR_PATH,
-                BIN_PROXIES_PATH);
-
-        final String classEnding = ".class";
-        UniversalFileFilter classFilter = new FileSuffixFilter(classEnding);
-        for (UniversalFile proxyFile : basePath.listFilesRecursively(classFilter)) {
-            String proxyFileName = proxyFile.getRelativePath(basePath.getAbsolutePath());
-            String proxyTypeName = proxyFileName.substring(0,
-                    proxyFileName.length() - (classEnding.length())).replace(File.separatorChar,
-                    '.');
-            result.put(proxyTypeName, proxyFile);
-        }
-        return result;
-    }
-
-    private static long getLastModifiedProxy() {
-        long result = 0;
-        for (UniversalFile proxyFile : proxies.values()) {
-            long lastModified = proxyFile.getLastModified();
-            if (lastModified > result) {
-                result = lastModified;
-            }
-        }
-        return result;
     }
 
     /**

@@ -20,6 +20,7 @@
 
 package org.xmlvm.proc.lib;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -35,6 +36,8 @@ import org.xmlvm.proc.in.file.ClassFile;
 import org.xmlvm.proc.out.DEXmlvmOutputProcess;
 import org.xmlvm.util.universalfile.FileSuffixFilter;
 import org.xmlvm.util.universalfile.UniversalFile;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
+import org.xmlvm.util.universalfile.UniversalFileFilter;
 
 /**
  * The LibraryLoader is responsible for loading classes from a set of given
@@ -42,12 +45,18 @@ import org.xmlvm.util.universalfile.UniversalFile;
  * classes include the JavaJDK or the AndroidSDK.
  */
 public class LibraryLoader {
-    private static final String                     TAG       = LibraryLoader.class.getSimpleName();
+    private static final String                     TAG                     = LibraryLoader.class
+                                                                                    .getSimpleName();
+    private static final String                     BIN_PROXIES_PATH        = "bin-proxies";
+    private static final String                     BIN_PROXIES_ONEJAR_PATH = "/lib/proxies-java.jar";
+
+    private static final Map<String, UniversalFile> proxies                 = initializeProxies();
+    private static final long                       proxiesLastModified     = getLastModifiedProxy();
 
     private final Libraries                         libs;
     private final Arguments                         arguments;
-    private final static Map<String, XmlvmResource> cache     = new HashMap<String, XmlvmResource>();
-    private List<UniversalFile>                     libraries = null;
+    private final static Map<String, XmlvmResource> cache                   = new HashMap<String, XmlvmResource>();
+    private List<UniversalFile>                     libraries               = null;
 
 
     /**
@@ -62,7 +71,13 @@ public class LibraryLoader {
      * Gets the last modified date of all libraries combined.
      */
     public long getLastModified() {
-        return libs.getLastModified();
+        long lastModified = libs.getLastModified();
+
+        for (UniversalFile proxyFile : proxies.values()) {
+            lastModified = Math.max(lastModified, proxyFile.getLastModified());
+        }
+
+        return lastModified;
     }
 
     /**
@@ -72,6 +87,11 @@ public class LibraryLoader {
      *            can be e.g. "java.lang.Object"
      */
     public XmlvmResource load(String typeName) {
+        // First check, whether there is a proxy type with this name.
+        if (proxies.containsKey(typeName)) {
+            return processClassFile(proxies.get(typeName), false);
+        }
+
         if (libraries == null) {
             libraries = libs.getLibraryFiles();
         }
@@ -183,10 +203,17 @@ public class LibraryLoader {
             Log.debug("Super-type    : " + resource.getSuperTypeName());
             Log.debug("Referenced types:");
 
+            if (resource.getFullName().startsWith("java.lang.String")) {
+                System.out.println("Breakpoint.");
+            }
+
             Set<String> referencedTypes = resource.getReferencedTypes();
             eliminateArrayTypes(referencedTypes);
 
             for (String referencedType : referencedTypes) {
+                if (referencedType.equals("java.lang.String$1")) {
+                    System.out.println("Breakpoint 2");
+                }
                 if (!isBasicType(referencedType)) {
                     if (resources.keySet().contains(referencedType)) {
                         Log.debug(" OK   -> " + referencedType);
@@ -244,5 +271,33 @@ public class LibraryLoader {
         for (String typeName : add) {
             types.add(typeName);
         }
+    }
+
+    private static Map<String, UniversalFile> initializeProxies() {
+        Map<String, UniversalFile> result = new HashMap<String, UniversalFile>();
+        UniversalFile basePath = UniversalFileCreator.createDirectory(BIN_PROXIES_ONEJAR_PATH,
+                BIN_PROXIES_PATH);
+
+        final String classEnding = ".class";
+        UniversalFileFilter classFilter = new FileSuffixFilter(classEnding);
+        for (UniversalFile proxyFile : basePath.listFilesRecursively(classFilter)) {
+            String proxyFileName = proxyFile.getRelativePath(basePath.getAbsolutePath());
+            String proxyTypeName = proxyFileName.substring(0,
+                    proxyFileName.length() - (classEnding.length())).replace(File.separatorChar,
+                    '.');
+            result.put(proxyTypeName, proxyFile);
+        }
+        return result;
+    }
+
+    private static long getLastModifiedProxy() {
+        long result = 0;
+        for (UniversalFile proxyFile : proxies.values()) {
+            long lastModified = proxyFile.getLastModified();
+            if (lastModified > result) {
+                result = lastModified;
+            }
+        }
+        return result;
     }
 }
