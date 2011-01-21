@@ -203,17 +203,10 @@ public class LibraryLoader {
             Log.debug("Super-type    : " + resource.getSuperTypeName());
             Log.debug("Referenced types:");
 
-            if (resource.getFullName().startsWith("java.lang.String")) {
-                System.out.println("Breakpoint.");
-            }
-
             Set<String> referencedTypes = resource.getReferencedTypes();
             eliminateArrayTypes(referencedTypes);
 
             for (String referencedType : referencedTypes) {
-                if (referencedType.equals("java.lang.String$1")) {
-                    System.out.println("Breakpoint 2");
-                }
                 if (!isBasicType(referencedType)) {
                     if (resources.keySet().contains(referencedType)) {
                         Log.debug(" OK   -> " + referencedType);
