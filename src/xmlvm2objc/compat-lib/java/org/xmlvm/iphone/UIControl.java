@@ -45,6 +45,7 @@ public class UIControl extends UIView {
     }
 
     public void addTarget(UIControlDelegate delegate, int uiControlEvent) {
+        // @TODO: Support multiple delegates for a particular controlEvent
         delegates.put(uiControlEvent, delegate);
     }
 
