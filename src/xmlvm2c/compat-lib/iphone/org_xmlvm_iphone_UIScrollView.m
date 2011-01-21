@@ -16,6 +16,12 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+void org_xmlvm_iphone_UIScrollView_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
+{
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
