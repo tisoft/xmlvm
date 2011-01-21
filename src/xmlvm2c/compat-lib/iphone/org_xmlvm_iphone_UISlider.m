@@ -78,12 +78,12 @@ void __INIT_org_xmlvm_iphone_UISlider()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISlider.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UISlider.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getValue__;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumValue___float;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMinimumValue__;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumValue___float;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMaximumValue__;
+    __TIB_org_xmlvm_iphone_UISlider.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float;
+    __TIB_org_xmlvm_iphone_UISlider.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getValue__;
+    __TIB_org_xmlvm_iphone_UISlider.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumValue___float;
+    __TIB_org_xmlvm_iphone_UISlider.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMinimumValue__;
+    __TIB_org_xmlvm_iphone_UISlider.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumValue___float;
+    __TIB_org_xmlvm_iphone_UISlider.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMaximumValue__;
     __TIB_org_xmlvm_iphone_UISlider.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_UISlider.numImplementedInterfaces = 0;

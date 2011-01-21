@@ -23,6 +23,7 @@ package org.xmlvm.iphone;
 import static org.xmlvm.iphone.UIControlEvent.TouchUpInside;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -47,6 +48,10 @@ public class UIControl extends UIView {
     public void addTarget(UIControlDelegate delegate, int uiControlEvent) {
         // @TODO: Support multiple delegates for a particular controlEvent
         delegates.put(uiControlEvent, delegate);
+    }
+
+    public Set<UIControlDelegate> getAllTargets() {
+        return new HashSet<UIControlDelegate>(delegates.values());
     }
 
     @Override

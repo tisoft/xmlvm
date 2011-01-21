@@ -19,12 +19,13 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl_ARRAYTYPE;
 //XMLVM_BEGIN_IMPLEMENTATION
 
 #import <UIKit/UIControl.h>
+#include "xmlvm-util.h"
 
 
 @interface UIControlDelegateWrapper : NSObject {
     
-    JAVA_OBJECT delegate;
-    JAVA_OBJECT control;
+    @public JAVA_OBJECT delegate;
+    @public JAVA_OBJECT control;
 }
 
 - (id) initWithDelegate:(JAVA_OBJECT) delegate_
@@ -129,6 +130,7 @@ void __INIT_org_xmlvm_iphone_UIControl()
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIControl.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
     __TIB_org_xmlvm_iphone_UIControl.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int;
+    __TIB_org_xmlvm_iphone_UIControl.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_getAllTargets__;
     __TIB_org_xmlvm_iphone_UIControl.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_UIControl.numImplementedInterfaces = 0;
@@ -197,6 +199,22 @@ void org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_i
     thiz->fields.org_xmlvm_iphone_UIControl.delegateWrapper = wrapper;
     [((UIControl*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) addTarget:wrapper action:@selector(raiseEvent::)
                                                                    forControlEvents:n2];
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UIControl_getAllTargets__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIControl_getAllTargets__]
+    org_xmlvm_iphone_UIControl* thiz = me;
+    NSSet* targets = [((UIControl*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) allTargets];
+    JAVA_OBJECT hashSet = XMLVMUtil_NEW_HashSet();
+    NSEnumerator* enumerator = [targets objectEnumerator];
+    id obj = nil;
+    while ((obj = [enumerator nextObject]) != nil) {
+        org_xmlvm_iphone_UIControlDelegate* delegate = ((UIControlDelegateWrapper*) obj)->delegate;
+        XMLVMUtil_HashSet_add(hashSet, delegate);
+    }
+    return hashSet;
     //XMLVM_END_WRAPPER
 }
 
