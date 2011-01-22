@@ -57,7 +57,6 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProce
 
     public IPhoneCOutputProcess(Arguments arguments) {
         super(arguments);
-        // Only COutputProcesses are supported as input.
         addSupportedInput(AugmentedCOutputProcess.class);
     }
 
