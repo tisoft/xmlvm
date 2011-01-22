@@ -198,37 +198,35 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     }
 
 
-    private static final String                     TAG                     = DEXmlvmOutputProcess.class
-                                                                                    .getSimpleName();
-    private static final boolean                    LOTS_OF_DEBUG           = false;
-    private static final boolean                    REF_LOGGING             = true;
+    private static final String        TAG                = DEXmlvmOutputProcess.class
+                                                                  .getSimpleName();
+    private static final boolean       LOTS_OF_DEBUG      = false;
+    private static final boolean       REF_LOGGING        = true;
 
-    private static final String                     JLO                     = "java.lang.Object";
-    private static final String                     DEXMLVM_ENDING          = ".dexmlvm";
-    private static final Namespace                  NS_XMLVM                = XmlvmResource.nsXMLVM;
-    private static final Namespace                  NS_DEX                  = Namespace
-                                                                                    .getNamespace(
-                                                                                            "dex",
-                                                                                            "http://xmlvm.org/dex");
-    private static final UniversalFile              RED_LIST_FILE           = UniversalFileCreator
-                                                                                    .createFile(
-                                                                                            "/redlist.txt",
-                                                                                            "lib/redlist.txt");
+    private static final String        JLO                = "java.lang.Object";
+    private static final String        DEXMLVM_ENDING     = ".dexmlvm";
+    private static final Namespace     NS_XMLVM           = XmlvmResource.nsXMLVM;
+    private static final Namespace     NS_DEX             = Namespace.getNamespace("dex",
+                                                                  "http://xmlvm.org/dex");
+    private static final UniversalFile RED_LIST_FILE      = UniversalFileCreator
+                                                                  .createFile("/redlist.txt",
+                                                                          "lib/redlist.txt");
+    private boolean                    useRedList         = true;
     /**
      * Green classes are classes that are OK to translate. Red classes are
      * excluded from the compilation.
      */
-    private static Set<String>                      redTypes                = null;
+    private static Set<String>         redTypes           = null;
 
-    private List<OutputFile>                        outputFiles             = new ArrayList<OutputFile>();
-    private List<XmlvmResource>                     generatedResources      = new ArrayList<XmlvmResource>();
+    private List<OutputFile>           outputFiles        = new ArrayList<OutputFile>();
+    private List<XmlvmResource>        generatedResources = new ArrayList<XmlvmResource>();
 
-    private Element                                 lastDexInstruction      = null;
+    private Element                    lastDexInstruction = null;
 
-    private ResourceCache                           cache                   = ResourceCache
-                                                                                    .getCache(DEXmlvmOutputProcess.class
-                                                                                            .getName());
-    private List<OutputFile>                        filesFromCache          = new ArrayList<OutputFile>();
+    private ResourceCache              cache              = ResourceCache
+                                                                  .getCache(DEXmlvmOutputProcess.class
+                                                                          .getName());
+    private List<OutputFile>           filesFromCache     = new ArrayList<OutputFile>();
 
 
     public DEXmlvmOutputProcess(Arguments arguments) {
@@ -243,15 +241,16 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         addSupportedInput(ClassInputProcess.class);
         addSupportedInput(JavaByteCodeOutputProcess.class);
 
-        // Red type elimination should only be performed when load_dependencies
-        // is enabled or we are generating c wrappers.
-        if (redTypes == null
-                && useRedList
-                && (arguments.option_load_dependencies() && !arguments
-                        .option_disable_load_dependencies())
-                || arguments.option_target() == Targets.GENCWRAPPERS) {
+        if (redTypes == null) {
             redTypes = initializeRedList(RED_LIST_FILE);
         }
+
+        // Red type elimination should only be performed when load_dependencies
+        // is enabled or we are generating c wrappers.
+        this.useRedList = useRedList
+                && (arguments.option_load_dependencies() && !arguments
+                        .option_disable_load_dependencies())
+                || arguments.option_target() == Targets.GENCWRAPPERS;
     }
 
     @Override
@@ -308,6 +307,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     @SuppressWarnings("unchecked")
     private OutputFile generateDEXmlvmFile(final OutputFile classFile, boolean proxy) {
         Log.debug(TAG, "DExing:" + classFile.getFileName());
+        if (classFile.getFileName().contains("DefaultHandler")) {
+            System.out.println("Breakpoint");
+        }
 
         DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(),
                 classFile.getFileName(), false);
@@ -424,6 +426,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * @return whether the class is a red class, that should be avoided.
      */
     private boolean isRedType(String packagePlusClassName) {
+        if (!useRedList)  {
+            return false;
+        }
+
         // In case packagePlusClassName is an array, perform the red-class-test
         // on the base type
         int i = packagePlusClassName.indexOf('[');

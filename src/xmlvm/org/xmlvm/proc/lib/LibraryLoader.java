@@ -92,8 +92,11 @@ public class LibraryLoader {
         }
 
         if (libraries == null) {
-            libraries = libs.getLibraryFiles();
+            libraries = new ArrayList<UniversalFile>();
+            
+            // Monolithic libraries need to have a higher priority.
             libraries.addAll(libs.getMonolithicLibraryFiles());
+            libraries.addAll(libs.getLibraryFiles());
         }
 
         for (UniversalFile library : libraries) {
@@ -186,6 +189,7 @@ public class LibraryLoader {
                     result.add(resource);
                 }
             }
+            // TODO(Sascha): Maybe just copy over non-class files?
         }
         return result;
     }
