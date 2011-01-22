@@ -229,10 +229,24 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     private List<OutputFile>           filesFromCache     = new ArrayList<OutputFile>();
 
 
+    /**
+     * Initializes the {@link DEXmlvmOutputProcess}.
+     * 
+     * @param arguments
+     */
     public DEXmlvmOutputProcess(Arguments arguments) {
         this(arguments, true);
     }
 
+    /**
+     * Use this constructor, if you need to be able to generate bytecode even
+     * from a red-listed file.
+     * 
+     * @param arguments
+     *            The default arguments.
+     * @param useRedList
+     *            Whether a red-listed class should be generated.
+     */
     public DEXmlvmOutputProcess(Arguments arguments, boolean useRedList) {
         super(arguments);
 
