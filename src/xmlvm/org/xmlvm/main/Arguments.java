@@ -377,6 +377,7 @@ public class Arguments {
         }
 
         if (option_target == Targets.IPHONE || option_target == Targets.IPHONEC
+                || option_target == Targets.IPHONECANDROID
                 || option_target == Targets.IPHONEANDROID) {
             option_c_source_extension = "m";
         }
