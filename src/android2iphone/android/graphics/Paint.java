@@ -26,6 +26,7 @@ import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.NSString;
 import org.xmlvm.iphone.UIFont;
 
+import android.internal.Assert;
 import android.util.Log;
 
 /**
@@ -355,7 +356,9 @@ public class Paint {
      * @param dither
      *            true to set the dithering bit in flags, false to clear it
      */
-    public native void setDither(boolean dither);
+    public void setDither(boolean dither) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     /**
      * Helper for getFlags(), returning true if LINEAR_TEXT_FLAG bit is set
@@ -373,7 +376,9 @@ public class Paint {
      *            true to set the linearText bit in the paint's flags, false to
      *            clear it.
      */
-    public native void setLinearText(boolean linearText);
+    public void setLinearText(boolean linearText) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     /**
      * Helper for getFlags(), returning true if SUBPIXEL_TEXT_FLAG bit is set
@@ -391,7 +396,9 @@ public class Paint {
      *            true to set the subpixelText bit in the paint's flags, false
      *            to clear it.
      */
-    public native void setSubpixelText(boolean subpixelText);
+    public void setSubpixelText(boolean subpixelText) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     /**
      * Helper for getFlags(), returning true if UNDERLINE_TEXT_FLAG bit is set
@@ -409,7 +416,9 @@ public class Paint {
      *            true to set the underlineText bit in the paint's flags, false
      *            to clear it.
      */
-    public native void setUnderlineText(boolean underlineText);
+    public void setUnderlineText(boolean underlineText) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     /**
      * Helper for getFlags(), returning true if STRIKE_THRU_TEXT_FLAG bit is set
@@ -427,7 +436,9 @@ public class Paint {
      *            true to set the strikeThruText bit in the paint's flags, false
      *            to clear it.
      */
-    public native void setStrikeThruText(boolean strikeThruText);
+    public void setStrikeThruText(boolean strikeThruText) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     /**
      * Helper for getFlags(), returning true if FAKE_BOLD_TEXT_FLAG bit is set
@@ -475,7 +486,9 @@ public class Paint {
      *            true to set the FILTER_BITMAP_FLAG bit in the paint's flags,
      *            false to clear it.
      */
-    public native void setFilterBitmap(boolean filter);
+    public void setFilterBitmap(boolean filter) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     /**
      * Return the paint's style, used for controlling how primitives' geometries
@@ -530,7 +543,10 @@ public class Paint {
      * 
      * @return the alpha component of the paint's color.
      */
-    public native int getAlpha();
+    public int getAlpha() {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
     /**
      * Helper to setColor(), that only assigns the color's alpha value, leaving
@@ -540,7 +556,9 @@ public class Paint {
      * @param a
      *            set the alpha component [0..255] of the paint's color.
      */
-    public native void setAlpha(int a);
+    public void setAlpha(int a) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     /**
      * Helper to setColor(), that takes a,r,g,b and constructs the color int
@@ -567,7 +585,10 @@ public class Paint {
      * @return the paint's stroke width, used whenever the paint's style is
      *         Stroke or StrokeAndFill.
      */
-    public native float getStrokeWidth();
+    public float getStrokeWidth() {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
     /**
      * Set the width for stroking. Pass 0 to stroke in hairline mode. Hairlines
@@ -577,7 +598,9 @@ public class Paint {
      *            set the paint's stroke width, used whenever the paint's style
      *            is Stroke or StrokeAndFill.
      */
-    public native void setStrokeWidth(float width);
+    public void setStrokeWidth(float width) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     /**
      * Return the paint's stroke miter value. Used to control the behavior of
@@ -586,7 +609,10 @@ public class Paint {
      * @return the paint's miter limit, used whenever the paint's style is
      *         Stroke or StrokeAndFill.
      */
-    public native float getStrokeMiter();
+    public float getStrokeMiter() {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
     /**
      * Set the paint's stroke miter value. This is used to control the behavior
@@ -596,7 +622,9 @@ public class Paint {
      *            set the miter limit on the paint, used whenever the paint's
      *            style is Stroke or StrokeAndFill.
      */
-    public native void setStrokeMiter(float miter);
+    public void setStrokeMiter(float miter) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     /**
      * Return the paint's Cap, controlling how the start and end of stroked
@@ -930,7 +958,10 @@ public class Paint {
      * 
      * @return the paint's scale factor in X for drawing/measuring text
      */
-    public native float getTextScaleX();
+    public float getTextScaleX() {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
     /**
      * Set the paint's horizontal scale factor for text. The default value is
@@ -940,7 +971,9 @@ public class Paint {
      * @param scaleX
      *            set the paint's scale in X for drawing/measuring text.
      */
-    public native void setTextScaleX(float scaleX);
+    public void setTextScaleX(float scaleX) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     /**
      * Return the paint's horizontal skew factor for text. The default value is
@@ -948,7 +981,10 @@ public class Paint {
      * 
      * @return the paint's skew factor in X for drawing text.
      */
-    public native float getTextSkewX();
+    public float getTextSkewX() {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
     /**
      * Set the paint's horizontal skew factor for text. The default value is 0.
@@ -957,7 +993,9 @@ public class Paint {
      * @param skewX
      *            set the paint's skew factor in X for drawing text.
      */
-    public native void setTextSkewX(float skewX);
+    public void setTextSkewX(float skewX) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     /**
      * Return the distance above (negative) the baseline (ascent) based on the
@@ -966,7 +1004,10 @@ public class Paint {
      * @return the distance above (negative) the baseline (ascent) based on the
      *         current typeface and text size.
      */
-    public native float ascent();
+    public float ascent() {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
     /**
      * Return the distance below (positive) the baseline (descent) based on the
@@ -975,7 +1016,10 @@ public class Paint {
      * @return the distance below (positive) the baseline (descent) based on the
      *         current typeface and text size.
      */
-    public native float descent();
+    public float descent() {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
 
     /**
@@ -1020,7 +1064,10 @@ public class Paint {
      *            appropriate values given the paint's text attributes.
      * @return the font's recommended interline spacing.
      */
-    public native float getFontMetrics(FontMetrics metrics);
+    public float getFontMetrics(FontMetrics metrics) {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
     /**
      * Allocates a new FontMetrics object, and then calls getFontMetrics(fm)
@@ -1063,7 +1110,10 @@ public class Paint {
      * 
      * @return the font's interline spacing.
      */
-    public native int getFontMetricsInt(FontMetricsInt fmi);
+    public int getFontMetricsInt(FontMetricsInt fmi) {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
     public FontMetricsInt getFontMetricsInt() {
         FontMetricsInt fm = new FontMetricsInt();
@@ -1103,7 +1153,10 @@ public class Paint {
         return w * mInvCompatScaling;
     }
 
-    private native float native_measureText(char[] text, int index, int count);
+    private float native_measureText(char[] text, int index, int count) {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
     /**
      * Return the width of the text.
@@ -1126,7 +1179,10 @@ public class Paint {
         return w * mInvCompatScaling;
     }
 
-    private native float native_measureText(String text, int start, int end);
+    private float native_measureText(String text, int start, int end) {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
     /**
      * Return the width of the text.
@@ -1212,8 +1268,11 @@ public class Paint {
         return res;
     }
 
-    private native int native_breakText(char[] text, int index, int count, float maxWidth,
-            float[] measuredWidth);
+    private int native_breakText(char[] text, int index, int count, float maxWidth,
+            float[] measuredWidth) {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
     /**
      * Measure the text, stopping early if the measured width exceeds maxWidth.
@@ -1290,8 +1349,11 @@ public class Paint {
         return res;
     }
 
-    private native int native_breakText(String text, boolean measureForwards, float maxWidth,
-            float[] measuredWidth);
+    private int native_breakText(String text, boolean measureForwards, float maxWidth,
+            float[] measuredWidth) {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
     /**
      * Return the advance widths for the characters in the string.
@@ -1509,61 +1571,71 @@ public class Paint {
         nativeGetCharArrayBounds(text, index, count, bounds);
     }
 
-    private static native int native_init();
+//    private static native int native_init();
+//
+//    private static native int native_initWithPaint(int paint);
+//
+//    private static native void native_reset(int native_object);
+//
+//    private static native void native_set(int native_dst, int native_src);
+//
+//    private static native int native_getStyle(int native_object);
+//
+//    private static native void native_setStyle(int native_object, int style);
+//
+//    private static native int native_getStrokeCap(int native_object);
+//
+//    private static native void native_setStrokeCap(int native_object, int cap);
+//
+//    private static native int native_getStrokeJoin(int native_object);
+//
+//    private static native void native_setStrokeJoin(int native_object, int join);
+//
+//    private static native boolean native_getFillPath(int native_object, int src, int dst);
+//
+//    private static native int native_setShader(int native_object, int shader);
+//
+//    private static native int native_setColorFilter(int native_object, int filter);
+//
+//    private static native int native_setXfermode(int native_object, int xfermode);
+//
+//    private static native int native_setPathEffect(int native_object, int effect);
+//
+//    private static native int native_setMaskFilter(int native_object, int maskfilter);
+//
+//    private static native int native_setTypeface(int native_object, int typeface);
+//
+//    private static native int native_setRasterizer(int native_object, int rasterizer);
+//
+//    private static native int native_getTextAlign(int native_object);
+//
+//    private static native void native_setTextAlign(int native_object, int align);
+//
+//    private static native float native_getFontMetrics(int native_paint, FontMetrics metrics);
 
-    private static native int native_initWithPaint(int paint);
+    private int native_getTextWidths(char[] text, int index, int count, float[] widths) {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
-    private static native void native_reset(int native_object);
+    private int native_getTextWidths(String text, int start, int end, float[] widths) {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
-    private static native void native_set(int native_dst, int native_src);
+//    private static native void native_getTextPath(int native_object, char[] text, int index,
+//            int count, float x, float y, int path);
+//
+//    private static native void native_getTextPath(int native_object, String text, int start,
+//            int end, float x, float y, int path);
 
-    private static native int native_getStyle(int native_object);
+    private void nativeGetStringBounds(String text, int start, int end, Rect bounds) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
-    private static native void native_setStyle(int native_object, int style);
-
-    private static native int native_getStrokeCap(int native_object);
-
-    private static native void native_setStrokeCap(int native_object, int cap);
-
-    private static native int native_getStrokeJoin(int native_object);
-
-    private static native void native_setStrokeJoin(int native_object, int join);
-
-    private static native boolean native_getFillPath(int native_object, int src, int dst);
-
-    private static native int native_setShader(int native_object, int shader);
-
-    private static native int native_setColorFilter(int native_object, int filter);
-
-    private static native int native_setXfermode(int native_object, int xfermode);
-
-    private static native int native_setPathEffect(int native_object, int effect);
-
-    private static native int native_setMaskFilter(int native_object, int maskfilter);
-
-    private static native int native_setTypeface(int native_object, int typeface);
-
-    private static native int native_setRasterizer(int native_object, int rasterizer);
-
-    private static native int native_getTextAlign(int native_object);
-
-    private static native void native_setTextAlign(int native_object, int align);
-
-    private static native float native_getFontMetrics(int native_paint, FontMetrics metrics);
-
-    private native int native_getTextWidths(char[] text, int index, int count, float[] widths);
-
-    private native int native_getTextWidths(String text, int start, int end, float[] widths);
-
-    private static native void native_getTextPath(int native_object, char[] text, int index,
-            int count, float x, float y, int path);
-
-    private static native void native_getTextPath(int native_object, String text, int start,
-            int end, float x, float y, int path);
-
-    private native void nativeGetStringBounds(String text, int start, int end, Rect bounds);
-
-    private native void nativeGetCharArrayBounds(char[] text, int index, int count, Rect bounds);
+    private void nativeGetCharArrayBounds(char[] text, int index, int count, Rect bounds) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     public UIFont xmlvmGetUIFont() {
         return (mTypeface == null ? Typeface.create(Typeface.DEFAULT, mFlags) : Typeface.create(mTypeface, mFlags)).xmlvmGetUIFont(mTextSize);

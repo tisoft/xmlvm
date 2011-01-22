@@ -368,8 +368,14 @@ public class Color {
         return nativeHSVToColor(alpha, hsv);
     }
 
-    private static native void nativeRGBToHSV(int red, int greed, int blue, float hsv[]); 
-    private static native int nativeHSVToColor(int alpha, float hsv[]);
+    private static void nativeRGBToHSV(int red, int greed, int blue, float hsv[]) {
+        Assert.NOT_IMPLEMENTED();
+    }
+    
+    private static int nativeHSVToColor(int alpha, float hsv[]) {
+        Assert.NOT_IMPLEMENTED();
+        return 0;
+    }
 
     private static final HashMap<String, Integer> sColorNameMap;
 
