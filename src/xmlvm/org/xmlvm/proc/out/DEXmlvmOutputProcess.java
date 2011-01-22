@@ -307,9 +307,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     @SuppressWarnings("unchecked")
     private OutputFile generateDEXmlvmFile(final OutputFile classFile, boolean proxy) {
         Log.debug(TAG, "DExing:" + classFile.getFileName());
-        if (classFile.getFileName().contains("DefaultHandler")) {
-            System.out.println("Breakpoint");
-        }
 
         DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(),
                 classFile.getFileName(), false);
