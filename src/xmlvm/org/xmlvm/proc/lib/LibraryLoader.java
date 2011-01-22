@@ -51,7 +51,6 @@ public class LibraryLoader {
     private static final String                     BIN_PROXIES_ONEJAR_PATH = "/lib/proxies-java.jar";
 
     private static final Map<String, UniversalFile> proxies                 = initializeProxies();
-    private static final long                       proxiesLastModified     = getLastModifiedProxy();
 
     private final Libraries                         libs;
     private final Arguments                         arguments;
@@ -94,6 +93,7 @@ public class LibraryLoader {
 
         if (libraries == null) {
             libraries = libs.getLibraryFiles();
+            libraries.addAll(libs.getMonolithicLibraryFiles());
         }
 
         for (UniversalFile library : libraries) {
@@ -177,7 +177,7 @@ public class LibraryLoader {
      * This loads a list of libraries that will be required, but wouldn't be
      * picked up by reference loading.
      */
-    public List<XmlvmResource> loadRequiredLibraries() {
+    public List<XmlvmResource> loadMonolithicLibraries() {
         List<XmlvmResource> result = new ArrayList<XmlvmResource>();
         for (UniversalFile library : libs.getMonolithicLibraryFiles()) {
             for (UniversalFile file : library.listFilesRecursively(new FileSuffixFilter(".class"))) {

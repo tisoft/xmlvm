@@ -35,6 +35,7 @@ public class IPhoneAndroidLibrary extends Library {
     private static final String ONE_JAR_LOCATION     = "/lib/iphone-android.jar";
     private static final String FILE_SYSTEM_LOCATION = "bin-android2iphone";
 
+
     @Override
     public boolean isMonolithic() {
         return true;
@@ -50,8 +51,7 @@ public class IPhoneAndroidLibrary extends Library {
     @Override
     protected List<Targets> includedTargets() {
         List<Targets> included = new ArrayList<Targets>();
-        // Temporarily disabled
-//        included.add(Targets.IPHONEANDROID);
+        included.add(Targets.IPHONECANDROID);
         return included;
     }
 

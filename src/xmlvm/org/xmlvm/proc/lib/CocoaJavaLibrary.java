@@ -53,6 +53,7 @@ public class CocoaJavaLibrary extends Library {
         included.add(Targets.IPHONE);
         included.add(Targets.IPHONEANDROID);
         included.add(Targets.IPHONEC);
+        included.add(Targets.IPHONECANDROID);
         return included;
     }
 

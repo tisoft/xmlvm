@@ -38,8 +38,8 @@ import org.xmlvm.proc.XmlvmResource.XmlvmInvokeInstruction;
 import org.xmlvm.proc.XmlvmResource.XmlvmMemberReadWrite;
 import org.xmlvm.proc.XmlvmResource.XmlvmMethod;
 import org.xmlvm.proc.XmlvmResource.XmlvmVtable;
-import org.xmlvm.proc.lib.LibraryLoader;
 import org.xmlvm.proc.XmlvmResourceProvider;
+import org.xmlvm.proc.lib.LibraryLoader;
 
 /**
  * This process takes XMLVM resources and modifies them by adding table
@@ -53,6 +53,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
     private final static String        VTABLE_ENDING          = ".vtable.xmlvm";
     private Map<String, XmlvmResource> resourcePool           = new HashMap<String, XmlvmResource>();
     private Map<String, Vtable>        vtables                = new HashMap<String, Vtable>();
+    private final Arguments arguments;
 
     /**
      * This variable caches already loaded resources. I would have expected the
@@ -175,6 +176,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
      */
     public VtableOutputProcess(Arguments arguments) {
         super(arguments);
+        this.arguments = arguments;
         addSupportedInput(RecursiveResourceLoadingProcess.class);
 
         // Add empty class name that acts as a base class for java.lang.Object
@@ -542,9 +544,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
             return resource;
         }
 
-        Log.debug(TAG, "Loading JDK class: " + className);
-        LibraryLoader loader = new LibraryLoader(new Arguments(new String[] { "--in=foo",
-                "--out=bar" }));
+        LibraryLoader loader = new LibraryLoader(arguments);
         resource = loader.load(className);
         alreadyLoadedResources.put(className, resource);
         return resource;

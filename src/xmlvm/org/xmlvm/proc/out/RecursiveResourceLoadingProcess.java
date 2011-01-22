@@ -62,7 +62,7 @@ public class RecursiveResourceLoadingProcess extends XmlvmProcessImpl<XmlvmResou
 
             // Add all required resources, that will not be referenced to the
             // usual way.
-            for (XmlvmResource requiredResource : libraryLoader.loadRequiredLibraries()) {
+            for (XmlvmResource requiredResource : libraryLoader.loadMonolithicLibraries()) {
                 xmlvmResources.put(requiredResource.getFullName(), requiredResource);
             }
 
