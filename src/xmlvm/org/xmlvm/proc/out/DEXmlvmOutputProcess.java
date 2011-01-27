@@ -213,6 +213,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                                                                       "/redlist.txt",
                                                                       "lib/redlist.txt");
     private boolean                    useRedList             = true;
+    private boolean                    noGenRedClass          = false;
     private boolean                    enableProxyReplacement = true;
 
     /**
@@ -247,14 +248,14 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * 
      * @param arguments
      *            The default arguments.
-     * @param useRedList
-     *            Whether a red-listed class should be generated.
+     * @param noGenRedClass
+     *            True, if a red-listed class should not be generated (default).
      * @param enableProxyReplacement
      *            Whether classes for which proxies exist should be replaced.
      *            This is set to "false" by the LibraryLoader, as it might have
      *            loaded a proxy class already, if it exists.
      */
-    public DEXmlvmOutputProcess(Arguments arguments, boolean useRedList,
+    public DEXmlvmOutputProcess(Arguments arguments, boolean noGenRedClass,
             boolean enableProxyReplacement) {
         super(arguments);
 
@@ -267,12 +268,13 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             redTypes = initializeRedList(RED_LIST_FILE);
         }
         this.enableProxyReplacement = enableProxyReplacement;
-
+        this.noGenRedClass = noGenRedClass;
+        
         // Red type elimination should only be performed when load_dependencies
         // is enabled or we are generating c wrappers.
-        this.useRedList = useRedList
-                && ((arguments.option_load_dependencies() && !arguments
-                        .option_disable_load_dependencies()) || arguments.option_target() == Targets.GENCWRAPPERS);
+        this.useRedList = (arguments.option_load_dependencies() && !arguments
+                .option_disable_load_dependencies())
+                || arguments.option_target() == Targets.GENCWRAPPERS;
     }
 
     @Override
@@ -351,7 +353,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         // green class list, and this process is run by a library loaded, then
         // we expect the class to be a library class. Hence, it must be in the
         // green class list. If it's not, we discard it.
-        if (useRedList && isRedType(packagePlusClassName)) {
+        if (noGenRedClass && isRedType(packagePlusClassName)) {
             return null;
         }
 
@@ -450,6 +452,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * @return whether the class is a red class, that should be avoided.
      */
     private boolean isRedType(String packagePlusClassName) {
+        if (!useRedList) {
+            return false;
+        }
         // In case packagePlusClassName is an array, perform the red-class-test
         // on the base type
         int i = packagePlusClassName.indexOf('[');
