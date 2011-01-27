@@ -50,6 +50,7 @@ import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResource.Type;
 import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
+import org.xmlvm.proc.lib.LibraryLoader;
 import org.xmlvm.refcount.InstructionProcessor;
 import org.xmlvm.refcount.ReferenceCounting;
 import org.xmlvm.refcount.ReferenceCountingException;
@@ -198,35 +199,37 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     }
 
 
-    private static final String        TAG                = DEXmlvmOutputProcess.class
-                                                                  .getSimpleName();
-    private static final boolean       LOTS_OF_DEBUG      = false;
-    private static final boolean       REF_LOGGING        = true;
+    private static final String        TAG                    = DEXmlvmOutputProcess.class
+                                                                      .getSimpleName();
+    private static final boolean       LOTS_OF_DEBUG          = false;
+    private static final boolean       REF_LOGGING            = true;
 
-    private static final String        JLO                = "java.lang.Object";
-    private static final String        DEXMLVM_ENDING     = ".dexmlvm";
-    private static final Namespace     NS_XMLVM           = XmlvmResource.nsXMLVM;
-    private static final Namespace     NS_DEX             = Namespace.getNamespace("dex",
-                                                                  "http://xmlvm.org/dex");
-    private static final UniversalFile RED_LIST_FILE      = UniversalFileCreator
-                                                                  .createFile("/redlist.txt",
-                                                                          "lib/redlist.txt");
-    private boolean                    useRedList         = true;
+    private static final String        JLO                    = "java.lang.Object";
+    private static final String        DEXMLVM_ENDING         = ".dexmlvm";
+    private static final Namespace     NS_XMLVM               = XmlvmResource.nsXMLVM;
+    private static final Namespace     NS_DEX                 = Namespace.getNamespace("dex",
+                                                                      "http://xmlvm.org/dex");
+    private static final UniversalFile RED_LIST_FILE          = UniversalFileCreator.createFile(
+                                                                      "/redlist.txt",
+                                                                      "lib/redlist.txt");
+    private boolean                    useRedList             = true;
+    private boolean                    enableProxyReplacement = true;
+
     /**
      * Green classes are classes that are OK to translate. Red classes are
      * excluded from the compilation.
      */
-    private static Set<String>         redTypes           = null;
+    private static Set<String>         redTypes               = null;
 
-    private List<OutputFile>           outputFiles        = new ArrayList<OutputFile>();
-    private List<XmlvmResource>        generatedResources = new ArrayList<XmlvmResource>();
+    private List<OutputFile>           outputFiles            = new ArrayList<OutputFile>();
+    private List<XmlvmResource>        generatedResources     = new ArrayList<XmlvmResource>();
 
-    private Element                    lastDexInstruction = null;
+    private Element                    lastDexInstruction     = null;
 
-    private ResourceCache              cache              = ResourceCache
-                                                                  .getCache(DEXmlvmOutputProcess.class
-                                                                          .getName());
-    private List<OutputFile>           filesFromCache     = new ArrayList<OutputFile>();
+    private ResourceCache              cache                  = ResourceCache
+                                                                      .getCache(DEXmlvmOutputProcess.class
+                                                                              .getName());
+    private List<OutputFile>           filesFromCache         = new ArrayList<OutputFile>();
 
 
     /**
@@ -235,7 +238,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      * @param arguments
      */
     public DEXmlvmOutputProcess(Arguments arguments) {
-        this(arguments, true);
+        this(arguments, true, true);
     }
 
     /**
@@ -246,8 +249,13 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      *            The default arguments.
      * @param useRedList
      *            Whether a red-listed class should be generated.
+     * @param enableProxyReplacement
+     *            Whether classes for which proxies exist should be replaced.
+     *            This is set to "false" by the LibraryLoader, as it might have
+     *            loaded a proxy class already, if it exists.
      */
-    public DEXmlvmOutputProcess(Arguments arguments, boolean useRedList) {
+    public DEXmlvmOutputProcess(Arguments arguments, boolean useRedList,
+            boolean enableProxyReplacement) {
         super(arguments);
 
         // We can either read class files directly or use the
@@ -258,6 +266,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         if (redTypes == null) {
             redTypes = initializeRedList(RED_LIST_FILE);
         }
+        this.enableProxyReplacement = enableProxyReplacement;
 
         // Red type elimination should only be performed when load_dependencies
         // is enabled or we are generating c wrappers.
@@ -332,6 +341,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         }
 
         String packagePlusClassName = directClassFile.getThisClass().getClassType().toHuman();
+
+        if (enableProxyReplacement && !proxy && LibraryLoader.hasProxy(packagePlusClassName)) {
+            return generateDEXmlvmFile(
+                    new OutputFile(LibraryLoader.getProxy(packagePlusClassName)), true);
+        }
 
         // We want to prevent "red" classes from being loaded. If the there is a
         // green class list, and this process is run by a library loaded, then

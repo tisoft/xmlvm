@@ -67,6 +67,20 @@ public class LibraryLoader {
     }
 
     /**
+     * Returns whether the given type has a proxy class that should replace it.
+     */
+    public static boolean hasProxy(String typeName) {
+        return proxies.containsKey(typeName);
+    }
+
+    /**
+     * Returns the proxy for the given type.
+     */
+    public static UniversalFile getProxy(String typename) {
+        return proxies.get(typename);
+    }
+
+    /**
      * Gets the last modified date of all libraries combined.
      */
     public long getLastModified() {
@@ -93,7 +107,7 @@ public class LibraryLoader {
 
         if (libraries == null) {
             libraries = new ArrayList<UniversalFile>();
-            
+
             // Monolithic libraries need to have a higher priority.
             libraries.addAll(libs.getMonolithicLibraryFiles());
             libraries.addAll(libs.getLibraryFiles());
@@ -141,7 +155,7 @@ public class LibraryLoader {
         ClassFile classFile = new ClassFile(file);
 
         ClassInputProcess inputProcess = new ClassInputProcess(arguments, classFile);
-        DEXmlvmOutputProcess outputProcess = new DEXmlvmOutputProcess(arguments, enableRedList);
+        DEXmlvmOutputProcess outputProcess = new DEXmlvmOutputProcess(arguments, enableRedList, false);
         outputProcess.addPreprocess(inputProcess);
 
         outputProcess.process();
