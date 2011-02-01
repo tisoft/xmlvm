@@ -228,6 +228,17 @@
 			<fileset dir="${xmlvm.xmlvm-util-java}" />
 		</jar>
 		
+		<mkdir dir="${xmlvm.iphone-android-java}" />
+		<javac srcdir="./src/android2iphone" destdir="${xmlvm.iphone-android-java}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.bin}/lib/iphone-android-java.jar">
+			<fileset dir="${xmlvm.iphone-android-java}" />
+		</jar>
+		
 		<jar destfile="${xmlvm.bin}/lib/native-c-lib.jar">
 			<fileset dir="src/xmlvm2c/lib/native/" />
 		</jar>

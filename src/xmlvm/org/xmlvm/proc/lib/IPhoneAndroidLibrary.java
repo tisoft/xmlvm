@@ -32,7 +32,7 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * Java-based cocoa library and is for use in iphone targets only.
  */
 public class IPhoneAndroidLibrary extends Library {
-    private static final String ONE_JAR_LOCATION     = "/lib/iphone-android.jar";
+    private static final String ONE_JAR_LOCATION     = "/lib/iphone-android-java.jar";
     private static final String FILE_SYSTEM_LOCATION = "bin-android2iphone";
 
 
