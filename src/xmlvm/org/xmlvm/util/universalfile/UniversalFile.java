@@ -270,6 +270,32 @@ public abstract class UniversalFile {
     }
 
     /**
+     * Returns whether the contents of this file is different from the given
+     * destination. If the destination doesn't exist, this method returns
+     * <code>true</code>.
+     */
+    public boolean isDifferentFromExisting(String destinationPath) {
+        UniversalFile destination = UniversalFileCreator.createFile(new File(destinationPath));
+        if (!destination.exists() || !destination.isFile()) {
+            return true;
+        }
+
+        byte[] newData = getFileAsBytes();
+        byte[] existingData = destination.getFileAsBytes();
+
+        if (newData.length != existingData.length) {
+            return true;
+        }
+
+        for (int i = 0; i < newData.length; ++i) {
+            if (newData[i] != existingData[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Stores this universal file to the given file system path (which includes
      * the file name itself).
      * 

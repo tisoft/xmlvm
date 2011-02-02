@@ -39,7 +39,7 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * file system.
  */
 public class OutputFile {
-    public static final String TAG_LIB_NAME       = "lib-name";
+    public static final String TAG_LIB_NAME = "lib-name";
 
 
     /**
@@ -326,6 +326,21 @@ public class OutputFile {
         }
         String pathAndName = getFullPath();
         return data.saveAs(pathAndName);
+    }
+
+    /**
+     * Returns whether the contents of this file is different from the
+     * destination. If the destination doesn't exist, this method returns
+     * <code>true</code>.
+     */
+    public boolean isDifferentFromExisting() {
+        UniversalFile destination = UniversalFileCreator.createFile(new File(getFullPath()));
+        if (!destination.exists() || !destination.isFile()) {
+            return true;
+        }
+
+        maybeLoadDelayedData();
+        return data.isDifferentFromExisting(getFullPath());
     }
 
     /**
