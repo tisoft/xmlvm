@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_MKUserLocation __TIB_org_xmlvm_iphone_MKUserLocation = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_MKUserLocation, // classInitializer
     "org.xmlvm.iphone.MKUserLocation", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

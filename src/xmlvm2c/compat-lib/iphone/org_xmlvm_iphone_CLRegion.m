@@ -6,6 +6,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_CLRegion __TIB_org_xmlvm_iphone_CLRegion = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_CLRegion, // classInitializer
     "org.xmlvm.iphone.CLRegion", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

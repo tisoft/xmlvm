@@ -4,6 +4,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIDevice __TIB_org_xmlvm_iphone_UIDevice = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIDevice, // classInitializer
     "org.xmlvm.iphone.UIDevice", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -12,6 +13,15 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDevice;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDevice_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#import <UIKit/UIDevice.h>
+
+
+void org_xmlvm_iphone_UIDevice_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -108,7 +118,10 @@ JAVA_OBJECT org_xmlvm_iphone_UIDevice_currentDevice__()
 {
     if (!__TIB_org_xmlvm_iphone_UIDevice.classInitialized) __INIT_org_xmlvm_iphone_UIDevice();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIDevice_currentDevice__]
-    XMLVM_NOT_IMPLEMENTED();
+    UIDevice* device = [UIDevice currentDevice];
+    JAVA_OBJECT me = __NEW_org_xmlvm_iphone_UIDevice();
+    org_xmlvm_iphone_UIDevice_INTERNAL_CONSTRUCTOR(me, device);
+    return me;
     //XMLVM_END_WRAPPER
 }
 
@@ -171,7 +184,8 @@ JAVA_INT org_xmlvm_iphone_UIDevice_getUserInterfaceIdiom__(JAVA_OBJECT me)
 JAVA_INT org_xmlvm_iphone_UIDevice_getOrientation__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIDevice_getOrientation__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIDevice* thiz = me;
+    return ((UIDevice*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)).orientation;
     //XMLVM_END_WRAPPER
 }
 
@@ -249,7 +263,6 @@ void org_xmlvm_iphone_UIDevice___CLINIT_()
 {
     if (!__TIB_org_xmlvm_iphone_UIDevice.classInitialized) __INIT_org_xmlvm_iphone_UIDevice();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIDevice___CLINIT___]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

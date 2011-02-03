@@ -6,6 +6,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSError __TIB_org_xmlvm_iphone_NSError = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSError, // classInitializer
     "org.xmlvm.iphone.NSError", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

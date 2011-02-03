@@ -4,7 +4,12 @@
 
 #include "org_xmlvm_iphone_UINavigationControllerDelegate.h"
 
-__TIB_DEFINITION_org_xmlvm_iphone_UINavigationControllerDelegate __TIB_org_xmlvm_iphone_UINavigationControllerDelegate;
+__TIB_DEFINITION_org_xmlvm_iphone_UINavigationControllerDelegate __TIB_org_xmlvm_iphone_UINavigationControllerDelegate = {
+    0, // classInitialized
+    __INIT_org_xmlvm_iphone_UINavigationControllerDelegate, // classInitializer
+    "org.xmlvm.iphone.UINavigationControllerDelegate", // className
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    XMLVM_TYPE_INTERFACE};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_ARRAYTYPE;
@@ -16,9 +21,6 @@ static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 void __INIT_FOR_CLASS_org_xmlvm_iphone_UINavigationControllerDelegate(__TIB_DEFINITION_TEMPLATE** interface)
 {
     if (!__TIB_org_xmlvm_iphone_UINavigationControllerDelegate.classInitialized) {
-        __TIB_org_xmlvm_iphone_UINavigationControllerDelegate.className = "org.xmlvm.iphone.UINavigationControllerDelegate";
-        __TIB_org_xmlvm_iphone_UINavigationControllerDelegate.extends = (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object;
-        __TIB_org_xmlvm_iphone_UINavigationControllerDelegate.flags = XMLVM_TYPE_INTERFACE;
         __TIB_org_xmlvm_iphone_UINavigationControllerDelegate.numInterfaces = 0;
         __TIB_org_xmlvm_iphone_UINavigationControllerDelegate.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UINavigationControllerDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

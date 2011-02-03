@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_SKRequest __TIB_org_xmlvm_iphone_SKRequest = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_SKRequest, // classInitializer
     "org.xmlvm.iphone.SKRequest", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

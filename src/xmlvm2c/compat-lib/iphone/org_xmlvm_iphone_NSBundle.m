@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSBundle __TIB_org_xmlvm_iphone_NSBundle = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSBundle, // classInitializer
     "org.xmlvm.iphone.NSBundle", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -94,16 +95,29 @@ JAVA_OBJECT org_xmlvm_iphone_NSBundle_mainBundle__()
 {
     if (!__TIB_org_xmlvm_iphone_NSBundle.classInitialized) __INIT_org_xmlvm_iphone_NSBundle();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSBundle_mainBundle__]
-    JAVA_OBJECT me = __NEW_org_xmlvm_iphone_NSBundle();
-    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, [NSBundle mainBundle]);
-    return me;
+    static JAVA_OBJECT mainBundle = JAVA_NULL;
+    if (mainBundle == JAVA_NULL) {
+        mainBundle = __NEW_org_xmlvm_iphone_NSBundle();
+        org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(mainBundle, [NSBundle mainBundle]);
+    }
+    return mainBundle;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_lang_String_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_lang_String_java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSBundle* thiz = me;
+    NSString* name = toNSString(n1);
+    NSString* ext = toNSString(n2);
+    NSString* dir = toNSString(n3);
+    NSString* path = [((NSBundle*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) pathForResource:name ofType:ext inDirectory:dir];
+    JAVA_OBJECT path_ = toJavaString(path);
+    [name release];
+    [ext release];
+    [dir release];
+    //[path release];
+    return path_;
     //XMLVM_END_WRAPPER
 }
 
@@ -117,7 +131,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_la
     [path release];
     [type release];
     JAVA_OBJECT result = toJavaString(absolutePath);
-    [absolutePath release];
+    //[absolutePath release];
     return result;
     //XMLVM_END_WRAPPER
 }
@@ -125,7 +139,11 @@ JAVA_OBJECT org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_la
 JAVA_OBJECT org_xmlvm_iphone_NSBundle_bundlePath__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSBundle_bundlePath__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSBundle* thiz = me;
+    NSString* path = [((NSBundle*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) bundlePath];
+    JAVA_OBJECT path_ = toJavaString(path);
+    //[path release];
+    return path_;
     //XMLVM_END_WRAPPER
 }
 

@@ -891,11 +891,12 @@ public final class String implements Serializable, Comparable<String>,
      *             if the encoding is not supported.
      */
     public byte[] getBytes(String encoding) throws UnsupportedEncodingException {
-        ByteBuffer buffer = getCharset(encoding).encode(
-                CharBuffer.wrap(this.value, this.offset, this.count));
-        byte[] bytes = new byte[buffer.limit()];
-        buffer.get(bytes);
-        return bytes;
+        return getBytes();
+//        ByteBuffer buffer = getCharset(encoding).encode(
+//                CharBuffer.wrap(this.value, this.offset, this.count));
+//        byte[] bytes = new byte[buffer.limit()];
+//        buffer.get(bytes);
+//        return bytes;
     }
 
     private Charset getCharset(final String encoding)

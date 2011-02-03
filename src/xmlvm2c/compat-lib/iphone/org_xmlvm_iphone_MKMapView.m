@@ -11,6 +11,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_MKMapView __TIB_org_xmlvm_iphone_MKMapView = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_MKMapView, // classInitializer
     "org.xmlvm.iphone.MKMapView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
     XMLVM_TYPE_CLASS};

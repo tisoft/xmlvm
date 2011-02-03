@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIPreferencesTableDataSource __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIPreferencesTableDataSource, // classInitializer
     "org.xmlvm.iphone.UIPreferencesTableDataSource", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

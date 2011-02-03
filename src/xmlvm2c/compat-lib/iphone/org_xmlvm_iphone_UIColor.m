@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIColor __TIB_org_xmlvm_iphone_UIColor = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIColor, // classInitializer
     "org.xmlvm.iphone.UIColor", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -14,6 +15,13 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIColor_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <UIKit/UIKit.h>
+
+
+void org_xmlvm_iphone_UIColor_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_OBJECT _STATIC_org_xmlvm_iphone_UIColor_blackColor;
@@ -506,7 +514,10 @@ JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithRGBA___float_float_float_float(JAV
 {
     if (!__TIB_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor_colorWithRGBA___float_float_float_float]
-    XMLVM_NOT_IMPLEMENTED();
+    UIColor* obj = [UIColor colorWithRed:n1 green:n2 blue:n3 alpha:n4];
+    JAVA_OBJECT color = __NEW_org_xmlvm_iphone_UIColor();
+    org_xmlvm_iphone_UIColor_INTERNAL_CONSTRUCTOR(color, obj);
+    return color;
     //XMLVM_END_WRAPPER
 }
 

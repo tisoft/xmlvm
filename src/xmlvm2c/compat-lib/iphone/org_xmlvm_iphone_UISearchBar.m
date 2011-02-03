@@ -9,6 +9,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UISearchBar __TIB_org_xmlvm_iphone_UISearchBar = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UISearchBar, // classInitializer
     "org.xmlvm.iphone.UISearchBar", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIControl, // extends
     XMLVM_TYPE_CLASS};

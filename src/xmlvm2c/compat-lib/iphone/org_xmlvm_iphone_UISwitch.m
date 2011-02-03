@@ -7,6 +7,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UISwitch __TIB_org_xmlvm_iphone_UISwitch = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UISwitch, // classInitializer
     "org.xmlvm.iphone.UISwitch", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIControl, // extends
     XMLVM_TYPE_CLASS};

@@ -7,6 +7,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_SKPaymentQueue __TIB_org_xmlvm_iphone_SKPaymentQueue = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_SKPaymentQueue, // classInitializer
     "org.xmlvm.iphone.SKPaymentQueue", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

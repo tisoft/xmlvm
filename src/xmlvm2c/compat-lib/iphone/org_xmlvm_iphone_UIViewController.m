@@ -8,6 +8,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIViewController __TIB_org_xmlvm_iphone_UIViewController = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIViewController, // classInitializer
     "org.xmlvm.iphone.UIViewController", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIResponder, // extends
     XMLVM_TYPE_CLASS};

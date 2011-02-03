@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSObject __TIB_org_xmlvm_iphone_NSObject = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSObject, // classInitializer
     "org.xmlvm.iphone.NSObject", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     XMLVM_TYPE_CLASS};
@@ -13,6 +14,63 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#include "java_lang_Class.h"
+#include "java_lang_reflect_Method.h"
+
+
+static NSObject* dispatchObject = nil;
+
+@interface DispatcherObject : NSObject {
+    JAVA_OBJECT target;
+    JAVA_OBJECT methodName;
+    JAVA_OBJECT param;
+}
+
+- (id) initWithParams:(JAVA_OBJECT) target_
+                     :(JAVA_OBJECT) methodName_
+                     :(JAVA_OBJECT) param_;
+
+- (void) run;
+@end
+
+@implementation DispatcherObject
+
+- (id) initWithParams:(JAVA_OBJECT) target_
+                     :(JAVA_OBJECT) methodName_
+                     :(JAVA_OBJECT) param_
+{
+    [super init];
+    self->target = target_;
+    self->methodName = methodName_;
+    self->param = param_;
+    return self;
+}
+
+- (void) run
+{
+    // We use the standard Java reflection API to invoke a method that
+    // takes a single java.lang.Object parameter
+    if (!__TIB_java_lang_Class.classInitialized) __INIT_java_lang_Class();
+    // First build up array with one __CLASS_java_lang_Object. We save this since
+    // we can reuse it
+    static org_xmlvm_runtime_XMLVMArray* paramTypes = JAVA_NULL;
+    if (paramTypes == JAVA_NULL) {
+        paramTypes = XMLVMArray_createSingleDimension(__CLASS_java_lang_Class_ARRAYTYPE, 1);
+        ((JAVA_ARRAY_OBJECT*) (paramTypes->fields.org_xmlvm_runtime_XMLVMArray.array_))[0] = __CLASS_java_lang_Object;
+    }
+    java_lang_Class* targetClass = java_lang_Object_getClass__(target);
+    // Retrieve method
+    java_lang_reflect_Method* method = (*(JAVA_OBJECT (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) targetClass->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Class_getMethod___java_lang_String_java_lang_Class_ARRAYTYPE])(targetClass, methodName, paramTypes);
+    org_xmlvm_runtime_XMLVMArray* params = XMLVMArray_createSingleDimension(__CLASS_java_lang_Object_ARRAYTYPE, 1);
+    ((JAVA_ARRAY_OBJECT*) (params->fields.org_xmlvm_runtime_XMLVMArray.array_))[0] = param;
+    // Invoke method
+    (*(JAVA_OBJECT (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) method->tib->vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_ARRAYTYPE])(method, target, params);
+    [self release];
+}
+
+@end
+
 
 void org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
 {
@@ -135,28 +193,30 @@ void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___java_lang_Object_ja
 {
     if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelectorOnMainThread___java_lang_Object_java_lang_String_java_lang_Object_boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    DispatcherObject* dispatcher = [[DispatcherObject alloc] initWithParams:n1:n2:n3];
+    [dispatcher performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:n4];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSObject_retain__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_retain__]
-    XMLVM_NOT_IMPLEMENTED();
+    // Do nothing
+    return me;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSObject_release__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_release__]
-    XMLVM_NOT_IMPLEMENTED();
+    // Do nothing
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSObject_dealloc__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_dealloc__]
-    XMLVM_NOT_IMPLEMENTED();
+    // Do nothing
     //XMLVM_END_WRAPPER
 }
 

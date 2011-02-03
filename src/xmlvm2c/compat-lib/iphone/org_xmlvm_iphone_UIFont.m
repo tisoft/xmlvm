@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIFont __TIB_org_xmlvm_iphone_UIFont = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIFont, // classInitializer
     "org.xmlvm.iphone.UIFont", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -13,6 +14,12 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIFont;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIFont_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+void org_xmlvm_iphone_UIFont_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 

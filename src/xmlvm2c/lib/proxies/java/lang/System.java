@@ -721,11 +721,24 @@ public final class System {
         if (prop.length() == 0) {
             throw new IllegalArgumentException();
         }
-        SecurityManager secMgr = System.getSecurityManager();
-        if (secMgr != null) {
-            secMgr.checkPropertyAccess(prop);
+        if (prop.equals("file.separator")) {
+            return "/";
         }
-        return systemProperties.getProperty(prop, defaultValue);
+        if (prop.equals("path.separator")) {
+            return ":";
+        }
+        if (prop.equals("user.dir")) {
+            return "";
+        }
+        if (prop.equals("os.encoding")) {
+            return null;
+        }
+        throw new IllegalArgumentException();
+//        SecurityManager secMgr = System.getSecurityManager();
+//        if (secMgr != null) {
+//            secMgr.checkPropertyAccess(prop);
+//        }
+//        return systemProperties.getProperty(prop, defaultValue);
     }
 
     /**

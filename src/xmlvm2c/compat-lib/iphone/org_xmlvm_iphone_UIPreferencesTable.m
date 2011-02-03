@@ -6,6 +6,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIPreferencesTable __TIB_org_xmlvm_iphone_UIPreferencesTable = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIPreferencesTable, // classInitializer
     "org.xmlvm.iphone.UIPreferencesTable", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
     XMLVM_TYPE_CLASS};

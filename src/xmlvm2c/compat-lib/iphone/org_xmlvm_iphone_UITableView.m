@@ -11,6 +11,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UITableView __TIB_org_xmlvm_iphone_UITableView = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UITableView, // classInitializer
     "org.xmlvm.iphone.UITableView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIScrollView, // extends
     XMLVM_TYPE_CLASS};

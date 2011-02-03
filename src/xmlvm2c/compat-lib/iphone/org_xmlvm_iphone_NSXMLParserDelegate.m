@@ -8,6 +8,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSXMLParserDelegate __TIB_org_xmlvm_iphone_NSXMLParserDelegate = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSXMLParserDelegate, // classInitializer
     "org.xmlvm.iphone.NSXMLParserDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -16,6 +17,92 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParserDelegate;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParserDelegate_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#include "xmlvm-util.h"
+#include "org_xmlvm_iphone_NSString.h"
+
+
+JAVA_OBJECT convertAttributes(NSDictionary* attributes)
+{
+    JAVA_OBJECT map = XMLVMUtil_NEW_HashMap();
+    NSEnumerator* enumerator = [attributes keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        id value = [attributes objectForKey:key];
+        JAVA_OBJECT key_ = toJavaString(key);
+        JAVA_OBJECT value_ = toJavaString(value);
+        XMLVMUtil_HashMap_put(map, key_, value_);
+    }
+    return map;
+}
+
+@implementation NSXMLParserDelegateWrapper
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_
+{
+    [super init];
+    self->delegate = delegate_;
+    self->parser = JAVA_NULL;
+    return self;
+}
+
+- (void) setParser:(JAVA_OBJECT) parser_
+{
+    self->parser = parser_;
+}
+
+- (void) parser:(NSXMLParser *)parser didStartMappingPrefix:(NSString *)prefix toURI:(NSString *)namespaceURI
+{
+    Func_VOOOO func = self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_didStartMappingPrefix___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String];
+    JAVA_OBJECT prefix_ = toJavaString(prefix);
+    JAVA_OBJECT namespaceURI_ = toJavaString(namespaceURI);
+    (*func)(self->delegate, self->parser, prefix_, namespaceURI_);
+}
+
+- (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
+   namespaceURI:(NSString *)namespaceURI
+  qualifiedName:(NSString *)qualifiedName
+     attributes:(NSDictionary *)attributeDict
+{
+    Func_VOOOOOO func = self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_didStartElement___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String_java_lang_String_java_util_Map];
+    JAVA_OBJECT elementName_ = toJavaString(elementName);
+    JAVA_OBJECT namespaceURI_ = toJavaString(namespaceURI);
+    JAVA_OBJECT qualifiedName_ = qualifiedName == nil ? elementName_ : toJavaString(qualifiedName);
+    JAVA_OBJECT attributes_ = convertAttributes(attributeDict);
+    (*func)(self->delegate, self->parser, elementName_, namespaceURI_, qualifiedName_, attributes_);
+}
+
+- (void) parser:(NSXMLParser *)parser
+  didEndElement:(NSString *)elementName
+   namespaceURI:(NSString *)namespaceURI
+  qualifiedName:(NSString *)qualifiedName
+{
+    Func_VOOOOO func = self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_didEndElement___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String_java_lang_String];
+    JAVA_OBJECT elementName_ = toJavaString(elementName);
+    JAVA_OBJECT namespaceURI_ = toJavaString(namespaceURI);
+    JAVA_OBJECT qualifiedName_ = qualifiedName == nil ? elementName_ : toJavaString(qualifiedName);
+    (*func)(self->delegate, self->parser, elementName_, namespaceURI_, qualifiedName_);
+}
+
+- (void) parser:(NSXMLParser *)parser
+foundCharacters:(NSString *)string
+{
+    Func_VOOO func = self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_foundCharacters___org_xmlvm_iphone_NSXMLParser_java_lang_String];
+    JAVA_OBJECT string_ = toJavaString(string);
+    (*func)(self->delegate, self->parser, string_);
+}
+
+- (void)parser:(NSXMLParser *)parser
+	foundCDATA:(NSData *)data
+{
+    Func_VOOO func = self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_foundCDATA___org_xmlvm_iphone_NSXMLParser_org_xmlvm_iphone_NSData];
+    org_xmlvm_iphone_NSData* data_ = __NEW_org_xmlvm_iphone_NSData();
+    org_xmlvm_iphone_NSData_INTERNAL_CONSTRUCTOR(data_, [data retain]);
+    (*func)(self->delegate, self->parser, data_);
+}
+
+@end
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -91,6 +178,7 @@ void __INIT_org_xmlvm_iphone_NSXMLParserDelegate()
 void __DELETE_org_xmlvm_iphone_NSXMLParserDelegate(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSXMLParserDelegate]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -100,6 +188,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSXMLParserDelegate()
     org_xmlvm_iphone_NSXMLParserDelegate* me = (org_xmlvm_iphone_NSXMLParserDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSXMLParserDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_NSXMLParserDelegate;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSXMLParserDelegate]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSXMLParserDelegate);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -115,49 +204,50 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSXMLParserDelegate()
 void org_xmlvm_iphone_NSXMLParserDelegate___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParserDelegate___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    NSXMLParserDelegateWrapper* obj = [[NSXMLParserDelegateWrapper alloc] initWithDelegate:me];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSXMLParserDelegate_didStartMappingPrefix___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParserDelegate_didStartMappingPrefix___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    // Do nothing
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSXMLParserDelegate_didEndMappingPrefix___org_xmlvm_iphone_NSXMLParser_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParserDelegate_didEndMappingPrefix___org_xmlvm_iphone_NSXMLParser_java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    // Do nothing
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSXMLParserDelegate_didStartElement___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String_java_lang_String_java_util_Map(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4, JAVA_OBJECT n5)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParserDelegate_didStartElement___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String_java_lang_String_java_util_Map]
-    XMLVM_NOT_IMPLEMENTED();
+    // Do nothing
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSXMLParserDelegate_didEndElement___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParserDelegate_didEndElement___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String_java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    // Do nothing
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSXMLParserDelegate_foundCharacters___org_xmlvm_iphone_NSXMLParser_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParserDelegate_foundCharacters___org_xmlvm_iphone_NSXMLParser_java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    // Do nothing
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSXMLParserDelegate_foundCDATA___org_xmlvm_iphone_NSXMLParser_org_xmlvm_iphone_NSData(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParserDelegate_foundCDATA___org_xmlvm_iphone_NSXMLParser_org_xmlvm_iphone_NSData]
-    XMLVM_NOT_IMPLEMENTED();
+    // Do nothing
     //XMLVM_END_WRAPPER
 }
 

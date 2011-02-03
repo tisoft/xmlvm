@@ -23,7 +23,7 @@ JAVA_OBJECT java_lang_Object_clone__(JAVA_OBJECT me)
 JAVA_BOOLEAN java_lang_Object_equals___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_equals___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    return me == n1;
     //XMLVM_END_NATIVE
 }
 

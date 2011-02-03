@@ -4,6 +4,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIActivityIndicatorView __TIB_org_xmlvm_iphone_UIActivityIndicatorView = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIActivityIndicatorView, // classInitializer
     "org.xmlvm.iphone.UIActivityIndicatorView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
     XMLVM_TYPE_CLASS};

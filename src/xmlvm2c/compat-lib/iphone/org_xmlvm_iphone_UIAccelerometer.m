@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIAccelerometer __TIB_org_xmlvm_iphone_UIAccelerometer = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIAccelerometer, // classInitializer
     "org.xmlvm.iphone.UIAccelerometer", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

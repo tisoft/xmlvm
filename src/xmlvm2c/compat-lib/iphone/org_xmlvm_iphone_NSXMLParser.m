@@ -6,6 +6,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSXMLParser __TIB_org_xmlvm_iphone_NSXMLParser = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSXMLParser, // classInitializer
     "org.xmlvm.iphone.NSXMLParser", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -89,6 +90,7 @@ void __INIT_org_xmlvm_iphone_NSXMLParser()
 void __DELETE_org_xmlvm_iphone_NSXMLParser(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSXMLParser]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -98,6 +100,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSXMLParser()
     org_xmlvm_iphone_NSXMLParser* me = (org_xmlvm_iphone_NSXMLParser*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSXMLParser));
     me->tib = &__TIB_org_xmlvm_iphone_NSXMLParser;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSXMLParser]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSXMLParser);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -111,21 +114,28 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSXMLParser()
 void org_xmlvm_iphone_NSXMLParser___INIT____org_xmlvm_iphone_NSData(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParser___INIT____org_xmlvm_iphone_NSData]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSData* data = n1;
+    NSXMLParser* parser = [[NSXMLParser alloc] initWithData:data->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, parser);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSXMLParser_setDelegate___org_xmlvm_iphone_NSXMLParserDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParser_setDelegate___org_xmlvm_iphone_NSXMLParserDelegate]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSXMLParserDelegate* delegate = n1;
+    NSXMLParserDelegateWrapper* delegateWrapper = delegate->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    [delegateWrapper setParser:me];
+    org_xmlvm_iphone_NSXMLParser* thiz = me;
+    [((NSXMLParser*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setDelegate:delegateWrapper];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSXMLParser_setShouldProcessNamespaces___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParser_setShouldProcessNamespaces___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSXMLParser* thiz = me;
+    [((NSXMLParser*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) setShouldProcessNamespaces:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -139,7 +149,8 @@ JAVA_BOOLEAN org_xmlvm_iphone_NSXMLParser_shouldProcessNamespaces__(JAVA_OBJECT 
 void org_xmlvm_iphone_NSXMLParser_setShouldReportNamespacePrefixes___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParser_setShouldReportNamespacePrefixes___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSXMLParser* thiz = me;
+    [((NSXMLParser*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) setShouldReportNamespacePrefixes:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -153,7 +164,8 @@ JAVA_BOOLEAN org_xmlvm_iphone_NSXMLParser_shouldReportNamespacePrefixes__(JAVA_O
 JAVA_BOOLEAN org_xmlvm_iphone_NSXMLParser_parse__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParser_parse__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSXMLParser* thiz = me;
+    return [((NSXMLParser*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) parse];
     //XMLVM_END_WRAPPER
 }
 

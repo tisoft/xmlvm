@@ -17,6 +17,7 @@
 package android.graphics;
 
 import android.content.res.AssetManager;
+import android.internal.Assert;
 import android.util.Log;
 
 import java.io.File;
@@ -181,7 +182,9 @@ public class Typeface {
      * 
      * @hide - this is just for calibrating devices, not for normal apps
      */
-    public static native void setGammaForText(float blackGamma, float whiteGamma);
+    public static void setGammaForText(float blackGamma, float whiteGamma) {
+        Assert.NOT_IMPLEMENTED();
+    }
 
     public UIFont xmlvmGetUIFont(float pointSize) {
         String family = mFamilyName == null ? UIFont.systemFontOfSize(pointSize).familyName() : mFamilyName;

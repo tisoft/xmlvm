@@ -6,6 +6,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_CGImage __TIB_org_xmlvm_iphone_CGImage = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_CGImage, // classInitializer
     "org.xmlvm.iphone.CGImage", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

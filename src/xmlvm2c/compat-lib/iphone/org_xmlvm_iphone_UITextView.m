@@ -8,6 +8,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UITextView __TIB_org_xmlvm_iphone_UITextView = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UITextView, // classInitializer
     "org.xmlvm.iphone.UITextView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
     XMLVM_TYPE_CLASS};

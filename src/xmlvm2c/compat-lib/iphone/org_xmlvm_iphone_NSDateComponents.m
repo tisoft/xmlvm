@@ -4,6 +4,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSDateComponents __TIB_org_xmlvm_iphone_NSDateComponents = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSDateComponents, // classInitializer
     "org.xmlvm.iphone.NSDateComponents", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

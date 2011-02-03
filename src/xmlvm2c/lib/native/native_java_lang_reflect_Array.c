@@ -106,7 +106,10 @@ JAVA_OBJECT java_lang_reflect_Array_newInstance___java_lang_Class_int_ARRAYTYPE(
 JAVA_OBJECT java_lang_reflect_Array_newInstance___java_lang_Class_int(JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Array_newInstance___java_lang_Class_int]
-    xmlvm_unimplemented_native_method();
+    java_lang_Class* baseType = (java_lang_Class*) n1;
+    __TIB_DEFINITION_TEMPLATE* baseTypeTIB = (__TIB_DEFINITION_TEMPLATE*) baseType->fields.java_lang_Class.tib_;
+    JAVA_OBJECT arrayType = baseTypeTIB->arrayType;
+    return XMLVMArray_createSingleDimension(arrayType, n2);
     //XMLVM_END_NATIVE
 }
 

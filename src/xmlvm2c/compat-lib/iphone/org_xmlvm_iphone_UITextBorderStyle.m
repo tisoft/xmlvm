@@ -4,6 +4,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UITextBorderStyle __TIB_org_xmlvm_iphone_UITextBorderStyle = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UITextBorderStyle, // classInitializer
     "org.xmlvm.iphone.UITextBorderStyle", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     XMLVM_TYPE_CLASS};

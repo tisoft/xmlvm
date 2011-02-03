@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UITouch __TIB_org_xmlvm_iphone_UITouch = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UITouch, // classInitializer
     "org.xmlvm.iphone.UITouch", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

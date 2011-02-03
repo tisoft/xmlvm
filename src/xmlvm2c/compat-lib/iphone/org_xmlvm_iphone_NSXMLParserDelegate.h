@@ -37,6 +37,32 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParserDelegate_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSXMLParserDelegate
+
+@interface NSXMLParserDelegateWrapper : NSObject <NSXMLParserDelegate> {
+    
+    org_xmlvm_iphone_NSXMLParserDelegate* delegate;
+    org_xmlvm_iphone_NSXMLParser*         parser;
+    
+}
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_;
+- (void) setParser:(JAVA_OBJECT) parser_;
+- (void) parser:(NSXMLParser *)parser didStartMappingPrefix:(NSString *)prefix toURI:(NSString *)namespaceURI;
+- (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
+   namespaceURI:(NSString *)namespaceURI
+  qualifiedName:(NSString *)qualifiedName
+     attributes:(NSDictionary *)attributeDict;
+- (void) parser:(NSXMLParser *)parser
+  didEndElement:(NSString *)elementName
+   namespaceURI:(NSString *)namespaceURI
+  qualifiedName:(NSString *)qualifiedName;
+- (void) parser:(NSXMLParser *)parser
+foundCharacters:(NSString *)string;
+- (void)parser:(NSXMLParser *)parser
+	foundCDATA:(NSData *)CDATABlock;
+
+@end
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_NSXMLParserDelegate \

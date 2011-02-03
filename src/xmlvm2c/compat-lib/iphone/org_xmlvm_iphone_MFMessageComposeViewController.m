@@ -7,6 +7,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_MFMessageComposeViewController __TIB_org_xmlvm_iphone_MFMessageComposeViewController = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_MFMessageComposeViewController, // classInitializer
     "org.xmlvm.iphone.MFMessageComposeViewController", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UINavigationController, // extends
     XMLVM_TYPE_CLASS};

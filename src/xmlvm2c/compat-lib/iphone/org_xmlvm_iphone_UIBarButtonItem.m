@@ -9,6 +9,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIBarButtonItem __TIB_org_xmlvm_iphone_UIBarButtonItem = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIBarButtonItem, // classInitializer
     "org.xmlvm.iphone.UIBarButtonItem", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIBarItem, // extends
     XMLVM_TYPE_CLASS};

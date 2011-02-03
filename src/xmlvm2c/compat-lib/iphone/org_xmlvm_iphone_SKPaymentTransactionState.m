@@ -4,6 +4,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_SKPaymentTransactionState __TIB_org_xmlvm_iphone_SKPaymentTransactionState = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_SKPaymentTransactionState, // classInitializer
     "org.xmlvm.iphone.SKPaymentTransactionState", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     XMLVM_TYPE_CLASS};

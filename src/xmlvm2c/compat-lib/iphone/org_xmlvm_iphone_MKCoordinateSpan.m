@@ -4,6 +4,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_MKCoordinateSpan __TIB_org_xmlvm_iphone_MKCoordinateSpan = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_MKCoordinateSpan, // classInitializer
     "org.xmlvm.iphone.MKCoordinateSpan", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

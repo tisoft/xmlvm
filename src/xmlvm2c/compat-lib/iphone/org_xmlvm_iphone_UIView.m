@@ -12,6 +12,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIView __TIB_org_xmlvm_iphone_UIView = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIView, // classInitializer
     "org.xmlvm.iphone.UIView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIResponder, // extends
     XMLVM_TYPE_CLASS};
@@ -256,7 +257,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIView()
     org_xmlvm_iphone_UIView* me = (org_xmlvm_iphone_UIView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIView));
     me->tib = &__TIB_org_xmlvm_iphone_UIView;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIView]
-    me->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
 	/*********************************************************************************************
 	 * README: Ordinarily the garbage collector will just silently release the memory of
 	 * garbage collected objects. If some cleanup needs to be done before this happens, we
@@ -293,6 +293,7 @@ void org_xmlvm_iphone_UIView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, J
 	 * we don't instantiate a UIView directly, but UIViewWrapper as defined earlier in this
 	 * file.
 	 */
+    ((org_xmlvm_iphone_UIView*) me)->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
 	UIViewWrapper* obj = [[UIViewWrapper alloc] initWithFrame: toCGRect(n1)];
 	[obj setWrappedCObj:me];
     org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, obj);
@@ -302,6 +303,7 @@ void org_xmlvm_iphone_UIView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, J
 void org_xmlvm_iphone_UIView___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView___INIT___]
+    ((org_xmlvm_iphone_UIView*) me)->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
 	UIViewWrapper* obj = [[UIViewWrapper alloc] init];
 	[obj setWrappedCObj:me];
     org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, obj);
@@ -455,7 +457,8 @@ void org_xmlvm_iphone_UIView_setNeedsDisplay__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIView_setOpaque___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setOpaque___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIView* thiz = me;
+    [((UIView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setOpaque:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -513,14 +516,16 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIView_isHidden__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIView_setHidden___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setHidden___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIView* thiz = me;
+    [((UIView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setHidden:n1];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIView_setContentMode___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setContentMode___int]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIView* thiz = me;
+    [((UIView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setContentMode:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -541,7 +546,8 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIView_isUserInteractionEnabled__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIView_setUserInteractionEnabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setUserInteractionEnabled___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIView* thiz = me;
+    [((UIView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setUserInteractionEnabled:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -555,7 +561,12 @@ JAVA_OBJECT org_xmlvm_iphone_UIView_getTransform__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIView_setTransform___org_xmlvm_iphone_CGAffineTransform(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setTransform___org_xmlvm_iphone_CGAffineTransform]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIView* thiz = me;
+    if (n1 == JAVA_NULL) {
+        [((UIView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setTransform:CGAffineTransformIdentity];
+    } else {
+        XMLVM_NOT_IMPLEMENTED();
+    }
     //XMLVM_END_WRAPPER
 }
 

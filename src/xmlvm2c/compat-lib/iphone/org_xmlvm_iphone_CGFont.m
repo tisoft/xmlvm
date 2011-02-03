@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_CGFont __TIB_org_xmlvm_iphone_CGFont = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_CGFont, // classInitializer
     "org.xmlvm.iphone.CGFont", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

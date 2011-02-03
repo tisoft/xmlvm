@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UITabBarItem __TIB_org_xmlvm_iphone_UITabBarItem = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UITabBarItem, // classInitializer
     "org.xmlvm.iphone.UITabBarItem", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIBarItem, // extends
     XMLVM_TYPE_CLASS};

@@ -28,32 +28,32 @@ import org.xmlvm.iphone.UIApplicationDelegate;
  */
 public class AndroidAppLauncher extends UIApplicationDelegate {
 
-    private static Application app = new Application();
+    private static Application app = null;
 
 
     @Override
     public void applicationDidFinishLaunching(UIApplication iphone_app) {
-        app.onCreate();
+        getApplication().onCreate();
     }
 
     @Override
     public void applicationWillTerminate(UIApplication iphone_app) {
-        app.onTerminate();
+        getApplication().onTerminate();
     }
 
     @Override
     public void applicationDidReceiveMemoryWarning(UIApplication iphone_app) {
-        app.onLowMemory();
+        getApplication().onLowMemory();
     }
 
     @Override
     public void applicationDidBecomeActive(UIApplication iphone_app) {
-        app.onRestart();
+        getApplication().onRestart();
     }
 
     @Override
     public void applicationWillResignActive(UIApplication iphone_app) {
-        app.onStop();
+        getApplication().onStop();
     }
 
     public static void main(String[] args) {
@@ -61,6 +61,9 @@ public class AndroidAppLauncher extends UIApplicationDelegate {
     }
 
     public static Application getApplication() {
+        if (app == null) {
+            app = new Application();
+        }
         return app;
     }
 }

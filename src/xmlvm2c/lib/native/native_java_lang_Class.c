@@ -7,7 +7,10 @@
 
 #include "java_lang_reflect_Field.h"
 #include "java_lang_reflect_Constructor.h"
+#include "java_lang_reflect_Method.h"
 #include "org_xmlvm_runtime_XMLVMArray.h"
+#include "java_lang_ClassNotFoundException.h"
+#include "xmlvm-util.h"
 
 
 __TIB_DEFINITION_boolean __TIB_boolean;
@@ -38,6 +41,17 @@ JAVA_OBJECT __CLASS_long_ARRAYTYPE;
 JAVA_OBJECT __CLASS_float_ARRAYTYPE;
 JAVA_OBJECT __CLASS_double_ARRAYTYPE;
 
+JAVA_OBJECT __CLASS_boolean_ARRAYTYPE_ARRAYTYPE;
+JAVA_OBJECT __CLASS_byte_ARRAYTYPE_ARRAYTYPE;
+JAVA_OBJECT __CLASS_char_ARRAYTYPE_ARRAYTYPE;
+JAVA_OBJECT __CLASS_short_ARRAYTYPE_ARRAYTYPE;
+JAVA_OBJECT __CLASS_int_ARRAYTYPE_ARRAYTYPE;
+JAVA_OBJECT __CLASS_long_ARRAYTYPE_ARRAYTYPE;
+JAVA_OBJECT __CLASS_float_ARRAYTYPE_ARRAYTYPE;
+JAVA_OBJECT __CLASS_double_ARRAYTYPE_ARRAYTYPE;
+JAVA_OBJECT __CLASS_java_lang_Object_ARRAYTYPE_ARRAYTYPE;
+
+
 void init_primitive_class(void* clazz, const char* name)
 {
     __TIB_DEFINITION_TEMPLATE* c = (__TIB_DEFINITION_TEMPLATE*) clazz;
@@ -46,6 +60,7 @@ void init_primitive_class(void* clazz, const char* name)
     c->className = name;
     c->extends = (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Class;
     c->flags = XMLVM_TYPE_PRIMITIVE;
+    XMLVM_MEMCPY(c->vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
 }
 
 void __INIT_boolean()
@@ -120,6 +135,17 @@ void java_lang_Class_initNativeLayer__()
     __CLASS_long_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_long, 1);
     __CLASS_float_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_float, 1);
     __CLASS_double_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_double, 1);
+
+    __CLASS_boolean_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_boolean_ARRAYTYPE, 2);
+    __CLASS_byte_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_byte_ARRAYTYPE, 2);
+    __CLASS_char_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_char_ARRAYTYPE, 2);
+    __CLASS_short_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_short_ARRAYTYPE, 2);
+    __CLASS_int_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_int_ARRAYTYPE, 2);
+    __CLASS_long_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_long_ARRAYTYPE, 2);
+    __CLASS_float_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_float_ARRAYTYPE, 2);
+    __CLASS_double_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_double_ARRAYTYPE, 2);
+
+    __CLASS_java_lang_Object_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_java_lang_Object_ARRAYTYPE, 2);
     //XMLVM_END_NATIVE
 }
 
@@ -133,7 +159,35 @@ JAVA_OBJECT java_lang_Class_getStackClasses___int_boolean(JAVA_INT n1, JAVA_BOOL
 JAVA_OBJECT java_lang_Class_forName___java_lang_String(JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_forName___java_lang_String]
-    xmlvm_unimplemented_native_method();
+    static JAVA_OBJECT classMap = JAVA_NULL;
+    if (classMap == JAVA_NULL) {
+        classMap = XMLVMUtil_NEW_HashMap();
+    }
+    java_lang_Class* clazz = XMLVMUtil_HashMap_get(classMap, n1);
+    if (clazz != JAVA_NULL) {
+        return clazz;
+    }
+    int i = 0;
+    __TIB_DEFINITION_TEMPLATE* tib;
+    for (i = 0; i < __xmlvm_num_tib; i++) {
+        tib = __xmlvm_tib_list[i];
+        if (xmlvm_java_string_cmp(n1, tib->className)) {
+            break;
+        }
+    }
+    if (i == __xmlvm_num_tib) {
+        // Class not found
+        xmlvm_exception = __NEW_java_lang_ClassNotFoundException();
+        java_lang_ClassNotFoundException___INIT___(xmlvm_exception);
+        XMLVM_LONGJMP(xmlvm_exception_env);
+    }
+    if (!tib->classInitialized) {
+        Func_V initFunc = tib->classInitializer;
+        initFunc();
+    }
+    clazz = tib->clazz;
+    XMLVMUtil_HashMap_put(classMap, n1, clazz);
+    return clazz;
     //XMLVM_END_NATIVE
 }
 
@@ -304,17 +358,39 @@ JAVA_OBJECT java_lang_Class_getDeclaredFields__(JAVA_OBJECT me)
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_Class_getDeclaredMethod___java_lang_String_java_lang_Class_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredMethod___java_lang_String_java_lang_Class_ARRAYTYPE]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
 JAVA_OBJECT java_lang_Class_getDeclaredMethods__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredMethods__]
-    xmlvm_unimplemented_native_method();
+    java_lang_Class* thiz = (java_lang_Class*) me;
+    __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    int numMethods = tib->numDeclaredMethods;
+    Func_OOOO dispatcher = tib->methodDispatcherFunc;
+    if (!__TIB_java_lang_reflect_Method.classInitialized) __INIT_java_lang_reflect_Method();
+    org_xmlvm_runtime_XMLVMArray* methods = XMLVMArray_createSingleDimension(__CLASS_java_lang_reflect_Method_ARRAYTYPE, numMethods);
+    JAVA_ARRAY_OBJECT* methodArray = (JAVA_ARRAY_OBJECT*) methods->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    JAVA_INT slot = 0;
+    for (slot = 0; slot < numMethods; slot++) {
+        java_lang_reflect_Method* method = __NEW_java_lang_reflect_Method();
+        XMLVM_METHOD_REFLECTION_DATA* currentMethod = (tib->declaredMethods) + slot;
+        int numParameters = currentMethod->numParameterTypes;
+        org_xmlvm_runtime_XMLVMArray* parameters = XMLVMArray_createSingleDimension(__CLASS_java_lang_Class_ARRAYTYPE, numParameters);
+        JAVA_ARRAY_OBJECT* parameterArray = (JAVA_ARRAY_OBJECT*) parameters->fields.org_xmlvm_runtime_XMLVMArray.array_;
+        int j = 0;
+        JAVA_OBJECT** paramTypes = currentMethod->parameterTypes;
+        for (j = 0; j < numParameters; j++) {
+            parameterArray[j] = *(paramTypes[j]);
+        }
+        java_lang_String* name = xmlvm_create_java_string(currentMethod->name);
+        JAVA_OBJECT*  checkedExceptions = JAVA_NULL;
+        int          numCheckedExceptions = 0;
+        int          modifiers = 0;
+        java_lang_String* signature = xmlvm_create_java_string(currentMethod->signature);
+        JAVA_OBJECT  annotations = JAVA_NULL;
+        JAVA_OBJECT  parameterAnnotations = JAVA_NULL;
+        java_lang_reflect_Method___INIT____java_lang_String_java_lang_Class_java_lang_Class_ARRAYTYPE_java_lang_Class_ARRAYTYPE_int_java_lang_Object_int_java_lang_String_byte_ARRAYTYPE_byte_ARRAYTYPE(method, name, tib->clazz, parameters, checkedExceptions, modifiers, dispatcher, slot, signature, annotations, parameterAnnotations);
+        methodArray[slot] = method;
+    }
+    return methods;
     //XMLVM_END_NATIVE
 }
 
@@ -388,20 +464,6 @@ JAVA_OBJECT java_lang_Class_getInterfaces__(JAVA_OBJECT me)
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_Class_getMethod___java_lang_String_java_lang_Class_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getMethod___java_lang_String_java_lang_Class_ARRAYTYPE]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
-JAVA_OBJECT java_lang_Class_getMethods__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getMethods__]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
 JAVA_INT java_lang_Class_getModifiers__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getModifiers__]
@@ -463,7 +525,13 @@ JAVA_OBJECT java_lang_Class_getSigners__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Class_getSuperclass__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getSuperclass__]
-    xmlvm_unimplemented_native_method();
+    java_lang_Class* thiz = (java_lang_Class*) me;
+    __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    __TIB_DEFINITION_TEMPLATE* baseTIP = tib->extends;
+    if (baseTIP == JAVA_NULL) {
+        return JAVA_NULL;
+    }
+    return baseTIP->clazz;
     //XMLVM_END_NATIVE
 }
 
@@ -674,10 +742,6 @@ void xmlvm_init_native_java_lang_Class()
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredFields__] = 
         (VTABLE_PTR) java_lang_Class_getDeclaredFields__;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredMethod___java_lang_String_java_lang_Class_ARRAYTYPE
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredMethod___java_lang_String_java_lang_Class_ARRAYTYPE] = 
-        (VTABLE_PTR) java_lang_Class_getDeclaredMethod___java_lang_String_java_lang_Class_ARRAYTYPE;
-#endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredMethods__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getDeclaredMethods__] = 
         (VTABLE_PTR) java_lang_Class_getDeclaredMethods__;
@@ -721,14 +785,6 @@ void xmlvm_init_native_java_lang_Class()
 #ifdef XMLVM_VTABLE_IDX_java_lang_Class_getInterfaces__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getInterfaces__] = 
         (VTABLE_PTR) java_lang_Class_getInterfaces__;
-#endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getMethod___java_lang_String_java_lang_Class_ARRAYTYPE
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getMethod___java_lang_String_java_lang_Class_ARRAYTYPE] = 
-        (VTABLE_PTR) java_lang_Class_getMethod___java_lang_String_java_lang_Class_ARRAYTYPE;
-#endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getMethods__
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getMethods__] = 
-        (VTABLE_PTR) java_lang_Class_getMethods__;
 #endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_Class_getModifiers__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getModifiers__] = 

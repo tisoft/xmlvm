@@ -32,12 +32,6 @@ JAVA_OBJECT xmlvm_exception;
 
 
 
-//TODO Needed for java_math_Primality.c. Needs to be initialized.
-JAVA_OBJECT __CLASS_int_ARRAYTYPE_ARRAYTYPE;
-//TODO Needed for java_util_regex_AbstractCharClass_PredefinedCharacter.c. Needs to be initialized.
-JAVA_OBJECT __CLASS_java_lang_Object_ARRAYTYPE_ARRAYTYPE;
-
-
 void xmlvm_init()
 {
 #ifndef XMLVM_NO_GC

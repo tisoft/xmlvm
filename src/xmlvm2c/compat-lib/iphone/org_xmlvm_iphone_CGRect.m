@@ -7,6 +7,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_CGRect __TIB_org_xmlvm_iphone_CGRect = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_CGRect, // classInitializer
     "org.xmlvm.iphone.CGRect", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -30,6 +31,13 @@ CGRect toCGRect(void *rect)
 	toRet.origin.y = p->fields.org_xmlvm_iphone_CGPoint.y_;	
 	return toRet;
 	
+}
+
+JAVA_OBJECT fromCGRect(CGRect rect)
+{
+    org_xmlvm_iphone_CGRect* rect_ = __NEW_org_xmlvm_iphone_CGRect();
+    org_xmlvm_iphone_CGRect___INIT____float_float_float_float(rect_, rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+    return rect_;
 }
 
 //XMLVM_END_IMPLEMENTATION

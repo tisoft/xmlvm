@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSStringInputStream __TIB_org_xmlvm_iphone_NSStringInputStream = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSStringInputStream, // classInitializer
     "org.xmlvm.iphone.NSStringInputStream", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_io_InputStream, // extends
     XMLVM_TYPE_CLASS};

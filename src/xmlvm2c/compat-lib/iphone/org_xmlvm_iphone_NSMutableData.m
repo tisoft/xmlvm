@@ -4,6 +4,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSMutableData __TIB_org_xmlvm_iphone_NSMutableData = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSMutableData, // classInitializer
     "org.xmlvm.iphone.NSMutableData", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSData, // extends
     XMLVM_TYPE_CLASS};

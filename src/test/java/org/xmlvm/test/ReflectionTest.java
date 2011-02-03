@@ -23,6 +23,7 @@ package org.xmlvm.test;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class ReflectionTest {
 
@@ -41,29 +42,41 @@ public class ReflectionTest {
         this.x = x;
         this.label = label;
     }
-    
-    public static void print(ReflectionTest obj) throws IllegalArgumentException, IllegalAccessException {
+
+    public void printString(String s) {
+        System.out.println("[" + label + "] printString(): " + s);
+    }
+
+    public static void print(ReflectionTest obj) throws IllegalArgumentException,
+            IllegalAccessException {
         System.out.println("----------------------------");
         System.out.println(obj.getClass().getName());
         System.out.println(obj.x);
         System.out.println(int.class.getName());
 
         for (Field field : ReflectionTest.class.getDeclaredFields()) {
-            System.out.println(field.getName() + " (" + field.getType().getName() + ") = " + field.get(obj));
+            System.out.println(field.getName() + " (" + field.getType().getName() + ") = "
+                    + field.get(obj));
         }
     }
 
     public static void main(String[] args) throws InstantiationException, IllegalAccessException,
-            SecurityException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException {
+            SecurityException, NoSuchMethodException, IllegalArgumentException,
+            InvocationTargetException {
         Class<ReflectionTest> clazz = ReflectionTest.class;
         System.out.println(clazz.getName());
         ReflectionTest obj = clazz.newInstance();
         print(obj);
         Integer arg1 = new Integer(4711);
         String arg2 = new String("foobar");
-        Constructor<ReflectionTest> ctor = ReflectionTest.class.getDeclaredConstructor(int.class, String.class);
+        Constructor<ReflectionTest> ctor = ReflectionTest.class.getDeclaredConstructor(int.class,
+                String.class);
         obj = (ReflectionTest) ctor.newInstance(arg1, arg2);
         print(obj);
+        
+        Class<?> paramTypes[] = {String.class};
+        Method m = ReflectionTest.class.getDeclaredMethod("printString", paramTypes);
+        m.invoke(obj, "***");
     }
 
 }

@@ -10,6 +10,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSString __TIB_org_xmlvm_iphone_NSString = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSString, // classInitializer
     "org.xmlvm.iphone.NSString", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -19,8 +20,15 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 
+#import <UIKit/UIFont.h>
+#import <UIKit/UIStringDrawing.h>
+
+
 NSString* toNSString(JAVA_OBJECT o)
 {
+    if (o == JAVA_NULL) {
+        return nil;
+    }
 	java_lang_String* s = (java_lang_String*) o;
 	org_xmlvm_runtime_XMLVMArray* value = s->fields.java_lang_String.value_;
 	JAVA_INT offset = s->fields.java_lang_String.offset_;
@@ -31,6 +39,9 @@ NSString* toNSString(JAVA_OBJECT o)
 
 JAVA_OBJECT toJavaString(NSString* str)
 {
+    if (str == nil) {
+        return JAVA_NULL;
+    }
     java_lang_String* s = __NEW_java_lang_String();
     const char* chars = [str UTF8String];
     int len = [str length];
@@ -185,7 +196,13 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_
 {
     if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont]
-    XMLVM_NOT_IMPLEMENTED();
+    NSString* str = toNSString(n1);
+    org_xmlvm_iphone_UIFont* font = n2;
+    UIFont* font_ = font->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    CGSize size_ = [str sizeWithFont:font_];
+    org_xmlvm_iphone_CGSize* size = __NEW_org_xmlvm_iphone_CGSize();
+    org_xmlvm_iphone_CGSize___INIT____float_float(size, size_.width, size_.height);
+    return size;
     //XMLVM_END_WRAPPER
 }
 
@@ -193,7 +210,19 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_
 {
     if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont_org_xmlvm_iphone_CGSize_int]
-    XMLVM_NOT_IMPLEMENTED();
+    NSString* text = toNSString(n1);
+    org_xmlvm_iphone_UIFont* font = n2;
+    UIFont* font_ = font->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    org_xmlvm_iphone_CGSize* constraint = n3;
+    CGSize constraint_ = CGSizeMake(constraint->fields.org_xmlvm_iphone_CGSize.width_, constraint->fields.org_xmlvm_iphone_CGSize.height_);
+    JAVA_INT lineBreakMode = n4;
+    CGSize size_ = CGSizeMake(0, 0);
+    if (text != nil) {
+        size_ = [text sizeWithFont:font_ constrainedToSize:constraint_ lineBreakMode:lineBreakMode];
+    }
+    org_xmlvm_iphone_CGSize* size = __NEW_org_xmlvm_iphone_CGSize();
+    org_xmlvm_iphone_CGSize___INIT____float_float(size, size_.width, size_.height);
+    return size;
     //XMLVM_END_WRAPPER
 }
 

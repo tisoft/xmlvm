@@ -6,6 +6,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIScrollViewDelegate __TIB_org_xmlvm_iphone_UIScrollViewDelegate = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIScrollViewDelegate, // classInitializer
     "org.xmlvm.iphone.UIScrollViewDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

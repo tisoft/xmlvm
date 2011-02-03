@@ -9,7 +9,7 @@
 JAVA_OBJECT java_lang_Throwable_fillInStackTrace__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Throwable_fillInStackTrace__]
-    xmlvm_unimplemented_native_method();
+    return JAVA_NULL;
     //XMLVM_END_NATIVE
 }
 

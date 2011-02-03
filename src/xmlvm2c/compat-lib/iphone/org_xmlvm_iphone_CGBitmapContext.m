@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_CGBitmapContext __TIB_org_xmlvm_iphone_CGBitmapContext = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_CGBitmapContext, // classInitializer
     "org.xmlvm.iphone.CGBitmapContext", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_CGContext, // extends
     XMLVM_TYPE_CLASS};

@@ -4,6 +4,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_CLHeadingFilter __TIB_org_xmlvm_iphone_CLHeadingFilter = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_CLHeadingFilter, // classInitializer
     "org.xmlvm.iphone.CLHeadingFilter", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     XMLVM_TYPE_CLASS};

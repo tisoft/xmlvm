@@ -6,6 +6,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UINavigationController __TIB_org_xmlvm_iphone_UINavigationController = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UINavigationController, // classInitializer
     "org.xmlvm.iphone.UINavigationController", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIViewController, // extends
     XMLVM_TYPE_CLASS};

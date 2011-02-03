@@ -6,6 +6,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSTimer __TIB_org_xmlvm_iphone_NSTimer = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSTimer, // classInitializer
     "org.xmlvm.iphone.NSTimer", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -123,7 +124,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSTimer()
     org_xmlvm_iphone_NSTimer* me = (org_xmlvm_iphone_NSTimer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSTimer));
     me->tib = &__TIB_org_xmlvm_iphone_NSTimer;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSTimer]
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSTimer);
+    //XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSTimer);
     //XMLVM_END_WRAPPER
     return me;
 }

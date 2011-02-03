@@ -4,6 +4,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSIndexPath __TIB_org_xmlvm_iphone_NSIndexPath = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSIndexPath, // classInitializer
     "org.xmlvm.iphone.NSIndexPath", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

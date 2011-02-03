@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIViewGL __TIB_org_xmlvm_iphone_UIViewGL = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIViewGL, // classInitializer
     "org.xmlvm.iphone.UIViewGL", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
     XMLVM_TYPE_CLASS};

@@ -22,6 +22,7 @@
 #include "xmlvm-util.h"
 #include "java_util_ArrayList.h"
 #include "java_util_HashSet.h"
+#include "java_util_HashMap.h"
 
 
 JAVA_OBJECT XMLVMUtil_NEW_ArrayList()
@@ -55,5 +56,32 @@ JAVA_BOOLEAN XMLVMUtil_HashSet_add(JAVA_OBJECT me, JAVA_OBJECT obj)
             tib->vtable[XMLVM_VTABLE_IDX_java_util_HashSet_add___java_lang_Object])(me, obj);
 #else
     return java_util_HashSet_add___java_lang_Object(me, obj);
+#endif
+}
+
+JAVA_OBJECT XMLVMUtil_NEW_HashMap()
+{
+    JAVA_OBJECT obj = __NEW_java_util_HashMap();
+    java_util_HashMap___INIT___(obj);
+    return obj;
+}
+
+JAVA_OBJECT XMLVMUtil_HashMap_put(JAVA_OBJECT me, JAVA_OBJECT key, JAVA_OBJECT value)
+{
+#ifdef XMLVM_VTABLE_IDX_java_util_HashMap_put___java_lang_Object_java_lang_Object
+    return (*(JAVA_OBJECT (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) ((java_util_HashMap*) me)->
+            tib->vtable[XMLVM_VTABLE_IDX_java_util_HashMap_put___java_lang_Object_java_lang_Object])(me, key, value);
+#else
+    return java_util_HashMap_put___java_lang_Object_java_lang_Object(me, key, value);
+#endif
+}
+
+JAVA_OBJECT XMLVMUtil_HashMap_get(JAVA_OBJECT me, JAVA_OBJECT key)
+{
+#ifdef XMLVM_VTABLE_IDX_java_util_HashMap_get___java_lang_Object
+    return (*(JAVA_OBJECT (*)(JAVA_OBJECT, JAVA_OBJECT)) ((java_util_HashMap*) me)->
+            tib->vtable[XMLVM_VTABLE_IDX_java_util_HashMap_get___java_lang_Object])(me, key);
+#else
+    return java_util_HashMap_get___java_lang_Object(me, key);
 #endif
 }

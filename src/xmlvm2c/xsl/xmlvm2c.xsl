@@ -445,9 +445,11 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text> __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text> = {
-    0, // classInitialized
-    "</xsl:text>
+    <xsl:text> = {&nl;    0, // classInitialized&nl;    </xsl:text>
+    <xsl:text>__INIT_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>, // classInitializer&nl;    </xsl:text>
+    <xsl:text>"</xsl:text>
     <xsl:value-of select="$cclname"/>
     <xsl:text>", // className&nl;</xsl:text>
     <xsl:text>    (__TIB_DEFINITION_TEMPLATE*) </xsl:text>
@@ -648,6 +650,17 @@ int main(int argc, char* argv[])
     <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);&nl;</xsl:text>
+    
+    <!-- Initialize reflection information for methods -->
+    <xsl:text>    __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.methodDispatcherFunc = method_dispatcher;&nl;</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.declaredMethods = &amp;__method_reflection_data[0];&nl;</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);&nl;</xsl:text>
     
     <!-- Create the java.lang.Class instance for this class -->
     <xsl:text>    __CLASS_</xsl:text>
@@ -889,7 +902,25 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text> __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>;&nl;&nl;</xsl:text>
+    <xsl:text> = {&nl;    0, // classInitialized&nl;    </xsl:text>
+    <xsl:text>__INIT_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>, // classInitializer&nl;    </xsl:text>
+    <xsl:text>"</xsl:text>
+    <xsl:value-of select="$cclname"/>
+    <xsl:text>", // className&nl;</xsl:text>
+    <xsl:text>    (__TIB_DEFINITION_TEMPLATE*) </xsl:text>
+    <xsl:choose>
+      <xsl:when test="@extends ne ''">
+        <xsl:text>&amp;__TIB_</xsl:text>
+        <xsl:value-of select="vm:fixname(@extends)"/> 
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>JAVA_NULL</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>, // extends&nl;</xsl:text>
+    <xsl:text>    XMLVM_TYPE_INTERFACE};&nl;&nl;</xsl:text>
 
     <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
@@ -921,20 +952,7 @@ int main(int argc, char* argv[])
     <xsl:text>(__TIB_DEFINITION_TEMPLATE** interface)&nl;{
     if (!__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>.classInitialized) {
-        __TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.className = "</xsl:text>
-    <xsl:value-of select="$cclname"/>
-    <xsl:text>";
-        __TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.extends = (__TIB_DEFINITION_TEMPLATE*) &amp;__TIB_</xsl:text>
-    <xsl:value-of select="vm:fixname(@extends)"/>
-    <xsl:text>;&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.flags = XMLVM_TYPE_INTERFACE;&nl;</xsl:text>
+    <xsl:text>.classInitialized) {&nl;</xsl:text>
     <xsl:text>        __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.numInterfaces = </xsl:text>
@@ -1107,6 +1125,7 @@ int main(int argc, char* argv[])
   <xsl:text>#include "xmlvm-reflection.h"&nl;&nl;</xsl:text>
   <xsl:call-template name="emitReflectionInformationForFields"/>
   <xsl:call-template name="emitReflectionInformationForConstructors"/>
+  <xsl:call-template name="emitReflectionInformationForMethods"/>
 </xsl:template>
 
 <xsl:template name="emitReflectionInformationForFields">
@@ -1236,7 +1255,7 @@ int main(int argc, char* argv[])
     <xsl:text>(obj</xsl:text>
     <xsl:for-each select="vm:signature/vm:parameter">
       <xsl:text>, </xsl:text>
-      <xsl:call-template name="emitConstructorActualParameter">
+      <xsl:call-template name="emitActualParameter">
         <xsl:with-param name="index" select="position() - 1"/>
       </xsl:call-template>
     </xsl:for-each>
@@ -1251,7 +1270,103 @@ int main(int argc, char* argv[])
   <xsl:text>}&nl;&nl;</xsl:text>
 </xsl:template>
 
-<xsl:template name="emitConstructorActualParameter">
+<xsl:template name="emitReflectionInformationForMethods">
+  <xsl:call-template name="emitMethodArgumentTypes"/>
+  <xsl:call-template name="emitMethodReflectionData"/>
+  <xsl:call-template name="emitMethodDispatcherFunction"/>
+</xsl:template>
+
+<xsl:template name="emitMethodArgumentTypes">
+  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true')]">
+    <xsl:text>static JAVA_OBJECT* __method</xsl:text>
+    <xsl:value-of select="position() - 1"/>
+    <xsl:text>_arg_types[] = {&nl;</xsl:text>
+    <xsl:for-each select="vm:signature/vm:parameter">
+      <xsl:text>    &amp;</xsl:text>
+      <xsl:call-template name="emitJavaLangClassReference">
+        <xsl:with-param name="type" select="@type"/>
+        <xsl:with-param name="isRedType" select="@isRedType"/>
+      </xsl:call-template>
+      <xsl:text>,&nl;</xsl:text>
+    </xsl:for-each>
+    <xsl:text>};&nl;&nl;</xsl:text>
+  </xsl:for-each>
+</xsl:template>
+
+<xsl:template name="emitMethodReflectionData">
+  <xsl:text>static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {&nl;</xsl:text>
+  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true')]">
+    <xsl:text>    {"</xsl:text>
+    <xsl:value-of select="@name"/>
+    <xsl:text>",&nl;</xsl:text>
+    <xsl:text>    &amp;__method</xsl:text>
+    <xsl:value-of select="position() - 1"/>
+    <xsl:text>_arg_types[0],&nl;</xsl:text>
+    <xsl:text>    sizeof(__method</xsl:text>
+    <xsl:value-of select="position() - 1"/>
+    <xsl:text>_arg_types) / sizeof(JAVA_OBJECT*),&nl;</xsl:text>
+    <xsl:text>    JAVA_NULL,&nl;</xsl:text>
+    <xsl:text>    0,&nl;</xsl:text>
+    <xsl:text>    0,&nl;</xsl:text>
+    <xsl:text>    "",&nl;</xsl:text>
+    <xsl:text>    JAVA_NULL,&nl;</xsl:text>
+    <xsl:text>    JAVA_NULL},&nl;</xsl:text>
+  </xsl:for-each>
+  <xsl:text>};&nl;&nl;</xsl:text>
+</xsl:template>
+
+<!-- TODO some deficiencies of the method dispatcher:
+     * it ignores the result of a method invocation
+     * it always uses invoke-direct. For this reason we don't allow abstract methods.
+       call should rather be made through vtable
+-->
+<xsl:template name="emitMethodDispatcherFunction">
+  <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
+  <xsl:variable name="clname" select="vm:fixname($cclname)"/>
+
+  <xsl:text>static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)&nl;</xsl:text>
+  <xsl:text>{&nl;</xsl:text>
+  <xsl:text>    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result&nl;</xsl:text>
+  <xsl:text>    java_lang_Object* obj = receiver;&nl;</xsl:text>
+  <xsl:text>    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;&nl;</xsl:text>
+  <xsl:text>    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;&nl;</xsl:text>
+  <xsl:text>    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;&nl;</xsl:text>
+  <xsl:text>    switch (m->fields.java_lang_reflect_Method.slot_) {&nl;</xsl:text>
+  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true')]">
+    <xsl:text>    case </xsl:text>
+    <xsl:value-of select="position() - 1"/>
+    <xsl:text>:&nl;</xsl:text>
+    <xsl:text>        </xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>_</xsl:text>
+    <xsl:value-of select="@name"/>
+    <xsl:text></xsl:text>
+    <xsl:call-template name="appendSignature"/>
+    <xsl:text>(</xsl:text>
+    <xsl:variable name="isStatic" select="@isStatic = 'true'"/>
+    <xsl:if test="not($isStatic)">
+      <xsl:text>receiver</xsl:text>
+    </xsl:if>
+    <xsl:for-each select="vm:signature/vm:parameter">
+      <xsl:if test="not($isStatic) or position() ne 1">
+        <xsl:text>, </xsl:text>
+      </xsl:if>
+      <xsl:call-template name="emitActualParameter">
+        <xsl:with-param name="index" select="position() - 1"/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:text>);&nl;</xsl:text>
+    <xsl:text>        break;&nl;</xsl:text>
+  </xsl:for-each>
+  <xsl:text>    default:&nl;</xsl:text>
+  <xsl:text>        XMLVM_INTERNAL_ERROR();&nl;</xsl:text>
+  <xsl:text>        break;&nl;</xsl:text>
+  <xsl:text>    }&nl;</xsl:text>
+  <xsl:text>    return result;&nl;</xsl:text>
+  <xsl:text>}&nl;&nl;</xsl:text>
+</xsl:template>
+
+<xsl:template name="emitActualParameter">
   <xsl:param name="index"/>
   <xsl:choose>
     <xsl:when test="@type = 'byte'">
@@ -3402,6 +3517,12 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:instance-of">
+  <xsl:variable name="zero-base-type" select="vm:fixname(replace(@value, '\[\]', ''))"/>
+  <xsl:text>    if (!__TIB_</xsl:text>
+  <xsl:value-of select="$zero-base-type"/>
+  <xsl:text>.classInitialized) __INIT_</xsl:text>
+  <xsl:value-of select="$zero-base-type"/>
+  <xsl:text>();&nl;</xsl:text>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.i = XMLVM_ISA(_r</xsl:text>

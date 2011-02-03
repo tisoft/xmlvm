@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIAlertViewDelegate __TIB_org_xmlvm_iphone_UIAlertViewDelegate = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIAlertViewDelegate, // classInitializer
     "org.xmlvm.iphone.UIAlertViewDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

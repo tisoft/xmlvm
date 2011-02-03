@@ -36,6 +36,7 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect_ARRAYTYPE;
 #import <CoreGraphics/CoreGraphics.h>
 
 CGRect toCGRect(void* rect);
+JAVA_OBJECT fromCGRect(CGRect rect);
 
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGRect
 //XMLVM_END_DECLARATIONS

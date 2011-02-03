@@ -9,7 +9,6 @@
 void java_io_File_oneTimeInitialization__()
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_oneTimeInitialization__]
-    xmlvm_unimplemented_native_method();
     //XMLVM_END_NATIVE
 }
 
@@ -23,7 +22,7 @@ JAVA_OBJECT java_io_File_rootsImpl__()
 JAVA_BOOLEAN java_io_File_isCaseSensitiveImpl__()
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_isCaseSensitiveImpl__]
-    xmlvm_unimplemented_native_method();
+    return 1;
     //XMLVM_END_NATIVE
 }
 
@@ -156,7 +155,17 @@ JAVA_BOOLEAN java_io_File_setWritableImpl___byte_ARRAYTYPE_boolean_boolean(JAVA_
 JAVA_LONG java_io_File_lengthImpl___byte_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_lengthImpl___byte_ARRAYTYPE]
-    xmlvm_unimplemented_native_method();
+    org_xmlvm_runtime_XMLVMArray* a = n1;
+    char* fileName = (char*) a->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    int fileNameLength = a->fields.org_xmlvm_runtime_XMLVMArray.length_;
+    char* fileNameBuffer = XMLVM_MALLOC(fileNameLength + 1);
+    XMLVM_MEMCPY(fileNameBuffer, fileName, fileNameLength);
+    fileNameBuffer[fileNameLength] = '\0';
+    FILE* fp = fopen(fileNameBuffer, "rb");
+    fseek(fp, 0L, SEEK_END);
+    JAVA_LONG size = ftell(fp);
+    fclose(fp);
+    return size;
     //XMLVM_END_NATIVE
 }
 

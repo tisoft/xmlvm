@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSTimeZone __TIB_org_xmlvm_iphone_NSTimeZone = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSTimeZone, // classInitializer
     "org.xmlvm.iphone.NSTimeZone", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

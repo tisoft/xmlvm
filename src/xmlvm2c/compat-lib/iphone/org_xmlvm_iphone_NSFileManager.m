@@ -7,6 +7,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSFileManager __TIB_org_xmlvm_iphone_NSFileManager = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSFileManager, // classInitializer
     "org.xmlvm.iphone.NSFileManager", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -15,6 +16,15 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSFileManager;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSFileManager_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#include "org_xmlvm_iphone_NSString.h"
+#include "xmlvm-util.h"
+
+void org_xmlvm_iphone_NSFileManager_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -95,7 +105,10 @@ JAVA_OBJECT org_xmlvm_iphone_NSFileManager_defaultManager__()
 {
     if (!__TIB_org_xmlvm_iphone_NSFileManager.classInitialized) __INIT_org_xmlvm_iphone_NSFileManager();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSFileManager_defaultManager__]
-    XMLVM_NOT_IMPLEMENTED();
+    NSFileManager* obj = [NSFileManager defaultManager];
+    JAVA_OBJECT me = __NEW_org_xmlvm_iphone_NSFileManager();
+    org_xmlvm_iphone_NSFileManager_INTERNAL_CONSTRUCTOR(me, obj);
+    return me;
     //XMLVM_END_WRAPPER
 }
 
@@ -116,7 +129,16 @@ JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_createDirectoryAtPath___java_lang_St
 JAVA_OBJECT org_xmlvm_iphone_NSFileManager_contentsOfDirectoryAtPath___java_lang_String_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSFileManager_contentsOfDirectoryAtPath___java_lang_String_org_xmlvm_iphone_NSErrorHolder]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSFileManager* thiz = me;
+    NSString* path = toNSString(n1);
+    //TODO do something with n2 (error)
+    NSArray* pathList = [((NSFileManager*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) contentsOfDirectoryAtPath:path error:NULL];
+    JAVA_OBJECT pathList_ = XMLVMUtil_NEW_ArrayList();
+    for (int i = 0; i < [pathList count]; i++) {
+        NSString* pathElem = [pathList objectAtIndex:i];
+        XMLVMUtil_ArrayList_add(pathList_, toJavaString(pathElem));
+    }
+    return pathList_;
     //XMLVM_END_WRAPPER
 }
 
@@ -124,7 +146,6 @@ void org_xmlvm_iphone_NSFileManager___CLINIT_()
 {
     if (!__TIB_org_xmlvm_iphone_NSFileManager.classInitialized) __INIT_org_xmlvm_iphone_NSFileManager();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSFileManager___CLINIT___]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

@@ -53,6 +53,14 @@ final public class XMLVMArray implements Cloneable, java.io.Serializable {
     private Object            array;
 
 
+    native private static void initNativeLayer();
+
+
+    static {
+        initNativeLayer();
+    }
+
+
     private XMLVMArray(Class<?> type, int length, Object array) {
         this.type = type;
         this.length = length;

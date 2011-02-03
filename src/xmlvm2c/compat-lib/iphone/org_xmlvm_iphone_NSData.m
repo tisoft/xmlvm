@@ -6,6 +6,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSData __TIB_org_xmlvm_iphone_NSData = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSData, // classInitializer
     "org.xmlvm.iphone.NSData", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -14,6 +15,16 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSData;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSData_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#include "org_xmlvm_iphone_NSString.h"
+
+
+void org_xmlvm_iphone_NSData_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -85,6 +96,7 @@ void __INIT_org_xmlvm_iphone_NSData()
 void __DELETE_org_xmlvm_iphone_NSData(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSData]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -94,6 +106,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSData()
     org_xmlvm_iphone_NSData* me = (org_xmlvm_iphone_NSData*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSData));
     me->tib = &__TIB_org_xmlvm_iphone_NSData;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSData]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSData);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -117,7 +130,12 @@ JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithContentsOfFile___java_lang_String(JA
 {
     if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_dataWithContentsOfFile___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    NSString* path = toNSString(n1);
+    NSData* data = [[NSData alloc] initWithContentsOfFile:path];
+    [path release];
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_NSData();
+    org_xmlvm_iphone_NSData_INTERNAL_CONSTRUCTOR(obj, data);
+    return obj;
     //XMLVM_END_WRAPPER
 }
 

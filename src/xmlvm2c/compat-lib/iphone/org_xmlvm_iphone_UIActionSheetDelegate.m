@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIActionSheetDelegate __TIB_org_xmlvm_iphone_UIActionSheetDelegate = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIActionSheetDelegate, // classInitializer
     "org.xmlvm.iphone.UIActionSheetDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

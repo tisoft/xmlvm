@@ -6,6 +6,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIImageView __TIB_org_xmlvm_iphone_UIImageView = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIImageView, // classInitializer
     "org.xmlvm.iphone.UIImageView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
     XMLVM_TYPE_CLASS};
@@ -14,6 +15,14 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImageView;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImageView_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#import <UIKit/UIImageView.h>
+
+void org_xmlvm_iphone_UIImageView_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObj)
+{
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, wrappedObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -123,7 +132,8 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImageView()
 void org_xmlvm_iphone_UIImageView___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImageView___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UIImageView* obj = [[UIImageView alloc] init];
+    org_xmlvm_iphone_UIImageView_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
@@ -137,14 +147,19 @@ void org_xmlvm_iphone_UIImageView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT 
 void org_xmlvm_iphone_UIImageView_setImage___org_xmlvm_iphone_UIImage(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImageView_setImage___org_xmlvm_iphone_UIImage]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIImageView* thiz = me;
+    org_xmlvm_iphone_UIImage* image = n1;
+    thiz->fields.org_xmlvm_iphone_UIImageView.image = image;
+    UIImage* image_ = image->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    [((UIImageView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setImage:image_];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIImageView_getImage__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImageView_getImage__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIImageView* thiz = me;
+    return thiz->fields.org_xmlvm_iphone_UIImageView.image;
     //XMLVM_END_WRAPPER
 }
 

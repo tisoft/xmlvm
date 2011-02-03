@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIViewAnimationDelegate __TIB_org_xmlvm_iphone_UIViewAnimationDelegate = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIViewAnimationDelegate, // classInitializer
     "org.xmlvm.iphone.UIViewAnimationDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

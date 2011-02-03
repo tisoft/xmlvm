@@ -4,6 +4,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_CLHeading __TIB_org_xmlvm_iphone_CLHeading = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_CLHeading, // classInitializer
     "org.xmlvm.iphone.CLHeading", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

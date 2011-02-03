@@ -473,8 +473,18 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      *             access.
      * @see #getMethod(String, Class[])
      */
-    native public Method getDeclaredMethod(String name, Class... parameterTypes)
-            throws NoSuchMethodException, SecurityException;
+    public Method getDeclaredMethod(String name, Class... parameterTypes)
+            throws NoSuchMethodException, SecurityException {
+        Method<T>[] methods = getDeclaredMethods();
+        for (int i = 0; i < methods.length; i++) {
+            Method<T> method = methods[i];
+            if (name.equals(method.getName()) && arrayEqual(parameterTypes,
+                                method.getParameterTypes())) {
+                return method;
+            }
+        }
+        throw new NoSuchMethodException(getName() + "." + name);
+    }
 
     /**
      * Returns an array containing {@code Method} objects for all methods
@@ -621,8 +631,18 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      *             access.
      * @see #getDeclaredMethod(String, Class[])
      */
-    native public Method getMethod(String name, Class... parameterTypes)
-            throws NoSuchMethodException, SecurityException;
+    public Method getMethod(String name, Class... parameterTypes)
+            throws NoSuchMethodException, SecurityException {
+        Method<T>[] methods = getMethods();
+        for (int i = 0; i < methods.length; i++) {
+             Method<T> method = methods[i];
+             if (name.equals(method.getName()) && arrayEqual(parameterTypes,
+                                        method.getParameterTypes())) {
+                 return method;
+             }
+        }
+        throw new NoSuchMethodException(getName() + "." + name);
+    }
 
     /**
      * Returns an array containing {@code Method} objects for all public methods
@@ -641,7 +661,18 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      *             access.
      * @see #getDeclaredMethods()
      */
-    native public Method[] getMethods() throws SecurityException;
+    public Method[] getMethods() throws SecurityException {
+        Method[] myMethods = getDeclaredMethods();
+        Class baseClass = getSuperclass();
+        if (baseClass == null) {
+            return myMethods;
+        }
+        Method[] baseClassMethods = baseClass.getMethods();
+        Method[] allMethods = new Method[myMethods.length + baseClassMethods.length];
+        System.arraycopy(myMethods, 0, allMethods, 0, myMethods.length);
+        System.arraycopy(baseClassMethods, 0, allMethods, myMethods.length, baseClassMethods.length);
+        return allMethods;
+    }
 
     /**
      * Returns an integer that represents the modifiers of the class represented

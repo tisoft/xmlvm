@@ -4,6 +4,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIScreen __TIB_org_xmlvm_iphone_UIScreen = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIScreen, // classInitializer
     "org.xmlvm.iphone.UIScreen", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -94,7 +95,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIScreen_mainScreen__()
     if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScreen_mainScreen__]
 	org_xmlvm_iphone_UIScreen* toRet = __NEW_org_xmlvm_iphone_UIScreen();
-	toRet->fields.org_xmlvm_iphone_UIScreen.ocScreen = [UIScreen mainScreen];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(toRet, [UIScreen mainScreen]);
 	return toRet;
     //XMLVM_END_WRAPPER
 }
@@ -102,7 +103,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIScreen_mainScreen__()
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_getBounds__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScreen_getBounds__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIScreen* thiz = me;
+    CGRect bounds = ((UIScreen*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)).bounds;
+    return fromCGRect(bounds);
     //XMLVM_END_WRAPPER
 }
 
@@ -110,7 +113,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIScreen_getApplicationFrame__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScreen_getApplicationFrame__]
 	org_xmlvm_iphone_UIScreen* thiz = me;
-	UIScreen *screen = thiz->fields.org_xmlvm_iphone_UIScreen.ocScreen;
+	UIScreen *screen = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
 	CGRect rect = [screen applicationFrame];
 	JAVA_OBJECT toRet = __NEW_org_xmlvm_iphone_CGRect();
 	org_xmlvm_iphone_CGRect___INIT____float_float_float_float(

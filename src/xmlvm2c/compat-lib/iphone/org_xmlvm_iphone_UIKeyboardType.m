@@ -4,6 +4,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIKeyboardType __TIB_org_xmlvm_iphone_UIKeyboardType = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIKeyboardType, // classInitializer
     "org.xmlvm.iphone.UIKeyboardType", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     XMLVM_TYPE_CLASS};

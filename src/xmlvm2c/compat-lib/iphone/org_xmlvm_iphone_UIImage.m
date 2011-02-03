@@ -8,6 +8,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIImage __TIB_org_xmlvm_iphone_UIImage = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIImage, // classInitializer
     "org.xmlvm.iphone.UIImage", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -16,7 +17,9 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImage;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImage_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
 #import <UIKit/UIImage.h>
+#include "org_xmlvm_iphone_CGSize.h"
 
 #import "org_xmlvm_iphone_NSString.h"
 #import "org_xmlvm_iphone_CGRect.h"
@@ -129,7 +132,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String(
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String]
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	NSString* nsStr = toNSString(n1);
-	UIImage* named = [UIImage imageNamed:nsStr];
+	UIImage* named = [UIImage imageWithContentsOfFile:nsStr];// [UIImage imageNamed:nsStr];
 	[named retain];
 	[pool release];
 	[nsStr release];
@@ -182,7 +185,11 @@ void org_xmlvm_iphone_UIImage_drawAtPoint___org_xmlvm_iphone_CGPoint(JAVA_OBJECT
 JAVA_OBJECT org_xmlvm_iphone_UIImage_getSize__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_getSize__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIImage* thiz = me;
+    CGSize size = ((UIImage*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)).size;
+    org_xmlvm_iphone_CGSize* size_ = __NEW_org_xmlvm_iphone_CGSize();
+    org_xmlvm_iphone_CGSize___INIT____float_float(size_, size.width, size.height);
+    return size_;
     //XMLVM_END_WRAPPER
 }
 

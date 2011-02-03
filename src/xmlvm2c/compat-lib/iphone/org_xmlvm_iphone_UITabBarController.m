@@ -6,6 +6,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UITabBarController __TIB_org_xmlvm_iphone_UITabBarController = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UITabBarController, // classInitializer
     "org.xmlvm.iphone.UITabBarController", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIViewController, // extends
     XMLVM_TYPE_CLASS};

@@ -9,6 +9,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIApplication __TIB_org_xmlvm_iphone_UIApplication = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIApplication, // classInitializer
     "org.xmlvm.iphone.UIApplication", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIResponder, // extends
     XMLVM_TYPE_CLASS};
@@ -34,7 +35,6 @@ org_xmlvm_iphone_UIApplication *curApp;
 
 - (void) applicationDidFinishLaunching: (UIApplication*) app
 {
-
 	curApp = __NEW_org_xmlvm_iphone_UIApplication();
 	org_xmlvm_iphone_UIApplication___INIT___(curApp);
 	curApp->fields.org_xmlvm_iphone_UIApplication.ocApp = app;
@@ -46,6 +46,12 @@ org_xmlvm_iphone_UIApplication *curApp;
 }
 
 @end
+
+void org_xmlvm_iphone_UIApplication_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -154,7 +160,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIApplication()
 void org_xmlvm_iphone_UIApplication___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication___INIT___]
-    java_lang_Object___INIT___(me);
+    org_xmlvm_iphone_UIResponder___INIT___(me);
     //XMLVM_END_WRAPPER
 }
 
@@ -162,7 +168,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIApplication_sharedApplication__()
 {
     if (!__TIB_org_xmlvm_iphone_UIApplication.classInitialized) __INIT_org_xmlvm_iphone_UIApplication();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_sharedApplication__]
-    XMLVM_NOT_IMPLEMENTED();
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_UIApplication();
+    org_xmlvm_iphone_UIApplication_INTERNAL_CONSTRUCTOR(obj, [UIApplication sharedApplication]);
+    return obj;
     //XMLVM_END_WRAPPER
 }
 
@@ -218,7 +226,8 @@ JAVA_OBJECT org_xmlvm_iphone_UIApplication_getWindows__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIApplication_setStatusBarOrientation___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_setStatusBarOrientation___int]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIApplication* thiz = me;
+    [((UIApplication*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setStatusBarOrientation:n1];
     //XMLVM_END_WRAPPER
 }
 

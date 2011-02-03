@@ -61,7 +61,21 @@ static org_xmlvm_runtime_XMLVMArray* XMLVMArray_createMultiDimensionsWithCount(J
     return slice;
 }
 
+JAVA_OBJECT org_xmlvm_runtime_XMLVMArray_getClass__(JAVA_OBJECT me)
+{
+    org_xmlvm_runtime_XMLVMArray* thiz = me;
+    return thiz->fields.org_xmlvm_runtime_XMLVMArray.type_;
+}
+
 //XMLVM_END_NATIVE_IMPLEMENTATION
+
+void org_xmlvm_runtime_XMLVMArray_initNativeLayer__()
+{
+    //XMLVM_BEGIN_NATIVE[org_xmlvm_runtime_XMLVMArray_initNativeLayer__]
+    __TIB_org_xmlvm_runtime_XMLVMArray.vtable[XMLVM_VTABLE_IDX_java_lang_Object_getClass__] = 
+        (VTABLE_PTR) org_xmlvm_runtime_XMLVMArray_getClass__;
+    //XMLVM_END_NATIVE
+}
 
 JAVA_OBJECT org_xmlvm_runtime_XMLVMArray_createSingleDimension___java_lang_Class_int(JAVA_OBJECT n1, JAVA_INT n2)
 {
@@ -80,9 +94,11 @@ JAVA_OBJECT org_xmlvm_runtime_XMLVMArray_createSingleDimensionWithData___java_la
     //XMLVM_BEGIN_NATIVE[org_xmlvm_runtime_XMLVMArray_createSingleDimensionWithData___java_lang_Class_int_java_lang_Object]
     org_xmlvm_runtime_XMLVMArray* array = __NEW_org_xmlvm_runtime_XMLVMArray();
     org_xmlvm_runtime_XMLVMArray___INIT____java_lang_Class_int_java_lang_Object(array, n1, n2, n3);
+#if 0
     java_lang_Class* type = (java_lang_Class*) n1;
     JAVA_OBJECT newTIB = type->fields.java_lang_Class.tib_;
     array->tib = (__TIB_DEFINITION_org_xmlvm_runtime_XMLVMArray*) newTIB;
+#endif
     return array;
     //XMLVM_END_NATIVE
 }

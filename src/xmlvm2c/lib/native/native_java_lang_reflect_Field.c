@@ -153,7 +153,20 @@ JAVA_FLOAT java_lang_reflect_Field_getFloat___java_lang_Object(JAVA_OBJECT me, J
 JAVA_INT java_lang_reflect_Field_getInt___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getInt___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    java_lang_reflect_Field* thiz = (java_lang_reflect_Field*) me;
+    JAVA_OBJECT type = thiz->fields.java_lang_reflect_Field.type_;
+    char* valuePtr;
+    if (thiz->fields.java_lang_reflect_Field.modifiers_ & java_lang_reflect_Modifier_STATIC) {
+        valuePtr = (char*) thiz->fields.java_lang_reflect_Field.address_;
+    } else {
+        valuePtr = ((char*) n1) + thiz->fields.java_lang_reflect_Field.offset_;
+    }
+    if (type == __CLASS_int) {
+        JAVA_INT value = *((JAVA_INT*) valuePtr);
+        return value;
+    }
+    XMLVM_ERROR("bad type", __FILE__, __FUNCTION__, __LINE__);
+    return 0;
     //XMLVM_END_NATIVE
 }
 

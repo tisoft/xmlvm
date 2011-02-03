@@ -4,6 +4,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_CLLocationCoordinate2D __TIB_org_xmlvm_iphone_CLLocationCoordinate2D = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_CLLocationCoordinate2D, // classInitializer
     "org.xmlvm.iphone.CLLocationCoordinate2D", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

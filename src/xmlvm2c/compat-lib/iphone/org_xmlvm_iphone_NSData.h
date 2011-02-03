@@ -24,6 +24,8 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSData;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSData_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
+void org_xmlvm_iphone_NSData_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj);
+
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSData
 //XMLVM_END_DECLARATIONS
 

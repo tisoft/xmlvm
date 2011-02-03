@@ -5,6 +5,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_CGSize __TIB_org_xmlvm_iphone_CGSize = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_CGSize, // classInitializer
     "org.xmlvm.iphone.CGSize", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

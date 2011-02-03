@@ -211,7 +211,7 @@ public class COutputProcess extends XmlvmProcessImpl<VtableOutputProcess> {
         mFile.setData(mBuffer.toString() + mFile.getDataAsString());
         mFile.setFileName(mFileName);
 
-        String clazz = "__CLASS_" + xmlvm.getFullName().replace('.', '_').replace('$', '_');
+        String clazz = xmlvm.getFullName().replace('.', '_').replace('$', '_');
         mFile.setTag(TAG_CLASS_NAME, clazz);
 
         return new OutputFile[] { headerFile, mFile };

@@ -6,6 +6,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIResponder __TIB_org_xmlvm_iphone_UIResponder = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIResponder, // classInitializer
     "org.xmlvm.iphone.UIResponder", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -299,7 +300,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIResponder()
 void org_xmlvm_iphone_UIResponder___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIResponder___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSObject___INIT___(me);
     //XMLVM_END_WRAPPER
 }
 

@@ -190,7 +190,17 @@ public class XmlvmResource {
                 XmlvmInvokeInstruction invoke = new XmlvmInvokeInstruction(instruction);
                 invokeInstructions.add(invoke);
             }
+            children = element.getChildren("invoke-virtual-range", nsDEX);
+            for (Element instruction : children) {
+                XmlvmInvokeInstruction invoke = new XmlvmInvokeInstruction(instruction);
+                invokeInstructions.add(invoke);
+            }
             children = element.getChildren("invoke-interface", nsDEX);
+            for (Element instruction : children) {
+                XmlvmInvokeInstruction invoke = new XmlvmInvokeInstruction(instruction);
+                invokeInstructions.add(invoke);
+            }
+            children = element.getChildren("invoke-interface-range", nsDEX);
             for (Element instruction : children) {
                 XmlvmInvokeInstruction invoke = new XmlvmInvokeInstruction(instruction);
                 invokeInstructions.add(invoke);

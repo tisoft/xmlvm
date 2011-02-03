@@ -7,6 +7,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UITextFieldDelegate __TIB_org_xmlvm_iphone_UITextFieldDelegate = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UITextFieldDelegate, // classInitializer
     "org.xmlvm.iphone.UITextFieldDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
@@ -114,7 +115,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITextFieldDelegate()
 void org_xmlvm_iphone_UITextFieldDelegate___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextFieldDelegate___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

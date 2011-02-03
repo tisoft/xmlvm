@@ -8,6 +8,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIScrollView __TIB_org_xmlvm_iphone_UIScrollView = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UIScrollView, // classInitializer
     "org.xmlvm.iphone.UIScrollView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
     XMLVM_TYPE_CLASS};
@@ -16,6 +17,9 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#import <UIKit/UIScrollView.h>
+
 
 void org_xmlvm_iphone_UIScrollView_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
 {
@@ -123,6 +127,7 @@ void __INIT_org_xmlvm_iphone_UIScrollView()
 void __DELETE_org_xmlvm_iphone_UIScrollView(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIScrollView]
+    __DELETE_org_xmlvm_iphone_UIView(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -132,6 +137,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIScrollView()
     org_xmlvm_iphone_UIScrollView* me = (org_xmlvm_iphone_UIScrollView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIScrollView));
     me->tib = &__TIB_org_xmlvm_iphone_UIScrollView;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIScrollView]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIScrollView);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -147,7 +153,8 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIScrollView()
 void org_xmlvm_iphone_UIScrollView___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScrollView___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UIScrollView* obj = [[UIScrollView alloc] init];
+    org_xmlvm_iphone_UIScrollView_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
@@ -182,7 +189,8 @@ JAVA_OBJECT org_xmlvm_iphone_UIScrollView_getContentOffset__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIScrollView_setScrollEnabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScrollView_setScrollEnabled___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIScrollView* thiz = me;
+    [((UIScrollView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setScrollEnabled:n1];
     //XMLVM_END_WRAPPER
 }
 

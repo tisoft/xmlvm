@@ -9,6 +9,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_MFMailComposeViewController __TIB_org_xmlvm_iphone_MFMailComposeViewController = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_MFMailComposeViewController, // classInitializer
     "org.xmlvm.iphone.MFMailComposeViewController", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UINavigationController, // extends
     XMLVM_TYPE_CLASS};

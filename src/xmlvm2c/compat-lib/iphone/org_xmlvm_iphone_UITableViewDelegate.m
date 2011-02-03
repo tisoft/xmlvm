@@ -7,6 +7,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_UITableViewDelegate __TIB_org_xmlvm_iphone_UITableViewDelegate = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_UITableViewDelegate, // classInitializer
     "org.xmlvm.iphone.UITableViewDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};

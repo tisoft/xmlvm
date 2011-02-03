@@ -6,6 +6,7 @@
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSMutableURLRequest __TIB_org_xmlvm_iphone_NSMutableURLRequest = {
     0, // classInitialized
+    __INIT_org_xmlvm_iphone_NSMutableURLRequest, // classInitializer
     "org.xmlvm.iphone.NSMutableURLRequest", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     XMLVM_TYPE_CLASS};
