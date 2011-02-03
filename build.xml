@@ -208,14 +208,6 @@
 			<fileset dir="${xmlvm.cocoa-java}" />
 		</jar>
 
-		<mkdir dir="${xmlvm.proxies-java}" />
-		<javac srcdir="./src/xmlvm2c/lib/proxies" destdir="${xmlvm.proxies-java}" debug="${debug}">
-			<include name="**/*.java" />
-		</javac>
-		<jar destfile="${xmlvm.bin}/lib/proxies-java.jar">
-			<fileset dir="${xmlvm.proxies-java}" />
-		</jar>
-		
 		<mkdir dir="${xmlvm.xmlvm-util-java}" />
 		<javac srcdir="./src/xmlvm2c/lib/util" destdir="${xmlvm.xmlvm-util-java}" debug="${debug}">
 			<classpath>
@@ -226,6 +218,17 @@
 		</javac>
 		<jar destfile="${xmlvm.bin}/lib/xmlvm-util-java.jar">
 			<fileset dir="${xmlvm.xmlvm-util-java}" />
+		</jar>
+		
+		<mkdir dir="${xmlvm.proxies-java}" />
+		<javac srcdir="./src/xmlvm2c/lib/proxies" destdir="${xmlvm.proxies-java}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.xmlvm-util-java}" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.bin}/lib/proxies-java.jar">
+			<fileset dir="${xmlvm.proxies-java}" />
 		</jar>
 		
 		<mkdir dir="${xmlvm.iphone-android-java}" />
