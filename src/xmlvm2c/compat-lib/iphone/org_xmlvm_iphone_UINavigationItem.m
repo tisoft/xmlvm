@@ -57,6 +57,324 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UINavigationBar,
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIBarButtonItem,
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_boolean,
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIBarButtonItem,
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIBarButtonItem,
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIBarButtonItem,
+};
+
+static JAVA_OBJECT* __method13_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIBarButtonItem,
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method15_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method16_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method17_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIView,
+};
+
+static JAVA_OBJECT* __method18_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UINavigationItem,
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"setToolbar",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getBackBarButtonItem",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setBackBarButtonItem",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"hidesBackButton",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setHidesBackButton",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setHidesBackButton",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getLeftBarButtonItem",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setLeftBarButtonItem",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setLeftBarButtonItem",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getPrompt",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setPrompt",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getRightBarButtonItem",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setRightBarButtonItem",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setRightBarButtonItem",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getTitle",
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setTitle",
+    &__method15_arg_types[0],
+    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getTitleView",
+    &__method16_arg_types[0],
+    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setTitleView",
+    &__method17_arg_types[0],
+    sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"access$000",
+    &__method18_arg_types[0],
+    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_UINavigationItem_setToolbar___org_xmlvm_iphone_UINavigationBar(receiver, argsArray[0]);
+        break;
+    case 1:
+        org_xmlvm_iphone_UINavigationItem_getBackBarButtonItem__(receiver);
+        break;
+    case 2:
+        org_xmlvm_iphone_UINavigationItem_setBackBarButtonItem___org_xmlvm_iphone_UIBarButtonItem(receiver, argsArray[0]);
+        break;
+    case 3:
+        org_xmlvm_iphone_UINavigationItem_hidesBackButton__(receiver);
+        break;
+    case 4:
+        org_xmlvm_iphone_UINavigationItem_setHidesBackButton___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 5:
+        org_xmlvm_iphone_UINavigationItem_setHidesBackButton___boolean_boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        break;
+    case 6:
+        org_xmlvm_iphone_UINavigationItem_getLeftBarButtonItem__(receiver);
+        break;
+    case 7:
+        org_xmlvm_iphone_UINavigationItem_setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem(receiver, argsArray[0]);
+        break;
+    case 8:
+        org_xmlvm_iphone_UINavigationItem_setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        break;
+    case 9:
+        org_xmlvm_iphone_UINavigationItem_getPrompt__(receiver);
+        break;
+    case 10:
+        org_xmlvm_iphone_UINavigationItem_setPrompt___java_lang_String(receiver, argsArray[0]);
+        break;
+    case 11:
+        org_xmlvm_iphone_UINavigationItem_getRightBarButtonItem__(receiver);
+        break;
+    case 12:
+        org_xmlvm_iphone_UINavigationItem_setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem(receiver, argsArray[0]);
+        break;
+    case 13:
+        org_xmlvm_iphone_UINavigationItem_setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        break;
+    case 14:
+        org_xmlvm_iphone_UINavigationItem_getTitle__(receiver);
+        break;
+    case 15:
+        org_xmlvm_iphone_UINavigationItem_setTitle___java_lang_String(receiver, argsArray[0]);
+        break;
+    case 16:
+        org_xmlvm_iphone_UINavigationItem_getTitleView__(receiver);
+        break;
+    case 17:
+        org_xmlvm_iphone_UINavigationItem_setTitleView___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
+        break;
+    case 18:
+        org_xmlvm_iphone_UINavigationItem_access$000___org_xmlvm_iphone_UINavigationItem(argsArray[0]);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_UINavigationItem()
 {
     __TIB_org_xmlvm_iphone_UINavigationItem.classInitialized = 1;
@@ -93,6 +411,9 @@ void __INIT_org_xmlvm_iphone_UINavigationItem()
     __TIB_org_xmlvm_iphone_UINavigationItem.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_UINavigationItem.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_UINavigationItem.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UINavigationItem.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UINavigationItem.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UINavigationItem.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_UINavigationItem = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UINavigationItem);
     __TIB_org_xmlvm_iphone_UINavigationItem.clazz = __CLASS_org_xmlvm_iphone_UINavigationItem;
     __CLASS_org_xmlvm_iphone_UINavigationItem_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationItem, 1);

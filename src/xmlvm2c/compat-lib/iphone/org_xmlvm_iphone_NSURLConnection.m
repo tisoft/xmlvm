@@ -42,6 +42,59 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSMutableURLRequest,
+    &__CLASS_org_xmlvm_iphone_NSHTTPURLResponseHolder,
+    &__CLASS_org_xmlvm_iphone_NSErrorHolder,
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSMutableURLRequest,
+    &__CLASS_org_xmlvm_iphone_NSURLConnectionDelegate,
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"sendSynchronousRequest",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"connectionWithRequest",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_NSURLConnection_sendSynchronousRequest___org_xmlvm_iphone_NSMutableURLRequest_org_xmlvm_iphone_NSHTTPURLResponseHolder_org_xmlvm_iphone_NSErrorHolder(argsArray[0], argsArray[1], argsArray[2]);
+        break;
+    case 1:
+        org_xmlvm_iphone_NSURLConnection_connectionWithRequest___org_xmlvm_iphone_NSMutableURLRequest_org_xmlvm_iphone_NSURLConnectionDelegate(argsArray[0], argsArray[1]);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_NSURLConnection()
 {
     __TIB_org_xmlvm_iphone_NSURLConnection.classInitialized = 1;
@@ -60,6 +113,9 @@ void __INIT_org_xmlvm_iphone_NSURLConnection()
     __TIB_org_xmlvm_iphone_NSURLConnection.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_NSURLConnection.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_NSURLConnection.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_NSURLConnection.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_NSURLConnection.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSURLConnection.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_NSURLConnection = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSURLConnection);
     __TIB_org_xmlvm_iphone_NSURLConnection.clazz = __CLASS_org_xmlvm_iphone_NSURLConnection;
     __CLASS_org_xmlvm_iphone_NSURLConnection_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSURLConnection, 1);

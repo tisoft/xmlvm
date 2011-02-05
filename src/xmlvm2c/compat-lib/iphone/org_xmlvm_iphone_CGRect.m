@@ -112,6 +112,162 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_org_xmlvm_iphone_CGRect,
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+    &__CLASS_java_lang_Object,
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"Null",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"Zero",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"Infinite",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"Intersection",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isNull",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isEmpty",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isInfinite",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"toString",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"equals",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_CGRect_Null__();
+        break;
+    case 1:
+        org_xmlvm_iphone_CGRect_Zero__();
+        break;
+    case 2:
+        org_xmlvm_iphone_CGRect_Infinite__();
+        break;
+    case 3:
+        org_xmlvm_iphone_CGRect_Intersection___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect(argsArray[0], argsArray[1]);
+        break;
+    case 4:
+        org_xmlvm_iphone_CGRect_isNull__(receiver);
+        break;
+    case 5:
+        org_xmlvm_iphone_CGRect_isEmpty__(receiver);
+        break;
+    case 6:
+        org_xmlvm_iphone_CGRect_isInfinite__(receiver);
+        break;
+    case 7:
+        org_xmlvm_iphone_CGRect_toString__(receiver);
+        break;
+    case 8:
+        org_xmlvm_iphone_CGRect_equals___java_lang_Object(receiver, argsArray[0]);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_CGRect()
 {
     __TIB_org_xmlvm_iphone_CGRect.classInitialized = 1;
@@ -135,6 +291,9 @@ void __INIT_org_xmlvm_iphone_CGRect()
     __TIB_org_xmlvm_iphone_CGRect.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_CGRect.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_CGRect.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_CGRect.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_CGRect.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CGRect.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_CGRect = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CGRect);
     __TIB_org_xmlvm_iphone_CGRect.clazz = __CLASS_org_xmlvm_iphone_CGRect;
     __CLASS_org_xmlvm_iphone_CGRect_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGRect, 1);

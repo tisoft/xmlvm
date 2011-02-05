@@ -70,6 +70,180 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_java_util_ArrayList,
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_java_util_ArrayList,
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIColor,
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"getItems",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setItems",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setItems",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getBarStyle",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setBarStyle",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getTintColor",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setTintColor",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isTranslucent",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setTranslucent",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"updateViews",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_UIToolbar_getItems__(receiver);
+        break;
+    case 1:
+        org_xmlvm_iphone_UIToolbar_setItems___java_util_ArrayList(receiver, argsArray[0]);
+        break;
+    case 2:
+        org_xmlvm_iphone_UIToolbar_setItems___java_util_ArrayList_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        break;
+    case 3:
+        org_xmlvm_iphone_UIToolbar_getBarStyle__(receiver);
+        break;
+    case 4:
+        org_xmlvm_iphone_UIToolbar_setBarStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 5:
+        org_xmlvm_iphone_UIToolbar_getTintColor__(receiver);
+        break;
+    case 6:
+        org_xmlvm_iphone_UIToolbar_setTintColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
+        break;
+    case 7:
+        org_xmlvm_iphone_UIToolbar_isTranslucent__(receiver);
+        break;
+    case 8:
+        org_xmlvm_iphone_UIToolbar_setTranslucent___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 9:
+        org_xmlvm_iphone_UIToolbar_updateViews__(receiver);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_UIToolbar()
 {
     __TIB_org_xmlvm_iphone_UIToolbar.classInitialized = 1;
@@ -98,6 +272,9 @@ void __INIT_org_xmlvm_iphone_UIToolbar()
     __TIB_org_xmlvm_iphone_UIToolbar.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_UIToolbar.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIToolbar.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIToolbar.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UIToolbar.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIToolbar.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_UIToolbar = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIToolbar);
     __TIB_org_xmlvm_iphone_UIToolbar.clazz = __CLASS_org_xmlvm_iphone_UIToolbar;
     __CLASS_org_xmlvm_iphone_UIToolbar_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIToolbar, 1);

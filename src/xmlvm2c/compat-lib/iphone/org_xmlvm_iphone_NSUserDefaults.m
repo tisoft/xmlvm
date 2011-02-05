@@ -54,6 +54,234 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_java_lang_Object,
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_int,
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+    &__CLASS_boolean,
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+    &__CLASS_float,
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"standardUserDefaults",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"objectForKey",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setObject",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setInteger",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"integerForKey",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"synchronize",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setBool",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"boolForKey",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setFloat",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"floatForKey",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"dataForKey",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"stringForKey",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"remove",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_NSUserDefaults_standardUserDefaults__();
+        break;
+    case 1:
+        org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String(receiver, argsArray[0]);
+        break;
+    case 2:
+        org_xmlvm_iphone_NSUserDefaults_setObject___java_lang_Object_java_lang_String(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 3:
+        org_xmlvm_iphone_NSUserDefaults_setInteger___int_java_lang_String(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, argsArray[1]);
+        break;
+    case 4:
+        org_xmlvm_iphone_NSUserDefaults_integerForKey___java_lang_String(receiver, argsArray[0]);
+        break;
+    case 5:
+        org_xmlvm_iphone_NSUserDefaults_synchronize__(receiver);
+        break;
+    case 6:
+        org_xmlvm_iphone_NSUserDefaults_setBool___boolean_java_lang_String(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_, argsArray[1]);
+        break;
+    case 7:
+        org_xmlvm_iphone_NSUserDefaults_boolForKey___java_lang_String(receiver, argsArray[0]);
+        break;
+    case 8:
+        org_xmlvm_iphone_NSUserDefaults_setFloat___float_java_lang_String(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, argsArray[1]);
+        break;
+    case 9:
+        org_xmlvm_iphone_NSUserDefaults_floatForKey___java_lang_String(receiver, argsArray[0]);
+        break;
+    case 10:
+        org_xmlvm_iphone_NSUserDefaults_dataForKey___java_lang_String(receiver, argsArray[0]);
+        break;
+    case 11:
+        org_xmlvm_iphone_NSUserDefaults_stringForKey___java_lang_String(receiver, argsArray[0]);
+        break;
+    case 12:
+        org_xmlvm_iphone_NSUserDefaults_remove___java_lang_String(receiver, argsArray[0]);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_NSUserDefaults()
 {
     __TIB_org_xmlvm_iphone_NSUserDefaults.classInitialized = 1;
@@ -84,6 +312,9 @@ void __INIT_org_xmlvm_iphone_NSUserDefaults()
     __TIB_org_xmlvm_iphone_NSUserDefaults.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_NSUserDefaults.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_NSUserDefaults.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_NSUserDefaults.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_NSUserDefaults.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSUserDefaults.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_NSUserDefaults = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSUserDefaults);
     __TIB_org_xmlvm_iphone_NSUserDefaults.clazz = __CLASS_org_xmlvm_iphone_NSUserDefaults;
     __CLASS_org_xmlvm_iphone_NSUserDefaults_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSUserDefaults, 1);

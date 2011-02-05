@@ -46,6 +46,334 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method13_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method15_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method16_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method17_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method18_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method19_arg_types[] = {
+    &__CLASS_int,
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"era",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"year",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"month",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"day",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"hour",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"minute",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"second",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"week",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"weekday",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"weekdayOrdinal",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setEra",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setYear",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setMonth",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setDay",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setHour",
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setMinute",
+    &__method15_arg_types[0],
+    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setSecond",
+    &__method16_arg_types[0],
+    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setWeek",
+    &__method17_arg_types[0],
+    sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setWeekday",
+    &__method18_arg_types[0],
+    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setWeekdayOrdinal",
+    &__method19_arg_types[0],
+    sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_NSDateComponents_era__(receiver);
+        break;
+    case 1:
+        org_xmlvm_iphone_NSDateComponents_year__(receiver);
+        break;
+    case 2:
+        org_xmlvm_iphone_NSDateComponents_month__(receiver);
+        break;
+    case 3:
+        org_xmlvm_iphone_NSDateComponents_day__(receiver);
+        break;
+    case 4:
+        org_xmlvm_iphone_NSDateComponents_hour__(receiver);
+        break;
+    case 5:
+        org_xmlvm_iphone_NSDateComponents_minute__(receiver);
+        break;
+    case 6:
+        org_xmlvm_iphone_NSDateComponents_second__(receiver);
+        break;
+    case 7:
+        org_xmlvm_iphone_NSDateComponents_week__(receiver);
+        break;
+    case 8:
+        org_xmlvm_iphone_NSDateComponents_weekday__(receiver);
+        break;
+    case 9:
+        org_xmlvm_iphone_NSDateComponents_weekdayOrdinal__(receiver);
+        break;
+    case 10:
+        org_xmlvm_iphone_NSDateComponents_setEra___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 11:
+        org_xmlvm_iphone_NSDateComponents_setYear___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 12:
+        org_xmlvm_iphone_NSDateComponents_setMonth___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 13:
+        org_xmlvm_iphone_NSDateComponents_setDay___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 14:
+        org_xmlvm_iphone_NSDateComponents_setHour___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 15:
+        org_xmlvm_iphone_NSDateComponents_setMinute___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 16:
+        org_xmlvm_iphone_NSDateComponents_setSecond___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 17:
+        org_xmlvm_iphone_NSDateComponents_setWeek___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 18:
+        org_xmlvm_iphone_NSDateComponents_setWeekday___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 19:
+        org_xmlvm_iphone_NSDateComponents_setWeekdayOrdinal___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_NSDateComponents()
 {
     __TIB_org_xmlvm_iphone_NSDateComponents.classInitialized = 1;
@@ -85,6 +413,9 @@ void __INIT_org_xmlvm_iphone_NSDateComponents()
     __TIB_org_xmlvm_iphone_NSDateComponents.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_NSDateComponents.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_NSDateComponents.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_NSDateComponents.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_NSDateComponents.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSDateComponents.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_NSDateComponents = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSDateComponents);
     __TIB_org_xmlvm_iphone_NSDateComponents.clazz = __CLASS_org_xmlvm_iphone_NSDateComponents;
     __CLASS_org_xmlvm_iphone_NSDateComponents_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSDateComponents, 1);

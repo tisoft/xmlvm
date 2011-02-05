@@ -55,6 +55,483 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CLRegion,
+    &__CLASS_double,
+};
+
+static JAVA_OBJECT* __method13_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CLRegion,
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method15_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CLLocationManagerDelegate,
+};
+
+static JAVA_OBJECT* __method16_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method17_arg_types[] = {
+    &__CLASS_double,
+};
+
+static JAVA_OBJECT* __method18_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method19_arg_types[] = {
+    &__CLASS_double,
+};
+
+static JAVA_OBJECT* __method20_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method21_arg_types[] = {
+    &__CLASS_double,
+};
+
+static JAVA_OBJECT* __method22_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method23_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method24_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method25_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method26_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method27_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method28_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method29_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"locationServicesEnabled",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"significantLocationChangeMonitoringAvailable",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"headingAvailable",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"regionMonitoringAvailable",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"regionMonitoringEnabled",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"startUpdatingLocation",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"stopUpdatingLocation",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"startMonitoringSignificantLocationChanges",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"stopMonitoringSignificantLocationChanges",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"startUpdatingHeading",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"stopUpdatingHeading",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"dismissHeadingCalibrationDisplay",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"startMonitoringForRegion",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"stopMonitoringForRegion",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getDelegate",
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setDelegate",
+    &__method15_arg_types[0],
+    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getDesiredAccuracy",
+    &__method16_arg_types[0],
+    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setDesiredAccuracy",
+    &__method17_arg_types[0],
+    sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getDistanceFilter",
+    &__method18_arg_types[0],
+    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setDistanceFilter",
+    &__method19_arg_types[0],
+    sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getHeadingFilter",
+    &__method20_arg_types[0],
+    sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setHeadingFilter",
+    &__method21_arg_types[0],
+    sizeof(__method21_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getHeadingOrientation",
+    &__method22_arg_types[0],
+    sizeof(__method22_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setHeadingOrientation",
+    &__method23_arg_types[0],
+    sizeof(__method23_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getMonitoredRegions",
+    &__method24_arg_types[0],
+    sizeof(__method24_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getMaximumRegionMonitoringDistance",
+    &__method25_arg_types[0],
+    sizeof(__method25_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getHeading",
+    &__method26_arg_types[0],
+    sizeof(__method26_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getLocation",
+    &__method27_arg_types[0],
+    sizeof(__method27_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getPurpose",
+    &__method28_arg_types[0],
+    sizeof(__method28_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setPurpose",
+    &__method29_arg_types[0],
+    sizeof(__method29_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_CLLocationManager_locationServicesEnabled__();
+        break;
+    case 1:
+        org_xmlvm_iphone_CLLocationManager_significantLocationChangeMonitoringAvailable__();
+        break;
+    case 2:
+        org_xmlvm_iphone_CLLocationManager_headingAvailable__();
+        break;
+    case 3:
+        org_xmlvm_iphone_CLLocationManager_regionMonitoringAvailable__();
+        break;
+    case 4:
+        org_xmlvm_iphone_CLLocationManager_regionMonitoringEnabled__();
+        break;
+    case 5:
+        org_xmlvm_iphone_CLLocationManager_startUpdatingLocation__(receiver);
+        break;
+    case 6:
+        org_xmlvm_iphone_CLLocationManager_stopUpdatingLocation__(receiver);
+        break;
+    case 7:
+        org_xmlvm_iphone_CLLocationManager_startMonitoringSignificantLocationChanges__(receiver);
+        break;
+    case 8:
+        org_xmlvm_iphone_CLLocationManager_stopMonitoringSignificantLocationChanges__(receiver);
+        break;
+    case 9:
+        org_xmlvm_iphone_CLLocationManager_startUpdatingHeading__(receiver);
+        break;
+    case 10:
+        org_xmlvm_iphone_CLLocationManager_stopUpdatingHeading__(receiver);
+        break;
+    case 11:
+        org_xmlvm_iphone_CLLocationManager_dismissHeadingCalibrationDisplay__(receiver);
+        break;
+    case 12:
+        org_xmlvm_iphone_CLLocationManager_startMonitoringForRegion___org_xmlvm_iphone_CLRegion_double(receiver, argsArray[0], ((java_lang_Double*) argsArray[1])->fields.java_lang_Double.value_);
+        break;
+    case 13:
+        org_xmlvm_iphone_CLLocationManager_stopMonitoringForRegion___org_xmlvm_iphone_CLRegion(receiver, argsArray[0]);
+        break;
+    case 14:
+        org_xmlvm_iphone_CLLocationManager_getDelegate__(receiver);
+        break;
+    case 15:
+        org_xmlvm_iphone_CLLocationManager_setDelegate___org_xmlvm_iphone_CLLocationManagerDelegate(receiver, argsArray[0]);
+        break;
+    case 16:
+        org_xmlvm_iphone_CLLocationManager_getDesiredAccuracy__(receiver);
+        break;
+    case 17:
+        org_xmlvm_iphone_CLLocationManager_setDesiredAccuracy___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
+        break;
+    case 18:
+        org_xmlvm_iphone_CLLocationManager_getDistanceFilter__(receiver);
+        break;
+    case 19:
+        org_xmlvm_iphone_CLLocationManager_setDistanceFilter___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
+        break;
+    case 20:
+        org_xmlvm_iphone_CLLocationManager_getHeadingFilter__(receiver);
+        break;
+    case 21:
+        org_xmlvm_iphone_CLLocationManager_setHeadingFilter___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
+        break;
+    case 22:
+        org_xmlvm_iphone_CLLocationManager_getHeadingOrientation__(receiver);
+        break;
+    case 23:
+        org_xmlvm_iphone_CLLocationManager_setHeadingOrientation___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 24:
+        org_xmlvm_iphone_CLLocationManager_getMonitoredRegions__(receiver);
+        break;
+    case 25:
+        org_xmlvm_iphone_CLLocationManager_getMaximumRegionMonitoringDistance__(receiver);
+        break;
+    case 26:
+        org_xmlvm_iphone_CLLocationManager_getHeading__(receiver);
+        break;
+    case 27:
+        org_xmlvm_iphone_CLLocationManager_getLocation__(receiver);
+        break;
+    case 28:
+        org_xmlvm_iphone_CLLocationManager_getPurpose__(receiver);
+        break;
+    case 29:
+        org_xmlvm_iphone_CLLocationManager_setPurpose___java_lang_String(receiver, argsArray[0]);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_CLLocationManager()
 {
     __TIB_org_xmlvm_iphone_CLLocationManager.classInitialized = 1;
@@ -98,6 +575,9 @@ void __INIT_org_xmlvm_iphone_CLLocationManager()
     __TIB_org_xmlvm_iphone_CLLocationManager.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_CLLocationManager.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_CLLocationManager.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_CLLocationManager.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_CLLocationManager.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CLLocationManager.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_CLLocationManager = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CLLocationManager);
     __TIB_org_xmlvm_iphone_CLLocationManager.clazz = __CLASS_org_xmlvm_iphone_CLLocationManager;
     __CLASS_org_xmlvm_iphone_CLLocationManager_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationManager, 1);

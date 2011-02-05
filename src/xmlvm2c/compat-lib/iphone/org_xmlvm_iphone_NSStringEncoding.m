@@ -236,6 +236,40 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_int,
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"convertIntToString",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_NSStringEncoding_convertIntToString___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_NSStringEncoding()
 {
     __TIB_org_xmlvm_iphone_NSStringEncoding.classInitialized = 1;
@@ -277,6 +311,9 @@ void __INIT_org_xmlvm_iphone_NSStringEncoding()
     __TIB_org_xmlvm_iphone_NSStringEncoding.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_NSStringEncoding.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_NSStringEncoding.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_NSStringEncoding.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_NSStringEncoding.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSStringEncoding.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_NSStringEncoding = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSStringEncoding);
     __TIB_org_xmlvm_iphone_NSStringEncoding.clazz = __CLASS_org_xmlvm_iphone_NSStringEncoding;
     __CLASS_org_xmlvm_iphone_NSStringEncoding_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSStringEncoding, 1);

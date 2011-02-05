@@ -80,6 +80,306 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGPoint,
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGPoint,
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGSize,
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIScrollViewDelegate,
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method13_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method15_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method16_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method17_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_boolean,
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"setContentOffset",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setContentOffset",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getContentOffset",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setScrollEnabled",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isScrollEnabled",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isPagingEnabled",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setPagingEnabled",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getContentSize",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setContentSize",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getDelegate",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setDelegate",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isScrollsToTop",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setScrollsToTop",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isShowsHorizontalScrollIndicator",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setShowsHorizontalScrollIndicator",
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isShowsVerticalScrollIndicator",
+    &__method15_arg_types[0],
+    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setShowsVerticalScrollIndicator",
+    &__method16_arg_types[0],
+    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"scrollRectToVisible",
+    &__method17_arg_types[0],
+    sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
+        break;
+    case 1:
+        org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        break;
+    case 2:
+        org_xmlvm_iphone_UIScrollView_getContentOffset__(receiver);
+        break;
+    case 3:
+        org_xmlvm_iphone_UIScrollView_setScrollEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 4:
+        org_xmlvm_iphone_UIScrollView_isScrollEnabled__(receiver);
+        break;
+    case 5:
+        org_xmlvm_iphone_UIScrollView_isPagingEnabled__(receiver);
+        break;
+    case 6:
+        org_xmlvm_iphone_UIScrollView_setPagingEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 7:
+        org_xmlvm_iphone_UIScrollView_getContentSize__(receiver);
+        break;
+    case 8:
+        org_xmlvm_iphone_UIScrollView_setContentSize___org_xmlvm_iphone_CGSize(receiver, argsArray[0]);
+        break;
+    case 9:
+        org_xmlvm_iphone_UIScrollView_getDelegate__(receiver);
+        break;
+    case 10:
+        org_xmlvm_iphone_UIScrollView_setDelegate___org_xmlvm_iphone_UIScrollViewDelegate(receiver, argsArray[0]);
+        break;
+    case 11:
+        org_xmlvm_iphone_UIScrollView_isScrollsToTop__(receiver);
+        break;
+    case 12:
+        org_xmlvm_iphone_UIScrollView_setScrollsToTop___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 13:
+        org_xmlvm_iphone_UIScrollView_isShowsHorizontalScrollIndicator__(receiver);
+        break;
+    case 14:
+        org_xmlvm_iphone_UIScrollView_setShowsHorizontalScrollIndicator___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 15:
+        org_xmlvm_iphone_UIScrollView_isShowsVerticalScrollIndicator__(receiver);
+        break;
+    case 16:
+        org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 17:
+        org_xmlvm_iphone_UIScrollView_scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_UIScrollView()
 {
     __TIB_org_xmlvm_iphone_UIScrollView.classInitialized = 1;
@@ -116,6 +416,9 @@ void __INIT_org_xmlvm_iphone_UIScrollView()
     __TIB_org_xmlvm_iphone_UIScrollView.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_UIScrollView.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIScrollView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIScrollView.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UIScrollView.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIScrollView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_UIScrollView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIScrollView);
     __TIB_org_xmlvm_iphone_UIScrollView.clazz = __CLASS_org_xmlvm_iphone_UIScrollView;
     __CLASS_org_xmlvm_iphone_UIScrollView_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIScrollView, 1);

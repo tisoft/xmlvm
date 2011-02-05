@@ -38,6 +38,180 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_float,
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_float,
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGAffineTransform,
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGAffineTransform,
+    &__CLASS_float,
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGAffineTransform,
+    &__CLASS_float,
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGAffineTransform,
+    &__CLASS_org_xmlvm_iphone_CGAffineTransform,
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"make",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"makeRotation",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"makeScale",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"makeTranslation",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"rotate",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"scale",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"translate",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"concat",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"identity",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_CGAffineTransform_make___float_float_float_float_float_float(((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[2])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[3])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[4])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[5])->fields.java_lang_Float.value_);
+        break;
+    case 1:
+        org_xmlvm_iphone_CGAffineTransform_makeRotation___float(((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
+        break;
+    case 2:
+        org_xmlvm_iphone_CGAffineTransform_makeScale___float_float(((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
+        break;
+    case 3:
+        org_xmlvm_iphone_CGAffineTransform_makeTranslation___float_float(((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
+        break;
+    case 4:
+        org_xmlvm_iphone_CGAffineTransform_rotate___org_xmlvm_iphone_CGAffineTransform_float(argsArray[0], ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
+        break;
+    case 5:
+        org_xmlvm_iphone_CGAffineTransform_scale___org_xmlvm_iphone_CGAffineTransform_float_float(argsArray[0], ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[2])->fields.java_lang_Float.value_);
+        break;
+    case 6:
+        org_xmlvm_iphone_CGAffineTransform_translate___org_xmlvm_iphone_CGAffineTransform_float_float(argsArray[0], ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[2])->fields.java_lang_Float.value_);
+        break;
+    case 7:
+        org_xmlvm_iphone_CGAffineTransform_concat___org_xmlvm_iphone_CGAffineTransform_org_xmlvm_iphone_CGAffineTransform(argsArray[0], argsArray[1]);
+        break;
+    case 8:
+        org_xmlvm_iphone_CGAffineTransform_identity__();
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_CGAffineTransform()
 {
     __TIB_org_xmlvm_iphone_CGAffineTransform.classInitialized = 1;
@@ -56,6 +230,9 @@ void __INIT_org_xmlvm_iphone_CGAffineTransform()
     __TIB_org_xmlvm_iphone_CGAffineTransform.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_CGAffineTransform.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_CGAffineTransform.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_CGAffineTransform.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_CGAffineTransform.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CGAffineTransform.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_CGAffineTransform = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CGAffineTransform);
     __TIB_org_xmlvm_iphone_CGAffineTransform.clazz = __CLASS_org_xmlvm_iphone_CGAffineTransform;
     __CLASS_org_xmlvm_iphone_CGAffineTransform_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGAffineTransform, 1);

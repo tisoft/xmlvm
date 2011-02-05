@@ -80,6 +80,274 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UINavigationItem,
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_java_util_ArrayList,
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_java_util_ArrayList,
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UINavigationBarDelegate,
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIColor,
+};
+
+static JAVA_OBJECT* __method13_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method15_arg_types[] = {
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"pushNavigationItem",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"popNavigationItemAnimated",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setItems",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setItems",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getDelegate",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setDelegate",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getTopItem",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getBackitem",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getItems",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getBarStyle",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setBarStyle",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getTintColor",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setTintColor",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isTranslucent",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setTranslucent",
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"updateViews",
+    &__method15_arg_types[0],
+    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_UINavigationBar_pushNavigationItem___org_xmlvm_iphone_UINavigationItem_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        break;
+    case 1:
+        org_xmlvm_iphone_UINavigationBar_popNavigationItemAnimated___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 2:
+        org_xmlvm_iphone_UINavigationBar_setItems___java_util_ArrayList(receiver, argsArray[0]);
+        break;
+    case 3:
+        org_xmlvm_iphone_UINavigationBar_setItems___java_util_ArrayList_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        break;
+    case 4:
+        org_xmlvm_iphone_UINavigationBar_getDelegate__(receiver);
+        break;
+    case 5:
+        org_xmlvm_iphone_UINavigationBar_setDelegate___org_xmlvm_iphone_UINavigationBarDelegate(receiver, argsArray[0]);
+        break;
+    case 6:
+        org_xmlvm_iphone_UINavigationBar_getTopItem__(receiver);
+        break;
+    case 7:
+        org_xmlvm_iphone_UINavigationBar_getBackitem__(receiver);
+        break;
+    case 8:
+        org_xmlvm_iphone_UINavigationBar_getItems__(receiver);
+        break;
+    case 9:
+        org_xmlvm_iphone_UINavigationBar_getBarStyle__(receiver);
+        break;
+    case 10:
+        org_xmlvm_iphone_UINavigationBar_setBarStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 11:
+        org_xmlvm_iphone_UINavigationBar_getTintColor__(receiver);
+        break;
+    case 12:
+        org_xmlvm_iphone_UINavigationBar_setTintColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
+        break;
+    case 13:
+        org_xmlvm_iphone_UINavigationBar_isTranslucent__(receiver);
+        break;
+    case 14:
+        org_xmlvm_iphone_UINavigationBar_setTranslucent___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 15:
+        org_xmlvm_iphone_UINavigationBar_updateViews__(receiver);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_UINavigationBar()
 {
     __TIB_org_xmlvm_iphone_UINavigationBar.classInitialized = 1;
@@ -114,6 +382,9 @@ void __INIT_org_xmlvm_iphone_UINavigationBar()
     __TIB_org_xmlvm_iphone_UINavigationBar.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_UINavigationBar.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_UINavigationBar.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UINavigationBar.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UINavigationBar.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UINavigationBar.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_UINavigationBar = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UINavigationBar);
     __TIB_org_xmlvm_iphone_UINavigationBar.clazz = __CLASS_org_xmlvm_iphone_UINavigationBar;
     __CLASS_org_xmlvm_iphone_UINavigationBar_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationBar, 1);

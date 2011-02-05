@@ -21,6 +21,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell_ARRAYTYPE;
     org_xmlvm_iphone_UITableViewCell* wrappedCObj;
 }
 - (void) layoutSubviews;
+- (void) superLayoutSubviews;
 - (void) setWrappedCObj: (org_xmlvm_iphone_UITableViewCell*) obj;
 @end
 
@@ -33,9 +34,13 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell_ARRAYTYPE;
 
 - (void) layoutSubviews
 {
-    [super layoutSubviews];
     Func_VO layoutSubviews = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_layoutSubviews__];
     layoutSubviews(self->wrappedCObj);
+}
+
+- (void) superLayoutSubviews
+{
+    [super layoutSubviews];
 }
 
 @end
@@ -95,6 +100,253 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIView,
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIView,
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method13_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIView,
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"setSelected",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isSelected",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getEditingStyle",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"layoutSubviews",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getContentView",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setBackgroundView",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getBackgroundView",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setSelectedBackgroundView",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getSelectedBackgroundView",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getTextLabel",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getDetailTextLabel",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getImageView",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getAccessoryView",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setAccessoryView",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getReuseIdentifier",
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_UITableViewCell_setSelected___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 1:
+        org_xmlvm_iphone_UITableViewCell_isSelected__(receiver);
+        break;
+    case 2:
+        org_xmlvm_iphone_UITableViewCell_getEditingStyle__(receiver);
+        break;
+    case 3:
+        org_xmlvm_iphone_UITableViewCell_layoutSubviews__(receiver);
+        break;
+    case 4:
+        org_xmlvm_iphone_UITableViewCell_getContentView__(receiver);
+        break;
+    case 5:
+        org_xmlvm_iphone_UITableViewCell_setBackgroundView___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
+        break;
+    case 6:
+        org_xmlvm_iphone_UITableViewCell_getBackgroundView__(receiver);
+        break;
+    case 7:
+        org_xmlvm_iphone_UITableViewCell_setSelectedBackgroundView___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
+        break;
+    case 8:
+        org_xmlvm_iphone_UITableViewCell_getSelectedBackgroundView__(receiver);
+        break;
+    case 9:
+        org_xmlvm_iphone_UITableViewCell_getTextLabel__(receiver);
+        break;
+    case 10:
+        org_xmlvm_iphone_UITableViewCell_getDetailTextLabel__(receiver);
+        break;
+    case 11:
+        org_xmlvm_iphone_UITableViewCell_getImageView__(receiver);
+        break;
+    case 12:
+        org_xmlvm_iphone_UITableViewCell_getAccessoryView__(receiver);
+        break;
+    case 13:
+        org_xmlvm_iphone_UITableViewCell_setAccessoryView___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
+        break;
+    case 14:
+        org_xmlvm_iphone_UITableViewCell_getReuseIdentifier__(receiver);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_UITableViewCell()
 {
     __TIB_org_xmlvm_iphone_UITableViewCell.classInitialized = 1;
@@ -107,6 +359,7 @@ void __INIT_org_xmlvm_iphone_UITableViewCell()
     __TIB_org_xmlvm_iphone_UITableViewCell.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setSelected___boolean;
     __TIB_org_xmlvm_iphone_UITableViewCell.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_isSelected__;
     __TIB_org_xmlvm_iphone_UITableViewCell.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getEditingStyle__;
+    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_layoutSubviews__;
     __TIB_org_xmlvm_iphone_UITableViewCell.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getContentView__;
     __TIB_org_xmlvm_iphone_UITableViewCell.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setBackgroundView___org_xmlvm_iphone_UIView;
     __TIB_org_xmlvm_iphone_UITableViewCell.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getBackgroundView__;
@@ -127,6 +380,9 @@ void __INIT_org_xmlvm_iphone_UITableViewCell()
     __TIB_org_xmlvm_iphone_UITableViewCell.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_UITableViewCell.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_UITableViewCell.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UITableViewCell.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UITableViewCell.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITableViewCell.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_UITableViewCell = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UITableViewCell);
     __TIB_org_xmlvm_iphone_UITableViewCell.clazz = __CLASS_org_xmlvm_iphone_UITableViewCell;
     __CLASS_org_xmlvm_iphone_UITableViewCell_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableViewCell, 1);
@@ -196,6 +452,15 @@ JAVA_INT org_xmlvm_iphone_UITableViewCell_getEditingStyle__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell_getEditingStyle__]
     XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UITableViewCell_layoutSubviews__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell_layoutSubviews__]
+    org_xmlvm_iphone_UITableViewCell* thiz = (org_xmlvm_iphone_UITableViewCell*) me;
+    UITableViewCellWrapper* cell = (UITableViewCellWrapper*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    [cell superLayoutSubviews];
     //XMLVM_END_WRAPPER
 }
 

@@ -83,6 +83,490 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method13_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method15_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method16_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIColor,
+};
+
+static JAVA_OBJECT* __method17_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method18_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method19_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method20_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method21_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIFont,
+};
+
+static JAVA_OBJECT* __method22_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method23_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method24_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method25_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method26_arg_types[] = {
+    &__CLASS_char,
+};
+
+static JAVA_OBJECT* __method27_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method28_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UITextFieldDelegate,
+};
+
+static JAVA_OBJECT* __method29_arg_types[] = {
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"getAutocapitalizationType",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setAutocapitalizationType",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getAutocorrectionType",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setAutocorrectionType",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isEnablesReturnKeyAutomatically",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setEnablesReturnKeyAutomatically",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getKeyboardAppearance",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setKeyboardAppearance",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getKeyboardType",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setKeyboardType",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getReturnKeyType",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setReturnKeyType",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isSecureTextEntry",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setSecureTextEntry",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setText",
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getText",
+    &__method15_arg_types[0],
+    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setTextColor",
+    &__method16_arg_types[0],
+    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getTextColor",
+    &__method17_arg_types[0],
+    sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setBorderStyle",
+    &__method18_arg_types[0],
+    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getBorderStyle",
+    &__method19_arg_types[0],
+    sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getFont",
+    &__method20_arg_types[0],
+    sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setFont",
+    &__method21_arg_types[0],
+    sizeof(__method21_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isAdjustsFontSizeToFitWidth",
+    &__method22_arg_types[0],
+    sizeof(__method22_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setAdjustsFontSizeToFitWidth",
+    &__method23_arg_types[0],
+    sizeof(__method23_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getTextAlignment",
+    &__method24_arg_types[0],
+    sizeof(__method24_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setTextAlignment",
+    &__method25_arg_types[0],
+    sizeof(__method25_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"xmlvmKeyTyped",
+    &__method26_arg_types[0],
+    sizeof(__method26_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setPlaceholder",
+    &__method27_arg_types[0],
+    sizeof(__method27_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setDelegate",
+    &__method28_arg_types[0],
+    sizeof(__method28_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getDelegate",
+    &__method29_arg_types[0],
+    sizeof(__method29_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_UITextField_getAutocapitalizationType__(receiver);
+        break;
+    case 1:
+        org_xmlvm_iphone_UITextField_setAutocapitalizationType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 2:
+        org_xmlvm_iphone_UITextField_getAutocorrectionType__(receiver);
+        break;
+    case 3:
+        org_xmlvm_iphone_UITextField_setAutocorrectionType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 4:
+        org_xmlvm_iphone_UITextField_isEnablesReturnKeyAutomatically__(receiver);
+        break;
+    case 5:
+        org_xmlvm_iphone_UITextField_setEnablesReturnKeyAutomatically___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 6:
+        org_xmlvm_iphone_UITextField_getKeyboardAppearance__(receiver);
+        break;
+    case 7:
+        org_xmlvm_iphone_UITextField_setKeyboardAppearance___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 8:
+        org_xmlvm_iphone_UITextField_getKeyboardType__(receiver);
+        break;
+    case 9:
+        org_xmlvm_iphone_UITextField_setKeyboardType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 10:
+        org_xmlvm_iphone_UITextField_getReturnKeyType__(receiver);
+        break;
+    case 11:
+        org_xmlvm_iphone_UITextField_setReturnKeyType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 12:
+        org_xmlvm_iphone_UITextField_isSecureTextEntry__(receiver);
+        break;
+    case 13:
+        org_xmlvm_iphone_UITextField_setSecureTextEntry___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 14:
+        org_xmlvm_iphone_UITextField_setText___java_lang_String(receiver, argsArray[0]);
+        break;
+    case 15:
+        org_xmlvm_iphone_UITextField_getText__(receiver);
+        break;
+    case 16:
+        org_xmlvm_iphone_UITextField_setTextColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
+        break;
+    case 17:
+        org_xmlvm_iphone_UITextField_getTextColor__(receiver);
+        break;
+    case 18:
+        org_xmlvm_iphone_UITextField_setBorderStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 19:
+        org_xmlvm_iphone_UITextField_getBorderStyle__(receiver);
+        break;
+    case 20:
+        org_xmlvm_iphone_UITextField_getFont__(receiver);
+        break;
+    case 21:
+        org_xmlvm_iphone_UITextField_setFont___org_xmlvm_iphone_UIFont(receiver, argsArray[0]);
+        break;
+    case 22:
+        org_xmlvm_iphone_UITextField_isAdjustsFontSizeToFitWidth__(receiver);
+        break;
+    case 23:
+        org_xmlvm_iphone_UITextField_setAdjustsFontSizeToFitWidth___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 24:
+        org_xmlvm_iphone_UITextField_getTextAlignment__(receiver);
+        break;
+    case 25:
+        org_xmlvm_iphone_UITextField_setTextAlignment___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 26:
+        org_xmlvm_iphone_UITextField_xmlvmKeyTyped___char(receiver, ((java_lang_Character*) argsArray[0])->fields.java_lang_Character.value_);
+        break;
+    case 27:
+        org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String(receiver, argsArray[0]);
+        break;
+    case 28:
+        org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate(receiver, argsArray[0]);
+        break;
+    case 29:
+        org_xmlvm_iphone_UITextField_getDelegate__(receiver);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_UITextField()
 {
     __TIB_org_xmlvm_iphone_UITextField.classInitialized = 1;
@@ -131,6 +615,9 @@ void __INIT_org_xmlvm_iphone_UITextField()
     __TIB_org_xmlvm_iphone_UITextField.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_UITextField.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_UITextField.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UITextField.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UITextField.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITextField.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_UITextField = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UITextField);
     __TIB_org_xmlvm_iphone_UITextField.clazz = __CLASS_org_xmlvm_iphone_UITextField;
     __CLASS_org_xmlvm_iphone_UITextField_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextField, 1);

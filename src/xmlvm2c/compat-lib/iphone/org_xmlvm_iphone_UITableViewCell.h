@@ -50,6 +50,7 @@ typedef struct org_xmlvm_iphone_UITableViewCell org_xmlvm_iphone_UITableViewCell
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_setSelected___boolean 70
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_isSelected__ 71
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_getEditingStyle__ 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_layoutSubviews__ 35
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_getContentView__ 73
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_setBackgroundView___org_xmlvm_iphone_UIView 74
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_getBackgroundView__ 75
@@ -74,6 +75,8 @@ void org_xmlvm_iphone_UITableViewCell_setSelected___boolean(JAVA_OBJECT me, JAVA
 JAVA_BOOLEAN org_xmlvm_iphone_UITableViewCell_isSelected__(JAVA_OBJECT me);
 // Vtable index: 72
 JAVA_INT org_xmlvm_iphone_UITableViewCell_getEditingStyle__(JAVA_OBJECT me);
+// Vtable index: 35
+void org_xmlvm_iphone_UITableViewCell_layoutSubviews__(JAVA_OBJECT me);
 // Vtable index: 73
 JAVA_OBJECT org_xmlvm_iphone_UITableViewCell_getContentView__(JAVA_OBJECT me);
 // Vtable index: 74

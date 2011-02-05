@@ -97,6 +97,462 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSURL,
+    &__CLASS_org_xmlvm_iphone_NSErrorHolder,
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSData,
+    &__CLASS_org_xmlvm_iphone_NSErrorHolder,
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_double,
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate,
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+    &__CLASS_double,
+};
+
+static JAVA_OBJECT* __method13_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method15_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method16_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method17_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method18_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method19_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method20_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
+};
+
+static JAVA_OBJECT* __method21_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
+};
+
+static JAVA_OBJECT* __method22_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
+};
+
+static JAVA_OBJECT* __method23_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
+};
+
+static JAVA_OBJECT* __method24_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
+};
+
+static JAVA_OBJECT* __method25_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
+};
+
+static JAVA_OBJECT* __method26_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method27_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"audioPlayerWithContentsOfURL",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"audioPlayerWithData",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"play",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"playAtTime",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"stop",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"pause",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"prepareToPlay",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getNumberOfLoops",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setNumberOfLoops",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getDelegate",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setDelegate",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isPlaying",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setCurrentTime",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getCurrentTime",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setVolume",
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getVolume",
+    &__method15_arg_types[0],
+    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getNumberOfChannels",
+    &__method16_arg_types[0],
+    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getDuration",
+    &__method17_arg_types[0],
+    sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getURL",
+    &__method18_arg_types[0],
+    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getData",
+    &__method19_arg_types[0],
+    sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"access$000",
+    &__method20_arg_types[0],
+    sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"access$100",
+    &__method21_arg_types[0],
+    sizeof(__method21_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"access$200",
+    &__method22_arg_types[0],
+    sizeof(__method22_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"access$300",
+    &__method23_arg_types[0],
+    sizeof(__method23_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"access$400",
+    &__method24_arg_types[0],
+    sizeof(__method24_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"access$410",
+    &__method25_arg_types[0],
+    sizeof(__method25_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"access$502",
+    &__method26_arg_types[0],
+    sizeof(__method26_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"access$600",
+    &__method27_arg_types[0],
+    sizeof(__method27_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(argsArray[0], argsArray[1]);
+        break;
+    case 1:
+        org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder(argsArray[0], argsArray[1]);
+        break;
+    case 2:
+        org_xmlvm_iphone_AVAudioPlayer_play__(receiver);
+        break;
+    case 3:
+        org_xmlvm_iphone_AVAudioPlayer_playAtTime___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
+        break;
+    case 4:
+        org_xmlvm_iphone_AVAudioPlayer_stop__(receiver);
+        break;
+    case 5:
+        org_xmlvm_iphone_AVAudioPlayer_pause__(receiver);
+        break;
+    case 6:
+        org_xmlvm_iphone_AVAudioPlayer_prepareToPlay__(receiver);
+        break;
+    case 7:
+        org_xmlvm_iphone_AVAudioPlayer_getNumberOfLoops__(receiver);
+        break;
+    case 8:
+        org_xmlvm_iphone_AVAudioPlayer_setNumberOfLoops___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 9:
+        org_xmlvm_iphone_AVAudioPlayer_getDelegate__(receiver);
+        break;
+    case 10:
+        org_xmlvm_iphone_AVAudioPlayer_setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate(receiver, argsArray[0]);
+        break;
+    case 11:
+        org_xmlvm_iphone_AVAudioPlayer_isPlaying__(receiver);
+        break;
+    case 12:
+        org_xmlvm_iphone_AVAudioPlayer_setCurrentTime___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
+        break;
+    case 13:
+        org_xmlvm_iphone_AVAudioPlayer_getCurrentTime__(receiver);
+        break;
+    case 14:
+        org_xmlvm_iphone_AVAudioPlayer_setVolume___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
+        break;
+    case 15:
+        org_xmlvm_iphone_AVAudioPlayer_getVolume__(receiver);
+        break;
+    case 16:
+        org_xmlvm_iphone_AVAudioPlayer_getNumberOfChannels__(receiver);
+        break;
+    case 17:
+        org_xmlvm_iphone_AVAudioPlayer_getDuration__(receiver);
+        break;
+    case 18:
+        org_xmlvm_iphone_AVAudioPlayer_getURL__(receiver);
+        break;
+    case 19:
+        org_xmlvm_iphone_AVAudioPlayer_getData__(receiver);
+        break;
+    case 20:
+        org_xmlvm_iphone_AVAudioPlayer_access$000___org_xmlvm_iphone_AVAudioPlayer(argsArray[0]);
+        break;
+    case 21:
+        org_xmlvm_iphone_AVAudioPlayer_access$100___org_xmlvm_iphone_AVAudioPlayer(argsArray[0]);
+        break;
+    case 22:
+        org_xmlvm_iphone_AVAudioPlayer_access$200___org_xmlvm_iphone_AVAudioPlayer(argsArray[0]);
+        break;
+    case 23:
+        org_xmlvm_iphone_AVAudioPlayer_access$300___org_xmlvm_iphone_AVAudioPlayer(argsArray[0]);
+        break;
+    case 24:
+        org_xmlvm_iphone_AVAudioPlayer_access$400___org_xmlvm_iphone_AVAudioPlayer(argsArray[0]);
+        break;
+    case 25:
+        org_xmlvm_iphone_AVAudioPlayer_access$410___org_xmlvm_iphone_AVAudioPlayer(argsArray[0]);
+        break;
+    case 26:
+        org_xmlvm_iphone_AVAudioPlayer_access$502___org_xmlvm_iphone_AVAudioPlayer_boolean(argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        break;
+    case 27:
+        org_xmlvm_iphone_AVAudioPlayer_access$600___org_xmlvm_iphone_AVAudioPlayer(argsArray[0]);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_AVAudioPlayer()
 {
     __TIB_org_xmlvm_iphone_AVAudioPlayer.classInitialized = 1;
@@ -133,6 +589,9 @@ void __INIT_org_xmlvm_iphone_AVAudioPlayer()
     __TIB_org_xmlvm_iphone_AVAudioPlayer.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_AVAudioPlayer.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_AVAudioPlayer.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_AVAudioPlayer.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_AVAudioPlayer.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_AVAudioPlayer.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_AVAudioPlayer = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_AVAudioPlayer);
     __TIB_org_xmlvm_iphone_AVAudioPlayer.clazz = __CLASS_org_xmlvm_iphone_AVAudioPlayer;
     __CLASS_org_xmlvm_iphone_AVAudioPlayer_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_AVAudioPlayer, 1);

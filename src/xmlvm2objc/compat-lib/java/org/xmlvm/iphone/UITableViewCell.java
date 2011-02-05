@@ -53,6 +53,10 @@ public class UITableViewCell extends UIView {
         return UITableViewCellEditingStyle.None;
     }
 
+    @Override
+    public void layoutSubviews() {
+    }
+
     public UIView getContentView() {
         return this;
     }

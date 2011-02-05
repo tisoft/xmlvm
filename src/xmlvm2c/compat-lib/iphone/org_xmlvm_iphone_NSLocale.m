@@ -38,6 +38,54 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"systemLocale",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"currentLocale",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_NSLocale_systemLocale__();
+        break;
+    case 1:
+        org_xmlvm_iphone_NSLocale_currentLocale__();
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_NSLocale()
 {
     __TIB_org_xmlvm_iphone_NSLocale.classInitialized = 1;
@@ -56,6 +104,9 @@ void __INIT_org_xmlvm_iphone_NSLocale()
     __TIB_org_xmlvm_iphone_NSLocale.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_NSLocale.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_NSLocale.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_NSLocale.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_NSLocale.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSLocale.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_NSLocale = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSLocale);
     __TIB_org_xmlvm_iphone_NSLocale.clazz = __CLASS_org_xmlvm_iphone_NSLocale;
     __CLASS_org_xmlvm_iphone_NSLocale_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSLocale, 1);

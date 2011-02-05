@@ -67,6 +67,116 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"setActivityIndicatorViewStyle",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getActivityIndicatorViewStyle",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setHidesWhenStopped",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getHidesWhenStopped",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"startAnimating",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"stopAnimating",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_UIActivityIndicatorView_setActivityIndicatorViewStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 1:
+        org_xmlvm_iphone_UIActivityIndicatorView_getActivityIndicatorViewStyle__(receiver);
+        break;
+    case 2:
+        org_xmlvm_iphone_UIActivityIndicatorView_setHidesWhenStopped___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 3:
+        org_xmlvm_iphone_UIActivityIndicatorView_getHidesWhenStopped__(receiver);
+        break;
+    case 4:
+        org_xmlvm_iphone_UIActivityIndicatorView_startAnimating__(receiver);
+        break;
+    case 5:
+        org_xmlvm_iphone_UIActivityIndicatorView_stopAnimating__(receiver);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_UIActivityIndicatorView()
 {
     __TIB_org_xmlvm_iphone_UIActivityIndicatorView.classInitialized = 1;
@@ -91,6 +201,9 @@ void __INIT_org_xmlvm_iphone_UIActivityIndicatorView()
     __TIB_org_xmlvm_iphone_UIActivityIndicatorView.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_UIActivityIndicatorView.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIActivityIndicatorView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIActivityIndicatorView.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UIActivityIndicatorView.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIActivityIndicatorView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_UIActivityIndicatorView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIActivityIndicatorView);
     __TIB_org_xmlvm_iphone_UIActivityIndicatorView.clazz = __CLASS_org_xmlvm_iphone_UIActivityIndicatorView;
     __CLASS_org_xmlvm_iphone_UIActivityIndicatorView_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIActivityIndicatorView, 1);

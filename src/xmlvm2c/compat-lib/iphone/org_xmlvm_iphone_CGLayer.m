@@ -40,6 +40,71 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGContext,
+    &__CLASS_org_xmlvm_iphone_CGSize,
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"createWithContext",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getContext",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getSize",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_CGLayer_createWithContext___org_xmlvm_iphone_CGContext_org_xmlvm_iphone_CGSize(argsArray[0], argsArray[1]);
+        break;
+    case 1:
+        org_xmlvm_iphone_CGLayer_getContext__(receiver);
+        break;
+    case 2:
+        org_xmlvm_iphone_CGLayer_getSize__(receiver);
+        break;
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_CGLayer()
 {
     __TIB_org_xmlvm_iphone_CGLayer.classInitialized = 1;
@@ -60,6 +125,9 @@ void __INIT_org_xmlvm_iphone_CGLayer()
     __TIB_org_xmlvm_iphone_CGLayer.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_CGLayer.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_CGLayer.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_CGLayer.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_CGLayer.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CGLayer.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_CGLayer = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CGLayer);
     __TIB_org_xmlvm_iphone_CGLayer.clazz = __CLASS_org_xmlvm_iphone_CGLayer;
     __CLASS_org_xmlvm_iphone_CGLayer_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGLayer, 1);

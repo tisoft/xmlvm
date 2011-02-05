@@ -46,6 +46,24 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+};
+
+static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
+{
+    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    java_lang_Object* obj = receiver;
+    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
+    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
+    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    switch (m->fields.java_lang_reflect_Method.slot_) {
+    default:
+        XMLVM_INTERNAL_ERROR();
+        break;
+    }
+    return result;
+}
+
 void __INIT_org_xmlvm_iphone_CLDistanceFilter()
 {
     __TIB_org_xmlvm_iphone_CLDistanceFilter.classInitialized = 1;
@@ -65,6 +83,9 @@ void __INIT_org_xmlvm_iphone_CLDistanceFilter()
     __TIB_org_xmlvm_iphone_CLDistanceFilter.constructorDispatcherFunc = constructor_dispatcher;
     __TIB_org_xmlvm_iphone_CLDistanceFilter.declaredConstructors = &__constructor_reflection_data[0];
     __TIB_org_xmlvm_iphone_CLDistanceFilter.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_CLDistanceFilter.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_CLDistanceFilter.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CLDistanceFilter.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
     __CLASS_org_xmlvm_iphone_CLDistanceFilter = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CLDistanceFilter);
     __TIB_org_xmlvm_iphone_CLDistanceFilter.clazz = __CLASS_org_xmlvm_iphone_CLDistanceFilter;
     __CLASS_org_xmlvm_iphone_CLDistanceFilter_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLDistanceFilter, 1);
