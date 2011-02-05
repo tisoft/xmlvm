@@ -204,7 +204,9 @@ JAVA_BOOLEAN org_xmlvm_iphone_UISwitch_isOn__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+	org_xmlvm_iphone_UISwitch* thiz = me;
+	UISwitch* wrappedObjCObj = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+	[wrappedObjCObj setFrame: toCGRect(n1)];
     //XMLVM_END_WRAPPER
 }
 

@@ -25,7 +25,8 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
-#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewCell
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewCell \
+    JAVA_OBJECT contentView_;
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewCell \

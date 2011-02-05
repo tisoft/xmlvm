@@ -187,14 +187,22 @@ void org_xmlvm_iphone_UITableView___INIT____org_xmlvm_iphone_CGRect_int(JAVA_OBJ
 void org_xmlvm_iphone_UITableView_setDataSource___org_xmlvm_iphone_UITableViewDataSource(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_setDataSource___org_xmlvm_iphone_UITableViewDataSource]
-    XMLVM_NOT_IMPLEMENTED();
+    ((org_xmlvm_iphone_UITableView*) me)->fields.org_xmlvm_iphone_UITableView.dataSource_ = n1;
+    UITableView* tableView = (UITableView*) ((org_xmlvm_iphone_UITableView*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    UITableViewDataSourceWrapper* dataSource = ((org_xmlvm_iphone_UITableViewDataSource*) n1)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    dataSource->tableView_ = me;
+    tableView.dataSource = dataSource;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITableView_setDelegate___org_xmlvm_iphone_UITableViewDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_setDelegate___org_xmlvm_iphone_UITableViewDelegate]
-    XMLVM_NOT_IMPLEMENTED();
+    ((org_xmlvm_iphone_UITableView*) me)->fields.org_xmlvm_iphone_UITableView.delegate_ = n1;
+    UITableView* tableView = (UITableView*) ((org_xmlvm_iphone_UITableView*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    UITableViewDelegateWrapper* delegate = ((org_xmlvm_iphone_UITableViewDelegate*) n1)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    delegate->tableView_ = me;
+    tableView.delegate = delegate;
     //XMLVM_END_WRAPPER
 }
 

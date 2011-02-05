@@ -18,6 +18,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextField;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextField_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <UIKit/UIKit.h>
 
 #import <UIKit/UITextField.h>
 #include "org_xmlvm_iphone_NSString.h"
@@ -173,7 +174,8 @@ void org_xmlvm_iphone_UITextField___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_UITextField___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField___INIT____org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+    UITextField* obj = [[UITextField alloc] initWithFrame: toCGRect(n1)];
+    org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
@@ -312,7 +314,8 @@ JAVA_OBJECT org_xmlvm_iphone_UITextField_getTextColor__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UITextField_setBorderStyle___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setBorderStyle___int]
-    XMLVM_NOT_IMPLEMENTED();
+    UITextField* textField = ((org_xmlvm_iphone_UITextField*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    [textField setBorderStyle: n1];
     //XMLVM_END_WRAPPER
 }
 

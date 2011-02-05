@@ -149,7 +149,8 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UILabel()
 void org_xmlvm_iphone_UILabel___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+	UILabel* obj = [[UILabel alloc] init];
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 

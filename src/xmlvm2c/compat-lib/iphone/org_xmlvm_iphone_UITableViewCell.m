@@ -14,6 +14,32 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <UIKit/UIKit.h>
+
+@interface UITableViewCellWrapper : UITableViewCell
+{
+    org_xmlvm_iphone_UITableViewCell* wrappedCObj;
+}
+- (void) layoutSubviews;
+- (void) setWrappedCObj: (org_xmlvm_iphone_UITableViewCell*) obj;
+@end
+
+@implementation UITableViewCellWrapper : UITableViewCell
+
+- (void) setWrappedCObj: (org_xmlvm_iphone_UITableViewCell*) obj
+{
+    self->wrappedCObj = obj;
+}
+
+- (void) layoutSubviews
+{
+    [super layoutSubviews];
+    Func_VO layoutSubviews = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_layoutSubviews__];
+    layoutSubviews(self->wrappedCObj);
+}
+
+@end
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -112,6 +138,7 @@ void __INIT_org_xmlvm_iphone_UITableViewCell()
 void __DELETE_org_xmlvm_iphone_UITableViewCell(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UITableViewCell]
+    __DELETE_org_xmlvm_iphone_UIView(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -121,6 +148,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCell()
     org_xmlvm_iphone_UITableViewCell* me = (org_xmlvm_iphone_UITableViewCell*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewCell));
     me->tib = &__TIB_org_xmlvm_iphone_UITableViewCell;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewCell]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UITableViewCell);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -136,7 +164,10 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewCell()
 void org_xmlvm_iphone_UITableViewCell___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UITableViewCellWrapper* cell = [[UITableViewCellWrapper alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, cell);
+    ((org_xmlvm_iphone_UITableViewCell*) me)->fields.org_xmlvm_iphone_UITableViewCell.contentView_ = JAVA_NULL;
+    [cell setWrappedCObj: ((org_xmlvm_iphone_UITableViewCell*) me)];
     //XMLVM_END_WRAPPER
 }
 
@@ -171,7 +202,16 @@ JAVA_INT org_xmlvm_iphone_UITableViewCell_getEditingStyle__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_UITableViewCell_getContentView__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell_getContentView__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UITableViewCell* thiz = (org_xmlvm_iphone_UITableViewCell*) me;
+    if (thiz->fields.org_xmlvm_iphone_UITableViewCell.contentView_ == JAVA_NULL) {
+        UITableViewCell* cell = (UITableViewCell*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+        UIView* contentView = [cell.contentView retain];
+        org_xmlvm_iphone_UIView* v = __NEW_org_xmlvm_iphone_UIView();
+        org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(v, contentView);
+        thiz->fields.org_xmlvm_iphone_UITableViewCell.contentView_ = v;
+    }
+
+    return thiz->fields.org_xmlvm_iphone_UITableViewCell.contentView_;
     //XMLVM_END_WRAPPER
 }
 

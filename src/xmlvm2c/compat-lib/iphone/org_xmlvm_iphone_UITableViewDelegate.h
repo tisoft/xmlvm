@@ -28,7 +28,21 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDelegate_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
+
+#import <UIKit/UIKit.h>
+
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewDelegate
+
+@interface UITableViewDelegateWrapper : NSObject <UITableViewDelegate>
+{
+    @public JAVA_OBJECT delegate_;
+    @public org_xmlvm_iphone_UITableView* tableView_;
+}
+
+- (id) initWithDelegate: (JAVA_OBJECT) d_;
+- (CGFloat) tableView: (UITableView*) tableView heightForRowAtIndexPath: (NSIndexPath*) indexPath;
+@end
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewDelegate \

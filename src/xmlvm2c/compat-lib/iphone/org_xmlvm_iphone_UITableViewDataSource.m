@@ -15,6 +15,59 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDataSource;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDataSource_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#import <UIKit/UIKit.h>
+#include "org_xmlvm_iphone_UITableViewCell.h"
+#include "org_xmlvm_iphone_NSString.h"
+
+
+@implementation UITableViewDataSourceWrapper
+
+- (id) initWithDataSource:(JAVA_OBJECT) source_
+{
+    [super init];
+    dataSource_ = source_;
+    return self;
+}
+
+- (UITableViewCell*) tableView:(UITableView *) tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath
+{
+    Func_OOOO callback = (Func_OOOO) ((org_xmlvm_iphone_UITableViewDataSource*) dataSource_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath];
+    org_xmlvm_iphone_NSIndexPath* indexPath_ = __NEW_org_xmlvm_iphone_NSIndexPath();
+    org_xmlvm_iphone_NSIndexPath_INTERNAL_CONSTRUCTOR(indexPath_, [indexPath retain]);
+    org_xmlvm_iphone_UITableViewCell* cell = callback(dataSource_, tableView_, indexPath_);
+    return [cell->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj retain];
+}
+
+- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView
+{
+    Func_IOO callback = (Func_IOO) ((org_xmlvm_iphone_UITableViewDataSource*) dataSource_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_numberOfSectionsInTableView___org_xmlvm_iphone_UITableView];
+    return callback(dataSource_, tableView_);
+}
+
+- (NSInteger) tableView:(UITableView *) tableView numberOfRowsInSection:(NSInteger) section;
+{
+    Func_IOOI callback = (Func_IOOI) ((org_xmlvm_iphone_UITableViewDataSource*) dataSource_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_numberOfRowsInSection___org_xmlvm_iphone_UITableView_int];
+    return callback(dataSource_, tableView_, section);
+}
+
+- (NSString*) tableView:(UITableView *) tableView titleForHeaderInSection:(NSInteger) section
+{
+    Func_OOOI callback = (Func_OOOI) ((org_xmlvm_iphone_UITableViewDataSource*) dataSource_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_titleForHeaderInSection___org_xmlvm_iphone_UITableView_int];
+    java_lang_String* title_ = callback(dataSource_, tableView_, section);
+    return toNSString(title_);
+}
+
+- (void) tableView:(UITableView *) tableView commitEditingStyle:(UITableViewCellEditingStyle) editingStyle forRowAtIndexPath:(NSIndexPath *) indexPath;
+{
+    Func_VOOIO callback = (Func_VOOIO) ((org_xmlvm_iphone_UITableViewDataSource*) dataSource_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath];
+    org_xmlvm_iphone_NSIndexPath* indexPath_ = __NEW_org_xmlvm_iphone_NSIndexPath();
+    org_xmlvm_iphone_NSIndexPath_INTERNAL_CONSTRUCTOR(indexPath_, [indexPath retain]);
+    callback(dataSource_, tableView_, editingStyle, indexPath_);
+}
+
+@end
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -86,6 +139,7 @@ void __INIT_org_xmlvm_iphone_UITableViewDataSource()
 void __DELETE_org_xmlvm_iphone_UITableViewDataSource(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UITableViewDataSource]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -95,6 +149,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewDataSource()
     org_xmlvm_iphone_UITableViewDataSource* me = (org_xmlvm_iphone_UITableViewDataSource*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewDataSource));
     me->tib = &__TIB_org_xmlvm_iphone_UITableViewDataSource;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewDataSource]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UITableViewDataSource);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -110,28 +165,31 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewDataSource()
 void org_xmlvm_iphone_UITableViewDataSource___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewDataSource___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UITableViewDataSourceWrapper* wrapper = [[UITableViewDataSourceWrapper alloc] initWithDataSource: me];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrapper);
     //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewDataSource_numberOfSectionsInTableView___org_xmlvm_iphone_UITableView(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewDataSource_numberOfSectionsInTableView___org_xmlvm_iphone_UITableView]
-    XMLVM_NOT_IMPLEMENTED();
+    return 1;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UITableViewDataSource_titleForHeaderInSection___org_xmlvm_iphone_UITableView_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewDataSource_titleForHeaderInSection___org_xmlvm_iphone_UITableView_int]
-    XMLVM_NOT_IMPLEMENTED();
+    return JAVA_NULL;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_OBJECT n3)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath]
-    XMLVM_NOT_IMPLEMENTED();
+    
+    // Intentionally left empty
+    
     //XMLVM_END_WRAPPER
 }
 

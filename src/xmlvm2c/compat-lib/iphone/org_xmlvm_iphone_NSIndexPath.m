@@ -13,6 +13,10 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSIndexPath;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSIndexPath_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+void org_xmlvm_iphone_NSIndexPath_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -85,6 +89,7 @@ void __INIT_org_xmlvm_iphone_NSIndexPath()
 void __DELETE_org_xmlvm_iphone_NSIndexPath(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSIndexPath]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -94,6 +99,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSIndexPath()
     org_xmlvm_iphone_NSIndexPath* me = (org_xmlvm_iphone_NSIndexPath*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSIndexPath));
     me->tib = &__TIB_org_xmlvm_iphone_NSIndexPath;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSIndexPath]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSIndexPath);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -124,14 +130,16 @@ JAVA_OBJECT org_xmlvm_iphone_NSIndexPath_indexPathForRow___int_int(JAVA_INT n1, 
 JAVA_INT org_xmlvm_iphone_NSIndexPath_getSection__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSIndexPath_getSection__]
-    XMLVM_NOT_IMPLEMENTED();
+    NSIndexPath* indexPath = ((org_xmlvm_iphone_NSIndexPath*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    return [indexPath section];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_NSIndexPath_getRow__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSIndexPath_getRow__]
-    XMLVM_NOT_IMPLEMENTED();
+    NSIndexPath* indexPath = ((org_xmlvm_iphone_NSIndexPath*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    return [indexPath row];
     //XMLVM_END_WRAPPER
 }
 

@@ -24,7 +24,25 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDataSource;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDataSource_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
+
+#import <UIKit/UIKit.h>
+
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewDataSource
+
+@interface UITableViewDataSourceWrapper : NSObject <UITableViewDataSource>
+{
+    @public JAVA_OBJECT dataSource_;
+    @public org_xmlvm_iphone_UITableView* tableView_;
+}
+
+- (id) initWithDataSource: (JAVA_OBJECT) source_;
+- (UITableViewCell*) tableView:(UITableView *) tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath;
+- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView;
+- (NSInteger) tableView:(UITableView *) tableView numberOfRowsInSection:(NSInteger) section;
+- (NSString *) tableView:(UITableView *) tableView titleForHeaderInSection:(NSInteger) section;
+- (void) tableView:(UITableView *) tableView commitEditingStyle:(UITableViewCellEditingStyle) editingStyle forRowAtIndexPath:(NSIndexPath *) indexPath;
+@end
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewDataSource \

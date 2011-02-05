@@ -101,6 +101,7 @@ typedef union {
 
 typedef void (*VTABLE_PTR)();
 typedef void (*Func_V)();
+typedef void (*Func_VO)(JAVA_OBJECT o1);
 typedef void (*Func_VOO)(JAVA_OBJECT o1, JAVA_OBJECT o2);
 typedef void (*Func_VOOO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_OBJECT o3);
 typedef void (*Func_VOOOO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_OBJECT o3, JAVA_OBJECT o4);
@@ -111,6 +112,11 @@ typedef void (*Func_VOOI)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_INT o3);
 typedef JAVA_OBJECT (*Func_OOO)(JAVA_OBJECT o1, JAVA_OBJECT o2);
 typedef JAVA_OBJECT (*Func_OOOO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_OBJECT o3);
 typedef JAVA_OBJECT (*Func_O)();
+typedef float (*Func_FOOO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_OBJECT o3);
+typedef JAVA_INT (*Func_IOO)(JAVA_OBJECT o1, JAVA_OBJECT o2);
+typedef JAVA_INT (*Func_IOOI)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_INT i1);
+typedef JAVA_OBJECT (*Func_OOOI)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_INT i1);
+typedef void (*Func_VOOIO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_INT i1, JAVA_OBJECT o3);
 
 #define java_lang_reflect_Modifier_PUBLIC       1
 #define java_lang_reflect_Modifier_PRIVATE      2

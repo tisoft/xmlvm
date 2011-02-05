@@ -427,14 +427,18 @@ JAVA_OBJECT org_xmlvm_iphone_UIView_getWindow__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIView_layoutSubviews__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_layoutSubviews__]
-    XMLVM_NOT_IMPLEMENTED();
+    
+    // The default implementation simply returns without layouting anything
+    
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIView_getBounds__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getBounds__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIView* thiz = me;
+    CGRect rect = [((UIView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) bounds];
+    return fromCGRect(rect);
     //XMLVM_END_WRAPPER
 }
 
