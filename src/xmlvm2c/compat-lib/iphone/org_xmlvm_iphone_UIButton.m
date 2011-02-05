@@ -440,7 +440,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIButton_getCurrentBackgroundImage__(receiver);
         break;
     case 19:
-        org_xmlvm_iphone_UIButton_getGenericImageForState___org_xmlvm_iphone_UIImage_ARRAYTYPE_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        // org_xmlvm_iphone_UIButton_getGenericImageForState___org_xmlvm_iphone_UIImage_ARRAYTYPE_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 20:
         org_xmlvm_iphone_UIButton_setTitleShadowOffset___org_xmlvm_iphone_CGSize(receiver, argsArray[0]);

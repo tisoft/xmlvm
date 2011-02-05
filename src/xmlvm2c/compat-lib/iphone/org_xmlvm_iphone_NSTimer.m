@@ -177,7 +177,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, argsArray[1], argsArray[2], ((java_lang_Boolean*) argsArray[3])->fields.java_lang_Boolean.value_);
         break;
     case 1:
-        org_xmlvm_iphone_NSTimer_timerTick__(receiver);
+        // org_xmlvm_iphone_NSTimer_timerTick__(receiver);
         break;
     case 2:
         org_xmlvm_iphone_NSTimer_invalidate__(receiver);

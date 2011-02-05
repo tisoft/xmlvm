@@ -129,7 +129,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_NSBundle_bundlePath__(receiver);
         break;
     case 4:
-        org_xmlvm_iphone_NSBundle_getDeclaredResources__();
+        // org_xmlvm_iphone_NSBundle_getDeclaredResources__();
         break;
     default:
         XMLVM_INTERNAL_ERROR();

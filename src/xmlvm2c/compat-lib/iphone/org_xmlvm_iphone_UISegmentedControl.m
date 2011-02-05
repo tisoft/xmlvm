@@ -370,7 +370,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UISegmentedControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
     case 16:
-        org_xmlvm_iphone_UISegmentedControl_fireEventValueChanged__(receiver);
+        // org_xmlvm_iphone_UISegmentedControl_fireEventValueChanged__(receiver);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

@@ -128,7 +128,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UITabBarItem_buttonClicked__(receiver);
+        // org_xmlvm_iphone_UITabBarItem_buttonClicked__(receiver);
         break;
     case 1:
         org_xmlvm_iphone_UITabBarItem_getBadgeValue__(receiver);

@@ -164,7 +164,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UITouch_locationInView___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
         break;
     case 1:
-        org_xmlvm_iphone_UITouch_getTransformation___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
+        // org_xmlvm_iphone_UITouch_getTransformation___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
         break;
     case 2:
         org_xmlvm_iphone_UITouch_getView__(receiver);
