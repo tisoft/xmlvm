@@ -382,6 +382,7 @@ void __INIT_org_xmlvm_iphone_UITableViewDelegate()
 void __DELETE_org_xmlvm_iphone_UITableViewDelegate(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UITableViewDelegate]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -391,6 +392,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewDelegate()
     org_xmlvm_iphone_UITableViewDelegate* me = (org_xmlvm_iphone_UITableViewDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_UITableViewDelegate;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewDelegate]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UITableViewDelegate);
     //XMLVM_END_WRAPPER
     return me;
 }
