@@ -21,6 +21,9 @@
 package android.content.res;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -275,6 +278,7 @@ public class Resources {
         initResources("string");
         initResources("array");
         initResources("dimen");
+        initResources("raw");
     }
 
     private String getResourceName(String filePath) {
@@ -406,5 +410,15 @@ public class Resources {
         }
 
         return ((Float) resourceMap.get(new Integer(id))).floatValue();
+    }
+
+    public InputStream openRawResource(int id) {
+        String fileName = findResourceNameById(id);
+        String path = NSBundle.mainBundle().bundlePath() + "/" + RES_DIR + "/" + fileName;
+        try {
+            return new FileInputStream(path);
+        } catch (FileNotFoundException e) {
+            return null;
+        }
     }
 }

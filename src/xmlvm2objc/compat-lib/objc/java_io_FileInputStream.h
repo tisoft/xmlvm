@@ -35,6 +35,7 @@
 - (void) __init_java_io_FileInputStream___java_lang_String :(java_lang_String*) path;
 - (void) dealloc;
 - (void) __init_java_io_FileInputStream___java_io_FileDescriptor: (java_io_FileDescriptor*) fd;
+- (int) available__;
 - (java_io_FileDescriptor*) getFD__;
 
 @end

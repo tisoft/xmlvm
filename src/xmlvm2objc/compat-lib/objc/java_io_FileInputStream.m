@@ -60,6 +60,15 @@
 	[super dealloc];
 }
 
+- (int) available__
+{
+    NSFileHandle* fh = [self->fd getFileHandle];
+    unsigned long long offset = [fh offsetInFile];
+    NSData* data = [fh availableData];
+    [fh seekToFileOffset:offset];
+    return [data length];
+}
+
 - (int) read__
 {
 	NSFileHandle* fh = [self->fd getFileHandle];
