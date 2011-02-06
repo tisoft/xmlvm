@@ -3693,6 +3693,10 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<!-- Ignore whitespaces -->
+<xsl:template match="text()">
+</xsl:template>
+
 
 <!--
    Default template. If the XMLVM file should contain an instruction
