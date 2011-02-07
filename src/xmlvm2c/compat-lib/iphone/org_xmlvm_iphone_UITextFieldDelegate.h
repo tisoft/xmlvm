@@ -29,6 +29,34 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextFieldDelegate_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITextFieldDelegate
+
+#import <UIKit/UITextField.h>
+
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextFieldDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextFieldDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITextFieldDelegate)
+#endif
+
+@interface UITextFieldDelegateWrapper : NSObject <UITextFieldDelegate> {
+    
+    org_xmlvm_iphone_UITextFieldDelegate* delegate;
+    org_xmlvm_iphone_UITextField*         textField;
+    
+}
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_;
+- (void) setTextField:(JAVA_OBJECT) textField_;
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;
+- (void)textFieldDidBeginEditing:(UITextField *)textField;
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField;
+- (void)textFieldDidEndEditing:(UITextField *)textField;
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+- (BOOL)textFieldShouldClear:(UITextField *)textField;
+- (BOOL)textFieldShouldReturn:(UITextField *)textField;
+
+@end
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UITextFieldDelegate \

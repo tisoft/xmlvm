@@ -777,7 +777,9 @@ void org_xmlvm_iphone_UITextField_setText___java_lang_String(JAVA_OBJECT me, JAV
 JAVA_OBJECT org_xmlvm_iphone_UITextField_getText__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getText__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UITextField* thiz = me;
+    NSString* text = ((UITextField*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)).text;
+    return toJavaString(text);
     //XMLVM_END_WRAPPER
 }
 
@@ -876,7 +878,11 @@ void org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String(JAVA_OBJECT 
 void org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UITextFieldDelegate* delegate = n1;
+    UITextFieldDelegateWrapper* delegateWrapper = delegate->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    [delegateWrapper setTextField:me];
+    org_xmlvm_iphone_UITextField* thiz = me;
+    [((UITextField*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setDelegate:delegateWrapper];
     //XMLVM_END_WRAPPER
 }
 

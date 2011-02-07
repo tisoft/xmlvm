@@ -29,6 +29,7 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPoint_ARRAYTYPE;
 
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGPoint
 
+CGPoint toCGPoint(JAVA_OBJECT point);
 JAVA_OBJECT fromCGPoint(CGPoint point);
 
 //XMLVM_END_DECLARATIONS

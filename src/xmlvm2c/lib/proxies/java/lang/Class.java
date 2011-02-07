@@ -312,8 +312,11 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      *             access.
      * @see #getDeclaredConstructor(Class[])
      */
-    native public Constructor<T> getConstructor(Class... parameterTypes)
-            throws NoSuchMethodException, SecurityException;
+    public Constructor<T> getConstructor(Class... parameterTypes)
+            throws NoSuchMethodException, SecurityException {
+        //TODO this should call getConstructor(parameterTypes)
+        return getDeclaredConstructor(parameterTypes);
+    }
 
     /**
      * Returns an array containing {@code Constructor} objects for all public

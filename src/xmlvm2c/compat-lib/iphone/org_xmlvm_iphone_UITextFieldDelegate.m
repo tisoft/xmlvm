@@ -16,6 +16,73 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextFieldDelegate;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextFieldDelegate_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#include "org_xmlvm_iphone_NSRange.h"
+#include "org_xmlvm_iphone_NSString.h"
+
+
+@implementation UITextFieldDelegateWrapper
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_
+{
+    [super init];
+    self->delegate = delegate_;
+    self->textField = JAVA_NULL;
+    return self;
+}
+
+- (void) setTextField:(JAVA_OBJECT) textField_
+{
+    self->textField = textField_;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    Func_BOO func = (Func_BOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldBeginEditing___org_xmlvm_iphone_UITextField];
+    return (*func)(self->delegate, self->textField);
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    Func_VOO func = (Func_VOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldDidBeginEditing___org_xmlvm_iphone_UITextField];
+    (*func)(self->delegate, self->textField);
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    Func_BOO func = (Func_BOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldEndEditing___org_xmlvm_iphone_UITextField];
+    return (*func)(self->delegate, self->textField);
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    Func_VOO func = (Func_VOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldDidEndEditing___org_xmlvm_iphone_UITextField];
+    (*func)(self->delegate, self->textField);
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    Func_BOOOO func = (Func_BOOOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldChangeCharactersInRange___org_xmlvm_iphone_UITextField_org_xmlvm_iphone_NSRange_java_lang_String];
+    JAVA_OBJECT range_ = fromNSRange(range);
+    JAVA_OBJECT string_ = toJavaString(string);
+    return (*func)(self->delegate, self->textField, range_, string_);
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+    Func_BOO func = (Func_BOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldClear___org_xmlvm_iphone_UITextField];
+    return (*func)(self->delegate, self->textField);
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    Func_BOO func = (Func_BOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldReturn___org_xmlvm_iphone_UITextField];
+    return (*func)(self->delegate, self->textField);
+}
+
+
+@end
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -250,55 +317,55 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITextFieldDelegate()
 void org_xmlvm_iphone_UITextFieldDelegate___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextFieldDelegate___INIT___]
+    UITextFieldDelegateWrapper* obj = [[UITextFieldDelegateWrapper alloc] initWithDelegate:me];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldBeginEditing___org_xmlvm_iphone_UITextField(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldBeginEditing___org_xmlvm_iphone_UITextField]
-    XMLVM_NOT_IMPLEMENTED();
+    return 1;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITextFieldDelegate_textFieldDidBeginEditing___org_xmlvm_iphone_UITextField(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextFieldDelegate_textFieldDidBeginEditing___org_xmlvm_iphone_UITextField]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldEndEditing___org_xmlvm_iphone_UITextField(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldEndEditing___org_xmlvm_iphone_UITextField]
-    XMLVM_NOT_IMPLEMENTED();
+    return 1;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITextFieldDelegate_textFieldDidEndEditing___org_xmlvm_iphone_UITextField(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextFieldDelegate_textFieldDidEndEditing___org_xmlvm_iphone_UITextField]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldChangeCharactersInRange___org_xmlvm_iphone_UITextField_org_xmlvm_iphone_NSRange_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldChangeCharactersInRange___org_xmlvm_iphone_UITextField_org_xmlvm_iphone_NSRange_java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    return 1;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldClear___org_xmlvm_iphone_UITextField(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldClear___org_xmlvm_iphone_UITextField]
-    XMLVM_NOT_IMPLEMENTED();
+    return 1;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldReturn___org_xmlvm_iphone_UITextField(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldReturn___org_xmlvm_iphone_UITextField]
-    XMLVM_NOT_IMPLEMENTED();
+    return 1;
     //XMLVM_END_WRAPPER
 }
 

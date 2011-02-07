@@ -53,7 +53,8 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIView \
-    JAVA_OBJECT subviews
+    JAVA_OBJECT subviews; \
+    JAVA_OBJECT superView;
 
 void org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj);
 //XMLVM_END_DECLARATIONS

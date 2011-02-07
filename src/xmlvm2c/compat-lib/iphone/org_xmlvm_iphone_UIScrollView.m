@@ -478,7 +478,9 @@ void org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint(J
 void org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint_boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIScrollView* thiz = me;
+    CGPoint point = toCGPoint(n1);
+    [((UIScrollView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setContentOffset:point animated:n2];
     //XMLVM_END_WRAPPER
 }
 

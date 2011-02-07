@@ -112,10 +112,12 @@ typedef void (*Func_VOOI)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_INT o3);
 typedef JAVA_OBJECT (*Func_OOO)(JAVA_OBJECT o1, JAVA_OBJECT o2);
 typedef JAVA_OBJECT (*Func_OOOO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_OBJECT o3);
 typedef JAVA_OBJECT (*Func_O)();
-typedef float (*Func_FOOO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_OBJECT o3);
+typedef JAVA_FLOAT (*Func_FOOO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_OBJECT o3);
 typedef JAVA_INT (*Func_IOO)(JAVA_OBJECT o1, JAVA_OBJECT o2);
 typedef JAVA_INT (*Func_IOOI)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_INT i1);
 typedef JAVA_OBJECT (*Func_OOOI)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_INT i1);
+typedef JAVA_BOOLEAN (*Func_BOO)(JAVA_OBJECT o1, JAVA_OBJECT o2);
+typedef JAVA_BOOLEAN (*Func_BOOOO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_OBJECT o3, JAVA_OBJECT o4);
 typedef void (*Func_VOOIO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_INT i1, JAVA_OBJECT o3);
 
 #define java_lang_reflect_Modifier_PUBLIC       1
@@ -209,6 +211,7 @@ XMLVM_DEFINE_CLASS(TEMPLATE, 0)
 int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz);
 VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, int vtableIndex);
 int xmlvm_java_string_cmp(JAVA_OBJECT s1, const char* s2);
+const char* xmlvm_java_string_to_const_char(JAVA_OBJECT s);
 JAVA_OBJECT xmlvm_create_java_string(const char* s);
 
 #define XMLVM_SIZE_OF_OBJECT_VTABLE 11

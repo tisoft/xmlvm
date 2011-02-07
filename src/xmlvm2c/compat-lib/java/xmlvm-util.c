@@ -36,9 +36,19 @@ JAVA_BOOLEAN XMLVMUtil_ArrayList_add(JAVA_OBJECT me, JAVA_OBJECT obj)
 {
 #ifdef XMLVM_VTABLE_IDX_java_util_ArrayList_add___java_lang_Object
     return (*(JAVA_BOOLEAN (*)(JAVA_OBJECT, JAVA_OBJECT)) ((java_util_ArrayList*) me)->
-        tib->vtable[XMLVM_VTABLE_IDX_java_util_ArrayList_add___java_lang_Object])(me, obj);
+            tib->vtable[XMLVM_VTABLE_IDX_java_util_ArrayList_add___java_lang_Object])(me, obj);
 #else
     return java_util_ArrayList_add___java_lang_Object(me, obj);
+#endif
+}
+
+JAVA_BOOLEAN XMLVMUtil_ArrayList_remove(JAVA_OBJECT me, JAVA_OBJECT obj)
+{
+#ifdef XMLVM_VTABLE_IDX_java_util_ArrayList_remove___java_lang_Object
+    return (*(JAVA_BOOLEAN (*)(JAVA_OBJECT, JAVA_OBJECT)) ((java_util_ArrayList*) me)->
+            tib->vtable[XMLVM_VTABLE_IDX_java_util_ArrayList_remove___java_lang_Object])(me, obj);
+#else
+    return java_util_ArrayList_remove___java_lang_Object(me, obj);
 #endif
 }
 

@@ -21,6 +21,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButton_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <UIKit/UIKit.h>
+#include "org_xmlvm_iphone_NSString.h"
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -548,7 +549,11 @@ void org_xmlvm_iphone_UIButton_setFont___org_xmlvm_iphone_UIFont(JAVA_OBJECT me,
 JAVA_OBJECT org_xmlvm_iphone_UIButton_getFont__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_getFont__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIButton* thiz = me;
+    UIFont* font = ((UIButton*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)).font;
+    org_xmlvm_iphone_UIFont* font_ = __NEW_org_xmlvm_iphone_UIFont();
+    org_xmlvm_iphone_UIFont_INTERNAL_CONSTRUCTOR(font_, font);
+    return font_;
     //XMLVM_END_WRAPPER
 }
 
@@ -586,7 +591,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIButton_getCurrentTitle__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIButton_setTitleColor___org_xmlvm_iphone_UIColor_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_setTitleColor___org_xmlvm_iphone_UIColor_int]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIButton* thiz = me;
+    org_xmlvm_iphone_UIColor* color = n1;
+    [((UIButton*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setTitleColor:color->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj forState:n2];
     //XMLVM_END_WRAPPER
 }
 

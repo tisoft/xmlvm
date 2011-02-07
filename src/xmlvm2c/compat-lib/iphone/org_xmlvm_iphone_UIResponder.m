@@ -476,7 +476,8 @@ JAVA_OBJECT org_xmlvm_iphone_UIResponder_getNextResponder__(JAVA_OBJECT me)
 JAVA_BOOLEAN org_xmlvm_iphone_UIResponder_resignFirstResponder__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIResponder_resignFirstResponder__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIResponder* thiz = me;
+    return [((UIResponder*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) resignFirstResponder];
     //XMLVM_END_WRAPPER
 }
 

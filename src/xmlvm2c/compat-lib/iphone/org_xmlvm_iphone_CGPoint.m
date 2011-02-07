@@ -15,6 +15,12 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPoint_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 
+CGPoint toCGPoint(JAVA_OBJECT point)
+{
+    org_xmlvm_iphone_CGPoint* p = point;
+    return CGPointMake(p->fields.org_xmlvm_iphone_CGPoint.x_, p->fields.org_xmlvm_iphone_CGPoint.y_);
+}
+
 JAVA_OBJECT fromCGPoint(CGPoint point)
 {
     JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_CGPoint();

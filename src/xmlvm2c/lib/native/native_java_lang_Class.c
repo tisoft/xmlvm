@@ -260,13 +260,6 @@ JAVA_OBJECT java_lang_Class_getComponentType__(JAVA_OBJECT me)
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_Class_getConstructor___java_lang_Class_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_getConstructor___java_lang_Class_ARRAYTYPE]
-    xmlvm_unimplemented_native_method();
-    //XMLVM_END_NATIVE
-}
-
 JAVA_OBJECT java_lang_Class_getConstructors__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getConstructors__]
@@ -713,10 +706,6 @@ void xmlvm_init_native_java_lang_Class()
 #ifdef XMLVM_VTABLE_IDX_java_lang_Class_getComponentType__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getComponentType__] = 
         (VTABLE_PTR) java_lang_Class_getComponentType__;
-#endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getConstructor___java_lang_Class_ARRAYTYPE
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getConstructor___java_lang_Class_ARRAYTYPE] = 
-        (VTABLE_PTR) java_lang_Class_getConstructor___java_lang_Class_ARRAYTYPE;
 #endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_Class_getConstructors__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getConstructors__] = 

@@ -33,6 +33,8 @@ import java.nio.charset.UnsupportedCharsetException;
 import java.security.AccessController;
 import java.util.regex.PatternSyntaxException;
 
+import org.xmlvm.runtime.XMLVMUtil;
+
 //import org.apache.harmony.kernel.vm.VM;
 //import org.apache.harmony.luni.util.PriviAction;
 
@@ -1474,7 +1476,15 @@ public final class String implements Serializable, Comparable<String>,
      *         the characters in this string.
      */
     public String toLowerCase() {
-        return toLowerCase(Locale.getDefault());
+        StringBuffer s = new StringBuffer(this);
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (ch >= 'A' && ch <= 'Z') {
+                s.setCharAt(i, (char) (ch + ('a' - 'A')));
+            }
+        }
+        return s.toString();
+//        return toLowerCase(Locale.getDefault());
     }
 
     /**
@@ -1487,8 +1497,7 @@ public final class String implements Serializable, Comparable<String>,
      *         the characters in this string.
      */
     public String toLowerCase(Locale locale) {
-        System.err.println("java.lang.String.toLowerCase() not mplemented");
-        System.exit(-1);
+        XMLVMUtil.notImplemented();
         String result = null;//UCharacter.toLowerCase(locale, this);
         
         // Must return self if chars unchanged

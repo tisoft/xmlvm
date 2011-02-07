@@ -84,6 +84,22 @@ int xmlvm_java_string_cmp(JAVA_OBJECT s1, const char* s2)
     return 1;
 }
 
+const char* xmlvm_java_string_to_const_char(JAVA_OBJECT s)
+{
+    java_lang_String* str = (java_lang_String*) s;
+    JAVA_INT len = str->fields.java_lang_String.count_;
+    char* cs = XMLVM_MALLOC(len + 1);
+    JAVA_INT offset = str->fields.java_lang_String.offset_;
+    org_xmlvm_runtime_XMLVMArray* value = (org_xmlvm_runtime_XMLVMArray*) str->fields.java_lang_String.value_;
+    JAVA_ARRAY_CHAR* valueArray = (JAVA_ARRAY_CHAR*) value->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    int i = 0;
+    for (i = 0; i < len; i++) {
+        cs[i] = valueArray[i + offset];
+    }
+    cs[i] = '\0';
+    return cs;
+}
+
 JAVA_OBJECT xmlvm_create_java_string(const char* s)
 {
     java_lang_String* str = __NEW_java_lang_String();

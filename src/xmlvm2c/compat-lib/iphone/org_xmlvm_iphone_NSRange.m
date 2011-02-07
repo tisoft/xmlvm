@@ -13,6 +13,17 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSRange;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSRange_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+JAVA_OBJECT fromNSRange(NSRange range)
+{
+    org_xmlvm_iphone_NSRange* range_ = __NEW_org_xmlvm_iphone_NSRange();
+    // TODO we should have a public constructor for NSRange
+    org_xmlvm_iphone_NSObject___INIT___(range_);
+    range_->fields.org_xmlvm_iphone_NSRange.location_ = range.location;
+    range_->fields.org_xmlvm_iphone_NSRange.length_ = range.length;
+    return range_;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
