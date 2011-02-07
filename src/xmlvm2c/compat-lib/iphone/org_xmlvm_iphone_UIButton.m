@@ -121,15 +121,15 @@ static JAVA_OBJECT* __method18_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method19_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIImage_ARRAYTYPE,
-    &__CLASS_int,
-};
-
-static JAVA_OBJECT* __method20_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_CGSize,
 };
 
+static JAVA_OBJECT* __method20_arg_types[] = {
+};
+
 static JAVA_OBJECT* __method21_arg_types[] = {
+    &__CLASS_java_util_Set,
+    &__CLASS_org_xmlvm_iphone_UIEvent,
 };
 
 static JAVA_OBJECT* __method22_arg_types[] = {
@@ -138,11 +138,6 @@ static JAVA_OBJECT* __method22_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method23_arg_types[] = {
-    &__CLASS_java_util_Set,
-    &__CLASS_org_xmlvm_iphone_UIEvent,
-};
-
-static JAVA_OBJECT* __method24_arg_types[] = {
     &__CLASS_float,
 };
 
@@ -318,7 +313,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getGenericImageForState",
+    {"setTitleShadowOffset",
     &__method19_arg_types[0],
     sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -327,7 +322,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTitleShadowOffset",
+    {"getTitleShadowOffset",
     &__method20_arg_types[0],
     sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -336,7 +331,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTitleShadowOffset",
+    {"touchesBegan",
     &__method21_arg_types[0],
     sizeof(__method21_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -345,7 +340,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"touchesBegan",
+    {"touchesEnded",
     &__method22_arg_types[0],
     sizeof(__method22_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -354,18 +349,9 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"touchesEnded",
+    {"setAlpha",
     &__method23_arg_types[0],
     sizeof(__method23_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"setAlpha",
-    &__method24_arg_types[0],
-    sizeof(__method24_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -440,21 +426,18 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIButton_getCurrentBackgroundImage__(receiver);
         break;
     case 19:
-        // org_xmlvm_iphone_UIButton_getGenericImageForState___org_xmlvm_iphone_UIImage_ARRAYTYPE_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
-        break;
-    case 20:
         org_xmlvm_iphone_UIButton_setTitleShadowOffset___org_xmlvm_iphone_CGSize(receiver, argsArray[0]);
         break;
-    case 21:
+    case 20:
         org_xmlvm_iphone_UIButton_getTitleShadowOffset__(receiver);
         break;
-    case 22:
+    case 21:
         org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
-    case 23:
+    case 22:
         org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
-    case 24:
+    case 23:
         org_xmlvm_iphone_UIButton_setAlpha___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     default:

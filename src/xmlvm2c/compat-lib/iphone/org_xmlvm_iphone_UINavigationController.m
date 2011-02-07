@@ -149,11 +149,6 @@ static JAVA_OBJECT* __method20_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method21_arg_types[] = {
-    &__CLASS_boolean,
-    &__CLASS_boolean,
-};
-
-static JAVA_OBJECT* __method22_arg_types[] = {
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -355,15 +350,6 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"updateViews",
-    &__method22_arg_types[0],
-    sizeof(__method22_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -438,9 +424,6 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UINavigationController_loadView__(receiver);
         break;
     case 21:
-        // org_xmlvm_iphone_UINavigationController_updateViews___boolean_boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
-        break;
-    case 22:
         org_xmlvm_iphone_UINavigationController_updateViews__(receiver);
         break;
     default:

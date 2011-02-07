@@ -57,9 +57,6 @@ static JAVA_OBJECT* __method2_arg_types[] = {
 static JAVA_OBJECT* __method3_arg_types[] = {
 };
 
-static JAVA_OBJECT* __method4_arg_types[] = {
-};
-
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"mainBundle",
     &__method0_arg_types[0],
@@ -97,15 +94,6 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getDeclaredResources",
-    &__method4_arg_types[0],
-    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -127,9 +115,6 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 3:
         org_xmlvm_iphone_NSBundle_bundlePath__(receiver);
-        break;
-    case 4:
-        // org_xmlvm_iphone_NSBundle_getDeclaredResources__();
         break;
     default:
         XMLVM_INTERNAL_ERROR();

@@ -154,9 +154,6 @@ static JAVA_OBJECT* __method15_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIEvent,
 };
 
-static JAVA_OBJECT* __method16_arg_types[] = {
-};
-
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"setTitle",
     &__method0_arg_types[0],
@@ -302,15 +299,6 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"fireEventValueChanged",
-    &__method16_arg_types[0],
-    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -368,9 +356,6 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 15:
         org_xmlvm_iphone_UISegmentedControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
-        break;
-    case 16:
-        // org_xmlvm_iphone_UISegmentedControl_fireEventValueChanged__(receiver);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

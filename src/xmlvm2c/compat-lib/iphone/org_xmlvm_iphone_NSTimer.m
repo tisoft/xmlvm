@@ -94,6 +94,7 @@ static JAVA_OBJECT* __method1_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSTimer,
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
@@ -101,10 +102,6 @@ static JAVA_OBJECT* __method3_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_NSTimer,
-};
-
-static JAVA_OBJECT* __method5_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_NSTimer,
 };
 
@@ -118,7 +115,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"timerTick",
+    {"invalidate",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -127,7 +124,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"invalidate",
+    {"access$000",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -136,7 +133,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"access$000",
+    {"access$100",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -145,18 +142,9 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"access$100",
+    {"access$200",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"access$200",
-    &__method5_arg_types[0],
-    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -177,18 +165,15 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, argsArray[1], argsArray[2], ((java_lang_Boolean*) argsArray[3])->fields.java_lang_Boolean.value_);
         break;
     case 1:
-        // org_xmlvm_iphone_NSTimer_timerTick__(receiver);
-        break;
-    case 2:
         org_xmlvm_iphone_NSTimer_invalidate__(receiver);
         break;
-    case 3:
+    case 2:
         org_xmlvm_iphone_NSTimer_access$000___org_xmlvm_iphone_NSTimer(argsArray[0]);
         break;
-    case 4:
+    case 3:
         org_xmlvm_iphone_NSTimer_access$100___org_xmlvm_iphone_NSTimer(argsArray[0]);
         break;
-    case 5:
+    case 4:
         org_xmlvm_iphone_NSTimer_access$200___org_xmlvm_iphone_NSTimer(argsArray[0]);
         break;
     default:

@@ -56,31 +56,28 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 }
 
 static JAVA_OBJECT* __method0_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method1_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_NSXMLParserDelegate,
 };
 
-static JAVA_OBJECT* __method2_arg_types[] = {
+static JAVA_OBJECT* __method1_arg_types[] = {
     &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
 };
 
-static JAVA_OBJECT* __method6_arg_types[] = {
-};
-
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"init",
+    {"setDelegate",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -89,7 +86,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setDelegate",
+    {"setShouldProcessNamespaces",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -98,7 +95,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setShouldProcessNamespaces",
+    {"shouldProcessNamespaces",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -107,7 +104,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"shouldProcessNamespaces",
+    {"setShouldReportNamespacePrefixes",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -116,7 +113,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setShouldReportNamespacePrefixes",
+    {"shouldReportNamespacePrefixes",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -125,18 +122,9 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"shouldReportNamespacePrefixes",
+    {"parse",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"parse",
-    &__method6_arg_types[0],
-    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -154,24 +142,21 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        // org_xmlvm_iphone_NSXMLParser_init__(receiver);
-        break;
-    case 1:
         org_xmlvm_iphone_NSXMLParser_setDelegate___org_xmlvm_iphone_NSXMLParserDelegate(receiver, argsArray[0]);
         break;
-    case 2:
+    case 1:
         org_xmlvm_iphone_NSXMLParser_setShouldProcessNamespaces___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
-    case 3:
+    case 2:
         org_xmlvm_iphone_NSXMLParser_shouldProcessNamespaces__(receiver);
         break;
-    case 4:
+    case 3:
         org_xmlvm_iphone_NSXMLParser_setShouldReportNamespacePrefixes___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
-    case 5:
+    case 4:
         org_xmlvm_iphone_NSXMLParser_shouldReportNamespacePrefixes__(receiver);
         break;
-    case 6:
+    case 5:
         org_xmlvm_iphone_NSXMLParser_parse__(receiver);
         break;
     default:

@@ -63,11 +63,10 @@ static JAVA_OBJECT* __method0_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
-    &__CLASS_java_lang_String,
-    &__CLASS_org_xmlvm_iphone_UILabel,
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
@@ -82,23 +81,12 @@ static JAVA_OBJECT* __method5_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method6_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method7_arg_types[] = {
-    &__CLASS_java_lang_String,
-};
-
-static JAVA_OBJECT* __method8_arg_types[] = {
-    &__CLASS_int,
-};
-
-static JAVA_OBJECT* __method9_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIAlertView,
     &__CLASS_int,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"addBaseView",
+    {"show",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -107,7 +95,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"show",
+    {"setTitle",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -116,7 +104,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setViewWithString",
+    {"getTitle",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -125,7 +113,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTitle",
+    {"setMessage",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -134,7 +122,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTitle",
+    {"getMesssage",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -143,7 +131,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setMessage",
+    {"addButtonWithTitle",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -152,36 +140,9 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getMesssage",
+    {"access$000",
     &__method6_arg_types[0],
     sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"addButtonWithTitle",
-    &__method7_arg_types[0],
-    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"buttonClicked",
-    &__method8_arg_types[0],
-    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"access$000",
-    &__method9_arg_types[0],
-    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -199,33 +160,24 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        // org_xmlvm_iphone_UIAlertView_addBaseView__(receiver);
-        break;
-    case 1:
         org_xmlvm_iphone_UIAlertView_show__(receiver);
         break;
-    case 2:
-        // org_xmlvm_iphone_UIAlertView_setViewWithString___java_lang_String_org_xmlvm_iphone_UILabel(receiver, argsArray[0], argsArray[1]);
-        break;
-    case 3:
+    case 1:
         org_xmlvm_iphone_UIAlertView_setTitle___java_lang_String(receiver, argsArray[0]);
         break;
-    case 4:
+    case 2:
         org_xmlvm_iphone_UIAlertView_getTitle__(receiver);
         break;
-    case 5:
+    case 3:
         org_xmlvm_iphone_UIAlertView_setMessage___java_lang_String(receiver, argsArray[0]);
         break;
-    case 6:
+    case 4:
         org_xmlvm_iphone_UIAlertView_getMesssage__(receiver);
         break;
-    case 7:
+    case 5:
         org_xmlvm_iphone_UIAlertView_addButtonWithTitle___java_lang_String(receiver, argsArray[0]);
         break;
-    case 8:
-        // org_xmlvm_iphone_UIAlertView_buttonClicked___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
-        break;
-    case 9:
+    case 6:
         org_xmlvm_iphone_UIAlertView_access$000___org_xmlvm_iphone_UIAlertView_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     default:

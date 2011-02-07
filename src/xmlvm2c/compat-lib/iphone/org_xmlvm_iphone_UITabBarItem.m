@@ -57,6 +57,7 @@ static JAVA_OBJECT* __method0_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
@@ -64,15 +65,11 @@ static JAVA_OBJECT* __method2_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
-    &__CLASS_java_lang_String,
-};
-
-static JAVA_OBJECT* __method4_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UITabBarItem,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"buttonClicked",
+    {"getBadgeValue",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -81,7 +78,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getBadgeValue",
+    {"setBadgeValue",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -90,7 +87,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setBadgeValue",
+    {"setTitle",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -99,18 +96,9 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTitle",
+    {"access$000",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"access$000",
-    &__method4_arg_types[0],
-    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -128,18 +116,15 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        // org_xmlvm_iphone_UITabBarItem_buttonClicked__(receiver);
-        break;
-    case 1:
         org_xmlvm_iphone_UITabBarItem_getBadgeValue__(receiver);
         break;
-    case 2:
+    case 1:
         org_xmlvm_iphone_UITabBarItem_setBadgeValue___java_lang_String(receiver, argsArray[0]);
         break;
-    case 3:
+    case 2:
         org_xmlvm_iphone_UITabBarItem_setTitle___java_lang_String(receiver, argsArray[0]);
         break;
-    case 4:
+    case 3:
         org_xmlvm_iphone_UITabBarItem_access$000___org_xmlvm_iphone_UITabBarItem(argsArray[0]);
         break;
     default:

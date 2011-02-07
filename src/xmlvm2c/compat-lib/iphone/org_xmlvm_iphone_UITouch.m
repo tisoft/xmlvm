@@ -68,7 +68,6 @@ static JAVA_OBJECT* __method0_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIView,
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
@@ -83,9 +82,6 @@ static JAVA_OBJECT* __method4_arg_types[] = {
 static JAVA_OBJECT* __method5_arg_types[] = {
 };
 
-static JAVA_OBJECT* __method6_arg_types[] = {
-};
-
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"locationInView",
     &__method0_arg_types[0],
@@ -96,7 +92,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTransformation",
+    {"getView",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -105,7 +101,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getView",
+    {"getWindow",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -114,7 +110,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getWindow",
+    {"getTapCount",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -123,7 +119,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTapCount",
+    {"getTimestamp",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -132,18 +128,9 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTimestamp",
+    {"getPhase",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"getPhase",
-    &__method6_arg_types[0],
-    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -164,21 +151,18 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UITouch_locationInView___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
         break;
     case 1:
-        // org_xmlvm_iphone_UITouch_getTransformation___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
-        break;
-    case 2:
         org_xmlvm_iphone_UITouch_getView__(receiver);
         break;
-    case 3:
+    case 2:
         org_xmlvm_iphone_UITouch_getWindow__(receiver);
         break;
-    case 4:
+    case 3:
         org_xmlvm_iphone_UITouch_getTapCount__(receiver);
         break;
-    case 5:
+    case 4:
         org_xmlvm_iphone_UITouch_getTimestamp__(receiver);
         break;
-    case 6:
+    case 5:
         org_xmlvm_iphone_UITouch_getPhase__(receiver);
         break;
     default:
