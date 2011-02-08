@@ -47,7 +47,7 @@ JAVA_DOUBLE java_lang_Math_cbrt___double(JAVA_DOUBLE n1)
 JAVA_DOUBLE java_lang_Math_ceil___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_ceil___double]
-    xmlvm_unimplemented_native_method();
+	return ceil(n1);
     //XMLVM_END_NATIVE
 }
 
