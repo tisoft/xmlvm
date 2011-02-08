@@ -127,6 +127,7 @@ void __INIT_org_xmlvm_iphone_NSURLConnection()
 void __DELETE_org_xmlvm_iphone_NSURLConnection(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSURLConnection]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -136,6 +137,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURLConnection()
     org_xmlvm_iphone_NSURLConnection* me = (org_xmlvm_iphone_NSURLConnection*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSURLConnection));
     me->tib = &__TIB_org_xmlvm_iphone_NSURLConnection;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSURLConnection]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSURLConnection);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -158,7 +160,13 @@ JAVA_OBJECT org_xmlvm_iphone_NSURLConnection_connectionWithRequest___org_xmlvm_i
 {
     if (!__TIB_org_xmlvm_iphone_NSURLConnection.classInitialized) __INIT_org_xmlvm_iphone_NSURLConnection();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSURLConnection_connectionWithRequest___org_xmlvm_iphone_NSMutableURLRequest_org_xmlvm_iphone_NSURLConnectionDelegate]
-    XMLVM_NOT_IMPLEMENTED();
+    NSMutableURLRequest* req = (NSMutableURLRequest*) ((org_xmlvm_iphone_NSMutableURLRequest*) n1)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    NSURLConnectionDelegateWrapper* delegate = (NSURLConnectionDelegateWrapper*) ((org_xmlvm_iphone_NSURLConnectionDelegate*) n2)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    NSURLConnection* connection = [[NSURLConnection alloc] initWithRequest: req delegate: delegate];
+    org_xmlvm_iphone_NSURLConnection* connection_ = __NEW_org_xmlvm_iphone_NSURLConnection();
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(connection_, connection);
+    [delegate setConnection: connection_];
+    return connection_;
     //XMLVM_END_WRAPPER
 }
 

@@ -123,6 +123,7 @@ void __INIT_org_xmlvm_iphone_NSMutableURLRequest()
 void __DELETE_org_xmlvm_iphone_NSMutableURLRequest(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSMutableURLRequest]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -132,6 +133,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSMutableURLRequest()
     org_xmlvm_iphone_NSMutableURLRequest* me = (org_xmlvm_iphone_NSMutableURLRequest*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSMutableURLRequest));
     me->tib = &__TIB_org_xmlvm_iphone_NSMutableURLRequest;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSMutableURLRequest]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSMutableURLRequest);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -145,7 +147,9 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSMutableURLRequest()
 void org_xmlvm_iphone_NSMutableURLRequest___INIT____org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSMutableURLRequest___INIT____org_xmlvm_iphone_NSURL]
-    XMLVM_NOT_IMPLEMENTED();
+    NSURL* url = (NSURL*) ((org_xmlvm_iphone_NSURL*) n1)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    NSMutableURLRequest* req = [[NSMutableURLRequest alloc] initWithURL: url];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, req);
     //XMLVM_END_WRAPPER
 }
 

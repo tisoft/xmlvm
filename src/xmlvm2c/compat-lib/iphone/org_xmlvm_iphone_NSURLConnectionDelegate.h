@@ -28,7 +28,25 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
+
+#include "org_xmlvm_iphone_NSURLConnection.h"
+
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSURLConnectionDelegate
+
+@interface NSURLConnectionDelegateWrapper : NSObject {
+    org_xmlvm_iphone_NSURLConnectionDelegate* delegate_;
+    org_xmlvm_iphone_NSURLConnection* connection_;
+}
+
+- (id) initWithDelegate: (JAVA_OBJECT) d_;
+- (void) setConnection: (org_xmlvm_iphone_NSURLConnection*) c_;
+- (void) connectionDidFinishLoading: (NSURLConnection*) connection;
+- (void) connection: (NSURLConnection*) connection didFailWithError: (NSError*) error;
+- (void) connection: (NSURLConnection*) connection didReceiveData: (NSData*) data;
+
+@end
+
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_NSURLConnectionDelegate \

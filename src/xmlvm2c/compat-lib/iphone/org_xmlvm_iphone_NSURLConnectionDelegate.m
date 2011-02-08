@@ -16,6 +16,45 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+@implementation NSURLConnectionDelegateWrapper
+
+- (id) initWithDelegate: (JAVA_OBJECT) d_
+{
+    [super init];
+    delegate_ = d_;
+    return self;
+}
+
+- (void) setConnection: (org_xmlvm_iphone_NSURLConnection*) c_
+{
+    connection_ = c_;
+}
+
+- (void) connectionDidFinishLoading: (NSURLConnection*) connection
+{
+    Func_VOO callback = (Func_VOO) ((org_xmlvm_iphone_NSURLConnectionDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFinishLoading___org_xmlvm_iphone_NSURLConnection];
+    callback(delegate_, connection_);
+}
+
+- (void) connection: (NSURLConnection*) connection didFailWithError: (NSError*) error
+{
+    Func_VOOO callback = (Func_VOOO) ((org_xmlvm_iphone_NSURLConnectionDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFailWithError___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSError];
+    org_xmlvm_iphone_NSError* error_ = __NEW_org_xmlvm_iphone_NSError();
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(error_, [error retain]);
+    callback(delegate_, connection_, error_);
+}
+
+- (void) connection: (NSURLConnection*) connection didReceiveData: (NSData*) data
+{
+    Func_VOOO callback = (Func_VOOO) ((org_xmlvm_iphone_NSURLConnectionDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidReceiveData___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSData];
+    org_xmlvm_iphone_NSData* data_ = __NEW_org_xmlvm_iphone_NSData();
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(data_, [data retain]);
+    callback(delegate_, connection_, data_);
+}
+
+@end
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -158,6 +197,7 @@ void __INIT_org_xmlvm_iphone_NSURLConnectionDelegate()
 void __DELETE_org_xmlvm_iphone_NSURLConnectionDelegate(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSURLConnectionDelegate]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -167,6 +207,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURLConnectionDelegate()
     org_xmlvm_iphone_NSURLConnectionDelegate* me = (org_xmlvm_iphone_NSURLConnectionDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSURLConnectionDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_NSURLConnectionDelegate;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSURLConnectionDelegate]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSURLConnectionDelegate);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -182,28 +223,35 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSURLConnectionDelegate()
 void org_xmlvm_iphone_NSURLConnectionDelegate___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSURLConnectionDelegate___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    NSURLConnectionDelegateWrapper* delegate = [[NSURLConnectionDelegateWrapper alloc] initWithDelegate: me];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, delegate);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFinishLoading___org_xmlvm_iphone_NSURLConnection(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFinishLoading___org_xmlvm_iphone_NSURLConnection]
-    XMLVM_NOT_IMPLEMENTED();
+    
+    // The default implementation simply returns
+    
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFailWithError___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSError(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFailWithError___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSError]
-    XMLVM_NOT_IMPLEMENTED();
+    
+    // The default implementation simply returns
+    
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidReceiveData___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSData(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidReceiveData___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSData]
-    XMLVM_NOT_IMPLEMENTED();
+    
+    // The default implementation simply returns
+    
     //XMLVM_END_WRAPPER
 }
 
