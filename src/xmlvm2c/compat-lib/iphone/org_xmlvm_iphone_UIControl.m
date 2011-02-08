@@ -266,6 +266,7 @@ void org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_i
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int]
     org_xmlvm_iphone_UIControl* thiz = me;
+    thiz->fields.org_xmlvm_iphone_UIControl.jdelegateWrapper = n1;
     UIControlDelegateWrapper* wrapper = [[UIControlDelegateWrapper alloc] initWithDelegate:n1 :me];
     thiz->fields.org_xmlvm_iphone_UIControl.delegateWrapper = wrapper;
     [((UIControl*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) addTarget:wrapper action:@selector(raiseEvent::)

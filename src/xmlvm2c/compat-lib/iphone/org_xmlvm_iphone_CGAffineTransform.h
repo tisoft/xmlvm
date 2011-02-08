@@ -20,7 +20,11 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGAffineTransform;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGAffineTransform_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
-#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGAffineTransform
+
+#import <UIKit/UIKit.h>
+
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGAffineTransform \
+    CGAffineTransform transform;
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_CGAffineTransform \

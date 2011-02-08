@@ -42,6 +42,16 @@ JAVA_BOOLEAN XMLVMUtil_ArrayList_add(JAVA_OBJECT me, JAVA_OBJECT obj)
 #endif
 }
 
+void XMLVMUtil_ArrayList_addAt(JAVA_OBJECT me, JAVA_INT index, JAVA_OBJECT obj)
+{
+#ifdef XMLVM_VTABLE_IDX_java_util_ArrayList_add___int_java_lang_Object
+    (*(JAVA_BOOLEAN (*)(JAVA_OBJECT, JAVA_INT, JAVA_OBJECT)) ((java_util_ArrayList*) me)->
+            tib->vtable[XMLVM_VTABLE_IDX_java_util_ArrayList_add___int_java_lang_Object])(me, index, obj);
+#else
+    java_util_ArrayList_add___int_java_lang_Object(me, index, obj);
+#endif
+}
+
 JAVA_BOOLEAN XMLVMUtil_ArrayList_remove(JAVA_OBJECT me, JAVA_OBJECT obj)
 {
 #ifdef XMLVM_VTABLE_IDX_java_util_ArrayList_remove___java_lang_Object

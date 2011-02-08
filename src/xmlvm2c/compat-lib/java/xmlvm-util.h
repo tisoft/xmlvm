@@ -26,6 +26,7 @@
 
 JAVA_OBJECT XMLVMUtil_NEW_ArrayList();
 JAVA_BOOLEAN XMLVMUtil_ArrayList_add(JAVA_OBJECT me, JAVA_OBJECT obj);
+void XMLVMUtil_ArrayList_addAt(JAVA_OBJECT me, JAVA_INT index, JAVA_OBJECT obj);
 JAVA_BOOLEAN XMLVMUtil_ArrayList_remove(JAVA_OBJECT me, JAVA_OBJECT obj);
 
 JAVA_OBJECT XMLVMUtil_NEW_HashSet();

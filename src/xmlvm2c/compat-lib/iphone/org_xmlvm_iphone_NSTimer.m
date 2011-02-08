@@ -26,12 +26,14 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_ARRAYTYPE;
 {
 	org_xmlvm_iphone_NSTimerDelegate* delegate;
 	JAVA_OBJECT                       userInfo;
+    NSTimer*                          timer;
 }
 
 - (id) initWithDelegate:(org_xmlvm_iphone_NSTimerDelegate*) delegate_
                        :(JAVA_OBJECT) userInfo_
                        :(JAVA_FLOAT) interval
                        :(JAVA_BOOLEAN) repeat;
+- (void) invalidate;
 @end
 
 
@@ -45,14 +47,20 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_ARRAYTYPE;
     [super init];
 	self->delegate = delegate_;
 	self->userInfo = userInfo_;
-	[NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(timerEvent:) userInfo:NULL repeats:repeat];	
+	self->timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(timerEvent:) userInfo:NULL repeats:repeat];	
 	return self;
 }
 
 - (void) timerEvent:(NSTimer*) param
 {
+    self->timer = nil;
 	Func_VOO toCall = XMLVM_LOOKUP_INTERFACE_METHOD(self->delegate, "org.xmlvm.iphone.NSTimerDelegate", XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSTimerDelegate_timerEvent___java_lang_Object);
 	toCall(self->delegate, self->userInfo);
+}
+
+- (void) invalidate
+{
+    [self->timer invalidate];
 }
 
 @end
@@ -252,6 +260,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_
                                                                       :n1
                                                                       :n4];
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(timer, nsTimer);
+    timer->fields.org_xmlvm_iphone_NSTimer.delegate = n2;
 	return timer;
     //XMLVM_END_WRAPPER
 }
@@ -259,7 +268,8 @@ JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_
 void org_xmlvm_iphone_NSTimer_invalidate__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_invalidate__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSTimer* thiz = me;
+    [((NSTimerWrapper*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) invalidate];
     //XMLVM_END_WRAPPER
 }
 

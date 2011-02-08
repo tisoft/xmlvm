@@ -15,6 +15,17 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSUserDefaults;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSUserDefaults_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#import <Foundation/NSValue.h>
+#import <objc/runtime.h>
+#include "org_xmlvm_iphone_NSString.h"
+
+
+void org_xmlvm_iphone_NSUserDefaults_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -358,14 +369,41 @@ JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_standardUserDefaults__()
 {
     if (!__TIB_org_xmlvm_iphone_NSUserDefaults.classInitialized) __INIT_org_xmlvm_iphone_NSUserDefaults();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_standardUserDefaults__]
-    XMLVM_NOT_IMPLEMENTED();
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    org_xmlvm_iphone_NSUserDefaults* jdefaults = __NEW_org_xmlvm_iphone_NSUserDefaults();
+    org_xmlvm_iphone_NSUserDefaults_INTERNAL_CONSTRUCTOR(jdefaults, defaults);
+    return jdefaults;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSUserDefaults* thiz = me;
+    NSString* key = toNSString(n1);
+    id value = [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) objectForKey:key];
+    [key release];
+    if (value == nil) {
+        return JAVA_NULL;
+    }
+    /*
+     * There is an interesting problem here because NSUserDefaults is filled by iOS; not
+     * the Java application. So, whatever object we have will not have a corresponding
+     * Java object at first, but that Java object needs to be created. The problem here
+     * is that the retrieved object can be of different type (we can't just create a java.lang.Object).
+     * The assumption is that only a finite number of types are possible here so that we can
+     * deal with this via an elaborate switch-statement.
+     */
+    JAVA_OBJECT jvalue;
+    NSString* className = [[NSString alloc] initWithCString: class_getName([value class]) encoding: NSASCIIStringEncoding];
+    if ([className isEqualToString:@"NSCFBoolean"]) {
+        jvalue = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(jvalue, [value boolValue]);
+    }
+    else {
+        XMLVM_NOT_IMPLEMENTED();
+    }
+    return jvalue;
     //XMLVM_END_WRAPPER
 }
 
@@ -379,49 +417,71 @@ void org_xmlvm_iphone_NSUserDefaults_setObject___java_lang_Object_java_lang_Stri
 void org_xmlvm_iphone_NSUserDefaults_setInteger___int_java_lang_String(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_setInteger___int_java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSUserDefaults* thiz = me;
+    NSString* key = toNSString(n2);
+    [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setInteger:n1 forKey:key];
+    [key release];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_NSUserDefaults_integerForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_integerForKey___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSUserDefaults* thiz = me;
+    NSString* key = toNSString(n1);
+    JAVA_INT v = [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) boolForKey:key];
+    [key release];
+    return v;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSUserDefaults_synchronize__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_synchronize__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSUserDefaults* thiz = me;
+    [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) synchronize];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSUserDefaults_setBool___boolean_java_lang_String(JAVA_OBJECT me, JAVA_BOOLEAN n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_setBool___boolean_java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSUserDefaults* thiz = me;
+    NSString* key = toNSString(n2);
+    [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setBool:n1 forKey:key];
+    [key release];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_NSUserDefaults_boolForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_boolForKey___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSUserDefaults* thiz = me;
+    NSString* key = toNSString(n1);
+    JAVA_BOOLEAN v = [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) boolForKey:key];
+    [key release];
+    return v;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSUserDefaults_setFloat___float_java_lang_String(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_setFloat___float_java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSUserDefaults* thiz = me;
+    NSString* key = toNSString(n2);
+    [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setFloat:n1 forKey:key];
+    [key release];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_FLOAT org_xmlvm_iphone_NSUserDefaults_floatForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_floatForKey___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_NSUserDefaults* thiz = me;
+    NSString* key = toNSString(n1);
+    JAVA_FLOAT v = [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) boolForKey:key];
+    [key release];
+    return v;
     //XMLVM_END_WRAPPER
 }
 
@@ -450,7 +510,6 @@ void org_xmlvm_iphone_NSUserDefaults___CLINIT_()
 {
     if (!__TIB_org_xmlvm_iphone_NSUserDefaults.classInitialized) __INIT_org_xmlvm_iphone_NSUserDefaults();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults___CLINIT___]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

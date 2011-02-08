@@ -1389,7 +1389,13 @@ void org_xmlvm_iphone_UIView_sendSubviewToBack___org_xmlvm_iphone_UIView(JAVA_OB
 void org_xmlvm_iphone_UIView_insertSubview___org_xmlvm_iphone_UIView_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_insertSubview___org_xmlvm_iphone_UIView_int]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIView* view = me;
+    XMLVMUtil_ArrayList_addAt(view->fields.org_xmlvm_iphone_UIView.subviews, n2, n1);
+    UIView* realViewParent = view->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    org_xmlvm_iphone_UIView *otherView = n1;
+    otherView->fields.org_xmlvm_iphone_UIView.superView = me;
+    UIView* realViewChild = otherView->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    [realViewParent insertSubview: realViewChild atIndex:n2];
     //XMLVM_END_WRAPPER
 }
 
@@ -1409,8 +1415,7 @@ void org_xmlvm_iphone_UIView_removeFromSuperview__(JAVA_OBJECT me)
         XMLVMUtil_ArrayList_remove(superView->fields.org_xmlvm_iphone_UIView.subviews, me);
         thiz->fields.org_xmlvm_iphone_UIView.superView = JAVA_NULL;
         UIView* realView = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-        UIView* realSuperView = superView->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-        [realView removeFromSuperview:realSuperView];
+        [realView removeFromSuperview];
     }
     //XMLVM_END_WRAPPER
 }
@@ -1593,10 +1598,12 @@ void org_xmlvm_iphone_UIView_setTransform___org_xmlvm_iphone_CGAffineTransform(J
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setTransform___org_xmlvm_iphone_CGAffineTransform]
     org_xmlvm_iphone_UIView* thiz = me;
+    UIView* view = (UIView*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
     if (n1 == JAVA_NULL) {
-        [((UIView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setTransform:CGAffineTransformIdentity];
+        [view setTransform:CGAffineTransformIdentity];
     } else {
-        XMLVM_NOT_IMPLEMENTED();
+        org_xmlvm_iphone_CGAffineTransform* transform = n1;
+        [view setTransform:transform->fields.org_xmlvm_iphone_CGAffineTransform.transform];
     }
     //XMLVM_END_WRAPPER
 }

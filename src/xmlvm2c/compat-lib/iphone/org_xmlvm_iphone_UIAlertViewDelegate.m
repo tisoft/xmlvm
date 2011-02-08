@@ -14,6 +14,50 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+
+@implementation UIAlertViewDelegateWrapper
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_
+{
+    [super init];
+    self->delegate = delegate_;
+    self->alertView = JAVA_NULL;
+    return self;
+}
+
+- (void) setAlertView:(JAVA_OBJECT) alertView_
+{
+    self->alertView = alertView_;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    Func_VOOI func = (Func_VOOI) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertViewDelegate_clickedButtonAtIndex___org_xmlvm_iphone_UIAlertView_int];
+    return (*func)(self->delegate, self->alertView, buttonIndex);
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+}
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+}
+
+- (void)alertViewCancel:(UIAlertView *)alertView
+{
+}
+
+- (void)didPresentAlertView:(UIAlertView *)alertView
+{
+}
+
+- (void)willPresentAlertView:(UIAlertView *)alertView
+{
+}
+
+@end
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -127,7 +171,8 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAlertViewDelegate()
 void org_xmlvm_iphone_UIAlertViewDelegate___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAlertViewDelegate___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UIAlertViewDelegateWrapper* obj = [[UIAlertViewDelegateWrapper alloc] initWithDelegate:me];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 

@@ -21,6 +21,34 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIAlertViewDelegate
+
+#import <UIKit/UIAlertView.h>
+
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertViewDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertViewDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAlertViewDelegate)
+#endif
+
+
+@interface UIAlertViewDelegateWrapper : NSObject <UIAlertViewDelegate> {
+    
+    org_xmlvm_iphone_UIAlertViewDelegate* delegate;
+    org_xmlvm_iphone_UIAlertView*         alertView;
+    
+}
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_;
+- (void) setAlertView:(JAVA_OBJECT) alertView_;
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex;
+- (void)alertViewCancel:(UIAlertView *)alertView;
+- (void)didPresentAlertView:(UIAlertView *)alertView;
+- (void)willPresentAlertView:(UIAlertView *)alertView;
+
+@end
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UIAlertViewDelegate \

@@ -258,7 +258,8 @@ void org_xmlvm_iphone_UISwitch_PUT_kSwitchButtonHeight(JAVA_FLOAT v)
 void org_xmlvm_iphone_UISwitch___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISwitch___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UISwitch* obj = [[UISwitch alloc] init];
+    org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 

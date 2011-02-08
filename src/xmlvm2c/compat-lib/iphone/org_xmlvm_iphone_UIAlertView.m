@@ -16,6 +16,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertView_ARRAYTYPE;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 #include "org_xmlvm_iphone_UILabel.h"
+#include "org_xmlvm_iphone_NSString.h"
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -247,21 +248,34 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAlertView()
 void org_xmlvm_iphone_UIAlertView___INIT____java_lang_String_java_lang_String_org_xmlvm_iphone_UIAlertViewDelegate_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAlertView___INIT____java_lang_String_java_lang_String_org_xmlvm_iphone_UIAlertViewDelegate_java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
+    NSString* title = toNSString(n1);
+    NSString* message = toNSString(n2);
+    org_xmlvm_iphone_UIAlertViewDelegate* jdelegate = n3;
+    UIAlertViewDelegateWrapper* delegate = jdelegate->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    [delegate setAlertView:me];
+    NSString* cancelButtonTitle = toNSString(n4);
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:delegate cancelButtonTitle:cancelButtonTitle otherButtonTitles:nil];
+    [title release];
+    [message release];
+    [cancelButtonTitle release];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, alertView);
 }
 
 void org_xmlvm_iphone_UIAlertView_show__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAlertView_show__]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIAlertView* thiz = me;
+    [((UIAlertView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) show];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIAlertView_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAlertView_setTitle___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIAlertView* thiz = me;
+    NSString* title = toNSString(n1);
+    [((UIAlertView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setTitle:title];
+    [title release];
     //XMLVM_END_WRAPPER
 }
 
@@ -275,7 +289,10 @@ JAVA_OBJECT org_xmlvm_iphone_UIAlertView_getTitle__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIAlertView_setMessage___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAlertView_setMessage___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIAlertView* thiz = me;
+    NSString* message = toNSString(n1);
+    [((UIAlertView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setMessage:message];
+    [message release];
     //XMLVM_END_WRAPPER
 }
 
@@ -289,7 +306,11 @@ JAVA_OBJECT org_xmlvm_iphone_UIAlertView_getMesssage__(JAVA_OBJECT me)
 JAVA_INT org_xmlvm_iphone_UIAlertView_addButtonWithTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAlertView_addButtonWithTitle___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIAlertView* thiz = me;
+    NSString* title = toNSString(n1);
+    JAVA_INT ret = [((UIAlertView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) addButtonWithTitle:title];
+    [title release];
+    return ret;
     //XMLVM_END_WRAPPER
 }
 

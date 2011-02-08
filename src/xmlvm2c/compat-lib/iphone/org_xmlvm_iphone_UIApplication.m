@@ -36,8 +36,7 @@ org_xmlvm_iphone_UIApplication *curApp;
 - (void) applicationDidFinishLaunching: (UIApplication*) app
 {
 	curApp = __NEW_org_xmlvm_iphone_UIApplication();
-	org_xmlvm_iphone_UIApplication___INIT___(curApp);
-	curApp->fields.org_xmlvm_iphone_UIApplication.ocApp = app;
+	org_xmlvm_iphone_UIApplication_INTERNAL_CONSTRUCTOR(curApp, app);
 	
 	Func_VOO applicatonDidFinishLaunching = 
 		appToRun->tib->vtable[
@@ -512,7 +511,8 @@ void org_xmlvm_iphone_UIApplication_setDelegate___org_xmlvm_iphone_UIApplication
 void org_xmlvm_iphone_UIApplication_setIdleTimerDisabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_setIdleTimerDisabled___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIApplication* thiz = me;
+    [((UIApplication*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setIdleTimerDisabled:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -555,7 +555,7 @@ void org_xmlvm_iphone_UIApplication_setStatusBarOrientation___int(JAVA_OBJECT me
 void org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean]
-	UIApplication *app = curApp->fields.org_xmlvm_iphone_UIApplication.ocApp;
+	UIApplication *app = curApp->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
 	[app setStatusBarHidden: n1];
     //XMLVM_END_WRAPPER
 }

@@ -275,7 +275,11 @@ JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_makeRotation___float(JAVA_FLOAT n
 {
     if (!__TIB_org_xmlvm_iphone_CGAffineTransform.classInitialized) __INIT_org_xmlvm_iphone_CGAffineTransform();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGAffineTransform_makeRotation___float]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_CGAffineTransform* jtransform = __NEW_org_xmlvm_iphone_CGAffineTransform();
+    // TODO should have its own constructor
+    org_xmlvm_iphone_NSObject___INIT___(jtransform);
+    jtransform->fields.org_xmlvm_iphone_CGAffineTransform.transform = CGAffineTransformMakeRotation(n1);
+    return jtransform;
     //XMLVM_END_WRAPPER
 }
 
@@ -315,7 +319,11 @@ JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_translate___org_xmlvm_iphone_CGAf
 {
     if (!__TIB_org_xmlvm_iphone_CGAffineTransform.classInitialized) __INIT_org_xmlvm_iphone_CGAffineTransform();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGAffineTransform_translate___org_xmlvm_iphone_CGAffineTransform_float_float]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_CGAffineTransform* newTransform = __NEW_org_xmlvm_iphone_CGAffineTransform();
+    org_xmlvm_iphone_NSObject___INIT___(newTransform);
+    org_xmlvm_iphone_CGAffineTransform* otherTransform = n1;
+    newTransform->fields.org_xmlvm_iphone_CGAffineTransform.transform = CGAffineTransformTranslate(otherTransform->fields.org_xmlvm_iphone_CGAffineTransform.transform, n2, n3);
+    return newTransform;
     //XMLVM_END_WRAPPER
 }
 

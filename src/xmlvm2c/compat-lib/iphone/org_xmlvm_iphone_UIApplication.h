@@ -36,7 +36,7 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
-#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIApplication void *ocApp;
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIApplication
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UIApplication \

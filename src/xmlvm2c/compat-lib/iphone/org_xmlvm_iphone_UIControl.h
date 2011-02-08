@@ -37,7 +37,8 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl_ARRAYTYPE;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIControl \
-    JAVA_OBJECT delegateWrapper;
+    NSObject*   delegateWrapper; \
+    JAVA_OBJECT jdelegateWrapper;
 
 void org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj);
 //XMLVM_END_DECLARATIONS
