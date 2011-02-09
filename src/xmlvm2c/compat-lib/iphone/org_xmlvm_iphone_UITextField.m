@@ -760,7 +760,9 @@ JAVA_BOOLEAN org_xmlvm_iphone_UITextField_isSecureTextEntry__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UITextField_setSecureTextEntry___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setSecureTextEntry___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UITextField* thiz_ = me;
+    UITextField* thiz = thiz_->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    thiz.secureTextEntry = n1;
     //XMLVM_END_WRAPPER
 }
 
@@ -829,7 +831,11 @@ JAVA_OBJECT org_xmlvm_iphone_UITextField_getFont__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UITextField_setFont___org_xmlvm_iphone_UIFont(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setFont___org_xmlvm_iphone_UIFont]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UITextField* thiz_ = me;
+    UITextField* thiz = thiz_->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    org_xmlvm_iphone_UIFont* font_ = n1;
+    UIFont* font = font_->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    thiz.font = font;
     //XMLVM_END_WRAPPER
 }
 
@@ -871,7 +877,11 @@ void org_xmlvm_iphone_UITextField_xmlvmKeyTyped___char(JAVA_OBJECT me, JAVA_CHAR
 void org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UITextField* thiz_ = me;
+    UITextField* thiz = thiz_->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    java_lang_String* text_ = n1;
+    NSString* text = toNSString(text_);
+    thiz.placeholder = text;
     //XMLVM_END_WRAPPER
 }
 
