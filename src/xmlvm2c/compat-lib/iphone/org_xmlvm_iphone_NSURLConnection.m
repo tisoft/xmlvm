@@ -166,6 +166,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSURLConnection_connectionWithRequest___org_xmlvm_i
     org_xmlvm_iphone_NSURLConnection* connection_ = __NEW_org_xmlvm_iphone_NSURLConnection();
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(connection_, connection);
     [delegate setConnection: connection_];
+    connection_->fields.org_xmlvm_iphone_NSURLConnection.delegate_ = (org_xmlvm_iphone_NSURLConnectionDelegate*) n2;
     return connection_;
     //XMLVM_END_WRAPPER
 }
