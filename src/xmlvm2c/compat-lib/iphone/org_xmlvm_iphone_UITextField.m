@@ -890,9 +890,10 @@ void org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDele
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate]
     org_xmlvm_iphone_UITextFieldDelegate* delegate = n1;
     UITextFieldDelegateWrapper* delegateWrapper = delegate->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    [delegateWrapper setTextField:me];
     org_xmlvm_iphone_UITextField* thiz = me;
-    [((UITextField*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setDelegate:delegateWrapper];
+    UITextField* textField = ((UITextField*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj));
+    [delegateWrapper addSource: thiz: textField];
+    [textField setDelegate:delegateWrapper];
     //XMLVM_END_WRAPPER
 }
 

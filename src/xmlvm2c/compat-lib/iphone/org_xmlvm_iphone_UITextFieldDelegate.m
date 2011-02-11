@@ -21,63 +21,64 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextFieldDelegate_ARRAYTYPE;
 #include "org_xmlvm_iphone_NSString.h"
 
 
-@implementation UITextFieldDelegateWrapper
+@implementation UITextFieldDelegateWrapper : DelegateWrapper
 
 - (id) initWithDelegate:(JAVA_OBJECT) delegate_
 {
     [super init];
     self->delegate = delegate_;
-    self->textField = JAVA_NULL;
     return self;
-}
-
-- (void) setTextField:(JAVA_OBJECT) textField_
-{
-    self->textField = textField_;
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
     Func_BOO func = (Func_BOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldBeginEditing___org_xmlvm_iphone_UITextField];
-    return (*func)(self->delegate, self->textField);
+    return (*func)(self->delegate, textField_);
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
     Func_VOO func = (Func_VOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldDidBeginEditing___org_xmlvm_iphone_UITextField];
-    (*func)(self->delegate, self->textField);
+    (*func)(self->delegate, textField_);
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
+    org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
     Func_BOO func = (Func_BOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldEndEditing___org_xmlvm_iphone_UITextField];
-    return (*func)(self->delegate, self->textField);
+    return (*func)(self->delegate, textField_);
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
+    org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
     Func_VOO func = (Func_VOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldDidEndEditing___org_xmlvm_iphone_UITextField];
-    (*func)(self->delegate, self->textField);
+    (*func)(self->delegate, textField_);
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
     Func_BOOOO func = (Func_BOOOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldChangeCharactersInRange___org_xmlvm_iphone_UITextField_org_xmlvm_iphone_NSRange_java_lang_String];
     JAVA_OBJECT range_ = fromNSRange(range);
     JAVA_OBJECT string_ = toJavaString(string);
-    return (*func)(self->delegate, self->textField, range_, string_);
+    return (*func)(self->delegate, textField_, range_, string_);
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
+    org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
     Func_BOO func = (Func_BOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldClear___org_xmlvm_iphone_UITextField];
-    return (*func)(self->delegate, self->textField);
+    return (*func)(self->delegate, textField_);
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
     Func_BOO func = (Func_BOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldReturn___org_xmlvm_iphone_UITextField];
-    return (*func)(self->delegate, self->textField);
+    return (*func)(self->delegate, textField_);
 }
 
 
