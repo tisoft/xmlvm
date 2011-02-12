@@ -38,21 +38,18 @@
 
 - (void) addSource: (JAVA_OBJECT) source : (NSObject*) source_o
 {
-    NSAutoreleasePool* p = [[NSAutoreleasePool alloc] init];
-    NSValue* key = [NSValue valueWithPointer: source_o];
-    NSValue* value = [NSValue valueWithPointer: source];
+    NSValue* key = [[NSValue alloc] initWithBytes: &source_o objCType: @encode(NSObject*)];
+    NSValue* value = [[NSValue alloc] initWithBytes: &source objCType: @encode(JAVA_OBJECT)];
     [sources setObject: value forKey: key];
-    [p release];
+    [key release];
 }
 
 - (JAVA_OBJECT) getSource: (NSObject*) source_o
 {
-    NSAutoreleasePool* p = [[NSAutoreleasePool alloc] init];
-    NSValue* key = [NSValue valueWithPointer: source_o];
+    NSValue* key = [[NSValue alloc] initWithBytes: &source_o objCType: @encode(NSObject*)];
     NSValue* value = [sources objectForKey: key];
     JAVA_OBJECT source = [value pointerValue];
-    [p release];
-
+    [key release];
     return source;
 }
 
