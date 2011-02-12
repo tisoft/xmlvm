@@ -24,7 +24,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextFieldDelegate_ARRAYTYPE;
 #include "org_xmlvm_iphone_NSString.h"
 
 
-@implementation UITextFieldDelegateWrapper : DelegateWrapper
+@implementation UITextFieldDelegateWrapper
 
 - (id) initWithDelegate:(JAVA_OBJECT) delegate_
 {

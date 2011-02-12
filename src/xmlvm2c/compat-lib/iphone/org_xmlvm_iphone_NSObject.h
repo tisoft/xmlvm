@@ -58,6 +58,17 @@ void org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wr
 #define XMLVM_VAR_LONG(var, arg)    JAVA_LONG var = arg;
 #define XMLVM_VAR_DOUBLE(var, arg)  JAVA_DOUBLE var = arg;
 
+@interface DelegateWrapper : NSObject {
+    NSMutableDictionary* sources;
+}
+
+- (id) init;
+- (void) dealloc;
+- (void) addSource: (JAVA_OBJECT) source : (NSObject*) source_o;
+- (JAVA_OBJECT) getSource: (NSObject*) source_o;
+@end
+
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject \

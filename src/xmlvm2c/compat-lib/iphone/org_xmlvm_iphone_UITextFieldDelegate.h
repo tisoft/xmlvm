@@ -31,7 +31,6 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextFieldDelegate_ARRAYTYPE;
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITextFieldDelegate
 
 #import <UIKit/UITextField.h>
-#include "delegatewrapper.h"
 
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextFieldDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextFieldDelegate
