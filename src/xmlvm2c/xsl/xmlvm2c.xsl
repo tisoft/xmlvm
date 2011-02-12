@@ -441,6 +441,14 @@ int main(int argc, char* argv[])
     <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
     <xsl:variable name="clname" select="vm:fixname($cclname)"/>
 
+    <xsl:if test="$genWrapper = 'true'">
+      <xsl:text>#define XMLVM_CURRENT_CLASS_NAME </xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>&nl;#define XMLVM_CURRENT_PKG_CLASS_NAME </xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>&nl;&nl;</xsl:text>
+    </xsl:if>
+    
     <xsl:text>__TIB_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text> __TIB_</xsl:text>

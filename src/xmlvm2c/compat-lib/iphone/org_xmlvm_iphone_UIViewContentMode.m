@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIViewContentMode.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIViewContentMode
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIViewContentMode
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIViewContentMode __TIB_org_xmlvm_iphone_UIViewContentMode = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIViewContentMode, // classInitializer

@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_UIColor.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIColor
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIColor
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIColor __TIB_org_xmlvm_iphone_UIColor = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIColor, // classInitializer

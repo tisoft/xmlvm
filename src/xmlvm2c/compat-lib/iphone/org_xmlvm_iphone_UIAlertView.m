@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_UIAlertView.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIAlertView
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIAlertView
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIAlertView __TIB_org_xmlvm_iphone_UIAlertView = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIAlertView, // classInitializer
@@ -248,17 +251,21 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAlertView()
 void org_xmlvm_iphone_UIAlertView___INIT____java_lang_String_java_lang_String_org_xmlvm_iphone_UIAlertViewDelegate_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAlertView___INIT____java_lang_String_java_lang_String_org_xmlvm_iphone_UIAlertViewDelegate_java_lang_String]
-    NSString* title = toNSString(n1);
-    NSString* message = toNSString(n2);
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(title, n1);
+    XMLVM_VAR_NSString(message, n2);
+//    XMLVM_VAR_IOS(UIAlertViewDelegate, delegate, n3);
     org_xmlvm_iphone_UIAlertViewDelegate* jdelegate = n3;
     UIAlertViewDelegateWrapper* delegate = jdelegate->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    XMLVM_VAR_NSString(cancelButtonTitle, n4);
+    
     [delegate setAlertView:me];
-    NSString* cancelButtonTitle = toNSString(n4);
     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:delegate cancelButtonTitle:cancelButtonTitle otherButtonTitles:nil];
     [title release];
     [message release];
     [cancelButtonTitle release];
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, alertView);
+    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIAlertView_show__(JAVA_OBJECT me)

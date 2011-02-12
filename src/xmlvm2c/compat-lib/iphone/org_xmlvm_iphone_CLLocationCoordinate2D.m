@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_CLLocationCoordinate2D.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CLLocationCoordinate2D
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CLLocationCoordinate2D
+
 __TIB_DEFINITION_org_xmlvm_iphone_CLLocationCoordinate2D __TIB_org_xmlvm_iphone_CLLocationCoordinate2D = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CLLocationCoordinate2D, // classInitializer

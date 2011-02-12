@@ -7,6 +7,9 @@
 
 #include "org_xmlvm_iphone_UIControl.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIControl
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIControl
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIControl __TIB_org_xmlvm_iphone_UIControl = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIControl, // classInitializer

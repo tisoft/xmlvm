@@ -6,6 +6,9 @@
 
 #include "org_xmlvm_iphone_CGContext.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CGContext
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGContext
+
 __TIB_DEFINITION_org_xmlvm_iphone_CGContext __TIB_org_xmlvm_iphone_CGContext = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CGContext, // classInitializer

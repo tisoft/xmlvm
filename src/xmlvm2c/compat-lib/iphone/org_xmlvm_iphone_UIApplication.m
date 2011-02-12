@@ -7,6 +7,9 @@
 
 #include "org_xmlvm_iphone_UIApplication.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIApplication
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIApplication
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIApplication __TIB_org_xmlvm_iphone_UIApplication = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIApplication, // classInitializer

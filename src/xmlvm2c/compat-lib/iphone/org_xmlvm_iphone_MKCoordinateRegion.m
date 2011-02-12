@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_MKCoordinateRegion.h"
 
+#define XMLVM_CURRENT_CLASS_NAME MKCoordinateRegion
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MKCoordinateRegion
+
 __TIB_DEFINITION_org_xmlvm_iphone_MKCoordinateRegion __TIB_org_xmlvm_iphone_MKCoordinateRegion = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MKCoordinateRegion, // classInitializer

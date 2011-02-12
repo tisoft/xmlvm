@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_NSObject.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSObject
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSObject
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSObject __TIB_org_xmlvm_iphone_NSObject = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSObject, // classInitializer

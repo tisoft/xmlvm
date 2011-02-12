@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_UIViewAnimationDelegate.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIViewAnimationDelegate
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIViewAnimationDelegate
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIViewAnimationDelegate __TIB_org_xmlvm_iphone_UIViewAnimationDelegate = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIViewAnimationDelegate, // classInitializer

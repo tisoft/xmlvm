@@ -6,6 +6,9 @@
 
 #include "org_xmlvm_iphone_UIImage.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIImage
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIImage
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIImage __TIB_org_xmlvm_iphone_UIImage = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIImage, // classInitializer
@@ -310,17 +313,18 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(JAVA_OBJECT n
 {
     if (!__TIB_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_imageNamed___java_lang_String]
-	NSString* nsStr = toNSString(n1);
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	UIImage* named = [UIImage imageNamed:nsStr];
-	[named retain];
-	[pool release];
-	[nsStr release];
+    XMLVM_VAR_NSString(fileName, n1);
+
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    UIImage* named = [UIImage imageNamed:fileName];
+    [named retain];
+    [pool release];
+    [fileName release];
 	
-	org_xmlvm_iphone_UIImage *toRet = __NEW_org_xmlvm_iphone_UIImage();
-	//TODO need to call a constructor but UIImage does not have a public default constructor
-	toRet->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = named; //[UIImage imageWithContentsOfFile: nsStr];
-	return toRet;
+    org_xmlvm_iphone_UIImage* toRet = __NEW_org_xmlvm_iphone_UIImage();
+    //TODO need to call a constructor but UIImage does not have a public default constructor
+    toRet->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = named; //[UIImage imageWithContentsOfFile: nsStr];
+    return toRet;
     //XMLVM_END_WRAPPER
 }
 
@@ -328,16 +332,18 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String(
 {
     if (!__TIB_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String]
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	NSString* nsStr = toNSString(n1);
-	UIImage* named = [UIImage imageWithContentsOfFile:nsStr];// [UIImage imageNamed:nsStr];
-	[named retain];
-	[pool release];
-	[nsStr release];
+    XMLVM_VAR_NSString(fileName, n1);
+    
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    UIImage* named = [UIImage imageWithContentsOfFile:fileName];// [UIImage imageNamed:fileName];
+    [named retain];
+    [pool release];
+    [fileName release];
 	
-	org_xmlvm_iphone_UIImage *toRet = __NEW_org_xmlvm_iphone_UIImage();
-	toRet->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = named; //[UIImage imageWithContentsOfFile: nsStr];
-	return toRet;
+    org_xmlvm_iphone_UIImage *toRet = __NEW_org_xmlvm_iphone_UIImage();
+    //TODO use internal constructor
+    toRet->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = named;
+    return toRet;
     //XMLVM_END_WRAPPER
 }
 
@@ -366,10 +372,10 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_getCGImage__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect]
-	org_xmlvm_iphone_UIImage *thiz = me;
-	UIImage* realImg = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-	CGRect drawIn = toCGRect(n1);
-	[realImg drawInRect: drawIn];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CGRect(rect, n1);
+    
+    [thiz drawInRect:rect];
     //XMLVM_END_WRAPPER
 }
 
@@ -383,11 +389,12 @@ void org_xmlvm_iphone_UIImage_drawAtPoint___org_xmlvm_iphone_CGPoint(JAVA_OBJECT
 JAVA_OBJECT org_xmlvm_iphone_UIImage_getSize__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_getSize__]
-    org_xmlvm_iphone_UIImage* thiz = me;
-    CGSize size = ((UIImage*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)).size;
-    org_xmlvm_iphone_CGSize* size_ = __NEW_org_xmlvm_iphone_CGSize();
-    org_xmlvm_iphone_CGSize___INIT____float_float(size_, size.width, size.height);
-    return size_;
+    XMLVM_VAR_THIZ;
+    
+    CGSize size = thiz.size;
+    org_xmlvm_iphone_CGSize* jsize = __NEW_org_xmlvm_iphone_CGSize();
+    org_xmlvm_iphone_CGSize___INIT____float_float(jsize, size.width, size.height);
+    return jsize;
     //XMLVM_END_WRAPPER
 }
 

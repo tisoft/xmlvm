@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_SKPaymentTransactionState.h"
 
+#define XMLVM_CURRENT_CLASS_NAME SKPaymentTransactionState
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_SKPaymentTransactionState
+
 __TIB_DEFINITION_org_xmlvm_iphone_SKPaymentTransactionState __TIB_org_xmlvm_iphone_SKPaymentTransactionState = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_SKPaymentTransactionState, // classInitializer

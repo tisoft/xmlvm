@@ -6,6 +6,9 @@
 
 #include "org_xmlvm_iphone_NSURLConnection.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSURLConnection
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSURLConnection
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSURLConnection __TIB_org_xmlvm_iphone_NSURLConnection = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSURLConnection, // classInitializer

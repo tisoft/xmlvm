@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_CLRegion.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CLRegion
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CLRegion
+
 __TIB_DEFINITION_org_xmlvm_iphone_CLRegion __TIB_org_xmlvm_iphone_CLRegion = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CLRegion, // classInitializer

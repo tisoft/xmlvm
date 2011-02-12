@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_CLHeadingFilter.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CLHeadingFilter
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CLHeadingFilter
+
 __TIB_DEFINITION_org_xmlvm_iphone_CLHeadingFilter __TIB_org_xmlvm_iphone_CLHeadingFilter = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CLHeadingFilter, // classInitializer

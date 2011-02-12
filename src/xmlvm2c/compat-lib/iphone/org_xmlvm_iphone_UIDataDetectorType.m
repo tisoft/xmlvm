@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIDataDetectorType.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIDataDetectorType
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIDataDetectorType
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIDataDetectorType __TIB_org_xmlvm_iphone_UIDataDetectorType = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIDataDetectorType, // classInitializer

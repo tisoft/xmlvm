@@ -8,6 +8,9 @@
 
 #include "org_xmlvm_iphone_UINavigationBar.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UINavigationBar
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UINavigationBar
+
 __TIB_DEFINITION_org_xmlvm_iphone_UINavigationBar __TIB_org_xmlvm_iphone_UINavigationBar = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UINavigationBar, // classInitializer

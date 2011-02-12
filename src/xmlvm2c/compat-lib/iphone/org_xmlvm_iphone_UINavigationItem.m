@@ -6,6 +6,9 @@
 
 #include "org_xmlvm_iphone_UINavigationItem.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UINavigationItem
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UINavigationItem
+
 __TIB_DEFINITION_org_xmlvm_iphone_UINavigationItem __TIB_org_xmlvm_iphone_UINavigationItem = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UINavigationItem, // classInitializer

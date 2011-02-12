@@ -9,6 +9,9 @@
 
 #include "org_xmlvm_iphone_UIButton.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIButton
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIButton
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIButton __TIB_org_xmlvm_iphone_UIButton = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIButton, // classInitializer
@@ -567,9 +570,11 @@ JAVA_INT org_xmlvm_iphone_UIButton_getButtonType__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIButton_setTitle___java_lang_String_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_setTitle___java_lang_String_int]
-	UIButton* button = (UIButton*) ((org_xmlvm_iphone_UIButton*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-	NSString* title = toNSString(n1);
-	[button setTitle: title forState: n2];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(title, n1);
+    XMLVM_VAR_INT(state, n2);
+    
+	[thiz setTitle:title forState:state];
 	[title release];
     //XMLVM_END_WRAPPER
 }

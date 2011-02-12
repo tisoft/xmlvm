@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_UIViewGL.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIViewGL
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIViewGL
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIViewGL __TIB_org_xmlvm_iphone_UIViewGL = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIViewGL, // classInitializer

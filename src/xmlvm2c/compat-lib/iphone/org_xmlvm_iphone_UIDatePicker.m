@@ -7,6 +7,9 @@
 
 #include "org_xmlvm_iphone_UIDatePicker.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIDatePicker
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIDatePicker
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIDatePicker __TIB_org_xmlvm_iphone_UIDatePicker = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIDatePicker, // classInitializer

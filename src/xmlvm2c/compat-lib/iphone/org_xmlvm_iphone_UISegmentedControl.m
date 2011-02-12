@@ -9,6 +9,9 @@
 
 #include "org_xmlvm_iphone_UISegmentedControl.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UISegmentedControl
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UISegmentedControl
+
 __TIB_DEFINITION_org_xmlvm_iphone_UISegmentedControl __TIB_org_xmlvm_iphone_UISegmentedControl = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UISegmentedControl, // classInitializer

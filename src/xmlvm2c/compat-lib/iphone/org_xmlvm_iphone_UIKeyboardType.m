@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIKeyboardType.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIKeyboardType
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIKeyboardType
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIKeyboardType __TIB_org_xmlvm_iphone_UIKeyboardType = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIKeyboardType, // classInitializer

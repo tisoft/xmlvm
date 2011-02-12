@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_CGPathDrawingMode.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CGPathDrawingMode
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGPathDrawingMode
+
 __TIB_DEFINITION_org_xmlvm_iphone_CGPathDrawingMode __TIB_org_xmlvm_iphone_CGPathDrawingMode = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CGPathDrawingMode, // classInitializer

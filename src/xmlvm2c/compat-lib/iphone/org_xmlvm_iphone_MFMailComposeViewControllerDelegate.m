@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_MFMailComposeViewControllerDelegate.h"
 
+#define XMLVM_CURRENT_CLASS_NAME MFMailComposeViewControllerDelegate
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MFMailComposeViewControllerDelegate
+
 __TIB_DEFINITION_org_xmlvm_iphone_MFMailComposeViewControllerDelegate __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MFMailComposeViewControllerDelegate, // classInitializer

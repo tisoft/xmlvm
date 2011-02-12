@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_NSDate.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSDate
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSDate
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSDate __TIB_org_xmlvm_iphone_NSDate = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSDate, // classInitializer

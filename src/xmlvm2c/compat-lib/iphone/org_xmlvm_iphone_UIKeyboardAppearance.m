@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIKeyboardAppearance.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIKeyboardAppearance
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIKeyboardAppearance
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIKeyboardAppearance __TIB_org_xmlvm_iphone_UIKeyboardAppearance = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIKeyboardAppearance, // classInitializer

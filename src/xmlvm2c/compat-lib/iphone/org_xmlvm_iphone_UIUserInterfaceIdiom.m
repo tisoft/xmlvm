@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIUserInterfaceIdiom.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIUserInterfaceIdiom
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIUserInterfaceIdiom
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIUserInterfaceIdiom __TIB_org_xmlvm_iphone_UIUserInterfaceIdiom = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIUserInterfaceIdiom, // classInitializer

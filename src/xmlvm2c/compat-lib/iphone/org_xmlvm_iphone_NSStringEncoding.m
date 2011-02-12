@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_NSStringEncoding.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSStringEncoding
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSStringEncoding
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSStringEncoding __TIB_org_xmlvm_iphone_NSStringEncoding = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSStringEncoding, // classInitializer

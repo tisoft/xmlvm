@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_UIPickerViewDataSource.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIPickerViewDataSource
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIPickerViewDataSource
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIPickerViewDataSource __TIB_org_xmlvm_iphone_UIPickerViewDataSource = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIPickerViewDataSource, // classInitializer

@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_NSTimeZone.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSTimeZone
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSTimeZone
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSTimeZone __TIB_org_xmlvm_iphone_NSTimeZone = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSTimeZone, // classInitializer

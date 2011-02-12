@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIBarButtonSystemItem.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIBarButtonSystemItem
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIBarButtonSystemItem
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIBarButtonSystemItem __TIB_org_xmlvm_iphone_UIBarButtonSystemItem = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIBarButtonSystemItem, // classInitializer

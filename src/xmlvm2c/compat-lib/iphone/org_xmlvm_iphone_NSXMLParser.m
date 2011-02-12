@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_NSXMLParser.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSXMLParser
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSXMLParser
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSXMLParser __TIB_org_xmlvm_iphone_NSXMLParser = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSXMLParser, // classInitializer

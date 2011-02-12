@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_UIPageControl.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIPageControl
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIPageControl
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIPageControl __TIB_org_xmlvm_iphone_UIPageControl = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIPageControl, // classInitializer

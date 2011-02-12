@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_MKMapType.h"
 
+#define XMLVM_CURRENT_CLASS_NAME MKMapType
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MKMapType
+
 __TIB_DEFINITION_org_xmlvm_iphone_MKMapType __TIB_org_xmlvm_iphone_MKMapType = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MKMapType, // classInitializer

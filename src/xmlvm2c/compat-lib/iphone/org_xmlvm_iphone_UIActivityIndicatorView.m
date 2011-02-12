@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIActivityIndicatorView.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIActivityIndicatorView
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIActivityIndicatorView
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIActivityIndicatorView __TIB_org_xmlvm_iphone_UIActivityIndicatorView = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIActivityIndicatorView, // classInitializer

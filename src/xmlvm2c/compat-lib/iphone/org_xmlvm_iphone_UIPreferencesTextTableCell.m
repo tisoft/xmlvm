@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_UIPreferencesTextTableCell.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIPreferencesTextTableCell
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIPreferencesTextTableCell
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIPreferencesTextTableCell __TIB_org_xmlvm_iphone_UIPreferencesTextTableCell = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIPreferencesTextTableCell, // classInitializer

@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_NSIndexPath.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSIndexPath
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSIndexPath
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSIndexPath __TIB_org_xmlvm_iphone_NSIndexPath = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSIndexPath, // classInitializer

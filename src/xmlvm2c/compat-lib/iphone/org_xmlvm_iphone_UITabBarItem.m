@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_UITabBarItem.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UITabBarItem
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITabBarItem
+
 __TIB_DEFINITION_org_xmlvm_iphone_UITabBarItem __TIB_org_xmlvm_iphone_UITabBarItem = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UITabBarItem, // classInitializer

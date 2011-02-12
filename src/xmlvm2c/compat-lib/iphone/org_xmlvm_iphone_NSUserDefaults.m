@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_NSUserDefaults.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSUserDefaults
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSUserDefaults
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSUserDefaults __TIB_org_xmlvm_iphone_NSUserDefaults = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSUserDefaults, // classInitializer

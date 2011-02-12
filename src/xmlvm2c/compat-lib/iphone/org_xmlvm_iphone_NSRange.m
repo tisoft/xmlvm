@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_NSRange.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSRange
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSRange
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSRange __TIB_org_xmlvm_iphone_NSRange = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSRange, // classInitializer

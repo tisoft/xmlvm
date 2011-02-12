@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIProgressView.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIProgressView
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIProgressView
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIProgressView __TIB_org_xmlvm_iphone_UIProgressView = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIProgressView, // classInitializer

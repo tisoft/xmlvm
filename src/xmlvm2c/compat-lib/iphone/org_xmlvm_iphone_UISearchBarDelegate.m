@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_UISearchBarDelegate.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UISearchBarDelegate
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UISearchBarDelegate
+
 __TIB_DEFINITION_org_xmlvm_iphone_UISearchBarDelegate __TIB_org_xmlvm_iphone_UISearchBarDelegate = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UISearchBarDelegate, // classInitializer

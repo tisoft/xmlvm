@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIViewAutoresizing.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIViewAutoresizing
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIViewAutoresizing
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIViewAutoresizing __TIB_org_xmlvm_iphone_UIViewAutoresizing = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIViewAutoresizing, // classInitializer

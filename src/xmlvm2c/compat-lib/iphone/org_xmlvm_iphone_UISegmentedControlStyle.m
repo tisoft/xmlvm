@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UISegmentedControlStyle.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UISegmentedControlStyle
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UISegmentedControlStyle
+
 __TIB_DEFINITION_org_xmlvm_iphone_UISegmentedControlStyle __TIB_org_xmlvm_iphone_UISegmentedControlStyle = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UISegmentedControlStyle, // classInitializer

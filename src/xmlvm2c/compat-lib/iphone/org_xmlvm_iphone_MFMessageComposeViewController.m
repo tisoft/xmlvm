@@ -5,6 +5,9 @@
 
 #include "org_xmlvm_iphone_MFMessageComposeViewController.h"
 
+#define XMLVM_CURRENT_CLASS_NAME MFMessageComposeViewController
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MFMessageComposeViewController
+
 __TIB_DEFINITION_org_xmlvm_iphone_MFMessageComposeViewController __TIB_org_xmlvm_iphone_MFMessageComposeViewController = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MFMessageComposeViewController, // classInitializer

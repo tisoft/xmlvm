@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_NSMutableData.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSMutableData
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSMutableData
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSMutableData __TIB_org_xmlvm_iphone_NSMutableData = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSMutableData, // classInitializer

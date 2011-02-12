@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIStatusBarStyle.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIStatusBarStyle
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIStatusBarStyle
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIStatusBarStyle __TIB_org_xmlvm_iphone_UIStatusBarStyle = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIStatusBarStyle, // classInitializer

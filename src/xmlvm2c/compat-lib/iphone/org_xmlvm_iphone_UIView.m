@@ -10,6 +10,9 @@
 
 #include "org_xmlvm_iphone_UIView.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIView
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIView
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIView __TIB_org_xmlvm_iphone_UIView = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIView, // classInitializer
@@ -1290,10 +1293,12 @@ void org_xmlvm_iphone_UIView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, J
 	 * This pointer is saved in a field inherited from class NSObject called wrappedObjCObj
 	 * (wrapped Objective-C Object). Note that because we need to intercept UIView.drawRect,
 	 * we don't instantiate a UIView directly, but UIViewWrapper as defined earlier in this
-	 * file.
+	 * file. Also: see org_xmlvm_iphone_NSObject.h for all XMLVM_VAR_* macros.
 	 */
-    ((org_xmlvm_iphone_UIView*) me)->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
-    ((org_xmlvm_iphone_UIView*) me)->fields.org_xmlvm_iphone_UIView.superView = JAVA_NULL;
+    XMLVM_VAR_THIZ;
+    
+    jthiz->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
+    jthiz->fields.org_xmlvm_iphone_UIView.superView = JAVA_NULL;
 	UIViewWrapper* obj = [[UIViewWrapper alloc] initWithFrame: toCGRect(n1)];
 	[obj setWrappedCObj:me];
     org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, obj);
@@ -1303,8 +1308,10 @@ void org_xmlvm_iphone_UIView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, J
 void org_xmlvm_iphone_UIView___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView___INIT___]
-    ((org_xmlvm_iphone_UIView*) me)->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
-    ((org_xmlvm_iphone_UIView*) me)->fields.org_xmlvm_iphone_UIView.superView = JAVA_NULL;
+    XMLVM_VAR_THIZ;
+    
+    jthiz->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
+    jthiz->fields.org_xmlvm_iphone_UIView.superView = JAVA_NULL;
 	UIViewWrapper* obj = [[UIViewWrapper alloc] init];
 	[obj setWrappedCObj:me];
     org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, obj);
@@ -1322,18 +1329,19 @@ void org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, 
 	 * invocation. Note that helper function toCGRect() converts the CGRect parameter to
 	 * a value-type as required by the signature of setFrame.
 	 */
-	org_xmlvm_iphone_UIView* thiz = me;
-	UIView* wrappedObjCObj = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-	[wrappedObjCObj setFrame: toCGRect(n1)];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CGRect(rect, n1);
+    
+	[thiz setFrame:rect];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIView_getFrame__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getFrame__]
-	org_xmlvm_iphone_UIView* thiz = me;
-	UIView* wrappedObjCObj = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    CGRect frame = wrappedObjCObj.frame;
+    XMLVM_VAR_THIZ;
+    
+    CGRect frame = thiz.frame;
     return fromCGRect(frame);
     //XMLVM_END_WRAPPER
 }
@@ -1369,13 +1377,12 @@ void org_xmlvm_iphone_UIView_setSize___float_float(JAVA_OBJECT me, JAVA_FLOAT n1
 void org_xmlvm_iphone_UIView_addSubview___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_addSubview___org_xmlvm_iphone_UIView]
-    org_xmlvm_iphone_UIView* view = me;
-    XMLVMUtil_ArrayList_add(view->fields.org_xmlvm_iphone_UIView.subviews, n1);
-    UIView* realViewParent = view->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    org_xmlvm_iphone_UIView *otherView = n1;
-    otherView->fields.org_xmlvm_iphone_UIView.superView = me;
-    UIView* realViewChild = otherView->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    [realViewParent addSubview: realViewChild];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIView, view, n1);
+    
+    XMLVMUtil_ArrayList_add(jthiz->fields.org_xmlvm_iphone_UIView.subviews, jview);
+    jview->fields.org_xmlvm_iphone_UIView.superView = me;
+    [thiz addSubview:view];
     //XMLVM_END_WRAPPER
 }
 
@@ -1389,13 +1396,13 @@ void org_xmlvm_iphone_UIView_sendSubviewToBack___org_xmlvm_iphone_UIView(JAVA_OB
 void org_xmlvm_iphone_UIView_insertSubview___org_xmlvm_iphone_UIView_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_insertSubview___org_xmlvm_iphone_UIView_int]
-    org_xmlvm_iphone_UIView* view = me;
-    XMLVMUtil_ArrayList_addAt(view->fields.org_xmlvm_iphone_UIView.subviews, n2, n1);
-    UIView* realViewParent = view->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    org_xmlvm_iphone_UIView *otherView = n1;
-    otherView->fields.org_xmlvm_iphone_UIView.superView = me;
-    UIView* realViewChild = otherView->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    [realViewParent insertSubview: realViewChild atIndex:n2];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIView, view, n1);
+    XMLVM_VAR_INT(index, n2);
+    
+    XMLVMUtil_ArrayList_addAt(jthiz->fields.org_xmlvm_iphone_UIView.subviews, index, jview);
+    jview->fields.org_xmlvm_iphone_UIView.superView = me;
+    [thiz insertSubview:view atIndex:index];
     //XMLVM_END_WRAPPER
 }
 

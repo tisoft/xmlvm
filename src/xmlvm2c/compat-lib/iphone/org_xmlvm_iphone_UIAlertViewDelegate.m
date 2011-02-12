@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_UIAlertViewDelegate.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIAlertViewDelegate
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIAlertViewDelegate
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIAlertViewDelegate __TIB_org_xmlvm_iphone_UIAlertViewDelegate = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIAlertViewDelegate, // classInitializer

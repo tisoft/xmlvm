@@ -31,6 +31,33 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_ARRAYTYPE;
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSObject void *wrappedObjCObj;
 
 void org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj);
+
+#define XMLVM_VAR_THIZ \
+    XMLVM_CURRENT_PKG_CLASS_NAME* jthiz = me; \
+    XMLVM_CURRENT_CLASS_NAME* thiz = \
+        (XMLVM_CURRENT_CLASS_NAME*) (jthiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj);
+
+#define XMLVM_VAR_IOS(clazz, var, arg) \
+    org_xmlvm_iphone_##clazz* j##var = arg; \
+    clazz* var = (clazz*) (j##var->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj);
+
+#define XMLVM_VAR_NSString(var, arg) \
+    java_lang_String* j##var = arg; \
+    NSString* var = toNSString(arg);
+
+#define XMLVM_VAR_CGRect(var, arg) \
+    org_xmlvm_iphone_CGRect* j##var = arg; \
+    CGRect var = toCGRect(arg);
+
+#define XMLVM_VAR_J2SE(clazz, var, arg) clazz* var = arg;
+#define XMLVM_VAR_BYTE(var, arg)    JAVA_BYTE var = arg;
+#define XMLVM_VAR_BOOLEAN(var, arg) JAVA_BOOLEAN var = arg;
+#define XMLVM_VAR_SHORT(var, arg)   JAVA_SHORT var = arg;
+#define XMLVM_VAR_INT(var, arg)     JAVA_INT var = arg;
+#define XMLVM_VAR_FLOAT(var, arg)   JAVA_FLOAT var = arg;
+#define XMLVM_VAR_LONG(var, arg)    JAVA_LONG var = arg;
+#define XMLVM_VAR_DOUBLE(var, arg)  JAVA_DOUBLE var = arg;
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject \

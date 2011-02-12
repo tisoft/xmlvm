@@ -6,6 +6,9 @@
 
 #include "org_xmlvm_iphone_UITextView.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UITextView
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITextView
+
 __TIB_DEFINITION_org_xmlvm_iphone_UITextView __TIB_org_xmlvm_iphone_UITextView = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UITextView, // classInitializer

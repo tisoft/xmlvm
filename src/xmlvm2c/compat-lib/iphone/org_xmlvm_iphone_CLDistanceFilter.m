@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_CLDistanceFilter.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CLDistanceFilter
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CLDistanceFilter
+
 __TIB_DEFINITION_org_xmlvm_iphone_CLDistanceFilter __TIB_org_xmlvm_iphone_CLDistanceFilter = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CLDistanceFilter, // classInitializer

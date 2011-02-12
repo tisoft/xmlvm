@@ -7,6 +7,9 @@
 
 #include "org_xmlvm_iphone_UIWebView.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIWebView
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIWebView
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIWebView __TIB_org_xmlvm_iphone_UIWebView = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIWebView, // classInitializer

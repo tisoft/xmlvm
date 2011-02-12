@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_CGLineCap.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CGLineCap
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGLineCap
+
 __TIB_DEFINITION_org_xmlvm_iphone_CGLineCap __TIB_org_xmlvm_iphone_CGLineCap = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CGLineCap, // classInitializer

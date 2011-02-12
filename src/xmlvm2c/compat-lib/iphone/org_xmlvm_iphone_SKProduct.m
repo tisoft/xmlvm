@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_SKProduct.h"
 
+#define XMLVM_CURRENT_CLASS_NAME SKProduct
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_SKProduct
+
 __TIB_DEFINITION_org_xmlvm_iphone_SKProduct __TIB_org_xmlvm_iphone_SKProduct = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_SKProduct, // classInitializer

@@ -7,6 +7,9 @@
 
 #include "org_xmlvm_iphone_CLLocationManagerDelegate.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CLLocationManagerDelegate
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CLLocationManagerDelegate
+
 __TIB_DEFINITION_org_xmlvm_iphone_CLLocationManagerDelegate __TIB_org_xmlvm_iphone_CLLocationManagerDelegate = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CLLocationManagerDelegate, // classInitializer

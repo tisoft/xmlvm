@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_UIScrollViewDelegate.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIScrollViewDelegate
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIScrollViewDelegate
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIScrollViewDelegate __TIB_org_xmlvm_iphone_UIScrollViewDelegate = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIScrollViewDelegate, // classInitializer

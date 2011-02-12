@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIBarButtonItemStyle.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIBarButtonItemStyle
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIBarButtonItemStyle
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIBarButtonItemStyle __TIB_org_xmlvm_iphone_UIBarButtonItemStyle = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIBarButtonItemStyle, // classInitializer

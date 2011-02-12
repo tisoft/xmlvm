@@ -5,6 +5,9 @@
 
 #include "org_xmlvm_iphone_UIPickerView.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIPickerView
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIPickerView
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIPickerView __TIB_org_xmlvm_iphone_UIPickerView = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIPickerView, // classInitializer

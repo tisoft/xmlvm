@@ -7,6 +7,9 @@
 
 #include "org_xmlvm_iphone_UIBarButtonItem.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIBarButtonItem
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIBarButtonItem
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIBarButtonItem __TIB_org_xmlvm_iphone_UIBarButtonItem = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIBarButtonItem, // classInitializer

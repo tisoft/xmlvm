@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_NSDateComponents.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSDateComponents
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSDateComponents
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSDateComponents __TIB_org_xmlvm_iphone_NSDateComponents = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSDateComponents, // classInitializer

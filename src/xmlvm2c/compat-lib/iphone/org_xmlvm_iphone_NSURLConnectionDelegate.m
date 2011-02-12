@@ -5,6 +5,9 @@
 
 #include "org_xmlvm_iphone_NSURLConnectionDelegate.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSURLConnectionDelegate
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSURLConnectionDelegate
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSURLConnectionDelegate __TIB_org_xmlvm_iphone_NSURLConnectionDelegate = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSURLConnectionDelegate, // classInitializer

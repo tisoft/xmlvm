@@ -9,6 +9,9 @@
 
 #include "org_xmlvm_iphone_MKMapView.h"
 
+#define XMLVM_CURRENT_CLASS_NAME MKMapView
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MKMapView
+
 __TIB_DEFINITION_org_xmlvm_iphone_MKMapView __TIB_org_xmlvm_iphone_MKMapView = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MKMapView, // classInitializer

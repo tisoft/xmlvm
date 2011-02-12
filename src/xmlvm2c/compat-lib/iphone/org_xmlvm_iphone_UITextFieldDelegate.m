@@ -5,6 +5,9 @@
 
 #include "org_xmlvm_iphone_UITextFieldDelegate.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UITextFieldDelegate
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITextFieldDelegate
+
 __TIB_DEFINITION_org_xmlvm_iphone_UITextFieldDelegate __TIB_org_xmlvm_iphone_UITextFieldDelegate = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UITextFieldDelegate, // classInitializer

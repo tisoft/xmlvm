@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIEdgeInsets.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIEdgeInsets
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIEdgeInsets
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIEdgeInsets __TIB_org_xmlvm_iphone_UIEdgeInsets = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIEdgeInsets, // classInitializer

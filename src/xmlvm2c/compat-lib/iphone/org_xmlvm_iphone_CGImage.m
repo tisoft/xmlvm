@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_CGImage.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CGImage
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGImage
+
 __TIB_DEFINITION_org_xmlvm_iphone_CGImage __TIB_org_xmlvm_iphone_CGImage = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CGImage, // classInitializer

@@ -6,6 +6,9 @@
 
 #include "org_xmlvm_iphone_CALayer.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CALayer
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CALayer
+
 __TIB_DEFINITION_org_xmlvm_iphone_CALayer __TIB_org_xmlvm_iphone_CALayer = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CALayer, // classInitializer

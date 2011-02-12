@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_NSURL.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSURL
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSURL
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSURL __TIB_org_xmlvm_iphone_NSURL = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSURL, // classInitializer

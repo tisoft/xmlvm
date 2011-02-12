@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_MKUserLocation.h"
 
+#define XMLVM_CURRENT_CLASS_NAME MKUserLocation
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MKUserLocation
+
 __TIB_DEFINITION_org_xmlvm_iphone_MKUserLocation __TIB_org_xmlvm_iphone_MKUserLocation = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MKUserLocation, // classInitializer

@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_CLHeading.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CLHeading
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CLHeading
+
 __TIB_DEFINITION_org_xmlvm_iphone_CLHeading __TIB_org_xmlvm_iphone_CLHeading = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CLHeading, // classInitializer

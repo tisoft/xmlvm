@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_NSNumberFormatterStyle.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSNumberFormatterStyle
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSNumberFormatterStyle
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSNumberFormatterStyle __TIB_org_xmlvm_iphone_NSNumberFormatterStyle = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSNumberFormatterStyle, // classInitializer

@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_NSData.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSData
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSData
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSData __TIB_org_xmlvm_iphone_NSData = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSData, // classInitializer

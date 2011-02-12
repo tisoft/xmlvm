@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UITableViewCellSeparatorStyle.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UITableViewCellSeparatorStyle
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITableViewCellSeparatorStyle
+
 __TIB_DEFINITION_org_xmlvm_iphone_UITableViewCellSeparatorStyle __TIB_org_xmlvm_iphone_UITableViewCellSeparatorStyle = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UITableViewCellSeparatorStyle, // classInitializer

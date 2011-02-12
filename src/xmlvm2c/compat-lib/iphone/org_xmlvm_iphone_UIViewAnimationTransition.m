@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIViewAnimationTransition.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIViewAnimationTransition
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIViewAnimationTransition
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIViewAnimationTransition __TIB_org_xmlvm_iphone_UIViewAnimationTransition = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIViewAnimationTransition, // classInitializer

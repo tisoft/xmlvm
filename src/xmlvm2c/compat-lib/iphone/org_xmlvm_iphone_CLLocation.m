@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_CLLocation.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CLLocation
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CLLocation
+
 __TIB_DEFINITION_org_xmlvm_iphone_CLLocation __TIB_org_xmlvm_iphone_CLLocation = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CLLocation, // classInitializer

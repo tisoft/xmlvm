@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UITextAutocapitalizationType.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UITextAutocapitalizationType
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITextAutocapitalizationType
+
 __TIB_DEFINITION_org_xmlvm_iphone_UITextAutocapitalizationType __TIB_org_xmlvm_iphone_UITextAutocapitalizationType = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UITextAutocapitalizationType, // classInitializer

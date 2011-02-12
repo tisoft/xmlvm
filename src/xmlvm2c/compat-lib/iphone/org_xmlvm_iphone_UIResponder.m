@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_UIResponder.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIResponder
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIResponder
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIResponder __TIB_org_xmlvm_iphone_UIResponder = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIResponder, // classInitializer

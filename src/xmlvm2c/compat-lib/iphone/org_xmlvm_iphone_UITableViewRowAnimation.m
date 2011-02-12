@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UITableViewRowAnimation.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UITableViewRowAnimation
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITableViewRowAnimation
+
 __TIB_DEFINITION_org_xmlvm_iphone_UITableViewRowAnimation __TIB_org_xmlvm_iphone_UITableViewRowAnimation = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UITableViewRowAnimation, // classInitializer

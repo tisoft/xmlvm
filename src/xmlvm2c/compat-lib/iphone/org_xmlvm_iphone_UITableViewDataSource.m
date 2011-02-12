@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_UITableViewDataSource.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UITableViewDataSource
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITableViewDataSource
+
 __TIB_DEFINITION_org_xmlvm_iphone_UITableViewDataSource __TIB_org_xmlvm_iphone_UITableViewDataSource = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UITableViewDataSource, // classInitializer

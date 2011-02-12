@@ -5,6 +5,9 @@
 
 #include "org_xmlvm_iphone_UISlider.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UISlider
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UISlider
+
 __TIB_DEFINITION_org_xmlvm_iphone_UISlider __TIB_org_xmlvm_iphone_UISlider = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UISlider, // classInitializer

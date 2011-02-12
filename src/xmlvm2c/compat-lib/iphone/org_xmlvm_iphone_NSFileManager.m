@@ -5,6 +5,9 @@
 
 #include "org_xmlvm_iphone_NSFileManager.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSFileManager
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSFileManager
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSFileManager __TIB_org_xmlvm_iphone_NSFileManager = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSFileManager, // classInitializer

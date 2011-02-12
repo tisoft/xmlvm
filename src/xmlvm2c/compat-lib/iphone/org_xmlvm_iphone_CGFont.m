@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_CGFont.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CGFont
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGFont
+
 __TIB_DEFINITION_org_xmlvm_iphone_CGFont __TIB_org_xmlvm_iphone_CGFont = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CGFont, // classInitializer

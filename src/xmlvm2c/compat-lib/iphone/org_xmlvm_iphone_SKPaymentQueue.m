@@ -5,6 +5,9 @@
 
 #include "org_xmlvm_iphone_SKPaymentQueue.h"
 
+#define XMLVM_CURRENT_CLASS_NAME SKPaymentQueue
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_SKPaymentQueue
+
 __TIB_DEFINITION_org_xmlvm_iphone_SKPaymentQueue __TIB_org_xmlvm_iphone_SKPaymentQueue = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_SKPaymentQueue, // classInitializer

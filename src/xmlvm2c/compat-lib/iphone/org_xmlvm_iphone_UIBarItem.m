@@ -6,6 +6,9 @@
 
 #include "org_xmlvm_iphone_UIBarItem.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIBarItem
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIBarItem
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIBarItem __TIB_org_xmlvm_iphone_UIBarItem = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIBarItem, // classInitializer

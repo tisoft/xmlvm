@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_MKMapRect.h"
 
+#define XMLVM_CURRENT_CLASS_NAME MKMapRect
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MKMapRect
+
 __TIB_DEFINITION_org_xmlvm_iphone_MKMapRect __TIB_org_xmlvm_iphone_MKMapRect = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MKMapRect, // classInitializer

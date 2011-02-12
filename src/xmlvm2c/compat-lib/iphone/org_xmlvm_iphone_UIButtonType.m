@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIButtonType.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIButtonType
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIButtonType
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIButtonType __TIB_org_xmlvm_iphone_UIButtonType = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIButtonType, // classInitializer

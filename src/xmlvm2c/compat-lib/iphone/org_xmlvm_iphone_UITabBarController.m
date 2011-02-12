@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_UITabBarController.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UITabBarController
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITabBarController
+
 __TIB_DEFINITION_org_xmlvm_iphone_UITabBarController __TIB_org_xmlvm_iphone_UITabBarController = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UITabBarController, // classInitializer

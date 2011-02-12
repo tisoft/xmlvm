@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_MessageComposeResult.h"
 
+#define XMLVM_CURRENT_CLASS_NAME MessageComposeResult
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MessageComposeResult
+
 __TIB_DEFINITION_org_xmlvm_iphone_MessageComposeResult __TIB_org_xmlvm_iphone_MessageComposeResult = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MessageComposeResult, // classInitializer

@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_SKProductsRequestDelegate.h"
 
+#define XMLVM_CURRENT_CLASS_NAME SKProductsRequestDelegate
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_SKProductsRequestDelegate
+
 __TIB_DEFINITION_org_xmlvm_iphone_SKProductsRequestDelegate __TIB_org_xmlvm_iphone_SKProductsRequestDelegate = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_SKProductsRequestDelegate, // classInitializer

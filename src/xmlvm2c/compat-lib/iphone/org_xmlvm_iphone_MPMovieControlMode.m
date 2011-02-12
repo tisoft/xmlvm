@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_MPMovieControlMode.h"
 
+#define XMLVM_CURRENT_CLASS_NAME MPMovieControlMode
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MPMovieControlMode
+
 __TIB_DEFINITION_org_xmlvm_iphone_MPMovieControlMode __TIB_org_xmlvm_iphone_MPMovieControlMode = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MPMovieControlMode, // classInitializer

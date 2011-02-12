@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_UIActionSheetDelegate.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIActionSheetDelegate
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIActionSheetDelegate
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIActionSheetDelegate __TIB_org_xmlvm_iphone_UIActionSheetDelegate = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIActionSheetDelegate, // classInitializer

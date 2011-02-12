@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIEvent.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIEvent
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIEvent
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIEvent __TIB_org_xmlvm_iphone_UIEvent = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIEvent, // classInitializer

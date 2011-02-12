@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIScreen.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIScreen
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIScreen
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIScreen __TIB_org_xmlvm_iphone_UIScreen = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIScreen, // classInitializer

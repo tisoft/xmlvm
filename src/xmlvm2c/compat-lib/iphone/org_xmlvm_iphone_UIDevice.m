@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIDevice.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIDevice
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIDevice
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIDevice __TIB_org_xmlvm_iphone_UIDevice = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIDevice, // classInitializer

@@ -5,6 +5,9 @@
 
 #include "org_xmlvm_iphone_NSCalendar.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSCalendar
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSCalendar
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSCalendar __TIB_org_xmlvm_iphone_NSCalendar = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSCalendar, // classInitializer

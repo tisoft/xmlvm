@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_UINavigationController.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UINavigationController
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UINavigationController
+
 __TIB_DEFINITION_org_xmlvm_iphone_UINavigationController __TIB_org_xmlvm_iphone_UINavigationController = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UINavigationController, // classInitializer

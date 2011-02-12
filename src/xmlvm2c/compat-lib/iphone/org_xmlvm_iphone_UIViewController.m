@@ -6,6 +6,9 @@
 
 #include "org_xmlvm_iphone_UIViewController.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIViewController
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIViewController
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIViewController __TIB_org_xmlvm_iphone_UIViewController = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIViewController, // classInitializer

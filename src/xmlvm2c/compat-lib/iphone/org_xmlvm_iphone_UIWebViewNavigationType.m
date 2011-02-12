@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIWebViewNavigationType.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIWebViewNavigationType
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIWebViewNavigationType
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIWebViewNavigationType __TIB_org_xmlvm_iphone_UIWebViewNavigationType = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIWebViewNavigationType, // classInitializer

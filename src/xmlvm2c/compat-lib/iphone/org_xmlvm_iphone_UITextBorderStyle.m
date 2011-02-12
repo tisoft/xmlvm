@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UITextBorderStyle.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UITextBorderStyle
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITextBorderStyle
+
 __TIB_DEFINITION_org_xmlvm_iphone_UITextBorderStyle __TIB_org_xmlvm_iphone_UITextBorderStyle = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UITextBorderStyle, // classInitializer

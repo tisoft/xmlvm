@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UIReturnKeyType.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIReturnKeyType
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIReturnKeyType
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIReturnKeyType __TIB_org_xmlvm_iphone_UIReturnKeyType = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIReturnKeyType, // classInitializer

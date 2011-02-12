@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_CGDataProvider.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CGDataProvider
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGDataProvider
+
 __TIB_DEFINITION_org_xmlvm_iphone_CGDataProvider __TIB_org_xmlvm_iphone_CGDataProvider = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CGDataProvider, // classInitializer

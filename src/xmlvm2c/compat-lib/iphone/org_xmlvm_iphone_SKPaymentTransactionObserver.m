@@ -5,6 +5,9 @@
 
 #include "org_xmlvm_iphone_SKPaymentTransactionObserver.h"
 
+#define XMLVM_CURRENT_CLASS_NAME SKPaymentTransactionObserver
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_SKPaymentTransactionObserver
+
 __TIB_DEFINITION_org_xmlvm_iphone_SKPaymentTransactionObserver __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_SKPaymentTransactionObserver, // classInitializer

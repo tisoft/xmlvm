@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_CLDeviceOrientation.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CLDeviceOrientation
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CLDeviceOrientation
+
 __TIB_DEFINITION_org_xmlvm_iphone_CLDeviceOrientation __TIB_org_xmlvm_iphone_CLDeviceOrientation = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CLDeviceOrientation, // classInitializer

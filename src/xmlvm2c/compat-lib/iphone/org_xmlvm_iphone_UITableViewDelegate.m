@@ -5,6 +5,9 @@
 
 #include "org_xmlvm_iphone_UITableViewDelegate.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UITableViewDelegate
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITableViewDelegate
+
 __TIB_DEFINITION_org_xmlvm_iphone_UITableViewDelegate __TIB_org_xmlvm_iphone_UITableViewDelegate = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UITableViewDelegate, // classInitializer

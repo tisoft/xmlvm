@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_MPMovieScalingMode.h"
 
+#define XMLVM_CURRENT_CLASS_NAME MPMovieScalingMode
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MPMovieScalingMode
+
 __TIB_DEFINITION_org_xmlvm_iphone_MPMovieScalingMode __TIB_org_xmlvm_iphone_MPMovieScalingMode = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MPMovieScalingMode, // classInitializer

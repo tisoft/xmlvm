@@ -5,6 +5,9 @@
 
 #include "org_xmlvm_iphone_UIWebViewDelegate.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIWebViewDelegate
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIWebViewDelegate
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIWebViewDelegate __TIB_org_xmlvm_iphone_UIWebViewDelegate = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIWebViewDelegate, // classInitializer

@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_CGPoint.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CGPoint
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGPoint
+
 __TIB_DEFINITION_org_xmlvm_iphone_CGPoint __TIB_org_xmlvm_iphone_CGPoint = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CGPoint, // classInitializer

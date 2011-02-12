@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_UITableViewCellEditingStyle.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UITableViewCellEditingStyle
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITableViewCellEditingStyle
+
 __TIB_DEFINITION_org_xmlvm_iphone_UITableViewCellEditingStyle __TIB_org_xmlvm_iphone_UITableViewCellEditingStyle = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UITableViewCellEditingStyle, // classInitializer

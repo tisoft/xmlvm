@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_UIImageView.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIImageView
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIImageView
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIImageView __TIB_org_xmlvm_iphone_UIImageView = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIImageView, // classInitializer
@@ -199,11 +202,11 @@ void org_xmlvm_iphone_UIImageView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT 
 void org_xmlvm_iphone_UIImageView_setImage___org_xmlvm_iphone_UIImage(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImageView_setImage___org_xmlvm_iphone_UIImage]
-    org_xmlvm_iphone_UIImageView* thiz = me;
-    org_xmlvm_iphone_UIImage* image = n1;
-    thiz->fields.org_xmlvm_iphone_UIImageView.image = image;
-    UIImage* image_ = image->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    [((UIImageView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setImage:image_];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIImage, image, n1);
+    
+    jthiz->fields.org_xmlvm_iphone_UIImageView.image = jimage;
+    [thiz setImage:image];
     //XMLVM_END_WRAPPER
 }
 

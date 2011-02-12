@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_UIFont.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIFont
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIFont
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIFont __TIB_org_xmlvm_iphone_UIFont = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIFont, // classInitializer

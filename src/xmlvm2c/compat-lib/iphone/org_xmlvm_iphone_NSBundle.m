@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_NSBundle.h"
 
+#define XMLVM_CURRENT_CLASS_NAME NSBundle
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSBundle
+
 __TIB_DEFINITION_org_xmlvm_iphone_NSBundle __TIB_org_xmlvm_iphone_NSBundle = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSBundle, // classInitializer

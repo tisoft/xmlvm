@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_CGBitmapContext.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CGBitmapContext
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGBitmapContext
+
 __TIB_DEFINITION_org_xmlvm_iphone_CGBitmapContext __TIB_org_xmlvm_iphone_CGBitmapContext = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CGBitmapContext, // classInitializer

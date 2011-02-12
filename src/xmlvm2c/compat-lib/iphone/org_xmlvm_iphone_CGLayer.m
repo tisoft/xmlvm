@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_CGLayer.h"
 
+#define XMLVM_CURRENT_CLASS_NAME CGLayer
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGLayer
+
 __TIB_DEFINITION_org_xmlvm_iphone_CGLayer __TIB_org_xmlvm_iphone_CGLayer = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CGLayer, // classInitializer

@@ -4,6 +4,9 @@
 
 #include "org_xmlvm_iphone_UIPreferencesTable.h"
 
+#define XMLVM_CURRENT_CLASS_NAME UIPreferencesTable
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIPreferencesTable
+
 __TIB_DEFINITION_org_xmlvm_iphone_UIPreferencesTable __TIB_org_xmlvm_iphone_UIPreferencesTable = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIPreferencesTable, // classInitializer

@@ -2,6 +2,9 @@
 
 #include "org_xmlvm_iphone_MKCoordinateSpan.h"
 
+#define XMLVM_CURRENT_CLASS_NAME MKCoordinateSpan
+#define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MKCoordinateSpan
+
 __TIB_DEFINITION_org_xmlvm_iphone_MKCoordinateSpan __TIB_org_xmlvm_iphone_MKCoordinateSpan = {
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MKCoordinateSpan, // classInitializer
