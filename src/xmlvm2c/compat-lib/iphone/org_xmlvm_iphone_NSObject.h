@@ -60,6 +60,8 @@ void org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wr
 
 @interface DelegateWrapper : NSObject {
     NSMutableDictionary* sources;
+    NSObject* source;
+    JAVA_OBJECT source_;
 }
 
 - (id) init;

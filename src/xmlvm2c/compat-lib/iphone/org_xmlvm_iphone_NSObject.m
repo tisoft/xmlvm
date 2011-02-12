@@ -27,7 +27,9 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_ARRAYTYPE;
 - (id) init
 {
     [super init];
-    sources = [[NSMutableDictionary alloc] init];
+    sources = nil;
+    source = nil;
+    source_ = nil;
     return self;
 }
 
@@ -37,21 +39,39 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_ARRAYTYPE;
     [super dealloc];
 }
 
-- (void) addSource: (JAVA_OBJECT) source : (NSObject*) source_o
+- (void) addSource: (JAVA_OBJECT) src_ : (NSObject*) src
 {
-    NSValue* key = [[NSValue alloc] initWithBytes: &source_o objCType: @encode(NSObject*)];
-    NSValue* value = [[NSValue alloc] initWithBytes: &source objCType: @encode(JAVA_OBJECT)];
-    [sources setObject: value forKey: key];
-    [key release];
+    if (source == nil) {
+        source = src;
+        source_ = src_;
+    }
+    else {
+        if (sources == nil) {
+            sources = [[NSMutableDictionary alloc] init];
+            NSValue* key = [[NSValue alloc] initWithBytes: &source objCType: @encode(NSObject*)];
+            NSValue* value = [[NSValue alloc] initWithBytes: &source_ objCType: @encode(JAVA_OBJECT)];
+            [sources setObject: value forKey: key];
+            [key release];
+        }
+        
+        NSValue* key = [[NSValue alloc] initWithBytes: &src objCType: @encode(NSObject*)];
+        NSValue* value = [[NSValue alloc] initWithBytes: &src_ objCType: @encode(JAVA_OBJECT)];
+        [sources setObject: value forKey: key];
+        [key release];
+    }
 }
 
-- (JAVA_OBJECT) getSource: (NSObject*) source_o
+- (JAVA_OBJECT) getSource: (NSObject*) src
 {
-    NSValue* key = [[NSValue alloc] initWithBytes: &source_o objCType: @encode(NSObject*)];
+    if (sources == nil) {
+        return source_;
+    }
+    
+    NSValue* key = [[NSValue alloc] initWithBytes: &src objCType: @encode(NSObject*)];
     NSValue* value = [sources objectForKey: key];
-    JAVA_OBJECT source = [value pointerValue];
+    JAVA_OBJECT src_ = [value pointerValue];
     [key release];
-    return source;
+    return src_;
 }
 
 @end
