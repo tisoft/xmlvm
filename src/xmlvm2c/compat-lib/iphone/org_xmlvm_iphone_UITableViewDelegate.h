@@ -33,10 +33,9 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDelegate_ARRAYTYPE;
 
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewDelegate
 
-@interface UITableViewDelegateWrapper : NSObject <UITableViewDelegate>
+@interface UITableViewDelegateWrapper : DelegateWrapper <UITableViewDelegate>
 {
     @public JAVA_OBJECT delegate_;
-    @public org_xmlvm_iphone_UITableView* tableView_;
 }
 
 - (id) initWithDelegate: (JAVA_OBJECT) d_;

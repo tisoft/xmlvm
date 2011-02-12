@@ -34,6 +34,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDelegate_ARRAYTYPE;
 
 - (CGFloat) tableView: (UITableView*) tableView heightForRowAtIndexPath: (NSIndexPath*) indexPath;
 {
+    org_xmlvm_iphone_UITableView* tableView_ = [self getSource: tableView];
     Func_FOOO callback = (Func_FOOO) ((org_xmlvm_iphone_UITableViewDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDelegate_heightForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath];
     org_xmlvm_iphone_NSIndexPath* indexPath_ = __NEW_org_xmlvm_iphone_NSIndexPath();
     org_xmlvm_iphone_NSIndexPath_INTERNAL_CONSTRUCTOR(indexPath_, [indexPath retain]);

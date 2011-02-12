@@ -532,7 +532,7 @@ void org_xmlvm_iphone_UITableView_setDataSource___org_xmlvm_iphone_UITableViewDa
     ((org_xmlvm_iphone_UITableView*) me)->fields.org_xmlvm_iphone_UITableView.dataSource_ = n1;
     UITableView* tableView = (UITableView*) ((org_xmlvm_iphone_UITableView*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
     UITableViewDataSourceWrapper* dataSource = ((org_xmlvm_iphone_UITableViewDataSource*) n1)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    dataSource->tableView_ = me;
+    [dataSource addSource: me: tableView];
     tableView.dataSource = dataSource;
     //XMLVM_END_WRAPPER
 }
@@ -543,7 +543,7 @@ void org_xmlvm_iphone_UITableView_setDelegate___org_xmlvm_iphone_UITableViewDele
     ((org_xmlvm_iphone_UITableView*) me)->fields.org_xmlvm_iphone_UITableView.delegate_ = n1;
     UITableView* tableView = (UITableView*) ((org_xmlvm_iphone_UITableView*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
     UITableViewDelegateWrapper* delegate = ((org_xmlvm_iphone_UITableViewDelegate*) n1)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    delegate->tableView_ = me;
+    [delegate addSource: me: tableView];
     tableView.delegate = delegate;
     //XMLVM_END_WRAPPER
 }

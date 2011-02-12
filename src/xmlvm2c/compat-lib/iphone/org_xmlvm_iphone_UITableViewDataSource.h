@@ -29,10 +29,9 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDataSource_ARRAYTYPE;
 
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewDataSource
 
-@interface UITableViewDataSourceWrapper : NSObject <UITableViewDataSource>
+@interface UITableViewDataSourceWrapper : DelegateWrapper <UITableViewDataSource>
 {
     @public JAVA_OBJECT dataSource_;
-    @public org_xmlvm_iphone_UITableView* tableView_;
 }
 
 - (id) initWithDataSource: (JAVA_OBJECT) source_;
