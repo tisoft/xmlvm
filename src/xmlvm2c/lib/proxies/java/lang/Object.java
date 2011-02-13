@@ -17,6 +17,8 @@
 
 package java.lang;
 
+import org.xmlvm.runtime.Mutex;
+
 /**
  * The root class of the Java class hierarchy. All non-primitive types
  * (including arrays) inherit either directly or indirectly from this class.
@@ -325,4 +327,90 @@ public class Object {
      * @see java.lang.Thread
      */
     native public final void wait(long millis, int nanos) throws InterruptedException;
+
+    ////////////////////////////////////////////////
+    // synchronized implementation
+    ////////////////////////////////////////////////
+
+    /**
+     * In order to reduce the state size for each object, members that are not
+     * used for most objects are confined to this object. All objects will have
+     * one of these objects as part of their state, but it will usually be null.
+     */
+    private static class AddedMembers {
+        public int recursiveLocks = 0; // the number of recursive locks. If only synchronized once, this is 1
+        public Thread owningThread; // the thread that owns the lock or null for none
+        public Mutex instanceMutex;
+    }
+
+    private static Mutex staticMutex = new Mutex();
+    private AddedMembers addedMembers = null;
+
+    private void syncLock() {
+        if (addedMembers.instanceMutex == null) {
+            addedMembers.instanceMutex = new Mutex();
+        }
+        addedMembers.instanceMutex.lock();
+
+        Thread curThread = Thread.currentThread();
+        staticMutex.lock();
+        {
+            this.addedMembers.owningThread = curThread;
+        }
+        staticMutex.unlock();
+    }
+
+    private void syncUnlock() {
+        staticMutex.lock();
+        {
+            this.addedMembers.owningThread = null;
+        }
+        staticMutex.unlock();
+
+        addedMembers.instanceMutex.unlock();
+    }
+
+    /**
+     * Do not delete this! Although it appears not to be used, it is called from
+     * a native method.
+     *
+     * @return true if the lock was acquired or false if the thread already had
+     *         the lock
+     */
+    @SuppressWarnings("unused")
+    private final boolean acquireLockRecursive() {
+        boolean acquireLock = false;
+
+        Thread curThread = Thread.currentThread();
+        staticMutex.lock();
+        {
+            if (addedMembers == null) {
+                addedMembers = new AddedMembers();
+            }
+            acquireLock = !curThread.equals(this.addedMembers.owningThread);
+        }
+        staticMutex.unlock();
+
+        if (acquireLock) {
+            this.syncLock();
+        }
+        this.addedMembers.recursiveLocks++;
+        //log.debug("---    Locked                       level " + this.recursiveLocks + ", Hash (mostly unique): " + this.syncMutex.hashCode());
+
+        return acquireLock;
+    }
+
+    /**
+     * Do not delete this! Although it appears not to be used, it is called from
+     * a native method.
+     */
+    @SuppressWarnings("unused")
+    private final void releaseLockRecursive() {
+        //log.debug("--- Unlocking                       level " + this.recursiveLocks + ", Hash (mostly unique): " + this.syncMutex.hashCode());
+        this.addedMembers.recursiveLocks--;
+        //if (acquireLock) {
+        if (this.addedMembers.recursiveLocks == 0) {
+            this.syncUnlock();
+        }
+    }
 }

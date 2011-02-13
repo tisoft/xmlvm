@@ -65,6 +65,7 @@
   <xsl:text>
 
 //#if 0
+#include &lt;pthread.h&gt; // for pthread_exit so the main thread doesn't terminate early
 int main(int argc, char* argv[])
 {
     xmlvm_init();
@@ -74,6 +75,9 @@ int main(int argc, char* argv[])
     <xsl:text>_</xsl:text>
     <xsl:value-of select="$cl/@name"/>
     <xsl:text>_main___java_lang_String_ARRAYTYPE(JAVA_NULL);
+    // Call pthread_exit(0) so that the main thread does not terminate until
+    // the other threads have finished
+    pthread_exit(0);
     return 0;
 }
 //#endif
@@ -2143,14 +2147,16 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:monitor-enter">
-  <!-- TODO we can't map this to @synchronized {} because DEX may
-       generate multiple monitor-exit for one monitor-enter -->
+  <xsl:text>    java_lang_Object_acquireLockRecursive__(_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o);&nl;</xsl:text>
 </xsl:template>
 
 
 <xsl:template match="dex:monitor-exit">
-  <!-- TODO we can't map this to @synchronized {} because DEX may
-       generate multiple monitor-exit for one monitor-enter -->
+  <xsl:text>    java_lang_Object_releaseLockRecursive__(_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o);&nl;</xsl:text>
 </xsl:template>
 
 
