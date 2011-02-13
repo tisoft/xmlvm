@@ -891,9 +891,10 @@ void org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String(JAVA_OBJECT 
 void org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate]
-    org_xmlvm_iphone_UITextFieldDelegate* delegate = n1;
-    UITextFieldDelegateWrapper* delegateWrapper = delegate->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
     org_xmlvm_iphone_UITextField* thiz = me;
+    org_xmlvm_iphone_UITextFieldDelegate* delegate = n1;
+    thiz->fields.org_xmlvm_iphone_UITextField.delegate_ = n1;
+    UITextFieldDelegateWrapper* delegateWrapper = delegate->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
     UITextField* textField = ((UITextField*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj));
     [delegateWrapper addSource: thiz: textField];
     [textField setDelegate:delegateWrapper];
