@@ -24,6 +24,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextField_ARRAYTYPE;
 #import <UIKit/UIKit.h>
 
 #import <UIKit/UITextField.h>
+#import "org_xmlvm_iphone_UIControl.h"
 #include "org_xmlvm_iphone_NSString.h"
 
 
@@ -632,6 +633,7 @@ void __INIT_org_xmlvm_iphone_UITextField()
 void __DELETE_org_xmlvm_iphone_UITextField(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UITextField]
+    __DELETE_org_xmlvm_iphone_UIControl(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -641,6 +643,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITextField()
     org_xmlvm_iphone_UITextField* me = (org_xmlvm_iphone_UITextField*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITextField));
     me->tib = &__TIB_org_xmlvm_iphone_UITextField;
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITextField]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UITextField);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -657,7 +660,7 @@ void org_xmlvm_iphone_UITextField___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField___INIT___]
     UITextField* obj = [[UITextField alloc] init];
-    org_xmlvm_iphone_UITextField_INTERNAL_CONSTRUCTOR(me, obj);
+    org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
@@ -763,18 +766,20 @@ JAVA_BOOLEAN org_xmlvm_iphone_UITextField_isSecureTextEntry__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UITextField_setSecureTextEntry___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setSecureTextEntry___boolean]
-    org_xmlvm_iphone_UITextField* thiz_ = me;
-    UITextField* thiz = thiz_->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    thiz.secureTextEntry = n1;
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_BOOLEAN(secureFlag, n1);
+    
+    thiz.secureTextEntry = secureFlag;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITextField_setText___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setText___java_lang_String]
-    org_xmlvm_iphone_UITextField* thiz = me;
-    NSString* text = toNSString(n1);
-    [((UITextField*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setText:text];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(text, n1);
+    
+    thiz.text = text;
     [text release];
     //XMLVM_END_WRAPPER
 }
@@ -782,62 +787,71 @@ void org_xmlvm_iphone_UITextField_setText___java_lang_String(JAVA_OBJECT me, JAV
 JAVA_OBJECT org_xmlvm_iphone_UITextField_getText__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getText__]
-    org_xmlvm_iphone_UITextField* thiz = me;
-    NSString* text = ((UITextField*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)).text;
-    return toJavaString(text);
+    XMLVM_VAR_THIZ;
+
+    return toJavaString(thiz.text);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITextField_setTextColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setTextColor___org_xmlvm_iphone_UIColor]
-    org_xmlvm_iphone_UITextField* thiz = me;
-    org_xmlvm_iphone_UIColor* color = n1;
-    UIColor* color_ = color->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    [((UITextField*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setTextColor:color_];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIColor, color, n1);
+    
+    thiz.textColor = color;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UITextField_getTextColor__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getTextColor__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    
+    UIColor* color = thiz.textColor;
+    JAVA_OBJECT jcolor = __NEW_org_xmlvm_iphone_UIColor();
+    org_xmlvm_iphone_UIColor_INTERNAL_CONSTRUCTOR(jcolor, color);
+    return jcolor;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITextField_setBorderStyle___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setBorderStyle___int]
-    UITextField* textField = ((org_xmlvm_iphone_UITextField*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    [textField setBorderStyle: n1];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(style, n1);
+    
+    thiz.borderStyle = style;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_UITextField_getBorderStyle__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getBorderStyle__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    
+    return thiz.borderStyle;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UITextField_getFont__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getFont__]
-    org_xmlvm_iphone_UITextField* thiz = me;
-    UIFont* font = ((UITextField*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)).font;
-    JAVA_OBJECT font_ = __NEW_org_xmlvm_iphone_UIFont();
-    org_xmlvm_iphone_UIFont_INTERNAL_CONSTRUCTOR(font_, font);
-    return font_;
+    XMLVM_VAR_THIZ;
+
+    UIFont* font = thiz.font;
+    JAVA_OBJECT jfont = __NEW_org_xmlvm_iphone_UIFont();
+    org_xmlvm_iphone_UIFont_INTERNAL_CONSTRUCTOR(jfont, font);
+    return jfont;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITextField_setFont___org_xmlvm_iphone_UIFont(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setFont___org_xmlvm_iphone_UIFont]
-    org_xmlvm_iphone_UITextField* thiz_ = me;
-    UITextField* thiz = thiz_->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    org_xmlvm_iphone_UIFont* font_ = n1;
-    UIFont* font = font_->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIFont, font, n1);
+
     thiz.font = font;
     //XMLVM_END_WRAPPER
 }
@@ -880,24 +894,24 @@ void org_xmlvm_iphone_UITextField_xmlvmKeyTyped___char(JAVA_OBJECT me, JAVA_CHAR
 void org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String]
-    org_xmlvm_iphone_UITextField* thiz_ = me;
-    UITextField* thiz = thiz_->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    java_lang_String* text_ = n1;
-    NSString* text = toNSString(text_);
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(text, n1);
+    
     thiz.placeholder = text;
+    [text release];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate]
-    org_xmlvm_iphone_UITextField* thiz = me;
-    org_xmlvm_iphone_UITextFieldDelegate* delegate = n1;
-    thiz->fields.org_xmlvm_iphone_UITextField.delegate_ = n1;
-    UITextFieldDelegateWrapper* delegateWrapper = delegate->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    UITextField* textField = ((UITextField*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj));
-    [delegateWrapper addSource: thiz: textField];
-    [textField setDelegate:delegateWrapper];
+    XMLVM_VAR_THIZ;
+    
+    org_xmlvm_iphone_UITextFieldDelegate* jdelegate = n1;
+    UITextFieldDelegateWrapper* delegate = jdelegate->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    jthiz->fields.org_xmlvm_iphone_UITextField.delegate_ = jdelegate;
+    [delegate addSource: jthiz: thiz];
+    [thiz setDelegate: delegate];
     //XMLVM_END_WRAPPER
 }
 
