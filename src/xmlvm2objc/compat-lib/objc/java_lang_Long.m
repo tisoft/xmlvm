@@ -20,6 +20,8 @@
 
 #import "java_lang_Long.h"
 #import "java_lang_RuntimeException.h"
+#import "java_lang_Integer.h"
+#import "java_lang_NumberFormatException.h"
 
 // java.lang.Long
 //----------------------------------------------------------------------------
@@ -61,11 +63,12 @@
 
 + (JAVA_LONG) parseLong___java_lang_String: (java_lang_String *) str
 {
-	return atol([str UTF8String]);
+	return [java_lang_Integer parseInt___java_lang_String:str];
 }
 
 + (JAVA_LONG) parseLong___java_lang_String_int: (java_lang_String*) str :(int) radix
 {
+// TODO throw NumberFormatException when appropriate
     return strtoul([str UTF8String], nil, radix);
 }
 
