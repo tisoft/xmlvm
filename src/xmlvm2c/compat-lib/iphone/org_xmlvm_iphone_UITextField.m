@@ -187,10 +187,13 @@ static JAVA_OBJECT* __method27_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method28_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UITextFieldDelegate,
 };
 
 static JAVA_OBJECT* __method29_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UITextFieldDelegate,
+};
+
+static JAVA_OBJECT* __method30_arg_types[] = {
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -446,7 +449,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setDelegate",
+    {"getPlaceholder",
     &__method28_arg_types[0],
     sizeof(__method28_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -455,9 +458,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getDelegate",
+    {"setDelegate",
     &__method29_arg_types[0],
     sizeof(__method29_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getDelegate",
+    &__method30_arg_types[0],
+    sizeof(__method30_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -559,9 +571,12 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String(receiver, argsArray[0]);
         break;
     case 28:
-        org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate(receiver, argsArray[0]);
+        org_xmlvm_iphone_UITextField_getPlaceholder__(receiver);
         break;
     case 29:
+        org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate(receiver, argsArray[0]);
+        break;
+    case 30:
         org_xmlvm_iphone_UITextField_getDelegate__(receiver);
         break;
     default:
@@ -608,8 +623,9 @@ void __INIT_org_xmlvm_iphone_UITextField()
     __TIB_org_xmlvm_iphone_UITextField.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_UITextField_setTextAlignment___int;
     __TIB_org_xmlvm_iphone_UITextField.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_UITextField_xmlvmKeyTyped___char;
     __TIB_org_xmlvm_iphone_UITextField.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String;
-    __TIB_org_xmlvm_iphone_UITextField.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate;
-    __TIB_org_xmlvm_iphone_UITextField.vtable[99] = (VTABLE_PTR) &org_xmlvm_iphone_UITextField_getDelegate__;
+    __TIB_org_xmlvm_iphone_UITextField.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_UITextField_getPlaceholder__;
+    __TIB_org_xmlvm_iphone_UITextField.vtable[99] = (VTABLE_PTR) &org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate;
+    __TIB_org_xmlvm_iphone_UITextField.vtable[100] = (VTABLE_PTR) &org_xmlvm_iphone_UITextField_getDelegate__;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_UITextField.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UITextField.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -899,6 +915,15 @@ void org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String(JAVA_OBJECT 
     
     thiz.placeholder = text;
     [text release];
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UITextField_getPlaceholder__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getPlaceholder__]
+    XMLVM_VAR_THIZ;
+    
+    return toJavaString(thiz.placeholder);
     //XMLVM_END_WRAPPER
 }
 

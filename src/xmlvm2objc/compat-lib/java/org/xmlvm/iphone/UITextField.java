@@ -173,6 +173,10 @@ public class UITextField extends UIView {
         // TODO Auto-generated method stub
     }
 
+    public String getPlaceholder() {
+        // TODO Auto-generated method stub
+        return null;
+    }
     public void setDelegate(UITextFieldDelegate delegate) {
         this.delegate = delegate;
     }

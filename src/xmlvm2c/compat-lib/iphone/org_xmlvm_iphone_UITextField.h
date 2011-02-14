@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UITextField
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextField, 100)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextField, 101)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextField;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextField_ARRAYTYPE;
@@ -57,7 +57,7 @@ struct org_xmlvm_iphone_UITextField {
 typedef struct org_xmlvm_iphone_UITextField org_xmlvm_iphone_UITextField;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITextField 100
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITextField 101
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getAutocapitalizationType__ 70
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setAutocapitalizationType___int 71
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getAutocorrectionType__ 72
@@ -86,8 +86,9 @@ typedef struct org_xmlvm_iphone_UITextField org_xmlvm_iphone_UITextField;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setTextAlignment___int 95
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_xmlvmKeyTyped___char 96
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String 97
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate 98
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getDelegate__ 99
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getPlaceholder__ 98
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate 99
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getDelegate__ 100
 
 void __INIT_org_xmlvm_iphone_UITextField();
 void __DELETE_org_xmlvm_iphone_UITextField(void* me, void* client_data);
@@ -152,8 +153,10 @@ void org_xmlvm_iphone_UITextField_xmlvmKeyTyped___char(JAVA_OBJECT me, JAVA_CHAR
 // Vtable index: 97
 void org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 98
-void org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UITextField_getPlaceholder__(JAVA_OBJECT me);
 // Vtable index: 99
+void org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 100
 JAVA_OBJECT org_xmlvm_iphone_UITextField_getDelegate__(JAVA_OBJECT me);
 
 #endif
