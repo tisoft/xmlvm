@@ -40,7 +40,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDataSource_ARRAYTYPE;
     org_xmlvm_iphone_NSIndexPath* indexPath_ = __NEW_org_xmlvm_iphone_NSIndexPath();
     org_xmlvm_iphone_NSIndexPath_INTERNAL_CONSTRUCTOR(indexPath_, [indexPath retain]);
     org_xmlvm_iphone_UITableViewCell* cell = callback(dataSource_, tableView_, indexPath_);
-    return [cell->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj retain];
+    return [((UITableViewCell*) cell->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) retain];
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView

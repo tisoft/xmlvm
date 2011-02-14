@@ -425,8 +425,10 @@ void org_xmlvm_iphone_UITableViewCell___INIT___(JAVA_OBJECT me)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell___INIT___]
     UITableViewCellWrapper* cell = [[UITableViewCellWrapper alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
     org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, cell);
-    ((org_xmlvm_iphone_UITableViewCell*) me)->fields.org_xmlvm_iphone_UITableViewCell.contentView_ = JAVA_NULL;
-    [cell setWrappedCObj: ((org_xmlvm_iphone_UITableViewCell*) me)];
+    
+    XMLVM_VAR_THIZ;
+    jthiz->fields.org_xmlvm_iphone_UITableViewCell.jcontentView = JAVA_NULL;
+    [cell setWrappedCObj: jthiz];
     //XMLVM_END_WRAPPER
 }
 
@@ -461,25 +463,25 @@ JAVA_INT org_xmlvm_iphone_UITableViewCell_getEditingStyle__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UITableViewCell_layoutSubviews__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell_layoutSubviews__]
-    org_xmlvm_iphone_UITableViewCell* thiz = (org_xmlvm_iphone_UITableViewCell*) me;
-    UITableViewCellWrapper* cell = (UITableViewCellWrapper*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    [cell superLayoutSubviews];
+    XMLVM_VAR_THIZ;
+    
+    [((UITableViewCellWrapper*) thiz) superLayoutSubviews];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UITableViewCell_getContentView__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell_getContentView__]
-    org_xmlvm_iphone_UITableViewCell* thiz = (org_xmlvm_iphone_UITableViewCell*) me;
-    if (thiz->fields.org_xmlvm_iphone_UITableViewCell.contentView_ == JAVA_NULL) {
-        UITableViewCell* cell = (UITableViewCell*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-        UIView* contentView = [cell.contentView retain];
+    XMLVM_VAR_THIZ;
+    
+    if (jthiz->fields.org_xmlvm_iphone_UITableViewCell.jcontentView == JAVA_NULL) {
+        UIView* contentView = [thiz.contentView retain];
         org_xmlvm_iphone_UIView* v = __NEW_org_xmlvm_iphone_UIView();
         org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(v, contentView);
-        thiz->fields.org_xmlvm_iphone_UITableViewCell.contentView_ = v;
+        jthiz->fields.org_xmlvm_iphone_UITableViewCell.jcontentView = v;
     }
 
-    return thiz->fields.org_xmlvm_iphone_UITableViewCell.contentView_;
+    return jthiz->fields.org_xmlvm_iphone_UITableViewCell.jcontentView;
     //XMLVM_END_WRAPPER
 }
 
