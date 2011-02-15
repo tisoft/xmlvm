@@ -51,6 +51,11 @@ JAVA_OBJECT convertAttributes(NSDictionary* attributes)
 
 - (void) setParser:(JAVA_OBJECT) parser_
 {
+	// TODO: Make use of DelegateWrapper bases class to support multiple source classes
+	if (self->parser != JAVA_NULL) {
+		XMLVM_INTERNAL_ERROR();
+	}
+	
     self->parser = parser_;
 }
 

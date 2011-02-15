@@ -26,11 +26,17 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_ARRAYTYPE;
 {
     [super init];
     delegate_ = d_;
+    connection_ = JAVA_NULL;
     return self;
 }
 
 - (void) setConnection: (org_xmlvm_iphone_NSURLConnection*) c_
 {
+	// TODO: Make use of DelegateWrapper bases class to support multiple source classes
+	if (connection_ != JAVA_NULL) {
+		XMLVM_INTERNAL_ERROR();
+	}
+	
     connection_ = c_;
 }
 

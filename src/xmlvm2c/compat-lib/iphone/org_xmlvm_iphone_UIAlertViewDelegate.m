@@ -30,6 +30,11 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_ARRAYTYPE;
 
 - (void) setAlertView:(JAVA_OBJECT) alertView_
 {
+	// TODO: Make use of DelegateWrapper bases class to support multiple source classes
+	if (self->alertView != JAVA_NULL) {
+		XMLVM_INTERNAL_ERROR();
+	}
+
     self->alertView = alertView_;
 }
 
