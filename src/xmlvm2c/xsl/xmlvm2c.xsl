@@ -2173,8 +2173,14 @@ int main(int argc, char* argv[])
   <xsl:value-of select="$id"/>
   <xsl:text>, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
   <xsl:for-each select="dex:catch">
+    <xsl:variable name="type" select="vm:fixname(@exception-type)"/>
+    <xsl:text>        if (!__TIB_</xsl:text>
+    <xsl:value-of select="$type"/>
+    <xsl:text>.classInitialized) __INIT_</xsl:text>
+    <xsl:value-of select="$type"/>
+    <xsl:text>();&nl;</xsl:text>
     <xsl:text>        if (XMLVM_ISA(xmlvm_exception, __CLASS_</xsl:text>
-    <xsl:value-of select="vm:fixname(@exception-type)"/>
+    <xsl:value-of select="$type"/>
     <xsl:text>)) goto label</xsl:text>
     <xsl:value-of select="@target"/>
     <xsl:text>;&nl;</xsl:text>
