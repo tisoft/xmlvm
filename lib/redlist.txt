@@ -1677,7 +1677,6 @@ org.omg.IIOP.BiDirIIOPServiceContext
 javax.swing.text.html.HTMLEditorKit$HeadTagView
 org.omg.CSIIOP.TransportAddressHolder
 java.security.spec.DSAPrivateKeySpec
-org.apache.harmony.luni.internal.net.www.protocol.http.Header
 java.security.Provider
 java.beans.AwtMenuPersistenceDelegate
 javax.swing.undo.StateEdit
@@ -2523,7 +2522,6 @@ com.ibm.icu.impl.duration.impl.RecordReader
 javax.swing.text.JTextComponent
 org.apache.xerces.impl.xs.traversers.XSDElementTraverser
 org.w3c.dom.html.HTMLLinkElement
-org.apache.harmony.luni.internal.net.www.protocol.http.HttpConnection
 org.apache.xpath.patterns.FunctionPattern
 java.awt.CheckboxMenuItem$AccessibleAWTCheckboxMenuItem
 javax.swing.plaf.basic.BasicDesktopPaneUI$SelectFrameAction$1
@@ -3280,7 +3278,6 @@ org.apache.yoko.orb.OBPortableServer.InterceptorCallPolicy_impl
 org.apache.harmony.unpack200.bytecode.ClassFileEntry
 org.omg.CORBA.EnumMemberSeqHolder
 javax.swing.plaf.synth.XMLSynthParser
-org.apache.harmony.luni.internal.net.www.protocol.http.Handler
 org.apache.harmony.rmi.server.DGCImpl$ExpirationTracker
 javax.swing.SortingFocusTraversalPolicy
 java.beans.AwtContainerPersistenceDelegate
@@ -3808,7 +3805,6 @@ java.awt.Component$ImageParameters
 org.omg.CORBA.WCharSeqHolder
 javax.swing.text.DefaultEditorKit$DefaultKeyTypedAction
 javax.jws.WebMethod
-org.apache.harmony.luni.internal.net.www.protocol.http.HttpURLConnectionImpl
 org.apache.yoko.rmi.util.stub.Util$1
 org.apache.xml.security.transforms.Transform$1
 com.ibm.icu.impl.UCharacterName$AlgorithmName
@@ -5694,7 +5690,6 @@ org.omg.IOP.TAG_ASSOCIATION_OPTIONS
 org.apache.xalan.transformer.TransformState
 org.omg.CORBA.NVList
 java.sql.DatabaseMetaData
-org.apache.harmony.luni.internal.net.www.protocol.http.HttpURLConnectionImpl$HttpOutputStream
 org.apache.harmony.security.asn1.ASN1OpenType$Id
 com.ibm.icu.impl.UCaseProps$IsAcceptable
 org.apache.xml.security.encryption.XMLCipher$1
@@ -6609,7 +6604,6 @@ org.apache.yoko.orb.OB.Version
 org.apache.bcel.generic.F2L
 org.apache.xerces.parsers.AbstractDOMParser$Abort
 org.omg.CosNaming.IstringHelper
-org.apache.harmony.luni.internal.net.www.protocol.http.HttpURLConnectionImpl$ChunkedInputStream
 org.apache.xerces.impl.XMLErrorReporter$1
 org.apache.yoko.orb.OB.ConnectTimeoutPolicyHelper
 org.omg.Security.Integrity
@@ -6631,7 +6625,6 @@ com.ibm.icu.impl.data.HolidayBundle_fr_CA
 org.omg.CORBA.ValueBaseHolder
 org.apache.yoko.orb.OBCORBA.ORBSingleton_impl
 javax.management.remote.JMXPrincipal
-org.apache.harmony.luni.internal.net.www.protocol.http.HttpURLConnectionImpl$LimitedInputStream
 org.apache.xalan.transformer.TransformerClient
 org.apache.harmony.security.x509.AccessDescription$1
 org.apache.xerces.stax.events.ProcessingInstructionImpl
@@ -7504,7 +7497,6 @@ org.apache.harmony.unpack200.NewAttributeBands$Call
 org.apache.harmony.security.x509.OtherName$1
 com.ibm.icu.text.DateIntervalFormat
 org.apache.harmony.x.swing.text.rtf.DocumentRTFHandler
-org.apache.harmony.luni.internal.net.www.protocol.http.HttpConnectionManager$ConnectionPool
 org.apache.xml.security.utils.resolver.implementations.ResolverXPointer
 javax.swing.plaf.multi.MultiSeparatorUI
 javax.naming.StringRefAddr
@@ -7648,7 +7640,6 @@ org.apache.harmony.niochar.charset.additional.x_IBM1025$Encoder
 org.apache.yoko.orb.OB.RetryPolicyHelper
 javax.swing.plaf.synth.DefaultStyleFactory
 org.omg.DynamicAny.DynValueBoxHolder
-org.apache.harmony.luni.internal.net.www.protocol.http.HttpConfiguration
 javax.xml.ws.wsaddressing.W3CEndpointReference$ReferenceParametersType
 java.beans.MethodPersistenceDelegate
 javax.swing.plaf.basic.BasicTableUI$WidthInfo
@@ -8833,7 +8824,6 @@ com.ibm.icu.text.TransliteratorParser$RuleHalf
 javax.swing.JTextArea$AccessibleJTextArea
 javax.management.BinaryRelQueryExp
 org.apache.harmony.awt.ContextStorage
-org.apache.harmony.luni.internal.net.www.protocol.http.HttpURLConnectionImpl$1
 javax.management.monitor.MonitorSettingException
 javax.swing.SpinnerDateModel
 org.apache.xalan.res.XSLTErrorResources
@@ -13005,7 +12995,6 @@ org.omg.Messaging.QueueOrderPolicy
 com.ibm.icu.charset.CharsetUTF16$CharsetEncoderUTF16
 javax.swing.filechooser.FileNameExtensionFilter
 javax.swing.AbstractButton$2
-org.apache.harmony.luni.internal.net.www.protocol.http.HttpConnectionManager
 org.apache.harmony.xnet.provider.jsse.SSLServerSocketFactoryImpl
 javax.swing.AbstractButton$1
 org.apache.harmony.niochar.charset.CP_1257$Encoder

@@ -224,6 +224,7 @@
 		<javac srcdir="./src/xmlvm2c/lib/proxies" destdir="${xmlvm.proxies-java}" debug="${debug}">
 			<classpath>
 				<pathelement location="${xmlvm.xmlvm-util-java}" />
+				<pathelement location="lib/harmony6-build.jar" />
 			</classpath>
 			<include name="**/*.java" />
 		</javac>
