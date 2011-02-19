@@ -16,7 +16,15 @@ void java_lang_Object_initNativeLayer__()
 JAVA_OBJECT java_lang_Object_clone__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_clone__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    //TODO check for ImplementsClonable interface
+    java_lang_Object* thiz = me;
+    int instanceSize = thiz->tib->sizeInstance;
+    if (instanceSize == -1) {
+        XMLVM_INTERNAL_ERROR();
+    }
+    JAVA_OBJECT clone = XMLVM_MALLOC(instanceSize);
+    XMLVM_MEMCPY(clone, me, sizeInstance);
+    return clone;
     //XMLVM_END_NATIVE
 }
 
