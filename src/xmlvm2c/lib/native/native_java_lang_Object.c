@@ -18,11 +18,11 @@ JAVA_OBJECT java_lang_Object_clone__(JAVA_OBJECT me)
     //XMLVM_BEGIN_NATIVE[java_lang_Object_clone__]
     //TODO check for ImplementsClonable interface
     java_lang_Object* thiz = me;
-    int instanceSize = thiz->tib->sizeInstance;
-    if (instanceSize == -1) {
+    int sizeInstance = thiz->tib->sizeInstance;
+    if (sizeInstance == -1) {
         XMLVM_INTERNAL_ERROR();
     }
-    JAVA_OBJECT clone = XMLVM_MALLOC(instanceSize);
+    JAVA_OBJECT clone = XMLVM_MALLOC(sizeInstance);
     XMLVM_MEMCPY(clone, me, sizeInstance);
     return clone;
     //XMLVM_END_NATIVE
