@@ -15,6 +15,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UISearchBar __TIB_org_xmlvm_iphone_UISearchBar
     __INIT_org_xmlvm_iphone_UISearchBar, // classInitializer
     "org.xmlvm.iphone.UISearchBar", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIControl, // extends
+    sizeof(org_xmlvm_iphone_UISearchBar), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISearchBar;

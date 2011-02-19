@@ -16,7 +16,7 @@ void java_lang_Object_initNativeLayer__()
 JAVA_OBJECT java_lang_Object_clone__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_clone__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -30,7 +30,7 @@ JAVA_BOOLEAN java_lang_Object_equals___java_lang_Object(JAVA_OBJECT me, JAVA_OBJ
 void java_lang_Object_finalize_java_lang_Object__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_finalize_java_lang_Object__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -52,42 +52,42 @@ JAVA_INT java_lang_Object_hashCode__(JAVA_OBJECT me)
 void java_lang_Object_notify__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_notify__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Object_notifyAll__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_notifyAll__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Object_toString__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_toString__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Object_wait__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_wait__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Object_wait___long(JAVA_OBJECT me, JAVA_LONG n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_wait___long]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Object_wait___long_int(JAVA_OBJECT me, JAVA_LONG n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_wait___long_int]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 

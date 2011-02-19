@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSLocale __TIB_org_xmlvm_iphone_NSLocale = {
     __INIT_org_xmlvm_iphone_NSLocale, // classInitializer
     "org.xmlvm.iphone.NSLocale", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_NSLocale), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSLocale;

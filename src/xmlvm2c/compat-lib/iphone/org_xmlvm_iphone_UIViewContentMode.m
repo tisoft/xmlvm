@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIViewContentMode __TIB_org_xmlvm_iphone_UIVie
     __INIT_org_xmlvm_iphone_UIViewContentMode, // classInitializer
     "org.xmlvm.iphone.UIViewContentMode", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    sizeof(org_xmlvm_iphone_UIViewContentMode), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode;

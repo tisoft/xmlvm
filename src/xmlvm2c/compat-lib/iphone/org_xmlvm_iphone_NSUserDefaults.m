@@ -12,6 +12,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSUserDefaults __TIB_org_xmlvm_iphone_NSUserDe
     __INIT_org_xmlvm_iphone_NSUserDefaults, // classInitializer
     "org.xmlvm.iphone.NSUserDefaults", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_NSUserDefaults), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSUserDefaults;

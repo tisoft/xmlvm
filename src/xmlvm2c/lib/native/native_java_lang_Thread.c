@@ -16,21 +16,21 @@ void threadRunner(JAVA_OBJECT me)
 JAVA_INT java_lang_Thread_activeCount__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_activeCount__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_checkAccess__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_checkAccess__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT java_lang_Thread_countStackFrames__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_countStackFrames__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -45,168 +45,168 @@ JAVA_LONG java_lang_Thread_getCurrentThreadNativeId__()
 void java_lang_Thread_destroy__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_destroy__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_dumpStack__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_dumpStack__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT java_lang_Thread_enumerate___java_lang_Thread_ARRAYTYPE(JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_enumerate___java_lang_Thread_ARRAYTYPE]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Thread_getAllStackTraces__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_getAllStackTraces__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Thread_getContextClassLoader__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_getContextClassLoader__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Thread_getDefaultUncaughtExceptionHandler__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_getDefaultUncaughtExceptionHandler__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Thread_getStackTrace__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_getStackTrace__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Thread_getState__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_getState__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Thread_getThreadLocal___java_lang_ThreadLocal(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_getThreadLocal___java_lang_ThreadLocal]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Thread_getUncaughtExceptionHandler__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_getUncaughtExceptionHandler__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_Thread_interrupted__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_interrupted__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_Thread_isAlive__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_isAlive__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_Thread_isInterrupted__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_isInterrupted__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_join__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_join__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_join___long(JAVA_OBJECT me, JAVA_LONG n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_join___long]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_join___long_int(JAVA_OBJECT me, JAVA_LONG n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_join___long_int]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_resume__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_resume__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_setContextClassLoader___java_lang_ClassLoader(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_setContextClassLoader___java_lang_ClassLoader]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_setDaemon___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_setDaemon___boolean]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_setDefaultUncaughtExceptionHandler___java_lang_Thread_UncaughtExceptionHandler(JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_setDefaultUncaughtExceptionHandler___java_lang_Thread_UncaughtExceptionHandler]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_setPriority___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_setPriority___int]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_setThreadLocal___java_lang_ThreadLocal_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_setThreadLocal___java_lang_ThreadLocal_java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_setUncaughtExceptionHandler___java_lang_Thread_UncaughtExceptionHandler(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_setUncaughtExceptionHandler___java_lang_Thread_UncaughtExceptionHandler]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_sleep___long(JAVA_LONG n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_sleep___long]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -229,35 +229,35 @@ void java_lang_Thread_start__(JAVA_OBJECT me)
 void java_lang_Thread_stop__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_stop__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_stop___java_lang_Throwable(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_stop___java_lang_Throwable]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_suspend__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_suspend__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Thread_yield__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_yield__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_Thread_holdsLock___java_lang_Object(JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_holdsLock___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 

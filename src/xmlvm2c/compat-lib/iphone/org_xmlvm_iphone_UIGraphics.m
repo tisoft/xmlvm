@@ -12,6 +12,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIGraphics __TIB_org_xmlvm_iphone_UIGraphics =
     __INIT_org_xmlvm_iphone_UIGraphics, // classInitializer
     "org.xmlvm.iphone.UIGraphics", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    sizeof(org_xmlvm_iphone_UIGraphics), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGraphics;

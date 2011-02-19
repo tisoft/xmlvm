@@ -11,6 +11,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSErrorHolder __TIB_org_xmlvm_iphone_NSErrorHo
     __INIT_org_xmlvm_iphone_NSErrorHolder, // classInitializer
     "org.xmlvm.iphone.NSErrorHolder", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_NSErrorHolder), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSErrorHolder;

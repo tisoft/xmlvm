@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_CAAction __TIB_org_xmlvm_iphone_CAAction = {
     __INIT_org_xmlvm_iphone_CAAction, // classInitializer
     "org.xmlvm.iphone.CAAction", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    -1, // sizeInstance
     XMLVM_TYPE_INTERFACE};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAction;

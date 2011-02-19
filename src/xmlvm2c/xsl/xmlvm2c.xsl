@@ -112,7 +112,7 @@ int main(int argc, char* argv[])
       <xsl:text>    //XMLVM_BEGIN_NATIVE[</xsl:text>
       <xsl:value-of select="$mangledMethodName"/>
       <xsl:text>]&nl;</xsl:text>
-      <xsl:text>    xmlvm_unimplemented_native_method();&nl;</xsl:text>
+      <xsl:text>    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();&nl;</xsl:text>
       <xsl:text>    //XMLVM_END_NATIVE&nl;}&nl;&nl;</xsl:text>
     </xsl:for-each>
   
@@ -475,6 +475,9 @@ int main(int argc, char* argv[])
       </xsl:otherwise>
     </xsl:choose>
     <xsl:text>, // extends&nl;</xsl:text>
+    <xsl:text>    sizeof(</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>), // sizeInstance&nl;</xsl:text>
     <xsl:text>    XMLVM_TYPE_CLASS};&nl;&nl;</xsl:text>
 
     <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
@@ -932,6 +935,7 @@ int main(int argc, char* argv[])
       </xsl:otherwise>
     </xsl:choose>
     <xsl:text>, // extends&nl;</xsl:text>
+    <xsl:text>    -1, // sizeInstance&nl;</xsl:text>
     <xsl:text>    XMLVM_TYPE_INTERFACE};&nl;&nl;</xsl:text>
 
     <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>

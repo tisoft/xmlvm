@@ -17,6 +17,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UISegmentedControl __TIB_org_xmlvm_iphone_UISe
     __INIT_org_xmlvm_iphone_UISegmentedControl, // classInitializer
     "org.xmlvm.iphone.UISegmentedControl", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIControl, // extends
+    sizeof(org_xmlvm_iphone_UISegmentedControl), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISegmentedControl;

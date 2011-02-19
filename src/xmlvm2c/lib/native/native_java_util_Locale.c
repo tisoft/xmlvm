@@ -4,7 +4,7 @@
 
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
-#if __IPHONE_NA
+#ifdef __OBJC__
 #import <Foundation/NSUserDefaults.h>
 #include "org_xmlvm_iphone_NSString.h"
 #endif
@@ -13,7 +13,7 @@
 void java_util_Locale_initNativeLayer__()
 {
     //XMLVM_BEGIN_NATIVE[java_util_Locale_initNativeLayer__]
-#ifdef __IPHONE_NA
+#ifdef __OBJC__
     NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
 	NSArray* languages = [defs objectForKey:@"AppleLanguages"];
 	NSString* language_ = [languages objectAtIndex:0];
@@ -25,7 +25,7 @@ void java_util_Locale_initNativeLayer__()
     java_util_Locale_setDefault___java_util_Locale(defaultLocale);
 #else
     //TODO we need a Posix implementation
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
 #endif
     //XMLVM_END_NATIVE
 }

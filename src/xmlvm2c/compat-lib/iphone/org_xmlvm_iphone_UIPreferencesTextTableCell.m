@@ -11,6 +11,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIPreferencesTextTableCell __TIB_org_xmlvm_iph
     __INIT_org_xmlvm_iphone_UIPreferencesTextTableCell, // classInitializer
     "org.xmlvm.iphone.UIPreferencesTextTableCell", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIPreferencesTableCell, // extends
+    sizeof(org_xmlvm_iphone_UIPreferencesTextTableCell), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell;

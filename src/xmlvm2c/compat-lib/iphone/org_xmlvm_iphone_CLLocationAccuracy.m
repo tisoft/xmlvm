@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_CLLocationAccuracy __TIB_org_xmlvm_iphone_CLLo
     __INIT_org_xmlvm_iphone_CLLocationAccuracy, // classInitializer
     "org.xmlvm.iphone.CLLocationAccuracy", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    sizeof(org_xmlvm_iphone_CLLocationAccuracy), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationAccuracy;

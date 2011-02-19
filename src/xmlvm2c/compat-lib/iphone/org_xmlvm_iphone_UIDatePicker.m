@@ -15,6 +15,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIDatePicker __TIB_org_xmlvm_iphone_UIDatePick
     __INIT_org_xmlvm_iphone_UIDatePicker, // classInitializer
     "org.xmlvm.iphone.UIDatePicker", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIControl, // extends
+    sizeof(org_xmlvm_iphone_UIDatePicker), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker;

@@ -14,6 +14,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIBarItem __TIB_org_xmlvm_iphone_UIBarItem = {
     __INIT_org_xmlvm_iphone_UIBarItem, // classInitializer
     "org.xmlvm.iphone.UIBarItem", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_UIBarItem), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarItem;

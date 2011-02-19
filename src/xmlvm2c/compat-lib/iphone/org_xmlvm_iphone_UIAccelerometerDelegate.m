@@ -9,6 +9,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIAccelerometerDelegate __TIB_org_xmlvm_iphone
     __INIT_org_xmlvm_iphone_UIAccelerometerDelegate, // classInitializer
     "org.xmlvm.iphone.UIAccelerometerDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    -1, // sizeInstance
     XMLVM_TYPE_INTERFACE};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometerDelegate;

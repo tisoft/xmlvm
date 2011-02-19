@@ -18,6 +18,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIView __TIB_org_xmlvm_iphone_UIView = {
     __INIT_org_xmlvm_iphone_UIView, // classInitializer
     "org.xmlvm.iphone.UIView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIResponder, // extends
+    sizeof(org_xmlvm_iphone_UIView), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView;

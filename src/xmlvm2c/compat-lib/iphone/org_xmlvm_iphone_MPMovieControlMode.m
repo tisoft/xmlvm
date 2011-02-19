@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_MPMovieControlMode __TIB_org_xmlvm_iphone_MPMo
     __INIT_org_xmlvm_iphone_MPMovieControlMode, // classInitializer
     "org.xmlvm.iphone.MPMovieControlMode", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_MPMovieControlMode), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPMovieControlMode;

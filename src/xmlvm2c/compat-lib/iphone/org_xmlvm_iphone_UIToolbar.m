@@ -13,6 +13,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIToolbar __TIB_org_xmlvm_iphone_UIToolbar = {
     __INIT_org_xmlvm_iphone_UIToolbar, // classInitializer
     "org.xmlvm.iphone.UIToolbar", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
+    sizeof(org_xmlvm_iphone_UIToolbar), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIToolbar;

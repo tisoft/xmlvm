@@ -152,7 +152,7 @@ void java_lang_Class_initNativeLayer__()
 JAVA_OBJECT java_lang_Class_getStackClasses___int_boolean(JAVA_INT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getStackClasses___int_boolean]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -194,56 +194,56 @@ JAVA_OBJECT java_lang_Class_forName___java_lang_String(JAVA_OBJECT n1)
 JAVA_OBJECT java_lang_Class_forName___java_lang_String_boolean_java_lang_ClassLoader(JAVA_OBJECT n1, JAVA_BOOLEAN n2, JAVA_OBJECT n3)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_forName___java_lang_String_boolean_java_lang_ClassLoader]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getClasses__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getClasses__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_Class_verify__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_verify__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getAnnotation___java_lang_Class(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getAnnotation___java_lang_Class]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getAnnotations__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getAnnotations__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getCanonicalName__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getCanonicalName__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getClassLoader__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getClassLoader__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getClassLoaderImpl__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getClassLoaderImpl__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -263,21 +263,21 @@ JAVA_OBJECT java_lang_Class_getComponentType__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Class_getConstructors__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getConstructors__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getDeclaredAnnotations__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredAnnotations__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getDeclaredClasses__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredClasses__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -319,7 +319,7 @@ JAVA_OBJECT java_lang_Class_getDeclaredConstructors__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Class_getDeclaredField___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredField___java_lang_String]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -390,77 +390,77 @@ JAVA_OBJECT java_lang_Class_getDeclaredMethods__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Class_getDeclaringClass__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaringClass__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getEnclosingClass__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getEnclosingClass__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getEnclosingConstructor__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getEnclosingConstructor__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getEnclosingMethod__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getEnclosingMethod__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getEnumConstants__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getEnumConstants__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getField___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getField___java_lang_String]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getFields__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getFields__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getGenericInterfaces__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getGenericInterfaces__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getGenericSuperclass__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getGenericSuperclass__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getInterfaces__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getInterfaces__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT java_lang_Class_getModifiers__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getModifiers__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -476,42 +476,42 @@ JAVA_OBJECT java_lang_Class_getName__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Class_getSimpleName__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getSimpleName__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getProtectionDomain__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getProtectionDomain__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getPDImpl__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getPDImpl__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getResource___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getResource___java_lang_String]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getResourceAsStream___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getResourceAsStream___java_lang_String]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getSigners__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getSigners__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -531,28 +531,28 @@ JAVA_OBJECT java_lang_Class_getSuperclass__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Class_getTypeParameters__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getTypeParameters__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_Class_isAnnotation__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_isAnnotation__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_Class_isAnnotationPresent___java_lang_Class(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_isAnnotationPresent___java_lang_Class]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_Class_isAnonymousClass__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_isAnonymousClass__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -568,7 +568,7 @@ JAVA_BOOLEAN java_lang_Class_isArray__(JAVA_OBJECT me)
 JAVA_BOOLEAN java_lang_Class_isAssignableFrom___java_lang_Class(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_isAssignableFrom___java_lang_Class]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -584,7 +584,7 @@ JAVA_BOOLEAN java_lang_Class_isEnum__(JAVA_OBJECT me)
 JAVA_BOOLEAN java_lang_Class_isInstance___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_isInstance___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -600,14 +600,14 @@ JAVA_BOOLEAN java_lang_Class_isInterface__(JAVA_OBJECT me)
 JAVA_BOOLEAN java_lang_Class_isLocalClass__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_isLocalClass__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_Class_isMemberClass__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_isMemberClass__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -623,7 +623,7 @@ JAVA_BOOLEAN java_lang_Class_isPrimitive__(JAVA_OBJECT me)
 JAVA_BOOLEAN java_lang_Class_isSynthetic__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_isSynthetic__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -640,14 +640,14 @@ JAVA_OBJECT java_lang_Class_newInstance__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Class_toString__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_toString__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_getPackage__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getPackage__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -661,14 +661,14 @@ JAVA_BOOLEAN java_lang_Class_desiredAssertionStatus__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Class_asSubclass___java_lang_Class(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_asSubclass___java_lang_Class]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_Class_cast___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_cast___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 

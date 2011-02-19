@@ -17,6 +17,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIButton __TIB_org_xmlvm_iphone_UIButton = {
     __INIT_org_xmlvm_iphone_UIButton, // classInitializer
     "org.xmlvm.iphone.UIButton", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIControl, // extends
+    sizeof(org_xmlvm_iphone_UIButton), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButton;

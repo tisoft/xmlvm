@@ -14,6 +14,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIActionSheet __TIB_org_xmlvm_iphone_UIActionS
     __INIT_org_xmlvm_iphone_UIActionSheet, // classInitializer
     "org.xmlvm.iphone.UIActionSheet", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
+    sizeof(org_xmlvm_iphone_UIActionSheet), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet;

@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_SKProductsResponse __TIB_org_xmlvm_iphone_SKPr
     __INIT_org_xmlvm_iphone_SKProductsResponse, // classInitializer
     "org.xmlvm.iphone.SKProductsResponse", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_SKProductsResponse), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsResponse;

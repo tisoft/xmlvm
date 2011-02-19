@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSNotification __TIB_org_xmlvm_iphone_NSNotifi
     __INIT_org_xmlvm_iphone_NSNotification, // classInitializer
     "org.xmlvm.iphone.NSNotification", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_NSNotification), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNotification;

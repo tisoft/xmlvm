@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGAffineTransform __TIB_org_xmlvm_iphone_CGAff
     __INIT_org_xmlvm_iphone_CGAffineTransform, // classInitializer
     "org.xmlvm.iphone.CGAffineTransform", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_CGAffineTransform), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGAffineTransform;

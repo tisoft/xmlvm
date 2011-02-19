@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIEvent __TIB_org_xmlvm_iphone_UIEvent = {
     __INIT_org_xmlvm_iphone_UIEvent, // classInitializer
     "org.xmlvm.iphone.UIEvent", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_UIEvent), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent;

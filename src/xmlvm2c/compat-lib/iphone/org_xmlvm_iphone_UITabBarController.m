@@ -12,6 +12,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITabBarController __TIB_org_xmlvm_iphone_UITa
     __INIT_org_xmlvm_iphone_UITabBarController, // classInitializer
     "org.xmlvm.iphone.UITabBarController", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIViewController, // extends
+    sizeof(org_xmlvm_iphone_UITabBarController), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarController;

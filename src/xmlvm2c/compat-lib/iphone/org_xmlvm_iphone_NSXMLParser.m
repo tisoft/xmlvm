@@ -12,6 +12,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSXMLParser __TIB_org_xmlvm_iphone_NSXMLParser
     __INIT_org_xmlvm_iphone_NSXMLParser, // classInitializer
     "org.xmlvm.iphone.NSXMLParser", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_NSXMLParser), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParser;

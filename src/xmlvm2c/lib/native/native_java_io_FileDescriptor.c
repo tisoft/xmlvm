@@ -9,14 +9,14 @@
 void java_io_FileDescriptor_oneTimeInitialization__()
 {
     //XMLVM_BEGIN_NATIVE[java_io_FileDescriptor_oneTimeInitialization__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_io_FileDescriptor_syncImpl__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_io_FileDescriptor_syncImpl__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 

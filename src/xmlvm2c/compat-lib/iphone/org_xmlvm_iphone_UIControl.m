@@ -15,6 +15,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIControl __TIB_org_xmlvm_iphone_UIControl = {
     __INIT_org_xmlvm_iphone_UIControl, // classInitializer
     "org.xmlvm.iphone.UIControl", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
+    sizeof(org_xmlvm_iphone_UIControl), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl;

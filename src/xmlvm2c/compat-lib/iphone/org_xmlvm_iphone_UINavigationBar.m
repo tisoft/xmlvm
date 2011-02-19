@@ -16,6 +16,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UINavigationBar __TIB_org_xmlvm_iphone_UINavig
     __INIT_org_xmlvm_iphone_UINavigationBar, // classInitializer
     "org.xmlvm.iphone.UINavigationBar", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
+    sizeof(org_xmlvm_iphone_UINavigationBar), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBar;

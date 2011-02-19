@@ -9,7 +9,7 @@
 JAVA_OBJECT java_util_TimeZone_getCustomTimeZone___int_ARRAYTYPE_boolean_ARRAYTYPE(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_util_TimeZone_getCustomTimeZone___int_ARRAYTYPE_boolean_ARRAYTYPE]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 

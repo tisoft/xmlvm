@@ -17,42 +17,42 @@
 JAVA_OBJECT java_lang_reflect_Field_getSignature__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getSignature__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_reflect_Field_isSynthetic__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_isSynthetic__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Field_toGenericString__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_toGenericString__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_reflect_Field_isEnumConstant__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_isEnumConstant__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Field_getGenericType__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getGenericType__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_reflect_Field_equals___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_equals___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -111,42 +111,42 @@ JAVA_OBJECT java_lang_reflect_Field_get___java_lang_Object(JAVA_OBJECT me, JAVA_
 JAVA_BOOLEAN java_lang_reflect_Field_getBoolean___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getBoolean___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BYTE java_lang_reflect_Field_getByte___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getByte___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_CHAR java_lang_reflect_Field_getChar___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getChar___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Field_getDeclaringClass__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getDeclaringClass__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_reflect_Field_getDouble___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getDouble___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_FLOAT java_lang_reflect_Field_getFloat___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getFloat___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -173,14 +173,14 @@ JAVA_INT java_lang_reflect_Field_getInt___java_lang_Object(JAVA_OBJECT me, JAVA_
 JAVA_LONG java_lang_reflect_Field_getLong___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getLong___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT java_lang_reflect_Field_getModifiers__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getModifiers__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -195,7 +195,7 @@ JAVA_OBJECT java_lang_reflect_Field_getName__(JAVA_OBJECT me)
 JAVA_SHORT java_lang_reflect_Field_getShort___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getShort___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -210,77 +210,77 @@ JAVA_OBJECT java_lang_reflect_Field_getType__(JAVA_OBJECT me)
 JAVA_INT java_lang_reflect_Field_hashCode__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_hashCode__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_reflect_Field_set___java_lang_Object_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_set___java_lang_Object_java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_reflect_Field_setBoolean___java_lang_Object_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_setBoolean___java_lang_Object_boolean]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_reflect_Field_setByte___java_lang_Object_byte(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BYTE n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_setByte___java_lang_Object_byte]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_reflect_Field_setChar___java_lang_Object_char(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_CHAR n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_setChar___java_lang_Object_char]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_reflect_Field_setDouble___java_lang_Object_double(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_DOUBLE n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_setDouble___java_lang_Object_double]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_reflect_Field_setFloat___java_lang_Object_float(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_FLOAT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_setFloat___java_lang_Object_float]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_reflect_Field_setInt___java_lang_Object_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_setInt___java_lang_Object_int]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_reflect_Field_setLong___java_lang_Object_long(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_LONG n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_setLong___java_lang_Object_long]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 void java_lang_reflect_Field_setShort___java_lang_Object_short(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_SHORT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_setShort___java_lang_Object_short]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Field_toString__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_toString__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 

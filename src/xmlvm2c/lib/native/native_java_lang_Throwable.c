@@ -16,7 +16,7 @@ JAVA_OBJECT java_lang_Throwable_fillInStackTrace__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Throwable_getStackTraceImpl__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Throwable_getStackTraceImpl__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 

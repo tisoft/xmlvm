@@ -15,6 +15,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UILabel __TIB_org_xmlvm_iphone_UILabel = {
     __INIT_org_xmlvm_iphone_UILabel, // classInitializer
     "org.xmlvm.iphone.UILabel", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
+    sizeof(org_xmlvm_iphone_UILabel), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILabel;

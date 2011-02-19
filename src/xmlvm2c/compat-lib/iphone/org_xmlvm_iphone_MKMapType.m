@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_MKMapType __TIB_org_xmlvm_iphone_MKMapType = {
     __INIT_org_xmlvm_iphone_MKMapType, // classInitializer
     "org.xmlvm.iphone.MKMapType", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    sizeof(org_xmlvm_iphone_MKMapType), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapType;

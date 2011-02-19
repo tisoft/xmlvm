@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIBarButtonSystemItem __TIB_org_xmlvm_iphone_U
     __INIT_org_xmlvm_iphone_UIBarButtonSystemItem, // classInitializer
     "org.xmlvm.iphone.UIBarButtonSystemItem", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    sizeof(org_xmlvm_iphone_UIBarButtonSystemItem), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonSystemItem;

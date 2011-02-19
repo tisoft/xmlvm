@@ -183,6 +183,7 @@ typedef struct __TIB_DEFINITION_##name { \
     Func_V                              classInitializer; \
     const char*                         className; \
     struct __TIB_DEFINITION_TEMPLATE*   extends; \
+    int                                 sizeInstance; \
     int                                 flags; \
     JAVA_OBJECT                         clazz; \
     JAVA_OBJECT                         baseType; \
@@ -311,6 +312,7 @@ extern XMLVM_JMP_BUF xmlvm_exception_env;
 extern JAVA_OBJECT xmlvm_exception;
 
 #define XMLVM_NOT_IMPLEMENTED() XMLVM_ERROR("Not implemented", __FILE__, __FUNCTION__, __LINE__)
+#define XMLVM_UNIMPLEMENTED_NATIVE_METHOD() XMLVM_ERROR("Unimplemented native method", __FILE__, __FUNCTION__, __LINE__)
 #define XMLVM_INTERNAL_ERROR() XMLVM_ERROR("Internal error", __FILE__, __FUNCTION__, __LINE__)
 #define XMLVM_RED_CLASS_DEPENDENCY() XMLVM_ERROR("Unsatisfied red class dependency", __FILE__, __FUNCTION__, __LINE__)
 

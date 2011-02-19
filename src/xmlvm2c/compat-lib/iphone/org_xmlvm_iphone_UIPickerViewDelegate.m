@@ -12,6 +12,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIPickerViewDelegate __TIB_org_xmlvm_iphone_UI
     __INIT_org_xmlvm_iphone_UIPickerViewDelegate, // classInitializer
     "org.xmlvm.iphone.UIPickerViewDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_UIPickerViewDelegate), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPickerViewDelegate;

@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIProgressView __TIB_org_xmlvm_iphone_UIProgre
     __INIT_org_xmlvm_iphone_UIProgressView, // classInitializer
     "org.xmlvm.iphone.UIProgressView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIControl, // extends
+    sizeof(org_xmlvm_iphone_UIProgressView), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIProgressView;

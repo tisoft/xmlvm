@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSHTTPURLResponseHolder __TIB_org_xmlvm_iphone
     __INIT_org_xmlvm_iphone_NSHTTPURLResponseHolder, // classInitializer
     "org.xmlvm.iphone.NSHTTPURLResponseHolder", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_NSHTTPURLResponseHolder), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSHTTPURLResponseHolder;

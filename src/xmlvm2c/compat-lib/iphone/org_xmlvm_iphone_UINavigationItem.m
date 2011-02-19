@@ -14,6 +14,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UINavigationItem __TIB_org_xmlvm_iphone_UINavi
     __INIT_org_xmlvm_iphone_UINavigationItem, // classInitializer
     "org.xmlvm.iphone.UINavigationItem", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_UINavigationItem), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationItem;

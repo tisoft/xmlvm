@@ -13,6 +13,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_CLLocationManager __TIB_org_xmlvm_iphone_CLLoc
     __INIT_org_xmlvm_iphone_CLLocationManager, // classInitializer
     "org.xmlvm.iphone.CLLocationManager", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_CLLocationManager), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationManager;

@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIInterfaceOrientation __TIB_org_xmlvm_iphone_
     __INIT_org_xmlvm_iphone_UIInterfaceOrientation, // classInitializer
     "org.xmlvm.iphone.UIInterfaceOrientation", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    sizeof(org_xmlvm_iphone_UIInterfaceOrientation), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIInterfaceOrientation;

@@ -15,6 +15,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIApplication __TIB_org_xmlvm_iphone_UIApplica
     __INIT_org_xmlvm_iphone_UIApplication, // classInitializer
     "org.xmlvm.iphone.UIApplication", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIResponder, // extends
+    sizeof(org_xmlvm_iphone_UIApplication), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication;

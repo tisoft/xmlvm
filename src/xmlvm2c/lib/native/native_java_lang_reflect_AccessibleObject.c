@@ -9,49 +9,49 @@
 void java_lang_reflect_AccessibleObject_initializeClass___java_lang_Class(JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_AccessibleObject_initializeClass___java_lang_Class]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_AccessibleObject_getStackClass___int(JAVA_INT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_AccessibleObject_getStackClass___int]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_AccessibleObject_getParameterTypesImpl__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_AccessibleObject_getParameterTypesImpl__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT java_lang_reflect_AccessibleObject_getModifiers__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_AccessibleObject_getModifiers__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_AccessibleObject_getExceptionTypesImpl__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_AccessibleObject_getExceptionTypesImpl__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_AccessibleObject_getSignature__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_AccessibleObject_getSignature__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_reflect_AccessibleObject_checkAccessibility___java_lang_Class_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_AccessibleObject_checkAccessibility___java_lang_Class_java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 

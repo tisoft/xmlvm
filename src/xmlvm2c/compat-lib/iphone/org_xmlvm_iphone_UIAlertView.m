@@ -12,6 +12,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIAlertView __TIB_org_xmlvm_iphone_UIAlertView
     __INIT_org_xmlvm_iphone_UIAlertView, // classInitializer
     "org.xmlvm.iphone.UIAlertView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
+    sizeof(org_xmlvm_iphone_UIAlertView), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertView;

@@ -32,21 +32,21 @@ JAVA_LONG java_lang_System_nanoTime__()
 JAVA_OBJECT java_lang_System_getPropertyList__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_System_getPropertyList__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_System_getEncoding___int(JAVA_INT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_System_getEncoding___int]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT java_lang_System_identityHashCode___java_lang_Object(JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_System_identityHashCode___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 

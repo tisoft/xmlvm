@@ -12,6 +12,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_MKMapRect __TIB_org_xmlvm_iphone_MKMapRect = {
     __INIT_org_xmlvm_iphone_MKMapRect, // classInitializer
     "org.xmlvm.iphone.MKMapRect", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_MKMapRect), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapRect;

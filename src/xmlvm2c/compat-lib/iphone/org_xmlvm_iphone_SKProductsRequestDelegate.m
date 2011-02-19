@@ -12,6 +12,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_SKProductsRequestDelegate __TIB_org_xmlvm_ipho
     __INIT_org_xmlvm_iphone_SKProductsRequestDelegate, // classInitializer
     "org.xmlvm.iphone.SKProductsRequestDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_SKProductsRequestDelegate), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsRequestDelegate;

@@ -10,98 +10,98 @@
 JAVA_OBJECT java_lang_reflect_Method_getTypeParameters__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_getTypeParameters__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Method_toGenericString__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_toGenericString__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Method_getGenericParameterTypes__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_getGenericParameterTypes__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Method_getGenericExceptionTypes__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_getGenericExceptionTypes__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Method_getGenericReturnType__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_getGenericReturnType__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Method_getParameterAnnotations__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_getParameterAnnotations__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_reflect_Method_isVarArgs__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_isVarArgs__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_reflect_Method_isBridge__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_isBridge__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_reflect_Method_isSynthetic__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_isSynthetic__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Method_getDefaultValue__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_getDefaultValue__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_reflect_Method_equals___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_equals___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Method_getDeclaringClass__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_getDeclaringClass__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Method_getExceptionTypes__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_getExceptionTypes__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT java_lang_reflect_Method_getModifiers__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_getModifiers__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -124,14 +124,14 @@ JAVA_OBJECT java_lang_reflect_Method_getParameterTypes__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_reflect_Method_getReturnType__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_getReturnType__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT java_lang_reflect_Method_hashCode__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_hashCode__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -149,7 +149,7 @@ JAVA_OBJECT java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_
 JAVA_OBJECT java_lang_reflect_Method_toString__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_toString__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 

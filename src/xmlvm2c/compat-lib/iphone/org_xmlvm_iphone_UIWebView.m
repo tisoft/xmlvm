@@ -15,6 +15,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIWebView __TIB_org_xmlvm_iphone_UIWebView = {
     __INIT_org_xmlvm_iphone_UIWebView, // classInitializer
     "org.xmlvm.iphone.UIWebView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
+    sizeof(org_xmlvm_iphone_UIWebView), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebView;

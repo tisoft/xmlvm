@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_MKMapSize __TIB_org_xmlvm_iphone_MKMapSize = {
     __INIT_org_xmlvm_iphone_MKMapSize, // classInitializer
     "org.xmlvm.iphone.MKMapSize", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_MKMapSize), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapSize;

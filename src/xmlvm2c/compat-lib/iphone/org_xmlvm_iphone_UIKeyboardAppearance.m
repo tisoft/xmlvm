@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIKeyboardAppearance __TIB_org_xmlvm_iphone_UI
     __INIT_org_xmlvm_iphone_UIKeyboardAppearance, // classInitializer
     "org.xmlvm.iphone.UIKeyboardAppearance", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    sizeof(org_xmlvm_iphone_UIKeyboardAppearance), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIKeyboardAppearance;

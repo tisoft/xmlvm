@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIDatePickerMode __TIB_org_xmlvm_iphone_UIDate
     __INIT_org_xmlvm_iphone_UIDatePickerMode, // classInitializer
     "org.xmlvm.iphone.UIDatePickerMode", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    sizeof(org_xmlvm_iphone_UIDatePickerMode), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePickerMode;

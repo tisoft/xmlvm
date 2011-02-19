@@ -9,84 +9,84 @@
 JAVA_OBJECT java_lang_reflect_Constructor_getTypeParameters__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Constructor_getTypeParameters__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Constructor_toGenericString__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Constructor_toGenericString__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Constructor_getGenericParameterTypes__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Constructor_getGenericParameterTypes__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Constructor_getGenericExceptionTypes__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Constructor_getGenericExceptionTypes__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Constructor_getParameterAnnotations__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Constructor_getParameterAnnotations__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_reflect_Constructor_isVarArgs__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Constructor_isVarArgs__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_reflect_Constructor_isSynthetic__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Constructor_isSynthetic__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_lang_reflect_Constructor_equals___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Constructor_equals___java_lang_Object]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Constructor_getDeclaringClass__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Constructor_getDeclaringClass__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Constructor_getExceptionTypes__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Constructor_getExceptionTypes__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT java_lang_reflect_Constructor_getModifiers__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Constructor_getModifiers__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_lang_reflect_Constructor_getName__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Constructor_getName__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -101,7 +101,7 @@ JAVA_OBJECT java_lang_reflect_Constructor_getParameterTypes__(JAVA_OBJECT me)
 JAVA_INT java_lang_reflect_Constructor_hashCode__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Constructor_hashCode__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -117,7 +117,7 @@ JAVA_OBJECT java_lang_reflect_Constructor_newInstance___java_lang_Object_ARRAYTY
 JAVA_OBJECT java_lang_reflect_Constructor_toString__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Constructor_toString__]
-    xmlvm_unimplemented_native_method();
+    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 

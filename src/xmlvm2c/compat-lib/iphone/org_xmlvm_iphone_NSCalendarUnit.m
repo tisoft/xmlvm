@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSCalendarUnit __TIB_org_xmlvm_iphone_NSCalend
     __INIT_org_xmlvm_iphone_NSCalendarUnit, // classInitializer
     "org.xmlvm.iphone.NSCalendarUnit", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    sizeof(org_xmlvm_iphone_NSCalendarUnit), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSCalendarUnit;

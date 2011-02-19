@@ -12,6 +12,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIImageView __TIB_org_xmlvm_iphone_UIImageView
     __INIT_org_xmlvm_iphone_UIImageView, // classInitializer
     "org.xmlvm.iphone.UIImageView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
+    sizeof(org_xmlvm_iphone_UIImageView), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImageView;

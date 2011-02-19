@@ -13,6 +13,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITextFieldDelegate __TIB_org_xmlvm_iphone_UIT
     __INIT_org_xmlvm_iphone_UITextFieldDelegate, // classInitializer
     "org.xmlvm.iphone.UITextFieldDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_UITextFieldDelegate), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextFieldDelegate;

@@ -17,6 +17,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITableView __TIB_org_xmlvm_iphone_UITableView
     __INIT_org_xmlvm_iphone_UITableView, // classInitializer
     "org.xmlvm.iphone.UITableView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIScrollView, // extends
+    sizeof(org_xmlvm_iphone_UITableView), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableView;

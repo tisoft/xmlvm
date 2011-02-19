@@ -12,6 +12,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_SKPayment __TIB_org_xmlvm_iphone_SKPayment = {
     __INIT_org_xmlvm_iphone_SKPayment, // classInitializer
     "org.xmlvm.iphone.SKPayment", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_SKPayment), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPayment;

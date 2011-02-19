@@ -13,6 +13,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSURLConnectionDelegate __TIB_org_xmlvm_iphone
     __INIT_org_xmlvm_iphone_NSURLConnectionDelegate, // classInitializer
     "org.xmlvm.iphone.NSURLConnectionDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    sizeof(org_xmlvm_iphone_NSURLConnectionDelegate), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate;

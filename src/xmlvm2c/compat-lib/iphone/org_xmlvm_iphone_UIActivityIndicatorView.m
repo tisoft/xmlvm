@@ -10,6 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIActivityIndicatorView __TIB_org_xmlvm_iphone
     __INIT_org_xmlvm_iphone_UIActivityIndicatorView, // classInitializer
     "org.xmlvm.iphone.UIActivityIndicatorView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
+    sizeof(org_xmlvm_iphone_UIActivityIndicatorView), // sizeInstance
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorView;
