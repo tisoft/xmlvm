@@ -70,7 +70,7 @@ public class LibraryLoader {
      * Returns whether the given type has a proxy class that should replace it.
      */
     public static boolean hasProxy(String typeName) {
-        return proxies.containsKey(typeName);
+        return proxies != null && proxies.containsKey(typeName);
     }
 
     /**
@@ -155,7 +155,8 @@ public class LibraryLoader {
         ClassFile classFile = new ClassFile(file);
 
         ClassInputProcess inputProcess = new ClassInputProcess(arguments, classFile);
-        DEXmlvmOutputProcess outputProcess = new DEXmlvmOutputProcess(arguments, enableRedList, false);
+        DEXmlvmOutputProcess outputProcess = new DEXmlvmOutputProcess(arguments, enableRedList,
+                false);
         outputProcess.addPreprocess(inputProcess);
 
         outputProcess.process();
@@ -288,6 +289,12 @@ public class LibraryLoader {
         Map<String, UniversalFile> result = new HashMap<String, UniversalFile>();
         UniversalFile basePath = UniversalFileCreator.createDirectory(BIN_PROXIES_ONEJAR_PATH,
                 BIN_PROXIES_PATH);
+
+        // If not proxies are available, we disable proxy replacement.
+        if (basePath == null) {
+            Log.debug(TAG, "Proxies not loaded, therefore there will be no proxy replacement");
+            return result;
+        }
 
         final String classEnding = ".class";
         UniversalFileFilter classFilter = new FileSuffixFilter(classEnding);
