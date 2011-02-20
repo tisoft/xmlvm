@@ -20,6 +20,7 @@
  */
 
 #include "xmlvm.h"
+#include "xmlvm-util.h"
 #include "java_lang_System.h"
 #include "java_lang_Class.h"
 #include "java_lang_String.h"
@@ -105,7 +106,7 @@ JAVA_OBJECT xmlvm_create_java_string(const char* s)
     java_lang_String* str = __NEW_java_lang_String();
     org_xmlvm_runtime_XMLVMArray* charArray = XMLVMArray_createFromString(s);
     java_lang_String___INIT____char_ARRAYTYPE(str, charArray);
-    return str;
+    return XMLVMUtil_getFromStringPool(str);
 }
 
 //---------------------------------------------------------------------------------------------

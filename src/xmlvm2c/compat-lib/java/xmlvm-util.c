@@ -25,11 +25,22 @@
 #include "java_util_HashMap.h"
 
 
+/**** ArrayList Utilities ********************************************************************/
 JAVA_OBJECT XMLVMUtil_NEW_ArrayList()
 {
     JAVA_OBJECT obj = __NEW_java_util_ArrayList();
     java_util_ArrayList___INIT___(obj);
     return obj;
+}
+
+JAVA_INT XMLVMUtil_ArrayList_size(JAVA_OBJECT me)
+{
+#ifdef XMLVM_VTABLE_IDX_java_util_ArrayList_size__
+    return (*(JAVA_INT (*)(JAVA_OBJECT)) ((java_util_ArrayList*) me)->
+            tib->vtable[XMLVM_VTABLE_IDX_java_util_ArrayList_size__])(me);
+#else
+    return java_util_ArrayList_add___java_lang_Object(me, obj);
+#endif
 }
 
 JAVA_BOOLEAN XMLVMUtil_ArrayList_add(JAVA_OBJECT me, JAVA_OBJECT obj)
@@ -52,6 +63,16 @@ void XMLVMUtil_ArrayList_addAt(JAVA_OBJECT me, JAVA_INT index, JAVA_OBJECT obj)
 #endif
 }
 
+JAVA_OBJECT XMLVMUtil_ArrayList_get(JAVA_OBJECT me, JAVA_INT idx)
+{
+#ifdef XMLVM_VTABLE_IDX_java_util_ArrayList_get___int
+    return (*(JAVA_OBJECT (*)(JAVA_OBJECT, JAVA_INT)) ((java_util_ArrayList*) me)->
+            tib->vtable[XMLVM_VTABLE_IDX_java_util_ArrayList_get___int])(me, idx);
+#else
+    return java_util_ArrayList_get___int(me, idx);
+#endif
+}
+
 JAVA_BOOLEAN XMLVMUtil_ArrayList_remove(JAVA_OBJECT me, JAVA_OBJECT obj)
 {
 #ifdef XMLVM_VTABLE_IDX_java_util_ArrayList_remove___java_lang_Object
@@ -62,6 +83,17 @@ JAVA_BOOLEAN XMLVMUtil_ArrayList_remove(JAVA_OBJECT me, JAVA_OBJECT obj)
 #endif
 }
 
+JAVA_INT XMLVMUtil_ArrayList_indexOf(JAVA_OBJECT me, JAVA_OBJECT obj)
+{
+#ifdef XMLVM_VTABLE_IDX_java_util_ArrayList_indexOf___java_lang_Object
+    return (*(JAVA_INT (*)(JAVA_OBJECT, JAVA_OBJECT)) ((java_util_ArrayList*) me)->
+            tib->vtable[XMLVM_VTABLE_IDX_java_util_ArrayList_indexOf___java_lang_Object])(me, obj);
+#else
+    return java_util_ArrayList_indexOf___java_lang_Object(me, obj);
+#endif
+}
+
+/**** HashSet Utilities ********************************************************************/
 JAVA_OBJECT XMLVMUtil_NEW_HashSet()
 {
     JAVA_OBJECT obj = __NEW_java_util_HashSet();
@@ -79,6 +111,7 @@ JAVA_BOOLEAN XMLVMUtil_HashSet_add(JAVA_OBJECT me, JAVA_OBJECT obj)
 #endif
 }
 
+/**** HashMap Utilities ********************************************************************/
 JAVA_OBJECT XMLVMUtil_NEW_HashMap()
 {
     JAVA_OBJECT obj = __NEW_java_util_HashMap();
@@ -105,3 +138,20 @@ JAVA_OBJECT XMLVMUtil_HashMap_get(JAVA_OBJECT me, JAVA_OBJECT key)
     return java_util_HashMap_get___java_lang_Object(me, key);
 #endif
 }
+
+/**** ConstantStringPool Utilities ************************************************************/
+static JAVA_OBJECT stringPool = JAVA_NULL;
+
+JAVA_OBJECT XMLVMUtil_getFromStringPool(JAVA_OBJECT str)
+{
+    if (stringPool == JAVA_NULL) {
+        stringPool = XMLVMUtil_NEW_ArrayList();
+    }
+    JAVA_INT i = XMLVMUtil_ArrayList_indexOf(stringPool, str);
+    if (i == -1) {
+        XMLVMUtil_ArrayList_add(stringPool, str);
+        return str;
+    }
+    return XMLVMUtil_ArrayList_get(stringPool, i);
+}
+

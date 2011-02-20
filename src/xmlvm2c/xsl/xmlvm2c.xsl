@@ -627,9 +627,8 @@ int main(int argc, char* argv[])
             <xsl:text>) </xsl:text>
             <xsl:choose>
               <xsl:when test="@value">
-                <!-- TODO need to create a java.lang.String! -->
-                <!-- We assume that @value is always a string -->
-                <xsl:text>XMLVMArray_createFromString(</xsl:text>
+                <!-- TODO We assume that @value is always a string -->
+                <xsl:text>xmlvm_create_java_string(</xsl:text>
                 <xsl:value-of select="vm:escapeString(@value)"/>
                 <xsl:text>)</xsl:text>
               </xsl:when>
@@ -1005,7 +1004,7 @@ int main(int argc, char* argv[])
           <xsl:choose>
             <xsl:when test="@value">
               <!-- We assume that @value is always a string -->
-              <xsl:text>XMLVMArray_createFromString(</xsl:text>
+              <xsl:text>xmlvm_create_java_string(</xsl:text>
               <xsl:value-of select="vm:escapeString(@value)"/>
               <xsl:text>)</xsl:text>
             </xsl:when>
@@ -2822,12 +2821,9 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:const-string"> 
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o = __NEW_java_lang_String();
-    java_lang_String___INIT____char_ARRAYTYPE(_r</xsl:text>
-  <xsl:value-of select="@vx"/>
-  <xsl:text>.o, XMLVMArray_createFromString(</xsl:text>
+  <xsl:text>.o = xmlvm_create_java_string(</xsl:text>
   <xsl:value-of select="vm:escapeString(@value)"/>
-  <xsl:text>));&nl;</xsl:text>
+  <xsl:text>);&nl;</xsl:text>
 </xsl:template>
 
 

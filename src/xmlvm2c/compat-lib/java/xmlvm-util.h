@@ -25,9 +25,12 @@
 #include "xmlvm.h"
 
 JAVA_OBJECT XMLVMUtil_NEW_ArrayList();
+JAVA_INT XMLVMUtil_ArrayList_size(JAVA_OBJECT me);
 JAVA_BOOLEAN XMLVMUtil_ArrayList_add(JAVA_OBJECT me, JAVA_OBJECT obj);
 void XMLVMUtil_ArrayList_addAt(JAVA_OBJECT me, JAVA_INT index, JAVA_OBJECT obj);
+JAVA_OBJECT XMLVMUtil_ArrayList_get(JAVA_OBJECT me, JAVA_INT idx);
 JAVA_BOOLEAN XMLVMUtil_ArrayList_remove(JAVA_OBJECT me, JAVA_OBJECT obj);
+JAVA_INT XMLVMUtil_ArrayList_indexOf(JAVA_OBJECT me, JAVA_OBJECT obj);
 
 JAVA_OBJECT XMLVMUtil_NEW_HashSet();
 JAVA_BOOLEAN XMLVMUtil_HashSet_add(JAVA_OBJECT me, JAVA_OBJECT obj);
@@ -35,5 +38,7 @@ JAVA_BOOLEAN XMLVMUtil_HashSet_add(JAVA_OBJECT me, JAVA_OBJECT obj);
 JAVA_OBJECT XMLVMUtil_NEW_HashMap();
 JAVA_OBJECT XMLVMUtil_HashMap_put(JAVA_OBJECT me, JAVA_OBJECT key, JAVA_OBJECT value);
 JAVA_OBJECT XMLVMUtil_HashMap_get(JAVA_OBJECT me, JAVA_OBJECT key);
+
+JAVA_OBJECT XMLVMUtil_getFromStringPool(JAVA_OBJECT str);
 
 #endif
