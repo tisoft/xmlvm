@@ -543,7 +543,7 @@ int main(int argc, char* argv[])
     </xsl:if>
     <xsl:text>    // Initialize vtable for this class
     </xsl:text>
-    <xsl:for-each select="vm:method[@vtableIndex and not(@isAbstract = 'true')]">
+    <xsl:for-each select="vm:method[@vtableIndex and not(@isAbstract = 'true' or @isSynthetic = 'true')]">
       <xsl:text>__TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>.vtable[</xsl:text>
@@ -1292,7 +1292,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 <xsl:template name="emitMethodArgumentTypes">
-  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true')
+  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true' or @isSynthetic = 'true')
                                   and not($genWrapper = 'true' and @isPrivate='true')]">
     <xsl:text>static JAVA_OBJECT* __method</xsl:text>
     <xsl:value-of select="position() - 1"/>
@@ -1311,7 +1311,7 @@ int main(int argc, char* argv[])
 
 <xsl:template name="emitMethodReflectionData">
   <xsl:text>static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {&nl;</xsl:text>
-  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true')
+  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true' or @isSynthetic = 'true')
                                   and not($genWrapper = 'true' and @isPrivate='true')]">
     <xsl:text>    {"</xsl:text>
     <xsl:value-of select="@name"/>
@@ -1349,7 +1349,7 @@ int main(int argc, char* argv[])
   <xsl:text>    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;&nl;</xsl:text>
   <xsl:text>    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;&nl;</xsl:text>
   <xsl:text>    switch (m->fields.java_lang_reflect_Method.slot_) {&nl;</xsl:text>
-  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true')
+  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true' or @isSynthetic = 'true')
                         and not($genWrapper = 'true' and @isPrivate='true')]">
     <xsl:text>    case </xsl:text>
     <xsl:value-of select="position() - 1"/>
