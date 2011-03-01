@@ -59,4 +59,9 @@
     [self setValue : value];
 }
 
+- (void) setValue___float_boolean:(float) value :(int) animated
+{
+	[self setValue:value animated:animated];
+}
+
 @end

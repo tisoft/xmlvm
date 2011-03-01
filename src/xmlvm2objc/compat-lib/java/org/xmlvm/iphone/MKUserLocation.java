@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class MKUserLocation extends NSObject {
+public class MKUserLocation extends MKAnnotation {
 
     private CLLocation location;
     private boolean    updating;
@@ -53,5 +53,10 @@ public class MKUserLocation extends NSObject {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Override
+    public CLLocationCoordinate2D getCoordinate() {
+        return location.getCoordinate();
     }
 }

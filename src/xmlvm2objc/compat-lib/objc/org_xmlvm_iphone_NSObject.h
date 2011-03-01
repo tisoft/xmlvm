@@ -34,6 +34,12 @@ typedef NSObject org_xmlvm_iphone_NSObject;
               :(java_lang_Object*) arg
               :(BOOL) waitUntilDone;
 
++ (void) performSelector___java_lang_Object_java_lang_String_java_lang_Object_double
+			  :(java_lang_Object*) target
+			  :(java_lang_String*) method
+			  :(java_lang_Object*) arg
+			  :(double) delay;
+
 - (void) __init_org_xmlvm_iphone_NSObject__;
 - (void) release__;
 - (NSObject*) retain__;

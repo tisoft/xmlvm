@@ -100,6 +100,7 @@ void __DELETE_org_xmlvm_iphone_NSObject(void* me, void* client_data);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSObject();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSObject();
 void org_xmlvm_iphone_NSObject___INIT___(JAVA_OBJECT me);
+void org_xmlvm_iphone_NSObject_performSelector___java_lang_Object_java_lang_String_java_lang_Object_double(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_DOUBLE n4);
 void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___java_lang_Object_java_lang_String_java_lang_Object_boolean(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4);
 // Vtable index: 11
 JAVA_OBJECT org_xmlvm_iphone_NSObject_retain__(JAVA_OBJECT me);

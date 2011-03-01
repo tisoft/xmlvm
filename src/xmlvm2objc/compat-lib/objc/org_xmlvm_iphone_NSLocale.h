@@ -19,8 +19,8 @@
  */
 
 #import "xmlvm.h"
-
-
+#import "java_lang_String.h"
+#import "java_util_ArrayList.h"
 
 typedef NSLocale org_xmlvm_iphone_NSLocale;
 
@@ -28,6 +28,9 @@ typedef NSLocale org_xmlvm_iphone_NSLocale;
 
 + (org_xmlvm_iphone_NSLocale*) systemLocale__;
 + (org_xmlvm_iphone_NSLocale*) currentLocale__;
++ (java_util_ArrayList*) preferredLanguages__;
+
+- (java_lang_String *)localeIdentifier__;
 
 @end
 

@@ -45,5 +45,16 @@
 	XMLVM_PROPERTY(delegate,newdelegate)
 }
 
+- (void) setAnchorPoint___org_xmlvm_iphone_CGPoint:(org_xmlvm_iphone_CGPoint*) anchor
+{
+	[self setAnchorPoint:[anchor getCGPoint]];
+}
+
+- (org_xmlvm_iphone_CGPoint*) getAnchorPoint__ 
+{
+	return [[org_xmlvm_iphone_CGPoint alloc] initWithCGPoint:[self anchorPoint]];
+}
+
+
 @end
 

@@ -1,5 +1,6 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_UIView.h"
+#include "org_xmlvm_iphone_CGPoint.h"
 #include "org_xmlvm_iphone_CAAnimation.h"
 #include "java_lang_String.h"
 #include "org_xmlvm_iphone_CGContext.h"
@@ -93,6 +94,13 @@ static JAVA_OBJECT* __method8_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIView,
 };
 
+static JAVA_OBJECT* __method9_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGPoint,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"layer",
     &__method0_arg_types[0],
@@ -175,6 +183,24 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"getAnchorPoint",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setAnchorPoint",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -212,6 +238,12 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     case 8:
         org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
         break;
+    case 9:
+        org_xmlvm_iphone_CALayer_getAnchorPoint__(receiver);
+        break;
+    case 10:
+        org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;
@@ -236,6 +268,8 @@ void __INIT_org_xmlvm_iphone_CALayer()
     __TIB_org_xmlvm_iphone_CALayer.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_renderInContext___org_xmlvm_iphone_CGContext;
     __TIB_org_xmlvm_iphone_CALayer.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_getDelegate__;
     __TIB_org_xmlvm_iphone_CALayer.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView;
+    __TIB_org_xmlvm_iphone_CALayer.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_getAnchorPoint__;
+    __TIB_org_xmlvm_iphone_CALayer.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_CALayer.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_CALayer.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -347,6 +381,20 @@ JAVA_OBJECT org_xmlvm_iphone_CALayer_getDelegate__(JAVA_OBJECT me)
 void org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getAnchorPoint__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CALayer_getAnchorPoint__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

@@ -5,8 +5,6 @@
 		<pathelement path="${sdk.dir}/tools/lib/anttasks.jar" />
 		<pathelement path="${sdk.dir}/tools/lib/sdklib.jar" />
 		<pathelement path="${sdk.dir}/tools/lib/androidprefs.jar" />
-		<pathelement path="${sdk.dir}/tools/lib/apkbuilder.jar" />
-		<pathelement path="${sdk.dir}/tools/lib/jarutils.jar" />
 	</path>
 
 	<!-- Custom Android task to deal with the project target, and import the proper rules.
@@ -18,13 +16,14 @@
 	<!-- Execute the Android Setup task that will setup some properties specific to the target,
 		 and import the build rules files. -->
 	<setup />
+	<fail unless="jar.libs.absolute.dir" message="Due to changes of the Android SDK tool, it is required to update Android tools to the latest version. Please update and run build targets again."/>
 
 	<!-- This file is required for the various xmlvm related tasks -->
 	<import file="xcode.xml"/>
 
 	<target depends="-resource-src" name="-res-compile" unless="bootclasspath1.available"/>
 	<target depends="-resource-src" if="bootclasspath1.available" name="-res-compile1"/>
-	
+
 	<!-- initialize android variables -->
 	<target name="init">
 		<property file="nbproject/private/config.properties"/>
@@ -74,12 +73,12 @@
 		<xmlvm.ajavac encoding="utf-8" target="1.5" debug="true" extdirs=""
 				destdir="${out.classes.absolute.dir}"
 				verbose="${verbose}" classpath="${extensible.classpath}"
-				classpathref="android.libraries.jars">
+				classpathref="project.libraries.jars">
 			<src path="${source.absolute.dir}" />
 			<src path="${gen.absolute.dir}" />
-			<src refid="android.libraries.src" />
+			<src refid="project.libraries.src" />
 			<classpath>
-				<fileset dir="${external.libs.absolute.dir}" includes="*.jar" />
+				<fileset dir="${jar.libs.absolute.dir}" includes="*.jar" />
 				<fileset dir="${extensible.libs.classpath}" includes="*.jar" />
 			</classpath>
 		</xmlvm.ajavac>
@@ -88,7 +87,7 @@
 	<target name="-trigger-android-task" depends="install">
 		<taskdef name="amanifest" classname="org.xmlvm.ant.AndroidManifestParser" classpath="${xmlvm.sdk.jar}"/>
 		<amanifest manifest="AndroidManifest.xml"/>
-		<exec executable="${sdk.dir}/tools/adb" failonerror="true">
+		<exec executable="${sdk.dir}/platform-tools/adb" failonerror="true">
 			<arg value="shell"/>
 			<arg value="am start -n ${xmlvm.android.package}/${xmlvm.android.activity}"/>
 		</exec>

@@ -54,6 +54,9 @@ public class NSXMLParserDelegate extends NSObject {
                                     @XMLVMIgnore
                                     public void startElement(String uri, String localName,
                                             String qName, Attributes attributes) {
+                                        if ("".equals(localName)) {
+                                            localName = qName;
+                                        }
                                         didStartElement(parser, localName, uri, qName,
                                                 convertAttributes(attributes));
                                     }
@@ -62,6 +65,9 @@ public class NSXMLParserDelegate extends NSObject {
                                     @XMLVMIgnore
                                     public void endElement(String uri, String localName,
                                             String qName) {
+                                        if ("".equals(localName)) {
+                                            localName = qName;
+                                        }
                                         didEndElement(parser, localName, uri, qName);
                                     }
 

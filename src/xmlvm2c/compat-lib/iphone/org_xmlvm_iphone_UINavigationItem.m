@@ -129,10 +129,6 @@ static JAVA_OBJECT* __method17_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIView,
 };
 
-static JAVA_OBJECT* __method18_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UINavigationItem,
-};
-
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"setToolbar",
     &__method0_arg_types[0],
@@ -296,15 +292,6 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"access$000",
-    &__method18_arg_types[0],
-    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -368,9 +355,6 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 17:
         org_xmlvm_iphone_UINavigationItem_setTitleView___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
-        break;
-    case 18:
-        org_xmlvm_iphone_UINavigationItem_access$000___org_xmlvm_iphone_UINavigationItem(argsArray[0]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

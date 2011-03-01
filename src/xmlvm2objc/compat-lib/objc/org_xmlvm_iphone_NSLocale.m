@@ -35,5 +35,16 @@
 	return_XMLVM(currentLocale)
 }
 
++ (java_util_ArrayList*) preferredLanguages__
+{
+	return_XMLVM(preferredLanguages)
+}
+
+- (java_lang_String *)localeIdentifier__
+{
+	return_XMLVM(localeIdentifier)
+}
+
+
 @end
 

@@ -20,6 +20,7 @@
 
 package org.xmlvm.iphone;
 
+import java.util.ArrayList;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
@@ -50,5 +51,33 @@ public class MKMapViewDelegate extends NSObject {
     }
 
     public void didFailToLocateUserWithError(MKMapView mapView, NSError error) {
+    }
+
+    public MKAnnotationView viewForAnnotation(MKMapView mapView, MKAnnotation annotation) {
+        return null;
+    }
+
+    public void didAddAnnotationViews(MKMapView mapView, ArrayList<MKAnnotationView> views) {
+    }
+
+    public void calloutAccessoryControlTapped(MKMapView mapView, MKAnnotationView annotationView,
+            UIControl control) {
+    }
+
+    public void didChangeDragStatefromOldState(MKMapView mapView, MKAnnotationView annotationView,
+            int mkAnnotationViewDragStateNew, int mkAnnotationViewDragStateOld) {
+    }
+
+    public void didSelectAnnotationView(MKMapView mapView, MKAnnotationView annotationView) {
+    }
+
+    public void didDeselectAnnotationView(MKMapView mapView, MKAnnotationView annotationView) {
+    }
+
+    public MKOverlayView viewForOverlay(MKMapView mapView, MKOverlay overlay) {
+        return null;
+    }
+
+    public void didAddOverlayViews(MKMapView mapView, ArrayList<MKOverlayView> overlayViews) {
     }
 }

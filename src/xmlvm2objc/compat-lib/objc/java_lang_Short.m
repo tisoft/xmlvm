@@ -20,10 +20,31 @@
 
 #import "java_lang_Short.h"
 
+@interface PrimitiveShort : java_lang_Object
+@end
+
+@implementation PrimitiveShort
+@end
+
+static PrimitiveShort* primitiveShort;
+static java_lang_Class* primitiveShortClass;
+
 
 // java.lang.Short
 //----------------------------------------------------------------------------
 @implementation java_lang_Short
+
+
++ (void) initialize
+{
+	primitiveShort = [[PrimitiveShort alloc] init];
+	primitiveShortClass = [primitiveShort getClass__];
+}
+
++ (java_lang_Class*) _GET_TYPE
+{
+	return primitiveShortClass;
+}
 
 - (id) init
 {

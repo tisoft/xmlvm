@@ -403,6 +403,7 @@
 			<delete dir="@{dir}/nbproject/private"/>
 			<delete dir="@{dir}/bin"/>
 			<delete dir="@{dir}/dist"/>
+			<delete dir="@{dir}/.cache"/>
 		</sequential>
 	</macrodef>
 

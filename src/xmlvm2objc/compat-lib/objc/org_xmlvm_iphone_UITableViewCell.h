@@ -49,5 +49,7 @@
 - (org_xmlvm_iphone_UIView*) getAccessoryView__;
 - (void) setAccessoryView___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*)acc;
 - (java_lang_String*) getReuseIdentifier__;
+- (void) setSelectionStyle___int:(int)style;
+- (int) getSelectionStyle__;
 
 @end

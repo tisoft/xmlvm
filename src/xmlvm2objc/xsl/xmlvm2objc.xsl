@@ -3517,9 +3517,7 @@ int main(int argc, char* argv[])
 </xsl:text>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
-  <xsl:text>.o = [XMLVMArray createSingleDimensionWithType:</xsl:text>
-  <xsl:value-of select="vm:typeID($base-type)"/>
-  <xsl:text> size:</xsl:text>
+  <xsl:text>.o = [XMLVMArray createSingleDimensionWithType:100 size:</xsl:text>
   <xsl:value-of select="count(dex:value)"/>
   <xsl:text> andData:_r</xsl:text>
   <xsl:value-of select="dex:move-result/@vx"/>
@@ -3533,7 +3531,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="@vx"/>
   <xsl:text>.o withData:(</xsl:text>
   <!-- Replace char[] with short[] since the values have already been converted to short. Otherwise, junk is produced. Similar requirement for byte[] -->
-  <xsl:value-of select="replace(replace(replace(@vx-type, 'char', 'short'), 'byte', 'char'), 'long', 'JAVA_LONG')"/>
+  <xsl:value-of select="replace(replace(replace(replace(@vx-type, 'char', 'short'), 'byte', 'char'), 'long', 'JAVA_LONG'), 'boolean', 'char')"/>
   <xsl:text>){</xsl:text>
   <xsl:for-each select="dex:constant">
     <xsl:value-of select="@value"/>

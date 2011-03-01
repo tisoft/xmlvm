@@ -48,10 +48,16 @@ public class UISlider extends UIControl {
     }
 
     public void setValue(float val) {
-        if (val < minimum)
+        setValue(val, false);
+    }
+
+    public void setValue(float val, boolean animated) {
+        if (val < minimum) {
             val = minimum;
-        if (val > maximum)
+        }
+        if (val > maximum) {
             val = maximum;
+        }
         value = val;
         this.setNeedsDisplay();
     }

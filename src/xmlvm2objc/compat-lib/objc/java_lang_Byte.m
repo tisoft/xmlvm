@@ -20,10 +20,30 @@
 
 #import "java_lang_Byte.h"
 
+@interface PrimitiveByte : java_lang_Object
+@end
+
+@implementation PrimitiveByte
+@end
+
+static PrimitiveByte* primitiveByte;
+static java_lang_Class* primitiveByteClass;
+
 
 // java.lang.Byte
 //----------------------------------------------------------------------------
 @implementation java_lang_Byte
+
++ (void) initialize
+{
+	primitiveByte = [[PrimitiveByte alloc] init];
+	primitiveByteClass = [primitiveByte getClass__];
+}
+
++ (java_lang_Class*) _GET_TYPE
+{
+	return primitiveByteClass;
+}
 
 - (id) init
 {

@@ -60,9 +60,18 @@ public class UISegmentedControl extends UIControl {
     }
 
     public UISegmentedControl(ArrayList items) {
-        for (int i = 0; i < items.size(); i++)
-            insertSegmentWithTitle((String) items.get(i), i, false);
-        xmlvmSetRenderer(new UISegmentedControlRenderer(this));
+        if (items == null || items.isEmpty()) {
+            return;
+        }
+        if (items.get(0) instanceof String) {
+            for (int i = 0; i < items.size(); i++) {
+                insertSegmentWithTitle((String) items.get(i), i, false);
+            }
+        } else if (items.get(0) instanceof UIImage) {
+            for (int i = 0; i < items.size(); i++) {
+                insertSegmentWithImage((UIImage) items.get(i), i, false);
+            }
+        }
     }
 
     public void setTitle(String title, int index) {
@@ -70,8 +79,17 @@ public class UISegmentedControl extends UIControl {
         setNeedsDisplay();
     }
 
-    public String getTitleForSegmentAtIndex(int index) {
+    public String titleForSegmentAtIndex(int index) {
         return titles.get(index);
+    }
+
+    public void setImage(UIImage image, int index) {
+        // TODO: Java implementation
+    }
+
+    public UIImage imageForSegmentAtIndex(int index) {
+        // TODO: Java implementation
+        return null;
     }
 
     public final void insertSegmentWithTitle(String title, int index, boolean animated) {

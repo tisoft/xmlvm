@@ -28,7 +28,7 @@ public class UITableViewCell extends UIView {
     private boolean      selected = false;
     private UIView       accessoryView;
     private final String reuseIdentifier;
-
+    private int          selectionStyle;
 
     public UITableViewCell() {
         this(UITableViewCellStyle.Default, null);
@@ -39,6 +39,7 @@ public class UITableViewCell extends UIView {
         setBackgroundColor(UIColor.clearColor);
         accessoryView = null;
         this.reuseIdentifier = reuseIdentifier;
+        selectionStyle = UITableViewCellSelectionStyle.Blue;
     }
 
     public void setSelected(boolean sel) {
@@ -104,5 +105,13 @@ public class UITableViewCell extends UIView {
 
     public String getReuseIdentifier() {
         return reuseIdentifier;
+    }
+
+    public int getSelectionStyle() {
+        return selectionStyle;
+    }
+
+    public void setSelectionStyle(int uiTableViewCellSelectionStyle) {
+        this.selectionStyle = uiTableViewCellSelectionStyle;
     }
 }

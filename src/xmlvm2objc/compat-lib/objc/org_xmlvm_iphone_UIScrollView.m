@@ -99,6 +99,16 @@
 	[self setScrollsToTop:totop];
 }
 
+- (int) isBounces__
+{
+	return [self bounces];
+}
+
+- (void) setBounces___boolean:(int) bounce
+{
+	[self setBounces:bounce];
+}
+
 - (int) isShowsHorizontalScrollIndicator__
 {
 	return [self showsHorizontalScrollIndicator];
@@ -117,6 +127,16 @@
 - (void) setShowsVerticalScrollIndicator___boolean :(int)indicator
 {
 	[self setShowsVerticalScrollIndicator:indicator];
+}
+
+- (int) isDelaysContentTouches__
+{
+	return [self delaysContentTouches];
+}
+
+- (void) setDelaysContentTouches___boolean:(int)delays
+{
+	[self setDelaysContentTouches:delays];
 }
 
 - (void) scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean:(org_xmlvm_iphone_CGRect*)rect :(int) animated

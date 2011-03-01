@@ -21,9 +21,12 @@
 #import "java_lang_reflect_Array.h"
 #import "java_lang_Boolean.h"
 #import "java_lang_Character.h"
+#import "java_lang_Byte.h"
+#import "java_lang_Short.h"
 #import "java_lang_Integer.h"
-#import "java_lang_Double.h"
 #import "java_lang_Float.h"
+#import "java_lang_Double.h"
+#import "java_lang_Long.h"
 #import "java_lang_RuntimeException.h"
 
 
@@ -39,12 +42,18 @@
 		baseTypeId = 1;
 	} else if (clazz == [java_lang_Character _GET_TYPE]) {
 		baseTypeId = 2;
+	} else if (clazz == [java_lang_Byte _GET_TYPE]) {
+		baseTypeId = 3;
+	} else if (clazz == [java_lang_Short _GET_TYPE]) {
+		baseTypeId = 4;
 	} else if (clazz == [java_lang_Integer _GET_TYPE]) {
 		baseTypeId = 5;
 	} else if (clazz == [java_lang_Float _GET_TYPE]) {
 		baseTypeId = 6;
 	} else if (clazz == [java_lang_Double _GET_TYPE]) {
 		baseTypeId = 7;
+	} else if (clazz == [java_lang_Long _GET_TYPE]) {
+		baseTypeId = 8;
 	} else {
 		baseTypeId = 0;
 	}

@@ -45,6 +45,9 @@ public class NSString extends NSObject {
     }
 
     public static String stringWithContentsOfFile(String path) {
+        if (path == null) {
+            return null;
+        }
         try {
             return stringWithContentsOfReader(new InputStreamReader(new FileInputStream(path),
                     "UTF-8"));

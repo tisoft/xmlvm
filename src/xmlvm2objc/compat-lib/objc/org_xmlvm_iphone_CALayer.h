@@ -21,12 +21,11 @@
 #import "xmlvm.h"
 #import <QuartzCore/CAAnimation.h>
 #import "org_xmlvm_iphone_CAAnimation.h"
+#import "org_xmlvm_iphone_CGPoint.h"
 #import "org_xmlvm_iphone_CGContext.h"
 #import "java_lang_String.h"
 
 @class org_xmlvm_iphone_UIView;
-
-
 
 typedef CALayer org_xmlvm_iphone_CALayer;
 
@@ -35,5 +34,8 @@ typedef CALayer org_xmlvm_iphone_CALayer;
 - (void) renderInContext___org_xmlvm_iphone_CGContext:(org_xmlvm_iphone_CGContext*)context;
 - (id) getDelegate__;
 - (void) setDelegate___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*) newdelegate;
+- (void) setAnchorPoint___org_xmlvm_iphone_CGPoint:(org_xmlvm_iphone_CGPoint*) anchor;
+- (org_xmlvm_iphone_CGPoint*) getAnchorPoint__;
+
 @end
 

@@ -93,6 +93,10 @@ public class UITableView extends UIScrollView {
         // TODO : Java implementation
     }
 
+    public void insertRowsAtIndexPaths(ArrayList<NSIndexPath> indexPaths, int uiTableViewRowAnimation) {
+        // TODO : Java implementation        
+    }
+    
     public UIColor getSeparatorColor() {
         return separatorColor;
     }
@@ -135,5 +139,13 @@ public class UITableView extends UIScrollView {
 
     public void setRowHeight(float rowHeight) {
         this.rowHeight = rowHeight;
+    }
+
+    public void scrollToRowAtIndexPath(NSIndexPath indexPath, int uiTableViewScrollPosition, boolean animated) {
+        // TODO : Java implementation
+    }
+
+    public void scrollToNearestSelectedRowAtScrollPosition(int uiTableViewScrollPosition, boolean animated) {
+        // TODO : Java implementation
     }
 }

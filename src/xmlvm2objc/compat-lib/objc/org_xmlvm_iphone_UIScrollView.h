@@ -39,6 +39,8 @@ typedef UIScrollView org_xmlvm_iphone_UIScrollView;
 - (void) setScrollEnabled___boolean :(int)enabled;
 - (int) isPagingEnabled__;
 - (void) setPagingEnabled___boolean :(int)enabled;
+- (int) isBounces__;
+- (void) setBounces___boolean:(int) bounce;
 - (org_xmlvm_iphone_CGSize*) getContentSize__;
 - (void) setContentSize___org_xmlvm_iphone_CGSize :(org_xmlvm_iphone_CGSize*)size;
 - (org_xmlvm_iphone_UIScrollViewDelegate*) getDelegate__;
@@ -49,6 +51,8 @@ typedef UIScrollView org_xmlvm_iphone_UIScrollView;
 - (void) setShowsHorizontalScrollIndicator___boolean :(int)indicator;
 - (int) isShowsVerticalScrollIndicator__;
 - (void) setShowsVerticalScrollIndicator___boolean :(int)indicator;
+- (int) isDelaysContentTouches__;
+- (void) setDelaysContentTouches___boolean:(int)delays;
 - (void) scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean:(org_xmlvm_iphone_CGRect*)rect :(int) animated;
 - (org_xmlvm_iphone_CGPoint*) getContentOffset__;
 @end

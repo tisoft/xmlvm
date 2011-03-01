@@ -34,6 +34,7 @@ import org.xmlvm.XMLVMSkeletonOnly;
 public class UIControl extends UIView {
 
     protected Map<Integer, UIControlDelegate> delegates;
+    private boolean                           selected;
 
 
     public UIControl() {
@@ -66,4 +67,11 @@ public class UIControl extends UIView {
         }
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 }

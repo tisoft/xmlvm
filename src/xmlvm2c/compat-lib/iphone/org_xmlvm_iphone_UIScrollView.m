@@ -142,10 +142,24 @@ static JAVA_OBJECT* __method15_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method16_arg_types[] = {
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method17_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method18_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method19_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method20_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method21_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_CGRect,
     &__CLASS_boolean,
 };
@@ -295,7 +309,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setShowsVerticalScrollIndicator",
+    {"isBounces",
     &__method16_arg_types[0],
     sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -304,9 +318,45 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"scrollRectToVisible",
+    {"setBounces",
     &__method17_arg_types[0],
     sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isDelaysContentTouches",
+    &__method18_arg_types[0],
+    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setDelaysContentTouches",
+    &__method19_arg_types[0],
+    sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setShowsVerticalScrollIndicator",
+    &__method20_arg_types[0],
+    sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"scrollRectToVisible",
+    &__method21_arg_types[0],
+    sizeof(__method21_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -372,9 +422,21 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIScrollView_isShowsVerticalScrollIndicator__(receiver);
         break;
     case 16:
-        org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UIScrollView_isBounces__(receiver);
         break;
     case 17:
+        org_xmlvm_iphone_UIScrollView_setBounces___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 18:
+        org_xmlvm_iphone_UIScrollView_isDelaysContentTouches__(receiver);
+        break;
+    case 19:
+        org_xmlvm_iphone_UIScrollView_setDelaysContentTouches___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 20:
+        org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 21:
         org_xmlvm_iphone_UIScrollView_scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     default:
@@ -409,8 +471,12 @@ void __INIT_org_xmlvm_iphone_UIScrollView()
     __TIB_org_xmlvm_iphone_UIScrollView.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_isShowsHorizontalScrollIndicator__;
     __TIB_org_xmlvm_iphone_UIScrollView.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setShowsHorizontalScrollIndicator___boolean;
     __TIB_org_xmlvm_iphone_UIScrollView.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_isShowsVerticalScrollIndicator__;
-    __TIB_org_xmlvm_iphone_UIScrollView.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean;
-    __TIB_org_xmlvm_iphone_UIScrollView.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean;
+    __TIB_org_xmlvm_iphone_UIScrollView.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_isBounces__;
+    __TIB_org_xmlvm_iphone_UIScrollView.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setBounces___boolean;
+    __TIB_org_xmlvm_iphone_UIScrollView.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_isDelaysContentTouches__;
+    __TIB_org_xmlvm_iphone_UIScrollView.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setDelaysContentTouches___boolean;
+    __TIB_org_xmlvm_iphone_UIScrollView.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean;
+    __TIB_org_xmlvm_iphone_UIScrollView.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollView_scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_UIScrollView.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIScrollView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -583,6 +649,34 @@ void org_xmlvm_iphone_UIScrollView_setShowsHorizontalScrollIndicator___boolean(J
 JAVA_BOOLEAN org_xmlvm_iphone_UIScrollView_isShowsVerticalScrollIndicator__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScrollView_isShowsVerticalScrollIndicator__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_UIScrollView_isBounces__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScrollView_isBounces__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIScrollView_setBounces___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScrollView_setBounces___boolean]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_UIScrollView_isDelaysContentTouches__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScrollView_isDelaysContentTouches__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIScrollView_setDelaysContentTouches___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScrollView_setDelaysContentTouches___boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

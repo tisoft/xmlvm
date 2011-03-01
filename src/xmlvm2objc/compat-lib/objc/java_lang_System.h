@@ -43,5 +43,8 @@
                :(int) length;
 + (void) gc__;
 + (int) identityHashCode___java_lang_Object: (java_lang_Object*) o;
++ (java_lang_String*) getProperty___java_lang_String_java_lang_String:(java_lang_String*)key :(java_lang_String*)defaultValue;
++ (java_lang_String*) getProperty___java_lang_String:(java_lang_String*)key;
++ (void) exit___int:(int)exitcode;
 
 @end

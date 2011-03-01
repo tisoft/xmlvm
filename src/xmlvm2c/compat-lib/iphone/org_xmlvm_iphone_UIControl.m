@@ -138,6 +138,13 @@ static JAVA_OBJECT* __method2_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIEvent,
 };
 
+static JAVA_OBJECT* __method3_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_boolean,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"addTarget",
     &__method0_arg_types[0],
@@ -166,6 +173,24 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"isSelected",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setSelected",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -184,6 +209,12 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 2:
         org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 3:
+        org_xmlvm_iphone_UIControl_isSelected__(receiver);
+        break;
+    case 4:
+        org_xmlvm_iphone_UIControl_setSelected___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -204,6 +235,8 @@ void __INIT_org_xmlvm_iphone_UIControl()
     __TIB_org_xmlvm_iphone_UIControl.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int;
     __TIB_org_xmlvm_iphone_UIControl.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_getAllTargets__;
     __TIB_org_xmlvm_iphone_UIControl.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+    __TIB_org_xmlvm_iphone_UIControl.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_isSelected__;
+    __TIB_org_xmlvm_iphone_UIControl.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_setSelected___boolean;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_UIControl.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIControl.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -297,6 +330,20 @@ JAVA_OBJECT org_xmlvm_iphone_UIControl_getAllTargets__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_UIControl_isSelected__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIControl_isSelected__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIControl_setSelected___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIControl_setSelected___boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

@@ -37,6 +37,9 @@
 - (void) println___double: (double) d;
 - (void) println___java_lang_String: (NSString*) s;
 - (void) println___java_lang_Object: (java_lang_Object*) o;
+- (void) println___byte: (char) b;
+- (void) println___short: (short) s;
+- (void) println___long: (JAVA_LONG) l;
 - (void) println__;
 - (void) print___boolean: (int) i;
 - (void) print___int: (int) i;
@@ -44,5 +47,8 @@
 - (void) print___double: (double) d;
 - (void) print___java_lang_String: (NSString*) s;
 - (void) print___java_lang_Object: (java_lang_Object*) o;
+- (void) print___byte: (char) b;
+- (void) print___short: (short) s;
+- (void) print___long: (JAVA_LONG) i;
 
 @end

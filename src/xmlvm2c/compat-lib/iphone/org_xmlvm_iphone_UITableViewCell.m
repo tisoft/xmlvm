@@ -153,6 +153,13 @@ static JAVA_OBJECT* __method13_arg_types[] = {
 static JAVA_OBJECT* __method14_arg_types[] = {
 };
 
+static JAVA_OBJECT* __method15_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method16_arg_types[] = {
+    &__CLASS_int,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"setSelected",
     &__method0_arg_types[0],
@@ -289,6 +296,24 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"getSelectionStyle",
+    &__method15_arg_types[0],
+    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setSelectionStyle",
+    &__method16_arg_types[0],
+    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -344,6 +369,12 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     case 14:
         org_xmlvm_iphone_UITableViewCell_getReuseIdentifier__(receiver);
         break;
+    case 15:
+        org_xmlvm_iphone_UITableViewCell_getSelectionStyle__(receiver);
+        break;
+    case 16:
+        org_xmlvm_iphone_UITableViewCell_setSelectionStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;
@@ -375,6 +406,8 @@ void __INIT_org_xmlvm_iphone_UITableViewCell()
     __TIB_org_xmlvm_iphone_UITableViewCell.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getAccessoryView__;
     __TIB_org_xmlvm_iphone_UITableViewCell.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setAccessoryView___org_xmlvm_iphone_UIView;
     __TIB_org_xmlvm_iphone_UITableViewCell.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getReuseIdentifier__;
+    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getSelectionStyle__;
+    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setSelectionStyle___int;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_UITableViewCell.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UITableViewCell.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -552,6 +585,20 @@ void org_xmlvm_iphone_UITableViewCell_setAccessoryView___org_xmlvm_iphone_UIView
 JAVA_OBJECT org_xmlvm_iphone_UITableViewCell_getReuseIdentifier__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell_getReuseIdentifier__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_INT org_xmlvm_iphone_UITableViewCell_getSelectionStyle__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell_getSelectionStyle__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UITableViewCell_setSelectionStyle___int(JAVA_OBJECT me, JAVA_INT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell_setSelectionStyle___int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

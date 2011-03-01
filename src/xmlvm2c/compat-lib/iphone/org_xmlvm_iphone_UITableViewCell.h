@@ -19,7 +19,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UITableViewCell
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewCell, 84)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewCell, 86)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell_ARRAYTYPE;
@@ -46,7 +46,7 @@ struct org_xmlvm_iphone_UITableViewCell {
 typedef struct org_xmlvm_iphone_UITableViewCell org_xmlvm_iphone_UITableViewCell;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewCell 84
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewCell 86
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_setSelected___boolean 70
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_isSelected__ 71
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_getEditingStyle__ 72
@@ -62,6 +62,8 @@ typedef struct org_xmlvm_iphone_UITableViewCell org_xmlvm_iphone_UITableViewCell
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_getAccessoryView__ 81
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_setAccessoryView___org_xmlvm_iphone_UIView 82
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_getReuseIdentifier__ 83
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_getSelectionStyle__ 84
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_setSelectionStyle___int 85
 
 void __INIT_org_xmlvm_iphone_UITableViewCell();
 void __DELETE_org_xmlvm_iphone_UITableViewCell(void* me, void* client_data);
@@ -99,5 +101,9 @@ JAVA_OBJECT org_xmlvm_iphone_UITableViewCell_getAccessoryView__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UITableViewCell_setAccessoryView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 83
 JAVA_OBJECT org_xmlvm_iphone_UITableViewCell_getReuseIdentifier__(JAVA_OBJECT me);
+// Vtable index: 84
+JAVA_INT org_xmlvm_iphone_UITableViewCell_getSelectionStyle__(JAVA_OBJECT me);
+// Vtable index: 85
+void org_xmlvm_iphone_UITableViewCell_setSelectionStyle___int(JAVA_OBJECT me, JAVA_INT n1);
 
 #endif

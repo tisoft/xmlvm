@@ -29,6 +29,7 @@ public class UIWebView extends UIView {
     private NSURLRequest      request;
     private UIWebViewDelegate delegate          = null;
     private int               dataDetectorTypes = UIDataDetectorType.All;
+    private boolean           scalesPageToFit   = false;
 
 
     public UIWebView() {
@@ -75,4 +76,12 @@ public class UIWebView extends UIView {
     public void setDataDetectorTypes(int dataDetectorTypes) {
         this.dataDetectorTypes = dataDetectorTypes;
     }
+
+    public boolean isScalesPageToFit() {
+        return scalesPageToFit;
+    }
+
+    public void setScalesPageToFit(boolean scalesPageToFit) {
+        this.scalesPageToFit = scalesPageToFit;
+    }    
 }

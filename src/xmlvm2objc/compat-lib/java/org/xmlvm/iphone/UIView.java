@@ -32,28 +32,31 @@ import org.xmlvm.iphone.internal.renderer.UIViewRenderer;
 @XMLVMSkeletonOnly
 public class UIView extends UIResponder {
 
-    private CGRect            frame;
-    private CGRect            bounds;
-    private List<UIView>      subviews;
-    private UIView            superview;
-    private UIColor           backgroundColor;
-    private boolean           opaque;
-    private float             alpha;
-    private boolean           hidden;
-    private int               contentMode;
-    private boolean           userInteractionEnabled;
-    private boolean           clipsToBounds;
-    private CGAffineTransform transform;
-    private int               offsetLeft;
-    private int               offsetTop;
-    private int               tag;
-    private CALayer           layer;
-    private int               autoresizingMask;
-    private boolean           autoresizesSubviews;
+    private static UIViewAnimationDelegate animationDelegate;
+    private static String                  lastAnimationID;
+    //
+    private CGRect                         frame;
+    private CGRect                         bounds;
+    private List<UIView>                   subviews;
+    private UIView                         superview;
+    private UIColor                        backgroundColor;
+    private boolean                        opaque;
+    private float                          alpha;
+    private boolean                        hidden;
+    private int                            contentMode;
+    private boolean                        userInteractionEnabled;
+    private boolean                        clipsToBounds;
+    private CGAffineTransform              transform;
+    private int                            offsetLeft;
+    private int                            offsetTop;
+    private int                            tag;
+    private CALayer                        layer;
+    private int                            autoresizingMask;
+    private boolean                        autoresizesSubviews;
 
     /** ---- private methods ---- */
     /* Renderer of this view */
-    private UIViewRenderer<?> renderer;
+    private UIViewRenderer<?>              renderer;
     /**
      * location to store the controller of this view - if any. Useful to send
      * messages to the controller.
@@ -61,7 +64,7 @@ public class UIView extends UIResponder {
      * Do not use it directly
      */
     @XMLVMIgnore
-    UIViewController          controller;
+    UIViewController                       controller;
 
 
     public UIView(CGRect rect) {
@@ -346,11 +349,15 @@ public class UIView extends UIResponder {
 
     /* View animations */
     public static void beginAnimations(String animationID) {
-        // TODO : Java implementation
+        lastAnimationID = animationID;
     }
 
     public static void commitAnimations() {
-        // TODO : Java implementation
+        if (animationDelegate != null) {
+            animationDelegate.animationWillStart(lastAnimationID);
+            animationDelegate.animationDidStop(lastAnimationID, true);
+        }
+        animationDelegate = null;
     }
 
     public static void setAnimationStartDate(NSDate startTime) {
@@ -396,7 +403,7 @@ public class UIView extends UIResponder {
     }
 
     public static void setAnimationDelegate(UIViewAnimationDelegate delegate) {
-        // TODO : Java implementation
+        animationDelegate = delegate;
     }
 
     public CGSize sizeThatFits(CGSize size) {

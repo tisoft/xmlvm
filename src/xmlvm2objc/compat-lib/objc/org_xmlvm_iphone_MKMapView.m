@@ -177,6 +177,121 @@
 	return [[org_xmlvm_iphone_MKMapRect alloc] initWithMKMapRect:[self mapRectThatFits:[n1 getMKMapRect] edgePadding:[n2 getUIEdgeInsets]]];
 }
 
+- (java_util_ArrayList*) getAnnotations__
+{
+	return_XMLVM(annotations)
+}
+
+- (void) addAnnotation___org_xmlvm_iphone_MKAnnotation :(org_xmlvm_iphone_MKAnnotation*)n1
+{
+	[self addAnnotation:n1];
+}
+
+- (void) addAnnotations___java_util_ArrayList :(java_util_ArrayList*)n1
+{
+	[self addAnnotations:n1];
+}
+
+- (void) removeAnnotation___org_xmlvm_iphone_MKAnnotation :(org_xmlvm_iphone_MKAnnotation*)n1
+{
+	[self removeAnnotation:n1];
+}
+
+- (void) removeAnnotations___java_util_ArrayList :(java_util_ArrayList*)n1
+{
+	[self removeAnnotations:n1];
+}
+
+- (org_xmlvm_iphone_MKAnnotationView*) viewForAnnotation___org_xmlvm_iphone_MKAnnotation :(org_xmlvm_iphone_MKAnnotation*)n1
+{
+	return_XMLVM(viewForAnnotation:n1)
+}
+
+- (java_util_Set*) annotationsInMapRect___org_xmlvm_iphone_MKMapRect :(org_xmlvm_iphone_MKMapRect*)n1
+{
+	return_XMLVM(annotationsInMapRect:[n1 getMKMapRect])
+}
+
+- (org_xmlvm_iphone_CGRect*) getAnnotationVisibleRect__
+{
+	return [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:[self annotationVisibleRect]];
+}
+
+- (org_xmlvm_iphone_MKAnnotationView*) dequeueReusableAnnotationViewWithIdentifier___java_lang_String :(java_lang_String*)n1
+{
+	return_XMLVM(dequeueReusableAnnotationViewWithIdentifier:n1)
+}
+
+- (java_util_ArrayList*) getSelectedAnnotations__
+{
+	return_XMLVM(selectedAnnotations)
+}
+
+- (void) setSelectedAnnotations___java_util_ArrayList :(java_util_ArrayList*)n1
+{
+	[self setSelectedAnnotations:n1];
+}
+
+- (void) selectAnnotation___org_xmlvm_iphone_MKAnnotation_boolean :(org_xmlvm_iphone_MKAnnotation*)n1 :(int)n2
+{
+	[self selectAnnotation:n1 animated:n2];
+}
+
+- (void) deselectAnnotation___org_xmlvm_iphone_MKAnnotation_boolean :(org_xmlvm_iphone_MKAnnotation*)n1 :(int)n2
+{
+	[self deselectAnnotation:n1 animated:n2];
+}
+
+- (java_util_ArrayList*) getOverlays__
+{
+	return_XMLVM(overlays)
+}
+
+- (void) addOverlay___org_xmlvm_iphone_MKOverlay :(org_xmlvm_iphone_MKOverlay*)n1
+{
+	[self addOverlay:n1];
+}
+
+- (void) addOverlays___java_util_ArrayList :(java_util_ArrayList*)n1
+{
+	[self addOverlays:n1];
+}
+
+- (void) removeOverlay___org_xmlvm_iphone_MKOverlay :(org_xmlvm_iphone_MKOverlay*)n1
+{
+	[self removeOverlay:n1];
+}
+
+- (void) removeOverlays___java_util_ArrayList :(java_util_ArrayList*)n1
+{
+	[self removeOverlays:n1];
+}
+
+- (void) insertOverlay___org_xmlvm_iphone_MKOverlay_int :(org_xmlvm_iphone_MKOverlay*)n1 :(int)n2
+{
+	[self insertOverlay:n1 atIndex:n2];
+}
+
+- (void) exchangeOverlay___int_int :(int)n1 :(int)n2
+{
+	[self exchangeOverlayAtIndex:n1 withOverlayAtIndex:n2];
+}
+
+- (void) insertOverlayAboveOverlay___org_xmlvm_iphone_MKOverlay_org_xmlvm_iphone_MKOverlay :(org_xmlvm_iphone_MKOverlay*)n1 :(org_xmlvm_iphone_MKOverlay*)n2
+{
+	[self insertOverlay:n1 aboveOverlay:n2];
+}
+
+- (void) insertOverlayBelowOverlay___org_xmlvm_iphone_MKOverlay_org_xmlvm_iphone_MKOverlay :(org_xmlvm_iphone_MKOverlay*)n1 :(org_xmlvm_iphone_MKOverlay*)n2
+{
+	[self insertOverlay:n1 belowOverlay:n2];
+}
+
+- (org_xmlvm_iphone_MKOverlayView*) viewForOverlay___org_xmlvm_iphone_MKOverlay :(org_xmlvm_iphone_MKOverlay*)n1
+{
+	return_XMLVM(viewForOverlay:n1)
+}
+
 
 @end
 

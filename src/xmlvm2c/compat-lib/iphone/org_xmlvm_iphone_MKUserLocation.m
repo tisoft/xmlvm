@@ -10,7 +10,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_MKUserLocation __TIB_org_xmlvm_iphone_MKUserLo
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MKUserLocation, // classInitializer
     "org.xmlvm.iphone.MKUserLocation", // className
-    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_MKAnnotation, // extends
     sizeof(org_xmlvm_iphone_MKUserLocation), // sizeInstance
     XMLVM_TYPE_CLASS};
 
@@ -77,6 +77,9 @@ static JAVA_OBJECT* __method5_arg_types[] = {
     &__CLASS_java_lang_String,
 };
 
+static JAVA_OBJECT* __method6_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"getLocation",
     &__method0_arg_types[0],
@@ -132,6 +135,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"getCoordinate",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -160,6 +172,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     case 5:
         org_xmlvm_iphone_MKUserLocation_setTitle___java_lang_String(receiver, argsArray[0]);
         break;
+    case 6:
+        org_xmlvm_iphone_MKUserLocation_getCoordinate__(receiver);
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;
@@ -171,17 +186,18 @@ void __INIT_org_xmlvm_iphone_MKUserLocation()
 {
     __TIB_org_xmlvm_iphone_MKUserLocation.classInitialized = 1;
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    if (!__TIB_org_xmlvm_iphone_MKAnnotation.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotation();
     __TIB_org_xmlvm_iphone_MKUserLocation.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKUserLocation;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKUserLocation.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKUserLocation.vtable, __TIB_org_xmlvm_iphone_MKAnnotation.vtable, sizeof(__TIB_org_xmlvm_iphone_MKAnnotation.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getLocation__;
-    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_isUpdating__;
-    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getSubtitle__;
-    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_setSubtitle___java_lang_String;
-    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getTitle__;
-    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_setTitle___java_lang_String;
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getLocation__;
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_isUpdating__;
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getSubtitle__;
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_setSubtitle___java_lang_String;
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getTitle__;
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_setTitle___java_lang_String;
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getCoordinate__;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_MKUserLocation.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_MKUserLocation.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -271,6 +287,13 @@ JAVA_OBJECT org_xmlvm_iphone_MKUserLocation_getTitle__(JAVA_OBJECT me)
 void org_xmlvm_iphone_MKUserLocation_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKUserLocation_setTitle___java_lang_String]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_MKUserLocation_getCoordinate__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKUserLocation_getCoordinate__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

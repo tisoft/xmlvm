@@ -29,6 +29,7 @@ public class CALayer extends NSObject {
 
     private HashMap<String, CAAnimation> animation;
     private UIView                       delegate;
+    private CGPoint                      anchorPoint;
 
 
     public static CALayer layer() {
@@ -37,6 +38,7 @@ public class CALayer extends NSObject {
 
     public CALayer() {
         animation = new HashMap<String, CAAnimation>();
+        anchorPoint = new CGPoint(0.5f, 0.5f);
     }
 
     public void addAnimation(CAAnimation animation, String key) {
@@ -69,5 +71,13 @@ public class CALayer extends NSObject {
 
     public void setDelegate(UIView delegate) {
         this.delegate = delegate;
+    }
+
+    public CGPoint getAnchorPoint() {
+        return anchorPoint;
+    }
+
+    public void setAnchorPoint(CGPoint anchorPoint) {
+        this.anchorPoint = anchorPoint;
     }
 }

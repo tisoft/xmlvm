@@ -37,5 +37,5 @@ typedef UISlider org_xmlvm_iphone_UISlider;
 - (void) setMinimumValue___float:(float) value;
 - (void) setMaximumValue___float:(float) value;
 - (void) setValue___float:(float) value;
-
+- (void) setValue___float_boolean:(float) value :(int) animated;
 @end

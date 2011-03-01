@@ -74,7 +74,6 @@ extern id JAVA_NULL;
     @public XMLVMElemPtr array;
     @public int          type;
     @public int          length;
-    @public BOOL         ownsData;
 }
 
 + (XMLVMArray*) createSingleDimensionWithType:(int) type andSize:(int) size;
@@ -89,6 +88,8 @@ extern id JAVA_NULL;
 
 @end
 
+#define Infinity 0x7f800000
+#define NaN 0x7fc00000
 
 void ERROR(char* msg);
 

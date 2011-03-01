@@ -60,6 +60,11 @@
 	[self setTitle:title forSegmentAtIndex:index];
 }
 
+- (void) setImage___org_xmlvm_iphone_UIImage_int:(org_xmlvm_iphone_UIImage*) image :(int)index
+{
+	[self setImage:image forSegmentAtIndex:index];
+}
+
 - (NSString *) getTitleForSegmentAtIndex___int:(int) index {
 	return [self titleForSegmentAtIndex:index];
 }

@@ -317,14 +317,14 @@ void __INIT_org_xmlvm_iphone_CATransition()
     __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[24] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
     __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[25] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
     __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[26] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    _STATIC_org_xmlvm_iphone_CATransition_Fade = (java_lang_String*) XMLVMArray_createFromString("\"fade\"");
-    _STATIC_org_xmlvm_iphone_CATransition_MoveIn = (java_lang_String*) XMLVMArray_createFromString("\"moveIn\"");
-    _STATIC_org_xmlvm_iphone_CATransition_Push = (java_lang_String*) XMLVMArray_createFromString("\"push\"");
-    _STATIC_org_xmlvm_iphone_CATransition_Reveal = (java_lang_String*) XMLVMArray_createFromString("\"reveal\"");
-    _STATIC_org_xmlvm_iphone_CATransition_FromRight = (java_lang_String*) XMLVMArray_createFromString("\"fromRight\"");
-    _STATIC_org_xmlvm_iphone_CATransition_FromLeft = (java_lang_String*) XMLVMArray_createFromString("\"fromLeft\"");
-    _STATIC_org_xmlvm_iphone_CATransition_FromTop = (java_lang_String*) XMLVMArray_createFromString("\"fromTop\"");
-    _STATIC_org_xmlvm_iphone_CATransition_FromBottom = (java_lang_String*) XMLVMArray_createFromString("\"fromBottom\"");
+    _STATIC_org_xmlvm_iphone_CATransition_Fade = (java_lang_String*) xmlvm_create_java_string("\"fade\"");
+    _STATIC_org_xmlvm_iphone_CATransition_MoveIn = (java_lang_String*) xmlvm_create_java_string("\"moveIn\"");
+    _STATIC_org_xmlvm_iphone_CATransition_Push = (java_lang_String*) xmlvm_create_java_string("\"push\"");
+    _STATIC_org_xmlvm_iphone_CATransition_Reveal = (java_lang_String*) xmlvm_create_java_string("\"reveal\"");
+    _STATIC_org_xmlvm_iphone_CATransition_FromRight = (java_lang_String*) xmlvm_create_java_string("\"fromRight\"");
+    _STATIC_org_xmlvm_iphone_CATransition_FromLeft = (java_lang_String*) xmlvm_create_java_string("\"fromLeft\"");
+    _STATIC_org_xmlvm_iphone_CATransition_FromTop = (java_lang_String*) xmlvm_create_java_string("\"fromTop\"");
+    _STATIC_org_xmlvm_iphone_CATransition_FromBottom = (java_lang_String*) xmlvm_create_java_string("\"fromBottom\"");
 
     __TIB_org_xmlvm_iphone_CATransition.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_CATransition.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

@@ -26,7 +26,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIScrollView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIScrollView, 88)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIScrollView, 92)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView_ARRAYTYPE;
@@ -53,7 +53,7 @@ struct org_xmlvm_iphone_UIScrollView {
 typedef struct org_xmlvm_iphone_UIScrollView org_xmlvm_iphone_UIScrollView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIScrollView 88
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIScrollView 92
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint 70
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint_boolean 71
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_getContentOffset__ 72
@@ -70,8 +70,12 @@ typedef struct org_xmlvm_iphone_UIScrollView org_xmlvm_iphone_UIScrollView;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_isShowsHorizontalScrollIndicator__ 83
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setShowsHorizontalScrollIndicator___boolean 84
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_isShowsVerticalScrollIndicator__ 85
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean 86
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean 87
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_isBounces__ 86
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setBounces___boolean 87
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_isDelaysContentTouches__ 88
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setDelaysContentTouches___boolean 89
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean 90
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIScrollView_scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean 91
 
 void __INIT_org_xmlvm_iphone_UIScrollView();
 void __DELETE_org_xmlvm_iphone_UIScrollView(void* me, void* client_data);
@@ -112,8 +116,16 @@ void org_xmlvm_iphone_UIScrollView_setShowsHorizontalScrollIndicator___boolean(J
 // Vtable index: 85
 JAVA_BOOLEAN org_xmlvm_iphone_UIScrollView_isShowsVerticalScrollIndicator__(JAVA_OBJECT me);
 // Vtable index: 86
-void org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_BOOLEAN org_xmlvm_iphone_UIScrollView_isBounces__(JAVA_OBJECT me);
 // Vtable index: 87
+void org_xmlvm_iphone_UIScrollView_setBounces___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+// Vtable index: 88
+JAVA_BOOLEAN org_xmlvm_iphone_UIScrollView_isDelaysContentTouches__(JAVA_OBJECT me);
+// Vtable index: 89
+void org_xmlvm_iphone_UIScrollView_setDelaysContentTouches___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+// Vtable index: 90
+void org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+// Vtable index: 91
 void org_xmlvm_iphone_UIScrollView_scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
 
 #endif

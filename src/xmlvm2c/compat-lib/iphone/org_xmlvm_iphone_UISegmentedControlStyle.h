@@ -48,6 +48,8 @@ JAVA_INT org_xmlvm_iphone_UISegmentedControlStyle_GET_Bordered();
 void org_xmlvm_iphone_UISegmentedControlStyle_PUT_Bordered(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UISegmentedControlStyle_GET_Bar();
 void org_xmlvm_iphone_UISegmentedControlStyle_PUT_Bar(JAVA_INT v);
+JAVA_INT org_xmlvm_iphone_UISegmentedControlStyle_GET_Bezeled();
+void org_xmlvm_iphone_UISegmentedControlStyle_PUT_Bezeled(JAVA_INT v);
 void org_xmlvm_iphone_UISegmentedControlStyle___INIT___(JAVA_OBJECT me);
 
 #endif

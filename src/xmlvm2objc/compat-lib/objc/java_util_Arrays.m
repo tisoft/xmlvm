@@ -69,10 +69,6 @@ static void quicksort(int list[], int m, int n)
 
 @implementation java_util_Arrays
 
-+ (void) mergeSort:(XMLVMArray*) src: (XMLVMArray*) dest: (int) low: (int) high: (int) off {
-	[java_util_Arrays mergeSortWithComparator:src:dest:low:high:off:JAVA_NULL];
-}
-
 + (void) mergeSortWithComparator:(XMLVMArray*) src: (XMLVMArray*) dest: (int) low: (int) high: (int) off: (java_util_Comparator*)c {
 	int INSERTIONSORT_THRESHOLD = 7;
 	
@@ -155,16 +151,18 @@ static void quicksort(int list[], int m, int n)
 }
 
 + (void) sort___java_lang_Object_ARRAYTYPE: (XMLVMArray*) a {
-	[java_util_Arrays sort___java_lang_Object_ARRAYTYPE_java_util_Comparator:a:JAVA_NULL];
+	[java_util_Arrays sort___java_lang_Object_ARRAYTYPE_int_int_java_util_Comparator:a :0 :[a count] :JAVA_NULL];
 }
 
-+ (void) sort___java_lang_Object_ARRAYTYPE_java_util_Comparator: (XMLVMArray*) a: (java_util_Comparator*) c {
++ (void) sort___java_lang_Object_ARRAYTYPE_java_util_Comparator: (XMLVMArray*) a: (java_util_Comparator*) c
+{
+	[java_util_Arrays sort___java_lang_Object_ARRAYTYPE_int_int_java_util_Comparator:a :0 :[a count] :c];
+}
+
++ (void) sort___java_lang_Object_ARRAYTYPE_int_int_java_util_Comparator:(XMLVMArray*) a :(int) fromIndex :(int) toIndex :(java_util_Comparator*) c;
+{
 	XMLVMArray* aux = [a clone__];
-	if (c == JAVA_NULL) {
-		[java_util_Arrays mergeSort:aux:a:0:[a count]:0];
-	} else {
-		[java_util_Arrays mergeSortWithComparator:aux:a:0:[a count]:0:c];
-	}
+	[java_util_Arrays mergeSortWithComparator:aux:a:fromIndex:toIndex:0:c];
 	[aux release];
 }
 
@@ -174,7 +172,7 @@ static void quicksort(int list[], int m, int n)
 	for (int i = 0; i < [a count]; i++) {
 		[result add___java_lang_Object:a->array.o[i]];
 	}
-	return result;
+	return (java_util_List*)result;
 }
 
 + (XMLVMArray*) copyOf___int_ARRAYTYPE_int:(XMLVMArray*) original :(int) newLength

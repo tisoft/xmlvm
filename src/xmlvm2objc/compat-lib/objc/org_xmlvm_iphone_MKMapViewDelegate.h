@@ -24,6 +24,8 @@
 #import "org_xmlvm_iphone_NSError.h"
 #import "org_xmlvm_iphone_MKUserLocation.h"
 #import "org_xmlvm_iphone_MKMapView.h"
+#import "java_util_ArrayList.h"
+#import "org_xmlvm_iphone_UIControl.h"
 #import <MapKit/MKMapView.h>
 	
 @interface org_xmlvm_iphone_MKMapViewDelegate : java_lang_Object<MKMapViewDelegate>
@@ -38,6 +40,14 @@
 - (void) didStopLocatingUser___org_xmlvm_iphone_MKMapView :(org_xmlvm_iphone_MKMapView*)mapView;
 - (void) didUpdateUserLocation___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKUserLocation :(org_xmlvm_iphone_MKMapView*)mapView :(org_xmlvm_iphone_MKUserLocation*)location;
 - (void) didFailToLocateUserWithError___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_NSError :(org_xmlvm_iphone_MKMapView*)mapView :(org_xmlvm_iphone_NSError*)error;
+- (org_xmlvm_iphone_MKAnnotationView*) viewForAnnotation___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotation :(org_xmlvm_iphone_MKMapView*)mapView :(org_xmlvm_iphone_MKAnnotation*)annotation;
+- (void) didAddAnnotationViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList :(org_xmlvm_iphone_MKMapView*)mapView :(java_util_ArrayList*)views;
+- (void) calloutAccessoryControlTapped___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_org_xmlvm_iphone_UIControl :(org_xmlvm_iphone_MKMapView*)mapView :(org_xmlvm_iphone_MKAnnotationView*)annotation :(org_xmlvm_iphone_UIControl*)control;
+- (void) didChangeDragStatefromOldState___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_int_int :(org_xmlvm_iphone_MKMapView*)mapView :(org_xmlvm_iphone_MKAnnotationView*)annotationView :(int)newState :(int)oldState;
+- (void) didSelectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView :(org_xmlvm_iphone_MKMapView*)mapView :(org_xmlvm_iphone_MKAnnotationView*)annotationView;
+- (void) didDeselectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView :(org_xmlvm_iphone_MKMapView*)mapView :(org_xmlvm_iphone_MKAnnotationView*)annotationView;
+- (org_xmlvm_iphone_MKOverlayView*) viewForOverlay___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKOverlay :(org_xmlvm_iphone_MKMapView*)mapView :(org_xmlvm_iphone_MKOverlay*)overlay;
+- (void) didAddOverlayViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList :(org_xmlvm_iphone_MKMapView*)mapView :(java_util_ArrayList*)overlayViews;
 
 @end
 

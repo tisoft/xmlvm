@@ -84,6 +84,21 @@
 	[self println__];
 }
 
+- (void) println___byte: (char) b
+{
+	[self writeStringLn:[NSString stringWithFormat:@"%d", b]];
+}
+
+- (void) println___short: (short) s
+{
+	[self writeStringLn:[NSString stringWithFormat:@"%hi", s]];
+}
+
+- (void) println___long: (JAVA_LONG) l
+{
+	[self writeStringLn:[NSString stringWithFormat:@"%qi", l]];
+}
+
 - (void) println__
 {
 	[self writeString:@"\n"];
@@ -126,6 +141,21 @@
 		[self writeString:s];
 		[s release];
 	}
+}
+
+- (void) print___byte: (char) b
+{
+	[self writeString:[NSString stringWithFormat:@"%d", b]];
+}
+
+- (void) print___short: (short) s
+{
+	[self writeString:[NSString stringWithFormat:@"%hi", s]];
+}
+
+- (void) print___long: (JAVA_LONG) l
+{
+	[self writeString:[NSString stringWithFormat:@"%qi", l]];
 }
 
 @end

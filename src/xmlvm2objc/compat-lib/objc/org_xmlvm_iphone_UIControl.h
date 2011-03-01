@@ -32,4 +32,7 @@ typedef UIControl org_xmlvm_iphone_UIControl;
 - (void) addTarget___org_xmlvm_iphone_UIControlDelegate_int
                    :(id<org_xmlvm_iphone_UIControlDelegate>) delegate
                    :(int) controlEvents;
+- (int) isSelected__;
+- (void) setSelected___boolean:(int)selected;
+
 @end

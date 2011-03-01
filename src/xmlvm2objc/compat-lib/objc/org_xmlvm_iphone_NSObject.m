@@ -43,6 +43,19 @@
 	[selectorName release];
 }
 
++ (void) performSelector___java_lang_Object_java_lang_String_java_lang_Object_double
+			  :(java_lang_Object*) target
+			  :(java_lang_String*) method
+			  :(java_lang_Object*) arg
+			  :(double) delay;
+{
+	NSMutableString* selectorName = [[NSMutableString alloc] initWithString:method];
+	[selectorName appendString:@"___java_lang_Object:"];
+	SEL selector = NSSelectorFromString(selectorName);
+	[target performSelector:selector withObject:arg afterDelay:delay];
+	[selectorName release];
+}
+
 - (void) __init_org_xmlvm_iphone_NSObject__
 {
 }

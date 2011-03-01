@@ -131,6 +131,11 @@
 	[self reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
 }
 
+- (void) insertRowsAtIndexPaths___java_util_ArrayList_int:(java_util_ArrayList*)indexPaths :(int)animation
+{
+	[self insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+}
+
 - (org_xmlvm_iphone_UITableViewCell*) dequeueReusableCellWithIdentifier___java_lang_String :(NSString*)identifier 
 {
 	return_XMLVM(dequeueReusableCellWithIdentifier:XMLVM_NULL2NIL(identifier))
@@ -139,6 +144,16 @@
 - (void) deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean:(org_xmlvm_iphone_NSIndexPath*)indexPath :(int)animation
 {
 	[self deselectRowAtIndexPath:indexPath animated:animation];
+}
+
+- (void) scrollToRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_int_boolean:(org_xmlvm_iphone_NSIndexPath*)indexPath :(int)scrollPosition :(int)animated
+{
+	[self scrollToRowAtIndexPath:indexPath atScrollPosition:scrollPosition animated:animated];
+}
+
+- (void) scrollToNearestSelectedRowAtScrollPosition___int_boolean:(int)scrollPosition :(int)animated
+{
+	[self scrollToNearestSelectedRowAtScrollPosition:scrollPosition animated:animated];
 }
 
 @end

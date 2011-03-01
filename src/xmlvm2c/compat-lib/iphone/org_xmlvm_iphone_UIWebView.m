@@ -109,6 +109,13 @@ static JAVA_OBJECT* __method8_arg_types[] = {
     &__CLASS_int,
 };
 
+static JAVA_OBJECT* __method9_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+    &__CLASS_boolean,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"loadRequest",
     &__method0_arg_types[0],
@@ -191,6 +198,24 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"isScalesPageToFit",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setScalesPageToFit",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -228,6 +253,12 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     case 8:
         org_xmlvm_iphone_UIWebView_setDataDetectorTypes___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
+    case 9:
+        org_xmlvm_iphone_UIWebView_isScalesPageToFit__(receiver);
+        break;
+    case 10:
+        org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;
@@ -253,6 +284,8 @@ void __INIT_org_xmlvm_iphone_UIWebView()
     __TIB_org_xmlvm_iphone_UIWebView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_reload__;
     __TIB_org_xmlvm_iphone_UIWebView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_getDataDetectorTypes__;
     __TIB_org_xmlvm_iphone_UIWebView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_setDataDetectorTypes___int;
+    __TIB_org_xmlvm_iphone_UIWebView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_isScalesPageToFit__;
+    __TIB_org_xmlvm_iphone_UIWebView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_UIWebView.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIWebView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -370,6 +403,20 @@ JAVA_INT org_xmlvm_iphone_UIWebView_getDataDetectorTypes__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIWebView_setDataDetectorTypes___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_setDataDetectorTypes___int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_UIWebView_isScalesPageToFit__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_isScalesPageToFit__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

@@ -20,6 +20,7 @@
 
 #import "java_lang_System.h"
 #import "java_lang_RuntimeException.h"
+#import "java_util_Properties.h"
 
 
 @interface ConsoleOutputStream : java_io_OutputStream 
@@ -40,6 +41,8 @@
 //----------------------------------------------------------------------------
 java_io_PrintStream* _STATIC_java_lang_System_out;
 java_io_InputStream* _STATIC_java_lang_System_in;
+
+java_util_Properties* _STATIC_java_util_Properties_props = nil;
 
 @implementation java_lang_System;
 
@@ -156,7 +159,7 @@ java_io_InputStream* _STATIC_java_lang_System_in;
 			// Nothing to do
 			return;
 		}
-		if (srcPos + length - 1 > destPos) {
+		if (srcPos < destPos) {
 			// We have to copy backwards to ensure we don't overwrite ourselves while copying
 			srcPos += length - 1;
 			destPos += length - 1;
@@ -216,6 +219,28 @@ java_io_InputStream* _STATIC_java_lang_System_in;
 + (int) identityHashCode___java_lang_Object: (java_lang_Object*) o
 {
 	return (int) o;
+}
+
++ (java_lang_String*) getProperty___java_lang_String:(java_lang_String*)key
+{
+	return [self getProperty___java_lang_String_java_lang_String:key :JAVA_NULL];
+}
+
++ (java_lang_String*) getProperty___java_lang_String_java_lang_String:(java_lang_String*)key :(java_lang_String*)defaultValue
+{
+	if (_STATIC_java_util_Properties_props==nil) {
+		_STATIC_java_util_Properties_props=[[java_util_Properties alloc] init];
+		[_STATIC_java_util_Properties_props __init_java_util_Properties__];
+		[_STATIC_java_util_Properties_props put___java_lang_Object_java_lang_Object:@"line.separator" :@"\n"];
+		[_STATIC_java_util_Properties_props put___java_lang_Object_java_lang_Object:@"file.separator" :@"/"];
+		[_STATIC_java_util_Properties_props put___java_lang_Object_java_lang_Object:@"os.name" :@"iOS"];
+	}
+	return [_STATIC_java_util_Properties_props getProperty___java_lang_String_java_lang_String:key :defaultValue];// No retain required - object was already retained
+}
+
++ (void) exit___int:(int)exitcode
+{
+	exit(exitcode);
 }
 
 @end

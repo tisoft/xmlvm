@@ -41,6 +41,7 @@ typedef UISegmentedControl org_xmlvm_iphone_UISegmentedControl;
 - (void) setSelectedSegmentIndex___int:(int) index;
 - (void) setSegmentedControlStyle___int:(int) style;
 - (void) setTitle___java_lang_String_int:(java_lang_String *)title :(int)index;
+- (void) setImage___org_xmlvm_iphone_UIImage_int:(org_xmlvm_iphone_UIImage*) image :(int)index;
 - (java_lang_String *) getTitleForSegmentAtIndex___int:(int) index;
 - (void) removeSegmentAtIndex___int_boolean:(int)index :(int)animated;
 - (int) numberOfSegments__;

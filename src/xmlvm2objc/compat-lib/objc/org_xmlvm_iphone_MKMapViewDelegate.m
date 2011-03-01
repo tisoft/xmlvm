@@ -31,6 +31,8 @@
 
 @implementation org_xmlvm_iphone_MKMapViewDelegate;
 
+#pragma mark java based selectors
+
 - (void) __init_org_xmlvm_iphone_MKMapViewDelegate__
 {
 }
@@ -71,6 +73,41 @@
 {
 }
 
+- (org_xmlvm_iphone_MKAnnotationView*) viewForAnnotation___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotation :(org_xmlvm_iphone_MKMapView*)mapView :(org_xmlvm_iphone_MKAnnotation*)annotation
+{
+	return JAVA_NULL;
+}
+
+- (void) didAddAnnotationViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList :(org_xmlvm_iphone_MKMapView*)mapView :(java_util_ArrayList*)views
+{
+}
+
+- (void) calloutAccessoryControlTapped___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_org_xmlvm_iphone_UIControl :(org_xmlvm_iphone_MKMapView*)mapView :(org_xmlvm_iphone_MKAnnotationView*)annotation :(org_xmlvm_iphone_UIControl*)control
+{
+}
+
+- (void) didChangeDragStatefromOldState___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_int_int :(org_xmlvm_iphone_MKMapView*)mapView :(org_xmlvm_iphone_MKAnnotationView*)annotationView :(int)newState :(int)oldState
+{
+}
+
+- (void) didSelectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView :(org_xmlvm_iphone_MKMapView*)mapView :(org_xmlvm_iphone_MKAnnotationView*)annotationView
+{
+}
+
+- (void) didDeselectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView :(org_xmlvm_iphone_MKMapView*)mapView :(org_xmlvm_iphone_MKAnnotationView*)annotationView
+{
+}
+
+- (org_xmlvm_iphone_MKOverlayView*) viewForOverlay___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKOverlay :(org_xmlvm_iphone_MKMapView*)mapView :(org_xmlvm_iphone_MKOverlay*)overlay
+{
+	return JAVA_NULL;
+}
+
+- (void) didAddOverlayViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList :(org_xmlvm_iphone_MKMapView*)mapView :(java_util_ArrayList*)overlayViews
+{
+}
+
+#pragma mark iOS based selectors
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
@@ -116,6 +153,49 @@
 {
 	[self didFailToLocateUserWithError___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_NSError:mapView :error];
 }
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+	MKAnnotationView* result = [self viewForAnnotation___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotation:mapView :annotation];
+	return XMLVM_NULL2NIL(result);
+}
+
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+{
+	[self didAddAnnotationViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList:mapView :(java_util_ArrayList*)views];
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+	[self calloutAccessoryControlTapped___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_org_xmlvm_iphone_UIControl:mapView :view :control];
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)annotationView didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
+{
+	[self didChangeDragStatefromOldState___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_int_int:mapView :annotationView :newState :oldState];
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+	[self didSelectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView:mapView :view];
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
+{
+	[self didDeselectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView:mapView :view];
+}
+
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
+{
+	MKOverlayView * result = [self viewForOverlay___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKOverlay:mapView :overlay];
+	return XMLVM_NULL2NIL(result);
+}
+
+- (void)mapView:(MKMapView *)mapView didAddOverlayViews:(NSArray *)overlayViews
+{
+	[self didAddOverlayViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList:mapView :(java_util_ArrayList*)overlayViews];
+}
+
 
 @end
 

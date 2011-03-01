@@ -1,6 +1,11 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_UIControl.h"
+#include "org_xmlvm_iphone_MKAnnotationView.h"
+#include "org_xmlvm_iphone_MKAnnotation.h"
+#include "java_util_ArrayList.h"
 #include "org_xmlvm_iphone_MKMapView.h"
 #include "org_xmlvm_iphone_NSError.h"
+#include "org_xmlvm_iphone_MKOverlay.h"
 #include "org_xmlvm_iphone_MKUserLocation.h"
 
 #include "org_xmlvm_iphone_MKMapViewDelegate.h"
@@ -100,6 +105,49 @@ static JAVA_OBJECT* __method8_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_NSError,
 };
 
+static JAVA_OBJECT* __method9_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKMapView,
+    &__CLASS_org_xmlvm_iphone_MKAnnotation,
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKMapView,
+    &__CLASS_java_util_ArrayList,
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKMapView,
+    &__CLASS_org_xmlvm_iphone_MKAnnotationView,
+    &__CLASS_org_xmlvm_iphone_UIControl,
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKMapView,
+    &__CLASS_org_xmlvm_iphone_MKAnnotationView,
+    &__CLASS_int,
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method13_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKMapView,
+    &__CLASS_org_xmlvm_iphone_MKAnnotationView,
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKMapView,
+    &__CLASS_org_xmlvm_iphone_MKAnnotationView,
+};
+
+static JAVA_OBJECT* __method15_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKMapView,
+    &__CLASS_org_xmlvm_iphone_MKOverlay,
+};
+
+static JAVA_OBJECT* __method16_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKMapView,
+    &__CLASS_java_util_ArrayList,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"regionWillChangeAnimated",
     &__method0_arg_types[0],
@@ -182,6 +230,78 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"viewForAnnotation",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didAddAnnotationViews",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"calloutAccessoryControlTapped",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didChangeDragStatefromOldState",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didSelectAnnotationView",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didDeselectAnnotationView",
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"viewForOverlay",
+    &__method15_arg_types[0],
+    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didAddOverlayViews",
+    &__method16_arg_types[0],
+    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -219,6 +339,30 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     case 8:
         org_xmlvm_iphone_MKMapViewDelegate_didFailToLocateUserWithError___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_NSError(receiver, argsArray[0], argsArray[1]);
         break;
+    case 9:
+        org_xmlvm_iphone_MKMapViewDelegate_viewForAnnotation___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotation(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 10:
+        org_xmlvm_iphone_MKMapViewDelegate_didAddAnnotationViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 11:
+        org_xmlvm_iphone_MKMapViewDelegate_calloutAccessoryControlTapped___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_org_xmlvm_iphone_UIControl(receiver, argsArray[0], argsArray[1], argsArray[2]);
+        break;
+    case 12:
+        org_xmlvm_iphone_MKMapViewDelegate_didChangeDragStatefromOldState___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_int_int(receiver, argsArray[0], argsArray[1], ((java_lang_Integer*) argsArray[2])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
+        break;
+    case 13:
+        org_xmlvm_iphone_MKMapViewDelegate_didSelectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 14:
+        org_xmlvm_iphone_MKMapViewDelegate_didDeselectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 15:
+        org_xmlvm_iphone_MKMapViewDelegate_viewForOverlay___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKOverlay(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 16:
+        org_xmlvm_iphone_MKMapViewDelegate_didAddOverlayViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList(receiver, argsArray[0], argsArray[1]);
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;
@@ -244,6 +388,14 @@ void __INIT_org_xmlvm_iphone_MKMapViewDelegate()
     __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didStopLocatingUser___org_xmlvm_iphone_MKMapView;
     __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didUpdateUserLocation___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKUserLocation;
     __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didFailToLocateUserWithError___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_NSError;
+    __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_viewForAnnotation___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotation;
+    __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didAddAnnotationViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList;
+    __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_calloutAccessoryControlTapped___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_org_xmlvm_iphone_UIControl;
+    __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didChangeDragStatefromOldState___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_int_int;
+    __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didSelectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView;
+    __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didDeselectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView;
+    __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_viewForOverlay___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKOverlay;
+    __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didAddOverlayViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_MKMapViewDelegate.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_MKMapViewDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -354,6 +506,62 @@ void org_xmlvm_iphone_MKMapViewDelegate_didUpdateUserLocation___org_xmlvm_iphone
 void org_xmlvm_iphone_MKMapViewDelegate_didFailToLocateUserWithError___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_NSError(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapViewDelegate_didFailToLocateUserWithError___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_NSError]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_MKMapViewDelegate_viewForAnnotation___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotation(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapViewDelegate_viewForAnnotation___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotation]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapViewDelegate_didAddAnnotationViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapViewDelegate_didAddAnnotationViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapViewDelegate_calloutAccessoryControlTapped___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_org_xmlvm_iphone_UIControl(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapViewDelegate_calloutAccessoryControlTapped___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_org_xmlvm_iphone_UIControl]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapViewDelegate_didChangeDragStatefromOldState___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_int_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_INT n4)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapViewDelegate_didChangeDragStatefromOldState___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_int_int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapViewDelegate_didSelectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapViewDelegate_didSelectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapViewDelegate_didDeselectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapViewDelegate_didDeselectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_MKMapViewDelegate_viewForOverlay___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKOverlay(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapViewDelegate_viewForOverlay___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKOverlay]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapViewDelegate_didAddOverlayViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapViewDelegate_didAddOverlayViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

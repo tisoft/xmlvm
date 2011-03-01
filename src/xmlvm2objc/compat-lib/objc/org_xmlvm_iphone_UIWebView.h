@@ -39,4 +39,6 @@ typedef UIWebView org_xmlvm_iphone_UIWebView;
 - (void) reload__;
 - (void) setDataDetectorTypes___int:(int) types;
 - (int) getDataDetectorTypes__;
+- (void) setScalesPageToFit___boolean:(int)pageToFit;
+- (int) isScalesPageToFit__;
 @end

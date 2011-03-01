@@ -20,23 +20,30 @@
 
 package org.xmlvm.iphone;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
 public class MKMapView extends UIView {
 
-    private int                    mapType;
-    private boolean                zoomEnabled;
-    private boolean                scrollEnabled;
-    private MKMapViewDelegate      delegate;
+    private int                     mapType;
+    private boolean                 zoomEnabled;
+    private boolean                 scrollEnabled;
+    private MKMapViewDelegate       delegate;
     //
-    private MKCoordinateRegion     region;
-    private CLLocationCoordinate2D centerCoordinate;
-    private MKMapRect              visibleMapRect;
+    private MKCoordinateRegion      region;
+    private CLLocationCoordinate2D  centerCoordinate;
+    private MKMapRect               visibleMapRect;
     //
-    private boolean                showsUserLocation;
-    private boolean                userLocationVisible;
-    private MKUserLocation         userLocation;
+    private boolean                 showsUserLocation;
+    private boolean                 userLocationVisible;
+    private MKUserLocation          userLocation;
+    //
+    private ArrayList<MKAnnotation> annotations;
+    private ArrayList<MKAnnotation> selectedAnnotations;
+    private ArrayList<MKOverlay>    overlays;
 
 
     public MKMapView() {
@@ -45,6 +52,7 @@ public class MKMapView extends UIView {
 
     public MKMapView(CGRect frame) {
         super(frame);
+        annotations = new ArrayList<MKAnnotation>();
     }
 
     public int getMapType() {
@@ -167,6 +175,115 @@ public class MKMapView extends UIView {
     }
 
     public MKMapRect mapRectThatFits(MKMapRect mapRect, UIEdgeInsets insets) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public ArrayList<MKAnnotation> getAnnotations() {
+        return annotations;
+    }
+
+    public void addAnnotation(MKAnnotation annotation) {
+        annotations.add(annotation);
+    }
+
+    public void addAnnotations(ArrayList<MKAnnotation> annotations) {
+        this.annotations.addAll(annotations);
+    }
+
+    public void removeAnnotation(MKAnnotation annotation) {
+        annotations.remove(annotation);
+    }
+
+    public void removeAnnotations(ArrayList<MKAnnotation> annotations) {
+        this.annotations.removeAll(annotations);
+    }
+
+    public MKAnnotationView viewForAnnotation(MKAnnotation annotation) {
+        // TODO: Java implementation
+        return null;
+    }
+
+    public Set<MKAnnotation> annotationsInMapRect(MKMapRect rect) {
+        // TODO: Java implementation
+        return new HashSet<MKAnnotation>();
+    }
+
+    public CGRect getAnnotationVisibleRect() {
+        // TODO: Java implementation
+        return null;
+    }
+
+    public MKAnnotationView dequeueReusableAnnotationViewWithIdentifier(String id) {
+        // TODO: Java implementation
+        return null;
+    }
+
+    public ArrayList<MKAnnotation> getSelectedAnnotations() {
+        return selectedAnnotations;
+    }
+
+    public void setSelectedAnnotations(ArrayList<MKAnnotation> selectedAnnotations) {
+        this.selectedAnnotations = new ArrayList<MKAnnotation>();
+        if (selectedAnnotations != null && selectedAnnotations.size() > 0) {
+            this.selectedAnnotations.add(selectedAnnotations.get(0));
+        }
+    }
+
+    public void selectAnnotation(MKAnnotation annotation, boolean animated) {
+        if (annotations.contains(annotation)) {
+            selectedAnnotations.add(annotation);
+            // TODO : update visuals
+        }
+    }
+
+    public void deselectAnnotation(MKAnnotation annotation, boolean animated) {
+        selectedAnnotations.remove(annotation);
+        // TODO : update visuals
+    }
+
+    public ArrayList<MKOverlay> getOverlays() {
+        return overlays;
+    }
+
+    public void addOverlay(MKOverlay overlay) {
+        overlays.add(overlay);
+    }
+
+    public void addOverlays(ArrayList<MKOverlay> overlays) {
+        this.overlays.addAll(overlays);
+    }
+
+    public void removeOverlay(MKOverlay overlay) {
+        overlays.remove(overlay);
+    }
+
+    public void removeOverlays(ArrayList<MKOverlay> overlays) {
+        this.overlays.removeAll(overlays);
+    }
+
+    public void insertOverlay(MKOverlay overlay, int index) {
+        overlays.add(index, overlay);
+    }
+
+    public void exchangeOverlay(int index1, int index2) {
+        MKOverlay ol1 = overlays.get(index1);
+        MKOverlay ol2 = overlays.get(index2);
+        overlays.set(index2, ol1);
+        overlays.set(index1, ol2);
+    }
+
+    public void insertOverlayAboveOverlay(MKOverlay overlay, MKOverlay sibling) {
+        int pos = overlays.indexOf(overlay);
+        insertOverlay(sibling, pos + 1);
+    }
+
+    public void insertOverlayBelowOverlay(MKOverlay overlay, MKOverlay sibling) {
+        int pos = overlays.indexOf(overlay);
+        insertOverlay(sibling, pos);
+    }
+
+    public MKOverlayView viewForOverlay(MKOverlay overlay) {
         // TODO : Java implementation
         return null;
     }

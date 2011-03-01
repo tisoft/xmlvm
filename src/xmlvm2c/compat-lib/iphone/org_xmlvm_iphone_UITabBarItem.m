@@ -68,10 +68,6 @@ static JAVA_OBJECT* __method2_arg_types[] = {
     &__CLASS_java_lang_String,
 };
 
-static JAVA_OBJECT* __method3_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UITabBarItem,
-};
-
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"getBadgeValue",
     &__method0_arg_types[0],
@@ -100,15 +96,6 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"access$000",
-    &__method3_arg_types[0],
-    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -127,9 +114,6 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 2:
         org_xmlvm_iphone_UITabBarItem_setTitle___java_lang_String(receiver, argsArray[0]);
-        break;
-    case 3:
-        org_xmlvm_iphone_UITabBarItem_access$000___org_xmlvm_iphone_UITabBarItem(argsArray[0]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

@@ -31,6 +31,8 @@ public class UIScrollView extends UIView {
     private boolean              showsHorizontalScrollIndicator = true;
     private boolean              showsVerticalScrollIndicator   = true;
     private boolean              scrollsToTop                   = true;
+    private boolean              bounces                        = true;
+    private boolean              delaysContentTouches           = true;
     private UIScrollViewDelegate delegate                       = null;
 
 
@@ -107,6 +109,22 @@ public class UIScrollView extends UIView {
 
     public boolean isShowsVerticalScrollIndicator() {
         return showsVerticalScrollIndicator;
+    }
+
+    public boolean isBounces() {
+        return bounces;
+    }
+
+    public void setBounces(boolean bounces) {
+        this.bounces = bounces;
+    }
+
+    public boolean isDelaysContentTouches() {
+        return delaysContentTouches;
+    }
+
+    public void setDelaysContentTouches(boolean delaysContentTouches) {
+        this.delaysContentTouches = delaysContentTouches;
     }
 
     public void setShowsVerticalScrollIndicator(boolean showsVerticalScrollIndicator) {

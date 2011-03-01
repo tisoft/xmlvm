@@ -124,4 +124,14 @@
 	return_XMLVM(reuseIdentifier)
 }
 
+- (void) setSelectionStyle___int:(int)style
+{
+	[self setSelectionStyle:style];
+}
+
+- (int) getSelectionStyle__
+{
+	return [self selectionStyle];
+}
+
 @end

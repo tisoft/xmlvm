@@ -133,43 +133,59 @@ static JAVA_OBJECT* __method8_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method9_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method10_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIColor,
-};
-
-static JAVA_OBJECT* __method11_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method12_arg_types[] = {
+    &__CLASS_java_util_ArrayList,
     &__CLASS_int,
 };
 
+static JAVA_OBJECT* __method10_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIColor,
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+};
+
 static JAVA_OBJECT* __method13_arg_types[] = {
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method14_arg_types[] = {
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method15_arg_types[] = {
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method16_arg_types[] = {
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method17_arg_types[] = {
     &__CLASS_boolean,
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method18_arg_types[] = {
+    &__CLASS_boolean,
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method19_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method20_arg_types[] = {
     &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method21_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSIndexPath,
+    &__CLASS_int,
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method22_arg_types[] = {
+    &__CLASS_int,
+    &__CLASS_boolean,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -254,7 +270,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getSeparatorColor",
+    {"insertRowsAtIndexPaths",
     &__method9_arg_types[0],
     sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -263,7 +279,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setSeparatorColor",
+    {"getSeparatorColor",
     &__method10_arg_types[0],
     sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -272,7 +288,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getSeparatorStyle",
+    {"setSeparatorColor",
     &__method11_arg_types[0],
     sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -281,7 +297,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setSeparatorStyle",
+    {"getSeparatorStyle",
     &__method12_arg_types[0],
     sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -290,7 +306,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"isAllowsSelection",
+    {"setSeparatorStyle",
     &__method13_arg_types[0],
     sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -299,7 +315,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAllowsSelection",
+    {"isAllowsSelection",
     &__method14_arg_types[0],
     sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -308,7 +324,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"isEditing",
+    {"setAllowsSelection",
     &__method15_arg_types[0],
     sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -317,7 +333,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setEditing",
+    {"isEditing",
     &__method16_arg_types[0],
     sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -335,7 +351,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getRowHeight",
+    {"setEditing",
     &__method18_arg_types[0],
     sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -344,9 +360,36 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setRowHeight",
+    {"getRowHeight",
     &__method19_arg_types[0],
     sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setRowHeight",
+    &__method20_arg_types[0],
+    sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"scrollToRowAtIndexPath",
+    &__method21_arg_types[0],
+    sizeof(__method21_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"scrollToNearestSelectedRowAtScrollPosition",
+    &__method22_arg_types[0],
+    sizeof(__method22_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -391,37 +434,46 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UITableView_deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 9:
-        org_xmlvm_iphone_UITableView_getSeparatorColor__(receiver);
+        org_xmlvm_iphone_UITableView_insertRowsAtIndexPaths___java_util_ArrayList_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 10:
-        org_xmlvm_iphone_UITableView_setSeparatorColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
+        org_xmlvm_iphone_UITableView_getSeparatorColor__(receiver);
         break;
     case 11:
-        org_xmlvm_iphone_UITableView_getSeparatorStyle__(receiver);
+        org_xmlvm_iphone_UITableView_setSeparatorColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
         break;
     case 12:
-        org_xmlvm_iphone_UITableView_setSeparatorStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UITableView_getSeparatorStyle__(receiver);
         break;
     case 13:
-        org_xmlvm_iphone_UITableView_isAllowsSelection__(receiver);
+        org_xmlvm_iphone_UITableView_setSeparatorStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 14:
-        org_xmlvm_iphone_UITableView_setAllowsSelection___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UITableView_isAllowsSelection__(receiver);
         break;
     case 15:
-        org_xmlvm_iphone_UITableView_isEditing__(receiver);
+        org_xmlvm_iphone_UITableView_setAllowsSelection___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 16:
-        org_xmlvm_iphone_UITableView_setEditing___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UITableView_isEditing__(receiver);
         break;
     case 17:
-        org_xmlvm_iphone_UITableView_setEditing___boolean_boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UITableView_setEditing___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 18:
-        org_xmlvm_iphone_UITableView_getRowHeight__(receiver);
+        org_xmlvm_iphone_UITableView_setEditing___boolean_boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 19:
+        org_xmlvm_iphone_UITableView_getRowHeight__(receiver);
+        break;
+    case 20:
         org_xmlvm_iphone_UITableView_setRowHeight___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
+        break;
+    case 21:
+        org_xmlvm_iphone_UITableView_scrollToRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_int_boolean(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
+        break;
+    case 22:
+        org_xmlvm_iphone_UITableView_scrollToNearestSelectedRowAtScrollPosition___int_boolean(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -439,26 +491,29 @@ void __INIT_org_xmlvm_iphone_UITableView()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITableView.vtable, __TIB_org_xmlvm_iphone_UIScrollView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIScrollView.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UITableView.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setDataSource___org_xmlvm_iphone_UITableViewDataSource;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setDelegate___org_xmlvm_iphone_UITableViewDelegate;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getTableViewDelegate__;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getDataSource__;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_dequeueReusableCellWithIdentifier___java_lang_String;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_ArrayList_boolean;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_reloadData__;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_ArrayList_int;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getSeparatorColor__;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setSeparatorColor___org_xmlvm_iphone_UIColor;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[99] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getSeparatorStyle__;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[100] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setSeparatorStyle___int;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[101] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_isAllowsSelection__;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[102] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setAllowsSelection___boolean;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[103] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_isEditing__;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[104] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setEditing___boolean;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[105] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setEditing___boolean_boolean;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[106] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getRowHeight__;
-    __TIB_org_xmlvm_iphone_UITableView.vtable[107] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setRowHeight___float;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setDataSource___org_xmlvm_iphone_UITableViewDataSource;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setDelegate___org_xmlvm_iphone_UITableViewDelegate;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getTableViewDelegate__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getDataSource__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_dequeueReusableCellWithIdentifier___java_lang_String;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_ArrayList_boolean;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_reloadData__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[99] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_ArrayList_int;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[100] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[101] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_insertRowsAtIndexPaths___java_util_ArrayList_int;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[102] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getSeparatorColor__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[103] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setSeparatorColor___org_xmlvm_iphone_UIColor;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[104] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getSeparatorStyle__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[105] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setSeparatorStyle___int;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[106] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_isAllowsSelection__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[107] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setAllowsSelection___boolean;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[108] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_isEditing__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[109] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setEditing___boolean;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[110] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setEditing___boolean_boolean;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[111] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getRowHeight__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[112] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setRowHeight___float;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[113] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_scrollToRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_int_boolean;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[114] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_scrollToNearestSelectedRowAtScrollPosition___int_boolean;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_UITableView.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UITableView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -603,6 +658,13 @@ void org_xmlvm_iphone_UITableView_deselectRowAtIndexPath___org_xmlvm_iphone_NSIn
     //XMLVM_END_WRAPPER
 }
 
+void org_xmlvm_iphone_UITableView_insertRowsAtIndexPaths___java_util_ArrayList_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_insertRowsAtIndexPaths___java_util_ArrayList_int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT org_xmlvm_iphone_UITableView_getSeparatorColor__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_getSeparatorColor__]
@@ -676,6 +738,20 @@ JAVA_FLOAT org_xmlvm_iphone_UITableView_getRowHeight__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UITableView_setRowHeight___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_setRowHeight___float]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UITableView_scrollToRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_int_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_BOOLEAN n3)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_scrollToRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_int_boolean]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UITableView_scrollToNearestSelectedRowAtScrollPosition___int_boolean(JAVA_OBJECT me, JAVA_INT n1, JAVA_BOOLEAN n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_scrollToNearestSelectedRowAtScrollPosition___int_boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

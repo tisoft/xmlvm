@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControlDelegate)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIControl
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIControl, 72)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIControl, 74)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl_ARRAYTYPE;
@@ -61,10 +61,12 @@ struct org_xmlvm_iphone_UIControl {
 typedef struct org_xmlvm_iphone_UIControl org_xmlvm_iphone_UIControl;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIControl 72
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIControl 74
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int 70
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_getAllTargets__ 71
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_isSelected__ 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_setSelected___boolean 73
 
 void __INIT_org_xmlvm_iphone_UIControl();
 void __DELETE_org_xmlvm_iphone_UIControl(void* me, void* client_data);
@@ -78,5 +80,9 @@ void org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_i
 JAVA_OBJECT org_xmlvm_iphone_UIControl_getAllTargets__(JAVA_OBJECT me);
 // Vtable index: 16
 void org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+// Vtable index: 72
+JAVA_BOOLEAN org_xmlvm_iphone_UIControl_isSelected__(JAVA_OBJECT me);
+// Vtable index: 73
+void org_xmlvm_iphone_UIControl_setSelected___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 
 #endif

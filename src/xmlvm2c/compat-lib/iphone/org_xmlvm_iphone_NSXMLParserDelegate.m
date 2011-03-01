@@ -191,10 +191,6 @@ static JAVA_OBJECT* __method6_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_NSXMLParser,
 };
 
-static JAVA_OBJECT* __method7_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_NSXMLParserDelegate,
-};
-
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"didStartMappingPrefix",
     &__method0_arg_types[0],
@@ -259,15 +255,6 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"access$000",
-    &__method7_arg_types[0],
-    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -298,9 +285,6 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 6:
         org_xmlvm_iphone_NSXMLParserDelegate_setParser___org_xmlvm_iphone_NSXMLParser(receiver, argsArray[0]);
-        break;
-    case 7:
-        org_xmlvm_iphone_NSXMLParserDelegate_access$000___org_xmlvm_iphone_NSXMLParserDelegate(argsArray[0]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

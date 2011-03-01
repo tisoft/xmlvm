@@ -1,11 +1,15 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_MKCoordinateRegion.h"
-#include "org_xmlvm_iphone_MKMapViewDelegate.h"
-#include "org_xmlvm_iphone_MKMapRect.h"
-#include "org_xmlvm_iphone_UIEdgeInsets.h"
 #include "org_xmlvm_iphone_CGPoint.h"
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_CLLocationCoordinate2D.h"
+#include "org_xmlvm_iphone_MKCoordinateRegion.h"
+#include "org_xmlvm_iphone_MKMapViewDelegate.h"
+#include "org_xmlvm_iphone_UIEdgeInsets.h"
+#include "org_xmlvm_iphone_MKMapRect.h"
+#include "java_util_ArrayList.h"
+#include "org_xmlvm_iphone_MKAnnotation.h"
+#include "org_xmlvm_iphone_MKOverlay.h"
+#include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_MKMapView.h"
 
@@ -192,6 +196,100 @@ static JAVA_OBJECT* __method27_arg_types[] = {
 static JAVA_OBJECT* __method28_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_MKMapRect,
     &__CLASS_org_xmlvm_iphone_UIEdgeInsets,
+};
+
+static JAVA_OBJECT* __method29_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method30_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKAnnotation,
+};
+
+static JAVA_OBJECT* __method31_arg_types[] = {
+    &__CLASS_java_util_ArrayList,
+};
+
+static JAVA_OBJECT* __method32_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKAnnotation,
+};
+
+static JAVA_OBJECT* __method33_arg_types[] = {
+    &__CLASS_java_util_ArrayList,
+};
+
+static JAVA_OBJECT* __method34_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKAnnotation,
+};
+
+static JAVA_OBJECT* __method35_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKMapRect,
+};
+
+static JAVA_OBJECT* __method36_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method37_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method38_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method39_arg_types[] = {
+    &__CLASS_java_util_ArrayList,
+};
+
+static JAVA_OBJECT* __method40_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKAnnotation,
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method41_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKAnnotation,
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method42_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method43_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKOverlay,
+};
+
+static JAVA_OBJECT* __method44_arg_types[] = {
+    &__CLASS_java_util_ArrayList,
+};
+
+static JAVA_OBJECT* __method45_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKOverlay,
+};
+
+static JAVA_OBJECT* __method46_arg_types[] = {
+    &__CLASS_java_util_ArrayList,
+};
+
+static JAVA_OBJECT* __method47_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKOverlay,
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method48_arg_types[] = {
+    &__CLASS_int,
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method49_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKOverlay,
+    &__CLASS_org_xmlvm_iphone_MKOverlay,
+};
+
+static JAVA_OBJECT* __method50_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKOverlay,
+    &__CLASS_org_xmlvm_iphone_MKOverlay,
+};
+
+static JAVA_OBJECT* __method51_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_MKOverlay,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -456,6 +554,213 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"getAnnotations",
+    &__method29_arg_types[0],
+    sizeof(__method29_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"addAnnotation",
+    &__method30_arg_types[0],
+    sizeof(__method30_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"addAnnotations",
+    &__method31_arg_types[0],
+    sizeof(__method31_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"removeAnnotation",
+    &__method32_arg_types[0],
+    sizeof(__method32_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"removeAnnotations",
+    &__method33_arg_types[0],
+    sizeof(__method33_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"viewForAnnotation",
+    &__method34_arg_types[0],
+    sizeof(__method34_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"annotationsInMapRect",
+    &__method35_arg_types[0],
+    sizeof(__method35_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getAnnotationVisibleRect",
+    &__method36_arg_types[0],
+    sizeof(__method36_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"dequeueReusableAnnotationViewWithIdentifier",
+    &__method37_arg_types[0],
+    sizeof(__method37_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getSelectedAnnotations",
+    &__method38_arg_types[0],
+    sizeof(__method38_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setSelectedAnnotations",
+    &__method39_arg_types[0],
+    sizeof(__method39_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"selectAnnotation",
+    &__method40_arg_types[0],
+    sizeof(__method40_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"deselectAnnotation",
+    &__method41_arg_types[0],
+    sizeof(__method41_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getOverlays",
+    &__method42_arg_types[0],
+    sizeof(__method42_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"addOverlay",
+    &__method43_arg_types[0],
+    sizeof(__method43_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"addOverlays",
+    &__method44_arg_types[0],
+    sizeof(__method44_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"removeOverlay",
+    &__method45_arg_types[0],
+    sizeof(__method45_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"removeOverlays",
+    &__method46_arg_types[0],
+    sizeof(__method46_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"insertOverlay",
+    &__method47_arg_types[0],
+    sizeof(__method47_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"exchangeOverlay",
+    &__method48_arg_types[0],
+    sizeof(__method48_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"insertOverlayAboveOverlay",
+    &__method49_arg_types[0],
+    sizeof(__method49_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"insertOverlayBelowOverlay",
+    &__method50_arg_types[0],
+    sizeof(__method50_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"viewForOverlay",
+    &__method51_arg_types[0],
+    sizeof(__method51_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -553,6 +858,75 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     case 28:
         org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapRect_org_xmlvm_iphone_UIEdgeInsets(receiver, argsArray[0], argsArray[1]);
         break;
+    case 29:
+        org_xmlvm_iphone_MKMapView_getAnnotations__(receiver);
+        break;
+    case 30:
+        org_xmlvm_iphone_MKMapView_addAnnotation___org_xmlvm_iphone_MKAnnotation(receiver, argsArray[0]);
+        break;
+    case 31:
+        org_xmlvm_iphone_MKMapView_addAnnotations___java_util_ArrayList(receiver, argsArray[0]);
+        break;
+    case 32:
+        org_xmlvm_iphone_MKMapView_removeAnnotation___org_xmlvm_iphone_MKAnnotation(receiver, argsArray[0]);
+        break;
+    case 33:
+        org_xmlvm_iphone_MKMapView_removeAnnotations___java_util_ArrayList(receiver, argsArray[0]);
+        break;
+    case 34:
+        org_xmlvm_iphone_MKMapView_viewForAnnotation___org_xmlvm_iphone_MKAnnotation(receiver, argsArray[0]);
+        break;
+    case 35:
+        org_xmlvm_iphone_MKMapView_annotationsInMapRect___org_xmlvm_iphone_MKMapRect(receiver, argsArray[0]);
+        break;
+    case 36:
+        org_xmlvm_iphone_MKMapView_getAnnotationVisibleRect__(receiver);
+        break;
+    case 37:
+        org_xmlvm_iphone_MKMapView_dequeueReusableAnnotationViewWithIdentifier___java_lang_String(receiver, argsArray[0]);
+        break;
+    case 38:
+        org_xmlvm_iphone_MKMapView_getSelectedAnnotations__(receiver);
+        break;
+    case 39:
+        org_xmlvm_iphone_MKMapView_setSelectedAnnotations___java_util_ArrayList(receiver, argsArray[0]);
+        break;
+    case 40:
+        org_xmlvm_iphone_MKMapView_selectAnnotation___org_xmlvm_iphone_MKAnnotation_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        break;
+    case 41:
+        org_xmlvm_iphone_MKMapView_deselectAnnotation___org_xmlvm_iphone_MKAnnotation_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        break;
+    case 42:
+        org_xmlvm_iphone_MKMapView_getOverlays__(receiver);
+        break;
+    case 43:
+        org_xmlvm_iphone_MKMapView_addOverlay___org_xmlvm_iphone_MKOverlay(receiver, argsArray[0]);
+        break;
+    case 44:
+        org_xmlvm_iphone_MKMapView_addOverlays___java_util_ArrayList(receiver, argsArray[0]);
+        break;
+    case 45:
+        org_xmlvm_iphone_MKMapView_removeOverlay___org_xmlvm_iphone_MKOverlay(receiver, argsArray[0]);
+        break;
+    case 46:
+        org_xmlvm_iphone_MKMapView_removeOverlays___java_util_ArrayList(receiver, argsArray[0]);
+        break;
+    case 47:
+        org_xmlvm_iphone_MKMapView_insertOverlay___org_xmlvm_iphone_MKOverlay_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        break;
+    case 48:
+        org_xmlvm_iphone_MKMapView_exchangeOverlay___int_int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        break;
+    case 49:
+        org_xmlvm_iphone_MKMapView_insertOverlayAboveOverlay___org_xmlvm_iphone_MKOverlay_org_xmlvm_iphone_MKOverlay(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 50:
+        org_xmlvm_iphone_MKMapView_insertOverlayBelowOverlay___org_xmlvm_iphone_MKOverlay_org_xmlvm_iphone_MKOverlay(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 51:
+        org_xmlvm_iphone_MKMapView_viewForOverlay___org_xmlvm_iphone_MKOverlay(receiver, argsArray[0]);
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;
@@ -598,6 +972,29 @@ void __INIT_org_xmlvm_iphone_MKMapView()
     __TIB_org_xmlvm_iphone_MKMapView.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_regionThatFits___org_xmlvm_iphone_MKCoordinateRegion;
     __TIB_org_xmlvm_iphone_MKMapView.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapRect;
     __TIB_org_xmlvm_iphone_MKMapView.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapRect_org_xmlvm_iphone_UIEdgeInsets;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[99] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getAnnotations__;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[100] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_addAnnotation___org_xmlvm_iphone_MKAnnotation;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[101] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_addAnnotations___java_util_ArrayList;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[102] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_removeAnnotation___org_xmlvm_iphone_MKAnnotation;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[103] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_removeAnnotations___java_util_ArrayList;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[104] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_viewForAnnotation___org_xmlvm_iphone_MKAnnotation;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[105] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_annotationsInMapRect___org_xmlvm_iphone_MKMapRect;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[106] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getAnnotationVisibleRect__;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[107] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_dequeueReusableAnnotationViewWithIdentifier___java_lang_String;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[108] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getSelectedAnnotations__;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[109] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_setSelectedAnnotations___java_util_ArrayList;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[110] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_selectAnnotation___org_xmlvm_iphone_MKAnnotation_boolean;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[111] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_deselectAnnotation___org_xmlvm_iphone_MKAnnotation_boolean;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[112] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_getOverlays__;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[113] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_addOverlay___org_xmlvm_iphone_MKOverlay;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[114] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_addOverlays___java_util_ArrayList;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[115] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_removeOverlay___org_xmlvm_iphone_MKOverlay;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[116] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_removeOverlays___java_util_ArrayList;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[117] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_insertOverlay___org_xmlvm_iphone_MKOverlay_int;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[118] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_exchangeOverlay___int_int;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[119] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_insertOverlayAboveOverlay___org_xmlvm_iphone_MKOverlay_org_xmlvm_iphone_MKOverlay;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[120] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_insertOverlayBelowOverlay___org_xmlvm_iphone_MKOverlay_org_xmlvm_iphone_MKOverlay;
+    __TIB_org_xmlvm_iphone_MKMapView.vtable[121] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapView_viewForOverlay___org_xmlvm_iphone_MKOverlay;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_MKMapView.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_MKMapView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -855,6 +1252,167 @@ JAVA_OBJECT org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapR
 JAVA_OBJECT org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapRect_org_xmlvm_iphone_UIEdgeInsets(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapRect_org_xmlvm_iphone_UIEdgeInsets]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_MKMapView_getAnnotations__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_getAnnotations__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_addAnnotation___org_xmlvm_iphone_MKAnnotation(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_addAnnotation___org_xmlvm_iphone_MKAnnotation]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_addAnnotations___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_addAnnotations___java_util_ArrayList]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_removeAnnotation___org_xmlvm_iphone_MKAnnotation(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_removeAnnotation___org_xmlvm_iphone_MKAnnotation]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_removeAnnotations___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_removeAnnotations___java_util_ArrayList]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_MKMapView_viewForAnnotation___org_xmlvm_iphone_MKAnnotation(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_viewForAnnotation___org_xmlvm_iphone_MKAnnotation]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_MKMapView_annotationsInMapRect___org_xmlvm_iphone_MKMapRect(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_annotationsInMapRect___org_xmlvm_iphone_MKMapRect]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_MKMapView_getAnnotationVisibleRect__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_getAnnotationVisibleRect__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_MKMapView_dequeueReusableAnnotationViewWithIdentifier___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_dequeueReusableAnnotationViewWithIdentifier___java_lang_String]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_MKMapView_getSelectedAnnotations__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_getSelectedAnnotations__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_setSelectedAnnotations___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_setSelectedAnnotations___java_util_ArrayList]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_selectAnnotation___org_xmlvm_iphone_MKAnnotation_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_selectAnnotation___org_xmlvm_iphone_MKAnnotation_boolean]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_deselectAnnotation___org_xmlvm_iphone_MKAnnotation_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_deselectAnnotation___org_xmlvm_iphone_MKAnnotation_boolean]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_MKMapView_getOverlays__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_getOverlays__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_addOverlay___org_xmlvm_iphone_MKOverlay(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_addOverlay___org_xmlvm_iphone_MKOverlay]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_addOverlays___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_addOverlays___java_util_ArrayList]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_removeOverlay___org_xmlvm_iphone_MKOverlay(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_removeOverlay___org_xmlvm_iphone_MKOverlay]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_removeOverlays___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_removeOverlays___java_util_ArrayList]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_insertOverlay___org_xmlvm_iphone_MKOverlay_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_insertOverlay___org_xmlvm_iphone_MKOverlay_int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_exchangeOverlay___int_int(JAVA_OBJECT me, JAVA_INT n1, JAVA_INT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_exchangeOverlay___int_int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_insertOverlayAboveOverlay___org_xmlvm_iphone_MKOverlay_org_xmlvm_iphone_MKOverlay(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_insertOverlayAboveOverlay___org_xmlvm_iphone_MKOverlay_org_xmlvm_iphone_MKOverlay]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_MKMapView_insertOverlayBelowOverlay___org_xmlvm_iphone_MKOverlay_org_xmlvm_iphone_MKOverlay(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_insertOverlayBelowOverlay___org_xmlvm_iphone_MKOverlay_org_xmlvm_iphone_MKOverlay]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_MKMapView_viewForOverlay___org_xmlvm_iphone_MKOverlay(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_viewForOverlay___org_xmlvm_iphone_MKOverlay]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

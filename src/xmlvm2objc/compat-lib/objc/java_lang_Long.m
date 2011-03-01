@@ -23,9 +23,30 @@
 #import "java_lang_Integer.h"
 #import "java_lang_NumberFormatException.h"
 
+@interface PrimitiveLong : java_lang_Object
+@end
+
+@implementation PrimitiveLong
+@end
+
+static PrimitiveLong* primitiveLong;
+static java_lang_Class* primitiveLongClass;
+
+
 // java.lang.Long
 //----------------------------------------------------------------------------
 @implementation java_lang_Long
+
++ (void) initialize
+{
+	primitiveLong = [[PrimitiveLong alloc] init];
+	primitiveLongClass = [primitiveLong getClass__];
+}
+
++ (java_lang_Class*) _GET_TYPE
+{
+	return primitiveLongClass;
+}
 
 - (id) init
 {

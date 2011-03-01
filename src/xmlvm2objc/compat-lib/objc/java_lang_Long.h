@@ -31,6 +31,7 @@ JAVA_LONG number;
 
 }
 
++ (java_lang_Class*) _GET_TYPE;
 - (id) init;
 - (id) copyWithZone:(NSZone *)zone;
 - (NSUInteger) hash;

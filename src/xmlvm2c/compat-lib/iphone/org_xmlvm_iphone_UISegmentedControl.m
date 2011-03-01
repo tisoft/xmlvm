@@ -103,26 +103,27 @@ static JAVA_OBJECT* __method1_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIImage,
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
     &__CLASS_java_lang_String,
     &__CLASS_int,
     &__CLASS_boolean,
 };
 
-static JAVA_OBJECT* __method3_arg_types[] = {
+static JAVA_OBJECT* __method5_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIImage,
     &__CLASS_int,
     &__CLASS_boolean,
 };
 
-static JAVA_OBJECT* __method4_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method5_arg_types[] = {
-};
-
 static JAVA_OBJECT* __method6_arg_types[] = {
-    &__CLASS_int,
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method7_arg_types[] = {
@@ -130,6 +131,7 @@ static JAVA_OBJECT* __method7_arg_types[] = {
 
 static JAVA_OBJECT* __method8_arg_types[] = {
     &__CLASS_int,
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method9_arg_types[] = {
@@ -143,17 +145,24 @@ static JAVA_OBJECT* __method11_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method12_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIColor,
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method13_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method14_arg_types[] = {
-    &__CLASS_boolean,
+    &__CLASS_org_xmlvm_iphone_UIColor,
 };
 
 static JAVA_OBJECT* __method15_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method16_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method17_arg_types[] = {
     &__CLASS_java_util_Set,
     &__CLASS_org_xmlvm_iphone_UIEvent,
 };
@@ -168,7 +177,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTitleForSegmentAtIndex",
+    {"titleForSegmentAtIndex",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -177,7 +186,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"insertSegmentWithTitle",
+    {"setImage",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -186,7 +195,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"insertSegmentWithImage",
+    {"imageForSegmentAtIndex",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -195,7 +204,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"numberOfSegments",
+    {"insertSegmentWithTitle",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -204,7 +213,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"removeAllSegments",
+    {"insertSegmentWithImage",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -213,7 +222,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"removeSegmentAtIndex",
+    {"numberOfSegments",
     &__method6_arg_types[0],
     sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -222,7 +231,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getSelectedSegmentIndex",
+    {"removeAllSegments",
     &__method7_arg_types[0],
     sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -231,7 +240,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setSelectedSegmentIndex",
+    {"removeSegmentAtIndex",
     &__method8_arg_types[0],
     sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -240,7 +249,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getSegmentedControlStyle",
+    {"getSelectedSegmentIndex",
     &__method9_arg_types[0],
     sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -249,7 +258,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setSegmentedControlStyle",
+    {"setSelectedSegmentIndex",
     &__method10_arg_types[0],
     sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -258,7 +267,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTintColor",
+    {"getSegmentedControlStyle",
     &__method11_arg_types[0],
     sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -267,7 +276,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTintColor",
+    {"setSegmentedControlStyle",
     &__method12_arg_types[0],
     sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -276,7 +285,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"isMomentary",
+    {"getTintColor",
     &__method13_arg_types[0],
     sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -285,7 +294,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setMomentary",
+    {"setTintColor",
     &__method14_arg_types[0],
     sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -294,9 +303,27 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"touchesEnded",
+    {"isMomentary",
     &__method15_arg_types[0],
     sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setMomentary",
+    &__method16_arg_types[0],
+    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"touchesEnded",
+    &__method17_arg_types[0],
+    sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -317,48 +344,54 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UISegmentedControl_setTitle___java_lang_String_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 1:
-        org_xmlvm_iphone_UISegmentedControl_getTitleForSegmentAtIndex___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UISegmentedControl_titleForSegmentAtIndex___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 2:
-        org_xmlvm_iphone_UISegmentedControl_insertSegmentWithTitle___java_lang_String_int_boolean(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UISegmentedControl_setImage___org_xmlvm_iphone_UIImage_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 3:
-        org_xmlvm_iphone_UISegmentedControl_insertSegmentWithImage___org_xmlvm_iphone_UIImage_int_boolean(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UISegmentedControl_imageForSegmentAtIndex___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 4:
-        org_xmlvm_iphone_UISegmentedControl_numberOfSegments__(receiver);
+        org_xmlvm_iphone_UISegmentedControl_insertSegmentWithTitle___java_lang_String_int_boolean(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
         break;
     case 5:
-        org_xmlvm_iphone_UISegmentedControl_removeAllSegments__(receiver);
+        org_xmlvm_iphone_UISegmentedControl_insertSegmentWithImage___org_xmlvm_iphone_UIImage_int_boolean(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
         break;
     case 6:
-        org_xmlvm_iphone_UISegmentedControl_removeSegmentAtIndex___int_boolean(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UISegmentedControl_numberOfSegments__(receiver);
         break;
     case 7:
-        org_xmlvm_iphone_UISegmentedControl_getSelectedSegmentIndex__(receiver);
+        org_xmlvm_iphone_UISegmentedControl_removeAllSegments__(receiver);
         break;
     case 8:
-        org_xmlvm_iphone_UISegmentedControl_setSelectedSegmentIndex___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UISegmentedControl_removeSegmentAtIndex___int_boolean(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 9:
-        org_xmlvm_iphone_UISegmentedControl_getSegmentedControlStyle__(receiver);
+        org_xmlvm_iphone_UISegmentedControl_getSelectedSegmentIndex__(receiver);
         break;
     case 10:
-        org_xmlvm_iphone_UISegmentedControl_setSegmentedControlStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UISegmentedControl_setSelectedSegmentIndex___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 11:
-        org_xmlvm_iphone_UISegmentedControl_getTintColor__(receiver);
+        org_xmlvm_iphone_UISegmentedControl_getSegmentedControlStyle__(receiver);
         break;
     case 12:
-        org_xmlvm_iphone_UISegmentedControl_setTintColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
+        org_xmlvm_iphone_UISegmentedControl_setSegmentedControlStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 13:
-        org_xmlvm_iphone_UISegmentedControl_isMomentary__(receiver);
+        org_xmlvm_iphone_UISegmentedControl_getTintColor__(receiver);
         break;
     case 14:
-        org_xmlvm_iphone_UISegmentedControl_setMomentary___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UISegmentedControl_setTintColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
         break;
     case 15:
+        org_xmlvm_iphone_UISegmentedControl_isMomentary__(receiver);
+        break;
+    case 16:
+        org_xmlvm_iphone_UISegmentedControl_setMomentary___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 17:
         org_xmlvm_iphone_UISegmentedControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
     default:
@@ -377,21 +410,23 @@ void __INIT_org_xmlvm_iphone_UISegmentedControl()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISegmentedControl.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setTitle___java_lang_String_int;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_getTitleForSegmentAtIndex___int;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_insertSegmentWithTitle___java_lang_String_int_boolean;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_insertSegmentWithImage___org_xmlvm_iphone_UIImage_int_boolean;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_numberOfSegments__;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_removeAllSegments__;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_removeSegmentAtIndex___int_boolean;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_getSelectedSegmentIndex__;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setSelectedSegmentIndex___int;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_getSegmentedControlStyle__;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setSegmentedControlStyle___int;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_getTintColor__;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setTintColor___org_xmlvm_iphone_UIColor;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_isMomentary__;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setMomentary___boolean;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setTitle___java_lang_String_int;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_titleForSegmentAtIndex___int;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setImage___org_xmlvm_iphone_UIImage_int;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_imageForSegmentAtIndex___int;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_insertSegmentWithTitle___java_lang_String_int_boolean;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_insertSegmentWithImage___org_xmlvm_iphone_UIImage_int_boolean;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_numberOfSegments__;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_removeAllSegments__;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_removeSegmentAtIndex___int_boolean;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_getSelectedSegmentIndex__;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setSelectedSegmentIndex___int;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_getSegmentedControlStyle__;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setSegmentedControlStyle___int;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_getTintColor__;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setTintColor___org_xmlvm_iphone_UIColor;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_isMomentary__;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setMomentary___boolean;
     __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_UISegmentedControl.numImplementedInterfaces = 0;
@@ -465,9 +500,23 @@ void org_xmlvm_iphone_UISegmentedControl_setTitle___java_lang_String_int(JAVA_OB
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_UISegmentedControl_getTitleForSegmentAtIndex___int(JAVA_OBJECT me, JAVA_INT n1)
+JAVA_OBJECT org_xmlvm_iphone_UISegmentedControl_titleForSegmentAtIndex___int(JAVA_OBJECT me, JAVA_INT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISegmentedControl_getTitleForSegmentAtIndex___int]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISegmentedControl_titleForSegmentAtIndex___int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UISegmentedControl_setImage___org_xmlvm_iphone_UIImage_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISegmentedControl_setImage___org_xmlvm_iphone_UIImage_int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UISegmentedControl_imageForSegmentAtIndex___int(JAVA_OBJECT me, JAVA_INT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISegmentedControl_imageForSegmentAtIndex___int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

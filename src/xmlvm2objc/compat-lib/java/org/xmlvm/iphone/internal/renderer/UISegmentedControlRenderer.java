@@ -108,8 +108,8 @@ public class UISegmentedControlRenderer extends UIViewRenderer<UISegmentedContro
             }
             FontMetrics fm = g.getFontMetrics();
 
-            g.drawString(view.getTitleForSegmentAtIndex(i), x + segX
-                    + (segWidth - fm.stringWidth(view.getTitleForSegmentAtIndex(i))) / 2, y
+            g.drawString(view.titleForSegmentAtIndex(i), x + segX
+                    + (segWidth - fm.stringWidth(view.titleForSegmentAtIndex(i))) / 2, y
                     + (h - fm.getHeight()) / 2 + fm.getHeight() - fm.getDescent());
 
             g.setColor(line);

@@ -124,10 +124,10 @@
 	</target>
 
 	<target name="xcompile" description="Compile XCode project." depends="xproject">
-		<exec executable="xcodebuild" failonerror="true">
+		<exec executable="xcodebuild" failonerror="true" dir="dist">
 			<arg value="-parallelizeTargets"/>
 			<arg value="-sdk"/>
-			<arg value="iphonesimulator3.1"/>
+			<arg value="iphonesimulator"/>
 			<arg value="-configuration"/>
 			<arg value="Debug"/>
 		</exec>
@@ -196,6 +196,7 @@
 		<delete dir="${ant.project.name}.xcodeproj"/>
 		<delete dir="build"/>
 		<delete dir="nbproject/private"/>
+		<delete dir=".cache"/>
 	</target>
 
 </project>

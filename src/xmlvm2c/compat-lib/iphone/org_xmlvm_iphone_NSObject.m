@@ -181,10 +181,14 @@ static JAVA_OBJECT* __method0_arg_types[] = {
     &__CLASS_java_lang_Object,
     &__CLASS_java_lang_String,
     &__CLASS_java_lang_Object,
-    &__CLASS_boolean,
+    &__CLASS_double,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_java_lang_Object,
+    &__CLASS_java_lang_String,
+    &__CLASS_java_lang_Object,
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
@@ -193,8 +197,11 @@ static JAVA_OBJECT* __method2_arg_types[] = {
 static JAVA_OBJECT* __method3_arg_types[] = {
 };
 
+static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"performSelectorOnMainThread",
+    {"performSelector",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -203,7 +210,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"retain",
+    {"performSelectorOnMainThread",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -212,7 +219,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"release",
+    {"retain",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -221,9 +228,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"dealloc",
+    {"release",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"dealloc",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -241,15 +257,18 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_NSObject_performSelectorOnMainThread___java_lang_Object_java_lang_String_java_lang_Object_boolean(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Boolean*) argsArray[3])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_NSObject_performSelector___java_lang_Object_java_lang_String_java_lang_Object_double(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Double*) argsArray[3])->fields.java_lang_Double.value_);
         break;
     case 1:
-        org_xmlvm_iphone_NSObject_retain__(receiver);
+        org_xmlvm_iphone_NSObject_performSelectorOnMainThread___java_lang_Object_java_lang_String_java_lang_Object_boolean(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Boolean*) argsArray[3])->fields.java_lang_Boolean.value_);
         break;
     case 2:
-        org_xmlvm_iphone_NSObject_release__(receiver);
+        org_xmlvm_iphone_NSObject_retain__(receiver);
         break;
     case 3:
+        org_xmlvm_iphone_NSObject_release__(receiver);
+        break;
+    case 4:
         org_xmlvm_iphone_NSObject_dealloc__(receiver);
         break;
     default:
@@ -330,6 +349,14 @@ void org_xmlvm_iphone_NSObject___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject___INIT___]
     java_lang_Object___INIT___(me);
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_NSObject_performSelector___java_lang_Object_java_lang_String_java_lang_Object_double(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_DOUBLE n4)
+{
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelector___java_lang_Object_java_lang_String_java_lang_Object_double]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

@@ -65,7 +65,6 @@ public class XCodeFile extends BuildFile {
     private static final String                  TEMPL_SDK_ROOT               = "__SDK_ROOT__";
     private static final String                  TEMPL_SDK_TARGET             = "__SDK_TARGET__";
     private static final String                  TEMPL_RESOURCE_LIST          = "__RESOURCE_LIST__";
-    private static final String                  TEMPL_RESOURCE_DIR           = "__RESOURCE_DIR__";
     private static final String                  TEMPL_ARCHITECTURE           = "__ARCHITECTURE__";
 
     /* Maps of file types */
@@ -144,9 +143,8 @@ public class XCodeFile extends BuildFile {
             data = data.replace(TEMPL_SDK_ROOT, skel.root).replace(TEMPL_SDK_TARGET, skel.target)
                     .replace(TEMPL_ARCHITECTURE, skel.architecture);
             data = data.replace(TEMPL_RESOURCE_LIST,
-                    ResourceManager.getResourcesAsEscQuoteList(arguments.option_resource(), null));
-            data = data.replace(TEMPL_RESOURCE_DIR,
-                    new File(System.getProperty("user.dir")).getAbsolutePath());
+                    ResourceManager.getResourcesAsEscQuoteList(arguments.option_out(),
+                    arguments.option_resource(), null));
         }
 
         private void injectLibraries(Set<String> libraries) {

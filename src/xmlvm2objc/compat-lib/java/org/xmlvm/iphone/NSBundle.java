@@ -48,12 +48,6 @@ public class NSBundle extends NSObject {
     }
 
     public String pathForResource(String resource, String type, String directory) {
-        // resource is not allowed to contain a path component. In this case
-        // null has to be returned
-        if (resource.indexOf('/') != -1) {
-            return null;
-        }
-
         /* Calculate file name */
         String filename = type == null ? resource : resource + "." + type;
         if (directory != null && !directory.equals("")) {

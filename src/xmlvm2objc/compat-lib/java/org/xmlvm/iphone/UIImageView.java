@@ -31,11 +31,12 @@ public class UIImageView extends UIView {
 
     public UIImageView() {
         this(CGRect.Zero());
-        setUserInteractionEnabled(false);
     }
 
     public UIImageView(CGRect rect) {
         super(rect);
+        setUserInteractionEnabled(false);
+        setContentMode(UIViewContentMode.Center);
         xmlvmSetRenderer(new UIImageViewRenderer(this));
     }
 

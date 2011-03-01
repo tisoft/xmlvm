@@ -79,23 +79,28 @@ static JAVA_OBJECT* __method0_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_float,
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
-    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method4_arg_types[] = {
     &__CLASS_float,
 };
 
+static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
 static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method6_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
     &__CLASS_java_util_Set,
     &__CLASS_org_xmlvm_iphone_UIEvent,
 };
@@ -110,7 +115,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getValue",
+    {"setValue",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -119,7 +124,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setMinimumValue",
+    {"getValue",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -128,7 +133,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getMinimumValue",
+    {"setMinimumValue",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -137,7 +142,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setMaximumValue",
+    {"getMinimumValue",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -146,7 +151,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getMaximumValue",
+    {"setMaximumValue",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -155,9 +160,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"touchesEnded",
+    {"getMaximumValue",
     &__method6_arg_types[0],
     sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"touchesEnded",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -178,21 +192,24 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UISlider_setValue___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 1:
-        org_xmlvm_iphone_UISlider_getValue__(receiver);
+        org_xmlvm_iphone_UISlider_setValue___float_boolean(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 2:
-        org_xmlvm_iphone_UISlider_setMinimumValue___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
+        org_xmlvm_iphone_UISlider_getValue__(receiver);
         break;
     case 3:
-        org_xmlvm_iphone_UISlider_getMinimumValue__(receiver);
+        org_xmlvm_iphone_UISlider_setMinimumValue___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 4:
-        org_xmlvm_iphone_UISlider_setMaximumValue___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
+        org_xmlvm_iphone_UISlider_getMinimumValue__(receiver);
         break;
     case 5:
-        org_xmlvm_iphone_UISlider_getMaximumValue__(receiver);
+        org_xmlvm_iphone_UISlider_setMaximumValue___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 6:
+        org_xmlvm_iphone_UISlider_getMaximumValue__(receiver);
+        break;
+    case 7:
         org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
     default:
@@ -211,12 +228,13 @@ void __INIT_org_xmlvm_iphone_UISlider()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISlider.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UISlider.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getValue__;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumValue___float;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMinimumValue__;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumValue___float;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMaximumValue__;
+    __TIB_org_xmlvm_iphone_UISlider.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float;
+    __TIB_org_xmlvm_iphone_UISlider.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float_boolean;
+    __TIB_org_xmlvm_iphone_UISlider.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getValue__;
+    __TIB_org_xmlvm_iphone_UISlider.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumValue___float;
+    __TIB_org_xmlvm_iphone_UISlider.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMinimumValue__;
+    __TIB_org_xmlvm_iphone_UISlider.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumValue___float;
+    __TIB_org_xmlvm_iphone_UISlider.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMaximumValue__;
     __TIB_org_xmlvm_iphone_UISlider.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_UISlider.numImplementedInterfaces = 0;
@@ -279,6 +297,13 @@ void org_xmlvm_iphone_UISlider___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me,
 void org_xmlvm_iphone_UISlider_setValue___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_setValue___float]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UISlider_setValue___float_boolean(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_BOOLEAN n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_setValue___float_boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

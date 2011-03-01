@@ -30,8 +30,18 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class NSObject {
 
+    public static void performSelector(final Object target, final String method, final Object arg,
+            double delay) {
+                performSelector(target, method, arg, false, delay);
+    }
+
     public static void performSelectorOnMainThread(final Object target, final String method,
             final Object arg, boolean waitUntilDone) {
+                performSelector(target, method, arg, waitUntilDone, 0);
+    }
+
+    private static void performSelector(final Object target, final String method, final Object arg,
+            boolean waitUntilDone, final double delay) {
         final Runnable runnable = new Runnable() {
 
             @Override
@@ -58,6 +68,12 @@ public class NSObject {
                 try {
                     m.setAccessible(true); // This is required, since in Obj-C
                     // "private" modifier does not exist
+                    if (delay > 0) {
+                        try {
+                            Thread.sleep((long) (delay * 1000));
+                        } catch (InterruptedException ex) {
+                        }
+                    }
                     m.invoke(target, params);
                 } catch (IllegalArgumentException e) {
                     throw new RuntimeException(e);

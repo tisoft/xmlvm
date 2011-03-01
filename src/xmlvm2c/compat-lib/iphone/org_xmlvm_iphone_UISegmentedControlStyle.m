@@ -22,6 +22,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISegmentedControlStyle_ARRAYTYPE;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Plain;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bordered;
 static JAVA_INT _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bar;
+static JAVA_INT _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bezeled;
 
 #include "xmlvm-reflection.h"
 
@@ -45,6 +46,13 @@ static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
     0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
     0,
     &_STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bar,
+    "",
+    JAVA_NULL},
+    {"Bezeled",
+    &__CLASS_int,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bezeled,
     "",
     JAVA_NULL},
 };
@@ -113,6 +121,7 @@ void __INIT_org_xmlvm_iphone_UISegmentedControlStyle()
     _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Plain = 0;
     _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bordered = 1;
     _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bar = 2;
+    _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bezeled = 3;
 
     __TIB_org_xmlvm_iphone_UISegmentedControlStyle.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UISegmentedControlStyle.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
@@ -188,6 +197,18 @@ void org_xmlvm_iphone_UISegmentedControlStyle_PUT_Bar(JAVA_INT v)
 {
     if (!__TIB_org_xmlvm_iphone_UISegmentedControlStyle.classInitialized) __INIT_org_xmlvm_iphone_UISegmentedControlStyle();
     _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bar = v;
+}
+
+JAVA_INT org_xmlvm_iphone_UISegmentedControlStyle_GET_Bezeled()
+{
+    if (!__TIB_org_xmlvm_iphone_UISegmentedControlStyle.classInitialized) __INIT_org_xmlvm_iphone_UISegmentedControlStyle();
+    return _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bezeled;
+}
+
+void org_xmlvm_iphone_UISegmentedControlStyle_PUT_Bezeled(JAVA_INT v)
+{
+    if (!__TIB_org_xmlvm_iphone_UISegmentedControlStyle.classInitialized) __INIT_org_xmlvm_iphone_UISegmentedControlStyle();
+    _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bezeled = v;
 }
 
 void org_xmlvm_iphone_UISegmentedControlStyle___INIT___(JAVA_OBJECT me)

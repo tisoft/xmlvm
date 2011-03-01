@@ -21,8 +21,10 @@
 package org.xmlvm.proc.out.build;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.IPhoneOutputProcess;
 import org.xmlvm.proc.out.VerbatimOutputFile;
@@ -38,7 +40,7 @@ public class ResourceManager {
      * @return Set of resources as a VerbatimOutputFile set
      */
     public static Set<VerbatimOutputFile> getSourceResources(Arguments args) {
-        Set<String> list = getFilteredList(args.option_resource(), null, true);
+        Set<String> list = getFilteredList(args.option_out(), args.option_resource(), null, true);
         Set<VerbatimOutputFile> out = new HashSet<VerbatimOutputFile>();
         for (String item : list) {
             File srcfile = new File(item);
@@ -55,26 +57,28 @@ public class ResourceManager {
      *            command line arguments, used to find given resources
      * @return list of resources
      */
-    public static String getResourcesAsEscQuoteList(Set<String> reslist, String resourceroot) {
-        Set<String> list = getFilteredList(reslist, resourceroot, false);
+    public static String getResourcesAsEscQuoteList(String projectpath, Set<String> reslist,
+            String resourceroot) {
+        Set<String> list = getFilteredList(projectpath, reslist, resourceroot, false);
         StringBuilder out = new StringBuilder();
         for (String resource : list)
             out.append("\\\"").append(resource).append("\\\" ");
         return out.toString();
     }
 
-    private static Set<String> getFilteredList(Set<String> reslist, String resourceRoot,
-            boolean accept_sources) {
+    private static Set<String> getFilteredList(String projectpath, Set<String> reslist,
+            String resourceRoot, boolean accept_sources) {
+        
+        projectpath = getAbsoluteProjectLocation(projectpath);
         Set<String> list = new HashSet<String>();
         if (resourceRoot == null)
             resourceRoot = System.getProperty("user.dir");
         for (String resource : reslist) {
             File resourceFile = new File(resourceRoot, resource);
             if (resourceFile.exists())
-                if (resourceFile.isFile() || (!resource.endsWith(File.separator))) // Is
-                    // a
-                    // file
-                    addSourceFilter(list, resource, accept_sources);
+                if (resourceFile.isFile() || (!resource.endsWith(File.separator))) 
+                    // Is a file
+                    addFilteredResource(projectpath, list, resource, accept_sources);
                 else // Is a directory
                 if (resource.endsWith("/")) { // We only need the contents of
                     // this directory
@@ -85,16 +89,16 @@ public class ResourceManager {
                             // filename
                             if (entry.isFile()) // If it is a file, only add
                                 // non-source files
-                                addSourceFilter(list, name, accept_sources);
+                                addFilteredResource(projectpath, list, name, accept_sources);
                             else { // If it is a directory, keep a verbatim copy
                                 if (!accept_sources)
-                                    list.add(name);
+                                    addResource(projectpath, list, name);
                             }
                         }
                     }
                 } else { // We want a verbatim copy of this directory
                     if (!accept_sources)
-                        list.add(resource);
+                        addResource(projectpath, list, resource);
                 }
         }
         return list;
@@ -113,12 +117,53 @@ public class ResourceManager {
      *            sources are not accepted, then not any source file will be
      *            added.
      */
-    private static void addSourceFilter(Set<String> list, String resource, boolean accept_source) {
+    private static void addFilteredResource(String projectpath, Set<String> list,
+            String resource, boolean accept_source) {
         String resourceLC = resource.toLowerCase();
         boolean is_source = resourceLC.endsWith(".c") || resourceLC.endsWith(".h")
                 || resourceLC.endsWith(".m") || resourceLC.endsWith(".cpp")
                 || resourceLC.endsWith(".c++") || resourceLC.endsWith(".mm");
         if (accept_source == is_source)
-            list.add(resource);
+            addResource(projectpath, list, resource);
+    }
+    
+    /**
+     * Addd a resource file in the list, and check if the file is inside the project
+     * path or not. If it is, a relative filename is added, or else an absolute filename.
+     * @param projectpath The path of the project
+     * @param list The list of resources
+     * @param resource The resource filename
+     */
+    private static void addResource(String projectpath, Set<String> list, String resource) {
+        try {
+            String canonical = new File(resource).getCanonicalPath();
+            if (canonical.startsWith(projectpath))
+                list.add(resource);
+            else
+                list.add(canonical);
+        } catch (IOException ex) {
+            Log.error(ex.getMessage());
+        }
+    }
+
+    /**
+     * Get the absolute location of the project, as a canonical path name.
+     * In the special case that this project filename ends with "build/.xcode"
+     * (which is the output location of XMLVM projects as created by the
+     * ant tasks), then the project is actually two directory levels up.
+     * @param projectpath The given path of the project
+     * @return The actual path of the project
+     */
+    private static String getAbsoluteProjectLocation(String projectpath) {
+        try {
+            projectpath = new File(projectpath).getCanonicalPath();
+            if (projectpath.endsWith("/build/.xcode")) {
+                projectpath = projectpath.substring(0, projectpath.length() 
+                        - "/build/.xcode".length());
+            }
+        } catch (IOException ex) {
+            Log.error(ex.getMessage());
+        }
+        return projectpath;
     }
 }

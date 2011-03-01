@@ -48,6 +48,12 @@ static JAVA_OBJECT* __method0_arg_types[] = {
 static JAVA_OBJECT* __method1_arg_types[] = {
 };
 
+static JAVA_OBJECT* __method2_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"systemLocale",
     &__method0_arg_types[0],
@@ -61,6 +67,24 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"currentLocale",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"localeIdentifier",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"preferredLanguages",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -83,6 +107,12 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     case 1:
         org_xmlvm_iphone_NSLocale_currentLocale__();
         break;
+    case 2:
+        org_xmlvm_iphone_NSLocale_localeIdentifier__(receiver);
+        break;
+    case 3:
+        org_xmlvm_iphone_NSLocale_preferredLanguages__();
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;
@@ -99,6 +129,7 @@ void __INIT_org_xmlvm_iphone_NSLocale()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSLocale.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_NSLocale.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSLocale_localeIdentifier__;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_NSLocale.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSLocale.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -153,6 +184,21 @@ JAVA_OBJECT org_xmlvm_iphone_NSLocale_currentLocale__()
 {
     if (!__TIB_org_xmlvm_iphone_NSLocale.classInitialized) __INIT_org_xmlvm_iphone_NSLocale();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSLocale_currentLocale__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_NSLocale_localeIdentifier__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSLocale_localeIdentifier__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_NSLocale_preferredLanguages__()
+{
+    if (!__TIB_org_xmlvm_iphone_NSLocale.classInitialized) __INIT_org_xmlvm_iphone_NSLocale();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSLocale_preferredLanguages__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

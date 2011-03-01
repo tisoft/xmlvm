@@ -170,39 +170,6 @@ static JAVA_OBJECT* __method18_arg_types[] = {
 static JAVA_OBJECT* __method19_arg_types[] = {
 };
 
-static JAVA_OBJECT* __method20_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
-};
-
-static JAVA_OBJECT* __method21_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
-};
-
-static JAVA_OBJECT* __method22_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
-};
-
-static JAVA_OBJECT* __method23_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
-};
-
-static JAVA_OBJECT* __method24_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
-};
-
-static JAVA_OBJECT* __method25_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
-};
-
-static JAVA_OBJECT* __method26_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
-    &__CLASS_boolean,
-};
-
-static JAVA_OBJECT* __method27_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_AVAudioPlayer,
-};
-
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"audioPlayerWithContentsOfURL",
     &__method0_arg_types[0],
@@ -384,78 +351,6 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"access$000",
-    &__method20_arg_types[0],
-    sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"access$100",
-    &__method21_arg_types[0],
-    sizeof(__method21_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"access$200",
-    &__method22_arg_types[0],
-    sizeof(__method22_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"access$300",
-    &__method23_arg_types[0],
-    sizeof(__method23_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"access$400",
-    &__method24_arg_types[0],
-    sizeof(__method24_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"access$410",
-    &__method25_arg_types[0],
-    sizeof(__method25_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"access$502",
-    &__method26_arg_types[0],
-    sizeof(__method26_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"access$600",
-    &__method27_arg_types[0],
-    sizeof(__method27_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -525,30 +420,6 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 19:
         org_xmlvm_iphone_AVAudioPlayer_getData__(receiver);
-        break;
-    case 20:
-        org_xmlvm_iphone_AVAudioPlayer_access$000___org_xmlvm_iphone_AVAudioPlayer(argsArray[0]);
-        break;
-    case 21:
-        org_xmlvm_iphone_AVAudioPlayer_access$100___org_xmlvm_iphone_AVAudioPlayer(argsArray[0]);
-        break;
-    case 22:
-        org_xmlvm_iphone_AVAudioPlayer_access$200___org_xmlvm_iphone_AVAudioPlayer(argsArray[0]);
-        break;
-    case 23:
-        org_xmlvm_iphone_AVAudioPlayer_access$300___org_xmlvm_iphone_AVAudioPlayer(argsArray[0]);
-        break;
-    case 24:
-        org_xmlvm_iphone_AVAudioPlayer_access$400___org_xmlvm_iphone_AVAudioPlayer(argsArray[0]);
-        break;
-    case 25:
-        org_xmlvm_iphone_AVAudioPlayer_access$410___org_xmlvm_iphone_AVAudioPlayer(argsArray[0]);
-        break;
-    case 26:
-        org_xmlvm_iphone_AVAudioPlayer_access$502___org_xmlvm_iphone_AVAudioPlayer_boolean(argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
-        break;
-    case 27:
-        org_xmlvm_iphone_AVAudioPlayer_access$600___org_xmlvm_iphone_AVAudioPlayer(argsArray[0]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

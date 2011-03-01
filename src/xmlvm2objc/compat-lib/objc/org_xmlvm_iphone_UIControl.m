@@ -87,4 +87,14 @@ static char memberKey; // key for associative reference for member variables
 	      forControlEvents:controlEvents];
 }
 
+- (int) isSelected__
+{
+	return [self isSelected];
+}
+
+- (void) setSelected___boolean:(int)selected
+{
+	[self setSelected:selected];
+}
+
 @end

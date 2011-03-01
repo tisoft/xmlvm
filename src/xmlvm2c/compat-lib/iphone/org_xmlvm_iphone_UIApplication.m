@@ -163,9 +163,6 @@ static JAVA_OBJECT* __method17_arg_types[] = {
     &__CLASS_java_lang_Class,
 };
 
-static JAVA_OBJECT* __method18_arg_types[] = {
-};
-
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"sharedApplication",
     &__method0_arg_types[0],
@@ -329,15 +326,6 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"access$000",
-    &__method18_arg_types[0],
-    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -401,9 +389,6 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 17:
         org_xmlvm_iphone_UIApplication_main___java_lang_String_ARRAYTYPE_java_lang_Class_java_lang_Class(argsArray[0], argsArray[1], argsArray[2]);
-        break;
-    case 18:
-        org_xmlvm_iphone_UIApplication_access$000__();
         break;
     default:
         XMLVM_INTERNAL_ERROR();

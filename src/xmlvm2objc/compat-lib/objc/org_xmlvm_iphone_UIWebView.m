@@ -75,4 +75,14 @@
 	return [self dataDetectorTypes];
 }
 
+- (void) setScalesPageToFit___boolean:(int)pageToFit
+{
+	[self setScalesPageToFit:pageToFit];
+}
+
+- (int) isScalesPageToFit__
+{
+	return [self scalesPageToFit];
+}
+
 @end

@@ -13,6 +13,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CAAnimation)
@@ -26,7 +30,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 #endif
 // Class declarations for org.xmlvm.iphone.CALayer
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CALayer, 22)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CALayer, 24)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer_ARRAYTYPE;
@@ -52,7 +56,7 @@ struct org_xmlvm_iphone_CALayer {
 typedef struct org_xmlvm_iphone_CALayer org_xmlvm_iphone_CALayer;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CALayer 22
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CALayer 24
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_addAnimation___org_xmlvm_iphone_CAAnimation_java_lang_String 14
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_animationForKey___java_lang_String 15
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_removeAllAnimations__ 16
@@ -61,6 +65,8 @@ typedef struct org_xmlvm_iphone_CALayer org_xmlvm_iphone_CALayer;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_renderInContext___org_xmlvm_iphone_CGContext 19
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_getDelegate__ 20
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView 21
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_getAnchorPoint__ 22
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint 23
 
 void __INIT_org_xmlvm_iphone_CALayer();
 void __DELETE_org_xmlvm_iphone_CALayer(void* me, void* client_data);
@@ -84,5 +90,9 @@ void org_xmlvm_iphone_CALayer_renderInContext___org_xmlvm_iphone_CGContext(JAVA_
 JAVA_OBJECT org_xmlvm_iphone_CALayer_getDelegate__(JAVA_OBJECT me);
 // Vtable index: 21
 void org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 22
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getAnchorPoint__(JAVA_OBJECT me);
+// Vtable index: 23
+void org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

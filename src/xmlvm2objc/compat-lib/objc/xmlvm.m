@@ -29,14 +29,32 @@ void xmlvm_init()
 }
 
 
+
 @implementation XMLVMArray
+
+/* This private method creates a shallow copy of this array */
+XMLVMElemPtr copyData(int type, int length, XMLVMElemPtr olddata)
+{
+    int sizeOfBaseType = [XMLVMArray sizeOfBaseTypeInBytes:type];
+    int sizeOfArrayInBytes = sizeOfBaseType * length;
+    XMLVMElemPtr array;
+    array.data = malloc(sizeOfArrayInBytes);
+    if (type == 0) {
+        for (int i = 0; i < length; i++) {
+            array.o[i] = [olddata.o[i] retain];
+        }
+    }
+    else {
+        memcpy(array.data, olddata.data, sizeOfArrayInBytes);
+    }
+    return array;
+}
 
 + (XMLVMArray*) createSingleDimensionWithType:(int) type andSize:(int) size
 {
     XMLVMArray *retval = [[XMLVMArray alloc] init];
     retval->type = type;
     retval->length = size;
-	retval->ownsData = YES;
 
     int sizeOfBaseType = [XMLVMArray sizeOfBaseTypeInBytes:type];
     retval->array.data = malloc(sizeOfBaseType * size);
@@ -56,26 +74,25 @@ void xmlvm_init()
     XMLVMArray *retval = [[XMLVMArray alloc] init];
     retval->type = type;
     retval->length = size;
-    retval->array.data = data;
-	retval->ownsData = NO;
+    retval->array = copyData(type, size, (XMLVMElemPtr)data);
     return retval;
 }
 
 + (XMLVMArray*) createMultiDimensionsWithType:(int) type dimensions:(XMLVMElem*) dim count:(int)count
 {
-	int dimensions = dim->i;
-	dim++;
-	count--;
-	if (count == 0) {
-		return [XMLVMArray createSingleDimensionWithType:type andSize:dimensions];
-	}
-	XMLVMArray* slice = [XMLVMArray createSingleDimensionWithType:0 andSize:dimensions];
-	for (int i = 0; i < dimensions; i++) {
-		id o = [XMLVMArray createMultiDimensionsWithType:type dimensions:dim count:count];
-		[slice replaceObjectAtIndex:i withObject:o];
-		[o release];
-	}
-	return slice;
+    int dimensions = dim->i;
+    dim++;
+    count--;
+    if (count == 0) {
+        return [XMLVMArray createSingleDimensionWithType:type andSize:dimensions];
+    }
+    XMLVMArray* slice = [XMLVMArray createSingleDimensionWithType:0 andSize:dimensions];
+    for (int i = 0; i < dimensions; i++) {
+        id o = [XMLVMArray createMultiDimensionsWithType:type dimensions:dim count:count];
+        [slice replaceObjectAtIndex:i withObject:o];
+        [o release];
+    }
+    return slice;
 }
 
 + (void) fillArray:(XMLVMArray*) array withData:(void*) data
@@ -87,8 +104,8 @@ void xmlvm_init()
 
 + (int) sizeOfBaseTypeInBytes:(int) type
 {
-	int sizeOfBaseType;
-	
+    int sizeOfBaseType;
+    
     // 'type' values are defined by vm:sizeOf in xmlvm2objc.xsl
     switch (type) {
     case 1: // boolean
@@ -111,6 +128,9 @@ void xmlvm_init()
     case 8: // long
        sizeOfBaseType = sizeof(JAVA_LONG);
        break;
+    case 100: // XMLVMElem
+        sizeOfBaseType = sizeof(XMLVMElem);
+        break;
     default: // object reference
        sizeOfBaseType = sizeof(id);
        break;
@@ -144,32 +164,17 @@ void xmlvm_init()
             [self->array.o[i] release];
         }
     }
-	if (self->ownsData == YES) {
-        free(self->array.data);
-	}
+    free(self->array.data);
     [super dealloc];
 }
+
 
 - (XMLVMArray*) clone__
 {
     XMLVMArray *retval = [[XMLVMArray alloc] init];
     retval->type = self->type;
     retval->length = self->length;
-    retval->ownsData = YES;
-
-    int sizeOfBaseType = [XMLVMArray sizeOfBaseTypeInBytes:self->type];
-    int sizeOfArrayInBytes = sizeOfBaseType * self->length;
-    retval->array.data = malloc(sizeOfArrayInBytes);
-
-    if (type == 0) {
-        for (int i = 0; i < self->length; i++) {
-            retval->array.o[i] = [self->array.o[i] retain];
-        }
-    }
-    else {
-	    memcpy(retval->array.data, self->array.data, sizeOfArrayInBytes);
-    }
-
+    retval->array = copyData(self->type, self->length, self->array);
     return retval;
 }
 
@@ -179,6 +184,6 @@ void xmlvm_init()
 
 void ERROR(char* msg)
 {
-	NSLog([NSString stringWithUTF8String:msg]);
-	@throw [NSException exceptionWithName: @"XMLVM missing byte code instruction" reason:[NSString stringWithUTF8String:msg] userInfo: nil];
+    NSLog(@"%@", [NSString stringWithUTF8String:msg]);
+    @throw [NSException exceptionWithName: @"XMLVM missing byte code instruction" reason:[NSString stringWithUTF8String:msg] userInfo: nil];
 }

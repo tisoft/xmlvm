@@ -26,9 +26,13 @@
 @interface org_xmlvm_iphone_CGAffineTransform : java_lang_Object {
 @public CGAffineTransform transform;
 }
-+ (org_xmlvm_iphone_CGAffineTransform*) makeRotation___float: (float) alpha;
-+ (org_xmlvm_iphone_CGAffineTransform*) makeScale___float_float: (float) tx :(float)ty;
-+ (org_xmlvm_iphone_CGAffineTransform*) translate___org_xmlvm_iphone_CGAffineTransform_float_float:(org_xmlvm_iphone_CGAffineTransform *)transf :(float)tx :(float)ty;
-+ (org_xmlvm_iphone_CGAffineTransform*) rotate___org_xmlvm_iphone_CGAffineTransform_float:(org_xmlvm_iphone_CGAffineTransform *)transf :(float)alpha;
++ (org_xmlvm_iphone_CGAffineTransform*) make___float_float_float_float_float_float :(float)n1 :(float)n2 :(float)n3 :(float)n4 :(float)n5 :(float)n6;
++ (org_xmlvm_iphone_CGAffineTransform*) makeRotation___float :(float)n1;
++ (org_xmlvm_iphone_CGAffineTransform*) makeScale___float_float :(float)n1 :(float)n2;
++ (org_xmlvm_iphone_CGAffineTransform*) makeTranslation___float_float :(float)n1 :(float)n2;
++ (org_xmlvm_iphone_CGAffineTransform*) rotate___org_xmlvm_iphone_CGAffineTransform_float :(org_xmlvm_iphone_CGAffineTransform*)n1 :(float)n2;
++ (org_xmlvm_iphone_CGAffineTransform*) scale___org_xmlvm_iphone_CGAffineTransform_float_float :(org_xmlvm_iphone_CGAffineTransform*)n1 :(float)n2 :(float)n3;
++ (org_xmlvm_iphone_CGAffineTransform*) translate___org_xmlvm_iphone_CGAffineTransform_float_float :(org_xmlvm_iphone_CGAffineTransform*)n1 :(float)n2 :(float)n3;
++ (org_xmlvm_iphone_CGAffineTransform*) concat___org_xmlvm_iphone_CGAffineTransform_org_xmlvm_iphone_CGAffineTransform :(org_xmlvm_iphone_CGAffineTransform*)n1 :(org_xmlvm_iphone_CGAffineTransform*)n2;
 + (org_xmlvm_iphone_CGAffineTransform*) identity__;
 @end

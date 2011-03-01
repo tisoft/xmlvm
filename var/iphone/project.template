@@ -163,7 +163,7 @@ __RESOURCES_BUILD__			);
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "RESOURCES=\"__RESOURCE_DIR__\"\nfor i in __RESOURCE_LIST__; do\n\tcase $i in\n\t\t/*)\tFROM=$i ;;\n\t\t*)\tFROM=${RESOURCES}/$i ;;\n\tesac\n\tif [ -e \"$FROM\" ] ; then\n\t\tcp -rf \"$FROM\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\"\n\tfi\ndone\n";
+			shellScript = "RESOURCES=\"${PROJECT_DIR}/..\"\nfor i in __RESOURCE_LIST__; do\n\tcase $i in\n\t\t/*)\tFROM=$i ;;\n\t\t*)\tFROM=${RESOURCES}/$i ;;\n\tesac\n\tif [ -e \"$FROM\" ] ; then\n\t\tcp -rf \"$FROM\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\"\n\tfi\ndone\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
