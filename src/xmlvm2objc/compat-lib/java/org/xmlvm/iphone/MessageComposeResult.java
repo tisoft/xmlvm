@@ -20,9 +20,15 @@
 
 package org.xmlvm.iphone;
 
-public class MessageComposeResult {
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
+public final class MessageComposeResult {
 
     public static final int Cancelled = 0;
     public static final int Sent      = 1;
     public static final int Failed    = 2;
+    
+    private MessageComposeResult() {        
+    }
 }

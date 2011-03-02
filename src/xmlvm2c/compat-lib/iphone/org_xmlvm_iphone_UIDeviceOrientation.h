@@ -56,6 +56,5 @@ JAVA_INT org_xmlvm_iphone_UIDeviceOrientation_GET_FaceUp();
 void org_xmlvm_iphone_UIDeviceOrientation_PUT_FaceUp(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIDeviceOrientation_GET_FaceDown();
 void org_xmlvm_iphone_UIDeviceOrientation_PUT_FaceDown(JAVA_INT v);
-void org_xmlvm_iphone_UIDeviceOrientation___INIT___(JAVA_OBJECT me);
 
 #endif

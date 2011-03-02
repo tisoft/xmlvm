@@ -48,6 +48,5 @@ JAVA_INT org_xmlvm_iphone_UITextAutocorrectionType_GET_No();
 void org_xmlvm_iphone_UITextAutocorrectionType_PUT_No(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UITextAutocorrectionType_GET_Yes();
 void org_xmlvm_iphone_UITextAutocorrectionType_PUT_Yes(JAVA_INT v);
-void org_xmlvm_iphone_UITextAutocorrectionType___INIT___(JAVA_OBJECT me);
 
 #endif

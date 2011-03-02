@@ -54,6 +54,5 @@ JAVA_INT org_xmlvm_iphone_UIControlState_GET_ApplicationReserved();
 void org_xmlvm_iphone_UIControlState_PUT_ApplicationReserved(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIControlState_GET_Reserved();
 void org_xmlvm_iphone_UIControlState_PUT_Reserved(JAVA_INT v);
-void org_xmlvm_iphone_UIControlState___INIT___(JAVA_OBJECT me);
 
 #endif

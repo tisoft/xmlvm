@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIViewAutoresizing {
+public final class UIViewAutoresizing {
 
     public static final int None                 = 0;
     public static final int FlexibleLeftMargin   = 1 << 0;
@@ -32,4 +32,7 @@ public class UIViewAutoresizing {
     public static final int FlexibleTopMargin    = 1 << 3;
     public static final int FlexibleHeight       = 1 << 4;
     public static final int FlexibleBottomMargin = 1 << 5;
+    
+    private UIViewAutoresizing() {        
+    }
 }

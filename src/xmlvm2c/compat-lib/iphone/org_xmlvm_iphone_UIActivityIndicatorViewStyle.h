@@ -48,6 +48,5 @@ JAVA_INT org_xmlvm_iphone_UIActivityIndicatorViewStyle_GET_White();
 void org_xmlvm_iphone_UIActivityIndicatorViewStyle_PUT_White(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIActivityIndicatorViewStyle_GET_Gray();
 void org_xmlvm_iphone_UIActivityIndicatorViewStyle_PUT_Gray(JAVA_INT v);
-void org_xmlvm_iphone_UIActivityIndicatorViewStyle___INIT___(JAVA_OBJECT me);
 
 #endif

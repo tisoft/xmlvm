@@ -68,6 +68,5 @@ JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_BottomLeft();
 void org_xmlvm_iphone_UIViewContentMode_PUT_BottomLeft(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_BottomRight();
 void org_xmlvm_iphone_UIViewContentMode_PUT_BottomRight(JAVA_INT v);
-void org_xmlvm_iphone_UIViewContentMode___INIT___(JAVA_OBJECT me);
 
 #endif

@@ -22,8 +22,11 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIKeyboardAppearance {
+public final class UIKeyboardAppearance {
 
     public static final int Default = 0;
     public static final int Alert   = 1;
+    
+    private UIKeyboardAppearance() {        
+    }
 }

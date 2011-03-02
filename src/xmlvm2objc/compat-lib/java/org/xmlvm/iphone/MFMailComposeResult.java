@@ -22,10 +22,13 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class MFMailComposeResult {
+public final class MFMailComposeResult {
 
     public static final int Cancelled = 0;
     public static final int Saved     = 1;
     public static final int Sent      = 2;
     public static final int Failed    = 3;
+    
+    private MFMailComposeResult() {        
+    }
 }

@@ -20,7 +20,10 @@
 
 package org.xmlvm.iphone;
 
-public class CLDeviceOrientation {
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
+public final class CLDeviceOrientation {
 
     public static final int Unknown            = 0;
     public static final int Portrait           = 1;

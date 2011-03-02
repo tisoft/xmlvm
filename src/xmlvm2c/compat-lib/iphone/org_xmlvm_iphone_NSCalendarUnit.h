@@ -62,6 +62,5 @@ JAVA_INT org_xmlvm_iphone_NSCalendarUnit_GET_Weekday();
 void org_xmlvm_iphone_NSCalendarUnit_PUT_Weekday(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_NSCalendarUnit_GET_WeekdayOrdinal();
 void org_xmlvm_iphone_NSCalendarUnit_PUT_WeekdayOrdinal(JAVA_INT v);
-void org_xmlvm_iphone_NSCalendarUnit___INIT___(JAVA_OBJECT me);
 
 #endif

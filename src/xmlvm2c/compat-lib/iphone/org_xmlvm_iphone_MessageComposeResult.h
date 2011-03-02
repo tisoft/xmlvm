@@ -48,6 +48,5 @@ JAVA_INT org_xmlvm_iphone_MessageComposeResult_GET_Sent();
 void org_xmlvm_iphone_MessageComposeResult_PUT_Sent(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_MessageComposeResult_GET_Failed();
 void org_xmlvm_iphone_MessageComposeResult_PUT_Failed(JAVA_INT v);
-void org_xmlvm_iphone_MessageComposeResult___INIT___(JAVA_OBJECT me);
 
 #endif

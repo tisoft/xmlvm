@@ -50,6 +50,5 @@ JAVA_INT org_xmlvm_iphone_MPMovieScalingMode_GET_AspectFill();
 void org_xmlvm_iphone_MPMovieScalingMode_PUT_AspectFill(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_MPMovieScalingMode_GET_Fill();
 void org_xmlvm_iphone_MPMovieScalingMode_PUT_Fill(JAVA_INT v);
-void org_xmlvm_iphone_MPMovieScalingMode___INIT___(JAVA_OBJECT me);
 
 #endif

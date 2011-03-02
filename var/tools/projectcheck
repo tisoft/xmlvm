@@ -31,17 +31,63 @@ check_xcode_template_files () {
 	fi
 }
 
+check_XMLVMSkeletonOnly () {
+	pushd >/dev/null "${XMLVMHOME}/src/xmlvm2objc/compat-lib/java/org/xmlvm/iphone"
+	ERROR=
+	for i in *.java ; do
+		# Check for missing tag
+		CHECK=`grep '@XMLVMSkeletonOnly' $i`
+		if [ -z "$CHECK" ] ; then
+			ERROR=yes
+			echo "File $i is not annotated with XMLVMSkeletonOnly"
+		fi
+		# Check for constant enumerations
+		CHECK=`grep 'public final class' $i`
+		if [ -n "$CHECK" ] ; then
+			CLASSNAME=`echo $i | sed -e 's/\.java$//g'`
+			CHECK=`grep "private *$CLASSNAME() *{" $i`
+			if [ -z "$CHECK" ] ; then
+				ERROR=yes
+				echo "File $i seems to hold constant variables, but no private constructor found"
+			fi
+		fi
+	done
+	popd >/dev/null
+	if [ -n "$ERROR" ] ; then
+		exit 1
+	fi
+}
+
 generate_C_wrappers () {
-	echo "Do you want to generate C wrappers?"
+	echo "Next test : generate C wrappers"
 	echo -n "Press [RETURN] to generate, [CTR]-C to cancel: "
 	read QQ
 	pushd >/dev/null "$XMLVMHOME"
 	ant gen-c-wrappers
 	popd >/dev/null
+	echo
+}
+
+check_ifireworks_C () {
+	echo "Next test: iFireworks under C"
+	echo -n "Press [RETURN] to generate, [CTR]-C to cancel: "
+	read QQ
+	pushd >/dev/null "$XMLVMHOME"
+	pushd >/dev/null "$XMLVMHOME"
+	cd demo/iphone/ifireworks
+	ant compile
+	cd ../../..
+	java -Xmx700m -jar dist/xmlvm.jar --target=iphonec --in=demo/iphone/ifireworks/build/classes/ --resource=demo/iphone/ifireworks/res/ --app-name=iFireworks --out=out
+	open out/dist/iFireworks.xproj
+	popd >/dev/null
 }
 
 
+# MAIN TESTS
+
 # Check xcode templates first
+find_XMLVMHOME
+
 check_xcode_template_files
 sync_file var/templates/iphone/xcode.xml var/templates/android/xcode.xml
 sync_file var/templates/iphone/xcode.xml-xmlvm_version var/templates/android/xcode.xml-xmlvm_version
@@ -59,5 +105,7 @@ for i in $ANDROID_PROJECTS ; do
 	sync_file var/templates/android/androidsupport.xml demo/android/$i/nbproject/androidsupport.xml
 done
 
-generate_C_wrappers
+check_XMLVMSkeletonOnly
 
+generate_C_wrappers
+check_ifireworks_C

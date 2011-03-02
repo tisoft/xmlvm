@@ -54,6 +54,5 @@ JAVA_INT org_xmlvm_iphone_UILineBreakMode_GET_TailTruncation();
 void org_xmlvm_iphone_UILineBreakMode_PUT_TailTruncation(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UILineBreakMode_GET_MiddleTruncation();
 void org_xmlvm_iphone_UILineBreakMode_PUT_MiddleTruncation(JAVA_INT v);
-void org_xmlvm_iphone_UILineBreakMode___INIT___(JAVA_OBJECT me);
 
 #endif

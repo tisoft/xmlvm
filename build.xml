@@ -167,11 +167,9 @@
 			</patternset>
 		</unjar>
 
-		<javac srcdir="src/tools/ant/xcode-updater/" destdir="${xmlvm.build}" debug="${debug}">
+		<javac srcdir="src/tools/ant/xcode-updater/" destdir="${xmlvm.build}" classpath="${ant.core.lib}" debug="${debug}">
 			<include name="**/*.java" />
 		</javac>
-		<delete file="${xmlvm.build}/org/apache/tools/ant/BuildException.class"/>
-		<delete file="${xmlvm.build}/org/apache/tools/ant/Task.class"/>
 
 		<copy todir="${xmlvm.bin}" flatten="true">
 			<fileset dir="src">

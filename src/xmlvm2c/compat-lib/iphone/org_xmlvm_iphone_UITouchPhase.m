@@ -65,18 +65,7 @@ static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
     JAVA_NULL},
 };
 
-static JAVA_OBJECT* __constructor0_arg_types[] = {
-};
-
 static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
-    {&__constructor0_arg_types[0],
-    sizeof(__constructor0_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
 };
 
 static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
@@ -86,9 +75,6 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (c->fields.java_lang_reflect_Constructor.slot_) {
-    case 0:
-        org_xmlvm_iphone_UITouchPhase___INIT___(obj);
-        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;
@@ -167,8 +153,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITouchPhase()
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITouchPhase()
 {
     JAVA_OBJECT me = JAVA_NULL;
-    me = __NEW_org_xmlvm_iphone_UITouchPhase();
-    org_xmlvm_iphone_UITouchPhase___INIT___(me);
     return me;
 }
 
@@ -230,12 +214,5 @@ void org_xmlvm_iphone_UITouchPhase_PUT_Cancelled(JAVA_INT v)
 {
     if (!__TIB_org_xmlvm_iphone_UITouchPhase.classInitialized) __INIT_org_xmlvm_iphone_UITouchPhase();
     _STATIC_org_xmlvm_iphone_UITouchPhase_Cancelled = v;
-}
-
-void org_xmlvm_iphone_UITouchPhase___INIT___(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITouchPhase___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
 }
 

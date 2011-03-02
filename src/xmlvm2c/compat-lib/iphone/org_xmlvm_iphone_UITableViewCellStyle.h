@@ -50,6 +50,5 @@ JAVA_INT org_xmlvm_iphone_UITableViewCellStyle_GET_Value2();
 void org_xmlvm_iphone_UITableViewCellStyle_PUT_Value2(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UITableViewCellStyle_GET_Subtitle();
 void org_xmlvm_iphone_UITableViewCellStyle_PUT_Subtitle(JAVA_INT v);
-void org_xmlvm_iphone_UITableViewCellStyle___INIT___(JAVA_OBJECT me);
 
 #endif

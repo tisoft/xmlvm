@@ -54,6 +54,5 @@ JAVA_INT org_xmlvm_iphone_UITableViewRowAnimation_GET_Bottom();
 void org_xmlvm_iphone_UITableViewRowAnimation_PUT_Bottom(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UITableViewRowAnimation_GET_None();
 void org_xmlvm_iphone_UITableViewRowAnimation_PUT_None(JAVA_INT v);
-void org_xmlvm_iphone_UITableViewRowAnimation___INIT___(JAVA_OBJECT me);
 
 #endif

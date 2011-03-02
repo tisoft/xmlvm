@@ -50,6 +50,5 @@ JAVA_INT org_xmlvm_iphone_UIDatePickerMode_GET_DateAndTime();
 void org_xmlvm_iphone_UIDatePickerMode_PUT_DateAndTime(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIDatePickerMode_GET_CountDownTimer();
 void org_xmlvm_iphone_UIDatePickerMode_PUT_CountDownTimer(JAVA_INT v);
-void org_xmlvm_iphone_UIDatePickerMode___INIT___(JAVA_OBJECT me);
 
 #endif

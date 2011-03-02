@@ -54,6 +54,5 @@ JAVA_INT org_xmlvm_iphone_NSNumberFormatterStyle_GET_ScientificStyle();
 void org_xmlvm_iphone_NSNumberFormatterStyle_PUT_ScientificStyle(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_NSNumberFormatterStyle_GET_SpellOutStyle();
 void org_xmlvm_iphone_NSNumberFormatterStyle_PUT_SpellOutStyle(JAVA_INT v);
-void org_xmlvm_iphone_NSNumberFormatterStyle___INIT___(JAVA_OBJECT me);
 
 #endif

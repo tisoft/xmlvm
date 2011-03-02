@@ -20,7 +20,10 @@
 
 package org.xmlvm.iphone;
 
-public class CLHeadingFilter {
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
+public final class CLHeadingFilter {
 
     public static final double None = -1;
 

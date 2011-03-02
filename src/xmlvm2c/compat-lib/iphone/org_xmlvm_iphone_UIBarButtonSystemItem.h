@@ -88,6 +88,5 @@ JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Undo();
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Undo(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Redo();
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Redo(JAVA_INT v);
-void org_xmlvm_iphone_UIBarButtonSystemItem___INIT___(JAVA_OBJECT me);
 
 #endif

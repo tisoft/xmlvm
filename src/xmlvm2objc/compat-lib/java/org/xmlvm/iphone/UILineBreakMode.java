@@ -23,11 +23,14 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UILineBreakMode {
+public final class UILineBreakMode {
     public static final int WordWrap         = 0;
     public static final int CharacterWrap    = 1;
     public static final int HeadTruncation   = 3;
     public static final int Clip             = 2;
     public static final int TailTruncation   = 4;
     public static final int MiddleTruncation = 5;
+    
+    private UILineBreakMode() {        
+    }
 }

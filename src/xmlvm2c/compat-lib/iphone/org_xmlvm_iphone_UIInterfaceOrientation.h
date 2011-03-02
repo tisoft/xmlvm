@@ -50,6 +50,5 @@ JAVA_INT org_xmlvm_iphone_UIInterfaceOrientation_GET_LandscapeLeft();
 void org_xmlvm_iphone_UIInterfaceOrientation_PUT_LandscapeLeft(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIInterfaceOrientation_GET_LandscapeRight();
 void org_xmlvm_iphone_UIInterfaceOrientation_PUT_LandscapeRight(JAVA_INT v);
-void org_xmlvm_iphone_UIInterfaceOrientation___INIT___(JAVA_OBJECT me);
 
 #endif

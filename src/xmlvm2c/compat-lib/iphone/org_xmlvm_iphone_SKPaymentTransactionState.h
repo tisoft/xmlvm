@@ -50,6 +50,5 @@ JAVA_INT org_xmlvm_iphone_SKPaymentTransactionState_GET_Failed();
 void org_xmlvm_iphone_SKPaymentTransactionState_PUT_Failed(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_SKPaymentTransactionState_GET_Restored();
 void org_xmlvm_iphone_SKPaymentTransactionState_PUT_Restored(JAVA_INT v);
-void org_xmlvm_iphone_SKPaymentTransactionState___INIT___(JAVA_OBJECT me);
 
 #endif

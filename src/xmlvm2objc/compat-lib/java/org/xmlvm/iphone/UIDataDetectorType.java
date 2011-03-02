@@ -20,15 +20,18 @@
 
 package org.xmlvm.iphone;
 
-import org.xmlvm.XMLVMIgnore;
+import org.xmlvm.XMLVMSkeletonOnly;
 
-@XMLVMIgnore
-public class UIDataDetectorType {
+@XMLVMSkeletonOnly
+public final class UIDataDetectorType {
     public static final int PhoneNumber   = 1 << 0;
     public static final int Link          = 1 << 1;
     public static final int Address       = 1 << 2;
     public static final int CalendarEvent = 1 << 3;
     public static final int None          = 0;
     public static final int All           = Integer.MAX_VALUE;
+    
+    private UIDataDetectorType() {        
+    }
 
 }

@@ -48,6 +48,5 @@ JAVA_INT org_xmlvm_iphone_UITextAlignment_GET_Center();
 void org_xmlvm_iphone_UITextAlignment_PUT_Center(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UITextAlignment_GET_Right();
 void org_xmlvm_iphone_UITextAlignment_PUT_Right(JAVA_INT v);
-void org_xmlvm_iphone_UITextAlignment___INIT___(JAVA_OBJECT me);
 
 #endif

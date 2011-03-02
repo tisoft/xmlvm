@@ -22,10 +22,13 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIViewAnimationCurve {
+public final class UIViewAnimationCurve {
 
     public static final int EaseInOut = 0;
     public static final int EaseIn    = 1;
     public static final int EaseOut   = 2;
     public static final int Linear    = 3;
+    
+    private UIViewAnimationCurve() {        
+    }
 }

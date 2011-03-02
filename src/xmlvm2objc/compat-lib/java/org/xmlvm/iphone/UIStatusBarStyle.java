@@ -22,9 +22,12 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIStatusBarStyle {
+public final class UIStatusBarStyle {
 
     public static final int Default          = 0;
     public static final int BlackTranslucent = 1;
     public static final int BlackOpaque      = 2;
+    
+    private UIStatusBarStyle() {        
+    }
 }

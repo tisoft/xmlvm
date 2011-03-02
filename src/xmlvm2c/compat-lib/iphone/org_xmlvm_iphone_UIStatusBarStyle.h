@@ -48,6 +48,5 @@ JAVA_INT org_xmlvm_iphone_UIStatusBarStyle_GET_BlackTranslucent();
 void org_xmlvm_iphone_UIStatusBarStyle_PUT_BlackTranslucent(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIStatusBarStyle_GET_BlackOpaque();
 void org_xmlvm_iphone_UIStatusBarStyle_PUT_BlackOpaque(JAVA_INT v);
-void org_xmlvm_iphone_UIStatusBarStyle___INIT___(JAVA_OBJECT me);
 
 #endif

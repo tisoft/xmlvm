@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public interface UIControlDelegate {
 
     public void raiseEvent(UIControl sender, int uiControlEvent);

@@ -20,7 +20,10 @@
 
 package org.xmlvm.iphone;
 
-public class CLDistanceFilter {
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
+public final class CLDistanceFilter {
 
     public static final double None = -1;
 

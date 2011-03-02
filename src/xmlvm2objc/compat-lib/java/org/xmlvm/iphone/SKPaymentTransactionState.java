@@ -20,10 +20,16 @@
 
 package org.xmlvm.iphone;
 
-public class SKPaymentTransactionState {
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
+public final class SKPaymentTransactionState {
 
     public static final int Purchasing = 0;
     public static final int Purchased  = 1;
     public static final int Failed     = 2;
     public static final int Restored   = 3;
+    
+    private SKPaymentTransactionState() {        
+    }
 }

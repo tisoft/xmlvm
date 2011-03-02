@@ -23,10 +23,13 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIDeviceBatteryState {
+public final class UIDeviceBatteryState {
 
     public static final int Unknown   = 0;
     public static final int Unplugged = 1;
     public static final int Charging  = 2;
     public static final int Full      = 3;
+    
+    private UIDeviceBatteryState() {
+    }
 }

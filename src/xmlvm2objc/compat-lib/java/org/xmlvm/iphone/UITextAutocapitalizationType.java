@@ -23,10 +23,13 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UITextAutocapitalizationType {
+public final class UITextAutocapitalizationType {
 
     public static final int None          = 0;
     public static final int Words         = 1;
     public static final int Sentences     = 2;
     public static final int AllCharacters = 3;
+    
+    private UITextAutocapitalizationType() {        
+    }
 }

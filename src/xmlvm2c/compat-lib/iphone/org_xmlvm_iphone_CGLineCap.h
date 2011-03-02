@@ -48,6 +48,5 @@ JAVA_INT org_xmlvm_iphone_CGLineCap_GET_kCGLineCapRound();
 void org_xmlvm_iphone_CGLineCap_PUT_kCGLineCapRound(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_CGLineCap_GET_kCGLineCapSquare();
 void org_xmlvm_iphone_CGLineCap_PUT_kCGLineCapSquare(JAVA_INT v);
-void org_xmlvm_iphone_CGLineCap___INIT___(JAVA_OBJECT me);
 
 #endif

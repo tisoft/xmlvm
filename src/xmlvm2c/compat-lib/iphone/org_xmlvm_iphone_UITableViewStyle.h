@@ -46,6 +46,5 @@ JAVA_INT org_xmlvm_iphone_UITableViewStyle_GET_Plain();
 void org_xmlvm_iphone_UITableViewStyle_PUT_Plain(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UITableViewStyle_GET_Grouped();
 void org_xmlvm_iphone_UITableViewStyle_PUT_Grouped(JAVA_INT v);
-void org_xmlvm_iphone_UITableViewStyle___INIT___(JAVA_OBJECT me);
 
 #endif

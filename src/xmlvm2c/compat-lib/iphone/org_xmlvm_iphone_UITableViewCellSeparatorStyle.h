@@ -46,6 +46,5 @@ JAVA_INT org_xmlvm_iphone_UITableViewCellSeparatorStyle_GET_None();
 void org_xmlvm_iphone_UITableViewCellSeparatorStyle_PUT_None(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UITableViewCellSeparatorStyle_GET_SingleLine();
 void org_xmlvm_iphone_UITableViewCellSeparatorStyle_PUT_SingleLine(JAVA_INT v);
-void org_xmlvm_iphone_UITableViewCellSeparatorStyle___INIT___(JAVA_OBJECT me);
 
 #endif

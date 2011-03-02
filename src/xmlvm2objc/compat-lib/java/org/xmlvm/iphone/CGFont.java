@@ -36,6 +36,7 @@ public class CGFont extends NSObject {
         this.font = font;
     }
 
+    @SuppressWarnings("CallToThreadDumpStack")
     public static CGFont createFromDataProider(CGDataProvider provider) {
         try {
             return new CGFont(Font.createFont(Font.TRUETYPE_FONT, provider.in));

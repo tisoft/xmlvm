@@ -46,6 +46,5 @@ JAVA_INT org_xmlvm_iphone_UIUserInterfaceIdiom_GET_Phone();
 void org_xmlvm_iphone_UIUserInterfaceIdiom_PUT_Phone(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIUserInterfaceIdiom_GET_Pad();
 void org_xmlvm_iphone_UIUserInterfaceIdiom_PUT_Pad(JAVA_INT v);
-void org_xmlvm_iphone_UIUserInterfaceIdiom___INIT___(JAVA_OBJECT me);
 
 #endif

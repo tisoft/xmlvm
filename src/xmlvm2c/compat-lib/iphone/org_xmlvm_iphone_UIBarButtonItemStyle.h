@@ -48,6 +48,5 @@ JAVA_INT org_xmlvm_iphone_UIBarButtonItemStyle_GET_Bordered();
 void org_xmlvm_iphone_UIBarButtonItemStyle_PUT_Bordered(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIBarButtonItemStyle_GET_Done();
 void org_xmlvm_iphone_UIBarButtonItemStyle_PUT_Done(JAVA_INT v);
-void org_xmlvm_iphone_UIBarButtonItemStyle___INIT___(JAVA_OBJECT me);
 
 #endif

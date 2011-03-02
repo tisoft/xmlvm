@@ -23,7 +23,10 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UITableViewCellSeparatorStyle {
+public final class UITableViewCellSeparatorStyle {
     public static final int None       = 0;
     public static final int SingleLine = 1;
+    
+    private UITableViewCellSeparatorStyle() {        
+    }
 }

@@ -23,9 +23,12 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIActivityIndicatorViewStyle {
+public final class UIActivityIndicatorViewStyle {
 
     public static final int WhiteLarge = 0;
     public static final int White      = 1;
     public static final int Gray       = 2;
+    
+    private UIActivityIndicatorViewStyle() {        
+    }
 }

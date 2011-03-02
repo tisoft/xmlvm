@@ -52,6 +52,5 @@ JAVA_INT org_xmlvm_iphone_UIViewAnimationTransition_GET_CurlUp();
 void org_xmlvm_iphone_UIViewAnimationTransition_PUT_CurlUp(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIViewAnimationTransition_GET_CurlDown();
 void org_xmlvm_iphone_UIViewAnimationTransition_PUT_CurlDown(JAVA_INT v);
-void org_xmlvm_iphone_UIViewAnimationTransition___INIT___(JAVA_OBJECT me);
 
 #endif

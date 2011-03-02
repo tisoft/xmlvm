@@ -46,6 +46,5 @@ JAVA_INT org_xmlvm_iphone_UIProgressViewStyle_GET_Default();
 void org_xmlvm_iphone_UIProgressViewStyle_PUT_Default(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIProgressViewStyle_GET_Bar();
 void org_xmlvm_iphone_UIProgressViewStyle_PUT_Bar(JAVA_INT v);
-void org_xmlvm_iphone_UIProgressViewStyle___INIT___(JAVA_OBJECT me);
 
 #endif

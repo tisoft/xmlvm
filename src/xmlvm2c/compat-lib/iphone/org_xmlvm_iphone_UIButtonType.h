@@ -54,6 +54,5 @@ JAVA_INT org_xmlvm_iphone_UIButtonType_GET_InfoDark();
 void org_xmlvm_iphone_UIButtonType_PUT_InfoDark(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIButtonType_GET_ContactAdd();
 void org_xmlvm_iphone_UIButtonType_PUT_ContactAdd(JAVA_INT v);
-void org_xmlvm_iphone_UIButtonType___INIT___(JAVA_OBJECT me);
 
 #endif

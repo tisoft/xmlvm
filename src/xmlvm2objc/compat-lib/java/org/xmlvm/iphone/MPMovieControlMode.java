@@ -22,9 +22,12 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class MPMovieControlMode extends NSObject {
+public final class MPMovieControlMode extends NSObject {
 
     public static final int Default    = 0;
     public static final int VolumeOnly = 1;
     public static final int Hidden     = 2;
+    
+    private MPMovieControlMode() {        
+    }
 }

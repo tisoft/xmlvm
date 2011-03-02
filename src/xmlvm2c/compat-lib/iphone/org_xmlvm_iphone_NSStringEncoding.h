@@ -88,7 +88,6 @@ JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_UTF32BigEndian();
 void org_xmlvm_iphone_NSStringEncoding_PUT_UTF32BigEndian(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_UTF32LittleEndian();
 void org_xmlvm_iphone_NSStringEncoding_PUT_UTF32LittleEndian(JAVA_INT v);
-void org_xmlvm_iphone_NSStringEncoding___INIT___(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_NSStringEncoding_convertIntToString___int(JAVA_INT n1);
 
 #endif

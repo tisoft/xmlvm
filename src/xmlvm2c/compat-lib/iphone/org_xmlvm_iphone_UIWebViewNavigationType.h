@@ -54,6 +54,5 @@ JAVA_INT org_xmlvm_iphone_UIWebViewNavigationType_GET_FormResubmitted();
 void org_xmlvm_iphone_UIWebViewNavigationType_PUT_FormResubmitted(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIWebViewNavigationType_GET_Other();
 void org_xmlvm_iphone_UIWebViewNavigationType_PUT_Other(JAVA_INT v);
-void org_xmlvm_iphone_UIWebViewNavigationType___INIT___(JAVA_OBJECT me);
 
 #endif

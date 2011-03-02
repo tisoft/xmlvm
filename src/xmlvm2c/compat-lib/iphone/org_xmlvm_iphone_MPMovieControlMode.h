@@ -48,6 +48,5 @@ JAVA_INT org_xmlvm_iphone_MPMovieControlMode_GET_VolumeOnly();
 void org_xmlvm_iphone_MPMovieControlMode_PUT_VolumeOnly(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_MPMovieControlMode_GET_Hidden();
 void org_xmlvm_iphone_MPMovieControlMode_PUT_Hidden(JAVA_INT v);
-void org_xmlvm_iphone_MPMovieControlMode___INIT___(JAVA_OBJECT me);
 
 #endif

@@ -50,6 +50,5 @@ JAVA_INT org_xmlvm_iphone_UITextBorderStyle_GET_Bezel();
 void org_xmlvm_iphone_UITextBorderStyle_PUT_Bezel(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UITextBorderStyle_GET_RoundedRect();
 void org_xmlvm_iphone_UITextBorderStyle_PUT_RoundedRect(JAVA_INT v);
-void org_xmlvm_iphone_UITextBorderStyle___INIT___(JAVA_OBJECT me);
 
 #endif

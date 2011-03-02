@@ -60,6 +60,5 @@ JAVA_INT org_xmlvm_iphone_UIKeyboardType_GET_EmailAddress();
 void org_xmlvm_iphone_UIKeyboardType_PUT_EmailAddress(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIKeyboardType_GET_Alphabet();
 void org_xmlvm_iphone_UIKeyboardType_PUT_Alphabet(JAVA_INT v);
-void org_xmlvm_iphone_UIKeyboardType___INIT___(JAVA_OBJECT me);
 
 #endif

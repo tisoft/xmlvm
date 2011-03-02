@@ -54,6 +54,5 @@ JAVA_INT org_xmlvm_iphone_UIDataDetectorType_GET_None();
 void org_xmlvm_iphone_UIDataDetectorType_PUT_None(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIDataDetectorType_GET_All();
 void org_xmlvm_iphone_UIDataDetectorType_PUT_All(JAVA_INT v);
-void org_xmlvm_iphone_UIDataDetectorType___INIT___(JAVA_OBJECT me);
 
 #endif

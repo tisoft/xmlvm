@@ -22,10 +22,13 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class MPMovieScalingMode {
+public final class MPMovieScalingMode {
 
     public static final int None       = 0;
     public static final int AspectFit  = 1;
     public static final int AspectFill = 2;
     public static final int Fill       = 3;
+    
+    private MPMovieScalingMode() {        
+    }
 }

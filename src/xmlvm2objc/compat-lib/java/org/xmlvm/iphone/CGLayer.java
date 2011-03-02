@@ -22,7 +22,6 @@ package org.xmlvm.iphone;
 
 import java.awt.image.BufferedImage;
 import org.xmlvm.iphone.internal.CGContextState;
-import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly

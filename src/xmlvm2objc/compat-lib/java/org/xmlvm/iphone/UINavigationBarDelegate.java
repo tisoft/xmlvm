@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public interface UINavigationBarDelegate {
 
     public boolean shouldPushItem(UINavigationBar bar, UINavigationItem item);

@@ -22,7 +22,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIReturnKeyType {
+public final class UIReturnKeyType {
 
     public static final int Default       = 0;
     public static final int Go            = 1;
@@ -35,4 +35,7 @@ public class UIReturnKeyType {
     public static final int Yahoo         = 8;
     public static final int Done          = 9;
     public static final int EmergencyCall = 10;
+    
+    private UIReturnKeyType() {         
+    }
 }

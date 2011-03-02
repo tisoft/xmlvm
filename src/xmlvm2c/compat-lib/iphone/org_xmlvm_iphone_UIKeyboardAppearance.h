@@ -46,6 +46,5 @@ JAVA_INT org_xmlvm_iphone_UIKeyboardAppearance_GET_Default();
 void org_xmlvm_iphone_UIKeyboardAppearance_PUT_Default(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIKeyboardAppearance_GET_Alert();
 void org_xmlvm_iphone_UIKeyboardAppearance_PUT_Alert(JAVA_INT v);
-void org_xmlvm_iphone_UIKeyboardAppearance___INIT___(JAVA_OBJECT me);
 
 #endif

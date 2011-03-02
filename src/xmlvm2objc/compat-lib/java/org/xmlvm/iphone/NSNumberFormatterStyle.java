@@ -22,7 +22,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class NSNumberFormatterStyle {
+public final class NSNumberFormatterStyle {
 
     private static final int kCFNumberFormatterNoStyle         = 0;
     private static final int kCFNumberFormatterDecimalStyle    = 1;
@@ -36,4 +36,7 @@ public class NSNumberFormatterStyle {
     public static final int  PercentStyle                      = kCFNumberFormatterPercentStyle;
     public static final int  ScientificStyle                   = kCFNumberFormatterScientificStyle;
     public static final int  SpellOutStyle                     = kCFNumberFormatterSpellOutStyle;
+    
+    private NSNumberFormatterStyle() {        
+    }
 }

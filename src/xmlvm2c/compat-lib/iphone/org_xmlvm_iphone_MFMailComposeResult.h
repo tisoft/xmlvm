@@ -50,6 +50,5 @@ JAVA_INT org_xmlvm_iphone_MFMailComposeResult_GET_Sent();
 void org_xmlvm_iphone_MFMailComposeResult_PUT_Sent(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_MFMailComposeResult_GET_Failed();
 void org_xmlvm_iphone_MFMailComposeResult_PUT_Failed(JAVA_INT v);
-void org_xmlvm_iphone_MFMailComposeResult___INIT___(JAVA_OBJECT me);
 
 #endif

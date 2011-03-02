@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIBarButtonSystemItem {
+public final class UIBarButtonSystemItem {
 
     public static final int Done          = 0;
     public static final int Cancel        = 1;
@@ -48,4 +48,7 @@ public class UIBarButtonSystemItem {
     public static final int FastForward   = 20;
     public static final int Undo          = 21;
     public static final int Redo          = 22;
+    
+    private UIBarButtonSystemItem() {        
+    }
 }

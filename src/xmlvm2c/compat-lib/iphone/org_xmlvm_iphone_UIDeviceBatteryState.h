@@ -50,6 +50,5 @@ JAVA_INT org_xmlvm_iphone_UIDeviceBatteryState_GET_Charging();
 void org_xmlvm_iphone_UIDeviceBatteryState_PUT_Charging(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIDeviceBatteryState_GET_Full();
 void org_xmlvm_iphone_UIDeviceBatteryState_PUT_Full(JAVA_INT v);
-void org_xmlvm_iphone_UIDeviceBatteryState___INIT___(JAVA_OBJECT me);
 
 #endif

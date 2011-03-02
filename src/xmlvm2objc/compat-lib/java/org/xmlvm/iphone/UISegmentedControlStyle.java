@@ -23,10 +23,13 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UISegmentedControlStyle {
+public final class UISegmentedControlStyle {
 
     public static final int Plain    = 0;
     public static final int Bordered = 1;
     public static final int Bar      = 2;
     public static final int Bezeled  = 3;
+    
+    private UISegmentedControlStyle() {        
+    }
 }

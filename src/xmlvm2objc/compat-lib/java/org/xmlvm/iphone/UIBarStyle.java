@@ -23,10 +23,13 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIBarStyle {
+public final class UIBarStyle {
 
     public static final int Default          = 0;
     public static final int Black            = 1;
     public static final int BlackOpaque      = 1;
     public static final int BlackTranslucent = 2;
+    
+    private UIBarStyle() {        
+    }
 }

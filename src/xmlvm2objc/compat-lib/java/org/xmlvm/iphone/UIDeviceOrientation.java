@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIDeviceOrientation {
+public final class UIDeviceOrientation {
     public static final int Unknown            = 0;
     public static final int Portrait           = 1;
     public static final int PortraitUpsideDown = 2;
@@ -31,4 +31,7 @@ public class UIDeviceOrientation {
     public static final int LandscapeRight     = 4;
     public static final int FaceUp             = 5;
     public static final int FaceDown           = 6;
+    
+    private UIDeviceOrientation() {        
+    }
 }

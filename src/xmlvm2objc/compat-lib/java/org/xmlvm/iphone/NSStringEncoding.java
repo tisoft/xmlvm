@@ -22,7 +22,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class NSStringEncoding {
+public final class NSStringEncoding {
 
     public static final int ASCII             = 1;
     public static final int NEXTSTEP          = 2;
@@ -49,7 +49,10 @@ public class NSStringEncoding {
     public static final int UTF32LittleEndian = 0x9c000100;
 
 
-    final static String convertIntToString(int value) {
+    private NSStringEncoding() {        
+    }
+    
+    static String convertIntToString(int value) {
         switch (value) {
         case 1:
             return "US-ASCII";

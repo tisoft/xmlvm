@@ -50,6 +50,5 @@ JAVA_INT org_xmlvm_iphone_UIViewAnimationCurve_GET_EaseOut();
 void org_xmlvm_iphone_UIViewAnimationCurve_PUT_EaseOut(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIViewAnimationCurve_GET_Linear();
 void org_xmlvm_iphone_UIViewAnimationCurve_PUT_Linear(JAVA_INT v);
-void org_xmlvm_iphone_UIViewAnimationCurve___INIT___(JAVA_OBJECT me);
 
 #endif

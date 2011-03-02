@@ -22,7 +22,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class NSCalendarUnit {
+public final class NSCalendarUnit {
 
     private static final int kCFCalendarUnitEra            = (1 << 1);
     private static final int kCFCalendarUnitYear           = (1 << 2);
@@ -45,4 +45,7 @@ public class NSCalendarUnit {
     public static final int  Weekday                       = kCFCalendarUnitWeekday;
     public static final int  WeekdayOrdinal                = kCFCalendarUnitWeekdayOrdinal;
     // public static final int Quarter= kCFCalendarUnitQuarter;
+    
+    private NSCalendarUnit() {        
+    }
 }

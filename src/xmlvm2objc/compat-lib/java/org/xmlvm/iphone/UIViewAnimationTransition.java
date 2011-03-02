@@ -22,11 +22,14 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIViewAnimationTransition {
+public final class UIViewAnimationTransition {
 
     public static final int None          = 0;
     public static final int FlipFromLeft  = 1;
     public static final int FlipFromRight = 2;
     public static final int CurlUp        = 3;
     public static final int CurlDown      = 4;
+    
+    private UIViewAnimationTransition() {        
+    }
 }

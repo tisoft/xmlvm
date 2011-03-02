@@ -23,8 +23,9 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIControlEvent {
+public final class UIControlEvent {
 
+    @SuppressWarnings("PointlessBitwiseExpression")
     public static final int TouchDown           = 1 << 0;
     public static final int TouchDownRepeat     = 1 << 1;
     public static final int TouchDragInside     = 1 << 2;
@@ -44,4 +45,7 @@ public class UIControlEvent {
     public static final int ApplicationReserved = 0x0F000000;
     public static final int SystemReserved      = 0xF0000000;
     public static final int AllEvents           = 0xFFFFFFFF;
+    
+    private UIControlEvent() {        
+    }
 }

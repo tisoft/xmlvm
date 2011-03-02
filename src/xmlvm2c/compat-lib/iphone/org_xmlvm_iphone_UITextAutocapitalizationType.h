@@ -50,6 +50,5 @@ JAVA_INT org_xmlvm_iphone_UITextAutocapitalizationType_GET_Sentences();
 void org_xmlvm_iphone_UITextAutocapitalizationType_PUT_Sentences(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UITextAutocapitalizationType_GET_AllCharacters();
 void org_xmlvm_iphone_UITextAutocapitalizationType_PUT_AllCharacters(JAVA_INT v);
-void org_xmlvm_iphone_UITextAutocapitalizationType___INIT___(JAVA_OBJECT me);
 
 #endif

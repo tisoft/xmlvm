@@ -23,10 +23,13 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIDatePickerMode {
+public final class UIDatePickerMode {
 
     public static final int Time           = 0;
     public static final int Date           = 1;
     public static final int DateAndTime    = 2;
     public static final int CountDownTimer = 3;
+    
+    private UIDatePickerMode() {        
+    }
 }

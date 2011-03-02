@@ -52,6 +52,5 @@ JAVA_INT org_xmlvm_iphone_UITouchPhase_GET_Ended();
 void org_xmlvm_iphone_UITouchPhase_PUT_Ended(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UITouchPhase_GET_Cancelled();
 void org_xmlvm_iphone_UITouchPhase_PUT_Cancelled(JAVA_INT v);
-void org_xmlvm_iphone_UITouchPhase___INIT___(JAVA_OBJECT me);
 
 #endif

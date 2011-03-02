@@ -20,6 +20,9 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
 public interface UINavigationControllerDelegate {
 
     public void willShowViewController(UINavigationController navigationController,

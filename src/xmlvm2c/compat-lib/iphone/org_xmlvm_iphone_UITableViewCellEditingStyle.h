@@ -48,6 +48,5 @@ JAVA_INT org_xmlvm_iphone_UITableViewCellEditingStyle_GET_Delete();
 void org_xmlvm_iphone_UITableViewCellEditingStyle_PUT_Delete(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UITableViewCellEditingStyle_GET_Insert();
 void org_xmlvm_iphone_UITableViewCellEditingStyle_PUT_Insert(JAVA_INT v);
-void org_xmlvm_iphone_UITableViewCellEditingStyle___INIT___(JAVA_OBJECT me);
 
 #endif

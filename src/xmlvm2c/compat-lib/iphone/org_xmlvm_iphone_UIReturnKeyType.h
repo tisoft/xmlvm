@@ -64,6 +64,5 @@ JAVA_INT org_xmlvm_iphone_UIReturnKeyType_GET_Done();
 void org_xmlvm_iphone_UIReturnKeyType_PUT_Done(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIReturnKeyType_GET_EmergencyCall();
 void org_xmlvm_iphone_UIReturnKeyType_PUT_EmergencyCall(JAVA_INT v);
-void org_xmlvm_iphone_UIReturnKeyType___INIT___(JAVA_OBJECT me);
 
 #endif

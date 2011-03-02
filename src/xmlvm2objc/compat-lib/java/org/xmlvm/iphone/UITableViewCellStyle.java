@@ -22,10 +22,13 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UITableViewCellStyle {
+public final class UITableViewCellStyle {
 
     public final static int Default  = 0;
     public final static int Value1   = 1;
     public final static int Value2   = 2;
     public final static int Subtitle = 3;
+    
+    private UITableViewCellStyle() {        
+    }
 }

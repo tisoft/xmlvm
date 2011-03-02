@@ -20,7 +20,10 @@
 
 package org.xmlvm.iphone;
 
-public class CLLocationAccuracy {
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
+public final class CLLocationAccuracy {
 
     public static final double BestForNavigation = -2;
     public static final double Best              = -1;

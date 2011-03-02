@@ -22,7 +22,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UITableViewRowAnimation {
+public final class UITableViewRowAnimation {
 
     public static final int Fade   = 0;
     public static final int Right  = 1;
@@ -30,4 +30,7 @@ public class UITableViewRowAnimation {
     public static final int Top    = 3;
     public static final int Bottom = 4;
     public static final int None   = 5;
+    
+    private UITableViewRowAnimation() {        
+    }
 }

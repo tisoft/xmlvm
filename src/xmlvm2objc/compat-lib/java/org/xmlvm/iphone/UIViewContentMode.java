@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIViewContentMode {
+public final class UIViewContentMode {
     public static final int ScaleToFill     = 0;
     public static final int ScaleAspectFit  = 1;
     public static final int ScaleAspectFill = 2;
@@ -37,4 +37,7 @@ public class UIViewContentMode {
     public static final int TopRight        = 10;
     public static final int BottomLeft      = 11;
     public static final int BottomRight     = 12;
+    
+    private UIViewContentMode() {        
+    }
 }

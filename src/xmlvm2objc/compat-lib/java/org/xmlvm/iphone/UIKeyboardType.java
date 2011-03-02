@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIKeyboardType {
+public final class UIKeyboardType {
 
     public static final int Default               = 0;
     public static final int ASCIICapable          = 1;
@@ -34,4 +34,7 @@ public class UIKeyboardType {
     public static final int NamePhonePad          = 6;
     public static final int EmailAddress          = 7;
     public static final int Alphabet              = ASCIICapable;
+    
+    private UIKeyboardType() {        
+    }
 }

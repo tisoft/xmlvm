@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIControlState {
+public final class UIControlState {
     public static final int Normal              = 0;
     @SuppressWarnings("PointlessBitwiseExpression")
     public static final int Highlighted         = 1 << 0;
@@ -31,4 +31,7 @@ public class UIControlState {
     public static final int Selected            = 1 << 2;
     public static final int ApplicationReserved = 0x00FF0000;
     public static final int Reserved            = 0xFF000000;
+    
+    private UIControlState() {        
+    }
 }

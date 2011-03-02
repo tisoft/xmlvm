@@ -20,10 +20,16 @@
 
 package org.xmlvm.iphone;
 
-public class CGPathDrawingMode {
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
+public final class CGPathDrawingMode {
     public static final int kCGPathFill         = 0;
     public static final int kCGPathEOFill       = 1;
     public static final int kCGPathStroke       = 2;
     public static final int kCGPathFillStroke   = 3;
     public static final int kCGPathEOFillStroke = 4;
+
+    private CGPathDrawingMode() {
+    }
 }

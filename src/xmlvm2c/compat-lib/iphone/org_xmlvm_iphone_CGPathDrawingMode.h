@@ -52,6 +52,5 @@ JAVA_INT org_xmlvm_iphone_CGPathDrawingMode_GET_kCGPathFillStroke();
 void org_xmlvm_iphone_CGPathDrawingMode_PUT_kCGPathFillStroke(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_CGPathDrawingMode_GET_kCGPathEOFillStroke();
 void org_xmlvm_iphone_CGPathDrawingMode_PUT_kCGPathEOFillStroke(JAVA_INT v);
-void org_xmlvm_iphone_CGPathDrawingMode___INIT___(JAVA_OBJECT me);
 
 #endif

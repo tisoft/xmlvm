@@ -80,6 +80,5 @@ JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_SystemReserved();
 void org_xmlvm_iphone_UIControlEvent_PUT_SystemReserved(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_AllEvents();
 void org_xmlvm_iphone_UIControlEvent_PUT_AllEvents(JAVA_INT v);
-void org_xmlvm_iphone_UIControlEvent___INIT___(JAVA_OBJECT me);
 
 #endif

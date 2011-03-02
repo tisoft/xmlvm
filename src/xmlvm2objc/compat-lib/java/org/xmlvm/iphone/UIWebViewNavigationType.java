@@ -23,11 +23,14 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIWebViewNavigationType {
+public final class UIWebViewNavigationType {
     public static final int LinkClicked     = 0;
     public static final int FormSubmitted   = 1;
     public static final int BackForward     = 2;
     public static final int Reload          = 3;
     public static final int FormResubmitted = 4;
     public static final int Other           = 5;
+    
+    private UIWebViewNavigationType() {        
+    }
 }

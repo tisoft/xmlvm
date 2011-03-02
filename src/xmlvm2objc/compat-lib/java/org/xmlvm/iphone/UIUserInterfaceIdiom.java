@@ -23,8 +23,11 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UIUserInterfaceIdiom {
+public final class UIUserInterfaceIdiom {
 
     public static final int Phone = 0;
     public static final int Pad   = 1;
+    
+    private UIUserInterfaceIdiom() {        
+    }
 }

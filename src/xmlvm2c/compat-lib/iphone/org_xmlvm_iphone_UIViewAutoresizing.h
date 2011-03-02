@@ -56,6 +56,5 @@ JAVA_INT org_xmlvm_iphone_UIViewAutoresizing_GET_FlexibleHeight();
 void org_xmlvm_iphone_UIViewAutoresizing_PUT_FlexibleHeight(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIViewAutoresizing_GET_FlexibleBottomMargin();
 void org_xmlvm_iphone_UIViewAutoresizing_PUT_FlexibleBottomMargin(JAVA_INT v);
-void org_xmlvm_iphone_UIViewAutoresizing___INIT___(JAVA_OBJECT me);
 
 #endif

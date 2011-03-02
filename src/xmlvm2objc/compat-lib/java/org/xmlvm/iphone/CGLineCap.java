@@ -20,8 +20,14 @@
 
 package org.xmlvm.iphone;
 
-public class CGLineCap {
+import org.xmlvm.XMLVMSkeletonOnly;
+
+@XMLVMSkeletonOnly
+public final class CGLineCap {
     public final static int kCGLineCapButt   = 0;
     public final static int kCGLineCapRound  = 1;
     public final static int kCGLineCapSquare = 2;
+    
+    private CGLineCap() {        
+    }
 }

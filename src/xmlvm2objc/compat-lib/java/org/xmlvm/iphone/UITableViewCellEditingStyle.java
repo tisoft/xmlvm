@@ -22,9 +22,12 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class UITableViewCellEditingStyle {
+public final class UITableViewCellEditingStyle {
 
     public final static int None   = 0;
     public final static int Delete = 1;
     public final static int Insert = 2;
+    
+    private UITableViewCellEditingStyle() {        
+    }
 }
