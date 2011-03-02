@@ -269,6 +269,10 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text>(void* me, void* client_data);&nl;</xsl:text>
 
+    <xsl:text>void __INIT_INSTANCE_MEMBERS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>(JAVA_OBJECT me);&nl;</xsl:text>
+
     <!-- Emit new-operator -->
     <xsl:text>JAVA_OBJECT __NEW_</xsl:text>
     <xsl:value-of select="$clname"/>
@@ -731,33 +735,24 @@ int main(int argc, char* argv[])
       <xsl:text>    (*(void (*)(JAVA_OBJECT)) ((java_lang_Object*) me)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Object_finalize_java_lang_Object__])(me);&nl;</xsl:text>
     </xsl:if>
 	<xsl:text>}&nl;&nl;</xsl:text>
-	
-	
-	
-    <!-- Emit 'new' method -->
-    <xsl:text>JAVA_OBJECT __NEW_</xsl:text>
+
+	<!-- Emit instance member initialization -->
+	<xsl:text>void __INIT_INSTANCE_MEMBERS_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>()&nl;{
-    if (!__TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.classInitialized) __INIT_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>();
-    </xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>* me = (</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>*) XMLVM_MALLOC(sizeof(</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>));
-    me->tib = &amp;__TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>;&nl;</xsl:text>
-	
-    <!-- Emit initializations for all non-static fields -->
+    <xsl:text>(JAVA_OBJECT me)&nl;{&nl;</xsl:text>
+
+    <!-- initialize super's members first -->
+    <xsl:if test="@extends ne ''">
+      <xsl:text>    __INIT_INSTANCE_MEMBERS_</xsl:text>
+      <xsl:value-of select="vm:fixname(@extends)"/>
+      <xsl:text>(me);&nl;</xsl:text>
+    </xsl:if>
+
     <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
       <xsl:if test="not($genWrapper = 'true' and @isPrivate = 'true')">
-        <xsl:text>    me->fields.</xsl:text>
+        <xsl:text>    ((</xsl:text>
+        <xsl:value-of select="$clname"/>
+        <xsl:text>*)me)->fields.</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.</xsl:text>
         <xsl:value-of select="vm:fixname(@name)"/>
@@ -778,6 +773,32 @@ int main(int argc, char* argv[])
         <xsl:text>;&nl;</xsl:text>
       </xsl:if>
     </xsl:for-each>
+    <xsl:text>}&nl;&nl;</xsl:text>
+
+    <!-- Emit 'new' method -->
+    <xsl:text>JAVA_OBJECT __NEW_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>()&nl;{
+    if (!__TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.classInitialized) __INIT_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>();
+    </xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>* me = (</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>*) XMLVM_MALLOC(sizeof(</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>));
+    me->tib = &amp;__TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>;&nl;</xsl:text>
+
+    <xsl:text>    __INIT_INSTANCE_MEMBERS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>(me);&nl;</xsl:text>
+
     <xsl:if test="$genWrapper = 'true'">
       <xsl:text>    //XMLVM_BEGIN_WRAPPER[__NEW_</xsl:text>
       <xsl:value-of select="$clname"/>
