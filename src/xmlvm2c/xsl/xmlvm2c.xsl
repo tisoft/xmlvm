@@ -2214,6 +2214,9 @@ int main(int argc, char* argv[])
   <xsl:text>    else {&nl;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>    }&nl;</xsl:text>
+  <xsl:text>    XMLVM_MEMCPY(xmlvm_exception_env, local_env_</xsl:text>
+  <xsl:value-of select="$id"/>
+  <xsl:text>, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
 </xsl:template>
 
 
