@@ -60,8 +60,8 @@ public class UniversalFileCreator {
         } else if (location.isFile()) {
             return new UniversalFileFromFileSystemFile(location);
         } else {
-            Log.error(TAG,
-                    "Location is neither a File nor a directory: " + location.getAbsolutePath());
+            Log.debug(TAG,
+                    "Location is neither a file nor a directory: " + location.getAbsolutePath());
             return null;
         }
     }
