@@ -40,6 +40,7 @@ typedef struct org_xmlvm_iphone_NSNumberFormatterStyle org_xmlvm_iphone_NSNumber
 
 void __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
 void __DELETE_org_xmlvm_iphone_NSNumberFormatterStyle(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNumberFormatterStyle(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNumberFormatterStyle();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSNumberFormatterStyle();
 JAVA_INT org_xmlvm_iphone_NSNumberFormatterStyle_GET_NoStyle();

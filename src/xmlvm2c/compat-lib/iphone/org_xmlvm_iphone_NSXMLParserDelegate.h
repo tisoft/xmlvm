@@ -93,6 +93,7 @@ typedef struct org_xmlvm_iphone_NSXMLParserDelegate org_xmlvm_iphone_NSXMLParser
 
 void __INIT_org_xmlvm_iphone_NSXMLParserDelegate();
 void __DELETE_org_xmlvm_iphone_NSXMLParserDelegate(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParserDelegate(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSXMLParserDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSXMLParserDelegate();
 void org_xmlvm_iphone_NSXMLParserDelegate___INIT___(JAVA_OBJECT me);

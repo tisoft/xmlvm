@@ -109,11 +109,17 @@ void __DELETE_org_xmlvm_iphone_NSHTTPURLResponseHolder(void* me, void* client_da
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSHTTPURLResponseHolder(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSHTTPURLResponseHolder()
 {
     if (!__TIB_org_xmlvm_iphone_NSHTTPURLResponseHolder.classInitialized) __INIT_org_xmlvm_iphone_NSHTTPURLResponseHolder();
     org_xmlvm_iphone_NSHTTPURLResponseHolder* me = (org_xmlvm_iphone_NSHTTPURLResponseHolder*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSHTTPURLResponseHolder));
     me->tib = &__TIB_org_xmlvm_iphone_NSHTTPURLResponseHolder;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSHTTPURLResponseHolder(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSHTTPURLResponseHolder]
     //XMLVM_END_WRAPPER
     return me;

@@ -293,11 +293,17 @@ void __DELETE_org_xmlvm_iphone_UIToolbar(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIToolbar(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIToolbar()
 {
     if (!__TIB_org_xmlvm_iphone_UIToolbar.classInitialized) __INIT_org_xmlvm_iphone_UIToolbar();
     org_xmlvm_iphone_UIToolbar* me = (org_xmlvm_iphone_UIToolbar*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIToolbar));
     me->tib = &__TIB_org_xmlvm_iphone_UIToolbar;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIToolbar(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIToolbar]
     //XMLVM_END_WRAPPER
     return me;

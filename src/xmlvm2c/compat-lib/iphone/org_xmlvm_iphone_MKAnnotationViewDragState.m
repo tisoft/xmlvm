@@ -140,11 +140,17 @@ void __DELETE_org_xmlvm_iphone_MKAnnotationViewDragState(void* me, void* client_
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKAnnotationViewDragState(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKAnnotationViewDragState()
 {
     if (!__TIB_org_xmlvm_iphone_MKAnnotationViewDragState.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotationViewDragState();
     org_xmlvm_iphone_MKAnnotationViewDragState* me = (org_xmlvm_iphone_MKAnnotationViewDragState*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKAnnotationViewDragState));
     me->tib = &__TIB_org_xmlvm_iphone_MKAnnotationViewDragState;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKAnnotationViewDragState(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKAnnotationViewDragState]
     //XMLVM_END_WRAPPER
     return me;

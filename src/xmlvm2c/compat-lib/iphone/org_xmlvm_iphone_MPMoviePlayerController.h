@@ -59,6 +59,7 @@ typedef struct org_xmlvm_iphone_MPMoviePlayerController org_xmlvm_iphone_MPMovie
 
 void __INIT_org_xmlvm_iphone_MPMoviePlayerController();
 void __DELETE_org_xmlvm_iphone_MPMoviePlayerController(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMoviePlayerController(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MPMoviePlayerController();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MPMoviePlayerController();
 JAVA_OBJECT org_xmlvm_iphone_MPMoviePlayerController_initWithContentURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1);

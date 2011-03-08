@@ -113,11 +113,17 @@ void __DELETE_org_xmlvm_iphone_UIProgressViewStyle(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIProgressViewStyle(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIProgressViewStyle()
 {
     if (!__TIB_org_xmlvm_iphone_UIProgressViewStyle.classInitialized) __INIT_org_xmlvm_iphone_UIProgressViewStyle();
     org_xmlvm_iphone_UIProgressViewStyle* me = (org_xmlvm_iphone_UIProgressViewStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIProgressViewStyle));
     me->tib = &__TIB_org_xmlvm_iphone_UIProgressViewStyle;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIProgressViewStyle(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIProgressViewStyle]
     //XMLVM_END_WRAPPER
     return me;

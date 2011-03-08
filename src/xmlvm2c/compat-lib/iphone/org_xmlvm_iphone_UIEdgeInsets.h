@@ -44,6 +44,7 @@ typedef struct org_xmlvm_iphone_UIEdgeInsets org_xmlvm_iphone_UIEdgeInsets;
 
 void __INIT_org_xmlvm_iphone_UIEdgeInsets();
 void __DELETE_org_xmlvm_iphone_UIEdgeInsets(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIEdgeInsets(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIEdgeInsets();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIEdgeInsets();
 void org_xmlvm_iphone_UIEdgeInsets___INIT___(JAVA_OBJECT me);

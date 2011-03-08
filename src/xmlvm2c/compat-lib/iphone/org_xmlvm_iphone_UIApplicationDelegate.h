@@ -49,6 +49,7 @@ typedef struct org_xmlvm_iphone_UIApplicationDelegate org_xmlvm_iphone_UIApplica
 
 void __INIT_org_xmlvm_iphone_UIApplicationDelegate();
 void __DELETE_org_xmlvm_iphone_UIApplicationDelegate(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIApplicationDelegate(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIApplicationDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIApplicationDelegate();
 void org_xmlvm_iphone_UIApplicationDelegate___INIT___(JAVA_OBJECT me);

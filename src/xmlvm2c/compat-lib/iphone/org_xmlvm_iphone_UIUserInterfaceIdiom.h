@@ -40,6 +40,7 @@ typedef struct org_xmlvm_iphone_UIUserInterfaceIdiom org_xmlvm_iphone_UIUserInte
 
 void __INIT_org_xmlvm_iphone_UIUserInterfaceIdiom();
 void __DELETE_org_xmlvm_iphone_UIUserInterfaceIdiom(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIUserInterfaceIdiom(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIUserInterfaceIdiom();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIUserInterfaceIdiom();
 JAVA_INT org_xmlvm_iphone_UIUserInterfaceIdiom_GET_Phone();

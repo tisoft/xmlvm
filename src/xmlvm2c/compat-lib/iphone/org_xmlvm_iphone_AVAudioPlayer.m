@@ -484,11 +484,17 @@ void __DELETE_org_xmlvm_iphone_AVAudioPlayer(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_AVAudioPlayer()
 {
     if (!__TIB_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
     org_xmlvm_iphone_AVAudioPlayer* me = (org_xmlvm_iphone_AVAudioPlayer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_AVAudioPlayer));
     me->tib = &__TIB_org_xmlvm_iphone_AVAudioPlayer;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_AVAudioPlayer(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_AVAudioPlayer]
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_AVAudioPlayer);
     //XMLVM_END_WRAPPER

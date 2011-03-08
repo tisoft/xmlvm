@@ -40,6 +40,7 @@ typedef struct org_xmlvm_iphone_UITableViewCellSelectionStyle org_xmlvm_iphone_U
 
 void __INIT_org_xmlvm_iphone_UITableViewCellSelectionStyle();
 void __DELETE_org_xmlvm_iphone_UITableViewCellSelectionStyle(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCellSelectionStyle(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCellSelectionStyle();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewCellSelectionStyle();
 JAVA_INT org_xmlvm_iphone_UITableViewCellSelectionStyle_GET_None();

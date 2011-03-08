@@ -149,11 +149,17 @@ void __DELETE_org_xmlvm_iphone_UIButtonType(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIButtonType(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIButtonType()
 {
     if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
     org_xmlvm_iphone_UIButtonType* me = (org_xmlvm_iphone_UIButtonType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIButtonType));
     me->tib = &__TIB_org_xmlvm_iphone_UIButtonType;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIButtonType(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIButtonType]
     //XMLVM_END_WRAPPER
     return me;

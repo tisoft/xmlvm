@@ -416,12 +416,18 @@ void __DELETE_org_xmlvm_iphone_UIResponder(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    ((org_xmlvm_iphone_UIResponder*)me)->fields.org_xmlvm_iphone_UIResponder.callDelegates_ = 0;
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIResponder()
 {
     if (!__TIB_org_xmlvm_iphone_UIResponder.classInitialized) __INIT_org_xmlvm_iphone_UIResponder();
     org_xmlvm_iphone_UIResponder* me = (org_xmlvm_iphone_UIResponder*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIResponder));
     me->tib = &__TIB_org_xmlvm_iphone_UIResponder;
-    me->fields.org_xmlvm_iphone_UIResponder.callDelegates_ = 0;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIResponder]
     //XMLVM_END_WRAPPER
     return me;

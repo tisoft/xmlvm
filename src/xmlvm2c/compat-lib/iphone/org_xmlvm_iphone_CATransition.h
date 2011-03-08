@@ -52,6 +52,7 @@ typedef struct org_xmlvm_iphone_CATransition org_xmlvm_iphone_CATransition;
 
 void __INIT_org_xmlvm_iphone_CATransition();
 void __DELETE_org_xmlvm_iphone_CATransition(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CATransition(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CATransition();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CATransition();
 JAVA_OBJECT org_xmlvm_iphone_CATransition_GET_Fade();

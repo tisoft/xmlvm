@@ -127,13 +127,19 @@ void __DELETE_org_xmlvm_iphone_MKCoordinateRegion(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateRegion(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    ((org_xmlvm_iphone_MKCoordinateRegion*)me)->fields.org_xmlvm_iphone_MKCoordinateRegion.center_ = (org_xmlvm_iphone_CLLocationCoordinate2D*) JAVA_NULL;
+    ((org_xmlvm_iphone_MKCoordinateRegion*)me)->fields.org_xmlvm_iphone_MKCoordinateRegion.span_ = (org_xmlvm_iphone_MKCoordinateSpan*) JAVA_NULL;
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKCoordinateRegion()
 {
     if (!__TIB_org_xmlvm_iphone_MKCoordinateRegion.classInitialized) __INIT_org_xmlvm_iphone_MKCoordinateRegion();
     org_xmlvm_iphone_MKCoordinateRegion* me = (org_xmlvm_iphone_MKCoordinateRegion*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKCoordinateRegion));
     me->tib = &__TIB_org_xmlvm_iphone_MKCoordinateRegion;
-    me->fields.org_xmlvm_iphone_MKCoordinateRegion.center_ = (org_xmlvm_iphone_CLLocationCoordinate2D*) JAVA_NULL;
-    me->fields.org_xmlvm_iphone_MKCoordinateRegion.span_ = (org_xmlvm_iphone_MKCoordinateSpan*) JAVA_NULL;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateRegion(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKCoordinateRegion]
     //XMLVM_END_WRAPPER
     return me;

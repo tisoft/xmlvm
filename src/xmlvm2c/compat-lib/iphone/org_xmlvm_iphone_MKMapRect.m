@@ -129,13 +129,19 @@ void __DELETE_org_xmlvm_iphone_MKMapRect(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapRect(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    ((org_xmlvm_iphone_MKMapRect*)me)->fields.org_xmlvm_iphone_MKMapRect.origin_ = (org_xmlvm_iphone_MKMapPoint*) JAVA_NULL;
+    ((org_xmlvm_iphone_MKMapRect*)me)->fields.org_xmlvm_iphone_MKMapRect.size_ = (org_xmlvm_iphone_MKMapSize*) JAVA_NULL;
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKMapRect()
 {
     if (!__TIB_org_xmlvm_iphone_MKMapRect.classInitialized) __INIT_org_xmlvm_iphone_MKMapRect();
     org_xmlvm_iphone_MKMapRect* me = (org_xmlvm_iphone_MKMapRect*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKMapRect));
     me->tib = &__TIB_org_xmlvm_iphone_MKMapRect;
-    me->fields.org_xmlvm_iphone_MKMapRect.origin_ = (org_xmlvm_iphone_MKMapPoint*) JAVA_NULL;
-    me->fields.org_xmlvm_iphone_MKMapRect.size_ = (org_xmlvm_iphone_MKMapSize*) JAVA_NULL;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapRect(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKMapRect]
     //XMLVM_END_WRAPPER
     return me;

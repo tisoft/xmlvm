@@ -53,6 +53,7 @@ typedef struct org_xmlvm_iphone_NSStringInputStream org_xmlvm_iphone_NSStringInp
 
 void __INIT_org_xmlvm_iphone_NSStringInputStream();
 void __DELETE_org_xmlvm_iphone_NSStringInputStream(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringInputStream(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSStringInputStream();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSStringInputStream();
 void org_xmlvm_iphone_NSStringInputStream___INIT____java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);

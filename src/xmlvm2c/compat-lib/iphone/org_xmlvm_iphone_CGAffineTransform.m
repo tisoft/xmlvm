@@ -251,11 +251,17 @@ void __DELETE_org_xmlvm_iphone_CGAffineTransform(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGAffineTransform(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGAffineTransform()
 {
     if (!__TIB_org_xmlvm_iphone_CGAffineTransform.classInitialized) __INIT_org_xmlvm_iphone_CGAffineTransform();
     org_xmlvm_iphone_CGAffineTransform* me = (org_xmlvm_iphone_CGAffineTransform*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGAffineTransform));
     me->tib = &__TIB_org_xmlvm_iphone_CGAffineTransform;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGAffineTransform(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGAffineTransform]
     //XMLVM_END_WRAPPER
     return me;

@@ -112,11 +112,17 @@ void __DELETE_org_xmlvm_iphone_MKReverseGeocoderDelegate(void* me, void* client_
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKReverseGeocoderDelegate(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKReverseGeocoderDelegate()
 {
     if (!__TIB_org_xmlvm_iphone_MKReverseGeocoderDelegate.classInitialized) __INIT_org_xmlvm_iphone_MKReverseGeocoderDelegate();
     org_xmlvm_iphone_MKReverseGeocoderDelegate* me = (org_xmlvm_iphone_MKReverseGeocoderDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKReverseGeocoderDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_MKReverseGeocoderDelegate;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKReverseGeocoderDelegate(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKReverseGeocoderDelegate]
     //XMLVM_END_WRAPPER
     return me;

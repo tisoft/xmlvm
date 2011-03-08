@@ -346,11 +346,17 @@ void __DELETE_org_xmlvm_iphone_UIColor(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIColor(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIColor()
 {
     if (!__TIB_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
     org_xmlvm_iphone_UIColor* me = (org_xmlvm_iphone_UIColor*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIColor));
     me->tib = &__TIB_org_xmlvm_iphone_UIColor;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIColor(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIColor]
     //XMLVM_END_WRAPPER
     return me;

@@ -135,11 +135,17 @@ void __DELETE_org_xmlvm_iphone_NSURLConnection(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLConnection(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURLConnection()
 {
     if (!__TIB_org_xmlvm_iphone_NSURLConnection.classInitialized) __INIT_org_xmlvm_iphone_NSURLConnection();
     org_xmlvm_iphone_NSURLConnection* me = (org_xmlvm_iphone_NSURLConnection*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSURLConnection));
     me->tib = &__TIB_org_xmlvm_iphone_NSURLConnection;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLConnection(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSURLConnection]
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSURLConnection);
     //XMLVM_END_WRAPPER

@@ -149,11 +149,17 @@ void __DELETE_org_xmlvm_iphone_UITableViewRowAnimation(void* me, void* client_da
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewRowAnimation(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewRowAnimation()
 {
     if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
     org_xmlvm_iphone_UITableViewRowAnimation* me = (org_xmlvm_iphone_UITableViewRowAnimation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewRowAnimation));
     me->tib = &__TIB_org_xmlvm_iphone_UITableViewRowAnimation;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewRowAnimation(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewRowAnimation]
     //XMLVM_END_WRAPPER
     return me;

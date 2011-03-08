@@ -321,11 +321,17 @@ void __DELETE_org_xmlvm_iphone_MKPlacemark(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPlacemark(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKAnnotation(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKPlacemark()
 {
     if (!__TIB_org_xmlvm_iphone_MKPlacemark.classInitialized) __INIT_org_xmlvm_iphone_MKPlacemark();
     org_xmlvm_iphone_MKPlacemark* me = (org_xmlvm_iphone_MKPlacemark*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKPlacemark));
     me->tib = &__TIB_org_xmlvm_iphone_MKPlacemark;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPlacemark(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKPlacemark]
     //XMLVM_END_WRAPPER
     return me;

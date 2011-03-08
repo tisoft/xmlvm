@@ -54,6 +54,7 @@ typedef struct org_xmlvm_iphone_MKReverseGeocoderDelegate org_xmlvm_iphone_MKRev
 
 void __INIT_org_xmlvm_iphone_MKReverseGeocoderDelegate();
 void __DELETE_org_xmlvm_iphone_MKReverseGeocoderDelegate(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKReverseGeocoderDelegate(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKReverseGeocoderDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKReverseGeocoderDelegate();
 void org_xmlvm_iphone_MKReverseGeocoderDelegate___INIT___(JAVA_OBJECT me);

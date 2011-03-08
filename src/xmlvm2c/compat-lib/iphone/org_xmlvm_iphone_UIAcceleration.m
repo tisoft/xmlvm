@@ -160,11 +160,17 @@ void __DELETE_org_xmlvm_iphone_UIAcceleration(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAcceleration(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAcceleration()
 {
     if (!__TIB_org_xmlvm_iphone_UIAcceleration.classInitialized) __INIT_org_xmlvm_iphone_UIAcceleration();
     org_xmlvm_iphone_UIAcceleration* me = (org_xmlvm_iphone_UIAcceleration*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIAcceleration));
     me->tib = &__TIB_org_xmlvm_iphone_UIAcceleration;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAcceleration(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIAcceleration]
     //XMLVM_END_WRAPPER
     return me;

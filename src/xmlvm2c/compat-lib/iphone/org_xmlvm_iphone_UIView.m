@@ -1254,11 +1254,17 @@ void __DELETE_org_xmlvm_iphone_UIView(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIView()
 {
     if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     org_xmlvm_iphone_UIView* me = (org_xmlvm_iphone_UIView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIView));
     me->tib = &__TIB_org_xmlvm_iphone_UIView;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIView]
 	/*********************************************************************************************
 	 * README: Ordinarily the garbage collector will just silently release the memory of

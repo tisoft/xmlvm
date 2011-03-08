@@ -292,11 +292,17 @@ void __DELETE_org_xmlvm_iphone_UIImage(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImage(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImage()
 {
     if (!__TIB_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();
     org_xmlvm_iphone_UIImage* me = (org_xmlvm_iphone_UIImage*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImage));
     me->tib = &__TIB_org_xmlvm_iphone_UIImage;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImage(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImage]
     // Tell the GC to finalize us
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIImage);

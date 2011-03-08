@@ -45,6 +45,7 @@ typedef struct org_xmlvm_iphone_NSURL org_xmlvm_iphone_NSURL;
 
 void __INIT_org_xmlvm_iphone_NSURL();
 void __DELETE_org_xmlvm_iphone_NSURL(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURL(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURL();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSURL();
 JAVA_OBJECT org_xmlvm_iphone_NSURL_URLWithString___java_lang_String(JAVA_OBJECT n1);

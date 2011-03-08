@@ -494,11 +494,17 @@ void __DELETE_org_xmlvm_iphone_UINavigationController(void* me, void* client_dat
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationController(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationController()
 {
     if (!__TIB_org_xmlvm_iphone_UINavigationController.classInitialized) __INIT_org_xmlvm_iphone_UINavigationController();
     org_xmlvm_iphone_UINavigationController* me = (org_xmlvm_iphone_UINavigationController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UINavigationController));
     me->tib = &__TIB_org_xmlvm_iphone_UINavigationController;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationController(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UINavigationController]
     //XMLVM_END_WRAPPER
     return me;

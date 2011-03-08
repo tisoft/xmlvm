@@ -125,13 +125,19 @@ void __DELETE_org_xmlvm_iphone_MKCoordinateSpan(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateSpan(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    ((org_xmlvm_iphone_MKCoordinateSpan*)me)->fields.org_xmlvm_iphone_MKCoordinateSpan.latitudeDelta_ = 0;
+    ((org_xmlvm_iphone_MKCoordinateSpan*)me)->fields.org_xmlvm_iphone_MKCoordinateSpan.longitudeDelta_ = 0;
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKCoordinateSpan()
 {
     if (!__TIB_org_xmlvm_iphone_MKCoordinateSpan.classInitialized) __INIT_org_xmlvm_iphone_MKCoordinateSpan();
     org_xmlvm_iphone_MKCoordinateSpan* me = (org_xmlvm_iphone_MKCoordinateSpan*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKCoordinateSpan));
     me->tib = &__TIB_org_xmlvm_iphone_MKCoordinateSpan;
-    me->fields.org_xmlvm_iphone_MKCoordinateSpan.latitudeDelta_ = 0;
-    me->fields.org_xmlvm_iphone_MKCoordinateSpan.longitudeDelta_ = 0;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateSpan(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKCoordinateSpan]
     //XMLVM_END_WRAPPER
     return me;

@@ -149,11 +149,17 @@ void __DELETE_org_xmlvm_iphone_NSNumberFormatterStyle(void* me, void* client_dat
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNumberFormatterStyle(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNumberFormatterStyle()
 {
     if (!__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
     org_xmlvm_iphone_NSNumberFormatterStyle* me = (org_xmlvm_iphone_NSNumberFormatterStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNumberFormatterStyle));
     me->tib = &__TIB_org_xmlvm_iphone_NSNumberFormatterStyle;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNumberFormatterStyle(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSNumberFormatterStyle]
     //XMLVM_END_WRAPPER
     return me;

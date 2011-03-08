@@ -60,6 +60,7 @@ typedef struct org_xmlvm_iphone_NSUserDefaults org_xmlvm_iphone_NSUserDefaults;
 
 void __INIT_org_xmlvm_iphone_NSUserDefaults();
 void __DELETE_org_xmlvm_iphone_NSUserDefaults(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSUserDefaults(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSUserDefaults();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSUserDefaults();
 void org_xmlvm_iphone_NSUserDefaults___INIT___(JAVA_OBJECT me);

@@ -131,11 +131,17 @@ void __DELETE_org_xmlvm_iphone_UIInterfaceOrientation(void* me, void* client_dat
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIInterfaceOrientation(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIInterfaceOrientation()
 {
     if (!__TIB_org_xmlvm_iphone_UIInterfaceOrientation.classInitialized) __INIT_org_xmlvm_iphone_UIInterfaceOrientation();
     org_xmlvm_iphone_UIInterfaceOrientation* me = (org_xmlvm_iphone_UIInterfaceOrientation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIInterfaceOrientation));
     me->tib = &__TIB_org_xmlvm_iphone_UIInterfaceOrientation;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIInterfaceOrientation(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIInterfaceOrientation]
     //XMLVM_END_WRAPPER
     return me;

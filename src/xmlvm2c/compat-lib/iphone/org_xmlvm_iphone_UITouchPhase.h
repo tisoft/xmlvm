@@ -40,6 +40,7 @@ typedef struct org_xmlvm_iphone_UITouchPhase org_xmlvm_iphone_UITouchPhase;
 
 void __INIT_org_xmlvm_iphone_UITouchPhase();
 void __DELETE_org_xmlvm_iphone_UITouchPhase(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITouchPhase(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITouchPhase();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITouchPhase();
 JAVA_INT org_xmlvm_iphone_UITouchPhase_GET_Began();

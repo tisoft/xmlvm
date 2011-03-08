@@ -504,11 +504,17 @@ void __DELETE_org_xmlvm_iphone_UIScrollView(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollView(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIScrollView()
 {
     if (!__TIB_org_xmlvm_iphone_UIScrollView.classInitialized) __INIT_org_xmlvm_iphone_UIScrollView();
     org_xmlvm_iphone_UIScrollView* me = (org_xmlvm_iphone_UIScrollView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIScrollView));
     me->tib = &__TIB_org_xmlvm_iphone_UIScrollView;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollView(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIScrollView]
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIScrollView);
     //XMLVM_END_WRAPPER

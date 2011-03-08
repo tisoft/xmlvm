@@ -1021,11 +1021,17 @@ void __DELETE_org_xmlvm_iphone_MKMapView(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapView(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKMapView()
 {
     if (!__TIB_org_xmlvm_iphone_MKMapView.classInitialized) __INIT_org_xmlvm_iphone_MKMapView();
     org_xmlvm_iphone_MKMapView* me = (org_xmlvm_iphone_MKMapView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKMapView));
     me->tib = &__TIB_org_xmlvm_iphone_MKMapView;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapView(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKMapView]
     //XMLVM_END_WRAPPER
     return me;

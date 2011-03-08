@@ -302,11 +302,17 @@ void __DELETE_org_xmlvm_iphone_UITextFieldDelegate(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextFieldDelegate(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITextFieldDelegate()
 {
     if (!__TIB_org_xmlvm_iphone_UITextFieldDelegate.classInitialized) __INIT_org_xmlvm_iphone_UITextFieldDelegate();
     org_xmlvm_iphone_UITextFieldDelegate* me = (org_xmlvm_iphone_UITextFieldDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITextFieldDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_UITextFieldDelegate;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextFieldDelegate(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITextFieldDelegate]
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UITextFieldDelegate);
     //XMLVM_END_WRAPPER

@@ -871,12 +871,18 @@ void __DELETE_org_xmlvm_iphone_UIViewController(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder(me);
+    ((org_xmlvm_iphone_UIViewController*)me)->fields.org_xmlvm_iphone_UIViewController.pcontroller_ = (org_xmlvm_iphone_UIViewController*) JAVA_NULL;
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewController()
 {
     if (!__TIB_org_xmlvm_iphone_UIViewController.classInitialized) __INIT_org_xmlvm_iphone_UIViewController();
     org_xmlvm_iphone_UIViewController* me = (org_xmlvm_iphone_UIViewController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIViewController));
     me->tib = &__TIB_org_xmlvm_iphone_UIViewController;
-    me->fields.org_xmlvm_iphone_UIViewController.pcontroller_ = (org_xmlvm_iphone_UIViewController*) JAVA_NULL;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIViewController]
     //XMLVM_END_WRAPPER
     return me;

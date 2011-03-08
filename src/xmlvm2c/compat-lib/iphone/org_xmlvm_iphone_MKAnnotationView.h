@@ -89,6 +89,7 @@ typedef struct org_xmlvm_iphone_MKAnnotationView org_xmlvm_iphone_MKAnnotationVi
 
 void __INIT_org_xmlvm_iphone_MKAnnotationView();
 void __DELETE_org_xmlvm_iphone_MKAnnotationView(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKAnnotationView(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKAnnotationView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKAnnotationView();
 void org_xmlvm_iphone_MKAnnotationView___INIT____org_xmlvm_iphone_MKAnnotation_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);

@@ -106,6 +106,7 @@ typedef struct org_xmlvm_iphone_UIViewController org_xmlvm_iphone_UIViewControll
 
 void __INIT_org_xmlvm_iphone_UIViewController();
 void __DELETE_org_xmlvm_iphone_UIViewController(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewController();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewController();
 void org_xmlvm_iphone_UIViewController___INIT___(JAVA_OBJECT me);

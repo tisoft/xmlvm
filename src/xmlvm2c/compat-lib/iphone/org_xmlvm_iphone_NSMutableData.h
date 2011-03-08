@@ -44,6 +44,7 @@ typedef struct org_xmlvm_iphone_NSMutableData org_xmlvm_iphone_NSMutableData;
 
 void __INIT_org_xmlvm_iphone_NSMutableData();
 void __DELETE_org_xmlvm_iphone_NSMutableData(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSMutableData(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSMutableData();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSMutableData();
 void org_xmlvm_iphone_NSMutableData___INIT___(JAVA_OBJECT me);

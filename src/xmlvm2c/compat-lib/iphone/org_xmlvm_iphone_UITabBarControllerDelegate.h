@@ -57,6 +57,7 @@ typedef struct org_xmlvm_iphone_UITabBarControllerDelegate org_xmlvm_iphone_UITa
 
 void __INIT_org_xmlvm_iphone_UITabBarControllerDelegate();
 void __DELETE_org_xmlvm_iphone_UITabBarControllerDelegate(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarControllerDelegate(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarControllerDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITabBarControllerDelegate();
 void org_xmlvm_iphone_UITabBarControllerDelegate___INIT___(JAVA_OBJECT me);

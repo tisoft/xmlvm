@@ -403,12 +403,18 @@ void __DELETE_org_xmlvm_iphone_UINavigationBar(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationBar(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me);
+    ((org_xmlvm_iphone_UINavigationBar*)me)->fields.org_xmlvm_iphone_UINavigationBar.nbcontroller_ = (org_xmlvm_iphone_UINavigationController*) JAVA_NULL;
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationBar()
 {
     if (!__TIB_org_xmlvm_iphone_UINavigationBar.classInitialized) __INIT_org_xmlvm_iphone_UINavigationBar();
     org_xmlvm_iphone_UINavigationBar* me = (org_xmlvm_iphone_UINavigationBar*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UINavigationBar));
     me->tib = &__TIB_org_xmlvm_iphone_UINavigationBar;
-    me->fields.org_xmlvm_iphone_UINavigationBar.nbcontroller_ = (org_xmlvm_iphone_UINavigationController*) JAVA_NULL;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationBar(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UINavigationBar]
     //XMLVM_END_WRAPPER
     return me;

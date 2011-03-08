@@ -197,11 +197,17 @@ void __DELETE_org_xmlvm_iphone_NSIndexPath(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSIndexPath(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSIndexPath()
 {
     if (!__TIB_org_xmlvm_iphone_NSIndexPath.classInitialized) __INIT_org_xmlvm_iphone_NSIndexPath();
     org_xmlvm_iphone_NSIndexPath* me = (org_xmlvm_iphone_NSIndexPath*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSIndexPath));
     me->tib = &__TIB_org_xmlvm_iphone_NSIndexPath;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSIndexPath(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSIndexPath]
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSIndexPath);
     //XMLVM_END_WRAPPER

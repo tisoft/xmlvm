@@ -131,11 +131,17 @@ void __DELETE_org_xmlvm_iphone_SKPaymentTransactionState(void* me, void* client_
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionState(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKPaymentTransactionState()
 {
     if (!__TIB_org_xmlvm_iphone_SKPaymentTransactionState.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentTransactionState();
     org_xmlvm_iphone_SKPaymentTransactionState* me = (org_xmlvm_iphone_SKPaymentTransactionState*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_SKPaymentTransactionState));
     me->tib = &__TIB_org_xmlvm_iphone_SKPaymentTransactionState;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionState(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_SKPaymentTransactionState]
     //XMLVM_END_WRAPPER
     return me;

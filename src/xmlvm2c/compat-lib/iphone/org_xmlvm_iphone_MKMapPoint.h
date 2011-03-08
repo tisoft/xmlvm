@@ -42,6 +42,7 @@ typedef struct org_xmlvm_iphone_MKMapPoint org_xmlvm_iphone_MKMapPoint;
 
 void __INIT_org_xmlvm_iphone_MKMapPoint();
 void __DELETE_org_xmlvm_iphone_MKMapPoint(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapPoint(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKMapPoint();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKMapPoint();
 void org_xmlvm_iphone_MKMapPoint___INIT____double_double(JAVA_OBJECT me, JAVA_DOUBLE n1, JAVA_DOUBLE n2);

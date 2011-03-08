@@ -78,7 +78,7 @@ check_ifireworks_C () {
 	ant compile
 	cd ../../..
 	java -Xmx700m -jar dist/xmlvm.jar --target=iphonec --in=demo/iphone/ifireworks/build/classes/ --resource=demo/iphone/ifireworks/res/ --app-name=iFireworks --out=out
-	open out/dist/iFireworks.xproj
+	open out/dist/iFireworks.xcodeproj
 	popd >/dev/null
 }
 

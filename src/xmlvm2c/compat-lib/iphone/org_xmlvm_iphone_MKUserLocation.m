@@ -224,11 +224,17 @@ void __DELETE_org_xmlvm_iphone_MKUserLocation(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKUserLocation(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKAnnotation(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKUserLocation()
 {
     if (!__TIB_org_xmlvm_iphone_MKUserLocation.classInitialized) __INIT_org_xmlvm_iphone_MKUserLocation();
     org_xmlvm_iphone_MKUserLocation* me = (org_xmlvm_iphone_MKUserLocation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKUserLocation));
     me->tib = &__TIB_org_xmlvm_iphone_MKUserLocation;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKUserLocation(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKUserLocation]
     //XMLVM_END_WRAPPER
     return me;

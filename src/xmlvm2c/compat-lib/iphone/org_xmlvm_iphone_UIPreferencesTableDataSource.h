@@ -50,6 +50,7 @@ typedef struct org_xmlvm_iphone_UIPreferencesTableDataSource org_xmlvm_iphone_UI
 
 void __INIT_org_xmlvm_iphone_UIPreferencesTableDataSource();
 void __DELETE_org_xmlvm_iphone_UIPreferencesTableDataSource(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableDataSource(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPreferencesTableDataSource();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPreferencesTableDataSource();
 void org_xmlvm_iphone_UIPreferencesTableDataSource___INIT___(JAVA_OBJECT me);

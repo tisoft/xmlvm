@@ -81,6 +81,7 @@ typedef struct org_xmlvm_iphone_UITextView org_xmlvm_iphone_UITextView;
 
 void __INIT_org_xmlvm_iphone_UITextView();
 void __DELETE_org_xmlvm_iphone_UITextView(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextView(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITextView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITextView();
 void org_xmlvm_iphone_UITextView___INIT___(JAVA_OBJECT me);

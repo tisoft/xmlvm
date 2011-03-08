@@ -59,6 +59,7 @@ typedef struct org_xmlvm_iphone_UIDevice org_xmlvm_iphone_UIDevice;
 
 void __INIT_org_xmlvm_iphone_UIDevice();
 void __DELETE_org_xmlvm_iphone_UIDevice(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDevice(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDevice();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIDevice();
 JAVA_OBJECT org_xmlvm_iphone_UIDevice_currentDevice__();

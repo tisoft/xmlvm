@@ -40,6 +40,7 @@ typedef struct org_xmlvm_iphone_CLHeadingFilter org_xmlvm_iphone_CLHeadingFilter
 
 void __INIT_org_xmlvm_iphone_CLHeadingFilter();
 void __DELETE_org_xmlvm_iphone_CLHeadingFilter(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLHeadingFilter(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLHeadingFilter();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CLHeadingFilter();
 JAVA_DOUBLE org_xmlvm_iphone_CLHeadingFilter_GET_None();

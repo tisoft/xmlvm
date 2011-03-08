@@ -145,11 +145,17 @@ void __DELETE_org_xmlvm_iphone_UIPreferencesTable(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTable(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPreferencesTable()
 {
     if (!__TIB_org_xmlvm_iphone_UIPreferencesTable.classInitialized) __INIT_org_xmlvm_iphone_UIPreferencesTable();
     org_xmlvm_iphone_UIPreferencesTable* me = (org_xmlvm_iphone_UIPreferencesTable*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIPreferencesTable));
     me->tib = &__TIB_org_xmlvm_iphone_UIPreferencesTable;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTable(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIPreferencesTable]
     //XMLVM_END_WRAPPER
     return me;

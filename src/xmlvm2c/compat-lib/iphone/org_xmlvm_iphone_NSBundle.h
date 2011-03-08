@@ -47,6 +47,7 @@ typedef struct org_xmlvm_iphone_NSBundle org_xmlvm_iphone_NSBundle;
 
 void __INIT_org_xmlvm_iphone_NSBundle();
 void __DELETE_org_xmlvm_iphone_NSBundle(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSBundle(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSBundle();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSBundle();
 JAVA_OBJECT org_xmlvm_iphone_NSBundle_mainBundle__();

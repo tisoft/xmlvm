@@ -48,6 +48,7 @@ typedef struct org_xmlvm_iphone_CGAffineTransform org_xmlvm_iphone_CGAffineTrans
 
 void __INIT_org_xmlvm_iphone_CGAffineTransform();
 void __DELETE_org_xmlvm_iphone_CGAffineTransform(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGAffineTransform(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGAffineTransform();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGAffineTransform();
 JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_make___float_float_float_float_float_float(JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4, JAVA_FLOAT n5, JAVA_FLOAT n6);

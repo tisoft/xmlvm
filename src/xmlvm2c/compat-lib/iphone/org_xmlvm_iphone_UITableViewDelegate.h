@@ -79,6 +79,7 @@ typedef struct org_xmlvm_iphone_UITableViewDelegate org_xmlvm_iphone_UITableView
 
 void __INIT_org_xmlvm_iphone_UITableViewDelegate();
 void __DELETE_org_xmlvm_iphone_UITableViewDelegate(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewDelegate(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewDelegate();
 void org_xmlvm_iphone_UITableViewDelegate___INIT___(JAVA_OBJECT me);

@@ -110,11 +110,17 @@ void __DELETE_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate(void* me, 
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate()
 {
     if (!__TIB_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate.classInitialized) __INIT_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate();
     org_xmlvm_iphone_MFMessageComposeViewControllerDelegate* me = (org_xmlvm_iphone_MFMessageComposeViewControllerDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MFMessageComposeViewControllerDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate]
     //XMLVM_END_WRAPPER
     return me;

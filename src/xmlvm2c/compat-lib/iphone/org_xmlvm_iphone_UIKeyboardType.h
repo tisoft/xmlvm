@@ -40,6 +40,7 @@ typedef struct org_xmlvm_iphone_UIKeyboardType org_xmlvm_iphone_UIKeyboardType;
 
 void __INIT_org_xmlvm_iphone_UIKeyboardType();
 void __DELETE_org_xmlvm_iphone_UIKeyboardType(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIKeyboardType(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIKeyboardType();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIKeyboardType();
 JAVA_INT org_xmlvm_iphone_UIKeyboardType_GET_Default();

@@ -131,11 +131,17 @@ void __DELETE_org_xmlvm_iphone_CGBitmapContext(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGBitmapContext(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGContext(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGBitmapContext()
 {
     if (!__TIB_org_xmlvm_iphone_CGBitmapContext.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapContext();
     org_xmlvm_iphone_CGBitmapContext* me = (org_xmlvm_iphone_CGBitmapContext*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGBitmapContext));
     me->tib = &__TIB_org_xmlvm_iphone_CGBitmapContext;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGBitmapContext(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGBitmapContext]
     //XMLVM_END_WRAPPER
     return me;

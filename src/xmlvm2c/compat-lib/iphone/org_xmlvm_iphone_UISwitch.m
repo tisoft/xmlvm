@@ -183,8 +183,8 @@ void __INIT_org_xmlvm_iphone_UISwitch()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISwitch.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UISwitch.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setOn___boolean;
-    __TIB_org_xmlvm_iphone_UISwitch.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_isOn__;
+    __TIB_org_xmlvm_iphone_UISwitch.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setOn___boolean;
+    __TIB_org_xmlvm_iphone_UISwitch.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_isOn__;
     __TIB_org_xmlvm_iphone_UISwitch.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect;
     __TIB_org_xmlvm_iphone_UISwitch.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
     // Initialize vtable for implementing interfaces
@@ -216,11 +216,17 @@ void __DELETE_org_xmlvm_iphone_UISwitch(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISwitch(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISwitch()
 {
     if (!__TIB_org_xmlvm_iphone_UISwitch.classInitialized) __INIT_org_xmlvm_iphone_UISwitch();
     org_xmlvm_iphone_UISwitch* me = (org_xmlvm_iphone_UISwitch*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UISwitch));
     me->tib = &__TIB_org_xmlvm_iphone_UISwitch;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISwitch(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UISwitch]
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UISwitch);
     //XMLVM_END_WRAPPER

@@ -56,6 +56,7 @@ typedef struct org_xmlvm_iphone_NSCalendar org_xmlvm_iphone_NSCalendar;
 
 void __INIT_org_xmlvm_iphone_NSCalendar();
 void __DELETE_org_xmlvm_iphone_NSCalendar(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSCalendar(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSCalendar();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSCalendar();
 JAVA_OBJECT org_xmlvm_iphone_NSCalendar_currentCalendar__();

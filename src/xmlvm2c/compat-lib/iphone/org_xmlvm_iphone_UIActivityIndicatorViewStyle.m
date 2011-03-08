@@ -122,11 +122,17 @@ void __DELETE_org_xmlvm_iphone_UIActivityIndicatorViewStyle(void* me, void* clie
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActivityIndicatorViewStyle(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActivityIndicatorViewStyle()
 {
     if (!__TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle.classInitialized) __INIT_org_xmlvm_iphone_UIActivityIndicatorViewStyle();
     org_xmlvm_iphone_UIActivityIndicatorViewStyle* me = (org_xmlvm_iphone_UIActivityIndicatorViewStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIActivityIndicatorViewStyle));
     me->tib = &__TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActivityIndicatorViewStyle(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIActivityIndicatorViewStyle]
     //XMLVM_END_WRAPPER
     return me;

@@ -44,6 +44,7 @@ typedef struct org_xmlvm_iphone_CGDataProvider org_xmlvm_iphone_CGDataProvider;
 
 void __INIT_org_xmlvm_iphone_CGDataProvider();
 void __DELETE_org_xmlvm_iphone_CGDataProvider(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGDataProvider(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGDataProvider();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGDataProvider();
 JAVA_OBJECT org_xmlvm_iphone_CGDataProvider_providerToPath___java_lang_String(JAVA_OBJECT n1);

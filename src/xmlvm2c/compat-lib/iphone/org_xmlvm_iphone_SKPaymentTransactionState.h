@@ -40,6 +40,7 @@ typedef struct org_xmlvm_iphone_SKPaymentTransactionState org_xmlvm_iphone_SKPay
 
 void __INIT_org_xmlvm_iphone_SKPaymentTransactionState();
 void __DELETE_org_xmlvm_iphone_SKPaymentTransactionState(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionState(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKPaymentTransactionState();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKPaymentTransactionState();
 JAVA_INT org_xmlvm_iphone_SKPaymentTransactionState_GET_Purchasing();

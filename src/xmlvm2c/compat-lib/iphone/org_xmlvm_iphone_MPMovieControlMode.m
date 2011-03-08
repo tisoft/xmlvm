@@ -122,11 +122,17 @@ void __DELETE_org_xmlvm_iphone_MPMovieControlMode(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMovieControlMode(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MPMovieControlMode()
 {
     if (!__TIB_org_xmlvm_iphone_MPMovieControlMode.classInitialized) __INIT_org_xmlvm_iphone_MPMovieControlMode();
     org_xmlvm_iphone_MPMovieControlMode* me = (org_xmlvm_iphone_MPMovieControlMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MPMovieControlMode));
     me->tib = &__TIB_org_xmlvm_iphone_MPMovieControlMode;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMovieControlMode(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MPMovieControlMode]
     //XMLVM_END_WRAPPER
     return me;

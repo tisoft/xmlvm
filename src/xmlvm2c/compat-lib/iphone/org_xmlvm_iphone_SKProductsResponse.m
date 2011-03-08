@@ -141,11 +141,17 @@ void __DELETE_org_xmlvm_iphone_SKProductsResponse(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKProductsResponse(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKProductsResponse()
 {
     if (!__TIB_org_xmlvm_iphone_SKProductsResponse.classInitialized) __INIT_org_xmlvm_iphone_SKProductsResponse();
     org_xmlvm_iphone_SKProductsResponse* me = (org_xmlvm_iphone_SKProductsResponse*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_SKProductsResponse));
     me->tib = &__TIB_org_xmlvm_iphone_SKProductsResponse;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKProductsResponse(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_SKProductsResponse]
     //XMLVM_END_WRAPPER
     return me;

@@ -327,11 +327,17 @@ void __DELETE_org_xmlvm_iphone_NSObject(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSObject()
 {
     if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
     org_xmlvm_iphone_NSObject* me = (org_xmlvm_iphone_NSObject*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSObject));
     me->tib = &__TIB_org_xmlvm_iphone_NSObject;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSObject]
     //XMLVM_END_WRAPPER
     return me;

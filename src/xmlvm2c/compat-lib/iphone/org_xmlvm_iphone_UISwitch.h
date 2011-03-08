@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(java_util_Set)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 // Class declarations for org.xmlvm.iphone.UISwitch
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISwitch, 76)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISwitch, 80)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch_ARRAYTYPE;
@@ -48,14 +48,15 @@ struct org_xmlvm_iphone_UISwitch {
 typedef struct org_xmlvm_iphone_UISwitch org_xmlvm_iphone_UISwitch;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISwitch 76
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_setOn___boolean 74
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_isOn__ 75
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISwitch 80
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_setOn___boolean 78
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_isOn__ 79
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect 21
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 16
 
 void __INIT_org_xmlvm_iphone_UISwitch();
 void __DELETE_org_xmlvm_iphone_UISwitch(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISwitch(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISwitch();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UISwitch();
 JAVA_FLOAT org_xmlvm_iphone_UISwitch_GET_kSwitchButtonWidth();
@@ -64,9 +65,9 @@ JAVA_FLOAT org_xmlvm_iphone_UISwitch_GET_kSwitchButtonHeight();
 void org_xmlvm_iphone_UISwitch_PUT_kSwitchButtonHeight(JAVA_FLOAT v);
 void org_xmlvm_iphone_UISwitch___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UISwitch___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 74
+// Vtable index: 78
 void org_xmlvm_iphone_UISwitch_setOn___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 75
+// Vtable index: 79
 JAVA_BOOLEAN org_xmlvm_iphone_UISwitch_isOn__(JAVA_OBJECT me);
 // Vtable index: 21
 void org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);

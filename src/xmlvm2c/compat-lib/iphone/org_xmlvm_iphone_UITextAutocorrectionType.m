@@ -122,11 +122,17 @@ void __DELETE_org_xmlvm_iphone_UITextAutocorrectionType(void* me, void* client_d
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAutocorrectionType(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITextAutocorrectionType()
 {
     if (!__TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitialized) __INIT_org_xmlvm_iphone_UITextAutocorrectionType();
     org_xmlvm_iphone_UITextAutocorrectionType* me = (org_xmlvm_iphone_UITextAutocorrectionType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITextAutocorrectionType));
     me->tib = &__TIB_org_xmlvm_iphone_UITextAutocorrectionType;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAutocorrectionType(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITextAutocorrectionType]
     //XMLVM_END_WRAPPER
     return me;

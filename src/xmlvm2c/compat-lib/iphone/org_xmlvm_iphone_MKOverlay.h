@@ -47,6 +47,7 @@ typedef struct org_xmlvm_iphone_MKOverlay org_xmlvm_iphone_MKOverlay;
 
 void __INIT_org_xmlvm_iphone_MKOverlay();
 void __DELETE_org_xmlvm_iphone_MKOverlay(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKOverlay(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKOverlay();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKOverlay();
 void org_xmlvm_iphone_MKOverlay___INIT___(JAVA_OBJECT me);

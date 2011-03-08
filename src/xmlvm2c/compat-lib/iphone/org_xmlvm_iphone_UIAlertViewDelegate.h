@@ -73,6 +73,7 @@ typedef struct org_xmlvm_iphone_UIAlertViewDelegate org_xmlvm_iphone_UIAlertView
 
 void __INIT_org_xmlvm_iphone_UIAlertViewDelegate();
 void __DELETE_org_xmlvm_iphone_UIAlertViewDelegate(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAlertViewDelegate(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAlertViewDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAlertViewDelegate();
 void org_xmlvm_iphone_UIAlertViewDelegate___INIT___(JAVA_OBJECT me);

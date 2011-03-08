@@ -327,11 +327,17 @@ void __DELETE_org_xmlvm_iphone_UIBarItem(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarItem(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIBarItem()
 {
     if (!__TIB_org_xmlvm_iphone_UIBarItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarItem();
     org_xmlvm_iphone_UIBarItem* me = (org_xmlvm_iphone_UIBarItem*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIBarItem));
     me->tib = &__TIB_org_xmlvm_iphone_UIBarItem;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarItem(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIBarItem]
     //XMLVM_END_WRAPPER
     return me;

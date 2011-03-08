@@ -104,11 +104,17 @@ void __DELETE_org_xmlvm_iphone_CLDistanceFilter(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLDistanceFilter(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLDistanceFilter()
 {
     if (!__TIB_org_xmlvm_iphone_CLDistanceFilter.classInitialized) __INIT_org_xmlvm_iphone_CLDistanceFilter();
     org_xmlvm_iphone_CLDistanceFilter* me = (org_xmlvm_iphone_CLDistanceFilter*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLDistanceFilter));
     me->tib = &__TIB_org_xmlvm_iphone_CLDistanceFilter;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLDistanceFilter(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CLDistanceFilter]
     //XMLVM_END_WRAPPER
     return me;

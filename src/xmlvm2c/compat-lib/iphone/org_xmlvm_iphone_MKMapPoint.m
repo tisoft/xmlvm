@@ -125,13 +125,19 @@ void __DELETE_org_xmlvm_iphone_MKMapPoint(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapPoint(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    ((org_xmlvm_iphone_MKMapPoint*)me)->fields.org_xmlvm_iphone_MKMapPoint.x_ = 0;
+    ((org_xmlvm_iphone_MKMapPoint*)me)->fields.org_xmlvm_iphone_MKMapPoint.y_ = 0;
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKMapPoint()
 {
     if (!__TIB_org_xmlvm_iphone_MKMapPoint.classInitialized) __INIT_org_xmlvm_iphone_MKMapPoint();
     org_xmlvm_iphone_MKMapPoint* me = (org_xmlvm_iphone_MKMapPoint*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKMapPoint));
     me->tib = &__TIB_org_xmlvm_iphone_MKMapPoint;
-    me->fields.org_xmlvm_iphone_MKMapPoint.x_ = 0;
-    me->fields.org_xmlvm_iphone_MKMapPoint.y_ = 0;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapPoint(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKMapPoint]
     //XMLVM_END_WRAPPER
     return me;

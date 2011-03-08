@@ -40,6 +40,7 @@ typedef struct org_xmlvm_iphone_UITableViewStyle org_xmlvm_iphone_UITableViewSty
 
 void __INIT_org_xmlvm_iphone_UITableViewStyle();
 void __DELETE_org_xmlvm_iphone_UITableViewStyle(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewStyle(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewStyle();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewStyle();
 JAVA_INT org_xmlvm_iphone_UITableViewStyle_GET_Plain();

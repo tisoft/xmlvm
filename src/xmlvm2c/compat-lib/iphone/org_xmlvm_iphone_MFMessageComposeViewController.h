@@ -58,6 +58,7 @@ typedef struct org_xmlvm_iphone_MFMessageComposeViewController org_xmlvm_iphone_
 
 void __INIT_org_xmlvm_iphone_MFMessageComposeViewController();
 void __DELETE_org_xmlvm_iphone_MFMessageComposeViewController(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMessageComposeViewController(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMessageComposeViewController();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MFMessageComposeViewController();
 void org_xmlvm_iphone_MFMessageComposeViewController___INIT___(JAVA_OBJECT me);

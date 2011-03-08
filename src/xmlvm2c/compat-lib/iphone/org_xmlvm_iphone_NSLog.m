@@ -129,11 +129,17 @@ void __DELETE_org_xmlvm_iphone_NSLog(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLog(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSLog()
 {
     if (!__TIB_org_xmlvm_iphone_NSLog.classInitialized) __INIT_org_xmlvm_iphone_NSLog();
     org_xmlvm_iphone_NSLog* me = (org_xmlvm_iphone_NSLog*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSLog));
     me->tib = &__TIB_org_xmlvm_iphone_NSLog;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLog(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSLog]
     //XMLVM_END_WRAPPER
     return me;

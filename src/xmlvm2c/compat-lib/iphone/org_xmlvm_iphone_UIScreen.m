@@ -144,11 +144,17 @@ void __DELETE_org_xmlvm_iphone_UIScreen(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScreen(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIScreen()
 {
     if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
     org_xmlvm_iphone_UIScreen* me = (org_xmlvm_iphone_UIScreen*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIScreen));
     me->tib = &__TIB_org_xmlvm_iphone_UIScreen;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScreen(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIScreen]
     //XMLVM_END_WRAPPER
     return me;

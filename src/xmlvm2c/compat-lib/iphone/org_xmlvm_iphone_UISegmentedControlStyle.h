@@ -40,6 +40,7 @@ typedef struct org_xmlvm_iphone_UISegmentedControlStyle org_xmlvm_iphone_UISegme
 
 void __INIT_org_xmlvm_iphone_UISegmentedControlStyle();
 void __DELETE_org_xmlvm_iphone_UISegmentedControlStyle(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISegmentedControlStyle(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISegmentedControlStyle();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UISegmentedControlStyle();
 JAVA_INT org_xmlvm_iphone_UISegmentedControlStyle_GET_Plain();

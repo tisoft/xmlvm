@@ -435,11 +435,17 @@ void __DELETE_org_xmlvm_iphone_UITableViewCell(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCell(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCell()
 {
     if (!__TIB_org_xmlvm_iphone_UITableViewCell.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCell();
     org_xmlvm_iphone_UITableViewCell* me = (org_xmlvm_iphone_UITableViewCell*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewCell));
     me->tib = &__TIB_org_xmlvm_iphone_UITableViewCell;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCell(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewCell]
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UITableViewCell);
     //XMLVM_END_WRAPPER

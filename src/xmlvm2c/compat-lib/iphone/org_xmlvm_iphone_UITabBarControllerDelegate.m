@@ -204,11 +204,17 @@ void __DELETE_org_xmlvm_iphone_UITabBarControllerDelegate(void* me, void* client
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarControllerDelegate(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarControllerDelegate()
 {
     if (!__TIB_org_xmlvm_iphone_UITabBarControllerDelegate.classInitialized) __INIT_org_xmlvm_iphone_UITabBarControllerDelegate();
     org_xmlvm_iphone_UITabBarControllerDelegate* me = (org_xmlvm_iphone_UITabBarControllerDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITabBarControllerDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_UITabBarControllerDelegate;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarControllerDelegate(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITabBarControllerDelegate]
     //XMLVM_END_WRAPPER
     return me;

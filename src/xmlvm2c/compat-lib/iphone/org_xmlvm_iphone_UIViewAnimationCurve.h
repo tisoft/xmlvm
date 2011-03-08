@@ -40,6 +40,7 @@ typedef struct org_xmlvm_iphone_UIViewAnimationCurve org_xmlvm_iphone_UIViewAnim
 
 void __INIT_org_xmlvm_iphone_UIViewAnimationCurve();
 void __DELETE_org_xmlvm_iphone_UIViewAnimationCurve(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewAnimationCurve(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewAnimationCurve();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewAnimationCurve();
 JAVA_INT org_xmlvm_iphone_UIViewAnimationCurve_GET_EaseInOut();

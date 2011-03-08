@@ -146,10 +146,10 @@ void __INIT_org_xmlvm_iphone_UIProgressView()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIProgressView.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIProgressView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgress___float;
-    __TIB_org_xmlvm_iphone_UIProgressView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgress__;
-    __TIB_org_xmlvm_iphone_UIProgressView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgressViewStyle__;
-    __TIB_org_xmlvm_iphone_UIProgressView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgressViewStyle___int;
+    __TIB_org_xmlvm_iphone_UIProgressView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgress___float;
+    __TIB_org_xmlvm_iphone_UIProgressView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgress__;
+    __TIB_org_xmlvm_iphone_UIProgressView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgressViewStyle__;
+    __TIB_org_xmlvm_iphone_UIProgressView.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgressViewStyle___int;
     // Initialize vtable for implementing interfaces
     __TIB_org_xmlvm_iphone_UIProgressView.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIProgressView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -176,11 +176,17 @@ void __DELETE_org_xmlvm_iphone_UIProgressView(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIProgressView(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIProgressView()
 {
     if (!__TIB_org_xmlvm_iphone_UIProgressView.classInitialized) __INIT_org_xmlvm_iphone_UIProgressView();
     org_xmlvm_iphone_UIProgressView* me = (org_xmlvm_iphone_UIProgressView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIProgressView));
     me->tib = &__TIB_org_xmlvm_iphone_UIProgressView;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIProgressView(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIProgressView]
     //XMLVM_END_WRAPPER
     return me;

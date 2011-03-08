@@ -125,13 +125,19 @@ void __DELETE_org_xmlvm_iphone_CLLocationCoordinate2D(void* me, void* client_dat
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationCoordinate2D(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    ((org_xmlvm_iphone_CLLocationCoordinate2D*)me)->fields.org_xmlvm_iphone_CLLocationCoordinate2D.latitude_ = 0;
+    ((org_xmlvm_iphone_CLLocationCoordinate2D*)me)->fields.org_xmlvm_iphone_CLLocationCoordinate2D.longitude_ = 0;
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLLocationCoordinate2D()
 {
     if (!__TIB_org_xmlvm_iphone_CLLocationCoordinate2D.classInitialized) __INIT_org_xmlvm_iphone_CLLocationCoordinate2D();
     org_xmlvm_iphone_CLLocationCoordinate2D* me = (org_xmlvm_iphone_CLLocationCoordinate2D*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLLocationCoordinate2D));
     me->tib = &__TIB_org_xmlvm_iphone_CLLocationCoordinate2D;
-    me->fields.org_xmlvm_iphone_CLLocationCoordinate2D.latitude_ = 0;
-    me->fields.org_xmlvm_iphone_CLLocationCoordinate2D.longitude_ = 0;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationCoordinate2D(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CLLocationCoordinate2D]
     //XMLVM_END_WRAPPER
     return me;

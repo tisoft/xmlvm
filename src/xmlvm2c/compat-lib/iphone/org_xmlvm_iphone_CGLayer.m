@@ -146,11 +146,17 @@ void __DELETE_org_xmlvm_iphone_CGLayer(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGLayer(JAVA_OBJECT me)
+{
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+}
+
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGLayer()
 {
     if (!__TIB_org_xmlvm_iphone_CGLayer.classInitialized) __INIT_org_xmlvm_iphone_CGLayer();
     org_xmlvm_iphone_CGLayer* me = (org_xmlvm_iphone_CGLayer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGLayer));
     me->tib = &__TIB_org_xmlvm_iphone_CGLayer;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGLayer(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGLayer]
     //XMLVM_END_WRAPPER
     return me;
