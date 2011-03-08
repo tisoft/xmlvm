@@ -87,6 +87,16 @@ static char memberKey; // key for associative reference for member variables
 	      forControlEvents:controlEvents];
 }
 
+- (int) isEnabled__
+{
+	return [self isEnabled];
+}
+
+- (void) setEnabled___boolean:(int)selected
+{
+	[self setEnabled:selected];
+}
+
 - (int) isSelected__
 {
 	return [self isSelected];
@@ -95,6 +105,16 @@ static char memberKey; // key for associative reference for member variables
 - (void) setSelected___boolean:(int)selected
 {
 	[self setSelected:selected];
+}
+
+- (int) isHighlighted__
+{
+	return [self isHighlighted];
+}
+
+- (void) setHighlighted___boolean:(int)selected
+{
+	[self setHighlighted:selected];
 }
 
 @end
