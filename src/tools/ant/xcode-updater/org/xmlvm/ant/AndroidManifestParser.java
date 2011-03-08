@@ -69,17 +69,18 @@ public class AndroidManifestParser extends Task {
                             && catname.equalsIgnoreCase("android.intent.category.LAUNCHER")) {
 
                         PropertyHelper ph = PropertyHelper.getPropertyHelper(getProject());
-                        ph.setProperty(null, "xmlvm.android.package", (Object) packg, false);
-                        ph.setProperty(null, "xmlvm.android.activity", (Object) name, false);
+                        ph.setProperty("xmlvm.android.package", (Object) packg, false);
+                        ph.setProperty("xmlvm.android.activity", (Object) name, false);
                         return;
                     }
                 }
             }
         } catch (Exception ex) {
-            if (ex instanceof BuildException)
+            if (ex instanceof BuildException) {
                 throw (BuildException) ex;
-            else
+            } else {
                 throw new BuildException(ex);
+            }
         }
         throw new BuildException("Unable to find main activity");
     }
@@ -95,24 +96,29 @@ public class AndroidManifestParser extends Task {
     private static ArrayList<Node> getNodesWithName(Node parent, String name, boolean all_of_them) throws BuildException {
         ArrayList<Node> valid = new ArrayList<Node>();
         NodeList children = parent.getChildNodes();
-        for (int i = 0; i < children.getLength(); i++)
+        for (int i = 0; i < children.getLength(); i++) {
             if (children.item(i).getNodeName().equalsIgnoreCase(name)) {
                 valid.add(children.item(i));
-                if (!all_of_them)
+                if (!all_of_them) {
                     break;
+                }
             }
+        }
         return valid;
     }
 
     private static String getAttribute(Node n, String name) {
-        if (n == null || name == null)
+        if (n == null || name == null) {
             return null;
+        }
         NamedNodeMap map = n.getAttributes();
-        if (map == null)
+        if (map == null) {
             return null;
+        }
         Node snode = map.getNamedItem(name);
-        if (snode == null)
+        if (snode == null) {
             return null;
+        }
         return snode.getNodeValue();
     }
 }
