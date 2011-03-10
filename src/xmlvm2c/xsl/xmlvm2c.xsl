@@ -1853,13 +1853,10 @@ int main(int argc, char* argv[])
   <xsl:param  name="string"/>
   <!-- Escape all \\ \t(011) \n(012) \r(015) \f(014) \b(010) \" -->
   <!-- Single quotes don't need to be escaped. -->
-  <!-- PROBLEM! Because backslashes aren't already escaped in @value, there
-       is no way to differ both Java Strings of "\\011" and "\t". So they'll
-       both be translated to "\t". That is also true for the other escaped characters. -->
   <xsl:text>"</xsl:text>
-  <xsl:value-of select="replace(replace(replace(replace(replace(replace(replace($string,'\\','\\\\'),
-                           '\\\\011','\\t'),'\\\\012','\\n'),'\\\\015','\\r'),'\\\\014','\\f'),'\\\\010','\\b'),
-                           '&quot;','\\&quot;')"/>
+  <xsl:value-of select="replace(replace(replace(replace(replace(replace(replace($string,'\\134','\\\\'),
+                           '\\011','\\t'),'\\012','\\n'),'\\015','\\r'),'\\014','\\f'),'\\010','\\b'),
+                           '\\042','\\&quot;')"/>
   <xsl:text>"</xsl:text>
 </xsl:function>
 
