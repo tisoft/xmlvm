@@ -2938,7 +2938,7 @@ int main(int argc, char* argv[])
   <xsl:text>.o = @"</xsl:text>
   <!-- Escape all \\ \t(011) \n(012) \r(015) \f(014) \b(010) \" -->
   <!-- Single quotes don't need to be escaped. -->
-  <xsl:value-of select="replace(replace(replace(replace(replace(replace(replace($string,'\\134','\\\\'),
+  <xsl:value-of select="replace(replace(replace(replace(replace(replace(replace(@value,'\\134','\\\\'),
                            '\\011','\\t'),'\\012','\\n'),'\\015','\\r'),'\\014','\\f'),'\\010','\\b'),
                            '\\042','\\&quot;')"/>
   <xs:text>";
