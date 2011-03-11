@@ -82,6 +82,7 @@ typedef struct org_xmlvm_iphone_UITabBar org_xmlvm_iphone_UITabBar;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITabBar_updateViews__ 87
 
 void __INIT_org_xmlvm_iphone_UITabBar();
+void __INIT_IMPL_org_xmlvm_iphone_UITabBar();
 void __DELETE_org_xmlvm_iphone_UITabBar(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBar(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBar();

@@ -48,6 +48,7 @@ typedef struct org_xmlvm_iphone_UIPreferencesTableCell org_xmlvm_iphone_UIPrefer
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTableCell_isGroupCell__ 74
 
 void __INIT_org_xmlvm_iphone_UIPreferencesTableCell();
+void __INIT_IMPL_org_xmlvm_iphone_UIPreferencesTableCell();
 void __DELETE_org_xmlvm_iphone_UIPreferencesTableCell(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableCell(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPreferencesTableCell();

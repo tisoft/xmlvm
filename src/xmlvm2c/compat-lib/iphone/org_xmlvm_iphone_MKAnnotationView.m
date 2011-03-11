@@ -10,6 +10,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MKAnnotationView
 
 __TIB_DEFINITION_org_xmlvm_iphone_MKAnnotationView __TIB_org_xmlvm_iphone_MKAnnotationView = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MKAnnotationView, // classInitializer
     "org.xmlvm.iphone.MKAnnotationView", // className
@@ -518,59 +519,72 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_MKAnnotationView()
 {
-    __TIB_org_xmlvm_iphone_MKAnnotationView.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
-    __TIB_org_xmlvm_iphone_MKAnnotationView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKAnnotationView;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKAnnotationView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_prepareForReuse__;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_isEnabled__;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setEnabled___boolean;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getAnnotation__;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setAnnotation___org_xmlvm_iphone_MKAnnotation;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getCalloutOffset__;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setCalloutOffset___org_xmlvm_iphone_CGPoint;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getCenterOffset__;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setCenterOffset___org_xmlvm_iphone_CGPoint;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_isHighlighted__;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setHighlighted___boolean;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getImage__;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setImage___org_xmlvm_iphone_UIImage;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getReuseIdentifier__;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_isSelected__;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setSelected___boolean;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setSelected___boolean_boolean;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_isCanShowCallout__;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setCanShowCallout___boolean;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getLeftCalloutAccessoryView__;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setLeftCalloutAccessoryView___org_xmlvm_iphone_UIView;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getRightCalloutAccessoryView__;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setRightCalloutAccessoryView___org_xmlvm_iphone_UIView;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getDragState__;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setDragState___int;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setDragState___int_boolean;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_isDraggable__;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setDraggable___boolean;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_MKAnnotationView.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_MKAnnotationView);
+    if (!__TIB_org_xmlvm_iphone_MKAnnotationView.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_MKAnnotationView();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_MKAnnotationView);
+}
 
-    __TIB_org_xmlvm_iphone_MKAnnotationView.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_MKAnnotationView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_MKAnnotationView.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_MKAnnotationView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_MKAnnotationView.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_MKAnnotationView.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_MKAnnotationView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_MKAnnotationView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MKAnnotationView);
-    __TIB_org_xmlvm_iphone_MKAnnotationView.clazz = __CLASS_org_xmlvm_iphone_MKAnnotationView;
-    __CLASS_org_xmlvm_iphone_MKAnnotationView_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKAnnotationView, 1);
+void __INIT_IMPL_org_xmlvm_iphone_MKAnnotationView()
+{
+    if (!__TIB_org_xmlvm_iphone_MKAnnotationView.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_MKAnnotationView.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MKAnnotationView]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIView();
+        __TIB_org_xmlvm_iphone_MKAnnotationView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKAnnotationView;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKAnnotationView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_prepareForReuse__;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_isEnabled__;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setEnabled___boolean;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getAnnotation__;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setAnnotation___org_xmlvm_iphone_MKAnnotation;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getCalloutOffset__;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setCalloutOffset___org_xmlvm_iphone_CGPoint;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getCenterOffset__;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setCenterOffset___org_xmlvm_iphone_CGPoint;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_isHighlighted__;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setHighlighted___boolean;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getImage__;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setImage___org_xmlvm_iphone_UIImage;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getReuseIdentifier__;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_isSelected__;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setSelected___boolean;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setSelected___boolean_boolean;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_isCanShowCallout__;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setCanShowCallout___boolean;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getLeftCalloutAccessoryView__;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setLeftCalloutAccessoryView___org_xmlvm_iphone_UIView;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getRightCalloutAccessoryView__;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setRightCalloutAccessoryView___org_xmlvm_iphone_UIView;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_getDragState__;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setDragState___int;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setDragState___int_boolean;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_isDraggable__;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_MKAnnotationView_setDraggable___boolean;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_MKAnnotationView.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_MKAnnotationView.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_MKAnnotationView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_MKAnnotationView.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_MKAnnotationView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_MKAnnotationView.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_MKAnnotationView.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_MKAnnotationView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_MKAnnotationView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MKAnnotationView);
+        __TIB_org_xmlvm_iphone_MKAnnotationView.clazz = __CLASS_org_xmlvm_iphone_MKAnnotationView;
+        __CLASS_org_xmlvm_iphone_MKAnnotationView_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKAnnotationView, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MKAnnotationView]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_MKAnnotationView.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_MKAnnotationView(void* me, void* client_data)

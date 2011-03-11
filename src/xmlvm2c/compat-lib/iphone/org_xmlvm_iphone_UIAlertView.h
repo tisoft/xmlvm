@@ -57,6 +57,7 @@ typedef struct org_xmlvm_iphone_UIAlertView org_xmlvm_iphone_UIAlertView;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertView_addButtonWithTitle___java_lang_String 75
 
 void __INIT_org_xmlvm_iphone_UIAlertView();
+void __INIT_IMPL_org_xmlvm_iphone_UIAlertView();
 void __DELETE_org_xmlvm_iphone_UIAlertView(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAlertView(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAlertView();

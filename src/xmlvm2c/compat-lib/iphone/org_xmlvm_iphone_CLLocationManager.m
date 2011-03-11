@@ -9,6 +9,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CLLocationManager
 
 __TIB_DEFINITION_org_xmlvm_iphone_CLLocationManager __TIB_org_xmlvm_iphone_CLLocationManager = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CLLocationManager, // classInitializer
     "org.xmlvm.iphone.CLLocationManager", // className
@@ -538,56 +539,69 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_CLLocationManager()
 {
-    __TIB_org_xmlvm_iphone_CLLocationManager.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __TIB_org_xmlvm_iphone_CLLocationManager.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLLocationManager;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLLocationManager.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_startUpdatingLocation__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_stopUpdatingLocation__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_startMonitoringSignificantLocationChanges__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_stopMonitoringSignificantLocationChanges__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_startUpdatingHeading__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_stopUpdatingHeading__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_dismissHeadingCalibrationDisplay__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_startMonitoringForRegion___org_xmlvm_iphone_CLRegion_double;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_stopMonitoringForRegion___org_xmlvm_iphone_CLRegion;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getDelegate__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_setDelegate___org_xmlvm_iphone_CLLocationManagerDelegate;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getDesiredAccuracy__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_setDesiredAccuracy___double;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getDistanceFilter__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_setDistanceFilter___double;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getHeadingFilter__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_setHeadingFilter___double;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getHeadingOrientation__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_setHeadingOrientation___int;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getMonitoredRegions__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getMaximumRegionMonitoringDistance__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getHeading__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[36] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getLocation__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[37] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getPurpose__;
-    __TIB_org_xmlvm_iphone_CLLocationManager.vtable[38] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_setPurpose___java_lang_String;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_CLLocationManager.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_CLLocationManager.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_CLLocationManager);
+    if (!__TIB_org_xmlvm_iphone_CLLocationManager.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_CLLocationManager();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_CLLocationManager);
+}
 
-    __TIB_org_xmlvm_iphone_CLLocationManager.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_CLLocationManager.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_CLLocationManager.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_CLLocationManager.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_CLLocationManager.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_CLLocationManager.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_CLLocationManager.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_CLLocationManager.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_CLLocationManager = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CLLocationManager);
-    __TIB_org_xmlvm_iphone_CLLocationManager.clazz = __CLASS_org_xmlvm_iphone_CLLocationManager;
-    __CLASS_org_xmlvm_iphone_CLLocationManager_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationManager, 1);
+void __INIT_IMPL_org_xmlvm_iphone_CLLocationManager()
+{
+    if (!__TIB_org_xmlvm_iphone_CLLocationManager.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_CLLocationManager.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CLLocationManager]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
+        __TIB_org_xmlvm_iphone_CLLocationManager.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLLocationManager;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLLocationManager.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_startUpdatingLocation__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_stopUpdatingLocation__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_startMonitoringSignificantLocationChanges__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_stopMonitoringSignificantLocationChanges__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_startUpdatingHeading__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_stopUpdatingHeading__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_dismissHeadingCalibrationDisplay__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_startMonitoringForRegion___org_xmlvm_iphone_CLRegion_double;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_stopMonitoringForRegion___org_xmlvm_iphone_CLRegion;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getDelegate__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_setDelegate___org_xmlvm_iphone_CLLocationManagerDelegate;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getDesiredAccuracy__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_setDesiredAccuracy___double;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getDistanceFilter__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_setDistanceFilter___double;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getHeadingFilter__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_setHeadingFilter___double;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getHeadingOrientation__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_setHeadingOrientation___int;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getMonitoredRegions__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getMaximumRegionMonitoringDistance__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getHeading__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[36] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getLocation__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[37] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_getPurpose__;
+        __TIB_org_xmlvm_iphone_CLLocationManager.vtable[38] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManager_setPurpose___java_lang_String;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_CLLocationManager.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_CLLocationManager.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_CLLocationManager.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_CLLocationManager.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_CLLocationManager.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_CLLocationManager.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_CLLocationManager.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_CLLocationManager.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_CLLocationManager.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_CLLocationManager.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_CLLocationManager = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CLLocationManager);
+        __TIB_org_xmlvm_iphone_CLLocationManager.clazz = __CLASS_org_xmlvm_iphone_CLLocationManager;
+        __CLASS_org_xmlvm_iphone_CLLocationManager_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationManager, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CLLocationManager]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_CLLocationManager.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_CLLocationManager(void* me, void* client_data)

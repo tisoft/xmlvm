@@ -69,6 +69,7 @@ typedef struct org_xmlvm_iphone_CALayer org_xmlvm_iphone_CALayer;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint 23
 
 void __INIT_org_xmlvm_iphone_CALayer();
+void __INIT_IMPL_org_xmlvm_iphone_CALayer();
 void __DELETE_org_xmlvm_iphone_CALayer(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CALayer(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CALayer();

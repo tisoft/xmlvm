@@ -55,6 +55,7 @@ typedef struct org_xmlvm_iphone_UIWebViewDelegate org_xmlvm_iphone_UIWebViewDele
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebViewDelegate_webViewDidStartLoad___org_xmlvm_iphone_UIWebView 17
 
 void __INIT_org_xmlvm_iphone_UIWebViewDelegate();
+void __INIT_IMPL_org_xmlvm_iphone_UIWebViewDelegate();
 void __DELETE_org_xmlvm_iphone_UIWebViewDelegate(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewDelegate(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWebViewDelegate();

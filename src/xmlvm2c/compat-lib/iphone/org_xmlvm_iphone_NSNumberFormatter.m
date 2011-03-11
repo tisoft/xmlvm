@@ -6,6 +6,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSNumberFormatter
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSNumberFormatter __TIB_org_xmlvm_iphone_NSNumberFormatter = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSNumberFormatter, // classInitializer
     "org.xmlvm.iphone.NSNumberFormatter", // className
@@ -138,35 +139,48 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_NSNumberFormatter()
 {
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSNumberFormatter;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSNumberFormatter.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSNumberFormatter_setNumberStyle___int;
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSNumberFormatter_numberStyle__;
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSNumberFormatter_maximumFractionDigits__;
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSNumberFormatter_setMaximumFractionDigits___int;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_NSNumberFormatter);
+    if (!__TIB_org_xmlvm_iphone_NSNumberFormatter.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_NSNumberFormatter();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_NSNumberFormatter);
+}
 
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_NSNumberFormatter = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSNumberFormatter);
-    __TIB_org_xmlvm_iphone_NSNumberFormatter.clazz = __CLASS_org_xmlvm_iphone_NSNumberFormatter;
-    __CLASS_org_xmlvm_iphone_NSNumberFormatter_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSNumberFormatter, 1);
+void __INIT_IMPL_org_xmlvm_iphone_NSNumberFormatter()
+{
+    if (!__TIB_org_xmlvm_iphone_NSNumberFormatter.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSNumberFormatter]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSNumberFormatter;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSNumberFormatter.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSNumberFormatter_setNumberStyle___int;
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSNumberFormatter_numberStyle__;
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSNumberFormatter_maximumFractionDigits__;
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSNumberFormatter_setMaximumFractionDigits___int;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_NSNumberFormatter = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSNumberFormatter);
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.clazz = __CLASS_org_xmlvm_iphone_NSNumberFormatter;
+        __CLASS_org_xmlvm_iphone_NSNumberFormatter_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSNumberFormatter, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSNumberFormatter]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_NSNumberFormatter.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_NSNumberFormatter(void* me, void* client_data)

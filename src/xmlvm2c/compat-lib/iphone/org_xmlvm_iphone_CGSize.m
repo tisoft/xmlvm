@@ -7,6 +7,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGSize
 
 __TIB_DEFINITION_org_xmlvm_iphone_CGSize __TIB_org_xmlvm_iphone_CGSize = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CGSize, // classInitializer
     "org.xmlvm.iphone.CGSize", // className
@@ -139,33 +140,46 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_CGSize()
 {
-    __TIB_org_xmlvm_iphone_CGSize.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __TIB_org_xmlvm_iphone_CGSize.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGSize;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGSize.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_CGSize.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_CGSize_toString__;
-    __TIB_org_xmlvm_iphone_CGSize.vtable[1] = (VTABLE_PTR) &org_xmlvm_iphone_CGSize_equals___java_lang_Object;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_CGSize.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_CGSize.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_CGSize);
+    if (!__TIB_org_xmlvm_iphone_CGSize.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_CGSize();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_CGSize);
+}
 
-    __TIB_org_xmlvm_iphone_CGSize.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_CGSize.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_CGSize.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_CGSize.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_CGSize.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_CGSize.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_CGSize.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_CGSize.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_CGSize = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CGSize);
-    __TIB_org_xmlvm_iphone_CGSize.clazz = __CLASS_org_xmlvm_iphone_CGSize;
-    __CLASS_org_xmlvm_iphone_CGSize_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGSize, 1);
+void __INIT_IMPL_org_xmlvm_iphone_CGSize()
+{
+    if (!__TIB_org_xmlvm_iphone_CGSize.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_CGSize.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGSize]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
+        __TIB_org_xmlvm_iphone_CGSize.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGSize;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGSize.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_CGSize.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_CGSize_toString__;
+        __TIB_org_xmlvm_iphone_CGSize.vtable[1] = (VTABLE_PTR) &org_xmlvm_iphone_CGSize_equals___java_lang_Object;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_CGSize.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_CGSize.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_CGSize.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_CGSize.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_CGSize.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_CGSize.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_CGSize.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_CGSize.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_CGSize.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_CGSize.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_CGSize = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CGSize);
+        __TIB_org_xmlvm_iphone_CGSize.clazz = __CLASS_org_xmlvm_iphone_CGSize;
+        __CLASS_org_xmlvm_iphone_CGSize_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGSize, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGSize]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_CGSize.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_CGSize(void* me, void* client_data)

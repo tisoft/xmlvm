@@ -51,6 +51,7 @@ typedef struct org_xmlvm_iphone_CGSize org_xmlvm_iphone_CGSize;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGSize_equals___java_lang_Object 1
 
 void __INIT_org_xmlvm_iphone_CGSize();
+void __INIT_IMPL_org_xmlvm_iphone_CGSize();
 void __DELETE_org_xmlvm_iphone_CGSize(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGSize(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGSize();

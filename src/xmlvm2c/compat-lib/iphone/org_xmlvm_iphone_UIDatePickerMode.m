@@ -6,6 +6,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIDatePickerMode
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIDatePickerMode __TIB_org_xmlvm_iphone_UIDatePickerMode = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIDatePickerMode, // classInitializer
     "org.xmlvm.iphone.UIDatePickerMode", // className
@@ -94,35 +95,48 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIDatePickerMode()
 {
-    __TIB_org_xmlvm_iphone_UIDatePickerMode.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
-    __TIB_org_xmlvm_iphone_UIDatePickerMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIDatePickerMode;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIDatePickerMode.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-    // Initialize vtable for this class
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UIDatePickerMode.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UIDatePickerMode.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
-    _STATIC_org_xmlvm_iphone_UIDatePickerMode_Time = 0;
-    _STATIC_org_xmlvm_iphone_UIDatePickerMode_Date = 1;
-    _STATIC_org_xmlvm_iphone_UIDatePickerMode_DateAndTime = 2;
-    _STATIC_org_xmlvm_iphone_UIDatePickerMode_CountDownTimer = 3;
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIDatePickerMode);
+    if (!__TIB_org_xmlvm_iphone_UIDatePickerMode.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UIDatePickerMode();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIDatePickerMode);
+}
 
-    __TIB_org_xmlvm_iphone_UIDatePickerMode.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIDatePickerMode.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIDatePickerMode.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UIDatePickerMode.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIDatePickerMode.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIDatePickerMode.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UIDatePickerMode.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIDatePickerMode.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIDatePickerMode = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIDatePickerMode);
-    __TIB_org_xmlvm_iphone_UIDatePickerMode.clazz = __CLASS_org_xmlvm_iphone_UIDatePickerMode;
-    __CLASS_org_xmlvm_iphone_UIDatePickerMode_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDatePickerMode, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UIDatePickerMode()
+{
+    if (!__TIB_org_xmlvm_iphone_UIDatePickerMode.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIDatePickerMode.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIDatePickerMode]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
+        __TIB_org_xmlvm_iphone_UIDatePickerMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIDatePickerMode;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIDatePickerMode.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+        // Initialize vtable for this class
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIDatePickerMode.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UIDatePickerMode.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+        _STATIC_org_xmlvm_iphone_UIDatePickerMode_Time = 0;
+        _STATIC_org_xmlvm_iphone_UIDatePickerMode_Date = 1;
+        _STATIC_org_xmlvm_iphone_UIDatePickerMode_DateAndTime = 2;
+        _STATIC_org_xmlvm_iphone_UIDatePickerMode_CountDownTimer = 3;
+
+        __TIB_org_xmlvm_iphone_UIDatePickerMode.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIDatePickerMode.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIDatePickerMode.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UIDatePickerMode.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIDatePickerMode.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIDatePickerMode.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UIDatePickerMode.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIDatePickerMode.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UIDatePickerMode = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIDatePickerMode);
+        __TIB_org_xmlvm_iphone_UIDatePickerMode.clazz = __CLASS_org_xmlvm_iphone_UIDatePickerMode;
+        __CLASS_org_xmlvm_iphone_UIDatePickerMode_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDatePickerMode, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIDatePickerMode]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UIDatePickerMode.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UIDatePickerMode(void* me, void* client_data)

@@ -29,6 +29,7 @@ typedef struct org_xmlvm_iphone_NSTimerDelegate org_xmlvm_iphone_NSTimerDelegate
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSTimerDelegate_timerEvent___java_lang_Object 11
 
 void __INIT_FOR_CLASS_org_xmlvm_iphone_NSTimerDelegate(__TIB_DEFINITION_TEMPLATE** interface);
+void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_NSTimerDelegate(__TIB_DEFINITION_TEMPLATE** interface);
 void __INIT_org_xmlvm_iphone_NSTimerDelegate();
 
 #endif

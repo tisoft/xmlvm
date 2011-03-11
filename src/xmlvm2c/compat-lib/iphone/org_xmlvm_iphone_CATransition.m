@@ -7,6 +7,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CATransition
 
 __TIB_DEFINITION_org_xmlvm_iphone_CATransition __TIB_org_xmlvm_iphone_CATransition = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CATransition, // classInitializer
     "org.xmlvm.iphone.CATransition", // className
@@ -280,66 +281,79 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_CATransition()
 {
-    __TIB_org_xmlvm_iphone_CATransition.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_CAAnimation.classInitialized) __INIT_org_xmlvm_iphone_CAAnimation();
-    __TIB_org_xmlvm_iphone_CATransition.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CATransition;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CATransition.vtable, __TIB_org_xmlvm_iphone_CAAnimation.vtable, sizeof(__TIB_org_xmlvm_iphone_CAAnimation.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_CATransition.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_getEndProgress__;
-    __TIB_org_xmlvm_iphone_CATransition.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_setEndProgress___float;
-    __TIB_org_xmlvm_iphone_CATransition.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_getStartProgress__;
-    __TIB_org_xmlvm_iphone_CATransition.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_setStartProgress___float;
-    __TIB_org_xmlvm_iphone_CATransition.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_getSubtype__;
-    __TIB_org_xmlvm_iphone_CATransition.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_setSubtype___java_lang_String;
-    __TIB_org_xmlvm_iphone_CATransition.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_getType__;
-    __TIB_org_xmlvm_iphone_CATransition.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_setType___java_lang_String;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_CATransition.numImplementedInterfaces = 2;
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 2);
-    __INIT_FOR_CLASS_org_xmlvm_iphone_CAMediaTiming(&__TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]);
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[11] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[12] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[13] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[14] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[15] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[16] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[17] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[18] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[19] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[20] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[21] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[22] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[23] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[24] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[25] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[26] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    __INIT_FOR_CLASS_org_xmlvm_iphone_CAAction(&__TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]);
-    __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[11] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
-    _STATIC_org_xmlvm_iphone_CATransition_Fade = (java_lang_String*) xmlvm_create_java_string("\"fade\"");
-    _STATIC_org_xmlvm_iphone_CATransition_MoveIn = (java_lang_String*) xmlvm_create_java_string("\"moveIn\"");
-    _STATIC_org_xmlvm_iphone_CATransition_Push = (java_lang_String*) xmlvm_create_java_string("\"push\"");
-    _STATIC_org_xmlvm_iphone_CATransition_Reveal = (java_lang_String*) xmlvm_create_java_string("\"reveal\"");
-    _STATIC_org_xmlvm_iphone_CATransition_FromRight = (java_lang_String*) xmlvm_create_java_string("\"fromRight\"");
-    _STATIC_org_xmlvm_iphone_CATransition_FromLeft = (java_lang_String*) xmlvm_create_java_string("\"fromLeft\"");
-    _STATIC_org_xmlvm_iphone_CATransition_FromTop = (java_lang_String*) xmlvm_create_java_string("\"fromTop\"");
-    _STATIC_org_xmlvm_iphone_CATransition_FromBottom = (java_lang_String*) xmlvm_create_java_string("\"fromBottom\"");
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_CATransition);
+    if (!__TIB_org_xmlvm_iphone_CATransition.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_CATransition();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_CATransition);
+}
 
-    __TIB_org_xmlvm_iphone_CATransition.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_CATransition.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_CATransition.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_CATransition.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_CATransition.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_CATransition.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_CATransition.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_CATransition.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_CATransition = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CATransition);
-    __TIB_org_xmlvm_iphone_CATransition.clazz = __CLASS_org_xmlvm_iphone_CATransition;
-    __CLASS_org_xmlvm_iphone_CATransition_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CATransition, 1);
+void __INIT_IMPL_org_xmlvm_iphone_CATransition()
+{
+    if (!__TIB_org_xmlvm_iphone_CATransition.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_CATransition.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CATransition]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_CAAnimation.classInitialized) __INIT_IMPL_org_xmlvm_iphone_CAAnimation();
+        __TIB_org_xmlvm_iphone_CATransition.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CATransition;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CATransition.vtable, __TIB_org_xmlvm_iphone_CAAnimation.vtable, sizeof(__TIB_org_xmlvm_iphone_CAAnimation.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_CATransition.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_getEndProgress__;
+        __TIB_org_xmlvm_iphone_CATransition.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_setEndProgress___float;
+        __TIB_org_xmlvm_iphone_CATransition.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_getStartProgress__;
+        __TIB_org_xmlvm_iphone_CATransition.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_setStartProgress___float;
+        __TIB_org_xmlvm_iphone_CATransition.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_getSubtype__;
+        __TIB_org_xmlvm_iphone_CATransition.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_setSubtype___java_lang_String;
+        __TIB_org_xmlvm_iphone_CATransition.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_getType__;
+        __TIB_org_xmlvm_iphone_CATransition.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_CATransition_setType___java_lang_String;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_CATransition.numImplementedInterfaces = 2;
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 2);
+        __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_CAAction(&__TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]);
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][0]->vtable[11] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_CAMediaTiming(&__TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]);
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[11] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[12] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[13] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[14] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[15] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[16] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[17] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[18] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[19] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[20] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[21] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[22] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[23] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[24] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[25] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        __TIB_org_xmlvm_iphone_CATransition.implementedInterfaces[0][1]->vtable[26] = __TIB_org_xmlvm_iphone_CATransition.vtable[-1];
+        _STATIC_org_xmlvm_iphone_CATransition_Fade = (java_lang_String*) xmlvm_create_java_string("\"fade\"");
+        _STATIC_org_xmlvm_iphone_CATransition_MoveIn = (java_lang_String*) xmlvm_create_java_string("\"moveIn\"");
+        _STATIC_org_xmlvm_iphone_CATransition_Push = (java_lang_String*) xmlvm_create_java_string("\"push\"");
+        _STATIC_org_xmlvm_iphone_CATransition_Reveal = (java_lang_String*) xmlvm_create_java_string("\"reveal\"");
+        _STATIC_org_xmlvm_iphone_CATransition_FromRight = (java_lang_String*) xmlvm_create_java_string("\"fromRight\"");
+        _STATIC_org_xmlvm_iphone_CATransition_FromLeft = (java_lang_String*) xmlvm_create_java_string("\"fromLeft\"");
+        _STATIC_org_xmlvm_iphone_CATransition_FromTop = (java_lang_String*) xmlvm_create_java_string("\"fromTop\"");
+        _STATIC_org_xmlvm_iphone_CATransition_FromBottom = (java_lang_String*) xmlvm_create_java_string("\"fromBottom\"");
+
+        __TIB_org_xmlvm_iphone_CATransition.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_CATransition.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_CATransition.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_CATransition.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_CATransition.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_CATransition.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_CATransition.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_CATransition.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_CATransition = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CATransition);
+        __TIB_org_xmlvm_iphone_CATransition.clazz = __CLASS_org_xmlvm_iphone_CATransition;
+        __CLASS_org_xmlvm_iphone_CATransition_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CATransition, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CATransition]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_CATransition.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_CATransition(void* me, void* client_data)

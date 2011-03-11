@@ -75,6 +75,7 @@ typedef struct org_xmlvm_iphone_UIApplication org_xmlvm_iphone_UIApplication;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL 36
 
 void __INIT_org_xmlvm_iphone_UIApplication();
+void __INIT_IMPL_org_xmlvm_iphone_UIApplication();
 void __DELETE_org_xmlvm_iphone_UIApplication(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIApplication(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIApplication();

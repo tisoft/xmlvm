@@ -81,6 +81,7 @@ typedef struct org_xmlvm_iphone_AVAudioPlayer org_xmlvm_iphone_AVAudioPlayer;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_AVAudioPlayer_getData__ 31
 
 void __INIT_org_xmlvm_iphone_AVAudioPlayer();
+void __INIT_IMPL_org_xmlvm_iphone_AVAudioPlayer();
 void __DELETE_org_xmlvm_iphone_AVAudioPlayer(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_AVAudioPlayer();

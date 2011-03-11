@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_UITableViewCellSelectionStyle org_xmlvm_iphone_U
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewCellSelectionStyle 11
 
 void __INIT_org_xmlvm_iphone_UITableViewCellSelectionStyle();
+void __INIT_IMPL_org_xmlvm_iphone_UITableViewCellSelectionStyle();
 void __DELETE_org_xmlvm_iphone_UITableViewCellSelectionStyle(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCellSelectionStyle(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCellSelectionStyle();

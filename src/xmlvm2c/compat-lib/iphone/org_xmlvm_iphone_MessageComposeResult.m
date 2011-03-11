@@ -6,6 +6,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MessageComposeResult
 
 __TIB_DEFINITION_org_xmlvm_iphone_MessageComposeResult __TIB_org_xmlvm_iphone_MessageComposeResult = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MessageComposeResult, // classInitializer
     "org.xmlvm.iphone.MessageComposeResult", // className
@@ -86,34 +87,47 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_MessageComposeResult()
 {
-    __TIB_org_xmlvm_iphone_MessageComposeResult.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
-    __TIB_org_xmlvm_iphone_MessageComposeResult.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MessageComposeResult;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MessageComposeResult.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-    // Initialize vtable for this class
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_MessageComposeResult.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_MessageComposeResult.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
-    _STATIC_org_xmlvm_iphone_MessageComposeResult_Cancelled = 0;
-    _STATIC_org_xmlvm_iphone_MessageComposeResult_Sent = 1;
-    _STATIC_org_xmlvm_iphone_MessageComposeResult_Failed = 2;
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_MessageComposeResult);
+    if (!__TIB_org_xmlvm_iphone_MessageComposeResult.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_MessageComposeResult();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_MessageComposeResult);
+}
 
-    __TIB_org_xmlvm_iphone_MessageComposeResult.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_MessageComposeResult.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_MessageComposeResult.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_MessageComposeResult.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_MessageComposeResult.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_MessageComposeResult.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_MessageComposeResult.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_MessageComposeResult.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_MessageComposeResult = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MessageComposeResult);
-    __TIB_org_xmlvm_iphone_MessageComposeResult.clazz = __CLASS_org_xmlvm_iphone_MessageComposeResult;
-    __CLASS_org_xmlvm_iphone_MessageComposeResult_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MessageComposeResult, 1);
+void __INIT_IMPL_org_xmlvm_iphone_MessageComposeResult()
+{
+    if (!__TIB_org_xmlvm_iphone_MessageComposeResult.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_MessageComposeResult.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MessageComposeResult]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
+        __TIB_org_xmlvm_iphone_MessageComposeResult.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MessageComposeResult;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MessageComposeResult.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+        // Initialize vtable for this class
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_MessageComposeResult.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_MessageComposeResult.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+        _STATIC_org_xmlvm_iphone_MessageComposeResult_Cancelled = 0;
+        _STATIC_org_xmlvm_iphone_MessageComposeResult_Sent = 1;
+        _STATIC_org_xmlvm_iphone_MessageComposeResult_Failed = 2;
+
+        __TIB_org_xmlvm_iphone_MessageComposeResult.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_MessageComposeResult.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_MessageComposeResult.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_MessageComposeResult.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_MessageComposeResult.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_MessageComposeResult.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_MessageComposeResult.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_MessageComposeResult.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_MessageComposeResult = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MessageComposeResult);
+        __TIB_org_xmlvm_iphone_MessageComposeResult.clazz = __CLASS_org_xmlvm_iphone_MessageComposeResult;
+        __CLASS_org_xmlvm_iphone_MessageComposeResult_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MessageComposeResult, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MessageComposeResult]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_MessageComposeResult.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_MessageComposeResult(void* me, void* client_data)

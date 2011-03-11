@@ -45,6 +45,7 @@ typedef struct org_xmlvm_iphone_UIAcceleration org_xmlvm_iphone_UIAcceleration;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAcceleration_z__ 16
 
 void __INIT_org_xmlvm_iphone_UIAcceleration();
+void __INIT_IMPL_org_xmlvm_iphone_UIAcceleration();
 void __DELETE_org_xmlvm_iphone_UIAcceleration(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAcceleration(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAcceleration();

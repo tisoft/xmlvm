@@ -51,6 +51,7 @@ typedef struct org_xmlvm_iphone_MKPinAnnotationView org_xmlvm_iphone_MKPinAnnota
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPinAnnotationView_setPinColor___int 101
 
 void __INIT_org_xmlvm_iphone_MKPinAnnotationView();
+void __INIT_IMPL_org_xmlvm_iphone_MKPinAnnotationView();
 void __DELETE_org_xmlvm_iphone_MKPinAnnotationView(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPinAnnotationView(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKPinAnnotationView();

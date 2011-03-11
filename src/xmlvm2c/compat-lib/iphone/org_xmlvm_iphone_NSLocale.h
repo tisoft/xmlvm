@@ -40,6 +40,7 @@ typedef struct org_xmlvm_iphone_NSLocale org_xmlvm_iphone_NSLocale;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSLocale_localeIdentifier__ 14
 
 void __INIT_org_xmlvm_iphone_NSLocale();
+void __INIT_IMPL_org_xmlvm_iphone_NSLocale();
 void __DELETE_org_xmlvm_iphone_NSLocale(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLocale(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSLocale();

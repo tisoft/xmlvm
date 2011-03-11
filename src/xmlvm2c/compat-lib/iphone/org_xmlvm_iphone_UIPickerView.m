@@ -9,6 +9,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIPickerView
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIPickerView __TIB_org_xmlvm_iphone_UIPickerView = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIPickerView, // classInitializer
     "org.xmlvm.iphone.UIPickerView", // className
@@ -316,45 +317,58 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIPickerView()
 {
-    __TIB_org_xmlvm_iphone_UIPickerView.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
-    __TIB_org_xmlvm_iphone_UIPickerView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIPickerView;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIPickerView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIPickerView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_getNumberOfComponents__;
-    __TIB_org_xmlvm_iphone_UIPickerView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_numberOfRowsInComponent___int;
-    __TIB_org_xmlvm_iphone_UIPickerView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_rowSizeForComponent___int;
-    __TIB_org_xmlvm_iphone_UIPickerView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_reloadAllComponents__;
-    __TIB_org_xmlvm_iphone_UIPickerView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_reloadComponent___int;
-    __TIB_org_xmlvm_iphone_UIPickerView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_selectedRowInComponent___int;
-    __TIB_org_xmlvm_iphone_UIPickerView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_selectRow___int_int_boolean;
-    __TIB_org_xmlvm_iphone_UIPickerView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_viewForRow___int_int;
-    __TIB_org_xmlvm_iphone_UIPickerView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_getDataSource__;
-    __TIB_org_xmlvm_iphone_UIPickerView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_setDataSource___org_xmlvm_iphone_UIPickerViewDataSource;
-    __TIB_org_xmlvm_iphone_UIPickerView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_getDelegate__;
-    __TIB_org_xmlvm_iphone_UIPickerView.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_setDelegate___org_xmlvm_iphone_UIPickerViewDelegate;
-    __TIB_org_xmlvm_iphone_UIPickerView.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_showsSelectionIndicator__;
-    __TIB_org_xmlvm_iphone_UIPickerView.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_setShowsSelectionIndicator___boolean;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UIPickerView.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UIPickerView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIPickerView);
+    if (!__TIB_org_xmlvm_iphone_UIPickerView.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UIPickerView();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIPickerView);
+}
 
-    __TIB_org_xmlvm_iphone_UIPickerView.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIPickerView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIPickerView.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UIPickerView.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIPickerView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIPickerView.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UIPickerView.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIPickerView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIPickerView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIPickerView);
-    __TIB_org_xmlvm_iphone_UIPickerView.clazz = __CLASS_org_xmlvm_iphone_UIPickerView;
-    __CLASS_org_xmlvm_iphone_UIPickerView_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIPickerView, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UIPickerView()
+{
+    if (!__TIB_org_xmlvm_iphone_UIPickerView.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIPickerView.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIPickerView]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIView();
+        __TIB_org_xmlvm_iphone_UIPickerView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIPickerView;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIPickerView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_UIPickerView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_getNumberOfComponents__;
+        __TIB_org_xmlvm_iphone_UIPickerView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_numberOfRowsInComponent___int;
+        __TIB_org_xmlvm_iphone_UIPickerView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_rowSizeForComponent___int;
+        __TIB_org_xmlvm_iphone_UIPickerView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_reloadAllComponents__;
+        __TIB_org_xmlvm_iphone_UIPickerView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_reloadComponent___int;
+        __TIB_org_xmlvm_iphone_UIPickerView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_selectedRowInComponent___int;
+        __TIB_org_xmlvm_iphone_UIPickerView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_selectRow___int_int_boolean;
+        __TIB_org_xmlvm_iphone_UIPickerView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_viewForRow___int_int;
+        __TIB_org_xmlvm_iphone_UIPickerView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_getDataSource__;
+        __TIB_org_xmlvm_iphone_UIPickerView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_setDataSource___org_xmlvm_iphone_UIPickerViewDataSource;
+        __TIB_org_xmlvm_iphone_UIPickerView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_getDelegate__;
+        __TIB_org_xmlvm_iphone_UIPickerView.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_setDelegate___org_xmlvm_iphone_UIPickerViewDelegate;
+        __TIB_org_xmlvm_iphone_UIPickerView.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_showsSelectionIndicator__;
+        __TIB_org_xmlvm_iphone_UIPickerView.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerView_setShowsSelectionIndicator___boolean;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIPickerView.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UIPickerView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_UIPickerView.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIPickerView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIPickerView.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UIPickerView.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIPickerView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIPickerView.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UIPickerView.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIPickerView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UIPickerView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIPickerView);
+        __TIB_org_xmlvm_iphone_UIPickerView.clazz = __CLASS_org_xmlvm_iphone_UIPickerView;
+        __CLASS_org_xmlvm_iphone_UIPickerView_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIPickerView, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIPickerView]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UIPickerView.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UIPickerView(void* me, void* client_data)

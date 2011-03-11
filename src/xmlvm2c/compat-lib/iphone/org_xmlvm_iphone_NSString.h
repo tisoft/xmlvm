@@ -68,6 +68,7 @@ typedef struct org_xmlvm_iphone_NSString org_xmlvm_iphone_NSString;
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSString 14
 
 void __INIT_org_xmlvm_iphone_NSString();
+void __INIT_IMPL_org_xmlvm_iphone_NSString();
 void __DELETE_org_xmlvm_iphone_NSString(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSString(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSString();

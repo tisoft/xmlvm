@@ -72,6 +72,7 @@ typedef struct org_xmlvm_iphone_MKOverlayView org_xmlvm_iphone_MKOverlayView;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_setNeedsDisplayInMapRect___org_xmlvm_iphone_MKMapRect_float 22
 
 void __INIT_org_xmlvm_iphone_MKOverlayView();
+void __INIT_IMPL_org_xmlvm_iphone_MKOverlayView();
 void __DELETE_org_xmlvm_iphone_MKOverlayView(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKOverlayView(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKOverlayView();

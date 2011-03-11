@@ -41,6 +41,7 @@ typedef struct org_xmlvm_iphone_MKMapSize org_xmlvm_iphone_MKMapSize;
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKMapSize 14
 
 void __INIT_org_xmlvm_iphone_MKMapSize();
+void __INIT_IMPL_org_xmlvm_iphone_MKMapSize();
 void __DELETE_org_xmlvm_iphone_MKMapSize(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapSize(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKMapSize();

@@ -45,6 +45,7 @@ typedef struct org_xmlvm_iphone_UIViewAnimationDelegate org_xmlvm_iphone_UIViewA
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewAnimationDelegate_animationDidStop___java_lang_String_boolean 15
 
 void __INIT_org_xmlvm_iphone_UIViewAnimationDelegate();
+void __INIT_IMPL_org_xmlvm_iphone_UIViewAnimationDelegate();
 void __DELETE_org_xmlvm_iphone_UIViewAnimationDelegate(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewAnimationDelegate(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewAnimationDelegate();

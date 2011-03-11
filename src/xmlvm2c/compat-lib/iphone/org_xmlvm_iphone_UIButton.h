@@ -90,6 +90,7 @@ typedef struct org_xmlvm_iphone_UIButton org_xmlvm_iphone_UIButton;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setAlpha___float 45
 
 void __INIT_org_xmlvm_iphone_UIButton();
+void __INIT_IMPL_org_xmlvm_iphone_UIButton();
 void __DELETE_org_xmlvm_iphone_UIButton(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIButton(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIButton();

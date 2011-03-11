@@ -6,6 +6,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIControlEvent
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIControlEvent __TIB_org_xmlvm_iphone_UIControlEvent = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIControlEvent, // classInitializer
     "org.xmlvm.iphone.UIControlEvent", // className
@@ -214,50 +215,63 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIControlEvent()
 {
-    __TIB_org_xmlvm_iphone_UIControlEvent.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
-    __TIB_org_xmlvm_iphone_UIControlEvent.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIControlEvent;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIControlEvent.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-    // Initialize vtable for this class
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UIControlEvent.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UIControlEvent.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDown = 1;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDownRepeat = 2;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragInside = 4;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragOutside = 8;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragEnter = 16;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragExit = 32;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchUpInside = 64;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchUpOutside = 128;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchCancel = 256;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_ValueChanged = 4096;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidBegin = 65536;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_EditingChanged = 131072;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidEnd = 262144;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidEndOnExit = 524288;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_AllTouchEvents = 4095;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_AllEditingEvents = 983040;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_ApplicationReserved = 251658240;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_SystemReserved = -268435456;
-    _STATIC_org_xmlvm_iphone_UIControlEvent_AllEvents = -1;
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIControlEvent);
+    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UIControlEvent();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIControlEvent);
+}
 
-    __TIB_org_xmlvm_iphone_UIControlEvent.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIControlEvent.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIControlEvent.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UIControlEvent.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIControlEvent.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIControlEvent.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UIControlEvent.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIControlEvent.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIControlEvent = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIControlEvent);
-    __TIB_org_xmlvm_iphone_UIControlEvent.clazz = __CLASS_org_xmlvm_iphone_UIControlEvent;
-    __CLASS_org_xmlvm_iphone_UIControlEvent_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIControlEvent, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UIControlEvent()
+{
+    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIControlEvent.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIControlEvent]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
+        __TIB_org_xmlvm_iphone_UIControlEvent.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIControlEvent;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIControlEvent.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+        // Initialize vtable for this class
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIControlEvent.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UIControlEvent.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+        _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDown = 1;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDownRepeat = 2;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragInside = 4;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragOutside = 8;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragEnter = 16;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragExit = 32;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_TouchUpInside = 64;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_TouchUpOutside = 128;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_TouchCancel = 256;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_ValueChanged = 4096;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidBegin = 65536;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_EditingChanged = 131072;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidEnd = 262144;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidEndOnExit = 524288;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_AllTouchEvents = 4095;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_AllEditingEvents = 983040;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_ApplicationReserved = 251658240;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_SystemReserved = -268435456;
+        _STATIC_org_xmlvm_iphone_UIControlEvent_AllEvents = -1;
+
+        __TIB_org_xmlvm_iphone_UIControlEvent.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIControlEvent.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIControlEvent.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UIControlEvent.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIControlEvent.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIControlEvent.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UIControlEvent.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIControlEvent.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UIControlEvent = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIControlEvent);
+        __TIB_org_xmlvm_iphone_UIControlEvent.clazz = __CLASS_org_xmlvm_iphone_UIControlEvent;
+        __CLASS_org_xmlvm_iphone_UIControlEvent_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIControlEvent, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIControlEvent]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UIControlEvent.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UIControlEvent(void* me, void* client_data)

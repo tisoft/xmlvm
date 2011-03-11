@@ -6,6 +6,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIButtonType
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIButtonType __TIB_org_xmlvm_iphone_UIButtonType = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIButtonType, // classInitializer
     "org.xmlvm.iphone.UIButtonType", // className
@@ -110,37 +111,50 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIButtonType()
 {
-    __TIB_org_xmlvm_iphone_UIButtonType.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
-    __TIB_org_xmlvm_iphone_UIButtonType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIButtonType;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIButtonType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-    // Initialize vtable for this class
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UIButtonType.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UIButtonType.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
-    _STATIC_org_xmlvm_iphone_UIButtonType_Custom = 0;
-    _STATIC_org_xmlvm_iphone_UIButtonType_RoundedRect = 1;
-    _STATIC_org_xmlvm_iphone_UIButtonType_DetailDisclosure = 2;
-    _STATIC_org_xmlvm_iphone_UIButtonType_InfoLight = 3;
-    _STATIC_org_xmlvm_iphone_UIButtonType_InfoDark = 4;
-    _STATIC_org_xmlvm_iphone_UIButtonType_ContactAdd = 5;
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIButtonType);
+    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UIButtonType();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIButtonType);
+}
 
-    __TIB_org_xmlvm_iphone_UIButtonType.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIButtonType.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIButtonType.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UIButtonType.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIButtonType.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIButtonType.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UIButtonType.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIButtonType.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIButtonType = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIButtonType);
-    __TIB_org_xmlvm_iphone_UIButtonType.clazz = __CLASS_org_xmlvm_iphone_UIButtonType;
-    __CLASS_org_xmlvm_iphone_UIButtonType_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIButtonType, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UIButtonType()
+{
+    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIButtonType.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIButtonType]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
+        __TIB_org_xmlvm_iphone_UIButtonType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIButtonType;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIButtonType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+        // Initialize vtable for this class
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIButtonType.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UIButtonType.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+        _STATIC_org_xmlvm_iphone_UIButtonType_Custom = 0;
+        _STATIC_org_xmlvm_iphone_UIButtonType_RoundedRect = 1;
+        _STATIC_org_xmlvm_iphone_UIButtonType_DetailDisclosure = 2;
+        _STATIC_org_xmlvm_iphone_UIButtonType_InfoLight = 3;
+        _STATIC_org_xmlvm_iphone_UIButtonType_InfoDark = 4;
+        _STATIC_org_xmlvm_iphone_UIButtonType_ContactAdd = 5;
+
+        __TIB_org_xmlvm_iphone_UIButtonType.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIButtonType.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIButtonType.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UIButtonType.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIButtonType.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIButtonType.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UIButtonType.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIButtonType.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UIButtonType = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIButtonType);
+        __TIB_org_xmlvm_iphone_UIButtonType.clazz = __CLASS_org_xmlvm_iphone_UIButtonType;
+        __CLASS_org_xmlvm_iphone_UIButtonType_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIButtonType, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIButtonType]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UIButtonType.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UIButtonType(void* me, void* client_data)

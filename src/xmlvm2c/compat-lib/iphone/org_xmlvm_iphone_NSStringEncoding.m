@@ -6,6 +6,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSStringEncoding
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSStringEncoding __TIB_org_xmlvm_iphone_NSStringEncoding = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSStringEncoding, // classInitializer
     "org.xmlvm.iphone.NSStringEncoding", // className
@@ -262,54 +263,67 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_NSStringEncoding()
 {
-    __TIB_org_xmlvm_iphone_NSStringEncoding.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
-    __TIB_org_xmlvm_iphone_NSStringEncoding.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSStringEncoding;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSStringEncoding.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-    // Initialize vtable for this class
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_NSStringEncoding.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_NSStringEncoding.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_ASCII = 1;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_NEXTSTEP = 2;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_JapaneseEUC = 3;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF8 = 4;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_ISOLatin1 = 5;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_Symbol = 6;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_NonLossyASCII = 7;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_ShiftJIS = 8;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_ISOLatin2 = 9;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_Unicode = 10;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1251 = 11;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1252 = 12;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1253 = 13;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1254 = 14;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1250 = 15;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_ISO2022JP = 21;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_MacOSRoman = 30;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF16 = 10;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF16BigEndian = -1879047936;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF16LittleEndian = -1811939072;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF32 = -1946156800;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF32BigEndian = -1744830208;
-    _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF32LittleEndian = -1677721344;
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_NSStringEncoding);
+    if (!__TIB_org_xmlvm_iphone_NSStringEncoding.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_NSStringEncoding();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_NSStringEncoding);
+}
 
-    __TIB_org_xmlvm_iphone_NSStringEncoding.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_NSStringEncoding.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_NSStringEncoding.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_NSStringEncoding.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_NSStringEncoding.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_NSStringEncoding.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_NSStringEncoding.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_NSStringEncoding.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_NSStringEncoding = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSStringEncoding);
-    __TIB_org_xmlvm_iphone_NSStringEncoding.clazz = __CLASS_org_xmlvm_iphone_NSStringEncoding;
-    __CLASS_org_xmlvm_iphone_NSStringEncoding_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSStringEncoding, 1);
+void __INIT_IMPL_org_xmlvm_iphone_NSStringEncoding()
+{
+    if (!__TIB_org_xmlvm_iphone_NSStringEncoding.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_NSStringEncoding.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSStringEncoding]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
+        __TIB_org_xmlvm_iphone_NSStringEncoding.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSStringEncoding;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSStringEncoding.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+        // Initialize vtable for this class
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_NSStringEncoding.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_NSStringEncoding.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_ASCII = 1;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_NEXTSTEP = 2;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_JapaneseEUC = 3;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF8 = 4;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_ISOLatin1 = 5;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_Symbol = 6;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_NonLossyASCII = 7;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_ShiftJIS = 8;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_ISOLatin2 = 9;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_Unicode = 10;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1251 = 11;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1252 = 12;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1253 = 13;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1254 = 14;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_WindowsCP1250 = 15;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_ISO2022JP = 21;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_MacOSRoman = 30;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF16 = 10;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF16BigEndian = -1879047936;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF16LittleEndian = -1811939072;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF32 = -1946156800;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF32BigEndian = -1744830208;
+        _STATIC_org_xmlvm_iphone_NSStringEncoding_UTF32LittleEndian = -1677721344;
+
+        __TIB_org_xmlvm_iphone_NSStringEncoding.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_NSStringEncoding.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_NSStringEncoding.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_NSStringEncoding.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_NSStringEncoding.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_NSStringEncoding.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_NSStringEncoding.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_NSStringEncoding.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_NSStringEncoding = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSStringEncoding);
+        __TIB_org_xmlvm_iphone_NSStringEncoding.clazz = __CLASS_org_xmlvm_iphone_NSStringEncoding;
+        __CLASS_org_xmlvm_iphone_NSStringEncoding_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSStringEncoding, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSStringEncoding]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_NSStringEncoding.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_NSStringEncoding(void* me, void* client_data)

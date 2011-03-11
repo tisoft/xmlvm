@@ -60,6 +60,7 @@ typedef struct org_xmlvm_iphone_MKPlacemark org_xmlvm_iphone_MKPlacemark;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPlacemark_subtitle__ 17
 
 void __INIT_org_xmlvm_iphone_MKPlacemark();
+void __INIT_IMPL_org_xmlvm_iphone_MKPlacemark();
 void __DELETE_org_xmlvm_iphone_MKPlacemark(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPlacemark(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKPlacemark();

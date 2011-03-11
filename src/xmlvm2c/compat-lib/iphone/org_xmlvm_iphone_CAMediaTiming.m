@@ -4,6 +4,7 @@
 #include "org_xmlvm_iphone_CAMediaTiming.h"
 
 __TIB_DEFINITION_org_xmlvm_iphone_CAMediaTiming __TIB_org_xmlvm_iphone_CAMediaTiming = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CAMediaTiming, // classInitializer
     "org.xmlvm.iphone.CAMediaTiming", // className
@@ -20,7 +21,17 @@ static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 
 void __INIT_FOR_CLASS_org_xmlvm_iphone_CAMediaTiming(__TIB_DEFINITION_TEMPLATE** interface)
 {
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_CAMediaTiming);
     if (!__TIB_org_xmlvm_iphone_CAMediaTiming.classInitialized) {
+        __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_CAMediaTiming(interface);
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_CAMediaTiming);
+}
+
+void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_CAMediaTiming(__TIB_DEFINITION_TEMPLATE** interface)
+{
+    if (!__TIB_org_xmlvm_iphone_CAMediaTiming.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_CAMediaTiming.classInitializationBegan = 1;
         __TIB_org_xmlvm_iphone_CAMediaTiming.numInterfaces = 0;
         __TIB_org_xmlvm_iphone_CAMediaTiming.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_CAMediaTiming.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

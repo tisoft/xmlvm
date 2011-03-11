@@ -49,6 +49,7 @@ typedef struct org_xmlvm_iphone_MKCoordinateRegion org_xmlvm_iphone_MKCoordinate
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKCoordinateRegion 14
 
 void __INIT_org_xmlvm_iphone_MKCoordinateRegion();
+void __INIT_IMPL_org_xmlvm_iphone_MKCoordinateRegion();
 void __DELETE_org_xmlvm_iphone_MKCoordinateRegion(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateRegion(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKCoordinateRegion();

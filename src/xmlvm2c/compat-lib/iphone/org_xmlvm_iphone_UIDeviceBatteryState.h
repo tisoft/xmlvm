@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_UIDeviceBatteryState org_xmlvm_iphone_UIDeviceBa
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIDeviceBatteryState 11
 
 void __INIT_org_xmlvm_iphone_UIDeviceBatteryState();
+void __INIT_IMPL_org_xmlvm_iphone_UIDeviceBatteryState();
 void __DELETE_org_xmlvm_iphone_UIDeviceBatteryState(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDeviceBatteryState(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDeviceBatteryState();

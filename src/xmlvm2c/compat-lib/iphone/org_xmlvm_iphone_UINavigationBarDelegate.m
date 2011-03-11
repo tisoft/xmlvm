@@ -5,6 +5,7 @@
 #include "org_xmlvm_iphone_UINavigationBarDelegate.h"
 
 __TIB_DEFINITION_org_xmlvm_iphone_UINavigationBarDelegate __TIB_org_xmlvm_iphone_UINavigationBarDelegate = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UINavigationBarDelegate, // classInitializer
     "org.xmlvm.iphone.UINavigationBarDelegate", // className
@@ -21,7 +22,17 @@ static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 
 void __INIT_FOR_CLASS_org_xmlvm_iphone_UINavigationBarDelegate(__TIB_DEFINITION_TEMPLATE** interface)
 {
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UINavigationBarDelegate);
     if (!__TIB_org_xmlvm_iphone_UINavigationBarDelegate.classInitialized) {
+        __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_UINavigationBarDelegate(interface);
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UINavigationBarDelegate);
+}
+
+void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_UINavigationBarDelegate(__TIB_DEFINITION_TEMPLATE** interface)
+{
+    if (!__TIB_org_xmlvm_iphone_UINavigationBarDelegate.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UINavigationBarDelegate.classInitializationBegan = 1;
         __TIB_org_xmlvm_iphone_UINavigationBarDelegate.numInterfaces = 0;
         __TIB_org_xmlvm_iphone_UINavigationBarDelegate.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UINavigationBarDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

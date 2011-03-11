@@ -43,6 +43,7 @@ typedef struct org_xmlvm_iphone_CAMediaTiming org_xmlvm_iphone_CAMediaTiming;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setTimeOffset___double 26
 
 void __INIT_FOR_CLASS_org_xmlvm_iphone_CAMediaTiming(__TIB_DEFINITION_TEMPLATE** interface);
+void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_CAMediaTiming(__TIB_DEFINITION_TEMPLATE** interface);
 void __INIT_org_xmlvm_iphone_CAMediaTiming();
 
 #endif

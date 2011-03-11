@@ -6,6 +6,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITextBorderStyle
 
 __TIB_DEFINITION_org_xmlvm_iphone_UITextBorderStyle __TIB_org_xmlvm_iphone_UITextBorderStyle = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UITextBorderStyle, // classInitializer
     "org.xmlvm.iphone.UITextBorderStyle", // className
@@ -94,35 +95,48 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UITextBorderStyle()
 {
-    __TIB_org_xmlvm_iphone_UITextBorderStyle.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
-    __TIB_org_xmlvm_iphone_UITextBorderStyle.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITextBorderStyle;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITextBorderStyle.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-    // Initialize vtable for this class
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UITextBorderStyle.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UITextBorderStyle.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
-    _STATIC_org_xmlvm_iphone_UITextBorderStyle_None = 0;
-    _STATIC_org_xmlvm_iphone_UITextBorderStyle_Line = 1;
-    _STATIC_org_xmlvm_iphone_UITextBorderStyle_Bezel = 2;
-    _STATIC_org_xmlvm_iphone_UITextBorderStyle_RoundedRect = 3;
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UITextBorderStyle);
+    if (!__TIB_org_xmlvm_iphone_UITextBorderStyle.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UITextBorderStyle();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UITextBorderStyle);
+}
 
-    __TIB_org_xmlvm_iphone_UITextBorderStyle.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UITextBorderStyle.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UITextBorderStyle.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UITextBorderStyle.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UITextBorderStyle.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UITextBorderStyle.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UITextBorderStyle.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UITextBorderStyle.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UITextBorderStyle = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UITextBorderStyle);
-    __TIB_org_xmlvm_iphone_UITextBorderStyle.clazz = __CLASS_org_xmlvm_iphone_UITextBorderStyle;
-    __CLASS_org_xmlvm_iphone_UITextBorderStyle_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextBorderStyle, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UITextBorderStyle()
+{
+    if (!__TIB_org_xmlvm_iphone_UITextBorderStyle.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UITextBorderStyle.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITextBorderStyle]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
+        __TIB_org_xmlvm_iphone_UITextBorderStyle.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITextBorderStyle;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITextBorderStyle.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+        // Initialize vtable for this class
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UITextBorderStyle.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UITextBorderStyle.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+        _STATIC_org_xmlvm_iphone_UITextBorderStyle_None = 0;
+        _STATIC_org_xmlvm_iphone_UITextBorderStyle_Line = 1;
+        _STATIC_org_xmlvm_iphone_UITextBorderStyle_Bezel = 2;
+        _STATIC_org_xmlvm_iphone_UITextBorderStyle_RoundedRect = 3;
+
+        __TIB_org_xmlvm_iphone_UITextBorderStyle.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UITextBorderStyle.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UITextBorderStyle.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UITextBorderStyle.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UITextBorderStyle.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UITextBorderStyle.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UITextBorderStyle.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UITextBorderStyle.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UITextBorderStyle = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UITextBorderStyle);
+        __TIB_org_xmlvm_iphone_UITextBorderStyle.clazz = __CLASS_org_xmlvm_iphone_UITextBorderStyle;
+        __CLASS_org_xmlvm_iphone_UITextBorderStyle_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextBorderStyle, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITextBorderStyle]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UITextBorderStyle.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UITextBorderStyle(void* me, void* client_data)

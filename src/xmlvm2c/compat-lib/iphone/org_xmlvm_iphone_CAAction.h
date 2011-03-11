@@ -36,6 +36,7 @@ typedef struct org_xmlvm_iphone_CAAction org_xmlvm_iphone_CAAction;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CAAction_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map 11
 
 void __INIT_FOR_CLASS_org_xmlvm_iphone_CAAction(__TIB_DEFINITION_TEMPLATE** interface);
+void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_CAAction(__TIB_DEFINITION_TEMPLATE** interface);
 void __INIT_org_xmlvm_iphone_CAAction();
 
 #endif

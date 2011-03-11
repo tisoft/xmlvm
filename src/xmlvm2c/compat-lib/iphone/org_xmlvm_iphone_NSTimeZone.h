@@ -45,6 +45,7 @@ typedef struct org_xmlvm_iphone_NSTimeZone org_xmlvm_iphone_NSTimeZone;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSTimeZone_toString__ 7
 
 void __INIT_org_xmlvm_iphone_NSTimeZone();
+void __INIT_IMPL_org_xmlvm_iphone_NSTimeZone();
 void __DELETE_org_xmlvm_iphone_NSTimeZone(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSTimeZone(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSTimeZone();

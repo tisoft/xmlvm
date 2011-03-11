@@ -10,6 +10,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIBarItem
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIBarItem __TIB_org_xmlvm_iphone_UIBarItem = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIBarItem, // classInitializer
     "org.xmlvm.iphone.UIBarItem", // className
@@ -281,44 +282,57 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIBarItem()
 {
-    __TIB_org_xmlvm_iphone_UIBarItem.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __TIB_org_xmlvm_iphone_UIBarItem.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIBarItem;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIBarItem.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIBarItem.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getBar__;
-    __TIB_org_xmlvm_iphone_UIBarItem.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setBar___org_xmlvm_iphone_UIView;
-    __TIB_org_xmlvm_iphone_UIBarItem.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_isEnabled__;
-    __TIB_org_xmlvm_iphone_UIBarItem.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setEnabled___boolean;
-    __TIB_org_xmlvm_iphone_UIBarItem.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getImage__;
-    __TIB_org_xmlvm_iphone_UIBarItem.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setImage___org_xmlvm_iphone_UIImage;
-    __TIB_org_xmlvm_iphone_UIBarItem.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getImageInsets__;
-    __TIB_org_xmlvm_iphone_UIBarItem.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setImageInsets___org_xmlvm_iphone_UIEdgeInsets;
-    __TIB_org_xmlvm_iphone_UIBarItem.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getTitle__;
-    __TIB_org_xmlvm_iphone_UIBarItem.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setTitle___java_lang_String;
-    __TIB_org_xmlvm_iphone_UIBarItem.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getTag__;
-    __TIB_org_xmlvm_iphone_UIBarItem.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setTag___int;
-    __TIB_org_xmlvm_iphone_UIBarItem.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_updateViews__;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UIBarItem.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UIBarItem.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIBarItem);
+    if (!__TIB_org_xmlvm_iphone_UIBarItem.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UIBarItem();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIBarItem);
+}
 
-    __TIB_org_xmlvm_iphone_UIBarItem.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIBarItem.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIBarItem.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UIBarItem.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIBarItem.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIBarItem.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UIBarItem.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIBarItem.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIBarItem = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIBarItem);
-    __TIB_org_xmlvm_iphone_UIBarItem.clazz = __CLASS_org_xmlvm_iphone_UIBarItem;
-    __CLASS_org_xmlvm_iphone_UIBarItem_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIBarItem, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UIBarItem()
+{
+    if (!__TIB_org_xmlvm_iphone_UIBarItem.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIBarItem.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIBarItem]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
+        __TIB_org_xmlvm_iphone_UIBarItem.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIBarItem;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIBarItem.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getBar__;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setBar___org_xmlvm_iphone_UIView;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_isEnabled__;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setEnabled___boolean;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getImage__;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setImage___org_xmlvm_iphone_UIImage;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getImageInsets__;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setImageInsets___org_xmlvm_iphone_UIEdgeInsets;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getTitle__;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setTitle___java_lang_String;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getTag__;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setTag___int;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_updateViews__;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIBarItem.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UIBarItem.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_UIBarItem.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIBarItem.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIBarItem.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UIBarItem.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIBarItem.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIBarItem.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UIBarItem.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIBarItem.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UIBarItem = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIBarItem);
+        __TIB_org_xmlvm_iphone_UIBarItem.clazz = __CLASS_org_xmlvm_iphone_UIBarItem;
+        __CLASS_org_xmlvm_iphone_UIBarItem_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIBarItem, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIBarItem]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UIBarItem.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UIBarItem(void* me, void* client_data)

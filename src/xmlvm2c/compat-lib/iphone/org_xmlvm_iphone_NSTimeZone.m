@@ -7,6 +7,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSTimeZone
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSTimeZone __TIB_org_xmlvm_iphone_NSTimeZone = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSTimeZone, // classInitializer
     "org.xmlvm.iphone.NSTimeZone", // className
@@ -108,33 +109,46 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_NSTimeZone()
 {
-    __TIB_org_xmlvm_iphone_NSTimeZone.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __TIB_org_xmlvm_iphone_NSTimeZone.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSTimeZone;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSTimeZone.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_NSTimeZone.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimeZone_name__;
-    __TIB_org_xmlvm_iphone_NSTimeZone.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimeZone_toString__;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_NSTimeZone.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_NSTimeZone.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_NSTimeZone);
+    if (!__TIB_org_xmlvm_iphone_NSTimeZone.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_NSTimeZone();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_NSTimeZone);
+}
 
-    __TIB_org_xmlvm_iphone_NSTimeZone.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_NSTimeZone.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_NSTimeZone.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_NSTimeZone.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_NSTimeZone.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_NSTimeZone.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_NSTimeZone.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_NSTimeZone.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_NSTimeZone = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSTimeZone);
-    __TIB_org_xmlvm_iphone_NSTimeZone.clazz = __CLASS_org_xmlvm_iphone_NSTimeZone;
-    __CLASS_org_xmlvm_iphone_NSTimeZone_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSTimeZone, 1);
+void __INIT_IMPL_org_xmlvm_iphone_NSTimeZone()
+{
+    if (!__TIB_org_xmlvm_iphone_NSTimeZone.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_NSTimeZone.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSTimeZone]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
+        __TIB_org_xmlvm_iphone_NSTimeZone.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSTimeZone;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSTimeZone.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_NSTimeZone.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimeZone_name__;
+        __TIB_org_xmlvm_iphone_NSTimeZone.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimeZone_toString__;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_NSTimeZone.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_NSTimeZone.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_NSTimeZone.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_NSTimeZone.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_NSTimeZone.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_NSTimeZone.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_NSTimeZone.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_NSTimeZone.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_NSTimeZone.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_NSTimeZone.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_NSTimeZone = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSTimeZone);
+        __TIB_org_xmlvm_iphone_NSTimeZone.clazz = __CLASS_org_xmlvm_iphone_NSTimeZone;
+        __CLASS_org_xmlvm_iphone_NSTimeZone_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSTimeZone, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSTimeZone]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_NSTimeZone.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_NSTimeZone(void* me, void* client_data)

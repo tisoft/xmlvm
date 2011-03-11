@@ -64,6 +64,7 @@ typedef struct org_xmlvm_iphone_UIActionSheet org_xmlvm_iphone_UIActionSheet;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheet_dismissWithClickedButtonIndex___int_boolean 73
 
 void __INIT_org_xmlvm_iphone_UIActionSheet();
+void __INIT_IMPL_org_xmlvm_iphone_UIActionSheet();
 void __DELETE_org_xmlvm_iphone_UIActionSheet(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheet(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActionSheet();

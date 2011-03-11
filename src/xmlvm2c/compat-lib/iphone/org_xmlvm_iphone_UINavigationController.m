@@ -8,6 +8,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UINavigationController
 
 __TIB_DEFINITION_org_xmlvm_iphone_UINavigationController __TIB_org_xmlvm_iphone_UINavigationController = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UINavigationController, // classInitializer
     "org.xmlvm.iphone.UINavigationController", // className
@@ -439,53 +440,66 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UINavigationController()
 {
-    __TIB_org_xmlvm_iphone_UINavigationController.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIViewController.classInitialized) __INIT_org_xmlvm_iphone_UIViewController();
-    __TIB_org_xmlvm_iphone_UINavigationController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UINavigationController;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UINavigationController.vtable, __TIB_org_xmlvm_iphone_UIViewController.vtable, sizeof(__TIB_org_xmlvm_iphone_UIViewController.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_requestInternalFrame__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getTopViewController__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getVisibleViewController__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getViewControllers__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setViewControllers___java_util_ArrayList;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setViewControllers___java_util_ArrayList_boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_pushViewController___org_xmlvm_iphone_UIViewController_boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_popViewControllerAnimated___boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_popToRootViewControllerAnimated___boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_popToViewController___org_xmlvm_iphone_UIViewController_boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_isNavigationBarHidden__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setNavigationBarHidden___boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setNavigationBarHidden___boolean_boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getNavigationBar__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_isToolbarHidden__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setToolbarHidden___boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setToolbarHidden___boolean_boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getToolbar__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getDelegate__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_loadView__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_updateViews__;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UINavigationController.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UINavigationController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UINavigationController);
+    if (!__TIB_org_xmlvm_iphone_UINavigationController.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UINavigationController();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UINavigationController);
+}
 
-    __TIB_org_xmlvm_iphone_UINavigationController.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UINavigationController.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UINavigationController.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UINavigationController.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UINavigationController.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UINavigationController.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UINavigationController.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UINavigationController.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UINavigationController = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UINavigationController);
-    __TIB_org_xmlvm_iphone_UINavigationController.clazz = __CLASS_org_xmlvm_iphone_UINavigationController;
-    __CLASS_org_xmlvm_iphone_UINavigationController_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationController, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UINavigationController()
+{
+    if (!__TIB_org_xmlvm_iphone_UINavigationController.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UINavigationController.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UINavigationController]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_UIViewController.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIViewController();
+        __TIB_org_xmlvm_iphone_UINavigationController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UINavigationController;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UINavigationController.vtable, __TIB_org_xmlvm_iphone_UIViewController.vtable, sizeof(__TIB_org_xmlvm_iphone_UIViewController.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_requestInternalFrame__;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getTopViewController__;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getVisibleViewController__;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getViewControllers__;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setViewControllers___java_util_ArrayList;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setViewControllers___java_util_ArrayList_boolean;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_pushViewController___org_xmlvm_iphone_UIViewController_boolean;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_popViewControllerAnimated___boolean;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_popToRootViewControllerAnimated___boolean;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_popToViewController___org_xmlvm_iphone_UIViewController_boolean;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_isNavigationBarHidden__;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setNavigationBarHidden___boolean;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setNavigationBarHidden___boolean_boolean;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getNavigationBar__;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_isToolbarHidden__;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setToolbarHidden___boolean;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setToolbarHidden___boolean_boolean;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getToolbar__;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getDelegate__;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_loadView__;
+        __TIB_org_xmlvm_iphone_UINavigationController.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_updateViews__;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UINavigationController.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UINavigationController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_UINavigationController.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UINavigationController.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UINavigationController.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UINavigationController.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UINavigationController.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UINavigationController.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UINavigationController.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UINavigationController.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UINavigationController = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UINavigationController);
+        __TIB_org_xmlvm_iphone_UINavigationController.clazz = __CLASS_org_xmlvm_iphone_UINavigationController;
+        __CLASS_org_xmlvm_iphone_UINavigationController_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationController, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UINavigationController]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UINavigationController.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UINavigationController(void* me, void* client_data)

@@ -56,6 +56,7 @@ typedef struct org_xmlvm_iphone_NSURLConnection org_xmlvm_iphone_NSURLConnection
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSURLConnection 14
 
 void __INIT_org_xmlvm_iphone_NSURLConnection();
+void __INIT_IMPL_org_xmlvm_iphone_NSURLConnection();
 void __DELETE_org_xmlvm_iphone_NSURLConnection(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLConnection(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURLConnection();

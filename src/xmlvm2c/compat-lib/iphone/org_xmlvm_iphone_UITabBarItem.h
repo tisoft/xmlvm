@@ -50,6 +50,7 @@ typedef struct org_xmlvm_iphone_UITabBarItem org_xmlvm_iphone_UITabBarItem;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITabBarItem_setTitle___java_lang_String 23
 
 void __INIT_org_xmlvm_iphone_UITabBarItem();
+void __INIT_IMPL_org_xmlvm_iphone_UITabBarItem();
 void __DELETE_org_xmlvm_iphone_UITabBarItem(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarItem();

@@ -56,6 +56,7 @@ typedef struct org_xmlvm_iphone_UITabBarDelegate org_xmlvm_iphone_UITabBarDelega
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITabBarDelegate_didSelectItem___org_xmlvm_iphone_UITabBar_org_xmlvm_iphone_UITabBarItem 18
 
 void __INIT_org_xmlvm_iphone_UITabBarDelegate();
+void __INIT_IMPL_org_xmlvm_iphone_UITabBarDelegate();
 void __DELETE_org_xmlvm_iphone_UITabBarDelegate(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarDelegate(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarDelegate();

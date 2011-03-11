@@ -89,6 +89,7 @@ typedef struct org_xmlvm_iphone_UISearchBar org_xmlvm_iphone_UISearchBar;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISearchBar_setShowsScopeBar___boolean 107
 
 void __INIT_org_xmlvm_iphone_UISearchBar();
+void __INIT_IMPL_org_xmlvm_iphone_UISearchBar();
 void __DELETE_org_xmlvm_iphone_UISearchBar(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBar(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISearchBar();

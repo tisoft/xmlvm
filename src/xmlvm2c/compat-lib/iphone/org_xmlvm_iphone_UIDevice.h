@@ -58,6 +58,7 @@ typedef struct org_xmlvm_iphone_UIDevice org_xmlvm_iphone_UIDevice;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDevice_getProximityState__ 32
 
 void __INIT_org_xmlvm_iphone_UIDevice();
+void __INIT_IMPL_org_xmlvm_iphone_UIDevice();
 void __DELETE_org_xmlvm_iphone_UIDevice(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDevice(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDevice();

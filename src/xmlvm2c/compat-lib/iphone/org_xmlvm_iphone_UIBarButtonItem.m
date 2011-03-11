@@ -11,6 +11,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIBarButtonItem
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIBarButtonItem __TIB_org_xmlvm_iphone_UIBarButtonItem = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIBarButtonItem, // classInitializer
     "org.xmlvm.iphone.UIBarButtonItem", // className
@@ -303,42 +304,55 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIBarButtonItem()
 {
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIBarItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarItem();
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIBarButtonItem;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIBarButtonItem.vtable, __TIB_org_xmlvm_iphone_UIBarItem.vtable, sizeof(__TIB_org_xmlvm_iphone_UIBarItem.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_setTitle___java_lang_String;
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_getCustomView__;
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_setCustomView___org_xmlvm_iphone_UIView;
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_getPossibleTitles__;
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_setPossibleTitles___java_util_Set;
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_getStyle__;
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_setStyle___int;
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_getTarget__;
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_setTarget___org_xmlvm_iphone_UIBarButtonItemDelegate;
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_getWidth__;
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[36] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_setWidth___float;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIBarButtonItem);
+    if (!__TIB_org_xmlvm_iphone_UIBarButtonItem.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UIBarButtonItem();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIBarButtonItem);
+}
 
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIBarButtonItem = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIBarButtonItem);
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.clazz = __CLASS_org_xmlvm_iphone_UIBarButtonItem;
-    __CLASS_org_xmlvm_iphone_UIBarButtonItem_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIBarButtonItem, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UIBarButtonItem()
+{
+    if (!__TIB_org_xmlvm_iphone_UIBarButtonItem.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIBarButtonItem]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_UIBarItem.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIBarItem();
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIBarButtonItem;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIBarButtonItem.vtable, __TIB_org_xmlvm_iphone_UIBarItem.vtable, sizeof(__TIB_org_xmlvm_iphone_UIBarItem.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_setTitle___java_lang_String;
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_getCustomView__;
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_setCustomView___org_xmlvm_iphone_UIView;
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_getPossibleTitles__;
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_setPossibleTitles___java_util_Set;
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_getStyle__;
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_setStyle___int;
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_getTarget__;
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_setTarget___org_xmlvm_iphone_UIBarButtonItemDelegate;
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_getWidth__;
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[36] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_setWidth___float;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UIBarButtonItem = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIBarButtonItem);
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.clazz = __CLASS_org_xmlvm_iphone_UIBarButtonItem;
+        __CLASS_org_xmlvm_iphone_UIBarButtonItem_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIBarButtonItem, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIBarButtonItem]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UIBarButtonItem.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UIBarButtonItem(void* me, void* client_data)

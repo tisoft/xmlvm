@@ -51,6 +51,7 @@ typedef struct org_xmlvm_iphone_CLRegion org_xmlvm_iphone_CLRegion;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLRegion_containsCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D 17
 
 void __INIT_org_xmlvm_iphone_CLRegion();
+void __INIT_IMPL_org_xmlvm_iphone_CLRegion();
 void __DELETE_org_xmlvm_iphone_CLRegion(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLRegion(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLRegion();

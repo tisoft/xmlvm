@@ -43,6 +43,7 @@ typedef struct org_xmlvm_iphone_UIProgressView org_xmlvm_iphone_UIProgressView;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIProgressView_setProgressViewStyle___int 81
 
 void __INIT_org_xmlvm_iphone_UIProgressView();
+void __INIT_IMPL_org_xmlvm_iphone_UIProgressView();
 void __DELETE_org_xmlvm_iphone_UIProgressView(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIProgressView(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIProgressView();

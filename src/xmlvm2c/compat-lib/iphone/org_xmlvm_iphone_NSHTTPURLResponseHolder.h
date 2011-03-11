@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_NSHTTPURLResponseHolder org_xmlvm_iphone_NSHTTPU
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSHTTPURLResponseHolder 14
 
 void __INIT_org_xmlvm_iphone_NSHTTPURLResponseHolder();
+void __INIT_IMPL_org_xmlvm_iphone_NSHTTPURLResponseHolder();
 void __DELETE_org_xmlvm_iphone_NSHTTPURLResponseHolder(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSHTTPURLResponseHolder(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSHTTPURLResponseHolder();

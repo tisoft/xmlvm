@@ -8,6 +8,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MFMailComposeViewControllerDelegate
 
 __TIB_DEFINITION_org_xmlvm_iphone_MFMailComposeViewControllerDelegate __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MFMailComposeViewControllerDelegate, // classInitializer
     "org.xmlvm.iphone.MFMailComposeViewControllerDelegate", // className
@@ -78,31 +79,44 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_MFMailComposeViewControllerDelegate()
 {
-    __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MFMailComposeViewControllerDelegate;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-    // Initialize vtable for this class
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate);
+    if (!__TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_MFMailComposeViewControllerDelegate();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate);
+}
 
-    __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate);
-    __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.clazz = __CLASS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate;
-    __CLASS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate, 1);
+void __INIT_IMPL_org_xmlvm_iphone_MFMailComposeViewControllerDelegate()
+{
+    if (!__TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MFMailComposeViewControllerDelegate]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
+        __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MFMailComposeViewControllerDelegate;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+        // Initialize vtable for this class
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate);
+        __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.clazz = __CLASS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate;
+        __CLASS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MFMailComposeViewControllerDelegate]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_MFMailComposeViewControllerDelegate(void* me, void* client_data)

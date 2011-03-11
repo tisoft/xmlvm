@@ -68,6 +68,7 @@ typedef struct org_xmlvm_iphone_CAAnimation org_xmlvm_iphone_CAAnimation;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CAAnimation_animationDidStop___org_xmlvm_iphone_CAAnimation 19
 
 void __INIT_org_xmlvm_iphone_CAAnimation();
+void __INIT_IMPL_org_xmlvm_iphone_CAAnimation();
 void __DELETE_org_xmlvm_iphone_CAAnimation(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CAAnimation(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CAAnimation();

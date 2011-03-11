@@ -48,6 +48,7 @@ typedef struct org_xmlvm_iphone_UIApplicationDelegate org_xmlvm_iphone_UIApplica
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidReceiveMemoryWarning___org_xmlvm_iphone_UIApplication 18
 
 void __INIT_org_xmlvm_iphone_UIApplicationDelegate();
+void __INIT_IMPL_org_xmlvm_iphone_UIApplicationDelegate();
 void __DELETE_org_xmlvm_iphone_UIApplicationDelegate(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIApplicationDelegate(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIApplicationDelegate();

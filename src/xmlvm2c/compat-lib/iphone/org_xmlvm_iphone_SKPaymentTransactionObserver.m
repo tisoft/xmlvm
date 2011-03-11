@@ -9,6 +9,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_SKPaymentTransactionObserver
 
 __TIB_DEFINITION_org_xmlvm_iphone_SKPaymentTransactionObserver __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_SKPaymentTransactionObserver, // classInitializer
     "org.xmlvm.iphone.SKPaymentTransactionObserver", // className
@@ -129,34 +130,47 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_SKPaymentTransactionObserver()
 {
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_SKPaymentTransactionObserver;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentTransactionObserver_removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList;
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentTransactionObserver_restoreCompletedTransactionsFailedWithError___org_xmlvm_iphone_SKPaymentQueue_org_xmlvm_iphone_NSError;
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentTransactionObserver_paymentQueueRestoreCompletedTransactionsFinished___org_xmlvm_iphone_SKPaymentQueue;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_SKPaymentTransactionObserver);
+    if (!__TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_SKPaymentTransactionObserver();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_SKPaymentTransactionObserver);
+}
 
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_SKPaymentTransactionObserver = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_SKPaymentTransactionObserver);
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.clazz = __CLASS_org_xmlvm_iphone_SKPaymentTransactionObserver;
-    __CLASS_org_xmlvm_iphone_SKPaymentTransactionObserver_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKPaymentTransactionObserver, 1);
+void __INIT_IMPL_org_xmlvm_iphone_SKPaymentTransactionObserver()
+{
+    if (!__TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_SKPaymentTransactionObserver]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_SKPaymentTransactionObserver;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentTransactionObserver_removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList;
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentTransactionObserver_restoreCompletedTransactionsFailedWithError___org_xmlvm_iphone_SKPaymentQueue_org_xmlvm_iphone_NSError;
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentTransactionObserver_paymentQueueRestoreCompletedTransactionsFinished___org_xmlvm_iphone_SKPaymentQueue;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_SKPaymentTransactionObserver = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_SKPaymentTransactionObserver);
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.clazz = __CLASS_org_xmlvm_iphone_SKPaymentTransactionObserver;
+        __CLASS_org_xmlvm_iphone_SKPaymentTransactionObserver_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKPaymentTransactionObserver, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_SKPaymentTransactionObserver]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_SKPaymentTransactionObserver(void* me, void* client_data)

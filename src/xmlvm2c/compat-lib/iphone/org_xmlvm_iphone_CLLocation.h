@@ -59,6 +59,7 @@ typedef struct org_xmlvm_iphone_CLLocation org_xmlvm_iphone_CLLocation;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_distanceFromLocation___org_xmlvm_iphone_CLLocation 21
 
 void __INIT_org_xmlvm_iphone_CLLocation();
+void __INIT_IMPL_org_xmlvm_iphone_CLLocation();
 void __DELETE_org_xmlvm_iphone_CLLocation(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocation(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLLocation();

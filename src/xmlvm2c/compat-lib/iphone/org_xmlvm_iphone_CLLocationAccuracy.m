@@ -6,6 +6,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CLLocationAccuracy
 
 __TIB_DEFINITION_org_xmlvm_iphone_CLLocationAccuracy __TIB_org_xmlvm_iphone_CLLocationAccuracy = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_CLLocationAccuracy, // classInitializer
     "org.xmlvm.iphone.CLLocationAccuracy", // className
@@ -110,37 +111,50 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_CLLocationAccuracy()
 {
-    __TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
-    __TIB_org_xmlvm_iphone_CLLocationAccuracy.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLLocationAccuracy;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLLocationAccuracy.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-    // Initialize vtable for this class
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_CLLocationAccuracy.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_CLLocationAccuracy.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
-    _STATIC_org_xmlvm_iphone_CLLocationAccuracy_BestForNavigation = -2.0;
-    _STATIC_org_xmlvm_iphone_CLLocationAccuracy_Best = -1.0;
-    _STATIC_org_xmlvm_iphone_CLLocationAccuracy_NearestTenMeters = 10.0;
-    _STATIC_org_xmlvm_iphone_CLLocationAccuracy_HundredMeters = 100.0;
-    _STATIC_org_xmlvm_iphone_CLLocationAccuracy_Kilometer = 1000.0;
-    _STATIC_org_xmlvm_iphone_CLLocationAccuracy_ThreeKilometers = 3000.0;
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_CLLocationAccuracy);
+    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_CLLocationAccuracy();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_CLLocationAccuracy);
+}
 
-    __TIB_org_xmlvm_iphone_CLLocationAccuracy.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_CLLocationAccuracy.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_CLLocationAccuracy.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_CLLocationAccuracy.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_CLLocationAccuracy.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_CLLocationAccuracy.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_CLLocationAccuracy.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_CLLocationAccuracy.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_CLLocationAccuracy = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CLLocationAccuracy);
-    __TIB_org_xmlvm_iphone_CLLocationAccuracy.clazz = __CLASS_org_xmlvm_iphone_CLLocationAccuracy;
-    __CLASS_org_xmlvm_iphone_CLLocationAccuracy_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationAccuracy, 1);
+void __INIT_IMPL_org_xmlvm_iphone_CLLocationAccuracy()
+{
+    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CLLocationAccuracy]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
+        __TIB_org_xmlvm_iphone_CLLocationAccuracy.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLLocationAccuracy;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLLocationAccuracy.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+        // Initialize vtable for this class
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_CLLocationAccuracy.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_CLLocationAccuracy.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+        _STATIC_org_xmlvm_iphone_CLLocationAccuracy_BestForNavigation = -2.0;
+        _STATIC_org_xmlvm_iphone_CLLocationAccuracy_Best = -1.0;
+        _STATIC_org_xmlvm_iphone_CLLocationAccuracy_NearestTenMeters = 10.0;
+        _STATIC_org_xmlvm_iphone_CLLocationAccuracy_HundredMeters = 100.0;
+        _STATIC_org_xmlvm_iphone_CLLocationAccuracy_Kilometer = 1000.0;
+        _STATIC_org_xmlvm_iphone_CLLocationAccuracy_ThreeKilometers = 3000.0;
+
+        __TIB_org_xmlvm_iphone_CLLocationAccuracy.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_CLLocationAccuracy.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_CLLocationAccuracy.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_CLLocationAccuracy.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_CLLocationAccuracy.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_CLLocationAccuracy.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_CLLocationAccuracy.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_CLLocationAccuracy.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_CLLocationAccuracy = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CLLocationAccuracy);
+        __TIB_org_xmlvm_iphone_CLLocationAccuracy.clazz = __CLASS_org_xmlvm_iphone_CLLocationAccuracy;
+        __CLASS_org_xmlvm_iphone_CLLocationAccuracy_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationAccuracy, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CLLocationAccuracy]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_CLLocationAccuracy(void* me, void* client_data)

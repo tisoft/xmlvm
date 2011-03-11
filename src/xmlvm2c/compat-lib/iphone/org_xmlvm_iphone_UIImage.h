@@ -63,6 +63,7 @@ typedef struct org_xmlvm_iphone_UIImage org_xmlvm_iphone_UIImage;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImage_JPEGRepresentation___float 21
 
 void __INIT_org_xmlvm_iphone_UIImage();
+void __INIT_IMPL_org_xmlvm_iphone_UIImage();
 void __DELETE_org_xmlvm_iphone_UIImage(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImage(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImage();

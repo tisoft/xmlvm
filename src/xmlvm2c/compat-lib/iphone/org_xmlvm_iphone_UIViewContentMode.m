@@ -6,6 +6,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIViewContentMode
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIViewContentMode __TIB_org_xmlvm_iphone_UIViewContentMode = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIViewContentMode, // classInitializer
     "org.xmlvm.iphone.UIViewContentMode", // className
@@ -166,44 +167,57 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIViewContentMode()
 {
-    __TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
-    __TIB_org_xmlvm_iphone_UIViewContentMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIViewContentMode;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIViewContentMode.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-    // Initialize vtable for this class
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UIViewContentMode.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UIViewContentMode.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleToFill = 0;
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleAspectFit = 1;
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleAspectFill = 2;
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_Redraw = 3;
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_Center = 4;
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_Top = 5;
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_Bottom = 6;
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_Left = 7;
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_Right = 8;
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_TopLeft = 9;
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_TopRight = 10;
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_BottomLeft = 11;
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_BottomRight = 12;
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIViewContentMode);
+    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UIViewContentMode();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIViewContentMode);
+}
 
-    __TIB_org_xmlvm_iphone_UIViewContentMode.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIViewContentMode.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIViewContentMode.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UIViewContentMode.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIViewContentMode.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIViewContentMode.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UIViewContentMode.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIViewContentMode.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIViewContentMode = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIViewContentMode);
-    __TIB_org_xmlvm_iphone_UIViewContentMode.clazz = __CLASS_org_xmlvm_iphone_UIViewContentMode;
-    __CLASS_org_xmlvm_iphone_UIViewContentMode_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewContentMode, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UIViewContentMode()
+{
+    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIViewContentMode.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIViewContentMode]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
+        __TIB_org_xmlvm_iphone_UIViewContentMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIViewContentMode;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIViewContentMode.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+        // Initialize vtable for this class
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIViewContentMode.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UIViewContentMode.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+        _STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleToFill = 0;
+        _STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleAspectFit = 1;
+        _STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleAspectFill = 2;
+        _STATIC_org_xmlvm_iphone_UIViewContentMode_Redraw = 3;
+        _STATIC_org_xmlvm_iphone_UIViewContentMode_Center = 4;
+        _STATIC_org_xmlvm_iphone_UIViewContentMode_Top = 5;
+        _STATIC_org_xmlvm_iphone_UIViewContentMode_Bottom = 6;
+        _STATIC_org_xmlvm_iphone_UIViewContentMode_Left = 7;
+        _STATIC_org_xmlvm_iphone_UIViewContentMode_Right = 8;
+        _STATIC_org_xmlvm_iphone_UIViewContentMode_TopLeft = 9;
+        _STATIC_org_xmlvm_iphone_UIViewContentMode_TopRight = 10;
+        _STATIC_org_xmlvm_iphone_UIViewContentMode_BottomLeft = 11;
+        _STATIC_org_xmlvm_iphone_UIViewContentMode_BottomRight = 12;
+
+        __TIB_org_xmlvm_iphone_UIViewContentMode.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIViewContentMode.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIViewContentMode.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UIViewContentMode.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIViewContentMode.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIViewContentMode.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UIViewContentMode.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIViewContentMode.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UIViewContentMode = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIViewContentMode);
+        __TIB_org_xmlvm_iphone_UIViewContentMode.clazz = __CLASS_org_xmlvm_iphone_UIViewContentMode;
+        __CLASS_org_xmlvm_iphone_UIViewContentMode_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewContentMode, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIViewContentMode]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UIViewContentMode(void* me, void* client_data)

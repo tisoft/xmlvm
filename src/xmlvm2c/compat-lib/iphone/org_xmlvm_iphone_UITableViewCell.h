@@ -66,6 +66,7 @@ typedef struct org_xmlvm_iphone_UITableViewCell org_xmlvm_iphone_UITableViewCell
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_setSelectionStyle___int 85
 
 void __INIT_org_xmlvm_iphone_UITableViewCell();
+void __INIT_IMPL_org_xmlvm_iphone_UITableViewCell();
 void __DELETE_org_xmlvm_iphone_UITableViewCell(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCell(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCell();

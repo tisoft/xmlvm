@@ -140,6 +140,7 @@ typedef struct org_xmlvm_iphone_MKMapView org_xmlvm_iphone_MKMapView;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKMapView_viewForOverlay___org_xmlvm_iphone_MKOverlay 121
 
 void __INIT_org_xmlvm_iphone_MKMapView();
+void __INIT_IMPL_org_xmlvm_iphone_MKMapView();
 void __DELETE_org_xmlvm_iphone_MKMapView(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapView(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKMapView();

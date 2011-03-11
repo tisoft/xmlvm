@@ -51,6 +51,7 @@ typedef struct org_xmlvm_iphone_UIFont org_xmlvm_iphone_UIFont;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIFont_pointSize__ 17
 
 void __INIT_org_xmlvm_iphone_UIFont();
+void __INIT_IMPL_org_xmlvm_iphone_UIFont();
 void __DELETE_org_xmlvm_iphone_UIFont(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIFont(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIFont();

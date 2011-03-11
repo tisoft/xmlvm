@@ -46,6 +46,7 @@ typedef struct org_xmlvm_iphone_MKOverlay org_xmlvm_iphone_MKOverlay;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlay_intersectsMapRect___org_xmlvm_iphone_MKMapRect 19
 
 void __INIT_org_xmlvm_iphone_MKOverlay();
+void __INIT_IMPL_org_xmlvm_iphone_MKOverlay();
 void __DELETE_org_xmlvm_iphone_MKOverlay(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKOverlay(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKOverlay();

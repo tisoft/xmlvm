@@ -78,6 +78,7 @@ typedef struct org_xmlvm_iphone_UIDatePicker org_xmlvm_iphone_UIDatePicker;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setDate___org_xmlvm_iphone_NSDate_boolean 96
 
 void __INIT_org_xmlvm_iphone_UIDatePicker();
+void __INIT_IMPL_org_xmlvm_iphone_UIDatePicker();
 void __DELETE_org_xmlvm_iphone_UIDatePicker(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePicker(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDatePicker();

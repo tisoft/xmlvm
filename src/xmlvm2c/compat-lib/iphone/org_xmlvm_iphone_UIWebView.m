@@ -11,6 +11,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIWebView
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIWebView __TIB_org_xmlvm_iphone_UIWebView = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIWebView, // classInitializer
     "org.xmlvm.iphone.UIWebView", // className
@@ -268,42 +269,55 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIWebView()
 {
-    __TIB_org_xmlvm_iphone_UIWebView.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
-    __TIB_org_xmlvm_iphone_UIWebView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIWebView;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIWebView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_loadRequest___org_xmlvm_iphone_NSURLRequest;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_loadHTMLString___java_lang_String_org_xmlvm_iphone_NSURL;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_xmlvmGetRequest__;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_stringByEvaluatingJavaScriptFromString___java_lang_String;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_getDelegate__;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_setDelegate___org_xmlvm_iphone_UIWebViewDelegate;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_reload__;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_getDataDetectorTypes__;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_setDataDetectorTypes___int;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_isScalesPageToFit__;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UIWebView.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UIWebView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIWebView);
+    if (!__TIB_org_xmlvm_iphone_UIWebView.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UIWebView();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIWebView);
+}
 
-    __TIB_org_xmlvm_iphone_UIWebView.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIWebView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIWebView.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UIWebView.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIWebView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIWebView.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UIWebView.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIWebView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIWebView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIWebView);
-    __TIB_org_xmlvm_iphone_UIWebView.clazz = __CLASS_org_xmlvm_iphone_UIWebView;
-    __CLASS_org_xmlvm_iphone_UIWebView_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIWebView, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UIWebView()
+{
+    if (!__TIB_org_xmlvm_iphone_UIWebView.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIWebView.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIWebView]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIView();
+        __TIB_org_xmlvm_iphone_UIWebView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIWebView;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIWebView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_UIWebView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_loadRequest___org_xmlvm_iphone_NSURLRequest;
+        __TIB_org_xmlvm_iphone_UIWebView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_loadHTMLString___java_lang_String_org_xmlvm_iphone_NSURL;
+        __TIB_org_xmlvm_iphone_UIWebView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_xmlvmGetRequest__;
+        __TIB_org_xmlvm_iphone_UIWebView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_stringByEvaluatingJavaScriptFromString___java_lang_String;
+        __TIB_org_xmlvm_iphone_UIWebView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_getDelegate__;
+        __TIB_org_xmlvm_iphone_UIWebView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_setDelegate___org_xmlvm_iphone_UIWebViewDelegate;
+        __TIB_org_xmlvm_iphone_UIWebView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_reload__;
+        __TIB_org_xmlvm_iphone_UIWebView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_getDataDetectorTypes__;
+        __TIB_org_xmlvm_iphone_UIWebView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_setDataDetectorTypes___int;
+        __TIB_org_xmlvm_iphone_UIWebView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_isScalesPageToFit__;
+        __TIB_org_xmlvm_iphone_UIWebView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIWebView.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UIWebView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_UIWebView.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIWebView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIWebView.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UIWebView.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIWebView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIWebView.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UIWebView.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIWebView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UIWebView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIWebView);
+        __TIB_org_xmlvm_iphone_UIWebView.clazz = __CLASS_org_xmlvm_iphone_UIWebView;
+        __CLASS_org_xmlvm_iphone_UIWebView_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIWebView, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIWebView]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UIWebView.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UIWebView(void* me, void* client_data)

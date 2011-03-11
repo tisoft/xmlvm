@@ -46,6 +46,7 @@ typedef struct org_xmlvm_iphone_NSIndexPath org_xmlvm_iphone_NSIndexPath;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSIndexPath_setRow___int 17
 
 void __INIT_org_xmlvm_iphone_NSIndexPath();
+void __INIT_IMPL_org_xmlvm_iphone_NSIndexPath();
 void __DELETE_org_xmlvm_iphone_NSIndexPath(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSIndexPath(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSIndexPath();

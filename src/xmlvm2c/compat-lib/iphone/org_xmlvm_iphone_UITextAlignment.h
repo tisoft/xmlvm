@@ -39,6 +39,7 @@ typedef struct org_xmlvm_iphone_UITextAlignment org_xmlvm_iphone_UITextAlignment
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITextAlignment 11
 
 void __INIT_org_xmlvm_iphone_UITextAlignment();
+void __INIT_IMPL_org_xmlvm_iphone_UITextAlignment();
 void __DELETE_org_xmlvm_iphone_UITextAlignment(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAlignment(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITextAlignment();

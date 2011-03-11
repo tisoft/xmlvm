@@ -28,6 +28,7 @@ typedef struct org_xmlvm_iphone_UIControlDelegate org_xmlvm_iphone_UIControlDele
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControlDelegate_raiseEvent___org_xmlvm_iphone_UIControl_int 11
 
 void __INIT_FOR_CLASS_org_xmlvm_iphone_UIControlDelegate(__TIB_DEFINITION_TEMPLATE** interface);
+void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_UIControlDelegate(__TIB_DEFINITION_TEMPLATE** interface);
 void __INIT_org_xmlvm_iphone_UIControlDelegate();
 
 #endif

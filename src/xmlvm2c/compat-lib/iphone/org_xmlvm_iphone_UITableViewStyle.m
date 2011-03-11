@@ -6,6 +6,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITableViewStyle
 
 __TIB_DEFINITION_org_xmlvm_iphone_UITableViewStyle __TIB_org_xmlvm_iphone_UITableViewStyle = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UITableViewStyle, // classInitializer
     "org.xmlvm.iphone.UITableViewStyle", // className
@@ -78,33 +79,46 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UITableViewStyle()
 {
-    __TIB_org_xmlvm_iphone_UITableViewStyle.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
-    __TIB_org_xmlvm_iphone_UITableViewStyle.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITableViewStyle;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITableViewStyle.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-    // Initialize vtable for this class
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UITableViewStyle.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UITableViewStyle.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
-    _STATIC_org_xmlvm_iphone_UITableViewStyle_Plain = 0;
-    _STATIC_org_xmlvm_iphone_UITableViewStyle_Grouped = 1;
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UITableViewStyle);
+    if (!__TIB_org_xmlvm_iphone_UITableViewStyle.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UITableViewStyle();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UITableViewStyle);
+}
 
-    __TIB_org_xmlvm_iphone_UITableViewStyle.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UITableViewStyle.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UITableViewStyle.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UITableViewStyle.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UITableViewStyle.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UITableViewStyle.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UITableViewStyle.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UITableViewStyle.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UITableViewStyle = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UITableViewStyle);
-    __TIB_org_xmlvm_iphone_UITableViewStyle.clazz = __CLASS_org_xmlvm_iphone_UITableViewStyle;
-    __CLASS_org_xmlvm_iphone_UITableViewStyle_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableViewStyle, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UITableViewStyle()
+{
+    if (!__TIB_org_xmlvm_iphone_UITableViewStyle.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UITableViewStyle.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITableViewStyle]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
+        __TIB_org_xmlvm_iphone_UITableViewStyle.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITableViewStyle;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITableViewStyle.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+        // Initialize vtable for this class
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UITableViewStyle.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UITableViewStyle.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+        _STATIC_org_xmlvm_iphone_UITableViewStyle_Plain = 0;
+        _STATIC_org_xmlvm_iphone_UITableViewStyle_Grouped = 1;
+
+        __TIB_org_xmlvm_iphone_UITableViewStyle.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UITableViewStyle.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UITableViewStyle.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UITableViewStyle.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UITableViewStyle.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UITableViewStyle.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UITableViewStyle.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UITableViewStyle.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UITableViewStyle = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UITableViewStyle);
+        __TIB_org_xmlvm_iphone_UITableViewStyle.clazz = __CLASS_org_xmlvm_iphone_UITableViewStyle;
+        __CLASS_org_xmlvm_iphone_UITableViewStyle_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableViewStyle, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITableViewStyle]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UITableViewStyle.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UITableViewStyle(void* me, void* client_data)

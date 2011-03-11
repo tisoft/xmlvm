@@ -8,6 +8,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MKReverseGeocoder
 
 __TIB_DEFINITION_org_xmlvm_iphone_MKReverseGeocoder __TIB_org_xmlvm_iphone_MKReverseGeocoder = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_MKReverseGeocoder, // classInitializer
     "org.xmlvm.iphone.MKReverseGeocoder", // className
@@ -185,38 +186,51 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_MKReverseGeocoder()
 {
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKReverseGeocoder;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_getCoordinate__;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_getPlacemark__;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_isQuerying__;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_getDelegate__;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_setDelegate___org_xmlvm_iphone_MKReverseGeocoderDelegate;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_start__;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_cancel__;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_MKReverseGeocoder);
+    if (!__TIB_org_xmlvm_iphone_MKReverseGeocoder.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_MKReverseGeocoder();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_MKReverseGeocoder);
+}
 
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_MKReverseGeocoder = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MKReverseGeocoder);
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.clazz = __CLASS_org_xmlvm_iphone_MKReverseGeocoder;
-    __CLASS_org_xmlvm_iphone_MKReverseGeocoder_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKReverseGeocoder, 1);
+void __INIT_IMPL_org_xmlvm_iphone_MKReverseGeocoder()
+{
+    if (!__TIB_org_xmlvm_iphone_MKReverseGeocoder.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MKReverseGeocoder]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKReverseGeocoder;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_getCoordinate__;
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_getPlacemark__;
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_isQuerying__;
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_getDelegate__;
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_setDelegate___org_xmlvm_iphone_MKReverseGeocoderDelegate;
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_start__;
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_cancel__;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_MKReverseGeocoder = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MKReverseGeocoder);
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.clazz = __CLASS_org_xmlvm_iphone_MKReverseGeocoder;
+        __CLASS_org_xmlvm_iphone_MKReverseGeocoder_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKReverseGeocoder, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MKReverseGeocoder]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_MKReverseGeocoder.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_MKReverseGeocoder(void* me, void* client_data)

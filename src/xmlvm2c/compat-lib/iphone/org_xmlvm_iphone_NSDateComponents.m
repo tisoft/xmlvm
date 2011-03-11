@@ -6,6 +6,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSDateComponents
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSDateComponents __TIB_org_xmlvm_iphone_NSDateComponents = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSDateComponents, // classInitializer
     "org.xmlvm.iphone.NSDateComponents", // className
@@ -380,52 +381,65 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_NSDateComponents()
 {
-    __TIB_org_xmlvm_iphone_NSDateComponents.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __TIB_org_xmlvm_iphone_NSDateComponents.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSDateComponents;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSDateComponents.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_era__;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_year__;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_month__;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_day__;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_hour__;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_minute__;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_second__;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_week__;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_weekday__;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_weekdayOrdinal__;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setEra___int;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setYear___int;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setMonth___int;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setDay___int;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setHour___int;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setMinute___int;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setSecond___int;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setWeek___int;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setWeekday___int;
-    __TIB_org_xmlvm_iphone_NSDateComponents.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setWeekdayOrdinal___int;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_NSDateComponents.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_NSDateComponents.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
-    _STATIC_org_xmlvm_iphone_NSDateComponents_Wrap = 1;
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_NSDateComponents);
+    if (!__TIB_org_xmlvm_iphone_NSDateComponents.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_NSDateComponents();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_NSDateComponents);
+}
 
-    __TIB_org_xmlvm_iphone_NSDateComponents.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_NSDateComponents.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_NSDateComponents.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_NSDateComponents.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_NSDateComponents.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_NSDateComponents.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_NSDateComponents.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_NSDateComponents.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_NSDateComponents = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSDateComponents);
-    __TIB_org_xmlvm_iphone_NSDateComponents.clazz = __CLASS_org_xmlvm_iphone_NSDateComponents;
-    __CLASS_org_xmlvm_iphone_NSDateComponents_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSDateComponents, 1);
+void __INIT_IMPL_org_xmlvm_iphone_NSDateComponents()
+{
+    if (!__TIB_org_xmlvm_iphone_NSDateComponents.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_NSDateComponents.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSDateComponents]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
+        __TIB_org_xmlvm_iphone_NSDateComponents.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSDateComponents;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSDateComponents.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_era__;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_year__;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_month__;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_day__;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_hour__;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_minute__;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_second__;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_week__;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_weekday__;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_weekdayOrdinal__;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setEra___int;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setYear___int;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setMonth___int;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setDay___int;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setHour___int;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setMinute___int;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setSecond___int;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setWeek___int;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setWeekday___int;
+        __TIB_org_xmlvm_iphone_NSDateComponents.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_NSDateComponents_setWeekdayOrdinal___int;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_NSDateComponents.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_NSDateComponents.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+        _STATIC_org_xmlvm_iphone_NSDateComponents_Wrap = 1;
+
+        __TIB_org_xmlvm_iphone_NSDateComponents.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_NSDateComponents.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_NSDateComponents.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_NSDateComponents.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_NSDateComponents.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_NSDateComponents.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_NSDateComponents.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_NSDateComponents.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_NSDateComponents = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSDateComponents);
+        __TIB_org_xmlvm_iphone_NSDateComponents.clazz = __CLASS_org_xmlvm_iphone_NSDateComponents;
+        __CLASS_org_xmlvm_iphone_NSDateComponents_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSDateComponents, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSDateComponents]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_NSDateComponents.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_NSDateComponents(void* me, void* client_data)

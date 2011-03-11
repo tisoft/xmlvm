@@ -49,6 +49,7 @@ typedef struct org_xmlvm_iphone_UIColor org_xmlvm_iphone_UIColor;
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIColor 14
 
 void __INIT_org_xmlvm_iphone_UIColor();
+void __INIT_IMPL_org_xmlvm_iphone_UIColor();
 void __DELETE_org_xmlvm_iphone_UIColor(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIColor(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIColor();

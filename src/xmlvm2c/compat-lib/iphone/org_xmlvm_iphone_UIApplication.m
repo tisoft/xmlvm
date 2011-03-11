@@ -11,6 +11,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIApplication
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIApplication __TIB_org_xmlvm_iphone_UIApplication = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIApplication, // classInitializer
     "org.xmlvm.iphone.UIApplication", // className
@@ -399,47 +400,60 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIApplication()
 {
-    __TIB_org_xmlvm_iphone_UIApplication.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIResponder.classInitialized) __INIT_org_xmlvm_iphone_UIResponder();
-    __TIB_org_xmlvm_iphone_UIApplication.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIApplication;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIApplication.vtable, __TIB_org_xmlvm_iphone_UIResponder.vtable, sizeof(__TIB_org_xmlvm_iphone_UIResponder.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_getDelegate__;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setDelegate___org_xmlvm_iphone_UIApplicationDelegate;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setIdleTimerDisabled___boolean;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_isIdleTimerDisabled__;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setKeyWindow___org_xmlvm_iphone_UIWindow;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_getKeyWindow__;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_getWindows__;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setStatusBarOrientation___int;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean_boolean;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_getStatusBarStyle__;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setStatusBarStyle___int;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setStatusBarStyle___int_boolean;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_isNetworkActivityIndicatorVisible__;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setNetworkActivityIndicatorVisible___boolean;
-    __TIB_org_xmlvm_iphone_UIApplication.vtable[36] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UIApplication.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UIApplication.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIApplication);
+    if (!__TIB_org_xmlvm_iphone_UIApplication.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UIApplication();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIApplication);
+}
 
-    __TIB_org_xmlvm_iphone_UIApplication.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIApplication.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIApplication.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UIApplication.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIApplication.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIApplication.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UIApplication.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIApplication.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIApplication = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIApplication);
-    __TIB_org_xmlvm_iphone_UIApplication.clazz = __CLASS_org_xmlvm_iphone_UIApplication;
-    __CLASS_org_xmlvm_iphone_UIApplication_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIApplication, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UIApplication()
+{
+    if (!__TIB_org_xmlvm_iphone_UIApplication.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIApplication.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIApplication]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_UIResponder.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIResponder();
+        __TIB_org_xmlvm_iphone_UIApplication.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIApplication;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIApplication.vtable, __TIB_org_xmlvm_iphone_UIResponder.vtable, sizeof(__TIB_org_xmlvm_iphone_UIResponder.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_getDelegate__;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setDelegate___org_xmlvm_iphone_UIApplicationDelegate;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setIdleTimerDisabled___boolean;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_isIdleTimerDisabled__;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setKeyWindow___org_xmlvm_iphone_UIWindow;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_getKeyWindow__;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_getWindows__;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setStatusBarOrientation___int;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean_boolean;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_getStatusBarStyle__;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setStatusBarStyle___int;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setStatusBarStyle___int_boolean;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_isNetworkActivityIndicatorVisible__;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_setNetworkActivityIndicatorVisible___boolean;
+        __TIB_org_xmlvm_iphone_UIApplication.vtable[36] = (VTABLE_PTR) &org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIApplication.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UIApplication.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_UIApplication.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIApplication.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIApplication.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UIApplication.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIApplication.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIApplication.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UIApplication.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIApplication.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UIApplication = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIApplication);
+        __TIB_org_xmlvm_iphone_UIApplication.clazz = __CLASS_org_xmlvm_iphone_UIApplication;
+        __CLASS_org_xmlvm_iphone_UIApplication_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIApplication, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIApplication]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UIApplication.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UIApplication(void* me, void* client_data)

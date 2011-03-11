@@ -80,6 +80,7 @@ typedef struct org_xmlvm_iphone_UITextView org_xmlvm_iphone_UITextView;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_setEditable___boolean 94
 
 void __INIT_org_xmlvm_iphone_UITextView();
+void __INIT_IMPL_org_xmlvm_iphone_UITextView();
 void __DELETE_org_xmlvm_iphone_UITextView(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextView(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITextView();

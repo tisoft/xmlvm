@@ -83,6 +83,7 @@ typedef struct org_xmlvm_iphone_CGContext org_xmlvm_iphone_CGContext;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_strokePath__ 41
 
 void __INIT_org_xmlvm_iphone_CGContext();
+void __INIT_IMPL_org_xmlvm_iphone_CGContext();
 void __DELETE_org_xmlvm_iphone_CGContext(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGContext(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGContext();

@@ -5,6 +5,7 @@
 #include "org_xmlvm_iphone_UIAccelerometerDelegate.h"
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIAccelerometerDelegate __TIB_org_xmlvm_iphone_UIAccelerometerDelegate = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIAccelerometerDelegate, // classInitializer
     "org.xmlvm.iphone.UIAccelerometerDelegate", // className
@@ -21,7 +22,17 @@ static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 
 void __INIT_FOR_CLASS_org_xmlvm_iphone_UIAccelerometerDelegate(__TIB_DEFINITION_TEMPLATE** interface)
 {
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIAccelerometerDelegate);
     if (!__TIB_org_xmlvm_iphone_UIAccelerometerDelegate.classInitialized) {
+        __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_UIAccelerometerDelegate(interface);
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIAccelerometerDelegate);
+}
+
+void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_UIAccelerometerDelegate(__TIB_DEFINITION_TEMPLATE** interface)
+{
+    if (!__TIB_org_xmlvm_iphone_UIAccelerometerDelegate.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.classInitializationBegan = 1;
         __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.numInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

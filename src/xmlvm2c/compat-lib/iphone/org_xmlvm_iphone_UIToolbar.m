@@ -9,6 +9,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIToolbar
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIToolbar __TIB_org_xmlvm_iphone_UIToolbar = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIToolbar, // classInitializer
     "org.xmlvm.iphone.UIToolbar", // className
@@ -250,41 +251,54 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIToolbar()
 {
-    __TIB_org_xmlvm_iphone_UIToolbar.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
-    __TIB_org_xmlvm_iphone_UIToolbar.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIToolbar;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIToolbar.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIToolbar.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_getItems__;
-    __TIB_org_xmlvm_iphone_UIToolbar.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_setItems___java_util_ArrayList;
-    __TIB_org_xmlvm_iphone_UIToolbar.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_setItems___java_util_ArrayList_boolean;
-    __TIB_org_xmlvm_iphone_UIToolbar.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_getBarStyle__;
-    __TIB_org_xmlvm_iphone_UIToolbar.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_setBarStyle___int;
-    __TIB_org_xmlvm_iphone_UIToolbar.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_getTintColor__;
-    __TIB_org_xmlvm_iphone_UIToolbar.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_setTintColor___org_xmlvm_iphone_UIColor;
-    __TIB_org_xmlvm_iphone_UIToolbar.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_isTranslucent__;
-    __TIB_org_xmlvm_iphone_UIToolbar.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_setTranslucent___boolean;
-    __TIB_org_xmlvm_iphone_UIToolbar.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_updateViews__;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UIToolbar.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UIToolbar.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIToolbar);
+    if (!__TIB_org_xmlvm_iphone_UIToolbar.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UIToolbar();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIToolbar);
+}
 
-    __TIB_org_xmlvm_iphone_UIToolbar.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIToolbar.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIToolbar.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UIToolbar.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIToolbar.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIToolbar.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UIToolbar.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIToolbar.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIToolbar = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIToolbar);
-    __TIB_org_xmlvm_iphone_UIToolbar.clazz = __CLASS_org_xmlvm_iphone_UIToolbar;
-    __CLASS_org_xmlvm_iphone_UIToolbar_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIToolbar, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UIToolbar()
+{
+    if (!__TIB_org_xmlvm_iphone_UIToolbar.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIToolbar.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIToolbar]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIView();
+        __TIB_org_xmlvm_iphone_UIToolbar.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIToolbar;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIToolbar.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_UIToolbar.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_getItems__;
+        __TIB_org_xmlvm_iphone_UIToolbar.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_setItems___java_util_ArrayList;
+        __TIB_org_xmlvm_iphone_UIToolbar.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_setItems___java_util_ArrayList_boolean;
+        __TIB_org_xmlvm_iphone_UIToolbar.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_getBarStyle__;
+        __TIB_org_xmlvm_iphone_UIToolbar.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_setBarStyle___int;
+        __TIB_org_xmlvm_iphone_UIToolbar.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_getTintColor__;
+        __TIB_org_xmlvm_iphone_UIToolbar.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_setTintColor___org_xmlvm_iphone_UIColor;
+        __TIB_org_xmlvm_iphone_UIToolbar.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_isTranslucent__;
+        __TIB_org_xmlvm_iphone_UIToolbar.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_setTranslucent___boolean;
+        __TIB_org_xmlvm_iphone_UIToolbar.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIToolbar_updateViews__;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIToolbar.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UIToolbar.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_UIToolbar.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIToolbar.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIToolbar.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UIToolbar.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIToolbar.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIToolbar.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UIToolbar.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIToolbar.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UIToolbar = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIToolbar);
+        __TIB_org_xmlvm_iphone_UIToolbar.clazz = __CLASS_org_xmlvm_iphone_UIToolbar;
+        __CLASS_org_xmlvm_iphone_UIToolbar_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIToolbar, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIToolbar]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UIToolbar.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UIToolbar(void* me, void* client_data)

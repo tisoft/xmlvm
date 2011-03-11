@@ -73,6 +73,7 @@ typedef struct org_xmlvm_iphone_UIControl org_xmlvm_iphone_UIControl;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_setHighlighted___boolean 77
 
 void __INIT_org_xmlvm_iphone_UIControl();
+void __INIT_IMPL_org_xmlvm_iphone_UIControl();
 void __DELETE_org_xmlvm_iphone_UIControl(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIControl();

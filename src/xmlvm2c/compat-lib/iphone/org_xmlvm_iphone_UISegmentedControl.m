@@ -13,6 +13,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UISegmentedControl
 
 __TIB_DEFINITION_org_xmlvm_iphone_UISegmentedControl __TIB_org_xmlvm_iphone_UISegmentedControl = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UISegmentedControl, // classInitializer
     "org.xmlvm.iphone.UISegmentedControl", // className
@@ -403,49 +404,62 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UISegmentedControl()
 {
-    __TIB_org_xmlvm_iphone_UISegmentedControl.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIControl.classInitialized) __INIT_org_xmlvm_iphone_UIControl();
-    __TIB_org_xmlvm_iphone_UISegmentedControl.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UISegmentedControl;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISegmentedControl.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setTitle___java_lang_String_int;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_titleForSegmentAtIndex___int;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setImage___org_xmlvm_iphone_UIImage_int;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_imageForSegmentAtIndex___int;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_insertSegmentWithTitle___java_lang_String_int_boolean;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_insertSegmentWithImage___org_xmlvm_iphone_UIImage_int_boolean;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_numberOfSegments__;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_removeAllSegments__;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_removeSegmentAtIndex___int_boolean;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_getSelectedSegmentIndex__;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setSelectedSegmentIndex___int;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_getSegmentedControlStyle__;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setSegmentedControlStyle___int;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_getTintColor__;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setTintColor___org_xmlvm_iphone_UIColor;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_isMomentary__;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setMomentary___boolean;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UISegmentedControl.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UISegmentedControl);
+    if (!__TIB_org_xmlvm_iphone_UISegmentedControl.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UISegmentedControl();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UISegmentedControl);
+}
 
-    __TIB_org_xmlvm_iphone_UISegmentedControl.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UISegmentedControl.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UISegmentedControl.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UISegmentedControl.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UISegmentedControl.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UISegmentedControl.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UISegmentedControl.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UISegmentedControl = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UISegmentedControl);
-    __TIB_org_xmlvm_iphone_UISegmentedControl.clazz = __CLASS_org_xmlvm_iphone_UISegmentedControl;
-    __CLASS_org_xmlvm_iphone_UISegmentedControl_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UISegmentedControl, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UISegmentedControl()
+{
+    if (!__TIB_org_xmlvm_iphone_UISegmentedControl.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UISegmentedControl.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UISegmentedControl]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_UIControl.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIControl();
+        __TIB_org_xmlvm_iphone_UISegmentedControl.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UISegmentedControl;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISegmentedControl.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setTitle___java_lang_String_int;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_titleForSegmentAtIndex___int;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setImage___org_xmlvm_iphone_UIImage_int;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_imageForSegmentAtIndex___int;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_insertSegmentWithTitle___java_lang_String_int_boolean;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_insertSegmentWithImage___org_xmlvm_iphone_UIImage_int_boolean;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_numberOfSegments__;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_removeAllSegments__;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_removeSegmentAtIndex___int_boolean;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_getSelectedSegmentIndex__;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setSelectedSegmentIndex___int;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_getSegmentedControlStyle__;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setSegmentedControlStyle___int;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_getTintColor__;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setTintColor___org_xmlvm_iphone_UIColor;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_isMomentary__;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setMomentary___boolean;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UISegmentedControl.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_UISegmentedControl.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UISegmentedControl.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UISegmentedControl.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UISegmentedControl.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UISegmentedControl.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UISegmentedControl.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UISegmentedControl.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UISegmentedControl = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UISegmentedControl);
+        __TIB_org_xmlvm_iphone_UISegmentedControl.clazz = __CLASS_org_xmlvm_iphone_UISegmentedControl;
+        __CLASS_org_xmlvm_iphone_UISegmentedControl_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UISegmentedControl, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UISegmentedControl]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UISegmentedControl.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UISegmentedControl(void* me, void* client_data)

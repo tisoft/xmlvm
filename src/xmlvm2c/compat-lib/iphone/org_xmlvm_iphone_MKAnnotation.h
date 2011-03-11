@@ -47,6 +47,7 @@ typedef struct org_xmlvm_iphone_MKAnnotation org_xmlvm_iphone_MKAnnotation;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotation_subtitle__ 17
 
 void __INIT_org_xmlvm_iphone_MKAnnotation();
+void __INIT_IMPL_org_xmlvm_iphone_MKAnnotation();
 void __DELETE_org_xmlvm_iphone_MKAnnotation(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKAnnotation(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKAnnotation();

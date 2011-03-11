@@ -10,6 +10,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIImage
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIImage __TIB_org_xmlvm_iphone_UIImage = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIImage, // classInitializer
     "org.xmlvm.iphone.UIImage", // className
@@ -249,39 +250,52 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIImage()
 {
-    __TIB_org_xmlvm_iphone_UIImage.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __TIB_org_xmlvm_iphone_UIImage.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIImage;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIImage.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIImage.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_stretchableImage___int_int;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_getCGImage__;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_drawAtPoint___org_xmlvm_iphone_CGPoint;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_getSize__;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_cropImage___int_int_int_int;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_PNGRepresentation__;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_JPEGRepresentation___float;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UIImage.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UIImage.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIImage);
+    if (!__TIB_org_xmlvm_iphone_UIImage.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UIImage();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIImage);
+}
 
-    __TIB_org_xmlvm_iphone_UIImage.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIImage.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIImage.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UIImage.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIImage.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIImage.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UIImage.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIImage.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIImage = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIImage);
-    __TIB_org_xmlvm_iphone_UIImage.clazz = __CLASS_org_xmlvm_iphone_UIImage;
-    __CLASS_org_xmlvm_iphone_UIImage_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIImage, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UIImage()
+{
+    if (!__TIB_org_xmlvm_iphone_UIImage.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIImage.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIImage]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
+        __TIB_org_xmlvm_iphone_UIImage.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIImage;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIImage.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_UIImage.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_stretchableImage___int_int;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_getCGImage__;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_drawAtPoint___org_xmlvm_iphone_CGPoint;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_getSize__;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_cropImage___int_int_int_int;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_PNGRepresentation__;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_JPEGRepresentation___float;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIImage.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UIImage.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_UIImage.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIImage.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIImage.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UIImage.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIImage.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIImage.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UIImage.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIImage.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UIImage = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIImage);
+        __TIB_org_xmlvm_iphone_UIImage.clazz = __CLASS_org_xmlvm_iphone_UIImage;
+        __CLASS_org_xmlvm_iphone_UIImage_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIImage, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIImage]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UIImage.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UIImage(void* me, void* client_data)

@@ -96,6 +96,7 @@ typedef struct org_xmlvm_iphone_NSObject org_xmlvm_iphone_NSObject;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSObject_dealloc__ 13
 
 void __INIT_org_xmlvm_iphone_NSObject();
+void __INIT_IMPL_org_xmlvm_iphone_NSObject();
 void __DELETE_org_xmlvm_iphone_NSObject(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSObject();

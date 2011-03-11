@@ -6,6 +6,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIKeyboardType
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIKeyboardType __TIB_org_xmlvm_iphone_UIKeyboardType = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIKeyboardType, // classInitializer
     "org.xmlvm.iphone.UIKeyboardType", // className
@@ -134,40 +135,53 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIKeyboardType()
 {
-    __TIB_org_xmlvm_iphone_UIKeyboardType.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
-    __TIB_org_xmlvm_iphone_UIKeyboardType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIKeyboardType;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIKeyboardType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-    // Initialize vtable for this class
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UIKeyboardType.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UIKeyboardType.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
-    _STATIC_org_xmlvm_iphone_UIKeyboardType_Default = 0;
-    _STATIC_org_xmlvm_iphone_UIKeyboardType_ASCIICapable = 1;
-    _STATIC_org_xmlvm_iphone_UIKeyboardType_NumbersAndPunctuation = 2;
-    _STATIC_org_xmlvm_iphone_UIKeyboardType_URL = 3;
-    _STATIC_org_xmlvm_iphone_UIKeyboardType_NumberPad = 4;
-    _STATIC_org_xmlvm_iphone_UIKeyboardType_PhonePad = 5;
-    _STATIC_org_xmlvm_iphone_UIKeyboardType_NamePhonePad = 6;
-    _STATIC_org_xmlvm_iphone_UIKeyboardType_EmailAddress = 7;
-    _STATIC_org_xmlvm_iphone_UIKeyboardType_Alphabet = 1;
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIKeyboardType);
+    if (!__TIB_org_xmlvm_iphone_UIKeyboardType.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UIKeyboardType();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIKeyboardType);
+}
 
-    __TIB_org_xmlvm_iphone_UIKeyboardType.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIKeyboardType.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIKeyboardType.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UIKeyboardType.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIKeyboardType.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIKeyboardType.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UIKeyboardType.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIKeyboardType.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIKeyboardType = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIKeyboardType);
-    __TIB_org_xmlvm_iphone_UIKeyboardType.clazz = __CLASS_org_xmlvm_iphone_UIKeyboardType;
-    __CLASS_org_xmlvm_iphone_UIKeyboardType_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIKeyboardType, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UIKeyboardType()
+{
+    if (!__TIB_org_xmlvm_iphone_UIKeyboardType.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIKeyboardType.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIKeyboardType]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
+        __TIB_org_xmlvm_iphone_UIKeyboardType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIKeyboardType;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIKeyboardType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+        // Initialize vtable for this class
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIKeyboardType.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UIKeyboardType.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+        _STATIC_org_xmlvm_iphone_UIKeyboardType_Default = 0;
+        _STATIC_org_xmlvm_iphone_UIKeyboardType_ASCIICapable = 1;
+        _STATIC_org_xmlvm_iphone_UIKeyboardType_NumbersAndPunctuation = 2;
+        _STATIC_org_xmlvm_iphone_UIKeyboardType_URL = 3;
+        _STATIC_org_xmlvm_iphone_UIKeyboardType_NumberPad = 4;
+        _STATIC_org_xmlvm_iphone_UIKeyboardType_PhonePad = 5;
+        _STATIC_org_xmlvm_iphone_UIKeyboardType_NamePhonePad = 6;
+        _STATIC_org_xmlvm_iphone_UIKeyboardType_EmailAddress = 7;
+        _STATIC_org_xmlvm_iphone_UIKeyboardType_Alphabet = 1;
+
+        __TIB_org_xmlvm_iphone_UIKeyboardType.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIKeyboardType.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIKeyboardType.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UIKeyboardType.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIKeyboardType.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIKeyboardType.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UIKeyboardType.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIKeyboardType.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UIKeyboardType = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIKeyboardType);
+        __TIB_org_xmlvm_iphone_UIKeyboardType.clazz = __CLASS_org_xmlvm_iphone_UIKeyboardType;
+        __CLASS_org_xmlvm_iphone_UIKeyboardType_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIKeyboardType, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIKeyboardType]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UIKeyboardType.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UIKeyboardType(void* me, void* client_data)

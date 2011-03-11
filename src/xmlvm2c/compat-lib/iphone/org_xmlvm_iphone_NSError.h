@@ -51,6 +51,7 @@ typedef struct org_xmlvm_iphone_NSError org_xmlvm_iphone_NSError;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSError_description__ 17
 
 void __INIT_org_xmlvm_iphone_NSError();
+void __INIT_IMPL_org_xmlvm_iphone_NSError();
 void __DELETE_org_xmlvm_iphone_NSError(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSError();

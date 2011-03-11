@@ -3,6 +3,7 @@
 #include "org_xmlvm_iphone_NSTimerDelegate.h"
 
 __TIB_DEFINITION_org_xmlvm_iphone_NSTimerDelegate __TIB_org_xmlvm_iphone_NSTimerDelegate = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_NSTimerDelegate, // classInitializer
     "org.xmlvm.iphone.NSTimerDelegate", // className
@@ -19,7 +20,17 @@ static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 
 void __INIT_FOR_CLASS_org_xmlvm_iphone_NSTimerDelegate(__TIB_DEFINITION_TEMPLATE** interface)
 {
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_NSTimerDelegate);
     if (!__TIB_org_xmlvm_iphone_NSTimerDelegate.classInitialized) {
+        __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_NSTimerDelegate(interface);
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_NSTimerDelegate);
+}
+
+void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_NSTimerDelegate(__TIB_DEFINITION_TEMPLATE** interface)
+{
+    if (!__TIB_org_xmlvm_iphone_NSTimerDelegate.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_NSTimerDelegate.classInitializationBegan = 1;
         __TIB_org_xmlvm_iphone_NSTimerDelegate.numInterfaces = 0;
         __TIB_org_xmlvm_iphone_NSTimerDelegate.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_NSTimerDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

@@ -91,6 +91,7 @@ typedef struct org_xmlvm_iphone_UITextField org_xmlvm_iphone_UITextField;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextField_getDelegate__ 100
 
 void __INIT_org_xmlvm_iphone_UITextField();
+void __INIT_IMPL_org_xmlvm_iphone_UITextField();
 void __DELETE_org_xmlvm_iphone_UITextField(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextField(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITextField();

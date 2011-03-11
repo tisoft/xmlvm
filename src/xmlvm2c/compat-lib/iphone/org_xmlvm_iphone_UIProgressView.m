@@ -6,6 +6,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIProgressView
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIProgressView __TIB_org_xmlvm_iphone_UIProgressView = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIProgressView, // classInitializer
     "org.xmlvm.iphone.UIProgressView", // className
@@ -139,35 +140,48 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIProgressView()
 {
-    __TIB_org_xmlvm_iphone_UIProgressView.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIControl.classInitialized) __INIT_org_xmlvm_iphone_UIControl();
-    __TIB_org_xmlvm_iphone_UIProgressView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIProgressView;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIProgressView.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIProgressView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgress___float;
-    __TIB_org_xmlvm_iphone_UIProgressView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgress__;
-    __TIB_org_xmlvm_iphone_UIProgressView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgressViewStyle__;
-    __TIB_org_xmlvm_iphone_UIProgressView.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgressViewStyle___int;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UIProgressView.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UIProgressView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIProgressView);
+    if (!__TIB_org_xmlvm_iphone_UIProgressView.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UIProgressView();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIProgressView);
+}
 
-    __TIB_org_xmlvm_iphone_UIProgressView.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIProgressView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIProgressView.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UIProgressView.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIProgressView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIProgressView.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UIProgressView.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIProgressView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIProgressView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIProgressView);
-    __TIB_org_xmlvm_iphone_UIProgressView.clazz = __CLASS_org_xmlvm_iphone_UIProgressView;
-    __CLASS_org_xmlvm_iphone_UIProgressView_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIProgressView, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UIProgressView()
+{
+    if (!__TIB_org_xmlvm_iphone_UIProgressView.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIProgressView.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIProgressView]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_UIControl.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIControl();
+        __TIB_org_xmlvm_iphone_UIProgressView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIProgressView;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIProgressView.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_UIProgressView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgress___float;
+        __TIB_org_xmlvm_iphone_UIProgressView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgress__;
+        __TIB_org_xmlvm_iphone_UIProgressView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_getProgressViewStyle__;
+        __TIB_org_xmlvm_iphone_UIProgressView.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UIProgressView_setProgressViewStyle___int;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIProgressView.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UIProgressView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_UIProgressView.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIProgressView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIProgressView.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UIProgressView.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIProgressView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIProgressView.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UIProgressView.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIProgressView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UIProgressView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIProgressView);
+        __TIB_org_xmlvm_iphone_UIProgressView.clazz = __CLASS_org_xmlvm_iphone_UIProgressView;
+        __CLASS_org_xmlvm_iphone_UIProgressView_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIProgressView, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIProgressView]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UIProgressView.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UIProgressView(void* me, void* client_data)

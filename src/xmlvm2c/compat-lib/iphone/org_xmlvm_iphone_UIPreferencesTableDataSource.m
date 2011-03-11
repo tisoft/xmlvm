@@ -7,6 +7,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIPreferencesTableDataSource
 
 __TIB_DEFINITION_org_xmlvm_iphone_UIPreferencesTableDataSource __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UIPreferencesTableDataSource, // classInitializer
     "org.xmlvm.iphone.UIPreferencesTableDataSource", // className
@@ -77,31 +78,44 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIPreferencesTableDataSource()
 {
-    __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIPreferencesTableDataSource;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-    // Initialize vtable for this class
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIPreferencesTableDataSource);
+    if (!__TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UIPreferencesTableDataSource();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIPreferencesTableDataSource);
+}
 
-    __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UIPreferencesTableDataSource = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIPreferencesTableDataSource);
-    __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.clazz = __CLASS_org_xmlvm_iphone_UIPreferencesTableDataSource;
-    __CLASS_org_xmlvm_iphone_UIPreferencesTableDataSource_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIPreferencesTableDataSource, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UIPreferencesTableDataSource()
+{
+    if (!__TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIPreferencesTableDataSource]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
+        __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIPreferencesTableDataSource;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+        // Initialize vtable for this class
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UIPreferencesTableDataSource = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIPreferencesTableDataSource);
+        __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.clazz = __CLASS_org_xmlvm_iphone_UIPreferencesTableDataSource;
+        __CLASS_org_xmlvm_iphone_UIPreferencesTableDataSource_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIPreferencesTableDataSource, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIPreferencesTableDataSource]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UIPreferencesTableDataSource(void* me, void* client_data)

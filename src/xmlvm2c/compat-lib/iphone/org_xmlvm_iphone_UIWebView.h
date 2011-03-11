@@ -70,6 +70,7 @@ typedef struct org_xmlvm_iphone_UIWebView org_xmlvm_iphone_UIWebView;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean 80
 
 void __INIT_org_xmlvm_iphone_UIWebView();
+void __INIT_IMPL_org_xmlvm_iphone_UIWebView();
 void __DELETE_org_xmlvm_iphone_UIWebView(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebView(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWebView();

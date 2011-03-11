@@ -105,6 +105,7 @@ typedef struct org_xmlvm_iphone_UIViewController org_xmlvm_iphone_UIViewControll
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_dismissModalViewControllerAnimated___boolean 65
 
 void __INIT_org_xmlvm_iphone_UIViewController();
+void __INIT_IMPL_org_xmlvm_iphone_UIViewController();
 void __DELETE_org_xmlvm_iphone_UIViewController(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewController();

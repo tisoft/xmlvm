@@ -9,6 +9,7 @@
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UISlider
 
 __TIB_DEFINITION_org_xmlvm_iphone_UISlider __TIB_org_xmlvm_iphone_UISlider = {
+    0, // classInitializationBegan
     0, // classInitialized
     __INIT_org_xmlvm_iphone_UISlider, // classInitializer
     "org.xmlvm.iphone.UISlider", // className
@@ -221,39 +222,52 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UISlider()
 {
-    __TIB_org_xmlvm_iphone_UISlider.classInitialized = 1;
-    // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIControl.classInitialized) __INIT_org_xmlvm_iphone_UIControl();
-    __TIB_org_xmlvm_iphone_UISlider.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UISlider;
-    // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISlider.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
-    // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UISlider.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float_boolean;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getValue__;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumValue___float;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMinimumValue__;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumValue___float;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMaximumValue__;
-    __TIB_org_xmlvm_iphone_UISlider.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
-    // Initialize vtable for implementing interfaces
-    __TIB_org_xmlvm_iphone_UISlider.numImplementedInterfaces = 0;
-    __TIB_org_xmlvm_iphone_UISlider.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UISlider);
+    if (!__TIB_org_xmlvm_iphone_UISlider.classInitialized) {
+        __INIT_IMPL_org_xmlvm_iphone_UISlider();
+    }
+    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UISlider);
+}
 
-    __TIB_org_xmlvm_iphone_UISlider.declaredFields = &__field_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UISlider.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UISlider.constructorDispatcherFunc = constructor_dispatcher;
-    __TIB_org_xmlvm_iphone_UISlider.declaredConstructors = &__constructor_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UISlider.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-    __TIB_org_xmlvm_iphone_UISlider.methodDispatcherFunc = method_dispatcher;
-    __TIB_org_xmlvm_iphone_UISlider.declaredMethods = &__method_reflection_data[0];
-    __TIB_org_xmlvm_iphone_UISlider.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-    __CLASS_org_xmlvm_iphone_UISlider = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UISlider);
-    __TIB_org_xmlvm_iphone_UISlider.clazz = __CLASS_org_xmlvm_iphone_UISlider;
-    __CLASS_org_xmlvm_iphone_UISlider_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UISlider, 1);
+void __INIT_IMPL_org_xmlvm_iphone_UISlider()
+{
+    if (!__TIB_org_xmlvm_iphone_UISlider.classInitializationBegan) {
+        __TIB_org_xmlvm_iphone_UISlider.classInitializationBegan = 1;
 
-    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UISlider]
-    //XMLVM_END_WRAPPER
+        // Initialize base class if necessary
+        if (!__TIB_org_xmlvm_iphone_UIControl.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIControl();
+        __TIB_org_xmlvm_iphone_UISlider.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UISlider;
+        // Copy vtable from base class
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISlider.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
+        // Initialize vtable for this class
+        __TIB_org_xmlvm_iphone_UISlider.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float_boolean;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getValue__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumValue___float;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMinimumValue__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumValue___float;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMaximumValue__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UISlider.numImplementedInterfaces = 0;
+        __TIB_org_xmlvm_iphone_UISlider.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        __TIB_org_xmlvm_iphone_UISlider.declaredFields = &__field_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UISlider.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UISlider.constructorDispatcherFunc = constructor_dispatcher;
+        __TIB_org_xmlvm_iphone_UISlider.declaredConstructors = &__constructor_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UISlider.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+        __TIB_org_xmlvm_iphone_UISlider.methodDispatcherFunc = method_dispatcher;
+        __TIB_org_xmlvm_iphone_UISlider.declaredMethods = &__method_reflection_data[0];
+        __TIB_org_xmlvm_iphone_UISlider.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+        __CLASS_org_xmlvm_iphone_UISlider = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UISlider);
+        __TIB_org_xmlvm_iphone_UISlider.clazz = __CLASS_org_xmlvm_iphone_UISlider;
+        __CLASS_org_xmlvm_iphone_UISlider_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UISlider, 1);
+        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UISlider]
+        //XMLVM_END_WRAPPER
+
+        __TIB_org_xmlvm_iphone_UISlider.classInitialized = 1;
+    }
 }
 
 void __DELETE_org_xmlvm_iphone_UISlider(void* me, void* client_data)

@@ -69,6 +69,7 @@ typedef struct org_xmlvm_iphone_UITableViewDataSource org_xmlvm_iphone_UITableVi
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath 18
 
 void __INIT_org_xmlvm_iphone_UITableViewDataSource();
+void __INIT_IMPL_org_xmlvm_iphone_UITableViewDataSource();
 void __DELETE_org_xmlvm_iphone_UITableViewDataSource(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewDataSource(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewDataSource();

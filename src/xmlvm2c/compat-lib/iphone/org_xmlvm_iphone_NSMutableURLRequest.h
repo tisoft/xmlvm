@@ -48,6 +48,7 @@ typedef struct org_xmlvm_iphone_NSMutableURLRequest org_xmlvm_iphone_NSMutableUR
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSMutableURLRequest_addValueForHTTPHeaderField___java_lang_String_java_lang_String 14
 
 void __INIT_org_xmlvm_iphone_NSMutableURLRequest();
+void __INIT_IMPL_org_xmlvm_iphone_NSMutableURLRequest();
 void __DELETE_org_xmlvm_iphone_NSMutableURLRequest(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSMutableURLRequest(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSMutableURLRequest();
