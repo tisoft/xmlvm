@@ -56,6 +56,7 @@ void init_primitive_class(void* clazz, const char* name)
 {
     __TIB_DEFINITION_TEMPLATE* c = (__TIB_DEFINITION_TEMPLATE*) clazz;
     //TODO who is initializing this class?
+    c->classInitializationBegan = 1;
     c->classInitialized = 1;
     c->className = name;
     c->extends = (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Class;

@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <setjmp.h>
+#include <pthread.h>
 
 #ifdef XMLVM_NO_GC
 
@@ -59,6 +60,15 @@
 
 void xmlvm_init();
 
+void staticInitializerRecursiveLock(void* tibDefinition);
+void staticInitializerRecursiveUnlock(void* tibDefinition);
+
+typedef struct XMLVM_STATIC_INITIALIZER_CONTROLLER {
+    int recursiveLocks; // the number of recursive locks. If only synchronized once, this is 1
+    pthread_t* owningThread; // the thread that owns the lock or null for none
+    pthread_mutex_t* owningThreadMutex; // a mutex locked to check the current thread to see if locking the initMutex is already completed
+    pthread_mutex_t* initMutex; // a mutex locked while statically initalizing a class or classes
+} XMLVM_STATIC_INITIALIZER_CONTROLLER;
 
 typedef void               JAVA_VOID;
 typedef int                JAVA_BOOLEAN;
@@ -179,6 +189,7 @@ typedef struct {
 
 #define XMLVM_DEFINE_CLASS(name, vtableSize) \
 typedef struct __TIB_DEFINITION_##name { \
+    int                                 classInitializationBegan; \
     int                                 classInitialized; \
     Func_V                              classInitializer; \
     const char*                         className; \

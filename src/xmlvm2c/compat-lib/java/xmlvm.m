@@ -31,6 +31,8 @@
 XMLVM_JMP_BUF xmlvm_exception_env;
 JAVA_OBJECT xmlvm_exception;
 
+XMLVM_STATIC_INITIALIZER_CONTROLLER* staticInitializerController;
+
 
 
 void xmlvm_init()
@@ -41,7 +43,19 @@ void xmlvm_init()
 #endif
     GC_INIT();
 #endif
-    
+
+    staticInitializerController = XMLVM_MALLOC(sizeof(XMLVM_STATIC_INITIALIZER_CONTROLLER));
+    staticInitializerController->recursiveLocks = 0;
+    staticInitializerController->owningThread = NULL;
+    staticInitializerController->owningThreadMutex = XMLVM_MALLOC(sizeof(pthread_mutex_t));
+    if (0 != pthread_mutex_init(staticInitializerController->owningThreadMutex, NULL)) {
+        XMLVM_ERROR("Error initializing static initializer's owning thread mutex", __FILE__, __FUNCTION__, __LINE__);
+    }
+    staticInitializerController->initMutex = XMLVM_MALLOC(sizeof(pthread_mutex_t));
+    if (0 != pthread_mutex_init(staticInitializerController->initMutex, NULL)) {
+        XMLVM_ERROR("Error initializing static initializer mutex", __FILE__, __FUNCTION__, __LINE__);
+    }
+
     if (XMLVM_SETJMP(xmlvm_exception_env)) {
         XMLVM_ERROR("Unhandled exception thrown", __FILE__, __FUNCTION__, __LINE__);
     }
@@ -49,6 +63,96 @@ void xmlvm_init()
     java_lang_Class_initNativeLayer__();
     __INIT_java_lang_System();
     org_xmlvm_runtime_XMLVMUtil_init__();
+}
+
+/**
+ * Lock a mutex. If an error occurs, terminate the program.
+ */
+static void lockOrExit(char* className, pthread_mutex_t* mut)
+{
+    int result = pthread_mutex_lock(mut);
+    if (0 != result) {
+        printf("Error locking mutex in %s: %i\n", className, result);
+        exit(1);
+    }
+//    else { printf("SUCCESSFUL mutex lock in %s\n", className); }
+}
+
+/**
+ * Unlock a mutex. If an error occurs, terminate the program.
+ */
+static void unlockOrExit(char* className, pthread_mutex_t* mut)
+{
+    int result = pthread_mutex_unlock(mut);
+    if (0 != result) {
+        printf("Error unlocking mutex in %s: %i\n", className, result);
+        exit(1);
+    }
+//    else { printf("SUCCESSFUL mutex unlock in %s\n", className); }
+}
+
+/**
+ * Lock the static initializer mutex and store the thread that is currently
+ * allowed to run static initializers
+ */
+static void lockInitMutex(char* className, pthread_t curThread)
+{
+    lockOrExit(className, staticInitializerController->initMutex);
+    lockOrExit(className, staticInitializerController->owningThreadMutex);
+    staticInitializerController->owningThread = curThread;
+    unlockOrExit(className, staticInitializerController->owningThreadMutex);
+}
+
+/**
+ * Allow another thread to run static initializers after unlocking the static
+ * initializer mutex. 
+ */
+static void unlockInitMutex(char* className)
+{
+    lockOrExit(className, staticInitializerController->owningThreadMutex);
+    staticInitializerController->owningThread = NULL;
+    unlockOrExit(className, staticInitializerController->owningThreadMutex);
+    unlockOrExit(className, staticInitializerController->initMutex);
+}
+
+/**
+ * Lock the static initializer mutex unless this thread already has the lock.
+ * Increment the mutex recursion count.
+ */
+void staticInitializerRecursiveLock(void* tibDefinition)
+{
+    char* className = ((struct __TIB_DEFINITION_TEMPLATE*)tibDefinition)->className;
+    int currentIsOwner = 0;
+    pthread_t curThread = pthread_self();
+    lockOrExit(className, staticInitializerController->owningThreadMutex);
+    if (staticInitializerController->owningThread != NULL) {
+        currentIsOwner = pthread_equal(curThread, staticInitializerController->owningThread);
+    }
+    unlockOrExit(className, staticInitializerController->owningThreadMutex);
+
+    if (currentIsOwner == 0) {
+        lockInitMutex(className, curThread);
+    }
+
+    staticInitializerController->recursiveLocks++;
+
+//    printf("Acquired recursive lock #%i in %s\n", staticInitializerController->recursiveLocks, className);
+}
+
+/**
+ * Unlock the static initializer mutex if the thread is finished with static
+ * initialization. If the thread is not finished, decrement the mutex recursion
+ * count.
+ */
+void staticInitializerRecursiveUnlock(void* tibDefinition)
+{
+    char* className = ((struct __TIB_DEFINITION_TEMPLATE*)tibDefinition)->className;
+//    printf("Releasing recursive lock #%i in %s\n", staticInitializerController->recursiveLocks, className);
+
+    staticInitializerController->recursiveLocks--;
+    if (staticInitializerController->recursiveLocks == 0) {
+        unlockInitMutex(className);
+    }
 }
 
 VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, int vtableIndex)
