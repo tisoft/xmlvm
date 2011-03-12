@@ -69,8 +69,8 @@ public class AndroidManifestParser extends Task {
                             && catname.equalsIgnoreCase("android.intent.category.LAUNCHER")) {
 
                         PropertyHelper ph = PropertyHelper.getPropertyHelper(getProject());
-                        ph.setProperty("xmlvm.android.package", (Object) packg, false);
-                        ph.setProperty("xmlvm.android.activity", (Object) name, false);
+                        ph.setProperty(null, "xmlvm.android.package", (Object) packg, false);
+                        ph.setProperty(null, "xmlvm.android.activity", (Object) name, false);
                         return;
                     }
                 }
