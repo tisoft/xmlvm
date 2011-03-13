@@ -147,6 +147,27 @@ static JAVA_OBJECT* __method23_arg_types[] = {
     &__CLASS_float,
 };
 
+static JAVA_OBJECT* __method24_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method25_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method26_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method27_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method28_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method29_arg_types[] = {
+    &__CLASS_boolean,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"buttonWithType",
     &__method0_arg_types[0],
@@ -364,6 +385,60 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"isAdjustsImageWhenDisabled",
+    &__method24_arg_types[0],
+    sizeof(__method24_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setAdjustsImageWhenDisabled",
+    &__method25_arg_types[0],
+    sizeof(__method25_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isAdjustsImageWhenHighlighted",
+    &__method26_arg_types[0],
+    sizeof(__method26_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setAdjustsImageWhenHighlighted",
+    &__method27_arg_types[0],
+    sizeof(__method27_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isShowsTouchWhenHighlighted",
+    &__method28_arg_types[0],
+    sizeof(__method28_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setShowsTouchWhenHighlighted",
+    &__method29_arg_types[0],
+    sizeof(__method29_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -446,6 +521,24 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     case 23:
         org_xmlvm_iphone_UIButton_setAlpha___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
+    case 24:
+        org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__(receiver);
+        break;
+    case 25:
+        org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 26:
+        org_xmlvm_iphone_UIButton_isAdjustsImageWhenHighlighted__(receiver);
+        break;
+    case 27:
+        org_xmlvm_iphone_UIButton_setAdjustsImageWhenHighlighted___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 28:
+        org_xmlvm_iphone_UIButton_isShowsTouchWhenHighlighted__(receiver);
+        break;
+    case 29:
+        org_xmlvm_iphone_UIButton_setShowsTouchWhenHighlighted___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;
@@ -496,6 +589,12 @@ void __INIT_IMPL_org_xmlvm_iphone_UIButton()
         __TIB_org_xmlvm_iphone_UIButton.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent;
         __TIB_org_xmlvm_iphone_UIButton.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
         __TIB_org_xmlvm_iphone_UIButton.vtable[45] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAlpha___float;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[99] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[100] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isAdjustsImageWhenHighlighted__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[101] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAdjustsImageWhenHighlighted___boolean;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[102] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isShowsTouchWhenHighlighted__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[103] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setShowsTouchWhenHighlighted___boolean;
         // Initialize vtable for implementing interfaces
         __TIB_org_xmlvm_iphone_UIButton.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIButton.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -731,6 +830,48 @@ void org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIE
 void org_xmlvm_iphone_UIButton_setAlpha___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_setAlpha___float]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_UIButton_isAdjustsImageWhenHighlighted__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_isAdjustsImageWhenHighlighted__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIButton_setAdjustsImageWhenHighlighted___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_setAdjustsImageWhenHighlighted___boolean]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_UIButton_isShowsTouchWhenHighlighted__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_isShowsTouchWhenHighlighted__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIButton_setShowsTouchWhenHighlighted___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_setShowsTouchWhenHighlighted___boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

@@ -47,6 +47,9 @@ public class UIButton extends UIControl {
     private UIImage[]        backgroundImage;
     private UIImage[]        image;
     private CGSize           titleShadowOffset;
+    private boolean          adjustsImageWhenHighlighted;
+    private boolean          adjustsImageWhenDisabled;
+    private boolean          showsTouchWhenHighlighted;
 
 
     @XMLVMIgnore
@@ -231,5 +234,29 @@ public class UIButton extends UIControl {
     public void setAlpha(float alpha) {
         super.setAlpha(alpha);
         ((UIButtonRenderer) xmlvmGetRenderer()).updateButtonElements();
+    }
+
+    public boolean isAdjustsImageWhenDisabled() {
+        return adjustsImageWhenDisabled;
+    }
+
+    public void setAdjustsImageWhenDisabled(boolean adjustsImageWhenDisabled) {
+        this.adjustsImageWhenDisabled = adjustsImageWhenDisabled;
+    }
+
+    public boolean isAdjustsImageWhenHighlighted() {
+        return adjustsImageWhenHighlighted;
+    }
+
+    public void setAdjustsImageWhenHighlighted(boolean adjustsImageWhenHighlighted) {
+        this.adjustsImageWhenHighlighted = adjustsImageWhenHighlighted;
+    }
+
+    public boolean isShowsTouchWhenHighlighted() {
+        return showsTouchWhenHighlighted;
+    }
+
+    public void setShowsTouchWhenHighlighted(boolean showsTouchWhenHighlighted) {
+        this.showsTouchWhenHighlighted = showsTouchWhenHighlighted;
     }
 }

@@ -119,4 +119,37 @@
     return_XMLVM_SELECTOR([self titleLabel] font)
 }
 
+- (void) setAdjustsImageWhenDisabled___boolean:(int) state
+{
+    [self setAdjustsImageWhenDisabled:state];
+}
+
+- (int) isAdjustsImageWhenDisabled__
+{
+    return [self adjustsImageWhenDisabled];
+}
+
+- (void) setAdjustsImageWhenHighlighted___boolean:(int) state
+{
+    [self setAdjustsImageWhenHighlighted:state];
+}
+
+- (int) isAdjustsImageWhenHighlighted__
+{
+    return [self adjustsImageWhenHighlighted];
+}
+
+
+- (void) setShowsTouchWhenHighlighted___boolean:(int) state
+{
+    [self setShowsTouchWhenHighlighted:state];
+}
+
+
+- (int) isShowsTouchWhenHighlighted__
+{
+    return [self showsTouchWhenHighlighted];
+}
+
+
 @end

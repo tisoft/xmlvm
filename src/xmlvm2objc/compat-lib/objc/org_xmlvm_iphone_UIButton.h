@@ -54,4 +54,14 @@ typedef UIButton org_xmlvm_iphone_UIButton;
 
 - (void) setFont___org_xmlvm_iphone_UIFont:(org_xmlvm_iphone_UIFont*)font;
 - (org_xmlvm_iphone_UIFont*) getFont__;
+
+- (void) setAdjustsImageWhenDisabled___boolean:(int) state;
+- (int) isAdjustsImageWhenDisabled__;
+
+- (void) setAdjustsImageWhenHighlighted___boolean:(int) state;
+- (int) isAdjustsImageWhenHighlighted__;
+
+- (void) setShowsTouchWhenHighlighted___boolean:(int) state;
+- (int) isShowsTouchWhenHighlighted__;
+
 @end

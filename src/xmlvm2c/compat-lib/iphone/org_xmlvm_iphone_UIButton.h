@@ -38,7 +38,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.UIButton
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIButton, 98)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIButton, 104)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButton;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButton_ARRAYTYPE;
@@ -64,7 +64,7 @@ struct org_xmlvm_iphone_UIButton {
 typedef struct org_xmlvm_iphone_UIButton org_xmlvm_iphone_UIButton;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIButton 98
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIButton 104
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setFont___org_xmlvm_iphone_UIFont 78
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_getFont__ 79
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_getButtonType__ 80
@@ -88,6 +88,12 @@ typedef struct org_xmlvm_iphone_UIButton org_xmlvm_iphone_UIButton;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent 14
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 16
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setAlpha___float 45
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__ 98
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean 99
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_isAdjustsImageWhenHighlighted__ 100
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setAdjustsImageWhenHighlighted___boolean 101
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_isShowsTouchWhenHighlighted__ 102
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setShowsTouchWhenHighlighted___boolean 103
 
 void __INIT_org_xmlvm_iphone_UIButton();
 void __INIT_IMPL_org_xmlvm_iphone_UIButton();
@@ -142,5 +148,17 @@ void org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIE
 void org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 // Vtable index: 45
 void org_xmlvm_iphone_UIButton_setAlpha___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+// Vtable index: 98
+JAVA_BOOLEAN org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__(JAVA_OBJECT me);
+// Vtable index: 99
+void org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+// Vtable index: 100
+JAVA_BOOLEAN org_xmlvm_iphone_UIButton_isAdjustsImageWhenHighlighted__(JAVA_OBJECT me);
+// Vtable index: 101
+void org_xmlvm_iphone_UIButton_setAdjustsImageWhenHighlighted___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+// Vtable index: 102
+JAVA_BOOLEAN org_xmlvm_iphone_UIButton_isShowsTouchWhenHighlighted__(JAVA_OBJECT me);
+// Vtable index: 103
+void org_xmlvm_iphone_UIButton_setShowsTouchWhenHighlighted___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 
 #endif
