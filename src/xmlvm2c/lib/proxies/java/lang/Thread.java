@@ -97,6 +97,12 @@ public class Thread implements Runnable {
         TERMINATED
     }
 
+    /**
+     * Don't delete these exception objects. They are used natively.
+     */
+    private Object xmlvmExceptionEnv;
+    private Object xmlvmException;
+
     // Use a mutex instead of the synchronized keyword for 2 reasons:
     // 1. It isn't used recursively, so it'll be more efficient
     // 2. It won't enter an infinite loop from calling initThread() or
@@ -157,6 +163,8 @@ public class Thread implements Runnable {
      * @param nativeThreadId
      */
     private Thread(long nativeThreadId) {
+        initMainThread();
+
         this.nativeThreadId = nativeThreadId;
 
         // The main thread is already running, so add it to the map
@@ -168,6 +176,11 @@ public class Thread implements Runnable {
         this.threadGroup = new ThreadGroup((ThreadGroup)null);
         this.threadGroup.add(this);
     }
+
+    /**
+     * Do any necessary native initialization for the main thread.
+     */
+    private native void initMainThread();
 
     /**
      * @param nativeThreadId

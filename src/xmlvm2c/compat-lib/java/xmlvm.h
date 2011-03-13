@@ -307,20 +307,16 @@ XMLVM_DEFINE_CLASS(float_ARRAYTYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
 XMLVM_DEFINE_CLASS(double_ARRAYTYPE, XMLVM_SIZE_OF_OBJECT_VTABLE)
 
 #include "org_xmlvm_runtime_XMLVMArray.h"
-
+#include "java_lang_Thread.h"
 
 #define XMLVM_JMP_BUF jmp_buf
 #define XMLVM_SETJMP(env) setjmp(env)
 #define XMLVM_LONGJMP(env) longjmp(env, 0)
 
-// TODO this won't work with multi-threading. Each thread needs its own xmlvm_exception_env
-extern XMLVM_JMP_BUF xmlvm_exception_env;
-// According to the documentation, the use of setjmp() is limited. In particular
-// one should not use the return value of setjmp() in a context other than an if- or
-// switch-statement. Because of this, we need to store the thrown exception in a global
-// variable.
-// TODO not thread safe!
-extern JAVA_OBJECT xmlvm_exception;
+// This exception value is only used for the main thread.
+// Since a call to Thread.currentThread() contains try-catch blocks, this must
+// be defined before the "main" java.lang.Thread is defined.
+extern XMLVM_JMP_BUF xmlvm_exception_env_main_thread;
 
 #define XMLVM_NOT_IMPLEMENTED() XMLVM_ERROR("Not implemented", __FILE__, __FUNCTION__, __LINE__)
 #define XMLVM_UNIMPLEMENTED_NATIVE_METHOD() XMLVM_ERROR("Unimplemented native method", __FILE__, __FUNCTION__, __LINE__)

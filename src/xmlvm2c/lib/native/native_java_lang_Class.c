@@ -178,9 +178,10 @@ JAVA_OBJECT java_lang_Class_forName___java_lang_String(JAVA_OBJECT n1)
     }
     if (i == __xmlvm_num_tib) {
         // Class not found
-        xmlvm_exception = __NEW_java_lang_ClassNotFoundException();
-        java_lang_ClassNotFoundException___INIT___(xmlvm_exception);
-        XMLVM_LONGJMP(xmlvm_exception_env);
+        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+        curThread->fields.java_lang_Thread.xmlvmException_ = __NEW_java_lang_ClassNotFoundException();
+        java_lang_ClassNotFoundException___INIT___(curThread->fields.java_lang_Thread.xmlvmException_);
+        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
     }
     if (!tib->classInitialized) {
         Func_V initFunc = tib->classInitializer;

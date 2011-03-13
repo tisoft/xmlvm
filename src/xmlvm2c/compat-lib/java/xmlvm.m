@@ -28,8 +28,7 @@
 #include <string.h>
 
 
-XMLVM_JMP_BUF xmlvm_exception_env;
-JAVA_OBJECT xmlvm_exception;
+XMLVM_JMP_BUF xmlvm_exception_env_main_thread;
 
 XMLVM_STATIC_INITIALIZER_CONTROLLER* staticInitializerController;
 
@@ -56,7 +55,7 @@ void xmlvm_init()
         XMLVM_ERROR("Error initializing static initializer mutex", __FILE__, __FUNCTION__, __LINE__);
     }
 
-    if (XMLVM_SETJMP(xmlvm_exception_env)) {
+    if (XMLVM_SETJMP(xmlvm_exception_env_main_thread)) {
         XMLVM_ERROR("Unhandled exception thrown", __FILE__, __FUNCTION__, __LINE__);
     }
     __INIT_org_xmlvm_runtime_XMLVMArray();
