@@ -31,25 +31,36 @@ check_xcode_template_files () {
 	fi
 }
 
-check_XMLVMSkeletonOnly () {
+
+
+# Parameter $1: what to search for
+# Parameter $2: "z" or "n" (not include or include)
+check_all_for () {
+	pushd >/dev/null "${XMLVMHOME}/src/xmlvm2objc/compat-lib/java/org/xmlvm/iphone"
+	for i in *.java ; do
+		CHECK=`grep "$1" $i`
+		if [ ! -$2 "$CHECK" ] ; then
+			ERROR=yes
+			echo "Incompatibility of file $i with $1"
+		fi
+	done
+	if [ -n "$ERROR" ] ; then
+		exit 1
+	fi
+	popd >/dev/null
+}
+
+check_enum_classes () {
 	pushd >/dev/null "${XMLVMHOME}/src/xmlvm2objc/compat-lib/java/org/xmlvm/iphone"
 	ERROR=
 	for i in *.java ; do
-		# Check for missing tag
-		CHECK=`grep '@XMLVMSkeletonOnly' $i`
-		if [ -z "$CHECK" ] ; then
-			ERROR=yes
-			echo "File $i is not annotated with XMLVMSkeletonOnly"
-		fi
+		CLASSNAME=`echo $i | sed -e 's/\.java$//g'`
 		# Check for constant enumerations
-		CHECK=`grep 'public final class' $i`
-		if [ -n "$CHECK" ] ; then
-			CLASSNAME=`echo $i | sed -e 's/\.java$//g'`
-			CHECK=`grep "private *$CLASSNAME() *{" $i`
-			if [ -z "$CHECK" ] ; then
-				ERROR=yes
-				echo "File $i seems to hold constant variables, but no private constructor found"
-			fi
+		CHECK_FINAL=`grep 'final class' $i`
+		CHECK_CONSTR=`grep "private *$CLASSNAME() *{" $i`
+		if [ -n "$CHECK_FINAL" -a -z "$CHECK_CONSTR" ] ; then
+			ERROR=yes
+			echo "File $i seems to hold constant variables, but no private constructor found"
 		fi
 	done
 	popd >/dev/null
@@ -105,7 +116,11 @@ for i in $ANDROID_PROJECTS ; do
 	sync_file var/templates/android/androidsupport.xml demo/android/$i/nbproject/androidsupport.xml
 done
 
-check_XMLVMSkeletonOnly
+check_all_for @XMLVMSkeletonOnly n
+check_all_for @author z
+check_all_for "GNU Lesser General Public License" n
+
+check_enum_classes
 
 generate_C_wrappers
 check_ifireworks_C

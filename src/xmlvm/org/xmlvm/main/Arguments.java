@@ -227,6 +227,7 @@ public class Arguments {
         option_lib.add("StoreKit.framework~");
         option_lib.add("CoreLocation.framework~");
         option_lib.add("MapKit.framework~");
+        option_lib.add("GameKit.framework~");
 
         // Read command line arguments
         for (int i = 0; i < argv.length; i++) {

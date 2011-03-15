@@ -1,0 +1,73 @@
+#ifndef __ORG_XMLVM_IPHONE_GKPEERPICKERCONTROLLERDELEGATE__
+#define __ORG_XMLVM_IPHONE_GKPEERPICKERCONTROLLERDELEGATE__
+
+#include "xmlvm.h"
+#include "java_lang_Object.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_GKSession
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_GKSession
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_GKSession)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_GKPeerPickerController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_GKPeerPickerController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_GKPeerPickerController)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+// Class declarations for org.xmlvm.iphone.GKPeerPickerControllerDelegate
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_GKPeerPickerControllerDelegate, 15)
+
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKPeerPickerControllerDelegate;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKPeerPickerControllerDelegate_ARRAYTYPE;
+
+//XMLVM_BEGIN_DECLARATIONS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_GKPeerPickerControllerDelegate
+//XMLVM_END_DECLARATIONS
+
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_GKPeerPickerControllerDelegate \
+    __INSTANCE_FIELDS_java_lang_Object; \
+    struct { \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_GKPeerPickerControllerDelegate \
+    } org_xmlvm_iphone_GKPeerPickerControllerDelegate
+
+struct org_xmlvm_iphone_GKPeerPickerControllerDelegate {
+    __TIB_DEFINITION_org_xmlvm_iphone_GKPeerPickerControllerDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_GKPeerPickerControllerDelegate;
+    } fields;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_GKPeerPickerControllerDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_GKPeerPickerControllerDelegate
+typedef struct org_xmlvm_iphone_GKPeerPickerControllerDelegate org_xmlvm_iphone_GKPeerPickerControllerDelegate;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_GKPeerPickerControllerDelegate 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKPeerPickerControllerDelegate_didSelectConnectionType___org_xmlvm_iphone_GKPeerPickerController_int 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKPeerPickerControllerDelegate_sessionForConnectionType___org_xmlvm_iphone_GKPeerPickerController_int 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKPeerPickerControllerDelegate_didConnectPeer___org_xmlvm_iphone_GKPeerPickerController_java_lang_String_org_xmlvm_iphone_GKSession 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKPeerPickerControllerDelegate_didCancel___org_xmlvm_iphone_GKPeerPickerController 14
+
+void __INIT_org_xmlvm_iphone_GKPeerPickerControllerDelegate();
+void __INIT_IMPL_org_xmlvm_iphone_GKPeerPickerControllerDelegate();
+void __DELETE_org_xmlvm_iphone_GKPeerPickerControllerDelegate(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKPeerPickerControllerDelegate(JAVA_OBJECT me);
+JAVA_OBJECT __NEW_org_xmlvm_iphone_GKPeerPickerControllerDelegate();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_GKPeerPickerControllerDelegate();
+void org_xmlvm_iphone_GKPeerPickerControllerDelegate___INIT___(JAVA_OBJECT me);
+// Vtable index: 11
+void org_xmlvm_iphone_GKPeerPickerControllerDelegate_didSelectConnectionType___org_xmlvm_iphone_GKPeerPickerController_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+// Vtable index: 12
+JAVA_OBJECT org_xmlvm_iphone_GKPeerPickerControllerDelegate_sessionForConnectionType___org_xmlvm_iphone_GKPeerPickerController_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+// Vtable index: 13
+void org_xmlvm_iphone_GKPeerPickerControllerDelegate_didConnectPeer___org_xmlvm_iphone_GKPeerPickerController_java_lang_String_org_xmlvm_iphone_GKSession(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
+// Vtable index: 14
+void org_xmlvm_iphone_GKPeerPickerControllerDelegate_didCancel___org_xmlvm_iphone_GKPeerPickerController(JAVA_OBJECT me, JAVA_OBJECT n1);
+
+#endif
