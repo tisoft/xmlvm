@@ -1824,43 +1824,7 @@ int main(int argc, char* argv[])
 <xsl:function name="vm:shouldGenerateCodeForMethod" as="xs:boolean">
   <xsl:param name="method" as="node()"/>
   
-  <xsl:choose>
-    <xsl:when test="vm:isDuplicateMethod($method)">
-      <xsl:value-of select="false()"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="not($genWrapper = 'true' and $method/@isPrivate = 'true')"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
-
-
-<!--  javac will sometimes generate two methods that only differ in their return type.
-      This can happen e.g. with type erasures. Function vm:isDuplicateMethod will determine
-      if the given method is a duplicate that is not needed when generating Objective-C (in fact,
-      Objective-C does not permit two methods that only differ in their return type).
-      A method is a duplicate if it is (1) synthetic, (2) a method with the same name exists
-      in the class, and (3) signatures only differ in their return types.  -->
-<xsl:function name="vm:isDuplicateMethod" as="xs:boolean">
-  <xsl:param name="method" as="node()"/>
-
-  <xsl:choose>
-    <xsl:when test="not($method/@isSynthetic = 'true')">
-      <xsl:value-of select="false()"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:variable name="name" select="$method/@name"/>
-      <xsl:variable name="methodsWithSameName" select="$method/../vm:method[@name = $name]"/>
-      <xsl:variable name="duplicateMethods">
-        <xsl:for-each select="$methodsWithSameName">
-          <xsl:if test="deep-equal($method/vm:signature/vm:parameter, ./vm:signature/vm:parameter)">
-            <xsl:copy-of select="."/>
-          </xsl:if>
-        </xsl:for-each>
-      </xsl:variable>
-      <xsl:value-of select="count($duplicateMethods/vm:method) gt 1"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:value-of select="not($genWrapper = 'true' and $method/@isPrivate = 'true')"/>
 </xsl:function>
 
 

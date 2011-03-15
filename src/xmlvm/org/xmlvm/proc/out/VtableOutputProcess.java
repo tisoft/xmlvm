@@ -47,7 +47,7 @@ import org.xmlvm.proc.lib.LibraryLoader;
  * emits C and can be useful for any target language that doesn't support
  * classes or similar OOP concepts.
  */
-public class VtableOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
+public class VtableOutputProcess extends XmlvmProcessImpl<RemoveDuplicateMethodsOutputProcess> {
     private final static String        TAG                    = VtableOutputProcess.class
                                                                       .getSimpleName();
     private final static String        VTABLE_ENDING          = ".vtable.xmlvm";
@@ -177,7 +177,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
     public VtableOutputProcess(Arguments arguments) {
         super(arguments);
         this.arguments = arguments;
-        addSupportedInput(RecursiveResourceLoadingProcess.class);
+        addSupportedInput(RemoveDuplicateMethodsOutputProcess.class);
 
         // Add empty class name that acts as a base class for java.lang.Object
         vtables.put("", new Vtable());
@@ -202,7 +202,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
 
     @Override
     public boolean process() {
-        List<XmlvmResourceProvider> preprocesses = preprocess();
+        List<RemoveDuplicateMethodsOutputProcess> preprocesses = preprocess();
         // Collect all XmlvmResource instances.
         for (XmlvmResourceProvider process : preprocesses) {
             List<XmlvmResource> xmlvmResources = process.getXmlvmResources();

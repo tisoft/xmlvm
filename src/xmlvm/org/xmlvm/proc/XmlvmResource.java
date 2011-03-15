@@ -329,6 +329,14 @@ public class XmlvmResource {
         public boolean isConstructor() {
             return methodElement.getAttributeValue("name").equals("<init>");
         }
+        
+        /**
+         * Returns true if this method is synthetic.
+         */
+        public boolean isSynthetic() {
+            String flag = methodElement.getAttributeValue("isSynthetic");
+            return flag != null && flag.equals("true");
+        }
 
         /**
          * Set a vtable index for this method (XML attribute
@@ -410,6 +418,19 @@ public class XmlvmResource {
          */
         public boolean matchesDeclaration(XmlvmField field) {
             return getName().equals(field.getName()) && getType().equals(field.getType());
+        }
+    }
+    
+    /**
+     * @param search
+     */
+    @SuppressWarnings("unchecked")
+    public void removeMethod(XmlvmMethod search) {
+        List<Element> classes = xmlvmDocument.getRootElement().getChildren("class", nsXMLVM);
+        for (Element clazz : classes) {
+            if(clazz.removeContent(search.methodElement)) {
+                return;
+            }
         }
     }
 
