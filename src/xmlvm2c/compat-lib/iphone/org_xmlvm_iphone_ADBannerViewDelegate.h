@@ -1,0 +1,69 @@
+#ifndef __ORG_XMLVM_IPHONE_ADBANNERVIEWDELEGATE__
+#define __ORG_XMLVM_IPHONE_ADBANNERVIEWDELEGATE__
+
+#include "xmlvm.h"
+#include "org_xmlvm_iphone_NSObject.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_ADBannerView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_ADBannerView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_ADBannerView)
+#endif
+// Class declarations for org.xmlvm.iphone.ADBannerViewDelegate
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_ADBannerViewDelegate, 18)
+
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerViewDelegate;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerViewDelegate_ARRAYTYPE;
+
+//XMLVM_BEGIN_DECLARATIONS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_ADBannerViewDelegate
+//XMLVM_END_DECLARATIONS
+
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_ADBannerViewDelegate \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
+    struct { \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_ADBannerViewDelegate \
+    } org_xmlvm_iphone_ADBannerViewDelegate
+
+struct org_xmlvm_iphone_ADBannerViewDelegate {
+    __TIB_DEFINITION_org_xmlvm_iphone_ADBannerViewDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_ADBannerViewDelegate;
+    } fields;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_ADBannerViewDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_ADBannerViewDelegate
+typedef struct org_xmlvm_iphone_ADBannerViewDelegate org_xmlvm_iphone_ADBannerViewDelegate;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_ADBannerViewDelegate 18
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerViewDelegate_didLoadAd___org_xmlvm_iphone_ADBannerView 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerViewDelegate_shouldBegin___org_xmlvm_iphone_ADBannerView_boolean 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerViewDelegate_didFailToReceiveAdWithError___org_xmlvm_iphone_ADBannerView_org_xmlvm_iphone_NSError 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerViewDelegate_didFinish___org_xmlvm_iphone_ADBannerView 17
+
+void __INIT_org_xmlvm_iphone_ADBannerViewDelegate();
+void __INIT_IMPL_org_xmlvm_iphone_ADBannerViewDelegate();
+void __DELETE_org_xmlvm_iphone_ADBannerViewDelegate(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_ADBannerViewDelegate(JAVA_OBJECT me);
+JAVA_OBJECT __NEW_org_xmlvm_iphone_ADBannerViewDelegate();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_ADBannerViewDelegate();
+void org_xmlvm_iphone_ADBannerViewDelegate___INIT___(JAVA_OBJECT me);
+// Vtable index: 14
+void org_xmlvm_iphone_ADBannerViewDelegate_didLoadAd___org_xmlvm_iphone_ADBannerView(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 15
+JAVA_BOOLEAN org_xmlvm_iphone_ADBannerViewDelegate_shouldBegin___org_xmlvm_iphone_ADBannerView_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
+// Vtable index: 16
+void org_xmlvm_iphone_ADBannerViewDelegate_didFailToReceiveAdWithError___org_xmlvm_iphone_ADBannerView_org_xmlvm_iphone_NSError(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+// Vtable index: 17
+void org_xmlvm_iphone_ADBannerViewDelegate_didFinish___org_xmlvm_iphone_ADBannerView(JAVA_OBJECT me, JAVA_OBJECT n1);
+
+#endif
