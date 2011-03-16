@@ -239,11 +239,14 @@ int main(int argc, char* argv[])
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:if test="@value">
         <xsl:text> = </xsl:text>
-        <!-- TODO String values need to be surrounded by quotes and escaped properly. -->
-        <xsl:if test="@type = 'java.lang.String'">
-          <xsl:text>@</xsl:text>
-        </xsl:if>
-        <xsl:value-of select="@value"/>
+        <xsl:choose>
+          <xsl:when test="@type = 'java.lang.String'">
+            <xsl:value-of select="vm:escapeString(@value)"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="@value"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:if>
       <xsl:text>;
 </xsl:text>
@@ -1824,7 +1827,19 @@ int main(int argc, char* argv[])
   <xsl:value-of  select="replace(replace(replace($a,'\$', '_'),'\.','_'), '\[\]', '_ARRAYTYPE')"/>
 </xsl:function>
   
-  
+
+<xsl:function name="vm:escapeString">
+  <xsl:param  name="string"/>
+  <!-- Escape all \\ \t(011) \n(012) \r(015) \f(014) \b(010) \" -->
+  <!-- Single quotes don't need to be escaped. -->
+  <xsl:text>@"</xsl:text>
+  <xsl:value-of select="replace(replace(replace(replace(replace(replace(replace($string,'\\011','\\t'),
+                           '\\012','\\n'),'\\015','\\r'),'\\014','\\f'),'\\010','\\b'),
+                           '\\042','\\&quot;'),'\\134','\\\\')"/>
+  <xsl:text>"</xsl:text>
+</xsl:function>
+
+
 <xsl:template match="vm:annotations">
   <!-- Ignore annotations -->
 </xsl:template>
@@ -2935,13 +2950,9 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:const-string">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o = @"</xsl:text>
-  <!-- Escape all \\ \t(011) \n(012) \r(015) \f(014) \b(010) \" -->
-  <!-- Single quotes don't need to be escaped. -->
-  <xsl:value-of select="replace(replace(replace(replace(replace(replace(replace(@value,'\\134','\\\\'),
-                           '\\011','\\t'),'\\012','\\n'),'\\015','\\r'),'\\014','\\f'),'\\010','\\b'),
-                           '\\042','\\&quot;')"/>
-  <xs:text>";
+  <xsl:text>.o = </xsl:text>
+  <xsl:value-of select="vm:escapeString(@value)"/>
+  <xs:text>;
 </xs:text>
 </xsl:template>
 

@@ -663,10 +663,16 @@ int main(int argc, char* argv[])
             <xsl:text>) </xsl:text>
             <xsl:choose>
               <xsl:when test="@value">
-                <!-- TODO We assume that @value is always a string -->
-                <xsl:text>xmlvm_create_java_string(</xsl:text>
-                <xsl:value-of select="vm:escapeString(@value)"/>
-                <xsl:text>)</xsl:text>
+                <xsl:choose>
+                  <xsl:when test="@type = 'java.lang.String'">
+                    <xsl:text>xmlvm_create_java_string(</xsl:text>
+                    <xsl:value-of select="vm:escapeString(@value)"/>
+                    <xsl:text>)</xsl:text>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:value-of select="@value"/>
+                  </xsl:otherwise>
+                </xsl:choose>
               </xsl:when>
               <xsl:otherwise>
                 <xsl:text>JAVA_NULL</xsl:text>
@@ -792,7 +798,7 @@ int main(int argc, char* argv[])
       <xsl:if test="not($genWrapper = 'true' and @isPrivate = 'true')">
         <xsl:text>    ((</xsl:text>
         <xsl:value-of select="$clname"/>
-        <xsl:text>*)me)->fields.</xsl:text>
+        <xsl:text>*) me)->fields.</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.</xsl:text>
         <xsl:value-of select="vm:fixname(@name)"/>
@@ -1882,9 +1888,9 @@ int main(int argc, char* argv[])
   <!-- Escape all \\ \t(011) \n(012) \r(015) \f(014) \b(010) \" -->
   <!-- Single quotes don't need to be escaped. -->
   <xsl:text>"</xsl:text>
-  <xsl:value-of select="replace(replace(replace(replace(replace(replace(replace($string,'\\134','\\\\'),
-                           '\\011','\\t'),'\\012','\\n'),'\\015','\\r'),'\\014','\\f'),'\\010','\\b'),
-                           '\\042','\\&quot;')"/>
+  <xsl:value-of select="replace(replace(replace(replace(replace(replace(replace($string,'\\011','\\t'),
+                           '\\012','\\n'),'\\015','\\r'),'\\014','\\f'),'\\010','\\b'),
+                           '\\042','\\&quot;'),'\\134','\\\\')"/>
   <xsl:text>"</xsl:text>
 </xsl:function>
 

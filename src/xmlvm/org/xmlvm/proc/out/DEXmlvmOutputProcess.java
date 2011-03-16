@@ -636,7 +636,14 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             fieldElement.setAttribute("type", fieldType);
             TypedConstant value = field.getConstantValue();
             if (value != null) {
-                fieldElement.setAttribute("value", escapeString(value.toHuman()));
+                String constValue = null;
+                if (fieldType.equals("java.lang.String")) {
+                    constValue = ((CstString) value).getString().getString();
+                    constValue = escapeString(constValue);
+                } else {
+                    constValue = value.toHuman();
+                }
+                fieldElement.setAttribute("value", constValue);
             }
             processAccessFlags(field.getAccessFlags(), fieldElement);
             classElement.addContent(fieldElement);
