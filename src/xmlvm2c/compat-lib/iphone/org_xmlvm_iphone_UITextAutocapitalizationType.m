@@ -15,7 +15,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITextAutocapitalizationType __TIB_org_xmlvm_i
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
@@ -131,7 +133,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UITextAutocapitalizationType()
         __TIB_org_xmlvm_iphone_UITextAutocapitalizationType.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UITextAutocapitalizationType);
         __TIB_org_xmlvm_iphone_UITextAutocapitalizationType.clazz = __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType;
-        __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextAutocapitalizationType, 1);
+        __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextAutocapitalizationType, 3);
+        __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextAutocapitalizationType, 2);
+        __CLASS_org_xmlvm_iphone_UITextAutocapitalizationType_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextAutocapitalizationType, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITextAutocapitalizationType]
         //XMLVM_END_WRAPPER
 

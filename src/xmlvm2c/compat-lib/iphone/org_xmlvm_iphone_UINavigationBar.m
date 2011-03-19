@@ -21,7 +21,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UINavigationBar __TIB_org_xmlvm_iphone_UINavig
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBar;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBar_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBar_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBar_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBar_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
@@ -403,7 +405,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UINavigationBar()
         __TIB_org_xmlvm_iphone_UINavigationBar.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UINavigationBar = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UINavigationBar);
         __TIB_org_xmlvm_iphone_UINavigationBar.clazz = __CLASS_org_xmlvm_iphone_UINavigationBar;
-        __CLASS_org_xmlvm_iphone_UINavigationBar_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationBar, 1);
+        __CLASS_org_xmlvm_iphone_UINavigationBar_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationBar, 3);
+        __CLASS_org_xmlvm_iphone_UINavigationBar_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationBar, 2);
+        __CLASS_org_xmlvm_iphone_UINavigationBar_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationBar, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UINavigationBar]
         //XMLVM_END_WRAPPER
 
@@ -420,7 +425,7 @@ void __DELETE_org_xmlvm_iphone_UINavigationBar(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationBar(JAVA_OBJECT me)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me);
-    ((org_xmlvm_iphone_UINavigationBar*)me)->fields.org_xmlvm_iphone_UINavigationBar.nbcontroller_ = (org_xmlvm_iphone_UINavigationController*) JAVA_NULL;
+    ((org_xmlvm_iphone_UINavigationBar*) me)->fields.org_xmlvm_iphone_UINavigationBar.nbcontroller_ = (org_xmlvm_iphone_UINavigationController*) JAVA_NULL;
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationBar()

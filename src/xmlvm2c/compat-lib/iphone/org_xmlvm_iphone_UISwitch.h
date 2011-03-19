@@ -25,7 +25,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISwitch, 80)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UISwitch

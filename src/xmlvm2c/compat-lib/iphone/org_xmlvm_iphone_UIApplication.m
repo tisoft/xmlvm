@@ -20,7 +20,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIApplication __TIB_org_xmlvm_iphone_UIApplica
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <UIKit/UIApplication.h>
@@ -159,7 +161,7 @@ static JAVA_OBJECT* __method16_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method17_arg_types[] = {
-    &__CLASS_java_lang_String_ARRAYTYPE,
+    &__CLASS_java_lang_String_1ARRAY,
     &__CLASS_java_lang_Class,
     &__CLASS_java_lang_Class,
 };
@@ -389,7 +391,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL(receiver, argsArray[0]);
         break;
     case 17:
-        org_xmlvm_iphone_UIApplication_main___java_lang_String_ARRAYTYPE_java_lang_Class_java_lang_Class(argsArray[0], argsArray[1], argsArray[2]);
+        org_xmlvm_iphone_UIApplication_main___java_lang_String_1ARRAY_java_lang_Class_java_lang_Class(argsArray[0], argsArray[1], argsArray[2]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -448,7 +450,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UIApplication()
         __TIB_org_xmlvm_iphone_UIApplication.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UIApplication = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIApplication);
         __TIB_org_xmlvm_iphone_UIApplication.clazz = __CLASS_org_xmlvm_iphone_UIApplication;
-        __CLASS_org_xmlvm_iphone_UIApplication_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIApplication, 1);
+        __CLASS_org_xmlvm_iphone_UIApplication_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIApplication, 3);
+        __CLASS_org_xmlvm_iphone_UIApplication_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIApplication, 2);
+        __CLASS_org_xmlvm_iphone_UIApplication_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIApplication, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIApplication]
         //XMLVM_END_WRAPPER
 
@@ -618,17 +623,16 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL(JAV
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UIApplication_main___java_lang_String_ARRAYTYPE_java_lang_Class_java_lang_Class(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
+void org_xmlvm_iphone_UIApplication_main___java_lang_String_1ARRAY_java_lang_Class_java_lang_Class(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
 {
     if (!__TIB_org_xmlvm_iphone_UIApplication.classInitialized) __INIT_org_xmlvm_iphone_UIApplication();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_main___java_lang_String_ARRAYTYPE_java_lang_Class_java_lang_Class]
-	
-	//java_lang_Class_newInstance__
-    appToRun = (*(JAVA_OBJECT (*)(JAVA_OBJECT)) ((java_lang_Class*) n3)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Class_newInstance__])(n3);	
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_main___java_lang_String_1ARRAY_java_lang_Class_java_lang_Class]
+    
+    //java_lang_Class_newInstance__
+    appToRun = (*(JAVA_OBJECT (*)(JAVA_OBJECT)) ((java_lang_Class*) n3)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Class_newInstance__])(n3);
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     UIApplicationMain(0 /*argc*/, nil /*argv*/, @"UIAppWrap", @"UIAppWrap");
-	[pool release];	
-
+    [pool release];
     //XMLVM_END_WRAPPER
 }
 

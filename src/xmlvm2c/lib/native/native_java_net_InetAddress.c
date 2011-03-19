@@ -20,9 +20,9 @@ JAVA_OBJECT java_net_InetAddress_getAliasesByNameImpl___java_lang_String(JAVA_OB
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_net_InetAddress_getHostByAddrImpl___byte_ARRAYTYPE(JAVA_OBJECT n1)
+JAVA_OBJECT java_net_InetAddress_getHostByAddrImpl___byte_1ARRAY(JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_NATIVE[java_net_InetAddress_getHostByAddrImpl___byte_ARRAYTYPE]
+    //XMLVM_BEGIN_NATIVE[java_net_InetAddress_getHostByAddrImpl___byte_1ARRAY]
     XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }

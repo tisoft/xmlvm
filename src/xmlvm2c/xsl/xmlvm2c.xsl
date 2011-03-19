@@ -36,6 +36,7 @@
 <xsl:param name="pass">emitHeader</xsl:param>
 <xsl:param name="header">xmlvm.h</xsl:param>
 <xsl:param name="genWrapper">false</xsl:param>
+<xsl:param name="maxArrayDimension">3</xsl:param>
 
 <xsl:output method="text" indent="no"/>
 
@@ -74,7 +75,7 @@ int main(int argc, char* argv[])
     <xsl:value-of select="vm:fixname($cl/@package)"/>
     <xsl:text>_</xsl:text>
     <xsl:value-of select="$cl/@name"/>
-    <xsl:text>_main___java_lang_String_ARRAYTYPE(JAVA_NULL);
+    <xsl:text>_main___java_lang_String_1ARRAY(JAVA_NULL);
     // Call pthread_exit(0) so that the main thread does not terminate until
     // the other threads have finished
     pthread_exit(0);
@@ -177,9 +178,12 @@ int main(int argc, char* argv[])
     <xsl:text>extern JAVA_OBJECT __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;&nl;</xsl:text>
-    <xsl:text>extern JAVA_OBJECT __CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>_ARRAYTYPE;&nl;&nl;</xsl:text>
+    <xsl:call-template name="emitArrayTypeCode">
+      <xsl:with-param name="pass" select="'declaration'"/>
+      <xsl:with-param name="indent" select="''"/>
+      <xsl:with-param name="type" select="$clname"/>
+      <xsl:with-param name="dimension" select="$maxArrayDimension"/>
+    </xsl:call-template>
     
     <xsl:if test="$genWrapper = 'true'">
       <xsl:text>//XMLVM_BEGIN_DECLARATIONS&nl;</xsl:text>
@@ -353,9 +357,12 @@ int main(int argc, char* argv[])
     <xsl:text>extern JAVA_OBJECT __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;&nl;</xsl:text>
-    <xsl:text>extern JAVA_OBJECT __CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>_ARRAYTYPE;&nl;&nl;</xsl:text>
+    <xsl:call-template name="emitArrayTypeCode">
+      <xsl:with-param name="pass" select="'declaration'"/>
+      <xsl:with-param name="indent" select="''"/>
+      <xsl:with-param name="type" select="$clname"/>
+      <xsl:with-param name="dimension" select="$maxArrayDimension"/>
+    </xsl:call-template>
     
     <xsl:text>#ifndef XMLVM_FORWARD_DECL_</xsl:text>
     <xsl:value-of select="$clname"/>
@@ -496,9 +503,12 @@ int main(int argc, char* argv[])
     <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;&nl;</xsl:text>
-    <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>_ARRAYTYPE;&nl;&nl;</xsl:text>
+    <xsl:call-template name="emitArrayTypeCode">
+      <xsl:with-param name="pass" select="'definition'"/>
+      <xsl:with-param name="indent" select="''"/>
+      <xsl:with-param name="type" select="$clname"/>
+      <xsl:with-param name="dimension" select="$maxArrayDimension"/>
+    </xsl:call-template>
 
     <xsl:if test="$genWrapper = 'true'">
       <xsl:text>//XMLVM_BEGIN_IMPLEMENTATION&nl;</xsl:text>
@@ -730,11 +740,12 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text>;&nl;</xsl:text>
 
-    <xsl:text>        __CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>, 1);&nl;</xsl:text>
+    <xsl:call-template name="emitArrayTypeCode">
+      <xsl:with-param name="pass" select="'initialization'"/>
+      <xsl:with-param name="indent" select="'        '"/>
+      <xsl:with-param name="type" select="$clname"/>
+      <xsl:with-param name="dimension" select="$maxArrayDimension"/>
+    </xsl:call-template>
     
     <!-- If there is a Java class initializer, call it. -->
     <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
@@ -1008,9 +1019,12 @@ int main(int argc, char* argv[])
     <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;&nl;</xsl:text>
-    <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>_ARRAYTYPE;&nl;&nl;</xsl:text>
+    <xsl:call-template name="emitArrayTypeCode">
+      <xsl:with-param name="pass" select="'definition'"/>
+      <xsl:with-param name="indent" select="''"/>
+      <xsl:with-param name="type" select="$clname"/>
+      <xsl:with-param name="dimension" select="$maxArrayDimension"/>
+    </xsl:call-template>
     
     <!-- Emit global variable definition for all fields (which must be final and static for interfaces) -->
     <xsl:for-each select="vm:field">
@@ -1131,13 +1145,15 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text>;</xsl:text>
     
-    <xsl:text>&nl;        __CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>, 1);</xsl:text>
+    <xsl:text>&nl;</xsl:text>
+    <xsl:call-template name="emitArrayTypeCode">
+      <xsl:with-param name="pass" select="'initialization'"/>
+      <xsl:with-param name="indent" select="'        '"/>
+      <xsl:with-param name="type" select="$clname"/>
+      <xsl:with-param name="dimension" select="$maxArrayDimension"/>
+    </xsl:call-template>
     
-    <xsl:text>&nl;        __TIB_</xsl:text>
+    <xsl:text>        __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized = 1;
     }
@@ -1719,6 +1735,57 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template name="emitArrayTypeCode">
+  <xsl:param name="pass"/>
+  <xsl:param name="indent"/>
+  <xsl:param name="type"/>
+  <xsl:param name="dimension" as="xs:integer"/>
+  
+  <xsl:if test="$dimension &gt; 0">
+    <xsl:value-of select="$indent"/>
+    <xsl:choose>
+      <xsl:when test="$pass = 'declaration'">
+        <xsl:text>extern JAVA_OBJECT __CLASS_</xsl:text>
+        <xsl:value-of select="$type"/>
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="$dimension"/>
+        <xsl:text>ARRAY;&nl;</xsl:text>
+      </xsl:when>
+      <xsl:when test="$pass = 'definition'">
+        <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
+        <xsl:value-of select="$type"/>
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="$dimension"/>
+        <xsl:text>ARRAY;&nl;</xsl:text>
+      </xsl:when>
+      <xsl:when test="$pass = 'initialization'">
+        <xsl:text>__CLASS_</xsl:text>
+        <xsl:value-of select="$type"/>
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="$dimension"/>
+        <xsl:text>ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_</xsl:text>
+        <xsl:value-of select="$type"/>
+        <xsl:text>, </xsl:text>
+        <xsl:value-of select="$dimension"/>
+        <xsl:text>);&nl;</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message select="'Bad pass for emitArrayType'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:call-template name="emitArrayTypeCode">
+      <xsl:with-param name="pass" select="$pass"/>
+      <xsl:with-param name="indent" select="$indent"/>
+      <xsl:with-param name="type" select="$type"/>
+      <xsl:with-param name="dimension" select="$dimension - 1" />     
+    </xsl:call-template>
+  </xsl:if>
+  <xsl:if test="$dimension = 0">
+    <xsl:text>&nl;</xsl:text>
+  </xsl:if>
+</xsl:template>
+
+
 <xsl:template name="emitMethodSignature">
   <xsl:param name="forDeclaration"/>
   
@@ -1878,8 +1945,14 @@ int main(int argc, char* argv[])
 
 
 <xsl:function name="vm:fixname">
-  <xsl:param  name="a"/>
-  <xsl:value-of  select="replace(replace(replace($a,'\$', '_'),'\.','_'), '\[\]', '_ARRAYTYPE')"/>
+  <xsl:param  name="a" as="xs:string"/>
+  <xsl:value-of  select="replace(replace(replace($a,'\$', '_'),'\.','_'), '\[\]', '')"/>
+  <xsl:if test="contains($a, '[]')">
+    <xsl:text>_</xsl:text>
+    <!-- The following expression counts the number of '[]' -->
+    <xsl:value-of select="string-length(substring-after($a, '[]')) div 2 + 1"/>
+    <xsl:text>ARRAY</xsl:text>
+  </xsl:if>
 </xsl:function>
   
 
@@ -3635,7 +3708,7 @@ int main(int argc, char* argv[])
     <xsl:when test="count(dex:parameters/dex:parameter) != 0">
       <xsl:for-each select="dex:parameters/dex:parameter">
         <xsl:text>_</xsl:text>
-        <xsl:value-of select="replace(vm:fixname(@type), '\[\]', '_ARRAYTYPE')"/>
+        <xsl:value-of select="vm:fixname(@type)"/>
       </xsl:for-each>
     </xsl:when>
   </xsl:choose>

@@ -135,9 +135,9 @@ JAVA_INT java_lang_reflect_Method_hashCode__(JAVA_OBJECT me)
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+JAVA_OBJECT java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_ARRAYTYPE]
+    //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_1ARRAY]
     java_lang_reflect_Method* thiz = me;
     java_lang_Class* declaringClass = thiz->fields.java_lang_reflect_Method.clazz_;
     __TIB_DEFINITION_TEMPLATE* tib = declaringClass->fields.java_lang_Class.tib_;
@@ -228,9 +228,9 @@ void xmlvm_init_native_java_lang_reflect_Method()
     __TIB_java_lang_reflect_Method.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Method_hashCode__] = 
         (VTABLE_PTR) java_lang_reflect_Method_hashCode__;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_ARRAYTYPE
-    __TIB_java_lang_reflect_Method.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_ARRAYTYPE] = 
-        (VTABLE_PTR) java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_ARRAYTYPE;
+#ifdef XMLVM_VTABLE_IDX_java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_1ARRAY
+    __TIB_java_lang_reflect_Method.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_1ARRAY] = 
+        (VTABLE_PTR) java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_1ARRAY;
 #endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_reflect_Method_toString__
     __TIB_java_lang_reflect_Method.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Method_toString__] = 

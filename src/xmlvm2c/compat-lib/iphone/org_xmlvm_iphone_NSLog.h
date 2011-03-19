@@ -21,7 +21,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSLog, 14)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSLog;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSLog_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSLog_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSLog_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSLog_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSLog

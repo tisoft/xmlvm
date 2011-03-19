@@ -5,42 +5,42 @@
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 
-#include "math.h"
+#include <math.h>
 
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
 JAVA_DOUBLE java_lang_Math_acos___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_acos___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return acos(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_asin___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_asin___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return asin(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_atan___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_atan___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return atan(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_atan2___double_double(JAVA_DOUBLE n1, JAVA_DOUBLE n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_atan2___double_double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return atan2(n1, n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_cbrt___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_cbrt___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return cbrt(n1);
     //XMLVM_END_NATIVE
 }
 
@@ -54,49 +54,49 @@ JAVA_DOUBLE java_lang_Math_ceil___double(JAVA_DOUBLE n1)
 JAVA_DOUBLE java_lang_Math_cos___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_cos___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return cos(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_cosh___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_cosh___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return cosh(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_exp___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_exp___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return exp(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_expm1___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_expm1___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return expm1(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_floor___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_floor___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return floor(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_hypot___double_double(JAVA_DOUBLE n1, JAVA_DOUBLE n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_hypot___double_double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return hypot(n1, n2);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_IEEEremainder___double_double(JAVA_DOUBLE n1, JAVA_DOUBLE n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_IEEEremainder___double_double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return remainder(n1, n2);
     //XMLVM_END_NATIVE
 }
 
@@ -110,77 +110,77 @@ JAVA_DOUBLE java_lang_Math_log___double(JAVA_DOUBLE n1)
 JAVA_DOUBLE java_lang_Math_log10___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_log10___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return log10(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_log1p___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_log1p___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return log1p(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_pow___double_double(JAVA_DOUBLE n1, JAVA_DOUBLE n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_pow___double_double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return pow(n1, n2);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_rint___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_rint___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return rint(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_sin___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_sin___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return sin(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_sinh___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_sinh___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return sinh(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_sqrt___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_sqrt___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return sqrt(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_tan___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_tan___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return tan(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_tanh___double(JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_tanh___double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return tanh(n1);
     //XMLVM_END_NATIVE
 }
 
 JAVA_DOUBLE java_lang_Math_nextafter___double_double(JAVA_DOUBLE n1, JAVA_DOUBLE n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_nextafter___double_double]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return nextafter(n1, n2);
     //XMLVM_END_NATIVE
 }
 
 JAVA_FLOAT java_lang_Math_nextafterf___float_float(JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Math_nextafterf___float_float]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return nextafterf(n1, n2);
     //XMLVM_END_NATIVE
 }
 

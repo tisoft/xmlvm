@@ -33,7 +33,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWebView, 81)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebView;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebView_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebView_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebView_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebView_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIWebView

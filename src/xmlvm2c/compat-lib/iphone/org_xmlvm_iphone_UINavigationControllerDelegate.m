@@ -14,7 +14,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UINavigationControllerDelegate __TIB_org_xmlvm
     XMLVM_TYPE_INTERFACE};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_1ARRAY;
 
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
@@ -39,7 +41,10 @@ void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_UINavigationControllerDelegate(__TIB
 
         __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UINavigationControllerDelegate);
         __TIB_org_xmlvm_iphone_UINavigationControllerDelegate.clazz = __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate;
-        __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationControllerDelegate, 1);
+        __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationControllerDelegate, 3);
+        __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationControllerDelegate, 2);
+        __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationControllerDelegate, 1);
+
         __TIB_org_xmlvm_iphone_UINavigationControllerDelegate.classInitialized = 1;
     }
     if (interface != JAVA_NULL) {

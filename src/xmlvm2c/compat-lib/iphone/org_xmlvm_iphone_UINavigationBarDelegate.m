@@ -14,7 +14,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UINavigationBarDelegate __TIB_org_xmlvm_iphone
     XMLVM_TYPE_INTERFACE};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBarDelegate;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBarDelegate_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBarDelegate_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBarDelegate_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBarDelegate_1ARRAY;
 
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
@@ -39,7 +41,10 @@ void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_UINavigationBarDelegate(__TIB_DEFINI
 
         __CLASS_org_xmlvm_iphone_UINavigationBarDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UINavigationBarDelegate);
         __TIB_org_xmlvm_iphone_UINavigationBarDelegate.clazz = __CLASS_org_xmlvm_iphone_UINavigationBarDelegate;
-        __CLASS_org_xmlvm_iphone_UINavigationBarDelegate_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationBarDelegate, 1);
+        __CLASS_org_xmlvm_iphone_UINavigationBarDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationBarDelegate, 3);
+        __CLASS_org_xmlvm_iphone_UINavigationBarDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationBarDelegate, 2);
+        __CLASS_org_xmlvm_iphone_UINavigationBarDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationBarDelegate, 1);
+
         __TIB_org_xmlvm_iphone_UINavigationBarDelegate.classInitialized = 1;
     }
     if (interface != JAVA_NULL) {

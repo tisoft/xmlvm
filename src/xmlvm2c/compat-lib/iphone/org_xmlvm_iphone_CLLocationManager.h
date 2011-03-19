@@ -25,7 +25,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLLocationManager, 39)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationManager;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationManager_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationManager_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationManager_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationManager_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CLLocationManager

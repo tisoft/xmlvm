@@ -19,7 +19,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UINavigationItem __TIB_org_xmlvm_iphone_UINavi
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationItem;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationItem_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationItem_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationItem_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationItem_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
@@ -416,7 +418,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UINavigationItem()
         __TIB_org_xmlvm_iphone_UINavigationItem.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UINavigationItem = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UINavigationItem);
         __TIB_org_xmlvm_iphone_UINavigationItem.clazz = __CLASS_org_xmlvm_iphone_UINavigationItem;
-        __CLASS_org_xmlvm_iphone_UINavigationItem_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationItem, 1);
+        __CLASS_org_xmlvm_iphone_UINavigationItem_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationItem, 3);
+        __CLASS_org_xmlvm_iphone_UINavigationItem_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationItem, 2);
+        __CLASS_org_xmlvm_iphone_UINavigationItem_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationItem, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UINavigationItem]
         //XMLVM_END_WRAPPER
 

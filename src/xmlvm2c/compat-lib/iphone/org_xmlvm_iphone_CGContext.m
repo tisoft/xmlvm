@@ -19,7 +19,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGContext __TIB_org_xmlvm_iphone_CGContext = {
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <CoreGraphics/CoreGraphics.h>
@@ -65,7 +67,7 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 }
 
 static JAVA_OBJECT* __method0_arg_types[] = {
-    &__CLASS_float_ARRAYTYPE,
+    &__CLASS_float_1ARRAY,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
@@ -77,7 +79,7 @@ static JAVA_OBJECT* __method2_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
-    &__CLASS_float_ARRAYTYPE,
+    &__CLASS_float_1ARRAY,
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
@@ -122,7 +124,7 @@ static JAVA_OBJECT* __method13_arg_types[] = {
     &__CLASS_float,
     &__CLASS_float,
     &__CLASS_float,
-    &__CLASS_float_ARRAYTYPE,
+    &__CLASS_float_1ARRAY,
 };
 
 static JAVA_OBJECT* __method14_arg_types[] = {
@@ -444,7 +446,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_CGContext_setFillColor___float_ARRAYTYPE(receiver, argsArray[0]);
+        org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY(receiver, argsArray[0]);
         break;
     case 1:
         org_xmlvm_iphone_CGContext_fillRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
@@ -453,7 +455,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
         break;
     case 3:
-        org_xmlvm_iphone_CGContext_setStrokeColor___float_ARRAYTYPE(receiver, argsArray[0]);
+        org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY(receiver, argsArray[0]);
         break;
     case 4:
         org_xmlvm_iphone_CGContext_translate___float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
@@ -483,7 +485,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_CGContext_setShouldAntialias___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 13:
-        org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_ARRAYTYPE(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[2])->fields.java_lang_Float.value_, argsArray[3]);
+        org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1ARRAY(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[2])->fields.java_lang_Float.value_, argsArray[3]);
         break;
     case 14:
         org_xmlvm_iphone_CGContext_showTextAtPoint___float_float_java_lang_String(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, argsArray[2]);
@@ -554,10 +556,10 @@ void __INIT_IMPL_org_xmlvm_iphone_CGContext()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGContext.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_CGContext.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setFillColor___float_ARRAYTYPE;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY;
         __TIB_org_xmlvm_iphone_CGContext.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_fillRect___org_xmlvm_iphone_CGRect;
         __TIB_org_xmlvm_iphone_CGContext.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setStrokeColor___float_ARRAYTYPE;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY;
         __TIB_org_xmlvm_iphone_CGContext.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_translate___float_float;
         __TIB_org_xmlvm_iphone_CGContext.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_rotate___float;
         __TIB_org_xmlvm_iphone_CGContext.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_scale___float_float;
@@ -567,7 +569,7 @@ void __INIT_IMPL_org_xmlvm_iphone_CGContext()
         __TIB_org_xmlvm_iphone_CGContext.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setFont___org_xmlvm_iphone_CGFont;
         __TIB_org_xmlvm_iphone_CGContext.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setFontSize___float;
         __TIB_org_xmlvm_iphone_CGContext.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setShouldAntialias___boolean;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_ARRAYTYPE;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1ARRAY;
         __TIB_org_xmlvm_iphone_CGContext.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_showTextAtPoint___float_float_java_lang_String;
         __TIB_org_xmlvm_iphone_CGContext.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_showText___java_lang_String;
         __TIB_org_xmlvm_iphone_CGContext.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_storeState__;
@@ -598,7 +600,10 @@ void __INIT_IMPL_org_xmlvm_iphone_CGContext()
         __TIB_org_xmlvm_iphone_CGContext.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_CGContext = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CGContext);
         __TIB_org_xmlvm_iphone_CGContext.clazz = __CLASS_org_xmlvm_iphone_CGContext;
-        __CLASS_org_xmlvm_iphone_CGContext_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGContext, 1);
+        __CLASS_org_xmlvm_iphone_CGContext_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGContext, 3);
+        __CLASS_org_xmlvm_iphone_CGContext_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGContext, 2);
+        __CLASS_org_xmlvm_iphone_CGContext_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGContext, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGContext]
         //XMLVM_END_WRAPPER
 
@@ -658,13 +663,13 @@ void org_xmlvm_iphone_CGContext_PUT_kCGTextFill(JAVA_INT v)
     _STATIC_org_xmlvm_iphone_CGContext_kCGTextFill = v;
 }
 
-void org_xmlvm_iphone_CGContext_setFillColor___float_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setFillColor___float_ARRAYTYPE]
-	org_xmlvm_iphone_CGContext *thiz = me;
-	CGContextRef c = thiz->fields.org_xmlvm_iphone_CGContext.ocContext;
-	org_xmlvm_runtime_XMLVMArray *a = n1;
-	CGContextSetFillColor(c, (JAVA_ARRAY_FLOAT*) a->fields.org_xmlvm_runtime_XMLVMArray.array_);
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY]
+    org_xmlvm_iphone_CGContext *thiz = me;
+    CGContextRef c = thiz->fields.org_xmlvm_iphone_CGContext.ocContext;
+    org_xmlvm_runtime_XMLVMArray* a = n1;
+    CGContextSetFillColor(c, (JAVA_ARRAY_FLOAT*) a->fields.org_xmlvm_runtime_XMLVMArray.array_);
     //XMLVM_END_WRAPPER
 }
 
@@ -684,9 +689,9 @@ void org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_CGContext_setStrokeColor___float_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setStrokeColor___float_ARRAYTYPE]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
@@ -754,9 +759,9 @@ void org_xmlvm_iphone_CGContext_setShouldAntialias___boolean(JAVA_OBJECT me, JAV
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_ARRAYTYPE(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_OBJECT n4)
+void org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1ARRAY(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_OBJECT n4)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_ARRAYTYPE]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1ARRAY]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

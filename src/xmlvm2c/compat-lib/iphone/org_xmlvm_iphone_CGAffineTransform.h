@@ -17,7 +17,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGAffineTransform)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGAffineTransform, 14)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGAffineTransform;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGAffineTransform_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGAffineTransform_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGAffineTransform_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGAffineTransform_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 

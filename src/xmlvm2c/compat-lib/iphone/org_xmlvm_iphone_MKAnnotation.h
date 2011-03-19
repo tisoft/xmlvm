@@ -17,7 +17,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKAnnotation, 18)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKAnnotation;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKAnnotation_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKAnnotation_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKAnnotation_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKAnnotation_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKAnnotation

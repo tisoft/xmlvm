@@ -29,7 +29,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGRect, 17)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 

@@ -16,7 +16,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSStringInputStream __TIB_org_xmlvm_iphone_NSS
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
@@ -73,13 +75,13 @@ static JAVA_OBJECT* __method3_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
-    &__CLASS_byte_ARRAYTYPE,
+    &__CLASS_byte_1ARRAY,
     &__CLASS_int,
     &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
-    &__CLASS_byte_ARRAYTYPE,
+    &__CLASS_byte_1ARRAY,
 };
 
 static JAVA_OBJECT* __method6_arg_types[] = {
@@ -197,10 +199,10 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_NSStringInputStream_markSupported__(receiver);
         break;
     case 4:
-        org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE_int_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[2])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY_int_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[2])->fields.java_lang_Integer.value_);
         break;
     case 5:
-        org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE(receiver, argsArray[0]);
+        org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY(receiver, argsArray[0]);
         break;
     case 6:
         org_xmlvm_iphone_NSStringInputStream_reset__(receiver);
@@ -242,8 +244,8 @@ void __INIT_IMPL_org_xmlvm_iphone_NSStringInputStream()
         __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_close__;
         __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_mark___int;
         __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_markSupported__;
-        __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE_int_int;
-        __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE;
+        __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY_int_int;
+        __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY;
         __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_reset__;
         __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_skip___long;
         __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_read__;
@@ -263,7 +265,10 @@ void __INIT_IMPL_org_xmlvm_iphone_NSStringInputStream()
         __TIB_org_xmlvm_iphone_NSStringInputStream.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_NSStringInputStream = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSStringInputStream);
         __TIB_org_xmlvm_iphone_NSStringInputStream.clazz = __CLASS_org_xmlvm_iphone_NSStringInputStream;
-        __CLASS_org_xmlvm_iphone_NSStringInputStream_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSStringInputStream, 1);
+        __CLASS_org_xmlvm_iphone_NSStringInputStream_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSStringInputStream, 3);
+        __CLASS_org_xmlvm_iphone_NSStringInputStream_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSStringInputStream, 2);
+        __CLASS_org_xmlvm_iphone_NSStringInputStream_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSStringInputStream, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSStringInputStream]
         //XMLVM_END_WRAPPER
 
@@ -334,16 +339,16 @@ JAVA_BOOLEAN org_xmlvm_iphone_NSStringInputStream_markSupported__(JAVA_OBJECT me
     //XMLVM_END_WRAPPER
 }
 
-JAVA_INT org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE_int_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3)
+JAVA_INT org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY_int_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE_int_int]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY_int_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-JAVA_INT org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1)
+JAVA_INT org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

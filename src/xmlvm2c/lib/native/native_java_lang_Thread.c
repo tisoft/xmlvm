@@ -78,9 +78,9 @@ void java_lang_Thread_dumpStack__()
     //XMLVM_END_NATIVE
 }
 
-JAVA_INT java_lang_Thread_enumerate___java_lang_Thread_ARRAYTYPE(JAVA_OBJECT n1)
+JAVA_INT java_lang_Thread_enumerate___java_lang_Thread_1ARRAY(JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Thread_enumerate___java_lang_Thread_ARRAYTYPE]
+    //XMLVM_BEGIN_NATIVE[java_lang_Thread_enumerate___java_lang_Thread_1ARRAY]
     XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }

@@ -15,7 +15,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIScreen __TIB_org_xmlvm_iphone_UIScreen = {
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScreen;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScreen_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScreen_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScreen_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScreen_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 #import "UIKit/UIScreen.h"
@@ -144,7 +146,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UIScreen()
         __TIB_org_xmlvm_iphone_UIScreen.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UIScreen = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIScreen);
         __TIB_org_xmlvm_iphone_UIScreen.clazz = __CLASS_org_xmlvm_iphone_UIScreen;
-        __CLASS_org_xmlvm_iphone_UIScreen_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIScreen, 1);
+        __CLASS_org_xmlvm_iphone_UIScreen_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIScreen, 3);
+        __CLASS_org_xmlvm_iphone_UIScreen_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIScreen, 2);
+        __CLASS_org_xmlvm_iphone_UIScreen_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIScreen, 1);
+
         org_xmlvm_iphone_UIScreen___CLINIT_();
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIScreen]
         //XMLVM_END_WRAPPER

@@ -13,7 +13,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapSize, 14)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapSize;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapSize_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapSize_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapSize_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapSize_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKMapSize

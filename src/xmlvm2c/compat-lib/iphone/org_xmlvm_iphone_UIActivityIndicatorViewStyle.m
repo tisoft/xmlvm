@@ -15,7 +15,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIActivityIndicatorViewStyle __TIB_org_xmlvm_i
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
@@ -122,7 +124,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UIActivityIndicatorViewStyle()
         __TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle);
         __TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle.clazz = __CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle;
-        __CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle, 1);
+        __CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle, 3);
+        __CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle, 2);
+        __CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIActivityIndicatorViewStyle]
         //XMLVM_END_WRAPPER
 

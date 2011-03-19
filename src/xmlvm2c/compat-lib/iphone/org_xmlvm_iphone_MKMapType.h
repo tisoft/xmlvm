@@ -13,7 +13,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapType, 11)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapType;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapType_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapType_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapType_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapType_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKMapType

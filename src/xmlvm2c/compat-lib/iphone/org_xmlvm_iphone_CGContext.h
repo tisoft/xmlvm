@@ -29,7 +29,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGContext, 42)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGContext void *ocContext;
@@ -53,10 +55,10 @@ typedef struct org_xmlvm_iphone_CGContext org_xmlvm_iphone_CGContext;
 #endif
 
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGContext 42
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_setFillColor___float_ARRAYTYPE 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY 14
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_fillRect___org_xmlvm_iphone_CGRect 15
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_setStrokeColor___float_ARRAYTYPE 17
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY 17
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_translate___float_float 18
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_rotate___float 19
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_scale___float_float 20
@@ -66,7 +68,7 @@ typedef struct org_xmlvm_iphone_CGContext org_xmlvm_iphone_CGContext;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_setFont___org_xmlvm_iphone_CGFont 24
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_setFontSize___float 25
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_setShouldAntialias___boolean 26
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_ARRAYTYPE 27
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1ARRAY 27
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_showTextAtPoint___float_float_java_lang_String 28
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_showText___java_lang_String 29
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGContext_storeState__ 30
@@ -93,13 +95,13 @@ void org_xmlvm_iphone_CGContext_PUT_kCGTextInvisible(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_CGContext_GET_kCGTextFill();
 void org_xmlvm_iphone_CGContext_PUT_kCGTextFill(JAVA_INT v);
 // Vtable index: 14
-void org_xmlvm_iphone_CGContext_setFillColor___float_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 15
 void org_xmlvm_iphone_CGContext_fillRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 16
 void org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 17
-void org_xmlvm_iphone_CGContext_setStrokeColor___float_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 18
 void org_xmlvm_iphone_CGContext_translate___float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2);
 // Vtable index: 19
@@ -119,7 +121,7 @@ void org_xmlvm_iphone_CGContext_setFontSize___float(JAVA_OBJECT me, JAVA_FLOAT n
 // Vtable index: 26
 void org_xmlvm_iphone_CGContext_setShouldAntialias___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 // Vtable index: 27
-void org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_ARRAYTYPE(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_OBJECT n4);
+void org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1ARRAY(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_OBJECT n4);
 // Vtable index: 28
 void org_xmlvm_iphone_CGContext_showTextAtPoint___float_float_java_lang_String(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_OBJECT n3);
 // Vtable index: 29

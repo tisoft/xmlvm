@@ -17,7 +17,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSTimeZone, 15)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimeZone;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimeZone_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimeZone_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimeZone_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimeZone_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSTimeZone

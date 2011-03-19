@@ -208,7 +208,7 @@ JAVA_OBJECT xmlvm_create_java_string(const char* s)
 {
     java_lang_String* str = __NEW_java_lang_String();
     org_xmlvm_runtime_XMLVMArray* charArray = XMLVMArray_createFromString(s);
-    java_lang_String___INIT____char_ARRAYTYPE(str, charArray);
+    java_lang_String___INIT____char_1ARRAY(str, charArray);
     return XMLVMUtil_getFromStringPool(str);
 }
 
@@ -295,7 +295,7 @@ JAVA_OBJECT XMLVMArray_createFromString(const char* str)
     for (i = 0; i < len; i++) {
         data[i] = *str++;
     }
-    return XMLVMArray_createSingleDimensionWithData(__CLASS_char_ARRAYTYPE, len, data);
+    return XMLVMArray_createSingleDimensionWithData(__CLASS_char_1ARRAY, len, data);
 }
 
 void XMLVMArray_fillArray(JAVA_OBJECT array, void* data)

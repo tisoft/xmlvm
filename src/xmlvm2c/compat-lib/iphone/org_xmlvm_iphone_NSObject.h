@@ -22,7 +22,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSObject, 14)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 

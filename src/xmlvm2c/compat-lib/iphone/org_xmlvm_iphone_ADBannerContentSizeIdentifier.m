@@ -16,7 +16,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_ADBannerContentSizeIdentifier __TIB_org_xmlvm_
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
@@ -101,8 +103,8 @@ void __INIT_IMPL_org_xmlvm_iphone_ADBannerContentSizeIdentifier()
         // Initialize vtable for implementing interfaces
         __TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
-        _STATIC_org_xmlvm_iphone_ADBannerContentSizeIdentifier_Portrait = (java_lang_String*) xmlvm_create_java_string("\"\"");
-        _STATIC_org_xmlvm_iphone_ADBannerContentSizeIdentifier_Landscape = (java_lang_String*) xmlvm_create_java_string("\"\"");
+        _STATIC_org_xmlvm_iphone_ADBannerContentSizeIdentifier_Portrait = (java_lang_String*) xmlvm_create_java_string("\"ADBannerContentSizePortrait\"");
+        _STATIC_org_xmlvm_iphone_ADBannerContentSizeIdentifier_Landscape = (java_lang_String*) xmlvm_create_java_string("\"ADBannerContentSizeLandscape\"");
 
         __TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
@@ -114,7 +116,10 @@ void __INIT_IMPL_org_xmlvm_iphone_ADBannerContentSizeIdentifier()
         __TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier);
         __TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier.clazz = __CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier;
-        __CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier, 1);
+        __CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier, 3);
+        __CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier, 2);
+        __CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_ADBannerContentSizeIdentifier, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_ADBannerContentSizeIdentifier]
         //XMLVM_END_WRAPPER
 

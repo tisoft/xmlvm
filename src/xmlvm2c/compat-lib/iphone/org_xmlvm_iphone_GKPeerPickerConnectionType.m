@@ -15,7 +15,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_GKPeerPickerConnectionType __TIB_org_xmlvm_iph
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
@@ -113,7 +115,10 @@ void __INIT_IMPL_org_xmlvm_iphone_GKPeerPickerConnectionType()
         __TIB_org_xmlvm_iphone_GKPeerPickerConnectionType.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_GKPeerPickerConnectionType);
         __TIB_org_xmlvm_iphone_GKPeerPickerConnectionType.clazz = __CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType;
-        __CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType, 1);
+        __CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType, 3);
+        __CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType, 2);
+        __CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_GKPeerPickerConnectionType, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_GKPeerPickerConnectionType]
         //XMLVM_END_WRAPPER
 

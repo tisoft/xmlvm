@@ -16,7 +16,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGSize __TIB_org_xmlvm_iphone_CGSize = {
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
@@ -174,7 +176,10 @@ void __INIT_IMPL_org_xmlvm_iphone_CGSize()
         __TIB_org_xmlvm_iphone_CGSize.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_CGSize = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CGSize);
         __TIB_org_xmlvm_iphone_CGSize.clazz = __CLASS_org_xmlvm_iphone_CGSize;
-        __CLASS_org_xmlvm_iphone_CGSize_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGSize, 1);
+        __CLASS_org_xmlvm_iphone_CGSize_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGSize, 3);
+        __CLASS_org_xmlvm_iphone_CGSize_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGSize, 2);
+        __CLASS_org_xmlvm_iphone_CGSize_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGSize, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGSize]
         //XMLVM_END_WRAPPER
 
@@ -191,8 +196,8 @@ void __DELETE_org_xmlvm_iphone_CGSize(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGSize(JAVA_OBJECT me)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
-    ((org_xmlvm_iphone_CGSize*)me)->fields.org_xmlvm_iphone_CGSize.width_ = 0;
-    ((org_xmlvm_iphone_CGSize*)me)->fields.org_xmlvm_iphone_CGSize.height_ = 0;
+    ((org_xmlvm_iphone_CGSize*) me)->fields.org_xmlvm_iphone_CGSize.width_ = 0;
+    ((org_xmlvm_iphone_CGSize*) me)->fields.org_xmlvm_iphone_CGSize.height_ = 0;
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGSize()

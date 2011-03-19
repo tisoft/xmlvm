@@ -17,7 +17,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSLog __TIB_org_xmlvm_iphone_NSLog = {
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSLog;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSLog_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSLog_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSLog_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSLog_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
@@ -129,7 +131,10 @@ void __INIT_IMPL_org_xmlvm_iphone_NSLog()
         __TIB_org_xmlvm_iphone_NSLog.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_NSLog = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSLog);
         __TIB_org_xmlvm_iphone_NSLog.clazz = __CLASS_org_xmlvm_iphone_NSLog;
-        __CLASS_org_xmlvm_iphone_NSLog_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSLog, 1);
+        __CLASS_org_xmlvm_iphone_NSLog_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSLog, 3);
+        __CLASS_org_xmlvm_iphone_NSLog_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSLog, 2);
+        __CLASS_org_xmlvm_iphone_NSLog_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSLog, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSLog]
         //XMLVM_END_WRAPPER
 

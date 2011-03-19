@@ -15,7 +15,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_MKMapSize __TIB_org_xmlvm_iphone_MKMapSize = {
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapSize;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapSize_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapSize_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapSize_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapSize_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
@@ -125,7 +127,10 @@ void __INIT_IMPL_org_xmlvm_iphone_MKMapSize()
         __TIB_org_xmlvm_iphone_MKMapSize.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_MKMapSize = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MKMapSize);
         __TIB_org_xmlvm_iphone_MKMapSize.clazz = __CLASS_org_xmlvm_iphone_MKMapSize;
-        __CLASS_org_xmlvm_iphone_MKMapSize_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKMapSize, 1);
+        __CLASS_org_xmlvm_iphone_MKMapSize_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKMapSize, 3);
+        __CLASS_org_xmlvm_iphone_MKMapSize_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKMapSize, 2);
+        __CLASS_org_xmlvm_iphone_MKMapSize_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKMapSize, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MKMapSize]
         //XMLVM_END_WRAPPER
 
@@ -142,8 +147,8 @@ void __DELETE_org_xmlvm_iphone_MKMapSize(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapSize(JAVA_OBJECT me)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
-    ((org_xmlvm_iphone_MKMapSize*)me)->fields.org_xmlvm_iphone_MKMapSize.width_ = 0;
-    ((org_xmlvm_iphone_MKMapSize*)me)->fields.org_xmlvm_iphone_MKMapSize.height_ = 0;
+    ((org_xmlvm_iphone_MKMapSize*) me)->fields.org_xmlvm_iphone_MKMapSize.width_ = 0;
+    ((org_xmlvm_iphone_MKMapSize*) me)->fields.org_xmlvm_iphone_MKMapSize.height_ = 0;
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKMapSize()

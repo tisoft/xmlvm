@@ -21,7 +21,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSIndexPath)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewDataSource, 19)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDataSource;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDataSource_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDataSource_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDataSource_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDataSource_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 

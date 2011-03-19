@@ -19,7 +19,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIViewController __TIB_org_xmlvm_iphone_UIView
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
@@ -871,7 +873,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UIViewController()
         __TIB_org_xmlvm_iphone_UIViewController.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UIViewController = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIViewController);
         __TIB_org_xmlvm_iphone_UIViewController.clazz = __CLASS_org_xmlvm_iphone_UIViewController;
-        __CLASS_org_xmlvm_iphone_UIViewController_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewController, 1);
+        __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewController, 3);
+        __CLASS_org_xmlvm_iphone_UIViewController_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewController, 2);
+        __CLASS_org_xmlvm_iphone_UIViewController_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewController, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIViewController]
         //XMLVM_END_WRAPPER
 
@@ -888,7 +893,7 @@ void __DELETE_org_xmlvm_iphone_UIViewController(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(JAVA_OBJECT me)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder(me);
-    ((org_xmlvm_iphone_UIViewController*)me)->fields.org_xmlvm_iphone_UIViewController.pcontroller_ = (org_xmlvm_iphone_UIViewController*) JAVA_NULL;
+    ((org_xmlvm_iphone_UIViewController*) me)->fields.org_xmlvm_iphone_UIViewController.pcontroller_ = (org_xmlvm_iphone_UIViewController*) JAVA_NULL;
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewController()

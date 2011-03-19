@@ -13,7 +13,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIEvent, 15)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 

@@ -17,7 +17,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGDataProvider, 14)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGDataProvider;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGDataProvider_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGDataProvider_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGDataProvider_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGDataProvider_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGDataProvider

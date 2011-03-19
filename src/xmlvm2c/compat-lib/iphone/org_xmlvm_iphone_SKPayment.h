@@ -21,7 +21,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKPayment, 17)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPayment;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPayment_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPayment_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPayment_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPayment_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_SKPayment

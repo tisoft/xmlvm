@@ -13,9 +13,9 @@ void java_util_zip_Deflater_oneTimeInitialization__()
     //XMLVM_END_NATIVE
 }
 
-JAVA_INT java_util_zip_Deflater_deflateImpl___byte_ARRAYTYPE_int_int_long_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3, JAVA_LONG n4, JAVA_INT n5)
+JAVA_INT java_util_zip_Deflater_deflateImpl___byte_1ARRAY_int_int_long_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3, JAVA_LONG n4, JAVA_INT n5)
 {
-    //XMLVM_BEGIN_NATIVE[java_util_zip_Deflater_deflateImpl___byte_ARRAYTYPE_int_int_long_int]
+    //XMLVM_BEGIN_NATIVE[java_util_zip_Deflater_deflateImpl___byte_1ARRAY_int_int_long_int]
     XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
@@ -55,9 +55,9 @@ void java_util_zip_Deflater_resetImpl___long(JAVA_OBJECT me, JAVA_LONG n1)
     //XMLVM_END_NATIVE
 }
 
-void java_util_zip_Deflater_setDictionaryImpl___byte_ARRAYTYPE_int_int_long(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3, JAVA_LONG n4)
+void java_util_zip_Deflater_setDictionaryImpl___byte_1ARRAY_int_int_long(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3, JAVA_LONG n4)
 {
-    //XMLVM_BEGIN_NATIVE[java_util_zip_Deflater_setDictionaryImpl___byte_ARRAYTYPE_int_int_long]
+    //XMLVM_BEGIN_NATIVE[java_util_zip_Deflater_setDictionaryImpl___byte_1ARRAY_int_int_long]
     XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
@@ -69,9 +69,9 @@ void java_util_zip_Deflater_setLevelsImpl___int_int_long(JAVA_OBJECT me, JAVA_IN
     //XMLVM_END_NATIVE
 }
 
-void java_util_zip_Deflater_setInputImpl___byte_ARRAYTYPE_int_int_long(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3, JAVA_LONG n4)
+void java_util_zip_Deflater_setInputImpl___byte_1ARRAY_int_int_long(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3, JAVA_LONG n4)
 {
-    //XMLVM_BEGIN_NATIVE[java_util_zip_Deflater_setInputImpl___byte_ARRAYTYPE_int_int_long]
+    //XMLVM_BEGIN_NATIVE[java_util_zip_Deflater_setInputImpl___byte_1ARRAY_int_int_long]
     XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }

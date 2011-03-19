@@ -21,7 +21,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGSize, 14)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGSize

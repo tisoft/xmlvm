@@ -25,7 +25,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSURLConnectionDelegate, 17)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 

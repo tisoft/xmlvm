@@ -26,7 +26,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_MKMapView __TIB_org_xmlvm_iphone_MKMapView = {
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapView;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapView_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapView_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapView_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapView_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
@@ -1021,7 +1023,10 @@ void __INIT_IMPL_org_xmlvm_iphone_MKMapView()
         __TIB_org_xmlvm_iphone_MKMapView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_MKMapView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MKMapView);
         __TIB_org_xmlvm_iphone_MKMapView.clazz = __CLASS_org_xmlvm_iphone_MKMapView;
-        __CLASS_org_xmlvm_iphone_MKMapView_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKMapView, 1);
+        __CLASS_org_xmlvm_iphone_MKMapView_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKMapView, 3);
+        __CLASS_org_xmlvm_iphone_MKMapView_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKMapView, 2);
+        __CLASS_org_xmlvm_iphone_MKMapView_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKMapView, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MKMapView]
         //XMLVM_END_WRAPPER
 

@@ -21,7 +21,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGLayer, 16)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLayer;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLayer_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLayer_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLayer_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLayer_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGLayer

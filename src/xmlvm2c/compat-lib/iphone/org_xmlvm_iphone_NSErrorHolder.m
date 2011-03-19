@@ -16,7 +16,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSErrorHolder __TIB_org_xmlvm_iphone_NSErrorHo
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSErrorHolder;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSErrorHolder_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSErrorHolder_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSErrorHolder_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSErrorHolder_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
@@ -133,7 +135,10 @@ void __INIT_IMPL_org_xmlvm_iphone_NSErrorHolder()
         __TIB_org_xmlvm_iphone_NSErrorHolder.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_NSErrorHolder = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSErrorHolder);
         __TIB_org_xmlvm_iphone_NSErrorHolder.clazz = __CLASS_org_xmlvm_iphone_NSErrorHolder;
-        __CLASS_org_xmlvm_iphone_NSErrorHolder_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSErrorHolder, 1);
+        __CLASS_org_xmlvm_iphone_NSErrorHolder_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSErrorHolder, 3);
+        __CLASS_org_xmlvm_iphone_NSErrorHolder_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSErrorHolder, 2);
+        __CLASS_org_xmlvm_iphone_NSErrorHolder_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSErrorHolder, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSErrorHolder]
         //XMLVM_END_WRAPPER
 
@@ -150,7 +155,7 @@ void __DELETE_org_xmlvm_iphone_NSErrorHolder(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
-    ((org_xmlvm_iphone_NSErrorHolder*)me)->fields.org_xmlvm_iphone_NSErrorHolder.error_ = (org_xmlvm_iphone_NSError*) JAVA_NULL;
+    ((org_xmlvm_iphone_NSErrorHolder*) me)->fields.org_xmlvm_iphone_NSErrorHolder.error_ = (org_xmlvm_iphone_NSError*) JAVA_NULL;
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSErrorHolder()

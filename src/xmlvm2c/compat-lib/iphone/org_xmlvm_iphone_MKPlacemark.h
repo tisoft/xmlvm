@@ -21,7 +21,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKPlacemark, 28)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKPlacemark;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKPlacemark_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKPlacemark_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKPlacemark_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKPlacemark_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKPlacemark

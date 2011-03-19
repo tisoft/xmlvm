@@ -34,7 +34,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActionSheet, 74)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIActionSheet
@@ -69,7 +71,7 @@ void __DELETE_org_xmlvm_iphone_UIActionSheet(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheet(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActionSheet();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIActionSheet();
-JAVA_OBJECT org_xmlvm_iphone_UIActionSheet_init___java_lang_String_org_xmlvm_iphone_UIActionSheetDelegate_java_lang_String_java_lang_String_java_lang_String_ARRAYTYPE(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4, JAVA_OBJECT n5);
+JAVA_OBJECT org_xmlvm_iphone_UIActionSheet_init___java_lang_String_org_xmlvm_iphone_UIActionSheetDelegate_java_lang_String_java_lang_String_java_lang_String_1ARRAY(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4, JAVA_OBJECT n5);
 // Vtable index: 70
 void org_xmlvm_iphone_UIActionSheet_showFromTabBar___org_xmlvm_iphone_UITabBar(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 71

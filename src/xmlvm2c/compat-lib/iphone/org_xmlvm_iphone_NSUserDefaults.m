@@ -17,7 +17,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSUserDefaults __TIB_org_xmlvm_iphone_NSUserDe
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSUserDefaults;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSUserDefaults_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSUserDefaults_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSUserDefaults_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSUserDefaults_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 
@@ -344,7 +346,10 @@ void __INIT_IMPL_org_xmlvm_iphone_NSUserDefaults()
         __TIB_org_xmlvm_iphone_NSUserDefaults.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_NSUserDefaults = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSUserDefaults);
         __TIB_org_xmlvm_iphone_NSUserDefaults.clazz = __CLASS_org_xmlvm_iphone_NSUserDefaults;
-        __CLASS_org_xmlvm_iphone_NSUserDefaults_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSUserDefaults, 1);
+        __CLASS_org_xmlvm_iphone_NSUserDefaults_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSUserDefaults, 3);
+        __CLASS_org_xmlvm_iphone_NSUserDefaults_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSUserDefaults, 2);
+        __CLASS_org_xmlvm_iphone_NSUserDefaults_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSUserDefaults, 1);
+
         org_xmlvm_iphone_NSUserDefaults___CLINIT_();
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSUserDefaults]
         //XMLVM_END_WRAPPER

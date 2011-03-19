@@ -13,7 +13,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIControlEvent, 11)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlEvent;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlEvent_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlEvent_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlEvent_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlEvent_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIControlEvent

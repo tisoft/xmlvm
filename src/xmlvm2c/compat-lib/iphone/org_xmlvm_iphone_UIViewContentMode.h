@@ -13,7 +13,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewContentMode, 11)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIViewContentMode

@@ -32,24 +32,32 @@ JAVA_OBJECT __CLASS_float;
 JAVA_OBJECT __CLASS_double;
 
 
-JAVA_OBJECT __CLASS_boolean_ARRAYTYPE;
-JAVA_OBJECT __CLASS_byte_ARRAYTYPE;
-JAVA_OBJECT __CLASS_char_ARRAYTYPE;
-JAVA_OBJECT __CLASS_short_ARRAYTYPE;
-JAVA_OBJECT __CLASS_int_ARRAYTYPE;
-JAVA_OBJECT __CLASS_long_ARRAYTYPE;
-JAVA_OBJECT __CLASS_float_ARRAYTYPE;
-JAVA_OBJECT __CLASS_double_ARRAYTYPE;
+JAVA_OBJECT __CLASS_boolean_1ARRAY;
+JAVA_OBJECT __CLASS_byte_1ARRAY;
+JAVA_OBJECT __CLASS_char_1ARRAY;
+JAVA_OBJECT __CLASS_short_1ARRAY;
+JAVA_OBJECT __CLASS_int_1ARRAY;
+JAVA_OBJECT __CLASS_long_1ARRAY;
+JAVA_OBJECT __CLASS_float_1ARRAY;
+JAVA_OBJECT __CLASS_double_1ARRAY;
 
-JAVA_OBJECT __CLASS_boolean_ARRAYTYPE_ARRAYTYPE;
-JAVA_OBJECT __CLASS_byte_ARRAYTYPE_ARRAYTYPE;
-JAVA_OBJECT __CLASS_char_ARRAYTYPE_ARRAYTYPE;
-JAVA_OBJECT __CLASS_short_ARRAYTYPE_ARRAYTYPE;
-JAVA_OBJECT __CLASS_int_ARRAYTYPE_ARRAYTYPE;
-JAVA_OBJECT __CLASS_long_ARRAYTYPE_ARRAYTYPE;
-JAVA_OBJECT __CLASS_float_ARRAYTYPE_ARRAYTYPE;
-JAVA_OBJECT __CLASS_double_ARRAYTYPE_ARRAYTYPE;
-JAVA_OBJECT __CLASS_java_lang_Object_ARRAYTYPE_ARRAYTYPE;
+JAVA_OBJECT __CLASS_boolean_2ARRAY;
+JAVA_OBJECT __CLASS_byte_2ARRAY;
+JAVA_OBJECT __CLASS_char_2ARRAY;
+JAVA_OBJECT __CLASS_short_2ARRAY;
+JAVA_OBJECT __CLASS_int_2ARRAY;
+JAVA_OBJECT __CLASS_long_2ARRAY;
+JAVA_OBJECT __CLASS_float_2ARRAY;
+JAVA_OBJECT __CLASS_double_2ARRAY;
+
+JAVA_OBJECT __CLASS_boolean_3ARRAY;
+JAVA_OBJECT __CLASS_byte_3ARRAY;
+JAVA_OBJECT __CLASS_char_3ARRAY;
+JAVA_OBJECT __CLASS_short_3ARRAY;
+JAVA_OBJECT __CLASS_int_3ARRAY;
+JAVA_OBJECT __CLASS_long_3ARRAY;
+JAVA_OBJECT __CLASS_float_3ARRAY;
+JAVA_OBJECT __CLASS_double_3ARRAY;
 
 
 void init_primitive_class(void* clazz, const char* name)
@@ -128,25 +136,32 @@ void java_lang_Class_initNativeLayer__()
     __CLASS_float = XMLVM_CREATE_CLASS_OBJECT(&__TIB_float);
     __CLASS_double = XMLVM_CREATE_CLASS_OBJECT(&__TIB_double);
 
-    __CLASS_boolean_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_boolean, 1);
-    __CLASS_byte_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_byte, 1);
-    __CLASS_char_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_char, 1);
-    __CLASS_short_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_short, 1);
-    __CLASS_int_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_int, 1);
-    __CLASS_long_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_long, 1);
-    __CLASS_float_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_float, 1);
-    __CLASS_double_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_double, 1);
-
-    __CLASS_boolean_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_boolean_ARRAYTYPE, 2);
-    __CLASS_byte_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_byte_ARRAYTYPE, 2);
-    __CLASS_char_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_char_ARRAYTYPE, 2);
-    __CLASS_short_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_short_ARRAYTYPE, 2);
-    __CLASS_int_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_int_ARRAYTYPE, 2);
-    __CLASS_long_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_long_ARRAYTYPE, 2);
-    __CLASS_float_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_float_ARRAYTYPE, 2);
-    __CLASS_double_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_double_ARRAYTYPE, 2);
-
-    __CLASS_java_lang_Object_ARRAYTYPE_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_java_lang_Object_ARRAYTYPE, 2);
+    __CLASS_boolean_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_boolean, 1);
+    __CLASS_byte_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_byte, 1);
+    __CLASS_char_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_char, 1);
+    __CLASS_short_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_short, 1);
+    __CLASS_int_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_int, 1);
+    __CLASS_long_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_long, 1);
+    __CLASS_float_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_float, 1);
+    __CLASS_double_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_double, 1);
+    
+    __CLASS_boolean_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_boolean, 2);
+    __CLASS_byte_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_byte, 2);
+    __CLASS_char_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_char, 2);
+    __CLASS_short_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_short, 2);
+    __CLASS_int_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_int, 2);
+    __CLASS_long_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_long, 2);
+    __CLASS_float_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_float, 2);
+    __CLASS_double_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_double, 2);
+    
+    __CLASS_boolean_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_boolean, 3);
+    __CLASS_byte_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_byte, 3);
+    __CLASS_char_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_char, 3);
+    __CLASS_short_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_short, 3);
+    __CLASS_int_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_int, 3);
+    __CLASS_long_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_long, 3);
+    __CLASS_float_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_float, 3);
+    __CLASS_double_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_double, 3);
     //XMLVM_END_NATIVE
 }
 
@@ -291,14 +306,14 @@ JAVA_OBJECT java_lang_Class_getDeclaredConstructors__(JAVA_OBJECT me)
     int numConstructors = tib->numDeclaredConstructors;
     Func_OOO dispatcher = tib->constructorDispatcherFunc;
     if (!__TIB_java_lang_reflect_Constructor.classInitialized) __INIT_java_lang_reflect_Constructor();
-    org_xmlvm_runtime_XMLVMArray* constructors = XMLVMArray_createSingleDimension(__CLASS_java_lang_reflect_Constructor_ARRAYTYPE, numConstructors);
+    org_xmlvm_runtime_XMLVMArray* constructors = XMLVMArray_createSingleDimension(__CLASS_java_lang_reflect_Constructor_1ARRAY, numConstructors);
     JAVA_ARRAY_OBJECT* constructorArray = (JAVA_ARRAY_OBJECT*) constructors->fields.org_xmlvm_runtime_XMLVMArray.array_;
     JAVA_INT slot = 0;
     for (slot = 0; slot < numConstructors; slot++) {
         java_lang_reflect_Constructor* constructor = __NEW_java_lang_reflect_Constructor();
         XMLVM_CONSTRUCTOR_REFLECTION_DATA* currentConstructor = (tib->declaredConstructors) + slot;
         int numParameters = currentConstructor->numParameterTypes;
-        org_xmlvm_runtime_XMLVMArray* parameters = XMLVMArray_createSingleDimension(__CLASS_java_lang_Class_ARRAYTYPE, numParameters);
+        org_xmlvm_runtime_XMLVMArray* parameters = XMLVMArray_createSingleDimension(__CLASS_java_lang_Class_1ARRAY, numParameters);
         JAVA_ARRAY_OBJECT* parameterArray = (JAVA_ARRAY_OBJECT*) parameters->fields.org_xmlvm_runtime_XMLVMArray.array_;
         int j = 0;
         JAVA_OBJECT** paramTypes = currentConstructor->parameterTypes;
@@ -311,7 +326,7 @@ JAVA_OBJECT java_lang_Class_getDeclaredConstructors__(JAVA_OBJECT me)
         java_lang_String* signature = xmlvm_create_java_string(currentConstructor->signature);
         JAVA_OBJECT  annotations = JAVA_NULL;
         JAVA_OBJECT  parameterAnnotations = JAVA_NULL;
-        java_lang_reflect_Constructor___INIT____java_lang_Class_java_lang_Class_ARRAYTYPE_java_lang_Class_ARRAYTYPE_int_java_lang_Object_int_java_lang_String_byte_ARRAYTYPE_byte_ARRAYTYPE(constructor, tib->clazz, parameters, checkedExceptions, modifiers, dispatcher, slot, signature, annotations, parameterAnnotations);
+        java_lang_reflect_Constructor___INIT____java_lang_Class_java_lang_Class_1ARRAY_java_lang_Class_1ARRAY_int_java_lang_Object_int_java_lang_String_byte_1ARRAY_byte_1ARRAY(constructor, tib->clazz, parameters, checkedExceptions, modifiers, dispatcher, slot, signature, annotations, parameterAnnotations);
         constructorArray[slot] = constructor;
     }
     return constructors;
@@ -332,7 +347,7 @@ JAVA_OBJECT java_lang_Class_getDeclaredFields__(JAVA_OBJECT me)
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
     int numFields = tib->numDeclaredFields;
     if (!__TIB_java_lang_reflect_Field.classInitialized) __INIT_java_lang_reflect_Field();
-    org_xmlvm_runtime_XMLVMArray* fields = XMLVMArray_createSingleDimension(__CLASS_java_lang_reflect_Field_ARRAYTYPE, numFields);
+    org_xmlvm_runtime_XMLVMArray* fields = XMLVMArray_createSingleDimension(__CLASS_java_lang_reflect_Field_1ARRAY, numFields);
     JAVA_ARRAY_OBJECT* fieldsArray = (JAVA_ARRAY_OBJECT*) fields->fields.org_xmlvm_runtime_XMLVMArray.array_;
     int i = 0;
     for (i = 0; i < numFields; i++) {
@@ -346,7 +361,7 @@ JAVA_OBJECT java_lang_Class_getDeclaredFields__(JAVA_OBJECT me)
         JAVA_OBJECT* address = currentField->address;
         java_lang_String* signature = xmlvm_create_java_string(currentField->signature);
         org_xmlvm_runtime_XMLVMArray* annotations = currentField->annotations;
-        java_lang_reflect_Field___INIT____java_lang_Class_java_lang_String_java_lang_Class_int_int_java_lang_Object_java_lang_String_byte_ARRAYTYPE(field, declaringClass, name, type, modifiers, offset, address, signature, annotations);                                                                                                                     
+        java_lang_reflect_Field___INIT____java_lang_Class_java_lang_String_java_lang_Class_int_int_java_lang_Object_java_lang_String_byte_1ARRAY(field, declaringClass, name, type, modifiers, offset, address, signature, annotations);                                                                                                                     
         fieldsArray[i] = field;
     }
     return fields;
@@ -361,14 +376,14 @@ JAVA_OBJECT java_lang_Class_getDeclaredMethods__(JAVA_OBJECT me)
     int numMethods = tib->numDeclaredMethods;
     Func_OOOO dispatcher = tib->methodDispatcherFunc;
     if (!__TIB_java_lang_reflect_Method.classInitialized) __INIT_java_lang_reflect_Method();
-    org_xmlvm_runtime_XMLVMArray* methods = XMLVMArray_createSingleDimension(__CLASS_java_lang_reflect_Method_ARRAYTYPE, numMethods);
+    org_xmlvm_runtime_XMLVMArray* methods = XMLVMArray_createSingleDimension(__CLASS_java_lang_reflect_Method_1ARRAY, numMethods);
     JAVA_ARRAY_OBJECT* methodArray = (JAVA_ARRAY_OBJECT*) methods->fields.org_xmlvm_runtime_XMLVMArray.array_;
     JAVA_INT slot = 0;
     for (slot = 0; slot < numMethods; slot++) {
         java_lang_reflect_Method* method = __NEW_java_lang_reflect_Method();
         XMLVM_METHOD_REFLECTION_DATA* currentMethod = (tib->declaredMethods) + slot;
         int numParameters = currentMethod->numParameterTypes;
-        org_xmlvm_runtime_XMLVMArray* parameters = XMLVMArray_createSingleDimension(__CLASS_java_lang_Class_ARRAYTYPE, numParameters);
+        org_xmlvm_runtime_XMLVMArray* parameters = XMLVMArray_createSingleDimension(__CLASS_java_lang_Class_1ARRAY, numParameters);
         JAVA_ARRAY_OBJECT* parameterArray = (JAVA_ARRAY_OBJECT*) parameters->fields.org_xmlvm_runtime_XMLVMArray.array_;
         int j = 0;
         JAVA_OBJECT** paramTypes = currentMethod->parameterTypes;
@@ -382,7 +397,7 @@ JAVA_OBJECT java_lang_Class_getDeclaredMethods__(JAVA_OBJECT me)
         java_lang_String* signature = xmlvm_create_java_string(currentMethod->signature);
         JAVA_OBJECT  annotations = JAVA_NULL;
         JAVA_OBJECT  parameterAnnotations = JAVA_NULL;
-        java_lang_reflect_Method___INIT____java_lang_String_java_lang_Class_java_lang_Class_ARRAYTYPE_java_lang_Class_ARRAYTYPE_int_java_lang_Object_int_java_lang_String_byte_ARRAYTYPE_byte_ARRAYTYPE(method, name, tib->clazz, parameters, checkedExceptions, modifiers, dispatcher, slot, signature, annotations, parameterAnnotations);
+        java_lang_reflect_Method___INIT____java_lang_String_java_lang_Class_java_lang_Class_1ARRAY_java_lang_Class_1ARRAY_int_java_lang_Object_int_java_lang_String_byte_1ARRAY_byte_1ARRAY(method, name, tib->clazz, parameters, checkedExceptions, modifiers, dispatcher, slot, signature, annotations, parameterAnnotations);
         methodArray[slot] = method;
     }
     return methods;

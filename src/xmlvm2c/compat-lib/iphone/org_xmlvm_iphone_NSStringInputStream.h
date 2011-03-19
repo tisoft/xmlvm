@@ -17,7 +17,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSStringInputStream, 20)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSStringInputStream
@@ -45,8 +47,8 @@ typedef struct org_xmlvm_iphone_NSStringInputStream org_xmlvm_iphone_NSStringInp
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_close__ 12
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_mark___int 13
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_markSupported__ 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE_int_int 17
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY_int_int 17
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY 16
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_reset__ 18
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_skip___long 19
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_read__ 15
@@ -67,9 +69,9 @@ void org_xmlvm_iphone_NSStringInputStream_mark___int(JAVA_OBJECT me, JAVA_INT n1
 // Vtable index: 14
 JAVA_BOOLEAN org_xmlvm_iphone_NSStringInputStream_markSupported__(JAVA_OBJECT me);
 // Vtable index: 17
-JAVA_INT org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE_int_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3);
+JAVA_INT org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY_int_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3);
 // Vtable index: 16
-JAVA_INT org_xmlvm_iphone_NSStringInputStream_read___byte_ARRAYTYPE(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_INT org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 18
 void org_xmlvm_iphone_NSStringInputStream_reset__(JAVA_OBJECT me);
 // Vtable index: 19

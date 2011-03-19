@@ -19,7 +19,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIActionSheet __TIB_org_xmlvm_iphone_UIActionS
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
@@ -52,7 +54,7 @@ static JAVA_OBJECT* __method0_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIActionSheetDelegate,
     &__CLASS_java_lang_String,
     &__CLASS_java_lang_String,
-    &__CLASS_java_lang_String_ARRAYTYPE,
+    &__CLASS_java_lang_String_1ARRAY,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
@@ -129,7 +131,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIActionSheet_init___java_lang_String_org_xmlvm_iphone_UIActionSheetDelegate_java_lang_String_java_lang_String_java_lang_String_ARRAYTYPE(argsArray[0], argsArray[1], argsArray[2], argsArray[3], argsArray[4]);
+        org_xmlvm_iphone_UIActionSheet_init___java_lang_String_org_xmlvm_iphone_UIActionSheetDelegate_java_lang_String_java_lang_String_java_lang_String_1ARRAY(argsArray[0], argsArray[1], argsArray[2], argsArray[3], argsArray[4]);
         break;
     case 1:
         org_xmlvm_iphone_UIActionSheet_showFromTabBar___org_xmlvm_iphone_UITabBar(receiver, argsArray[0]);
@@ -188,7 +190,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UIActionSheet()
         __TIB_org_xmlvm_iphone_UIActionSheet.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UIActionSheet = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIActionSheet);
         __TIB_org_xmlvm_iphone_UIActionSheet.clazz = __CLASS_org_xmlvm_iphone_UIActionSheet;
-        __CLASS_org_xmlvm_iphone_UIActionSheet_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIActionSheet, 1);
+        __CLASS_org_xmlvm_iphone_UIActionSheet_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIActionSheet, 3);
+        __CLASS_org_xmlvm_iphone_UIActionSheet_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIActionSheet, 2);
+        __CLASS_org_xmlvm_iphone_UIActionSheet_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIActionSheet, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIActionSheet]
         //XMLVM_END_WRAPPER
 
@@ -224,10 +229,10 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIActionSheet()
     return me;
 }
 
-JAVA_OBJECT org_xmlvm_iphone_UIActionSheet_init___java_lang_String_org_xmlvm_iphone_UIActionSheetDelegate_java_lang_String_java_lang_String_java_lang_String_ARRAYTYPE(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4, JAVA_OBJECT n5)
+JAVA_OBJECT org_xmlvm_iphone_UIActionSheet_init___java_lang_String_org_xmlvm_iphone_UIActionSheetDelegate_java_lang_String_java_lang_String_java_lang_String_1ARRAY(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4, JAVA_OBJECT n5)
 {
     if (!__TIB_org_xmlvm_iphone_UIActionSheet.classInitialized) __INIT_org_xmlvm_iphone_UIActionSheet();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActionSheet_init___java_lang_String_org_xmlvm_iphone_UIActionSheetDelegate_java_lang_String_java_lang_String_java_lang_String_ARRAYTYPE]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActionSheet_init___java_lang_String_org_xmlvm_iphone_UIActionSheetDelegate_java_lang_String_java_lang_String_java_lang_String_1ARRAY]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

@@ -15,7 +15,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_GKSessionDelegate __TIB_org_xmlvm_iphone_GKSes
     XMLVM_TYPE_INTERFACE};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKSessionDelegate;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKSessionDelegate_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKSessionDelegate_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKSessionDelegate_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKSessionDelegate_1ARRAY;
 
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
@@ -40,7 +42,10 @@ void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_GKSessionDelegate(__TIB_DEFINITION_T
 
         __CLASS_org_xmlvm_iphone_GKSessionDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_GKSessionDelegate);
         __TIB_org_xmlvm_iphone_GKSessionDelegate.clazz = __CLASS_org_xmlvm_iphone_GKSessionDelegate;
-        __CLASS_org_xmlvm_iphone_GKSessionDelegate_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_GKSessionDelegate, 1);
+        __CLASS_org_xmlvm_iphone_GKSessionDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_GKSessionDelegate, 3);
+        __CLASS_org_xmlvm_iphone_GKSessionDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_GKSessionDelegate, 2);
+        __CLASS_org_xmlvm_iphone_GKSessionDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_GKSessionDelegate, 1);
+
         __TIB_org_xmlvm_iphone_GKSessionDelegate.classInitialized = 1;
     }
     if (interface != JAVA_NULL) {

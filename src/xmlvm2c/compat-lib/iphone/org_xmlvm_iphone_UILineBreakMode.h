@@ -13,7 +13,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UILineBreakMode, 11)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILineBreakMode;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILineBreakMode_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILineBreakMode_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILineBreakMode_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILineBreakMode_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UILineBreakMode

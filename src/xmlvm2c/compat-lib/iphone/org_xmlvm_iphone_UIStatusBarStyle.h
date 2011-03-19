@@ -13,7 +13,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIStatusBarStyle, 11)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIStatusBarStyle;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIStatusBarStyle_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIStatusBarStyle_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIStatusBarStyle_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIStatusBarStyle_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIStatusBarStyle

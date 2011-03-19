@@ -15,9 +15,12 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIActivityIndicatorView __TIB_org_xmlvm_iphone
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorView;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorView_ARRAYTYPE;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorView_3ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorView_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorView_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <UIKit/UIActivityIndicatorView.h>
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -222,7 +225,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UIActivityIndicatorView()
         __TIB_org_xmlvm_iphone_UIActivityIndicatorView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UIActivityIndicatorView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIActivityIndicatorView);
         __TIB_org_xmlvm_iphone_UIActivityIndicatorView.clazz = __CLASS_org_xmlvm_iphone_UIActivityIndicatorView;
-        __CLASS_org_xmlvm_iphone_UIActivityIndicatorView_ARRAYTYPE = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIActivityIndicatorView, 1);
+        __CLASS_org_xmlvm_iphone_UIActivityIndicatorView_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIActivityIndicatorView, 3);
+        __CLASS_org_xmlvm_iphone_UIActivityIndicatorView_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIActivityIndicatorView, 2);
+        __CLASS_org_xmlvm_iphone_UIActivityIndicatorView_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIActivityIndicatorView, 1);
+
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIActivityIndicatorView]
         //XMLVM_END_WRAPPER
 
@@ -233,6 +239,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIActivityIndicatorView()
 void __DELETE_org_xmlvm_iphone_UIActivityIndicatorView(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIActivityIndicatorView]
+    __DELETE_org_xmlvm_iphone_UIView(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -248,6 +255,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActivityIndicatorView()
     me->tib = &__TIB_org_xmlvm_iphone_UIActivityIndicatorView;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActivityIndicatorView(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIActivityIndicatorView]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIActivityIndicatorView);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -270,7 +278,8 @@ void org_xmlvm_iphone_UIActivityIndicatorView___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIActivityIndicatorView___INIT____int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActivityIndicatorView___INIT____int]
-    XMLVM_NOT_IMPLEMENTED();
+    UIActivityIndicatorView* obj = [[UIActivityIndicatorView alloc] init];
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
@@ -291,7 +300,9 @@ JAVA_INT org_xmlvm_iphone_UIActivityIndicatorView_getActivityIndicatorViewStyle_
 void org_xmlvm_iphone_UIActivityIndicatorView_setHidesWhenStopped___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActivityIndicatorView_setHidesWhenStopped___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_BOOLEAN(flag, n1);
+    [thiz setHidesWhenStopped:flag];
     //XMLVM_END_WRAPPER
 }
 
@@ -305,7 +316,8 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIActivityIndicatorView_getHidesWhenStopped__(JAVA
 void org_xmlvm_iphone_UIActivityIndicatorView_startAnimating__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActivityIndicatorView_startAnimating__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz startAnimating];
     //XMLVM_END_WRAPPER
 }
 

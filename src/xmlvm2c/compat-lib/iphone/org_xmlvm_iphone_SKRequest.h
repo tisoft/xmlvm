@@ -17,7 +17,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKRequestDelegate)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKRequest, 18)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKRequest;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKRequest_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKRequest_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKRequest_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKRequest_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_SKRequest

@@ -17,7 +17,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotation)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKOverlay, 20)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKOverlay;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKOverlay_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKOverlay_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKOverlay_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKOverlay_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_MKOverlay

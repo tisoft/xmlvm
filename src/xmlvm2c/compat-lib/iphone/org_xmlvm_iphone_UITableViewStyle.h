@@ -13,7 +13,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewStyle, 11)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewStyle;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewStyle_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewStyle_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewStyle_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewStyle_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITableViewStyle

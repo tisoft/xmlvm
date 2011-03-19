@@ -33,7 +33,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIApplication, 37)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_ARRAYTYPE;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_3ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_1ARRAY;
 
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIApplication
@@ -114,7 +116,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_isNetworkActivityIndicatorVisible__(
 void org_xmlvm_iphone_UIApplication_setNetworkActivityIndicatorVisible___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 // Vtable index: 36
 JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1);
-void org_xmlvm_iphone_UIApplication_main___java_lang_String_ARRAYTYPE_java_lang_Class_java_lang_Class(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
+void org_xmlvm_iphone_UIApplication_main___java_lang_String_1ARRAY_java_lang_Class_java_lang_Class(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
 JAVA_OBJECT org_xmlvm_iphone_UIApplication_access$000__();
 
 #endif
