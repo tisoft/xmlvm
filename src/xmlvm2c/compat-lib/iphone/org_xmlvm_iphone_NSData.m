@@ -287,14 +287,16 @@ JAVA_BOOLEAN org_xmlvm_iphone_NSData_writeToFile___java_lang_String_boolean(JAVA
 JAVA_INT org_xmlvm_iphone_NSData_length__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_length__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return [thiz length];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSData_getBytes__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_getBytes__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return XMLVMArray_createSingleDimensionWithData(__CLASS_byte_1ARRAY, [thiz length], [thiz bytes]);
     //XMLVM_END_WRAPPER
 }
 

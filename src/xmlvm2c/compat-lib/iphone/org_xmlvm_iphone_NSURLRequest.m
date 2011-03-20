@@ -144,6 +144,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSURLRequest()
 void __DELETE_org_xmlvm_iphone_NSURLRequest(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSURLRequest]
+   __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -159,6 +160,16 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURLRequest()
     me->tib = &__TIB_org_xmlvm_iphone_NSURLRequest;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLRequest(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSURLRequest]
+	/*********************************************************************************************
+	 * README: Ordinarily the garbage collector will just silently release the memory of
+	 * garbage collected objects. If some cleanup needs to be done before this happens, we
+	 * need to register a so-called finalizer for this object with the garbage collector.
+	 * Since the finalization mechanism is relatively expensive, we only do it for those
+	 * objects for which this is necessary. The finalizer to be invoked should always be
+	 * the respective __DELETE_* function.
+	 */
+	// Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSURLRequest);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -173,7 +184,10 @@ JAVA_OBJECT org_xmlvm_iphone_NSURLRequest_requestWithURL___org_xmlvm_iphone_NSUR
 {
     if (!__TIB_org_xmlvm_iphone_NSURLRequest.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequest();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSURLRequest_requestWithURL___org_xmlvm_iphone_NSURL]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_IOS(NSURL, url, n1);
+    JAVA_OBJECT urlRequest = __NEW_org_xmlvm_iphone_NSURLRequest();
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(urlRequest, [NSURLRequest requestWithURL:url]);
+    return urlRequest;
     //XMLVM_END_WRAPPER
 }
 
