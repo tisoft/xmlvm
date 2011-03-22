@@ -89,7 +89,9 @@ public class CheckBox extends CompoundButton {
 
     @Override
     public void setText(String text) {
-        Assert.FAIL("setText() not supported by UISwitch");
+        if (text.length() > 0) {
+            Assert.FAIL("setText() not supported by UISwitch");
+        }
     }
 
 }
