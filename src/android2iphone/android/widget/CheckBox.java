@@ -24,6 +24,7 @@ import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UISwitch;
 
 import android.content.Context;
+import android.internal.Assert;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -33,6 +34,10 @@ public class CheckBox extends CompoundButton {
 
     public CheckBox(Context c) {
         super(c);
+    }
+
+    public CheckBox(Context context, AttributeSet attrs) {
+        super(context, attrs);
     }
 
     @Override
@@ -80,6 +85,11 @@ public class CheckBox extends CompoundButton {
     protected void xmlvmUpdateUIView(boolean checked) {
         // TODO Auto-generated method stub
         Log.w("xmlvm", "CheckBox.xmlvmUpdateUIView() not implemented");
+    }
+
+    @Override
+    public void setText(String text) {
+        Assert.FAIL("setText() not supported by UISwitch");
     }
 
 }
