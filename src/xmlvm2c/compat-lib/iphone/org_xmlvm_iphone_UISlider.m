@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_UIImage.h"
 #include "org_xmlvm_iphone_UIEvent.h"
 #include "java_util_Set.h"
 #include "org_xmlvm_iphone_CGRect.h"
@@ -104,6 +105,56 @@ static JAVA_OBJECT* __method6_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method7_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIImage,
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIImage,
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method13_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIImage,
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method15_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method16_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIImage,
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method17_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method18_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method19_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIImage,
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method20_arg_types[] = {
     &__CLASS_java_util_Set,
     &__CLASS_org_xmlvm_iphone_UIEvent,
 };
@@ -172,9 +223,126 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"touchesEnded",
+    {"getMaximumValueImage",
     &__method7_arg_types[0],
     sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setMaximumValueImage",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getMinimumValueImage",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setMinimumValueImage",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getCurrentMinimumTrackImage",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"minimumTrackImageForState",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setMinimumTrackImage",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getCurrentMaximumTrackImage",
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"maximumTrackImageForState",
+    &__method15_arg_types[0],
+    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setMaximumTrackImage",
+    &__method16_arg_types[0],
+    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getCurrentThumbImage",
+    &__method17_arg_types[0],
+    sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"thumbImageForState",
+    &__method18_arg_types[0],
+    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setThumbImage",
+    &__method19_arg_types[0],
+    sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"touchesEnded",
+    &__method20_arg_types[0],
+    sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -213,6 +381,45 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UISlider_getMaximumValue__(receiver);
         break;
     case 7:
+        org_xmlvm_iphone_UISlider_getMaximumValueImage__(receiver);
+        break;
+    case 8:
+        org_xmlvm_iphone_UISlider_setMaximumValueImage___org_xmlvm_iphone_UIImage(receiver, argsArray[0]);
+        break;
+    case 9:
+        org_xmlvm_iphone_UISlider_getMinimumValueImage__(receiver);
+        break;
+    case 10:
+        org_xmlvm_iphone_UISlider_setMinimumValueImage___org_xmlvm_iphone_UIImage(receiver, argsArray[0]);
+        break;
+    case 11:
+        org_xmlvm_iphone_UISlider_getCurrentMinimumTrackImage__(receiver);
+        break;
+    case 12:
+        org_xmlvm_iphone_UISlider_minimumTrackImageForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 13:
+        org_xmlvm_iphone_UISlider_setMinimumTrackImage___org_xmlvm_iphone_UIImage_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        break;
+    case 14:
+        org_xmlvm_iphone_UISlider_getCurrentMaximumTrackImage__(receiver);
+        break;
+    case 15:
+        org_xmlvm_iphone_UISlider_maximumTrackImageForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 16:
+        org_xmlvm_iphone_UISlider_setMaximumTrackImage___org_xmlvm_iphone_UIImage_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        break;
+    case 17:
+        org_xmlvm_iphone_UISlider_getCurrentThumbImage__(receiver);
+        break;
+    case 18:
+        org_xmlvm_iphone_UISlider_thumbImageForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 19:
+        org_xmlvm_iphone_UISlider_setThumbImage___org_xmlvm_iphone_UIImage_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        break;
+    case 20:
         org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
     default:
@@ -249,6 +456,19 @@ void __INIT_IMPL_org_xmlvm_iphone_UISlider()
         __TIB_org_xmlvm_iphone_UISlider.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMinimumValue__;
         __TIB_org_xmlvm_iphone_UISlider.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumValue___float;
         __TIB_org_xmlvm_iphone_UISlider.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMaximumValue__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMaximumValueImage__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumValueImage___org_xmlvm_iphone_UIImage;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMinimumValueImage__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumValueImage___org_xmlvm_iphone_UIImage;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getCurrentMinimumTrackImage__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_minimumTrackImageForState___int;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumTrackImage___org_xmlvm_iphone_UIImage_int;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getCurrentMaximumTrackImage__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_maximumTrackImageForState___int;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumTrackImage___org_xmlvm_iphone_UIImage_int;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getCurrentThumbImage__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_thumbImageForState___int;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setThumbImage___org_xmlvm_iphone_UIImage_int;
         __TIB_org_xmlvm_iphone_UISlider.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
         // Initialize vtable for implementing interfaces
         __TIB_org_xmlvm_iphone_UISlider.numImplementedInterfaces = 0;
@@ -364,6 +584,97 @@ void org_xmlvm_iphone_UISlider_setMaximumValue___float(JAVA_OBJECT me, JAVA_FLOA
 JAVA_FLOAT org_xmlvm_iphone_UISlider_getMaximumValue__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_getMaximumValue__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UISlider_getMaximumValueImage__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_getMaximumValueImage__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UISlider_setMaximumValueImage___org_xmlvm_iphone_UIImage(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_setMaximumValueImage___org_xmlvm_iphone_UIImage]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UISlider_getMinimumValueImage__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_getMinimumValueImage__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UISlider_setMinimumValueImage___org_xmlvm_iphone_UIImage(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_setMinimumValueImage___org_xmlvm_iphone_UIImage]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UISlider_getCurrentMinimumTrackImage__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_getCurrentMinimumTrackImage__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UISlider_minimumTrackImageForState___int(JAVA_OBJECT me, JAVA_INT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_minimumTrackImageForState___int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UISlider_setMinimumTrackImage___org_xmlvm_iphone_UIImage_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_setMinimumTrackImage___org_xmlvm_iphone_UIImage_int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UISlider_getCurrentMaximumTrackImage__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_getCurrentMaximumTrackImage__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UISlider_maximumTrackImageForState___int(JAVA_OBJECT me, JAVA_INT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_maximumTrackImageForState___int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UISlider_setMaximumTrackImage___org_xmlvm_iphone_UIImage_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_setMaximumTrackImage___org_xmlvm_iphone_UIImage_int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UISlider_getCurrentThumbImage__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_getCurrentThumbImage__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UISlider_thumbImageForState___int(JAVA_OBJECT me, JAVA_INT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_thumbImageForState___int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UISlider_setThumbImage___org_xmlvm_iphone_UIImage_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISlider_setThumbImage___org_xmlvm_iphone_UIImage_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

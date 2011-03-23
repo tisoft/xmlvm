@@ -28,7 +28,7 @@
 
 @implementation UISlider(cat_org_xmlvm_iphone_UISlider)
 
-- (void) __init_org_xmlvm_iphone_UISlider {
+- (void) __init_org_xmlvm_iphone_UISlider__ {
 }
 
 -(void) __init_org_xmlvm_iphone_UISlider___org_xmlvm_iphone_CGRect : (org_xmlvm_iphone_CGRect*) r {
@@ -62,6 +62,71 @@
 - (void) setValue___float_boolean:(float) value :(int) animated
 {
 	[self setValue:value animated:animated];
+}
+
+- (org_xmlvm_iphone_UIImage*) getMaximumValueImage__
+{
+    return_XMLVM(maximumValueImage)
+}
+
+- (void) setMaximumValueImage___org_xmlvm_iphone_UIImage :(org_xmlvm_iphone_UIImage*)n1
+{
+    [self setMaximumValueImage:XMLVM_NULL2NIL(n1)];
+}
+
+- (org_xmlvm_iphone_UIImage*) getMinimumValueImage__
+{
+    return_XMLVM(minimumValueImage)
+}
+
+- (void) setMinimumValueImage___org_xmlvm_iphone_UIImage :(org_xmlvm_iphone_UIImage*)n1
+{
+    [self setMinimumValueImage:XMLVM_NULL2NIL(n1)];
+}
+
+- (org_xmlvm_iphone_UIImage*) getCurrentMinimumTrackImage__
+{
+    return_XMLVM(currentMinimumValueImage)
+}
+
+- (org_xmlvm_iphone_UIImage*) minimumTrackImageForState___int :(int)n1
+{
+    return_XMLVM(minimumTrackImageForState:n1)
+}
+
+- (void) setMinimumTrackImage___org_xmlvm_iphone_UIImage_int :(org_xmlvm_iphone_UIImage*)n1 :(int)n2
+{
+    [self setMinimumTrackImage:XMLVM_NULL2NIL(n1) forState:n2];
+}
+
+- (org_xmlvm_iphone_UIImage*) getCurrentMaximumTrackImage__
+{
+    return_XMLVM(currentMaximumTrackImage)
+}
+
+- (org_xmlvm_iphone_UIImage*) maximumTrackImageForState___int :(int)n1
+{
+    return_XMLVM(maximumTrackImageForState:n1)
+}
+
+- (void) setMaximumTrackImage___org_xmlvm_iphone_UIImage_int :(org_xmlvm_iphone_UIImage*)n1 :(int)n2
+{
+    [self setMaximumTrackImage:XMLVM_NULL2NIL(n1) forState:n2];
+}
+
+- (org_xmlvm_iphone_UIImage*) getCurrentThumbImage__
+{
+    return_XMLVM(currentThumbImage)
+}
+
+- (org_xmlvm_iphone_UIImage*) thumbImageForState___int :(int)n1
+{
+    return_XMLVM(thumbImageForState:n1)
+}
+
+- (void) setThumbImage___org_xmlvm_iphone_UIImage_int :(org_xmlvm_iphone_UIImage*)n1 :(int)n2
+{
+    [self setThumbImage:XMLVM_NULL2NIL(n1) forState:n2];
 }
 
 @end

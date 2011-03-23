@@ -41,8 +41,9 @@
 
 + (org_xmlvm_iphone_UIImage*) imageWithContentsOfFile___java_lang_String :(java_lang_String*)path
 {
-	return [[UIImage alloc] initWithContentsOfFile:path];
-	//return_XMLVM_SELECTOR(UIImage imageWithContentsOfFile:path)
+    UIImage * img = [[UIImage alloc] initWithContentsOfFile:path];
+    img=XMLVM_NIL2NULL(img);
+    return img;
 }
 
 + (org_xmlvm_iphone_UIImage*) imageWithData___org_xmlvm_iphone_NSData: (org_xmlvm_iphone_NSData*) data

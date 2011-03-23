@@ -18,18 +18,15 @@
  * USA.
  */
 
-
-
-
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_CGRect.h"
-
+#include "org_xmlvm_iphone_UIImage.h"
 
 /// UISlider
 //----------------------------------------------------------------------------
 typedef UISlider org_xmlvm_iphone_UISlider;
 @interface UISlider (cat_org_xmlvm_iphone_UISlider)
-- (void) __init_org_xmlvm_iphone_UISlider;
+- (void) __init_org_xmlvm_iphone_UISlider__;
 - (void) __init_org_xmlvm_iphone_UISlider___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect;
 - (float) getValue__;
 - (float) getMinimumValue__;
@@ -38,4 +35,18 @@ typedef UISlider org_xmlvm_iphone_UISlider;
 - (void) setMaximumValue___float:(float) value;
 - (void) setValue___float:(float) value;
 - (void) setValue___float_boolean:(float) value :(int) animated;
+- (org_xmlvm_iphone_UIImage*) getMaximumValueImage__;
+- (void) setMaximumValueImage___org_xmlvm_iphone_UIImage :(org_xmlvm_iphone_UIImage*)n1;
+- (org_xmlvm_iphone_UIImage*) getMinimumValueImage__;
+- (void) setMinimumValueImage___org_xmlvm_iphone_UIImage :(org_xmlvm_iphone_UIImage*)n1;
+- (org_xmlvm_iphone_UIImage*) getCurrentMinimumTrackImage__;
+- (org_xmlvm_iphone_UIImage*) minimumTrackImageForState___int :(int)n1;
+- (void) setMinimumTrackImage___org_xmlvm_iphone_UIImage_int :(org_xmlvm_iphone_UIImage*)n1 :(int)n2;
+- (org_xmlvm_iphone_UIImage*) getCurrentMaximumTrackImage__;
+- (org_xmlvm_iphone_UIImage*) maximumTrackImageForState___int :(int)n1;
+- (void) setMaximumTrackImage___org_xmlvm_iphone_UIImage_int :(org_xmlvm_iphone_UIImage*)n1 :(int)n2;
+- (org_xmlvm_iphone_UIImage*) getCurrentThumbImage__;
+- (org_xmlvm_iphone_UIImage*) thumbImageForState___int :(int)n1;
+- (void) setThumbImage___org_xmlvm_iphone_UIImage_int :(org_xmlvm_iphone_UIImage*)n1 :(int)n2;
+
 @end

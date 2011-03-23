@@ -33,9 +33,14 @@ import org.xmlvm.iphone.internal.renderer.UISliderRenderer;
 @XMLVMSkeletonOnly
 public class UISlider extends UIControl {
 
-    private float minimum = 0.0f;
-    private float maximum = 1.0f;
-    private float value   = 0.5f;
+    private float   minimumValue             = 0.0f;
+    private float   maximumValue             = 1.0f;
+    private float   value                    = 0.5f;
+    private UIImage minimumValueImage        = null;
+    private UIImage maximumValueImage        = null;
+    private UIImage currentMinimumTrackImage = null;
+    private UIImage currentMaximumTrackImage = null;
+    private UIImage currentThumbImage        = null;
 
 
     public UISlider() {
@@ -52,11 +57,11 @@ public class UISlider extends UIControl {
     }
 
     public void setValue(float val, boolean animated) {
-        if (val < minimum) {
-            val = minimum;
+        if (val < minimumValue) {
+            val = minimumValue;
         }
-        if (val > maximum) {
-            val = maximum;
+        if (val > maximumValue) {
+            val = maximumValue;
         }
         value = val;
         this.setNeedsDisplay();
@@ -67,29 +72,84 @@ public class UISlider extends UIControl {
     }
 
     public void setMinimumValue(float min) {
-        minimum = min;
-        if (maximum < minimum)
-            maximum = minimum;
-        if (value < minimum)
-            value = minimum;
+        minimumValue = min;
+        if (maximumValue < minimumValue)
+            maximumValue = minimumValue;
+        if (value < minimumValue)
+            value = minimumValue;
         this.setNeedsDisplay();
     }
 
     public float getMinimumValue() {
-        return minimum;
+        return minimumValue;
     }
 
     public void setMaximumValue(float max) {
-        maximum = max;
-        if (minimum > maximum)
-            minimum = maximum;
-        if (value > maximum)
-            value = minimum;
+        maximumValue = max;
+        if (minimumValue > maximumValue)
+            minimumValue = maximumValue;
+        if (value > maximumValue)
+            value = minimumValue;
         this.setNeedsDisplay();
     }
 
     public float getMaximumValue() {
-        return maximum;
+        return maximumValue;
+    }
+
+    public UIImage getMaximumValueImage() {
+        return maximumValueImage;
+    }
+
+    public void setMaximumValueImage(UIImage maximumValueImage) {
+        this.maximumValueImage = maximumValueImage;
+    }
+
+    public UIImage getMinimumValueImage() {
+        return minimumValueImage;
+    }
+
+    public void setMinimumValueImage(UIImage minimumValueImage) {
+        this.minimumValueImage = minimumValueImage;
+    }
+
+    public UIImage getCurrentMinimumTrackImage() {
+        return currentMinimumTrackImage;
+    }
+
+    public UIImage minimumTrackImageForState(int uiControlState) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public void setMinimumTrackImage(UIImage image, int uiControlState) {
+        // TODO : Java implementation
+    }
+
+    public UIImage getCurrentMaximumTrackImage() {
+        return currentMaximumTrackImage;
+    }
+
+    public UIImage maximumTrackImageForState(int uiControlState) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public void setMaximumTrackImage(UIImage image, int uiControlState) {
+        // TODO : Java implementation
+    }
+
+    public UIImage getCurrentThumbImage() {
+        return currentThumbImage;
+    }
+
+    public UIImage thumbImageForState(int uiControlState) {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public void setThumbImage(UIImage image, int uiControlState) {
+        // TODO : Java implementation
     }
 
     /* TODO: again here with event handling */
@@ -108,7 +168,7 @@ public class UISlider extends UIControl {
                 e.getValue().raiseEvent(this, UIControlEvent.TouchUpInside);
         }
         float newvalue = (float) p.x / r.size.width;
-        newvalue = minimum + (maximum - minimum) * newvalue;
+        newvalue = minimumValue + (maximumValue - minimumValue) * newvalue;
         if (this.value != newvalue) {
             setValue(newvalue);
             for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet()

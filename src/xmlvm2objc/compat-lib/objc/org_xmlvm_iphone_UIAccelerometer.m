@@ -26,7 +26,7 @@
 - (id) initWithDelegate: (id<org_xmlvm_iphone_UIAccelerometerDelegate>) del
 {
 	[super init];
-	delegate = del;
+	delegate = [del retain];
 	return self;
 }
 
@@ -53,7 +53,7 @@
 
 + (UIAccelerometer*) sharedAccelerometer__
 {
-	return [UIAccelerometer sharedAccelerometer];
+    return_XMLVM_SELECTOR(UIAccelerometer sharedAccelerometer)
 }
 
 - (void) setUpdateInterval___double: (double)interval
@@ -63,8 +63,10 @@
 
 - (void) setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate :(id<org_xmlvm_iphone_UIAccelerometerDelegate>) delegate
 {
-	UIAccelerometerDelegateWrapper* wrapper = [[UIAccelerometerDelegateWrapper alloc] initWithDelegate: delegate];
-	[self setDelegate: wrapper];
+    UIAccelerometerDelegateWrapper* wrapper = [[UIAccelerometerDelegateWrapper alloc] initWithDelegate: XMLVM_NULL2NIL(delegate)];
+    [self setDelegate: wrapper];
+    XMLVM_PROPERTY_WITHCOMMAND(accdelegate, wrapper,)
+    [wrapper release];
 }
 
 @end
