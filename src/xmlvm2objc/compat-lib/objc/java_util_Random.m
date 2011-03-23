@@ -29,6 +29,10 @@
 	return (double)rand()/2147483647.0;
 }
 
+- (float) nextFloat__ {
+	return (float)(rand()/2147483647.0);
+}
+
 - (void) __init_java_util_Random__ {
 }
 
