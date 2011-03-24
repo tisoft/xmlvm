@@ -47,23 +47,9 @@ java_util_Properties* _STATIC_java_util_Properties_props = nil;
 @implementation java_lang_System;
 
 
-/*
- TODO - this currently broken as while it returns a consistently changing 
- value it doesn't return an accurate time according to the Java spec for this method.
- Problems lie in the long representation on the 32 bit target architecture.
- */
 + (JAVA_LONG) currentTimeMillis__
 {
-    static NSDate* now_time;
-    static long    msec_since_1970;
-
-    if (now_time == nil) {
-        now_time = [[NSDate date] retain];
-        msec_since_1970 = ([now_time timeIntervalSince1970] * 1000) + .5;
-    }
-    long sinceNow = ([[NSDate date] timeIntervalSinceDate:now_time] * 1000) + .5;
-	
-    return sinceNow + msec_since_1970;
+    return (JAVA_LONG)([[NSDate date] timeIntervalSince1970]*1000+0.5);
 }
 
 + (JAVA_LONG) nanoTime__

@@ -24,14 +24,16 @@
 
 // java.util.Random
 //----------------------------------------------------------------------------
-@interface java_util_Random : java_lang_Object {
-}
+@interface java_util_Random : java_lang_Object
 
+- (void) __init_java_util_Random__;
+- (void) __init_java_util_Random___long :(JAVA_LONG) seed;
+- (int) nextBoolean__;
 - (double) nextDouble__;
 - (float) nextFloat__;
-- (void) __init_java_util_Random__;
-- (void) __init_java_util_Random___int :(int) seed;
-- (void) __init_java_util_Random___long :(JAVA_LONG) seed;
+- (int) nextInt__;
 - (int) nextInt___int :(int)n;
+- (JAVA_LONG) nextLong__;
+- (void) setSeed___long :(JAVA_LONG)seed;
 
 @end

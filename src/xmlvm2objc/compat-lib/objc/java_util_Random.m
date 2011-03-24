@@ -19,33 +19,54 @@
  */
 
 #import "java_util_Random.h"
+#import "java_lang_System.h"
 
+
+#define MAXIMUM     2147483647
+#define MINNEGATIVE 1073741824
 
 // java.util.Random
 //----------------------------------------------------------------------------
 @implementation java_util_Random
 
-- (double) nextDouble__ {
-	return (double)rand()/2147483647.0;
-}
-
-- (float) nextFloat__ {
-	return (float)(rand()/2147483647.0);
-}
-
 - (void) __init_java_util_Random__ {
-}
-
-- (void) __init_java_util_Random___int :(int) seed {
-	srand(seed);
+    [self __init_java_util_Random___long:[java_lang_System currentTimeMillis__]];
 }
 
 - (void) __init_java_util_Random___long :(JAVA_LONG) seed {
-	srand(seed);
+	[self setSeed___long:seed];
+}
+
+- (int) nextBoolean__
+{
+    return random()&01;
+}
+
+- (double) nextDouble__ {
+	return (double)random()/MAXIMUM;
+}
+
+- (float) nextFloat__ {
+    return ((float)random())/MAXIMUM;
+}
+
+- (int) nextInt__
+{
+    return (int)(random()-MINNEGATIVE);
 }
 
 - (int) nextInt___int :(int)n {
-	return (int)((double)rand() / ((double)RAND_MAX + 1) * n);
+	return (int)((double)random() / ((double)MAXIMUM + 1) * n);
 }
-	
+
+- (JAVA_LONG) nextLong__
+{
+    return random()<<32 + random();
+}
+
+- (void) setSeed___long :(JAVA_LONG)seed
+{
+    srandom(seed);
+}
+
 @end
