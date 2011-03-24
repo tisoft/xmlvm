@@ -21,7 +21,6 @@
 package org.xmlvm.proc.out;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -77,21 +76,17 @@ import org.jdom.Element;
 import org.jdom.Namespace;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmClass;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.in.InputProcess;
-import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
 
 /**
  * Generates XMLVM from Class files.
  */
-public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> implements
-        XmlvmResourceProvider {
-
-    private List<XmlvmResource> generatedResources = new ArrayList<XmlvmResource>();
-
+public class ClassToXmlvmProcess extends XmlvmProcessImpl {
 
     public ClassToXmlvmProcess(Arguments arguments) {
         super(arguments);
@@ -99,30 +94,21 @@ public class ClassToXmlvmProcess extends XmlvmProcessImpl<ClassInputProcess> imp
     }
 
     @Override
-    public boolean process() {
-        List<ClassInputProcess> preProcesses = preprocess();
-
-        for (ClassInputProcess preProcess : preProcesses) {
-            Log.debug("ClassInputProcess.process(): " + preProcess.getInputFile());
-            XmlvmResource resource = (new ClassToXmlvmTask(preProcess.getInputFile().getPath()))
-                    .parse();
+    public boolean processPhase1(BundlePhase1 bundle) {
+        for (OutputFile outputFile : bundle.getOutputFiles()) {
+            Log.debug("ClassInputProcess.process(): " + outputFile);
+            XmlvmResource resource = (new ClassToXmlvmTask(outputFile.getOrigin())).parse();
             if (resource == null) {
                 return false;
             }
-            generatedResources.add(resource);
+            bundle.addResource(resource);
         }
         return true;
     }
 
     @Override
-    public List<XmlvmResource> getXmlvmResources() {
-        return generatedResources;
-    }
-
-    @Override
-    public List<OutputFile> getOutputFiles() {
-        Log.error("ClassToXmlvmProcess.getOutputFiles() not implemented yet.");
-        return null;
+    public boolean processPhase2(BundlePhase2 bundle) {
+        return true;
     }
 
 

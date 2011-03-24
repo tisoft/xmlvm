@@ -24,9 +24,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.IPhoneOutputProcess;
+import org.xmlvm.proc.out.OutputFile;
 import org.xmlvm.proc.out.VerbatimOutputFile;
 
 public class ResourceManager {
@@ -39,9 +41,9 @@ public class ResourceManager {
      *            command line arguments, used to find given resources
      * @return Set of resources as a VerbatimOutputFile set
      */
-    public static Set<VerbatimOutputFile> getSourceResources(Arguments args) {
+    public static Set<OutputFile> getSourceResources(Arguments args) {
         Set<String> list = getFilteredList(args.option_out(), args.option_resource(), null, true);
-        Set<VerbatimOutputFile> out = new HashSet<VerbatimOutputFile>();
+        Set<OutputFile> out = new HashSet<OutputFile>();
         for (String item : list) {
             File srcfile = new File(item);
             out.add(new VerbatimOutputFile(srcfile.getParent(), args.option_out()

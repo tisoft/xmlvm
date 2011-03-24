@@ -26,6 +26,8 @@ import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.out.build.MakeFile;
 
@@ -33,13 +35,11 @@ import org.xmlvm.proc.out.build.MakeFile;
  * A process that takes C files and creates a compilable POSIX project that
  * includes all required resources.
  */
-public class PosixOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProcess> {
+public class PosixOutputProcess extends XmlvmProcessImpl {
 
     private static final String PLATFORM         = "posix";
 
     private final static String SRCFILE_LOCATION = File.separator + "src" + File.separator;
-
-    private List<OutputFile>    outputFiles      = new ArrayList<OutputFile>();
 
 
     /**
@@ -51,23 +51,18 @@ public class PosixOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProcess
     }
 
     @Override
-    public List<OutputFile> getOutputFiles() {
-        return outputFiles;
+    public boolean processPhase1(BundlePhase1 bundle) {
+        return true;
     }
 
     @Override
-    public boolean process() {
-        for (AugmentedCOutputProcess preProcess : preprocess()) {
-            outputFiles.addAll(preProcess.getOutputFiles());
-        }
-
-        for (OutputFile file : outputFiles) {
+    public boolean processPhase2(BundlePhase2 bundle) {
+        for (OutputFile file : bundle.getOutputFiles()) {
             file.setLocation(arguments.option_out() + SRCFILE_LOCATION);
         }
 
         MakeFile makefile = new MakeFile(PLATFORM);
-        Log.error(makefile.composeBuildFiles(outputFiles, arguments));
-
+        bundle.addOutputFile(makefile.composeBuildFiles(arguments));
         return true;
     }
 }

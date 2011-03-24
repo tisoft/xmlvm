@@ -103,15 +103,16 @@ import org.jdom.Namespace;
 import org.xmlvm.IllegalXMLVMException;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.in.file.ClassFile;
 
 /**
  * This process takes XMLVM and turns it into Java ByteCode.
  */
-public class JavaByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
+public class JavaByteCodeOutputProcess extends XmlvmProcessImpl {
 
     private static final class InstructionHandlerManager {
 
@@ -181,8 +182,7 @@ public class JavaByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourcePro
     }
 
 
-    private static final Namespace    nsXMLVM     = Namespace
-                                                          .getNamespace("vm", "http://xmlvm.org");
+    private static final Namespace    nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
 
     private InstructionFactory        factory;
     private InstructionList           instructionList;
@@ -190,7 +190,6 @@ public class JavaByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourcePro
     private ClassGen                  classGen;
     private InstructionHandlerManager instructionHandlerManager;
     private String                    fullQualifiedClassName;
-    private List<OutputFile>          outputFiles = new ArrayList<OutputFile>();
 
 
     public JavaByteCodeOutputProcess(Arguments arguments) {
@@ -199,29 +198,24 @@ public class JavaByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourcePro
     }
 
     @Override
-    public List<OutputFile> getOutputFiles() {
-        return outputFiles;
+    public boolean processPhase1(BundlePhase1 bundle) {
+        return true;
     }
 
     @Override
-    public boolean process() {
-        List<XmlvmResourceProvider> preprocesses = preprocess();
-
-        for (XmlvmResourceProvider process : preprocesses) {
-            List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
-            for (XmlvmResource xmlvmResource : xmlvmResources) {
-                try {
-                    outputFiles.addAll(createBytecode(xmlvmResource.getXmlvmDocument(), arguments
-                            .option_out()));
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    Log.error("Could not create class file for: " + xmlvmResource.getName());
-                    return false;
-                } catch (IllegalXMLVMException ex) {
-                    ex.printStackTrace();
-                    Log.error("Could not create class file for: " + xmlvmResource.getName());
-                    return false;
-                }
+    public boolean processPhase2(BundlePhase2 bundle) {
+        for (XmlvmResource xmlvmResource : bundle.getResources()) {
+            try {
+                bundle.addOutputFiles(createBytecode(xmlvmResource.getXmlvmDocument(),
+                        arguments.option_out()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                Log.error("Could not create class file for: " + xmlvmResource.getName());
+                return false;
+            } catch (IllegalXMLVMException ex) {
+                ex.printStackTrace();
+                Log.error("Could not create class file for: " + xmlvmResource.getName());
+                return false;
             }
         }
         return true;
@@ -238,6 +232,7 @@ public class JavaByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourcePro
         Element root = document.getRootElement();
         if (!root.getName().equals("xmlvm"))
             throw new IllegalXMLVMException("Root element needs to be <xmlvm>");
+        @SuppressWarnings("unchecked")
         List<Element> clazzes = root.getChildren("class", nsXMLVM);
 
         for (Element clazz : clazzes) {

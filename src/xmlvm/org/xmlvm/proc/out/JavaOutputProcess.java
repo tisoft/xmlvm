@@ -21,38 +21,40 @@
 package org.xmlvm.proc.out;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XsltRunner;
 
 /**
  * This process takes XMLVM and turns it into Java source code.
  */
-public class JavaOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
+public class JavaOutputProcess extends XmlvmProcessImpl {
 
     private class JavaTranslationThread extends Thread {
-        private final XmlvmResource[] resources;
+        private final XmlvmResource[] allResources;
         private final int             start;
         private final int             end;
+        private final BundlePhase2 resources;
 
 
-        public JavaTranslationThread(XmlvmResource[] resources, int start, int end) {
-            this.resources = resources;
+        public JavaTranslationThread(XmlvmResource[] allResources, int start, int end,
+                BundlePhase2 resources) {
+            this.allResources = allResources;
             this.start = start;
             this.end = end;
+            this.resources = resources;
         }
 
         @Override
         public void run() {
             for (int i = start; i <= end; ++i) {
-                XmlvmResource resource = resources[i];
+                XmlvmResource resource = allResources[i];
                 if (resource == null) {
                     continue;
                 }
@@ -67,7 +69,7 @@ public class JavaOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
                     fileName = packageName + '/' + fileName;
                 }
                 file.setFileName(fileName);
-                result.add(file);
+                resources.addOutputFile(file);
             }
         }
     }
@@ -75,7 +77,6 @@ public class JavaOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
 
     private static final String JAVA_EXTENSION = ".java";
     private static final String TAG            = JavaOutputProcess.class.getSimpleName();
-    private Vector<OutputFile>  result         = new Vector<OutputFile>();
 
 
     public JavaOutputProcess(Arguments arguments) {
@@ -84,26 +85,23 @@ public class JavaOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
     }
 
     @Override
-    public List<OutputFile> getOutputFiles() {
-        return result;
+    public boolean processPhase1(BundlePhase1 bundle) {
+        return true;
     }
 
-    public boolean process() {
+    @Override
+    public boolean processPhase2(BundlePhase2 bundle) {
         Map<String, XmlvmResource> mappedResources = new HashMap<String, XmlvmResource>();
-        List<XmlvmResourceProvider> preprocesses = preprocess();
-        for (XmlvmResourceProvider process : preprocesses) {
-            List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
-            for (XmlvmResource resource : xmlvmResources) {
-                if (resource != null) {
-                    mappedResources.put(resource.getFullName(), resource);
-                }
+        for (XmlvmResource resource : bundle.getResources()) {
+            if (resource != null) {
+                mappedResources.put(resource.getFullName(), resource);
             }
         }
         long startTime = System.currentTimeMillis();
 
-        XmlvmResource[] resources = mappedResources.values().toArray(new XmlvmResource[0]);
+        XmlvmResource[] allResources = mappedResources.values().toArray(new XmlvmResource[0]);
         int threadCount = Runtime.getRuntime().availableProcessors();
-        int itemsPerThread = (int) Math.ceil(resources.length / (float) threadCount);
+        int itemsPerThread = (int) Math.ceil(allResources.length / (float) threadCount);
         Log.debug(TAG, "Threads: " + threadCount);
         Log.debug(TAG, "Items per thread: " + itemsPerThread);
         JavaTranslationThread[] threads = new JavaTranslationThread[threadCount];
@@ -111,8 +109,8 @@ public class JavaOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
         // Divide work and start the threads.
         for (int i = 0; i < threadCount; ++i) {
             int start = i * itemsPerThread;
-            int end = Math.min(start + itemsPerThread - 1, resources.length - 1);
-            threads[i] = new JavaTranslationThread(resources, start, end);
+            int end = Math.min(start + itemsPerThread - 1, allResources.length - 1);
+            threads[i] = new JavaTranslationThread(allResources, start, end, bundle);
             threads[i].start();
         }
 

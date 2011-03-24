@@ -22,8 +22,8 @@ package org.xmlvm.proc.out.build;
 
 import java.io.FileFilter;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 
 import org.xmlvm.Log;
@@ -35,7 +35,8 @@ import org.xmlvm.proc.out.OutputFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 public class XCodeFile extends BuildFile {
-
+    private static final String                  TAG                          = XCodeFile.class
+                                                                                      .getSimpleName();
     private static final String                  IPHONE_XCODE_IN_JAR_RESOURCE = "/iphone/project.template";
     private static final String                  IPHONE_XCODE_PATH            = "var/iphone/project.template";
     /* File filters */
@@ -69,6 +70,7 @@ public class XCodeFile extends BuildFile {
     /* Maps of file types */
     private static final HashMap<String, String> sourcefiles;
     private static final HashMap<String, String> hiddensourcefiles;
+    private Collection<OutputFile>                     outputFiles;
 
     static {
         sourcefiles = new HashMap<String, String>();
@@ -83,17 +85,24 @@ public class XCodeFile extends BuildFile {
     }
 
 
-    /* Produce Xcode project file */
+    public XCodeFile(Collection<OutputFile> outputFiles) {
+        this.outputFiles = outputFiles;
+    }
+
+    /**
+     * Produce XCode project file
+     */
     @Override
-    public String composeBuildFiles(List<OutputFile> allfiles, Arguments arguments) {
+    public OutputFile composeBuildFiles(Arguments arguments) {
         String projname = arguments.option_app_name();
 
-        // Search and load xcode template.
+        // Search and load XCode template.
         XCodeProj proj;
         try {
-            proj = new XCodeProj(projname, allfiles);
-        } catch (IOException ex) {
-            return ex.getMessage();
+            proj = new XCodeProj(projname, outputFiles);
+        } catch (IOException e) {
+            Log.error(TAG, e.getMessage());
+            return null;
         }
         proj.injectLibraries(arguments.option_lib());
         proj.injectFiles(TEMPL_APP_SRC, FILTER_APP);
@@ -105,8 +114,7 @@ public class XCodeFile extends BuildFile {
         OutputFile makefile = new OutputFile(proj.data);
         makefile.setFileName("project.pbxproj");
         makefile.setLocation(arguments.option_out() + BUILDFILE_LOCATION + projname + ".xcodeproj");
-        allfiles.add(makefile);
-        return null;
+        return makefile;
     }
 
 
@@ -116,10 +124,10 @@ public class XCodeFile extends BuildFile {
         /* */
         String           data;
         int              nextid;
-        List<OutputFile> allfiles;
+        Collection<OutputFile> allfiles;
 
 
-        private XCodeProj(String name, List<OutputFile> allfiles) throws IOException {
+        private XCodeProj(String name, Collection<OutputFile> allfiles) throws IOException {
             data = UniversalFileCreator.createFile(IPHONE_XCODE_IN_JAR_RESOURCE, IPHONE_XCODE_PATH)
                     .getFileAsString();
             if (data == null)
@@ -141,9 +149,10 @@ public class XCodeFile extends BuildFile {
             XcodeSkeleton skel = XcodeSkeleton.getTarget(arguments.option_property("xcodeproject"));
             data = data.replace(TEMPL_SDK_ROOT, skel.root).replace(TEMPL_SDK_TARGET, skel.target)
                     .replace(TEMPL_ARCHITECTURE, skel.architecture);
-            data = data.replace(TEMPL_RESOURCE_LIST,
+            data = data.replace(
+                    TEMPL_RESOURCE_LIST,
                     ResourceManager.getResourcesAsEscQuoteList(arguments.option_out(),
-                    arguments.option_resource(), null));
+                            arguments.option_resource(), null));
         }
 
         private void injectLibraries(Set<String> libraries) {

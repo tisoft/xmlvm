@@ -33,5 +33,5 @@ public interface ProcessFinishedHandler {
      * @param successful
      *            Whether the process ended successful.
      */
-    public void processFinished(XmlvmProcess<?> process, boolean successful);
+    public void processFinished(XmlvmProcess process, boolean successful);
 }

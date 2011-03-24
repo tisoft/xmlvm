@@ -33,6 +33,8 @@ import java.util.Map;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
@@ -48,14 +50,13 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * contain manually written code in between them. This code is extracted and put
  * into the newly generated wrappers - at the correct position.
  */
-public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> {
+public class GenCWrappersOutputProcess extends XmlvmProcessImpl {
 
     private static final String           TAG           = GenCWrappersOutputProcess.class
                                                                 .getSimpleName();
     private static final String           BEGIN_MARKER  = "//XMLVM_BEGIN";
     private static final String           END_MARKER    = "//XMLVM_END";
 
-    private List<OutputFile>              result        = new ArrayList<OutputFile>();
     private final static SimpleDateFormat dateFormatter = new SimpleDateFormat(
                                                                 "yyyy-MM-dd-hh.mm.ss");
 
@@ -66,25 +67,22 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
     }
 
     @Override
-    public List<OutputFile> getOutputFiles() {
-        return result;
+    public boolean processPhase1(BundlePhase1 bundle) {
+        return true;
     }
 
     @Override
-    public boolean process() {
+    public boolean processPhase2(BundlePhase2 bundle) {
         List<OutputFile> outputFiles = new ArrayList<OutputFile>();
-        List<COutputProcess> preprocesses = preprocess();
-
-        for (COutputProcess process : preprocesses) {
-            outputFiles.addAll(process.getOutputFiles());
-        }
+        outputFiles.addAll(bundle.getOutputFiles());
+        bundle.removeAllOutputFiles();
 
         File destination = new File(arguments.option_out());
 
         // If the destination doesn't exist or has no content, we simply copy
         // the generated wrappers over.
         if (!destination.exists() || (destination.isDirectory() && destination.list().length == 0)) {
-            result.addAll(outputFiles);
+            bundle.addOutputFiles(outputFiles);
             return true;
         }
 
@@ -105,8 +103,7 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl<COutputProcess> 
 
         // We patch the existing content into the newly generated wrappers.
         injectAllSections(existingSections, outputFiles, destination.getAbsolutePath());
-
-        result.addAll(outputFiles);
+        bundle.addOutputFiles(outputFiles);
         return true;
     }
 

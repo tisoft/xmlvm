@@ -25,11 +25,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.util.FileUtil;
 import org.xmlvm.util.InputReaderThread;
@@ -41,7 +41,7 @@ import org.xmlvm.util.universalfile.UniversalFileFilter;
  * This process takes JavaScript outputs and creates a Qooxdoo project from
  * them.
  */
-public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProcess> {
+public class QooxdooOutputProcess extends XmlvmProcessImpl {
 
     private static final String TAG                      = "QooxdooOutputProcess";
 
@@ -93,9 +93,6 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
     /** The main method of the application. */
     protected String            mainMethod;
 
-    /** The files to be returned by this process */
-    private List<OutputFile>    outputFiles              = new ArrayList<OutputFile>();
-
 
     public QooxdooOutputProcess(Arguments arguments) {
         super(arguments);
@@ -104,12 +101,12 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
     }
 
     @Override
-    public List<OutputFile> getOutputFiles() {
-        return outputFiles;
+    public boolean processPhase1(BundlePhase1 bundle) {
+        return true;
     }
 
     @Override
-    public boolean process() {
+    public boolean processPhase2(BundlePhase2 bundle) {
         tempDestination = makeAbsoluteCanonicalPath(arguments.option_out()) + File.separator
                 + TEMP_CACHE_SUBDIR;
         mainMethod = arguments.option_qx_main();
@@ -135,12 +132,8 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
 
         // Change the path of the JavaScript files so they are copied into the
         // Qooxdoo project.
-        List<JavaScriptOutputProcess> preprocesses = preprocess();
-        for (JavaScriptOutputProcess process : preprocesses) {
-            for (OutputFile outputFile : process.getOutputFiles()) {
-                outputFile.setLocation(tempQxSourcePath);
-                outputFiles.add(outputFile);
-            }
+        for (OutputFile outputFile : bundle.getOutputFiles()) {
+            outputFile.setLocation(tempQxSourcePath);
         }
         return true;
     }
@@ -271,9 +264,7 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
     private boolean peformSanityChecks() {
         // Check whether qooxdoo-path exists.
         if (QX_PATH == null) {
-            Log
-                    .error(TAG,
-                            "QX directory is not defined. Please define it using XMLVM_QOOXDOO_PATH");
+            Log.error(TAG, "QX directory is not defined. Please define it using XMLVM_QOOXDOO_PATH");
             return false;
         }
         if (!(new File(QX_PATH)).isDirectory()) {
@@ -314,7 +305,8 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
                     + QX_GENERATOR_SCRIPT_NAME;
             File generateScriptFile = new File(generateScript);
             if (!generateScriptFile.isFile()) {
-                Log.error(TAG,
+                Log.error(
+                        TAG,
                         "Output directory exists, but doesn't seem to be a valid QX project as "
                                 + "the following file could not be found: "
                                 + generateScriptFile.getAbsolutePath());
@@ -332,8 +324,8 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
         try {
             Process process;
             process = Runtime.getRuntime().exec("python --version");
-            BufferedReader input = new BufferedReader(new InputStreamReader(process
-                    .getErrorStream()));
+            BufferedReader input = new BufferedReader(new InputStreamReader(
+                    process.getErrorStream()));
             line = input.readLine();
             process.destroy();
         } catch (IOException e) {
@@ -394,9 +386,7 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl<JavaScriptOutputProce
     private boolean prepareJsEmulationLibrary(UniversalFile basePath, File destination) {
         // Check, whether the destination directory actually exists.
         if (!destination.isDirectory()) {
-            Log
-                    .error(TAG, "Destination directory does not exist: "
-                            + destination.getAbsolutePath());
+            Log.error(TAG, "Destination directory does not exist: " + destination.getAbsolutePath());
             return false;
         }
         // Recursively rename and copy all JS files.

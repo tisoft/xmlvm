@@ -20,11 +20,10 @@
 
 package org.xmlvm.proc.in;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.in.file.ClassFile;
 import org.xmlvm.proc.in.file.ExeFile;
@@ -38,10 +37,7 @@ import org.xmlvm.proc.out.OutputFile;
  * @param <T>
  *            the concrete type of the file that this process is reading
  */
-public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl<XmlvmProcessImpl<?>> {
-
-    private boolean isActive = true;
-
+public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl {
 
     public static class EmptyInputProcess extends InputProcess<ClassFile> {
         /**
@@ -105,31 +101,37 @@ public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl<Xml
 
     @Override
     public boolean isActive() {
-        return isActive;
-    }
-
-    @Override
-    public boolean process() {
-        isActive = false;
         return true;
     }
 
     /**
-     * If the input file is a file, this method returns a list with one element
-     * containing an OutputFile that contains the contents of the input XFile.
+     * If the input is a valid file, this process add the file to the given
+     * resources.
      */
     @Override
-    public List<OutputFile> getOutputFiles() {
+    public boolean processPhase1(BundlePhase1 bundle) {
         if (!input.getFile().exists() || !input.getFile().isFile()) {
             Log.warn("InputProcess.getOutputFiles(): Input File does not exist or is not a file.");
-            return null;
+            return false;
         }
+        
+        if (input.getFile().getName().contains("HelloWorld")) {
+            System.out.println("Found it");
+        }
+        
         OutputFile outputFile = new OutputFile(input.getFile());
         outputFile.setOrigin(input.getFile().getAbsolutePath());
         outputFile.setLocation(arguments.option_out());
         outputFile.setFileName(input.getFile().getName());
-        List<OutputFile> result = new ArrayList<OutputFile>();
-        result.add(outputFile);
-        return result;
+        bundle.addOutputFile(outputFile);
+        return true;
+    }
+
+    /**
+     * InputProcesses don't do anything in the second phase.
+     */
+    @Override
+    public boolean processPhase2(BundlePhase2 bundle) {
+        return true;
     }
 }

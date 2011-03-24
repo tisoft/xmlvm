@@ -31,6 +31,7 @@ import java.io.File;
 import java.util.ArrayList;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.out.EmptyDirectory;
 
 /**
@@ -47,11 +48,14 @@ public class AndroidTemplateOutputProcess extends TemplateOutputProcess {
     }
 
     @Override
-    public boolean process() {
-        if (super.process()) {
-            getOutputFiles().add(new EmptyDirectory(gen));
-            Log
-                    .warn("Currently the Android plugin for Netbeans does not support local.properties file and has a bug which prevents the usage of GUI platform customization. It is required to MANUALLY set your platfom under \"nbproject/project.properties\" by editing property \"platform.active\" or else Netbeans might crash.");
+    public boolean processPhase2(BundlePhase2 resources) {
+        if (super.processPhase2(resources)) {
+            resources.addOutputFile(new EmptyDirectory(gen));
+            Log.warn("Currently the Android plugin for Netbeans does not support local.properties "
+                    + "file and has a bug which prevents the usage of GUI platform customization. "
+                    + "It is required to MANUALLY set your platfom under "
+                    + "\"nbproject/project.properties\" by editing property \"platform.active\" or "
+                    + "else Netbeans might crash.");
             return true;
         }
         return false;
@@ -77,12 +81,8 @@ public class AndroidTemplateOutputProcess extends TemplateOutputProcess {
         list.add(new TemplateFile(".classpath", KEEP));
         list.add(new TemplateFile(".project", KEEP));
         list.add(new TemplateFile("genfiles.properties", "nbproject", KEEP));
-        list
-                .add(new TemplateFile("empty.properties", "Java.properties", "nbproject/configs",
-                        KEEP));
-        list
-                .add(new TemplateFile("empty.properties", "Xcode.properties", "nbproject/configs",
-                        KEEP));
+        list.add(new TemplateFile("empty.properties", "Java.properties", "nbproject/configs", KEEP));
+        list.add(new TemplateFile("empty.properties", "Xcode.properties", "nbproject/configs", KEEP));
         list.add(new TemplateFile("empty.properties", "Android.properties", "nbproject/configs",
                 KEEP));
 

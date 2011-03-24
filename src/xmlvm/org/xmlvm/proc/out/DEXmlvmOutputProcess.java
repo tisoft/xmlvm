@@ -44,11 +44,11 @@ import org.xmlvm.main.Arguments;
 import org.xmlvm.main.Targets;
 import org.xmlvm.proc.DelayedXmlvmSerializationProvider;
 import org.xmlvm.proc.ResourceCache;
-import org.xmlvm.proc.XmlvmProcess;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResource.Type;
-import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
 import org.xmlvm.proc.lib.LibraryLoader;
 import org.xmlvm.refcount.InstructionProcessor;
@@ -122,8 +122,7 @@ import com.android.dx.util.IntList;
  * Android's own DX compiler tool is used to parse class files and to create the
  * register-based DEX code in-memory which is then converted to XML.
  */
-public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> implements
-        XmlvmResourceProvider {
+public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
 
     /**
      * Pair of type name and its super type name.
@@ -222,9 +221,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
      */
     private static Set<String>         redTypes               = null;
 
-    private List<OutputFile>           outputFiles            = new ArrayList<OutputFile>();
-    private List<XmlvmResource>        generatedResources     = new ArrayList<XmlvmResource>();
-
     private Element                    lastDexInstruction     = null;
 
     private ResourceCache              cache                  = ResourceCache
@@ -278,62 +274,58 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
     }
 
     @Override
-    public List<OutputFile> getOutputFiles() {
-        return outputFiles;
-    }
+    public boolean processPhase1(BundlePhase1 bundle) {
+        for (OutputFile preOutputFile : bundle.getOutputFiles()) {
+            String resourceName = preOutputFile.getOrigin();
+            long lastModified = preOutputFile.getLastModified();
 
-    @Override
-    public boolean process() {
-        generatedResources.clear();
-        for (XmlvmProcess<?> preprocess : preprocess()) {
-            for (OutputFile preOutputFile : preprocess.getOutputFiles()) {
-                String resourceName = preOutputFile.getOrigin();
-                long lastModified = preOutputFile.getLastModified();
+            OutputFile outputFile = null;
 
-                OutputFile outputFile = null;
-
-                // Check whether we can get the file from memory or disk cache.
-                if (!arguments.option_no_cache() && cache.contains(resourceName, lastModified)) {
-                    Log.debug(TAG, "Getting resource from cache: " + resourceName);
-                    outputFile = new OutputFile(cache.get(resourceName, lastModified), lastModified);
-                    filesFromCache.add(outputFile);
-                } else {
-                    outputFile = generateDEXmlvmFile(preOutputFile);
-                    if (outputFile != null && !arguments.option_no_cache()) {
-                        cache.put(resourceName, lastModified, outputFile.getDataAsBytes());
-                    }
-                }
-                if (outputFile != null) {
-                    outputFile.setOrigin(preOutputFile.getOrigin());
-                    outputFiles.add(outputFile);
+            // Check whether we can get the file from memory or disk cache.
+            if (!arguments.option_no_cache() && cache.contains(resourceName, lastModified)) {
+                Log.debug(TAG, "Getting resource from cache: " + resourceName);
+                outputFile = new OutputFile(cache.get(resourceName, lastModified), lastModified);
+                outputFile.setLocation(preOutputFile.getLocation());
+                outputFile.setFileName(preOutputFile.getFileName());
+                filesFromCache.add(outputFile);
+            } else {
+                outputFile = generateDEXmlvmFile(preOutputFile, bundle);
+                if (outputFile != null && !arguments.option_no_cache()) {
+                    cache.put(resourceName, lastModified, outputFile.getDataAsBytes());
                 }
             }
+            if (isTargetProcess && outputFile != null) {
+                outputFile.setOrigin(preOutputFile.getOrigin());
+                bundle.addOutputFile(outputFile);
+            }
+            bundle.removeOutputFile(preOutputFile);
         }
+        addResourcesFromCachedFiles(bundle);
         return true;
     }
 
     @Override
-    public List<XmlvmResource> getXmlvmResources() {
-        addResourcesFromCachedFiles();
-        return generatedResources;
+    public boolean processPhase2(BundlePhase2 bundle) {
+        return true;
     }
 
-    private void addResourcesFromCachedFiles() {
+    private void addResourcesFromCachedFiles(BundlePhase1 resources) {
         for (OutputFile cachedFile : filesFromCache) {
-            generatedResources.add(XmlvmResource.fromFile(cachedFile));
+            resources.addResource(XmlvmResource.fromFile(cachedFile));
         }
     }
 
-    private OutputFile generateDEXmlvmFile(final OutputFile classFile) {
-        return generateDEXmlvmFile(classFile, false);
+    private OutputFile generateDEXmlvmFile(final OutputFile classFile, BundlePhase1 resources) {
+        return generateDEXmlvmFile(classFile, false, resources);
     }
 
     @SuppressWarnings("unchecked")
-    private OutputFile generateDEXmlvmFile(final OutputFile classFile, boolean proxy) {
+    private OutputFile generateDEXmlvmFile(final OutputFile classFile, boolean proxy,
+            BundlePhase1 resources) {
         Log.debug(TAG, "DExing:" + classFile.getFileName());
 
-        DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(), classFile
-                .getFileName(), false);
+        DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(),
+                classFile.getFileName(), false);
         directClassFile.setAttributeFactory(StdAttributeFactory.THE_ONE);
         try {
             directClassFile.getMagic();
@@ -346,7 +338,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
 
         if (enableProxyReplacement && !proxy && LibraryLoader.hasProxy(packagePlusClassName)) {
             return generateDEXmlvmFile(
-                    new OutputFile(LibraryLoader.getProxy(packagePlusClassName)), true);
+                    new OutputFile(LibraryLoader.getProxy(packagePlusClassName)), true, resources);
         }
 
         // We want to prevent "red" classes from being loaded. If the there is a
@@ -369,8 +361,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         String jClassName = document.getRootElement().getChild("class", InstructionProcessor.vm)
                 .getAttributeValue("name");
 
-        List<Element> methods = (List<Element>) document.getRootElement().getChild("class",
-                InstructionProcessor.vm).getChildren("method", InstructionProcessor.vm);
+        List<Element> methods = (List<Element>) document.getRootElement()
+                .getChild("class", InstructionProcessor.vm)
+                .getChildren("method", InstructionProcessor.vm);
 
         if (arguments.option_enable_ref_counting()) {
             if (REF_LOGGING) {
@@ -415,7 +408,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             }
         }
         addReferences(document, filteredReferencesTypes);
-        generatedResources.add(new XmlvmResource(Type.DEX, document));
+        resources.addResource(new XmlvmResource(Type.DEX, document));
         String fileName = className + DEXMLVM_ENDING;
 
         // Some processes depending on this processor don't actually need the
@@ -472,8 +465,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             }
             return result;
         } catch (IOException e) {
-            Log.error(TAG, "Problem reading red file: " + redListFile.getAbsolutePath() + ": "
-                    + e.getMessage());
+            Log.error(
+                    TAG,
+                    "Problem reading red file: " + redListFile.getAbsolutePath() + ": "
+                            + e.getMessage());
         }
         return null;
     }
@@ -773,11 +768,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             code.assignIndices(callback);
 
             DalvInsnList instructions = code.getInsns();
-            codeElement.setAttribute("register-size", String.valueOf(instructions
-                    .getRegistersSize()));
-            processLocals(instructions.getRegistersSize(), isStatic, parseClassName(
-                    cf.getThisClass().getClassType().getClassName()).toString(), meth
-                    .getPrototype().getParameterTypes(), codeElement);
+            codeElement.setAttribute("register-size",
+                    String.valueOf(instructions.getRegistersSize()));
+            processLocals(instructions.getRegistersSize(), isStatic,
+                    parseClassName(cf.getThisClass().getClassType().getClassName()).toString(),
+                    meth.getPrototype().getParameterTypes(), codeElement);
             Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
             Map<Integer, ArrayData> arrayData = extractArrayData(instructions);
             CatchTable catches = code.getCatches();
@@ -808,8 +803,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                     if (!isRedType(exceptionType)) {
                         Element catchElement = new Element("catch", NS_DEX);
                         catchElement.setAttribute("exception-type", exceptionType);
-                        catchElement.setAttribute("target", String.valueOf(handlers.get(j)
-                                .getHandler()));
+                        catchElement.setAttribute("target",
+                                String.valueOf(handlers.get(j).getHandler()));
                         tryCatchElement.addContent(catchElement);
                     }
                 }
@@ -999,9 +994,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
                 SwitchData switchData = (SwitchData) instructions.get(i);
                 CodeAddress[] caseTargets = switchData.getTargets();
                 for (CodeAddress caseTarget : caseTargets) {
-                    targets
-                            .put(caseTarget.getAddress(),
-                                    new Target(caseTarget.getAddress(), false));
+                    targets.put(caseTarget.getAddress(), new Target(caseTarget.getAddress(), false));
                 }
             }
         }
@@ -1137,9 +1130,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             if (instructionName.startsWith("move-result")) {
                 // Sanity Check
                 if (simpleInsn.getRegisters().size() != 1) {
-                    Log
-                            .error(TAG,
-                                    "DEXmlvmOutputProcess: Register Size doesn't fit 'move-result'.");
+                    Log.error(TAG, "DEXmlvmOutputProcess: Register Size doesn't fit 'move-result'.");
                     System.exit(-1);
                 }
                 Element moveInstruction = new Element("move-result", NS_DEX);
@@ -1309,8 +1300,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             System.exit(-1);
         }
         for (int i = 0; i < registers.size(); ++i) {
-            element.setAttribute(REGISTER_NAMES[i], String.valueOf(registerNumber(registers.get(i)
-                    .regString())));
+            element.setAttribute(REGISTER_NAMES[i],
+                    String.valueOf(registerNumber(registers.get(i).regString())));
             element.setAttribute(REGISTER_NAMES[i] + "-type", registers.get(i).getType().toHuman());
         }
     }
@@ -1385,8 +1376,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
         } else {
             // For non-static invoke instruction, the first register is the
             // instance the method is called on.
-            result.setAttribute("register", String.valueOf(registerNumber(registerList.get(0)
-                    .regString())));
+            result.setAttribute("register",
+                    String.valueOf(registerNumber(registerList.get(0).regString())));
         }
 
         // Adds the rest of the registers, if any.
@@ -1421,8 +1412,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> impl
             if (isRedType(parameterType)) {
                 parameterElement.setAttribute("isRedType", "true");
             }
-            parameterElement.setAttribute("register", String.valueOf(registerNumber(registers
-                    .get(i).regString())));
+            parameterElement.setAttribute("register",
+                    String.valueOf(registerNumber(registers.get(i).regString())));
             result.addContent(parameterElement);
         }
         Element returnElement = new Element("return", NS_DEX);

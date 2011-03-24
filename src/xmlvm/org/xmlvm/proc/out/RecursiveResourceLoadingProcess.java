@@ -20,25 +20,21 @@
 
 package org.xmlvm.proc.out;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.lib.LibraryLoader;
 
 /**
  * Makes sure that all referenced resources from the input resources are loaded.
  * This is done recursively.
  */
-public class RecursiveResourceLoadingProcess extends XmlvmProcessImpl<XmlvmResourceProvider>
-        implements XmlvmResourceProvider {
-    List<XmlvmResource> result = new ArrayList<XmlvmResource>();
-
+public class RecursiveResourceLoadingProcess extends XmlvmProcessImpl {
 
     public RecursiveResourceLoadingProcess(Arguments arguments) {
         super(arguments);
@@ -46,16 +42,11 @@ public class RecursiveResourceLoadingProcess extends XmlvmProcessImpl<XmlvmResou
     }
 
     @Override
-    public boolean process() {
-        List<XmlvmResourceProvider> preprocesses = preprocess();
-
+    public boolean processPhase1(BundlePhase1 bundle) {
         // We create a map that maps type name to the resource.
         Map<String, XmlvmResource> xmlvmResources = new HashMap<String, XmlvmResource>();
-        for (XmlvmResourceProvider process : preprocesses) {
-            List<XmlvmResource> resources = process.getXmlvmResources();
-            for (XmlvmResource resource : resources) {
-                xmlvmResources.put(resource.getFullName(), resource);
-            }
+        for (XmlvmResource resource : bundle.getResources()) {
+            xmlvmResources.put(resource.getFullName(), resource);
         }
         if (arguments.option_load_dependencies() && !arguments.option_disable_load_dependencies()) {
             LibraryLoader libraryLoader = new LibraryLoader(arguments);
@@ -69,18 +60,13 @@ public class RecursiveResourceLoadingProcess extends XmlvmProcessImpl<XmlvmResou
             // Make sure we have all types that are referenced loaded.
             libraryLoader.loadAllReferencedTypes(xmlvmResources);
         }
-
-        result.addAll(xmlvmResources.values());
+        bundle.addResources(xmlvmResources.values());
         return true;
     }
 
     @Override
-    public List<XmlvmResource> getXmlvmResources() {
-        return result;
+    public boolean processPhase2(BundlePhase2 bundle) {
+        return true;
     }
 
-    @Override
-    public List<OutputFile> getOutputFiles() {
-        return null;
-    }
 }

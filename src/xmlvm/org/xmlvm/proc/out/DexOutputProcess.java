@@ -21,12 +21,11 @@
 package org.xmlvm.proc.out;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.XmlvmProcess;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
 import org.xmlvm.proc.in.file.ClassFile;
@@ -39,11 +38,9 @@ import com.android.dx.dex.file.DexFile;
 /**
  * This process takes Java Bytecode and turns it into the DEX format.
  */
-public class DexOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
+public class DexOutputProcess extends XmlvmProcessImpl {
 
-    private static final String DEX_ENDING  = ".dex";
-
-    private List<OutputFile>    outputFiles = new ArrayList<OutputFile>();
+    private static final String DEX_ENDING = ".dex";
 
 
     public DexOutputProcess(Arguments arguments) {
@@ -53,22 +50,19 @@ public class DexOutputProcess extends XmlvmProcessImpl<XmlvmProcess<?>> {
     }
 
     @Override
-    public List<OutputFile> getOutputFiles() {
-        return outputFiles;
+    public boolean processPhase1(BundlePhase1 bundle) {
+        return true;
     }
 
     @Override
-    public boolean process() {
-        List<XmlvmProcess<?>> preprocesses = preprocess();
-
-        for (XmlvmProcess<?> preprocess : preprocesses) {
-            for (OutputFile preOutputFile : preprocess.getOutputFiles()) {
-                OutputFile outputFile = generateDexFile(preOutputFile);
-                if (outputFile == null) {
-                    return false;
-                }
-                outputFiles.add(outputFile);
+    public boolean processPhase2(BundlePhase2 bundle) {
+        for (OutputFile preOutputFile : bundle.getOutputFiles()) {
+            OutputFile outputFile = generateDexFile(preOutputFile);
+            if (outputFile == null) {
+                return false;
             }
+            bundle.removeOutputFile(preOutputFile);
+            bundle.addOutputFile(outputFile);
         }
         return true;
     }

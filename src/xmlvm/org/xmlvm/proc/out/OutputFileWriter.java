@@ -21,7 +21,7 @@
 package org.xmlvm.proc.out;
 
 import java.io.File;
-import java.util.List;
+import java.util.Collection;
 
 import org.xmlvm.Log;
 
@@ -30,10 +30,10 @@ import org.xmlvm.Log;
  */
 public class OutputFileWriter {
 
-    private List<OutputFile> outputFiles;
+    private Collection<OutputFile> outputFiles;
 
 
-    public OutputFileWriter(List<OutputFile> outputFiles) {
+    public OutputFileWriter(Collection<OutputFile> outputFiles) {
         this.outputFiles = outputFiles;
     }
 

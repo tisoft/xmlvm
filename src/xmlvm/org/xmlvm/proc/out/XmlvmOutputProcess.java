@@ -28,16 +28,18 @@ import java.util.List;
 import org.jdom.Document;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
+import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.in.file.XmlvmFile;
 
 /**
  * This process takes XMLVM and writes it out as pure XML.
  */
-public class XmlvmOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
+public class XmlvmOutputProcess extends XmlvmProcessImpl {
     private List<OutputFile> outputFiles = new ArrayList<OutputFile>();
 
 
@@ -47,19 +49,15 @@ public class XmlvmOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> 
     }
 
     @Override
-    public List<OutputFile> getOutputFiles() {
-        return outputFiles;
+    public boolean processPhase1(BundlePhase1 bundle) {
+        return true;
     }
 
     @Override
-    public boolean process() {
-        List<XmlvmResourceProvider> preprocesses = preprocess();
-        for (XmlvmResourceProvider process : preprocesses) {
-            List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
-            for (XmlvmResource xmlvm : xmlvmResources) {
-                if (xmlvm != null) {
-                    outputFiles.add(createOutputFromDocument(xmlvm));
-                }
+    public boolean processPhase2(BundlePhase2 bundle) {
+        for (XmlvmResource resource : bundle.getResources()) {
+            if (resource != null) {
+                outputFiles.add(createOutputFromDocument(resource));
             }
         }
         return true;

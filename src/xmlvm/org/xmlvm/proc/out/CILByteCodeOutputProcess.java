@@ -35,9 +35,10 @@ import org.jdom.Namespace;
 import org.xmlvm.IllegalXMLVMException;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.in.file.ExeFile;
 
 import edu.arizona.cs.mbel.emit.Emitter;
@@ -83,7 +84,7 @@ import edu.arizona.cs.mbel.signature.TypeSignature;
 /**
  * This process takes XMLCM and turns it into CIL Bytecode.
  */
-public class CILByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
+public class CILByteCodeOutputProcess extends XmlvmProcessImpl {
 
     private static final class InstructionHandlerManagerCIL {
 
@@ -152,10 +153,9 @@ public class CILByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourceProv
     }
 
 
-    private static final Namespace       nsXMLVM     = Namespace.getNamespace("vm",
-                                                             "http://xmlvm.org");
-    private static final Namespace       nsCLR       = Namespace.getNamespace("clr",
-                                                             "http://xmlvm.org/clr");
+    private static final Namespace       nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
+    private static final Namespace       nsCLR   = Namespace.getNamespace("clr",
+                                                         "http://xmlvm.org/clr");
 
     private InstructionList              instructionList;
     private InstructionHandlerManagerCIL instructionHandlerManager;
@@ -165,8 +165,6 @@ public class CILByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourceProv
     private TypeDef                      currentTypeDef;
     private MethodBody                   body;
 
-    private List<OutputFile>             outputFiles = new ArrayList<OutputFile>();
-
 
     public CILByteCodeOutputProcess(Arguments arguments) {
         super(arguments);
@@ -174,28 +172,24 @@ public class CILByteCodeOutputProcess extends XmlvmProcessImpl<XmlvmResourceProv
     }
 
     @Override
-    public List<OutputFile> getOutputFiles() {
-        return outputFiles;
+    public boolean processPhase1(BundlePhase1 bundle) {
+        return true;
     }
 
     @Override
-    public boolean process() {
+    public boolean processPhase2(BundlePhase2 bundle) {
         String appName = arguments.option_app_name();
         if (appName == null || appName.trim().isEmpty()) {
             Log.error("app_name must be set for CILByteCodeOutput.");
             return false;
         }
 
-        List<XmlvmResourceProvider> preprocesses = preprocess();
         List<Document> documents = new ArrayList<Document>();
-        for (XmlvmResourceProvider process : preprocesses) {
-            List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
-            for (XmlvmResource xmlvmResource : xmlvmResources) {
-                documents.add(xmlvmResource.getXmlvmDocument());
-            }
+        for (XmlvmResource xmlvmResource : bundle.getResources()) {
+            documents.add(xmlvmResource.getXmlvmDocument());
         }
         try {
-            outputFiles.add(createAssembly(documents, appName));
+            bundle.addOutputFile(createAssembly(documents, appName));
         } catch (IllegalXMLVMException e) {
             e.printStackTrace();
             Log.error("Couldn't create CIL assembly.");

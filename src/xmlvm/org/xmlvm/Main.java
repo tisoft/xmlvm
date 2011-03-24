@@ -25,8 +25,7 @@ import org.xmlvm.proc.XmlvmProcessor;
 import org.xmlvm.util.Timer;
 
 /**
- * This is a new starting point of the suggested refactoring of the old
- * Main.java.
+ * This is a starting point of XMLVM.
  */
 public class Main {
     /**
@@ -53,23 +52,11 @@ public class Main {
             // 1) Processing.
             if (processor.process()) {
                 Log.debug("Processing finished successfully.");
-                // 2) Writing files.
-                if (processor.writeOutputFiles()) {
-                    Log.debug("Files written successfully.");
-                    // 3) Post-Processing.
-                    if (processor.postProcess()) {
-                        Log.debug("Post-Processing successful.");
-                    } else {
-                        Log.error("Something went wrong during post-processing.");
-                    }
-                } else {
-                    Log.error("Something went wrong while writing files.");
-                }
             } else {
                 Log.error("Something went wrong during processing.");
             }
         } catch (OutOfMemoryError e) {
-            Log.error("Oh no, XMLVM needs more memory. Try running with -Xmx1G.");
+            Log.error("Oh no, XMLVM needs more memory. Try running with -Xmx1G or more.");
             return;
         }
 

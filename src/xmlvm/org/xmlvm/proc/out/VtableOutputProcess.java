@@ -21,7 +21,6 @@
 package org.xmlvm.proc.out;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -31,6 +30,8 @@ import java.util.Set;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.DelayedXmlvmSerializationProvider;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResource.XmlvmField;
@@ -38,7 +39,6 @@ import org.xmlvm.proc.XmlvmResource.XmlvmInvokeInstruction;
 import org.xmlvm.proc.XmlvmResource.XmlvmMemberReadWrite;
 import org.xmlvm.proc.XmlvmResource.XmlvmMethod;
 import org.xmlvm.proc.XmlvmResource.XmlvmVtable;
-import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.lib.LibraryLoader;
 
 /**
@@ -47,13 +47,13 @@ import org.xmlvm.proc.lib.LibraryLoader;
  * emits C and can be useful for any target language that doesn't support
  * classes or similar OOP concepts.
  */
-public class VtableOutputProcess extends XmlvmProcessImpl<RemoveDuplicateMethodsOutputProcess> {
+public class VtableOutputProcess extends XmlvmProcessImpl {
     private final static String        TAG                    = VtableOutputProcess.class
                                                                       .getSimpleName();
     private final static String        VTABLE_ENDING          = ".vtable.xmlvm";
     private Map<String, XmlvmResource> resourcePool           = new HashMap<String, XmlvmResource>();
     private Map<String, Vtable>        vtables                = new HashMap<String, Vtable>();
-    private final Arguments arguments;
+    private final Arguments            arguments;
 
     /**
      * This variable caches already loaded resources. I would have expected the
@@ -183,33 +183,11 @@ public class VtableOutputProcess extends XmlvmProcessImpl<RemoveDuplicateMethods
         vtables.put("", new Vtable());
     }
 
-    public Collection<XmlvmResource> getXmlvmResources() {
-        return resourcePool.values();
-    }
-
     @Override
-    public List<OutputFile> getOutputFiles() {
-        List<OutputFile> result = new ArrayList<OutputFile>();
-        for (XmlvmResource resource : getXmlvmResources()) {
-            OutputFile file = new OutputFile(new DelayedXmlvmSerializationProvider(
-                    resource.getXmlvmDocument()));
-            file.setLocation(arguments.option_out());
-            file.setFileName(resource.getFullName() + VTABLE_ENDING);
-            result.add(file);
-        }
-        return result;
-    }
-
-    @Override
-    public boolean process() {
-        List<RemoveDuplicateMethodsOutputProcess> preprocesses = preprocess();
-        // Collect all XmlvmResource instances.
-        for (XmlvmResourceProvider process : preprocesses) {
-            List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
-            for (XmlvmResource xmlvm : xmlvmResources) {
-                if (xmlvm != null) {
-                    resourcePool.put(xmlvm.getFullName(), xmlvm);
-                }
+    public boolean processPhase1(BundlePhase1 bundle) {
+        for (XmlvmResource xmlvm : bundle.getResources()) {
+            if (xmlvm != null) {
+                resourcePool.put(xmlvm.getFullName(), xmlvm);
             }
         }
 
@@ -219,7 +197,21 @@ public class VtableOutputProcess extends XmlvmProcessImpl<RemoveDuplicateMethods
             annotateVtableInvokes();
             adjustTypes();
         }
+        return true;
+    }
 
+    @Override
+    public boolean processPhase2(BundlePhase2 bundle) {
+        // Only generate these files, if vtable is the target process.
+        if (isTargetProcess) {
+            for (XmlvmResource resource : bundle.getResources()) {
+                OutputFile file = new OutputFile(new DelayedXmlvmSerializationProvider(
+                        resource.getXmlvmDocument()));
+                file.setLocation(arguments.option_out());
+                file.setFileName(resource.getFullName() + VTABLE_ENDING);
+                bundle.addOutputFile(file);
+            }
+        }
         return true;
     }
 

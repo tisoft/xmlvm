@@ -40,14 +40,20 @@ public class XmlvmProcessor {
     /**
      * The processes that are being or will be processed.
      */
-    private Vector<XmlvmProcess<?>>             pool                   = new Vector<XmlvmProcess<?>>();
+    private Vector<XmlvmProcess>                pool                   = new Vector<XmlvmProcess>();
     /**
      * The process that will handle the final processing step to produce the
      * desired output.
      */
-    private XmlvmProcess<?>                     targetProcess;
+    private XmlvmProcess                        targetProcess;
 
     private List<Class<? extends XmlvmProcess>> processTypesInPipeline = new ArrayList<Class<? extends XmlvmProcess>>();
+
+    /**
+     * The compilation bundle that is passed through the processes, who add
+     * there data to it.
+     */
+    private CompilationBundle                   compilationResources   = new CompilationBundle();
 
 
     public XmlvmProcessor(Arguments arguments) {
@@ -95,12 +101,12 @@ public class XmlvmProcessor {
      * Run a bunch of processes.
      */
     public void addProcesses(Iterable<InputProcess<?>> iterator) {
-        for (XmlvmProcess<?> process : iterator) {
+        for (XmlvmProcess process : iterator) {
             addProcess(process);
         }
     }
 
-    public void addProcess(XmlvmProcess<?> process) {
+    public void addProcess(XmlvmProcess process) {
         if (process == null) {
             return;
         }
@@ -110,14 +116,15 @@ public class XmlvmProcessor {
     /**
      * Set the target process that will handle the final processing step.
      */
-    public void setTargetProcess(XmlvmProcess<?> process) {
+    public void setTargetProcess(XmlvmProcess process) {
         targetProcess = process;
+        targetProcess.setIsTargetProcess(true);
     }
 
     /**
      * Returns the target process.
      */
-    public XmlvmProcess<?> getTargetProcess() {
+    public XmlvmProcess getTargetProcess() {
         return targetProcess;
     }
 
@@ -127,6 +134,16 @@ public class XmlvmProcessor {
      * @return Whether the processing was successful.
      */
     public boolean process() {
+        return process(true);
+    }
+
+    /**
+     * Starts the processing, but stops after the two phases are processed, if
+     * writeFiles is set to false.
+     * 
+     * @return Whether the processing was successful.
+     */
+    public boolean process(boolean writeFiles) {
         if (pool.isEmpty()) {
             Log.error(TAG, "No inputs to process.");
             return false;
@@ -136,20 +153,29 @@ public class XmlvmProcessor {
             Log.error("There are still " + pool.size() + " processes left.");
             return false;
         }
-        if (!targetProcess.process()) {
-            Log.error("Processing not successful. See error messages above for details.");
+
+        if (!targetProcess.forwardOrProcessPhase1(compilationResources)) {
+            Log.error("Processing Phase 1 not successful. See error messages above for details.");
             return false;
         }
-        return true;
-    }
 
-    /**
-     * Starts the post-processing.
-     * 
-     * @return Whether the post-processing was successful.
-     */
-    public boolean postProcess() {
-        return targetProcess.postProcessPreProcesses();
+        if (!targetProcess.forwardOrProcessPhase2(compilationResources)) {
+            Log.error("Processing Phase 2 not successful. See error messages above for details.");
+            return false;
+        }
+
+        if (writeFiles) {
+            if (!writeOutputFiles()) {
+                Log.error("Writing output files was not successful. See error messages above for details.");
+                return false;
+            }
+
+            if (!targetProcess.postProcessPreProcesses()) {
+                Log.error("Post-Processing not successful. See error messages above for details.");
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -157,9 +183,18 @@ public class XmlvmProcessor {
      * 
      * @return Whether the write process was successful.
      */
-    public boolean writeOutputFiles() {
-        OutputFileWriter writer = new OutputFileWriter(targetProcess.getOutputFiles());
+    private boolean writeOutputFiles() {
+        OutputFileWriter writer = new OutputFileWriter(compilationResources.getOutputFiles());
         return writer.writeFiles();
+    }
+
+    /**
+     * Returns the compilation resources of that processor. If
+     * {@link #process()} has been finished successfully, then these resources
+     * contain all artifacts produced during the compilation process.
+     */
+    public CompilationBundle getCompilationResources() {
+        return compilationResources;
     }
 
     /**
@@ -177,20 +212,20 @@ public class XmlvmProcessor {
      * @return Whether all processes could be included into the pipeline.
      */
     protected boolean buildProcessingPipeline() {
-        List<XmlvmProcess<?>> initialTargetProcess = new ArrayList<XmlvmProcess<?>>();
-        initialTargetProcess.add((XmlvmProcess<?>) targetProcess);
+        List<XmlvmProcess> initialTargetProcess = new ArrayList<XmlvmProcess>();
+        initialTargetProcess.add((XmlvmProcess) targetProcess);
         return buildProcessingPipeline0(initialTargetProcess);
     }
 
-    protected boolean buildProcessingPipeline0(List<XmlvmProcess<?>> targetProcesses) {
+    protected boolean buildProcessingPipeline0(List<XmlvmProcess> targetProcesses) {
         // Make sure we don't add processes that are already in the pipeline.
         targetProcesses = filterNotYetProcessedProcesses(targetProcesses);
 
         // Make a copy so we can modify the vector while iterating.
-        final XmlvmProcess<?>[] processes = pool.toArray(new XmlvmProcess<?>[0]);
+        final XmlvmProcess[] processes = pool.toArray(new XmlvmProcess[0]);
 
-        for (XmlvmProcess<?> target : targetProcesses) {
-            for (XmlvmProcess<?> process : processes) {
+        for (XmlvmProcess target : targetProcesses) {
+            for (XmlvmProcess process : processes) {
                 if (target.supportsAsInput(process)) {
                     pool.remove(process);
                     target.addPreprocess(process);
@@ -202,7 +237,7 @@ public class XmlvmProcessor {
         // supported-processes-graph to see if there is another connection that
         // will eventually include these processes.
         if (!pool.isEmpty()) {
-            for (XmlvmProcess<?> target : targetProcesses) {
+            for (XmlvmProcess target : targetProcesses) {
                 buildProcessingPipeline0(target.createInputInstances());
             }
             return pool.isEmpty();
@@ -215,11 +250,11 @@ public class XmlvmProcessor {
      * This method will return a list where the processes that have already been
      * processed are filtered out.
      */
-    private List<XmlvmProcess<?>> filterNotYetProcessedProcesses(List<XmlvmProcess<?>> list) {
-        List<XmlvmProcess<?>> result = new ArrayList<XmlvmProcess<?>>();
+    private List<XmlvmProcess> filterNotYetProcessedProcesses(List<XmlvmProcess> list) {
+        List<XmlvmProcess> result = new ArrayList<XmlvmProcess>();
 
         // Go through all the processes in the list ...
-        for (XmlvmProcess<?> process : list) {
+        for (XmlvmProcess process : list) {
             // ... and get their types.
             Class<? extends XmlvmProcess> processType = process.getClass();
             // Only if we don't already have a process with this type in the

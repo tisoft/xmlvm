@@ -25,11 +25,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.util.FileUtil;
 import org.xmlvm.util.InputReaderThread;
@@ -39,7 +39,7 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * Takes the output of a {@link QooxdooOutputProcess} and packages the Qooxdoo
  * app into a Palm Pre application.
  */
-public class WebOsOutputProcess extends XmlvmProcessImpl<QooxdooOutputProcess> {
+public class WebOsOutputProcess extends XmlvmProcessImpl {
 
     private static final String   TAG                      = "WebOsOutputProcess";
 
@@ -54,7 +54,6 @@ public class WebOsOutputProcess extends XmlvmProcessImpl<QooxdooOutputProcess> {
     private static final String   PALM_SDK_BIN_PATH        = PALM_SDK_PATH + "/bin";
     private static final String   PALM_GENERATE_CMD        = "palm-generate";
     private static final String   PALM_PACKAGE_CMD         = "palm-package";
-    private List<OutputFile>      outputFiles              = new ArrayList<OutputFile>();
     private String                appName                  = "";
     private String                sceneName                = "";
     private String                compiledQxBuildPath      = "";
@@ -67,24 +66,18 @@ public class WebOsOutputProcess extends XmlvmProcessImpl<QooxdooOutputProcess> {
     }
 
     @Override
-    public List<OutputFile> getOutputFiles() {
-        return outputFiles;
+    public boolean processPhase1(BundlePhase1 bundle) {
+        return true;
     }
 
     @Override
-    public boolean process() {
+    public boolean processPhase2(BundlePhase2 bundle) {
         appName = arguments.option_app_name();
         sceneName = appName + "Scene";
         compiledQxBuildPath = arguments.option_out() + File.separatorChar + "temp_cache"
                 + File.separatorChar + "temp_qx_app";
         if (!peformSanityChecks()) {
             return false;
-        }
-        // Just copy over the files from the Qooxdoo Process. The actual work
-        // will be done in the post-processing part.
-        List<QooxdooOutputProcess> preprocesses = preprocess();
-        for (QooxdooOutputProcess process : preprocesses) {
-            outputFiles.addAll(process.getOutputFiles());
         }
         return true;
     }

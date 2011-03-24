@@ -35,6 +35,8 @@ import java.util.Set;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.out.build.MakeFile;
 import org.xmlvm.proc.out.build.ResourceManager;
@@ -42,17 +44,15 @@ import org.xmlvm.proc.out.build.XCodeFile;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
-public class IPhoneCOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProcess> {
+public class IPhoneCOutputProcess extends XmlvmProcessImpl {
     private static final String        TAG                     = IPhoneCOutputProcess.class
                                                                        .getSimpleName();
 
-    private static final String        PLATFORM             = "iphone";
+    private static final String        PLATFORM                = "iphone";
     private static final UniversalFile IPHONE_COCOA_COMPAT_LIB = UniversalFileCreator
                                                                        .createDirectory(
                                                                                "/iphone/cocoa-compat-lib.jar",
                                                                                "src/xmlvm2c/compat-lib/iphone");
-
-    private List<OutputFile>           outputFiles             = new ArrayList<OutputFile>();
 
 
     public IPhoneCOutputProcess(Arguments arguments) {
@@ -61,38 +61,34 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProce
     }
 
     @Override
-    public List<OutputFile> getOutputFiles() {
-        return outputFiles;
+    public boolean processPhase1(BundlePhase1 bundle) {
+        return true;
     }
 
     @Override
-    public boolean process() {
-        List<AugmentedCOutputProcess> preprocesses = preprocess();
-
+    public boolean processPhase2(BundlePhase2 bundle) {
         Log.debug("Processing IPhoneCOutputProcess");
 
-        // Add all the files from the preprocesses to our result list.
-        for (AugmentedCOutputProcess preprocess : preprocesses) {
-            for (OutputFile in : preprocess.getOutputFiles()) {
-                OutputFile out = new OutputFile(in.getData());
-                out.setFileName(in.getFileName());
-                if (in.hasTag(OutputFile.TAG_LIB_NAME)) {
-                    if (!in.getTag(OutputFile.TAG_LIB_NAME).isEmpty()) {
-                        out.setLocation(arguments.option_out() + IPHONE_SRC + "/lib/"
-                                + in.getTag(OutputFile.TAG_LIB_NAME));
-                    } else {
-                        out.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
-                    }
+        for (OutputFile in : bundle.getOutputFiles()) {
+            OutputFile out = new OutputFile(in.getData());
+            out.setFileName(in.getFileName());
+            if (in.hasTag(OutputFile.TAG_LIB_NAME)) {
+                if (!in.getTag(OutputFile.TAG_LIB_NAME).isEmpty()) {
+                    out.setLocation(arguments.option_out() + IPHONE_SRC + "/lib/"
+                            + in.getTag(OutputFile.TAG_LIB_NAME));
                 } else {
-                    out.setLocation(in.getLocation() + IPHONE_SRC_APP);
+                    out.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
                 }
-                outputFiles.add(out);
+            } else {
+                out.setLocation(in.getLocation() + IPHONE_SRC_APP);
             }
+            bundle.removeOutputFile(in);
+            bundle.addOutputFile(out);
         }
 
         OutputFile iPhoneCocoaCompatLib = new OutputFile(IPHONE_COCOA_COMPAT_LIB);
         iPhoneCocoaCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
-        outputFiles.add(iPhoneCocoaCompatLib);
+        bundle.addOutputFile(iPhoneCocoaCompatLib);
 
         try {
             // Create Info.plist
@@ -130,29 +126,30 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProce
             OutputFile infoPlistFile = new OutputFile(infoOut.toString());
             infoPlistFile.setLocation(arguments.option_out() + IPHONE_RESOURCES_SYS);
             infoPlistFile.setFileName(arguments.option_app_name() + "-Info.plist");
-            outputFiles.add(infoPlistFile);
+            bundle.addOutputFile(infoPlistFile);
         } catch (IOException ex) {
             Log.error(TAG, ex.getMessage());
             return false;
         }
 
         // Add extra source files, as resource files, if found
-        outputFiles.addAll(ResourceManager.getSourceResources(arguments));
+        bundle.addOutputFiles(ResourceManager.getSourceResources(arguments));
 
         // Remove files that have manual overrides from the list of output
         // files.
-        eliminateOverridenResources(new UniversalFile[] { IPHONE_COCOA_COMPAT_LIB });
+        eliminateOverridenResources(new UniversalFile[] { IPHONE_COCOA_COMPAT_LIB }, bundle);
 
         // Create various buildfiles
         MakeFile makefile = new MakeFile(PLATFORM);
-        Log.error(makefile.composeBuildFiles(outputFiles, arguments));
-        XCodeFile xcode = new XCodeFile();
-        Log.error(xcode.composeBuildFiles(outputFiles, arguments));
+
+        bundle.addOutputFile(makefile.composeBuildFiles(arguments));
+        XCodeFile xcode = new XCodeFile(bundle.getOutputFiles());
+        bundle.addOutputFile(xcode.composeBuildFiles(arguments));
         return true;
     }
 
     /**
-     * They way things are right now, we do cross-compile all the simulator
+     * The way things are right now, we do cross-compile all the simulator
      * classes. However, we don't use them, but instead use the manually
      * implemented files. This methods makes sure that those cross-compiled
      * resources are removed.
@@ -160,7 +157,8 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProce
      * @param manualOverrides
      *            Contains files that are provided manually.
      */
-    private void eliminateOverridenResources(UniversalFile[] manualOverrides) {
+    private void eliminateOverridenResources(UniversalFile[] manualOverrides,
+            BundlePhase2 resources) {
         Log.debug(TAG, "Eliminating for manual overrides.");
         Set<String> fileNamesToRemove = new HashSet<String>();
         for (UniversalFile directory : manualOverrides) {
@@ -170,14 +168,14 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl<AugmentedCOutputProce
         }
 
         Set<OutputFile> filesToRemove = new HashSet<OutputFile>();
-        for (OutputFile outputFile : outputFiles) {
+        for (OutputFile outputFile : resources.getOutputFiles()) {
             if (fileNamesToRemove.contains(outputFile.getFileName())) {
                 filesToRemove.add(outputFile);
             }
         }
 
         for (OutputFile fileToRemove : filesToRemove) {
-            outputFiles.remove(fileToRemove);
+            resources.removeOutputFile(fileToRemove);
         }
     }
 }

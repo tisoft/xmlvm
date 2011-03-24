@@ -24,23 +24,21 @@ import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
-import java.util.List;
 
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.Namespace;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResource.Type;
-import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.in.InputProcess;
 import org.xmlvm.proc.in.InputProcess.ExeInputProcess;
-import org.xmlvm.proc.in.file.ExeFile;
 import org.xmlvm.util.universalfile.UniversalFile;
 
 import edu.arizona.cs.mbel.instructions.ADD;
@@ -120,11 +118,7 @@ import edu.arizona.cs.mbel.signature.ValueTypeSignature;
 /**
  * This {@link InputProcess} parses EXE files that contain CIL (.NET) bytecode.
  */
-public class ExeToXmlvmProcess extends XmlvmProcessImpl<ExeInputProcess> implements
-        XmlvmResourceProvider {
-
-    private List<XmlvmResource> xmlvmResources = new ArrayList<XmlvmResource>();
-
+public class ExeToXmlvmProcess extends XmlvmProcessImpl {
 
     public ExeToXmlvmProcess(Arguments arguments) {
         super(arguments);
@@ -132,30 +126,20 @@ public class ExeToXmlvmProcess extends XmlvmProcessImpl<ExeInputProcess> impleme
     }
 
     @Override
-    public boolean process() {
-        List<ExeInputProcess> preProcesses = preprocess();
-
-        for (ExeInputProcess preProcess : preProcesses) {
-            XmlvmResource resource = (new ExeToXmlvmTask(preProcess.getInputFile().getFile()))
-                    .parse();
+    public boolean processPhase1(BundlePhase1 bundle) {
+        for (OutputFile file : bundle.getOutputFiles()) {
+            XmlvmResource resource = (new ExeToXmlvmTask(file.getData())).parse();
             if (resource == null) {
                 return false;
             }
-            xmlvmResources.add(resource);
+            bundle.addResource(resource);
         }
-
         return true;
     }
 
     @Override
-    public List<XmlvmResource> getXmlvmResources() {
-        return xmlvmResources;
-    }
-
-    @Override
-    public List<OutputFile> getOutputFiles() {
-        // TODO Auto-generated method stub
-        return null;
+    public boolean processPhase2(BundlePhase2 bundle) {
+        return true;
     }
 
 
@@ -189,8 +173,6 @@ public class ExeToXmlvmProcess extends XmlvmProcessImpl<ExeInputProcess> impleme
                 ClassParser parser = new ClassParser(fin);
                 Module cilClass = parser.parseModule();
                 Document xmlvmDoc = genXMLVM(cilClass);
-                String className = exeFile.getName().substring(0,
-                        exeFile.getName().length() - ExeFile.EXE_ENDING.length());
                 return new XmlvmResource(Type.CLI, xmlvmDoc);
             } catch (FileNotFoundException e) {
                 Log.error("File not found: " + exeFile.getAbsolutePath());
@@ -711,6 +693,7 @@ public class ExeToXmlvmProcess extends XmlvmProcessImpl<ExeInputProcess> impleme
             if (xml_inst == null) {
 
                 String toGet = "visitInstruction" + inst.getName().toUpperCase();
+                @SuppressWarnings("rawtypes")
                 java.lang.reflect.Method foundMethod = null;
                 try {
                     foundMethod = this.getClass().getDeclaredMethod(toGet,

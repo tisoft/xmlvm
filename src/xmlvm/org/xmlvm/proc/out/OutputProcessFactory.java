@@ -52,7 +52,7 @@ public class OutputProcessFactory {
      * Based on the given target, returns a suitable target process or null, if
      * no process could be found.
      */
-    public XmlvmProcess<?> createTargetProcess(Targets target) {
+    public XmlvmProcess createTargetProcess(Targets target) {
         switch (target) {
         case JAVA:
             return new JavaOutputProcess(arguments);

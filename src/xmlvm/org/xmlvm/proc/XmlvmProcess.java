@@ -26,20 +26,24 @@ import org.xmlvm.proc.out.OutputFile;
 
 /**
  * The common interface for all processes.
- * 
- * @param <T>
- *            the common interface that pre-processed have to implement and that
- *            is used by this process to access the data produced by the
- *            pre-processes.
  */
-public interface XmlvmProcess<T> {
+public interface XmlvmProcess {
     /**
-     * This is the method every process needs to override and where it does its
-     * work.
+     * This is phase one of a two-staged process. In this phase, processes are
+     * supposed to add all {@link XmlvmResource}s
      * 
      * @return Whether the processing was successful.
      */
-    public boolean process();
+    public boolean processPhase1(BundlePhase1 resources);
+
+    /**
+     * This is phase two of a two-staged process. In this phase, processes are
+     * not allowed to add any {@link XmlvmResource}s but instead add all
+     * {@link OutputFile}s.
+     * 
+     * @return Whether the processing was successful.
+     */
+    public boolean processPhase2(BundlePhase2 resources);
 
     /**
      * Processors can override it to do post-processing.
@@ -49,13 +53,13 @@ public interface XmlvmProcess<T> {
     /**
      * Returns a list of supported input classes.
      */
-    public List<Class<XmlvmProcess<?>>> getSupportedInputs();
+    public List<Class<XmlvmProcess>> getSupportedInputs();
 
     /**
      * Creates an instance of each XvmlmProcess that is supported as input and
      * returns them in a list.
      */
-    public List<XmlvmProcess<?>> createInputInstances();
+    public List<XmlvmProcess> createInputInstances();
 
     /**
      * Determines whether the output of the given XmlvmProcess can be processed
@@ -65,12 +69,12 @@ public interface XmlvmProcess<T> {
      *            The process that should be used as the input.
      * @return Whether this process can handle the given process as an input.
      */
-    public boolean supportsAsInput(XmlvmProcess<?> process);
+    public boolean supportsAsInput(XmlvmProcess process);
 
     /**
      * Adds a process as a pre-process to this process.
      */
-    public void addPreprocess(XmlvmProcess<?> xmlvmProcess);
+    public void addPreprocess(XmlvmProcess xmlvmProcess);
 
     /**
      * Adds a process to the list of processes that get executed directly after
@@ -79,18 +83,7 @@ public interface XmlvmProcess<T> {
      * @param xmlvmProcess
      *            A process that is executed directly after this process.
      */
-    public void addPostProcess(XmlvmProcess<?> xmlvmProcess);
-
-    /**
-     * Runs all pre-processes synchronously. Will return when all pre-processes
-     * have finished executing.
-     */
-    public List<T> preprocess();
-
-    /**
-     * Runs {@link #postProcess()} on all preprocesses that have been processed.
-     */
-    public boolean postProcessPreProcesses();
+    public void addPostProcess(XmlvmProcess xmlvmProcess);
 
     /**
      * Returns whether this process is active. An active process will be
@@ -99,13 +92,6 @@ public interface XmlvmProcess<T> {
      * Once the processed is processed, the process is not active anymore.
      */
     public boolean isActive();
-
-    /**
-     * Returns whether this process has been processed.
-     */
-    public boolean isProcessed();
-
-    public List<OutputFile> getOutputFiles();
 
     /**
      * Returns whether this process has a cached version for the specified input
@@ -132,4 +118,18 @@ public interface XmlvmProcess<T> {
      * @return Whether this process needs to process the given resource.
      */
     public boolean isProcessingRequired(String inputResourceName, long lastModified);
+
+    public boolean forwardOrProcessPhase1(BundlePhase1 resources);
+
+    public boolean forwardOrProcessPhase2(BundlePhase2 resources);
+
+    /**
+     * Runs {@link #postProcess()} on all preprocesses that have been processed.
+     */
+    public boolean postProcessPreProcesses();
+
+    /**
+     * Sets whether this process is the target process.
+     */
+    public void setIsTargetProcess(boolean isTargetProcess);
 }

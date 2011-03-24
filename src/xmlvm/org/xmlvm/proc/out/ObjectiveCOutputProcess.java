@@ -29,15 +29,15 @@ import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.XmlvmResourceProvider;
 import org.xmlvm.proc.XsltRunner;
 
-public class ObjectiveCOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvider> {
+public class ObjectiveCOutputProcess extends XmlvmProcessImpl {
     private static final String M_EXTENSION = ".m";
     private static final String H_EXTENSION = ".h";
-    private List<OutputFile>    result      = new ArrayList<OutputFile>();
 
 
     public ObjectiveCOutputProcess(Arguments arguments) {
@@ -46,21 +46,17 @@ public class ObjectiveCOutputProcess extends XmlvmProcessImpl<XmlvmResourceProvi
     }
 
     @Override
-    public List<OutputFile> getOutputFiles() {
-        return result;
+    public boolean processPhase1(BundlePhase1 bundle) {
+        return true;
     }
 
     @Override
-    public boolean process() {
-        List<XmlvmResourceProvider> preprocesses = preprocess();
-        for (XmlvmResourceProvider process : preprocesses) {
-            List<XmlvmResource> xmlvmResources = process.getXmlvmResources();
-            for (XmlvmResource xmlvm : xmlvmResources) {
-                OutputFile[] files = genObjC(xmlvm);
-                for (OutputFile file : files) {
-                    file.setLocation(arguments.option_out());
-                    result.add(file);
-                }
+    public boolean processPhase2(BundlePhase2 bundle) {
+        for (XmlvmResource xmlvm : bundle.getResources()) {
+            OutputFile[] files = genObjC(xmlvm);
+            for (OutputFile file : files) {
+                file.setLocation(arguments.option_out());
+                bundle.addOutputFile(file);
             }
         }
         return true;

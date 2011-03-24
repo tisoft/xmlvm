@@ -20,14 +20,17 @@
 
 package org.xmlvm.proc.out.build;
 
-import java.util.List;
+import java.util.Collection;
 
+import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.out.COutputProcess;
 import org.xmlvm.proc.out.OutputFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 public class MakeFile extends BuildFile {
 
+    private static final String TAG                     = MakeFile.class.getSimpleName();
     private static final String TEMPL_PROJNAME          = "__PROJNAME__";
     private static final String MAKFILE_IN_JAR_RESOURCE = "/__PLATFORM__/Makefile";
     private static final String MAKEFILE_PATH           = "var/__PLATFORM__/Makefile";
@@ -40,19 +43,19 @@ public class MakeFile extends BuildFile {
     }
 
     @Override
-    public String composeBuildFiles(List<OutputFile> result, Arguments arguments) {
+    public OutputFile composeBuildFiles(Arguments arguments) {
         String makefileInJarResource = MAKFILE_IN_JAR_RESOURCE.replace("__PLATFORM__", platform);
         String makefilePath = MAKEFILE_PATH.replace("__PLATFORM__", platform);
         String makefile_data = UniversalFileCreator.createFile(makefileInJarResource, makefilePath)
                 .getFileAsString();
         if (makefile_data == null) {
-            return "Could not initialize Makefile";
+            Log.error("Could not initialize Makefile");
+            return null;
         }
         makefile_data = makefile_data.replace(TEMPL_PROJNAME, arguments.option_app_name());
         OutputFile makefile = new OutputFile(makefile_data);
         makefile.setFileName("Makefile");
         makefile.setLocation(arguments.option_out() + BUILDFILE_LOCATION);
-        result.add(makefile);
-        return null;
+        return makefile;
     }
 }

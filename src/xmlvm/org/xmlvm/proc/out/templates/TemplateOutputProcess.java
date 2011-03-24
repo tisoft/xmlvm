@@ -22,11 +22,12 @@ package org.xmlvm.proc.out.templates;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase1;
+import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.in.InputProcess.EmptyInputProcess;
 import org.xmlvm.proc.out.OutputFile;
@@ -35,7 +36,7 @@ import org.xmlvm.util.JarUtil;
 /**
  * Creates a template project.
  */
-public abstract class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputProcess> {
+public abstract class TemplateOutputProcess extends XmlvmProcessImpl {
 
     private static final String TEMPL_PROJNAME = "__PROJNAME__";
     private static final String TEMPL_PACKNAME = "__PACKNAME__";
@@ -43,7 +44,6 @@ public abstract class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputP
     private static final String TEMPL_TRIMSEED = "__XMLVMTRIMMERSEED__";
     private static final String TEMPL_XVMLSDK  = "__XMLVMSDK__";
     //
-    private List<OutputFile>    result         = new ArrayList<OutputFile>();
     protected String            safe_name;
     protected String            pack_name;
     //
@@ -57,12 +57,12 @@ public abstract class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputP
     }
 
     @Override
-    public List<OutputFile> getOutputFiles() {
-        return result;
+    public boolean processPhase1(BundlePhase1 resources) {
+        return true;
     }
 
     @Override
-    public boolean process() {
+    public boolean processPhase2(BundlePhase2 resources) {
         String projname = arguments.option_app_name();
         String outpath = arguments.option_out() + "/";
         safe_name = getSafeName(projname);
@@ -74,7 +74,8 @@ public abstract class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputP
 
         Log.debug("Size is " + getTemplateList().size());
         for (TemplateFile file : getTemplateList()) {
-            if (!addFile(file.source, file.dest, outpath + file.path, projname, file.mode)) {
+            if (!addFile(file.source, file.dest, outpath + file.path, projname, file.mode,
+                    resources)) {
                 return false;
             }
         }
@@ -82,7 +83,7 @@ public abstract class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputP
     }
 
     private boolean addFile(String source, String dest, String path, String projname,
-            TemplateFile.Mode mode) {
+            TemplateFile.Mode mode, BundlePhase2 resources) {
 
         if (mode == TemplateFile.Mode.IGNORE) {
             return true;
@@ -133,7 +134,7 @@ public abstract class TemplateOutputProcess extends XmlvmProcessImpl<EmptyInputP
                     .replace(TEMPL_TRIMSEED, String.valueOf(new Random().nextLong()))
                     .replace(TEMPL_XVMLSDK, JarUtil.findSelfJar()));
         }
-        result.add(file);
+        resources.addOutputFile(file);
         return true;
     }
 

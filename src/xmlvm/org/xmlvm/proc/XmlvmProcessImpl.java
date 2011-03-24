@@ -58,22 +58,25 @@ enum XmlvmProcessId {
  * Common implementation for all XMLVM Processes. Actual processes extend this
  * class.
  */
-public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
+public abstract class XmlvmProcessImpl implements XmlvmProcess {
 
-    private static final String            TAG             = "XmlvmProcessImpl";
+    private static final String         TAG             = "XmlvmProcessImpl";
 
     /** The list of process instances that get executed BEFORE this process. */
-    private List<XmlvmProcess<?>>          preprocesses    = new ArrayList<XmlvmProcess<?>>();
+    private List<XmlvmProcess>          preprocesses    = new ArrayList<XmlvmProcess>();
 
     /** The list of process instances that get executed AFTER this process. */
-    private Set<XmlvmProcess<?>>           postProcesses   = new HashSet<XmlvmProcess<?>>();
+    private Set<XmlvmProcess>           postProcesses   = new HashSet<XmlvmProcess>();
 
     /** This list contains all the supported input processes. */
-    protected List<Class<XmlvmProcess<?>>> supportedInputs = new ArrayList<Class<XmlvmProcess<?>>>();
+    protected List<Class<XmlvmProcess>> supportedInputs = new ArrayList<Class<XmlvmProcess>>();
 
-    protected Arguments                    arguments;
+    protected Arguments                 arguments;
 
-    protected boolean                      isProcessed     = false;
+    protected boolean                   isProcessed     = false;
+    
+    /** Whether this process is the target process. */
+    protected boolean                   isTargetProcess = false;
 
 
     public XmlvmProcessImpl(Arguments arguments) {
@@ -82,22 +85,19 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
     }
 
     @Override
-    public abstract boolean process();
-
-    @Override
     public boolean postProcess() {
         return true;
     }
 
     @Override
-    public List<Class<XmlvmProcess<?>>> getSupportedInputs() {
+    public List<Class<XmlvmProcess>> getSupportedInputs() {
         return supportedInputs;
     }
 
     @SuppressWarnings("unchecked")
     protected void addSupportedInput(Class<?> inputProcessClass) {
         try {
-            supportedInputs.add((Class<XmlvmProcess<?>>) inputProcessClass);
+            supportedInputs.add((Class<XmlvmProcess>) inputProcessClass);
         } catch (ClassCastException ex) {
             ex.printStackTrace();
             Log.error("You tried to add a supported input that is not of the same type as the "
@@ -119,12 +119,12 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
     }
 
     @Override
-    public List<XmlvmProcess<?>> createInputInstances() {
-        List<XmlvmProcess<?>> result = new ArrayList<XmlvmProcess<?>>();
-        for (Class<XmlvmProcess<?>> supportedClass : getSupportedInputs()) {
+    public List<XmlvmProcess> createInputInstances() {
+        List<XmlvmProcess> result = new ArrayList<XmlvmProcess>();
+        for (Class<XmlvmProcess> supportedClass : getSupportedInputs()) {
             try {
-                XmlvmProcess<?> process = (XmlvmProcess<?>) supportedClass.getConstructor(
-                        Arguments.class).newInstance(arguments);
+                XmlvmProcess process = (XmlvmProcess) supportedClass
+                        .getConstructor(Arguments.class).newInstance(arguments);
                 result.add(process);
                 // Add this process to the list of pre-processes.
                 addPreprocess(process);
@@ -148,8 +148,8 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
     }
 
     @Override
-    public boolean supportsAsInput(XmlvmProcess<?> process) {
-        for (Class<XmlvmProcess<?>> supportedClass : getSupportedInputs()) {
+    public boolean supportsAsInput(XmlvmProcess process) {
+        for (Class<XmlvmProcess> supportedClass : getSupportedInputs()) {
             if (isOfType(process.getClass(), supportedClass)) {
                 return true;
             }
@@ -180,7 +180,7 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
     }
 
     @Override
-    public void addPreprocess(XmlvmProcess<?> xmlvmProcess) {
+    public void addPreprocess(XmlvmProcess xmlvmProcess) {
         Log.debug("Adding preprocess " + xmlvmProcess.getClass().getName() + " to process "
                 + this.getClass().getName());
         preprocesses.add(xmlvmProcess);
@@ -188,44 +188,42 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
     }
 
     @Override
-    public void addPostProcess(XmlvmProcess<?> xmlvmProcess) {
+    public void addPostProcess(XmlvmProcess xmlvmProcess) {
         postProcesses.add(xmlvmProcess);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public List<T> preprocess() {
-        for (XmlvmProcess<?> process : preprocesses) {
-            // We test whether the pre-process type is a sub-type of the given
-            // generic type of the process.
-            try {
-                ((T) process).toString();
-            } catch (ClassCastException ex) {
-                Log.error("A preprocess is not of the given generic type: "
-                        + process.getClass().getName());
-                return null;
+    public boolean forwardOrProcessPhase1(BundlePhase1 resources) {
+        for (XmlvmProcess process : preprocesses) {
+            if (!isProcessPreOfCorrectType(process)) {
+                return false;
             }
+
             if (process.isActive()) {
-                // TODO(haeberling): Maybe replace by preprocess? This way
-                // processes don't have to call preprocess themselves
-                // anymore.
-                process.process();
-                if (process instanceof XmlvmProcessImpl) {
-                    // Mark the process as processed.
-                    ((XmlvmProcessImpl<?>) process).isProcessed = true;
-                } else {
-                    Log.error(TAG, "Internal Error: Preprocess found that is not an "
-                            + "XmlvmProcessImpl instance.");
-                }
+                process.forwardOrProcessPhase1(resources);
             }
         }
-        return (List<T>) preprocesses;
+        return processPhase1(resources);
+    }
+
+    @Override
+    public boolean forwardOrProcessPhase2(BundlePhase2 resources) {
+        for (XmlvmProcess process : preprocesses) {
+            if (!isProcessPreOfCorrectType(process)) {
+                return false;
+            }
+
+            if (process.isActive()) {
+                process.forwardOrProcessPhase2(resources);
+            }
+        }
+        return processPhase2(resources);
     }
 
     @Override
     public boolean postProcessPreProcesses() {
-        for (XmlvmProcess<?> process : preprocesses) {
-            if (process.isProcessed()) {
+        for (XmlvmProcess process : preprocesses) {
+            if (process.isActive()) {
                 if (!process.postProcessPreProcesses()) {
                     return false;
                 }
@@ -238,17 +236,12 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
     public boolean isActive() {
         // A process is active only when at least one of his preprocesses is
         // active.
-        for (XmlvmProcess<?> preprocess : preprocesses) {
+        for (XmlvmProcess preprocess : preprocesses) {
             if (preprocess.isActive()) {
                 return true;
             }
         }
         return false;
-    }
-
-    @Override
-    public boolean isProcessed() {
-        return isProcessed;
     }
 
     @Override
@@ -271,7 +264,7 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
 
         // If this process doesn't have it cached and one of the post processes
         // doesn't, then this process needs to process.
-        for (XmlvmProcess<?> postProcess : postProcesses) {
+        for (XmlvmProcess postProcess : postProcesses) {
             if (postProcess.isProcessingRequired(inputResourceName, lastModified)) {
                 return true;
             }
@@ -281,5 +274,23 @@ public abstract class XmlvmProcessImpl<T> implements XmlvmProcess<T> {
         // post-processes and all post-processes have it cached, then we don't
         // have to process the resource.
         return false;
+    }
+
+    @Override
+    public void setIsTargetProcess(boolean isTargetProcess) {
+        this.isTargetProcess = isTargetProcess;
+    }
+
+    private boolean isProcessPreOfCorrectType(XmlvmProcess process) {
+        // We test whether the pre-process type is a sub-type of the given
+        // generic type of the process.
+        try {
+            process.toString();
+            return true;
+        } catch (ClassCastException ex) {
+            Log.error("A preprocess is not of the given generic type: "
+                    + process.getClass().getName());
+            return false;
+        }
     }
 }

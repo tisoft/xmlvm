@@ -23,7 +23,7 @@ package org.xmlvm.proc.out.build;
 import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.OutputFile;
@@ -36,6 +36,7 @@ public abstract class BuildFile {
 
     protected final static String BUILDFILE_LOCATION = File.separator + "dist" + File.separator;
 
+
     /**
      * Get a list of filenames from a OutputFile list, which are in accordance
      * with some criteria.
@@ -46,7 +47,8 @@ public abstract class BuildFile {
      *            Filename criteria.
      * @return List of filenames with valid files.
      */
-    protected static ArrayList<String> getFileNames(List<OutputFile> fileList, FileFilter filter) {
+    protected static ArrayList<String> getFileNames(Collection<OutputFile> fileList,
+            FileFilter filter) {
         ArrayList<String> result = new ArrayList<String>();
 
         for (OutputFile fileBundle : fileList) {
@@ -62,11 +64,9 @@ public abstract class BuildFile {
     /**
      * Create build files for this target.
      * 
-     * @param result
-     *            The created build-file.
      * @param arguments
      *            XMLVM command line arguments.
      * @return The produced build-file.
      */
-    public abstract String composeBuildFiles(List<OutputFile> result, Arguments arguments);
+    public abstract OutputFile composeBuildFiles(Arguments arguments);
 }
