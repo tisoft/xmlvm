@@ -41,4 +41,6 @@ JAVA_OBJECT XMLVMUtil_HashMap_get(JAVA_OBJECT me, JAVA_OBJECT key);
 
 JAVA_OBJECT XMLVMUtil_getFromStringPool(JAVA_OBJECT str);
 
+char* XMLVMUtil_convertFromByteArray(JAVA_OBJECT byteArray);
+
 #endif

@@ -32,6 +32,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.PropertyPermission;
 
+import org.xmlvm.runtime.XMLVMUtil;
+
 
 /**
  * Provides access to system-related information and resources including
@@ -728,7 +730,7 @@ public final class System {
             return ":";
         }
         if (prop.equals("user.dir")) {
-            return "";
+            return XMLVMUtil.getCurrentWorkingDirectory();
         }
         if (prop.equals("os.encoding")) {
             return null;

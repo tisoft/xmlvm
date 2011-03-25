@@ -155,3 +155,16 @@ JAVA_OBJECT XMLVMUtil_getFromStringPool(JAVA_OBJECT str)
     return XMLVMUtil_ArrayList_get(stringPool, i);
 }
 
+
+/**** Misc Utilities **********************************************************************/
+
+char* XMLVMUtil_convertFromByteArray(JAVA_OBJECT byteArray) {
+    org_xmlvm_runtime_XMLVMArray* a = byteArray;
+    char* data = (char*) a->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    int length = a->fields.org_xmlvm_runtime_XMLVMArray.length_;
+    char* buf = XMLVM_MALLOC(length + 1);
+    XMLVM_MEMCPY(buf, data, length);
+    buf[length] = '\0';
+    return buf;
+}
+

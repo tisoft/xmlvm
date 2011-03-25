@@ -304,31 +304,51 @@ public final class String implements Serializable, Comparable<String>,
      * @throws UnsupportedEncodingException
      *             if {@code encoding} is not supported.
      */
+//    public String(byte[] data, int start, int length, final String encoding)
+//            throws UnsupportedEncodingException {
+//        if (encoding == null) {
+//            throw new NullPointerException();
+//        }
+//        // start + length could overflow, start/length maybe MaxInt
+//        if (start >= 0 && 0 <= length && length <= data.length - start) {
+//            offset = 0;
+//            Charset charset = getCharset(encoding);
+//
+//            int result;
+//            CharBuffer cb;
+//            try {
+//                cb = charset.decode(ByteBuffer.wrap(data, start, length));
+//            } catch (Exception e) {
+//                // do nothing. according to spec: 
+//                // behavior is unspecified for invalid array
+//                cb = CharBuffer.wrap("\u003f".toCharArray()); //$NON-NLS-1$
+//            }
+//            if ((result = cb.length()) > 0) {
+//                value = cb.array();
+//                count = result;
+//            } else {
+//                count = 0;
+//                value = new char[0];
+//            }
+//        } else {
+//            throw new StringIndexOutOfBoundsException();
+//        }
+//    }
     public String(byte[] data, int start, int length, final String encoding)
-            throws UnsupportedEncodingException {
+                    throws UnsupportedEncodingException {
         if (encoding == null) {
             throw new NullPointerException();
+        }
+        if (!encoding.equals("UTF-8")) {
+            throw new UnsupportedEncodingException();
         }
         // start + length could overflow, start/length maybe MaxInt
         if (start >= 0 && 0 <= length && length <= data.length - start) {
             offset = 0;
-            Charset charset = getCharset(encoding);
-
-            int result;
-            CharBuffer cb;
-            try {
-                cb = charset.decode(ByteBuffer.wrap(data, start, length));
-            } catch (Exception e) {
-                // do nothing. according to spec: 
-                // behavior is unspecified for invalid array
-                cb = CharBuffer.wrap("\u003f".toCharArray()); //$NON-NLS-1$
-            }
-            if ((result = cb.length()) > 0) {
-                value = cb.array();
-                count = result;
-            } else {
-                count = 0;
-                value = new char[0];
+            count = length;
+            value = new char[length];
+            for (int i = 0; i < length; i++) {
+                value[i] = (char) data[start + i];
             }
         } else {
             throw new StringIndexOutOfBoundsException();

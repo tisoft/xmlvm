@@ -39,9 +39,11 @@ public class XMLVMUtil {
         System.setOut(stream);
         System.setErr(stream);
     }
-    
+
     public static void notImplemented() {
         System.err.println("XMLVMUtil.notImplemented()");
         System.exit(-1);
     }
+
+    public static native String getCurrentWorkingDirectory();
 }

@@ -9,7 +9,6 @@
 void java_io_FileDescriptor_oneTimeInitialization__()
 {
     //XMLVM_BEGIN_NATIVE[java_io_FileDescriptor_oneTimeInitialization__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 

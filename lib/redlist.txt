@@ -29,7 +29,6 @@ org.apache.harmony.luni.net.PlainSocketImpl
 java.nio.charset.Charset
 java.nio.channels.spi.SelectorProvider
 org.xml.sax.SAXException
-org.apache.harmony.luni.platform.INetworkSystem
 org.apache.harmony.security.internal.nls.Messages
 org.apache.harmony.logging.internal.nls.Messages
 org.apache.harmony.luni.internal.net.www.MimeTable
@@ -55,7 +54,6 @@ org.apache.harmony.regex.internal.nls.Messages$1
 javax.xml.parsers.DocumentBuilderFactory
 com.ibm.icu.util.Calendar
 org.apache.harmony.luni.internal.reflect.ProxyClassFile
-java.nio.channels.FileChannel
 java.lang.management.ManagementFactory
 org.apache.harmony.misc.accessors.ObjectAccessor
 java.security.SecurityPermission
@@ -65,7 +63,6 @@ java.text.NumberFormat
 javax.xml.parsers.DocumentBuilder
 java.nio.channels.FileLock
 java.security.MessageDigest
-org.apache.harmony.nio.FileChannelFactory
 java.net.URLClassLoader
 javax.management.ObjectInstance
 com.ibm.icu.text.StringPrepParseException
@@ -75,7 +72,6 @@ java.security.Policy
 org.w3c.dom.NodeList
 org.apache.harmony.annotation.internal.nls.Messages
 java.lang.ClassLoader
-org.apache.harmony.luni.platform.IFileSystem
 java.nio.charset.CoderResult
 java.security.AccessControlContext
 org.apache.harmony.luni.internal.io.FileCanonPathCache
@@ -83,7 +79,6 @@ java.security.AllPermission
 com.ibm.icu.util.TimeZone
 com.ibm.icu.lang.UCharacter
 java.nio.charset.UnmappableCharacterException
-org.apache.harmony.luni.platform.Platform
 java.security.cert.CertificateFactory
 com.ibm.icu.util.Currency
 org.apache.xpath.XPathAPI
@@ -122,7 +117,6 @@ org.apache.harmony.unpack200.FileBands
 javax.swing.text.html.parser.HTMLTagType
 javax.swing.CellRendererPane$AccessibleCellRendererPane
 javax.sound.sampled.UnsupportedAudioFileException
-java.nio.channels.FileChannel$MapMode
 org.omg.Messaging.RequestStartTimePolicyHolder
 org.omg.CosNaming.NamingContextPackage.InvalidNameHolder
 org.omg.CSIIOP.SECIOP_SEC_TRANS
@@ -540,7 +534,6 @@ org.apache.yoko.orb.OB.UpcallReturn
 org.apache.xalan.xsltc.TransletException
 org.omg.Messaging.ReplyEndTimePolicyHolder
 org.omg.CosTransactions.TransactionPolicyOperations
-java.nio.channels.ByteChannel
 javax.print.attribute.standard.Severity
 javax.swing.JTabbedPane$ModelListener
 org.apache.harmony.auth.jgss.GSSCredentialImpl
@@ -1504,7 +1497,6 @@ javax.swing.UIManager$LookAndFeelInfo
 org.apache.xerces.dom.ElementImpl
 org.omg.PortableServer.POAPackage.ServantNotActive
 javax.xml.xpath.XPathExpressionException
-java.nio.channels.WritableByteChannel
 org.apache.xerces.dom3.as.DOMImplementationAS
 javax.swing.plaf.basic.BasicTableHeaderUI
 mx4j.remote.ConnectionNotificationEmitter
@@ -3011,7 +3003,6 @@ org.apache.bcel.classfile.Node
 org.apache.xml.utils.res.XResourceBundle
 javax.swing.plaf.basic.BasicTextUI$GestureRecognizer
 javax.swing.text.DefaultGlyphPainter$TextPainter
-java.nio.channels.ScatteringByteChannel
 org.omg.CORBA.FixedDefHolder
 java.sql.Statement
 javax.naming.directory.InvalidAttributeValueException
@@ -4408,7 +4399,6 @@ org.omg.GIOP.MessageHeader_1_0Holder
 org.apache.harmony.xnet.provider.jsse.Handshake
 javax.swing.text.FlowView$LogicalView
 org.apache.harmony.niochar.charset.additional.IBM1047$Encoder
-java.nio.channels.ReadableByteChannel
 org.apache.yoko.orb.OCI.ProfileInfoSeqHolder
 org.apache.yoko.rmi.impl.SimpleDescriptor
 javax.swing.text.html.HTMLDocument$HTMLReader$MetaAction
@@ -5843,11 +5833,9 @@ org.apache.xerces.impl.dv.xs.XSSimpleTypeDecl$4
 org.apache.xerces.impl.dv.xs.XSSimpleTypeDecl$2
 org.apache.yoko.rmi.impl.TypeRepository
 org.apache.xerces.impl.dv.xs.XSSimpleTypeDecl$3
-java.nio.channels.spi.AbstractInterruptibleChannel$2
 org.apache.harmony.security.x509.SubjectPublicKeyInfo$1
 org.apache.xerces.xpointer.XPointerMessageFormatter
 org.omg.CosNaming.NamingContextPackage.NotEmptyHelper
-java.nio.channels.spi.AbstractInterruptibleChannel$1
 org.apache.yoko.orb.OCI.ConnectorHolder
 org.apache.yoko.orb.OCI.IIOP.ConnectorInfoOperations
 org.apache.xerces.impl.dv.xs.XSSimpleTypeDecl$1
@@ -6521,7 +6509,6 @@ org.apache.xerces.impl.xs.XSComplexTypeDecl
 org.apache.harmony.beans.editors.ByteEditor
 javax.crypto.SecretKey
 com.ibm.icu.impl.data.HolidayBundle_da
-org.apache.harmony.luni.platform.OSMemory
 org.apache.yoko.orb.IMR.ServerStatusHelper
 com.ibm.icu.impl.data.HolidayBundle_de
 org.omg.CSI.AuthorizationElementTypeHelper
@@ -7209,7 +7196,6 @@ com.ibm.icu.text.SearchIterator
 org.apache.harmony.niochar.charset.ISO_8859_13
 org.apache.yoko.orb.OBPortableServer.SynchronizationPolicyHelper
 com.ibm.icu.text.BreakIteratorFactory$BFService$1RBBreakIteratorFactory
-java.nio.channels.InterruptibleChannel
 org.apache.xml.dtm.SecuritySupport12$8
 org.apache.xml.serializer.EncodingInfo$EncodingImpl
 org.apache.xml.dtm.SecuritySupport12$6
@@ -7375,7 +7361,6 @@ javax.xml.bind.annotation.adapters.XmlAdapter
 org.omg.CosTransactions.RecoveryCoordinatorPOA
 org.apache.yoko.orb.OBPortableServer.POAHolder
 org.apache.xerces.dom.DOMImplementationSourceImpl
-java.nio.channels.spi.AbstractInterruptibleChannel
 org.apache.xpath.functions.FuncTranslate
 org.omg.CosNaming.NameComponent
 org.apache.harmony.jndi.provider.ldap.asn1.ASN1ChoiceWrap
@@ -7846,7 +7831,6 @@ org.apache.xpath.domapi.XPathEvaluatorImpl$DummyPrefixResolver
 org.apache.harmony.xnet.provider.jsse.ContentType
 org.apache.xalan.processor.ProcessorPreserveSpace
 org.apache.xerces.dom.DOMImplementationImpl
-org.apache.harmony.luni.platform.OSFileSystem
 org.apache.harmony.awt.gl.windows.WinGDIPGraphics2D
 org.omg.PortableInterceptor.ORBInitInfoPackage.ObjectIdHelper
 javax.xml.crypto.dsig.keyinfo.KeyInfoFactory
@@ -11833,7 +11817,6 @@ java.awt.image.renderable.ContextualRenderedImageFactory
 com.ibm.icu.util.ULocale$Type
 com.ibm.icu.text.DateIntervalFormat$BestMatchInfo
 org.apache.yoko.orb.OB.BootManagerOperations
-org.apache.harmony.luni.platform.OSNetworkSystem
 javax.swing.plaf.basic.BasicFileChooserUI$DoubleClickListener
 org.apache.harmony.auth.jgss.GSSNameImpl
 org.apache.xerces.xni.XMLDocumentHandler
@@ -12012,7 +11995,6 @@ org.apache.harmony.niochar.charset.additional.IBM00858$Encoder
 org.apache.xerces.impl.XMLEntityManager$CharacterBuffer
 org.apache.html.dom.HTMLFormControl
 javax.swing.RootPaneContainer
-org.apache.harmony.luni.platform.IMemorySystem
 javax.swing.plaf.BorderUIResource$MatteBorderUIResource
 org.apache.xerces.dom.DOMXSImplementationSourceImpl
 org.apache.xml.serialize.EncodingInfo$CharToByteConverterMethods
@@ -12117,7 +12099,6 @@ org.omg.Security.NoProtection
 org.jcp.xml.dsig.internal.dom.DOMEnvelopedTransform
 org.omg.CORBA.INITIALIZEHolder
 org.apache.bcel.generic.TABLESWITCH
-org.apache.harmony.luni.platform.Endianness
 javax.swing.table.JTableHeader$AccessibleJTableHeader$AccessibleJTableHeaderEntry
 org.omg.IOP.CodecHelper
 com.ibm.icu.charset.CharsetMBCS$CharsetEncoderMBCS
@@ -12138,7 +12119,6 @@ javax.xml.parsers.SecuritySupport
 org.omg.CSIIOP.ServiceConfigurationListHolder
 org.apache.bcel.classfile.Code
 org.omg.SecurityLevel2.AuditChannel
-java.nio.channels.GatheringByteChannel
 org.apache.yoko.orb.OCI.TransportHelper
 java.security.Signer$1
 org.apache.xerces.util.SAXLocatorWrapper
