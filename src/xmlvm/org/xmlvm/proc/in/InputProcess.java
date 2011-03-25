@@ -110,15 +110,16 @@ public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl {
      */
     @Override
     public boolean processPhase1(BundlePhase1 bundle) {
-        if (!input.getFile().exists() || !input.getFile().isFile()) {
+        if (input == null || input.getFile() == null || !input.getFile().exists()
+                || !input.getFile().isFile()) {
             Log.warn("InputProcess.getOutputFiles(): Input File does not exist or is not a file.");
             return false;
         }
-        
+
         if (input.getFile().getName().contains("HelloWorld")) {
             System.out.println("Found it");
         }
-        
+
         OutputFile outputFile = new OutputFile(input.getFile());
         outputFile.setOrigin(input.getFile().getAbsolutePath());
         outputFile.setLocation(arguments.option_out());
