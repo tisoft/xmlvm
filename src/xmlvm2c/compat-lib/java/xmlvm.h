@@ -119,9 +119,10 @@ typedef void (*Func_VOOOOO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_OBJECT o3, JAVA
 typedef void (*Func_VOOOOOO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_OBJECT o3, JAVA_OBJECT o4, JAVA_OBJECT o5, JAVA_OBJECT o6);
 typedef void (*Func_VOOB)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_BOOLEAN o3);
 typedef void (*Func_VOOI)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_INT o3);
+typedef JAVA_OBJECT (*Func_O)();
+typedef JAVA_OBJECT (*Func_OO)(JAVA_OBJECT o1);
 typedef JAVA_OBJECT (*Func_OOO)(JAVA_OBJECT o1, JAVA_OBJECT o2);
 typedef JAVA_OBJECT (*Func_OOOO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_OBJECT o3);
-typedef JAVA_OBJECT (*Func_O)();
 typedef JAVA_FLOAT (*Func_FOOO)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_OBJECT o3);
 typedef JAVA_INT (*Func_IOO)(JAVA_OBJECT o1, JAVA_OBJECT o2);
 typedef JAVA_INT (*Func_IOOI)(JAVA_OBJECT o1, JAVA_OBJECT o2, JAVA_INT i1);
@@ -332,6 +333,7 @@ extern XMLVM_JMP_BUF xmlvm_exception_env_main_thread;
 #define XMLVM_RED_CLASS_DEPENDENCY() XMLVM_ERROR("Unsatisfied red class dependency", __FILE__, __FUNCTION__, __LINE__)
 
 void xmlvm_unimplemented_native_method();
+void xmlvm_unhandled_exception();
 void XMLVM_ERROR(const char* msg, const char* file, const char* function, int line);
 
 #endif

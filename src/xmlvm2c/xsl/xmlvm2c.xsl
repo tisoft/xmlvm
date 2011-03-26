@@ -66,16 +66,23 @@
   <xsl:text>
 
 //#if 0
+
 #include &lt;pthread.h&gt; // for pthread_exit so the main thread doesn't terminate early
+
 int main(int argc, char* argv[])
 {
     xmlvm_init();
-    </xsl:text>
+    java_lang_Thread_currentThread__();
+    if (XMLVM_SETJMP(xmlvm_exception_env_main_thread)) {
+        xmlvm_unhandled_exception();
+    } else {
+        </xsl:text>
     <xsl:variable name="cl" as="node()" select="vm:class/vm:method[@name = 'main']/.."/>
     <xsl:value-of select="vm:fixname($cl/@package)"/>
     <xsl:text>_</xsl:text>
     <xsl:value-of select="$cl/@name"/>
     <xsl:text>_main___java_lang_String_1ARRAY(JAVA_NULL);
+    }
     // Call pthread_exit(0) so that the main thread does not terminate until
     // the other threads have finished
     pthread_exit(0);

@@ -24,13 +24,18 @@
 #include "java_lang_System.h"
 #include "java_lang_Class.h"
 #include "java_lang_String.h"
+#include "java_lang_Throwable.h"
+#include "org_xmlvm_runtime_XMLVMUtil.h"
 #include <stdio.h>
 #include <string.h>
 
 
-XMLVM_JMP_BUF xmlvm_exception_env_main_thread;
-
 XMLVM_STATIC_INITIALIZER_CONTROLLER* staticInitializerController;
+
+// This exception value is only used for the main thread.
+// Since a call to Thread.currentThread() contains try-catch blocks, this must
+// be defined before the "main" java.lang.Thread is defined.
+XMLVM_JMP_BUF xmlvm_exception_env_main_thread;
 
 
 
@@ -55,9 +60,6 @@ void xmlvm_init()
         XMLVM_ERROR("Error initializing static initializer mutex", __FILE__, __FUNCTION__, __LINE__);
     }
 
-    if (XMLVM_SETJMP(xmlvm_exception_env_main_thread)) {
-        XMLVM_ERROR("Unhandled exception thrown", __FILE__, __FUNCTION__, __LINE__);
-    }
     __INIT_org_xmlvm_runtime_XMLVMArray();
     java_lang_Class_initNativeLayer__();
     __INIT_java_lang_System();
@@ -190,6 +192,9 @@ int xmlvm_java_string_cmp(JAVA_OBJECT s1, const char* s2)
 
 const char* xmlvm_java_string_to_const_char(JAVA_OBJECT s)
 {
+    if (s == JAVA_NULL) {
+        return "null";
+    }
     java_lang_String* str = (java_lang_String*) s;
     JAVA_INT len = str->fields.java_lang_String.count_;
     char* cs = XMLVM_MALLOC(len + 1);
@@ -307,6 +312,46 @@ int XMLVMArray_count(JAVA_OBJECT array)
 {
     org_xmlvm_runtime_XMLVMArray* a = (org_xmlvm_runtime_XMLVMArray*) array;
     return a->fields.org_xmlvm_runtime_XMLVMArray.length_;
+}
+
+void xmlvm_unhandled_exception()
+{
+    java_lang_Thread* curThread;
+    curThread = (java_lang_Thread*) java_lang_Thread_currentThread__();
+    JAVA_OBJECT exception = curThread->fields.java_lang_Thread.xmlvmException_;
+
+    JAVA_OBJECT message;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Throwable_getMessage__
+    message = ((Func_OO) ((java_lang_Throwable*) exception)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Throwable_getMessage__])(exception);
+#else
+    message = java_lang_Throwable_getMessage__(exception);
+#endif
+
+    JAVA_OBJECT thread_name;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Thread_getName__
+    thread_name =  ((Func_OO) ((java_lang_Thread*) curThread)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Thread_getName__])(curThread);
+#else
+    thread_name = java_lang_Thread_getName__(curThread);
+#endif
+
+    JAVA_OBJECT exception_class;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Object_getClass__
+    exception_class = ((Func_OO) ((java_lang_Object*) exception)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Object_getClass__])(exception);
+#else
+    exception_class = java_lang_Object_getClass__(exception);
+#endif
+
+    JAVA_OBJECT class_name;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Class_getName__
+    class_name = ((Func_OO) ((java_lang_Class*) exception_class)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Class_getName__])(exception_class);
+#else
+    class_name = java_lang_Class_getName__(exception_class);
+#endif
+    
+    printf("Exception in thread \"%s\" %s: %s\n",
+            xmlvm_java_string_to_const_char(thread_name),
+            xmlvm_java_string_to_const_char(class_name),
+            xmlvm_java_string_to_const_char(message));
 }
 
 void xmlvm_unimplemented_native_method()

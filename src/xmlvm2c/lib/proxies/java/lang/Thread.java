@@ -781,9 +781,11 @@ public class Thread implements Runnable {
             } else {
                 targetRunnable.run();
             }
-        } finally {
-            removeSelfFromMap();
+        } catch (Throwable t) {
+            System.out.println("Exception in thread \"" + this.getName() + "\" "
+                    + t.getClass().getName() + ": " + t.getMessage());
         }
+        removeSelfFromMap();
     }
 
     /**

@@ -6,25 +6,19 @@
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 #include <pthread.h>
 
-XMLVM_JMP_BUF* initExceptionHandler(java_lang_Thread* me)
-{
-    XMLVM_JMP_BUF* jbptr = XMLVM_MALLOC(sizeof(XMLVM_JMP_BUF));
-    if (XMLVM_SETJMP(*jbptr)) {
-        XMLVM_ERROR("Unhandled exception thrown", __FILE__, __FUNCTION__, __LINE__);
-    }
-    me->fields.java_lang_Thread.xmlvmExceptionEnv_ = *jbptr;
-
-    return jbptr;
-}
-
 void threadRunner(JAVA_OBJECT me)
 {
-    XMLVM_JMP_BUF* jbptr = initExceptionHandler((java_lang_Thread*)me);
+    java_lang_Thread* thiz = me;
+    XMLVM_JMP_BUF xmlvm_exception_env;
+    
+    if (XMLVM_SETJMP(xmlvm_exception_env)) {
+        xmlvm_unhandled_exception();
+    } else {
+        thiz->fields.java_lang_Thread.xmlvmExceptionEnv_ = &xmlvm_exception_env;
 
-    JAVA_LONG nativeThreadId = (JAVA_LONG)pthread_self();
-    java_lang_Thread_run0___long(me, nativeThreadId);
-
-    XMLVM_FREE(jbptr);
+        JAVA_LONG nativeThreadId = (JAVA_LONG) pthread_self();
+        java_lang_Thread_run0___long(thiz, nativeThreadId);
+    }
 }
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
