@@ -3290,8 +3290,8 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:goto|dex:goto-16">
-  <xsl:text>    goto label</xsl:text>
-  <xsl:value-of select="@target"/>
+  <xsl:text>    </xsl:text>
+  <xsl:call-template name="emitGoto"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -3311,8 +3311,8 @@ int main(int argc, char* argv[])
       <xsl:text> == 0</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
-  <xsl:text>) goto label</xsl:text>
-  <xsl:value-of select="@target"/>
+  <xsl:text>) </xsl:text>
+  <xsl:call-template name="emitGoto"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -3332,8 +3332,8 @@ int main(int argc, char* argv[])
       <xsl:text> != 0</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
-  <xsl:text>) goto label</xsl:text>
-  <xsl:value-of select="@target"/>
+  <xsl:text>) </xsl:text>
+  <xsl:call-template name="emitGoto"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -3345,8 +3345,8 @@ int main(int argc, char* argv[])
   <xsl:call-template name="emitTypedAccess">
     <xsl:with-param name="type" select="@vx-type"/>
   </xsl:call-template>
-  <xsl:text> &gt;= 0) goto label</xsl:text>
-  <xsl:value-of select="@target"/>
+  <xsl:text> &gt;= 0) </xsl:text>
+  <xsl:call-template name="emitGoto"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -3358,8 +3358,8 @@ int main(int argc, char* argv[])
   <xsl:call-template name="emitTypedAccess">
     <xsl:with-param name="type" select="@vx-type"/>
   </xsl:call-template>
-  <xsl:text> &lt; 0) goto label</xsl:text>
-  <xsl:value-of select="@target"/>
+  <xsl:text> &lt; 0) </xsl:text>
+  <xsl:call-template name="emitGoto"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -3371,8 +3371,8 @@ int main(int argc, char* argv[])
   <xsl:call-template name="emitTypedAccess">
     <xsl:with-param name="type" select="@vx-type"/>
   </xsl:call-template>
-  <xsl:text> &lt;= 0) goto label</xsl:text>
-  <xsl:value-of select="@target"/>
+  <xsl:text> &lt;= 0) </xsl:text>
+  <xsl:call-template name="emitGoto"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -3384,8 +3384,8 @@ int main(int argc, char* argv[])
   <xsl:call-template name="emitTypedAccess">
     <xsl:with-param name="type" select="@vx-type"/>
   </xsl:call-template>
-  <xsl:text> &gt; 0) goto label</xsl:text>
-  <xsl:value-of select="@target"/>
+  <xsl:text> &gt; 0) </xsl:text>
+  <xsl:call-template name="emitGoto"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -3402,8 +3402,8 @@ int main(int argc, char* argv[])
   <xsl:call-template name="emitTypedAccess">
     <xsl:with-param name="type" select="@vy-type"/>
   </xsl:call-template>
-  <xsl:text>) goto label</xsl:text>
-  <xsl:value-of select="@target"/>
+  <xsl:text>) </xsl:text>
+  <xsl:call-template name="emitGoto"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -3420,8 +3420,8 @@ int main(int argc, char* argv[])
   <xsl:call-template name="emitTypedAccess">
     <xsl:with-param name="type" select="@vy-type"/>
   </xsl:call-template>
-  <xsl:text>) goto label</xsl:text>
-  <xsl:value-of select="@target"/>
+  <xsl:text>) </xsl:text>
+  <xsl:call-template name="emitGoto"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -3438,8 +3438,8 @@ int main(int argc, char* argv[])
   <xsl:call-template name="emitTypedAccess">
     <xsl:with-param name="type" select="@vy-type"/>
   </xsl:call-template>
-  <xsl:text>) goto label</xsl:text>
-  <xsl:value-of select="@target"/>
+  <xsl:text>) </xsl:text>
+  <xsl:call-template name="emitGoto"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -3456,8 +3456,8 @@ int main(int argc, char* argv[])
   <xsl:call-template name="emitTypedAccess">
     <xsl:with-param name="type" select="@vy-type"/>
   </xsl:call-template>
-  <xsl:text>) goto label</xsl:text>
-  <xsl:value-of select="@target"/>
+  <xsl:text>) </xsl:text>
+  <xsl:call-template name="emitGoto"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -3474,8 +3474,8 @@ int main(int argc, char* argv[])
   <xsl:call-template name="emitTypedAccess">
     <xsl:with-param name="type" select="@vy-type"/>
   </xsl:call-template>
-  <xsl:text>) goto label</xsl:text>
-  <xsl:value-of select="@target"/>
+  <xsl:text>) </xsl:text>
+  <xsl:call-template name="emitGoto"/>
   <xsl:text>;
 </xsl:text>
 </xsl:template>
@@ -3492,10 +3492,31 @@ int main(int argc, char* argv[])
   <xsl:call-template name="emitTypedAccess">
     <xsl:with-param name="type" select="@vy-type"/>
   </xsl:call-template>
-  <xsl:text>) goto label</xsl:text>
-  <xsl:value-of select="@target"/>
+  <xsl:text>) </xsl:text>
+  <xsl:call-template name="emitGoto"/>
   <xsl:text>;
 </xsl:text>
+</xsl:template>
+
+
+<xsl:template name="emitGoto">
+  <xsl:variable name="target" select="@target"/>
+  <xsl:choose>
+    <xsl:when test="ancestor::dex:try-catch and not(ancestor::dex:label[@id = $target])">
+      <!-- The goto happens within a try-catch block and is trying to jump outside the
+           try-catch block. We first have to restore the exception handling context -->
+      <xsl:text>{ XMLVM_MEMCPY(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_, local_env_</xsl:text>
+      <xsl:value-of select="generate-id(ancestor::dex:try-catch)"/>
+      <xsl:text>, sizeof(XMLVM_JMP_BUF)); </xsl:text>
+      <xsl:text>goto label</xsl:text>
+      <xsl:value-of select="@target"/>
+      <xsl:text>; }</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>goto label</xsl:text>
+      <xsl:value-of select="@target"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 
