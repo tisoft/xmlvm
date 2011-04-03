@@ -21,6 +21,8 @@
 package android.view;
 
 import java.lang.ref.WeakReference;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Set;
 
 import org.xmlvm.iphone.CGPoint;
@@ -327,10 +329,10 @@ public class View {
         viewHandler.setNeedsDisplay();
     }
 
-    public void invalidate (int l, int t, int r, int b) {
+    public void invalidate(int l, int t, int r, int b) {
         Assert.NOT_IMPLEMENTED();
     }
-    
+
     public void setLayoutParams(ViewGroup.LayoutParams l) {
         layoutParams = l;
     }
@@ -453,6 +455,18 @@ public class View {
                 .getAttributeValue(null, "minWidth"), metrics);
         setMinimumWidth(d);
 
+        // Set onClick callback method
+        String callbackName = attrs.getAttributeValue(null, "onClick");
+        if (callbackName != null) {
+            try {
+                InternalOnClickListener l = new InternalOnClickListener(getContext());
+                l.setCallback(callbackName);
+                setOnClickListener(l);
+            } catch (NoSuchMethodException e) {
+                // Ignore non-existent callback name
+            }
+        }
+        
         setIgnoreRequestLayout(false);
     }
 
@@ -499,7 +513,7 @@ public class View {
         requestLayout();
     }
 
-    public void setBackgroundColor(int color) {        
+    public void setBackgroundColor(int color) {
         viewHandler.setBackgroundColor(xmlvmConvertIntToUIColor(color));
     }
 
@@ -993,12 +1007,44 @@ public class View {
     protected OnClickListener getOnClickListener() {
         return this.onClickListener;
     }
-    
+
     protected UIColor xmlvmConvertIntToUIColor(int color) {
         float alpha = (float) (((color >> 24) & 0xff) / 255.0f);
         float red = (float) (((color >> 16) & 0xff) / 255.0f);
         float green = (float) (((color >> 8) & 0xff) / 255.0f);
         float blue = (float) ((color & 0xff) / 255.0f);
         return UIColor.colorWithRGBA(red, green, blue, alpha);
+    }
+
+
+    private static class InternalOnClickListener implements OnClickListener {
+        private Object target;
+        private Method m;
+
+        private InternalOnClickListener(Object target) {
+            this.target = target;
+        }
+        
+        private void setCallback(String methodName) throws NoSuchMethodException {
+            m = target.getClass().getDeclaredMethod(methodName, View.class);
+        }
+
+        @Override
+        public void onClick(View view) {
+            try {
+                m.invoke(target, view);
+            } catch (IllegalArgumentException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            // TODO Auto-generated method stub
+
+        }
     }
 }
