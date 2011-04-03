@@ -171,13 +171,15 @@ void __INIT_IMPL_org_xmlvm_iphone_NSCalendar()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSCalendar.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_NSCalendar.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSCalendar_components___int_org_xmlvm_iphone_NSDate;
-        __TIB_org_xmlvm_iphone_NSCalendar.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSCalendar_components___int_org_xmlvm_iphone_NSDate_org_xmlvm_iphone_NSData_int;
-        __TIB_org_xmlvm_iphone_NSCalendar.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSCalendar_dateByAddingComponents___org_xmlvm_iphone_NSDateComponents_org_xmlvm_iphone_NSDate_int;
-        __TIB_org_xmlvm_iphone_NSCalendar.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSCalendar_dateFromComponents___org_xmlvm_iphone_NSDateComponents;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_NSCalendar.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSCalendar_components___int_org_xmlvm_iphone_NSDate;
+        __TIB_org_xmlvm_iphone_NSCalendar.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_NSCalendar_components___int_org_xmlvm_iphone_NSDate_org_xmlvm_iphone_NSData_int;
+        __TIB_org_xmlvm_iphone_NSCalendar.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSCalendar_dateByAddingComponents___org_xmlvm_iphone_NSDateComponents_org_xmlvm_iphone_NSDate_int;
+        __TIB_org_xmlvm_iphone_NSCalendar.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_NSCalendar_dateFromComponents___org_xmlvm_iphone_NSDateComponents;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_NSCalendar.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_NSCalendar.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_NSCalendar.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_NSCalendar.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

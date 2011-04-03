@@ -222,16 +222,18 @@ void __INIT_IMPL_org_xmlvm_iphone_CLLocationManagerDelegate()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManagerDelegate_didUpdateToLocation___org_xmlvm_iphone_CLLocationManager_org_xmlvm_iphone_CLLocation_org_xmlvm_iphone_CLLocation;
-        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManagerDelegate_didFailWithError___org_xmlvm_iphone_CLLocationManager_org_xmlvm_iphone_NSError;
-        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManagerDelegate_didUpdateHeading___org_xmlvm_iphone_CLLocationManager_org_xmlvm_iphone_CLHeading;
-        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManagerDelegate_locationManagerShouldDisplayHeadingCalibration___org_xmlvm_iphone_CLLocationManager;
-        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManagerDelegate_didEnterRegion___org_xmlvm_iphone_CLLocationManager_org_xmlvm_iphone_CLRegion;
-        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManagerDelegate_didExitRegion___org_xmlvm_iphone_CLLocationManager_org_xmlvm_iphone_CLRegion;
-        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManagerDelegate_monitoringDidFailForRegion___org_xmlvm_iphone_CLLocationManager_org_xmlvm_iphone_CLRegion_org_xmlvm_iphone_NSError;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManagerDelegate_didUpdateToLocation___org_xmlvm_iphone_CLLocationManager_org_xmlvm_iphone_CLLocation_org_xmlvm_iphone_CLLocation;
+        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManagerDelegate_didFailWithError___org_xmlvm_iphone_CLLocationManager_org_xmlvm_iphone_NSError;
+        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManagerDelegate_didUpdateHeading___org_xmlvm_iphone_CLLocationManager_org_xmlvm_iphone_CLHeading;
+        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManagerDelegate_locationManagerShouldDisplayHeadingCalibration___org_xmlvm_iphone_CLLocationManager;
+        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManagerDelegate_didEnterRegion___org_xmlvm_iphone_CLLocationManager_org_xmlvm_iphone_CLRegion;
+        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManagerDelegate_didExitRegion___org_xmlvm_iphone_CLLocationManager_org_xmlvm_iphone_CLRegion;
+        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocationManagerDelegate_monitoringDidFailForRegion___org_xmlvm_iphone_CLLocationManager_org_xmlvm_iphone_CLRegion_org_xmlvm_iphone_NSError;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

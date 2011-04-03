@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.UIViewContentMode
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewContentMode, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewContentMode, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIViewContentMode)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_UIViewContentMode {
 typedef struct org_xmlvm_iphone_UIViewContentMode org_xmlvm_iphone_UIViewContentMode;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewContentMode 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewContentMode 6
 
 void __INIT_org_xmlvm_iphone_UIViewContentMode();
 void __INIT_IMPL_org_xmlvm_iphone_UIViewContentMode();

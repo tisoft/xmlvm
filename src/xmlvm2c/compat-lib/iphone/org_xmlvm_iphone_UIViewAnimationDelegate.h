@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.UIViewAnimationDelegate
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewAnimationDelegate, 16)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewAnimationDelegate, 11, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIViewAnimationDelegate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationDelegate_3ARRAY;
@@ -42,9 +42,9 @@ struct org_xmlvm_iphone_UIViewAnimationDelegate {
 typedef struct org_xmlvm_iphone_UIViewAnimationDelegate org_xmlvm_iphone_UIViewAnimationDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewAnimationDelegate 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewAnimationDelegate_animationWillStart___java_lang_String 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewAnimationDelegate_animationDidStop___java_lang_String_boolean 15
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewAnimationDelegate 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewAnimationDelegate_animationWillStart___java_lang_String 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewAnimationDelegate_animationDidStop___java_lang_String_boolean 10
 
 void __INIT_org_xmlvm_iphone_UIViewAnimationDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_UIViewAnimationDelegate();
@@ -53,9 +53,9 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewAnimationDelegate(JAVA_OBJEC
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewAnimationDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewAnimationDelegate();
 void org_xmlvm_iphone_UIViewAnimationDelegate___INIT___(JAVA_OBJECT me);
-// Vtable index: 14
+// Vtable index: 9
 void org_xmlvm_iphone_UIViewAnimationDelegate_animationWillStart___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 15
+// Vtable index: 10
 void org_xmlvm_iphone_UIViewAnimationDelegate_animationDidStop___java_lang_String_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
 
 #endif

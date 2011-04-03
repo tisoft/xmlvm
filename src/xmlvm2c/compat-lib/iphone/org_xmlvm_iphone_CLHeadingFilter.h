@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.CLHeadingFilter
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLHeadingFilter, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLHeadingFilter, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CLHeadingFilter)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLHeadingFilter;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLHeadingFilter_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_CLHeadingFilter {
 typedef struct org_xmlvm_iphone_CLHeadingFilter org_xmlvm_iphone_CLHeadingFilter;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CLHeadingFilter 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CLHeadingFilter 6
 
 void __INIT_org_xmlvm_iphone_CLHeadingFilter();
 void __INIT_IMPL_org_xmlvm_iphone_CLHeadingFilter();

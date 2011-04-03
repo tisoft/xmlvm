@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAccelerometerDelegate)
 #endif
 // Class declarations for org.xmlvm.iphone.UIAccelerometer
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAccelerometer, 16)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAccelerometer, 11, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIAccelerometer)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometer;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometer_3ARRAY;
@@ -46,9 +46,9 @@ struct org_xmlvm_iphone_UIAccelerometer {
 typedef struct org_xmlvm_iphone_UIAccelerometer org_xmlvm_iphone_UIAccelerometer;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIAccelerometer 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAccelerometer_setUpdateInterval___double 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate 15
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIAccelerometer 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAccelerometer_setUpdateInterval___double 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate 10
 
 void __INIT_org_xmlvm_iphone_UIAccelerometer();
 void __INIT_IMPL_org_xmlvm_iphone_UIAccelerometer();
@@ -57,9 +57,9 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAccelerometer(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAccelerometer();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAccelerometer();
 JAVA_OBJECT org_xmlvm_iphone_UIAccelerometer_sharedAccelerometer__();
-// Vtable index: 14
+// Vtable index: 9
 void org_xmlvm_iphone_UIAccelerometer_setUpdateInterval___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
-// Vtable index: 15
+// Vtable index: 10
 void org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UIAccelerometer___CLINIT_();
 

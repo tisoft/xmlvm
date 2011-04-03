@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.UIDatePickerMode
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIDatePickerMode, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIDatePickerMode, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIDatePickerMode)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePickerMode;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePickerMode_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_UIDatePickerMode {
 typedef struct org_xmlvm_iphone_UIDatePickerMode org_xmlvm_iphone_UIDatePickerMode;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIDatePickerMode 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIDatePickerMode 6
 
 void __INIT_org_xmlvm_iphone_UIDatePickerMode();
 void __INIT_IMPL_org_xmlvm_iphone_UIDatePickerMode();

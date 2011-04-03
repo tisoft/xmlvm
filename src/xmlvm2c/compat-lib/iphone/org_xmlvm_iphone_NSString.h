@@ -34,7 +34,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.NSString
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSString, 14)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSString, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSString)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString_3ARRAY;
@@ -67,7 +67,7 @@ struct org_xmlvm_iphone_NSString {
 typedef struct org_xmlvm_iphone_NSString org_xmlvm_iphone_NSString;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSString 14
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSString 9
 
 void __INIT_org_xmlvm_iphone_NSString();
 void __INIT_IMPL_org_xmlvm_iphone_NSString();

@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 #endif
 // Class declarations for org.xmlvm.iphone.MPMoviePlayerController
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MPMoviePlayerController, 25)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MPMoviePlayerController, 20, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MPMoviePlayerController)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPMoviePlayerController;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPMoviePlayerController_3ARRAY;
@@ -46,18 +46,18 @@ struct org_xmlvm_iphone_MPMoviePlayerController {
 typedef struct org_xmlvm_iphone_MPMoviePlayerController org_xmlvm_iphone_MPMoviePlayerController;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MPMoviePlayerController 25
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_play__ 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_stop__ 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_getContentURL__ 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_getBackgroundColor__ 17
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_setBackgroundColor___org_xmlvm_iphone_UIColor 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_getInitialPlaybackTime__ 19
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_setInitialPlaybackTime___double 20
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_getScalingMode__ 21
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_setScalingMode___int 22
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_getMovieControlMode__ 23
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_setMovieControlMode___int 24
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MPMoviePlayerController 20
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_play__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_stop__ 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_getContentURL__ 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_getBackgroundColor__ 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_setBackgroundColor___org_xmlvm_iphone_UIColor 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_getInitialPlaybackTime__ 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_setInitialPlaybackTime___double 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_getScalingMode__ 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_setScalingMode___int 17
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_getMovieControlMode__ 18
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MPMoviePlayerController_setMovieControlMode___int 19
 
 void __INIT_org_xmlvm_iphone_MPMoviePlayerController();
 void __INIT_IMPL_org_xmlvm_iphone_MPMoviePlayerController();
@@ -66,27 +66,27 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMoviePlayerController(JAVA_OBJEC
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MPMoviePlayerController();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MPMoviePlayerController();
 JAVA_OBJECT org_xmlvm_iphone_MPMoviePlayerController_initWithContentURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1);
-// Vtable index: 14
+// Vtable index: 9
 void org_xmlvm_iphone_MPMoviePlayerController_play__(JAVA_OBJECT me);
-// Vtable index: 15
+// Vtable index: 10
 void org_xmlvm_iphone_MPMoviePlayerController_stop__(JAVA_OBJECT me);
-// Vtable index: 16
+// Vtable index: 11
 JAVA_OBJECT org_xmlvm_iphone_MPMoviePlayerController_getContentURL__(JAVA_OBJECT me);
-// Vtable index: 17
+// Vtable index: 12
 JAVA_OBJECT org_xmlvm_iphone_MPMoviePlayerController_getBackgroundColor__(JAVA_OBJECT me);
-// Vtable index: 18
+// Vtable index: 13
 void org_xmlvm_iphone_MPMoviePlayerController_setBackgroundColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 19
+// Vtable index: 14
 JAVA_DOUBLE org_xmlvm_iphone_MPMoviePlayerController_getInitialPlaybackTime__(JAVA_OBJECT me);
-// Vtable index: 20
+// Vtable index: 15
 void org_xmlvm_iphone_MPMoviePlayerController_setInitialPlaybackTime___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
-// Vtable index: 21
+// Vtable index: 16
 JAVA_INT org_xmlvm_iphone_MPMoviePlayerController_getScalingMode__(JAVA_OBJECT me);
-// Vtable index: 22
+// Vtable index: 17
 void org_xmlvm_iphone_MPMoviePlayerController_setScalingMode___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 23
+// Vtable index: 18
 JAVA_INT org_xmlvm_iphone_MPMoviePlayerController_getMovieControlMode__(JAVA_OBJECT me);
-// Vtable index: 24
+// Vtable index: 19
 void org_xmlvm_iphone_MPMoviePlayerController_setMovieControlMode___int(JAVA_OBJECT me, JAVA_INT n1);
 
 #endif

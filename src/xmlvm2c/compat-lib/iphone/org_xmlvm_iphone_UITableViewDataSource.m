@@ -208,12 +208,14 @@ void __INIT_IMPL_org_xmlvm_iphone_UITableViewDataSource()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITableViewDataSource.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UITableViewDataSource.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDataSource_numberOfSectionsInTableView___org_xmlvm_iphone_UITableView;
-        __TIB_org_xmlvm_iphone_UITableViewDataSource.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDataSource_titleForHeaderInSection___org_xmlvm_iphone_UITableView_int;
-        __TIB_org_xmlvm_iphone_UITableViewDataSource.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UITableViewDataSource.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDataSource_numberOfSectionsInTableView___org_xmlvm_iphone_UITableView;
+        __TIB_org_xmlvm_iphone_UITableViewDataSource.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDataSource_titleForHeaderInSection___org_xmlvm_iphone_UITableView_int;
+        __TIB_org_xmlvm_iphone_UITableViewDataSource.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UITableViewDataSource.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UITableViewDataSource.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_UITableViewDataSource.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UITableViewDataSource.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

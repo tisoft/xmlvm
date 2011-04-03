@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(java_lang_Class)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.UIApplication
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIApplication, 37)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIApplication, 32, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIApplication)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_3ARRAY;
@@ -58,23 +58,23 @@ struct org_xmlvm_iphone_UIApplication {
 typedef struct org_xmlvm_iphone_UIApplication org_xmlvm_iphone_UIApplication;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIApplication 37
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_getDelegate__ 21
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setDelegate___org_xmlvm_iphone_UIApplicationDelegate 22
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setIdleTimerDisabled___boolean 23
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_isIdleTimerDisabled__ 24
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setKeyWindow___org_xmlvm_iphone_UIWindow 25
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_getKeyWindow__ 26
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_getWindows__ 27
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setStatusBarOrientation___int 28
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean 29
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean_boolean 30
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_getStatusBarStyle__ 31
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setStatusBarStyle___int 32
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setStatusBarStyle___int_boolean 33
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_isNetworkActivityIndicatorVisible__ 34
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setNetworkActivityIndicatorVisible___boolean 35
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL 36
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIApplication 32
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_getDelegate__ 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setDelegate___org_xmlvm_iphone_UIApplicationDelegate 17
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setIdleTimerDisabled___boolean 18
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_isIdleTimerDisabled__ 19
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setKeyWindow___org_xmlvm_iphone_UIWindow 20
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_getKeyWindow__ 21
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_getWindows__ 22
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setStatusBarOrientation___int 23
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean 24
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean_boolean 25
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_getStatusBarStyle__ 26
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setStatusBarStyle___int 27
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setStatusBarStyle___int_boolean 28
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_isNetworkActivityIndicatorVisible__ 29
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_setNetworkActivityIndicatorVisible___boolean 30
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL 31
 
 void __INIT_org_xmlvm_iphone_UIApplication();
 void __INIT_IMPL_org_xmlvm_iphone_UIApplication();
@@ -84,37 +84,37 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIApplication();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIApplication();
 void org_xmlvm_iphone_UIApplication___INIT___(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UIApplication_sharedApplication__();
-// Vtable index: 21
+// Vtable index: 16
 JAVA_OBJECT org_xmlvm_iphone_UIApplication_getDelegate__(JAVA_OBJECT me);
-// Vtable index: 22
+// Vtable index: 17
 void org_xmlvm_iphone_UIApplication_setDelegate___org_xmlvm_iphone_UIApplicationDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 23
+// Vtable index: 18
 void org_xmlvm_iphone_UIApplication_setIdleTimerDisabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 24
+// Vtable index: 19
 JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_isIdleTimerDisabled__(JAVA_OBJECT me);
-// Vtable index: 25
+// Vtable index: 20
 void org_xmlvm_iphone_UIApplication_setKeyWindow___org_xmlvm_iphone_UIWindow(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 26
+// Vtable index: 21
 JAVA_OBJECT org_xmlvm_iphone_UIApplication_getKeyWindow__(JAVA_OBJECT me);
-// Vtable index: 27
+// Vtable index: 22
 JAVA_OBJECT org_xmlvm_iphone_UIApplication_getWindows__(JAVA_OBJECT me);
-// Vtable index: 28
+// Vtable index: 23
 void org_xmlvm_iphone_UIApplication_setStatusBarOrientation___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 29
+// Vtable index: 24
 void org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 30
+// Vtable index: 25
 void org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean_boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1, JAVA_BOOLEAN n2);
-// Vtable index: 31
+// Vtable index: 26
 JAVA_INT org_xmlvm_iphone_UIApplication_getStatusBarStyle__(JAVA_OBJECT me);
-// Vtable index: 32
+// Vtable index: 27
 void org_xmlvm_iphone_UIApplication_setStatusBarStyle___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 33
+// Vtable index: 28
 void org_xmlvm_iphone_UIApplication_setStatusBarStyle___int_boolean(JAVA_OBJECT me, JAVA_INT n1, JAVA_BOOLEAN n2);
-// Vtable index: 34
+// Vtable index: 29
 JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_isNetworkActivityIndicatorVisible__(JAVA_OBJECT me);
-// Vtable index: 35
+// Vtable index: 30
 void org_xmlvm_iphone_UIApplication_setNetworkActivityIndicatorVisible___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 36
+// Vtable index: 31
 JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UIApplication_main___java_lang_String_1ARRAY_java_lang_Class_java_lang_Class(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
 JAVA_OBJECT org_xmlvm_iphone_UIApplication_access$000__();

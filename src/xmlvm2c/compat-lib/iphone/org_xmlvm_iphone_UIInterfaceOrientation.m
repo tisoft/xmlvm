@@ -115,9 +115,11 @@ void __INIT_IMPL_org_xmlvm_iphone_UIInterfaceOrientation()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIInterfaceOrientation.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
         // Initialize vtable for this class
-        // Initialize vtable for implementing interfaces
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UIInterfaceOrientation.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIInterfaceOrientation.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
         _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_Portrait = 1;
         _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_PortraitUpsideDown = 2;
         _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_LandscapeLeft = 3;

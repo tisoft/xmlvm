@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocation)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
 #endif
 // Class declarations for org.xmlvm.iphone.CLLocation
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLLocation, 22)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLLocation, 17, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CLLocation)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocation;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocation_3ARRAY;
@@ -50,15 +50,15 @@ struct org_xmlvm_iphone_CLLocation {
 typedef struct org_xmlvm_iphone_CLLocation org_xmlvm_iphone_CLLocation;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CLLocation 22
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_getAltitude__ 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_getCoordinate__ 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_getCourse__ 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_getHorizontalAccuracy__ 17
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_getSpeed__ 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_getTimestamp__ 19
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_getVerticalAccuracy__ 20
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_distanceFromLocation___org_xmlvm_iphone_CLLocation 21
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CLLocation 17
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_getAltitude__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_getCoordinate__ 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_getCourse__ 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_getHorizontalAccuracy__ 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_getSpeed__ 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_getTimestamp__ 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_getVerticalAccuracy__ 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLLocation_distanceFromLocation___org_xmlvm_iphone_CLLocation 16
 
 void __INIT_org_xmlvm_iphone_CLLocation();
 void __INIT_IMPL_org_xmlvm_iphone_CLLocation();
@@ -68,21 +68,21 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_CLLocation();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CLLocation();
 void org_xmlvm_iphone_CLLocation___INIT____double_double(JAVA_OBJECT me, JAVA_DOUBLE n1, JAVA_DOUBLE n2);
 void org_xmlvm_iphone_CLLocation___INIT____org_xmlvm_iphone_CLLocationCoordinate2D_double_double_double_org_xmlvm_iphone_NSDate(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_DOUBLE n2, JAVA_DOUBLE n3, JAVA_DOUBLE n4, JAVA_OBJECT n5);
-// Vtable index: 14
+// Vtable index: 9
 JAVA_DOUBLE org_xmlvm_iphone_CLLocation_getAltitude__(JAVA_OBJECT me);
-// Vtable index: 15
+// Vtable index: 10
 JAVA_OBJECT org_xmlvm_iphone_CLLocation_getCoordinate__(JAVA_OBJECT me);
-// Vtable index: 16
+// Vtable index: 11
 JAVA_DOUBLE org_xmlvm_iphone_CLLocation_getCourse__(JAVA_OBJECT me);
-// Vtable index: 17
+// Vtable index: 12
 JAVA_DOUBLE org_xmlvm_iphone_CLLocation_getHorizontalAccuracy__(JAVA_OBJECT me);
-// Vtable index: 18
+// Vtable index: 13
 JAVA_DOUBLE org_xmlvm_iphone_CLLocation_getSpeed__(JAVA_OBJECT me);
-// Vtable index: 19
+// Vtable index: 14
 JAVA_OBJECT org_xmlvm_iphone_CLLocation_getTimestamp__(JAVA_OBJECT me);
-// Vtable index: 20
+// Vtable index: 15
 JAVA_DOUBLE org_xmlvm_iphone_CLLocation_getVerticalAccuracy__(JAVA_OBJECT me);
-// Vtable index: 21
+// Vtable index: 16
 JAVA_DOUBLE org_xmlvm_iphone_CLLocation_distanceFromLocation___org_xmlvm_iphone_CLLocation(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

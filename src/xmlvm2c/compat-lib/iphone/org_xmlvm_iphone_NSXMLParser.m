@@ -193,15 +193,17 @@ void __INIT_IMPL_org_xmlvm_iphone_NSXMLParser()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSXMLParser.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_NSXMLParser.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSXMLParser_setDelegate___org_xmlvm_iphone_NSXMLParserDelegate;
-        __TIB_org_xmlvm_iphone_NSXMLParser.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSXMLParser_setShouldProcessNamespaces___boolean;
-        __TIB_org_xmlvm_iphone_NSXMLParser.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSXMLParser_shouldProcessNamespaces__;
-        __TIB_org_xmlvm_iphone_NSXMLParser.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSXMLParser_setShouldReportNamespacePrefixes___boolean;
-        __TIB_org_xmlvm_iphone_NSXMLParser.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_NSXMLParser_shouldReportNamespacePrefixes__;
-        __TIB_org_xmlvm_iphone_NSXMLParser.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_NSXMLParser_parse__;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_NSXMLParser.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSXMLParser_setDelegate___org_xmlvm_iphone_NSXMLParserDelegate;
+        __TIB_org_xmlvm_iphone_NSXMLParser.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_NSXMLParser_setShouldProcessNamespaces___boolean;
+        __TIB_org_xmlvm_iphone_NSXMLParser.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSXMLParser_shouldProcessNamespaces__;
+        __TIB_org_xmlvm_iphone_NSXMLParser.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_NSXMLParser_setShouldReportNamespacePrefixes___boolean;
+        __TIB_org_xmlvm_iphone_NSXMLParser.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_NSXMLParser_shouldReportNamespacePrefixes__;
+        __TIB_org_xmlvm_iphone_NSXMLParser.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSXMLParser_parse__;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_NSXMLParser.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_NSXMLParser.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_NSXMLParser.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_NSXMLParser.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

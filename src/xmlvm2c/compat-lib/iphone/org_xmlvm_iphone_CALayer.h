@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 #endif
 // Class declarations for org.xmlvm.iphone.CALayer
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CALayer, 24)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CALayer, 19, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CALayer)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer_3ARRAY;
@@ -58,17 +58,17 @@ struct org_xmlvm_iphone_CALayer {
 typedef struct org_xmlvm_iphone_CALayer org_xmlvm_iphone_CALayer;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CALayer 24
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_addAnimation___org_xmlvm_iphone_CAAnimation_java_lang_String 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_animationForKey___java_lang_String 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_removeAllAnimations__ 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_removeAnimationForKey___java_lang_String 17
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_animationKeys__ 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_renderInContext___org_xmlvm_iphone_CGContext 19
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_getDelegate__ 20
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView 21
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_getAnchorPoint__ 22
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint 23
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CALayer 19
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_addAnimation___org_xmlvm_iphone_CAAnimation_java_lang_String 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_animationForKey___java_lang_String 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_removeAllAnimations__ 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_removeAnimationForKey___java_lang_String 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_animationKeys__ 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_renderInContext___org_xmlvm_iphone_CGContext 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_getDelegate__ 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_getAnchorPoint__ 17
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint 18
 
 void __INIT_org_xmlvm_iphone_CALayer();
 void __INIT_IMPL_org_xmlvm_iphone_CALayer();
@@ -78,25 +78,25 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_CALayer();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CALayer();
 JAVA_OBJECT org_xmlvm_iphone_CALayer_layer__();
 void org_xmlvm_iphone_CALayer___INIT___(JAVA_OBJECT me);
-// Vtable index: 14
+// Vtable index: 9
 void org_xmlvm_iphone_CALayer_addAnimation___org_xmlvm_iphone_CAAnimation_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 15
+// Vtable index: 10
 JAVA_OBJECT org_xmlvm_iphone_CALayer_animationForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 16
+// Vtable index: 11
 void org_xmlvm_iphone_CALayer_removeAllAnimations__(JAVA_OBJECT me);
-// Vtable index: 17
+// Vtable index: 12
 void org_xmlvm_iphone_CALayer_removeAnimationForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 18
+// Vtable index: 13
 JAVA_OBJECT org_xmlvm_iphone_CALayer_animationKeys__(JAVA_OBJECT me);
-// Vtable index: 19
+// Vtable index: 14
 void org_xmlvm_iphone_CALayer_renderInContext___org_xmlvm_iphone_CGContext(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 20
+// Vtable index: 15
 JAVA_OBJECT org_xmlvm_iphone_CALayer_getDelegate__(JAVA_OBJECT me);
-// Vtable index: 21
+// Vtable index: 16
 void org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 22
+// Vtable index: 17
 JAVA_OBJECT org_xmlvm_iphone_CALayer_getAnchorPoint__(JAVA_OBJECT me);
-// Vtable index: 23
+// Vtable index: 18
 void org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

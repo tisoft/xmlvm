@@ -270,20 +270,22 @@ void __INIT_IMPL_org_xmlvm_iphone_MPMoviePlayerController()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_play__;
-        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_stop__;
-        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_getContentURL__;
-        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_getBackgroundColor__;
-        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_setBackgroundColor___org_xmlvm_iphone_UIColor;
-        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_getInitialPlaybackTime__;
-        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_setInitialPlaybackTime___double;
-        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_getScalingMode__;
-        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_setScalingMode___int;
-        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_getMovieControlMode__;
-        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_setMovieControlMode___int;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_play__;
+        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_stop__;
+        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_getContentURL__;
+        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_getBackgroundColor__;
+        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_setBackgroundColor___org_xmlvm_iphone_UIColor;
+        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_getInitialPlaybackTime__;
+        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_setInitialPlaybackTime___double;
+        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_getScalingMode__;
+        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_setScalingMode___int;
+        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_getMovieControlMode__;
+        __TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_MPMoviePlayerController_setMovieControlMode___int;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_MPMoviePlayerController.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_MPMoviePlayerController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_MPMoviePlayerController.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_MPMoviePlayerController.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

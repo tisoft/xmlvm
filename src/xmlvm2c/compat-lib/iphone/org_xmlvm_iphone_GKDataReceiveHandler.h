@@ -26,7 +26,7 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.GKDataReceiveHandler
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_GKDataReceiveHandler, 15)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_GKDataReceiveHandler, 10, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_GKDataReceiveHandler)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKDataReceiveHandler;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKDataReceiveHandler_3ARRAY;
@@ -54,8 +54,8 @@ struct org_xmlvm_iphone_GKDataReceiveHandler {
 typedef struct org_xmlvm_iphone_GKDataReceiveHandler org_xmlvm_iphone_GKDataReceiveHandler;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_GKDataReceiveHandler 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKDataReceiveHandler_receiveData___org_xmlvm_iphone_NSData_java_lang_String_org_xmlvm_iphone_GKSession_java_lang_Object 14
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_GKDataReceiveHandler 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKDataReceiveHandler_receiveData___org_xmlvm_iphone_NSData_java_lang_String_org_xmlvm_iphone_GKSession_java_lang_Object 9
 
 void __INIT_org_xmlvm_iphone_GKDataReceiveHandler();
 void __INIT_IMPL_org_xmlvm_iphone_GKDataReceiveHandler();
@@ -64,7 +64,7 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKDataReceiveHandler(JAVA_OBJECT m
 JAVA_OBJECT __NEW_org_xmlvm_iphone_GKDataReceiveHandler();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_GKDataReceiveHandler();
 void org_xmlvm_iphone_GKDataReceiveHandler___INIT___(JAVA_OBJECT me);
-// Vtable index: 14
+// Vtable index: 9
 void org_xmlvm_iphone_GKDataReceiveHandler_receiveData___org_xmlvm_iphone_NSData_java_lang_String_org_xmlvm_iphone_GKSession_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4);
 
 #endif

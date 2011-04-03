@@ -302,22 +302,24 @@ void __INIT_IMPL_org_xmlvm_iphone_UIBarItem()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIBarItem.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIBarItem.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getBar__;
-        __TIB_org_xmlvm_iphone_UIBarItem.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setBar___org_xmlvm_iphone_UIView;
-        __TIB_org_xmlvm_iphone_UIBarItem.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_isEnabled__;
-        __TIB_org_xmlvm_iphone_UIBarItem.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setEnabled___boolean;
-        __TIB_org_xmlvm_iphone_UIBarItem.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getImage__;
-        __TIB_org_xmlvm_iphone_UIBarItem.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setImage___org_xmlvm_iphone_UIImage;
-        __TIB_org_xmlvm_iphone_UIBarItem.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getImageInsets__;
-        __TIB_org_xmlvm_iphone_UIBarItem.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setImageInsets___org_xmlvm_iphone_UIEdgeInsets;
-        __TIB_org_xmlvm_iphone_UIBarItem.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getTitle__;
-        __TIB_org_xmlvm_iphone_UIBarItem.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setTitle___java_lang_String;
-        __TIB_org_xmlvm_iphone_UIBarItem.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getTag__;
-        __TIB_org_xmlvm_iphone_UIBarItem.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setTag___int;
-        __TIB_org_xmlvm_iphone_UIBarItem.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_updateViews__;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getBar__;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setBar___org_xmlvm_iphone_UIView;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_isEnabled__;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setEnabled___boolean;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getImage__;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setImage___org_xmlvm_iphone_UIImage;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getImageInsets__;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setImageInsets___org_xmlvm_iphone_UIEdgeInsets;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getTitle__;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setTitle___java_lang_String;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_getTag__;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_setTag___int;
+        __TIB_org_xmlvm_iphone_UIBarItem.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarItem_updateViews__;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UIBarItem.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIBarItem.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_UIBarItem.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UIBarItem.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

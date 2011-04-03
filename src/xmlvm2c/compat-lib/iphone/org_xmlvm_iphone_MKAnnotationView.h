@@ -31,7 +31,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.MKAnnotationView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKAnnotationView, 98)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKAnnotationView, 93, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKAnnotationView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKAnnotationView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKAnnotationView_3ARRAY;
@@ -59,35 +59,35 @@ struct org_xmlvm_iphone_MKAnnotationView {
 typedef struct org_xmlvm_iphone_MKAnnotationView org_xmlvm_iphone_MKAnnotationView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKAnnotationView 98
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_prepareForReuse__ 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_isEnabled__ 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setEnabled___boolean 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getAnnotation__ 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setAnnotation___org_xmlvm_iphone_MKAnnotation 74
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getCalloutOffset__ 75
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setCalloutOffset___org_xmlvm_iphone_CGPoint 76
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getCenterOffset__ 77
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setCenterOffset___org_xmlvm_iphone_CGPoint 78
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_isHighlighted__ 79
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setHighlighted___boolean 80
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getImage__ 81
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setImage___org_xmlvm_iphone_UIImage 82
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getReuseIdentifier__ 83
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_isSelected__ 84
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setSelected___boolean 85
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setSelected___boolean_boolean 86
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_isCanShowCallout__ 87
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setCanShowCallout___boolean 88
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getLeftCalloutAccessoryView__ 89
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setLeftCalloutAccessoryView___org_xmlvm_iphone_UIView 90
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getRightCalloutAccessoryView__ 91
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setRightCalloutAccessoryView___org_xmlvm_iphone_UIView 92
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getDragState__ 93
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setDragState___int 94
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setDragState___int_boolean 95
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_isDraggable__ 96
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setDraggable___boolean 97
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKAnnotationView 93
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_prepareForReuse__ 65
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_isEnabled__ 66
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setEnabled___boolean 67
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getAnnotation__ 68
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setAnnotation___org_xmlvm_iphone_MKAnnotation 69
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getCalloutOffset__ 70
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setCalloutOffset___org_xmlvm_iphone_CGPoint 71
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getCenterOffset__ 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setCenterOffset___org_xmlvm_iphone_CGPoint 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_isHighlighted__ 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setHighlighted___boolean 75
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getImage__ 76
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setImage___org_xmlvm_iphone_UIImage 77
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getReuseIdentifier__ 78
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_isSelected__ 79
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setSelected___boolean 80
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setSelected___boolean_boolean 81
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_isCanShowCallout__ 82
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setCanShowCallout___boolean 83
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getLeftCalloutAccessoryView__ 84
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setLeftCalloutAccessoryView___org_xmlvm_iphone_UIView 85
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getRightCalloutAccessoryView__ 86
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setRightCalloutAccessoryView___org_xmlvm_iphone_UIView 87
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_getDragState__ 88
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setDragState___int 89
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setDragState___int_boolean 90
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_isDraggable__ 91
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotationView_setDraggable___boolean 92
 
 void __INIT_org_xmlvm_iphone_MKAnnotationView();
 void __INIT_IMPL_org_xmlvm_iphone_MKAnnotationView();
@@ -96,61 +96,61 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKAnnotationView(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKAnnotationView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKAnnotationView();
 void org_xmlvm_iphone_MKAnnotationView___INIT____org_xmlvm_iphone_MKAnnotation_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 70
+// Vtable index: 65
 void org_xmlvm_iphone_MKAnnotationView_prepareForReuse__(JAVA_OBJECT me);
-// Vtable index: 71
+// Vtable index: 66
 JAVA_BOOLEAN org_xmlvm_iphone_MKAnnotationView_isEnabled__(JAVA_OBJECT me);
-// Vtable index: 72
+// Vtable index: 67
 void org_xmlvm_iphone_MKAnnotationView_setEnabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 73
+// Vtable index: 68
 JAVA_OBJECT org_xmlvm_iphone_MKAnnotationView_getAnnotation__(JAVA_OBJECT me);
-// Vtable index: 74
+// Vtable index: 69
 void org_xmlvm_iphone_MKAnnotationView_setAnnotation___org_xmlvm_iphone_MKAnnotation(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 75
+// Vtable index: 70
 JAVA_OBJECT org_xmlvm_iphone_MKAnnotationView_getCalloutOffset__(JAVA_OBJECT me);
-// Vtable index: 76
+// Vtable index: 71
 void org_xmlvm_iphone_MKAnnotationView_setCalloutOffset___org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 77
+// Vtable index: 72
 JAVA_OBJECT org_xmlvm_iphone_MKAnnotationView_getCenterOffset__(JAVA_OBJECT me);
-// Vtable index: 78
+// Vtable index: 73
 void org_xmlvm_iphone_MKAnnotationView_setCenterOffset___org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 79
+// Vtable index: 74
 JAVA_BOOLEAN org_xmlvm_iphone_MKAnnotationView_isHighlighted__(JAVA_OBJECT me);
-// Vtable index: 80
+// Vtable index: 75
 void org_xmlvm_iphone_MKAnnotationView_setHighlighted___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 81
+// Vtable index: 76
 JAVA_OBJECT org_xmlvm_iphone_MKAnnotationView_getImage__(JAVA_OBJECT me);
-// Vtable index: 82
+// Vtable index: 77
 void org_xmlvm_iphone_MKAnnotationView_setImage___org_xmlvm_iphone_UIImage(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 83
+// Vtable index: 78
 JAVA_OBJECT org_xmlvm_iphone_MKAnnotationView_getReuseIdentifier__(JAVA_OBJECT me);
-// Vtable index: 84
+// Vtable index: 79
 JAVA_BOOLEAN org_xmlvm_iphone_MKAnnotationView_isSelected__(JAVA_OBJECT me);
-// Vtable index: 85
+// Vtable index: 80
 void org_xmlvm_iphone_MKAnnotationView_setSelected___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 86
+// Vtable index: 81
 void org_xmlvm_iphone_MKAnnotationView_setSelected___boolean_boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1, JAVA_BOOLEAN n2);
-// Vtable index: 87
+// Vtable index: 82
 JAVA_BOOLEAN org_xmlvm_iphone_MKAnnotationView_isCanShowCallout__(JAVA_OBJECT me);
-// Vtable index: 88
+// Vtable index: 83
 void org_xmlvm_iphone_MKAnnotationView_setCanShowCallout___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 89
+// Vtable index: 84
 JAVA_OBJECT org_xmlvm_iphone_MKAnnotationView_getLeftCalloutAccessoryView__(JAVA_OBJECT me);
-// Vtable index: 90
+// Vtable index: 85
 void org_xmlvm_iphone_MKAnnotationView_setLeftCalloutAccessoryView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 91
+// Vtable index: 86
 JAVA_OBJECT org_xmlvm_iphone_MKAnnotationView_getRightCalloutAccessoryView__(JAVA_OBJECT me);
-// Vtable index: 92
+// Vtable index: 87
 void org_xmlvm_iphone_MKAnnotationView_setRightCalloutAccessoryView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 93
+// Vtable index: 88
 JAVA_INT org_xmlvm_iphone_MKAnnotationView_getDragState__(JAVA_OBJECT me);
-// Vtable index: 94
+// Vtable index: 89
 void org_xmlvm_iphone_MKAnnotationView_setDragState___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 95
+// Vtable index: 90
 void org_xmlvm_iphone_MKAnnotationView_setDragState___int_boolean(JAVA_OBJECT me, JAVA_INT n1, JAVA_BOOLEAN n2);
-// Vtable index: 96
+// Vtable index: 91
 JAVA_BOOLEAN org_xmlvm_iphone_MKAnnotationView_isDraggable__(JAVA_OBJECT me);
-// Vtable index: 97
+// Vtable index: 92
 void org_xmlvm_iphone_MKAnnotationView_setDraggable___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 
 #endif

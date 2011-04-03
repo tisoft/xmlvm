@@ -274,19 +274,21 @@ void __INIT_IMPL_org_xmlvm_iphone_CALayer()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CALayer.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_CALayer.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_addAnimation___org_xmlvm_iphone_CAAnimation_java_lang_String;
-        __TIB_org_xmlvm_iphone_CALayer.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_animationForKey___java_lang_String;
-        __TIB_org_xmlvm_iphone_CALayer.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_removeAllAnimations__;
-        __TIB_org_xmlvm_iphone_CALayer.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_removeAnimationForKey___java_lang_String;
-        __TIB_org_xmlvm_iphone_CALayer.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_animationKeys__;
-        __TIB_org_xmlvm_iphone_CALayer.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_renderInContext___org_xmlvm_iphone_CGContext;
-        __TIB_org_xmlvm_iphone_CALayer.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_getDelegate__;
-        __TIB_org_xmlvm_iphone_CALayer.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView;
-        __TIB_org_xmlvm_iphone_CALayer.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_getAnchorPoint__;
-        __TIB_org_xmlvm_iphone_CALayer.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_CALayer.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_addAnimation___org_xmlvm_iphone_CAAnimation_java_lang_String;
+        __TIB_org_xmlvm_iphone_CALayer.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_animationForKey___java_lang_String;
+        __TIB_org_xmlvm_iphone_CALayer.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_removeAllAnimations__;
+        __TIB_org_xmlvm_iphone_CALayer.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_removeAnimationForKey___java_lang_String;
+        __TIB_org_xmlvm_iphone_CALayer.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_animationKeys__;
+        __TIB_org_xmlvm_iphone_CALayer.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_renderInContext___org_xmlvm_iphone_CGContext;
+        __TIB_org_xmlvm_iphone_CALayer.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_getDelegate__;
+        __TIB_org_xmlvm_iphone_CALayer.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView;
+        __TIB_org_xmlvm_iphone_CALayer.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_getAnchorPoint__;
+        __TIB_org_xmlvm_iphone_CALayer.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_CALayer.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_CALayer.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_CALayer.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_CALayer.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

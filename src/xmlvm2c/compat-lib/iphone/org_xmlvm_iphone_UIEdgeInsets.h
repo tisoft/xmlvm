@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.UIEdgeInsets
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIEdgeInsets, 14)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIEdgeInsets, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIEdgeInsets)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEdgeInsets;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEdgeInsets_3ARRAY;
@@ -42,7 +42,7 @@ struct org_xmlvm_iphone_UIEdgeInsets {
 typedef struct org_xmlvm_iphone_UIEdgeInsets org_xmlvm_iphone_UIEdgeInsets;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIEdgeInsets 14
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIEdgeInsets 9
 
 void __INIT_org_xmlvm_iphone_UIEdgeInsets();
 void __INIT_IMPL_org_xmlvm_iphone_UIEdgeInsets();

@@ -108,9 +108,11 @@ void __INIT_IMPL_org_xmlvm_iphone_NSRange()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSRange.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        // Initialize vtable for implementing interfaces
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_NSRange.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_NSRange.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_NSRange.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_NSRange.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

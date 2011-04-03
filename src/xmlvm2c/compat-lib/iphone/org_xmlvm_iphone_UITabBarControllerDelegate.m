@@ -187,14 +187,16 @@ void __INIT_IMPL_org_xmlvm_iphone_UITabBarControllerDelegate()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITabBarControllerDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UITabBarControllerDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarControllerDelegate_shouldSelectViewController___org_xmlvm_iphone_UITabBarController_org_xmlvm_iphone_UIViewController;
-        __TIB_org_xmlvm_iphone_UITabBarControllerDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarControllerDelegate_didSelectViewController___org_xmlvm_iphone_UITabBarController_org_xmlvm_iphone_UIViewController;
-        __TIB_org_xmlvm_iphone_UITabBarControllerDelegate.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarControllerDelegate_willBeginCustomizingViewControllers___org_xmlvm_iphone_UITabBarController_java_util_ArrayList;
-        __TIB_org_xmlvm_iphone_UITabBarControllerDelegate.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarControllerDelegate_willEndCustomizingViewControllers___org_xmlvm_iphone_UITabBarController_java_util_ArrayList_boolean;
-        __TIB_org_xmlvm_iphone_UITabBarControllerDelegate.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarControllerDelegate_didEndCustomizingViewControllers___org_xmlvm_iphone_UITabBarController_java_util_ArrayList_boolean;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UITabBarControllerDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarControllerDelegate_shouldSelectViewController___org_xmlvm_iphone_UITabBarController_org_xmlvm_iphone_UIViewController;
+        __TIB_org_xmlvm_iphone_UITabBarControllerDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarControllerDelegate_didSelectViewController___org_xmlvm_iphone_UITabBarController_org_xmlvm_iphone_UIViewController;
+        __TIB_org_xmlvm_iphone_UITabBarControllerDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarControllerDelegate_willBeginCustomizingViewControllers___org_xmlvm_iphone_UITabBarController_java_util_ArrayList;
+        __TIB_org_xmlvm_iphone_UITabBarControllerDelegate.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarControllerDelegate_willEndCustomizingViewControllers___org_xmlvm_iphone_UITabBarController_java_util_ArrayList_boolean;
+        __TIB_org_xmlvm_iphone_UITabBarControllerDelegate.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarControllerDelegate_didEndCustomizingViewControllers___org_xmlvm_iphone_UITabBarController_java_util_ArrayList_boolean;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UITabBarControllerDelegate.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UITabBarControllerDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_UITabBarControllerDelegate.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UITabBarControllerDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

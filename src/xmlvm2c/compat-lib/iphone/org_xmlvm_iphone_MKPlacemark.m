@@ -296,22 +296,24 @@ void __INIT_IMPL_org_xmlvm_iphone_MKPlacemark()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKPlacemark.vtable, __TIB_org_xmlvm_iphone_MKAnnotation.vtable, sizeof(__TIB_org_xmlvm_iphone_MKAnnotation.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getAddressDictionary__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getAdministrativeArea__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getCountry__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getCountryCode__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getLocality__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getPostalCode__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getSubAdministrativeArea__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getSubLocality__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getSubThoroughfare__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getThoroughfare__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getCoordinate__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_title__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_subtitle__;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getAddressDictionary__;
+        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getAdministrativeArea__;
+        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getCountry__;
+        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getCountryCode__;
+        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getLocality__;
+        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getPostalCode__;
+        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getSubAdministrativeArea__;
+        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getSubLocality__;
+        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getSubThoroughfare__;
+        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getThoroughfare__;
+        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getCoordinate__;
+        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_title__;
+        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_subtitle__;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_MKPlacemark.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_MKPlacemark.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_MKPlacemark.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_MKPlacemark.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

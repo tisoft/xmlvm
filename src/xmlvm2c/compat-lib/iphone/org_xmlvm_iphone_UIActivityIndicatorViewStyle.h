@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.UIActivityIndicatorViewStyle
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActivityIndicatorViewStyle, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActivityIndicatorViewStyle, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIActivityIndicatorViewStyle)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorViewStyle_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_UIActivityIndicatorViewStyle {
 typedef struct org_xmlvm_iphone_UIActivityIndicatorViewStyle org_xmlvm_iphone_UIActivityIndicatorViewStyle;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIActivityIndicatorViewStyle 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIActivityIndicatorViewStyle 6
 
 void __INIT_org_xmlvm_iphone_UIActivityIndicatorViewStyle();
 void __INIT_IMPL_org_xmlvm_iphone_UIActivityIndicatorViewStyle();

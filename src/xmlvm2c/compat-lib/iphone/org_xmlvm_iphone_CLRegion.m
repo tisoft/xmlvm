@@ -163,13 +163,15 @@ void __INIT_IMPL_org_xmlvm_iphone_CLRegion()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLRegion.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_CLRegion.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CLRegion_getCenter__;
-        __TIB_org_xmlvm_iphone_CLRegion.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CLRegion_getIdentifier__;
-        __TIB_org_xmlvm_iphone_CLRegion.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CLRegion_getRadius__;
-        __TIB_org_xmlvm_iphone_CLRegion.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CLRegion_containsCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_CLRegion.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_CLRegion_getCenter__;
+        __TIB_org_xmlvm_iphone_CLRegion.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_CLRegion_getIdentifier__;
+        __TIB_org_xmlvm_iphone_CLRegion.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_CLRegion_getRadius__;
+        __TIB_org_xmlvm_iphone_CLRegion.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_CLRegion_containsCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_CLRegion.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_CLRegion.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_CLRegion.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_CLRegion.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

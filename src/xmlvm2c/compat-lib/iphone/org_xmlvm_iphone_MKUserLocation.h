@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotation)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.MKUserLocation
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKUserLocation, 24)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKUserLocation, 19, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKUserLocation)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKUserLocation;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKUserLocation_3ARRAY;
@@ -42,14 +42,14 @@ struct org_xmlvm_iphone_MKUserLocation {
 typedef struct org_xmlvm_iphone_MKUserLocation org_xmlvm_iphone_MKUserLocation;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKUserLocation 24
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_getLocation__ 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_isUpdating__ 19
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_getSubtitle__ 20
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_setSubtitle___java_lang_String 21
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_getTitle__ 22
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_setTitle___java_lang_String 23
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_getCoordinate__ 14
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKUserLocation 19
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_getLocation__ 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_isUpdating__ 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_getSubtitle__ 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_setSubtitle___java_lang_String 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_getTitle__ 17
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_setTitle___java_lang_String 18
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKUserLocation_getCoordinate__ 9
 
 void __INIT_org_xmlvm_iphone_MKUserLocation();
 void __INIT_IMPL_org_xmlvm_iphone_MKUserLocation();
@@ -58,19 +58,19 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKUserLocation(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKUserLocation();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKUserLocation();
 void org_xmlvm_iphone_MKUserLocation___INIT___(JAVA_OBJECT me);
-// Vtable index: 18
+// Vtable index: 13
 JAVA_OBJECT org_xmlvm_iphone_MKUserLocation_getLocation__(JAVA_OBJECT me);
-// Vtable index: 19
-JAVA_BOOLEAN org_xmlvm_iphone_MKUserLocation_isUpdating__(JAVA_OBJECT me);
-// Vtable index: 20
-JAVA_OBJECT org_xmlvm_iphone_MKUserLocation_getSubtitle__(JAVA_OBJECT me);
-// Vtable index: 21
-void org_xmlvm_iphone_MKUserLocation_setSubtitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 22
-JAVA_OBJECT org_xmlvm_iphone_MKUserLocation_getTitle__(JAVA_OBJECT me);
-// Vtable index: 23
-void org_xmlvm_iphone_MKUserLocation_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 14
+JAVA_BOOLEAN org_xmlvm_iphone_MKUserLocation_isUpdating__(JAVA_OBJECT me);
+// Vtable index: 15
+JAVA_OBJECT org_xmlvm_iphone_MKUserLocation_getSubtitle__(JAVA_OBJECT me);
+// Vtable index: 16
+void org_xmlvm_iphone_MKUserLocation_setSubtitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 17
+JAVA_OBJECT org_xmlvm_iphone_MKUserLocation_getTitle__(JAVA_OBJECT me);
+// Vtable index: 18
+void org_xmlvm_iphone_MKUserLocation_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 9
 JAVA_OBJECT org_xmlvm_iphone_MKUserLocation_getCoordinate__(JAVA_OBJECT me);
 
 #endif

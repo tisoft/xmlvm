@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.SKPaymentTransaction
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKPaymentTransaction, 21)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKPaymentTransaction, 16, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_SKPaymentTransaction)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentTransaction;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentTransaction_3ARRAY;
@@ -38,14 +38,14 @@ struct org_xmlvm_iphone_SKPaymentTransaction {
 typedef struct org_xmlvm_iphone_SKPaymentTransaction org_xmlvm_iphone_SKPaymentTransaction;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_SKPaymentTransaction 21
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getError__ 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getOriginalTransaction__ 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getPayment__ 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getTransactionDate__ 17
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getTransactionIdentifier__ 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getTransactionReceipt__ 19
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getTransactionState__ 20
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_SKPaymentTransaction 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getError__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getOriginalTransaction__ 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getPayment__ 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getTransactionDate__ 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getTransactionIdentifier__ 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getTransactionReceipt__ 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransaction_getTransactionState__ 15
 
 void __INIT_org_xmlvm_iphone_SKPaymentTransaction();
 void __INIT_IMPL_org_xmlvm_iphone_SKPaymentTransaction();
@@ -53,19 +53,19 @@ void __DELETE_org_xmlvm_iphone_SKPaymentTransaction(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransaction(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKPaymentTransaction();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKPaymentTransaction();
-// Vtable index: 14
+// Vtable index: 9
 JAVA_OBJECT org_xmlvm_iphone_SKPaymentTransaction_getError__(JAVA_OBJECT me);
-// Vtable index: 15
+// Vtable index: 10
 JAVA_OBJECT org_xmlvm_iphone_SKPaymentTransaction_getOriginalTransaction__(JAVA_OBJECT me);
-// Vtable index: 16
+// Vtable index: 11
 JAVA_OBJECT org_xmlvm_iphone_SKPaymentTransaction_getPayment__(JAVA_OBJECT me);
-// Vtable index: 17
+// Vtable index: 12
 JAVA_OBJECT org_xmlvm_iphone_SKPaymentTransaction_getTransactionDate__(JAVA_OBJECT me);
-// Vtable index: 18
+// Vtable index: 13
 JAVA_OBJECT org_xmlvm_iphone_SKPaymentTransaction_getTransactionIdentifier__(JAVA_OBJECT me);
-// Vtable index: 19
+// Vtable index: 14
 JAVA_OBJECT org_xmlvm_iphone_SKPaymentTransaction_getTransactionReceipt__(JAVA_OBJECT me);
-// Vtable index: 20
+// Vtable index: 15
 JAVA_INT org_xmlvm_iphone_SKPaymentTransaction_getTransactionState__(JAVA_OBJECT me);
 
 #endif

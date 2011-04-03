@@ -262,19 +262,21 @@ void __INIT_IMPL_org_xmlvm_iphone_UIScrollViewDelegate()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidScroll___org_xmlvm_iphone_UIScrollView;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewWillBeginDragging___org_xmlvm_iphone_UIScrollView;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndDragging___org_xmlvm_iphone_UIScrollView_boolean;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewShouldScrollToTop___org_xmlvm_iphone_UIScrollView;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidScrollToTop___org_xmlvm_iphone_UIScrollView;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewWillBeginDecelerating___org_xmlvm_iphone_UIScrollView;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndDecelerating___org_xmlvm_iphone_UIScrollView;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_viewForZoomingInScrollView___org_xmlvm_iphone_UIScrollView;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndZooming___org_xmlvm_iphone_UIScrollView_org_xmlvm_iphone_UIView_float;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndScrollingAnimation___org_xmlvm_iphone_UIScrollView;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidScroll___org_xmlvm_iphone_UIScrollView;
+        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewWillBeginDragging___org_xmlvm_iphone_UIScrollView;
+        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndDragging___org_xmlvm_iphone_UIScrollView_boolean;
+        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewShouldScrollToTop___org_xmlvm_iphone_UIScrollView;
+        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidScrollToTop___org_xmlvm_iphone_UIScrollView;
+        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewWillBeginDecelerating___org_xmlvm_iphone_UIScrollView;
+        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndDecelerating___org_xmlvm_iphone_UIScrollView;
+        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_viewForZoomingInScrollView___org_xmlvm_iphone_UIScrollView;
+        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndZooming___org_xmlvm_iphone_UIScrollView_org_xmlvm_iphone_UIView_float;
+        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndScrollingAnimation___org_xmlvm_iphone_UIScrollView;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UIScrollViewDelegate.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIScrollViewDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_UIScrollViewDelegate.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UIScrollViewDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

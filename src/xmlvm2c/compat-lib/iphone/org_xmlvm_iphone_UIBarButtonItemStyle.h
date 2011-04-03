@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.UIBarButtonItemStyle
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarButtonItemStyle, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarButtonItemStyle, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIBarButtonItemStyle)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItemStyle;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItemStyle_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_UIBarButtonItemStyle {
 typedef struct org_xmlvm_iphone_UIBarButtonItemStyle org_xmlvm_iphone_UIBarButtonItemStyle;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIBarButtonItemStyle 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIBarButtonItemStyle 6
 
 void __INIT_org_xmlvm_iphone_UIBarButtonItemStyle();
 void __INIT_IMPL_org_xmlvm_iphone_UIBarButtonItemStyle();

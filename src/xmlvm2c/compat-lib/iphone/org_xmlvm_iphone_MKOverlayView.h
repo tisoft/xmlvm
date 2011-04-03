@@ -34,7 +34,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 #endif
 // Class declarations for org.xmlvm.iphone.MKOverlayView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKOverlayView, 23)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKOverlayView, 18, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKOverlayView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKOverlayView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKOverlayView_3ARRAY;
@@ -62,16 +62,16 @@ struct org_xmlvm_iphone_MKOverlayView {
 typedef struct org_xmlvm_iphone_MKOverlayView org_xmlvm_iphone_MKOverlayView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKOverlayView 23
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_getOverlay__ 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_pointForMapPoint___org_xmlvm_iphone_MKMapPoint 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_mapPointForPoint___org_xmlvm_iphone_CGPoint 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_rectForMapRect___org_xmlvm_iphone_MKMapRect 17
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_mapRectForRect___org_xmlvm_iphone_CGRect 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_canDrawMapRect___org_xmlvm_iphone_MKMapRect_float 19
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_drawMapRect___org_xmlvm_iphone_MKMapRect_float_org_xmlvm_iphone_CGContext 20
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_setNeedsDisplayInMapRect___org_xmlvm_iphone_MKMapRect 21
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_setNeedsDisplayInMapRect___org_xmlvm_iphone_MKMapRect_float 22
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKOverlayView 18
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_getOverlay__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_pointForMapPoint___org_xmlvm_iphone_MKMapPoint 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_mapPointForPoint___org_xmlvm_iphone_CGPoint 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_rectForMapRect___org_xmlvm_iphone_MKMapRect 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_mapRectForRect___org_xmlvm_iphone_CGRect 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_canDrawMapRect___org_xmlvm_iphone_MKMapRect_float 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_drawMapRect___org_xmlvm_iphone_MKMapRect_float_org_xmlvm_iphone_CGContext 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_setNeedsDisplayInMapRect___org_xmlvm_iphone_MKMapRect 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlayView_setNeedsDisplayInMapRect___org_xmlvm_iphone_MKMapRect_float 17
 
 void __INIT_org_xmlvm_iphone_MKOverlayView();
 void __INIT_IMPL_org_xmlvm_iphone_MKOverlayView();
@@ -80,23 +80,23 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKOverlayView(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKOverlayView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKOverlayView();
 void org_xmlvm_iphone_MKOverlayView___INIT____org_xmlvm_iphone_MKOverlay(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 14
+// Vtable index: 9
 JAVA_OBJECT org_xmlvm_iphone_MKOverlayView_getOverlay__(JAVA_OBJECT me);
-// Vtable index: 15
+// Vtable index: 10
 JAVA_OBJECT org_xmlvm_iphone_MKOverlayView_pointForMapPoint___org_xmlvm_iphone_MKMapPoint(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 16
+// Vtable index: 11
 JAVA_OBJECT org_xmlvm_iphone_MKOverlayView_mapPointForPoint___org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 17
+// Vtable index: 12
 JAVA_OBJECT org_xmlvm_iphone_MKOverlayView_rectForMapRect___org_xmlvm_iphone_MKMapRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 18
+// Vtable index: 13
 JAVA_OBJECT org_xmlvm_iphone_MKOverlayView_mapRectForRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 19
+// Vtable index: 14
 JAVA_BOOLEAN org_xmlvm_iphone_MKOverlayView_canDrawMapRect___org_xmlvm_iphone_MKMapRect_float(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_FLOAT n2);
-// Vtable index: 20
+// Vtable index: 15
 void org_xmlvm_iphone_MKOverlayView_drawMapRect___org_xmlvm_iphone_MKMapRect_float_org_xmlvm_iphone_CGContext(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_FLOAT n2, JAVA_OBJECT n3);
-// Vtable index: 21
+// Vtable index: 16
 void org_xmlvm_iphone_MKOverlayView_setNeedsDisplayInMapRect___org_xmlvm_iphone_MKMapRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 22
+// Vtable index: 17
 void org_xmlvm_iphone_MKOverlayView_setNeedsDisplayInMapRect___org_xmlvm_iphone_MKMapRect_float(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_FLOAT n2);
 
 #endif

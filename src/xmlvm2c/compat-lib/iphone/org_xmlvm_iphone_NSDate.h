@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.NSDate
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSDate, 15)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSDate, 10, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSDate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSDate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSDate_3ARRAY;
@@ -38,8 +38,8 @@ struct org_xmlvm_iphone_NSDate {
 typedef struct org_xmlvm_iphone_NSDate org_xmlvm_iphone_NSDate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSDate 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSDate_timeIntervalSinceReferenceDate__ 14
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSDate 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSDate_timeIntervalSinceReferenceDate__ 9
 
 void __INIT_org_xmlvm_iphone_NSDate();
 void __INIT_IMPL_org_xmlvm_iphone_NSDate();
@@ -50,7 +50,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSDate();
 JAVA_OBJECT org_xmlvm_iphone_NSDate_date__();
 JAVA_OBJECT org_xmlvm_iphone_NSDate_dateWithTimeIntervalSince1970___double(JAVA_DOUBLE n1);
 JAVA_OBJECT org_xmlvm_iphone_NSDate_dateWithTimeIntervalSinceReferenceDate___double(JAVA_DOUBLE n1);
-// Vtable index: 14
+// Vtable index: 9
 JAVA_DOUBLE org_xmlvm_iphone_NSDate_timeIntervalSinceReferenceDate__(JAVA_OBJECT me);
 
 #endif

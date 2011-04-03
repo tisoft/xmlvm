@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 #endif
 // Class declarations for org.xmlvm.iphone.UIGraphics
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIGraphics, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIGraphics, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIGraphics)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGraphics;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGraphics_3ARRAY;
@@ -46,7 +46,7 @@ struct org_xmlvm_iphone_UIGraphics {
 typedef struct org_xmlvm_iphone_UIGraphics org_xmlvm_iphone_UIGraphics;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIGraphics 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIGraphics 6
 
 void __INIT_org_xmlvm_iphone_UIGraphics();
 void __INIT_IMPL_org_xmlvm_iphone_UIGraphics();

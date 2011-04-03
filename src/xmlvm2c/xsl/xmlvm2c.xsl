@@ -180,7 +180,9 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text>, </xsl:text>
     <xsl:value-of select="@vtableSize"/>
-    <xsl:text>)&nl;&nl;</xsl:text>
+    <xsl:text>, XMLVM_ITABLE_SIZE_</xsl:text>
+    <xsl:value-of select="$clname"/>
+	<xsl:text>)&nl;&nl;</xsl:text>
     
     <xsl:text>extern JAVA_OBJECT __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
@@ -357,8 +359,7 @@ int main(int argc, char* argv[])
   
     <xsl:text>&nl;XMLVM_DEFINE_CLASS(</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="@vtableSize"/>
+    <xsl:text>, 0, 0</xsl:text>
     <xsl:text>)&nl;&nl;</xsl:text>
 
     <xsl:text>extern JAVA_OBJECT __CLASS_</xsl:text>
@@ -384,32 +385,7 @@ int main(int argc, char* argv[])
     <xsl:text>;&nl;</xsl:text>
     <xsl:text>#endif&nl;&nl;</xsl:text>
     
-    <!--  Emit symbolic constants for Vtable entries -->
-    <xsl:text>#define XMLVM_VTABLE_SIZE_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text> </xsl:text>
-    <xsl:value-of select="@vtableSize"/>
-    <xsl:text>&nl;</xsl:text>
-    <xsl:for-each select="vm:method[@vtableIndex]">
-      <xsl:text>#define XMLVM_VTABLE_IDX_</xsl:text>
-      <xsl:call-template name="emitMethodName">
-        <xsl:with-param name="name" select="@name"/>
-        <xsl:with-param name="class-type" select="concat(../@package, '.', ../@name)"/>
-      </xsl:call-template>
-      <xsl:call-template name="appendSignature"/>
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="@vtableIndex"/>
-      <xsl:text>&nl;</xsl:text>
-    </xsl:for-each>
-    <xsl:text>&nl;</xsl:text>
-
-    <!-- Emit interface initializers -->
-    <xsl:text>void __INIT_FOR_CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>(__TIB_DEFINITION_TEMPLATE** interface);&nl;</xsl:text>
-    <xsl:text>void __INIT_IMPL_FOR_CLASS_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>(__TIB_DEFINITION_TEMPLATE** interface);&nl;</xsl:text>
+    <!-- Emit XMLVM-specific class initializer -->
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>();&nl;</xsl:text>
@@ -596,7 +572,7 @@ int main(int argc, char* argv[])
       <xsl:text>.vtable));&nl;</xsl:text>
     </xsl:if>
     <xsl:text>        // Initialize vtable for this class&nl;</xsl:text>
-    <xsl:for-each select="vm:method[@vtableIndex and not(@isAbstract = 'true' or @isSynthetic = 'true')]">
+    <xsl:for-each select="vm:method[@vtableIndex and not(@isAbstract = 'true')]">
       <xsl:text>        __TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>.vtable[</xsl:text>
@@ -624,8 +600,8 @@ int main(int argc, char* argv[])
       <xsl:text>();&nl;</xsl:text>
     </xsl:if>
     
-    <xsl:variable name="numImplementedInterfaces" select="count(vm:vtable[@kind='interface-vtable'])"/>
-    <xsl:text>        // Initialize vtable for implementing interfaces&nl;</xsl:text>
+    <xsl:variable name="numImplementedInterfaces" select="count(vm:implementsInterface)"/>
+    <xsl:text>        // Initialize interface information&nl;</xsl:text>
     <xsl:text>        __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.numImplementedInterfaces = </xsl:text>
@@ -636,30 +612,66 @@ int main(int argc, char* argv[])
     <xsl:text>.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * </xsl:text>
     <xsl:value-of select="$numImplementedInterfaces"/>
     <xsl:text>);&nl;</xsl:text>
-    <xsl:for-each select="vm:vtable[@kind='interface-vtable']">
-      <xsl:variable name="iname" select="vm:fixname(@name)"/>
-      <xsl:variable name="idx" select="position() - 1"/>
-      <xsl:text>        __INIT_IMPL_FOR_CLASS_</xsl:text>
-      <xsl:value-of select="$iname"/>
-      <xsl:text>(&amp;__TIB_</xsl:text>
+    
+    <xsl:text>&nl;        // Initialize interfaces if necessary and assign tib to implementedInterfaces&nl;</xsl:text>
+	<xsl:for-each select="vm:implementsInterface">
+	  <xsl:variable name="idx" select="position() - 1"/>
+	  <xsl:text>&nl;        if (!__TIB_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>.classInitialized) __INIT_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>();</xsl:text>
+  	  <xsl:text>&nl;        __TIB_</xsl:text>
+	  <xsl:value-of select="$clname" />
+	  <xsl:text>.implementedInterfaces[0][</xsl:text>
+	  <xsl:value-of select="$idx" />
+	  <xsl:text>] = &amp;__TIB_</xsl:text>
+	  <xsl:value-of select="vm:fixname(@name)"/>
+	  <xsl:text>;&nl;</xsl:text>
+	</xsl:for-each>
+    
+    <xsl:if test="vm:itable">
+      <xsl:text>        // Initialize itable for this class&nl;</xsl:text>
+      <xsl:text>        __TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
-      <xsl:text>.implementedInterfaces[0][</xsl:text>
-      <xsl:value-of select="$idx"/>
-      <xsl:text>]);&nl;</xsl:text>
-      <xsl:for-each select="vm:map">
+      <xsl:text>.itableBegin = &amp;__TIB_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>.itable[0];&nl;</xsl:text>
+      
+      <xsl:for-each select="vm:itable/vm:vtable-map">
         <xsl:text>        __TIB_</xsl:text>
         <xsl:value-of select="$clname"/>
-        <xsl:text>.implementedInterfaces[0][</xsl:text>
-        <xsl:value-of select="$idx"/>
-        <xsl:text>]->vtable[</xsl:text>
-        <xsl:value-of select="@vtableIndexInterface"/>
+        <xsl:text>.itable[XMLVM_ITABLE_IDX_</xsl:text>
+        <xsl:call-template name="emitMethodName">
+          <xsl:with-param name="name" select="@ifaceMethodName"/>
+          <xsl:with-param name="class-type" select="@ifaceName"/>
+        </xsl:call-template>
+        <xsl:call-template name="appendSignature"/>
         <xsl:text>] = __TIB_</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.vtable[</xsl:text>
-        <xsl:value-of select="@vtableIndexClass"/>
+        <xsl:value-of select="@vtableIndex"/>
         <xsl:text>];&nl;</xsl:text>
       </xsl:for-each>
-    </xsl:for-each>
+      
+      <xsl:for-each select="vm:itable/vm:direct-map">
+        <xsl:text>        __TIB_</xsl:text>
+        <xsl:value-of select="$clname"/>
+        <xsl:text>.itable[XMLVM_ITABLE_IDX_</xsl:text>
+        <xsl:call-template name="emitMethodName">
+          <xsl:with-param name="name" select="@ifaceMethodName"/>
+          <xsl:with-param name="class-type" select="@ifaceName"/>
+        </xsl:call-template>
+        <xsl:call-template name="appendSignature"/>
+        <xsl:text>] = (VTABLE_PTR) &amp;</xsl:text>
+        <xsl:call-template name="emitMethodName">
+          <xsl:with-param name="name" select="@ifaceMethodName"/>
+          <xsl:with-param name="class-type" select="@className"/>
+        </xsl:call-template>
+        <xsl:text>__;&nl;</xsl:text>
+      </xsl:for-each>  
+      <xsl:text>&nl;</xsl:text>
+    </xsl:if>
     
     <!-- Initialize static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
@@ -1051,18 +1063,18 @@ int main(int argc, char* argv[])
     <xsl:call-template name="emitReflectionInformationForFields"/>
     
     <!-- Emit interface initializers -->
-    <xsl:text>void __INIT_FOR_CLASS_</xsl:text>
+    <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>(__TIB_DEFINITION_TEMPLATE** interface)&nl;{&nl;</xsl:text>
+    <xsl:text>()&nl;{&nl;</xsl:text>
     <xsl:text>    staticInitializerRecursiveLock(&amp;__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>);&nl;</xsl:text>
     <xsl:text>    if (!__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized) {&nl;</xsl:text>
-    <xsl:text>        __INIT_IMPL_FOR_CLASS_</xsl:text>
+    <xsl:text>        __INIT_IMPL_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>(interface);&nl;</xsl:text>
+    <xsl:text>();&nl;</xsl:text>
     <xsl:text>    }&nl;</xsl:text>
     <!-- This assumes no exceptions are thrown during static initialization -->
     <xsl:text>    staticInitializerRecursiveUnlock(&amp;__TIB_</xsl:text>
@@ -1071,9 +1083,9 @@ int main(int argc, char* argv[])
     <xsl:text>}&nl;&nl;</xsl:text>
 
     <!-- Emit interface implementation initializers -->
-    <xsl:text>void __INIT_IMPL_FOR_CLASS_</xsl:text>
+    <xsl:text>void __INIT_IMPL_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>(__TIB_DEFINITION_TEMPLATE** interface)&nl;{&nl;</xsl:text>
+    <xsl:text>()&nl;{&nl;</xsl:text>
     <xsl:text>    if (!__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitializationBegan) {&nl;</xsl:text>
@@ -1160,20 +1172,6 @@ int main(int argc, char* argv[])
       <xsl:with-param name="dimension" select="$maxArrayDimension"/>
     </xsl:call-template>
     
-    <xsl:text>        __TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.classInitialized = 1;
-    }
-    if (interface != JAVA_NULL) {
-        *interface = (__TIB_DEFINITION_TEMPLATE*) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>));
-        XMLVM_MEMCPY(*interface, &amp;__TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>, sizeof(__TIB_DEFINITION_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>));</xsl:text>
-
     <!-- If there is a Java class initializer, call it. -->
     <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
       <xsl:text>&nl;    </xsl:text>
@@ -1185,14 +1183,6 @@ int main(int argc, char* argv[])
     
     <xsl:text>&nl;    }&nl;}&nl;&nl;</xsl:text>
 
-	<xsl:text>void __INIT_</xsl:text>
-	<xsl:value-of select="$clname"/>
-	<xsl:text>()&nl;{&nl;</xsl:text>
-	<xsl:text>    __INIT_FOR_CLASS_</xsl:text>
-	<xsl:value-of select="$clname"/>
-	<xsl:text>(JAVA_NULL);&nl;</xsl:text>
-	<xsl:text>}&nl;&nl;</xsl:text>
-		
     <!-- Emit code for class initializer if there is one -->
     <xsl:for-each select="vm:method[@name = '&lt;clinit&gt;']">
       <xsl:call-template name="emitMethodSignature">
@@ -1224,9 +1214,9 @@ int main(int argc, char* argv[])
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>()&nl;{&nl;    if (!__TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
-      <xsl:text>.classInitialized) __INIT_FOR_CLASS_</xsl:text>
+      <xsl:text>.classInitialized) __INIT_</xsl:text>
       <xsl:value-of select="$clname"/>
-      <xsl:text>(JAVA_NULL);&nl;    return </xsl:text>
+      <xsl:text>();&nl;    return </xsl:text>
       <xsl:text>_STATIC_</xsl:text>
       <xsl:value-of select="$field"/>
       <xsl:text>;&nl;}&nl;&nl;</xsl:text>
@@ -1840,6 +1830,18 @@ int main(int argc, char* argv[])
   </xsl:choose>
 </xsl:template>
 
+<xsl:template name="appendInvokeSignature">
+  <xsl:text>__</xsl:text>
+  <xsl:choose>
+    <xsl:when test="count(dex:parameters/dex:parameter) != 0">
+      <xsl:for-each select="dex:parameters/dex:parameter">
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="vm:fixname(@type)"/>
+      </xsl:for-each>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+
     
 <xsl:template name="emitTypedAccess">
   <xsl:param name="type"/>
@@ -1906,7 +1908,6 @@ int main(int argc, char* argv[])
   
   <xsl:value-of select="not($genWrapper = 'true' and $method/@isPrivate = 'true')"/>
 </xsl:function>
-
 
 <xsl:function name="vm:isObjectRef" as="xs:boolean">
   <xsl:param name="type" as="xs:string"/>
@@ -2220,20 +2221,6 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:invoke-interface|dex:invoke-interface-range">
-  <xsl:variable name="vtable-index" select="if (@vtable-index) then @vtable-index else -1"/>
-  <xsl:if test="$vtable-index = -1">
-    <xsl:text>XMLVM_ERROR("Missing @vtable-index", __FILE__, __FUNCTION__, __LINE__);&nl;</xsl:text>
-  </xsl:if>
-  <xsl:text>    //</xsl:text>
-  <xsl:call-template name="emitMethodName">
-    <xsl:with-param name="name" select="@method"/>
-    <xsl:with-param name="class-type" select="@class-type"/>
-  </xsl:call-template>
-  <xsl:call-template name="appendDexSignature"/>
-  <xsl:text>[</xsl:text>
-  <xsl:value-of select="$vtable-index"/>
-  <xsl:text>]&nl;</xsl:text>
-
   <xsl:variable name="returnTypedAccess">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="dex:parameters/dex:return/@type"/>
@@ -2246,7 +2233,7 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$returnTypedAccess"/>
     <xsl:text> = </xsl:text>
   </xsl:if>
-
+  
   <xsl:text>(*(</xsl:text>
   <xsl:call-template name="emitType">
     <xsl:with-param name="type" select="dex:parameters/dex:return/@type"/>
@@ -2258,14 +2245,16 @@ int main(int argc, char* argv[])
       <xsl:with-param name="type" select="@type"/>
     </xsl:call-template>
   </xsl:for-each>
-  <xsl:text>)) XMLVM_LOOKUP_INTERFACE_METHOD(</xsl:text>
-  <xsl:text>_r</xsl:text>
+  <xsl:text>)) *(((java_lang_Object*)_r</xsl:text>
   <xsl:value-of select="@register"/>
-  <xsl:text>.o, "</xsl:text>
-  <xsl:value-of select="@class-type"/>
-  <xsl:text>", </xsl:text>
-  <xsl:value-of select="$vtable-index"/>
-  <xsl:text>))</xsl:text>
+  <xsl:text>.o)->tib->itableBegin)[</xsl:text>
+  <xsl:text>XMLVM_ITABLE_IDX_</xsl:text>
+  <xsl:call-template name="emitMethodName">
+    <xsl:with-param name="name" select="@method"/>
+    <xsl:with-param name="class-type" select="@class-type"/>
+  </xsl:call-template>
+  <xsl:call-template name="appendInvokeSignature"/>
+  <xsl:text>])</xsl:text>
   <xsl:text>(_r</xsl:text>
   <xsl:value-of select="@register"/>
   <xsl:text>.o</xsl:text>
@@ -2280,7 +2269,6 @@ int main(int argc, char* argv[])
   </xsl:for-each>
   <xsl:text>);&nl;</xsl:text>
 </xsl:template>
-
 
 <xsl:template match="dex:monitor-enter">
   <xsl:text>    java_lang_Object_acquireLockRecursive__(_r</xsl:text>

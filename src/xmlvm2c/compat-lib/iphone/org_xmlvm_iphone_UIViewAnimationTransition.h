@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.UIViewAnimationTransition
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewAnimationTransition, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewAnimationTransition, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIViewAnimationTransition)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationTransition;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationTransition_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_UIViewAnimationTransition {
 typedef struct org_xmlvm_iphone_UIViewAnimationTransition org_xmlvm_iphone_UIViewAnimationTransition;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewAnimationTransition 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewAnimationTransition 6
 
 void __INIT_org_xmlvm_iphone_UIViewAnimationTransition();
 void __INIT_IMPL_org_xmlvm_iphone_UIViewAnimationTransition();

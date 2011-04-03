@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.UITableViewRowAnimation
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewRowAnimation, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewRowAnimation, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITableViewRowAnimation)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewRowAnimation;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewRowAnimation_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_UITableViewRowAnimation {
 typedef struct org_xmlvm_iphone_UITableViewRowAnimation org_xmlvm_iphone_UITableViewRowAnimation;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewRowAnimation 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewRowAnimation 6
 
 void __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewRowAnimation();

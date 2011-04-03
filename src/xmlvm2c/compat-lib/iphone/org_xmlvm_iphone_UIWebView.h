@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIWebView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWebView, 81)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWebView, 76, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIWebView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebView_3ARRAY;
@@ -58,18 +58,18 @@ struct org_xmlvm_iphone_UIWebView {
 typedef struct org_xmlvm_iphone_UIWebView org_xmlvm_iphone_UIWebView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIWebView 81
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_loadRequest___org_xmlvm_iphone_NSURLRequest 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_loadHTMLString___java_lang_String_org_xmlvm_iphone_NSURL 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_xmlvmGetRequest__ 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_stringByEvaluatingJavaScriptFromString___java_lang_String 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_getDelegate__ 74
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_setDelegate___org_xmlvm_iphone_UIWebViewDelegate 75
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_reload__ 76
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_getDataDetectorTypes__ 77
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_setDataDetectorTypes___int 78
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_isScalesPageToFit__ 79
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean 80
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIWebView 76
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_loadRequest___org_xmlvm_iphone_NSURLRequest 65
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_loadHTMLString___java_lang_String_org_xmlvm_iphone_NSURL 66
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_xmlvmGetRequest__ 67
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_stringByEvaluatingJavaScriptFromString___java_lang_String 68
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_getDelegate__ 69
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_setDelegate___org_xmlvm_iphone_UIWebViewDelegate 70
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_reload__ 71
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_getDataDetectorTypes__ 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_setDataDetectorTypes___int 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_isScalesPageToFit__ 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean 75
 
 void __INIT_org_xmlvm_iphone_UIWebView();
 void __INIT_IMPL_org_xmlvm_iphone_UIWebView();
@@ -79,27 +79,27 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWebView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIWebView();
 void org_xmlvm_iphone_UIWebView___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIWebView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 70
+// Vtable index: 65
 void org_xmlvm_iphone_UIWebView_loadRequest___org_xmlvm_iphone_NSURLRequest(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 71
+// Vtable index: 66
 void org_xmlvm_iphone_UIWebView_loadHTMLString___java_lang_String_org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 72
+// Vtable index: 67
 JAVA_OBJECT org_xmlvm_iphone_UIWebView_xmlvmGetRequest__(JAVA_OBJECT me);
-// Vtable index: 73
+// Vtable index: 68
 JAVA_OBJECT org_xmlvm_iphone_UIWebView_stringByEvaluatingJavaScriptFromString___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 74
+// Vtable index: 69
 JAVA_OBJECT org_xmlvm_iphone_UIWebView_getDelegate__(JAVA_OBJECT me);
-// Vtable index: 75
+// Vtable index: 70
 void org_xmlvm_iphone_UIWebView_setDelegate___org_xmlvm_iphone_UIWebViewDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 76
+// Vtable index: 71
 void org_xmlvm_iphone_UIWebView_reload__(JAVA_OBJECT me);
-// Vtable index: 77
+// Vtable index: 72
 JAVA_INT org_xmlvm_iphone_UIWebView_getDataDetectorTypes__(JAVA_OBJECT me);
-// Vtable index: 78
+// Vtable index: 73
 void org_xmlvm_iphone_UIWebView_setDataDetectorTypes___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 79
+// Vtable index: 74
 JAVA_BOOLEAN org_xmlvm_iphone_UIWebView_isScalesPageToFit__(JAVA_OBJECT me);
-// Vtable index: 80
+// Vtable index: 75
 void org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 
 #endif

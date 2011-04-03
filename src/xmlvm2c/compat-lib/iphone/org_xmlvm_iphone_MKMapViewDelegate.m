@@ -393,26 +393,28 @@ void __INIT_IMPL_org_xmlvm_iphone_MKMapViewDelegate()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_regionWillChangeAnimated___org_xmlvm_iphone_MKMapView_boolean;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_regionDidChangeAnimated___org_xmlvm_iphone_MKMapView_boolean;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_willStartLoadingMap___org_xmlvm_iphone_MKMapView;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didFinishLoadingMap___org_xmlvm_iphone_MKMapView;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didFailLoadingMap___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_NSError;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_willStartLocatingUser___org_xmlvm_iphone_MKMapView;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didStopLocatingUser___org_xmlvm_iphone_MKMapView;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didUpdateUserLocation___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKUserLocation;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didFailToLocateUserWithError___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_NSError;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_viewForAnnotation___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotation;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didAddAnnotationViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_calloutAccessoryControlTapped___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_org_xmlvm_iphone_UIControl;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didChangeDragStatefromOldState___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_int_int;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didSelectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didDeselectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_viewForOverlay___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKOverlay;
-        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didAddOverlayViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_regionWillChangeAnimated___org_xmlvm_iphone_MKMapView_boolean;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_regionDidChangeAnimated___org_xmlvm_iphone_MKMapView_boolean;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_willStartLoadingMap___org_xmlvm_iphone_MKMapView;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didFinishLoadingMap___org_xmlvm_iphone_MKMapView;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didFailLoadingMap___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_NSError;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_willStartLocatingUser___org_xmlvm_iphone_MKMapView;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didStopLocatingUser___org_xmlvm_iphone_MKMapView;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didUpdateUserLocation___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKUserLocation;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didFailToLocateUserWithError___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_NSError;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_viewForAnnotation___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotation;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didAddAnnotationViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_calloutAccessoryControlTapped___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_org_xmlvm_iphone_UIControl;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didChangeDragStatefromOldState___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView_int_int;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didSelectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didDeselectAnnotationView___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKAnnotationView;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_viewForOverlay___org_xmlvm_iphone_MKMapView_org_xmlvm_iphone_MKOverlay;
+        __TIB_org_xmlvm_iphone_MKMapViewDelegate.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_MKMapViewDelegate_didAddOverlayViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_MKMapViewDelegate.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_MKMapViewDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_MKMapViewDelegate.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_MKMapViewDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

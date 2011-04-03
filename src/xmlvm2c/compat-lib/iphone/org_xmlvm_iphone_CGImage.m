@@ -133,10 +133,12 @@ void __INIT_IMPL_org_xmlvm_iphone_CGImage()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGImage.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_CGImage.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CGImage_getSize__;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_CGImage.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_CGImage_getSize__;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_CGImage.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_CGImage.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_CGImage.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_CGImage.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

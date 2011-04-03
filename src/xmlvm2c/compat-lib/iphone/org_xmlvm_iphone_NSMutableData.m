@@ -160,13 +160,15 @@ void __INIT_IMPL_org_xmlvm_iphone_NSMutableData()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSMutableData.vtable, __TIB_org_xmlvm_iphone_NSData.vtable, sizeof(__TIB_org_xmlvm_iphone_NSData.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_NSMutableData.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_byteCount__;
-        __TIB_org_xmlvm_iphone_NSMutableData.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_getByte___int;
-        __TIB_org_xmlvm_iphone_NSMutableData.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_appendByte___int;
-        __TIB_org_xmlvm_iphone_NSMutableData.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_appendBytes___byte_1ARRAY;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_NSMutableData.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_byteCount__;
+        __TIB_org_xmlvm_iphone_NSMutableData.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_getByte___int;
+        __TIB_org_xmlvm_iphone_NSMutableData.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_appendByte___int;
+        __TIB_org_xmlvm_iphone_NSMutableData.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSMutableData_appendBytes___byte_1ARRAY;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_NSMutableData.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_NSMutableData.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_NSMutableData.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_NSMutableData.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

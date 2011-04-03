@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.GKPeerConnectionState
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_GKPeerConnectionState, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_GKPeerConnectionState, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_GKPeerConnectionState)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKPeerConnectionState;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKPeerConnectionState_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_GKPeerConnectionState {
 typedef struct org_xmlvm_iphone_GKPeerConnectionState org_xmlvm_iphone_GKPeerConnectionState;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_GKPeerConnectionState 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_GKPeerConnectionState 6
 
 void __INIT_org_xmlvm_iphone_GKPeerConnectionState();
 void __INIT_IMPL_org_xmlvm_iphone_GKPeerConnectionState();

@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.UITableViewScrollPosition
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewScrollPosition, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewScrollPosition, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITableViewScrollPosition)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewScrollPosition;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewScrollPosition_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_UITableViewScrollPosition {
 typedef struct org_xmlvm_iphone_UITableViewScrollPosition org_xmlvm_iphone_UITableViewScrollPosition;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewScrollPosition 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewScrollPosition 6
 
 void __INIT_org_xmlvm_iphone_UITableViewScrollPosition();
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewScrollPosition();

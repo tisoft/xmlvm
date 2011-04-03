@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.UIDeviceOrientation
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIDeviceOrientation, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIDeviceOrientation, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIDeviceOrientation)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDeviceOrientation;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDeviceOrientation_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_UIDeviceOrientation {
 typedef struct org_xmlvm_iphone_UIDeviceOrientation org_xmlvm_iphone_UIDeviceOrientation;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIDeviceOrientation 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIDeviceOrientation 6
 
 void __INIT_org_xmlvm_iphone_UIDeviceOrientation();
 void __INIT_IMPL_org_xmlvm_iphone_UIDeviceOrientation();

@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.CLLocationCoordinate2D
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLLocationCoordinate2D, 14)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLLocationCoordinate2D, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CLLocationCoordinate2D)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationCoordinate2D;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationCoordinate2D_3ARRAY;
@@ -40,7 +40,7 @@ struct org_xmlvm_iphone_CLLocationCoordinate2D {
 typedef struct org_xmlvm_iphone_CLLocationCoordinate2D org_xmlvm_iphone_CLLocationCoordinate2D;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CLLocationCoordinate2D 14
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CLLocationCoordinate2D 9
 
 void __INIT_org_xmlvm_iphone_CLLocationCoordinate2D();
 void __INIT_IMPL_org_xmlvm_iphone_CLLocationCoordinate2D();

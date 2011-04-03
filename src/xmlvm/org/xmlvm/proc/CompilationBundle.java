@@ -23,7 +23,9 @@ package org.xmlvm.proc;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.xmlvm.proc.out.OutputFile;
 
@@ -32,28 +34,31 @@ import org.xmlvm.proc.out.OutputFile;
  * compilation process.
  */
 public class CompilationBundle implements BundlePhase1, BundlePhase2 {
-    private List<OutputFile>    outputFiles    = new ArrayList<OutputFile>();
-    private List<XmlvmResource> xmlvmResources = new ArrayList<XmlvmResource>();
+    private List<OutputFile>           outputFiles    = new ArrayList<OutputFile>();
+    private Map<String, XmlvmResource> xmlvmResources = new HashMap<String, XmlvmResource>();
 
 
     @Override
     public synchronized void addResources(Collection<XmlvmResource> resources) {
-        xmlvmResources.addAll(resources);
+        for (XmlvmResource resource : resources) {
+            xmlvmResources.put(resource.getFullName(), resource);
+        }
     }
 
     @Override
     public synchronized void addResource(XmlvmResource resource) {
-        xmlvmResources.add(resource);
+        xmlvmResources.put(resource.getFullName(), resource);
     }
 
     @Override
     public Collection<XmlvmResource> getResources() {
-        return Collections.unmodifiableCollection(new ArrayList<XmlvmResource>(xmlvmResources));
+        return Collections.unmodifiableCollection(new ArrayList<XmlvmResource>(xmlvmResources
+                .values()));
     }
 
     @Override
-    public boolean containsResource(String resourceName) {
-        throw new RuntimeException("Not implemented");
+    public Map<String, XmlvmResource> getResourceMap() {
+        return Collections.unmodifiableMap(new HashMap<String, XmlvmResource>(xmlvmResources));
     }
 
     @Override

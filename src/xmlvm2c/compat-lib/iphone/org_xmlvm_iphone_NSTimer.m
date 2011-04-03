@@ -61,7 +61,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_1ARRAY;
 - (void) timerEvent:(NSTimer*) param
 {
     self->timer = nil;
-	Func_VOO toCall = XMLVM_LOOKUP_INTERFACE_METHOD(self->delegate, "org.xmlvm.iphone.NSTimerDelegate", XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSTimerDelegate_timerEvent___java_lang_Object);
+	Func_VOO toCall = *(((java_lang_Object*)self->delegate)->tib->itableBegin)[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSTimerDelegate_timerEvent___java_lang_Object];
 	toCall(self->delegate, self->userInfo);
 }
 
@@ -170,10 +170,12 @@ void __INIT_IMPL_org_xmlvm_iphone_NSTimer()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSTimer.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_NSTimer.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimer_invalidate__;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_NSTimer.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimer_invalidate__;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_NSTimer.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_NSTimer.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_NSTimer.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_NSTimer.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

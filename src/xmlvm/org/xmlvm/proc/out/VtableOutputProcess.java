@@ -21,6 +21,7 @@
 package org.xmlvm.proc.out;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -29,17 +30,18 @@ import java.util.Set;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.DelayedXmlvmSerializationProvider;
 import org.xmlvm.proc.BundlePhase1;
 import org.xmlvm.proc.BundlePhase2;
+import org.xmlvm.proc.DelayedXmlvmSerializationProvider;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResource.XmlvmField;
 import org.xmlvm.proc.XmlvmResource.XmlvmInvokeInstruction;
+import org.xmlvm.proc.XmlvmResource.XmlvmItable;
 import org.xmlvm.proc.XmlvmResource.XmlvmMemberReadWrite;
 import org.xmlvm.proc.XmlvmResource.XmlvmMethod;
-import org.xmlvm.proc.XmlvmResource.XmlvmVtable;
-import org.xmlvm.proc.lib.LibraryLoader;
+import org.xmlvm.util.ObjectHierarchyHelper;
+import org.xmlvm.util.Vtable;
 
 /**
  * This process takes XMLVM resources and modifies them by adding table
@@ -48,129 +50,25 @@ import org.xmlvm.proc.lib.LibraryLoader;
  * classes or similar OOP concepts.
  */
 public class VtableOutputProcess extends XmlvmProcessImpl {
-    private final static String        TAG                    = VtableOutputProcess.class
-                                                                      .getSimpleName();
-    private final static String        VTABLE_ENDING          = ".vtable.xmlvm";
-    private Map<String, XmlvmResource> resourcePool           = new HashMap<String, XmlvmResource>();
-    private Map<String, Vtable>        vtables                = new HashMap<String, Vtable>();
-    private final Arguments            arguments;
+    private final static String   TAG                  = VtableOutputProcess.class.getSimpleName();
+    private final static String   VTABLE_ENDING        = ".vtable.xmlvm";
+    private Map<String, Vtable>   vtables              = new HashMap<String, Vtable>();
+    private final Arguments       arguments;
 
     /**
-     * This variable caches already loaded resources. I would have expected the
-     * JavaJDKLoader to do this. Trying to load a resource a second time via
-     * JavaJDKLoader will yield in a runtime exception.
+     * Set containing all methods which are not overridden in super classes or
+     * child classes with the following format className:methodName
      */
-    private Map<String, XmlvmResource> alreadyLoadedResources = new HashMap<String, XmlvmResource>();
+    private Map<String, String>   nonOverriddenMethods = new HashMap<String, String>();
 
+    private ObjectHierarchyHelper hierarchyHelper;
 
     /**
-     * Class {@link Vtable} represents the Vtable for one class or interface. It
-     * is basically a list of {@link org.xmlvm.proc.XmlvmResource.XmlvmMethod}
-     * that includes all methods of that class that have an entry in the Vtable.
-     * Note that only public and protected methods have entries in the Vtable.
-     * Also note that the Vtable includes all eligible methods from all base
-     * classes. The Vtable index of a method corresponds to the list index.
-     * 
+     * Contains Strings of the form package.Class.methodName for methods
+     * where a vtable entry should always be generated
      */
-    static class Vtable {
-
-        private List<XmlvmMethod> virtualMethods;
-
-
-        /**
-         * Constructs an empty {@link Vtable}.
-         */
-        public Vtable() {
-            virtualMethods = new ArrayList<XmlvmMethod>();
-        }
-
-        /**
-         * Constructs a new {@link Vtable} based on an existing Vtable.
-         * 
-         * @param vtable
-         *            Initial {@link Vtable}. A deep copy is performed on
-         *            <code>vtable</code>.
-         */
-        public Vtable(Vtable vtable) {
-            virtualMethods = new ArrayList<XmlvmMethod>(vtable.virtualMethods);
-        }
-
-        public Vtable clone() {
-            return new Vtable(this);
-        }
-
-        /**
-         * Determine the Vtable index of a method.
-         * 
-         * @param method
-         *            Method for which the Vtable index is to be determined.
-         * @return Vtable index (&gt;= 0) of this method or -1 if method has no
-         *         entry in the Vtable.
-         */
-        public int getVtableIndex(XmlvmMethod method) {
-            for (int i = 0; i < virtualMethods.size(); i++) {
-                if (virtualMethods.get(i).doesOverrideMethod(method)) {
-                    return i;
-                }
-            }
-            return -1;
-        }
-
-        /**
-         * Determines the Vtable index that an
-         * <code>&lt;dex:invoke-virtual&gt;</code> instruction should use.
-         * 
-         * @param instruction
-         *            <code>&lt;dex:invoke-virtual&gt;</code> instruction for
-         *            which to determine the Vtable index.
-         * @return Vtable index (&gt;= 0) for this instruction or -1 if
-         *         instruction has no entry in the Vtable (which indicates an
-         *         internal error).
-         */
-        public int getVtableIndex(XmlvmInvokeInstruction instruction) {
-            for (int i = 0; i < virtualMethods.size(); i++) {
-                if (virtualMethods.get(i).doesOverrideMethod(instruction)) {
-                    return i;
-                }
-            }
-            return -1;
-        }
-
-        /**
-         * Adds a method to the Vtable.
-         * 
-         * @param method
-         *            Method to be added.
-         */
-        public void addMethod(XmlvmMethod method) {
-            int idx = virtualMethods.size();
-            method.setVtableIndex(idx);
-            virtualMethods.add(method);
-        }
-
-        /**
-         * @param vtable
-         */
-        public void addVtable(Vtable vtable) {
-            for (XmlvmMethod method : vtable.virtualMethods) {
-                if (getVtableIndex(method) == -1) {
-                    addMethod(method);
-                }
-            }
-        }
-
-        /**
-         * Determines the size of the Vtable.
-         * 
-         * @return Size of Vtable.
-         */
-        public int getVtableSize() {
-            return virtualMethods.size();
-        }
-
-    }
-
-
+    private Set<String> forcedVtable = new HashSet<String>();
+    
     /**
      * Instantiates a new {@link VtableOutputProcess}.
      */
@@ -181,28 +79,48 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
 
         // Add empty class name that acts as a base class for java.lang.Object
         vtables.put("", new Vtable());
+        
+        forcedVtable.add("java.lang.Class.newInstance");
+        forcedVtable.add("java.lang.Object.getClass");
+        forcedVtable.add("java.lang.Class.getMethod");
+        forcedVtable.add("java.lang.reflect.Method.invoke");
+        forcedVtable.add("java.lang.Object.hashCode");
+        forcedVtable.add("java.lang.Object.equals");
+        forcedVtable.add("java.lang.Object.finalize");
+        forcedVtable.add("java.lang.Object.clone");
+        forcedVtable.add("java.lang.Object.toString");
     }
 
     @Override
     public boolean processPhase1(BundlePhase1 bundle) {
-        for (XmlvmResource xmlvm : bundle.getResources()) {
-            if (xmlvm != null) {
-                resourcePool.put(xmlvm.getFullName(), xmlvm);
-            }
-        }
-
-        computeVtables();
-
-        if (!arguments.option_gen_wrapper()) {
-            annotateVtableInvokes();
-            adjustTypes();
-        }
+        // This needs a global view in order to modify the resource set.
+        // Therefore all processing is done in the second phase.
         return true;
     }
 
     @Override
     public boolean processPhase2(BundlePhase2 bundle) {
-        // Only generate these files, if vtable is the target process.
+        this.hierarchyHelper = new ObjectHierarchyHelper(bundle.getResourceMap(),
+                arguments.option_gen_wrapper());
+        hierarchyHelper.redeclareInterfaceMethodsInAbstractClasses();
+        hierarchyHelper.calculateInterfaceIndices();
+        computeInvocationTables(bundle.getResources());
+        Log.debug(TAG, "Done computing vtables/itables");
+
+        if (!arguments.option_gen_wrapper()) {
+            processVtableInvokes(bundle.getResources());
+            Log.debug(TAG, "Done annotating invokes");
+            adjustTypes(bundle.getResources());
+            Log.debug(TAG, "Done adjusting types");
+        }
+        
+        if (!arguments.option_gen_wrapper() && !isTargetProcess) {
+            OutputFile indexFile = hierarchyHelper.getInterfaceIndexFile();
+            indexFile.setLocation(arguments.option_out());
+            indexFile.setFileName("interfaces.h");
+            bundle.addOutputFile(indexFile);
+        }
+
         if (isTargetProcess) {
             for (XmlvmResource resource : bundle.getResources()) {
                 OutputFile file = new OutputFile(new DelayedXmlvmSerializationProvider(
@@ -216,10 +134,16 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
     }
 
     /**
-     * Compute Vtables for all {@link org.xmlvm.proc.XmlvmResource}s.
+     * Compute Vtables and Itables for all {@link org.xmlvm.proc.XmlvmResource}
+     * s.
+     * 
+     * @param resources
+     *            the resources for which to compute the invocation tables
      */
-    private void computeVtables() {
-        for (XmlvmResource resource : resourcePool.values()) {
+    private void computeInvocationTables(Collection<XmlvmResource> resources) {
+        // Compute vtables and memorize non-overridden methods for which
+        // no vtable entry will be generated
+        for (XmlvmResource resource : resources) {
             computeVtable(resource);
         }
     }
@@ -231,13 +155,15 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
      *            {@link #XmlvmResource} for which to compute the Vtable.
      */
     private void computeVtable(XmlvmResource resource) {
-        if (resource == null || vtables.containsKey(resource.getFullName())) {
+        // Don't recompute vtables and don't compute them for interfaces
+        if (resource == null || vtables.containsKey(resource.getFullName())
+                || resource.isInterface()) {
             return;
         }
 
         String baseClassName = resource.getSuperTypeName();
         if (!vtables.containsKey(baseClassName)) {
-            XmlvmResource baseClass = getXmlvmResource(baseClassName);
+            XmlvmResource baseClass = hierarchyHelper.getXmlvmResource(baseClassName);
             if (baseClass == null) {
                 // When we don't have the base class, we cannot calculate the
                 // vtable for this class.
@@ -255,134 +181,191 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
                 continue;
             }
             int idx = baseClassVtable.getVtableIndex(method);
-            if (idx == -1) {
-                thisClassVtable.addMethod(method);
+            if (!resource.getPackageName().startsWith("org.xmlvm.iphone")) {
+                if (idx == -1) {
+                    // Add vtable index if the method is overridden, abstract or
+                    // specified as vtable method in isForcedVtable
+                    if (method.isAbstract()
+                            || hierarchyHelper.isOverridden(resource.getFullName(), method)
+                            || isForcedVtable(resource, method)) {
+                        Log.debug(TAG,
+                                "Vtable method " + resource.getFullName() + " " + method.getName());
+                        thisClassVtable.addMethod(method);
+                    } else {
+                        Log.debug(
+                                TAG,
+                                "Non-Vtable method " + resource.getFullName() + " "
+                                        + method.getName());
+                        // Memorize method and declaring class for all classes
+                        // inheriting this method
+                        nonOverriddenMethods.put(getCompleteMethodIdentifier(resource, method),
+                                resource.getFullName());
+                        for (XmlvmResource inheritingResource : hierarchyHelper
+                                .getChildrenRecursive(resource.getFullName())) {
+                            nonOverriddenMethods.put(
+                                    getCompleteMethodIdentifier(inheritingResource, method),
+                                    resource.getFullName());
+                        }
+                    }
+                } else {
+                    method.setVtableIndex(idx);
+                }
             } else {
-                method.setVtableIndex(idx);
+                if (idx == -1) {
+                    thisClassVtable.addMethod(method);
+                } else {
+                    method.setVtableIndex(idx);
+                }
             }
         }
 
-        // If this is an interface, add vtable of all base interfaces
-        if (resource.isInterface()) {
-            addAllBaseInterfaceVtables(thisClassVtable, resource);
-        }
-
         Log.debug("Size of vtable for class " + resource.getFullName() + ": "
-                + thisClassVtable.virtualMethods.size());
+                + thisClassVtable.getVtableSize());
 
         resource.setVtableSize(thisClassVtable.getVtableSize());
         vtables.put(resource.getFullName(), thisClassVtable);
 
-        // Add vtable initialization for all interfaces that this class
-        // implements
-        if (!resource.isInterface()) {
-            Set<XmlvmResource> interfaces = getAllImplementedInterfaces(resource);
-            Log.debug("Implemented interfaces: ");
+        computeItable(resource);
+    }
+
+    /**
+     * Compute the Itable for one {@link org.xmlvm.proc.XmlvmResource}.
+     * 
+     * @param resource
+     *            {@link #XmlvmResource} for which to compute the Itable.
+     */
+    private void computeItable(XmlvmResource resource) {
+        Vtable thisClassVtable = vtables.get(resource.getFullName());
+
+        Set<XmlvmResource> interfaces = hierarchyHelper.getInterfacesRecursive(resource
+                .getFullName());
+        if (interfaces.size() > 0) {
+            XmlvmItable itable = resource.createItable();
             for (XmlvmResource iface : interfaces) {
-                Log.debug("    " + iface.getFullName());
-                Vtable ifaceVtable = vtables.get(iface.getFullName());
-                XmlvmVtable vt = resource.createVtable("interface-vtable", iface.getFullName(),
-                        ifaceVtable.getVtableSize());
-                for (XmlvmMethod m : iface.getMethods()) {
-                    vt.addMapping(ifaceVtable.getVtableIndex(m), thisClassVtable.getVtableIndex(m));
-                    Log.debug("        " + m.getName() + ": " + ifaceVtable.getVtableIndex(m)
-                            + " = " + thisClassVtable.getVtableIndex(m));
+                // Add a vm:implementsInterface entry to the resource
+                // to initialize the implementedInterfaces array in the
+                // TIB later
+                resource.createImplementsInterface(iface.getFullName());
+
+                for (XmlvmMethod ifaceMethod : iface.getMethods()) {
+                    // Ignore static initializer methods in interfaces
+                    if (!ifaceMethod.isStatic()) {
+                        int vtableIndex = thisClassVtable.getVtableIndex(ifaceMethod);
+                        // If we can find a vtable entry for the method
+                        // map the interface method to the vtable entry
+                        if (vtableIndex != -1) {
+                            itable.addVtableMapping(iface.getFullName(), ifaceMethod, vtableIndex);
+                        } else {
+                            // If we can't find a vtable entry check if we
+                            // deleted the vtable entry during
+                            // optimization and map the itable to a
+                            // invoke-direct
+                            String classType = nonOverriddenMethods
+                                    .get(getCompleteMethodIdentifier(resource, ifaceMethod));
+                            if (classType != null) {
+                                itable.addDirectMapping(iface.getFullName(), ifaceMethod, classType);
+                            } else {
+                                Log.error("Couldn't find implementation for interface method "
+                                        + iface.getFullName() + " " + ifaceMethod.getName()
+                                        + " in " + resource.getFullName());
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 
     /**
-     * The vtable of an interface also includes the vtables of all base
-     * interfaces due to multiple inheritance of Java interfaces. This means
-     * that the vtable of an interface contains all methods inherited directly
-     * or indirectly from all base interfaces.
+     * Returns if there should be a vtable entry for the method no matter if
+     * it's overridden or abstract. This is used to force a vtable entry for
+     * method we want to override in native code but wouldn't usually be allowed
+     * to (e.g. becaues they're final)
      * 
-     * @param vtable
-     *            vtable to which the base interface's vtables is to be added.
      * @param resource
-     *            The interface whose base interfaces's vtables are to be
-     *            included.
+     *            XmlvmResource containing the method
+     * @param method
+     *            Method which should be checked
+     * @return True if there should be a vtable entry forced otherwise false
      */
-    private void addAllBaseInterfaceVtables(Vtable vtable, XmlvmResource resource) {
-        String interfaces = resource.getInterfaces();
-        if (interfaces == null) {
-            return;
-        }
-        for (String iface : interfaces.split(",")) {
-            XmlvmResource ifaceResource = getXmlvmResource(iface);
-            computeVtable(ifaceResource);
-            Vtable ifaceVtable = vtables.get(ifaceResource.getFullName());
-            vtable.addVtable(ifaceVtable);
-        }
+    private boolean isForcedVtable(XmlvmResource resource, XmlvmMethod method) {
+        return forcedVtable.contains(resource.getFullName() + "." + method.getName());
     }
 
     /**
-     * Retrieves a list of all (directly or indirectly) implemented interfaces
-     * of a class. XMLVM will associate this list with a class when generating
-     * code. Having a complete list of all implemented interfaces allows for a
-     * more efficient implementation of invoke-interface.
+     * Process all <code>&lt;dex:invoke-virtual&gt;</code> and either annotate
+     * them in @see() or change them to invoke-direct in @see()
      * 
-     * @param resource
-     *            Class for which all implemented interfaces are to be
-     *            retrieved.
-     * @return List of interfaces (either directly or indirectly through
-     *         inheritance) that this class implements.
+     * @param resources the resources to process
      */
-    private Set<XmlvmResource> getAllImplementedInterfaces(XmlvmResource resource) {
-        Set<XmlvmResource> collectedInterfaces = new HashSet<XmlvmResource>();
-        String interfaces = resource.getInterfaces();
-        // Collect immediate implemented interfaces
-        if (interfaces != null) {
-            for (String iface : interfaces.split(",")) {
-                XmlvmResource ifaceResource = getXmlvmResource(iface);
-                if (ifaceResource == null) {
-                    continue;
-                }
-                Set<XmlvmResource> baseInterfaces = getAllImplementedInterfaces(ifaceResource);
-                computeVtable(ifaceResource);
-                collectedInterfaces.add(ifaceResource);
-                collectedInterfaces.addAll(baseInterfaces);
-            }
-        }
-        // Collect interfaces of base classes
-        String baseClass = resource.getSuperTypeName();
-        if (!baseClass.equals("")) {
-            Set<XmlvmResource> baseClassInterfaces = getAllImplementedInterfaces(getXmlvmResource(baseClass));
-            collectedInterfaces.addAll(baseClassInterfaces);
-        }
-        return collectedInterfaces;
-    }
-
-    /**
-     * Annotate all <code>&lt;dex:invoke-virtual&gt;</code> and
-     * <code>&lt;dex:invoke-interface&gt;</code> instructions by adding the XML
-     * attribute <code>vtable-index</code>.
-     */
-    private void annotateVtableInvokes() {
-        for (XmlvmResource resource : resourcePool.values()) {
+    private void processVtableInvokes(Collection<XmlvmResource> resources) {
+        for (XmlvmResource resource : resources) {
             List<XmlvmMethod> methods = resource.getMethods();
             for (XmlvmMethod method : methods) {
                 for (XmlvmInvokeInstruction instruction : method.getVtableInvokeInstructions()) {
-                    String className = instruction.getClassType();
-                    if (className.indexOf("[]") != -1) {
-                        className = "java.lang.Object";
+                    if (nonOverriddenMethods.containsKey(getCompleteInvokeIdentifier(instruction))) {
+                        changeToInvokeDirect(instruction);
+                    } else {
+                        annotateInvoke(instruction);
                     }
-                    if (!vtables.containsKey(className)) {
-                        XmlvmResource clazz = getXmlvmResource(className);
-                        computeVtable(clazz);
-                    }
-                    Vtable vtable = vtables.get(className);
-                    if (vtable == null) {
-                        Log.warn("Couldn't find vtable for " + className);
-                        continue;
-                    }
-                    instruction.setVtableIndex(vtable.getVtableIndex(instruction));
-                    Log.debug("Vtable index for " + instruction.getClassType() + "."
-                            + instruction.getMethodName() + ": "
-                            + vtable.getVtableIndex(instruction));
                 }
             }
+        }
+    }
+
+    /**
+     * Change a invoke-virtual to a invoke-direct if we could save the vtable
+     * entry through optimization. Eventually also change the class-type to the
+     * declaring class of the method if it is not already the class-type of the
+     * invoke-virtual
+     * 
+     * @param instruction
+     *            Instruction to be changed
+     */
+    private void changeToInvokeDirect(XmlvmInvokeInstruction instruction) {
+        String completeInvokeSignature = getCompleteInvokeIdentifier(instruction);
+        String classType = instruction.getClassType();
+
+        String oldName = instruction.invokeElement.getName();
+        String newName = oldName.replace("virtual", "direct");
+        instruction.invokeElement.setName(newName);
+        Log.debug("Changed " + oldName + " for " + classType + " " + instruction.getMethodName()
+                + " to " + newName);
+
+        String declaringClass = nonOverriddenMethods.get(completeInvokeSignature);
+        if (!classType.equals(declaringClass)) {
+            instruction.setClassType(declaringClass);
+            Log.debug("Changed class-type of invoke from " + classType
+                    + " to declaring class type " + declaringClass);
+        }
+    }
+
+    /**
+     * Process all <code>&lt;dex:invoke-virtual&gt;</code> instructions by
+     * adding the XML attribute <code>vtable-index</code> to them
+     * 
+     * @param instruction
+     *            Instruction to be annotated
+     */
+    private void annotateInvoke(XmlvmInvokeInstruction instruction) {
+        String className = instruction.getClassType();
+        if (className.indexOf("[]") != -1) {
+            className = "java.lang.Object";
+        }
+        if (!vtables.containsKey(className)) {
+            Log.error("Vtable for " + className + " not found!");
+            return;
+        }
+        Vtable vtable = vtables.get(className);
+        int vtableIndex = vtable.getVtableIndex(instruction);
+
+        if (vtableIndex != -1) {
+            instruction.setVtableIndex(vtableIndex);
+            Log.debug("Vtable index for " + instruction.getClassType() + "."
+                    + instruction.getMethodName() + ": " + vtableIndex);
+        } else {
+            Log.error("Vtable index for " + instruction.getClassType() + "."
+                    + instruction.getMethodName() + " is -1!\n");
         }
     }
 
@@ -414,15 +397,18 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
      * <code>class-type</code> to the class, where it is defined. Method
      * {@link #adjustTypes()} performs this operation for the following
      * instructions: invoke-static, invoke-super, iput, iget, sput, sget.
+     * 
+     * @param resources
+     *            the resources of the types to adjust
      */
-    private void adjustTypes() {
-        for (XmlvmResource resource : resourcePool.values()) {
+    private void adjustTypes(Collection<XmlvmResource> resources) {
+        for (XmlvmResource resource : resources) {
             List<XmlvmInvokeInstruction> invokeInstructions = new ArrayList<XmlvmInvokeInstruction>();
             List<XmlvmMemberReadWrite> memberReadWriteInstructions = new ArrayList<XmlvmMemberReadWrite>();
             resource.collectInstructions(invokeInstructions, memberReadWriteInstructions);
             for (XmlvmInvokeInstruction instr : invokeInstructions) {
                 String classType = instr.getClassType();
-                XmlvmResource classTypeResource = getXmlvmResource(classType);
+                XmlvmResource classTypeResource = hierarchyHelper.getXmlvmResource(classType);
                 if (classTypeResource == null) {
                     continue;
                 }
@@ -435,7 +421,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
             }
             for (XmlvmMemberReadWrite instr : memberReadWriteInstructions) {
                 String classType = instr.getClassType();
-                XmlvmResource classTypeResource = getXmlvmResource(classType);
+                XmlvmResource classTypeResource = hierarchyHelper.getXmlvmResource(classType);
                 if (classTypeResource == null) {
                     continue;
                 }
@@ -471,7 +457,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
         }
         String baseClass = resource.getSuperTypeName();
         if (!baseClass.equals("")) {
-            XmlvmResource baseResource = getXmlvmResource(baseClass);
+            XmlvmResource baseResource = hierarchyHelper.getXmlvmResource(baseClass);
             return searchDeclaringTypeInHierarchy(baseResource, instruction);
         }
         return null;
@@ -507,7 +493,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
         String interfaces = resource.getInterfaces();
         if (interfaces != null) {
             for (String iface : interfaces.split(",")) {
-                XmlvmResource ifaceResource = getXmlvmResource(iface);
+                XmlvmResource ifaceResource = hierarchyHelper.getXmlvmResource(iface);
                 fields = ifaceResource.getFields();
                 for (XmlvmField field : fields) {
                     if (field.matchesName(instruction)) {
@@ -519,7 +505,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
         // Search base class
         String baseClass = resource.getSuperTypeName();
         if (!baseClass.equals("")) {
-            XmlvmResource baseResource = getXmlvmResource(baseClass);
+            XmlvmResource baseResource = hierarchyHelper.getXmlvmResource(baseClass);
             if (baseResource != null) {
                 return searchDeclaringTypeInHierarchy(baseResource, instruction);
             }
@@ -527,18 +513,38 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
         return null;
     }
 
-    private XmlvmResource getXmlvmResource(String className) {
-        if (alreadyLoadedResources.containsKey(className)) {
-            return alreadyLoadedResources.get(className);
-        }
-        XmlvmResource resource = resourcePool.get(className);
-        if (resource != null) {
-            return resource;
-        }
-
-        LibraryLoader loader = new LibraryLoader(arguments);
-        resource = loader.load(className);
-        alreadyLoadedResources.put(className, resource);
-        return resource;
+    /**
+     * Return a identifier for a method containing class name, method name and
+     * parameters to be used as key in a hash table
+     * 
+     * @param resource
+     *            Class declaring the method
+     * @param method
+     *            Method for which the identifier should be generated
+     * @return Method identifier
+     */
+    private String getCompleteMethodIdentifier(XmlvmResource resource, XmlvmMethod method) {
+        String sig = "";
+        sig += resource.getFullName() + "_";
+        sig += method.getName() + "__";
+        sig += hierarchyHelper.getParameterString(method.getParameterTypes());
+        return sig;
     }
+
+    /**
+     * Return a identifier for a method containing class name, method name and
+     * parameters to be used as key in a hash table
+     * 
+     * @param invoke
+     *            Invocation instruction of the method
+     * @return Method identifier
+     */
+    private String getCompleteInvokeIdentifier(XmlvmInvokeInstruction invoke) {
+        String sig = "";
+        sig += invoke.getClassType() + "_";
+        sig += invoke.getMethodName() + "__";
+        sig += hierarchyHelper.getParameterString(invoke.getParameterTypes());
+        return sig;
+    }
+
 }

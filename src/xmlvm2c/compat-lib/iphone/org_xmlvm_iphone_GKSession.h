@@ -38,7 +38,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_GKSessionDelegate)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.GKSession
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_GKSession, 35)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_GKSession, 30, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_GKSession)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKSession;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKSession_3ARRAY;
@@ -66,28 +66,28 @@ struct org_xmlvm_iphone_GKSession {
 typedef struct org_xmlvm_iphone_GKSession org_xmlvm_iphone_GKSession;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_GKSession 35
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_getDelegate__ 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_setDelegate___org_xmlvm_iphone_GKSessionDelegate 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_isAvailable__ 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_setAvailable___boolean 17
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_getDisconnectTimeout__ 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_setDisconnectTimeout___double 19
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_getDisplayName__ 20
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_getPeerID__ 21
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_getSessionID__ 22
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_getSessionMode__ 23
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_peersWithConnectionState___int 24
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_displayNameForPeer___java_lang_String 25
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_connectToPeer___java_lang_String_double 26
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_cancelConnectToPeer___java_lang_String 27
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_acceptConnectionFromPeer___java_lang_String_org_xmlvm_iphone_NSErrorHolder 28
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_denyConnectionFromPeer___java_lang_String 29
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_setDataReceiveHandler___org_xmlvm_iphone_GKDataReceiveHandler_java_lang_Object 30
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_sendData___org_xmlvm_iphone_NSData_java_util_ArrayList_int_org_xmlvm_iphone_NSErrorHolder 31
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_sendDataToAllPeers___org_xmlvm_iphone_NSData_int_org_xmlvm_iphone_NSErrorHolder 32
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_disconnectFromAllPeers__ 33
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_disconnectPeerFromAllPeers___java_lang_String 34
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_GKSession 30
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_getDelegate__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_setDelegate___org_xmlvm_iphone_GKSessionDelegate 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_isAvailable__ 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_setAvailable___boolean 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_getDisconnectTimeout__ 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_setDisconnectTimeout___double 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_getDisplayName__ 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_getPeerID__ 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_getSessionID__ 17
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_getSessionMode__ 18
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_peersWithConnectionState___int 19
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_displayNameForPeer___java_lang_String 20
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_connectToPeer___java_lang_String_double 21
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_cancelConnectToPeer___java_lang_String 22
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_acceptConnectionFromPeer___java_lang_String_org_xmlvm_iphone_NSErrorHolder 23
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_denyConnectionFromPeer___java_lang_String 24
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_setDataReceiveHandler___org_xmlvm_iphone_GKDataReceiveHandler_java_lang_Object 25
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_sendData___org_xmlvm_iphone_NSData_java_util_ArrayList_int_org_xmlvm_iphone_NSErrorHolder 26
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_sendDataToAllPeers___org_xmlvm_iphone_NSData_int_org_xmlvm_iphone_NSErrorHolder 27
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_disconnectFromAllPeers__ 28
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_GKSession_disconnectPeerFromAllPeers___java_lang_String 29
 
 void __INIT_org_xmlvm_iphone_GKSession();
 void __INIT_IMPL_org_xmlvm_iphone_GKSession();
@@ -96,47 +96,47 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKSession(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_GKSession();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_GKSession();
 void org_xmlvm_iphone_GKSession___INIT____java_lang_String_java_lang_String_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3);
-// Vtable index: 14
+// Vtable index: 9
 JAVA_OBJECT org_xmlvm_iphone_GKSession_getDelegate__(JAVA_OBJECT me);
-// Vtable index: 15
+// Vtable index: 10
 void org_xmlvm_iphone_GKSession_setDelegate___org_xmlvm_iphone_GKSessionDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 16
+// Vtable index: 11
 JAVA_BOOLEAN org_xmlvm_iphone_GKSession_isAvailable__(JAVA_OBJECT me);
-// Vtable index: 17
+// Vtable index: 12
 void org_xmlvm_iphone_GKSession_setAvailable___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 18
+// Vtable index: 13
 JAVA_DOUBLE org_xmlvm_iphone_GKSession_getDisconnectTimeout__(JAVA_OBJECT me);
-// Vtable index: 19
+// Vtable index: 14
 void org_xmlvm_iphone_GKSession_setDisconnectTimeout___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
-// Vtable index: 20
+// Vtable index: 15
 JAVA_OBJECT org_xmlvm_iphone_GKSession_getDisplayName__(JAVA_OBJECT me);
-// Vtable index: 21
+// Vtable index: 16
 JAVA_OBJECT org_xmlvm_iphone_GKSession_getPeerID__(JAVA_OBJECT me);
-// Vtable index: 22
+// Vtable index: 17
 JAVA_OBJECT org_xmlvm_iphone_GKSession_getSessionID__(JAVA_OBJECT me);
-// Vtable index: 23
+// Vtable index: 18
 JAVA_INT org_xmlvm_iphone_GKSession_getSessionMode__(JAVA_OBJECT me);
-// Vtable index: 24
+// Vtable index: 19
 JAVA_OBJECT org_xmlvm_iphone_GKSession_peersWithConnectionState___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 25
+// Vtable index: 20
 JAVA_OBJECT org_xmlvm_iphone_GKSession_displayNameForPeer___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 26
+// Vtable index: 21
 void org_xmlvm_iphone_GKSession_connectToPeer___java_lang_String_double(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_DOUBLE n2);
-// Vtable index: 27
+// Vtable index: 22
 void org_xmlvm_iphone_GKSession_cancelConnectToPeer___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 28
+// Vtable index: 23
 JAVA_BOOLEAN org_xmlvm_iphone_GKSession_acceptConnectionFromPeer___java_lang_String_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 29
+// Vtable index: 24
 void org_xmlvm_iphone_GKSession_denyConnectionFromPeer___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 30
+// Vtable index: 25
 void org_xmlvm_iphone_GKSession_setDataReceiveHandler___org_xmlvm_iphone_GKDataReceiveHandler_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 31
+// Vtable index: 26
 JAVA_BOOLEAN org_xmlvm_iphone_GKSession_sendData___org_xmlvm_iphone_NSData_java_util_ArrayList_int_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_OBJECT n4);
-// Vtable index: 32
+// Vtable index: 27
 JAVA_BOOLEAN org_xmlvm_iphone_GKSession_sendDataToAllPeers___org_xmlvm_iphone_NSData_int_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_OBJECT n3);
-// Vtable index: 33
+// Vtable index: 28
 void org_xmlvm_iphone_GKSession_disconnectFromAllPeers__(JAVA_OBJECT me);
-// Vtable index: 34
+// Vtable index: 29
 void org_xmlvm_iphone_GKSession_disconnectPeerFromAllPeers___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

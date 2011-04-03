@@ -159,13 +159,15 @@ void __INIT_IMPL_org_xmlvm_iphone_SKRequest()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_SKRequest.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_SKRequest.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_SKRequest_start__;
-        __TIB_org_xmlvm_iphone_SKRequest.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_SKRequest_cancel__;
-        __TIB_org_xmlvm_iphone_SKRequest.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_SKRequest_getDelegate__;
-        __TIB_org_xmlvm_iphone_SKRequest.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_SKRequest_setDelegate___org_xmlvm_iphone_SKRequestDelegate;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_SKRequest.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_SKRequest_start__;
+        __TIB_org_xmlvm_iphone_SKRequest.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_SKRequest_cancel__;
+        __TIB_org_xmlvm_iphone_SKRequest.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_SKRequest_getDelegate__;
+        __TIB_org_xmlvm_iphone_SKRequest.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_SKRequest_setDelegate___org_xmlvm_iphone_SKRequestDelegate;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_SKRequest.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_SKRequest.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_SKRequest.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_SKRequest.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

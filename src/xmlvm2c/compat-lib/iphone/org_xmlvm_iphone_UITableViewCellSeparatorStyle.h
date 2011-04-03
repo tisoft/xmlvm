@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.UITableViewCellSeparatorStyle
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewCellSeparatorStyle, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewCellSeparatorStyle, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITableViewCellSeparatorStyle)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCellSeparatorStyle;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCellSeparatorStyle_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_UITableViewCellSeparatorStyle {
 typedef struct org_xmlvm_iphone_UITableViewCellSeparatorStyle org_xmlvm_iphone_UITableViewCellSeparatorStyle;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewCellSeparatorStyle 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewCellSeparatorStyle 6
 
 void __INIT_org_xmlvm_iphone_UITableViewCellSeparatorStyle();
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewCellSeparatorStyle();

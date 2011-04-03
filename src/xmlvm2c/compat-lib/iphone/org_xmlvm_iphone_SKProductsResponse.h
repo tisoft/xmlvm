@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.SKProductsResponse
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKProductsResponse, 16)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKProductsResponse, 11, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_SKProductsResponse)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsResponse;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsResponse_3ARRAY;
@@ -38,9 +38,9 @@ struct org_xmlvm_iphone_SKProductsResponse {
 typedef struct org_xmlvm_iphone_SKProductsResponse org_xmlvm_iphone_SKProductsResponse;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_SKProductsResponse 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProductsResponse_getInvalidProductIdentifiers__ 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProductsResponse_getProducts__ 15
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_SKProductsResponse 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProductsResponse_getInvalidProductIdentifiers__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProductsResponse_getProducts__ 10
 
 void __INIT_org_xmlvm_iphone_SKProductsResponse();
 void __INIT_IMPL_org_xmlvm_iphone_SKProductsResponse();
@@ -49,9 +49,9 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKProductsResponse(JAVA_OBJECT me)
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKProductsResponse();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKProductsResponse();
 void org_xmlvm_iphone_SKProductsResponse___INIT___(JAVA_OBJECT me);
-// Vtable index: 14
+// Vtable index: 9
 JAVA_OBJECT org_xmlvm_iphone_SKProductsResponse_getInvalidProductIdentifiers__(JAVA_OBJECT me);
-// Vtable index: 15
+// Vtable index: 10
 JAVA_OBJECT org_xmlvm_iphone_SKProductsResponse_getProducts__(JAVA_OBJECT me);
 
 #endif

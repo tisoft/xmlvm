@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.UIViewAnimationCurve
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewAnimationCurve, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewAnimationCurve, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIViewAnimationCurve)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationCurve;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationCurve_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_UIViewAnimationCurve {
 typedef struct org_xmlvm_iphone_UIViewAnimationCurve org_xmlvm_iphone_UIViewAnimationCurve;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewAnimationCurve 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewAnimationCurve 6
 
 void __INIT_org_xmlvm_iphone_UIViewAnimationCurve();
 void __INIT_IMPL_org_xmlvm_iphone_UIViewAnimationCurve();

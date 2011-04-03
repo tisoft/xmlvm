@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.UIViewAutoresizing
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewAutoresizing, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewAutoresizing, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIViewAutoresizing)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAutoresizing;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAutoresizing_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_UIViewAutoresizing {
 typedef struct org_xmlvm_iphone_UIViewAutoresizing org_xmlvm_iphone_UIViewAutoresizing;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewAutoresizing 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewAutoresizing 6
 
 void __INIT_org_xmlvm_iphone_UIViewAutoresizing();
 void __INIT_IMPL_org_xmlvm_iphone_UIViewAutoresizing();

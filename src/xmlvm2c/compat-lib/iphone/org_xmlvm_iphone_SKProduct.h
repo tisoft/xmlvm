@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.SKProduct
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKProduct, 19)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKProduct, 14, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_SKProduct)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProduct;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProduct_3ARRAY;
@@ -38,12 +38,12 @@ struct org_xmlvm_iphone_SKProduct {
 typedef struct org_xmlvm_iphone_SKProduct org_xmlvm_iphone_SKProduct;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_SKProduct 19
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProduct_getLocalizedDescription__ 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProduct_getLocalizedTitle__ 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProduct_getPrice__ 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProduct_getPriceLocale__ 17
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProduct_getProductIdentifier__ 18
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_SKProduct 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProduct_getLocalizedDescription__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProduct_getLocalizedTitle__ 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProduct_getPrice__ 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProduct_getPriceLocale__ 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProduct_getProductIdentifier__ 13
 
 void __INIT_org_xmlvm_iphone_SKProduct();
 void __INIT_IMPL_org_xmlvm_iphone_SKProduct();
@@ -51,15 +51,15 @@ void __DELETE_org_xmlvm_iphone_SKProduct(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKProduct(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKProduct();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKProduct();
-// Vtable index: 14
+// Vtable index: 9
 JAVA_OBJECT org_xmlvm_iphone_SKProduct_getLocalizedDescription__(JAVA_OBJECT me);
-// Vtable index: 15
+// Vtable index: 10
 JAVA_OBJECT org_xmlvm_iphone_SKProduct_getLocalizedTitle__(JAVA_OBJECT me);
-// Vtable index: 16
+// Vtable index: 11
 JAVA_DOUBLE org_xmlvm_iphone_SKProduct_getPrice__(JAVA_OBJECT me);
-// Vtable index: 17
+// Vtable index: 12
 JAVA_OBJECT org_xmlvm_iphone_SKProduct_getPriceLocale__(JAVA_OBJECT me);
-// Vtable index: 18
+// Vtable index: 13
 JAVA_OBJECT org_xmlvm_iphone_SKProduct_getProductIdentifier__(JAVA_OBJECT me);
 
 #endif

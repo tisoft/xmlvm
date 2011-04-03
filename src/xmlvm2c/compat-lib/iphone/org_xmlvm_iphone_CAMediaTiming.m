@@ -21,16 +21,16 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAMediaTiming_1ARRAY;
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
 
-void __INIT_FOR_CLASS_org_xmlvm_iphone_CAMediaTiming(__TIB_DEFINITION_TEMPLATE** interface)
+void __INIT_org_xmlvm_iphone_CAMediaTiming()
 {
     staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_CAMediaTiming);
     if (!__TIB_org_xmlvm_iphone_CAMediaTiming.classInitialized) {
-        __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_CAMediaTiming(interface);
+        __INIT_IMPL_org_xmlvm_iphone_CAMediaTiming();
     }
     staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_CAMediaTiming);
 }
 
-void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_CAMediaTiming(__TIB_DEFINITION_TEMPLATE** interface)
+void __INIT_IMPL_org_xmlvm_iphone_CAMediaTiming()
 {
     if (!__TIB_org_xmlvm_iphone_CAMediaTiming.classInitializationBegan) {
         __TIB_org_xmlvm_iphone_CAMediaTiming.classInitializationBegan = 1;
@@ -44,16 +44,7 @@ void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_CAMediaTiming(__TIB_DEFINITION_TEMPL
         __CLASS_org_xmlvm_iphone_CAMediaTiming_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CAMediaTiming, 2);
         __CLASS_org_xmlvm_iphone_CAMediaTiming_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CAMediaTiming, 1);
 
-        __TIB_org_xmlvm_iphone_CAMediaTiming.classInitialized = 1;
-    }
-    if (interface != JAVA_NULL) {
-        *interface = (__TIB_DEFINITION_TEMPLATE*) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_org_xmlvm_iphone_CAMediaTiming));
-        XMLVM_MEMCPY(*interface, &__TIB_org_xmlvm_iphone_CAMediaTiming, sizeof(__TIB_DEFINITION_org_xmlvm_iphone_CAMediaTiming));
-    }
-}
 
-void __INIT_org_xmlvm_iphone_CAMediaTiming()
-{
-    __INIT_FOR_CLASS_org_xmlvm_iphone_CAMediaTiming(JAVA_NULL);
+    }
 }
 

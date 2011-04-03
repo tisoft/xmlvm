@@ -22,16 +22,16 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_1ARRAY;
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
 
-void __INIT_FOR_CLASS_org_xmlvm_iphone_UINavigationControllerDelegate(__TIB_DEFINITION_TEMPLATE** interface)
+void __INIT_org_xmlvm_iphone_UINavigationControllerDelegate()
 {
     staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UINavigationControllerDelegate);
     if (!__TIB_org_xmlvm_iphone_UINavigationControllerDelegate.classInitialized) {
-        __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_UINavigationControllerDelegate(interface);
+        __INIT_IMPL_org_xmlvm_iphone_UINavigationControllerDelegate();
     }
     staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UINavigationControllerDelegate);
 }
 
-void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_UINavigationControllerDelegate(__TIB_DEFINITION_TEMPLATE** interface)
+void __INIT_IMPL_org_xmlvm_iphone_UINavigationControllerDelegate()
 {
     if (!__TIB_org_xmlvm_iphone_UINavigationControllerDelegate.classInitializationBegan) {
         __TIB_org_xmlvm_iphone_UINavigationControllerDelegate.classInitializationBegan = 1;
@@ -45,16 +45,7 @@ void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_UINavigationControllerDelegate(__TIB
         __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationControllerDelegate, 2);
         __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationControllerDelegate, 1);
 
-        __TIB_org_xmlvm_iphone_UINavigationControllerDelegate.classInitialized = 1;
-    }
-    if (interface != JAVA_NULL) {
-        *interface = (__TIB_DEFINITION_TEMPLATE*) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_org_xmlvm_iphone_UINavigationControllerDelegate));
-        XMLVM_MEMCPY(*interface, &__TIB_org_xmlvm_iphone_UINavigationControllerDelegate, sizeof(__TIB_DEFINITION_org_xmlvm_iphone_UINavigationControllerDelegate));
-    }
-}
 
-void __INIT_org_xmlvm_iphone_UINavigationControllerDelegate()
-{
-    __INIT_FOR_CLASS_org_xmlvm_iphone_UINavigationControllerDelegate(JAVA_NULL);
+    }
 }
 

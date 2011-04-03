@@ -250,13 +250,15 @@ void __INIT_IMPL_org_xmlvm_iphone_UIFont()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIFont.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIFont.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIFont_fontWithSize___float;
-        __TIB_org_xmlvm_iphone_UIFont.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIFont_familyName__;
-        __TIB_org_xmlvm_iphone_UIFont.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIFont_fontName__;
-        __TIB_org_xmlvm_iphone_UIFont.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIFont_pointSize__;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIFont.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIFont_fontWithSize___float;
+        __TIB_org_xmlvm_iphone_UIFont.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIFont_familyName__;
+        __TIB_org_xmlvm_iphone_UIFont.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIFont_fontName__;
+        __TIB_org_xmlvm_iphone_UIFont.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIFont_pointSize__;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UIFont.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIFont.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_UIFont.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UIFont.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarButtonItemDelegate, 12)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarButtonItemDelegate, 0, 0)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_3ARRAY;
@@ -22,11 +22,6 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_1ARRAY;
 typedef struct org_xmlvm_iphone_UIBarButtonItemDelegate org_xmlvm_iphone_UIBarButtonItemDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIBarButtonItemDelegate 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItemDelegate_clicked__ 11
-
-void __INIT_FOR_CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate(__TIB_DEFINITION_TEMPLATE** interface);
-void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate(__TIB_DEFINITION_TEMPLATE** interface);
 void __INIT_org_xmlvm_iphone_UIBarButtonItemDelegate();
 
 #endif

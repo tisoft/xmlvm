@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.UIReturnKeyType
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIReturnKeyType, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIReturnKeyType, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIReturnKeyType)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIReturnKeyType;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIReturnKeyType_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_UIReturnKeyType {
 typedef struct org_xmlvm_iphone_UIReturnKeyType org_xmlvm_iphone_UIReturnKeyType;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIReturnKeyType 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIReturnKeyType 6
 
 void __INIT_org_xmlvm_iphone_UIReturnKeyType();
 void __INIT_IMPL_org_xmlvm_iphone_UIReturnKeyType();

@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.NSNotification
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSNotification, 14)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSNotification, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSNotification)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNotification;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNotification_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_NSNotification {
 typedef struct org_xmlvm_iphone_NSNotification org_xmlvm_iphone_NSNotification;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSNotification 14
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSNotification 9
 
 void __INIT_org_xmlvm_iphone_NSNotification();
 void __INIT_IMPL_org_xmlvm_iphone_NSNotification();

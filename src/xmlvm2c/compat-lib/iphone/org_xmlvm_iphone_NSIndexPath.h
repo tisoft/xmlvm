@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.NSIndexPath
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSIndexPath, 18)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSIndexPath, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSIndexPath)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSIndexPath;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSIndexPath_3ARRAY;
@@ -41,11 +41,11 @@ struct org_xmlvm_iphone_NSIndexPath {
 typedef struct org_xmlvm_iphone_NSIndexPath org_xmlvm_iphone_NSIndexPath;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSIndexPath 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSIndexPath_getSection__ 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSIndexPath_getRow__ 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSIndexPath_setSection___int 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSIndexPath_setRow___int 17
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSIndexPath 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSIndexPath_getSection__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSIndexPath_getRow__ 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSIndexPath_setSection___int 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSIndexPath_setRow___int 12
 
 void __INIT_org_xmlvm_iphone_NSIndexPath();
 void __INIT_IMPL_org_xmlvm_iphone_NSIndexPath();
@@ -55,13 +55,13 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSIndexPath();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSIndexPath();
 void org_xmlvm_iphone_NSIndexPath___INIT___(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_NSIndexPath_indexPathForRow___int_int(JAVA_INT n1, JAVA_INT n2);
-// Vtable index: 14
+// Vtable index: 9
 JAVA_INT org_xmlvm_iphone_NSIndexPath_getSection__(JAVA_OBJECT me);
-// Vtable index: 15
+// Vtable index: 10
 JAVA_INT org_xmlvm_iphone_NSIndexPath_getRow__(JAVA_OBJECT me);
-// Vtable index: 16
+// Vtable index: 11
 void org_xmlvm_iphone_NSIndexPath_setSection___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 17
+// Vtable index: 12
 void org_xmlvm_iphone_NSIndexPath_setRow___int(JAVA_OBJECT me, JAVA_INT n1);
 
 #endif

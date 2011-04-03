@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.NSHTTPURLResponse
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSHTTPURLResponse, 14)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSHTTPURLResponse, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSHTTPURLResponse)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSHTTPURLResponse;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSHTTPURLResponse_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_NSHTTPURLResponse {
 typedef struct org_xmlvm_iphone_NSHTTPURLResponse org_xmlvm_iphone_NSHTTPURLResponse;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSHTTPURLResponse 14
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSHTTPURLResponse 9
 
 void __INIT_org_xmlvm_iphone_NSHTTPURLResponse();
 void __INIT_IMPL_org_xmlvm_iphone_NSHTTPURLResponse();

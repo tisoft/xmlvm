@@ -443,30 +443,32 @@ void __INIT_IMPL_org_xmlvm_iphone_GKSession()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_GKSession.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_GKSession.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_getDelegate__;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_setDelegate___org_xmlvm_iphone_GKSessionDelegate;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_isAvailable__;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_setAvailable___boolean;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_getDisconnectTimeout__;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_setDisconnectTimeout___double;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_getDisplayName__;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_getPeerID__;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_getSessionID__;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_getSessionMode__;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_peersWithConnectionState___int;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_displayNameForPeer___java_lang_String;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_connectToPeer___java_lang_String_double;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_cancelConnectToPeer___java_lang_String;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_acceptConnectionFromPeer___java_lang_String_org_xmlvm_iphone_NSErrorHolder;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_denyConnectionFromPeer___java_lang_String;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_setDataReceiveHandler___org_xmlvm_iphone_GKDataReceiveHandler_java_lang_Object;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_sendData___org_xmlvm_iphone_NSData_java_util_ArrayList_int_org_xmlvm_iphone_NSErrorHolder;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_sendDataToAllPeers___org_xmlvm_iphone_NSData_int_org_xmlvm_iphone_NSErrorHolder;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_disconnectFromAllPeers__;
-        __TIB_org_xmlvm_iphone_GKSession.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_disconnectPeerFromAllPeers___java_lang_String;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_GKSession.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_getDelegate__;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_setDelegate___org_xmlvm_iphone_GKSessionDelegate;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_isAvailable__;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_setAvailable___boolean;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_getDisconnectTimeout__;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_setDisconnectTimeout___double;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_getDisplayName__;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_getPeerID__;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_getSessionID__;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_getSessionMode__;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_peersWithConnectionState___int;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_displayNameForPeer___java_lang_String;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_connectToPeer___java_lang_String_double;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_cancelConnectToPeer___java_lang_String;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_acceptConnectionFromPeer___java_lang_String_org_xmlvm_iphone_NSErrorHolder;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_denyConnectionFromPeer___java_lang_String;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_setDataReceiveHandler___org_xmlvm_iphone_GKDataReceiveHandler_java_lang_Object;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_sendData___org_xmlvm_iphone_NSData_java_util_ArrayList_int_org_xmlvm_iphone_NSErrorHolder;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_sendDataToAllPeers___org_xmlvm_iphone_NSData_int_org_xmlvm_iphone_NSErrorHolder;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_disconnectFromAllPeers__;
+        __TIB_org_xmlvm_iphone_GKSession.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_GKSession_disconnectPeerFromAllPeers___java_lang_String;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_GKSession.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_GKSession.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_GKSession.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_GKSession.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

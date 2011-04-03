@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.UIAcceleration
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAcceleration, 17)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAcceleration, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIAcceleration)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAcceleration;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAcceleration_3ARRAY;
@@ -41,10 +41,10 @@ struct org_xmlvm_iphone_UIAcceleration {
 typedef struct org_xmlvm_iphone_UIAcceleration org_xmlvm_iphone_UIAcceleration;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIAcceleration 17
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAcceleration_x__ 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAcceleration_y__ 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAcceleration_z__ 16
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIAcceleration 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAcceleration_x__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAcceleration_y__ 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAcceleration_z__ 11
 
 void __INIT_org_xmlvm_iphone_UIAcceleration();
 void __INIT_IMPL_org_xmlvm_iphone_UIAcceleration();
@@ -53,11 +53,11 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAcceleration(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAcceleration();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAcceleration();
 void org_xmlvm_iphone_UIAcceleration___INIT____double_double_double(JAVA_OBJECT me, JAVA_DOUBLE n1, JAVA_DOUBLE n2, JAVA_DOUBLE n3);
-// Vtable index: 14
+// Vtable index: 9
 JAVA_DOUBLE org_xmlvm_iphone_UIAcceleration_x__(JAVA_OBJECT me);
-// Vtable index: 15
+// Vtable index: 10
 JAVA_DOUBLE org_xmlvm_iphone_UIAcceleration_y__(JAVA_OBJECT me);
-// Vtable index: 16
+// Vtable index: 11
 JAVA_DOUBLE org_xmlvm_iphone_UIAcceleration_z__(JAVA_OBJECT me);
 
 #endif

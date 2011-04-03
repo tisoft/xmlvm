@@ -315,9 +315,11 @@ void __INIT_IMPL_org_xmlvm_iphone_UIColor()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIColor.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        // Initialize vtable for implementing interfaces
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UIColor.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIColor.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
         _STATIC_org_xmlvm_iphone_UIColor_blackColor = (org_xmlvm_iphone_UIColor*) JAVA_NULL;
         _STATIC_org_xmlvm_iphone_UIColor_darkGrayColor = (org_xmlvm_iphone_UIColor*) JAVA_NULL;
         _STATIC_org_xmlvm_iphone_UIColor_lightGrayColor = (org_xmlvm_iphone_UIColor*) JAVA_NULL;

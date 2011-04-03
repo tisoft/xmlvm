@@ -1,6 +1,7 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_CAMediaTiming.h"
 #include "org_xmlvm_iphone_CAAction.h"
+#include "java_util_Map.h"
 #include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_CAAnimation.h"
@@ -178,32 +179,41 @@ void __INIT_IMPL_org_xmlvm_iphone_CAAnimation()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CAAnimation.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_CAAnimation.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_getDelegate__;
-        __TIB_org_xmlvm_iphone_CAAnimation.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_setDelegate___org_xmlvm_iphone_NSObject;
-        __TIB_org_xmlvm_iphone_CAAnimation.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_isRemovedOnCompletion__;
-        __TIB_org_xmlvm_iphone_CAAnimation.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_setRemovedOnCompletion___boolean;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_CAAnimation.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_getDelegate__;
+        __TIB_org_xmlvm_iphone_CAAnimation.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_setDelegate___org_xmlvm_iphone_NSObject;
+        __TIB_org_xmlvm_iphone_CAAnimation.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_isRemovedOnCompletion__;
+        __TIB_org_xmlvm_iphone_CAAnimation.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_setRemovedOnCompletion___boolean;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_CAAnimation.numImplementedInterfaces = 2;
         __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 2);
-        __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_CAMediaTiming(&__TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]);
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[11] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[12] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[13] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[14] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[15] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[16] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[17] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[18] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[19] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[20] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[21] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[22] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[23] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[24] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[25] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0]->vtable[26] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
-        __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_CAAction(&__TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]);
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1]->vtable[11] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[-1];
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+
+        if (!__TIB_org_xmlvm_iphone_CAMediaTiming.classInitialized) __INIT_org_xmlvm_iphone_CAMediaTiming();
+        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0] = &__TIB_org_xmlvm_iphone_CAMediaTiming;
+
+        if (!__TIB_org_xmlvm_iphone_CAAction.classInitialized) __INIT_org_xmlvm_iphone_CAAction();
+        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1] = &__TIB_org_xmlvm_iphone_CAAction;
+        // Initialize itable for this class
+        __TIB_org_xmlvm_iphone_CAAnimation.itableBegin = &__TIB_org_xmlvm_iphone_CAAnimation.itable[0];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_isAutoreverses__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[31];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setAutoreverses___boolean] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[23];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getBeginTime__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[15];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setBeginTime___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[20];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getDuration__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[28];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setDuration___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[19];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getFillMode__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[21];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setFillMode___java_lang_String] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[25];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getRepeatCount__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[29];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setRepeatCount___float] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[22];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getRepeatDuration__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[30];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setRepeatDuration___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[24];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getSpeed__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[26];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setSpeed___float] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[17];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getTimeOffset__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[16];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setTimeOffset___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[27];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAAction_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[18];
+
 
         __TIB_org_xmlvm_iphone_CAAnimation.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_CAAnimation.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

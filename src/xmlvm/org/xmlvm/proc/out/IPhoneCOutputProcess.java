@@ -20,18 +20,16 @@
 
 package org.xmlvm.proc.out;
 
+import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_RESOURCES_SYS;
 import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_SRC;
 import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_SRC_APP;
 import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_SRC_LIB;
-import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_RESOURCES_SYS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
@@ -86,9 +84,9 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
             bundle.addOutputFile(out);
         }
 
-        OutputFile iPhoneCocoaCompatLib = new OutputFile(IPHONE_COCOA_COMPAT_LIB);
-        iPhoneCocoaCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
-        bundle.addOutputFile(iPhoneCocoaCompatLib);
+        // Replace the contents of the cross-compiled cocoa lib files witht he
+        // hand-written implementations.
+        replaceCocoaCompatLib(bundle);
 
         try {
             // Create Info.plist
@@ -135,10 +133,6 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
         // Add extra source files, as resource files, if found
         bundle.addOutputFiles(ResourceManager.getSourceResources(arguments));
 
-        // Remove files that have manual overrides from the list of output
-        // files.
-        eliminateOverridenResources(new UniversalFile[] { IPHONE_COCOA_COMPAT_LIB }, bundle);
-
         // Create various buildfiles
         MakeFile makefile = new MakeFile(PLATFORM);
 
@@ -149,33 +143,23 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
     }
 
     /**
-     * The way things are right now, we do cross-compile all the simulator
-     * classes. However, we don't use them, but instead use the manually
-     * implemented files. This methods makes sure that those cross-compiled
-     * resources are removed.
-     * 
-     * @param manualOverrides
-     *            Contains files that are provided manually.
+     * Right now all the Java-based Cocoa API classes are going through the
+     * whole pipeline. This is necessary as they are used for dependency and
+     * other analysis. However, their implementation is only good for the
+     * Java-based simulator, but not for an actual Cocoa application. Therefore
+     * we replace those resources here with manually implemented cocoa versions.
      */
-    private void eliminateOverridenResources(UniversalFile[] manualOverrides,
-            BundlePhase2 resources) {
-        Log.debug(TAG, "Eliminating for manual overrides.");
-        Set<String> fileNamesToRemove = new HashSet<String>();
-        for (UniversalFile directory : manualOverrides) {
-            for (UniversalFile manualOverride : directory.listFiles()) {
-                fileNamesToRemove.add(manualOverride.getName());
-            }
+    private void replaceCocoaCompatLib(BundlePhase2 resources) {
+        Map<String, UniversalFile> cocoaFiles = new HashMap<String, UniversalFile>();
+        for (UniversalFile cocoaFile : IPHONE_COCOA_COMPAT_LIB.listFiles()) {
+            cocoaFiles.put(cocoaFile.getName(), cocoaFile);
         }
 
-        Set<OutputFile> filesToRemove = new HashSet<OutputFile>();
-        for (OutputFile outputFile : resources.getOutputFiles()) {
-            if (fileNamesToRemove.contains(outputFile.getFileName())) {
-                filesToRemove.add(outputFile);
+        for (OutputFile file : resources.getOutputFiles()) {
+            if (cocoaFiles.containsKey(file.getFileName())) {
+                file.setData(cocoaFiles.get(file.getFileName()).getFileAsBytes(),
+                        file.getLastModified());
             }
-        }
-
-        for (OutputFile fileToRemove : filesToRemove) {
-            resources.removeOutputFile(fileToRemove);
         }
     }
 }

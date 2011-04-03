@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.MKAnnotationViewDragState
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKAnnotationViewDragState, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKAnnotationViewDragState, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKAnnotationViewDragState)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKAnnotationViewDragState;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKAnnotationViewDragState_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_MKAnnotationViewDragState {
 typedef struct org_xmlvm_iphone_MKAnnotationViewDragState org_xmlvm_iphone_MKAnnotationViewDragState;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKAnnotationViewDragState 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKAnnotationViewDragState 6
 
 void __INIT_org_xmlvm_iphone_MKAnnotationViewDragState();
 void __INIT_IMPL_org_xmlvm_iphone_MKAnnotationViewDragState();

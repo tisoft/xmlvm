@@ -21,6 +21,7 @@
 package org.xmlvm.proc;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.xmlvm.proc.out.OutputFile;
 
@@ -37,10 +38,10 @@ public interface BundlePhase2 {
     public Collection<XmlvmResource> getResources();
 
     /**
-     * Returns whether the {@link XmlvmResource} with the given name is in this
-     * bundle.
+     * Returns a read-only map of the resources, where the key is the resource's
+     * full name.
      */
-    public boolean containsResource(String resourceName);
+    public Map<String, XmlvmResource> getResourceMap();
 
     /**
      * Adds a new {@link OutputFile} to this bundle.

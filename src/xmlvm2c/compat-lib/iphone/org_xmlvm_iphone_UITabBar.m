@@ -406,27 +406,29 @@ void __INIT_IMPL_org_xmlvm_iphone_UITabBar()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITabBar.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_getDelegate__;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setDelegate___org_xmlvm_iphone_UITabBarDelegate;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_getItems__;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setItems___java_util_ArrayList;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setItems___java_util_ArrayList_boolean;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_getSelectedItem__;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setSelectedItem___org_xmlvm_iphone_UITabBarItem;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setSelectedIndex___int;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_beginCustomizingItems___java_util_ArrayList;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_endCustomizingAnimated___boolean;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_isCustomizing__;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_getBarStyle__;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setBarStyle___int;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_getTintColor__;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setTintColor___org_xmlvm_iphone_UIColor;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_isTranslucent__;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setTranslucent___boolean;
-        __TIB_org_xmlvm_iphone_UITabBar.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_updateViews__;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[65] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_getDelegate__;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setDelegate___org_xmlvm_iphone_UITabBarDelegate;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_getItems__;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setItems___java_util_ArrayList;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setItems___java_util_ArrayList_boolean;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_getSelectedItem__;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setSelectedItem___org_xmlvm_iphone_UITabBarItem;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setSelectedIndex___int;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_beginCustomizingItems___java_util_ArrayList;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_endCustomizingAnimated___boolean;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_isCustomizing__;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_getBarStyle__;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setBarStyle___int;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_getTintColor__;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setTintColor___org_xmlvm_iphone_UIColor;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_isTranslucent__;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_setTranslucent___boolean;
+        __TIB_org_xmlvm_iphone_UITabBar.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBar_updateViews__;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UITabBar.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UITabBar.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_UITabBar.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UITabBar.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

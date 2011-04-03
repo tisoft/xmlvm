@@ -241,17 +241,19 @@ void __INIT_IMPL_org_xmlvm_iphone_CLLocation()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLLocation.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_CLLocation.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getAltitude__;
-        __TIB_org_xmlvm_iphone_CLLocation.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getCoordinate__;
-        __TIB_org_xmlvm_iphone_CLLocation.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getCourse__;
-        __TIB_org_xmlvm_iphone_CLLocation.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getHorizontalAccuracy__;
-        __TIB_org_xmlvm_iphone_CLLocation.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getSpeed__;
-        __TIB_org_xmlvm_iphone_CLLocation.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getTimestamp__;
-        __TIB_org_xmlvm_iphone_CLLocation.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getVerticalAccuracy__;
-        __TIB_org_xmlvm_iphone_CLLocation.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_distanceFromLocation___org_xmlvm_iphone_CLLocation;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_CLLocation.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getAltitude__;
+        __TIB_org_xmlvm_iphone_CLLocation.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getCoordinate__;
+        __TIB_org_xmlvm_iphone_CLLocation.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getCourse__;
+        __TIB_org_xmlvm_iphone_CLLocation.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getHorizontalAccuracy__;
+        __TIB_org_xmlvm_iphone_CLLocation.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getSpeed__;
+        __TIB_org_xmlvm_iphone_CLLocation.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getTimestamp__;
+        __TIB_org_xmlvm_iphone_CLLocation.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_getVerticalAccuracy__;
+        __TIB_org_xmlvm_iphone_CLLocation.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CLLocation_distanceFromLocation___org_xmlvm_iphone_CLLocation;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_CLLocation.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_CLLocation.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_CLLocation.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_CLLocation.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

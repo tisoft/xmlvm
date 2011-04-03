@@ -199,15 +199,17 @@ void __INIT_IMPL_org_xmlvm_iphone_UITouch()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITouch.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UITouch.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UITouch_locationInView___org_xmlvm_iphone_UIView;
-        __TIB_org_xmlvm_iphone_UITouch.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UITouch_getView__;
-        __TIB_org_xmlvm_iphone_UITouch.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UITouch_getWindow__;
-        __TIB_org_xmlvm_iphone_UITouch.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UITouch_getTapCount__;
-        __TIB_org_xmlvm_iphone_UITouch.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UITouch_getTimestamp__;
-        __TIB_org_xmlvm_iphone_UITouch.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UITouch_getPhase__;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UITouch.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UITouch_locationInView___org_xmlvm_iphone_UIView;
+        __TIB_org_xmlvm_iphone_UITouch.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UITouch_getView__;
+        __TIB_org_xmlvm_iphone_UITouch.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UITouch_getWindow__;
+        __TIB_org_xmlvm_iphone_UITouch.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UITouch_getTapCount__;
+        __TIB_org_xmlvm_iphone_UITouch.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UITouch_getTimestamp__;
+        __TIB_org_xmlvm_iphone_UITouch.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UITouch_getPhase__;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UITouch.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UITouch.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_UITouch.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UITouch.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

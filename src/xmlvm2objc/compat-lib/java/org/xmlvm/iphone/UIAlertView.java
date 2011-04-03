@@ -40,6 +40,13 @@ public class UIAlertView extends UIView {
     private UIAlertViewDelegate delegate;
 
 
+    /**
+     *  Added for including manual dependencies introduced in the wrapper code.
+     *  <b>DO NOT USE</b> 
+     */
+    protected void dummyMethod(UILabel manual1) {
+    }
+
     public UIAlertView(String title, String message, UIAlertViewDelegate delegate,
             String cancelButtonTitle) {
         xmlvmSetRenderer(new UIAlertViewRenderer(this));

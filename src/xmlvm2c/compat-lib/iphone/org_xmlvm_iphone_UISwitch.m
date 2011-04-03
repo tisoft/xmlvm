@@ -197,13 +197,15 @@ void __INIT_IMPL_org_xmlvm_iphone_UISwitch()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISwitch.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UISwitch.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setOn___boolean;
-        __TIB_org_xmlvm_iphone_UISwitch.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_isOn__;
-        __TIB_org_xmlvm_iphone_UISwitch.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect;
-        __TIB_org_xmlvm_iphone_UISwitch.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UISwitch.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setOn___boolean;
+        __TIB_org_xmlvm_iphone_UISwitch.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_isOn__;
+        __TIB_org_xmlvm_iphone_UISwitch.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect;
+        __TIB_org_xmlvm_iphone_UISwitch.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UISwitch.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UISwitch.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
         _STATIC_org_xmlvm_iphone_UISwitch_kSwitchButtonWidth = 94.0;
         _STATIC_org_xmlvm_iphone_UISwitch_kSwitchButtonHeight = 27.0;
 

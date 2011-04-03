@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.CLRegion
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLRegion, 18)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLRegion, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CLRegion)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLRegion;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLRegion_3ARRAY;
@@ -46,11 +46,11 @@ struct org_xmlvm_iphone_CLRegion {
 typedef struct org_xmlvm_iphone_CLRegion org_xmlvm_iphone_CLRegion;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CLRegion 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLRegion_getCenter__ 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLRegion_getIdentifier__ 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLRegion_getRadius__ 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLRegion_containsCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D 17
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CLRegion 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLRegion_getCenter__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLRegion_getIdentifier__ 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLRegion_getRadius__ 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CLRegion_containsCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D 12
 
 void __INIT_org_xmlvm_iphone_CLRegion();
 void __INIT_IMPL_org_xmlvm_iphone_CLRegion();
@@ -59,13 +59,13 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLRegion(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLRegion();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CLRegion();
 void org_xmlvm_iphone_CLRegion___INIT____org_xmlvm_iphone_CLLocationCoordinate2D_double_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_DOUBLE n2, JAVA_OBJECT n3);
-// Vtable index: 14
+// Vtable index: 9
 JAVA_OBJECT org_xmlvm_iphone_CLRegion_getCenter__(JAVA_OBJECT me);
-// Vtable index: 15
+// Vtable index: 10
 JAVA_OBJECT org_xmlvm_iphone_CLRegion_getIdentifier__(JAVA_OBJECT me);
-// Vtable index: 16
+// Vtable index: 11
 JAVA_DOUBLE org_xmlvm_iphone_CLRegion_getRadius__(JAVA_OBJECT me);
-// Vtable index: 17
+// Vtable index: 12
 JAVA_BOOLEAN org_xmlvm_iphone_CLRegion_containsCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

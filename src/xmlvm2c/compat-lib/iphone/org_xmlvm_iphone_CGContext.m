@@ -556,37 +556,39 @@ void __INIT_IMPL_org_xmlvm_iphone_CGContext()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGContext.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_CGContext.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_fillRect___org_xmlvm_iphone_CGRect;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_translate___float_float;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_rotate___float;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_scale___float_float;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_strokeRect___org_xmlvm_iphone_CGRect;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_fillEllipseInRect___org_xmlvm_iphone_CGRect;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setAlpha___float;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setFont___org_xmlvm_iphone_CGFont;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setFontSize___float;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setShouldAntialias___boolean;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1ARRAY;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_showTextAtPoint___float_float_java_lang_String;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_showText___java_lang_String;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_storeState__;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_restoreState__;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_getClip__;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_getTextPosition__;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setTextDrawingMode___int;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[36] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_beginPath__;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[37] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_moveToPoint___float_float;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[38] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_addLineToPoint___float_float;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[39] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_drawPath___int;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[40] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setLineCap___int;
-        __TIB_org_xmlvm_iphone_CGContext.vtable[41] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_strokePath__;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_CGContext.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_fillRect___org_xmlvm_iphone_CGRect;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_translate___float_float;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_rotate___float;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_scale___float_float;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_strokeRect___org_xmlvm_iphone_CGRect;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_fillEllipseInRect___org_xmlvm_iphone_CGRect;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setAlpha___float;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setFont___org_xmlvm_iphone_CGFont;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setFontSize___float;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setShouldAntialias___boolean;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1ARRAY;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_showTextAtPoint___float_float_java_lang_String;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_showText___java_lang_String;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_storeState__;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_restoreState__;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_getClip__;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_getTextPosition__;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setTextDrawingMode___int;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_beginPath__;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_moveToPoint___float_float;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_addLineToPoint___float_float;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_drawPath___int;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_setLineCap___int;
+        __TIB_org_xmlvm_iphone_CGContext.vtable[36] = (VTABLE_PTR) &org_xmlvm_iphone_CGContext_strokePath__;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_CGContext.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_CGContext.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
         _STATIC_org_xmlvm_iphone_CGContext_kCGTextInvisible = 1;
         _STATIC_org_xmlvm_iphone_CGContext_kCGTextFill = 2;
 

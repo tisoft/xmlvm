@@ -163,13 +163,15 @@ void __INIT_IMPL_org_xmlvm_iphone_MKPinAnnotationView()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKPinAnnotationView.vtable, __TIB_org_xmlvm_iphone_MKAnnotationView.vtable, sizeof(__TIB_org_xmlvm_iphone_MKAnnotationView.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_MKPinAnnotationView.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_MKPinAnnotationView_isAnimatesDrop__;
-        __TIB_org_xmlvm_iphone_MKPinAnnotationView.vtable[99] = (VTABLE_PTR) &org_xmlvm_iphone_MKPinAnnotationView_setAnimatesDrop___boolean;
-        __TIB_org_xmlvm_iphone_MKPinAnnotationView.vtable[100] = (VTABLE_PTR) &org_xmlvm_iphone_MKPinAnnotationView_getPinColor__;
-        __TIB_org_xmlvm_iphone_MKPinAnnotationView.vtable[101] = (VTABLE_PTR) &org_xmlvm_iphone_MKPinAnnotationView_setPinColor___int;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_MKPinAnnotationView.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_MKPinAnnotationView_isAnimatesDrop__;
+        __TIB_org_xmlvm_iphone_MKPinAnnotationView.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_MKPinAnnotationView_setAnimatesDrop___boolean;
+        __TIB_org_xmlvm_iphone_MKPinAnnotationView.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_MKPinAnnotationView_getPinColor__;
+        __TIB_org_xmlvm_iphone_MKPinAnnotationView.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_MKPinAnnotationView_setPinColor___int;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_MKPinAnnotationView.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_MKPinAnnotationView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_MKPinAnnotationView.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_MKPinAnnotationView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

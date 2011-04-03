@@ -52,7 +52,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometer_1ARRAY;
 {
     org_xmlvm_iphone_UIAcceleration* a = __NEW_org_xmlvm_iphone_UIAcceleration();
     org_xmlvm_iphone_UIAcceleration___INIT____double_double_double(a, acceleration.x, acceleration.y, acceleration.z);
-    Func_VOOO toCall = XMLVM_LOOKUP_INTERFACE_METHOD(self->delegate, "org.xmlvm.iphone.UIAccelerometerDelegate", XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAccelerometerDelegate_accelerometerDidAccelerate___org_xmlvm_iphone_UIAccelerometer_org_xmlvm_iphone_UIAcceleration);
+    Func_VOOO toCall = *(((java_lang_Object*)self->delegate)->tib->itableBegin)[XMLVM_ITABLE_IDX_org_xmlvm_iphone_UIAccelerometerDelegate_accelerometerDidAccelerate___org_xmlvm_iphone_UIAccelerometer_org_xmlvm_iphone_UIAcceleration];
 	toCall(self->delegate, self->accelerometer, a);
 }
 
@@ -168,11 +168,13 @@ void __INIT_IMPL_org_xmlvm_iphone_UIAccelerometer()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIAccelerometer.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIAccelerometer.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIAccelerometer_setUpdateInterval___double;
-        __TIB_org_xmlvm_iphone_UIAccelerometer.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIAccelerometer.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIAccelerometer_setUpdateInterval___double;
+        __TIB_org_xmlvm_iphone_UIAccelerometer.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIAccelerometer_setDelegate___org_xmlvm_iphone_UIAccelerometerDelegate;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UIAccelerometer.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIAccelerometer.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_UIAccelerometer.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UIAccelerometer.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

@@ -156,22 +156,6 @@ void staticInitializerRecursiveUnlock(void* tibDefinition)
     }
 }
 
-VTABLE_PTR XMLVM_LOOKUP_INTERFACE_METHOD(JAVA_OBJECT me, const char* ifaceName, int vtableIndex)
-{
-    __TIB_DEFINITION_TEMPLATE* clazz = (__TIB_DEFINITION_TEMPLATE*) ((java_lang_Object*) me)->tib;
-    int numInterfaces = clazz->numImplementedInterfaces;
-    int i;
-    for (i = 0; i < numInterfaces; i++) {
-        __TIB_DEFINITION_TEMPLATE* (*ifaces)[1] = clazz->implementedInterfaces;
-        __TIB_DEFINITION_TEMPLATE* iface = (*ifaces)[i];
-        if (strcmp(ifaceName, iface->className) == 0) {
-            return iface->vtable[vtableIndex];
-        }
-    }
-    XMLVM_ERROR("XMLVM_LOOKUP_INTERFACE_METHOD() could not find interface", __FILE__, __FUNCTION__, __LINE__);
-    return (VTABLE_PTR) 0;
-}
-
 int xmlvm_java_string_cmp(JAVA_OBJECT s1, const char* s2)
 {
     java_lang_String* str = (java_lang_String*) s1;

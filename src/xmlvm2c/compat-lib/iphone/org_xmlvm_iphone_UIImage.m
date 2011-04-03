@@ -2,6 +2,7 @@
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_CGPoint.h"
 #include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_NSString.h"
 #include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_UIImage.h"
@@ -56,7 +57,7 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 }
 
 static JAVA_OBJECT* __method0_arg_types[] = {
-    &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_NSString,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
@@ -64,44 +65,48 @@ static JAVA_OBJECT* __method1_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_NSData,
+    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
-    &__CLASS_int,
-    &__CLASS_int,
+    &__CLASS_org_xmlvm_iphone_NSData,
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_int,
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGRect,
 };
 
 static JAVA_OBJECT* __method6_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGPoint,
+    &__CLASS_org_xmlvm_iphone_CGRect,
 };
 
 static JAVA_OBJECT* __method7_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGPoint,
 };
 
 static JAVA_OBJECT* __method8_arg_types[] = {
-    &__CLASS_int,
-    &__CLASS_int,
-    &__CLASS_int,
-    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method9_arg_types[] = {
+    &__CLASS_int,
+    &__CLASS_int,
+    &__CLASS_int,
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method10_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
     &__CLASS_float,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"imageNamed",
+    {"dummyMethod",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -110,7 +115,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"imageWithContentsOfFile",
+    {"imageNamed",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -119,7 +124,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"imageWithData",
+    {"imageWithContentsOfFile",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -128,7 +133,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"stretchableImage",
+    {"imageWithData",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -137,7 +142,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getCGImage",
+    {"stretchableImage",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -146,7 +151,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"drawInRect",
+    {"getCGImage",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -155,7 +160,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"drawAtPoint",
+    {"drawInRect",
     &__method6_arg_types[0],
     sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -164,7 +169,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getSize",
+    {"drawAtPoint",
     &__method7_arg_types[0],
     sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -173,7 +178,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"cropImage",
+    {"getSize",
     &__method8_arg_types[0],
     sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -182,7 +187,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"PNGRepresentation",
+    {"cropImage",
     &__method9_arg_types[0],
     sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -191,9 +196,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"JPEGRepresentation",
+    {"PNGRepresentation",
     &__method10_arg_types[0],
     sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"JPEGRepresentation",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -211,36 +225,39 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(argsArray[0]);
+        org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString(receiver, argsArray[0]);
         break;
     case 1:
-        org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String(argsArray[0]);
+        org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(argsArray[0]);
         break;
     case 2:
-        org_xmlvm_iphone_UIImage_imageWithData___org_xmlvm_iphone_NSData(argsArray[0]);
+        org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String(argsArray[0]);
         break;
     case 3:
-        org_xmlvm_iphone_UIImage_stretchableImage___int_int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIImage_imageWithData___org_xmlvm_iphone_NSData(argsArray[0]);
         break;
     case 4:
-        org_xmlvm_iphone_UIImage_getCGImage__(receiver);
+        org_xmlvm_iphone_UIImage_stretchableImage___int_int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 5:
-        org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIImage_getCGImage__(receiver);
         break;
     case 6:
-        org_xmlvm_iphone_UIImage_drawAtPoint___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
         break;
     case 7:
-        org_xmlvm_iphone_UIImage_getSize__(receiver);
+        org_xmlvm_iphone_UIImage_drawAtPoint___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
         break;
     case 8:
-        org_xmlvm_iphone_UIImage_cropImage___int_int_int_int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[2])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIImage_getSize__(receiver);
         break;
     case 9:
-        org_xmlvm_iphone_UIImage_PNGRepresentation__(receiver);
+        org_xmlvm_iphone_UIImage_cropImage___int_int_int_int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[2])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
         break;
     case 10:
+        org_xmlvm_iphone_UIImage_PNGRepresentation__(receiver);
+        break;
+    case 11:
         org_xmlvm_iphone_UIImage_JPEGRepresentation___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     default:
@@ -270,17 +287,20 @@ void __INIT_IMPL_org_xmlvm_iphone_UIImage()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIImage.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIImage.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_stretchableImage___int_int;
-        __TIB_org_xmlvm_iphone_UIImage.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_getCGImage__;
-        __TIB_org_xmlvm_iphone_UIImage.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect;
-        __TIB_org_xmlvm_iphone_UIImage.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_drawAtPoint___org_xmlvm_iphone_CGPoint;
-        __TIB_org_xmlvm_iphone_UIImage.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_getSize__;
-        __TIB_org_xmlvm_iphone_UIImage.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_cropImage___int_int_int_int;
-        __TIB_org_xmlvm_iphone_UIImage.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_PNGRepresentation__;
-        __TIB_org_xmlvm_iphone_UIImage.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_JPEGRepresentation___float;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIImage.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_stretchableImage___int_int;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_getCGImage__;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_drawAtPoint___org_xmlvm_iphone_CGPoint;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_getSize__;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_cropImage___int_int_int_int;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_PNGRepresentation__;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_JPEGRepresentation___float;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UIImage.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIImage.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_UIImage.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UIImage.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
@@ -333,6 +353,13 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImage()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
+}
+
+void org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(JAVA_OBJECT n1)

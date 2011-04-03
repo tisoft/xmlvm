@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGImage)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 #endif
 // Class declarations for org.xmlvm.iphone.CGBitmapContext
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGBitmapContext, 42)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGBitmapContext, 37, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGBitmapContext)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGBitmapContext;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGBitmapContext_3ARRAY;
@@ -42,7 +42,7 @@ struct org_xmlvm_iphone_CGBitmapContext {
 typedef struct org_xmlvm_iphone_CGBitmapContext org_xmlvm_iphone_CGBitmapContext;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGBitmapContext 42
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGBitmapContext 37
 
 void __INIT_org_xmlvm_iphone_CGBitmapContext();
 void __INIT_IMPL_org_xmlvm_iphone_CGBitmapContext();

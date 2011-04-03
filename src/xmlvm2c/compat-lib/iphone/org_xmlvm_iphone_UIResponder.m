@@ -396,16 +396,18 @@ void __INIT_IMPL_org_xmlvm_iphone_UIResponder()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIResponder.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIResponder.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent;
-        __TIB_org_xmlvm_iphone_UIResponder.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent;
-        __TIB_org_xmlvm_iphone_UIResponder.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
-        __TIB_org_xmlvm_iphone_UIResponder.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent;
-        __TIB_org_xmlvm_iphone_UIResponder.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_getNextResponder__;
-        __TIB_org_xmlvm_iphone_UIResponder.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_resignFirstResponder__;
-        __TIB_org_xmlvm_iphone_UIResponder.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_becomeFirstResponder__;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent;
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent;
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent;
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_getNextResponder__;
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_resignFirstResponder__;
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_becomeFirstResponder__;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UIResponder.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIResponder.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_UIResponder.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UIResponder.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

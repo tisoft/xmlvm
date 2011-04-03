@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.GKSendDataMode
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_GKSendDataMode, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_GKSendDataMode, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_GKSendDataMode)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKSendDataMode;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKSendDataMode_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_GKSendDataMode {
 typedef struct org_xmlvm_iphone_GKSendDataMode org_xmlvm_iphone_GKSendDataMode;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_GKSendDataMode 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_GKSendDataMode 6
 
 void __INIT_org_xmlvm_iphone_GKSendDataMode();
 void __INIT_IMPL_org_xmlvm_iphone_GKSendDataMode();

@@ -205,15 +205,17 @@ void __INIT_IMPL_org_xmlvm_iphone_UIActivityIndicatorView()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_setActivityIndicatorViewStyle___int;
-        __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_getActivityIndicatorViewStyle__;
-        __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_setHidesWhenStopped___boolean;
-        __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_getHidesWhenStopped__;
-        __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_startAnimating__;
-        __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_stopAnimating__;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[65] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_setActivityIndicatorViewStyle___int;
+        __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_getActivityIndicatorViewStyle__;
+        __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_setHidesWhenStopped___boolean;
+        __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_getHidesWhenStopped__;
+        __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_startAnimating__;
+        __TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIActivityIndicatorView_stopAnimating__;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UIActivityIndicatorView.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIActivityIndicatorView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_UIActivityIndicatorView.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UIActivityIndicatorView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

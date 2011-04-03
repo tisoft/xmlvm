@@ -163,9 +163,11 @@ void __INIT_IMPL_org_xmlvm_iphone_NSCalendarUnit()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSCalendarUnit.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
         // Initialize vtable for this class
-        // Initialize vtable for implementing interfaces
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_NSCalendarUnit.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_NSCalendarUnit.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
         _STATIC_org_xmlvm_iphone_NSCalendarUnit_Era = 2;
         _STATIC_org_xmlvm_iphone_NSCalendarUnit_Year = 4;
         _STATIC_org_xmlvm_iphone_NSCalendarUnit_Month = 8;

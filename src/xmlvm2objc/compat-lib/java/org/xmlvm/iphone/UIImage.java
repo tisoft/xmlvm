@@ -33,6 +33,13 @@ public class UIImage extends NSObject {
     private BufferedImage image;
 
 
+    /**
+     *  Added for including manual dependencies introduced in the wrapper code.
+     *  <b>DO NOT USE</b> 
+     */
+    protected void dummyMethod(NSString manual1) {
+    }
+
     @XMLVMIgnore
     UIImage(BufferedImage image) {
         this.image = image;

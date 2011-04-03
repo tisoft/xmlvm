@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControl)
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIControlDelegate, 12)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIControlDelegate, 0, 0)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlDelegate_3ARRAY;
@@ -26,11 +26,6 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlDelegate_1ARRAY;
 typedef struct org_xmlvm_iphone_UIControlDelegate org_xmlvm_iphone_UIControlDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIControlDelegate 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControlDelegate_raiseEvent___org_xmlvm_iphone_UIControl_int 11
-
-void __INIT_FOR_CLASS_org_xmlvm_iphone_UIControlDelegate(__TIB_DEFINITION_TEMPLATE** interface);
-void __INIT_IMPL_FOR_CLASS_org_xmlvm_iphone_UIControlDelegate(__TIB_DEFINITION_TEMPLATE** interface);
 void __INIT_org_xmlvm_iphone_UIControlDelegate();
 
 #endif

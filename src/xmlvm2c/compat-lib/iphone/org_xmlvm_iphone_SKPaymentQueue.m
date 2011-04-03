@@ -210,15 +210,17 @@ void __INIT_IMPL_org_xmlvm_iphone_SKPaymentQueue()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_SKPaymentQueue.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_SKPaymentQueue.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentQueue_addTransactionObserver___org_xmlvm_iphone_SKPaymentTransactionObserver;
-        __TIB_org_xmlvm_iphone_SKPaymentQueue.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentQueue_removeTransactionObserver___org_xmlvm_iphone_SKPaymentTransactionObserver;
-        __TIB_org_xmlvm_iphone_SKPaymentQueue.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentQueue_getTransactions__;
-        __TIB_org_xmlvm_iphone_SKPaymentQueue.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentQueue_addPayment___org_xmlvm_iphone_SKPayment;
-        __TIB_org_xmlvm_iphone_SKPaymentQueue.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentQueue_finishTransaction___org_xmlvm_iphone_SKPaymentTransaction;
-        __TIB_org_xmlvm_iphone_SKPaymentQueue.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentQueue_restoreCompletedTransactions__;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_SKPaymentQueue.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentQueue_addTransactionObserver___org_xmlvm_iphone_SKPaymentTransactionObserver;
+        __TIB_org_xmlvm_iphone_SKPaymentQueue.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentQueue_removeTransactionObserver___org_xmlvm_iphone_SKPaymentTransactionObserver;
+        __TIB_org_xmlvm_iphone_SKPaymentQueue.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentQueue_getTransactions__;
+        __TIB_org_xmlvm_iphone_SKPaymentQueue.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentQueue_addPayment___org_xmlvm_iphone_SKPayment;
+        __TIB_org_xmlvm_iphone_SKPaymentQueue.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentQueue_finishTransaction___org_xmlvm_iphone_SKPaymentTransaction;
+        __TIB_org_xmlvm_iphone_SKPaymentQueue.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentQueue_restoreCompletedTransactions__;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_SKPaymentQueue.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_SKPaymentQueue.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_SKPaymentQueue.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_SKPaymentQueue.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

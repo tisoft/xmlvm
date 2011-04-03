@@ -180,13 +180,15 @@ void __INIT_IMPL_org_xmlvm_iphone_NSIndexPath()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSIndexPath.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_NSIndexPath.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSIndexPath_getSection__;
-        __TIB_org_xmlvm_iphone_NSIndexPath.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSIndexPath_getRow__;
-        __TIB_org_xmlvm_iphone_NSIndexPath.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSIndexPath_setSection___int;
-        __TIB_org_xmlvm_iphone_NSIndexPath.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSIndexPath_setRow___int;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_NSIndexPath.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSIndexPath_getSection__;
+        __TIB_org_xmlvm_iphone_NSIndexPath.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_NSIndexPath_getRow__;
+        __TIB_org_xmlvm_iphone_NSIndexPath.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSIndexPath_setSection___int;
+        __TIB_org_xmlvm_iphone_NSIndexPath.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_NSIndexPath_setRow___int;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_NSIndexPath.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_NSIndexPath.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_NSIndexPath.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_NSIndexPath.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

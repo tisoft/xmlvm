@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 #endif
 // Class declarations for org.xmlvm.iphone.NSMutableData
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSMutableData, 21)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSMutableData, 16, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSMutableData)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSMutableData;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSMutableData_3ARRAY;
@@ -38,11 +38,11 @@ struct org_xmlvm_iphone_NSMutableData {
 typedef struct org_xmlvm_iphone_NSMutableData org_xmlvm_iphone_NSMutableData;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSMutableData 21
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSMutableData_byteCount__ 17
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSMutableData_getByte___int 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSMutableData_appendByte___int 19
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSMutableData_appendBytes___byte_1ARRAY 20
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSMutableData 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSMutableData_byteCount__ 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSMutableData_getByte___int 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSMutableData_appendByte___int 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSMutableData_appendBytes___byte_1ARRAY 15
 
 void __INIT_org_xmlvm_iphone_NSMutableData();
 void __INIT_IMPL_org_xmlvm_iphone_NSMutableData();
@@ -51,13 +51,13 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSMutableData(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSMutableData();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSMutableData();
 void org_xmlvm_iphone_NSMutableData___INIT___(JAVA_OBJECT me);
-// Vtable index: 17
+// Vtable index: 12
 JAVA_INT org_xmlvm_iphone_NSMutableData_byteCount__(JAVA_OBJECT me);
-// Vtable index: 18
+// Vtable index: 13
 JAVA_INT org_xmlvm_iphone_NSMutableData_getByte___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 19
+// Vtable index: 14
 void org_xmlvm_iphone_NSMutableData_appendByte___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 20
+// Vtable index: 15
 void org_xmlvm_iphone_NSMutableData_appendBytes___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

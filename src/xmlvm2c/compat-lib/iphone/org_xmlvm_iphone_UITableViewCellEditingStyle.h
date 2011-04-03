@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.UITableViewCellEditingStyle
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewCellEditingStyle, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewCellEditingStyle, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITableViewCellEditingStyle)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCellEditingStyle;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCellEditingStyle_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_UITableViewCellEditingStyle {
 typedef struct org_xmlvm_iphone_UITableViewCellEditingStyle org_xmlvm_iphone_UITableViewCellEditingStyle;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewCellEditingStyle 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewCellEditingStyle 6
 
 void __INIT_org_xmlvm_iphone_UITableViewCellEditingStyle();
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewCellEditingStyle();

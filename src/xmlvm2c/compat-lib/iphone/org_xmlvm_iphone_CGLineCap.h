@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.CGLineCap
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGLineCap, 11)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGLineCap, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGLineCap)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLineCap;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLineCap_3ARRAY;
@@ -38,7 +38,7 @@ struct org_xmlvm_iphone_CGLineCap {
 typedef struct org_xmlvm_iphone_CGLineCap org_xmlvm_iphone_CGLineCap;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGLineCap 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGLineCap 6
 
 void __INIT_org_xmlvm_iphone_CGLineCap();
 void __INIT_IMPL_org_xmlvm_iphone_CGLineCap();

@@ -375,25 +375,27 @@ void __INIT_IMPL_org_xmlvm_iphone_UINavigationBar()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UINavigationBar.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_pushNavigationItem___org_xmlvm_iphone_UINavigationItem_boolean;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_popNavigationItemAnimated___boolean;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_setItems___java_util_ArrayList;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_setItems___java_util_ArrayList_boolean;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_getDelegate__;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_setDelegate___org_xmlvm_iphone_UINavigationBarDelegate;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_getTopItem__;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_getBackitem__;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_getItems__;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_getBarStyle__;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_setBarStyle___int;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_getTintColor__;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_setTintColor___org_xmlvm_iphone_UIColor;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_isTranslucent__;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_setTranslucent___boolean;
-        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_updateViews__;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[65] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_pushNavigationItem___org_xmlvm_iphone_UINavigationItem_boolean;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_popNavigationItemAnimated___boolean;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_setItems___java_util_ArrayList;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_setItems___java_util_ArrayList_boolean;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_getDelegate__;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_setDelegate___org_xmlvm_iphone_UINavigationBarDelegate;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_getTopItem__;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_getBackitem__;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_getItems__;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_getBarStyle__;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_setBarStyle___int;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_getTintColor__;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_setTintColor___org_xmlvm_iphone_UIColor;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_isTranslucent__;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_setTranslucent___boolean;
+        __TIB_org_xmlvm_iphone_UINavigationBar.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_updateViews__;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UINavigationBar.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UINavigationBar.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_UINavigationBar.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UINavigationBar.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

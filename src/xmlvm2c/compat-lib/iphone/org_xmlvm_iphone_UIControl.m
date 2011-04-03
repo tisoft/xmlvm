@@ -56,7 +56,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl_1ARRAY;
 
 - (void) raiseEvent:(UIControl*) control :(int)event;
 {
-    Func_VOOI toCall = XMLVM_LOOKUP_INTERFACE_METHOD(self->delegate, "org.xmlvm.iphone.UIControlDelegate", XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControlDelegate_raiseEvent___org_xmlvm_iphone_UIControl_int);
+    Func_VOOI toCall = *(((java_lang_Object*)self->delegate)->tib->itableBegin)[XMLVM_ITABLE_IDX_org_xmlvm_iphone_UIControlDelegate_raiseEvent___org_xmlvm_iphone_UIControl_int];
 	toCall(self->delegate, self->control, event);
 }
 
@@ -308,18 +308,20 @@ void __INIT_IMPL_org_xmlvm_iphone_UIControl()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIControl.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIControl.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int;
-        __TIB_org_xmlvm_iphone_UIControl.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_getAllTargets__;
-        __TIB_org_xmlvm_iphone_UIControl.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
-        __TIB_org_xmlvm_iphone_UIControl.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_isEnabled__;
-        __TIB_org_xmlvm_iphone_UIControl.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_setEnabled___boolean;
-        __TIB_org_xmlvm_iphone_UIControl.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_isSelected__;
-        __TIB_org_xmlvm_iphone_UIControl.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_setSelected___boolean;
-        __TIB_org_xmlvm_iphone_UIControl.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_isHighlighted__;
-        __TIB_org_xmlvm_iphone_UIControl.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_setHighlighted___boolean;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIControl.vtable[65] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int;
+        __TIB_org_xmlvm_iphone_UIControl.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_getAllTargets__;
+        __TIB_org_xmlvm_iphone_UIControl.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+        __TIB_org_xmlvm_iphone_UIControl.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_isEnabled__;
+        __TIB_org_xmlvm_iphone_UIControl.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_setEnabled___boolean;
+        __TIB_org_xmlvm_iphone_UIControl.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_isSelected__;
+        __TIB_org_xmlvm_iphone_UIControl.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_setSelected___boolean;
+        __TIB_org_xmlvm_iphone_UIControl.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_isHighlighted__;
+        __TIB_org_xmlvm_iphone_UIControl.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_setHighlighted___boolean;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UIControl.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIControl.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_UIControl.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UIControl.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

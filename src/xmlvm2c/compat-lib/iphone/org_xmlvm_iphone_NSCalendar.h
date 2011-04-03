@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDateComponents)
 #endif
 // Class declarations for org.xmlvm.iphone.NSCalendar
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSCalendar, 18)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSCalendar, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSCalendar)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSCalendar;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSCalendar_3ARRAY;
@@ -50,11 +50,11 @@ struct org_xmlvm_iphone_NSCalendar {
 typedef struct org_xmlvm_iphone_NSCalendar org_xmlvm_iphone_NSCalendar;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSCalendar 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSCalendar_components___int_org_xmlvm_iphone_NSDate 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSCalendar_components___int_org_xmlvm_iphone_NSDate_org_xmlvm_iphone_NSData_int 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSCalendar_dateByAddingComponents___org_xmlvm_iphone_NSDateComponents_org_xmlvm_iphone_NSDate_int 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSCalendar_dateFromComponents___org_xmlvm_iphone_NSDateComponents 17
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSCalendar 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSCalendar_components___int_org_xmlvm_iphone_NSDate 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSCalendar_components___int_org_xmlvm_iphone_NSDate_org_xmlvm_iphone_NSData_int 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSCalendar_dateByAddingComponents___org_xmlvm_iphone_NSDateComponents_org_xmlvm_iphone_NSDate_int 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSCalendar_dateFromComponents___org_xmlvm_iphone_NSDateComponents 12
 
 void __INIT_org_xmlvm_iphone_NSCalendar();
 void __INIT_IMPL_org_xmlvm_iphone_NSCalendar();
@@ -63,13 +63,13 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSCalendar(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSCalendar();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSCalendar();
 JAVA_OBJECT org_xmlvm_iphone_NSCalendar_currentCalendar__();
-// Vtable index: 14
+// Vtable index: 9
 JAVA_OBJECT org_xmlvm_iphone_NSCalendar_components___int_org_xmlvm_iphone_NSDate(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2);
-// Vtable index: 15
+// Vtable index: 10
 JAVA_OBJECT org_xmlvm_iphone_NSCalendar_components___int_org_xmlvm_iphone_NSDate_org_xmlvm_iphone_NSData_int(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_INT n4);
-// Vtable index: 16
+// Vtable index: 11
 JAVA_OBJECT org_xmlvm_iphone_NSCalendar_dateByAddingComponents___org_xmlvm_iphone_NSDateComponents_org_xmlvm_iphone_NSDate_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3);
-// Vtable index: 17
+// Vtable index: 12
 JAVA_OBJECT org_xmlvm_iphone_NSCalendar_dateFromComponents___org_xmlvm_iphone_NSDateComponents(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

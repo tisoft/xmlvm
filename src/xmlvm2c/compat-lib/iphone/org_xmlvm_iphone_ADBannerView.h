@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.ADBannerView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_ADBannerView, 81)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_ADBannerView, 76, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_ADBannerView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerView_3ARRAY;
@@ -50,18 +50,18 @@ struct org_xmlvm_iphone_ADBannerView {
 typedef struct org_xmlvm_iphone_ADBannerView org_xmlvm_iphone_ADBannerView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_ADBannerView 81
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_getDelegate__ 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_setDelegate___org_xmlvm_iphone_ADBannerViewDelegate 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_getAdvertisingSection__ 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_setAdvertisingSection___java_lang_String 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_getCurrentContentSizeIdentifier__ 74
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_setCurrentContentSizeIdentifier___java_lang_String 75
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_getRequiredContentSizeIdentifiers__ 76
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_setRequiredContentSizeIdentifiers___java_util_Set 77
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_isBannerLoaded__ 78
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_isBannerViewActionInProgress__ 79
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_cancelBannerViewAction__ 80
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_ADBannerView 76
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_getDelegate__ 65
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_setDelegate___org_xmlvm_iphone_ADBannerViewDelegate 66
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_getAdvertisingSection__ 67
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_setAdvertisingSection___java_lang_String 68
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_getCurrentContentSizeIdentifier__ 69
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_setCurrentContentSizeIdentifier___java_lang_String 70
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_getRequiredContentSizeIdentifiers__ 71
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_setRequiredContentSizeIdentifiers___java_util_Set 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_isBannerLoaded__ 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_isBannerViewActionInProgress__ 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerView_cancelBannerViewAction__ 75
 
 void __INIT_org_xmlvm_iphone_ADBannerView();
 void __INIT_IMPL_org_xmlvm_iphone_ADBannerView();
@@ -71,27 +71,27 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_ADBannerView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_ADBannerView();
 JAVA_OBJECT org_xmlvm_iphone_ADBannerView_sizeFromBannerContentSizeIdentifier___java_lang_String(JAVA_OBJECT n1);
 void org_xmlvm_iphone_ADBannerView___INIT___(JAVA_OBJECT me);
-// Vtable index: 70
+// Vtable index: 65
 JAVA_OBJECT org_xmlvm_iphone_ADBannerView_getDelegate__(JAVA_OBJECT me);
-// Vtable index: 71
+// Vtable index: 66
 void org_xmlvm_iphone_ADBannerView_setDelegate___org_xmlvm_iphone_ADBannerViewDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 72
+// Vtable index: 67
 JAVA_OBJECT org_xmlvm_iphone_ADBannerView_getAdvertisingSection__(JAVA_OBJECT me);
-// Vtable index: 73
+// Vtable index: 68
 void org_xmlvm_iphone_ADBannerView_setAdvertisingSection___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 74
+// Vtable index: 69
 JAVA_OBJECT org_xmlvm_iphone_ADBannerView_getCurrentContentSizeIdentifier__(JAVA_OBJECT me);
-// Vtable index: 75
+// Vtable index: 70
 void org_xmlvm_iphone_ADBannerView_setCurrentContentSizeIdentifier___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 76
+// Vtable index: 71
 JAVA_OBJECT org_xmlvm_iphone_ADBannerView_getRequiredContentSizeIdentifiers__(JAVA_OBJECT me);
-// Vtable index: 77
+// Vtable index: 72
 void org_xmlvm_iphone_ADBannerView_setRequiredContentSizeIdentifiers___java_util_Set(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 78
+// Vtable index: 73
 JAVA_BOOLEAN org_xmlvm_iphone_ADBannerView_isBannerLoaded__(JAVA_OBJECT me);
-// Vtable index: 79
+// Vtable index: 74
 JAVA_BOOLEAN org_xmlvm_iphone_ADBannerView_isBannerViewActionInProgress__(JAVA_OBJECT me);
-// Vtable index: 80
+// Vtable index: 75
 void org_xmlvm_iphone_ADBannerView_cancelBannerViewAction__(JAVA_OBJECT me);
 
 #endif

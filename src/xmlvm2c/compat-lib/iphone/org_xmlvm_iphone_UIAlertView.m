@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_UILabel.h"
 #include "org_xmlvm_iphone_UIAlertViewDelegate.h"
 #include "java_lang_String.h"
 
@@ -68,28 +69,32 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 }
 
 static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UILabel,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
-    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method3_arg_types[] = {
     &__CLASS_java_lang_String,
 };
 
+static JAVA_OBJECT* __method3_arg_types[] = {
+};
+
 static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
     &__CLASS_java_lang_String,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"show",
+    {"dummyMethod",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -98,7 +103,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTitle",
+    {"show",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -107,7 +112,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTitle",
+    {"setTitle",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -116,7 +121,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setMessage",
+    {"getTitle",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -125,7 +130,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getMesssage",
+    {"setMessage",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -134,9 +139,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"addButtonWithTitle",
+    {"getMesssage",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"addButtonWithTitle",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -154,21 +168,24 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIAlertView_show__(receiver);
+        org_xmlvm_iphone_UIAlertView_dummyMethod___org_xmlvm_iphone_UILabel(receiver, argsArray[0]);
         break;
     case 1:
-        org_xmlvm_iphone_UIAlertView_setTitle___java_lang_String(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIAlertView_show__(receiver);
         break;
     case 2:
-        org_xmlvm_iphone_UIAlertView_getTitle__(receiver);
+        org_xmlvm_iphone_UIAlertView_setTitle___java_lang_String(receiver, argsArray[0]);
         break;
     case 3:
-        org_xmlvm_iphone_UIAlertView_setMessage___java_lang_String(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIAlertView_getTitle__(receiver);
         break;
     case 4:
-        org_xmlvm_iphone_UIAlertView_getMesssage__(receiver);
+        org_xmlvm_iphone_UIAlertView_setMessage___java_lang_String(receiver, argsArray[0]);
         break;
     case 5:
+        org_xmlvm_iphone_UIAlertView_getMesssage__(receiver);
+        break;
+    case 6:
         org_xmlvm_iphone_UIAlertView_addButtonWithTitle___java_lang_String(receiver, argsArray[0]);
         break;
     default:
@@ -198,15 +215,18 @@ void __INIT_IMPL_org_xmlvm_iphone_UIAlertView()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIAlertView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIAlertView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_show__;
-        __TIB_org_xmlvm_iphone_UIAlertView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_setTitle___java_lang_String;
-        __TIB_org_xmlvm_iphone_UIAlertView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_getTitle__;
-        __TIB_org_xmlvm_iphone_UIAlertView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_setMessage___java_lang_String;
-        __TIB_org_xmlvm_iphone_UIAlertView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_getMesssage__;
-        __TIB_org_xmlvm_iphone_UIAlertView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_addButtonWithTitle___java_lang_String;
-        // Initialize vtable for implementing interfaces
+        __TIB_org_xmlvm_iphone_UIAlertView.vtable[65] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_dummyMethod___org_xmlvm_iphone_UILabel;
+        __TIB_org_xmlvm_iphone_UIAlertView.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_show__;
+        __TIB_org_xmlvm_iphone_UIAlertView.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_setTitle___java_lang_String;
+        __TIB_org_xmlvm_iphone_UIAlertView.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_getTitle__;
+        __TIB_org_xmlvm_iphone_UIAlertView.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_setMessage___java_lang_String;
+        __TIB_org_xmlvm_iphone_UIAlertView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_getMesssage__;
+        __TIB_org_xmlvm_iphone_UIAlertView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_addButtonWithTitle___java_lang_String;
+        // Initialize interface information
         __TIB_org_xmlvm_iphone_UIAlertView.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIAlertView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+
+        // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
         __TIB_org_xmlvm_iphone_UIAlertView.declaredFields = &__field_reflection_data[0];
         __TIB_org_xmlvm_iphone_UIAlertView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
@@ -255,6 +275,13 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAlertView()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
+}
+
+void org_xmlvm_iphone_UIAlertView_dummyMethod___org_xmlvm_iphone_UILabel(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAlertView_dummyMethod___org_xmlvm_iphone_UILabel]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIAlertView___INIT____java_lang_String_java_lang_String_org_xmlvm_iphone_UIAlertViewDelegate_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4)

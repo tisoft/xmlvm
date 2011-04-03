@@ -93,6 +93,24 @@ public class XmlvmResource {
         public void setClassType(String type) {
             invokeElement.setAttribute("class-type", type);
         }
+
+        /**
+         * Returns a list of all parameter types (e.g. java.lang.String, ...)
+         * 
+         * @return list of all parameter types
+         */
+        public List<String> getParameterTypes() {
+            Element signature = invokeElement.getChild("parameters", nsDEX);
+            @SuppressWarnings("unchecked")
+            List<Element> parameterList = signature.getChildren("parameter", nsDEX);
+
+            List<String> parameterTypes = new ArrayList<String>();
+            for (Element parameter : parameterList) {
+                parameterTypes.add(parameter.getAttributeValue("type"));
+            }
+            return parameterTypes;
+        }
+
     }
 
 
@@ -191,16 +209,6 @@ public class XmlvmResource {
                 invokeInstructions.add(invoke);
             }
             children = element.getChildren("invoke-virtual-range", nsDEX);
-            for (Element instruction : children) {
-                XmlvmInvokeInstruction invoke = new XmlvmInvokeInstruction(instruction);
-                invokeInstructions.add(invoke);
-            }
-            children = element.getChildren("invoke-interface", nsDEX);
-            for (Element instruction : children) {
-                XmlvmInvokeInstruction invoke = new XmlvmInvokeInstruction(instruction);
-                invokeInstructions.add(invoke);
-            }
-            children = element.getChildren("invoke-interface-range", nsDEX);
             for (Element instruction : children) {
                 XmlvmInvokeInstruction invoke = new XmlvmInvokeInstruction(instruction);
                 invokeInstructions.add(invoke);
@@ -337,7 +345,7 @@ public class XmlvmResource {
             String flag = methodElement.getAttributeValue("isSynthetic");
             return flag != null && flag.equals("true");
         }
-
+        
         /**
          * Set a vtable index for this method (XML attribute
          * <code>vtableIndex</code>).
@@ -346,8 +354,37 @@ public class XmlvmResource {
             methodElement.setAttribute("vtableIndex", "" + idx);
         }
 
+        /**
+         * Returns a list of all parameter types (e.g. java.lang.String, ...)
+         * 
+         * @return list of all parameter types
+         */
+        public List<String> getParameterTypes() {
+            Element signature = methodElement.getChild("signature", nsXMLVM);
+            @SuppressWarnings("unchecked")
+            List<Element> parameterList = signature.getChildren("parameter", nsXMLVM);
+
+            List<String> parameterTypes = new ArrayList<String>();
+            for (Element parameter : parameterList) {
+                parameterTypes.add(parameter.getAttributeValue("type"));
+            }
+            return parameterTypes;
+        }
+
     }
 
+
+    /**
+     * Add a copy of the given method to the XmlvmResource
+     * 
+     * @param method
+     *            method to add
+     */
+    public void addMethod(XmlvmMethod method) {
+        Element clazz = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
+        Element clone = (Element) method.methodElement.clone();
+        clazz.addContent(clone);
+    }
 
     /**
      * Wrapper for a <code>&lt;vm:field&gt;</code> element.
@@ -435,30 +472,59 @@ public class XmlvmResource {
     }
 
 
-    public class XmlvmVtable {
-        private Element vtableElement;
+    /**
+     * vm:itable contains mappings between interface indices of implemented
+     * interfaces and the class vtable or directly methods of the class
+     */
+    public class XmlvmItable {
+        private Element itableElement;
 
 
-        public XmlvmVtable(Element vtableElement) {
-            this.vtableElement = vtableElement;
+        public XmlvmItable(Element itableElement) {
+            this.itableElement = itableElement;
         }
 
         /**
-         * Create a new mapping between a vtable of an interface and a vtable of
-         * an implementing class. See
-         * {@link XmlvmResource#createVtable(String, String, int)}.
+         * Create a new mapping between a global interface method index and the
+         * vtable of a class
          * 
-         * @param vtableIndexInterface
-         *            vtable index of a method defined in an interface.
+         * @param itableIndex
+         *            global interface method index
          * @param vtableIndexClass
          *            Corresponding vtable index of an implementing method in a
          *            class.
          */
-        public void addMapping(int vtableIndexInterface, int vtableIndexClass) {
-            Element map = new Element("map", nsXMLVM);
-            map.setAttribute("vtableIndexInterface", "" + vtableIndexInterface);
-            map.setAttribute("vtableIndexClass", "" + vtableIndexClass);
-            vtableElement.addContent(map);
+        public void addVtableMapping(String ifaceName, XmlvmMethod ifaceMethod, int vtableIndex) {
+            Element map = new Element("vtable-map", nsXMLVM);
+            map.setAttribute("ifaceName", ifaceName);
+            map.setAttribute("ifaceMethodName", ifaceMethod.getName());
+            Element signature = (Element) ifaceMethod.methodElement.getChild("signature", nsXMLVM)
+                    .clone();
+            map.addContent(signature);
+            map.setAttribute("vtableIndex", "" + vtableIndex);
+            itableElement.addContent(map);
+        }
+
+        /**
+         * Create a new mapping between a global interface method index and a
+         * direct invoke
+         * 
+         * @param itableIndex
+         *            global interface method index
+         * @param classType
+         *            class containing the method to be mapped
+         * @param methodName
+         *            name of the method to be mapped
+         */
+        public void addDirectMapping(String ifaceName, XmlvmMethod ifaceMethod, String classType) {
+            Element map = new Element("direct-map", nsXMLVM);
+            map.setAttribute("ifaceName", ifaceName);
+            map.setAttribute("ifaceMethodName", ifaceMethod.getName());
+            Element signature = (Element) ifaceMethod.methodElement.getChild("signature", nsXMLVM)
+                    .clone();
+            map.addContent(signature);
+            map.setAttribute("className", classType);
+            itableElement.addContent(map);
         }
     }
 
@@ -535,6 +601,17 @@ public class XmlvmResource {
         }
         fullResourceName += getName();
         return fullResourceName;
+    }
+
+    /**
+     * Checks if this class is abstract
+     * 
+     * @return true if it's an abstract class otherwise false
+     */
+    public boolean isAbstract() {
+        Element clazz = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
+        String flag = clazz.getAttributeValue("isAbstract");
+        return flag != null && flag.equals("true");
     }
 
     /**
@@ -635,40 +712,27 @@ public class XmlvmResource {
     }
 
     /**
-     * Creates an additional vtable for this class. These additional vtables are
-     * created for all implemented interfaces of this class. This means, if
-     * interface I is implemented by classes A and B, both classes A and B will
-     * contain separate vtables for I. This is because A and B will most likely
-     * implement methods of I in different order so their methods cannot be
-     * mapped via one vtable. The created vtable is essentially a mapping of
-     * methods defined in an interface to methods defined in the class. The XML
-     * markup of the vtable is as follows:
+     * Creates an itable for this class.The created itable is essentially a
+     * mapping of methods defined in an interface to methods defined in the
+     * class. The XML markup of the vtable is as follows:
      * 
      * <pre>
-     * &lt;vtable kind="..." name="..." size="..."&gt;
-     *     &lt;map vtableIndexInterface="..." vtableIndexClass="..."/&gt;
-     *     &lt;map vtableIndexInterface="..." vtableIndexClass="..."/&gt;
+     * &lt;itable&gt;
+     *     &lt;vtable-map itableIndex="..." vtableIndex="..."/&gt;
+     *     &lt;vtable-map itableIndex="..." vtableIndex="..."/&gt;
      *     ...
-     * &lt/vtable&gt;
+     *     &lt;direct-map itableIndex="..." class-type="..." name="..."/&gt;
+     *     &lt;direct-map itableIndex="..." class-type="..." name="..."/&gt;
+     *     ...
+     * &lt/itable&gt;
      * </pre>
      * 
-     * @param kind
-     *            The kind of vtable to be created. The only legal value
-     *            currently is <code>interface-vtable</code>.
-     * @param name
-     *            Fully qualified name of the interface for which vtable is to
-     *            be created.
-     * @param size
-     *            Size of the vtable required for the interface.
-     * @return A newly created vtable.
+     * @return A newly created itable.
      */
-    public XmlvmVtable createVtable(String kind, String name, int size) {
-        Element vtableElement = new Element("vtable", nsXMLVM);
-        vtableElement.setAttribute("kind", kind);
-        vtableElement.setAttribute("name", name);
-        vtableElement.setAttribute("size", "" + size);
-        xmlvmDocument.getRootElement().getChild("class", nsXMLVM).addContent(vtableElement);
-        return new XmlvmVtable(vtableElement);
+    public XmlvmItable createItable() {
+        Element itableElement = new Element("itable", nsXMLVM);
+        xmlvmDocument.getRootElement().getChild("class", nsXMLVM).addContent(itableElement);
+        return new XmlvmItable(itableElement);
 
     }
 
@@ -719,4 +783,18 @@ public class XmlvmResource {
 
         return new XmlvmResource(org.xmlvm.proc.XmlvmResource.Type.DEX, doc);
     }
+
+    /**
+     * Creates a &lt;vm:inmplementsInterface&gt; in the vm:class which is used
+     * by xmlvm2c.xsl to initialize the implementedInterface array
+     * 
+     * @param fullName
+     */
+    public void createImplementsInterface(String fullName) {
+        Element implementsInterfaceElement = new Element("implementsInterface", nsXMLVM);
+        implementsInterfaceElement.setAttribute("name", fullName);
+        xmlvmDocument.getRootElement().getChild("class", nsXMLVM)
+                .addContent(implementsInterfaceElement);
+    }
+
 }
