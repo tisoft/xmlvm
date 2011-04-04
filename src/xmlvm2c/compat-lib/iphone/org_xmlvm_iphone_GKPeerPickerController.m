@@ -11,7 +11,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_GKPeerPickerController __TIB_org_xmlvm_iphone_
     0, // classInitialized
     __INIT_org_xmlvm_iphone_GKPeerPickerController, // classInitializer
     "org.xmlvm.iphone.GKPeerPickerController", // className
-    (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_GKPeerPickerController), // sizeInstance
     XMLVM_TYPE_CLASS};
 
@@ -200,18 +200,18 @@ void __INIT_IMPL_org_xmlvm_iphone_GKPeerPickerController()
         __TIB_org_xmlvm_iphone_GKPeerPickerController.classInitializationBegan = 1;
 
         // Initialize base class if necessary
-        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
+        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
         __TIB_org_xmlvm_iphone_GKPeerPickerController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_GKPeerPickerController;
         // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_GKPeerPickerController.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_GKPeerPickerController.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_GKPeerPickerController.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_GKPeerPickerController_getDelegate__;
-        __TIB_org_xmlvm_iphone_GKPeerPickerController.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_GKPeerPickerController_setDelegate___org_xmlvm_iphone_GKPeerPickerControllerDelegate;
-        __TIB_org_xmlvm_iphone_GKPeerPickerController.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_GKPeerPickerController_isVisible__;
-        __TIB_org_xmlvm_iphone_GKPeerPickerController.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_GKPeerPickerController_getConnectionTypesMask__;
-        __TIB_org_xmlvm_iphone_GKPeerPickerController.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_GKPeerPickerController_setConnectionTypesMask___int;
-        __TIB_org_xmlvm_iphone_GKPeerPickerController.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_GKPeerPickerController_show__;
-        __TIB_org_xmlvm_iphone_GKPeerPickerController.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_GKPeerPickerController_dismiss__;
+        __TIB_org_xmlvm_iphone_GKPeerPickerController.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_GKPeerPickerController_getDelegate__;
+        __TIB_org_xmlvm_iphone_GKPeerPickerController.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_GKPeerPickerController_setDelegate___org_xmlvm_iphone_GKPeerPickerControllerDelegate;
+        __TIB_org_xmlvm_iphone_GKPeerPickerController.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_GKPeerPickerController_isVisible__;
+        __TIB_org_xmlvm_iphone_GKPeerPickerController.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_GKPeerPickerController_getConnectionTypesMask__;
+        __TIB_org_xmlvm_iphone_GKPeerPickerController.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_GKPeerPickerController_setConnectionTypesMask___int;
+        __TIB_org_xmlvm_iphone_GKPeerPickerController.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_GKPeerPickerController_show__;
+        __TIB_org_xmlvm_iphone_GKPeerPickerController.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_GKPeerPickerController_dismiss__;
         // Initialize interface information
         __TIB_org_xmlvm_iphone_GKPeerPickerController.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_GKPeerPickerController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -247,7 +247,7 @@ void __DELETE_org_xmlvm_iphone_GKPeerPickerController(void* me, void* client_dat
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKPeerPickerController(JAVA_OBJECT me)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_GKPeerPickerController()

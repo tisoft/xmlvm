@@ -22,6 +22,10 @@
 
 @implementation org_xmlvm_iphone_GKDataReceiveHandler
 
+- (void) __init_org_xmlvm_iphone_GKDataReceiveHandler__
+{    
+}
+
 - (void) receiveData___org_xmlvm_iphone_NSData_java_lang_String_org_xmlvm_iphone_GKSession_java_lang_Object :(org_xmlvm_iphone_NSData*)data :(java_lang_String*)peerID :(org_xmlvm_iphone_GKSession*)session :(java_lang_Object*)contect
 {    
 }

@@ -42,6 +42,7 @@ static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
 
 static JAVA_OBJECT* __constructor0_arg_types[] = {
+    &__CLASS_byte_1ARRAY,
 };
 
 static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
@@ -63,7 +64,7 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (c->fields.java_lang_reflect_Constructor.slot_) {
     case 0:
-        org_xmlvm_iphone_NSData___INIT___(obj);
+        org_xmlvm_iphone_NSData___INIT____byte_1ARRAY(obj, argsArray[0]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -81,14 +82,18 @@ static JAVA_OBJECT* __method1_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_byte_1ARRAY,
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
     &__CLASS_java_lang_String,
     &__CLASS_boolean,
 };
 
-static JAVA_OBJECT* __method3_arg_types[] = {
+static JAVA_OBJECT* __method4_arg_types[] = {
 };
 
-static JAVA_OBJECT* __method4_arg_types[] = {
+static JAVA_OBJECT* __method5_arg_types[] = {
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -110,7 +115,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"writeToFile",
+    {"dataWithBytes",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -119,7 +124,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"length",
+    {"writeToFile",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -128,9 +133,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getBytes",
+    {"length",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getBytes",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -154,12 +168,15 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_NSData_dataWithContentsOfURL___org_xmlvm_iphone_NSURL(argsArray[0]);
         break;
     case 2:
-        org_xmlvm_iphone_NSData_writeToFile___java_lang_String_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_NSData_dataWithBytes___byte_1ARRAY(argsArray[0]);
         break;
     case 3:
-        org_xmlvm_iphone_NSData_length__(receiver);
+        org_xmlvm_iphone_NSData_writeToFile___java_lang_String_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 4:
+        org_xmlvm_iphone_NSData_length__(receiver);
+        break;
+    case 5:
         org_xmlvm_iphone_NSData_getBytes__(receiver);
         break;
     default:
@@ -246,16 +263,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSData()
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSData()
 {
     JAVA_OBJECT me = JAVA_NULL;
-    me = __NEW_org_xmlvm_iphone_NSData();
-    org_xmlvm_iphone_NSData___INIT___(me);
     return me;
-}
-
-void org_xmlvm_iphone_NSData___INIT___(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithContentsOfFile___java_lang_String(JAVA_OBJECT n1)
@@ -275,6 +283,21 @@ JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithContentsOfURL___org_xmlvm_iphone_NSU
 {
     if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_dataWithContentsOfURL___org_xmlvm_iphone_NSURL]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithBytes___byte_1ARRAY(JAVA_OBJECT n1)
+{
+    if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_dataWithBytes___byte_1ARRAY]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_NSData___INIT____byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData___INIT____byte_1ARRAY]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

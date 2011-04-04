@@ -38,13 +38,13 @@ public class NSData extends NSObject {
     private static final int READ_BUF_SIZE = 32767;
     private byte[]           data;
 
-
     @XMLVMIgnore
-    public NSData(InputStream in) {
+    NSData(InputStream in) {
         readData(in);
     }
 
-    protected NSData() {
+    @XMLVMIgnore
+    NSData() {
         this.data = new byte[0];
     }
 
@@ -75,12 +75,12 @@ public class NSData extends NSObject {
 
             in.close();
         } catch (IOException ex) {
-            // Do nothon
+            // Do nothing
         }
     }
 
     @XMLVMIgnore
-    public InputStream getInputStream() {
+    InputStream getInputStream() {
         return new ByteArrayInputStream(data);
     }
 
@@ -105,6 +105,14 @@ public class NSData extends NSObject {
     public static NSData dataWithContentsOfURL(NSURL url) {
         // TODO : Java implementation
         return null;
+    }
+
+    public static NSData dataWithBytes(byte[] data) {
+        return new NSData(data);
+    }
+
+    public NSData(byte[] data) {
+        this.data = data;
     }
 
     public boolean writeToFile(String path, boolean atomically) {

@@ -23,37 +23,10 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class GKPeerPickerController extends NSObject {
+public final class SystemSoundID {
 
-    private boolean visible;
-    private GKPeerPickerControllerDelegate delegate;
-    private int connectionTypesMask = GKPeerPickerConnectionType.Nearby;
+    public static final int Vibrate = 0x00000FFF;
 
-    public GKPeerPickerControllerDelegate getDelegate() {
-        return delegate;
-    }
-
-    public void setDelegate(GKPeerPickerControllerDelegate delegate) {
-        this.delegate = delegate;
-    }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public int getConnectionTypesMask() {
-        return connectionTypesMask;
-    }
-
-    public void setConnectionTypesMask(int connectionTypesMask) {
-        this.connectionTypesMask = connectionTypesMask;
-    }
-
-    public void show() {
-        visible = true;
-    }
-
-    public void dismiss() {
-        visible = false;
+    private SystemSoundID() {
     }
 }

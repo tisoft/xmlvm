@@ -69,6 +69,12 @@ public class UIWebView extends UIView {
     public void reload() {
     }
 
+    public void goBack() {        
+    }
+    
+    public void goForward() {        
+    }
+    
     public int getDataDetectorTypes() {
         return dataDetectorTypes;
     }

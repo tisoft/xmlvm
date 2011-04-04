@@ -59,9 +59,10 @@ void __DELETE_org_xmlvm_iphone_NSData(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSData(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSData();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSData();
-void org_xmlvm_iphone_NSData___INIT___(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithContentsOfFile___java_lang_String(JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithContentsOfURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithBytes___byte_1ARRAY(JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSData___INIT____byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 9
 JAVA_BOOLEAN org_xmlvm_iphone_NSData_writeToFile___java_lang_String_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
 // Vtable index: 10

@@ -36,6 +36,16 @@
 	return [[NSData alloc] initWithContentsOfURL:url];
 }
 
++ (NSData*) dataWithBytes___byte_ARRAYTYPE:(XMLVMArray*) array
+{
+    return [[NSData dataWithBytes:array->array.data length:array->length] retain];
+}
+
+- (void) __init_org_xmlvm_iphone_NSData___byte_ARRAYTYPE:(XMLVMArray*) array
+{
+    [self initWithBytes:array->array.data length:array->length];
+}
+
 - (int) getByte___int: (int) index;
 {
     return (int) ((unsigned char *) [self bytes])[index];

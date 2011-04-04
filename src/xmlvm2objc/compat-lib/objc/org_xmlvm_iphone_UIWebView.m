@@ -85,4 +85,14 @@
 	return [self scalesPageToFit];
 }
 
+- (void) goBack__
+{
+    [self goBack];
+}
+
+- (void) goForward__
+{
+    [self goForward];
+}
+
 @end

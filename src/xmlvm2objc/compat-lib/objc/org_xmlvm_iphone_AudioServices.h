@@ -18,24 +18,10 @@
  * USA.
  */
 
-package org.xmlvm.iphone;
+#import "xmlvm.h"
+#import "java_lang_Object.h"
 
-import org.xmlvm.XMLVMSkeletonOnly;
-import org.xmlvm.iphone.internal.OptionalSelectorException;
+@interface org_xmlvm_iphone_AudioServices : java_lang_Object
++ (void) playSystemSound___int :(int)inSystemSoundID;
+@end
 
-@XMLVMSkeletonOnly
-public abstract class GKPeerPickerControllerDelegate extends NSObject {
-
-    public void didSelectConnectionType(GKPeerPickerController picker, int gkPeerPickerConnectionType) {
-    }
-
-    public GKSession sessionForConnectionType(GKPeerPickerController picker, int gkPeerPickerConnectionType) {
-        throw new OptionalSelectorException();
-    }
-
-    public void didConnectPeer(GKPeerPickerController picker, String peerID, GKSession session) {
-    }
-
-    public void didCancel(GKPeerPickerController picker) {
-    }
-}

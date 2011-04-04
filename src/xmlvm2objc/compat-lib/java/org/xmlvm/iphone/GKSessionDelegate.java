@@ -23,13 +23,13 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public interface GKSessionDelegate {
+public abstract class GKSessionDelegate extends NSObject {
 
-    public void didChangeState(GKSession session, String peerID, int gkPeerConnectionState);
+    public abstract void didChangeState(GKSession session, String peerID, int gkPeerConnectionState);
 
-    public void didReceiveConnectionRequestFromPeer(GKSession session, String peerID);
+    public abstract void didReceiveConnectionRequestFromPeer(GKSession session, String peerID);
 
-    public void connectionWithPeerFailed(GKSession session, String peerID, NSError error);
+    public abstract void connectionWithPeerFailed(GKSession session, String peerID, NSError error);
 
-    public void didFailWithError(GKSession session, NSError error);
+    public abstract void didFailWithError(GKSession session, NSError error);
 }

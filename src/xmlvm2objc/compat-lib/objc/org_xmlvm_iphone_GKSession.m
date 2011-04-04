@@ -115,11 +115,14 @@
 
 - (void) setDataReceiveHandler___org_xmlvm_iphone_GKDataReceiveHandler_java_lang_Object :(org_xmlvm_iphone_GKDataReceiveHandler*)n1 :(java_lang_Object*)n2
 {
+    XMLVM_PROPERTY_WITHCOMMAND(handler,n1,)
     [self setDataReceiveHandler:n1 withContext:n2];
 }
 
 - (int) sendData___org_xmlvm_iphone_NSData_java_util_ArrayList_int_org_xmlvm_iphone_NSErrorHolder :(org_xmlvm_iphone_NSData*)n1 :(java_util_ArrayList*)n2 :(int)n3 :(org_xmlvm_iphone_NSErrorHolder*)errholder
 {
+    n1 = XMLVM_NULL2NIL(n1);
+    n2 = XMLVM_NULL2NIL(n2);
     org_xmlvm_iphone_NSError** error = errholder == JAVA_NULL ? NULL : &(errholder->error_org_xmlvm_iphone_NSError);
     int res = [self sendData:n1 toPeers:n2 withDataMode:n3 error:error];
     errholder->error_org_xmlvm_iphone_NSError = XMLVM_NIL2NULL(errholder->error_org_xmlvm_iphone_NSError);
@@ -128,6 +131,7 @@
 
 - (int) sendDataToAllPeers___org_xmlvm_iphone_NSData_int_org_xmlvm_iphone_NSErrorHolder :(org_xmlvm_iphone_NSData*)n1 :(int)n2 :(org_xmlvm_iphone_NSErrorHolder*)errholder
 {
+    n1 = XMLVM_NULL2NIL(n1);
     org_xmlvm_iphone_NSError** error = errholder == JAVA_NULL ? NULL : &(errholder->error_org_xmlvm_iphone_NSError);
     int res = [self sendDataToAllPeers:n1 withDataMode:n2 error:error];
     errholder->error_org_xmlvm_iphone_NSError = XMLVM_NIL2NULL(errholder->error_org_xmlvm_iphone_NSError);

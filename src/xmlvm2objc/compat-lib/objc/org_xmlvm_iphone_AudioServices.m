@@ -18,24 +18,15 @@
  * USA.
  */
 
-package org.xmlvm.iphone;
+#import "org_xmlvm_iphone_AudioServices.h"
+#import <AudioToolbox/AudioToolbox.h>
 
-import org.xmlvm.XMLVMSkeletonOnly;
-import org.xmlvm.iphone.internal.OptionalSelectorException;
+@implementation org_xmlvm_iphone_AudioServices;
 
-@XMLVMSkeletonOnly
-public abstract class GKPeerPickerControllerDelegate extends NSObject {
-
-    public void didSelectConnectionType(GKPeerPickerController picker, int gkPeerPickerConnectionType) {
-    }
-
-    public GKSession sessionForConnectionType(GKPeerPickerController picker, int gkPeerPickerConnectionType) {
-        throw new OptionalSelectorException();
-    }
-
-    public void didConnectPeer(GKPeerPickerController picker, String peerID, GKSession session) {
-    }
-
-    public void didCancel(GKPeerPickerController picker) {
-    }
++ (void) playSystemSound___int :(int)inSystemSoundID
+{
+    AudioServicesPlaySystemSound(inSystemSoundID);
 }
+
+@end
+

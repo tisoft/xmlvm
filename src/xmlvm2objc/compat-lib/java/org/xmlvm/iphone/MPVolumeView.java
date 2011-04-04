@@ -23,37 +23,36 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class GKPeerPickerController extends NSObject {
+public class MPVolumeView extends UIView {
 
-    private boolean visible;
-    private GKPeerPickerControllerDelegate delegate;
-    private int connectionTypesMask = GKPeerPickerConnectionType.Nearby;
+    private boolean showsRouteButton  = true;
+    private boolean showsVolumeSlider = true;
 
-    public GKPeerPickerControllerDelegate getDelegate() {
-        return delegate;
+    public MPVolumeView() {
     }
 
-    public void setDelegate(GKPeerPickerControllerDelegate delegate) {
-        this.delegate = delegate;
+    public MPVolumeView(CGRect frame) {
+        super(frame);
     }
 
-    public boolean isVisible() {
-        return visible;
+    @Override
+    public CGSize sizeThatFits(CGSize size) {
+        return super.sizeThatFits(size);
     }
 
-    public int getConnectionTypesMask() {
-        return connectionTypesMask;
+    public boolean isShowsRouteButton() {
+        return showsRouteButton;
     }
 
-    public void setConnectionTypesMask(int connectionTypesMask) {
-        this.connectionTypesMask = connectionTypesMask;
+    public void setShowsRouteButton(boolean showsRouteButton) {
+        this.showsRouteButton = showsRouteButton;
     }
 
-    public void show() {
-        visible = true;
+    public boolean isShowsVolumeSlider() {
+        return showsVolumeSlider;
     }
 
-    public void dismiss() {
-        visible = false;
+    public void setShowsVolumeSlider(boolean showsVolumeSlider) {
+        this.showsVolumeSlider = showsVolumeSlider;
     }
 }

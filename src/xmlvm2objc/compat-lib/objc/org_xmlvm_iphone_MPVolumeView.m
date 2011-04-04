@@ -18,24 +18,38 @@
  * USA.
  */
 
-package org.xmlvm.iphone;
+#import "org_xmlvm_iphone_MPVolumeView.h"
 
-import org.xmlvm.XMLVMSkeletonOnly;
-import org.xmlvm.iphone.internal.OptionalSelectorException;
+@implementation MPVolumeView (cat_org_xmlvm_iphone_MPVolumeView)
 
-@XMLVMSkeletonOnly
-public abstract class GKPeerPickerControllerDelegate extends NSObject {
-
-    public void didSelectConnectionType(GKPeerPickerController picker, int gkPeerPickerConnectionType) {
-    }
-
-    public GKSession sessionForConnectionType(GKPeerPickerController picker, int gkPeerPickerConnectionType) {
-        throw new OptionalSelectorException();
-    }
-
-    public void didConnectPeer(GKPeerPickerController picker, String peerID, GKSession session) {
-    }
-
-    public void didCancel(GKPeerPickerController picker) {
-    }
+- (void) __init_org_xmlvm_iphone_MPVolumeView__
+{
 }
+
+- (void) __init_org_xmlvm_iphone_MPVolumeView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)frame
+{
+    [self setFrame:[frame getCGRect]];
+}
+
+- (int) isShowsRouteButton__
+{
+    return [self showsRouteButton];
+}
+
+- (void) setShowsRouteButton___boolean :(int)value
+{
+    [self setShowsRouteButton:value];
+}
+
+- (int) isShowsVolumeSlider__
+{
+    return [self showsVolumeSlider];
+}
+
+- (void) setShowsVolumeSlider___boolean :(int)value
+{
+    [self setShowsVolumeSlider:value];
+}
+
+@end
+
