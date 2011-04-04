@@ -84,13 +84,13 @@ static java_lang_Class* primitiveLongClass;
 
 + (JAVA_LONG) parseLong___java_lang_String: (java_lang_String *) str
 {
-	return [java_lang_Integer parseInt___java_lang_String:str];
+    return strtoll([str UTF8String], nil, 10);
 }
 
 + (JAVA_LONG) parseLong___java_lang_String_int: (java_lang_String*) str :(int) radix
 {
 // TODO throw NumberFormatException when appropriate
-    return strtoul([str UTF8String], nil, radix);
+    return strtoll([str UTF8String], nil, radix);
 }
 
 + (java_lang_Long*) valueOf___long: (JAVA_LONG) l {
