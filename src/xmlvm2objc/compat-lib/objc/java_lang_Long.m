@@ -84,7 +84,40 @@ static java_lang_Class* primitiveLongClass;
 
 + (JAVA_LONG) parseLong___java_lang_String: (java_lang_String *) str
 {
-    return strtoll([str UTF8String], nil, 10);
+	JAVA_LONG result = 0;
+	if (str == JAVA_NULL || [str length__] == 0) {
+		java_lang_NumberFormatException* ex = [[java_lang_NumberFormatException alloc] init];
+		[ex __init_java_lang_NumberFormatException__];
+		@throw ex;
+	} else {
+		result = atoll([str UTF8String]);
+		// If the result was 0, there was probably an error
+		// Every character before a decimal point should be '0' ('-' excluded) or we throw an exception
+		if (result == 0) {
+			BOOL ok = TRUE;
+			int i = 0;
+			if ([str charAt___int:0] == '-') {
+				if ([str length__] == 1) {
+					ok = FALSE;
+				} else {
+					i++;
+				}
+			}
+			while (ok && i < [str length__]) {
+				char c = [str charAt___int:i++];
+				if (c != '0') {
+					ok = FALSE;
+				}
+			}
+			if (!ok) {
+				java_lang_NumberFormatException* ex = [[java_lang_NumberFormatException alloc] init];
+				[ex __init_java_lang_NumberFormatException__];
+				@throw ex;
+			}
+		}
+// TODO throw a NumberFormatException for e.g. values "1.0" and "-1.01" instead of returning 1 and -1 respectively
+	}
+	return result;
 }
 
 + (JAVA_LONG) parseLong___java_lang_String_int: (java_lang_String*) str :(int) radix
