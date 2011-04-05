@@ -390,6 +390,11 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text>();&nl;</xsl:text>
 
+    <!-- Emit XMLVM-specific class implementation initializer -->
+    <xsl:text>void __INIT_IMPL_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>();&nl;</xsl:text>
+
     <!-- Emit code for class initializer if there is one -->
     <xsl:for-each select="vm:method[@name = '&lt;clinit&gt;']">
       <xsl:call-template name="emitMethodSignature">
@@ -1180,7 +1185,11 @@ int main(int argc, char* argv[])
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>___CLINIT_();</xsl:text>
     </xsl:if>
-    
+
+    <xsl:text>&nl;        __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.classInitialized = 1;&nl;</xsl:text>
+
     <xsl:text>&nl;    }&nl;}&nl;&nl;</xsl:text>
 
     <!-- Emit code for class initializer if there is one -->
