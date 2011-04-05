@@ -336,6 +336,7 @@ void xmlvm_unhandled_exception()
             xmlvm_java_string_to_const_char(thread_name),
             xmlvm_java_string_to_const_char(class_name),
             xmlvm_java_string_to_const_char(message));
+    XMLVM_INTERNAL_ERROR();
 }
 
 void xmlvm_unimplemented_native_method()

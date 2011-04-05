@@ -2459,6 +2459,21 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="dex:rem-float|dex:rem-float-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.f = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f - truncf(_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f / _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.f) * _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.f;&nl;</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="dex:mul-float|dex:mul-float-2addr">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
@@ -2963,7 +2978,15 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:const-class"> 
+<xsl:template match="dex:const-class">
+  <xsl:variable name="zero-base-type" select="vm:fixname(replace(@value, '\[\]', ''))"/>
+  <xsl:if test="vm:isObjectRef($zero-base-type)">
+    <xsl:text>    if (!__TIB_</xsl:text>
+    <xsl:value-of select="$zero-base-type"/>
+    <xsl:text>.classInitialized) __INIT_</xsl:text>
+    <xsl:value-of select="$zero-base-type"/>
+    <xsl:text>();&nl;</xsl:text>
+  </xsl:if>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.o = __CLASS_</xsl:text>
@@ -3698,11 +3721,13 @@ int main(int argc, char* argv[])
 
 <xsl:template match="dex:instance-of">
   <xsl:variable name="zero-base-type" select="vm:fixname(replace(@value, '\[\]', ''))"/>
-  <xsl:text>    if (!__TIB_</xsl:text>
-  <xsl:value-of select="$zero-base-type"/>
-  <xsl:text>.classInitialized) __INIT_</xsl:text>
-  <xsl:value-of select="$zero-base-type"/>
-  <xsl:text>();&nl;</xsl:text>
+  <xsl:if test="vm:isObjectRef($zero-base-type)">
+    <xsl:text>    if (!__TIB_</xsl:text>
+    <xsl:value-of select="$zero-base-type"/>
+    <xsl:text>.classInitialized) __INIT_</xsl:text>
+    <xsl:value-of select="$zero-base-type"/>
+    <xsl:text>();&nl;</xsl:text>
+  </xsl:if>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.i = XMLVM_ISA(_r</xsl:text>

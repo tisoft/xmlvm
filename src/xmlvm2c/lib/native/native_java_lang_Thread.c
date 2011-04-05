@@ -5,12 +5,19 @@
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 #include <pthread.h>
+#ifdef __OBJC__
+#import <Foundation/NSAutoreleasePool.h>
+#endif
+
 
 void threadRunner(JAVA_OBJECT me)
 {
     java_lang_Thread* thiz = me;
     XMLVM_JMP_BUF xmlvm_exception_env;
     
+#ifdef __OBJC__
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+#endif
     if (XMLVM_SETJMP(xmlvm_exception_env)) {
         xmlvm_unhandled_exception();
     } else {
@@ -19,6 +26,9 @@ void threadRunner(JAVA_OBJECT me)
         JAVA_LONG nativeThreadId = (JAVA_LONG) pthread_self();
         java_lang_Thread_run0___long(thiz, nativeThreadId);
     }
+#ifdef __OBJC__
+    [pool release];
+#endif
 }
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
@@ -222,7 +232,7 @@ void java_lang_Thread_setUncaughtExceptionHandler___java_lang_Thread_UncaughtExc
 void java_lang_Thread_sleep___long(JAVA_LONG n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_sleep___long]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+//    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 

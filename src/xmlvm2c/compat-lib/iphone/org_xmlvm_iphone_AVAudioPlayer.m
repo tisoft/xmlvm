@@ -517,6 +517,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_AVAudioPlayer()
     me->tib = &__TIB_org_xmlvm_iphone_AVAudioPlayer;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_AVAudioPlayer(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_AVAudioPlayer]
+    me->fields.org_xmlvm_iphone_AVAudioPlayer.delegateC = JAVA_NULL;
+    me->fields.org_xmlvm_iphone_AVAudioPlayer.delegateObjC = nil;
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_AVAudioPlayer);
     //XMLVM_END_WRAPPER
     return me;
@@ -544,15 +546,20 @@ JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithData___org_xmlvm_iphon
 {
     if (!__TIB_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_IOS(NSData, data, n1);
+    XMLVM_VAR_J2SE(org_xmlvm_iphone_NSErrorHolder, errorHolder, n2);
+    AVAudioPlayer* player = [[AVAudioPlayer alloc] initWithData:data error:NULL];
+    JAVA_OBJECT jplayer = __NEW_org_xmlvm_iphone_AVAudioPlayer();
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(jplayer, player);
+    return jplayer;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_play__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_play__]
-    org_xmlvm_iphone_AVAudioPlayer* thiz = me;
-    return [((AVAudioPlayer*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) play];
+    XMLVM_VAR_THIZ;
+    return [thiz play];
     //XMLVM_END_WRAPPER
 }
 
@@ -566,8 +573,8 @@ JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_playAtTime___double(JAVA_OBJECT me, 
 void org_xmlvm_iphone_AVAudioPlayer_stop__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_stop__]
-    org_xmlvm_iphone_AVAudioPlayer* thiz = me;
-    return [((AVAudioPlayer*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) stop];
+    XMLVM_VAR_THIZ;
+    [thiz stop];
     //XMLVM_END_WRAPPER
 }
 
@@ -595,8 +602,9 @@ JAVA_INT org_xmlvm_iphone_AVAudioPlayer_getNumberOfLoops__(JAVA_OBJECT me)
 void org_xmlvm_iphone_AVAudioPlayer_setNumberOfLoops___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_setNumberOfLoops___int]
-    org_xmlvm_iphone_AVAudioPlayer* thiz = me;
-    [((AVAudioPlayer*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setNumberOfLoops:n1];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(loops, n1);
+    [thiz setNumberOfLoops:loops];
     //XMLVM_END_WRAPPER
 }
 
@@ -610,22 +618,22 @@ JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_getDelegate__(JAVA_OBJECT me)
 void org_xmlvm_iphone_AVAudioPlayer_setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate]
-    org_xmlvm_iphone_AVAudioPlayer* thiz = me;
-    if (thiz->fields.org_xmlvm_iphone_AVAudioPlayer.delegateObjC != nil) {
-        [thiz->fields.org_xmlvm_iphone_AVAudioPlayer.delegateObjC release];
-    }
+    XMLVM_VAR_THIZ;
+    
+    [jthiz->fields.org_xmlvm_iphone_AVAudioPlayer.delegateObjC release];
     AVAudioPlayerDelegateWrapper* delegateWrapper = [[AVAudioPlayerDelegateWrapper alloc] initWithDelegate:n1:me];
-    [((AVAudioPlayer*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) setDelegate:delegateWrapper];
-    thiz->fields.org_xmlvm_iphone_AVAudioPlayer.delegateObjC = delegateWrapper;
+    [thiz setDelegate:delegateWrapper];
+    jthiz->fields.org_xmlvm_iphone_AVAudioPlayer.delegateObjC = delegateWrapper;
     // We keep a C-reference to the delegate to tell the GC about the association
-    thiz->fields.org_xmlvm_iphone_AVAudioPlayer.delegateC = n1;
+    jthiz->fields.org_xmlvm_iphone_AVAudioPlayer.delegateC = n1;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_isPlaying__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_isPlaying__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return [thiz isPlaying];
     //XMLVM_END_WRAPPER
 }
 
@@ -639,14 +647,17 @@ void org_xmlvm_iphone_AVAudioPlayer_setCurrentTime___double(JAVA_OBJECT me, JAVA
 JAVA_DOUBLE org_xmlvm_iphone_AVAudioPlayer_getCurrentTime__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_getCurrentTime__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return thiz.currentTime;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_AVAudioPlayer_setVolume___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_setVolume___float]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_FLOAT(volume, n1);
+    [thiz setVolume:volume];
     //XMLVM_END_WRAPPER
 }
 

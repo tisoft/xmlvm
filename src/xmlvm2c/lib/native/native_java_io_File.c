@@ -4,6 +4,9 @@
 
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+#include <sys/stat.h>
+#include <unistd.h>
+#include "xmlvm-util.h"
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
 void java_io_File_oneTimeInitialization__()
@@ -29,21 +32,27 @@ JAVA_BOOLEAN java_io_File_isCaseSensitiveImpl__()
 JAVA_BOOLEAN java_io_File_deleteDirImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_deleteDirImpl___byte_1ARRAY]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    char* fileName = XMLVMUtil_convertFromByteArray(n1);
+    return rmdir(fileName) == 0;
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_io_File_deleteFileImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_deleteFileImpl___byte_1ARRAY]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    char* fileName = XMLVMUtil_convertFromByteArray(n1);
+    return remove(fileName) == 0;
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_io_File_existsImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_existsImpl___byte_1ARRAY]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    char* fileName = XMLVMUtil_convertFromByteArray(n1);
+    struct stat buf;
+    int err;
+    err = stat(fileName, &buf);
+    return err != -1;
     //XMLVM_END_NATIVE
 }
 
@@ -78,7 +87,11 @@ JAVA_LONG java_io_File_getFreeSpaceImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJEC
 JAVA_BOOLEAN java_io_File_isDirectoryImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_isDirectoryImpl___byte_1ARRAY]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    char* fileName = XMLVMUtil_convertFromByteArray(n1);
+    struct stat buf;
+    int err;
+    err = stat(fileName, &buf);
+    return buf.st_mode & S_IFDIR;
     //XMLVM_END_NATIVE
 }
 
@@ -155,13 +168,8 @@ JAVA_BOOLEAN java_io_File_setWritableImpl___byte_1ARRAY_boolean_boolean(JAVA_OBJ
 JAVA_LONG java_io_File_lengthImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_lengthImpl___byte_1ARRAY]
-    org_xmlvm_runtime_XMLVMArray* a = n1;
-    char* fileName = (char*) a->fields.org_xmlvm_runtime_XMLVMArray.array_;
-    int fileNameLength = a->fields.org_xmlvm_runtime_XMLVMArray.length_;
-    char* fileNameBuffer = XMLVM_MALLOC(fileNameLength + 1);
-    XMLVM_MEMCPY(fileNameBuffer, fileName, fileNameLength);
-    fileNameBuffer[fileNameLength] = '\0';
-    FILE* fp = fopen(fileNameBuffer, "rb");
+    char* fileName = XMLVMUtil_convertFromByteArray(n1);
+    FILE* fp = fopen(fileName, "rb");
     fseek(fp, 0L, SEEK_END);
     JAVA_LONG size = ftell(fp);
     fclose(fp);

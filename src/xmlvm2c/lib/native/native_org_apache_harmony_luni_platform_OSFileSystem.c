@@ -147,7 +147,7 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_openImpl___byte_1ARRAY_i
     }
     char* fileName = XMLVMUtil_convertFromByteArray(n1);
     FILE* file = fopen(fileName, modeString);
-    return (file == NULL) ? -1 : (JAVA_LONG) file;
+    return (file == NULL) ? -1 : (JAVA_ULONG) file;
     //XMLVM_END_NATIVE
 }
 

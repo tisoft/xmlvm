@@ -245,7 +245,11 @@ JAVA_OBJECT org_xmlvm_iphone_CGSize_toString__(JAVA_OBJECT me)
 JAVA_BOOLEAN org_xmlvm_iphone_CGSize_equals___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGSize_equals___java_lang_Object]
-	XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_CGSize* thiz = me;
+    org_xmlvm_iphone_CGSize* other = n1;
+    //TODO check that n1 IS_A CGSize
+    return (thiz->fields.org_xmlvm_iphone_CGSize.width_ == other->fields.org_xmlvm_iphone_CGSize.width_) &&
+           (thiz->fields.org_xmlvm_iphone_CGSize.height_ == other->fields.org_xmlvm_iphone_CGSize.height_);
     //XMLVM_END_WRAPPER
 }
 

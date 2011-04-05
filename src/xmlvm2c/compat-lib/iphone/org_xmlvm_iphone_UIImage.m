@@ -26,11 +26,50 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImage_1ARRAY;
 
 //XMLVM_BEGIN_IMPLEMENTATION
 
-#import <UIKit/UIImage.h>
+#import <UIKit/UIKit.h>
 #include "org_xmlvm_iphone_CGSize.h"
 
 #import "org_xmlvm_iphone_NSString.h"
 #import "org_xmlvm_iphone_CGRect.h"
+
+@interface CroppedImageArgs : NSObject {
+@public	CGRect cropRect;
+@public	UIImage* croppedImage;
+}
+@end
+
+@implementation CroppedImageArgs
+@end
+
+@interface UIImage(cat_UIImage)
+@end
+
+@implementation UIImage(cat_UIImage)
+/*
+ * We perform the cropping on the main thread in case the cropping is
+ * done in a thread. Quartz is not thread-safe.
+ */
+- (void) cropImage: (id) args
+{
+	CGRect cropRect = ((CroppedImageArgs*) args)->cropRect;
+	CGSize size = cropRect.size;
+	UIGraphicsBeginImageContext(size);
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGImageRef subImage = CGImageCreateWithImageInRect([self CGImage], cropRect);
+	CGRect myRect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+	CGContextScaleCTM(context, 1.0f, -1.0f);
+	CGContextTranslateCTM(context, 0.0f, -size.height);
+	CGContextFlush(context);
+	CGContextDrawImage(context, myRect, subImage);
+	CGContextFlush(context);
+	UIImage* croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	[croppedImage retain];
+	CGImageRelease(subImage);
+	((CroppedImageArgs *) args)->croppedImage = croppedImage;
+}
+@end
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -454,7 +493,21 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_getSize__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_UIImage_cropImage___int_int_int_int(JAVA_OBJECT me, JAVA_INT n1, JAVA_INT n2, JAVA_INT n3, JAVA_INT n4)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_cropImage___int_int_int_int]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(x, n1);
+    XMLVM_VAR_INT(y, n2);
+    XMLVM_VAR_INT(width, n3);
+    XMLVM_VAR_INT(height, n4);
+    
+    CroppedImageArgs* args = [[CroppedImageArgs alloc] init];
+	args->cropRect = CGRectMake(x, y, width, height);
+	[thiz performSelectorOnMainThread:@selector(cropImage:) withObject:args waitUntilDone:TRUE];
+	UIImage* croppedImage = args->croppedImage;
+	[args release];
+    org_xmlvm_iphone_UIImage* toRet = __NEW_org_xmlvm_iphone_UIImage();
+    //TODO need to call a constructor but UIImage does not have a public default constructor
+    toRet->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = croppedImage;
+    return toRet;
     //XMLVM_END_WRAPPER
 }
 

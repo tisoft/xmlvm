@@ -224,7 +224,8 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSMutableData()
 void org_xmlvm_iphone_NSMutableData___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSMutableData___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    NSMutableData* data = [[NSMutableData alloc] init];
+    org_xmlvm_iphone_NSData_INTERNAL_CONSTRUCTOR(me, data);
     //XMLVM_END_WRAPPER
 }
 
@@ -252,7 +253,9 @@ void org_xmlvm_iphone_NSMutableData_appendByte___int(JAVA_OBJECT me, JAVA_INT n1
 void org_xmlvm_iphone_NSMutableData_appendBytes___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSMutableData_appendBytes___byte_1ARRAY]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_BYTE_ARRAY(bytes, n1);
+    [thiz appendBytes:bytesData length:bytesLength];
     //XMLVM_END_WRAPPER
 }
 

@@ -431,6 +431,9 @@ JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String(JAVA
     if ([className isEqualToString:@"NSCFBoolean"]) {
         jvalue = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(jvalue, [value boolValue]);
+    } else if ([className isEqualToString:@"NSCFNumber"]) {
+        jvalue = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(jvalue, [value intValue]);
     }
     else {
         XMLVM_NOT_IMPLEMENTED();
