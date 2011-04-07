@@ -13,10 +13,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIControlDelegate __TIB_org_xmlvm_iphone_UICon
     XMLVM_TYPE_INTERFACE};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlDelegate;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlDelegate_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlDelegate_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlDelegate_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlDelegate_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControlDelegate_3ARRAY;
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
@@ -40,10 +39,12 @@ void __INIT_IMPL_org_xmlvm_iphone_UIControlDelegate()
 
         __CLASS_org_xmlvm_iphone_UIControlDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIControlDelegate);
         __TIB_org_xmlvm_iphone_UIControlDelegate.clazz = __CLASS_org_xmlvm_iphone_UIControlDelegate;
-        __CLASS_org_xmlvm_iphone_UIControlDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIControlDelegate, 3);
-        __CLASS_org_xmlvm_iphone_UIControlDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIControlDelegate, 2);
-        __CLASS_org_xmlvm_iphone_UIControlDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIControlDelegate, 1);
+        __TIB_org_xmlvm_iphone_UIControlDelegate.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_UIControlDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIControlDelegate);
+        __CLASS_org_xmlvm_iphone_UIControlDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIControlDelegate_1ARRAY);
+        __CLASS_org_xmlvm_iphone_UIControlDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIControlDelegate_2ARRAY);
 
+        __TIB_org_xmlvm_iphone_UIControlDelegate.classInitialized = 1;
 
     }
 }

@@ -13,10 +13,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGLineCap, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGLineCap)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLineCap;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLineCap_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLineCap_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLineCap_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLineCap_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLineCap_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGLineCap
 //XMLVM_END_DECLARATIONS

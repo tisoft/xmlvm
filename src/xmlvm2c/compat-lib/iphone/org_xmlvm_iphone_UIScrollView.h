@@ -29,10 +29,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIScrollView, 87, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIScrollView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIScrollView
 void org_xmlvm_iphone_UIScrollView_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj);

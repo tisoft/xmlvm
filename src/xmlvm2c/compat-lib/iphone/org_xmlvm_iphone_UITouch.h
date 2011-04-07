@@ -17,10 +17,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITouch, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITouch)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 
 #import <UIKit/UITouch.h>

@@ -12,10 +12,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIBarButtonItemDelegate __TIB_org_xmlvm_iphone
     XMLVM_TYPE_INTERFACE};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_3ARRAY;
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
@@ -39,10 +38,12 @@ void __INIT_IMPL_org_xmlvm_iphone_UIBarButtonItemDelegate()
 
         __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIBarButtonItemDelegate);
         __TIB_org_xmlvm_iphone_UIBarButtonItemDelegate.clazz = __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate;
-        __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate, 3);
-        __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate, 2);
-        __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate, 1);
+        __TIB_org_xmlvm_iphone_UIBarButtonItemDelegate.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate);
+        __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_1ARRAY);
+        __CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIBarButtonItemDelegate_2ARRAY);
 
+        __TIB_org_xmlvm_iphone_UIBarButtonItemDelegate.classInitialized = 1;
 
     }
 }

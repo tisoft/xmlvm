@@ -18,10 +18,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UISwitch __TIB_org_xmlvm_iphone_UISwitch = {
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <UIKit/UISwitch.h>
 #include "org_xmlvm_iphone_CGRect.h"
@@ -219,10 +218,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UISwitch()
         __TIB_org_xmlvm_iphone_UISwitch.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UISwitch = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UISwitch);
         __TIB_org_xmlvm_iphone_UISwitch.clazz = __CLASS_org_xmlvm_iphone_UISwitch;
-        __CLASS_org_xmlvm_iphone_UISwitch_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UISwitch, 3);
-        __CLASS_org_xmlvm_iphone_UISwitch_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UISwitch, 2);
-        __CLASS_org_xmlvm_iphone_UISwitch_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UISwitch, 1);
-
+        __TIB_org_xmlvm_iphone_UISwitch.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_UISwitch_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UISwitch);
+        __CLASS_org_xmlvm_iphone_UISwitch_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UISwitch_1ARRAY);
+        __CLASS_org_xmlvm_iphone_UISwitch_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UISwitch_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UISwitch]
         //XMLVM_END_WRAPPER
 

@@ -15,10 +15,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIStatusBarStyle __TIB_org_xmlvm_iphone_UIStat
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIStatusBarStyle;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIStatusBarStyle_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIStatusBarStyle_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIStatusBarStyle_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIStatusBarStyle_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIStatusBarStyle_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -126,10 +125,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UIStatusBarStyle()
         __TIB_org_xmlvm_iphone_UIStatusBarStyle.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UIStatusBarStyle = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIStatusBarStyle);
         __TIB_org_xmlvm_iphone_UIStatusBarStyle.clazz = __CLASS_org_xmlvm_iphone_UIStatusBarStyle;
-        __CLASS_org_xmlvm_iphone_UIStatusBarStyle_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIStatusBarStyle, 3);
-        __CLASS_org_xmlvm_iphone_UIStatusBarStyle_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIStatusBarStyle, 2);
-        __CLASS_org_xmlvm_iphone_UIStatusBarStyle_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIStatusBarStyle, 1);
-
+        __TIB_org_xmlvm_iphone_UIStatusBarStyle.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_UIStatusBarStyle_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIStatusBarStyle);
+        __CLASS_org_xmlvm_iphone_UIStatusBarStyle_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIStatusBarStyle_1ARRAY);
+        __CLASS_org_xmlvm_iphone_UIStatusBarStyle_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIStatusBarStyle_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIStatusBarStyle]
         //XMLVM_END_WRAPPER
 

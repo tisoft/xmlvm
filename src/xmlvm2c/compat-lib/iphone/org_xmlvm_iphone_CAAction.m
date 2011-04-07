@@ -15,10 +15,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_CAAction __TIB_org_xmlvm_iphone_CAAction = {
     XMLVM_TYPE_INTERFACE};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAction;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAction_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAction_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAction_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAction_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAction_3ARRAY;
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
@@ -42,10 +41,12 @@ void __INIT_IMPL_org_xmlvm_iphone_CAAction()
 
         __CLASS_org_xmlvm_iphone_CAAction = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CAAction);
         __TIB_org_xmlvm_iphone_CAAction.clazz = __CLASS_org_xmlvm_iphone_CAAction;
-        __CLASS_org_xmlvm_iphone_CAAction_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CAAction, 3);
-        __CLASS_org_xmlvm_iphone_CAAction_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CAAction, 2);
-        __CLASS_org_xmlvm_iphone_CAAction_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CAAction, 1);
+        __TIB_org_xmlvm_iphone_CAAction.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_CAAction_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CAAction);
+        __CLASS_org_xmlvm_iphone_CAAction_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CAAction_1ARRAY);
+        __CLASS_org_xmlvm_iphone_CAAction_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CAAction_2ARRAY);
 
+        __TIB_org_xmlvm_iphone_CAAction.classInitialized = 1;
 
     }
 }

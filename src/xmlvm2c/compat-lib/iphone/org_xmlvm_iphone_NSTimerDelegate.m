@@ -12,10 +12,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSTimerDelegate __TIB_org_xmlvm_iphone_NSTimer
     XMLVM_TYPE_INTERFACE};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimerDelegate;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimerDelegate_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimerDelegate_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimerDelegate_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimerDelegate_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimerDelegate_3ARRAY;
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
@@ -39,10 +38,12 @@ void __INIT_IMPL_org_xmlvm_iphone_NSTimerDelegate()
 
         __CLASS_org_xmlvm_iphone_NSTimerDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSTimerDelegate);
         __TIB_org_xmlvm_iphone_NSTimerDelegate.clazz = __CLASS_org_xmlvm_iphone_NSTimerDelegate;
-        __CLASS_org_xmlvm_iphone_NSTimerDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSTimerDelegate, 3);
-        __CLASS_org_xmlvm_iphone_NSTimerDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSTimerDelegate, 2);
-        __CLASS_org_xmlvm_iphone_NSTimerDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSTimerDelegate, 1);
+        __TIB_org_xmlvm_iphone_NSTimerDelegate.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_NSTimerDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSTimerDelegate);
+        __CLASS_org_xmlvm_iphone_NSTimerDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSTimerDelegate_1ARRAY);
+        __CLASS_org_xmlvm_iphone_NSTimerDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSTimerDelegate_2ARRAY);
 
+        __TIB_org_xmlvm_iphone_NSTimerDelegate.classInitialized = 1;
 
     }
 }

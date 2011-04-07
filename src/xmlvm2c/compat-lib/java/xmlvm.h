@@ -202,7 +202,6 @@ typedef struct __TIB_DEFINITION_##name { \
     JAVA_OBJECT                         clazz; \
     JAVA_OBJECT                         baseType; \
     JAVA_OBJECT                         arrayType; \
-    int                                 dimensions; \
     XMLVM_FIELD_REFLECTION_DATA*        declaredFields; \
     int                                 numDeclaredFields; \
     XMLVM_CONSTRUCTOR_REFLECTION_DATA*  declaredConstructors; \
@@ -277,7 +276,7 @@ extern JAVA_OBJECT __CLASS_float_3ARRAY;
 extern JAVA_OBJECT __CLASS_double_3ARRAY;
 
 JAVA_OBJECT XMLVM_CREATE_CLASS_OBJECT(void* tib);
-JAVA_OBJECT XMLVM_CREATE_ARRAY_CLASS_OBJECT(JAVA_OBJECT baseType, int dimensions);
+JAVA_OBJECT XMLVM_CREATE_ARRAY_CLASS_OBJECT(JAVA_OBJECT baseType);
 
 
 //---------------------------------------------------------------------------------------------

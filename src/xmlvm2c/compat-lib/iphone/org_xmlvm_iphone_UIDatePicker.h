@@ -33,10 +33,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSCalendar)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIDatePicker, 92, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIDatePicker)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIDatePicker
 //XMLVM_END_DECLARATIONS

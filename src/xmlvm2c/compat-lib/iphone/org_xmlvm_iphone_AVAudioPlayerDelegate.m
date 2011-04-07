@@ -14,10 +14,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_AVAudioPlayerDelegate __TIB_org_xmlvm_iphone_A
     XMLVM_TYPE_INTERFACE};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate_3ARRAY;
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
@@ -41,10 +40,12 @@ void __INIT_IMPL_org_xmlvm_iphone_AVAudioPlayerDelegate()
 
         __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_AVAudioPlayerDelegate);
         __TIB_org_xmlvm_iphone_AVAudioPlayerDelegate.clazz = __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate;
-        __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate, 3);
-        __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate, 2);
-        __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate, 1);
+        __TIB_org_xmlvm_iphone_AVAudioPlayerDelegate.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate);
+        __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate_1ARRAY);
+        __CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_AVAudioPlayerDelegate_2ARRAY);
 
+        __TIB_org_xmlvm_iphone_AVAudioPlayerDelegate.classInitialized = 1;
 
     }
 }

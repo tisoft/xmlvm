@@ -20,10 +20,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIApplication __TIB_org_xmlvm_iphone_UIApplica
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <UIKit/UIApplication.h>
 
@@ -452,10 +451,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UIApplication()
         __TIB_org_xmlvm_iphone_UIApplication.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UIApplication = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIApplication);
         __TIB_org_xmlvm_iphone_UIApplication.clazz = __CLASS_org_xmlvm_iphone_UIApplication;
-        __CLASS_org_xmlvm_iphone_UIApplication_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIApplication, 3);
-        __CLASS_org_xmlvm_iphone_UIApplication_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIApplication, 2);
-        __CLASS_org_xmlvm_iphone_UIApplication_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIApplication, 1);
-
+        __TIB_org_xmlvm_iphone_UIApplication.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_UIApplication_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIApplication);
+        __CLASS_org_xmlvm_iphone_UIApplication_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIApplication_1ARRAY);
+        __CLASS_org_xmlvm_iphone_UIApplication_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIApplication_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIApplication]
         //XMLVM_END_WRAPPER
 

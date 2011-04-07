@@ -25,15 +25,15 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CAAction, 0, 0)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAction;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAction_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAction_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAction_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAction_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAction_3ARRAY;
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAction
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAction
 typedef struct org_xmlvm_iphone_CAAction org_xmlvm_iphone_CAAction;
 #endif
 
 void __INIT_org_xmlvm_iphone_CAAction();
+void __INIT_IMPL_org_xmlvm_iphone_CAAction();
 
 #endif

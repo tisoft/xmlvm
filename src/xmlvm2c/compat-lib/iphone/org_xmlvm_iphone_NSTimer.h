@@ -25,10 +25,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimer)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSTimer, 10, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSTimer)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSTimer \
     JAVA_OBJECT delegate;

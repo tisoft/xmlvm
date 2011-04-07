@@ -20,10 +20,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIDatePicker __TIB_org_xmlvm_iphone_UIDatePick
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -448,10 +447,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UIDatePicker()
         __TIB_org_xmlvm_iphone_UIDatePicker.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UIDatePicker = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIDatePicker);
         __TIB_org_xmlvm_iphone_UIDatePicker.clazz = __CLASS_org_xmlvm_iphone_UIDatePicker;
-        __CLASS_org_xmlvm_iphone_UIDatePicker_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDatePicker, 3);
-        __CLASS_org_xmlvm_iphone_UIDatePicker_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDatePicker, 2);
-        __CLASS_org_xmlvm_iphone_UIDatePicker_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDatePicker, 1);
-
+        __TIB_org_xmlvm_iphone_UIDatePicker.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_UIDatePicker_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDatePicker);
+        __CLASS_org_xmlvm_iphone_UIDatePicker_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDatePicker_1ARRAY);
+        __CLASS_org_xmlvm_iphone_UIDatePicker_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDatePicker_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIDatePicker]
         //XMLVM_END_WRAPPER
 

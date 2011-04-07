@@ -29,10 +29,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGRect, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGRect)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 
 #import <CoreGraphics/CoreGraphics.h>

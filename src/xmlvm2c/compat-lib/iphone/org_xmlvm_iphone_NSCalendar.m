@@ -18,10 +18,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSCalendar __TIB_org_xmlvm_iphone_NSCalendar =
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSCalendar;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSCalendar_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSCalendar_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSCalendar_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSCalendar_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSCalendar_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -191,10 +190,10 @@ void __INIT_IMPL_org_xmlvm_iphone_NSCalendar()
         __TIB_org_xmlvm_iphone_NSCalendar.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_NSCalendar = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSCalendar);
         __TIB_org_xmlvm_iphone_NSCalendar.clazz = __CLASS_org_xmlvm_iphone_NSCalendar;
-        __CLASS_org_xmlvm_iphone_NSCalendar_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSCalendar, 3);
-        __CLASS_org_xmlvm_iphone_NSCalendar_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSCalendar, 2);
-        __CLASS_org_xmlvm_iphone_NSCalendar_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSCalendar, 1);
-
+        __TIB_org_xmlvm_iphone_NSCalendar.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_NSCalendar_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSCalendar);
+        __CLASS_org_xmlvm_iphone_NSCalendar_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSCalendar_1ARRAY);
+        __CLASS_org_xmlvm_iphone_NSCalendar_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSCalendar_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSCalendar]
         //XMLVM_END_WRAPPER
 

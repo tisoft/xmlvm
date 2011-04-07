@@ -17,10 +17,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSData __TIB_org_xmlvm_iphone_NSData = {
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSData;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSData_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSData_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSData_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSData_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSData_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
 #include "java_io_InputStream.h"
@@ -225,10 +224,10 @@ void __INIT_IMPL_org_xmlvm_iphone_NSData()
         __TIB_org_xmlvm_iphone_NSData.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_NSData = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSData);
         __TIB_org_xmlvm_iphone_NSData.clazz = __CLASS_org_xmlvm_iphone_NSData;
-        __CLASS_org_xmlvm_iphone_NSData_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSData, 3);
-        __CLASS_org_xmlvm_iphone_NSData_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSData, 2);
-        __CLASS_org_xmlvm_iphone_NSData_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSData, 1);
-
+        __TIB_org_xmlvm_iphone_NSData.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_NSData_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSData);
+        __CLASS_org_xmlvm_iphone_NSData_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSData_1ARRAY);
+        __CLASS_org_xmlvm_iphone_NSData_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSData_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSData]
         //XMLVM_END_WRAPPER
 
@@ -321,7 +320,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSData_getBytes__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_getBytes__]
     XMLVM_VAR_THIZ;
-    return XMLVMArray_createSingleDimensionWithData(__CLASS_byte_1ARRAY, [thiz length], [thiz bytes]);
+    return XMLVMArray_createSingleDimensionWithData(__CLASS_byte, [thiz length], [thiz bytes]);
     //XMLVM_END_WRAPPER
 }
 

@@ -16,10 +16,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITouch __TIB_org_xmlvm_iphone_UITouch = {
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
 void org_xmlvm_iphone_UITouch_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, UITouch* touch)
@@ -221,10 +220,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UITouch()
         __TIB_org_xmlvm_iphone_UITouch.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UITouch = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UITouch);
         __TIB_org_xmlvm_iphone_UITouch.clazz = __CLASS_org_xmlvm_iphone_UITouch;
-        __CLASS_org_xmlvm_iphone_UITouch_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITouch, 3);
-        __CLASS_org_xmlvm_iphone_UITouch_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITouch, 2);
-        __CLASS_org_xmlvm_iphone_UITouch_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITouch, 1);
-
+        __TIB_org_xmlvm_iphone_UITouch.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_UITouch_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITouch);
+        __CLASS_org_xmlvm_iphone_UITouch_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITouch_1ARRAY);
+        __CLASS_org_xmlvm_iphone_UITouch_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITouch_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITouch]
         //XMLVM_END_WRAPPER
 

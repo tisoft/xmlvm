@@ -16,10 +16,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSObject __TIB_org_xmlvm_iphone_NSObject = {
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
 #include "java_lang_Class.h"
@@ -118,13 +117,13 @@ static NSObject* dispatchObject = nil;
     // we can reuse it
     static org_xmlvm_runtime_XMLVMArray* paramTypes = JAVA_NULL;
     if (paramTypes == JAVA_NULL) {
-        paramTypes = XMLVMArray_createSingleDimension(__CLASS_java_lang_Class_1ARRAY, 1);
+        paramTypes = XMLVMArray_createSingleDimension(__CLASS_java_lang_Class, 1);
         ((JAVA_ARRAY_OBJECT*) (paramTypes->fields.org_xmlvm_runtime_XMLVMArray.array_))[0] = __CLASS_java_lang_Object;
     }
     java_lang_Class* targetClass = java_lang_Object_getClass__(target);
     // Retrieve method
     java_lang_reflect_Method* method = (*(JAVA_OBJECT (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) targetClass->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Class_getMethod___java_lang_String_java_lang_Class_1ARRAY])(targetClass, methodName, paramTypes);
-    org_xmlvm_runtime_XMLVMArray* params = XMLVMArray_createSingleDimension(__CLASS_java_lang_Object_1ARRAY, 1);
+    org_xmlvm_runtime_XMLVMArray* params = XMLVMArray_createSingleDimension(__CLASS_java_lang_Object, 1);
     ((JAVA_ARRAY_OBJECT*) (params->fields.org_xmlvm_runtime_XMLVMArray.array_))[0] = param;
     // Invoke method
     (*(JAVA_OBJECT (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) method->tib->vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_1ARRAY])(method, target, params);
@@ -320,10 +319,10 @@ void __INIT_IMPL_org_xmlvm_iphone_NSObject()
         __TIB_org_xmlvm_iphone_NSObject.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_NSObject = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSObject);
         __TIB_org_xmlvm_iphone_NSObject.clazz = __CLASS_org_xmlvm_iphone_NSObject;
-        __CLASS_org_xmlvm_iphone_NSObject_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSObject, 3);
-        __CLASS_org_xmlvm_iphone_NSObject_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSObject, 2);
-        __CLASS_org_xmlvm_iphone_NSObject_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSObject, 1);
-
+        __TIB_org_xmlvm_iphone_NSObject.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_NSObject_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSObject);
+        __CLASS_org_xmlvm_iphone_NSObject_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSObject_1ARRAY);
+        __CLASS_org_xmlvm_iphone_NSObject_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSObject_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSObject]
         //XMLVM_END_WRAPPER
 

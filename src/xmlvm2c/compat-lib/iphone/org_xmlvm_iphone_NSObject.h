@@ -22,10 +22,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSObject, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSObject)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 
 #import <Foundation/Foundation.h>

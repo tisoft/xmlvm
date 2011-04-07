@@ -20,10 +20,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_MFMailComposeViewController __TIB_org_xmlvm_ip
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMailComposeViewController;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMailComposeViewController_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMailComposeViewController_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMailComposeViewController_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMailComposeViewController_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMailComposeViewController_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -271,10 +270,10 @@ void __INIT_IMPL_org_xmlvm_iphone_MFMailComposeViewController()
         __TIB_org_xmlvm_iphone_MFMailComposeViewController.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_MFMailComposeViewController = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MFMailComposeViewController);
         __TIB_org_xmlvm_iphone_MFMailComposeViewController.clazz = __CLASS_org_xmlvm_iphone_MFMailComposeViewController;
-        __CLASS_org_xmlvm_iphone_MFMailComposeViewController_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MFMailComposeViewController, 3);
-        __CLASS_org_xmlvm_iphone_MFMailComposeViewController_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MFMailComposeViewController, 2);
-        __CLASS_org_xmlvm_iphone_MFMailComposeViewController_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MFMailComposeViewController, 1);
-
+        __TIB_org_xmlvm_iphone_MFMailComposeViewController.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_MFMailComposeViewController_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MFMailComposeViewController);
+        __CLASS_org_xmlvm_iphone_MFMailComposeViewController_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MFMailComposeViewController_1ARRAY);
+        __CLASS_org_xmlvm_iphone_MFMailComposeViewController_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MFMailComposeViewController_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MFMailComposeViewController]
         //XMLVM_END_WRAPPER
 

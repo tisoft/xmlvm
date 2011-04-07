@@ -16,10 +16,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIAlertViewDelegate __TIB_org_xmlvm_iphone_UIA
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
 @implementation UIAlertViewDelegateWrapper
@@ -163,10 +162,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UIAlertViewDelegate()
         __TIB_org_xmlvm_iphone_UIAlertViewDelegate.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UIAlertViewDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIAlertViewDelegate);
         __TIB_org_xmlvm_iphone_UIAlertViewDelegate.clazz = __CLASS_org_xmlvm_iphone_UIAlertViewDelegate;
-        __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIAlertViewDelegate, 3);
-        __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIAlertViewDelegate, 2);
-        __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIAlertViewDelegate, 1);
-
+        __TIB_org_xmlvm_iphone_UIAlertViewDelegate.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIAlertViewDelegate);
+        __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIAlertViewDelegate_1ARRAY);
+        __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIAlertViewDelegate_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIAlertViewDelegate]
         //XMLVM_END_WRAPPER
 

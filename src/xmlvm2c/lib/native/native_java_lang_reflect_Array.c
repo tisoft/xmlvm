@@ -96,10 +96,12 @@ JAVA_SHORT java_lang_reflect_Array_getShort___java_lang_Object_int(JAVA_OBJECT n
 JAVA_OBJECT java_lang_reflect_Array_newInstance___java_lang_Class_int_1ARRAY(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Array_newInstance___java_lang_Class_int_1ARRAY]
+#if 0
     java_lang_Class* baseType = (java_lang_Class*) n1;
     __TIB_DEFINITION_TEMPLATE* baseTypeTIB = (__TIB_DEFINITION_TEMPLATE*) baseType->fields.java_lang_Class.tib_;
     JAVA_OBJECT arrayType = baseTypeTIB->arrayType;
-    return XMLVMArray_createMultiDimensions(arrayType, n2);
+#endif
+    return XMLVMArray_createMultiDimensions(n1, n2);
     //XMLVM_END_NATIVE
 }
 

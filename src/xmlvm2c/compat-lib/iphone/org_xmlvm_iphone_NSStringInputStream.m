@@ -16,10 +16,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSStringInputStream __TIB_org_xmlvm_iphone_NSS
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSStringInputStream_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -272,10 +271,10 @@ void __INIT_IMPL_org_xmlvm_iphone_NSStringInputStream()
         __TIB_org_xmlvm_iphone_NSStringInputStream.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_NSStringInputStream = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSStringInputStream);
         __TIB_org_xmlvm_iphone_NSStringInputStream.clazz = __CLASS_org_xmlvm_iphone_NSStringInputStream;
-        __CLASS_org_xmlvm_iphone_NSStringInputStream_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSStringInputStream, 3);
-        __CLASS_org_xmlvm_iphone_NSStringInputStream_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSStringInputStream, 2);
-        __CLASS_org_xmlvm_iphone_NSStringInputStream_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSStringInputStream, 1);
-
+        __TIB_org_xmlvm_iphone_NSStringInputStream.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_NSStringInputStream_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSStringInputStream);
+        __CLASS_org_xmlvm_iphone_NSStringInputStream_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSStringInputStream_1ARRAY);
+        __CLASS_org_xmlvm_iphone_NSStringInputStream_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSStringInputStream_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSStringInputStream]
         //XMLVM_END_WRAPPER
 

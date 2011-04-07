@@ -21,10 +21,9 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGPoint, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGPoint)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPoint;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPoint_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPoint_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPoint_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPoint_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPoint_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 
 #import <CoreGraphics/CoreGraphics.h>

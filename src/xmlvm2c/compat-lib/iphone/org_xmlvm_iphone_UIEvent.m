@@ -15,10 +15,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIEvent __TIB_org_xmlvm_iphone_UIEvent = {
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
 void org_xmlvm_iphone_UIEvent_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, UIEvent* event)
@@ -135,10 +134,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UIEvent()
         __TIB_org_xmlvm_iphone_UIEvent.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UIEvent = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIEvent);
         __TIB_org_xmlvm_iphone_UIEvent.clazz = __CLASS_org_xmlvm_iphone_UIEvent;
-        __CLASS_org_xmlvm_iphone_UIEvent_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIEvent, 3);
-        __CLASS_org_xmlvm_iphone_UIEvent_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIEvent, 2);
-        __CLASS_org_xmlvm_iphone_UIEvent_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIEvent, 1);
-
+        __TIB_org_xmlvm_iphone_UIEvent.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_UIEvent_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIEvent);
+        __CLASS_org_xmlvm_iphone_UIEvent_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIEvent_1ARRAY);
+        __CLASS_org_xmlvm_iphone_UIEvent_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIEvent_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIEvent]
         //XMLVM_END_WRAPPER
 

@@ -29,10 +29,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWindow, 71, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIWindow)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWindow;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWindow_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWindow_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWindow_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWindow_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWindow_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIWindow
 //XMLVM_END_DECLARATIONS

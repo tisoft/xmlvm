@@ -19,10 +19,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_AVAudioPlayer __TIB_org_xmlvm_iphone_AVAudioPl
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayer;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayer_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayer_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayer_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayer_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_AVAudioPlayer_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <AVFoundation/AVFoundation.h>
 
@@ -485,10 +484,10 @@ void __INIT_IMPL_org_xmlvm_iphone_AVAudioPlayer()
         __TIB_org_xmlvm_iphone_AVAudioPlayer.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_AVAudioPlayer = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_AVAudioPlayer);
         __TIB_org_xmlvm_iphone_AVAudioPlayer.clazz = __CLASS_org_xmlvm_iphone_AVAudioPlayer;
-        __CLASS_org_xmlvm_iphone_AVAudioPlayer_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_AVAudioPlayer, 3);
-        __CLASS_org_xmlvm_iphone_AVAudioPlayer_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_AVAudioPlayer, 2);
-        __CLASS_org_xmlvm_iphone_AVAudioPlayer_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_AVAudioPlayer, 1);
-
+        __TIB_org_xmlvm_iphone_AVAudioPlayer.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_AVAudioPlayer_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_AVAudioPlayer);
+        __CLASS_org_xmlvm_iphone_AVAudioPlayer_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_AVAudioPlayer_1ARRAY);
+        __CLASS_org_xmlvm_iphone_AVAudioPlayer_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_AVAudioPlayer_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_AVAudioPlayer]
         //XMLVM_END_WRAPPER
 

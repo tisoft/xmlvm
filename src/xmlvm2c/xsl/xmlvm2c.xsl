@@ -190,7 +190,7 @@ int main(int argc, char* argv[])
     <xsl:call-template name="emitArrayTypeCode">
       <xsl:with-param name="pass" select="'declaration'"/>
       <xsl:with-param name="indent" select="''"/>
-      <xsl:with-param name="type" select="$clname"/>
+      <xsl:with-param name="baseType" select="$clname"/>
       <xsl:with-param name="dimension" select="$maxArrayDimension"/>
     </xsl:call-template>
     
@@ -368,7 +368,7 @@ int main(int argc, char* argv[])
     <xsl:call-template name="emitArrayTypeCode">
       <xsl:with-param name="pass" select="'declaration'"/>
       <xsl:with-param name="indent" select="''"/>
-      <xsl:with-param name="type" select="$clname"/>
+      <xsl:with-param name="baseType" select="$clname"/>
       <xsl:with-param name="dimension" select="$maxArrayDimension"/>
     </xsl:call-template>
     
@@ -494,7 +494,7 @@ int main(int argc, char* argv[])
     <xsl:call-template name="emitArrayTypeCode">
       <xsl:with-param name="pass" select="'definition'"/>
       <xsl:with-param name="indent" select="''"/>
-      <xsl:with-param name="type" select="$clname"/>
+      <xsl:with-param name="baseType" select="$clname"/>
       <xsl:with-param name="dimension" select="$maxArrayDimension"/>
     </xsl:call-template>
 
@@ -763,11 +763,14 @@ int main(int argc, char* argv[])
     <xsl:text>.clazz = __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;&nl;</xsl:text>
+    <xsl:text>        __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.baseType = JAVA_NULL;&nl;</xsl:text>
 
     <xsl:call-template name="emitArrayTypeCode">
       <xsl:with-param name="pass" select="'initialization'"/>
       <xsl:with-param name="indent" select="'        '"/>
-      <xsl:with-param name="type" select="$clname"/>
+      <xsl:with-param name="baseType" select="$clname"/>
       <xsl:with-param name="dimension" select="$maxArrayDimension"/>
     </xsl:call-template>
     
@@ -1046,7 +1049,7 @@ int main(int argc, char* argv[])
     <xsl:call-template name="emitArrayTypeCode">
       <xsl:with-param name="pass" select="'definition'"/>
       <xsl:with-param name="indent" select="''"/>
-      <xsl:with-param name="type" select="$clname"/>
+      <xsl:with-param name="baseType" select="$clname"/>
       <xsl:with-param name="dimension" select="$maxArrayDimension"/>
     </xsl:call-template>
     
@@ -1162,18 +1165,20 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text> = XMLVM_CREATE_CLASS_OBJECT(&amp;__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>);&nl;        </xsl:text>
-    <xsl:text>__TIB_</xsl:text>
+    <xsl:text>);&nl;</xsl:text>
+    <xsl:text>        __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.clazz = __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>;</xsl:text>
+    <xsl:text>;&nl;</xsl:text>
+    <xsl:text>        __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.baseType = JAVA_NULL;&nl;</xsl:text>
     
-    <xsl:text>&nl;</xsl:text>
     <xsl:call-template name="emitArrayTypeCode">
       <xsl:with-param name="pass" select="'initialization'"/>
       <xsl:with-param name="indent" select="'        '"/>
-      <xsl:with-param name="type" select="$clname"/>
+      <xsl:with-param name="baseType" select="$clname"/>
       <xsl:with-param name="dimension" select="$maxArrayDimension"/>
     </xsl:call-template>
     
@@ -1744,50 +1749,50 @@ int main(int argc, char* argv[])
 <xsl:template name="emitArrayTypeCode">
   <xsl:param name="pass"/>
   <xsl:param name="indent"/>
-  <xsl:param name="type"/>
+  <xsl:param name="baseType"/>
   <xsl:param name="dimension" as="xs:integer"/>
   
   <xsl:if test="$dimension &gt; 0">
+    <xsl:call-template name="emitArrayTypeCode">
+      <xsl:with-param name="pass" select="$pass"/>
+      <xsl:with-param name="indent" select="$indent"/>
+      <xsl:with-param name="baseType" select="$baseType"/>
+      <xsl:with-param name="dimension" select="$dimension - 1" />     
+    </xsl:call-template>
     <xsl:value-of select="$indent"/>
     <xsl:choose>
       <xsl:when test="$pass = 'declaration'">
         <xsl:text>extern JAVA_OBJECT __CLASS_</xsl:text>
-        <xsl:value-of select="$type"/>
+        <xsl:value-of select="$baseType"/>
         <xsl:text>_</xsl:text>
         <xsl:value-of select="$dimension"/>
         <xsl:text>ARRAY;&nl;</xsl:text>
       </xsl:when>
       <xsl:when test="$pass = 'definition'">
         <xsl:text>JAVA_OBJECT __CLASS_</xsl:text>
-        <xsl:value-of select="$type"/>
+        <xsl:value-of select="$baseType"/>
         <xsl:text>_</xsl:text>
         <xsl:value-of select="$dimension"/>
         <xsl:text>ARRAY;&nl;</xsl:text>
       </xsl:when>
       <xsl:when test="$pass = 'initialization'">
         <xsl:text>__CLASS_</xsl:text>
-        <xsl:value-of select="$type"/>
+        <xsl:value-of select="$baseType"/>
         <xsl:text>_</xsl:text>
         <xsl:value-of select="$dimension"/>
         <xsl:text>ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_</xsl:text>
-        <xsl:value-of select="$type"/>
-        <xsl:text>, </xsl:text>
-        <xsl:value-of select="$dimension"/>
+        <xsl:value-of select="$baseType"/>
+        <xsl:if test="$dimension gt 1">
+          <xsl:text>_</xsl:text>
+          <xsl:value-of select="$dimension - 1"/>
+          <xsl:text>ARRAY</xsl:text>
+        </xsl:if>
         <xsl:text>);&nl;</xsl:text>
       </xsl:when>
       <xsl:otherwise>
         <xsl:message select="'Bad pass for emitArrayType'"/>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:call-template name="emitArrayTypeCode">
-      <xsl:with-param name="pass" select="$pass"/>
-      <xsl:with-param name="indent" select="$indent"/>
-      <xsl:with-param name="type" select="$type"/>
-      <xsl:with-param name="dimension" select="$dimension - 1" />     
-    </xsl:call-template>
-  </xsl:if>
-  <xsl:if test="$dimension = 0">
-    <xsl:text>&nl;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -3600,7 +3605,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="dex:move-result/@vx"/>
   <xsl:text>.o = XMLVMArray_createSingleDimensionWithData(</xsl:text>
   <xsl:call-template name="emitJavaLangClassReference">
-    <xsl:with-param name="type" select="@value"/>
+    <xsl:with-param name="type" select="$base-type"/>
     <xsl:with-param name="isRedType" select="false"/>
   </xsl:call-template>
   <xsl:text>, </xsl:text>
@@ -3645,7 +3650,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="@vx"/>
   <xsl:text>.o = XMLVMArray_createSingleDimension(</xsl:text>
   <xsl:call-template name="emitJavaLangClassReference">
-    <xsl:with-param name="type" select="@value"/>
+    <xsl:with-param name="type" select="$base-type"/>
     <xsl:with-param name="isRedType" select="false"/>
   </xsl:call-template>
   <xsl:text>, _r</xsl:text>

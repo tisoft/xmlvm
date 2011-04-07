@@ -21,10 +21,9 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBarItem, 24, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITabBarItem)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarItem;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarItem_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarItem_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarItem_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarItem_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarItem_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UITabBarItem
 //XMLVM_END_DECLARATIONS

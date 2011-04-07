@@ -21,10 +21,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSXMLParser, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSXMLParser)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParser;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParser_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParser_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParser_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParser_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParser_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSXMLParser
 //XMLVM_END_DECLARATIONS

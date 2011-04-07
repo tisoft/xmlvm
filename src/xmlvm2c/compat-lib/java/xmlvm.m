@@ -212,13 +212,13 @@ JAVA_OBJECT XMLVM_CREATE_CLASS_OBJECT(void* tib)
 }
 
 
-JAVA_OBJECT XMLVM_CREATE_ARRAY_CLASS_OBJECT(JAVA_OBJECT baseType, int dimensions)
+JAVA_OBJECT XMLVM_CREATE_ARRAY_CLASS_OBJECT(JAVA_OBJECT baseType)
 {
     __TIB_DEFINITION_org_xmlvm_runtime_XMLVMArray* tib = XMLVM_MALLOC(sizeof(__TIB_DEFINITION_org_xmlvm_runtime_XMLVMArray));
     XMLVM_MEMCPY(tib, &__TIB_org_xmlvm_runtime_XMLVMArray, sizeof(__TIB_DEFINITION_org_xmlvm_runtime_XMLVMArray));
     tib->flags = XMLVM_TYPE_ARRAY;
     tib->baseType = baseType;
-    tib->dimensions = dimensions;
+    tib->arrayType = JAVA_NULL;
     JAVA_OBJECT clazz = __NEW_java_lang_Class();
     java_lang_Class___INIT____java_lang_Object(clazz, tib);
     tib->clazz = clazz;
@@ -284,7 +284,7 @@ JAVA_OBJECT XMLVMArray_createFromString(const char* str)
     for (i = 0; i < len; i++) {
         data[i] = *str++;
     }
-    return XMLVMArray_createSingleDimensionWithData(__CLASS_char_1ARRAY, len, data);
+    return XMLVMArray_createSingleDimensionWithData(__CLASS_char, len, data);
 }
 
 void XMLVMArray_fillArray(JAVA_OBJECT array, void* data)

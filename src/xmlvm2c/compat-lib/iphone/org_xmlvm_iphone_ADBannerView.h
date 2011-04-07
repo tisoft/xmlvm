@@ -25,10 +25,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_ADBannerView, 76, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_ADBannerView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerView;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerView_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerView_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerView_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerView_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerView_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_ADBannerView
 //XMLVM_END_DECLARATIONS

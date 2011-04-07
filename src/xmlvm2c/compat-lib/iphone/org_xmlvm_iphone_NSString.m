@@ -21,10 +21,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSString __TIB_org_xmlvm_iphone_NSString = {
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
 #include "java_net_URL.h"
@@ -60,7 +59,7 @@ JAVA_OBJECT toJavaString(NSString* str)
     for (i = 0; i < len; i++) {
         data[i] = chars[i];
     }
-    org_xmlvm_runtime_XMLVMArray* charArray = XMLVMArray_createSingleDimensionWithData(__CLASS_char_1ARRAY, len, data);
+    org_xmlvm_runtime_XMLVMArray* charArray = XMLVMArray_createSingleDimensionWithData(__CLASS_char, len, data);
     java_lang_String___INIT____char_1ARRAY(s, charArray);
     return s;
 }
@@ -334,10 +333,10 @@ void __INIT_IMPL_org_xmlvm_iphone_NSString()
         __TIB_org_xmlvm_iphone_NSString.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_NSString = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSString);
         __TIB_org_xmlvm_iphone_NSString.clazz = __CLASS_org_xmlvm_iphone_NSString;
-        __CLASS_org_xmlvm_iphone_NSString_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSString, 3);
-        __CLASS_org_xmlvm_iphone_NSString_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSString, 2);
-        __CLASS_org_xmlvm_iphone_NSString_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSString, 1);
-
+        __TIB_org_xmlvm_iphone_NSString.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_NSString_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSString);
+        __CLASS_org_xmlvm_iphone_NSString_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSString_1ARRAY);
+        __CLASS_org_xmlvm_iphone_NSString_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSString_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSString]
         //XMLVM_END_WRAPPER
 

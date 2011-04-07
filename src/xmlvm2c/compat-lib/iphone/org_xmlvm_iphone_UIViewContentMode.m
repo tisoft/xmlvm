@@ -15,10 +15,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIViewContentMode __TIB_org_xmlvm_iphone_UIVie
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewContentMode_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -216,10 +215,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UIViewContentMode()
         __TIB_org_xmlvm_iphone_UIViewContentMode.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UIViewContentMode = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIViewContentMode);
         __TIB_org_xmlvm_iphone_UIViewContentMode.clazz = __CLASS_org_xmlvm_iphone_UIViewContentMode;
-        __CLASS_org_xmlvm_iphone_UIViewContentMode_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewContentMode, 3);
-        __CLASS_org_xmlvm_iphone_UIViewContentMode_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewContentMode, 2);
-        __CLASS_org_xmlvm_iphone_UIViewContentMode_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewContentMode, 1);
-
+        __TIB_org_xmlvm_iphone_UIViewContentMode.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_UIViewContentMode_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewContentMode);
+        __CLASS_org_xmlvm_iphone_UIViewContentMode_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewContentMode_1ARRAY);
+        __CLASS_org_xmlvm_iphone_UIViewContentMode_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewContentMode_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIViewContentMode]
         //XMLVM_END_WRAPPER
 

@@ -17,10 +17,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAccelerometerDelegate)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAccelerometer, 11, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIAccelerometer)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometer;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometer_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometer_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometer_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometer_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAccelerometer_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #import <UIKit/UIAccelerometer.h>
 

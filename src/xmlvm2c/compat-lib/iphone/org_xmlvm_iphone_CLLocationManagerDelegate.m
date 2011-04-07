@@ -20,10 +20,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_CLLocationManagerDelegate __TIB_org_xmlvm_ipho
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationManagerDelegate;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationManagerDelegate_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationManagerDelegate_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationManagerDelegate_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationManagerDelegate_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CLLocationManagerDelegate_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -245,10 +244,10 @@ void __INIT_IMPL_org_xmlvm_iphone_CLLocationManagerDelegate()
         __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_CLLocationManagerDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CLLocationManagerDelegate);
         __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.clazz = __CLASS_org_xmlvm_iphone_CLLocationManagerDelegate;
-        __CLASS_org_xmlvm_iphone_CLLocationManagerDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationManagerDelegate, 3);
-        __CLASS_org_xmlvm_iphone_CLLocationManagerDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationManagerDelegate, 2);
-        __CLASS_org_xmlvm_iphone_CLLocationManagerDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationManagerDelegate, 1);
-
+        __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_CLLocationManagerDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationManagerDelegate);
+        __CLASS_org_xmlvm_iphone_CLLocationManagerDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationManagerDelegate_1ARRAY);
+        __CLASS_org_xmlvm_iphone_CLLocationManagerDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationManagerDelegate_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CLLocationManagerDelegate]
         //XMLVM_END_WRAPPER
 

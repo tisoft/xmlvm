@@ -25,10 +25,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSIndexPath)
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewDelegate, 23, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITableViewDelegate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDelegate;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDelegate_3ARRAY;
-extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDelegate_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDelegate_1ARRAY;
-
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDelegate_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDelegate_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 
 #import <UIKit/UIKit.h>

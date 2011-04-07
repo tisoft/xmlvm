@@ -17,10 +17,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGLayer __TIB_org_xmlvm_iphone_CGLayer = {
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLayer;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLayer_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLayer_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLayer_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLayer_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLayer_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -150,10 +149,10 @@ void __INIT_IMPL_org_xmlvm_iphone_CGLayer()
         __TIB_org_xmlvm_iphone_CGLayer.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_CGLayer = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CGLayer);
         __TIB_org_xmlvm_iphone_CGLayer.clazz = __CLASS_org_xmlvm_iphone_CGLayer;
-        __CLASS_org_xmlvm_iphone_CGLayer_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGLayer, 3);
-        __CLASS_org_xmlvm_iphone_CGLayer_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGLayer, 2);
-        __CLASS_org_xmlvm_iphone_CGLayer_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGLayer, 1);
-
+        __TIB_org_xmlvm_iphone_CGLayer.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_CGLayer_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGLayer);
+        __CLASS_org_xmlvm_iphone_CGLayer_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGLayer_1ARRAY);
+        __CLASS_org_xmlvm_iphone_CGLayer_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGLayer_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGLayer]
         //XMLVM_END_WRAPPER
 

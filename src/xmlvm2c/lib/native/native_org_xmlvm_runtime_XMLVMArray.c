@@ -19,17 +19,17 @@ int XMLVMArray_sizeOfBaseTypeInBytes(JAVA_OBJECT type)
 {
     int sizeOfBaseType;
     
-    if (type == __CLASS_byte_1ARRAY || type == __CLASS_boolean_1ARRAY) {
+    if (type == __CLASS_byte || type == __CLASS_boolean) {
         sizeOfBaseType = sizeof(JAVA_ARRAY_BYTE);
-    } else if (type == __CLASS_char_1ARRAY || type == __CLASS_short_1ARRAY) {
+    } else if (type == __CLASS_char || type == __CLASS_short) {
         sizeOfBaseType = sizeof(JAVA_ARRAY_SHORT);
-    } else if (type == __CLASS_int_1ARRAY) {
+    } else if (type == __CLASS_int) {
         sizeOfBaseType = sizeof(JAVA_ARRAY_INT);
-    } else if (type == __CLASS_float_1ARRAY) {
+    } else if (type == __CLASS_float) {
         sizeOfBaseType = sizeof(JAVA_ARRAY_FLOAT);
-    } else if (type == __CLASS_double_1ARRAY) {
+    } else if (type == __CLASS_double) {
         sizeOfBaseType = sizeof(JAVA_ARRAY_DOUBLE);
-    } else if (type == __CLASS_long_1ARRAY) {
+    } else if (type == __CLASS_long) {
         sizeOfBaseType = sizeof(JAVA_ARRAY_LONG);
     } else {
         sizeOfBaseType = sizeof(void*);
@@ -93,7 +93,13 @@ JAVA_OBJECT org_xmlvm_runtime_XMLVMArray_createSingleDimensionWithData___java_la
 {
     //XMLVM_BEGIN_NATIVE[org_xmlvm_runtime_XMLVMArray_createSingleDimensionWithData___java_lang_Class_int_java_lang_Object]
     org_xmlvm_runtime_XMLVMArray* array = __NEW_org_xmlvm_runtime_XMLVMArray();
-    org_xmlvm_runtime_XMLVMArray___INIT____java_lang_Class_int_java_lang_Object(array, n1, n2, n3);
+    java_lang_Class* baseType = n1;
+    __TIB_DEFINITION_TEMPLATE* baseTIB = baseType->fields.java_lang_Class.tib_;
+    JAVA_OBJECT arrayType = baseTIB->arrayType;
+    if (arrayType == JAVA_NULL) {
+        XMLVM_INTERNAL_ERROR();
+    }
+    org_xmlvm_runtime_XMLVMArray___INIT____java_lang_Class_int_java_lang_Object(array, arrayType, n2, n3);
 #if 0
     java_lang_Class* type = (java_lang_Class*) n1;
     JAVA_OBJECT newTIB = type->fields.java_lang_Class.tib_;
@@ -112,7 +118,16 @@ JAVA_OBJECT org_xmlvm_runtime_XMLVMArray_createMultiDimensions___java_lang_Class
     }
     int count = dimArray->fields.org_xmlvm_runtime_XMLVMArray.length_;
     JAVA_ARRAY_INT* data = (JAVA_ARRAY_INT*) dimArray->fields.org_xmlvm_runtime_XMLVMArray.array_;
-    return XMLVMArray_createMultiDimensionsWithCount(n1, data, count);
+    int i;
+    java_lang_Class* arrayType = n1;
+    for (i = 0; i < count - 1; i++) {
+        __TIB_DEFINITION_TEMPLATE* arrayTIB = arrayType->fields.java_lang_Class.tib_;
+        arrayType = arrayTIB->arrayType;
+        if (arrayType == JAVA_NULL) {
+            XMLVM_INTERNAL_ERROR();
+        }
+    }
+    return XMLVMArray_createMultiDimensionsWithCount(arrayType, data, count);
     //XMLVM_END_NATIVE
 }
 
@@ -120,7 +135,9 @@ void org_xmlvm_runtime_XMLVMArray_fillArray___org_xmlvm_runtime_XMLVMArray_java_
 {
     //XMLVM_BEGIN_NATIVE[org_xmlvm_runtime_XMLVMArray_fillArray___org_xmlvm_runtime_XMLVMArray_java_lang_Object]
     org_xmlvm_runtime_XMLVMArray* array = (org_xmlvm_runtime_XMLVMArray*) n1;
-    int sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(array->fields.org_xmlvm_runtime_XMLVMArray.type_);
+    java_lang_Class* arrayType = array->fields.org_xmlvm_runtime_XMLVMArray.type_;
+    __TIB_DEFINITION_TEMPLATE* arrayTIB = arrayType->fields.java_lang_Class.tib_;
+    int sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(arrayTIB->baseType);
     int n = sizeOfBaseType * array->fields.org_xmlvm_runtime_XMLVMArray.length_;
     XMLVM_MEMCPY(array->fields.org_xmlvm_runtime_XMLVMArray.array_, n2, n);
     //XMLVM_END_NATIVE

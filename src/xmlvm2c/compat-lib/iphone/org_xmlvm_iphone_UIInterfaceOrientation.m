@@ -15,10 +15,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIInterfaceOrientation __TIB_org_xmlvm_iphone_
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIInterfaceOrientation;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIInterfaceOrientation_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIInterfaceOrientation_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIInterfaceOrientation_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIInterfaceOrientation_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIInterfaceOrientation_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -135,10 +134,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UIInterfaceOrientation()
         __TIB_org_xmlvm_iphone_UIInterfaceOrientation.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_UIInterfaceOrientation = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIInterfaceOrientation);
         __TIB_org_xmlvm_iphone_UIInterfaceOrientation.clazz = __CLASS_org_xmlvm_iphone_UIInterfaceOrientation;
-        __CLASS_org_xmlvm_iphone_UIInterfaceOrientation_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIInterfaceOrientation, 3);
-        __CLASS_org_xmlvm_iphone_UIInterfaceOrientation_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIInterfaceOrientation, 2);
-        __CLASS_org_xmlvm_iphone_UIInterfaceOrientation_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIInterfaceOrientation, 1);
-
+        __TIB_org_xmlvm_iphone_UIInterfaceOrientation.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_UIInterfaceOrientation_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIInterfaceOrientation);
+        __CLASS_org_xmlvm_iphone_UIInterfaceOrientation_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIInterfaceOrientation_1ARRAY);
+        __CLASS_org_xmlvm_iphone_UIInterfaceOrientation_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIInterfaceOrientation_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIInterfaceOrientation]
         //XMLVM_END_WRAPPER
 

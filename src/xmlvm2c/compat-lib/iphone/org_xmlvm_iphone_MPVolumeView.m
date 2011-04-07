@@ -17,10 +17,9 @@ __TIB_DEFINITION_org_xmlvm_iphone_MPVolumeView __TIB_org_xmlvm_iphone_MPVolumeVi
     XMLVM_TYPE_CLASS};
 
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPVolumeView;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPVolumeView_3ARRAY;
-JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPVolumeView_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPVolumeView_1ARRAY;
-
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPVolumeView_2ARRAY;
+JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPVolumeView_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 //XMLVM_END_IMPLEMENTATION
 
@@ -213,10 +212,10 @@ void __INIT_IMPL_org_xmlvm_iphone_MPVolumeView()
         __TIB_org_xmlvm_iphone_MPVolumeView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
         __CLASS_org_xmlvm_iphone_MPVolumeView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MPVolumeView);
         __TIB_org_xmlvm_iphone_MPVolumeView.clazz = __CLASS_org_xmlvm_iphone_MPVolumeView;
-        __CLASS_org_xmlvm_iphone_MPVolumeView_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPVolumeView, 3);
-        __CLASS_org_xmlvm_iphone_MPVolumeView_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPVolumeView, 2);
-        __CLASS_org_xmlvm_iphone_MPVolumeView_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPVolumeView, 1);
-
+        __TIB_org_xmlvm_iphone_MPVolumeView.baseType = JAVA_NULL;
+        __CLASS_org_xmlvm_iphone_MPVolumeView_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPVolumeView);
+        __CLASS_org_xmlvm_iphone_MPVolumeView_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPVolumeView_1ARRAY);
+        __CLASS_org_xmlvm_iphone_MPVolumeView_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPVolumeView_2ARRAY);
         //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MPVolumeView]
         //XMLVM_END_WRAPPER
 
