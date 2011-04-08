@@ -189,7 +189,8 @@ public final class String implements Serializable, Comparable<String>,
      *            the byte array to convert to a string.
      */
     public String(byte[] data) {
-        this(data, 0, data.length);
+//        this(data, 0, data.length);
+        this(data, 0);
     }
 
     /**

@@ -26,6 +26,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImage_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
 #import <UIKit/UIKit.h>
+#include "org_xmlvm_iphone_CGImage.h"
 #include "org_xmlvm_iphone_CGSize.h"
 
 #import "org_xmlvm_iphone_NSString.h"
@@ -68,6 +69,13 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImage_3ARRAY;
 	((CroppedImageArgs *) args)->croppedImage = croppedImage;
 }
 @end
+
+void org_xmlvm_iphone_UIImage_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
+    // Tell the GC to finalize us
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIImage);
+}
 
 //XMLVM_END_IMPLEMENTATION
 
@@ -364,8 +372,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIImage()
 void __DELETE_org_xmlvm_iphone_UIImage(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIImage]
-	org_xmlvm_iphone_UIImage* thiz = (org_xmlvm_iphone_UIImage*) me;
-	[((UIImage*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) release];
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -381,8 +388,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImage()
     me->tib = &__TIB_org_xmlvm_iphone_UIImage;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImage(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImage]
-    // Tell the GC to finalize us
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIImage);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -413,8 +418,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(JAVA_OBJECT n
     [fileName release];
 	
     org_xmlvm_iphone_UIImage* toRet = __NEW_org_xmlvm_iphone_UIImage();
-    //TODO need to call a constructor but UIImage does not have a public default constructor
-    toRet->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = named; //[UIImage imageWithContentsOfFile: nsStr];
+    org_xmlvm_iphone_UIImage_INTERNAL_CONSTRUCTOR(toRet, named);
     return toRet;
     //XMLVM_END_WRAPPER
 }
@@ -431,9 +435,8 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String(
     [pool release];
     [fileName release];
 	
-    org_xmlvm_iphone_UIImage *toRet = __NEW_org_xmlvm_iphone_UIImage();
-    //TODO use internal constructor
-    toRet->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = named;
+    org_xmlvm_iphone_UIImage* toRet = __NEW_org_xmlvm_iphone_UIImage();
+    org_xmlvm_iphone_UIImage_INTERNAL_CONSTRUCTOR(toRet, named);
     return toRet;
     //XMLVM_END_WRAPPER
 }
@@ -456,7 +459,10 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_stretchableImage___int_int(JAVA_OBJECT me, 
 JAVA_OBJECT org_xmlvm_iphone_UIImage_getCGImage__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_getCGImage__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+	org_xmlvm_iphone_CGImage* image = __NEW_org_xmlvm_iphone_CGImage();
+    org_xmlvm_iphone_CGImage_INTERNAL_CONSTRUCTOR(image, [thiz CGImage]);
+    return image;
     //XMLVM_END_WRAPPER
 }
 
@@ -504,8 +510,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_cropImage___int_int_int_int(JAVA_OBJECT me,
 	UIImage* croppedImage = args->croppedImage;
 	[args release];
     org_xmlvm_iphone_UIImage* toRet = __NEW_org_xmlvm_iphone_UIImage();
-    //TODO need to call a constructor but UIImage does not have a public default constructor
-    toRet->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = croppedImage;
+    org_xmlvm_iphone_UIImage_INTERNAL_CONSTRUCTOR(toRet, croppedImage);
     return toRet;
     //XMLVM_END_WRAPPER
 }

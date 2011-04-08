@@ -30,6 +30,8 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGImage_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGImage_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGImage
+
+void org_xmlvm_iphone_CGImage_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, CGImageRef wrappedImage);
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_CGImage \

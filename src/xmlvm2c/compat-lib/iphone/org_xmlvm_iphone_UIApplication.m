@@ -620,7 +620,9 @@ void org_xmlvm_iphone_UIApplication_setNetworkActivityIndicatorVisible___boolean
 JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(NSURL, url, n1);
+    [thiz openURL:url];
     //XMLVM_END_WRAPPER
 }
 

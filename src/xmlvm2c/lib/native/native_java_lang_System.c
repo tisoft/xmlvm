@@ -46,7 +46,7 @@ JAVA_OBJECT java_lang_System_getEncoding___int(JAVA_INT n1)
 JAVA_INT java_lang_System_identityHashCode___java_lang_Object(JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_System_identityHashCode___java_lang_Object]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return (JAVA_INT) n1;
     //XMLVM_END_NATIVE
 }
 

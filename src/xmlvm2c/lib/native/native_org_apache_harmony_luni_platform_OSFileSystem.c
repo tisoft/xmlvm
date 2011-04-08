@@ -89,7 +89,7 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_readImpl___long_byte_1AR
     JAVA_INT length                     = n4;
     
     JAVA_ARRAY_BYTE* data = bytes->fields.org_xmlvm_runtime_XMLVMArray.array_;
-    JAVA_LONG read = fread(data + offset, length, 1, fileDescriptor);
+    JAVA_LONG read = fread(data + offset, 1, length, fileDescriptor);
     return read == 0 ? -1 : read;
     //XMLVM_END_NATIVE
 }
@@ -97,7 +97,14 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_readImpl___long_byte_1AR
 JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_writeImpl___long_byte_1ARRAY_int_int(JAVA_OBJECT me, JAVA_LONG n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_INT n4)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSFileSystem_writeImpl___long_byte_1ARRAY_int_int]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    FILE* fileDescriptor                = (FILE*) n1;
+    org_xmlvm_runtime_XMLVMArray* bytes = n2;
+    JAVA_INT offset                     = n3;
+    JAVA_INT length                     = n4;
+    
+    JAVA_ARRAY_BYTE* data = bytes->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    JAVA_LONG written = fwrite(data + offset, 1, length, fileDescriptor);
+    return written != length ? -1 : written;
     //XMLVM_END_NATIVE
 }
 

@@ -451,9 +451,9 @@ void org_xmlvm_iphone_NSUserDefaults_setObject___java_lang_Object_java_lang_Stri
 void org_xmlvm_iphone_NSUserDefaults_setInteger___int_java_lang_String(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_setInteger___int_java_lang_String]
-    org_xmlvm_iphone_NSUserDefaults* thiz = me;
+    XMLVM_VAR_THIZ;
     NSString* key = toNSString(n2);
-    [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setInteger:n1 forKey:key];
+    [thiz setInteger:n1 forKey:key];
     [key release];
     //XMLVM_END_WRAPPER
 }
@@ -461,9 +461,9 @@ void org_xmlvm_iphone_NSUserDefaults_setInteger___int_java_lang_String(JAVA_OBJE
 JAVA_INT org_xmlvm_iphone_NSUserDefaults_integerForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_integerForKey___java_lang_String]
-    org_xmlvm_iphone_NSUserDefaults* thiz = me;
+    XMLVM_VAR_THIZ;
     NSString* key = toNSString(n1);
-    JAVA_INT v = [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) boolForKey:key];
+    JAVA_INT v = [thiz integerForKey:key];
     [key release];
     return v;
     //XMLVM_END_WRAPPER
@@ -472,17 +472,17 @@ JAVA_INT org_xmlvm_iphone_NSUserDefaults_integerForKey___java_lang_String(JAVA_O
 void org_xmlvm_iphone_NSUserDefaults_synchronize__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_synchronize__]
-    org_xmlvm_iphone_NSUserDefaults* thiz = me;
-    [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) synchronize];
+    XMLVM_VAR_THIZ;
+    [thiz synchronize];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_NSUserDefaults_setBool___boolean_java_lang_String(JAVA_OBJECT me, JAVA_BOOLEAN n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_setBool___boolean_java_lang_String]
-    org_xmlvm_iphone_NSUserDefaults* thiz = me;
+    XMLVM_VAR_THIZ;
     NSString* key = toNSString(n2);
-    [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setBool:n1 forKey:key];
+    [thiz setBool:n1 forKey:key];
     [key release];
     //XMLVM_END_WRAPPER
 }
@@ -490,9 +490,9 @@ void org_xmlvm_iphone_NSUserDefaults_setBool___boolean_java_lang_String(JAVA_OBJ
 JAVA_BOOLEAN org_xmlvm_iphone_NSUserDefaults_boolForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_boolForKey___java_lang_String]
-    org_xmlvm_iphone_NSUserDefaults* thiz = me;
+    XMLVM_VAR_THIZ;
     NSString* key = toNSString(n1);
-    JAVA_BOOLEAN v = [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) boolForKey:key];
+    JAVA_BOOLEAN v = [thiz boolForKey:key];
     [key release];
     return v;
     //XMLVM_END_WRAPPER
@@ -501,9 +501,9 @@ JAVA_BOOLEAN org_xmlvm_iphone_NSUserDefaults_boolForKey___java_lang_String(JAVA_
 void org_xmlvm_iphone_NSUserDefaults_setFloat___float_java_lang_String(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_setFloat___float_java_lang_String]
-    org_xmlvm_iphone_NSUserDefaults* thiz = me;
+    XMLVM_VAR_THIZ;
     NSString* key = toNSString(n2);
-    [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setFloat:n1 forKey:key];
+    [thiz setFloat:n1 forKey:key];
     [key release];
     //XMLVM_END_WRAPPER
 }
@@ -511,9 +511,9 @@ void org_xmlvm_iphone_NSUserDefaults_setFloat___float_java_lang_String(JAVA_OBJE
 JAVA_FLOAT org_xmlvm_iphone_NSUserDefaults_floatForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_floatForKey___java_lang_String]
-    org_xmlvm_iphone_NSUserDefaults* thiz = me;
+    XMLVM_VAR_THIZ;
     NSString* key = toNSString(n1);
-    JAVA_FLOAT v = [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) boolForKey:key];
+    JAVA_FLOAT v = [thiz floatForKey:key];
     [key release];
     return v;
     //XMLVM_END_WRAPPER

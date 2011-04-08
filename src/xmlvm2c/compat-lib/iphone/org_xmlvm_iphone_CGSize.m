@@ -20,6 +20,20 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+CGSize toCGSize(void* size)
+{
+	org_xmlvm_iphone_CGSize* s = size;
+	return CGSizeMake(s->fields.org_xmlvm_iphone_CGSize.width_, s->fields.org_xmlvm_iphone_CGSize.height_);
+}
+
+JAVA_OBJECT fromCGSize(CGSize size)
+{
+    org_xmlvm_iphone_CGSize* size_ = __NEW_org_xmlvm_iphone_CGSize();
+    org_xmlvm_iphone_CGSize___INIT____float_float(size_, size.width, size.height);
+    return size_;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 

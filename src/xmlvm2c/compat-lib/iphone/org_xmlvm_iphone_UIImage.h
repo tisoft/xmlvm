@@ -38,6 +38,8 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImage_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImage_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIImage
+
+void org_xmlvm_iphone_UIImage_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj);
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UIImage \

@@ -68,6 +68,11 @@ void org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wr
     JAVA_ARRAY_BYTE* var##Data = (JAVA_ARRAY_BYTE*) var->fields.org_xmlvm_runtime_XMLVMArray.array_; \
     JAVA_INT var##Length = var->fields.org_xmlvm_runtime_XMLVMArray.length_;
 
+#define XMLVM_VAR_FLOAT_ARRAY(var, arg) \
+    org_xmlvm_runtime_XMLVMArray* var = arg; \
+    JAVA_ARRAY_FLOAT* var##Data = (JAVA_ARRAY_FLOAT*) var->fields.org_xmlvm_runtime_XMLVMArray.array_; \
+    JAVA_INT var##Length = var->fields.org_xmlvm_runtime_XMLVMArray.length_;
+
 @interface DelegateWrapper : NSObject {
     NSMutableDictionary* sources;
     NSObject* source;

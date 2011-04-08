@@ -21,6 +21,8 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGraphics_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGraphics_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGraphics_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <UIKit/UIGraphics.h>
+#include "org_xmlvm_iphone_UIImage.h"
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -280,7 +282,8 @@ void org_xmlvm_iphone_UIGraphics_beginImageContext___org_xmlvm_iphone_CGSize(JAV
 {
     if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_beginImageContext___org_xmlvm_iphone_CGSize]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_CGSize(size, n1);
+    UIGraphicsBeginImageContext(size);
     //XMLVM_END_WRAPPER
 }
 
@@ -296,7 +299,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIGraphics_getImageFromCurrentImageContext__()
 {
     if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_getImageFromCurrentImageContext__]
-    XMLVM_NOT_IMPLEMENTED();
+    JAVA_OBJECT image = __NEW_org_xmlvm_iphone_UIImage();
+    org_xmlvm_iphone_UIImage_INTERNAL_CONSTRUCTOR(image, [UIGraphicsGetImageFromCurrentImageContext() retain]);
+    return image;
     //XMLVM_END_WRAPPER
 }
 
@@ -304,7 +309,7 @@ void org_xmlvm_iphone_UIGraphics_endImageContext__()
 {
     if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_endImageContext__]
-    XMLVM_NOT_IMPLEMENTED();
+    UIGraphicsEndImageContext();
     //XMLVM_END_WRAPPER
 }
 

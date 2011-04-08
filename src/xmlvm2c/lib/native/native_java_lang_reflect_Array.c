@@ -96,11 +96,6 @@ JAVA_SHORT java_lang_reflect_Array_getShort___java_lang_Object_int(JAVA_OBJECT n
 JAVA_OBJECT java_lang_reflect_Array_newInstance___java_lang_Class_int_1ARRAY(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Array_newInstance___java_lang_Class_int_1ARRAY]
-#if 0
-    java_lang_Class* baseType = (java_lang_Class*) n1;
-    __TIB_DEFINITION_TEMPLATE* baseTypeTIB = (__TIB_DEFINITION_TEMPLATE*) baseType->fields.java_lang_Class.tib_;
-    JAVA_OBJECT arrayType = baseTypeTIB->arrayType;
-#endif
     return XMLVMArray_createMultiDimensions(n1, n2);
     //XMLVM_END_NATIVE
 }
@@ -108,17 +103,38 @@ JAVA_OBJECT java_lang_reflect_Array_newInstance___java_lang_Class_int_1ARRAY(JAV
 JAVA_OBJECT java_lang_reflect_Array_newInstance___java_lang_Class_int(JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Array_newInstance___java_lang_Class_int]
-    java_lang_Class* baseType = (java_lang_Class*) n1;
-    __TIB_DEFINITION_TEMPLATE* baseTypeTIB = (__TIB_DEFINITION_TEMPLATE*) baseType->fields.java_lang_Class.tib_;
-    JAVA_OBJECT arrayType = baseTypeTIB->arrayType;
-    return XMLVMArray_createSingleDimension(arrayType, n2);
+    return XMLVMArray_createSingleDimension(n1, n2);
     //XMLVM_END_NATIVE
 }
 
 void java_lang_reflect_Array_set___java_lang_Object_int_java_lang_Object(JAVA_OBJECT n1, JAVA_INT n2, JAVA_OBJECT n3)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Array_set___java_lang_Object_int_java_lang_Object]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    org_xmlvm_runtime_XMLVMArray* array = n1;
+    JAVA_INT index = n2;
+    JAVA_OBJECT obj = n3;
+    
+    JAVA_OBJECT arrayType = array->fields.org_xmlvm_runtime_XMLVMArray.type_;
+    if (arrayType == __CLASS_boolean_1ARRAY) {
+        XMLVM_INTERNAL_ERROR();
+    } else if (arrayType == __CLASS_byte_1ARRAY) {
+        XMLVM_INTERNAL_ERROR();
+    } else if (arrayType == __CLASS_char_1ARRAY) {
+        XMLVM_INTERNAL_ERROR();
+    } else if (arrayType == __CLASS_short_1ARRAY) {
+        XMLVM_INTERNAL_ERROR();
+    } else if (arrayType == __CLASS_int_1ARRAY) {
+        XMLVM_INTERNAL_ERROR();
+    } else if (arrayType == __CLASS_float_1ARRAY) {
+        XMLVM_INTERNAL_ERROR();
+    } else if (arrayType == __CLASS_long_1ARRAY) {
+        XMLVM_INTERNAL_ERROR();
+    } else if (arrayType == __CLASS_double_1ARRAY) {
+        XMLVM_INTERNAL_ERROR();
+    } else {
+        JAVA_ARRAY_OBJECT* data = (JAVA_ARRAY_OBJECT*) array->fields.org_xmlvm_runtime_XMLVMArray.array_;
+        data[index] = obj;
+    }
     //XMLVM_END_NATIVE
 }
 

@@ -24,6 +24,16 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <CoreGraphics/CoreGraphics.h>
+#import <CoreGraphics/CGImage.h>
+#import <UIKit/UIImage.h>
+#include "org_xmlvm_iphone_UIImage.h"
+
+#undef XMLVM_VAR_THIZ
+
+#define XMLVM_VAR_THIZ \
+    org_xmlvm_iphone_CGContext* jthiz = me; \
+    CGContextRef thiz = jthiz->fields.org_xmlvm_iphone_CGContext.ocContext;
+
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_CGContext_kCGTextInvisible;
@@ -693,35 +703,42 @@ void org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT
 void org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_FLOAT_ARRAY(color, n1);
+    CGContextSetStrokeColor(thiz, colorData);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_CGContext_translate___float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_translate___float_float]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+	CGContextTranslateCTM(thiz, n1, n2);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_CGContext_rotate___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_rotate___float]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+	CGContextRotateCTM(thiz, n1);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_CGContext_scale___float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_scale___float_float]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+	CGContextScaleCTM(thiz, n1, n2);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_CGContext_strokeRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_strokeRect___org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CGRect(rect, n1);
+    CGContextStrokeRect(thiz, rect);
     //XMLVM_END_WRAPPER
 }
 
@@ -756,14 +773,25 @@ void org_xmlvm_iphone_CGContext_setFontSize___float(JAVA_OBJECT me, JAVA_FLOAT n
 void org_xmlvm_iphone_CGContext_setShouldAntialias___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setShouldAntialias___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_BOOLEAN(flag, n1);
+	CGContextSetShouldAntialias(thiz, flag);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1ARRAY(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_OBJECT n4)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1ARRAY]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_FLOAT(dx, n1);
+    XMLVM_VAR_FLOAT(dy, n2);
+    XMLVM_VAR_FLOAT(blur_radius, n3);
+    XMLVM_VAR_FLOAT_ARRAY(color, n4);
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	CGColorRef colorRef = CGColorCreate(colorSpace, colorData);
+	CGContextSetShadowWithColor(thiz, CGSizeMake(dx, dy), blur_radius, colorRef);
+	CGColorRelease(colorRef);
+	CGColorSpaceRelease(colorSpace);
     //XMLVM_END_WRAPPER
 }
 
@@ -784,14 +812,16 @@ void org_xmlvm_iphone_CGContext_showText___java_lang_String(JAVA_OBJECT me, JAVA
 void org_xmlvm_iphone_CGContext_storeState__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_storeState__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+	CGContextSaveGState(thiz);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_CGContext_restoreState__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_restoreState__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+	CGContextRestoreGState(thiz);
     //XMLVM_END_WRAPPER
 }
 
@@ -819,7 +849,11 @@ void org_xmlvm_iphone_CGContext_setTextDrawingMode___int(JAVA_OBJECT me, JAVA_IN
 void org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CGRect(rect, n1);
+    org_xmlvm_iphone_CGImage* jimage = n2;
+    CGImageRef image = (CGImageRef) jimage->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+	CGContextDrawImage(thiz, rect, image);
     //XMLVM_END_WRAPPER
 }
 
