@@ -116,10 +116,6 @@ public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl {
             return false;
         }
 
-        if (input.getFile().getName().contains("HelloWorld")) {
-            System.out.println("Found it");
-        }
-
         OutputFile outputFile = new OutputFile(input.getFile());
         outputFile.setOrigin(input.getFile().getAbsolutePath());
         outputFile.setLocation(arguments.option_out());
