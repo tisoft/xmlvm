@@ -29,8 +29,8 @@ import java.util.Set;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.ClassToXmlvmProcess;
-import org.xmlvm.proc.out.DEXmlvmOutputProcess;
 import org.xmlvm.proc.out.ExeToXmlvmProcess;
+import org.xmlvm.proc.out.OptimizationOutputProcess;
 import org.xmlvm.proc.out.XmlvmToXmlvmProcess;
 
 /**
@@ -60,7 +60,8 @@ enum XmlvmProcessId {
  */
 public abstract class XmlvmProcessImpl implements XmlvmProcess {
 
-    private static final String         TAG             = "XmlvmProcessImpl";
+    /** A tag used for logging. */
+    private static final String         TAG             = XmlvmProcessImpl.class.getSimpleName();
 
     /** The list of process instances that get executed BEFORE this process. */
     private List<XmlvmProcess>          preprocesses    = new ArrayList<XmlvmProcess>();
@@ -74,7 +75,7 @@ public abstract class XmlvmProcessImpl implements XmlvmProcess {
     protected Arguments                 arguments;
 
     protected boolean                   isProcessed     = false;
-    
+
     /** Whether this process is the target process. */
     protected boolean                   isTargetProcess = false;
 
@@ -110,7 +111,7 @@ public abstract class XmlvmProcessImpl implements XmlvmProcess {
      */
     protected void addAllXmlvmEmittingProcessesAsInput() {
         if (!arguments.option_use_jvm()) {
-            addSupportedInput(DEXmlvmOutputProcess.class);
+            addSupportedInput(OptimizationOutputProcess.class);
         } else {
             addSupportedInput(ClassToXmlvmProcess.class);
         }
@@ -141,7 +142,9 @@ public abstract class XmlvmProcessImpl implements XmlvmProcess {
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             } catch (NoSuchMethodException e) {
-                e.printStackTrace();
+                // This is ok. InputProcesses e.g. don't have such a
+                // constructor, so we don't want to create an instance.
+                Log.debug(TAG, "Not creating input instance of: " + supportedClass.getName());
             }
         }
         return result;
