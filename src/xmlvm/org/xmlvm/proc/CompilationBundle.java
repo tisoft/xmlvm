@@ -46,6 +46,11 @@ public class CompilationBundle implements BundlePhase1, BundlePhase2 {
     }
 
     @Override
+    public void addAdditionalResource(XmlvmResource resource) {
+        addResource(resource);
+    }
+
+    @Override
     public synchronized void addResource(XmlvmResource resource) {
         xmlvmResources.put(resource.getFullName(), resource);
     }

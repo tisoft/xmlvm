@@ -32,6 +32,16 @@ import org.xmlvm.proc.out.OutputFile;
 public interface BundlePhase2 {
 
     /**
+     * This adds a new resource to the bundle.
+     * <p>
+     * <b>IMPORTANT:</b> Only use this in cases where the resource does not need
+     * to be part of the global view as only processes coming after this one
+     * will be able to see the newly added resource. If the resource needs to be
+     * part of the global view, you need to add it in the first phase.
+     */
+    public void addAdditionalResource(XmlvmResource resource);
+
+    /**
      * Returns all {@link XmlvmResource}s that have been added to the bundle so
      * far.
      */
