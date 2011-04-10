@@ -921,6 +921,29 @@ public final class String implements Serializable, Comparable<String>,
 //        buffer.get(bytes);
 //        return bytes;
     }
+    
+    /**
+     * Encodes this {@code String} into a sequence of bytes using the given
+     * {@linkplain java.nio.charset.Charset charset}, storing the result into a
+     * new byte array.
+     *
+     * <p> This method always replaces malformed-input and unmappable-character
+     * sequences with this charset's default replacement byte array.  The
+     * {@link java.nio.charset.CharsetEncoder} class should be used when more
+     * control over the encoding process is required.
+     *
+     * @param  charset
+     *         The {@linkplain java.nio.charset.Charset} to be used to encode
+     *         the {@code String}
+     *
+     * @return  The resultant byte array
+     *
+     * @since  1.6
+     */
+    public byte[] getBytes(Charset charset) {
+        //TODO Use charset instead of just calling 
+        return getBytes();
+    }
 
     private Charset getCharset(final String encoding)
             throws UnsupportedEncodingException {
