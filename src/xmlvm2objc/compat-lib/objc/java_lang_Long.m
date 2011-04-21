@@ -126,6 +126,16 @@ static java_lang_Class* primitiveLongClass;
     return strtoll([str UTF8String], nil, radix);
 }
 
+- (java_lang_String*) toString__
+{
+    return [java_lang_Long toString___long:number];
+}
+
++ (java_lang_String*) toString___long: (JAVA_LONG) l
+{
+    return [[[NSNumber numberWithLongLong: l] stringValue] retain];
+}
+
 + (java_lang_Long*) valueOf___long: (JAVA_LONG) l {
 	java_lang_Long* result = [[java_lang_Long alloc] init];
 	[result __init_java_lang_Long___long:l];

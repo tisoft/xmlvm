@@ -40,6 +40,7 @@ JAVA_LONG number;
 - (JAVA_LONG) longValue__;
 + (JAVA_LONG) parseLong___java_lang_String: (java_lang_String *) str;
 + (JAVA_LONG) parseLong___java_lang_String_int: (java_lang_String*) str :(int) radix;
++ (java_lang_String*) toString___long: (JAVA_LONG) l;
 + (java_lang_Long*) valueOf___long: (JAVA_LONG) l;
 - (int) compareTo___java_lang_Object: (java_lang_Object*) obj;
 - (int) compareTo___java_lang_Long: (java_lang_Long*) l;
