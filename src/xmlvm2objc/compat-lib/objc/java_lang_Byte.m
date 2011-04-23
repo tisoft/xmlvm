@@ -89,4 +89,15 @@ static java_lang_Class* primitiveByteClass;
     return (unsigned char) strtoul([str UTF8String], nil, radix);
 }
 
+- (java_lang_String*) toString__
+{
+    return [java_lang_Byte toString___byte:number];
+}
+
++ (java_lang_String*) toString___byte: (char) b
+{
+    return [[[NSNumber numberWithChar:b] stringValue] retain];
+}
+
+
 @end

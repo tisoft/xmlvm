@@ -68,6 +68,9 @@ public class UIButton extends UIControl {
         titleColor[UIControlState.Normal] = UIButtonRenderer.DEFAULT_TITLE_COLOR_NORMAL;
         titleShadowColor[UIControlState.Normal] = UIButtonRenderer.DEFAULT_TITLE_SHADOW_COLOR_NORMAL;
 
+        setContentHorizontalAlignment(UIControlContentHorizontalAlignment.Center);
+        setContentVerticalAlignment(UIControlContentVerticalAlignment.Center);
+        
         switch (buttonType) {
         case UIAlertButtonRenderer.AlertViewType:
             xmlvmSetRenderer(new UIAlertButtonRenderer(this));
@@ -100,6 +103,11 @@ public class UIButton extends UIControl {
         return buttonType;
     }
 
+    public UILabel getTitleLabel() {
+        // TODO: Java implementation
+        return null;
+    }
+    
     public void setTitle(String title, int uiControlState) {
         if (uiControlState < 0 || uiControlState > this.title.length) {
             return;

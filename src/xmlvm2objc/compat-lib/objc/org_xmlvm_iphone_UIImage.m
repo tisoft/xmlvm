@@ -36,11 +36,13 @@
 
 + (org_xmlvm_iphone_UIImage*)imageNamed___java_lang_String:(java_lang_String*)path
 {
+    path=XMLVM_NULL2NIL(path);
 	return_XMLVM_SELECTOR(UIImage imageNamed:path)
 }
 
 + (org_xmlvm_iphone_UIImage*) imageWithContentsOfFile___java_lang_String :(java_lang_String*)path
 {
+    path=XMLVM_NULL2NIL(path);
     UIImage * img = [[UIImage alloc] initWithContentsOfFile:path];
     img=XMLVM_NIL2NULL(img);
     return img;

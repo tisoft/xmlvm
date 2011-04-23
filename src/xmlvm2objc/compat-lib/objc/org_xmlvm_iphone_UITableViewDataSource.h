@@ -27,7 +27,9 @@
 
 // UITableViewDataSource
 //----------------------------------------------------------------------------
-@interface org_xmlvm_iphone_UITableViewDataSource : java_lang_Object <UITableViewDataSource>
+@interface org_xmlvm_iphone_UITableViewDataSource : java_lang_Object <UITableViewDataSource> {
+@private    BOOL respondsToMoveRow;
+}
 
 - (void) __init_org_xmlvm_iphone_UITableViewDataSource__;
 - (org_xmlvm_iphone_UITableViewCell*) cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath
@@ -37,6 +39,9 @@
 - (int) numberOfSectionsInTableView___org_xmlvm_iphone_UITableView:(UITableView *)tableView;
 - (java_lang_String *) titleForHeaderInSection___org_xmlvm_iphone_UITableView_int :(UITableView*) tableView :(int) section;
 - (void) commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath:(UITableView*) tableView :(int)style :(NSIndexPath*) indexPath;
+- (int) canEditRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :(UITableView*)table :(org_xmlvm_iphone_NSIndexPath*)path;
+- (int) canMoveRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :(UITableView*)table :(org_xmlvm_iphone_NSIndexPath*)path;
+- (void) moveRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath_org_xmlvm_iphone_NSIndexPath :(UITableView*)table :(org_xmlvm_iphone_NSIndexPath*)frompath :(org_xmlvm_iphone_NSIndexPath*)tompath;
 
 @end
 

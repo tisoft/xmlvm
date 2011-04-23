@@ -37,6 +37,8 @@ public class UIControl extends UIView {
     private boolean                           enabled;
     private boolean                           selected;
     private boolean                           highlighted;
+    private int                               contentHorizontalAlignment;
+    private int                               contentVerticalAlignment;
 
 
     public UIControl() {
@@ -46,6 +48,8 @@ public class UIControl extends UIView {
     public UIControl(CGRect rect) {
         super(rect);
         delegates = new HashMap<Integer, UIControlDelegate>();
+        contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left;
+        contentVerticalAlignment = UIControlContentVerticalAlignment.Top;
     }
 
     public void addTarget(UIControlDelegate delegate, int uiControlEvent) {
@@ -91,5 +95,29 @@ public class UIControl extends UIView {
 
     public void setHighlighted(boolean highlighted) {
         this.highlighted = highlighted;
+    }
+    
+    public int getState() {
+        int state = 0;
+        state |= selected ? UIControlState.Selected : 0;
+        state |= enabled ? 0 : UIControlState.Disabled;
+        state |= highlighted ? UIControlState.Highlighted : 0;
+        return state;
+    }
+
+    public int getContentHorizontalAlignment() {
+        return contentHorizontalAlignment;
+    }
+
+    public void setContentHorizontalAlignment(int uiControlContentHorizontalAlignment) {
+        this.contentHorizontalAlignment = uiControlContentHorizontalAlignment;
+    }
+
+    public int getContentVerticalAlignment() {
+        return contentVerticalAlignment;
+    }
+
+    public void setContentVerticalAlignment(int uiControlContentVerticalAlignment) {
+        this.contentVerticalAlignment = uiControlContentVerticalAlignment;
     }
 }

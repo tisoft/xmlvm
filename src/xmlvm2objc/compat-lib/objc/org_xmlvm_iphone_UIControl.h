@@ -32,11 +32,16 @@ typedef UIControl org_xmlvm_iphone_UIControl;
 - (void) addTarget___org_xmlvm_iphone_UIControlDelegate_int
                    :(id<org_xmlvm_iphone_UIControlDelegate>) delegate
                    :(int) controlEvents;
+- (int) getState__;
 - (int) isEnabled__;
 - (void) setEnabled___boolean:(int)selected;
 - (int) isSelected__;
 - (void) setSelected___boolean:(int)selected;
 - (int) isHighlighted__;
 - (void) setHighlighted___boolean:(int)selected;
+- (void) setContentHorizontalAlignment___int:(int) al;
+- (int) getContentHorizontalAlignment__;
+- (void) setContentVerticalAlignment___int:(int) al;
+- (int) getContentVerticalAlignment__;
 
 @end

@@ -30,6 +30,7 @@
 		<property name="statusbarhidden" value="false"/>
 		<property name="prerenderedicon" value="false"/>
 		<property name="applicationexits" value="true"/>
+		<property name="appfonts" value=""/>
 		<property name="xmlvm.trimmer.template" value="My"/>
 		<property name="xmlvm.trimmer.seed" value="1"/>
 		<condition property="xmlvm.trimmer.allowed"> <and>
@@ -104,6 +105,7 @@
 			<arg value="--app-name=${ant.project.name}"/>
 			<arg value="--lib=${xmlvm.lib}"/>
 			<arg value="--resource=${xmlvm.resouce.all}"/>
+			<arg value="--enable-ref-counting"/>
 			<arg value="-DXcodeProject=${xmlvm.project}"/>
 			<arg value="-DBundleIdentifier=${bundle.identifier}"/>
 			<arg value="-DBundleVersion=${bundle.version}"/>
@@ -111,6 +113,7 @@
 			<arg value="-DStatusBarHidden=${statusbarhidden}"/>
 			<arg value="-DPrerenderedIcon=${prerenderedicon}"/>
 			<arg value="-DApplicationExits=${applicationexits}"/>
+			<arg value="-DAppFonts=${appfonts}"/>
 		</java>
 	</target>
 

@@ -18,30 +18,18 @@
  * USA.
  */
 
-#import "xmlvm.h"
-#import "java_lang_Object.h"
+package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 
-// java.lang.Boolean
-//----------------------------------------------------------------------------
-@interface java_lang_Boolean : java_lang_Object {
+@XMLVMSkeletonOnly
+public final class UIControlContentVerticalAlignment {
 
-int value;
-
+    public static final int Center = 0;
+    public static final int Top    = 1;
+    public static final int Bottom = 2;
+    public static final int Fill   = 3;
+    
+    private UIControlContentVerticalAlignment() {        
+    }
 }
-
-- (id) init;
-- (NSUInteger) hash;
-- (void) __init_java_lang_Boolean___int :(int) i;
-- (void) __init_java_lang_Boolean___boolean :(BOOL) b;
-+ (java_lang_Class*) _GET_TYPE;
-+ (BOOL) parseBoolean___java_lang_String:(java_lang_String*) str;
-+ (java_lang_Boolean*) _GET_FALSE;
-+ (java_lang_Boolean*) _GET_TRUE;
-- (BOOL)isEqual:(id)anObject;
-- (int) booleanValue__;
-+ (java_lang_Boolean*) valueOf___java_lang_String:(java_lang_String*) s;
-+ (java_lang_Boolean*) valueOf___boolean:(int)b;
-+ (java_lang_String*) toString___boolean:(BOOL) b;
-
-@end

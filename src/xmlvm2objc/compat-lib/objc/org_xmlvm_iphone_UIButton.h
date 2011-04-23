@@ -25,6 +25,7 @@
 #import "org_xmlvm_iphone_UIColor.h"
 #import "java_lang_String.h"
 #import "org_xmlvm_iphone_UIColor.h"
+#import "org_xmlvm_iphone_UILabel.h"
 
 // UIButton
 //----------------------------------------------------------------------------
@@ -63,5 +64,7 @@ typedef UIButton org_xmlvm_iphone_UIButton;
 
 - (void) setShowsTouchWhenHighlighted___boolean:(int) state;
 - (int) isShowsTouchWhenHighlighted__;
+
+- (org_xmlvm_iphone_UILabel*) getTitleLabel__;
 
 @end

@@ -105,6 +105,14 @@ static java_lang_Class* primitiveBooleanClass;
 	return result;
 }
 
++ (java_lang_Boolean*) valueOf___boolean:(int)b
+{
+    java_lang_Boolean* result = [[java_lang_Boolean alloc] init];
+    result->value = b;
+	return result;
+}
+
+
 + (java_lang_String*) toString___boolean:(BOOL) b {
 	return b ? @"true" : @"false";
 }

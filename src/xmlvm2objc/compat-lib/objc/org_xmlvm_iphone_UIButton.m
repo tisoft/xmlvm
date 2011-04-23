@@ -139,7 +139,6 @@
     return [self adjustsImageWhenHighlighted];
 }
 
-
 - (void) setShowsTouchWhenHighlighted___boolean:(int) state
 {
     [self setShowsTouchWhenHighlighted:state];
@@ -151,5 +150,9 @@
     return [self showsTouchWhenHighlighted];
 }
 
+- (org_xmlvm_iphone_UILabel*) getTitleLabel__
+{
+    return_XMLVM(titleLabel)
+}
 
 @end

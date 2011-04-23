@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControlDelegate)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIControl
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIControl, 73, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIControl)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIControl, 78, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIControl)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl_1ARRAY;
@@ -62,7 +62,7 @@ struct org_xmlvm_iphone_UIControl {
 typedef struct org_xmlvm_iphone_UIControl org_xmlvm_iphone_UIControl;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIControl 73
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIControl 78
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int 65
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_getAllTargets__ 66
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 11
@@ -72,6 +72,11 @@ typedef struct org_xmlvm_iphone_UIControl org_xmlvm_iphone_UIControl;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_setSelected___boolean 70
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_isHighlighted__ 71
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_setHighlighted___boolean 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_getState__ 73
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_getContentHorizontalAlignment__ 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_setContentHorizontalAlignment___int 75
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_getContentVerticalAlignment__ 76
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_setContentVerticalAlignment___int 77
 
 void __INIT_org_xmlvm_iphone_UIControl();
 void __INIT_IMPL_org_xmlvm_iphone_UIControl();
@@ -99,5 +104,15 @@ void org_xmlvm_iphone_UIControl_setSelected___boolean(JAVA_OBJECT me, JAVA_BOOLE
 JAVA_BOOLEAN org_xmlvm_iphone_UIControl_isHighlighted__(JAVA_OBJECT me);
 // Vtable index: 72
 void org_xmlvm_iphone_UIControl_setHighlighted___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+// Vtable index: 73
+JAVA_INT org_xmlvm_iphone_UIControl_getState__(JAVA_OBJECT me);
+// Vtable index: 74
+JAVA_INT org_xmlvm_iphone_UIControl_getContentHorizontalAlignment__(JAVA_OBJECT me);
+// Vtable index: 75
+void org_xmlvm_iphone_UIControl_setContentHorizontalAlignment___int(JAVA_OBJECT me, JAVA_INT n1);
+// Vtable index: 76
+JAVA_INT org_xmlvm_iphone_UIControl_getContentVerticalAlignment__(JAVA_OBJECT me);
+// Vtable index: 77
+void org_xmlvm_iphone_UIControl_setContentVerticalAlignment___int(JAVA_OBJECT me, JAVA_INT n1);
 
 #endif

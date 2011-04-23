@@ -39,5 +39,8 @@ unsigned char number;
 - (unsigned char) byteValue__;
 + (unsigned char) parseByte___java_lang_String: (java_lang_String *) str;
 + (unsigned char) parseByte___java_lang_String_int: (java_lang_String*) str :(int) radix;
+- (java_lang_String*) toString__;
++ (java_lang_String*) toString___byte: (char) b;
+
 
 @end

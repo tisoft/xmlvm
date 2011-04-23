@@ -161,7 +161,8 @@ public class Arguments {
             "   BundleDisplayName The value of CFBundleDisplayName in Info.plist",
             "   PrerenderedIcon   The iPhone application icon is already pre-rendered",
             "   StatusBarHidden   Hide (value is 'true') or display (value is 'false' status bar",
-            "   ApplicationExits  Application does not run in background on suspend", "",
+            "   ApplicationExits  Application does not run in background on suspend",
+            "   AppFonts          Colon separated list of custom fonts.", "",
             " --debug=<level>   Debug information level",
             "    none             Be completely quiet, no information is printed",
             "    error            Only errors will be printed",
@@ -375,8 +376,10 @@ public class Arguments {
         // We need to enforce reference counting for these targets.
         if (option_target == Targets.OBJC || option_target == Targets.IPHONE
                 || option_target == Targets.IPHONEANDROID) {
-            option_enable_ref_counting = true;
-            Log.debug("Forcing --enable_ref_counting for target " + option_target);
+            if (!option_enable_ref_counting) {
+                option_enable_ref_counting = true;
+                Log.debug("Forcing " + ARG_ENABLE_REF_COUNTING + " for target " + option_target);
+            }
         }
 
         if (option_target == Targets.IPHONE || option_target == Targets.IPHONEC
@@ -400,6 +403,9 @@ public class Arguments {
     }
 
     private static void parseListArgument(String argument, Set<String> option, String separator) {
+        if (argument == null || option == null || separator == null) {
+            return;
+        }
         StringTokenizer tk = new StringTokenizer(argument, separator);
         while (tk.hasMoreTokens()) {
             String entry = tk.nextToken().trim();
@@ -508,6 +514,21 @@ public class Arguments {
 
     public String option_property(String key) {
         return option_property.get(key);
+    }
+
+    public String option_customfonts() {
+        HashSet<String> list = new HashSet();
+        parseListArgument(option_property("appfonts"), list, ":");
+        if (list.isEmpty()) {
+            return "";
+        }
+
+        StringBuilder b = new StringBuilder("\t<key>UIAppFonts</key>\n\t<array>\n");
+        for (String item : list) {
+            b.append("\t\t<string>").append(item).append("</string>\n");
+        }
+        b.append("\t</array>\n");
+        return b.toString();
     }
 
     private static void printText(String[] txt, PrintStream out) {

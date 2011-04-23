@@ -87,6 +87,11 @@ static char memberKey; // key for associative reference for member variables
 	      forControlEvents:controlEvents];
 }
 
+- (int) getState__
+{
+    return [self state];
+}
+
 - (int) isEnabled__
 {
 	return [self isEnabled];
@@ -115,6 +120,26 @@ static char memberKey; // key for associative reference for member variables
 - (void) setHighlighted___boolean:(int)selected
 {
 	[self setHighlighted:selected];
+}
+
+- (void) setContentHorizontalAlignment___int:(int) al
+{
+    [self setContentHorizontalAlignment:al];
+}
+
+- (int) getContentHorizontalAlignment__
+{
+    return [self contentHorizontalAlignment];
+}
+
+- (void) setContentVerticalAlignment___int:(int) al
+{
+    [self setContentVerticalAlignment:al];
+}
+
+- (int) getContentVerticalAlignment__
+{
+    return [self contentVerticalAlignment];
 }
 
 @end

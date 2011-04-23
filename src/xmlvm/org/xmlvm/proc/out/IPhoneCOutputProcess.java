@@ -96,6 +96,7 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
                     infoInFile.getFileAsString()));
             StringBuilder infoOut = new StringBuilder();
             String line = null;
+            String customfonts = arguments.option_customfonts();
             while ((line = infoIn.readLine()) != null) {
                 line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER",
                         arguments.option_property("bundleidentifier"));
@@ -118,6 +119,7 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
                                 "PROPERTY_APPLICATIONEXITS",
                                 arguments.option_property("applicationexits").toLowerCase()
                                         .equals("true") ? "true" : "false");
+                line = line.replaceAll("PROPERTY_FONTS", customfonts);
                 line = line.replaceAll("XMLVM_APP", arguments.option_app_name());
                 infoOut.append(line).append("\n");
             }

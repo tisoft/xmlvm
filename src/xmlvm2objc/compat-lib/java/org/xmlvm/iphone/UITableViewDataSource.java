@@ -21,9 +21,23 @@
 package org.xmlvm.iphone;
 
 import org.xmlvm.XMLVMSkeletonOnly;
+import org.xmlvm.iphone.internal.OptionalSelectorException;
 
 @XMLVMSkeletonOnly
 abstract public class UITableViewDataSource extends NSObject {
+
+    private boolean canMoveRow;
+
+    {
+        canMoveRow = false;
+        try {
+            moveRowAtIndexPath(null, null, null);
+        } catch (OptionalSelectorException ex) {
+            canMoveRow = true;
+        } catch (Exception ex) {
+        }
+    }
+
     abstract public UITableViewCell cellForRowAtIndexPath(UITableView table, NSIndexPath idx);
 
     public int numberOfSectionsInTableView(UITableView table) {
@@ -37,5 +51,17 @@ abstract public class UITableViewDataSource extends NSObject {
     }
 
     public void commitEditingStyle(UITableView table, int editingStyle, NSIndexPath indexPath) {
+    }
+
+    public boolean canEditRowAtIndexPath(UITableView table, NSIndexPath indexPath) {
+        return true;
+    }
+
+    public boolean canMoveRowAtIndexPath(UITableView table, NSIndexPath indexPath) {
+        return canMoveRow;
+    }
+
+    public void moveRowAtIndexPath(UITableView table, NSIndexPath fromIndexPath, NSIndexPath toIndexPath) {
+        throw new OptionalSelectorException();
     }
 }

@@ -68,75 +68,73 @@ static JAVA_OBJECT* __method3_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
     &__CLASS_java_lang_String,
     &__CLASS_int,
 };
 
-static JAVA_OBJECT* __method5_arg_types[] = {
-    &__CLASS_int,
-};
-
 static JAVA_OBJECT* __method6_arg_types[] = {
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method7_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIColor,
-    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method8_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIColor,
     &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method9_arg_types[] = {
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method10_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIColor,
     &__CLASS_int,
 };
 
-static JAVA_OBJECT* __method11_arg_types[] = {
-    &__CLASS_int,
-};
-
 static JAVA_OBJECT* __method12_arg_types[] = {
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method13_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIImage,
-    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method14_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIImage,
     &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method15_arg_types[] = {
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method16_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method17_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIImage,
     &__CLASS_int,
 };
 
-static JAVA_OBJECT* __method17_arg_types[] = {
+static JAVA_OBJECT* __method18_arg_types[] = {
     &__CLASS_int,
 };
 
-static JAVA_OBJECT* __method18_arg_types[] = {
-};
-
 static JAVA_OBJECT* __method19_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGSize,
 };
 
 static JAVA_OBJECT* __method20_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGSize,
 };
 
 static JAVA_OBJECT* __method21_arg_types[] = {
-    &__CLASS_java_util_Set,
-    &__CLASS_org_xmlvm_iphone_UIEvent,
 };
 
 static JAVA_OBJECT* __method22_arg_types[] = {
@@ -145,27 +143,32 @@ static JAVA_OBJECT* __method22_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method23_arg_types[] = {
-    &__CLASS_float,
+    &__CLASS_java_util_Set,
+    &__CLASS_org_xmlvm_iphone_UIEvent,
 };
 
 static JAVA_OBJECT* __method24_arg_types[] = {
+    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method25_arg_types[] = {
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method26_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method27_arg_types[] = {
     &__CLASS_boolean,
 };
 
+static JAVA_OBJECT* __method27_arg_types[] = {
+};
+
 static JAVA_OBJECT* __method28_arg_types[] = {
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method29_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method30_arg_types[] = {
     &__CLASS_boolean,
 };
 
@@ -206,7 +209,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTitle",
+    {"getTitleLabel",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -215,7 +218,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"titleForState",
+    {"setTitle",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -224,7 +227,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getCurrentTitle",
+    {"titleForState",
     &__method6_arg_types[0],
     sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -233,7 +236,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTitleColor",
+    {"getCurrentTitle",
     &__method7_arg_types[0],
     sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -242,7 +245,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"titleColorForState",
+    {"setTitleColor",
     &__method8_arg_types[0],
     sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -251,7 +254,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getCurrentTitleColor",
+    {"titleColorForState",
     &__method9_arg_types[0],
     sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -260,7 +263,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTitleShadowColor",
+    {"getCurrentTitleColor",
     &__method10_arg_types[0],
     sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -269,7 +272,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"titleShadowColorForState",
+    {"setTitleShadowColor",
     &__method11_arg_types[0],
     sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -278,7 +281,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getCurrentTitleShadowColor",
+    {"titleShadowColorForState",
     &__method12_arg_types[0],
     sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -287,7 +290,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setImage",
+    {"getCurrentTitleShadowColor",
     &__method13_arg_types[0],
     sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -296,7 +299,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"imageForState",
+    {"setImage",
     &__method14_arg_types[0],
     sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -305,7 +308,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getCurrentImage",
+    {"imageForState",
     &__method15_arg_types[0],
     sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -314,7 +317,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setBackgroundImage",
+    {"getCurrentImage",
     &__method16_arg_types[0],
     sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -323,7 +326,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"backgroundImageForState",
+    {"setBackgroundImage",
     &__method17_arg_types[0],
     sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -332,7 +335,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getCurrentBackgroundImage",
+    {"backgroundImageForState",
     &__method18_arg_types[0],
     sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -341,7 +344,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTitleShadowOffset",
+    {"getCurrentBackgroundImage",
     &__method19_arg_types[0],
     sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -350,7 +353,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTitleShadowOffset",
+    {"setTitleShadowOffset",
     &__method20_arg_types[0],
     sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -359,7 +362,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"touchesBegan",
+    {"getTitleShadowOffset",
     &__method21_arg_types[0],
     sizeof(__method21_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -368,7 +371,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"touchesEnded",
+    {"touchesBegan",
     &__method22_arg_types[0],
     sizeof(__method22_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -377,7 +380,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAlpha",
+    {"touchesEnded",
     &__method23_arg_types[0],
     sizeof(__method23_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -386,7 +389,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"isAdjustsImageWhenDisabled",
+    {"setAlpha",
     &__method24_arg_types[0],
     sizeof(__method24_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -395,7 +398,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAdjustsImageWhenDisabled",
+    {"isAdjustsImageWhenDisabled",
     &__method25_arg_types[0],
     sizeof(__method25_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -404,7 +407,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"isAdjustsImageWhenHighlighted",
+    {"setAdjustsImageWhenDisabled",
     &__method26_arg_types[0],
     sizeof(__method26_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -413,7 +416,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAdjustsImageWhenHighlighted",
+    {"isAdjustsImageWhenHighlighted",
     &__method27_arg_types[0],
     sizeof(__method27_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -422,7 +425,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"isShowsTouchWhenHighlighted",
+    {"setAdjustsImageWhenHighlighted",
     &__method28_arg_types[0],
     sizeof(__method28_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -431,9 +434,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setShowsTouchWhenHighlighted",
+    {"isShowsTouchWhenHighlighted",
     &__method29_arg_types[0],
     sizeof(__method29_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setShowsTouchWhenHighlighted",
+    &__method30_arg_types[0],
+    sizeof(__method30_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -463,81 +475,84 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIButton_getButtonType__(receiver);
         break;
     case 4:
-        org_xmlvm_iphone_UIButton_setTitle___java_lang_String_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIButton_getTitleLabel__(receiver);
         break;
     case 5:
-        org_xmlvm_iphone_UIButton_titleForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIButton_setTitle___java_lang_String_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 6:
-        org_xmlvm_iphone_UIButton_getCurrentTitle__(receiver);
+        org_xmlvm_iphone_UIButton_titleForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 7:
-        org_xmlvm_iphone_UIButton_setTitleColor___org_xmlvm_iphone_UIColor_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIButton_getCurrentTitle__(receiver);
         break;
     case 8:
-        org_xmlvm_iphone_UIButton_titleColorForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIButton_setTitleColor___org_xmlvm_iphone_UIColor_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 9:
-        org_xmlvm_iphone_UIButton_getCurrentTitleColor__(receiver);
+        org_xmlvm_iphone_UIButton_titleColorForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 10:
-        org_xmlvm_iphone_UIButton_setTitleShadowColor___org_xmlvm_iphone_UIColor_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIButton_getCurrentTitleColor__(receiver);
         break;
     case 11:
-        org_xmlvm_iphone_UIButton_titleShadowColorForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIButton_setTitleShadowColor___org_xmlvm_iphone_UIColor_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 12:
-        org_xmlvm_iphone_UIButton_getCurrentTitleShadowColor__(receiver);
+        org_xmlvm_iphone_UIButton_titleShadowColorForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 13:
-        org_xmlvm_iphone_UIButton_setImage___org_xmlvm_iphone_UIImage_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIButton_getCurrentTitleShadowColor__(receiver);
         break;
     case 14:
-        org_xmlvm_iphone_UIButton_imageForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIButton_setImage___org_xmlvm_iphone_UIImage_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 15:
-        org_xmlvm_iphone_UIButton_getCurrentImage__(receiver);
+        org_xmlvm_iphone_UIButton_imageForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 16:
-        org_xmlvm_iphone_UIButton_setBackgroundImage___org_xmlvm_iphone_UIImage_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIButton_getCurrentImage__(receiver);
         break;
     case 17:
-        org_xmlvm_iphone_UIButton_backgroundImageForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIButton_setBackgroundImage___org_xmlvm_iphone_UIImage_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 18:
-        org_xmlvm_iphone_UIButton_getCurrentBackgroundImage__(receiver);
+        org_xmlvm_iphone_UIButton_backgroundImageForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 19:
-        org_xmlvm_iphone_UIButton_setTitleShadowOffset___org_xmlvm_iphone_CGSize(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIButton_getCurrentBackgroundImage__(receiver);
         break;
     case 20:
-        org_xmlvm_iphone_UIButton_getTitleShadowOffset__(receiver);
+        org_xmlvm_iphone_UIButton_setTitleShadowOffset___org_xmlvm_iphone_CGSize(receiver, argsArray[0]);
         break;
     case 21:
-        org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UIButton_getTitleShadowOffset__(receiver);
         break;
     case 22:
-        org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
     case 23:
-        org_xmlvm_iphone_UIButton_setAlpha___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
+        org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
     case 24:
-        org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__(receiver);
+        org_xmlvm_iphone_UIButton_setAlpha___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 25:
-        org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__(receiver);
         break;
     case 26:
-        org_xmlvm_iphone_UIButton_isAdjustsImageWhenHighlighted__(receiver);
+        org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 27:
-        org_xmlvm_iphone_UIButton_setAdjustsImageWhenHighlighted___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UIButton_isAdjustsImageWhenHighlighted__(receiver);
         break;
     case 28:
-        org_xmlvm_iphone_UIButton_isShowsTouchWhenHighlighted__(receiver);
+        org_xmlvm_iphone_UIButton_setAdjustsImageWhenHighlighted___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 29:
+        org_xmlvm_iphone_UIButton_isShowsTouchWhenHighlighted__(receiver);
+        break;
+    case 30:
         org_xmlvm_iphone_UIButton_setShowsTouchWhenHighlighted___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     default:
@@ -567,35 +582,36 @@ void __INIT_IMPL_org_xmlvm_iphone_UIButton()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIButton.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIButton.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setFont___org_xmlvm_iphone_UIFont;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getFont__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getButtonType__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitle___java_lang_String_int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_titleForState___int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentTitle__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitleColor___org_xmlvm_iphone_UIColor_int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_titleColorForState___int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentTitleColor__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitleShadowColor___org_xmlvm_iphone_UIColor_int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_titleShadowColorForState___int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentTitleShadowColor__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setImage___org_xmlvm_iphone_UIImage_int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_imageForState___int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentImage__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setBackgroundImage___org_xmlvm_iphone_UIImage_int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_backgroundImageForState___int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentBackgroundImage__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitleShadowOffset___org_xmlvm_iphone_CGSize;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getTitleShadowOffset__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setFont___org_xmlvm_iphone_UIFont;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getFont__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getButtonType__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getTitleLabel__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitle___java_lang_String_int;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_titleForState___int;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentTitle__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitleColor___org_xmlvm_iphone_UIColor_int;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_titleColorForState___int;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentTitleColor__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitleShadowColor___org_xmlvm_iphone_UIColor_int;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_titleShadowColorForState___int;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentTitleShadowColor__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setImage___org_xmlvm_iphone_UIImage_int;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_imageForState___int;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentImage__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setBackgroundImage___org_xmlvm_iphone_UIImage_int;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_backgroundImageForState___int;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentBackgroundImage__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitleShadowOffset___org_xmlvm_iphone_CGSize;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getTitleShadowOffset__;
         __TIB_org_xmlvm_iphone_UIButton.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent;
         __TIB_org_xmlvm_iphone_UIButton.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
         __TIB_org_xmlvm_iphone_UIButton.vtable[40] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAlpha___float;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isAdjustsImageWhenHighlighted__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAdjustsImageWhenHighlighted___boolean;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isShowsTouchWhenHighlighted__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setShowsTouchWhenHighlighted___boolean;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[99] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[100] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[101] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isAdjustsImageWhenHighlighted__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[102] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAdjustsImageWhenHighlighted___boolean;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[103] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isShowsTouchWhenHighlighted__;
+        __TIB_org_xmlvm_iphone_UIButton.vtable[104] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setShowsTouchWhenHighlighted___boolean;
         // Initialize interface information
         __TIB_org_xmlvm_iphone_UIButton.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIButton.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -689,6 +705,13 @@ JAVA_OBJECT org_xmlvm_iphone_UIButton_getFont__(JAVA_OBJECT me)
 JAVA_INT org_xmlvm_iphone_UIButton_getButtonType__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_getButtonType__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UIButton_getTitleLabel__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_getTitleLabel__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

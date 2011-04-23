@@ -28,11 +28,13 @@
 // This is a trick to only take into account selectors that have already been overloaded 
 - (BOOL)respondsToSelector:(SEL)aSelector {
 	XMLVM_REROUTE(aSelector,tableView:commitEditingStyle:forRowAtIndexPath:,commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath:::)
+	XMLVM_REROUTE(aSelector,tableView:moveRowAtIndexPath:toIndexPath:,moveRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath_org_xmlvm_iphone_NSIndexPath:::)
     return [super respondsToSelector:aSelector];
 }
 
 - (void) __init_org_xmlvm_iphone_UITableViewDataSource__
 {
+    self->respondsToMoveRow = [self respondsToSelector:@selector(moveRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath_org_xmlvm_iphone_NSIndexPath:::)];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -62,6 +64,21 @@
 	[self commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath:tableView :editingStyle :indexPath];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self canEditRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath:tableView :indexPath];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self canMoveRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath:tableView :indexPath];
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+    [self moveRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath_org_xmlvm_iphone_NSIndexPath: tableView: fromIndexPath: toIndexPath];
+}
+
 
 // Will be over-ridden in derived class
 - (org_xmlvm_iphone_UITableViewCell*) cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath
@@ -87,6 +104,18 @@
 - (java_lang_String *) titleForHeaderInSection___org_xmlvm_iphone_UITableView_int :(UITableView*) tableView :(int) section
 {
 	return JAVA_NULL;
+}
+
+// Might be over-ridden in derived class
+- (int) canEditRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :(UITableView*)table :(org_xmlvm_iphone_NSIndexPath*)path
+{
+    return YES;
+}
+
+// Might be over-ridden in derived class
+- (int) canMoveRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath :(UITableView*)table :(org_xmlvm_iphone_NSIndexPath*)path
+{
+    return self->respondsToMoveRow;
 }
 
 // Note: it is important this object to be incomplete, or else smart usage of selectors will not be possible
