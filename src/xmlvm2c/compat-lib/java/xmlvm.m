@@ -201,6 +201,28 @@ JAVA_OBJECT xmlvm_create_java_string(const char* s)
     return XMLVMUtil_getFromStringPool(str);
 }
 
+static JAVA_OBJECT* stringConstants = JAVA_NULL;
+
+JAVA_OBJECT xmlvm_create_java_string_from_pool(int pool_id)
+{
+    if (stringConstants == JAVA_NULL) {
+        // TODO: use XMLVM_NO_GC_MALLOC?
+        stringConstants = XMLVM_MALLOC(xmlvm_constant_pool_size * sizeof(JAVA_OBJECT));
+        XMLVM_BZERO(stringConstants, xmlvm_constant_pool_size * sizeof(JAVA_OBJECT));
+    }
+    if (stringConstants[pool_id] != JAVA_NULL) {
+        return stringConstants[pool_id];
+    }
+    java_lang_String* str = __NEW_java_lang_String();
+    org_xmlvm_runtime_XMLVMArray* charArray = XMLVMArray_createSingleDimensionWithData(__CLASS_char,
+                                                                                       xmlvm_constant_pool_length[pool_id],
+                                                                                       (JAVA_OBJECT) xmlvm_constant_pool_data[pool_id]);
+    java_lang_String___INIT____char_1ARRAY(str, charArray);
+    JAVA_OBJECT poolStr = XMLVMUtil_getFromStringPool(str);
+    stringConstants[pool_id] = poolStr;
+    return poolStr;
+}
+
 //---------------------------------------------------------------------------------------------
 // XMLVMClass
 

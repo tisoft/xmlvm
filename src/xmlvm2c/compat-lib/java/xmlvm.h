@@ -109,6 +109,10 @@ typedef union {
 } XMLVMElem;
 
 
+extern const JAVA_ARRAY_CHAR* xmlvm_constant_pool_data[];
+extern const JAVA_INT xmlvm_constant_pool_length[];
+extern int xmlvm_constant_pool_size;
+
 #define JAVA_NULL ((JAVA_OBJECT) 0)
 
 typedef void (*VTABLE_PTR)();
@@ -228,6 +232,7 @@ int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz);
 int xmlvm_java_string_cmp(JAVA_OBJECT s1, const char* s2);
 const char* xmlvm_java_string_to_const_char(JAVA_OBJECT s);
 JAVA_OBJECT xmlvm_create_java_string(const char* s);
+JAVA_OBJECT xmlvm_create_java_string_from_pool(int pool_id);
 
 #define XMLVM_SIZE_OF_OBJECT_VTABLE 11
 

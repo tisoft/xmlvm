@@ -44,7 +44,7 @@ import org.xmlvm.proc.out.OutputFile;
  */
 public class XmlvmResource {
     public static enum Type {
-        JVM, CLI, CLI_DFA, DEX
+        JVM, CLI, CLI_DFA, DEX, CONST_POOL
     }
 
 
@@ -109,6 +109,65 @@ public class XmlvmResource {
                 parameterTypes.add(parameter.getAttributeValue("type"));
             }
             return parameterTypes;
+        }
+
+    }
+
+
+    /**
+     * Wrapper for those XMLVM elements that have an associated string constant.
+     * In XMLVM these can only be either <code>&lt;dex:const-string&gt;</code>
+     * or a <code>&lt;vm:field&gt;</code> element with a constant string
+     * initializer.
+     */
+    public class XmlvmConstantStringElement {
+        private Element element;
+
+
+        /**
+         * Wrapper for a <code>&lt;dex:const-string*&gt;</code> or a
+         * <code>&lt;vm:field&gt;</code> element.
+         * 
+         * @param element
+         *            DOM element representing a
+         *            <code>&lt;dex:const-string&gt;</code> or a
+         *            <code>&lt;vm:field&gt;</code>.
+         */
+        public XmlvmConstantStringElement(Element element) {
+            this.element = element;
+        }
+
+        /**
+         * Returns the escaped version of the string that uses the \ooo octal
+         * notation for representing special characters.
+         */
+        public String getEscapedStringConstant() {
+            return element.getAttributeValue("value");
+        }
+
+        /**
+         * Returns the encoded version of the string. The encoded version
+         * represents the string as a comma-separated list of short values.
+         */
+        public String getEncodedStringConstant() {
+            return element.getAttributeValue("encoded-value");
+        }
+
+        /**
+         * Returns the length of the string.
+         */
+        public int getLength() {
+            return Integer.parseInt(element.getAttributeValue("length"));
+        }
+
+        /**
+         * Set the constant pool ID for this string.
+         * 
+         * @param id
+         *            Constant pool ID.
+         */
+        public void setContantPoolID(int id) {
+            element.setAttribute("id", "" + id);
         }
 
     }
@@ -235,10 +294,8 @@ public class XmlvmResource {
          */
         @SuppressWarnings("unchecked")
         public boolean doesOverrideMethod(XmlvmMethod method) {
-            return doesOverrideMethod(
-                    method.getName(),
-                    method.methodElement.getChild("signature", nsXMLVM).getChildren("parameter",
-                            nsXMLVM));
+            return doesOverrideMethod(method.getName(), method.methodElement.getChild("signature",
+                    nsXMLVM).getChildren("parameter", nsXMLVM));
         }
 
         /**
@@ -337,7 +394,7 @@ public class XmlvmResource {
         public boolean isConstructor() {
             return methodElement.getAttributeValue("name").equals("<init>");
         }
-        
+
         /**
          * Returns true if this method is synthetic.
          */
@@ -345,7 +402,7 @@ public class XmlvmResource {
             String flag = methodElement.getAttributeValue("isSynthetic");
             return flag != null && flag.equals("true");
         }
-        
+
         /**
          * Set a vtable index for this method (XML attribute
          * <code>vtableIndex</code>).
@@ -385,6 +442,7 @@ public class XmlvmResource {
         Element clone = (Element) method.methodElement.clone();
         clazz.addContent(clone);
     }
+
 
     /**
      * Wrapper for a <code>&lt;vm:field&gt;</code> element.
@@ -457,7 +515,8 @@ public class XmlvmResource {
             return getName().equals(field.getName()) && getType().equals(field.getType());
         }
     }
-    
+
+
     /**
      * @param search
      */
@@ -465,7 +524,7 @@ public class XmlvmResource {
     public void removeMethod(XmlvmMethod search) {
         List<Element> classes = xmlvmDocument.getRootElement().getChildren("class", nsXMLVM);
         for (Element clazz : classes) {
-            if(clazz.removeContent(search.methodElement)) {
+            if (clazz.removeContent(search.methodElement)) {
                 return;
             }
         }
@@ -543,11 +602,18 @@ public class XmlvmResource {
     public XmlvmResource(Type type, Document xmlvmDocument) {
         this.type = type;
         this.xmlvmDocument = xmlvmDocument;
-        this.referencedTypes = extractReferencedTypes(xmlvmDocument);
 
-        Element classElement = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
-        this.name = classElement.getAttributeValue("name");
-        this.superTypeName = classElement.getAttributeValue("extends");
+        if (type != Type.CONST_POOL) {
+            this.referencedTypes = extractReferencedTypes(xmlvmDocument);
+
+            Element classElement = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
+            this.name = classElement.getAttributeValue("name");
+            this.superTypeName = classElement.getAttributeValue("extends");
+        } else {
+            this.referencedTypes = null;
+            this.name = "ConstantPool";
+            this.superTypeName = null;
+        }
     }
 
     private static Set<String> extractReferencedTypes(Document xmlvmDocument) {
@@ -634,6 +700,9 @@ public class XmlvmResource {
      * E.g. "java.lang"
      */
     public String getPackageName() {
+        if (type == Type.CONST_POOL) {
+            return "org.xmlvm";
+        }
         Element clazz = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
         return clazz.getAttributeValue("package");
     }
@@ -772,6 +841,33 @@ public class XmlvmResource {
         }
     }
 
+    /**
+     * Collects a list of all dex:const-string instructions as well as vm:fields
+     * that have a string initializer.
+     * 
+     * @param constStringInstructions
+     *            Will be filled with all const-string instructions upon return.
+     */
+    @SuppressWarnings("unchecked")
+    public void collectInstructions(List<XmlvmConstantStringElement> constStringInstructions) {
+        Element root = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
+        Iterator<Object> iter = root.getDescendants();
+        while (iter.hasNext()) {
+            Object o = iter.next();
+            if (o instanceof Element) {
+                Element elem = (Element) o;
+                if (elem.getName().equals("const-string")) {
+                    constStringInstructions.add(new XmlvmConstantStringElement(elem));
+                }
+                if (elem.getName().equals("field")
+                        && elem.getAttributeValue("type").equals("java.lang.String")
+                        && elem.getAttributeValue("value") != null) {
+                    constStringInstructions.add(new XmlvmConstantStringElement(elem));
+                }
+            }
+        }
+    }
+
     public static XmlvmResource fromFile(OutputFile file) {
         Document doc = null;
         SAXBuilder builder = new SAXBuilder();
@@ -793,8 +889,8 @@ public class XmlvmResource {
     public void createImplementsInterface(String fullName) {
         Element implementsInterfaceElement = new Element("implementsInterface", nsXMLVM);
         implementsInterfaceElement.setAttribute("name", fullName);
-        xmlvmDocument.getRootElement().getChild("class", nsXMLVM)
-                .addContent(implementsInterfaceElement);
+        xmlvmDocument.getRootElement().getChild("class", nsXMLVM).addContent(
+                implementsInterfaceElement);
     }
 
 }

@@ -324,8 +324,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             BundlePhase1 resources) {
         Log.debug(TAG, "DExing:" + classFile.getFileName());
 
-        DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(),
-                classFile.getFileName(), false);
+        DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(), classFile
+                .getFileName(), false);
         directClassFile.setAttributeFactory(StdAttributeFactory.THE_ONE);
         try {
             directClassFile.getMagic();
@@ -361,9 +361,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         String jClassName = document.getRootElement().getChild("class", InstructionProcessor.vm)
                 .getAttributeValue("name");
 
-        List<Element> methods = (List<Element>) document.getRootElement()
-                .getChild("class", InstructionProcessor.vm)
-                .getChildren("method", InstructionProcessor.vm);
+        List<Element> methods = (List<Element>) document.getRootElement().getChild("class",
+                InstructionProcessor.vm).getChildren("method", InstructionProcessor.vm);
 
         if (arguments.option_enable_ref_counting()) {
             if (REF_LOGGING) {
@@ -465,10 +464,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             }
             return result;
         } catch (IOException e) {
-            Log.error(
-                    TAG,
-                    "Problem reading red file: " + redListFile.getAbsolutePath() + ": "
-                            + e.getMessage());
+            Log.error(TAG, "Problem reading red file: " + redListFile.getAbsolutePath() + ": "
+                    + e.getMessage());
         }
         return null;
     }
@@ -634,11 +631,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                 String constValue = null;
                 if (fieldType.equals("java.lang.String")) {
                     constValue = ((CstString) value).getString().getString();
-                    constValue = escapeString(constValue);
+                    encodeString(fieldElement, constValue);
                 } else {
                     constValue = value.toHuman();
+                    fieldElement.setAttribute("value", constValue);
                 }
-                fieldElement.setAttribute("value", constValue);
             }
             processAccessFlags(field.getAccessFlags(), fieldElement);
             classElement.addContent(fieldElement);
@@ -768,11 +765,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             code.assignIndices(callback);
 
             DalvInsnList instructions = code.getInsns();
-            codeElement.setAttribute("register-size",
-                    String.valueOf(instructions.getRegistersSize()));
-            processLocals(instructions.getRegistersSize(), isStatic,
-                    parseClassName(cf.getThisClass().getClassType().getClassName()).toString(),
-                    meth.getPrototype().getParameterTypes(), codeElement);
+            codeElement.setAttribute("register-size", String.valueOf(instructions
+                    .getRegistersSize()));
+            processLocals(instructions.getRegistersSize(), isStatic, parseClassName(
+                    cf.getThisClass().getClassType().getClassName()).toString(), meth
+                    .getPrototype().getParameterTypes(), codeElement);
             Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
             Map<Integer, ArrayData> arrayData = extractArrayData(instructions);
             CatchTable catches = code.getCatches();
@@ -803,8 +800,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                     if (!isRedType(exceptionType)) {
                         Element catchElement = new Element("catch", NS_DEX);
                         catchElement.setAttribute("exception-type", exceptionType);
-                        catchElement.setAttribute("target",
-                                String.valueOf(handlers.get(j).getHandler()));
+                        catchElement.setAttribute("target", String.valueOf(handlers.get(j)
+                                .getHandler()));
                         tryCatchElement.addContent(catchElement);
                     }
                 }
@@ -994,7 +991,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                 SwitchData switchData = (SwitchData) instructions.get(i);
                 CodeAddress[] caseTargets = switchData.getTargets();
                 for (CodeAddress caseTarget : caseTargets) {
-                    targets.put(caseTarget.getAddress(), new Target(caseTarget.getAddress(), false));
+                    targets
+                            .put(caseTarget.getAddress(),
+                                    new Target(caseTarget.getAddress(), false));
                 }
             }
         }
@@ -1130,7 +1129,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             if (instructionName.startsWith("move-result")) {
                 // Sanity Check
                 if (simpleInsn.getRegisters().size() != 1) {
-                    Log.error(TAG, "DEXmlvmOutputProcess: Register Size doesn't fit 'move-result'.");
+                    Log
+                            .error(TAG,
+                                    "DEXmlvmOutputProcess: Register Size doesn't fit 'move-result'.");
                     System.exit(-1);
                 }
                 Element moveInstruction = new Element("move-result", NS_DEX);
@@ -1186,7 +1187,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                 } else if (constant instanceof CstString) {
                     CstString cstString = (CstString) constant;
                     String value = cstString.getString().getString();
-                    dexInstruction.setAttribute("value", escapeString(value));
+                    encodeString(dexInstruction, value);
                 } else {
                     // These are CstInsn instructions that we need to remove, if
                     // their constant is a red type.
@@ -1271,20 +1272,41 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
     }
 
     /**
-     * Turns special characters embedded in a string to \ooo.
+     * Encodes <code>str</code> in two different ways and adds those encodings
+     * to <code>elem</code>. The first encoding (XML attribute
+     * <code>encoded-value</code>) represents the string as a comma separated
+     * list of short values. The second encoding (XML attribute
+     * <code>value</code>) represents special characters of the string with the
+     * \ooo octal notation. The latter is used for generating human-readable
+     * comments of string constants. Furthermore, this methods adds the XML
+     * attribute <code>length</code> that denotes the length of the string.
      * 
+     * @param elem
+     *            Element to which to add the string encodings.
      * @param str
-     *            String to be escaped.
-     * @return Escaped string.
+     *            String to be encoded.
      */
-    private static String escapeString(String str) {
+    private static void encodeString(Element elem, String str) {
+        int length = str.length();
+        char content[] = new char[length];
+        str.getChars(0, length, content, 0);
+        elem.setAttribute("length", "" + length);
+        String encodedString = "";
+        for (int i = 0; i < length; i++) {
+            if (!encodedString.equals("")) {
+                encodedString += ", ";
+            }
+            encodedString += (short) content[i];
+        }
+        elem.setAttribute("encoded-value", encodedString);
+
         String escapedString = "";
         for (int i = 0; i < str.length(); i++) {
             char ch = str.charAt(i);
             escapedString += (ch < ' ' || ch > 'z' || "\\\"".indexOf(ch) != -1) ? String.format(
                     "\\%03o", new Integer(ch)) : ch;
         }
-        return escapedString;
+        elem.setAttribute("value", escapedString);
     }
 
     /**
@@ -1300,8 +1322,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             System.exit(-1);
         }
         for (int i = 0; i < registers.size(); ++i) {
-            element.setAttribute(REGISTER_NAMES[i],
-                    String.valueOf(registerNumber(registers.get(i).regString())));
+            element.setAttribute(REGISTER_NAMES[i], String.valueOf(registerNumber(registers.get(i)
+                    .regString())));
             element.setAttribute(REGISTER_NAMES[i] + "-type", registers.get(i).getType().toHuman());
         }
     }
@@ -1376,8 +1398,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         } else {
             // For non-static invoke instruction, the first register is the
             // instance the method is called on.
-            result.setAttribute("register",
-                    String.valueOf(registerNumber(registerList.get(0).regString())));
+            result.setAttribute("register", String.valueOf(registerNumber(registerList.get(0)
+                    .regString())));
         }
 
         // Adds the rest of the registers, if any.
@@ -1412,8 +1434,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             if (isRedType(parameterType)) {
                 parameterElement.setAttribute("isRedType", "true");
             }
-            parameterElement.setAttribute("register",
-                    String.valueOf(registerNumber(registers.get(i).regString())));
+            parameterElement.setAttribute("register", String.valueOf(registerNumber(registers
+                    .get(i).regString())));
             result.addContent(parameterElement);
         }
         Element returnElement = new Element("return", NS_DEX);

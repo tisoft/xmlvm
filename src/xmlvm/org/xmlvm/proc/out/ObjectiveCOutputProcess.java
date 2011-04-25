@@ -34,6 +34,7 @@ import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XsltRunner;
+import org.xmlvm.proc.XmlvmResource.Type;
 
 public class ObjectiveCOutputProcess extends XmlvmProcessImpl {
     private static final String M_EXTENSION = ".m";
@@ -53,6 +54,9 @@ public class ObjectiveCOutputProcess extends XmlvmProcessImpl {
     @Override
     public boolean processPhase2(BundlePhase2 bundle) {
         for (XmlvmResource xmlvm : bundle.getResources()) {
+            if (xmlvm.getType() == Type.CONST_POOL) {
+                continue;
+            }
             OutputFile[] files = genObjC(xmlvm);
             for (OutputFile file : files) {
                 file.setLocation(arguments.option_out());

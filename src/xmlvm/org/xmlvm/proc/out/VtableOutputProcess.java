@@ -35,6 +35,7 @@ import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.DelayedXmlvmSerializationProvider;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
+import org.xmlvm.proc.XmlvmResource.Type;
 import org.xmlvm.proc.XmlvmResource.XmlvmField;
 import org.xmlvm.proc.XmlvmResource.XmlvmInvokeInstruction;
 import org.xmlvm.proc.XmlvmResource.XmlvmItable;
@@ -64,11 +65,12 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
     private ObjectHierarchyHelper hierarchyHelper;
 
     /**
-     * Contains Strings of the form package.Class.methodName for methods
-     * where a vtable entry should always be generated
+     * Contains Strings of the form package.Class.methodName for methods where a
+     * vtable entry should always be generated
      */
-    private Set<String> forcedVtable = new HashSet<String>();
-    
+    private Set<String>           forcedVtable         = new HashSet<String>();
+
+
     /**
      * Instantiates a new {@link VtableOutputProcess}.
      */
@@ -79,7 +81,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
 
         // Add empty class name that acts as a base class for java.lang.Object
         vtables.put("", new Vtable());
-        
+
         forcedVtable.add("java.lang.Class.newInstance");
         forcedVtable.add("java.lang.Object.getClass");
         forcedVtable.add("java.lang.Class.getMethod");
@@ -100,8 +102,8 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
 
     @Override
     public boolean processPhase2(BundlePhase2 bundle) {
-        this.hierarchyHelper = new ObjectHierarchyHelper(bundle.getResourceMap(),
-                arguments.option_gen_wrapper());
+        this.hierarchyHelper = new ObjectHierarchyHelper(bundle.getResourceMap(), arguments
+                .option_gen_wrapper());
         hierarchyHelper.redeclareInterfaceMethodsInAbstractClasses();
         hierarchyHelper.calculateInterfaceIndices();
         computeInvocationTables(bundle.getResources());
@@ -113,7 +115,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
             adjustTypes(bundle.getResources());
             Log.debug(TAG, "Done adjusting types");
         }
-        
+
         if (!arguments.option_gen_wrapper() && !isTargetProcess) {
             OutputFile indexFile = hierarchyHelper.getInterfaceIndexFile();
             indexFile.setLocation(arguments.option_out());
@@ -123,8 +125,8 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
 
         if (isTargetProcess) {
             for (XmlvmResource resource : bundle.getResources()) {
-                OutputFile file = new OutputFile(new DelayedXmlvmSerializationProvider(
-                        resource.getXmlvmDocument()));
+                OutputFile file = new OutputFile(new DelayedXmlvmSerializationProvider(resource
+                        .getXmlvmDocument()));
                 file.setLocation(arguments.option_out());
                 file.setFileName(resource.getFullName() + VTABLE_ENDING);
                 bundle.addOutputFile(file);
@@ -156,8 +158,8 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
      */
     private void computeVtable(XmlvmResource resource) {
         // Don't recompute vtables and don't compute them for interfaces
-        if (resource == null || vtables.containsKey(resource.getFullName())
-                || resource.isInterface()) {
+        if (resource == null || resource.getType() == Type.CONST_POOL
+                || vtables.containsKey(resource.getFullName()) || resource.isInterface()) {
             return;
         }
 
@@ -188,23 +190,20 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
                     if (method.isAbstract()
                             || hierarchyHelper.isOverridden(resource.getFullName(), method)
                             || isForcedVtable(resource, method)) {
-                        Log.debug(TAG,
-                                "Vtable method " + resource.getFullName() + " " + method.getName());
+                        Log.debug(TAG, "Vtable method " + resource.getFullName() + " "
+                                + method.getName());
                         thisClassVtable.addMethod(method);
                     } else {
-                        Log.debug(
-                                TAG,
-                                "Non-Vtable method " + resource.getFullName() + " "
-                                        + method.getName());
+                        Log.debug(TAG, "Non-Vtable method " + resource.getFullName() + " "
+                                + method.getName());
                         // Memorize method and declaring class for all classes
                         // inheriting this method
                         nonOverriddenMethods.put(getCompleteMethodIdentifier(resource, method),
                                 resource.getFullName());
                         for (XmlvmResource inheritingResource : hierarchyHelper
                                 .getChildrenRecursive(resource.getFullName())) {
-                            nonOverriddenMethods.put(
-                                    getCompleteMethodIdentifier(inheritingResource, method),
-                                    resource.getFullName());
+                            nonOverriddenMethods.put(getCompleteMethodIdentifier(
+                                    inheritingResource, method), resource.getFullName());
                         }
                     }
                 } else {
@@ -263,7 +262,9 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
                             String classType = nonOverriddenMethods
                                     .get(getCompleteMethodIdentifier(resource, ifaceMethod));
                             if (classType != null) {
-                                itable.addDirectMapping(iface.getFullName(), ifaceMethod, classType);
+                                itable
+                                        .addDirectMapping(iface.getFullName(), ifaceMethod,
+                                                classType);
                             } else {
                                 Log.error("Couldn't find implementation for interface method "
                                         + iface.getFullName() + " " + ifaceMethod.getName()
@@ -296,7 +297,8 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
      * Process all <code>&lt;dex:invoke-virtual&gt;</code> and either annotate
      * them in @see() or change them to invoke-direct in @see()
      * 
-     * @param resources the resources to process
+     * @param resources
+     *            the resources to process
      */
     private void processVtableInvokes(Collection<XmlvmResource> resources) {
         for (XmlvmResource resource : resources) {
@@ -403,6 +405,9 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
      */
     private void adjustTypes(Collection<XmlvmResource> resources) {
         for (XmlvmResource resource : resources) {
+            if (resource.getType() == Type.CONST_POOL) {
+                continue;
+            }
             List<XmlvmInvokeInstruction> invokeInstructions = new ArrayList<XmlvmInvokeInstruction>();
             List<XmlvmMemberReadWrite> memberReadWriteInstructions = new ArrayList<XmlvmMemberReadWrite>();
             resource.collectInstructions(invokeInstructions, memberReadWriteInstructions);

@@ -33,6 +33,7 @@ import java.util.Set;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmResource;
+import org.xmlvm.proc.XmlvmResource.Type;
 import org.xmlvm.proc.XmlvmResource.XmlvmInvokeInstruction;
 import org.xmlvm.proc.XmlvmResource.XmlvmMemberReadWrite;
 import org.xmlvm.proc.XmlvmResource.XmlvmMethod;
@@ -76,12 +77,19 @@ public class ObjectHierarchyHelper {
 
         // Insert all preloaded resources
         for (XmlvmResource resource : resourcePool.values()) {
-            insertResource(resource);
+            if (resource.getType() != Type.CONST_POOL) {
+                insertResource(resource);
+            }
         }
 
         // Insert all referenced resources
         if (!genWrapper) {
             for (XmlvmResource resource : resourcePool.values()) {
+                
+                if (resource.getType() == Type.CONST_POOL) {
+                    continue;
+                }
+                
                 // Insert all resources referenced by vtable instructions into
                 // the tree
                 for (XmlvmMethod method : resource.getMethods()) {

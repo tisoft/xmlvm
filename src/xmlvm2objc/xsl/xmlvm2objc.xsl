@@ -3699,6 +3699,12 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<!-- Constant Pool Template -->
+<xsl:template match="vm:constant-pool">
+  <!-- We don't handle the constant pool for the Objective-C backend. -->
+</xsl:template>
+
+
 <!-- Ignore whitespaces -->
 <xsl:template match="text()">
 </xsl:template>
