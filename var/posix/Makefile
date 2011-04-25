@@ -1,3 +1,14 @@
+
+# This Makefile relies on an installation of the Boehm Garbage Collector
+# for the target platform. The Boehm GC can be downloaded, configured and
+# installed as follows:
+#
+# cvs -d:pserver:anonymous@bdwgc.cvs.sourceforge.net:/cvsroot/bdwgc co bdwgc
+# cd bdwgc
+# ./configure --enable-threads=posix --enable-thread-local-alloc --enable-parallel-mark
+# make
+# make install
+
 PRODUCT_NAME=__PROJNAME__
 
 
@@ -15,7 +26,7 @@ CC=gcc
 CFLAGS=-w -std=c99 -I$(SRCROOT)
 
 LD=$(CC)
-LDFLAGS=
+LDFLAGS=-lgc -lm
 
 
 EXECUTABLE_NAME=$(PRODUCT_NAME)

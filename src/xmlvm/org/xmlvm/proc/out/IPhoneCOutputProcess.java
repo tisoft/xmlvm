@@ -51,6 +51,13 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
                                                                        .createDirectory(
                                                                                "/iphone/cocoa-compat-lib.jar",
                                                                                "src/xmlvm2c/compat-lib/iphone");
+    
+    private static final UniversalFile BOEHM_GC_LIB       = UniversalFileCreator.createDirectory(
+            "/lib/boehmgc.jar",
+            "lib/boehmgc.jar");
+    private static final String        BOEHM_LIB_NAME     = "boehmgc";
+
+    public static final String         IPHONE_BOEHMGC_LIB = IPHONE_SRC + "/lib/" + BOEHM_LIB_NAME;
 
 
     public IPhoneCOutputProcess(Arguments arguments) {
@@ -66,7 +73,11 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
     @Override
     public boolean processPhase2(BundlePhase2 bundle) {
         Log.debug("Processing IPhoneCOutputProcess");
-
+        OutputFile boehmGc = new OutputFile(BOEHM_GC_LIB);
+        boehmGc.setLocation(arguments.option_out());
+        boehmGc.setTag(OutputFile.TAG_LIB_NAME, BOEHM_LIB_NAME);
+        bundle.addOutputFile(boehmGc);
+        
         for (OutputFile in : bundle.getOutputFiles()) {
             OutputFile out = new OutputFile(in.getData());
             out.setFileName(in.getFileName());

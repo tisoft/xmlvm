@@ -37,12 +37,7 @@ public class AugmentedCOutputProcess extends XmlvmProcessImpl {
     private static final UniversalFile C_JAVA_COMPAT_LIB  = UniversalFileCreator.createDirectory(
                                                                   "/xmlvm2c/java-compat-lib.jar",
                                                                   "src/xmlvm2c/compat-lib/java");
-    private static final UniversalFile BOEHM_GC_LIB       = UniversalFileCreator.createDirectory(
-                                                                  "/lib/boehmgc.jar",
-                                                                  "lib/boehmgc.jar");
-    private static final String        BOEHM_LIB_NAME     = "boehmgc";
 
-    public static final String         IPHONE_BOEHMGC_LIB = IPHONE_SRC + "/lib/" + BOEHM_LIB_NAME;
 
 
     /**
@@ -94,10 +89,7 @@ public class AugmentedCOutputProcess extends XmlvmProcessImpl {
         iPhoneJavaCompatLib.setTag(OutputFile.TAG_LIB_NAME, "");
         bundle.addOutputFile(iPhoneJavaCompatLib);
 
-        OutputFile boehmGc = new OutputFile(BOEHM_GC_LIB);
-        boehmGc.setLocation(arguments.option_out());
-        boehmGc.setTag(OutputFile.TAG_LIB_NAME, BOEHM_LIB_NAME);
-        bundle.addOutputFile(boehmGc);
+
         return true;
     }
 }
