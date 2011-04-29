@@ -55,7 +55,8 @@ public class NSBundle extends NSObject {
         }
 
         /* Check if the resource file has an absolute pathname */
-        if (filename.startsWith(File.separator) && new File(filename).exists()) {
+        File file = new File(filename);
+        if (file.isAbsolute() && file.exists()) {
             return filename;
         }
 
