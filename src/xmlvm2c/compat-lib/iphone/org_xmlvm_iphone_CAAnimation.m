@@ -188,13 +188,14 @@ void __INIT_IMPL_org_xmlvm_iphone_CAAnimation()
 
         // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        if (!__TIB_org_xmlvm_iphone_CAMediaTiming.classInitialized) __INIT_org_xmlvm_iphone_CAMediaTiming();
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0] = &__TIB_org_xmlvm_iphone_CAMediaTiming;
-
         if (!__TIB_org_xmlvm_iphone_CAAction.classInitialized) __INIT_org_xmlvm_iphone_CAAction();
-        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1] = &__TIB_org_xmlvm_iphone_CAAction;
+        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][0] = &__TIB_org_xmlvm_iphone_CAAction;
+
+        if (!__TIB_org_xmlvm_iphone_CAMediaTiming.classInitialized) __INIT_org_xmlvm_iphone_CAMediaTiming();
+        __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1] = &__TIB_org_xmlvm_iphone_CAMediaTiming;
         // Initialize itable for this class
         __TIB_org_xmlvm_iphone_CAAnimation.itableBegin = &__TIB_org_xmlvm_iphone_CAAnimation.itable[0];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAAction_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[18];
         __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_isAutoreverses__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[31];
         __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setAutoreverses___boolean] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[23];
         __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getBeginTime__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[15];
@@ -202,16 +203,15 @@ void __INIT_IMPL_org_xmlvm_iphone_CAAnimation()
         __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getDuration__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[28];
         __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setDuration___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[19];
         __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getFillMode__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[21];
-        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setFillMode___java_lang_String] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[25];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setFillMode___java_lang_String] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[26];
         __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getRepeatCount__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[29];
         __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setRepeatCount___float] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[22];
         __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getRepeatDuration__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[30];
         __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setRepeatDuration___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[24];
-        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getSpeed__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[26];
+        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getSpeed__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[25];
         __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setSpeed___float] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[17];
         __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getTimeOffset__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[16];
         __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setTimeOffset___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[27];
-        __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAAction_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[18];
 
 
         __TIB_org_xmlvm_iphone_CAAnimation.declaredFields = &__field_reflection_data[0];
