@@ -90,7 +90,7 @@ public class Arguments {
     private boolean               option_enable_ref_counting       = false;
     private boolean               option_enable_timer              = false;
     private String                option_c_source_extension        = "c";
-    private boolean               option_no_cache                  = false;
+    private boolean               option_no_cache                  = true;
     private Map<String, String>   option_property                  = new HashMap<String, String>();
 
     private static final String[] shortUsage                       = {
