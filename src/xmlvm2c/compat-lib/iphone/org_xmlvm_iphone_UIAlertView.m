@@ -214,13 +214,13 @@ void __INIT_IMPL_org_xmlvm_iphone_UIAlertView()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIAlertView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIAlertView.vtable[65] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_dummyMethod___org_xmlvm_iphone_UILabel;
-        __TIB_org_xmlvm_iphone_UIAlertView.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_show__;
-        __TIB_org_xmlvm_iphone_UIAlertView.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_setTitle___java_lang_String;
-        __TIB_org_xmlvm_iphone_UIAlertView.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_getTitle__;
-        __TIB_org_xmlvm_iphone_UIAlertView.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_setMessage___java_lang_String;
-        __TIB_org_xmlvm_iphone_UIAlertView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_getMesssage__;
-        __TIB_org_xmlvm_iphone_UIAlertView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_addButtonWithTitle___java_lang_String;
+        __TIB_org_xmlvm_iphone_UIAlertView.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_dummyMethod___org_xmlvm_iphone_UILabel;
+        __TIB_org_xmlvm_iphone_UIAlertView.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_show__;
+        __TIB_org_xmlvm_iphone_UIAlertView.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_setTitle___java_lang_String;
+        __TIB_org_xmlvm_iphone_UIAlertView.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_getTitle__;
+        __TIB_org_xmlvm_iphone_UIAlertView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_setMessage___java_lang_String;
+        __TIB_org_xmlvm_iphone_UIAlertView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_getMesssage__;
+        __TIB_org_xmlvm_iphone_UIAlertView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIAlertView_addButtonWithTitle___java_lang_String;
         // Initialize interface information
         __TIB_org_xmlvm_iphone_UIAlertView.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIAlertView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

@@ -330,21 +330,21 @@ void __INIT_IMPL_org_xmlvm_iphone_UITabBarController()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITabBarController.vtable, __TIB_org_xmlvm_iphone_UIViewController.vtable, sizeof(__TIB_org_xmlvm_iphone_UIViewController.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_requestInternalFrame__;
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[61] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_getCustomizableViewControllers__;
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[62] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_setCustomizableViewControllers___java_util_ArrayList;
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[63] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_getDelegate__;
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[64] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_setDelegate___org_xmlvm_iphone_UITabBarControllerDelegate;
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[65] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_getMoreNavigationController__;
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_getSelectedViewController__;
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_setSelectedViewController___org_xmlvm_iphone_UIViewController;
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_getSelectedIndex__;
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_setSelectedIndex___int;
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_getTabBar__;
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_getViewControllers__;
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_ArrayList;
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_ArrayList_boolean;
-        __TIB_org_xmlvm_iphone_UITabBarController.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_updateViews__;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_requestInternalFrame__;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[62] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_getCustomizableViewControllers__;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[63] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_setCustomizableViewControllers___java_util_ArrayList;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[64] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_getDelegate__;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[65] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_setDelegate___org_xmlvm_iphone_UITabBarControllerDelegate;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_getMoreNavigationController__;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_getSelectedViewController__;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_setSelectedViewController___org_xmlvm_iphone_UIViewController;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_getSelectedIndex__;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_setSelectedIndex___int;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_getTabBar__;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_getViewControllers__;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_ArrayList;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_ArrayList_boolean;
+        __TIB_org_xmlvm_iphone_UITabBarController.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_updateViews__;
         // Initialize interface information
         __TIB_org_xmlvm_iphone_UITabBarController.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UITabBarController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

@@ -2963,9 +2963,9 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:const-string"> 
-  <xsl:text>    // </xsl:text>
-  <xsl:value-of select="@escaped-constant"/>
-  <xsl:text>&nl;</xsl:text>
+  <xsl:text>    // "</xsl:text>
+  <xsl:value-of select="@value"/>
+  <xsl:text>"&nl;</xsl:text>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:text>.o = xmlvm_create_java_string_from_pool(</xsl:text>

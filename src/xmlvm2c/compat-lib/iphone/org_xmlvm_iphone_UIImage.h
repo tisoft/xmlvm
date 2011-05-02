@@ -25,6 +25,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSString
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSString)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGImage
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGImage
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGImage)
+#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -60,7 +64,7 @@ typedef struct org_xmlvm_iphone_UIImage org_xmlvm_iphone_UIImage;
 #endif
 
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIImage 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString_org_xmlvm_iphone_CGImage 9
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImage_stretchableImage___int_int 10
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImage_getCGImage__ 11
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect 12
@@ -77,7 +81,7 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImage(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImage();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImage();
 // Vtable index: 9
-void org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString_org_xmlvm_iphone_CGImage(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 JAVA_OBJECT org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String(JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithData___org_xmlvm_iphone_NSData(JAVA_OBJECT n1);

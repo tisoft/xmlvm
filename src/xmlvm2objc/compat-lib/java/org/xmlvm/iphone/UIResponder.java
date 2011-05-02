@@ -30,6 +30,13 @@ public class UIResponder extends NSObject {
     protected boolean callDelegates = true;
 
 
+    /**
+     * Added for including manual dependencies introduced in the wrapper code.
+     * <b>DO NOT USE</b>
+     */
+    protected void dummyMethod(UITouch manual1) {
+    }
+
     public UIResponder() {
     }
 

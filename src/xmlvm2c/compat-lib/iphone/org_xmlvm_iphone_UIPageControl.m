@@ -267,16 +267,16 @@ void __INIT_IMPL_org_xmlvm_iphone_UIPageControl()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIPageControl.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIPageControl.vtable[65] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_sizeForNumberOfPages___int;
-        __TIB_org_xmlvm_iphone_UIPageControl.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_updateCurrentPageDisplay__;
-        __TIB_org_xmlvm_iphone_UIPageControl.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_getCurrentPage__;
-        __TIB_org_xmlvm_iphone_UIPageControl.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setCurrentPage___int;
-        __TIB_org_xmlvm_iphone_UIPageControl.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_isDefersCurrentPageDisplay__;
-        __TIB_org_xmlvm_iphone_UIPageControl.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setDefersCurrentPageDisplay___boolean;
-        __TIB_org_xmlvm_iphone_UIPageControl.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_isHidesForSinglePage__;
-        __TIB_org_xmlvm_iphone_UIPageControl.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setHidesForSinglePage___boolean;
-        __TIB_org_xmlvm_iphone_UIPageControl.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_getNumberOfPages__;
-        __TIB_org_xmlvm_iphone_UIPageControl.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setNumberOfPages___int;
+        __TIB_org_xmlvm_iphone_UIPageControl.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_sizeForNumberOfPages___int;
+        __TIB_org_xmlvm_iphone_UIPageControl.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_updateCurrentPageDisplay__;
+        __TIB_org_xmlvm_iphone_UIPageControl.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_getCurrentPage__;
+        __TIB_org_xmlvm_iphone_UIPageControl.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setCurrentPage___int;
+        __TIB_org_xmlvm_iphone_UIPageControl.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_isDefersCurrentPageDisplay__;
+        __TIB_org_xmlvm_iphone_UIPageControl.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setDefersCurrentPageDisplay___boolean;
+        __TIB_org_xmlvm_iphone_UIPageControl.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_isHidesForSinglePage__;
+        __TIB_org_xmlvm_iphone_UIPageControl.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setHidesForSinglePage___boolean;
+        __TIB_org_xmlvm_iphone_UIPageControl.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_getNumberOfPages__;
+        __TIB_org_xmlvm_iphone_UIPageControl.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIPageControl_setNumberOfPages___int;
         // Initialize interface information
         __TIB_org_xmlvm_iphone_UIPageControl.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIPageControl.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIImageView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIImageView, 67, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIImageView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIImageView, 68, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIImageView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImageView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImageView_1ARRAY;
@@ -46,9 +46,9 @@ struct org_xmlvm_iphone_UIImageView {
 typedef struct org_xmlvm_iphone_UIImageView org_xmlvm_iphone_UIImageView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIImageView 67
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImageView_setImage___org_xmlvm_iphone_UIImage 65
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImageView_getImage__ 66
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIImageView 68
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImageView_setImage___org_xmlvm_iphone_UIImage 66
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImageView_getImage__ 67
 
 void __INIT_org_xmlvm_iphone_UIImageView();
 void __INIT_IMPL_org_xmlvm_iphone_UIImageView();
@@ -58,9 +58,9 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImageView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImageView();
 void org_xmlvm_iphone_UIImageView___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIImageView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 65
-void org_xmlvm_iphone_UIImageView_setImage___org_xmlvm_iphone_UIImage(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 66
+void org_xmlvm_iphone_UIImageView_setImage___org_xmlvm_iphone_UIImage(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 67
 JAVA_OBJECT org_xmlvm_iphone_UIImageView_getImage__(JAVA_OBJECT me);
 
 #endif

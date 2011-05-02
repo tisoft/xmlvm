@@ -185,9 +185,14 @@ __SRC_BUILD__			);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+                                GCC_THUMB_SUPPORT = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+                                HEADER_SEARCH_PATHS = (
+                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
+                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+                                );
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PREBINDING = NO;
 				SEPARATE_STRIP = YES;
@@ -195,7 +200,6 @@ __SRC_BUILD__			);
 				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
 				SDKROOT = __SDK_ROOT__;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
 			};
 			name = AppStore;
 		};
@@ -207,11 +211,14 @@ __SRC_BUILD__			);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+                                HEADER_SEARCH_PATHS = (
+                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
+                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+                                );
 				PREBINDING = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
 				SDKROOT = __SDK_ROOT__;
-				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
 			};
 			name = Debug;
 		};
@@ -225,13 +232,16 @@ __SRC_BUILD__			);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+                                HEADER_SEARCH_PATHS = (
+                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
+                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+                                );
 				PREBINDING = NO;
 				SEPARATE_STRIP = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
 				SDKROOT = __SDK_ROOT__;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
 			};
 			name = Release;
 		};
@@ -243,7 +253,10 @@ __SRC_BUILD__			);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				PRODUCT_NAME = __PROJNAME__;
-				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
+                                HEADER_SEARCH_PATHS = (
+                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
+                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+                                );
 			};
 			name = AppStore;
 		};
@@ -257,7 +270,10 @@ __SRC_BUILD__			);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				PRODUCT_NAME = __PROJNAME__;
-				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
+                                HEADER_SEARCH_PATHS = (
+                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
+                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+                                );
 			};
 			name = Debug;
 		};
@@ -269,7 +285,10 @@ __SRC_BUILD__			);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				PRODUCT_NAME = __PROJNAME__;
-				USER_HEADER_SEARCH_PATHS = "src/xcode/boehmgc/include/**";
+                                HEADER_SEARCH_PATHS = (
+                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
+                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+                                );
 			};
 			name = Release;
 		};

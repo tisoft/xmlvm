@@ -448,27 +448,27 @@ void __INIT_IMPL_org_xmlvm_iphone_UISlider()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISlider.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UISlider.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float_boolean;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getValue__;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumValue___float;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMinimumValue__;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumValue___float;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMaximumValue__;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMaximumValueImage__;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumValueImage___org_xmlvm_iphone_UIImage;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMinimumValueImage__;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumValueImage___org_xmlvm_iphone_UIImage;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getCurrentMinimumTrackImage__;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_minimumTrackImageForState___int;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumTrackImage___org_xmlvm_iphone_UIImage_int;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getCurrentMaximumTrackImage__;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_maximumTrackImageForState___int;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumTrackImage___org_xmlvm_iphone_UIImage_int;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getCurrentThumbImage__;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_thumbImageForState___int;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setThumbImage___org_xmlvm_iphone_UIImage_int;
-        __TIB_org_xmlvm_iphone_UISlider.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setValue___float_boolean;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getValue__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumValue___float;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMinimumValue__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumValue___float;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMaximumValue__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMaximumValueImage__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumValueImage___org_xmlvm_iphone_UIImage;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getMinimumValueImage__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumValueImage___org_xmlvm_iphone_UIImage;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getCurrentMinimumTrackImage__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_minimumTrackImageForState___int;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMinimumTrackImage___org_xmlvm_iphone_UIImage_int;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getCurrentMaximumTrackImage__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_maximumTrackImageForState___int;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setMaximumTrackImage___org_xmlvm_iphone_UIImage_int;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_getCurrentThumbImage__;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_thumbImageForState___int;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_setThumbImage___org_xmlvm_iphone_UIImage_int;
+        __TIB_org_xmlvm_iphone_UISlider.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
         // Initialize interface information
         __TIB_org_xmlvm_iphone_UISlider.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UISlider.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

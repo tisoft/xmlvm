@@ -45,7 +45,13 @@ void xmlvm_init()
 #ifdef DEBUG
     setenv("GC_PRINT_STATS", "1", 1);
 #endif
+#ifdef __OBJC__
+    GC_stackbottom = __builtin_frame_address(0);
     GC_INIT();
+    GC_gcollect();
+#else
+    GC_INIT();
+#endif
 #endif
 
     staticInitializerController = XMLVM_MALLOC(sizeof(XMLVM_STATIC_INITIALIZER_CONTROLLER));

@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPreferencesTableCell)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.UIPreferencesTextTableCell
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPreferencesTextTableCell, 73, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPreferencesTextTableCell)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPreferencesTextTableCell, 74, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPreferencesTextTableCell)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPreferencesTextTableCell_1ARRAY;
@@ -41,10 +41,10 @@ struct org_xmlvm_iphone_UIPreferencesTextTableCell {
 typedef struct org_xmlvm_iphone_UIPreferencesTextTableCell org_xmlvm_iphone_UIPreferencesTextTableCell;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPreferencesTextTableCell 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTextTableCell_setValue___java_lang_String 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTextTableCell_getValue__ 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTextTableCell_xmlvmKeyTyped___char 72
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPreferencesTextTableCell 74
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTextTableCell_setValue___java_lang_String 71
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTextTableCell_getValue__ 72
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTextTableCell_xmlvmKeyTyped___char 73
 
 void __INIT_org_xmlvm_iphone_UIPreferencesTextTableCell();
 void __INIT_IMPL_org_xmlvm_iphone_UIPreferencesTextTableCell();
@@ -53,11 +53,11 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTextTableCell(JAVA_OB
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPreferencesTextTableCell();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPreferencesTextTableCell();
 void org_xmlvm_iphone_UIPreferencesTextTableCell___INIT___(JAVA_OBJECT me);
-// Vtable index: 70
-void org_xmlvm_iphone_UIPreferencesTextTableCell_setValue___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 71
-JAVA_OBJECT org_xmlvm_iphone_UIPreferencesTextTableCell_getValue__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIPreferencesTextTableCell_setValue___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 72
+JAVA_OBJECT org_xmlvm_iphone_UIPreferencesTextTableCell_getValue__(JAVA_OBJECT me);
+// Vtable index: 73
 void org_xmlvm_iphone_UIPreferencesTextTableCell_xmlvmKeyTyped___char(JAVA_OBJECT me, JAVA_CHAR n1);
 
 #endif

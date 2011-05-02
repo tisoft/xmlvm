@@ -144,9 +144,9 @@ void __INIT_IMPL_org_xmlvm_iphone_UIPreferencesTextTableCell()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable, __TIB_org_xmlvm_iphone_UIPreferencesTableCell.vtable, sizeof(__TIB_org_xmlvm_iphone_UIPreferencesTableCell.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_setValue___java_lang_String;
-        __TIB_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_getValue__;
-        __TIB_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_xmlvmKeyTyped___char;
+        __TIB_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_setValue___java_lang_String;
+        __TIB_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_getValue__;
+        __TIB_org_xmlvm_iphone_UIPreferencesTextTableCell.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIPreferencesTextTableCell_xmlvmKeyTyped___char;
         // Initialize interface information
         __TIB_org_xmlvm_iphone_UIPreferencesTextTableCell.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIPreferencesTextTableCell.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

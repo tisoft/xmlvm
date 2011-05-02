@@ -81,8 +81,8 @@ typedef struct org_xmlvm_iphone_CAAnimation org_xmlvm_iphone_CAAnimation;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CAAnimation_setRepeatCount___float 22
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CAAnimation_setAutoreverses___boolean 23
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CAAnimation_setRepeatDuration___double 24
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CAAnimation_getSpeed__ 25
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CAAnimation_setFillMode___java_lang_String 26
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CAAnimation_setFillMode___java_lang_String 25
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CAAnimation_getSpeed__ 26
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CAAnimation_setTimeOffset___double 27
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CAAnimation_getDuration__ 28
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CAAnimation_getRepeatCount__ 29
@@ -130,9 +130,9 @@ void org_xmlvm_iphone_CAAnimation_setAutoreverses___boolean(JAVA_OBJECT me, JAVA
 // Vtable index: 24
 void org_xmlvm_iphone_CAAnimation_setRepeatDuration___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
 // Vtable index: 25
-JAVA_FLOAT org_xmlvm_iphone_CAAnimation_getSpeed__(JAVA_OBJECT me);
-// Vtable index: 26
 void org_xmlvm_iphone_CAAnimation_setFillMode___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 26
+JAVA_FLOAT org_xmlvm_iphone_CAAnimation_getSpeed__(JAVA_OBJECT me);
 // Vtable index: 27
 void org_xmlvm_iphone_CAAnimation_setTimeOffset___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
 // Vtable index: 28

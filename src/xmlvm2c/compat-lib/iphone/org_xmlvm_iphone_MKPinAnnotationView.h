@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotation)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.MKPinAnnotationView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKPinAnnotationView, 97, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKPinAnnotationView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKPinAnnotationView, 98, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKPinAnnotationView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKPinAnnotationView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKPinAnnotationView_1ARRAY;
@@ -45,11 +45,11 @@ struct org_xmlvm_iphone_MKPinAnnotationView {
 typedef struct org_xmlvm_iphone_MKPinAnnotationView org_xmlvm_iphone_MKPinAnnotationView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKPinAnnotationView 97
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPinAnnotationView_isAnimatesDrop__ 93
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPinAnnotationView_setAnimatesDrop___boolean 94
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPinAnnotationView_getPinColor__ 95
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPinAnnotationView_setPinColor___int 96
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKPinAnnotationView 98
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPinAnnotationView_isAnimatesDrop__ 94
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPinAnnotationView_setAnimatesDrop___boolean 95
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPinAnnotationView_getPinColor__ 96
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPinAnnotationView_setPinColor___int 97
 
 void __INIT_org_xmlvm_iphone_MKPinAnnotationView();
 void __INIT_IMPL_org_xmlvm_iphone_MKPinAnnotationView();
@@ -58,13 +58,13 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPinAnnotationView(JAVA_OBJECT me
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKPinAnnotationView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKPinAnnotationView();
 void org_xmlvm_iphone_MKPinAnnotationView___INIT____org_xmlvm_iphone_MKAnnotation_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 93
-JAVA_BOOLEAN org_xmlvm_iphone_MKPinAnnotationView_isAnimatesDrop__(JAVA_OBJECT me);
 // Vtable index: 94
-void org_xmlvm_iphone_MKPinAnnotationView_setAnimatesDrop___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_BOOLEAN org_xmlvm_iphone_MKPinAnnotationView_isAnimatesDrop__(JAVA_OBJECT me);
 // Vtable index: 95
-JAVA_INT org_xmlvm_iphone_MKPinAnnotationView_getPinColor__(JAVA_OBJECT me);
+void org_xmlvm_iphone_MKPinAnnotationView_setAnimatesDrop___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 // Vtable index: 96
+JAVA_INT org_xmlvm_iphone_MKPinAnnotationView_getPinColor__(JAVA_OBJECT me);
+// Vtable index: 97
 void org_xmlvm_iphone_MKPinAnnotationView_setPinColor___int(JAVA_OBJECT me, JAVA_INT n1);
 
 #endif

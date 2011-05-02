@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSCalendar)
 #endif
 // Class declarations for org.xmlvm.iphone.UIDatePicker
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIDatePicker, 97, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIDatePicker)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIDatePicker, 98, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIDatePicker)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker_1ARRAY;
@@ -57,26 +57,26 @@ struct org_xmlvm_iphone_UIDatePicker {
 typedef struct org_xmlvm_iphone_UIDatePicker org_xmlvm_iphone_UIDatePicker;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIDatePicker 97
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getCalendar__ 78
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setCalendar___org_xmlvm_iphone_NSCalendar 79
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getCountDownDuration__ 80
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setCountDownDuration___double 81
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getDate__ 82
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setDate___org_xmlvm_iphone_NSDate 83
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getDatePickerMode__ 84
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setDatePickerMode___int 85
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getLocale__ 86
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setLocale___org_xmlvm_iphone_NSLocale 87
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getMaximumDate__ 88
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setMaximumDate___org_xmlvm_iphone_NSDate 89
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getMinimumDate__ 90
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setMinimumDate___org_xmlvm_iphone_NSDate 91
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getMinuteInterval__ 92
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setMinuteInterval___int 93
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getTimeZone__ 94
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setTimeZone___org_xmlvm_iphone_NSTimeZone 95
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setDate___org_xmlvm_iphone_NSDate_boolean 96
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIDatePicker 98
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getCalendar__ 79
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setCalendar___org_xmlvm_iphone_NSCalendar 80
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getCountDownDuration__ 81
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setCountDownDuration___double 82
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getDate__ 83
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setDate___org_xmlvm_iphone_NSDate 84
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getDatePickerMode__ 85
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setDatePickerMode___int 86
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getLocale__ 87
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setLocale___org_xmlvm_iphone_NSLocale 88
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getMaximumDate__ 89
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setMaximumDate___org_xmlvm_iphone_NSDate 90
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getMinimumDate__ 91
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setMinimumDate___org_xmlvm_iphone_NSDate 92
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getMinuteInterval__ 93
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setMinuteInterval___int 94
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_getTimeZone__ 95
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setTimeZone___org_xmlvm_iphone_NSTimeZone 96
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIDatePicker_setDate___org_xmlvm_iphone_NSDate_boolean 97
 
 void __INIT_org_xmlvm_iphone_UIDatePicker();
 void __INIT_IMPL_org_xmlvm_iphone_UIDatePicker();
@@ -86,43 +86,43 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDatePicker();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIDatePicker();
 void org_xmlvm_iphone_UIDatePicker___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIDatePicker___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 78
-JAVA_OBJECT org_xmlvm_iphone_UIDatePicker_getCalendar__(JAVA_OBJECT me);
 // Vtable index: 79
-void org_xmlvm_iphone_UIDatePicker_setCalendar___org_xmlvm_iphone_NSCalendar(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIDatePicker_getCalendar__(JAVA_OBJECT me);
 // Vtable index: 80
-JAVA_DOUBLE org_xmlvm_iphone_UIDatePicker_getCountDownDuration__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIDatePicker_setCalendar___org_xmlvm_iphone_NSCalendar(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 81
-void org_xmlvm_iphone_UIDatePicker_setCountDownDuration___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
+JAVA_DOUBLE org_xmlvm_iphone_UIDatePicker_getCountDownDuration__(JAVA_OBJECT me);
 // Vtable index: 82
-JAVA_OBJECT org_xmlvm_iphone_UIDatePicker_getDate__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIDatePicker_setCountDownDuration___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
 // Vtable index: 83
-void org_xmlvm_iphone_UIDatePicker_setDate___org_xmlvm_iphone_NSDate(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIDatePicker_getDate__(JAVA_OBJECT me);
 // Vtable index: 84
-JAVA_INT org_xmlvm_iphone_UIDatePicker_getDatePickerMode__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIDatePicker_setDate___org_xmlvm_iphone_NSDate(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 85
-void org_xmlvm_iphone_UIDatePicker_setDatePickerMode___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_INT org_xmlvm_iphone_UIDatePicker_getDatePickerMode__(JAVA_OBJECT me);
 // Vtable index: 86
-JAVA_OBJECT org_xmlvm_iphone_UIDatePicker_getLocale__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIDatePicker_setDatePickerMode___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 87
-void org_xmlvm_iphone_UIDatePicker_setLocale___org_xmlvm_iphone_NSLocale(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIDatePicker_getLocale__(JAVA_OBJECT me);
 // Vtable index: 88
-JAVA_OBJECT org_xmlvm_iphone_UIDatePicker_getMaximumDate__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIDatePicker_setLocale___org_xmlvm_iphone_NSLocale(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 89
-void org_xmlvm_iphone_UIDatePicker_setMaximumDate___org_xmlvm_iphone_NSDate(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIDatePicker_getMaximumDate__(JAVA_OBJECT me);
 // Vtable index: 90
-JAVA_OBJECT org_xmlvm_iphone_UIDatePicker_getMinimumDate__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIDatePicker_setMaximumDate___org_xmlvm_iphone_NSDate(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 91
-void org_xmlvm_iphone_UIDatePicker_setMinimumDate___org_xmlvm_iphone_NSDate(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIDatePicker_getMinimumDate__(JAVA_OBJECT me);
 // Vtable index: 92
-JAVA_INT org_xmlvm_iphone_UIDatePicker_getMinuteInterval__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIDatePicker_setMinimumDate___org_xmlvm_iphone_NSDate(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 93
-void org_xmlvm_iphone_UIDatePicker_setMinuteInterval___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_INT org_xmlvm_iphone_UIDatePicker_getMinuteInterval__(JAVA_OBJECT me);
 // Vtable index: 94
-JAVA_OBJECT org_xmlvm_iphone_UIDatePicker_getTimeZone__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIDatePicker_setMinuteInterval___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 95
-void org_xmlvm_iphone_UIDatePicker_setTimeZone___org_xmlvm_iphone_NSTimeZone(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIDatePicker_getTimeZone__(JAVA_OBJECT me);
 // Vtable index: 96
+void org_xmlvm_iphone_UIDatePicker_setTimeZone___org_xmlvm_iphone_NSTimeZone(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 97
 void org_xmlvm_iphone_UIDatePicker_setDate___org_xmlvm_iphone_NSDate_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
 
 #endif

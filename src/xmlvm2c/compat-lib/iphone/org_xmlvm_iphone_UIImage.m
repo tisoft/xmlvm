@@ -3,6 +3,7 @@
 #include "org_xmlvm_iphone_CGPoint.h"
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_NSString.h"
+#include "org_xmlvm_iphone_CGImage.h"
 #include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_UIImage.h"
@@ -104,6 +105,7 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 
 static JAVA_OBJECT* __method0_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_NSString,
+    &__CLASS_org_xmlvm_iphone_CGImage,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
@@ -271,7 +273,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString_org_xmlvm_iphone_CGImage(receiver, argsArray[0], argsArray[1]);
         break;
     case 1:
         org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(argsArray[0]);
@@ -333,7 +335,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIImage()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIImage.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIImage.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString;
+        __TIB_org_xmlvm_iphone_UIImage.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString_org_xmlvm_iphone_CGImage;
         __TIB_org_xmlvm_iphone_UIImage.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_stretchableImage___int_int;
         __TIB_org_xmlvm_iphone_UIImage.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_getCGImage__;
         __TIB_org_xmlvm_iphone_UIImage.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect;
@@ -398,9 +400,9 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImage()
     return me;
 }
 
-void org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString_org_xmlvm_iphone_CGImage(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString_org_xmlvm_iphone_CGImage]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

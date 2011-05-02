@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIPreferencesTableCell
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPreferencesTableCell, 70, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPreferencesTableCell)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPreferencesTableCell, 71, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPreferencesTableCell)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPreferencesTableCell;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPreferencesTableCell_1ARRAY;
@@ -41,12 +41,12 @@ struct org_xmlvm_iphone_UIPreferencesTableCell {
 typedef struct org_xmlvm_iphone_UIPreferencesTableCell org_xmlvm_iphone_UIPreferencesTableCell;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPreferencesTableCell 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTableCell_setTitle___java_lang_String 65
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTableCell_getTitle__ 66
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTableCell_setEnabled___boolean 67
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTableCell_setGroupCell___boolean 68
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTableCell_isGroupCell__ 69
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPreferencesTableCell 71
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTableCell_setTitle___java_lang_String 66
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTableCell_getTitle__ 67
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTableCell_setEnabled___boolean 68
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTableCell_setGroupCell___boolean 69
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPreferencesTableCell_isGroupCell__ 70
 
 void __INIT_org_xmlvm_iphone_UIPreferencesTableCell();
 void __INIT_IMPL_org_xmlvm_iphone_UIPreferencesTableCell();
@@ -55,15 +55,15 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableCell(JAVA_OBJECT
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPreferencesTableCell();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPreferencesTableCell();
 void org_xmlvm_iphone_UIPreferencesTableCell___INIT___(JAVA_OBJECT me);
-// Vtable index: 65
-void org_xmlvm_iphone_UIPreferencesTableCell_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 66
-JAVA_OBJECT org_xmlvm_iphone_UIPreferencesTableCell_getTitle__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIPreferencesTableCell_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 67
-void org_xmlvm_iphone_UIPreferencesTableCell_setEnabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_OBJECT org_xmlvm_iphone_UIPreferencesTableCell_getTitle__(JAVA_OBJECT me);
 // Vtable index: 68
-void org_xmlvm_iphone_UIPreferencesTableCell_setGroupCell___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+void org_xmlvm_iphone_UIPreferencesTableCell_setEnabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 // Vtable index: 69
+void org_xmlvm_iphone_UIPreferencesTableCell_setGroupCell___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+// Vtable index: 70
 JAVA_BOOLEAN org_xmlvm_iphone_UIPreferencesTableCell_isGroupCell__(JAVA_OBJECT me);
 
 #endif

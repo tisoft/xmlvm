@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_UITouch.h"
 #include "org_xmlvm_iphone_UIEvent.h"
 #include "java_util_Set.h"
 
@@ -245,8 +246,7 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 }
 
 static JAVA_OBJECT* __method0_arg_types[] = {
-    &__CLASS_java_util_Set,
-    &__CLASS_org_xmlvm_iphone_UIEvent,
+    &__CLASS_org_xmlvm_iphone_UITouch,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
@@ -265,6 +265,8 @@ static JAVA_OBJECT* __method3_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_java_util_Set,
+    &__CLASS_org_xmlvm_iphone_UIEvent,
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
@@ -273,8 +275,11 @@ static JAVA_OBJECT* __method5_arg_types[] = {
 static JAVA_OBJECT* __method6_arg_types[] = {
 };
 
+static JAVA_OBJECT* __method7_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"touchesBegan",
+    {"dummyMethod",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -283,7 +288,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"touchesCancelled",
+    {"touchesBegan",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -292,7 +297,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"touchesEnded",
+    {"touchesCancelled",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -301,7 +306,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"touchesMoved",
+    {"touchesEnded",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -310,7 +315,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getNextResponder",
+    {"touchesMoved",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -319,7 +324,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"resignFirstResponder",
+    {"getNextResponder",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -328,9 +333,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"becomeFirstResponder",
+    {"resignFirstResponder",
     &__method6_arg_types[0],
     sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"becomeFirstResponder",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -348,24 +362,27 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UIResponder_dummyMethod___org_xmlvm_iphone_UITouch(receiver, argsArray[0]);
         break;
     case 1:
-        org_xmlvm_iphone_UIResponder_touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
     case 2:
-        org_xmlvm_iphone_UIResponder_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UIResponder_touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
     case 3:
-        org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UIResponder_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
     case 4:
-        org_xmlvm_iphone_UIResponder_getNextResponder__(receiver);
+        org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
     case 5:
-        org_xmlvm_iphone_UIResponder_resignFirstResponder__(receiver);
+        org_xmlvm_iphone_UIResponder_getNextResponder__(receiver);
         break;
     case 6:
+        org_xmlvm_iphone_UIResponder_resignFirstResponder__(receiver);
+        break;
+    case 7:
         org_xmlvm_iphone_UIResponder_becomeFirstResponder__(receiver);
         break;
     default:
@@ -395,13 +412,14 @@ void __INIT_IMPL_org_xmlvm_iphone_UIResponder()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIResponder.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIResponder.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent;
-        __TIB_org_xmlvm_iphone_UIResponder.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent;
-        __TIB_org_xmlvm_iphone_UIResponder.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
-        __TIB_org_xmlvm_iphone_UIResponder.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent;
-        __TIB_org_xmlvm_iphone_UIResponder.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_getNextResponder__;
-        __TIB_org_xmlvm_iphone_UIResponder.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_resignFirstResponder__;
-        __TIB_org_xmlvm_iphone_UIResponder.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_becomeFirstResponder__;
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_dummyMethod___org_xmlvm_iphone_UITouch;
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent;
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent;
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent;
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_getNextResponder__;
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_resignFirstResponder__;
+        __TIB_org_xmlvm_iphone_UIResponder.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIResponder_becomeFirstResponder__;
         // Initialize interface information
         __TIB_org_xmlvm_iphone_UIResponder.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_UIResponder.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -459,6 +477,13 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIResponder()
     me = __NEW_org_xmlvm_iphone_UIResponder();
     org_xmlvm_iphone_UIResponder___INIT___(me);
     return me;
+}
+
+void org_xmlvm_iphone_UIResponder_dummyMethod___org_xmlvm_iphone_UITouch(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIResponder_dummyMethod___org_xmlvm_iphone_UITouch]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIResponder___INIT___(JAVA_OBJECT me)

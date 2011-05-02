@@ -246,14 +246,14 @@ void __INIT_IMPL_org_xmlvm_iphone_MFMailComposeViewController()
         // Copy vtable from base class
         XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable, __TIB_org_xmlvm_iphone_UINavigationController.vtable, sizeof(__TIB_org_xmlvm_iphone_UINavigationController.vtable));
         // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_getMailComposeDelegate__;
-        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_setMailComposeDelegate___org_xmlvm_iphone_MFMailComposeViewControllerDelegate;
-        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_addAttachmentData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSString_java_lang_String;
-        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_setBccRecipients___java_util_ArrayList;
-        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_setCcRecipients___java_util_ArrayList;
-        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_setMessageBody___java_lang_String_boolean;
-        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_setSubject___java_lang_String;
-        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_setToRecipients___java_util_ArrayList;
+        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_getMailComposeDelegate__;
+        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_setMailComposeDelegate___org_xmlvm_iphone_MFMailComposeViewControllerDelegate;
+        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_addAttachmentData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSString_java_lang_String;
+        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_setBccRecipients___java_util_ArrayList;
+        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_setCcRecipients___java_util_ArrayList;
+        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_setMessageBody___java_lang_String_boolean;
+        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_setSubject___java_lang_String;
+        __TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_MFMailComposeViewController_setToRecipients___java_util_ArrayList;
         // Initialize interface information
         __TIB_org_xmlvm_iphone_MFMailComposeViewController.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_MFMailComposeViewController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
