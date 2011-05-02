@@ -33,6 +33,7 @@ public class WelcomePage extends UIViewController {
 
     public WelcomePage() {
         setTitle("Welcome");
+        getTabBarItem().setImage(UIImage.imageNamed("info.png"));
     }
 
     @Override

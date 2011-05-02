@@ -20,6 +20,7 @@
 
 package org.xmlvm.demo.navigation;
 
+import org.xmlvm.iphone.UIImage;
 import org.xmlvm.iphone.UINavigationController;
 
 public class SecondPage extends UINavigationController {
@@ -27,5 +28,6 @@ public class SecondPage extends UINavigationController {
     public SecondPage() {
         super(new ParentPage());
         setTitle("Child");
+        getTabBarItem().setImage(UIImage.imageNamed("news.png"));
     }
 }
