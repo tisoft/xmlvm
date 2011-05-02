@@ -185,15 +185,15 @@ __SRC_BUILD__			);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
-                                GCC_THUMB_SUPPORT = NO;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
                 GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-                                HEADER_SEARCH_PATHS = (
-                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
-                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
-                                );
+				HEADER_SEARCH_PATHS = (
+					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
+					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+				);
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PREBINDING = NO;
 				SEPARATE_STRIP = YES;
@@ -210,12 +210,13 @@ __SRC_BUILD__			);
 				ARCHS = "$(__ARCHITECTURE__)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-                                HEADER_SEARCH_PATHS = (
-                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
-                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
-                                );
+				HEADER_SEARCH_PATHS = (
+					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
+					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+				);
 				PREBINDING = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
@@ -230,13 +231,14 @@ __SRC_BUILD__			);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-                                HEADER_SEARCH_PATHS = (
-                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
-                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
-                                );
+				HEADER_SEARCH_PATHS = (
+					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
+					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+				);
 				PREBINDING = NO;
 				SEPARATE_STRIP = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
@@ -252,12 +254,13 @@ __SRC_BUILD__			);
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+                GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				PRODUCT_NAME = __PROJNAME__;
-                                HEADER_SEARCH_PATHS = (
-                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
-                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
-                                );
+				HEADER_SEARCH_PATHS = (
+					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
+					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+				);
 			};
 			name = AppStore;
 		};
@@ -269,12 +272,13 @@ __SRC_BUILD__			);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+                GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				PRODUCT_NAME = __PROJNAME__;
-                                HEADER_SEARCH_PATHS = (
-                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
-                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
-                                );
+				HEADER_SEARCH_PATHS = (
+					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
+					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+				);
 			};
 			name = Debug;
 		};
@@ -284,12 +288,13 @@ __SRC_BUILD__			);
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+                GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				PRODUCT_NAME = __PROJNAME__;
-                                HEADER_SEARCH_PATHS = (
-                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
-                                        "${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
-                                );
+				HEADER_SEARCH_PATHS = (
+					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
+					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+				);
 			};
 			name = Release;
 		};
