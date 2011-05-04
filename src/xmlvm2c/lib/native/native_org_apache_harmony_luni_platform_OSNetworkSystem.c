@@ -4,6 +4,63 @@
 
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+
+//#include <fcntl.h>
+//#include <errno.h>
+//#include <sys/types.h>
+//#include <sys/socket.h>
+#include "java_io_FileDescriptor.h"
+#include "java_net_SocketException.h"
+#include "java_lang_Thread.h"
+#include "xmlvm-sock.h"
+
+
+void createSocket (JAVA_OBJECT fd, int sockType, JAVA_BOOLEAN preferIPv4Stack)
+{
+    I_32 result;
+    hysocket_t sockdesc;
+    int family = HYADDR_FAMILY_AFINET4;
+    int supportsIPv6 = 0; //HARMONY_CACHE_GET (env, harmony_supports_ipv6);
+    
+    if (supportsIPv6 && !(preferIPv4Stack))
+    {
+        /* We are creating a server socket on the any address */
+        family = HYADDR_FAMILY_UNSPEC;
+    }
+
+    result = hysock_socket (&sockdesc, family, sockType, HYSOCK_DEFPROTOCOL);
+
+    if (0 != result)
+    {
+        /* ok now if we tried to create an IPv6 socket and it failed it could be that the
+         platform does not have IPv6 enabled.  In this case we should revert back to 
+         creating an IPv4 socket */
+        if (HYADDR_FAMILY_UNSPEC == family)
+        {
+            /* now try to create an IPv4 socket */
+            family = HYADDR_FAMILY_AFINET4;
+            result =
+            hysock_socket (&sockdesc, family, sockType, HYSOCK_DEFPROTOCOL);
+        }
+        
+        if (0 != result)
+        {
+            JAVA_OBJECT exc = __NEW_java_net_SocketException();
+            // TODO: Need to pass result to constructor
+            java_net_SocketException___INIT___(exc);
+            java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+            curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+            XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        }
+    }
+    
+    if (0 == result)
+    {
+        ((java_io_FileDescriptor*) fd)->fields.java_io_FileDescriptor.descriptor_ = (JAVA_ULONG) sockdesc;
+        //setJavaIoFileDescriptorContents (env, thisObjFD, sockdesc);
+    }
+}
+
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
 void org_apache_harmony_luni_platform_OSNetworkSystem_accept___java_io_FileDescriptor_java_net_SocketImpl_java_io_FileDescriptor_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_INT n4)
@@ -79,7 +136,7 @@ void org_apache_harmony_luni_platform_OSNetworkSystem_createServerStreamSocket__
 void org_apache_harmony_luni_platform_OSNetworkSystem_createStreamSocket___java_io_FileDescriptor_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_createStreamSocket___java_io_FileDescriptor_boolean]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    createSocket(n1, HYSOCK_STREAM, n2);
     //XMLVM_END_NATIVE
 }
 
@@ -156,7 +213,6 @@ void org_apache_harmony_luni_platform_OSNetworkSystem_listenStreamSocket___java_
 void org_apache_harmony_luni_platform_OSNetworkSystem_oneTimeInitializationImpl___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_oneTimeInitializationImpl___boolean]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 

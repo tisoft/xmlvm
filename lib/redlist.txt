@@ -1,5 +1,4 @@
 java.text.SimpleDateFormat
-org.apache.harmony.luni.net.NetUtil
 org.apache.harmony.lang.management.ManagementUtils
 java.util.jar.JarVerifier
 org.apache.harmony.misc.accessors.AccessorFactory
@@ -25,7 +24,6 @@ java.text.DecimalFormatSymbols
 org.apache.harmony.instrument.internal.nls.Messages
 org.apache.harmony.lang.management.internal.nls.Messages
 java.nio.charset.CodingErrorAction
-org.apache.harmony.luni.net.PlainSocketImpl
 java.nio.charset.Charset
 java.nio.channels.spi.SelectorProvider
 org.xml.sax.SAXException

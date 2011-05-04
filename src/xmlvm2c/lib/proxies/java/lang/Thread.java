@@ -102,6 +102,7 @@ public class Thread implements Runnable {
      */
     private Object xmlvmExceptionEnv;
     private Object xmlvmException;
+    private Object ptBuffers;
 
     // Use a mutex instead of the synchronized keyword for 2 reasons:
     // 1. It isn't used recursively, so it'll be more efficient
