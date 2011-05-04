@@ -20,6 +20,8 @@
 
 package org.xmlvm;
 
+import java.io.File;
+
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessor;
 import org.xmlvm.util.Timer;
@@ -49,7 +51,7 @@ public class Main {
         XmlvmProcessor processor = new XmlvmProcessor(arguments);
 
         try {
-            // 1) Processing.
+            // Processing.
             if (processor.process()) {
                 Log.debug("Processing finished successfully.");
             } else {
