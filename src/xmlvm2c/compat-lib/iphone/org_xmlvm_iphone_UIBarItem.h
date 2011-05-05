@@ -34,6 +34,8 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarItem_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarItem_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIBarItem
+
+void org_xmlvm_iphone_UIBarItem_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj);
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UIBarItem \

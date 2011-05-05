@@ -21,6 +21,10 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarController_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarController_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarController_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#import <UIKit/UIKit.h>
+#include "xmlvm-util.h"
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -375,6 +379,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UITabBarController()
 void __DELETE_org_xmlvm_iphone_UITabBarController(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UITabBarController]
+    __DELETE_org_xmlvm_iphone_UIViewController(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -405,7 +410,11 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITabBarController()
 void org_xmlvm_iphone_UITabBarController___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarController___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UITabBarController* obj = [[UITabBarController alloc] init];
+    org_xmlvm_iphone_UIViewController_INTERNAL_CONSTRUCTOR(me, obj);
+    org_xmlvm_iphone_UITabBarController* thiz = me;
+    thiz->fields.org_xmlvm_iphone_UITabBarController.viewControllers = JAVA_NULL;
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UITabBarController);
     //XMLVM_END_WRAPPER
 }
 
@@ -489,14 +498,26 @@ JAVA_OBJECT org_xmlvm_iphone_UITabBarController_getTabBar__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_UITabBarController_getViewControllers__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarController_getViewControllers__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return jthiz->fields.org_xmlvm_iphone_UITabBarController.viewControllers;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_ArrayList]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    JAVA_OBJECT viewControllers = n1;
+    jthiz->fields.org_xmlvm_iphone_UITabBarController.viewControllers = viewControllers;
+    int size = XMLVMUtil_ArrayList_size(viewControllers);
+    NSMutableArray* a = [[NSMutableArray alloc] initWithCapacity:size];
+    int i = 0;
+    for (i = 0; i < size; i++) {
+        org_xmlvm_iphone_UIViewController* c = XMLVMUtil_ArrayList_get(viewControllers, i);
+        [a addObject:c->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj];
+    }
+    thiz.viewControllers = a;
+    [a release];
     //XMLVM_END_WRAPPER
 }
 

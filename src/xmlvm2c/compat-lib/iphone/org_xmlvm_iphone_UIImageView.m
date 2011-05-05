@@ -216,13 +216,19 @@ void org_xmlvm_iphone_UIImageView___INIT___(JAVA_OBJECT me)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImageView___INIT___]
     UIImageView* obj = [[UIImageView alloc] init];
     org_xmlvm_iphone_UIImageView_INTERNAL_CONSTRUCTOR(me, obj);
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIImageView);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIImageView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImageView___INIT____org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+    CGRect rect = toCGRect(n1);
+    UIImageView* obj = [[UIImageView alloc] init];
+    [obj setFrame:rect];
+	[obj setContentMode:UIViewContentModeCenter];
+    org_xmlvm_iphone_UIImageView_INTERNAL_CONSTRUCTOR(me, obj);
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIImageView);
     //XMLVM_END_WRAPPER
 }
 

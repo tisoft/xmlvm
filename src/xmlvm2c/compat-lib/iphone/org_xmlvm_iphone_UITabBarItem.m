@@ -20,6 +20,12 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarItem_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarItem_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarItem_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+void org_xmlvm_iphone_UITabBarItem_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_UIBarItem_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -177,6 +183,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UITabBarItem()
 void __DELETE_org_xmlvm_iphone_UITabBarItem(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UITabBarItem]
+    __DELETE_org_xmlvm_iphone_UIBarItem(me, client_data);
     //XMLVM_END_WRAPPER
 }
 

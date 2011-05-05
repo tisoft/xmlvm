@@ -21,6 +21,7 @@
 	<classpathentry kind="src" path="demo/java-desktop"/>
 	<classpathentry kind="src" path="demo/iphone/iremote/src/java"/>
 	<classpathentry kind="src" path="demo/iphone/isound/src/java"/>
+	<classpathentry kind="src" path="demo/iphone/navigation/src/java"/>
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/portrait/src/java"/>
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/upsidedown/src/java"/>
 	<classpathentry kind="src" path="demo/iphone/ihelloworld/landscape/src/java"/>

@@ -23,6 +23,14 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarItem_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarItem_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarItem_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#import <UIKit/UIKit.h>
+
+void org_xmlvm_iphone_UIBarItem_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -344,6 +352,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIBarItem()
 void __DELETE_org_xmlvm_iphone_UIBarItem(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIBarItem]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -416,7 +425,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIBarItem_getImage__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIBarItem_setImage___org_xmlvm_iphone_UIImage(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIBarItem_setImage___org_xmlvm_iphone_UIImage]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIImage, image, n1);
+    [thiz setImage:image];
     //XMLVM_END_WRAPPER
 }
 

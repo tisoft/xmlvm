@@ -23,6 +23,44 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#import <UIKit/UIKit.h>
+#include "org_xmlvm_iphone_UINavigationController.h"
+#include "org_xmlvm_iphone_NSString.h"
+
+@interface UIViewControllerWrapper : UIViewController
+{
+	// A pointer back to the C object
+	@public org_xmlvm_iphone_UIView* wrappedCObj;
+}
+- (void) loadView;
+- (void) superLoadView;
+@end
+
+@implementation UIViewControllerWrapper
+
+- (void) loadView
+{
+	// Get the function pointer to method loadView by accessing the vtable of the C object
+	Func_V loadViewFunc = 
+	self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_loadView__];
+    loadViewFunc(self->wrappedCObj);
+}
+
+- (void) superLoadView
+{
+    [super loadView];
+}
+
+@end
+
+
+
+void org_xmlvm_iphone_UIViewController_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -888,6 +926,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIViewController()
 void __DELETE_org_xmlvm_iphone_UIViewController(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIViewController]
+    __DELETE_org_xmlvm_iphone_UIResponder(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -919,14 +958,18 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewController()
 void org_xmlvm_iphone_UIViewController___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UIViewControllerWrapper* obj = [[UIViewControllerWrapper alloc] init];
+    obj->wrappedCObj = me;
+    org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, obj);
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIViewController);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_loadView__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_loadView__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz superLoadView];
     //XMLVM_END_WRAPPER
 }
 
@@ -1073,7 +1116,13 @@ void org_xmlvm_iphone_UIViewController_didReceiveMemoryWarning__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_getView__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getView__]
-    XMLVM_NOT_IMPLEMENTED();
+    //TODO: perhaps we need to save the C wrapper for the view so subsequent calls return the same object.
+    XMLVM_VAR_THIZ;
+    UIView* view = [thiz.view retain];
+    JAVA_OBJECT jview = __NEW_org_xmlvm_iphone_UIView();
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(jview, view);
+    XMLVM_FINALIZE(jview, __DELETE_org_xmlvm_iphone_UIView);
+    return jview;
     //XMLVM_END_WRAPPER
 }
 
@@ -1094,7 +1143,10 @@ JAVA_OBJECT org_xmlvm_iphone_UIViewController_getTitle__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIViewController_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setTitle___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(title, n1);
+    [thiz setTitle:title];
+    [title release];
     //XMLVM_END_WRAPPER
 }
 
@@ -1122,7 +1174,12 @@ JAVA_INT org_xmlvm_iphone_UIViewController_getInterfaceOrientation__(JAVA_OBJECT
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_getNavigationController__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getNavigationController__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    UINavigationController* c = [thiz.navigationController retain];
+    JAVA_OBJECT controller = __NEW_org_xmlvm_iphone_UINavigationController();
+    org_xmlvm_iphone_UINavigationController_INTERNAL_CONSTRUCTOR(controller, c);
+    XMLVM_FINALIZE(controller, __DELETE_org_xmlvm_iphone_UINavigationController);
+    return controller;
     //XMLVM_END_WRAPPER
 }
 
@@ -1192,7 +1249,15 @@ void org_xmlvm_iphone_UIViewController_setParentController___org_xmlvm_iphone_UI
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_getTabBarItem__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getTabBarItem__]
-    XMLVM_NOT_IMPLEMENTED();
+    // TODO: this implementation will return a new wrapper for each call
+    // to getTabBarItem(). One could save the wrapper in a local field and
+    // check if the wrapped Objective-C object has changed between calls to getTabBarItem()
+    XMLVM_VAR_THIZ;
+    UITabBarItem* item = [thiz.tabBarItem retain];
+    org_xmlvm_iphone_UITabBarItem* jitem = __NEW_org_xmlvm_iphone_UITabBarItem();
+    org_xmlvm_iphone_UITabBarItem_INTERNAL_CONSTRUCTOR(jitem, item);
+    XMLVM_FINALIZE(jitem, __DELETE_org_xmlvm_iphone_UITabBarItem);
+    return jitem;
     //XMLVM_END_WRAPPER
 }
 

@@ -21,6 +21,16 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationController_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationController_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationController_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#import <UIKit/UIKit.h>
+#include "org_xmlvm_iphone_UIViewController.h"
+
+void org_xmlvm_iphone_UINavigationController_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_UIViewController_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -511,6 +521,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UINavigationController()
 void __DELETE_org_xmlvm_iphone_UINavigationController(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UINavigationController]
+    __DELETE_org_xmlvm_iphone_UIViewController(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -548,7 +559,10 @@ void org_xmlvm_iphone_UINavigationController___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_UINavigationController___INIT____org_xmlvm_iphone_UIViewController(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationController___INIT____org_xmlvm_iphone_UIViewController]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_IOS(UIViewController, rootViewController, n1);
+    UINavigationController* obj = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+    org_xmlvm_iphone_UIViewController_INTERNAL_CONSTRUCTOR(me, obj);
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UINavigationController);
     //XMLVM_END_WRAPPER
 }
 
@@ -597,7 +611,10 @@ void org_xmlvm_iphone_UINavigationController_setViewControllers___java_util_Arra
 void org_xmlvm_iphone_UINavigationController_pushViewController___org_xmlvm_iphone_UIViewController_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationController_pushViewController___org_xmlvm_iphone_UIViewController_boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIViewController, controller, n1);
+    XMLVM_VAR_BOOLEAN(animated, n2);
+    [thiz pushViewController:controller animated:animated];
     //XMLVM_END_WRAPPER
 }
 

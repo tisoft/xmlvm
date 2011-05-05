@@ -38,6 +38,9 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIViewController
+
+void org_xmlvm_iphone_UIViewController_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj);
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UIViewController \
