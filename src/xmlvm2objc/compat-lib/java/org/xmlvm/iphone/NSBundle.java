@@ -130,6 +130,10 @@ public class NSBundle extends NSObject {
         }
         return new File(path).getParent();
     }
+    
+    public String localizedStringForKey(String key, String value, String table) {
+        return null;
+    }
 
     /**
      * Runtime resources, given as a special file under

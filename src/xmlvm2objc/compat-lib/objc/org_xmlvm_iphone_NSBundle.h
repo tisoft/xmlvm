@@ -38,4 +38,6 @@ typedef NSBundle org_xmlvm_iphone_NSBundle;
                                                                          : (java_lang_String*) directory;
 - (NSString*) bundlePath__;
 
+- (java_lang_String*) localizedStringForKey___java_lang_String_java_lang_String_java_lang_String:(java_lang_String*) key :(java_lang_String*) value :(java_lang_String*) tableName;
+
 @end

@@ -63,6 +63,12 @@ static JAVA_OBJECT* __method2_arg_types[] = {
 static JAVA_OBJECT* __method3_arg_types[] = {
 };
 
+static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_java_lang_String,
+    &__CLASS_java_lang_String,
+    &__CLASS_java_lang_String,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"mainBundle",
     &__method0_arg_types[0],
@@ -100,6 +106,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"localizedStringForKey",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -121,6 +136,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 3:
         org_xmlvm_iphone_NSBundle_bundlePath__(receiver);
+        break;
+    case 4:
+        org_xmlvm_iphone_NSBundle_localizedStringForKey___java_lang_String_java_lang_String_java_lang_String(receiver, argsArray[0], argsArray[1], argsArray[2]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -152,6 +170,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSBundle()
         __TIB_org_xmlvm_iphone_NSBundle.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_lang_String_java_lang_String;
         __TIB_org_xmlvm_iphone_NSBundle.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_lang_String;
         __TIB_org_xmlvm_iphone_NSBundle.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSBundle_bundlePath__;
+        __TIB_org_xmlvm_iphone_NSBundle.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_NSBundle_localizedStringForKey___java_lang_String_java_lang_String_java_lang_String;
         // Initialize interface information
         __TIB_org_xmlvm_iphone_NSBundle.numImplementedInterfaces = 0;
         __TIB_org_xmlvm_iphone_NSBundle.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -261,6 +280,13 @@ JAVA_OBJECT org_xmlvm_iphone_NSBundle_bundlePath__(JAVA_OBJECT me)
     JAVA_OBJECT path_ = toJavaString(path);
     //[path release];
     return path_;
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_NSBundle_localizedStringForKey___java_lang_String_java_lang_String_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSBundle_localizedStringForKey___java_lang_String_java_lang_String_java_lang_String]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

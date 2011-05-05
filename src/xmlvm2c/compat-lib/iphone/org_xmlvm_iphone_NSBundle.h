@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.NSBundle
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSBundle, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSBundle)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSBundle, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSBundle)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSBundle;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSBundle_1ARRAY;
@@ -41,10 +41,11 @@ struct org_xmlvm_iphone_NSBundle {
 typedef struct org_xmlvm_iphone_NSBundle org_xmlvm_iphone_NSBundle;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSBundle 12
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSBundle 13
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_lang_String_java_lang_String 9
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_lang_String 10
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSBundle_bundlePath__ 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSBundle_localizedStringForKey___java_lang_String_java_lang_String_java_lang_String 12
 
 void __INIT_org_xmlvm_iphone_NSBundle();
 void __INIT_IMPL_org_xmlvm_iphone_NSBundle();
@@ -59,6 +60,8 @@ JAVA_OBJECT org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_la
 JAVA_OBJECT org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 // Vtable index: 11
 JAVA_OBJECT org_xmlvm_iphone_NSBundle_bundlePath__(JAVA_OBJECT me);
+// Vtable index: 12
+JAVA_OBJECT org_xmlvm_iphone_NSBundle_localizedStringForKey___java_lang_String_java_lang_String_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
 void org_xmlvm_iphone_NSBundle___CLINIT_();
 
 #endif

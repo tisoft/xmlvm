@@ -56,5 +56,11 @@
 	return_XMLVM(bundlePath)
 }
 
+- (java_lang_String*) localizedStringForKey___java_lang_String_java_lang_String_java_lang_String:(java_lang_String*) key :(java_lang_String*) value :(java_lang_String*) tableName
+{
+    return_XMLVM(localizedStringForKey:XMLVM_NULL2NIL(key) value:XMLVM_NULL2NIL(value) table:XMLVM_NULL2NIL(tableName))
+}
+
+
 @end
 
