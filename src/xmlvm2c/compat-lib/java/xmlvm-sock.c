@@ -32,6 +32,9 @@
 #include "xmlvm-hy.h"
 #include "xmlvm-sock.h"
 
+#include "java_lang_String.h"
+#include "java_net_InetAddress.h"
+
 
 #define MAX_RETRIES 50
 #define INVALID_SOCKET (hysocket_t) -1
@@ -40,6 +43,24 @@
 /*use a mutex if the gethostbyaddr, gethostbyname calls are not threadsafe*/
 MUTEX hostentLock = PTHREAD_MUTEX_INITIALIZER;
 #endif /*NO_R */
+
+
+int harmony_supports_ipv6()
+{
+    return 0;
+}
+
+
+int preferIPv4Stack()
+{
+    return 1;
+}
+
+
+int preferIPv6Addresses()
+{
+    return 0;
+}
 
 
 I_32 map_addr_family_Hy_to_OS (I_32 addr_family)
@@ -99,6 +120,132 @@ static I_32 copy_hostent (OSHOSTENT * source, PortlibPTBuffers_t * ptBuffers)
     
     return 0;
 }
+
+
+JAVA_OBJECT newJavaByteArray (JAVA_ARRAY_BYTE* bytes, JAVA_INT length)
+{
+    JAVA_OBJECT result = XMLVMArray_createSingleDimensionWithData(__CLASS_byte_1ARRAY, (int) length, bytes);
+    return result;
+}
+
+
+JAVA_OBJECT newJavaNetInetAddressGenericBS (JAVA_ARRAY_BYTE* address, U_32 length,
+                                const char* hostName, U_32 scope_id)
+{
+    JAVA_ARRAY_BYTE* byte_array;
+    java_lang_String* aString;
+    BOOLEAN isAnyAddress = 1;
+    static JAVA_ARRAY_BYTE IPv4ANY[4] = { 0, 0, 0, 0 };
+    static JAVA_ARRAY_BYTE IPv6ANY[16] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    U_32 i = 0;
+    JAVA_OBJECT result = NULL;
+    
+    aString = xmlvm_create_java_string(hostName);
+    
+    /* check if the address being returned is the any address.  If so we need to check the prefer flags to see how it should be returned
+     (either as IPv4 Any or IPv6 ANY) */
+    
+    if (harmony_supports_ipv6 ())
+    {
+        /* Figure out if it is the any address */
+        for (i = 0; i < length; i++)
+        {
+            if (address[i] != 0)
+            {
+                isAnyAddress = 0;
+                break;
+            }
+        }
+    }
+    else
+    {
+        /* just do what we used to do without checking */
+        isAnyAddress = 0;
+    }
+    
+    /* If it is the any address then set up to return appropriately based on the flags */
+    if (isAnyAddress)
+    {
+        if ((!preferIPv4Stack ()) && (preferIPv6Addresses ()))
+        {
+            if ((byte_array =
+                 newJavaByteArray (IPv6ANY, sizeof (IPv6ANY))) == NULL)
+            {
+                return NULL;
+            }
+        }
+        else
+        {
+            if ((byte_array =
+                 newJavaByteArray (IPv4ANY, sizeof (IPv4ANY))) == NULL)
+            {
+                return NULL;
+            }
+        }
+    }
+    else
+    {
+        /* not any so just set up to return the address normally */
+        if ((byte_array = newJavaByteArray (address, length)) == NULL)
+        {
+            return NULL;
+        }
+    }
+    
+    if (harmony_supports_ipv6 ())
+    {
+#if 0 //IP V6 not yet supported
+        tempMethodWithScope = NULL;
+        if (scope_id != 0)
+        {
+            tempMethodWithScope =
+            (*env)->GetStaticMethodID (env,
+                                       HARMONY_CACHE_GET (env,
+                                                          CLS_java_net_InetAddress),
+                                       "getByAddress",
+                                       "(Ljava/lang/String;[BI)Ljava/net/InetAddress;");
+            
+            if ((*env)->ExceptionCheck (env))
+            {
+                (*env)->ExceptionClear (env);
+                tempMethodWithScope = NULL;
+            }
+        }
+        
+        if (tempMethodWithScope != NULL)
+        {
+            /* create using the scope id */
+            tempClass = HARMONY_CACHE_GET (env, CLS_java_net_InetAddress);
+            result = (*env)->CallStaticObjectMethod (env, tempClass,
+                                                     tempMethodWithScope, aString,
+                                                     byte_array, scope_id);
+            (*env)->ExceptionCheck(env);
+            return result;
+        }
+        else
+        {
+            tempClass = HARMONY_CACHE_GET (env, CLS_java_net_InetAddress);
+            tempMethod =
+            HARMONY_CACHE_GET (env,
+                               MID_java_net_InetAddress_getByAddress_Ljava_lang_String_byteArray);
+            
+            result = (*env)->CallStaticObjectMethod (env, tempClass, tempMethod,
+                                                     aString, byte_array);
+            (*env)->ExceptionCheck(env);
+            //return result;
+        }
+#endif
+    }
+    else
+    {
+        result = __NEW_java_net_InetAddress();
+        java_net_InetAddress___INIT____byte_1ARRAY_java_lang_String(result, byte_array, aString);
+        //return result;
+    }
+    
+    return result;
+}
+
 
 
 I_32 hysock_socket (hysocket_t * handle, I_32 family, I_32 socktype, I_32 protocol)

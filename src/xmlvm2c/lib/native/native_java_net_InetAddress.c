@@ -52,8 +52,7 @@ JAVA_OBJECT java_net_InetAddress_getHostByAddrImpl___byte_1ARRAY(JAVA_OBJECT n1)
                             OSNIMAXHOST, 0);
         if (0 == result)
         {
-//            return newJavaNetInetAddressGenericBS (env, ipaddr, length,
-//                                                   hostName, 0);
+            return newJavaNetInetAddressGenericBS (ipaddr, length, hostName, 0);
         }
     }
     

@@ -28,6 +28,13 @@
 #define __XMLVM_SOCK_H__
 
 
+int harmony_supports_ipv6();
+int preferIPv4Stack();
+int preferIPv6Addresses();
+
+JAVA_OBJECT newJavaNetInetAddressGenericBS (JAVA_ARRAY_BYTE* address, U_32 length,
+                                            const char* hostName, U_32 scope_id);
+
 I_32 hysock_socket (hysocket_t * handle, I_32 family, I_32 socktype, I_32 protocol);
 
 I_32 hysock_sockaddr_init6 (hysockaddr_t handle, U_8 * addr, I_32 addrlength,
