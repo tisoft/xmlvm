@@ -729,3 +729,40 @@ I_32 hysock_connect (hysocket_t sock, hysockaddr_t addr)
     return rc;
 }
 
+
+I_32 hysock_write (hysocket_t sock, U_8 * buf, I_32 nbyte, I_32 flags)
+{
+    I_32 bytesSent = 0;
+    
+    bytesSent = send (SOCKET_CAST (sock), buf, nbyte, flags);
+    
+    if (-1 == bytesSent)
+    {
+        // I_32 err = errno;
+        // HYSOCKDEBUG ("<send failed, err=%d>\n", err);
+        // return portLibrary->error_set_last_error (portLibrary, err,
+        //                                           findError (err));
+        return errno;
+    }
+    else
+    {
+        return bytesSent;
+    }
+}
+
+
+I_32 hysock_read (hysocket_t sock, U_8 * buf, I_32 nbyte, I_32 flags)
+{
+    I_32 bytesRec = 0;
+    
+    bytesRec = recv (SOCKET_CAST (sock), buf, nbyte, flags);
+    if (-1 == bytesRec) {
+        // I_32 err = errno;
+        // HYSOCKDEBUG ("<recv failed, err=%d>\n", err);
+        // return portLibrary->error_set_last_error (portLibrary, err, findError(err));
+        return errno;
+    } else {
+        return bytesRec;
+    }
+}
+

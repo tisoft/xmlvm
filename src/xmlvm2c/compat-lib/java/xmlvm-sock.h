@@ -56,5 +56,7 @@ I_32 hysock_getnameinfo (hysockaddr_t in_addr, I_32 sockaddr_size, char *name,
 I_32 hysock_bind (hysocket_t sock, hysockaddr_t addr);
 I_32 hysock_getsockname (hysocket_t handle, hysockaddr_t addrHandle);
 I_32 hysock_connect (hysocket_t sock, hysockaddr_t addr);
+I_32 hysock_write (hysocket_t sock, U_8 * buf, I_32 nbyte, I_32 flags);
+I_32 hysock_read (hysocket_t sock, U_8 * buf, I_32 nbyte, I_32 flags);
 
 #endif

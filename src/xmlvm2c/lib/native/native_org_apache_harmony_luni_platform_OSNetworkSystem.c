@@ -9,6 +9,7 @@
 //#include <errno.h>
 //#include <sys/types.h>
 //#include <sys/socket.h>
+#include "poll.h"
 #include "java_io_FileDescriptor.h"
 #include "java_net_SocketException.h"
 #include "java_net_BindException.h"
@@ -61,6 +62,30 @@ void createSocket (JAVA_OBJECT fd, int sockType, JAVA_BOOLEAN preferIPv4Stack)
         ((java_io_FileDescriptor*) fd)->fields.java_io_FileDescriptor.descriptor_ = (JAVA_ULONG) sockdesc;
         //setJavaIoFileDescriptorContents (env, thisObjFD, sockdesc);
     }
+}
+
+
+int selectRead(hysocket_t hysocketP, I_32 uSecTime, BOOLEAN accept)
+{
+    I_32 result = 0;
+    I_32 timeout;
+    struct pollfd my_pollfd;
+    
+    timeout = uSecTime >= 0 ? TO_MILLIS(0, uSecTime) : -1;
+    my_pollfd.fd = hysocketP->sock;
+    my_pollfd.events = POLLIN | POLLPRI;
+    my_pollfd.revents = 0;
+    do {
+        result = poll (&my_pollfd, 1, timeout);
+    } while (result == -1 && errno == EINTR);
+    
+    if (result == 0)
+        return HYPORT_ERROR_SOCKET_TIMEOUT;
+    
+    if (result == -1)
+        return HYPORT_ERROR_SOCKET_OPFAILED;
+    
+    return result;
 }
 
 //XMLVM_END_NATIVE_IMPLEMENTATION
@@ -347,14 +372,97 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_peekDatagram___java_io
 JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_read___java_io_FileDescriptor_byte_1ARRAY_int_int_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_INT n4, JAVA_INT n5)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_read___java_io_FileDescriptor_byte_1ARRAY_int_int_int]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    JAVA_ARRAY_BYTE* message;
+    JAVA_INT result;
+    
+    java_io_FileDescriptor* fd = n1;
+    org_xmlvm_runtime_XMLVMArray* data = n2;
+    JAVA_INT offset = n3;
+    JAVA_INT count = n4;
+    JAVA_INT timeout = n5;
+    
+    /* Get a pointer to the start of the bytearray */
+    message = data->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    
+    /* Read directly into the byte array */
+    result =
+    org_apache_harmony_luni_platform_OSNetworkSystem_readDirect___java_io_FileDescriptor_long_int_int
+            (me, fd, (JAVA_LONG) (message + offset), count, timeout);
+    
+    return result;
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_readDirect___java_io_FileDescriptor_long_int_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_LONG n2, JAVA_INT n3, JAVA_INT n4)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_readDirect___java_io_FileDescriptor_long_int_int]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    java_io_FileDescriptor* fd = n1;
+    JAVA_LONG address = n2;
+    JAVA_INT count = n3;
+    JAVA_INT timeout = n4;
+    
+    hysocket_t hysocketP;
+    U_8 *message = (U_8 *) address;
+    I_32 result, localCount;
+    
+    hysocketP = getJavaIoFileDescriptorContentsAsAPointer(fd);
+    if (!hysock_socketIsValid(hysocketP)) {
+        // throwJavaNetSocketException(env, HYPORT_ERROR_SOCKET_BADSOCKET);
+        
+        JAVA_OBJECT exc = __NEW_java_net_SocketException();
+        // TODO: Need to pass result to constructor
+        java_net_SocketException___INIT___(exc);
+        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        
+        return (JAVA_INT) 0;
+    }
+    
+    /* A non-zero timeout will first check, and potentially wait, to see if any
+     * bytes are available
+     */
+    if (timeout != 0) {
+        result = selectRead(hysocketP, timeout * 1000, FALSE);
+        if (0 > result) {
+            if (result == HYPORT_ERROR_SOCKET_TIMEOUT) {
+                return (JAVA_INT) 0;  // return zero bytes to indicate timeout
+            }
+            // throwJavaNetSocketException(env, result);
+            
+            JAVA_OBJECT exc = __NEW_java_net_SocketException();
+            // TODO: Need to pass result to constructor
+            java_net_SocketException___INIT___(exc);
+            java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+            curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+            XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);           
+            
+            return (JAVA_INT) 0;  // Unused, exception takes precedence
+        }
+    }
+    
+    /* Limit size of read to 64k bytes */
+    localCount = (count < 65536) ? count : 65536;
+    result = hysock_read(hysocketP, message, localCount, HYSOCK_NOFLAGS);
+    if (0 > result) {
+        if (HYPORT_ERROR_SOCKET_WOULDBLOCK == result) {
+            /* We were asked to read on a nonblocking socket and there is no data available */
+            return (JAVA_INT) 0;
+        }
+        // throwJavaNetSocketException(env, result);
+        
+        JAVA_OBJECT exc = __NEW_java_net_SocketException();
+        // TODO: Need to pass result to constructor
+        java_net_SocketException___INIT___(exc);
+        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        
+        return (JAVA_INT) 0;
+    }
+    
+    /* If no bytes are read, return -1 to signal 'endOfFile' to the Java input stream */
+    return (0 == result) ? (JAVA_INT) -1 : (JAVA_INT) result;
     //XMLVM_END_NATIVE
 }
 
@@ -494,14 +602,64 @@ JAVA_BOOLEAN org_apache_harmony_luni_platform_OSNetworkSystem_supportsUrgentData
 JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_write___java_io_FileDescriptor_byte_1ARRAY_int_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_INT n4)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_write___java_io_FileDescriptor_byte_1ARRAY_int_int]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    JAVA_ARRAY_BYTE *message;
+    JAVA_INT result;
+    
+    java_io_FileDescriptor* fd = n1;
+    org_xmlvm_runtime_XMLVMArray* data = n2;
+    JAVA_INT offset = n3;
+    JAVA_INT count = n4;
+    
+    /* Get a pointer to the start of the bytearray */
+    message = data->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    
+    /* Write directly from the byte array */
+    result = org_apache_harmony_luni_platform_OSNetworkSystem_writeDirect___java_io_FileDescriptor_long_int
+            (me, fd, (JAVA_LONG) (message + offset), count);
+    
+    return result;
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_writeDirect___java_io_FileDescriptor_long_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_LONG n2, JAVA_INT n3)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_writeDirect___java_io_FileDescriptor_long_int]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    java_io_FileDescriptor* fd = n1;
+    JAVA_LONG address = n2;
+    JAVA_INT count = n3;
+    
+    JAVA_ARRAY_BYTE *message = (JAVA_ARRAY_BYTE*) address;
+    I_32 result;
+    
+    hysocket_t socketP = getJavaIoFileDescriptorContentsAsAPointer(fd);
+    if (!hysock_socketIsValid(socketP)) {
+        // throwJavaNetSocketException(env, HYPORT_ERROR_SOCKET_BADSOCKET);
+        
+        JAVA_OBJECT exc = __NEW_java_net_SocketException();
+        // TODO: Need to pass result to constructor
+        java_net_SocketException___INIT___(exc);
+        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        
+        return (JAVA_INT) 0;
+    }
+    
+    result = hysock_write(socketP, (U_8 *) message, (I_32) count, HYSOCK_NOFLAGS);
+    if (0 > result) {
+        // throwJavaNetSocketException(env, result);
+        
+        JAVA_OBJECT exc = __NEW_java_net_SocketException();
+        // TODO: Need to pass result to constructor
+        java_net_SocketException___INIT___(exc);
+        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        
+        return (JAVA_INT) 0;
+    }
+    
+    return (JAVA_INT) result;
     //XMLVM_END_NATIVE
 }
 
