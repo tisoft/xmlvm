@@ -711,3 +711,21 @@ I_32 hysock_getsockname (hysocket_t handle, hysockaddr_t addrHandle)
     return 0;
 }
 
+
+I_32 hysock_connect (hysocket_t sock, hysockaddr_t addr)
+{
+    I_32 rc = 0;
+    I_32 length = getAddrLength(addr);
+    
+    if (connect
+        (SOCKET_CAST (sock), (struct sockaddr *) &addr->addr, length) < 0)
+    {
+        rc = errno;
+        // HYSOCKDEBUG ("<connect failed, err=%d>\n", rc);
+        // rc =
+        // portLibrary->error_set_last_error (portLibrary, rc,
+        //                                    HYPORT_ERROR_SOCKET_OPFAILED);
+    }
+    return rc;
+}
+
