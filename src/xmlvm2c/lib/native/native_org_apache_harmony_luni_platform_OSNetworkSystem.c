@@ -228,7 +228,21 @@ JAVA_OBJECT org_apache_harmony_luni_platform_OSNetworkSystem_getSocketLocalAddre
 JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_getSocketLocalPort___java_io_FileDescriptor_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_getSocketLocalPort___java_io_FileDescriptor_boolean]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    I_32 result;
+    hysockaddr_struct sockaddrP;
+    U_16 nPort, hPort;
+    java_io_FileDescriptor* fileDescriptor = n1;
+    JAVA_BOOLEAN preferIPv6Addresses = n2;
+    
+    result = netGetSockAddr(fileDescriptor, &sockaddrP, preferIPv6Addresses);
+    if (0 != result) {
+        /* The java spec does not indicate any exceptions on this call */
+        return (JAVA_INT) 0;
+    }
+    
+    nPort = hysock_sockaddr_port(&sockaddrP);
+    hPort = hysock_ntohs(nPort);
+    return (JAVA_INT) hPort;
     //XMLVM_END_NATIVE
 }
 

@@ -82,11 +82,33 @@ U_16 hysock_htons(U_16 port)
 }
 
 
+U_16 hysock_ntohs (U_16 val)
+{
+    return ntohs (val);
+}
+
+
+
 I_32 hysock_socketIsValid (hysocket_t handle)
 {
     return ((handle != NULL) && (handle != INVALID_SOCKET));
 }
 
+
+U_16 hysock_sockaddr_port (hysockaddr_t handle)
+{
+    if (((OSSOCKADDR *) & handle->addr)->sin_family == OS_AF_INET4)
+    {
+        return ((OSSOCKADDR *) & handle->addr)->sin_port;
+    }
+#if defined(IPv6_FUNCTION_SUPPORT)
+    else
+    {
+        return ((OSSOCKADDR_IN6 *) & handle->addr)->sin6_port;
+    }
+#endif
+    
+}
 
 void* getJavaIoFileDescriptorContentsAsAPointer (JAVA_OBJECT fd)
 {
@@ -110,6 +132,37 @@ void netGetJavaNetInetAddressScopeId (JAVA_OBJECT anInetAddress, U_32* scope_id)
     }
     else {
         *scope_id = 0;
+    }
+}
+
+
+I_32 netGetSockAddr (JAVA_OBJECT fileDescriptor, hysockaddr_t sockaddrP, JAVA_BOOLEAN preferIPv6Addresses)
+{
+    I_32 result = 0;
+    hysocket_t socketP;
+    U_8 ipAddr[HYSOCK_INADDR6_LEN];
+    memset (ipAddr, 0, HYSOCK_INADDR6_LEN);
+    
+    socketP = getJavaIoFileDescriptorContentsAsAPointer (fileDescriptor);
+    if (!hysock_socketIsValid (socketP))
+    {
+        return HYPORT_ERROR_SOCKET_UNKNOWNSOCKET;
+    }
+    else
+    {
+        if (preferIPv6Addresses)
+        {
+            hysock_sockaddr_init6 (sockaddrP, ipAddr, HYSOCK_INADDR6_LEN,
+                                   HYADDR_FAMILY_UNSPEC, 0, 0, 0, socketP);
+            result = hysock_getsockname (socketP, sockaddrP);
+        }
+        else
+        {
+            hysock_sockaddr_init6 (sockaddrP, ipAddr, HYSOCK_INADDR_LEN,
+                                   HYADDR_FAMILY_AFINET4, 0, 0, 0, socketP);
+            result = hysock_getsockname (socketP, sockaddrP);
+        }
+        return result;
     }
 }
 
@@ -638,5 +691,23 @@ I_32 hysock_bind (hysocket_t sock, hysockaddr_t addr)
         //                                   HYPORT_ERROR_SOCKET_ADDRNOTAVAIL);
     }
     return rc;
+}
+
+
+I_32 hysock_getsockname (hysocket_t handle, hysockaddr_t addrHandle)
+{
+    socklen_t addrlen = sizeof (addrHandle->addr);
+    
+    if (getsockname
+        (SOCKET_CAST (handle), (struct sockaddr *) &addrHandle->addr,
+         &addrlen) != 0)
+    {
+        return errno;
+        // I_32 err = errno;
+        // HYSOCKDEBUG ("<getsockname failed, err=%d>\n", err);
+        // return portLibrary->error_set_last_error (portLibrary, err,
+        //                                           findError (err));
+    }
+    return 0;
 }
 
