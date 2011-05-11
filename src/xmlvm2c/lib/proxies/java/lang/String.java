@@ -340,7 +340,7 @@ public final class String implements Serializable, Comparable<String>,
         if (encoding == null) {
             throw new NullPointerException();
         }
-        if (!encoding.equals("UTF-8")) {
+        if (!encoding.equals("US-ASCII") && !encoding.equals("UTF-8")) {
             throw new UnsupportedEncodingException();
         }
         // start + length could overflow, start/length maybe MaxInt
