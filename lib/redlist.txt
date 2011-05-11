@@ -2876,7 +2876,6 @@ org.apache.yoko.orb.OAD.ProcessEndpoint
 java.awt.peer.MenuComponentPeer
 org.apache.xpath.axes.OneStepIterator
 javax.swing.plaf.basic.BasicListUI$ListLayouter
-org.apache.harmony.luni.net.SocketOutputStream
 org.apache.xerces.dom.CommentImpl
 org.omg.CORBA.NativeDescription
 javax.swing.JList
@@ -6338,7 +6337,6 @@ org.apache.wml.dom.WMLBrElementImpl
 org.jcp.xml.dsig.internal.dom.DOMUtils$NodeSet
 org.apache.xpath.axes.WalkingIteratorSorted
 javax.swing.JToolBar$Separator
-org.apache.harmony.luni.net.SocketInputStream
 javax.swing.text.EmptyAttributeSet$1
 org.omg.PortableInterceptor.ForwardRequestHelper
 javax.security.auth.login.AccountNotFoundException
