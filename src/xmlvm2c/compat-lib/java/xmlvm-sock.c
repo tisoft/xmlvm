@@ -132,13 +132,13 @@ JAVA_OBJECT newJavaByteArray (JAVA_ARRAY_BYTE* bytes, JAVA_INT length)
 JAVA_OBJECT newJavaNetInetAddressGenericBS (JAVA_ARRAY_BYTE* address, U_32 length,
                                 const char* hostName, U_32 scope_id)
 {
-    JAVA_ARRAY_BYTE* byte_array;
+    org_xmlvm_runtime_XMLVMArray* byte_array;
     java_lang_String* aString;
     BOOLEAN isAnyAddress = 1;
     static JAVA_ARRAY_BYTE IPv4ANY[4] = { 0, 0, 0, 0 };
     static JAVA_ARRAY_BYTE IPv6ANY[16] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     U_32 i = 0;
-    JAVA_OBJECT result = NULL;
+    JAVA_OBJECT result = JAVA_NULL;
     
     aString = xmlvm_create_java_string(hostName);
     
@@ -194,47 +194,18 @@ JAVA_OBJECT newJavaNetInetAddressGenericBS (JAVA_ARRAY_BYTE* address, U_32 lengt
     
     if (harmony_supports_ipv6 ())
     {
-#if 0 //IP V6 not yet supported
-        tempMethodWithScope = NULL;
-        if (scope_id != 0)
-        {
-            tempMethodWithScope =
-            (*env)->GetStaticMethodID (env,
-                                       HARMONY_CACHE_GET (env,
-                                                          CLS_java_net_InetAddress),
-                                       "getByAddress",
-                                       "(Ljava/lang/String;[BI)Ljava/net/InetAddress;");
-            
-            if ((*env)->ExceptionCheck (env))
-            {
-                (*env)->ExceptionClear (env);
-                tempMethodWithScope = NULL;
-            }
+#ifdef SUPPORTS_SCOPED_GETBYADDR
+        if (scope_id != 0) {
+            result = java_net_InetAddress_getByAddress___java_lang_String_byte_1ARRAY_int(aString, byte_array, scope_id);
         }
-        
-        if (tempMethodWithScope != NULL)
-        {
-            /* create using the scope id */
-            tempClass = HARMONY_CACHE_GET (env, CLS_java_net_InetAddress);
-            result = (*env)->CallStaticObjectMethod (env, tempClass,
-                                                     tempMethodWithScope, aString,
-                                                     byte_array, scope_id);
-            (*env)->ExceptionCheck(env);
-            return result;
-        }
-        else
-        {
-            tempClass = HARMONY_CACHE_GET (env, CLS_java_net_InetAddress);
-            tempMethod =
-            HARMONY_CACHE_GET (env,
-                               MID_java_net_InetAddress_getByAddress_Ljava_lang_String_byteArray);
-            
-            result = (*env)->CallStaticObjectMethod (env, tempClass, tempMethod,
-                                                     aString, byte_array);
-            (*env)->ExceptionCheck(env);
-            //return result;
+        else {
+#endif
+            result = java_net_InetAddress_getByAddress___java_lang_String_byte_1ARRAY(aString, byte_array);
+
+#ifdef SUPPORTS_SCOPED_GETBYADDR
         }
 #endif
+        
     }
     else
     {
