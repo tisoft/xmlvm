@@ -33,7 +33,9 @@
 #include "xmlvm-sock.h"
 
 #include "java_lang_String.h"
+#include "java_io_FileDescriptor.h"
 #include "java_net_InetAddress.h"
+#include "java_net_Inet6Address.h"
 
 
 #define MAX_RETRIES 50
@@ -60,6 +62,55 @@ int preferIPv4Stack()
 int preferIPv6Addresses()
 {
     return 0;
+}
+
+
+static socklen_t getAddrLength(hysockaddr_t addr)
+{
+    return
+#if defined(IPv6_FUNCTION_SUPPORT)
+    ((OSSOCKADDR *) & addr->addr)->sin_family == OS_AF_INET6 ?
+    sizeof(OSSOCKADDR_IN6) :
+#endif
+    sizeof(OSSOCKADDR);
+}
+
+
+U_16 hysock_htons(U_16 port)
+{
+    return htons(port);
+}
+
+
+I_32 hysock_socketIsValid (hysocket_t handle)
+{
+    return ((handle != NULL) && (handle != INVALID_SOCKET));
+}
+
+
+void* getJavaIoFileDescriptorContentsAsAPointer (JAVA_OBJECT fd)
+{
+    return (void*) ((java_io_FileDescriptor*) fd)->fields.java_io_FileDescriptor.descriptor_;
+}
+
+
+void netGetJavaNetInetAddressValue (JAVA_OBJECT anInetAddress, U_8* buffer, U_32* length)
+{
+    org_xmlvm_runtime_XMLVMArray* byte_array = ((java_net_InetAddress*) anInetAddress)->fields.java_net_InetAddress.ipaddress_;
+    *length = byte_array->fields.org_xmlvm_runtime_XMLVMArray.length_;
+    XMLVM_MEMCPY(buffer, byte_array->fields.org_xmlvm_runtime_XMLVMArray.array_, *length);
+}
+
+
+void netGetJavaNetInetAddressScopeId (JAVA_OBJECT anInetAddress, U_32* scope_id)
+{
+    if (XMLVM_ISA(anInetAddress, __CLASS_java_net_Inet6Address)) {
+        java_net_Inet6Address* addr = (java_net_Inet6Address*) anInetAddress;
+        *scope_id = addr->fields.java_net_Inet6Address.scope_id_;
+    }
+    else {
+        *scope_id = 0;
+    }
 }
 
 
@@ -568,5 +619,24 @@ I_32 hysock_getnameinfo (hysockaddr_t in_addr, I_32 sockaddr_size, char *name,
     return 0;
 #endif /* IPv6_FUNCTION_SUPPORT */
     
+}
+
+
+I_32 hysock_bind (hysocket_t sock, hysockaddr_t addr)
+{
+    I_32 rc = 0;
+    I_32 length = getAddrLength(addr);
+    
+    if (bind
+        (SOCKET_CAST (sock), (struct sockaddr *) &addr->addr, length) < 0)
+    {
+        rc = errno;
+        
+        //HYSOCKDEBUG ("<bind failed, err=%d>\n", rc);
+        //rc =
+        //portLibrary->error_set_last_error (portLibrary, rc,
+        //                                   HYPORT_ERROR_SOCKET_ADDRNOTAVAIL);
+    }
+    return rc;
 }
 

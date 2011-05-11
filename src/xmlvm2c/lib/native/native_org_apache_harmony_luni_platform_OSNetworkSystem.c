@@ -11,6 +11,7 @@
 //#include <sys/socket.h>
 #include "java_io_FileDescriptor.h"
 #include "java_net_SocketException.h"
+#include "java_net_BindException.h"
 #include "java_lang_Thread.h"
 #include "xmlvm-sock.h"
 
@@ -87,7 +88,56 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_availableStream___java
 void org_apache_harmony_luni_platform_OSNetworkSystem_bind___java_io_FileDescriptor_java_net_InetAddress_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_bind___java_io_FileDescriptor_java_net_InetAddress_int]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    JAVA_ARRAY_BYTE nlocalAddrBytes[HYSOCK_INADDR6_LEN];
+    int length;
+    U_16 nPort;
+    I_32 result;
+    hysocket_t socketP;
+    hysockaddr_struct sockaddrP;
+    U_32 scope_id = 0;
+    java_io_FileDescriptor* fileDescriptor = (java_io_FileDescriptor*) n1;
+    java_net_InetAddress* inetAddress = n2;
+    JAVA_INT localPort = n3;
+    
+    socketP = getJavaIoFileDescriptorContentsAsAPointer(fileDescriptor);
+    if (!hysock_socketIsValid(socketP)) {
+        //throwJavaNetSocketException(env, HYPORT_ERROR_SOCKET_BADSOCKET);
+        
+        JAVA_OBJECT exc = __NEW_java_net_SocketException();
+        // TODO: Need to pass result to constructor
+        java_net_SocketException___INIT___(exc);
+        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        
+        return;
+    } else {
+        netGetJavaNetInetAddressValue(inetAddress, (U_8*) nlocalAddrBytes, (U_32*) &length);
+        
+        nPort = hysock_htons((U_16) localPort);
+        if (length == HYSOCK_INADDR6_LEN) {
+            netGetJavaNetInetAddressScopeId(inetAddress, &scope_id);
+            hysock_sockaddr_init6(&sockaddrP, (U_8 *) nlocalAddrBytes, length,
+                                  HYADDR_FAMILY_AFINET6, nPort, 0, scope_id,
+                                  socketP);
+        } else {
+            hysock_sockaddr_init6(&sockaddrP, (U_8 *) nlocalAddrBytes, length,
+                                  HYADDR_FAMILY_AFINET4, nPort, 0, scope_id,
+                                  socketP);
+        }
+        result = hysock_bind(socketP, &sockaddrP);
+        if (0 != result) {
+            // throwJavaNetBindException(env, result);
+            
+            JAVA_OBJECT exc = __NEW_java_net_BindException();
+            // TODO: Need to pass result to constructor
+            java_net_BindException___INIT___(exc);
+            java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+            curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+            XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+            return;
+        }
+    }
     //XMLVM_END_NATIVE
 }
 
