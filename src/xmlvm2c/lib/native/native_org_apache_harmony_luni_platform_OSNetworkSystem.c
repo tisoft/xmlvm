@@ -296,7 +296,7 @@ JAVA_OBJECT org_apache_harmony_luni_platform_OSNetworkSystem_getHostByName___jav
 JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_getSocketFlags__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_getSocketFlags__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return 0;
     //XMLVM_END_NATIVE
 }
 
@@ -588,7 +588,18 @@ void org_apache_harmony_luni_platform_OSNetworkSystem_shutdownOutput___java_io_F
 void org_apache_harmony_luni_platform_OSNetworkSystem_socketClose___java_io_FileDescriptor(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_socketClose___java_io_FileDescriptor]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    hysocket_t socketP;
+    I_32 result = 0;
+    
+    java_io_FileDescriptor* fileDescriptor = n1;
+    
+    socketP = getJavaIoFileDescriptorContentsAsAPointer(fileDescriptor);
+    if (hysock_socketIsValid(socketP)) {
+        /* Set the file descriptor before closing so the select polling loop will terminate. */
+        /* Some platforms wait in the socket close. */
+        fileDescriptor->fields.java_io_FileDescriptor.descriptor_ = -1;
+        result = hysock_close(&socketP);
+    }
     //XMLVM_END_NATIVE
 }
 

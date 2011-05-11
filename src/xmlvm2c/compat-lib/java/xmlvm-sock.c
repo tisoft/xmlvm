@@ -766,3 +766,29 @@ I_32 hysock_read (hysocket_t sock, U_8 * buf, I_32 nbyte, I_32 flags)
     }
 }
 
+
+I_32 hysock_close (hysocket_t * sock)
+{
+    I_32 rc = 0;
+    
+    if (*sock == INVALID_SOCKET) {
+        // HYSOCKDEBUGPRINT ("<closesocket failed, invalid socket>\n");
+        // return portLibrary->error_set_last_error (portLibrary,
+        //                                           HYPORT_ERROR_SOCKET_UNIX_EBADF,
+        //                                           HYPORT_ERROR_SOCKET_BADSOCKET);
+        return HYPORT_ERROR_SOCKET_BADSOCKET;
+    }
+    
+    if (close (SOCKET_CAST (*sock)) < 0) {
+        // rc = errno;
+        // HYSOCKDEBUG ("<closesocket failed, err=%d>\n", rc);
+        // rc =
+        // portLibrary->error_set_last_error (portLibrary, rc,
+        //                                    HYPORT_ERROR_SOCKET_BADSOCKET);
+        return errno;
+    }
+    
+    XMLVM_FREE(*sock);
+    *sock = INVALID_SOCKET;
+    return rc;
+}
