@@ -47,6 +47,52 @@ MUTEX hostentLock = PTHREAD_MUTEX_INITIALIZER;
 #endif /*NO_R */
 
 
+static I_32 findError (I_32 errorCode)
+{
+    switch (errorCode)
+    {
+        case HYPORT_ERROR_SOCKET_UNIX_EBADF:
+            return HYPORT_ERROR_SOCKET_BADDESC;
+        case HYPORT_ERROR_SOCKET_UNIX_ENOBUFS:
+            return HYPORT_ERROR_SOCKET_NOBUFFERS;
+        case HYPORT_ERROR_SOCKET_UNIX_EOPNOTSUP:
+            return HYPORT_ERROR_SOCKET_OPNOTSUPP;
+        case HYPORT_ERROR_SOCKET_UNIX_ENOPROTOOPT:
+            return HYPORT_ERROR_SOCKET_OPTUNSUPP;
+        case HYPORT_ERROR_SOCKET_UNIX_EINVAL:
+            return HYPORT_ERROR_SOCKET_SOCKLEVELINVALID;
+        case HYPORT_ERROR_SOCKET_UNIX_ENOTSOCK:
+            return HYPORT_ERROR_SOCKET_NOTSOCK;
+        case HYPORT_ERROR_SOCKET_UNIX_EINTR:
+            return HYPORT_ERROR_SOCKET_INTERRUPTED;
+        case HYPORT_ERROR_SOCKET_UNIX_ENOTCONN:
+            return HYPORT_ERROR_SOCKET_NOTCONNECTED;
+        case HYPORT_ERROR_SOCKET_UNIX_EAFNOSUPPORT:
+            return HYPORT_ERROR_SOCKET_BADAF;
+            /* note: HYPORT_ERROR_SOCKET_UNIX_ECONNRESET not included because it has the same
+             * value as HYPORT_ERROR_SOCKET_UNIX_CONNRESET and they both map to HYPORT_ERROR_SOCKET_CONNRESET */
+        case HYPORT_ERROR_SOCKET_UNIX_CONNRESET:
+            return HYPORT_ERROR_SOCKET_CONNRESET;
+        case HYPORT_ERROR_SOCKET_UNIX_EAGAIN:
+            return HYPORT_ERROR_SOCKET_WOULDBLOCK;
+        case HYPORT_ERROR_SOCKET_UNIX_EPROTONOSUPPORT:
+            return HYPORT_ERROR_SOCKET_BADPROTO;
+        case HYPORT_ERROR_SOCKET_UNIX_EFAULT:
+            return HYPORT_ERROR_SOCKET_ARGSINVALID;
+        case HYPORT_ERROR_SOCKET_UNIX_ETIMEDOUT:
+            return HYPORT_ERROR_SOCKET_TIMEOUT;
+        case HYPORT_ERROR_SOCKET_UNIX_CONNREFUSED:
+            return HYPORT_ERROR_SOCKET_CONNECTION_REFUSED;
+        case HYPORT_ERROR_SOCKET_UNIX_ENETUNREACH:
+            return HYPORT_ERROR_SOCKET_ENETUNREACH;
+        case HYPORT_ERROR_SOCKET_UNIX_EACCES:
+            return HYPORT_ERROR_SOCKET_EACCES;
+        default:
+            return HYPORT_ERROR_SOCKET_OPFAILED;
+    }
+}
+
+
 int harmony_supports_ipv6()
 {
     return 0;
@@ -375,7 +421,7 @@ I_32 hysock_socket (hysocket_t * handle, I_32 family, I_32 socktype, I_32 protoc
             
             if (sock < 0)
             {
-                rc = errno;
+                rc = findError(errno);
                 return rc;
                 
                 //                HYSOCKDEBUG ("<socket failed, err=%d>\n", rc);
@@ -702,7 +748,7 @@ I_32 hysock_getsockname (hysocket_t handle, hysockaddr_t addrHandle)
         (SOCKET_CAST (handle), (struct sockaddr *) &addrHandle->addr,
          &addrlen) != 0)
     {
-        return errno;
+        return findError(errno);
         // I_32 err = errno;
         // HYSOCKDEBUG ("<getsockname failed, err=%d>\n", err);
         // return portLibrary->error_set_last_error (portLibrary, err,
@@ -742,7 +788,7 @@ I_32 hysock_write (hysocket_t sock, U_8 * buf, I_32 nbyte, I_32 flags)
         // HYSOCKDEBUG ("<send failed, err=%d>\n", err);
         // return portLibrary->error_set_last_error (portLibrary, err,
         //                                           findError (err));
-        return errno;
+        return findError(errno);
     }
     else
     {
@@ -760,7 +806,7 @@ I_32 hysock_read (hysocket_t sock, U_8 * buf, I_32 nbyte, I_32 flags)
         // I_32 err = errno;
         // HYSOCKDEBUG ("<recv failed, err=%d>\n", err);
         // return portLibrary->error_set_last_error (portLibrary, err, findError(err));
-        return errno;
+        return findError(errno);
     } else {
         return bytesRec;
     }
@@ -785,7 +831,7 @@ I_32 hysock_close (hysocket_t * sock)
         // rc =
         // portLibrary->error_set_last_error (portLibrary, rc,
         //                                    HYPORT_ERROR_SOCKET_BADSOCKET);
-        return errno;
+        return HYPORT_ERROR_SOCKET_BADSOCKET;
     }
     
     XMLVM_FREE(*sock);
